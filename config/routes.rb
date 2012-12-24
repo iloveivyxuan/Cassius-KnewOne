@@ -8,6 +8,8 @@ Making::Application.routes.draw do
     delete 'logout' => 'devise/sessions#destroy', as: :destroy_user_session
   end
 
+  resources :users, only: [:show]
+
   match "/404", :to => "home#not_found"
   match "/403", :to => "home#forbidden"
 
