@@ -22,6 +22,8 @@ gem 'devise'
 gem 'cancan'
 # configurations
 gem 'settingslogic'
+# exception notificaton
+gem "airbrake"
 
 group :assets do
   gem 'sass-rails'
