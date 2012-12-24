@@ -36,11 +36,14 @@ module Making
     # config.time_zone = 'Central Time (US & Canada)'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
+    config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+    config.i18n.default_locale = "zh-CN"
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
+
+    # Configure exception handling via route
+    config.exceptions_app = self.routes
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
@@ -64,5 +67,16 @@ module Making
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Auto load my custom libs
+    config.autoload_paths << "#{Rails.root}/lib"
+
+    #Suppress Assets, Spec Tests and Helpers for views and helpers
+    config.generators do |g|
+      g.assets false
+      g.view_specs false
+      g.test_framework      :rspec, fixture: true
+      g.fixture_replacement :fabrication
+    end
   end
 end

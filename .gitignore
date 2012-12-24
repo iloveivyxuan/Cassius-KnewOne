@@ -4,12 +4,35 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile ~/.gitignore_global
 
+# System(Mac os X)
+.DS_Store
+
+# Editors
+*.sw[op]
+*~
+.project
+/TAGS
+
 # Ignore bundler config
 /.bundle
-
-# Ignore the default SQLite database.
-/db/*.sqlite3
+/vendor/bundle
+/bundler_stubs
 
 # Ignore all logfiles and tempfiles.
-/log/*.log
-/tmp
+/log/*
+/tmp/*
+/public/uploads/*
+
+# Ignore cache or compiled files
+*.rbc
+*.sassc
+.sass-cache
+/public/assets
+
+# Test 
+capybara-*.html
+.rspec
+/spec/tmp/*
+
+# Vagrant
+.vagrant

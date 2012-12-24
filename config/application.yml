@@ -1,0 +1,12 @@
+defaults: &defaults
+  host: "making.im"
+
+development:
+  <<: *defaults
+  host: "localhost:3000"
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

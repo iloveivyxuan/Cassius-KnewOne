@@ -1,37 +1,74 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.9'
+# rails and friends
+gem 'rails'
+gem 'rails-i18n'
+# database
+gem 'mongoid'
+gem 'mongoid_slug'
+# components
+gem 'simple_form'
+gem 'kaminari'
+# presenters and views
+gem 'slim-rails'
+gem 'jquery-rails'
+gem 'jbuilder'
+# file uploads
+gem 'carrierwave'
+gem 'carrierwave-mongoid'
+gem 'carrierwave-upyun'
+# authentications
+gem 'devise'
+gem 'cancan'
+# configurations
+gem 'settingslogic'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-
-
-# Gems used only for assets and not required
-# in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+  gem 'turbo-sprockets-rails3'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+  # components
+  gem "jquery-fileupload-rails"
 
-  gem 'uglifier', '>= 1.0.3'
+  # stylesheets library
+  gem 'compass-rails'
+  gem 'bootstrap-sass'
+  gem 'font-awesome-sass-rails'
 end
 
-gem 'jquery-rails'
+group :production do
+  gem 'unicorn'
+end
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+group :development do
+  gem 'thin'
+  gem 'quiet_assets'
 
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
+  # deploy
+  gem 'capistrano'
+  gem 'rvm-capistrano'
+end
 
-# Use unicorn as the app server
-# gem 'unicorn'
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'mongoid-rspec'
+  gem 'jasminerice'
+  gem 'guard-spork'
+  gem 'guard-rspec'
+  gem 'guard-jasmine'
+  gem 'guard-livereload'
+  gem 'fabrication'
+  gem 'ffaker'
+  gem 'database_cleaner'
 
-# Deploy with Capistrano
-# gem 'capistrano'
+  # file system handling
+  # please don't develop at windows
+  gem 'rb-fsevent', require: false
+  gem 'rb-inotify', require: false
 
-# To use debugger
-# gem 'debugger'
+  # system notifications
+  gem 'growl', require: false
+  gem 'libnotify', require: false
+end
