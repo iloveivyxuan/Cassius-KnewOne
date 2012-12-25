@@ -4,17 +4,16 @@ doctype html
   head
     meta charset="utf-8"
     meta http-equiv="X-UA-Compatible" content="IE=edge"
-    title page_title
+    title= page_title
     meta name="author" content="lilu.life@gmail.com"
-    meta name="description" content=""
+    meta name="description" content="The website for makers"
     meta name="viewport" content="width=device-width,initial-scale=1"
-    /= favicon_link_tag '/favicon.png', type: 'image/png'
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
   body
     = render 'layouts/header'
-    .container-fluid
+    section.container-fluid
       = notification 
       = yield
     = render 'layouts/footer'

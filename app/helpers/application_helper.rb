@@ -1,10 +1,10 @@
 module ApplicationHelper
   def brand
-    "Making"
+    "making.im"
   end
 
-  def page_title(title)
-    title.blank? ? "" : " | #{title}"
+  def page_title
+    [brand, content_for(:title)].reject(&:blank?).join('-')
   end
 
   def notification_content(message, type)
