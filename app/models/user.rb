@@ -13,7 +13,7 @@ class User
   validates_presence_of :email
   validates_presence_of :encrypted_password
 
-  attr_accessible :name
+  attr_accessible :email, :name, :password
 
   ## Rememberable
   field :remember_created_at, type: Time

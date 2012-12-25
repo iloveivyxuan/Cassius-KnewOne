@@ -2,11 +2,10 @@ header#page_header
   .navbar.navbar-static-top
     .navbar-inner
       = link_to brand, root_path, class: "brand"
-      nav#main_nav
-        ul.nav.pull-right
+      ul.nav.pull-right
         - if user_signed_in?
-          = link_to current_user.name, current_user
-          = link_to 'logout', destroy_user_session_path, method: :delete
+          li= link_to current_user.name, current_user
+          li= link_to 'logout', destroy_user_session_path, method: :delete
         - else 
-          = link_to "login", new_user_session_path
-          = link_to "signup", new_user_registration_path
+          li= link_to "signin", new_user_session_path
+          li= link_to "signup", new_user_registration_path
