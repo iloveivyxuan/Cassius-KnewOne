@@ -27,4 +27,10 @@ class User
 
   ## Token authenticatable
   # field :authentication_token, :type => String
+
+  ## Posts
+  has_many :posts, class_name: "Post", inverse_of: :author
+  def guides
+    posts.where('_type' => 'Guide')
+  end
 end
