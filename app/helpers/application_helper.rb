@@ -19,8 +19,4 @@ module ApplicationHelper
     end
     nil
   end
-
-  def controller_javascript_include_tag
-    javascript_include_tag controller_name
-  end
 end
