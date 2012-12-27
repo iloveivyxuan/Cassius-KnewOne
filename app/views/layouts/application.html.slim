@@ -9,7 +9,7 @@ doctype html
     meta name="description" content="The website for makers"
     meta name="viewport" content="width=device-width,initial-scale=1"
     = stylesheet_link_tag "application"
-    = javascript_include_tag "application"
+    = javascript_include_tag "modernizr_respond"
     = csrf_meta_tags
   body
     = render 'layouts/header'
@@ -17,4 +17,7 @@ doctype html
       = notification 
       = yield
     = render 'layouts/footer'
+    = javascript_include_tag "application"
+    = controller_javascript_include_tag 
+    = yield :script
 </html>

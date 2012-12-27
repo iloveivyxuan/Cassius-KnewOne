@@ -10,6 +10,7 @@ gem 'mongoid_slug'
 gem 'simple_form'
 gem 'kaminari'
 # presenters and views
+gem 'draper'
 gem 'slim-rails'
 gem 'jquery-rails'
 gem 'jbuilder'
@@ -32,6 +33,7 @@ group :assets do
   gem 'turbo-sprockets-rails3'
 
   # components
+  gem "handlebars_assets"
   gem "jquery-fileupload-rails"
 
   # stylesheets library

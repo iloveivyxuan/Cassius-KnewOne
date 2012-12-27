@@ -4,6 +4,7 @@ header
       = link_to brand, root_path, class: "brand"
       ul.nav.pull-right
         - if user_signed_in?
+          li= link_to '+Create', new_guide_path
           li= link_to current_user.name, current_user
           li= link_to 'logout', destroy_user_session_path, method: :delete
         - else 
