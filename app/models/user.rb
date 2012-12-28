@@ -33,4 +33,7 @@ class User
   def guides
     posts.where('_type' => 'Guide')
   end
+
+  ## Photos
+  has_many :photos
 end

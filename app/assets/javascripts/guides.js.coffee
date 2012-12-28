@@ -3,6 +3,8 @@ class Guide
     @handleStepAdd()
     @handleStepRemove()
     $('#step_navs .step_nav:first a').tab('show')
+    $('#step_navs').on 'shown', '.step_nav a', ->
+      $('tbody.files').empty()
 
   handleStepAdd: ->
     $add = $('#add_step')
@@ -41,3 +43,16 @@ class Guide
 
 $ ->
   new Guide()
+
+  $('#fileupload').fileupload
+    maxFileSize:10000000,
+    acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
+  .on "fileuploaddone", (e, data) ->
+    photo_id = data.result[0].id
+    $('#steps fieldset.active .photo_ids_template')
+    .clone()
+    .val(photo_id)
+    .attr('name', ->
+      $(this).data('name')
+    ).removeClass('photo_ids_template')
+    .appendTo('#steps fieldset.active')

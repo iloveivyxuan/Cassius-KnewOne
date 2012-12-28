@@ -1,5 +1,10 @@
 defaults: &defaults
   host: "making.im"
+  upyun:
+    username: "leslielilu"
+    password: "g4l4pg2sh13sm"
+    photo_bucket: "making-photos"
+    photo_bucket_domain: "making-photos.b0.upaiyun.com"
 
 development:
   <<: *defaults

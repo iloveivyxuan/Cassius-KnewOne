@@ -16,7 +16,7 @@ class GuidesController < ApplicationController
   end
 
   def show
-    @guide = Guide.find(params[:id])
+    @guide = Guide.find(params[:id]) || not_found
   end
 
   def edit

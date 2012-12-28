@@ -9,6 +9,10 @@ class Ability
       can [:update, :destroy], Guide do |guide|
         guide.author == user
       end
+      can :create, Photo
+      can :destroy, Photo do |photo|
+        photo.user == user
+      end
       basic
     end
   end

@@ -13,6 +13,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require bootstrap
-#= require guides
+#= require jquery-fileupload
+#= require_tree .
 
 "use strict"

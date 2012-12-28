@@ -1,0 +1,33 @@
+= simple_form_for Photo.new, html: {multipart: true, id: "fileupload"} do |f|
+  .row-fluid.fileupload-buttonbar
+    span.btn.btn-success.fileinput-button
+      i.icon-plus.icon-white
+      span Add files
+      = f.file_field :path, multiple: true
+    button.btn.btn-primary.start type="submit"  
+      i.icon-upload.icon-white
+      span Start
+    button.btn.btn-warning.cancel type="reset"
+      i.icon-ban-circle.icon-white
+      span Cancel
+    button.btn.btn-danger.delete type="button"
+      i.icon-trash.icon-white
+      span Delete
+  .fileupload-loading
+  table.table.table-striped
+    tbody.files data-toggle="modal-gallery" data-target="#modal-gallery"
+
+= render "photos/queue"
+= render "photos/download"
+  
+javascript:
+
+  var fileUploadErrors = {
+    maxFileSize: 'File is too big',
+    minFileSize: 'File is too small',
+    acceptFileTypes: 'Filetype not allowed',
+    maxNumberOfFiles: 'Max number of files exceeded',
+    uploadedBytes: 'Uploaded bytes exceed file size',
+    emptyResult: 'Empty file upload result'
+  };
+

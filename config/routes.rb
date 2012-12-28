@@ -13,6 +13,8 @@ Making::Application.routes.draw do
     resources :steps
   end
 
+  resources :photos, only: [:new, :create, :destroy]
+
   match "/404", :to => "home#not_found"
   match "/403", :to => "home#forbidden"
 end
