@@ -12,8 +12,10 @@ gem 'kaminari'
 # presenters and views
 gem 'draper'
 gem 'slim-rails'
-gem 'jquery-rails'
 gem 'jbuilder'
+# javascripts
+gem 'jquery-rails'
+gem 'backbone-on-rails'
 # file uploads
 gem 'carrierwave'
 gem 'carrierwave-mongoid'
