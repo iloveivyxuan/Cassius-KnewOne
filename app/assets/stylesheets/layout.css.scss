@@ -4,11 +4,16 @@
                      "orbitron-bold.svg", svg),
                    "orbitron-bold.eot");
 
+.user_avatar {
+  width: 40px;
+  height: 40px;
+}
+
 body > header {
   > nav {
     .navbar-inner {
       padding: 10px 2%;
-      
+
       .brand {
         font-family: "orbitron-bold";
         color: $linkColor;
@@ -29,6 +34,21 @@ body > header {
           position: absolute;
           top: 7px;
           left: 11px;
+        }
+      }
+
+      .nav_user {
+        > a {
+          padding: 0 0 0 2em;
+          img {
+            margin-right: .5em;
+            border-radius: 50em;
+          }
+          .icon-caret-down {padding-left: .5em;}
+        }
+
+        > .dropdown-menu {
+          margin-top: 5px;
         }
       }
     }
