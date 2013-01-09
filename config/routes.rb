@@ -15,6 +15,8 @@ Making::Application.routes.draw do
 
   resources :photos, only: [:new, :create, :destroy]
 
+  get '/search', to: 'home#search', as: :search
+
   match "/404", :to => "home#not_found"
   match "/403", :to => "home#forbidden"
 end

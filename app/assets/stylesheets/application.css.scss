@@ -12,7 +12,15 @@
  *= require_self
 */
 
+$baseFontFamily: "Hiragino Sans GB", "Microsoft YaHei", Helvetica, sans-serif;
+$baseFontSize: 14px;
+$baseLineHeight: 22px;
+$linkColor: #588cc7;
+$headingsFontWeight: normal;
+
 @import "bootstrap";
 @import "bootstrap-responsive";
+@import "font-awesome";
 @import "compass/css3";
+@import "layout";
 @import "home";

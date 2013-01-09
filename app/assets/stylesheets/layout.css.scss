@@ -1,0 +1,36 @@
+@include font-face("orbitron-bold", font-files(
+                     "orbitron-bold.woff", woff,
+                     "orbitron-bold.ttf", truetype,
+                     "orbitron-bold.svg", svg),
+                   "orbitron-bold.eot");
+
+body > header {
+  > nav {
+    .navbar-inner {
+      padding: 10px 2%;
+      
+      .brand {
+        font-family: "orbitron-bold";
+        color: $linkColor;
+        font-size: 2em;
+        margin-right: 2em;
+      }
+
+      .nav_main {
+        font-size: 1.2em;
+      }
+
+      form.navbar-search {
+        input.search-query {
+          padding-left: 29px;
+        }
+
+        .icon-search {
+          position: absolute;
+          top: 7px;
+          left: 11px;
+        }
+      }
+    }
+  }
+}
