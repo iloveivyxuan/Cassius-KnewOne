@@ -13,14 +13,14 @@
 #= require jquery
 #= require jquery_ujs
 #= require bootstrap
-#= require jquery-fileupload
 #= require underscore
 #= require backbone
+#= require handlebars.runtime
+#= require jquery-fileupload/basic
 #= require making
 #= require_tree ../templates
 #= require_tree ./models
 #= require_tree ./collections
 #= require_tree ./views
 #= require_tree ./routers
-# 
-"use strict"
+

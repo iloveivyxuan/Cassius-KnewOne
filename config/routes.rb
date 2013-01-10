@@ -9,11 +9,12 @@ Making::Application.routes.draw do
   end
   resources :users, only: [:show]
 
+  resources :things
   resources :guides do
     resources :steps
   end
 
-  resources :photos, only: [:new, :create, :destroy]
+  resources :photos, only: [:create, :destroy, :show]
 
   get '/search', to: 'home#search', as: :search
 

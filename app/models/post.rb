@@ -4,9 +4,11 @@ class Post
   include Mongoid::Slug
 
   field :title, type: String
-
   slug :title
 
-  validates :title, presence: true
-end
+  belongs_to :author, class_name: "User", inverse_of: :post
 
+  validates :title, presence: true
+
+  default_scope desc(:created_at)
+end

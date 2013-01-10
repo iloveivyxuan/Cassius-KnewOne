@@ -6,14 +6,24 @@ header
         li.dropdown.span2= link_to '#' do
           i.icon-globe
           |  探索
-        li.dropdown.span2= link_to '#' do
-          i.icon-magic
-          |  创造
+        li.dropdown.span2
+          = link_to '#', class: "dropdown", data: {toggle: "dropdown"} do
+            i.icon-magic
+            |  创造
+          ul.dropdown-menu
+            li= link_to '#' do
+              i.icon-wrench
+                |  产品
+            li= link_to '#' do
+              i.icon-pencil
+                |  文字
+            li= link_to '#' do
+              i.icon-road
+                |  教程
       ul.nav.pull-right
         - if user_signed_in?
           li.nav_user
-            = link_to current_user, class: "dropdown",
-            data: {toggle: "dropdown"} do
+            = link_to '#', class: "dropdown", data: {toggle: "dropdown"} do
               = image_tag "stubs/user.jpg", class: "user_avatar"
               = current_user.name
               i.icon-caret-down
@@ -21,7 +31,7 @@ header
               li= link_to current_user do
                 i.icon-user
                   |  个人主页
-              li= link_to "#" do
+              li= link_to '#' do
                 i.icon-cog
                   |  设置
               li= link_to destroy_user_session_path, method: :delete do

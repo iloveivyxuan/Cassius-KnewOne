@@ -4,19 +4,19 @@ class Photo
 
   field :name, type: String
   field :size, type: Integer
-  mount_uploader :photo, PhotoUploader
+  mount_uploader :image, ImageUploader
 
-  attr_accessible :name, :photo
-  validates :photo, presence: true
+  attr_accessible :name, :image, :user
+  validates :image, presence: true
   belongs_to :user
-  delegate :url, to: :photo
+  delegate :url, to: :image
 
   before_create :set_attributes
 
   def set_attributes
-    if photo
-      self.name ||= photo.file.original_filename
-      self.size ||= photo.file.size
+    if image
+      self.name ||= image.file.original_filename
+      self.size ||= image.file.size
     end
   end
 end

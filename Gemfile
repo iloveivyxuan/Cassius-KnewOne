@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails'
 gem 'rails-i18n'
 # database
-gem 'mongoid'
+gem 'mongoid', '~> 3.0.0'
 gem 'mongoid_slug'
 # components
 gem 'simple_form'
@@ -15,6 +15,7 @@ gem 'slim-rails'
 gem 'jbuilder'
 # javascripts
 gem 'jquery-rails'
+gem 'modernizr-rails'
 gem 'backbone-on-rails'
 # file uploads
 gem 'carrierwave'

@@ -43,16 +43,3 @@ class Guide
 
 $ ->
   new Guide()
-
-  $('#fileupload').fileupload
-    maxFileSize:10000000,
-    acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
-  .on "fileuploaddone", (e, data) ->
-    photo_id = data.result[0].id
-    $('#steps fieldset.active .photo_ids_template')
-    .clone()
-    .val(photo_id)
-    .attr('name', ->
-      $(this).data('name')
-    ).removeClass('photo_ids_template')
-    .appendTo('#steps fieldset.active')

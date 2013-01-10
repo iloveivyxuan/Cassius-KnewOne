@@ -8,7 +8,7 @@ describe Photo do
   subject {@photo}
 
   it {should be_valid}
-  its(:photo_url) {should =~ Regexp.new(Settings.upyun.photo_bucket_domain)}
+  its(:image_url) {should =~ Regexp.new(Settings.upyun.photo_bucket_domain)}
   its(:name) {should == "example.png"}
   its(:size) {should == 1479}
 end

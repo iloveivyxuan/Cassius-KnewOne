@@ -5,9 +5,9 @@ class Ability
     if user.blank?
       basic
     else
-      can :create, Guide
-      can [:update, :destroy], Guide do |guide|
-        guide.author == user
+      can :create, Post
+      can [:update, :destroy], Post do |guide|
+        post.author == user
       end
       can :create, Photo
       can :destroy, Photo do |photo|
@@ -20,7 +20,7 @@ class Ability
   private
 
   def basic
-    can :read, Guide
+    can :read, Post
     can :read, User
   end
 end

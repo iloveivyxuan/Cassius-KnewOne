@@ -1,6 +1,4 @@
-class GuidesController < ApplicationController
-  load_and_authorize_resource
-
+class GuidesController < PostsController
   def new
     @guide = Guide.new
     @guide.steps.build(title: "Intro", content: "Hello")

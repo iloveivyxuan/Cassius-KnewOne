@@ -23,6 +23,9 @@ body > header {
 
       .nav_main {
         font-size: 1.2em;
+        .dropdown-menu {
+          font-size: $baseFontSize;
+        }
       }
 
       form.navbar-search {

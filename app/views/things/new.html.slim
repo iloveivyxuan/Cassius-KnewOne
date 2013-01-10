@@ -1,0 +1,15 @@
+- provide :title, "发布产品"
+
+= simple_form_for @thing do |f|
+  = f.input :title
+  = f.input :description
+  = f.button :submit
+
+= simple_form_for Photo.new do |f|
+  = f.file_field :image, multiple: true, name: "photo[image]"
+
+#photos
+
+- content_for :script do
+  javascript:
+    Making.UploadPhotos("#photos");

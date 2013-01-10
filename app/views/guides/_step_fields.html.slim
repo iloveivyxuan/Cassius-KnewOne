@@ -1,7 +1,6 @@
 fieldset.tab-pane id="step_#{i}"
   = f.input :title, label: "title"
   = f.input :content, as: :text, label: "content", input_html: {rows: 10}
-  input.photo_ids_template type="hidden" data-name="guide[steps_attributes][#{i}][photo_ids][]" 
   - if i.to_i > 0
     = f.input :_destroy, as: :hidden
     = link_to "Remove Step", "#", data: {remove: i}, class: "remove_step"
