@@ -17,6 +17,8 @@
 #= require backbone
 #= require handlebars.runtime
 #= require jquery-fileupload/basic
+#= require jquery-fileupload/vendor/load-image
+#= require jquery.sortable
 #= require making
 #= require_tree ../templates
 #= require_tree ./models

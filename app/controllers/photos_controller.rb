@@ -3,15 +3,30 @@ class PhotosController < ApplicationController
   load_and_authorize_resource
 
   def show
-    respond_with Photo.find(params[:id])
+    respond_with Photo.find(params[:id]).to_jq_upload
   end
 
   def create
-    respond_with Photo.create(params[:photo].merge(user: current_user))
+    photo = Photo.new(params[:photo].merge(user: current_user))
+    if photo.save
+      respond_to do |format|
+        format.html {
+          render json: photo.to_jq_upload,
+          content_type: 'text/html',
+          layout: false
+        }
+        format.json {
+          render json: photo.to_jq_upload
+        }
+      end
+    else
+      render json: photo
+    end
   end
 
   def destroy
     photo = Photo.find(params[:id])
     respond_with photo && photo.destroy
   end
+
 end

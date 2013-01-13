@@ -1,0 +1,24 @@
+form#new_thing {
+  width: $negGoldWidth;
+}
+
+form#new_photo {
+  width: $goldWidth;
+
+  #photos {
+    border: 1px dashed #ccc;
+    height: 600px;
+
+    .uploaded {
+      height: 200px;
+      background: yellow;
+      border: 1px solid #333;
+      margin: 50px 0;
+    }
+
+    .photo {
+      max-width: 100px;
+      max-height: 100px;
+    }
+  }
+}

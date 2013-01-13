@@ -20,6 +20,7 @@ class Ability
   private
 
   def basic
+    can :read, Photo
     can :read, Post
     can :read, User
   end

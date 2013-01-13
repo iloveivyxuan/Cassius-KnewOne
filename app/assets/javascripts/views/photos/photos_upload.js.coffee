@@ -6,21 +6,42 @@ class Making.Views.PhotosUpload extends Backbone.View
     @$container = $("#photos")
     @collection = new Making.Collections.Photos(@$container.data('photos'))
     @collection.on
-      add: @append
+      add: @addPhoto
     $('#new_photo').fileupload
       dataType: "json"
+      dropzone: @$container
+      add: @addFile
+      progress: @progress
       done: @done
+      fail: @fail
+      drop: ->
+      dragover: ->
 
   render: =>
-    @collection.each @append
+    @collection.each @addPhoto
     @$container.html @el
     this
 
-  append: (photo) =>
-    view = new Making.Views.Photo(model: photo)
-    @$el.append view.render().el
+  addFile: (e, data) =>
+    file = data.files[0]
+    data.view = new Making.Views.PhotoPreview
+      model: file
+    @$el.append data.view.render().el
+    data.submit()
+
+  progress: (e, data) =>
+    data.view.progress data
 
   done: (e, data) =>
-    @append data.result
+    data.view.remove()
+    @collection.add data.result
 
+  addPhoto: (photo) =>
+    view = new Making.Views.Photo
+      model: photo
+      attributes:
+        'data-photo-id': photo.id
+    @$el.append view.render().el  
+    @$el.sortable
+      items: '.uploaded'
 

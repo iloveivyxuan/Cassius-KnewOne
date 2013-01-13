@@ -11,11 +11,16 @@
  *= require_self
 */
 
+/* bootstrap variables */
 $baseFontFamily: "Hiragino Sans GB", "Microsoft YaHei", Helvetica, sans-serif;
 $baseFontSize: 14px;
 $baseLineHeight: 22px;
 $linkColor: #588cc7;
 $headingsFontWeight: normal;
+
+/* project variables */
+$goldWidth: 60.56%;
+$negGoldWidth: 37.43%;
 
 @import "bootstrap";
 @import "bootstrap-responsive";
@@ -23,3 +28,5 @@ $headingsFontWeight: normal;
 @import "compass/css3";
 @import "layout";
 @import "home";
+@import "things";
+

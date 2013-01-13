@@ -1,11 +1,24 @@
 class Making.Views.Photo extends Backbone.View
 
-  template: JST['photos/photo']
   tagName: 'li'
+  className: 'uploaded'
+  template: JST['photos/photo']
 
-  initialize: ->
+  events: 
+    "click .destroy": "destroy"
 
-  render: =>
-    $(@el).html @template(@model)
-    this
+  initialize: =>
+  	@listenTo @model, 'destroy', @remove
   
+  render: =>
+    @$el.html JST['photos/photo']
+      url: @model.get('url')
+      name: @model.get('name')
+    this
+
+  destroy: (e) =>
+    @model.destroy()
+    e.preventDefault()
+
+
+

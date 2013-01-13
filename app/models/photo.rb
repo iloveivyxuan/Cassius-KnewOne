@@ -6,9 +6,13 @@ class Photo
   field :size, type: Integer
   mount_uploader :image, ImageUploader
 
-  attr_accessible :name, :image, :user
-  validates :image, presence: true
   belongs_to :user
+  belongs_to :photographic, polymorphic: true
+
+  attr_accessible :name, :image, :user
+
+  validates :image, presence: true
+
   delegate :url, to: :image
 
   before_create :set_attributes
@@ -19,4 +23,14 @@ class Photo
       self.size ||= image.file.size
     end
   end
+
+  def to_jq_upload
+    {
+      "id" => id.to_s,
+      "name" => name,
+      "size" => size,
+      "url" => url
+    }
+  end
+
 end

@@ -11,4 +11,5 @@ describe Photo do
   its(:image_url) {should =~ Regexp.new(Settings.upyun.photo_bucket_domain)}
   its(:name) {should == "example.png"}
   its(:size) {should == 1479}
+
 end
