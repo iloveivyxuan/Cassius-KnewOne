@@ -6,7 +6,7 @@ class Ability
       basic
     else
       can :create, Post
-      can [:update, :destroy], Post do |guide|
+      can [:update, :destroy], Post do |post|
         post.author == user
       end
       can :create, Photo

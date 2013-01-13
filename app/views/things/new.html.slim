@@ -1,13 +1,13 @@
 - provide :title, "发布产品"
 
-= simple_form_for @thing, html: {class: "pull-left"} do |f|
+= simple_form_for @thing, html: {class: "thing_form pull-left"} do |f|
   = f.input :title
   = f.input :description, as: :text
   = f.button :submit
 
 = simple_form_for Photo.new, html: {class: "pull-left"} do |f|
   = f.file_field :image, multiple: true, name: "photo[image]"
-  #photos
+  = content_tag :div, "", id: "photos", data: {photos: @photos}
 
 - content_for :script do
   javascript:

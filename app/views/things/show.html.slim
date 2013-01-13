@@ -1,2 +1,4 @@
 h1= @thing.title
 p= @thing.description
+- @thing.photos.each do |photo|
+  = image_tag photo.url

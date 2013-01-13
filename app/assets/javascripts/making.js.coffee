@@ -10,7 +10,7 @@ window.Making =
     $(document).ready ->
       view = new Making.Views.PhotosUpload
       view.render()
-      $('form#new_thing').submit (e) ->
+      $('form.thing_form').submit (e) ->
         _.each $('#photos .uploaded'), (el) =>
           $('<input>').attr(
             name: "thing[photo_ids][]"
