@@ -10,13 +10,17 @@ module ApplicationHelper
   def notification
     [:error, :alert, :notice, :info, :success].each do |type|
       message = flash.now[type] || flash[type]
-      if message
-        return content_tag :div, class: "alert alert-#{type}" do
-          button_tag('x', type: 'button', class: 'close',
-                     data: {dismiss: 'alert'}) + message
-        end
-      end
+      return content_tag :div, class: "alert alert-#{type}" do
+        button_tag('x', type: 'button', class: 'close',
+                   data: {dismiss: 'alert'}) + message
+      end if message
     end
     nil
   end
+
+  def nav_tab(tab, options = {})
+    options[:class] += ' active' if content_for(:nav) == tab.to_s
+    content_tag(:li, options) {yield}
+  end
+
 end

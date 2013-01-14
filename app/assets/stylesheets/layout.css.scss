@@ -12,7 +12,7 @@
 body > header {
   > nav {
     .navbar-inner {
-      padding: 10px 2%;
+      padding: 0 2%;
 
       .brand {
         font-family: "orbitron-bold";
@@ -21,10 +21,13 @@ body > header {
         margin-right: 2em;
       }
 
-      .nav_main {
+      ul.nav_main {
         font-size: 1.2em;
-        .dropdown-menu {
-          font-size: $baseFontSize;
+
+        > li {
+          .dropdown-menu {
+            font-size: $baseFontSize;
+          }
         }
       }
 
@@ -37,6 +40,7 @@ body > header {
           position: absolute;
           top: 7px;
           left: 11px;
+          color: #999;
         }
       }
 
@@ -56,4 +60,8 @@ body > header {
       }
     }
   }
+}
+
+body > section {
+  padding: 2em 0;
 }

@@ -3,23 +3,24 @@ header
     .navbar-inner
       = link_to brand, root_path, class: "brand span2"
       ul.nav.nav_main
-        li.dropdown.span2= link_to '#' do
-          i.icon-globe
-          |  探索
-        li.dropdown.span2
+        = nav_tab "explore", class: "dropdown span2" do
+          = link_to '#' do
+            i.icon-globe
+            |  探索
+        = nav_tab :create, class: "dropdown span2" do
           = link_to '#', class: "dropdown", data: {toggle: "dropdown"} do
             i.icon-magic
             |  创造
           ul.dropdown-menu
             li= link_to '#' do
               i.icon-wrench
-                |  产品
+              |  产品
             li= link_to '#' do
               i.icon-pencil
-                |  文字
+              |  文字
             li= link_to '#' do
               i.icon-road
-                |  教程
+              |  教程
       ul.nav.pull-right
         - if user_signed_in?
           li.nav_user
@@ -30,13 +31,13 @@ header
             ul.dropdown-menu
               li= link_to current_user do
                 i.icon-user
-                  |  个人主页
+                |  个人主页
               li= link_to '#' do
                 i.icon-cog
-                  |  设置
+                |  设置
               li= link_to destroy_user_session_path, method: :delete do
                 i.icon-signout
-                  |  登出
+                |  登出
         - else
           li.span= link_to new_user_session_path do
             i.icon-signin
