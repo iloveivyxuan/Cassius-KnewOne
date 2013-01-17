@@ -1,0 +1,32 @@
+zh-CN:
+  simple_form:
+    labels:
+      user:
+        email: '邮箱'
+        password: '密码'
+        password_confirmation: '密码确认'
+        current_password: '当前密码'
+        name: '姓名'
+        remember_me: '记住我'
+        avatar: '头像'
+        job: '职业'
+        interests: '兴趣'
+        location: '地点'
+        description: '自我描述'
+      thing:
+        title: '名称'
+        shop: '购买链接'
+        price: '价格'
+        photos: '图片'
+        description: '简介'
+        photo: '图像'
+      category:
+        name: '分类名称'
+      comment:
+        content: '内容'
+    placeholders:
+      user:
+        email: '请输入您的邮箱地址'
+        name: '请输入您的姓名'
+        password: '请输入您的密码'
+        password_confirmation: '请再次输入您的密码确认'

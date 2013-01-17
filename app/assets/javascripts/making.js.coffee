@@ -6,17 +6,10 @@ window.Making =
 
   initialize: ->
 
-  thingForm: ->
+  ThingsNew: ->
     $(document).ready ->
-      view = new Making.Views.PhotosUpload
-      view.render()
-      $('form.thing_form').submit (e) ->
-        _.each $('#photos .uploaded'), (el) =>
-          $('<input>').attr(
-            name: "thing[photo_ids][]"
-            value: $(el).data('photo-id')
-            type: "hidden"
-          ).appendTo $(this)
-            
+      view = new Making.Views.ThingsNew
+        el: "form.thing_form"
+
 $(document).ready ->
   Making.initialize()

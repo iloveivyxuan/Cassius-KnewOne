@@ -7,7 +7,7 @@ class ThingsController < PostsController
     @photo_ids = params[:thing].delete :photo_ids
     @thing = Thing.new params[:thing]
     @thing.author = current_user
-    if @thing.save
+    if !@photo_ids.blank? && @thing.save
       @thing.photos = Photo.find @photo_ids
       redirect_to @thing
     else

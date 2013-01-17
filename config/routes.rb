@@ -10,9 +10,6 @@ Making::Application.routes.draw do
   resources :users, only: [:show]
 
   resources :things
-  resources :guides do
-    resources :steps
-  end
 
   resources :photos, only: [:create, :destroy, :show]
 

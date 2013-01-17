@@ -1,13 +1,66 @@
+$formWidth: 46%;
+$marginWidth: 50% - $formWidth;
+
 form.thing_form {
-  width: $negGoldWidth;
+  width: $formWidth;
+  margin-left: $marginWidth;
+
+  .string {
+    input {
+      width: 60%;
+    }
+  }
+  
+  .text {
+    textarea {
+      width: 80%;
+    }
+  }
+
+  input[type="submit"] {
+    position: relative;
+    right: -4em;
+    margin-top: 2em;
+    float: right;
+    width: 12em;
+  }
 }
 
 form#new_photo {
-  width: $goldWidth;
+  width: $formWidth;
+  margin-right: $marginWidth;
+
+  .fileinput-button {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 2em;
+    
+    input {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 0;
+      cursor: pointer;
+      @include opacity(0);
+    }
+  }
 
   #photos {
     border: 1px dashed #ccc;
-    height: 600px;
+    height: 767px;
+    @include transition(background, 0.3s);
+    
+    &.dragover {
+      background: lighten($pink, 40%);
+    }
+
+    p {
+      text-align: center;
+      font-size: $fontSizeSmall;
+      color: $grayLight;
+    }
+
+    .uploading {}
 
     .uploaded {
       height: 200px;

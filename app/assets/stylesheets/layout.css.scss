@@ -5,51 +5,42 @@
                    "orbitron-bold.eot");
 
 .user_avatar {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
 }
 
 body > header {
   > nav {
     .navbar-inner {
-      padding: 0 2%;
+      padding: 0 2%; 
 
       .brand {
         font-family: "orbitron-bold";
-        color: $linkColor;
-        font-size: 2em;
-        margin-right: 2em;
-      }
-
-      ul.nav_main {
-        font-size: 1.2em;
-
-        > li {
-          .dropdown-menu {
-            font-size: $baseFontSize;
-          }
-        }
+        color: lighten($linkColor, 10%);
       }
 
       form.navbar-search {
-        input.search-query {
+        input.search-query, input.search-query:focus {
           padding-left: 29px;
+          margin-top: 2px;
+          height: 16px;
         }
 
         .icon-search {
           position: absolute;
           top: 7px;
           left: 11px;
-          color: #999;
+          color: $navbarText;
         }
       }
 
       .nav_user {
+        margin-top: 5px;
+
         > a {
-          padding: 0 0 0 2em;
+          padding: 0 0 0 4em;
           img {
-            margin-right: .5em;
-            border-radius: 50em;
+            margin-right: 1em;
           }
           .icon-caret-down {padding-left: .5em;}
         }

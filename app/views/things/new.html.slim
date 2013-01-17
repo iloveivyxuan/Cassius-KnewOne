@@ -1,15 +1,20 @@
 - provide :title, "发布产品"
-- provide :nav, :create
 
 = simple_form_for @thing, html: {class: "thing_form pull-left"} do |f|
   = f.input :title
-  = f.input :description, as: :text
-  = f.button :submit
+  = f.input :shop
+  = f.input :price
+  = f.input :description, as: :text, input_html: {rows: 25}
+  = f.button :submit, class: "btn-primary btn-large"
 
-= simple_form_for Photo.new, html: {class: "pull-left"} do |f|
-  = f.file_field :image, multiple: true, name: "photo[image]"
-  = content_tag :div, "", id: "photos", data: {photos: @photos}
+= simple_form_for Photo.new, html: {class: "pull-right"} do |f|
+  span.btn.fileinput-button title="产品图片" data-content="请先为产品上传图片"
+    i.icon-cloud-upload
+    span 上传图片
+    = f.file_field :image, multiple: true, name: "photo[image]"
+  = content_tag :div, id: "photos", data: {photos: @photos} do
+    p 也可以将图片文件拖到这里进行上传
 
 - content_for :script do
   javascript:
-    Making.thingForm();
+    Making.ThingsNew();

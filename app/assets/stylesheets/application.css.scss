@@ -1,35 +1,49 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
  *= require_self
 */
 
 /* bootstrap variables */
+
 $baseFontFamily: "Hiragino Sans GB", "Microsoft YaHei", Helvetica, sans-serif;
 $baseFontSize: 14px;
 $baseLineHeight: 22px;
 $linkColor: #588cc7;
 $headingsFontWeight: normal;
 
-$navbarHeight: 60px;
-
-/* project variables */
-$lightFontColor: #ccc;
-$goldWidth: 60.56%;
-$negGoldWidth: 37.43%;
-
 @import "bootstrap";
 @import "bootstrap-responsive";
 @import "font-awesome";
 @import "compass/css3";
+
+/* project variables */
+
+$goldWidth: 60.56%;
+$negGoldWidth: 37.43%;
+
+/* project resets */
+
+ul, ol {
+  list-style: none;
+  margin: 0;
+}
+
+a {
+  &:focus {outline: none;}
+  &:hover {text-decoration: none;}
+}
+
+input {
+  &:focus {outline: none !important;}
+}
+
+.btn-mini {
+  text-shadow: none;
+}
+
+.add-on {
+  margin-right: -1px;
+}
+
 @import "layout";
 @import "home";
 @import "things";
-

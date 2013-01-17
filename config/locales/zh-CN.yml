@@ -1,0 +1,29 @@
+zh-CN:
+  mongoid:
+    models:
+      user: '用户'
+      post: '发布'
+      thing: '产品'
+      review: '评测'
+      category: '分类'
+      comment: '留言'
+    attributes:
+      post:
+        title: '标题'
+        author: '作者'
+      thing:
+        title: '名称'
+        author: 'up主'
+        shop: '购买'
+        price: '价格'
+        description: '简介'
+  errors:
+    messages:
+      extension_white_list_error: '上传文件名称格式不正确'
+  views:
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "..."

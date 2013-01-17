@@ -12,11 +12,11 @@ class Making.Views.PhotoPreview extends Backbone.View
     @$el.html @template(@model)
   
     loadImage @model, (img) =>
-      @$(".file").prepend img
+      @$(".preview").prepend img
     , {
       canvas: true
-      maxWidth: @$('.file').data('preview-width')
-      maxHeight: @$('.file').data('preview-height')
+      maxWidth: @$('.preview').data('preview-width')
+      maxHeight: @$('.preview').data('preview-height')
     } 
 
     this

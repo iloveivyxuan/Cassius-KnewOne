@@ -10,16 +10,18 @@ class Making.Views.PhotosUpload extends Backbone.View
     $('#new_photo').fileupload
       dataType: "json"
       dropzone: @$container
+      # dragover: =>
+      #   @$container.addClass('dragover')
+      # drop: =>
+      #   @$container.removeClass('dragover')
       add: @addFile
       progress: @progress
       done: @done
       fail: @fail
-      drop: ->
-      dragover: ->
 
   render: =>
     @collection.each @addPhoto
-    @$container.html @el
+    @$container.append @el
     this
 
   addFile: (e, data) =>
