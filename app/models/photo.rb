@@ -7,15 +7,25 @@ class Photo
   mount_uploader :image, ImageUploader
 
   belongs_to :user
-  belongs_to :photographic, polymorphic: true
 
   attr_accessible :name, :image, :user
 
-  validates :image, presence: true
+  validates :image,
+  presence: true,
+  file_size: {maximum: 8.megabytes.to_i}
 
   delegate :url, to: :image
 
   before_create :set_attributes
+
+  class << self
+    def find_with_order(ids)
+      photos = Photo.find ids.uniq
+      ids.map do |id|
+        photos.find {|p| p.id.to_s == id.to_s}
+      end.compact
+    end
+  end
 
   def set_attributes
     if image
@@ -29,6 +39,7 @@ class Photo
       "id" => id.to_s,
       "name" => name,
       "size" => size,
+      "small_url" => url(:small),
       "url" => url
     }
   end

@@ -20,7 +20,7 @@ class PhotosController < ApplicationController
         }
       end
     else
-      render json: photo
+      respond_with photo
     end
   end
 

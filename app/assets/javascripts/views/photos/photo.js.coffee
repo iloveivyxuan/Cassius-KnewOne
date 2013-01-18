@@ -7,17 +7,16 @@ class Making.Views.Photo extends Backbone.View
   events: 
     "click .destroy": "destroy"
 
-  initialize: =>
-  	@listenTo @model, 'destroy', @remove
-  
   render: =>
     @$el.html JST['photos/photo']
+      small_url: @model.get('small_url')
       url: @model.get('url')
       name: @model.get('name')
     this
 
   destroy: (e) =>
-    @model.destroy()
+    @$el.fadeOut =>
+      @remove()
     e.preventDefault()
 
 

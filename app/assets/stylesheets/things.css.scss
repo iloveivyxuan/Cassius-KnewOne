@@ -10,7 +10,7 @@ form.thing_form {
       width: 60%;
     }
   }
-  
+
   .text {
     textarea {
       width: 80%;
@@ -34,7 +34,7 @@ form#new_photo {
     position: relative;
     overflow: hidden;
     margin-bottom: 2em;
-    
+
     input {
       position: absolute;
       top: 0;
@@ -47,9 +47,9 @@ form#new_photo {
 
   #photos {
     border: 1px dashed #ccc;
-    height: 767px;
+    min-height: 767px;
     @include transition(background, 0.3s);
-    
+
     &.dragover {
       background: lighten($pink, 40%);
     }
@@ -57,21 +57,50 @@ form#new_photo {
     p {
       text-align: center;
       font-size: $fontSizeSmall;
-      color: $grayLight;
+      color: $fontLightColor;
     }
 
-    .uploading {}
+    ul {
+      li {
+        margin: 0 1em;
+        border-bottom: 1px dashed $fontLightColor;
+        padding: 1em 0;
+        @include clearfix();
 
-    .uploaded {
-      height: 200px;
-      background: yellow;
-      border: 1px solid #333;
-      margin: 50px 0;
+        .photo {
+            float: left;
+            max-width: 80px;
+            max-height: 80px;
+            margin-right: 1em;
+            overflow: hidden;
+          }
+
+        .file_info {
+          color: $fontLightColor;
+          span:first-child {
+            margin-right: 2em;
+            border-right: 1px solid $fontLightColor;
+            padding-right: 2em;
+          }
+
+          > a {
+            margin-right: 1em;
+          }
+        }
+
+        .progress {
+          margin-top: 1.5em;
+        }
+
+        .fail {
+          color: $pink;
+        }
+
+        &.uploaded {
+          cursor: pointer;
+        }
+      }
     }
 
-    .photo {
-      max-width: 100px;
-      max-height: 100px;
-    }
   }
 }

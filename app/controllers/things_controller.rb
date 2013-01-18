@@ -4,11 +4,8 @@ class ThingsController < PostsController
   end
 
   def create
-    @photo_ids = params[:thing].delete :photo_ids
-    @thing = Thing.new params[:thing]
-    @thing.author = current_user
-    if !@photo_ids.blank? && @thing.save
-      @thing.photos = Photo.find @photo_ids
+    @thing = Thing.new params[:thing].merge(author: current_user)
+    if @thing.save
       redirect_to @thing
     else
       render 'new'
@@ -26,9 +23,7 @@ class ThingsController < PostsController
   end
 
   def update
-    photo_ids = params[:thing].delete :photo_ids
     @thing = Thing.find params[:id]
-    params[:thing][:photos] = Photo.find photo_ids
     if @thing.update_attributes(params[:thing])
       redirect_to @thing
     else

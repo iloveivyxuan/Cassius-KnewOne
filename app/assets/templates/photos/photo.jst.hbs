@@ -1,9 +1,14 @@
 <div class="photo">
-  <img src="{{url}}">
-  {{name}}
+  <a href="{{url}}" title="{{name}}" data-gallery="gallery">
+    <img src="{{small_url}}">
+  </a>
 </div>
-<div class="pull-right">
-  <a class="destroy" href="#">
+<div class="file_info">
+  <span>{{name}}</span>
+  <a class="move" title="拖动以改变顺序" href="#">
+    <i class="icon-move"></i>
+  </a>
+  <a class="destroy" title="删除" href="#">
     <i class="icon-trash"></i>
   </a>
 </div>

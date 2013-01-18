@@ -19,6 +19,7 @@
 #= require jquery-fileupload/basic
 #= require jquery-fileupload/vendor/load-image
 #= require jquery.sortable
+#= require bootstrap-image-gallery
 #= require making
 #= require_tree ../templates
 #= require_tree ./models

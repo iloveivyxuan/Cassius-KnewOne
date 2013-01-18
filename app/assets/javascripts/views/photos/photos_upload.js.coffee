@@ -10,10 +10,6 @@ class Making.Views.PhotosUpload extends Backbone.View
     $('#new_photo').fileupload
       dataType: "json"
       dropzone: @$container
-      # dragover: =>
-      #   @$container.addClass('dragover')
-      # drop: =>
-      #   @$container.removeClass('dragover')
       add: @addFile
       progress: @progress
       done: @done
@@ -29,7 +25,8 @@ class Making.Views.PhotosUpload extends Backbone.View
     data.view = new Making.Views.PhotoPreview
       model: file
     @$el.append data.view.render().el
-    data.submit()
+    if data.view.validate()
+      data.submit()
 
   progress: (e, data) =>
     data.view.progress data
@@ -37,6 +34,10 @@ class Making.Views.PhotosUpload extends Backbone.View
   done: (e, data) =>
     data.view.remove()
     @collection.add data.result
+
+  fail: (e, data) =>
+    result = $.parseJSON(data.jqXHR.responseText)
+    data.view.fail result.errors.image[0]
 
   addPhoto: (photo) =>
     view = new Making.Views.Photo
@@ -46,4 +47,6 @@ class Making.Views.PhotosUpload extends Backbone.View
     @$el.append view.render().el  
     @$el.sortable
       items: '.uploaded'
+      handle: '.move'
+
 
