@@ -18,9 +18,6 @@ $headingsFontWeight: normal;
 
 /* project variables */
 
-$goldWidth: 60.56%;
-$negGoldWidth: 37.43%;
-
 $fontLightColor: $grayLight;
 
 /* project resets */
@@ -67,6 +64,10 @@ input {
       color: #fff;
     }
   }
+}
+
+.modal-loading .modal-image {
+  background: url(loading.gif) center no-repeat;
 }
 
 @import "layout";

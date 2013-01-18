@@ -9,6 +9,10 @@
   height: 30px;
 }
 
+body {
+  background: #f4f4f4 url(background.png);
+}
+
 body > header {
   > nav {
     .navbar-inner {

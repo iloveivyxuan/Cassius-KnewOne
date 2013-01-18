@@ -1,4 +1,12 @@
-h1= @thing.title
-p= @thing.description
-- @thing.photos.each do |photo|
-  = image_tag photo.url
+#thing_content
+  .content_wrapper
+    figure#photo_main
+       = image_tag @thing.photos.first.url, alt: @thing.title
+       figcaption= @thing.title
+#thing_summary
+  .summary_wrapper
+    header
+      h1= @thing.title
+      p= @thing.price
+      p= @thing.shop
+      p= @thing.description  
