@@ -5,6 +5,8 @@ class Thing < Post
   field :description, type: String, default: ""
   field :photo_ids, type: Array, default: []
 
+  has_many :reviews
+
   validates :description, length: { maximum: 2048 }
 
   def photos

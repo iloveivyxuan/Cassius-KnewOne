@@ -7,9 +7,14 @@ window.Making =
   initialize: ->
 
   ThingsNew: ->
-    $(document).ready ->
+    $ ->
       view = new Making.Views.ThingsNew
         el: "form.thing_form"
 
-$(document).ready ->
+  Reviews: (root) ->
+    $ ->
+      new Making.Routers.Reviews(root: root)
+      Backbone.history.start(root: root)
+
+$ ->
   Making.initialize()

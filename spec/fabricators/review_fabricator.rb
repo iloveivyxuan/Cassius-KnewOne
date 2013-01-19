@@ -1,0 +1,2 @@
+Fabricator(:review) do
+end

@@ -3,6 +3,7 @@
     figure#photo_main
        = image_tag @thing.photos.first.url, alt: @thing.title
        figcaption= @thing.title
+    = content_tag :section, "", id: "reviews", data: {reviews: @thing.reviews} 
 #thing_summary
   .summary_wrapper
     header
@@ -10,3 +11,7 @@
       p= @thing.price
       p= @thing.shop
       p= @thing.description  
+
+- content_for :script do
+  javascript:
+    Making.Reviews("#{thing_path(@thing)}");

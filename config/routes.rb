@@ -9,7 +9,9 @@ Making::Application.routes.draw do
   end
   resources :users, only: [:show]
 
-  resources :things
+  resources :things do
+    resources :reviews
+  end
 
   resources :photos, only: [:create, :destroy, :show]
 

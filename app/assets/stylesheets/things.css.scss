@@ -21,6 +21,19 @@
       font-weight: bold;
     }
   }
+
+  #reviews {
+    .review_form {
+      margin: 2em 0;
+      .controls {
+        margin: 1em 0;
+
+        input, textarea {
+          width: 95%;
+        }
+      }
+    }
+  }
 }
 
 #thing_summary {
