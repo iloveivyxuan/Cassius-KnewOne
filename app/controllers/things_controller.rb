@@ -31,4 +31,10 @@ class ThingsController < PostsController
     end
   end
 
+  def destroy
+    @thing = Thing.find params[:id]
+    @thing.destroy
+    redirect_to root_path
+  end
+
 end

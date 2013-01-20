@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module ApplicationHelper
   def brand
     "making.im"
@@ -23,4 +24,7 @@ module ApplicationHelper
     content_tag(:li, options) {yield}
   end
 
+  def time_ago_tag(time)
+    time_tag time, time_ago_in_words(time)+"前"
+  end
 end

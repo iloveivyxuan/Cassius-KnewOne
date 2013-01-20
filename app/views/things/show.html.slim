@@ -18,7 +18,7 @@ header#thing_summary
       = link_to edit_thing_path(@thing), class: "btn" do
         i.icon-edit 
         | 编辑
-      = link_to "#", class: "btn" do
+      = link_to @thing, method: :delete, data: {confirm: "您确认要删除吗?"}, class: "btn" do
         i.icon-trash
         | 删除
 
