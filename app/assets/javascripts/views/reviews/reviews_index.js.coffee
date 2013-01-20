@@ -3,7 +3,7 @@ class Making.Views.ReviewsIndex extends Backbone.View
   template: JST['reviews/index']
 
   events:
-    'click #new_review': 'new'
+    'click #new_review button': 'new'
     'submit #create_review': 'create'
 
   initialize: ->
@@ -18,9 +18,10 @@ class Making.Views.ReviewsIndex extends Backbone.View
 
   new: (e) ->
     @$('#new_review').hide()
-    @$('#review_form_template')
+    $form = @$('#review_form_template')
       .clone().attr('id', 'create_review')
       .prependTo(@$el).show()
+    Making.Editor $form
 
   create: (e) ->
     e.preventDefault()
@@ -42,4 +43,3 @@ class Making.Views.ReviewsIndex extends Backbone.View
   prepend: (review) =>
     view = new Making.Views.Review(model: review)
     @$('> ul').prepend(view.render().el)
-  

@@ -41,6 +41,8 @@ GEM
     bcrypt-ruby (3.0.1)
     bootstrap-sass (2.2.2.0)
       sass (~> 3.2)
+    bootstrap-wysihtml5-rails (0.3.1.13)
+      railties (>= 3.0)
     builder (3.0.4)
     cancan (1.6.8)
     capistrano (2.14.1)
@@ -307,6 +309,7 @@ DEPENDENCIES
   airbrake
   backbone-on-rails
   bootstrap-sass
+  bootstrap-wysihtml5-rails
   cancan
   capistrano
   carrierwave

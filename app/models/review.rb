@@ -4,5 +4,4 @@ class Review < Post
   belongs_to :thing
 
   validates :content, presence: true
-
 end

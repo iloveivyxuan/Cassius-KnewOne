@@ -15,6 +15,7 @@ $headingsFontWeight: normal;
 @import "font-awesome";
 @import "compass/css3";
 @import "bootstrap-image-gallery";
+@import "bootstrap-wysihtml5";
 
 /* project variables */
 
@@ -38,6 +39,10 @@ input {
 
 .btn-mini {
   text-shadow: none;
+}
+
+.btn {
+  i {margin-right: .5em;}
 }
 
 .add-on {

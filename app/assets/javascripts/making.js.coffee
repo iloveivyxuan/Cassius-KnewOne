@@ -16,5 +16,14 @@ window.Making =
       new Making.Routers.Reviews(root: root)
       Backbone.history.start(root: root)
 
+  ThingSummary: ->
+    $ ->
+      view = new Making.Views.ThingSummary
+        el: "#thing_summary"
+    
+  Editor: ($form) ->
+    $form.find('textarea').wysihtml5
+      locale: "zh-CN"
+
 $ ->
   Making.initialize()

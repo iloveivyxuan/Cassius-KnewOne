@@ -1,17 +1,34 @@
-#thing_content
-  .content_wrapper
-    figure#photo_main
-       = image_tag @thing.photos.first.url, alt: @thing.title
-       figcaption= @thing.title
-    = content_tag :section, "", id: "reviews", data: {reviews: @thing.reviews} 
-#thing_summary
+header#thing_summary
   .summary_wrapper
-    header
-      h1= @thing.title
-      p= @thing.price
-      p= @thing.shop
-      p= @thing.description  
+    h1= @thing.title
+    .price ¥#{@thing.price}
+    .shop
+      = link_to @thing.shop, class: "btn btn-success" do
+        i.icon-shopping-cart
+        | 购买
+    blockquote= @thing.description  
+    .photos
+      - @thing.photos.each do |photo|
+        = image_tag photo.url(:small), alt: photo.name, 
+        class: "review_photo", data: {url: photo.url(:huge)} 
+    .actions
+      = link_to "#", class: "btn" do
+        i.icon-share 
+        | 分享
+      = link_to edit_thing_path(@thing), class: "btn" do
+        i.icon-edit 
+        | 编辑
+      = link_to "#", class: "btn" do
+        i.icon-trash
+        | 删除
+
+section#thing_content
+  figure#photo_main
+     = image_tag @thing.photos.first.url(:huge), alt: @thing.title
+     figcaption= @thing.title
+  = content_tag :section, "", id: "reviews", data: {reviews: @thing.reviews} 
 
 - content_for :script do
   javascript:
     Making.Reviews("#{thing_path(@thing)}");
+    Making.ThingSummary();

@@ -17,6 +17,7 @@ gem 'jbuilder'
 gem 'jquery-rails'
 gem 'modernizr-rails'
 gem 'backbone-on-rails'
+gem 'bootstrap-wysihtml5-rails'
 # file uploads
 gem 'carrierwave'
 gem 'carrierwave-mongoid'
