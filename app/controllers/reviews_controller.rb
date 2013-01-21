@@ -34,3 +34,4 @@ class ReviewsController < ApplicationController
     @thing = Thing.find(params[:thing_id]) || not_found
   end
 end
+

@@ -1,10 +1,3 @@
 json.array!(@reviews) do |review|
-  json.(review, :id, :title, :content)
-  json.created_time_tag time_ago_tag(review.created_at)
-
-  json.author do
-    json.name review.author.name
-    json.url url_for(review.author)
-    json.photo_url "/assets/stubs/user.jpg"
-  end
+  json.partial! "review", review: review
 end
