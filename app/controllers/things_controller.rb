@@ -1,4 +1,12 @@
 class ThingsController < PostsController
+  def index
+    @things = Thing.all
+    respond_to do |format|
+      format.html {redirect_to root_path}
+      format.json
+    end
+  end
+
   def new
     @thing = Thing.new
   end

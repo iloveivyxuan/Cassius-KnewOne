@@ -2,6 +2,7 @@
 class Thing < Post
   field :shop, type: String, default: ""
   field :price, type: Float
+  field :subtitle, type: String, default: ""
   field :description, type: String, default: ""
   field :photo_ids, type: Array, default: []
 

@@ -14,7 +14,6 @@ class Making.Views.Review extends Backbone.View
       change:  @render
 
   render: =>
-    console.log @model.attributes
     $(@el).html(@template(@model.attributes))
     this
 

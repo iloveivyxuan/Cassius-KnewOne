@@ -1,3 +1,3 @@
 json.array!(@reviews) do |review|
-  json.id review.id
+  json.(review, :id, :title)
 end

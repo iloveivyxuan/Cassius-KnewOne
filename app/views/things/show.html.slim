@@ -1,7 +1,9 @@
 header#thing_summary
   .summary_wrapper
-    h1= @thing.title
-    .price ¥#{@thing.price}
+    hgroup
+      h1= @thing.title
+      h2= @thing.subtitle
+    .price= thing_price(@thing)
     .shop
       = link_to @thing.shop, class: "btn btn-success" do
         i.icon-shopping-cart

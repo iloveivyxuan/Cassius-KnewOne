@@ -6,6 +6,12 @@ window.Making =
 
   initialize: ->
 
+  ThingsIndex: ->
+    $ ->
+      collection = new Making.Collections.Things()
+      view = new Making.Views.ThingsIndex(collection: collection)
+      $('#things').html(view.el)
+
   ThingsNew: ->
     $ ->
       view = new Making.Views.ThingsNew
