@@ -28,7 +28,7 @@ section#thing_content
   figure#photo_main
      = image_tag @thing.photos.first.url(:huge), alt: @thing.title
      figcaption= @thing.title
-  = content_tag :section, "", id: "reviews", data: {reviews: @thing.reviews} 
+  section#reviews
 
 - content_for :script do
   javascript:

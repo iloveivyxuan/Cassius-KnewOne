@@ -41,7 +41,7 @@
     }
 
     ul#review_articles {
-      li {
+      > li {
         background: white;
         margin: 2em 0;
         padding: 2em;
@@ -242,7 +242,8 @@ form#new_photo {
 
         img {
           width: 640px;
-          height: 640px;
+          max-height: 640px;
+          margin: 0 auto;
         }
 
         h4 {

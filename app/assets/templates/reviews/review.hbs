@@ -2,8 +2,10 @@
   <header>
     <h3>{{title}}</h3>
     <div class="author">
-      <img src="http://cf2.fancyimgs.com/UserImages/aplussubscription_2d12bce2ce30.jpg" style="width: 40px;height: 40px;">
-      <a>Fancy</a>
+      {{#with author}}
+        <img src="{{photo_url}}" class="user_avatar">
+        <a>{{name}}</a>
+      {{/with}}
       发表于{{{created_time_tag}}}
     </div>
   </header>

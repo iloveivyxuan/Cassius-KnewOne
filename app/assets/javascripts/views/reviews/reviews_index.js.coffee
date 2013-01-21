@@ -10,7 +10,8 @@ class Making.Views.ReviewsIndex extends Backbone.View
     @collection.on
       reset: @render
       add: @prepend
-
+    @collection.fetch()
+      
   render: =>
     $(@el).html(@template())
     @collection.each @append

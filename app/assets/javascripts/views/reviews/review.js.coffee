@@ -23,11 +23,12 @@ class Making.Views.Review extends Backbone.View
   edit: (e) =>
     e.preventDefault()
     @$el.empty()
-    $('#review_form_template')
+    $form = $('#review_form_template')
       .clone().addClass('update_review')
       .find('input').val(@model.get('title')).end()
       .find('textarea').val(@model.get('content')).end()
       .appendTo(@el).show()
+    Making.Editor $form
 
   update: (e) =>
     e.preventDefault()

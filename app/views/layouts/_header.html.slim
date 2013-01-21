@@ -10,6 +10,9 @@ header
               = current_user.name
               i.icon-caret-down
             ul.dropdown-menu
+              li= link_to new_thing_path do
+                i.icon-magic
+                |  创建产品
               li= link_to current_user do
                 i.icon-user
                 |  个人主页

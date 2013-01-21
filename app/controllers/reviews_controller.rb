@@ -4,7 +4,8 @@ class ReviewsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    respond_with @thing, @thing.reviews
+    @reviews = @thing.reviews
+    respond_with @thing, @reviews
   end
 
   def show
@@ -12,14 +13,14 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    respond_with @thing,
-    @thing.reviews.create(params[:review].merge(author: current_user))
+    @review = @thing.reviews.create(params[:review].merge(author: current_user))
+    respond_with @thing, @review
   end
 
   def update
-    review = @thing.reviews.find params[:id]
-    review.update_attributes(params[:review])
-    respond_with @thing, review
+    @review = @thing.reviews.find params[:id]
+    @review.update_attributes(params[:review])
+    respond_with @thing, @review
   end
 
   def destroy
