@@ -13,4 +13,4 @@ class Making.Routers.Reviews extends Backbone.Router
       collection: @collection
     $('#reviews').html(view.el)
 
-  show: (id) ->
+  Show: (id) ->

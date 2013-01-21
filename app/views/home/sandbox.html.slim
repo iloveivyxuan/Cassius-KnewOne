@@ -1,0 +1,7 @@
+form
+  textarea rows=20 style="width:600px;"
+
+- content_for :script do
+  coffee:
+    $ ->
+      Making.Editor $('form')

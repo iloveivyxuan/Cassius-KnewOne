@@ -2,6 +2,9 @@ class HomeController < ApplicationController
   def index
   end
 
+  def sandbox
+  end
+
   def not_found
   end
 
