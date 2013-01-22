@@ -28,8 +28,6 @@ namespace :deploy do
   end
 end
 
-after "deploy:assets:precompile", 'deploy:assets:clean_expired'
-
 namespace :deploy do
   %w[start stop restart].each do |command|
     desc "#{command} unicorn server"

@@ -16,6 +16,7 @@ gem 'jbuilder'
 gem 'jquery-rails'
 gem 'modernizr-rails'
 gem 'backbone-on-rails'
+gem "handlebars_assets"
 gem 'bootstrap-wysihtml5-rails'
 # file uploads
 gem 'carrierwave'
@@ -36,7 +37,6 @@ group :assets do
   gem 'turbo-sprockets-rails3'
 
   # components
-  gem "handlebars_assets"
   gem "jquery-fileupload-rails"
 
   # stylesheets library
