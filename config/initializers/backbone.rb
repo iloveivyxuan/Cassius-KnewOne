@@ -1,1 +1,1 @@
-HandlebarsAssets::Config.template_namespace = 'JST'
+#HandlebarsAssets::Config.template_namespace = 'JST'
