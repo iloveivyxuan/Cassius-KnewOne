@@ -17,6 +17,7 @@ zh-CN:
         title: '名称'
         subtitle: '副标题'
         shop: '购买链接'
+        official_site: '官方网站链接'
         price: '价格'
         photos: '图片'
         description: '简介'

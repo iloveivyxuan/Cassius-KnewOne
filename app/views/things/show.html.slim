@@ -8,6 +8,11 @@ header#thing_summary
       = link_to @thing.shop, class: "btn btn-success" do
         i.icon-shopping-cart
         | 购买
+        .official_site
+    - if !@thing.official_site.blank?
+      = link_to @thing.official_site, target: "_blank" do
+        i.icon-plane
+        | 官方网站
     blockquote= @thing.description  
     .photos
       - @thing.photos.each do |photo|

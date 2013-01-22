@@ -1,5 +1,5 @@
 defaults: &defaults
-  host: "making.im"
+  host: "knewone.com"
   upyun:
     username: "leslielilu"
     password: "g4l4pg2sh13sm"
