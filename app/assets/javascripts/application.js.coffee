@@ -15,7 +15,7 @@
 #= require bootstrap
 #= require underscore
 #= require backbone
-#= require handlebars.runtime
+#= require handlebars
 #= require jquery-fileupload/basic
 #= require jquery-fileupload/vendor/load-image
 #= require jquery.sortable
