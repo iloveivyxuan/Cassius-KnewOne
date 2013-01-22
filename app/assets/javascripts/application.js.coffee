@@ -19,6 +19,8 @@
 #= require jquery-fileupload/basic
 #= require jquery-fileupload/vendor/load-image
 #= require jquery.sortable
+#= require redactor
+#= require redactor.zh-CN
 #= require making
 #= require_tree ../templates
 #= require_tree ./models

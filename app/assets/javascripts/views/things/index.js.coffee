@@ -2,7 +2,7 @@ class Making.Views.ThingsIndex extends Backbone.View
 
   tagName: "ul"
 
-  template: JST['things/index']
+  template: HandlebarsTemplates['things/index']
 
   initialize: ->
     @collection.on
