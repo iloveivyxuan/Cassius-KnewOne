@@ -16,7 +16,6 @@ gem 'jbuilder'
 gem 'jquery-rails'
 gem 'modernizr-rails'
 gem 'backbone-on-rails'
-gem "handlebars_assets"
 # file uploads
 gem 'carrierwave'
 gem 'carrierwave-mongoid'
@@ -37,6 +36,7 @@ group :assets do
 
   # components
   gem "jquery-fileupload-rails"
+  gem "handlebars_assets"
 
   # stylesheets library
   gem 'compass-rails'
