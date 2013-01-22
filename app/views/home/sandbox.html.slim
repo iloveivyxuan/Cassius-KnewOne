@@ -1,9 +1,16 @@
-textarea class="redactor" id="content" name="content" rows="100" cols="120"
-
+textarea id="content" name="content" rows="100" cols="120" 
+  
 - content_for :stylesheet do
   = stylesheet_link_tag "redactor"
 
 - content_for :script do
   coffee:
     $ ->
-      $('#content').redactor()
+      csrf_token = $('meta[name=csrf-token]').attr('content');
+      csrf_param = $('meta[name=csrf-param]').attr('content');
+      params = ""
+      if csrf_param && csrf_token
+        params = csrf_param + "=" + encodeURIComponent(csrf_token);
+      $('#content').redactor
+        imageUpload: "/review_photos?" + params
+        lang: 'zh_cn'

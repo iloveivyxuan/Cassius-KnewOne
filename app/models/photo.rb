@@ -40,7 +40,8 @@ class Photo
       "name" => name,
       "size" => size,
       "small_url" => url(:small),
-      "url" => url
+      "url" => url,
+      "filelink" => url
     }
   end
 

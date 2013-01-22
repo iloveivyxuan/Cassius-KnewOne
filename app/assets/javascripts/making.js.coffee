@@ -28,8 +28,14 @@ window.Making =
         el: "#thing_summary"
     
   Editor: ($form) ->
-    $form.find('textarea').wysihtml5
-      locale: "zh-CN"
+    csrf_token = $('meta[name=csrf-token]').attr('content');
+    csrf_param = $('meta[name=csrf-param]').attr('content');
+    params = ""
+    if csrf_param && csrf_token
+      params = csrf_param + "=" + encodeURIComponent(csrf_token);
+    $form.find('textarea').redactor
+      imageUpload: "/review_photos?" + params
+      lang: 'zh_cn'
 
 $ ->
   Making.initialize()

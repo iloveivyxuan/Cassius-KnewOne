@@ -14,7 +14,6 @@ $headingsFontWeight: normal;
 @import "bootstrap-responsive";
 @import "font-awesome";
 @import "compass/css3";
-@import "bootstrap-wysihtml5";
 
 /* project variables */
 
@@ -72,6 +71,10 @@ input {
 
 .modal-loading .modal-image {
   background: url(loading.gif) center no-repeat;
+}
+
+.redactor_editor {
+  height: 500px;
 }
 
 @import "layout";

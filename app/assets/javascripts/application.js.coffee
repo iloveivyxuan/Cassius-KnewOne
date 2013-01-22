@@ -19,10 +19,8 @@
 #= require jquery-fileupload/basic
 #= require jquery-fileupload/vendor/load-image
 #= require jquery.sortable
-#= require bootstrap-wysihtml5
-#= require bootstrap-wysihtml5.zh-CN
 #= require redactor
-#= require sisyphus
+#= require redactor.zh-CN
 #= require making
 #= require_tree ../templates
 #= require_tree ./models

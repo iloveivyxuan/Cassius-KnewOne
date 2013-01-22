@@ -14,6 +14,7 @@ Making::Application.routes.draw do
   end
 
   resources :photos, only: [:create, :destroy, :show]
+  resources :review_photos, only: [:create]
 
   get '/search', to: 'home#search', as: :search
   get '/sandbox', to: 'home#sandbox'

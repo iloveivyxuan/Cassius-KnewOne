@@ -28,5 +28,4 @@ class PhotosController < ApplicationController
     photo = Photo.find(params[:id])
     respond_with photo && photo.destroy
   end
-
 end

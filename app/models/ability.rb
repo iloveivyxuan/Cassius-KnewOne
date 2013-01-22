@@ -13,6 +13,7 @@ class Ability
       can :destroy, Photo do |photo|
         photo.user == user
       end
+      can :create, ReviewPhoto
       basic
     end
   end
