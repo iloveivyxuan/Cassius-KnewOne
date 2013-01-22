@@ -2,7 +2,7 @@ class Making.Views.Photo extends Backbone.View
 
   tagName: 'li'
   className: 'uploaded'
-  template: JST['photos/photo']
+  template: HandlebarsTemplates['photos/photo']
 
   events: 
     "click .destroy": "destroy"

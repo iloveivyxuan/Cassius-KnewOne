@@ -21,8 +21,8 @@
 #= require jquery.sortable
 #= require redactor
 #= require redactor.zh-CN
-#= require making
 #= require_tree ../templates
+#= require making
 #= require_tree ./models
 #= require_tree ./collections
 #= require_tree ./views

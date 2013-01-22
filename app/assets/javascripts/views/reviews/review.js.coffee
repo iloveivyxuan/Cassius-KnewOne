@@ -1,7 +1,7 @@
 class Making.Views.Review extends Backbone.View
 
   tagName: 'li'
-  template: JST['reviews/review']
+  template: HandlebarsTemplates['reviews/review']
 
   events:
     'click .detail': 'show'

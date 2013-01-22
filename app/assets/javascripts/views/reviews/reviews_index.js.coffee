@@ -1,6 +1,6 @@
 class Making.Views.ReviewsIndex extends Backbone.View
 
-  template: JST['reviews/index']
+  template: HandlebarsTemplates['reviews/index']
 
   events:
     'click #new_review button': 'new'

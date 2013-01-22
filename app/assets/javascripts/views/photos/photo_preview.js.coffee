@@ -2,7 +2,7 @@ class Making.Views.PhotoPreview extends Backbone.View
 
   tagName: 'li'
   className: 'uploading'
-  template: JST['photos/preview']
+  template: HandlebarsTemplates['photos/preview']
 
   events: 
       "click .fail a": "remove"
