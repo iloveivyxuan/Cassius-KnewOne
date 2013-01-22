@@ -1,7 +1,9 @@
-form
-  textarea rows=20 style="width:600px;"
+textarea class="redactor" id="content" name="content" rows="100" cols="120"
+
+- content_for :stylesheet do
+  = stylesheet_link_tag "redactor"
 
 - content_for :script do
   coffee:
     $ ->
-      Making.Editor $('form')
+      $('#content').redactor()

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 module ApplicationHelper
   def brand
-    "making.im"
+    "knewone"
   end
 
   def page_title
