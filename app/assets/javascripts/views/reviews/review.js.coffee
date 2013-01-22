@@ -45,8 +45,7 @@ class Making.Views.Review extends Backbone.View
 
   destroy: (e) =>
     e.preventDefault()
-    if confirm("您确定要删除吗?")    
-      @model.destroy
-        success: (model, response) =>
-          @$el.fadeOut =>
-            @remove()
+    if confirm("您确定要删除吗?")
+      @$el.fadeOut =>
+        @remove()
+      @model.destroy()
