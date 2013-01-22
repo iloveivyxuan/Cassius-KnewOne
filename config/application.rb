@@ -70,6 +70,7 @@ module Making
 
     # add fonts to assets paths
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
+    config.assets.paths << "#{Rails.root}/app/assets/templates"
 
     # Auto load my custom libs
     config.autoload_paths << "#{Rails.root}/lib"
