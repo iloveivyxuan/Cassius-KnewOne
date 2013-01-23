@@ -13,8 +13,8 @@ development:
   <<: *defaults
   host: "localhost:3000"
   weibo:
-    consumer_key: ""
-    consumer_secret: ""
+    consumer_key: "3586287992"
+    consumer_secret: "92f84cf379a956af446cefc990859de8"
 
 test:
   <<: *defaults

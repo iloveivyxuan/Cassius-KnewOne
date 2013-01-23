@@ -2,37 +2,39 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  devise :database_authenticatable, :registerable,
-         :rememberable, :trackable, :validatable
+  devise :omniauthable
 
-  ## Database authenticatable
   field :email,              type: String, default: ""
-  field :encrypted_password, type: String, default: ""
   field :name,               type: String, default: ""
+  field :admin,  type: Boolean, default: false
+  field :description, type: String, default: ""
+  mount_uploader :avatar, ImageUploader
 
-  validates_presence_of :email
-  validates_presence_of :encrypted_password
+  attr_accessible :email, :name, :description, :avatar
 
-  attr_accessible :email, :name, :password
+  ## Omniauthable
+  embeds_many :auths
 
-  ## Rememberable
-  field :remember_created_at, type: Time
+  class << self
+    def find_by_omniauth(data)
+      where("auths.provider" => data[:provider])
+        .and("auths.uid" => data[:uid]).first
+    end
 
-  ## Trackable
-  field :sign_in_count,      type: Integer, default: 0
-  field :current_sign_in_at, type: Time
-  field :last_sign_in_at,    type: Time
-  field :current_sign_in_ip, type: String
-  field :last_sign_in_ip,    type: String
-
-  ## Token authenticatable
-  # field :authentication_token, :type => String
+    def create_from_omniauth(data)
+      create do |user|
+        auth = Auth.from_omniauth(data)
+        user.auths << auth
+        data = auth.standize(data)
+        user.name = data[:info][:name]
+        user.description = data[:info][:description]
+        user.remote_avatar_url = data[:info][:image]
+      end
+    end
+  end
 
   ## Posts
   has_many :posts, class_name: "Post", inverse_of: :author
-  def guides
-    posts.where('_type' => 'Guide')
-  end
 
   ## Photos
   has_many :photos
