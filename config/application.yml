@@ -22,5 +22,5 @@ test:
 production:
   <<: *defaults
   weibo:
-    consumer_key: "394646424"
-    consumer_secret: "2f09bf72c33b96f86a67de630b2d0617"
+    consumer_key: "3754720038"
+    consumer_secret: "017ac4a56f1e3630366574fa405602b2"
