@@ -12,6 +12,7 @@ Making::Application.routes.draw do
 
   resources :things do
     resources :reviews
+    collection {get 'admin'}
   end
 
   resources :photos, only: [:create, :destroy, :show]

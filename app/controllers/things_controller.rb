@@ -7,6 +7,10 @@ class ThingsController < PostsController
     end
   end
 
+  def admin
+    @things = Thing.all
+  end
+
   def new
     @thing = Thing.new
   end
