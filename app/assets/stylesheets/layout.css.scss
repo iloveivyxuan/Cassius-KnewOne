@@ -23,7 +23,7 @@ body > header {
         color: lighten($linkColor, 10%);
       }
 
-      form.navbar-search {
+      form.navbar-search#nav_search {
         input.search-query, input.search-query:focus {
           padding-left: 29px;
           margin-top: 2px;
@@ -53,6 +53,10 @@ body > header {
           margin-top: 5px;
         }
       }
+
+      .weibo_sign_in {
+        img {vertical-align: -2px;}
+      }
     }
   }
 }
@@ -65,3 +69,4 @@ body > section {
 a[href^='http://tongji.baidu.com'] {
   display: none;
 }
+

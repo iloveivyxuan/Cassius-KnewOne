@@ -253,10 +253,11 @@ form#new_photo {
           width: 640px;
           max-height: 640px;
           margin: 0 auto;
-              @media screen and (max-width: 680px) {
-                width: 300px;
-                max-height: 300px;
-              }
+              
+          @media screen and (max-width: 680px) {
+            width: 300px;
+            max-height: 300px;
+          }
         }
 
         h4 {

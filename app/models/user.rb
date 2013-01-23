@@ -18,7 +18,7 @@ class User
   class << self
     def find_by_omniauth(data)
       where("auths.provider" => data[:provider])
-        .and("auths.uid" => data[:uid]).first
+        .and("auths.uid" => data[:uid].to_i).first
     end
 
     def create_from_omniauth(data)
