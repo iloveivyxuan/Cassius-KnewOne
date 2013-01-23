@@ -4,6 +4,8 @@ class Ability
   def initialize(user)
     if user.blank?
       basic
+    elsif user.admin?
+      can :manage, :all
     else
       can :create, Post
       can [:update, :destroy], Post do |post|
