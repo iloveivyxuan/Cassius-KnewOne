@@ -3,16 +3,20 @@ header#thing_summary
     hgroup
       h1= @thing.title
       h2= @thing.subtitle
-    .price= thing_price(@thing)
+    .price
+      span= thing_price(@thing)
+      span 
+        | 剩余数量
+        em= @thing.stock
     .shop
       = link_to @thing.shop, class: "btn btn-success" do
         i.icon-shopping-cart
         | 购买
-        .official_site
     - if !@thing.official_site.blank?
-      = link_to @thing.official_site, target: "_blank" do
-        i.icon-plane
-        | 官方网站
+      .official_site
+        = link_to @thing.official_site, target: "_blank" do
+          i.icon-plane
+            | 官方网站
     blockquote= @thing.description  
     .photos
       - @thing.photos.each do |photo|

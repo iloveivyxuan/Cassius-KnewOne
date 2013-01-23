@@ -1,6 +1,6 @@
 class ThingsController < PostsController
   def index
-    @things = Thing.all
+    @things = Thing.toped + Thing.recommended
     respond_to do |format|
       format.html {redirect_to root_path}
       format.json

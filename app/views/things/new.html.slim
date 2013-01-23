@@ -7,6 +7,10 @@
   = f.input :price, as: :integer
   = f.input :official_site, as: :url
   = f.input :description, as: :text, input_html: {rows: 25}
+  - if current_user.admin?
+    = f.input :stock, as: :integer
+    = f.input :recommend, as: :boolean, inline_label: true, label: false
+    = f.input :top, as: :boolean, inline_label: true, label: false
   = f.button :submit, class: "btn-primary btn-large"
 
 = simple_form_for Photo.new, html: {class: "pull-right"} do |f|

@@ -91,6 +91,12 @@
     color: $fontLightColor;
   }
 
+  .price {
+    color: $fontLightColor;
+    span {margin-right: 2em;}
+    em {color: $pink;}
+  }
+
   .shop {
     margin: 1em 0;
     a {
@@ -228,6 +234,9 @@ form#new_photo {
   ul {
     margin: 0 auto;
     width: 680px;
+    @media screen and (max-width: 680px) {
+      width: 320px;
+    }
 
     $padding: 20px;
 
@@ -244,6 +253,10 @@ form#new_photo {
           width: 640px;
           max-height: 640px;
           margin: 0 auto;
+              @media screen and (max-width: 680px) {
+                width: 300px;
+                max-height: 300px;
+              }
         }
 
         h4 {
