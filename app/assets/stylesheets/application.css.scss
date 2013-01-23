@@ -77,6 +77,10 @@ input {
   height: 500px;
 }
 
+.icon-twitter {
+  color: $blue;
+}
+
 @import "layout";
 @import "home";
 @import "things";
