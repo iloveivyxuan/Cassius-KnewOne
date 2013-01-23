@@ -60,3 +60,8 @@ body > header {
 body > section {
   padding: 2em 0;
 }
+
+/* fucking baidu analystics */
+a[href^='http://tongji.baidu.com'] {
+  display: none;
+}
