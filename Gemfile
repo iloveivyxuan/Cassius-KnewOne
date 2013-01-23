@@ -22,6 +22,8 @@ gem 'carrierwave-mongoid'
 gem 'carrierwave-upyun'
 # authentications
 gem 'devise'
+gem 'omniauth-weibo-oauth2'
+gem 'weibo_2'
 gem 'cancan'
 # configurations
 gem 'settingslogic'

@@ -5,13 +5,22 @@ defaults: &defaults
     password: "g4l4pg2sh13sm"
     photo_bucket: "making-photos"
     photo_bucket_domain: "making-photos.b0.upaiyun.com"
+  weibo:
+    consumer_key: ""
+    consumer_secret: ""
 
 development:
   <<: *defaults
   host: "localhost:3000"
+  weibo:
+    consumer_key: ""
+    consumer_secret: ""
 
 test:
   <<: *defaults
 
 production:
   <<: *defaults
+  weibo:
+    consumer_key: "394646424"
+    consumer_secret: "2f09bf72c33b96f86a67de630b2d0617"
