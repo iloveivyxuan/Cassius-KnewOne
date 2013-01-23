@@ -23,7 +23,8 @@ class Auth
 
   def standize(data)
     provider_extra = data[:provider] + "_extra"
-    send provider_extra, data
+    data = send provider_extra, data if respond_to? provider_extra
+    data
   end
 
   def weibo_extra(data)

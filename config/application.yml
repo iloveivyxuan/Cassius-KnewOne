@@ -8,6 +8,9 @@ defaults: &defaults
   weibo:
     consumer_key: ""
     consumer_secret: ""
+  twitter:
+    consumer_key: ""
+    consumer_secret: ""
 
 development:
   <<: *defaults
@@ -15,6 +18,9 @@ development:
   weibo:
     consumer_key: "3586287992"
     consumer_secret: "92f84cf379a956af446cefc990859de8"
+  twitter:
+    consumer_key: "b7yWjr8pVZzebB3LELi2g"
+    consumer_secret: "HF2HZgjiQuLy88xqwMeORuvC3RvEBrWi38ZMrDMFBpY"
 
 test:
   <<: *defaults
@@ -24,3 +30,6 @@ production:
   weibo:
     consumer_key: "3754720038"
     consumer_secret: "017ac4a56f1e3630366574fa405602b2"
+  twitter:
+    consumer_key: "0thYXvlBsdzmrqyPMIjT0A"
+    consumer_secret: "U6CYRLqg51HPaod4P2in3Mw3bHSKq5301g27mnicJo"

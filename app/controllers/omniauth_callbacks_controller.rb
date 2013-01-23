@@ -23,12 +23,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   alias_method :weibo, :all
+  alias_method :twitter, :all
 
-  private
-
-  def weibo_parse(auth_data)
-    data = auth_data.except(:extra)
-    data[:info][:image] = auth_data[:extra][:raw_info][:avatar_large] + ".jpg"
-    data
-  end
 end
