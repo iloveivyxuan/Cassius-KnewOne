@@ -38,7 +38,7 @@ section#thing_content
   figure#photo_main
      = image_tag @thing.photos.first.url(:huge), alt: @thing.title
      figcaption= @thing.title
-  section#reviews
+  = content_tag :section, "", id: "reviews", data: {signin: user_signed_in?}
 
 - content_for :stylesheet do
   = stylesheet_link_tag "redactor"

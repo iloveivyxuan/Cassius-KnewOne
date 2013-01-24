@@ -14,6 +14,8 @@ class Making.Views.ReviewsIndex extends Backbone.View
       
   render: =>
     $(@el).html(@template())
+    unless $("#reviews").data("signin")
+      $('#new_review').hide()
     @collection.each @append
     this
 
