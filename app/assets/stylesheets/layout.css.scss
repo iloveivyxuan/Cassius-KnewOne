@@ -62,7 +62,10 @@ body > header {
 }
 
 body > section.container-fluid {
-  padding: 2em 0;
+  padding: 2em;
+  @media screen and (max-width: 767px) {
+    padding: 2em 0;
+  }
 }
 
 /* fucking baidu analystics */
