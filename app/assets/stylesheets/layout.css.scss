@@ -20,7 +20,7 @@ body > header {
 
       .brand {
         font-family: "orbitron-bold";
-        color: lighten($linkColor, 10%);
+        color: $blue;
       }
 
       form.navbar-search#nav_search {
