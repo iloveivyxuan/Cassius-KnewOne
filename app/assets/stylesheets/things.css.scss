@@ -245,10 +245,6 @@ form#new_photo {
       padding: $padding;
       margin-bottom: 2em;
 
-      @media screen and (max-width: 767px) {
-        padding: 0;
-      }
-
       > a {
         display: block;
         position: relative;
@@ -259,8 +255,8 @@ form#new_photo {
           margin: 0 auto;
               
           @media screen and (max-width: 767px) {
-            width: 280px;
-            max-height: 280px;
+            width: 240px;
+            max-height: 240px;
           }
         }
 
