@@ -14,7 +14,8 @@ class Making.Views.Review extends Backbone.View
       change:  @render
 
   render: =>
-    $(@el).html(@template(@model.attributes))
+    @$el.html(@template(@model.attributes))
+    @$('article > section img').closest('p').css('text-align', 'center')
     this
 
   show: ->

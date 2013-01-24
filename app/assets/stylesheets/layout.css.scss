@@ -37,6 +37,13 @@ body > header {
           color: $navbarText;
         }
       }
+      
+      .nav_new_thing {
+        padding-top: 2px;
+        @media screen and (max-width: 767px) {
+          display: none;
+        }
+      }
 
       .nav_user {
         margin-top: 5px;

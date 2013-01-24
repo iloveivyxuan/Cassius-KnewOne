@@ -4,6 +4,9 @@ header
       = link_to brand, root_path, class: "brand"
       ul.nav.pull-right
         - if user_signed_in?
+          li.nav_new_thing= link_to new_thing_path do
+            i.icon-magic
+            |  推荐产品
           li.nav_user
             = link_to '#', class: "dropdown", data: {toggle: "dropdown"} do
               = image_tag current_user.avatar.url(:tiny), class: "user_avatar"
@@ -14,15 +17,12 @@ header
                 li= link_to admin_things_path do
                   i.icon-dashboard
                   |  管理产品
-              li= link_to new_thing_path do
-                i.icon-magic
-                |  创建产品
-              li= link_to current_user do
-                i.icon-user
-                |  个人主页
-              li= link_to '#' do
-                i.icon-cog
-                |  设置
+              / li= link_to current_user do
+              /   i.icon-user
+              /   |  个人主页
+              / li= link_to '#' do
+              /   i.icon-cog
+              /   |  设置
               li= link_to destroy_user_session_path, method: :delete do
                 i.icon-signout
                 |  登出
