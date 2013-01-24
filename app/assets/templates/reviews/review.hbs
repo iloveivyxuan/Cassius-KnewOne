@@ -13,5 +13,13 @@
     <p>{{{content}}}</p>
   </section>
   <footer>
+    {{#if can_update}}
+      <a class="destroy">
+        <i class="icon-trash"></i>
+      </a>
+      <a class="edit">
+        <i class="icon-edit"></i>
+      </a>
+    {{/if}}
   </footer>
 </article>
