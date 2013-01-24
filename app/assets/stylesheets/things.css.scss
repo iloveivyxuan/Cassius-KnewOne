@@ -234,8 +234,8 @@ form#new_photo {
   ul {
     margin: 0 auto;
     width: 680px;
-    @media screen and (max-width: 680px) {
-      width: 320px;
+    @media screen and (max-width: 767px) {
+      width: 280px;
     }
 
     $padding: 20px;
@@ -244,6 +244,10 @@ form#new_photo {
       background: white;
       padding: $padding;
       margin-bottom: 2em;
+
+      @media screen and (max-width: 767px) {
+        padding: 0;
+      }
 
       > a {
         display: block;
@@ -254,9 +258,9 @@ form#new_photo {
           max-height: 640px;
           margin: 0 auto;
               
-          @media screen and (max-width: 680px) {
-            width: 300px;
-            max-height: 300px;
+          @media screen and (max-width: 767px) {
+            width: 280px;
+            max-height: 280px;
           }
         }
 
