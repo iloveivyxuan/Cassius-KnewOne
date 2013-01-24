@@ -5,12 +5,14 @@ window.Making =
   Routers: {}
 
   initialize: ->
+    $(document).ajaxComplete ->
+      $(".spinning").remove()
 
   ThingsIndex: ->
     $ ->
-      collection = new Making.Collections.Things()
+      collection = new Making.Collections.Things
       view = new Making.Views.ThingsIndex(collection: collection)
-      $('#things').html(view.el)
+      $('#things').html(view.render().el)
 
   ThingsNew: ->
     $ ->

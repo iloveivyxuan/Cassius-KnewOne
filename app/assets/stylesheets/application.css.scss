@@ -81,6 +81,10 @@ input {
   color: $blue;
 }
 
+.spinning {
+  text-align: center;
+}
+
 @import "layout";
 @import "home";
 @import "things";

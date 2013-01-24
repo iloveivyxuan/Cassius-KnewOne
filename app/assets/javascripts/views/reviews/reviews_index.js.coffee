@@ -10,7 +10,9 @@ class Making.Views.ReviewsIndex extends Backbone.View
     @collection.on
       reset: @render
       add: @prepend
-    @collection.fetch()
+    @collection.fetch
+      beforeSend: =>
+      @$el.html(HandlebarsTemplates['shared/loading'])
       
   render: =>
     $(@el).html(@template())

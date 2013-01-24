@@ -1,0 +1,17 @@
+//= require jquery
+//= require jquery_ujs
+//= require bootstrap
+//= require underscore
+//= require backbone
+//= require handlebars.runtime
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/load-image
+//= require jquery.sortable
+//= require redactor
+//= require redactor.zh-CN
+//= require_tree ../templates
+//= require making
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ./views
+//= require_tree ./routers

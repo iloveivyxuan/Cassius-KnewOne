@@ -7,7 +7,9 @@ class Making.Views.ThingsIndex extends Backbone.View
   initialize: ->
     @collection.on
       reset: @render
-    @collection.fetch()
+    @collection.fetch
+      beforeSend: =>
+        @$el.html(HandlebarsTemplates['shared/loading'])
 
   render: =>
     @collection.each @append
