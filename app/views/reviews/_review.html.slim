@@ -12,8 +12,7 @@ li
       p
         - content = strip_tags(raw review.content)
         = truncate content, length: 300
-        - if content.length > 300
-          = link_to thing_review_path(review.thing, review), class: "details" do
+        = link_to thing_review_path(review.thing, review), class: "details" do
             i.icon-file-alt
     footer
 
