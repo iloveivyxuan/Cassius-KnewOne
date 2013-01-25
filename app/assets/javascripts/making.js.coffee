@@ -5,8 +5,10 @@ window.Making =
   Routers: {}
 
   initialize: ->
-    $(document).ajaxComplete ->
-      $(".spinning").remove()
+    $ ->
+      $(document).ajaxComplete ->
+        $(".spinning").remove()
+      Making.Score()
 
   ThingsIndex: ->
     $ ->
@@ -27,6 +29,9 @@ window.Making =
   ReviewEdit: () ->
     $ ->
       Making.Editor $('form.edit_review')
+      $el = $('input[type="range"]')
+      $el.replaceWith('<div class="rating"></div>')
+      Making.Rating $('.rating'), $el.val(), $el.attr('name')
 
   ReviewShow: () ->
     $ ->
@@ -43,6 +48,19 @@ window.Making =
       fixed: true
       minHeight: 400
       lang: 'zh_cn'
+
+  Rating: ($raty, score, name) ->
+    $raty.raty
+      scoreName: name
+      score: score
+      path: '/assets/'
+
+  Score: ->
+    $('.score').each (i, el) ->
+      $(el).raty
+        score: $(el).data('score')
+        readOnly: true
+        path: '/assets'
 
 $ ->
   Making.initialize()

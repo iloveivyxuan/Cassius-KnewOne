@@ -1,8 +1,9 @@
 section#review_details
   header#review_summary
     hgroup
+      = link_to "< #{@thing.title}", @thing
       h1= @review.title
-      = link_to @thing.title, @thing
+    .score data-score=@review.score
     .author
       = image_tag @review.author.avatar.url, class: "user_avatar"
       span.user_name= @review.author.name

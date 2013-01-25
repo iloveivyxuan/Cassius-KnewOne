@@ -1,7 +1,7 @@
 form.edit_review {
   .controls {
     input[type="text"] {width: 60%;}
-
+    input[type="range"] {display: none;}
     textarea {display: none;}
 
     .redactor_box {
@@ -30,7 +30,6 @@ form.edit_review {
 
     hgroup {
       h1 {
-        display: inline-block;
         font-size: 28px;
         margin-right: 1em;
       }
@@ -57,3 +56,4 @@ form.edit_review {
     padding-top: 2em;
   }
 }
+

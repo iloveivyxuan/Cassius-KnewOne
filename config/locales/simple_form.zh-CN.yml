@@ -28,7 +28,7 @@ zh-CN:
       review:
         title: "标题"
         content: "内容"
-        rating: "评分"
+        score: "评分"
       category:
         name: '分类名称'
       comment:

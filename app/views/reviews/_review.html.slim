@@ -3,6 +3,7 @@ li
     header
       h3
         = link_to review.title, thing_review_path(review.thing, review)
+      .score data-score=review.score
       .author
         = image_tag review.author.avatar.url, class: "user_avatar"
         span.user_name= review.author.name

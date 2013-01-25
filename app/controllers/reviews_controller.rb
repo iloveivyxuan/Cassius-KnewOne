@@ -27,7 +27,10 @@ class ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
-    if @review.update_attributes(params[:review])
+    @review.title = params[:review][:title]
+    @review.content = params[:review][:content]
+    @review.score = params[:review][:score]
+    if @review.save
       redirect_to thing_review_path(@thing, @review)
     else
       flash.now[:error] = @review.errors.full_messages.first

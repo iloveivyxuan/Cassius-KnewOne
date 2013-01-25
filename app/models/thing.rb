@@ -9,6 +9,7 @@ class Thing < Post
   field :recommend, type: Boolean, default: false
   field :top, type: Boolean, default: false
   field :photo_ids, type: Array, default: []
+  field :scores, type: Array, default: []
 
   include Mongoid::Slug
   slug :title
@@ -22,5 +23,17 @@ class Thing < Post
 
   def photos
     Photo.find_with_order photo_ids
+  end
+
+  def add_score(score)
+    scores[score] ||= 0
+    scores[score] += 1
+    save
+  end
+
+  def del_score(score)
+    return if score.nil? || scores[score].nil? || scores[score] <= 0
+    scores[score] -= 1
+    save
   end
 end
