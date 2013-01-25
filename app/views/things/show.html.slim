@@ -6,8 +6,9 @@ header#thing_summary
     .price
       span= thing_price(@thing)
       span 
-        | 剩余数量
-        em= @thing.stock
+        | 剩余
+        em= "#{@thing.stock}"
+        = " / #{@thing.batch}"
     .shop
       = link_to @thing.shop, class: "btn btn-success" do
         i.icon-shopping-cart

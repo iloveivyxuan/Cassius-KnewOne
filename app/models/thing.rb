@@ -6,6 +6,7 @@ class Thing < Post
   field :official_site, type: String, default: ""
   field :description, type: String, default: ""
   field :stock, type: Integer
+  field :batch, type: Integer
   field :recommend, type: Boolean, default: false
   field :top, type: Boolean, default: false
   field :photo_ids, type: Array, default: []

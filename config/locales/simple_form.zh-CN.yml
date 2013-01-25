@@ -23,6 +23,7 @@ zh-CN:
         description: '简介'
         photo: '图像'
         stock: '剩余数量'
+        batch: '进货数量'
         recommend: '推荐'
         top: '置顶'
       review:
