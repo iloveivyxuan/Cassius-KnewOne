@@ -10,6 +10,9 @@ class Thing < Post
   field :top, type: Boolean, default: false
   field :photo_ids, type: Array, default: []
 
+  include Mongoid::Slug
+  slug :title
+
   has_many :reviews
 
   validates :description, length: { maximum: 2048 }

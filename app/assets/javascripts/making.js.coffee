@@ -19,15 +19,18 @@ window.Making =
       view = new Making.Views.ThingsNew
         el: "form.thing_form"
 
-  Reviews: (root) ->
-    $ ->
-      new Making.Routers.Reviews(root: root)
-      Backbone.history.start(root: root)
-
   ThingSummary: ->
     $ ->
       view = new Making.Views.ThingSummary
         el: "#thing_summary"
+
+  ReviewEdit: () ->
+    $ ->
+      Making.Editor $('form.edit_review')
+
+  ReviewShow: () ->
+    $ ->
+      #$('#review_content img').closest('p').css('text-align', 'center') 
     
   Editor: ($form) ->
     csrf_token = $('meta[name=csrf-token]').attr('content');
@@ -37,6 +40,8 @@ window.Making =
       params = csrf_param + "=" + encodeURIComponent(csrf_token);
     $form.find('textarea').redactor
       imageUpload: "/review_photos?" + params
+      fixed: true
+      minHeight: 400
       lang: 'zh_cn'
 
 $ ->

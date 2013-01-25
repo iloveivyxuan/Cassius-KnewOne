@@ -1,0 +1,18 @@
+li
+  article
+    header
+      h3
+        = link_to review.title, thing_review_path(review.thing, review)
+      .author
+        = image_tag review.author.avatar.url, class: "user_avatar"
+        span.user_name= review.author.name
+        | 发表于#{time_ago_tag(review.created_at)}
+    section
+      p
+        - content = strip_tags(raw review.content)
+        = truncate content, length: 300
+        - if content.length > 300
+          = link_to thing_review_path(review.thing, review), class: "details" do
+            i.icon-file-alt
+    footer
+

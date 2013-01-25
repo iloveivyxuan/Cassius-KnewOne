@@ -1,0 +1,12 @@
+= simple_form_for [@thing, @review], html: {class: "edit_review form-horizontal"} do |f|
+  = f.input :title
+  = f.input :content, as: :text
+  .submit 
+    = f.button :submit, class: 'btn btn-primary btn-large'
+
+- content_for :stylesheet do
+  = stylesheet_link_tag "redactor"
+
+- content_for :script do
+  javascript:
+    Making.ReviewEdit();

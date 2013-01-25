@@ -38,12 +38,16 @@ section#thing_content
   figure#photo_main
      = image_tag @thing.photos.first.url(:huge), alt: @thing.title
      figcaption= @thing.title
-  = content_tag :section, "", id: "reviews", data: {signin: user_signed_in?}
+  #new_review
+    = link_to new_thing_review_path(@thing), class: "btn btn-primary" do
+      i.icon-pencil
+      | 发布评测
+  ul#reviews
+    = render @thing.reviews
 
 - content_for :stylesheet do
   = stylesheet_link_tag "redactor"
 
 - content_for :script do
   javascript:
-    Making.Reviews("#{thing_path(@thing)}");
     Making.ThingSummary();

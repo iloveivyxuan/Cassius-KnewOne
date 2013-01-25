@@ -15,76 +15,10 @@ $headingsFontWeight: normal;
 @import "font-awesome";
 @import "compass/css3";
 
-/* project variables */
-
 $fontLightColor: $grayLight;
 
-/* project resets */
-
-ul, ol {
-  list-style: none;
-  margin: 0;
-}
-
-a {
-  &:focus {outline: none;}
-  &:hover {text-decoration: none;}
-}
-
-input {
-  &:focus {outline: none !important;}
-}
-
-.btn-mini {
-  text-shadow: none;
-}
-
-.btn {
-  i {margin-right: .5em;}
-}
-
-.add-on {
-  margin-right: -1px;
-}
-
-#modal-gallery.modal-fullscreen {
-  .modal-header {
-    background: #333;
-    &:hover {@include opacity(0.8);}
-
-    .modal-play, .modal-play:hover {
-      color: #fff;
-      position: absolute;
-      top: 20px;
-      right: 8%;
-      cursor: pointer;
-    }
-
-    .close, .close:hover {
-      position: absolute;
-      top: 18px;
-      right: 3%;
-      color: #fff;
-    }
-  }
-}
-
-.modal-loading .modal-image {
-  background: url(loading.gif) center no-repeat;
-}
-
-.redactor_editor {
-  height: 500px;
-}
-
-.icon-twitter {
-  color: $blue;
-}
-
-.spinning {
-  text-align: center;
-}
-
+@import "base";
 @import "layout";
 @import "home";
 @import "things";
+@import "reviews";

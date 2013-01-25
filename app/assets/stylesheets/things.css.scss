@@ -4,8 +4,8 @@
 
   figure {
     margin: 0 0 2em 0;
-    background: white;
     padding: 20px;
+    @include section-decorate;
 
     img {
       display: block;
@@ -20,49 +20,28 @@
     }
   }
 
-  #reviews {
-    #new_review {
-      margin: 1em 0;
-      button {
-        width: 25%;
-        i {margin-right: 10%;}
-      }
+  #new_review {
+    margin: 1em 0;
+    a {
+      width: 25%;
+      i {margin-right: 10%;}
     }
+  }
 
-    .review_form {
+  ul#reviews {
+    > li {
       margin: 2em 0;
-      .controls {
-        margin: 1em 0;
+      padding: 2em;
+      @include section-decorate;
 
-        input, textarea {
-          width: 95%;
-        }
-      }
-    }
+      article {
+        header {
+          margin-bottom: 2em;
 
-    ul#review_articles {
-      > li {
-        background: white;
-        margin: 2em 0;
-        padding: 2em;
-
-        article {
-          header {
-            margin-bottom: 2em;
-
-            h3 {
-              background: #f4f4f4;
-              padding: 0 .5em;
-            }
-            .author {
-              margin-top: 1em;
-              > * {vertical-align: bottom;}
-              img {margin-right: .5em;}
-              time {color: $fontLightColor;}
-            }
+          h3 {
+            background: #f4f4f4;
+            padding: 0 .5em;
           }
-
-          section {}
         }
       }
     }
@@ -83,7 +62,7 @@
 #thing_summary {
   float: right;
   width: 31%;
-  background: white;
+  @include section-decorate;
 
   .summary_wrapper {
     margin: 0 1em;
@@ -161,9 +140,9 @@
     }
   }
 
-    @media screen and (max-width: 767px) {
-      margin-left: -20px;
-    }
+  @media screen and (max-width: 767px) {
+    margin-left: -20px;
+  }
 }
 
 $formWidth: 46%;

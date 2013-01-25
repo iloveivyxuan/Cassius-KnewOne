@@ -25,6 +25,10 @@ zh-CN:
         stock: '剩余数量'
         recommend: '推荐'
         top: '置顶'
+      review:
+        title: "标题"
+        content: "内容"
+        rating: "评分"
       category:
         name: '分类名称'
       comment:

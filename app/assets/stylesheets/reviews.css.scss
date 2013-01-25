@@ -1,0 +1,59 @@
+form.edit_review {
+  .controls {
+    input[type="text"] {width: 60%;}
+
+    textarea {display: none;}
+
+    .redactor_box {
+      width: 90%;
+      .redactor_editor {
+      }
+    }
+  }
+
+  .submit {
+    text-align: center;
+    input[type="submit"] {width: 25%;}
+  }
+}
+
+#review_details {
+  margin: 0 auto;
+  width: 80%;
+  padding: 2em;
+  @include section-decorate;
+
+  #review_summary {
+    padding-bottom: 2em;
+    border-bottom: 1px solid #ccc;
+    @include clearfix;
+
+    hgroup {
+      h1 {
+        display: inline-block;
+        font-size: 28px;
+        margin-right: 1em;
+      }
+    }
+
+    .author {
+      float: left;
+      width: 70%;
+    }
+
+    .actions {
+      float: right;
+      width: 20%;
+      margin-top: 1.5em;
+      direction: rtl;
+
+      > a {
+        margin-right: 1em;
+      }
+    }
+  }
+
+  #review_content {
+    padding-top: 2em;
+  }
+}

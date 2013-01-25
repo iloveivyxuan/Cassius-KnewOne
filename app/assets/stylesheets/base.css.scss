@@ -1,0 +1,73 @@
+@mixin section-decorate {
+  background: white;
+  @include border-radius(8px);
+  @include box-shadow(rgba(0, 0, 0, 0.1) 1px 1px 10px);
+}
+
+ul, ol {
+  list-style: none;
+  margin: 0;
+}
+
+a {
+  &:focus {outline: none;}
+  &:hover {text-decoration: none;}
+}
+
+input {
+  &:focus {outline: none !important;}
+}
+
+.btn-mini {
+  text-shadow: none;
+}
+
+.btn {
+  i {margin-right: .5em;}
+}
+
+.add-on {
+  margin-right: -1px;
+}
+
+#modal-gallery.modal-fullscreen {
+  .modal-header {
+    background: #333;
+    &:hover {@include opacity(0.8);}
+
+    .modal-play, .modal-play:hover {
+      color: #fff;
+      position: absolute;
+      top: 20px;
+      right: 8%;
+      cursor: pointer;
+    }
+
+    .close, .close:hover {
+      position: absolute;
+      top: 18px;
+      right: 3%;
+      color: #fff;
+    }
+  }
+}
+
+.modal-loading .modal-image {
+  background: url(loading.gif) center no-repeat;
+}
+
+.icon-twitter {
+  color: $blue;
+}
+
+.spinning {
+  text-align: center;
+}
+
+.author {
+  margin-top: 1em;
+  > * {vertical-align: bottom;}
+  img {margin-right: .5em;}
+  .user_name {margin-right: .5em;}
+  time {color: $fontLightColor;}
+}
