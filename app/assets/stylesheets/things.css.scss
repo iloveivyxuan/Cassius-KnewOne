@@ -117,6 +117,8 @@
     bottom: 0;
     margin-left: -28px;
     @include background(rgba(0, 0, 0, 0.5));
+    @include border-radius(0);
+    @include box-shadow(none);
     text-align: center;
 
     .price, .shop {
