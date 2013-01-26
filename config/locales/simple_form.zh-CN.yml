@@ -24,8 +24,7 @@ zh-CN:
         photo: '图像'
         stock: '剩余数量'
         batch: '进货数量'
-        recommend: '推荐'
-        top: '置顶'
+        priority: '优先'
       review:
         title: "标题"
         content: "内容"

@@ -16,6 +16,8 @@ class Review < Post
     end
   end
 
+  default_scope desc(:created_at)
+
   after_create :add_score
   after_update :update_score
   after_destroy :destroy_score

@@ -7,10 +7,9 @@ class Thing < Post
   field :description, type: String, default: ""
   field :stock, type: Integer
   field :batch, type: Integer
-  field :recommend, type: Boolean, default: false
-  field :top, type: Boolean, default: false
   field :photo_ids, type: Array, default: []
   field :scores, type: Array, default: []
+  field :priority, type: Integer, default: 0
 
   include Mongoid::Slug
   slug :title
@@ -19,8 +18,7 @@ class Thing < Post
 
   validates :description, length: { maximum: 2048 }
 
-  scope :recommended, where(recommend: true)
-  scope :toped, where(top: true)
+  default_scope desc(:priority, :created_at)
 
   def photos
     Photo.find_with_order photo_ids
