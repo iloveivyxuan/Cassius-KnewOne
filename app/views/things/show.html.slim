@@ -3,16 +3,18 @@ header#thing_summary
     hgroup
       h1= @thing.title
       h2= @thing.subtitle
-    .price
-      span= thing_price(@thing)
-      span 
-        | 剩余
-        em= "#{@thing.stock}"
-        = " / #{@thing.batch}"
-    .shop
-      = link_to @thing.shop, class: "btn btn-success" do
-        i.icon-shopping-cart
-        | 购买
+    - unless @thing.shop.blank?  
+      .price
+        span= thing_price(@thing)
+        - unless @thing.stock.blank?
+          span 
+            | 剩余
+            em= "#{@thing.stock}"
+            = " / #{@thing.batch}"
+      .shop
+        = link_to @thing.shop, class: "btn btn-success" do
+          i.icon-shopping-cart
+          | 购买
     - if !@thing.official_site.blank?
       .official_site
         = link_to @thing.official_site, target: "_blank" do
@@ -27,7 +29,7 @@ header#thing_summary
       / = link_to "#", class: "btn" do
       /   i.icon-share 
       /   | 分享
-      - if can? :update, @interview
+      - if can? :update, @thing
         = link_to edit_thing_path(@thing), class: "btn" do
           i.icon-edit 
           | 编辑
