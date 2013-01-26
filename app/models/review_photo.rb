@@ -12,7 +12,7 @@ class ReviewPhoto
 
   def to_json
     {
-      "filelink" => url(:middle)
+      "filelink" => url(:review)
     }
   end
 
