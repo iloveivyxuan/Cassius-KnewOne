@@ -154,10 +154,8 @@ form.thing_form {
   width: $formWidth;
   margin-left: $marginWidth;
 
-  .string {
-    input {
-      width: 60%;
-    }
+  input[type="text"], input[type="url"] {
+    width: 60%;
   }
 
   .text {

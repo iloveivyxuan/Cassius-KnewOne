@@ -3,8 +3,8 @@
 = simple_form_for @thing, html: {class: "thing_form pull-left"} do |f|
   = f.input :title
   = f.input :subtitle
-  = f.input :shop, as: :url
   = f.input :price, as: :integer
+  = f.input :shop, as: :url
   = f.input :official_site, as: :url
   = f.input :description, as: :text, input_html: {rows: 25}
   - if current_user.admin?
