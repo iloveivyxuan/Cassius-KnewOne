@@ -11,7 +11,9 @@ Making::Application.routes.draw do
   resources :users, only: [:show]
 
   resources :things do
-    resources :reviews
+    resources :reviews do
+      member {post 'vote'}
+    end
     collection {get 'admin'}
   end
 

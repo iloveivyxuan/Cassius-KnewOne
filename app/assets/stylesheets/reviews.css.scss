@@ -23,7 +23,7 @@ form.edit_review {
   padding: 2em;
   @include section-decorate;
 
-  #review_summary {
+  > header {
     padding-bottom: 2em;
     border-bottom: 1px solid #ccc;
     @include clearfix;
@@ -52,8 +52,18 @@ form.edit_review {
     }
   }
 
-  #review_content {
+  > section {
+    padding: 2em 0;
+    border-bottom: 1px solid #ccc;
+  }
+
+  > footer {
     padding-top: 2em;
+    
+    .voting {
+      > * { margin-right: 1em; }
+      > small { color: $fontLightColor; }
+    }
   }
 }
 

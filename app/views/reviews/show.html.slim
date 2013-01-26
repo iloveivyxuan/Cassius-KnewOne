@@ -1,5 +1,5 @@
 section#review_details
-  header#review_summary
+  header
     hgroup
       = link_to "< #{@thing.title}", @thing
       h1= @review.title
@@ -15,8 +15,18 @@ section#review_details
         = link_to thing_review_path(@thing, @review), method: :delete, 
         data: {confirm: "您确定要删除吗?"} do 
           i.icon-trash
-  section#review_content
+  section
     = raw @review.content
+  footer
+    .voting
+      - if can? :vote, @review
+        small 您认为这篇评测
+        = link_to "#", class: "btn btn-mini" do
+          i.icon-thumbs-up
+          | 有用
+        = link_to "#", class: "btn btn-mini btn-inverse" do
+          i.icon-thumbs-down
+          | 没用
 
 - content_for :script do
   javascript:

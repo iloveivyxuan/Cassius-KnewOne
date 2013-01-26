@@ -4,6 +4,9 @@ class Review < Post
 
   belongs_to :thing
 
+  has_and_belongs_to_many :lovers, class_name: "User", inverse_of: nil
+  has_and_belongs_to_many :foes, class_name: "User", inverse_of: nil
+
   validates :content, presence: true
   validates :score, presence: true
   validate do |review|
@@ -16,6 +19,16 @@ class Review < Post
   after_create :add_score
   after_update :update_score
   after_destroy :destroy_score
+
+  def vote(user, love)
+    unless voted?(user)
+      (love ? lovers : foes) << user
+    end
+  end
+
+  def voted?(user)
+    lovers.find(user) || foes.find(user)
+  end
 
   private
 

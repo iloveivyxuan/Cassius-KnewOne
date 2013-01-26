@@ -44,6 +44,11 @@ class ReviewsController < ApplicationController
     redirect_to @thing
   end
 
+  def vote
+    @review = Review.find(params[:id])
+    @review.vote(current_user, params[:vote])
+  end
+
   private
 
   def setup_thing
