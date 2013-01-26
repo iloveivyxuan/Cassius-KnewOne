@@ -37,6 +37,14 @@ body > header {
           color: $navbarText;
         }
       }
+
+      .nav_weibo {
+        margin-top: 2px;
+        margin-right: 2em;
+        @media screen and (max-width: 979px) {
+          display: none;
+        }
+      }
       
       .nav_new_thing {
         margin-top: 2px;
