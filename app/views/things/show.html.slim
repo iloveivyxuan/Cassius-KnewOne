@@ -19,7 +19,7 @@ header#thing_summary
       .official_site
         = link_to @thing.official_site, target: "_blank" do
           i.icon-plane
-            | 官方网站
+          | 官方网站
     blockquote= @thing.description  
     .photos
       - @thing.photos.each do |photo|
