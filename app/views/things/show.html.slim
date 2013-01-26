@@ -15,10 +15,10 @@ header#thing_summary
         = link_to @thing.shop, class: "btn btn-success" do
           i.icon-shopping-cart
           | 购买
-    - if !@thing.official_site.blank?
+    - unless @thing.official_site.blank?
       .official_site
-        = link_to @thing.official_site, target: "_blank" do
-          i.icon-plane
+        = link_to @thing.official_site, target: "_blank", class: "btn btn-info" do
+          i.icon-info-sign
           | 官方网站
     blockquote= @thing.description  
     .photos
