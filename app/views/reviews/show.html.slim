@@ -19,15 +19,13 @@ section#review_details
     = raw @review.content
   footer
     .voting
-      / - if can? :vote, @review
-      /   small 您认为这篇评测
-      /   = link_to "#", class: "btn btn-mini" do
-      /     i.icon-thumbs-up
-      /     | 有用
-      /   = link_to "#", class: "btn btn-mini btn-inverse" do
-      /     i.icon-thumbs-down
-      /     | 没用
-
+      - if can? :vote, @review and !@review.voted?(current_user)
+        = render "not_voted", review: @review
+      - else
+        = render "voted", review: @review
+      
 - content_for :script do
   javascript:
     Making.ReviewShow();
+
+    

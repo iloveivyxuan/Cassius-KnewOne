@@ -27,7 +27,7 @@ class Review < Post
   end
 
   def voted?(user)
-    lovers.find(user) || foes.find(user)
+    !!(lovers.find(user) || foes.find(user))
   end
 
   private

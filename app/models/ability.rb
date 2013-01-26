@@ -16,9 +16,7 @@ class Ability
         photo.user == user
       end
       can :create, ReviewPhoto
-      can :vote, Review do |review|
-        !review.voted?(user)
-      end
+      can :vote, Review
       basic
     end
   end

@@ -15,4 +15,5 @@ li
         = link_to thing_review_path(review.thing, review), class: "details" do
             i.icon-file-alt
     footer
+      = render "reviews/voted", review: review
 

@@ -75,3 +75,27 @@ input {
 .score {
   margin: .5em 0;
 }
+
+.not_voted {
+  > * {margin-right: 1em;}
+  > small {color: $fontLightColor;}
+}
+
+.voted {
+  color: $fontLightColor;
+
+  .lovers, .foes {
+    i, small {margin-right: .5em;}
+    b {font-weight: normal;}
+  }
+
+  .lovers {
+    padding-right: 1em;
+    border-right: 1px solid #ccc;
+    b {color: $green;}
+  }
+
+  .foes {
+    padding-left: 1em;
+  }
+}

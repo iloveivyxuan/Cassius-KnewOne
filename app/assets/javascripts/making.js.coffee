@@ -35,7 +35,7 @@ window.Making =
 
   ReviewShow: () ->
     $ ->
-      #$('#review_content img').closest('p').css('text-align', 'center') 
+      Making.Voting()
     
   Editor: ($form) ->
     csrf_token = $('meta[name=csrf-token]').attr('content');
@@ -61,6 +61,17 @@ window.Making =
         score: $(el).data('score')
         readOnly: true
         path: '/assets'
+
+  Voting: () ->
+    $form = $('form.not_voted')
+    $form.show().find('button').click (e) ->
+      $('<input>').attr
+        type: "hidden"
+        name: "vote"
+      .val($(@).data("vote"))
+      .appendTo($form)
+    .end().on "ajax:success", (e, html, status, xhr) ->
+      $form.replaceWith html
 
 $ ->
   Making.initialize()

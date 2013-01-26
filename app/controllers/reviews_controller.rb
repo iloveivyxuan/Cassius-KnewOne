@@ -46,7 +46,8 @@ class ReviewsController < ApplicationController
 
   def vote
     @review = Review.find(params[:id])
-    @review.vote(current_user, params[:vote])
+    @review.vote current_user, params[:vote] == "true"
+    render "_voted", locals: {review: @review}, layout: false
   end
 
   private

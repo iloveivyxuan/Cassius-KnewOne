@@ -59,11 +59,7 @@ form.edit_review {
 
   > footer {
     padding-top: 2em;
-    
-    .voting {
-      > * { margin-right: 1em; }
-      > small { color: $fontLightColor; }
-    }
+
+    .voting {}
   }
 }
-
