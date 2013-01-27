@@ -5,6 +5,10 @@ module ThingsHelper
   end
 
   def thing_price(thing)
-    "¥#{thing.price.to_i}"
+    content_tag :small, "¥#{thing.price.to_i}"
+  end
+
+  def thing_photo(thing)
+    thing.photos.first.url(:middle)
   end
 end

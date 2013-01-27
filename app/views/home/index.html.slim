@@ -1,5 +1,3 @@
-= content_tag :section, "", id: "things"
+section#things
+  ul= render @things
 
-- content_for :script do
-  javascript:
-    Making.ThingsIndex();

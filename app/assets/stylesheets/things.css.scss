@@ -81,7 +81,10 @@
 
   .price {
     color: $fontLightColor;
-    span {margin-right: 2em;}
+    small {
+      font-size: $baseFontSize;
+      margin-right: 2em;
+    }
     em {color: $pink;}
   }
 
@@ -126,12 +129,12 @@
     }
 
     .price {
-      span {color: white;}
+      small {color: white;}
       em {color: lighten($pink, 30%);}
     }
 
     .shop {
-      margin: .5em 0;
+      margin: .5em 0 .5em 1em;
       a {
         width: 100%;
       }

@@ -5,7 +5,7 @@ header#thing_summary
       h2= @thing.subtitle
     - unless @thing.shop.blank?  
       .price
-        span= thing_price(@thing)
+        = thing_price(@thing)
         - unless @thing.stock.blank?
           span 
             | 剩余
