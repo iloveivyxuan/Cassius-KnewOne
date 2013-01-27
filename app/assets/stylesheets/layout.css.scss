@@ -16,7 +16,7 @@ body {
 body > header {
   > nav {
     .navbar-inner {
-      padding: 0 2%; 
+      padding: 0 2%;
 
       .brand {
         font-family: "orbitron-bold";
@@ -46,15 +46,15 @@ body > header {
       }
 
       .nav_weibo {
-        margin-top: 2px;
+        margin-top: 1px;
         margin-right: 2em;
         @media screen and (max-width: 979px) {
           display: none;
         }
       }
-      
+
       .nav_new_thing {
-        margin-top: 2px;
+        margin-top: 1px;
         @media screen and (max-width: 979px) {
           display: none;
         }
@@ -78,8 +78,16 @@ body > header {
         }
       }
 
-      .weibo_sign_in {
-        img {vertical-align: -2px;}
+      .signin_tip {
+        color: $fontLightColor;
+        padding-top: 10px;
+        margin-right: 1em;
+      }
+
+      .signin {
+        .weibo_sign_in {
+          img {vertical-align: -2px;}
+        }
       }
     }
   }
@@ -96,4 +104,3 @@ body > section.container-fluid {
 a[href^='http://tongji.baidu.com'] {
   display: none;
 }
-
