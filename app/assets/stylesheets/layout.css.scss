@@ -21,6 +21,13 @@ body > header {
       .brand {
         font-family: "orbitron-bold";
         color: $blue;
+        position: relative;
+        margin-left: 40px;
+
+        img {
+          position: absolute;
+          left: -40px;
+        }
       }
 
       form.navbar-search#nav_search {

@@ -88,7 +88,7 @@
   .shop, .official_site {
     margin: 1em 0;
     a {
-      width: 30%;
+      width: 35%;
       i {margin-right: 20%;}
     }
   }
@@ -296,6 +296,14 @@ form#new_photo {
           text-align: center;
 
           small {margin-left: 1em;}
+
+          @media screen and (max-width: 979px) {
+            position: relative;
+            display: block;
+            background: white;
+            margin-top: 1em;
+            color: $gray;
+          }
         }
 
         &:hover h4 {
