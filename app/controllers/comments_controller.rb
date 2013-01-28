@@ -1,10 +1,9 @@
 class CommentsController < ApplicationController
   respond_to :json
-  load_and_authorize_resource
-  before_filter :setup_post
+  load_and_authorize_resource :post
+  load_and_authorize_resource through: :post
 
   def index
-    @comments = @post.comments
     respond_with @comments
   end
 
@@ -18,9 +17,4 @@ class CommentsController < ApplicationController
     respond_with @post.comments.delete(@comment)
   end
 
-  private
-
-  def setup_post
-    @post = Post.find(params[:post_id])
-  end
 end
