@@ -167,6 +167,12 @@ $asideWidth: 31%;
   @include section-decorate;
   margin-top: 2em;
 
+  @media screen and (max-width: 979px) {
+    float: none;
+    width: 100%;
+    padding-top: .5em;
+  }
+
   .comments {
     margin: 1em;
 
