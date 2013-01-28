@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @things = Thing.gte(priority: 0)
+    @things = Thing.gt(priority: 0)
   end
 
   def sandbox
