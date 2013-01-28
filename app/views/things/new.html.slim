@@ -1,27 +1,41 @@
-- provide :title, "发布产品"
+- provide :title, "推荐产品"
 
-= simple_form_for @thing, html: {class: "thing_form pull-left"} do |f|
-  = f.input :title
-  = f.input :subtitle
-  = f.input :price, as: :integer
-  = f.input :shop, as: :url
-  = f.input :official_site, as: :url
-  = f.input :description, as: :text, input_html: {rows: 25}
+hgroup#thing_form_header
+  h1 推荐产品
+  p 感谢您为我们推荐属于未来的<b>新/奇/酷</b>产品，一旦产品经过我们的编辑审核通过，将来有可能获得很大的优惠喔！
+
+= simple_form_for @thing, html: {class: "thing_form form-horizontal pull-left"} do |f|
+  = f.input :title, placeholder: "真实准确的品牌型号", 
+            hint: "如: Jawbone Up 2nd，30字以内", input_html: {maxlength: 30}
+  = f.input :subtitle, placeholder: "您对产品的一句话介绍",
+            hint: "选填, 请用最简短的词语描绘这个产品，30字以内", input_html: {maxlength: 30}
+  = f.input :shop, as: :url, placeholder: "产品的可购买网址链接",
+            hint: "选填，请推荐在国内可以买到该产品的靠谱的网站链接，我们会进行核实"
+  = f.input :price, as: :integer, 
+            hint: "选填，请填写你推荐的购买网址中该产品的价格，如没有填写购买链接，价格是无效的喔"
+  = f.input :official_site, as: :url, placeholder: "品牌官方网站的该产品介绍链接地址",
+            hint: "选填，官方网站的介绍可以帮助顾客了解产品详细信息"
+  = f.input :description, as: :text, input_html: {rows: 10, maxlength: 300}, 
+            placeholder: "产品背景功能的简略介绍",
+            hint: "选填，请客观地描述产品功能和诞生背景，300字以内"
   - if current_user.admin?
+    h3 管理区域
     = f.input :stock, as: :integer
     = f.input :batch, as: :integer
     = f.input :priority, as: :integer
-
   = f.button :submit, class: "btn-primary btn-large"
 
 = simple_form_for Photo.new, html: {class: "pull-right"} do |f|
-  span.btn.fileinput-button title="产品图片" data-content="请先为产品上传图片"
-    i.icon-cloud-upload
-    span 上传图片
-    = f.file_field :image, multiple: true, name: "photo[image]"
+  .control-groups
+    span.btn.btn-info.fileinput-button title="产品图片" data-content="请先为产品上传图片"
+      i.icon-cloud-upload
+      span 上传产品照片
+      = f.file_field :image, multiple: true, name: "photo[image]"
+    span.help-block
+      | 产品至少需要上传一张照片（多张会更好），如果想要很好的展现产品，我们建议您的照片宽度至少大于1152像素，光线充足并适当留白
   = content_tag :div, id: "photos", 
   data: {photos: @photos, toggle: "modal-gallery", target: "#modal-gallery"} do
-    p 也可以将图片文件拖到这里进行上传
+    p 将照片文件直接从桌面拖到这里进行上传
 
 = render 'shared/image_gallery'
 

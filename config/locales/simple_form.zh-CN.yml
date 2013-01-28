@@ -15,9 +15,9 @@ zh-CN:
         description: '自我描述'
       thing:
         title: '名称'
-        subtitle: '副标题'
+        subtitle: '一句话介绍'
         shop: '购买链接'
-        official_site: '官方网站链接'
+        official_site: '官方链接'
         price: '价格'
         photos: '图片'
         description: '简介'
