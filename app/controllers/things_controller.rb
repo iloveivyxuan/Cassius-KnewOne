@@ -25,17 +25,14 @@ class ThingsController < PostsController
   end
 
   def show
-    @thing = Thing.find(params[:id]) || not_found
   end
 
   def edit
-    @thing = Thing.find(params[:id])
     @photos = @thing.photos.map(&:to_jq_upload)
     render 'new'
   end
 
   def update
-    @thing = Thing.find params[:id]
     if @thing.update_attributes(params[:thing])
       redirect_to @thing
     else
@@ -44,7 +41,6 @@ class ThingsController < PostsController
   end
 
   def destroy
-    @thing = Thing.find params[:id]
     @thing.destroy
     redirect_to root_path
   end
