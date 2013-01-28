@@ -1,7 +1,11 @@
 footer
-  ul#contact
-    li= link_to "关注微博", "http://weibo.com/knewone"
-    li= link_to "意见反馈", "/things/knewone"
-    li= link_to "联系我们", "mailto:hello@knewone.com"
-  #copyright knewone.com ©2013
-  
+  ul#contacts
+    li= link_to "http://weibo.com/knewone" do
+      = image_tag "weibo.png"
+      | 关注微博
+    li= link_to "/things/knewone" do
+      i.icon-leaf
+      | 反馈意见
+    li= link_to "mailto:hello@knewone.com" do
+      i.icon-envelope
+      | 联系我们

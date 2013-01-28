@@ -43,14 +43,6 @@ body > header {
         }
       }
 
-      .nav_weibo {
-        margin-top: 1px;
-        margin-right: 2em;
-        @media screen and (max-width: 979px) {
-          display: none;
-        }
-      }
-
       .nav_new_thing {
         margin-top: 1px;
         @media screen and (max-width: 979px) {
@@ -103,11 +95,33 @@ body > section.container-fluid {
 }
 
 body > footer {
-  display: none;
-  margin: 2em 10%;
-  border-top: 1px solid #ccc;
-  #contact {
+  padding: 2em 0;
+  margin: 2em 0 0;
+  background: #e4e4e4;
+  padding-left: 10%;
+
+  #contacts {
+    width: 40%;
     
+    li {
+      padding: 1em 0;
+      a {
+        color: $fontLightColor;
+        &:hover {color: $blue;}
+      }
+      
+      i {
+        margin-right: 1em;
+      }
+      img {
+        margin-right: 1em;
+        vertical-align: -1px;
+      }
+
+      &.copyright {
+        padding-top: 3px;
+      }
+    }
   }
 }
 

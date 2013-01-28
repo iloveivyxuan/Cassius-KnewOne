@@ -4,6 +4,11 @@ module ApplicationHelper
     "knewone"
   end
 
+  def logo
+    i = 1.upto(22).to_a.shuffle.first
+    image_tag "logos/#{i}.png", alt: brand
+  end
+
   def page_title
     [brand, content_for(:title)].reject(&:blank?).join('-')
   end
