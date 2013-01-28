@@ -65,7 +65,7 @@ form#new_photo {
 
   #photos {
     border: 1px dashed #ccc;
-    min-height: 600px;
+    min-height: 680px;
     @include transition(background, 0.3s);
 
     &.dragover {

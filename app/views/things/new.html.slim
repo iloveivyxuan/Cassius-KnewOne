@@ -13,6 +13,8 @@ hgroup#thing_form_header
             hint: "选填，请推荐在国内可以买到该产品的靠谱的网站链接，我们会进行核实"
   = f.input :price, as: :integer, 
             hint: "选填，请填写你推荐的购买网址中该产品的价格，如没有填写购买链接，价格是无效的喔"
+  = f.input :is_shop, as: :boolean, 
+            hint: "选填，如果您自己在代理销售此产品，请选择此项"
   = f.input :official_site, as: :url, placeholder: "品牌官方网站的该产品介绍链接地址",
             hint: "选填，官方网站的介绍可以帮助顾客了解产品详细信息"
   = f.input :description, as: :text, input_html: {rows: 10, maxlength: 300}, 
