@@ -62,4 +62,14 @@ form.edit_review {
 
     .voting {}
   }
+
+  aside#review_comments {
+    margin-top: 2em;
+
+    .comments {
+      form#create_comment {
+        textarea {width: 39%;}
+      }
+    }
+  }
 }

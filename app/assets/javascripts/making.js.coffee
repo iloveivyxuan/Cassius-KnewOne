@@ -73,5 +73,14 @@ window.Making =
     .end().on "ajax:success", (e, html, status, xhr) ->
       $form.replaceWith html
 
+  Comments: (el) ->
+    $ ->
+      post_id = $(el).data('postid')
+      collection = new Making.Collections.Comments
+      collection.url = "/posts/#{post_id}/comments"
+      view = new Making.Views.CommentsIndex
+        collection: collection
+        el: el
+
 $ ->
   Making.initialize()

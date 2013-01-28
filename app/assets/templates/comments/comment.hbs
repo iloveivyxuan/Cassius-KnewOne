@@ -1,0 +1,17 @@
+<article>
+  <section>
+    <p>{{{content}}}</p>
+  </section>
+  <footer class="author">
+    {{#with author}}
+      <img src="{{photo_url}}" class="user_avatar">
+      <a class="user_name">{{name}}</a>
+    {{/with}}
+    {{{created_time_tag}}}
+    {{#if can_destroy}}
+      <a class="destroy">
+        <i class="icon-trash"></i>
+      </a>
+    {{/if}}
+  </footer>
+</article>

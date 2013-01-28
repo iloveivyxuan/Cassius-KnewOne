@@ -110,3 +110,21 @@ input {
   color: $fontLightColor;
   font-style: italic;
 }
+
+.comments {
+  h4 {
+    color: $fontLightColor;
+  }
+
+  ul {
+    margin-top: 2em;
+    border-top: 5px solid #eee;
+    padding-top: 2em;
+
+    li {
+      border-bottom: 1px dashed #ccc;
+      padding-bottom: 1em;
+      margin-bottom: 1em;
+    }
+  }
+}

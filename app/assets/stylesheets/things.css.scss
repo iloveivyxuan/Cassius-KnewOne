@@ -1,6 +1,9 @@
+$contentWidth: 67%;
+$asideWidth: 31%;
+
 #thing_content {
   float: left;
-  width: 67%;
+  width: $contentWidth;
 
   figure {
     margin: 0 0 2em 0;
@@ -43,6 +46,14 @@
             padding: 0 .5em;
           }
         }
+
+        footer {
+          color: $fontLightColor;
+          span {
+            i {margin-right: .5em;}
+            padding-right: 1em;
+          }
+        }
       }
     }
   }
@@ -61,7 +72,7 @@
 
 #thing_summary {
   float: right;
-  width: 31%;
+  width: $asideWidth;
   @include section-decorate;
 
   .summary_wrapper {
@@ -147,6 +158,21 @@
 
   @media screen and (max-width: 767px) {
     margin-left: -20px;
+  }
+}
+
+#thing_comments {
+  float: right;
+  width: $asideWidth;
+  @include section-decorate;
+  margin-top: 2em;
+
+  .comments {
+    margin: 1em;
+
+    form#create_comment {
+      textarea {width: 95%;}
+    }
   }
 }
 
