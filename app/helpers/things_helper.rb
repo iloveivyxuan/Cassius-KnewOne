@@ -5,9 +5,7 @@ module ThingsHelper
   end
 
   def thing_price(thing)
-    if thing.price > 0
-      content_tag :small, "¥#{thing.price.to_i}"
-    end
+    content_tag :small, "¥#{thing.price.to_i}"
   end
 
   def thing_photo(thing)
