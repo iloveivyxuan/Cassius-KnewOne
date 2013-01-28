@@ -69,6 +69,10 @@ body > header {
             height: 20px;
           }
           .icon-caret-down {padding-left: .5em;}
+
+          @media screen and (max-width: 979px) {
+            padding: 0;
+          }
         }
 
         > .dropdown-menu {
@@ -95,6 +99,15 @@ body > section.container-fluid {
   padding: 2em;
   @media screen and (max-width: 767px) {
     padding: 2em 0;
+  }
+}
+
+body > footer {
+  display: none;
+  margin: 2em 10%;
+  border-top: 1px solid #ccc;
+  #contact {
+    
   }
 }
 
