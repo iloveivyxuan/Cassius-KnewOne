@@ -29,14 +29,15 @@ form.edit_review {
   @include section-decorate;
 
   > header {
-    padding-bottom: 2em;
-    border-bottom: 1px solid #ccc;
     @include clearfix;
 
     hgroup {
       h1 {
         font-size: 28px;
-        margin-right: 1em;
+        margin: .7em 0;
+        img {
+          margin-right: 1em;
+        }
       }
     }
 
@@ -58,7 +59,9 @@ form.edit_review {
   }
 
   > section {
+    margin-top: 2em;
     padding: 2em 0;
+    border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
   }
 

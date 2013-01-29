@@ -2,7 +2,9 @@ section#review_details
   header
     hgroup
       = link_to "< #{@thing.title}", @thing
-      h1= @review.title
+      h1
+        = thing_photo @thing, :tiny
+        = @review.title
     .score data-score=@review.score
     .author
       = image_tag @review.author.avatar.url, class: "user_avatar"
