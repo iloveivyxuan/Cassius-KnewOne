@@ -13,7 +13,12 @@ form.edit_review {
 
   .submit {
     text-align: center;
-    input[type="submit"] {width: 25%;}
+    input[type="submit"] {
+      width: 25%;
+      @media screen and (max-width: 767px) {
+        width: 80%;
+      }
+    }
   }
 }
 

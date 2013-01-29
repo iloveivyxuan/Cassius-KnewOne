@@ -1,6 +1,6 @@
-li 
- = link_to thing do
-   = image_tag thing_photo(thing), alt: thing_title(thing)
-   h4
-     = thing_title(thing)
-     = thing_price(thing)
+li.thing 
+  = link_to thing do
+    = thing_photo(thing, :middle)
+    h4
+      = thing_title(thing)
+      = thing_price(thing)

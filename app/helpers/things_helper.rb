@@ -10,7 +10,8 @@ module ThingsHelper
     end
   end
 
-  def thing_photo(thing)
-    thing.photos.first.url(:middle)
+  def thing_photo(thing, size, options = {})
+    url = thing.photos.first.url(size)
+    image_tag url, options.merge(alt: thing_title(thing))
   end
 end

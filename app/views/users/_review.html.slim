@@ -1,0 +1,5 @@
+li.review
+  section.thing
+    = link_to review.thing, title: thing_title(review.thing) do
+      = thing_photo(review.thing, :normal)
+  = render "reviews/review", review: review

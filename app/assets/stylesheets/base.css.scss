@@ -7,15 +7,73 @@
 @mixin left-layout {
   float: left;
   width: 67%;
+
   @media screen and (min-width: 1024px) {
     min-height: 768px;
+  }
+
+  @media screen and (max-width: 979px) {
+    float: none;
+    width: 100%;
   }
 }
 
 @mixin right-layout {
   float: right;
   width: 31%;
-  @include section-decorate;
+
+  @media screen and (max-width: 979px) {
+    float: none;
+    width: 100%;
+  }
+}
+
+@mixin thing($size, $mobile_size) {
+  background: white;
+
+  > a {
+    display: block;
+    position: relative;
+
+    img {
+      width: $size;
+      max-height: $size;
+      margin: 0 auto;
+
+      @media screen and (max-width: 767px) {
+        width: $mobile_size;
+        max-height: $mobile_size;
+      }
+    }
+
+    h4 {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: none;
+      color: white;
+      margin: 0;
+      padding: 1em 0;
+      font-size: 1.2em;
+      @include background(rgba(0, 0, 0, 0.5));
+      text-align: center;
+
+      small {margin-left: 1em;}
+
+      @media screen and (max-width: 979px) {
+        position: relative;
+        display: block;
+        background: white;
+        margin-top: 1em;
+        color: $gray;
+      }
+    }
+
+    &:hover h4 {
+      display: block;
+    }
+  }
 }
 
 ul, ol {
@@ -141,3 +199,25 @@ input {
     }
   }
 }
+
+.review {
+  article {
+    header {
+      margin-bottom: 2em;
+
+      h3 {
+        background: #f4f4f4;
+        padding: 0 .5em;
+      }
+    }
+
+    footer {
+      color: $fontLightColor;
+      span {
+        i {margin-right: .5em;}
+        padding-right: 1em;
+      }
+    }
+  }
+}
+

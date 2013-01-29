@@ -1,29 +1,27 @@
-li
-  article
-    header
-      h3
-        = link_to review.title, thing_review_path(review.thing, review)
-      .score data-score=review.score
-      .author
-        = image_tag review.author.avatar.url, class: "user_avatar"
-        a.user_name= review.author.name
-        = time_ago_tag(review.created_at)
-    section
-      p
-        - content = strip_tags(raw review.content)
-        = truncate content, length: 300
-        = link_to thing_review_path(review.thing, review), class: "details" do
-            i.icon-file-alt
-    footer
-      - if review.lovers.count > 0
-        span.lovers
-          i.icon-thumbs-up
-          = link_to review.lovers.count, thing_review_path(review.thing, review)
-        span.foes 
-          i.icon-thumbs-down
-          = link_to review.foes.count, thing_review_path(review.thing, review)
-      - if review.comments.count > 0
-        span.comments
-          i.icon-comments-alt
-          = link_to review.comments.count, thing_review_path(review.thing, review)
-
+article
+  header
+    h3
+      = link_to review.title, thing_review_path(review.thing, review)
+    .score data-score=review.score
+    .author
+      = image_tag review.author.avatar.url, class: "user_avatar"
+      a.user_name= review.author.name
+      = time_ago_tag(review.created_at)
+  section
+    p
+      - content = strip_tags(raw review.content)
+      = truncate content, length: 300
+      = link_to thing_review_path(review.thing, review), class: "details" do
+          i.icon-file-alt
+  footer
+    - if review.lovers.count > 0
+      span.lovers
+        i.icon-thumbs-up
+        = link_to review.lovers.count, thing_review_path(review.thing, review)
+      span.foes 
+        i.icon-thumbs-down
+        = link_to review.foes.count, thing_review_path(review.thing, review)
+    - if review.comments.count > 0
+      span.comments
+        i.icon-comments-alt
+        = link_to review.comments.count, thing_review_path(review.thing, review)

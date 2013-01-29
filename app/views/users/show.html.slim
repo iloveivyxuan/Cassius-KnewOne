@@ -7,12 +7,16 @@ section#user_content
   .tabbable.content_wrapper
     ul.nav.nav-tabs
       li.active
-        = link_to "#user_reviews", data: {toggle: "tab"} do
-          | 评测
+        = link_to "#reviews", data: {toggle: "tab"} do
+          | 评测 
+          b #{@reviews.count}
       li
-        = link_to "#user_things", data: {toggle: "tab"} do
+        = link_to "#things", data: {toggle: "tab"} do
           | 推荐
+          b #{@things.count}
     .tab-content
-      ul#reviews.tab-pane.active= render @reviews
-      #user_things.tab-pane
-        | Things
+      ul#reviews.tab-pane.active
+        = render partial: "review", collection: @reviews
+      ul#things.tab-pane
+        = render @things
+

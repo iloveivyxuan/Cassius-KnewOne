@@ -1,11 +1,51 @@
 #user_content {
   @include left-layout;
-  
+  @include section-decorate;
+
   .content_wrapper {
     padding: 2em;
+  }
+
+  #reviews {
+    li {
+      padding-bottom: 1em;
+      border-bottom: 1px dashed #ccc;
+      margin: 1em 0;
+      
+      @include clearfix;
+
+      .thing {
+        float: left;
+        width: 36%;
+        padding-top: 1em;
+        text-align: center;
+        margin-right: 2%;
+
+        img {
+          max-width: 100%;
+          max-height: 280px;
+        }
+
+        @media screen and (max-width: 979px) {
+          float: none;
+          width: 100%;
+          margin-bottom: 1em;
+        }
+      }
+
+      article {
+        float: right;
+        width: 61%;
+        @media screen and (max-width: 979px) {
+          float: none;
+          width: 100%;
+        }
+      }
+    }
   }
 }
 
 #user_summary {
   @include right-layout;
+  @include section-decorate;
 }
