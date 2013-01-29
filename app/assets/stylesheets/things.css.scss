@@ -1,12 +1,5 @@
-$contentWidth: 67%;
-$asideWidth: 31%;
-
 #thing_content {
-  float: left;
-  width: $contentWidth;
-  @media screen and (min-width: 1024px) {
-    min-height: 768px;
-  }
+  @include left-layout;
 
   figure {
     margin: 0 0 2em 0;
@@ -74,8 +67,7 @@ $asideWidth: 31%;
 }
 
 #thing_summary {
-  float: right;
-  width: $asideWidth;
+  @include right-layout;
   @include section-decorate;
 
   .summary_wrapper {
@@ -165,8 +157,7 @@ $asideWidth: 31%;
 }
 
 #thing_comments {
-  float: right;
-  width: $asideWidth;
+  @include right-layout;
   @include section-decorate;
   margin-top: 2em;
 

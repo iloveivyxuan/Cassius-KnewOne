@@ -38,4 +38,12 @@ class User
 
   ## Photos
   has_many :photos
+
+  def things
+    posts.where(_type: "Thing")
+  end
+
+  def reviews
+    posts.where(_type: "Review")
+  end
 end

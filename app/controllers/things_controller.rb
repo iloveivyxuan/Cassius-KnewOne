@@ -25,6 +25,7 @@ class ThingsController < PostsController
   end
 
   def show
+    @thing = Thing.find(params[:id]) || not_found
   end
 
   def edit

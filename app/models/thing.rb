@@ -15,7 +15,7 @@ class Thing < Post
   include Mongoid::Slug
   slug :title
 
-  has_many :reviews
+  has_many :reviews, dependent: :delete
 
   validates :description, length: { maximum: 2048 }
 

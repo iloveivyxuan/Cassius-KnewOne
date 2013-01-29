@@ -1,0 +1,18 @@
+header#user_summary
+  .avatar= image_tag @user.avatar.url(:small), alt: @user.name
+  .name= @user.name
+  blockquote= @user.description
+
+section#user_content
+  .tabbable.content_wrapper
+    ul.nav.nav-tabs
+      li.active
+        = link_to "#user_reviews", data: {toggle: "tab"} do
+          | 评测
+      li
+        = link_to "#user_things", data: {toggle: "tab"} do
+          | 推荐
+    .tab-content
+      ul#reviews.tab-pane.active= render @reviews
+      #user_things.tab-pane
+        | Things

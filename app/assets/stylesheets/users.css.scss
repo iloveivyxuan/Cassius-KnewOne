@@ -1,0 +1,11 @@
+#user_content {
+  @include left-layout;
+  
+  .content_wrapper {
+    padding: 2em;
+  }
+}
+
+#user_summary {
+  @include right-layout;
+}
