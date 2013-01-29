@@ -37,10 +37,14 @@ form.edit_review {
         margin: .7em 0;
       }
       img {
+        display: block;
         float: right;
         max-width: 180px;
         max-height: 180px;
-        margin: 0 7%;
+        margin: 1em 7% 0;
+        @media screen and (max-width: 767px) {
+          float: none;
+        }
       }
     }
 
