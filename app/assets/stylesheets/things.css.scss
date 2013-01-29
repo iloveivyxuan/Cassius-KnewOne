@@ -4,6 +4,9 @@ $asideWidth: 31%;
 #thing_content {
   float: left;
   width: $contentWidth;
+  @media screen and (min-width: 1024px) {
+    min-height: 768px;
+  }
 
   figure {
     margin: 0 0 2em 0;
