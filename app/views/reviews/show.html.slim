@@ -2,7 +2,8 @@ section#review_details
   header
     hgroup
       = link_to "< #{@thing.title}", @thing
-      = thing_photo @thing, :normal
+      = link_to @thing, title: thing_title(@thing) do
+        = thing_photo @thing, :normal
       h1= @review.title
     .score data-score=@review.score
     .author
