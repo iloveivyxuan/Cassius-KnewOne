@@ -38,25 +38,21 @@ form.edit_review {
       }
       img {
         float: right;
-        margin: 3em 7% 0;
+        max-width: 180px;
+        max-height: 180px;
+        margin: 0 7%;
       }
     }
 
     .author {
-      float: left;
-      width: 70%;
-    }
-
-    .actions {
-      float: right;
-      width: 20%;
-      margin-top: 1.5em;
-      direction: rtl;
-
-      > a {
-        margin-right: 1em;
+      .actions {
+        a {
+          margin-left: 2em;
+          vertical-align: bottom;
+        }
       }
     }
+
   }
 
   > section {

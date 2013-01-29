@@ -2,20 +2,20 @@ section#review_details
   header
     hgroup
       = link_to "< #{@thing.title}", @thing
-      = thing_photo @thing, :small
+      = thing_photo @thing, :normal
       h1= @review.title
     .score data-score=@review.score
     .author
       = image_tag @review.author.avatar.url, class: "user_avatar"
       span.user_name= @review.author.name
       | 发表于#{time_ago_tag(@review.created_at)}
-    .actions
       - if can? :update, @review
-        = link_to edit_thing_review_path(@thing, @review) do 
-          i.icon-edit
-        = link_to thing_review_path(@thing, @review), method: :delete, 
-        data: {confirm: "您确定要删除吗?"} do 
-          i.icon-trash
+        span.actions
+          = link_to edit_thing_review_path(@thing, @review) do 
+            i.icon-edit
+          = link_to thing_review_path(@thing, @review), method: :delete, 
+          data: {confirm: "您确定要删除吗?"} do 
+            i.icon-trash
   section
     = raw @review.content
   footer
