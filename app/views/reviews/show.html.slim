@@ -9,7 +9,7 @@ section#review_details
     .author
       = image_tag @review.author.avatar.url, class: "user_avatar"
       span.user_name= @review.author.name
-      | 发表于#{time_ago_tag(@review.created_at)}
+      = time_ago_tag(@review.created_at)
       - if can? :update, @review
         span.actions
           = link_to edit_thing_review_path(@thing, @review) do 
