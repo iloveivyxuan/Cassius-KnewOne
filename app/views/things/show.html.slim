@@ -49,13 +49,14 @@ section#thing_content
   ul#reviews
     = render @thing.reviews
 
-= content_tag :aside, "", id: "thing_comments", 
-  data: {signin: user_signed_in?, postid: @thing.id.to_s, title: "短评"} 
+- if user_signed_in? or @thing.comments.count > 0
+  = content_tag :aside, "", id: "thing_comments", 
+    data: {signin: user_signed_in?, postid: @thing.id.to_s, title: "短评"} 
   
 - content_for :stylesheet do
   = stylesheet_link_tag "redactor"
 
 - content_for :script do
   javascript:
-    Making.ThingSummary();
+    Making.ThingShow();
     Making.Comments("#thing_comments");  
