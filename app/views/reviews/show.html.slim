@@ -23,8 +23,9 @@ section#review_details
         = render "not_voted", review: @review
       - else
         = render "voted", review: @review
-  = content_tag :aside, "", id: "review_comments", 
-  data: {signin: user_signed_in?, postid: @review.id.to_s, title: "回复"} 
+  - if user_signed_in? or @review.comments.count > 0
+    = content_tag :aside, "", id: "review_comments", 
+      data: {signin: user_signed_in?, postid: @review.id.to_s, title: "回复"} 
   
 - content_for :script do
   javascript:

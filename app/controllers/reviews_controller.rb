@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   load_and_authorize_resource :thing
   load_and_authorize_resource
+  after_filter :store_location, only: [:show]
 
   def show
   end

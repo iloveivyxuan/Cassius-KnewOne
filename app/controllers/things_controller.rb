@@ -1,4 +1,7 @@
 class ThingsController < PostsController
+
+  after_filter :store_location, only: [:show]
+
   def index
     @things = Thing.all
     respond_to do |format|
