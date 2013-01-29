@@ -25,8 +25,6 @@ window.Making =
     $ ->
       view = new Making.Views.ThingSummary
         el: "#thing_summary"
-      if $('#thing_content').height() < $('#thing_summary').height()
-        $('#thing_content').height $('#thing_summary').height()
 
   ReviewEdit: () ->
     $ ->
