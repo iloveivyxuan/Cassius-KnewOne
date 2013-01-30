@@ -4,8 +4,10 @@
   </section>
   <footer class="author">
     {{#with author}}
-      <img src="{{photo_url}}" class="user_avatar">
-      <a class="user_name">{{name}}</a>
+      <a href="{{url}}">
+        <img src="{{photo_url}}" class="user_avatar">
+      </a>
+      <a href="{{url}}">{{name}}</a>
     {{/with}}
     {{{created_time_tag}}}
     {{#if can_destroy}}

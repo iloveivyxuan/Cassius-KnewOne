@@ -4,8 +4,10 @@ article
       = link_to review.title, thing_review_path(review.thing, review)
     .score data-score=review.score
     .author
-      = image_tag review.author.avatar.url, class: "user_avatar"
-      a.user_name= review.author.name
+      = link_to review.author do
+        = image_tag review.author.avatar.url, class: "user_avatar"
+      = link_to review.author do
+        = review.author.name
       = time_ago_tag(review.created_at)
   section
     p

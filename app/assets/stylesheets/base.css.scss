@@ -140,9 +140,10 @@ input {
 
 .author {
   margin-top: 1em;
-  > * {vertical-align: bottom;}
-  img {margin-right: .5em;}
-  .user_name {margin-right: .5em;}
+  > * {
+    vertical-align: bottom;
+    margin-right: .5em;
+  }
   time {color: $fontLightColor;}
 }
 

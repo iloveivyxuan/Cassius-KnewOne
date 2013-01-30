@@ -7,8 +7,10 @@ section#review_details
       h1= @review.title
     .score data-score=@review.score
     .author
-      = image_tag @review.author.avatar.url, class: "user_avatar"
-      span.user_name= @review.author.name
+      = link_to @review.author do
+        = image_tag @review.author.avatar.url, class: "user_avatar"
+      = link_to @review.author do
+        = @review.author.name
       = time_ago_tag(@review.created_at)
       - if can? :update, @review
         span.actions

@@ -8,17 +8,17 @@ header#user_summary
 section#user_content
   .tabbable.content_wrapper
     ul.nav.nav-tabs
-      li
+      li.active
         = link_to "#reviews", data: {toggle: "tab"} do
           | 评测
           b #{@reviews.count}
-      li.active
+      li
         = link_to "#things", data: {toggle: "tab"} do
           | 推荐
           b #{@things.count}
     .tab-content
-      ul#reviews.tab-pane
+      ul#reviews.tab-pane.active
         = render partial: "review", collection: @reviews
-      ul#things.tab-pane.active
+      ul#things.tab-pane
         = render @things
 
