@@ -1,6 +1,4 @@
 li.thing 
   = link_to thing do
-    = thing_photo(thing, :middle)
-    h4
-      = thing_title(thing)
-      = thing_price(thing)
+    = thing_photo(thing, :normal)
+  h4= thing_title(thing)

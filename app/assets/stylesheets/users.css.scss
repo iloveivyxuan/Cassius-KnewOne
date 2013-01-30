@@ -2,8 +2,10 @@
   @include left-layout;
   @include section-decorate;
 
-  .content_wrapper {
-    padding: 2em;
+  .content_wrapper {padding: 2em;}
+
+  .nav-tabs {
+    li a b {margin-left: .5em;}
   }
 
   #reviews {
@@ -11,15 +13,14 @@
       padding-bottom: 1em;
       border-bottom: 1px dashed #ccc;
       margin: 1em 0;
-      
+
       @include clearfix;
 
-      .thing {
-        float: left;
+      figure {
+        float: right;
         width: 36%;
-        padding-top: 1em;
         text-align: center;
-        margin-right: 2%;
+        margin: 1em;
 
         img {
           max-width: 100%;
@@ -28,19 +29,27 @@
 
         @media screen and (max-width: 979px) {
           float: none;
-          width: 100%;
-          margin-bottom: 1em;
+          width: 95%;
+          text-align: left;
+          margin: 1em 0;
         }
       }
 
       article {
-        float: right;
-        width: 61%;
-        @media screen and (max-width: 979px) {
-          float: none;
-          width: 100%;
+        header {
+          h3 {
+            background: transparent;
+            padding: 0;
+          }
         }
       }
+    }
+  }
+
+  #things {
+    li {
+      @include thing();
+      float: left;
     }
   }
 }
@@ -48,4 +57,14 @@
 #user_summary {
   @include right-layout;
   @include section-decorate;
+  
+  .summary_wrapper {margin: 1em;}
+
+  .avatar {margin: 1em 0;}
+  h2 {
+    font-size: 18px;
+    margin: .5em 0;
+  }
+  blockquote {color: $fontLightColor;}
+  
 }

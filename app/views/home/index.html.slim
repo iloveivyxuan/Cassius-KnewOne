@@ -1,3 +1,11 @@
 section#things
-  ul= render @things
+  ul
+    - @things.each do |thing|
+      li.thing 
+        = link_to thing do
+          = thing_photo(thing, :middle)
+          h4
+            = thing_title(thing)
+            = thing_price(thing)
+
 

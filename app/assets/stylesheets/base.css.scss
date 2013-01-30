@@ -28,50 +28,47 @@
   }
 }
 
-@mixin thing($size, $mobile_size) {
-  background: white;
+@mixin thing() {
+  $size: 320px;
+  $mobileSize: 220px;
+
+  width: $size;
+  margin: 2em;
 
   > a {
-    display: block;
-    position: relative;
+    background: #f4f4f4;
+    display: table-cell;
+    width: $size;
+    height: $size;
+    text-align: center;
+    vertical-align: middle;
 
     img {
-      width: $size;
+      max-width: $size;
       max-height: $size;
-      margin: 0 auto;
-
-      @media screen and (max-width: 767px) {
-        width: $mobile_size;
-        max-height: $mobile_size;
-      }
+      vertical-align: middle;
     }
+  }
 
-    h4 {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      display: none;
-      color: white;
-      margin: 0;
-      padding: 1em 0;
-      font-size: 1.2em;
-      @include background(rgba(0, 0, 0, 0.5));
-      text-align: center;
+  h4 {
+    text-align: center;
+    margin-top: 1em;
+    height: 20px;
+    overflow: hidden;
+    color: $fontLightColor;
+  }
 
-      small {margin-left: 1em;}
+  @media screen and (max-width: 767px) {
+    width: $mobileSize;
+    margin: 0;
 
-      @media screen and (max-width: 979px) {
-        position: relative;
-        display: block;
-        background: white;
-        margin-top: 1em;
-        color: $gray;
+    > a {
+      width: $mobileSize;
+      height: $mobileSize;
+      img {
+        max-width: $mobileSize;
+        max-height: $mobileSize;
       }
-    }
-
-    &:hover h4 {
-      display: block;
     }
   }
 }
@@ -220,4 +217,3 @@ input {
     }
   }
 }
-

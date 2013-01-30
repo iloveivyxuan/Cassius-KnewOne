@@ -1,22 +1,24 @@
 header#user_summary
-  .avatar= image_tag @user.avatar.url(:small), alt: @user.name
-  .name= @user.name
-  blockquote= @user.description
+  .summary_wrapper
+    .avatar= image_tag @user.avatar.url(:small), alt: @user.name
+    h2
+      = @user.name
+    blockquote= @user.description
 
 section#user_content
   .tabbable.content_wrapper
     ul.nav.nav-tabs
-      li.active
-        = link_to "#reviews", data: {toggle: "tab"} do
-          | 评测 
-          b #{@reviews.count}
       li
+        = link_to "#reviews", data: {toggle: "tab"} do
+          | 评测
+          b #{@reviews.count}
+      li.active
         = link_to "#things", data: {toggle: "tab"} do
           | 推荐
           b #{@things.count}
     .tab-content
-      ul#reviews.tab-pane.active
+      ul#reviews.tab-pane
         = render partial: "review", collection: @reviews
-      ul#things.tab-pane
+      ul#things.tab-pane.active
         = render @things
 
