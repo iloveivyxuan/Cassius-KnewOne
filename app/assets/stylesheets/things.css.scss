@@ -68,15 +68,18 @@
   .actions {
     .shop, .fancy, .own, .official_site {
       margin: 1em 0;
-      a {
+      a, button {
         text-align: left;
-        width: 35%;
         i {margin-right: 20%;}
       }
+
+      a {width: 35%;}
+      button {width: 42%;}
+
     }
 
-    .fancy {a i {color: $pink;}}
-    .own {a i {color: $purple;}}
+    .fancy {button i {color: $pink;}}
+    .own {button i {color: $purple;}}
     .official_site {a i {color: $blue;}}
   }
 
@@ -123,7 +126,7 @@
       .shop, .fancy, .own {
         display: inline-block;
         margin-right: .8em;
-        a {
+        a, button {
           width: auto;
           i {margin-right: 0;}
           span {display: none;}

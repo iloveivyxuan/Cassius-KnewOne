@@ -57,6 +57,7 @@ class ThingsController < PostsController
       @thing.fancy current_user
       render "_unfancy_button", locals: {thing: @thing}, layout: false
     end
+
   end
 
   def own

@@ -1,5 +1,6 @@
 - if user_signed_in?
-  .own
+  = form_tag own_thing_path(thing), remote: true, class: "own", 
+    data: {type: 'html'} do
     - if thing.owned? current_user
       = render 'unown_button', thing: thing
     - else

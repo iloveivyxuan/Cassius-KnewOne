@@ -1,5 +1,6 @@
 - if user_signed_in?
-  .fancy
+  = form_tag fancy_thing_path(thing), remote: true, class: "fancy", 
+    data: {type: 'html'} do
     - if thing.fancied? current_user
       = render 'unfancy_button', thing: thing
     - else

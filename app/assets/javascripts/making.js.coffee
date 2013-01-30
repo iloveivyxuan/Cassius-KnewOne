@@ -52,16 +52,16 @@ window.Making =
       lang: 'zh_cn'
 
   Fancy: () ->
-    $('.fancy').on "ajax:success a", (e, html, status, xhr) ->
-      $(e.target).replaceWith html
+    $('.fancy').on "ajax:success", (e, html, status, xhr) ->
+      $(@).find('button').replaceWith html
     $('.fancy .unfancy').hover (e) ->
       $(this).find('span').text "取消喜欢"
     , (e) ->
       $(this).find('span').text "已喜欢"
 
   Own: () ->
-    $('.own').on "ajax:success a", (e, html, status, xhr) ->
-      $(e.target).replaceWith html
+    $('.own').on "ajax:success", (e, html, status, xhr) ->
+      $(@).find('button').replaceWith html
 
   Rating: ($raty, score, name) ->
     $raty.raty
