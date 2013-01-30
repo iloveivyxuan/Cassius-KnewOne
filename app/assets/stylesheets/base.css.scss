@@ -33,7 +33,7 @@
   $mobileSize: 220px;
 
   width: $size;
-  margin: 2em;
+  margin: 1em;
 
   > a {
     background: #f4f4f4;
@@ -52,10 +52,17 @@
 
   h4 {
     text-align: center;
-    margin-top: 1em;
+    margin: 1em 0 .5em;
     height: 20px;
     overflow: hidden;
     color: $fontLightColor;
+  }
+  
+  p {
+    text-align: center;
+    color: $fontLightColor;
+    height: 20px;
+    > * {margin-right: .5em;}
   }
 
   @media screen and (max-width: 767px) {
@@ -217,4 +224,14 @@ input {
       }
     }
   }
+}
+
+.fanciers {
+  color: $red;
+  i {margin-right: .5em;}
+}
+
+.owners {
+  color: $purple;
+  i {margin-right: .5em;}
 }

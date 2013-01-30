@@ -14,4 +14,24 @@ module ThingsHelper
     url = thing.photos.first.url(size)
     image_tag url, options.merge(alt: thing_title(thing))
   end
+
+  def thing_fanciers(thing)
+    c = thing.fanciers.count
+    if c > 0
+      content_tag :span, class: "fanciers" do
+        content_tag(:i, "", class: "icon-heart")
+        .concat content_tag(:small, c)
+      end
+    end
+  end
+
+  def thing_owners(thing)
+    c = thing.owners.count
+    if c > 0
+      content_tag :span, class: "owners" do
+        content_tag(:i, "", class: "icon-check")
+        .concat content_tag(:small, c)
+      end
+    end
+  end
 end

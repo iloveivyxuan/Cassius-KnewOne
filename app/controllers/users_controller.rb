@@ -6,5 +6,7 @@ class UsersController < ApplicationController
   def show
     @things = @user.things
     @reviews = @user.reviews
+    @fancies = @user.fancies
+    @owns = @user.owns
   end
 end

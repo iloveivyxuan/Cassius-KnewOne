@@ -15,6 +15,8 @@ Making::Application.routes.draw do
       member {post 'vote'}
     end
     collection {get 'admin'}
+    member {post 'fancy'}
+    member {post 'own'}
   end
 
   resources :posts, only: [] do

@@ -49,4 +49,24 @@ class ThingsController < PostsController
     redirect_to root_path
   end
 
+  def fancy
+    if @thing.fancied? current_user
+      @thing.unfancy current_user
+      render "_fancy_button", locals: {thing: @thing}, layout: false
+    else
+      @thing.fancy current_user
+      render "_unfancy_button", locals: {thing: @thing}, layout: false
+    end
+  end
+
+  def own
+    if @thing.owned? current_user
+      @thing.unown current_user
+      render "_own_button", locals: {thing: @thing}, layout: false
+    else
+      @thing.own current_user
+      render "_unown_button", locals: {thing: @thing}, layout: false
+    end
+  end
+
 end

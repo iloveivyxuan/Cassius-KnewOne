@@ -46,7 +46,7 @@
     }
   }
 
-  #things {
+  #things, #fancies, #owns {
     li {
       @include thing();
       float: left;
@@ -58,7 +58,12 @@
   @include right-layout;
   @include section-decorate;
   
-  .summary_wrapper {margin: 1em;}
+  .summary_wrapper {
+    margin: 1em;
+    @media screen and (max-width: 979px) {
+      padding: 1em;
+    }
+  }
 
   .avatar {margin: 1em 0;}
   h2 {
@@ -66,5 +71,4 @@
     margin: .5em 0;
   }
   blockquote {color: $fontLightColor;}
-  
 }

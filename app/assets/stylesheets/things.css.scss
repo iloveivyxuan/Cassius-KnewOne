@@ -15,7 +15,8 @@
     figcaption {
       text-align: center;
       margin-top: 1em;
-      font-weight: bold;
+      > * {margin-right: 1em;}
+      .title {font-weight: bold;}
     }
   }
 
@@ -64,12 +65,19 @@
     em {color: $pink;}
   }
 
-  .shop, .official_site {
-    margin: 1em 0;
-    a {
-      width: 35%;
-      i {margin-right: 20%;}
+  .actions {
+    .shop, .fancy, .own, .official_site {
+      margin: 1em 0;
+      a {
+        text-align: left;
+        width: 35%;
+        i {margin-right: 20%;}
+      }
     }
+
+    .fancy {a i {color: $pink;}}
+    .own {a i {color: $purple;}}
+    .official_site {a i {color: $blue;}}
   }
 
   blockquote {
@@ -84,7 +92,7 @@
     }
   }
 
-  .actions {
+  .edits {
     margin: 1em 0;
     > * {margin-right: 1em;}
   }
@@ -97,26 +105,33 @@
     @include border-radius(0);
     @include box-shadow(none);
     text-align: center;
-
-    .price, .shop {
-      display: inline-block;
+    
+    hgroup, blockquote, .photos, .edits {
+      display: none;
     }
 
     .price {
-      small {color: white;}
+      display: inline-block;
+      color: white;
+      margin-right: 1em;
       em {color: lighten($pink, 30%);}
+      small {margin-right: 1em;}
     }
 
-    .shop {
-      margin: .5em 0 .5em 1em;
-      a {
-        width: 100%;
+    .actions {
+      display: inline-block;
+      .shop, .fancy, .own {
+        display: inline-block;
+        margin-right: .8em;
+        a {
+          width: auto;
+          i {margin-right: 0;}
+          span {display: none;}
+        }
       }
+      .official_site {display: none;}
     }
 
-    hgroup, .official_site, blockquote, .photos, .actions {
-      display: none;
-    }
   }
 
   @media screen and (max-width: 767px) {

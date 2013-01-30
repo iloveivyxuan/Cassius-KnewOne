@@ -1,0 +1,6 @@
+- if user_signed_in?
+  .own
+    - if thing.owned? current_user
+      = render 'unown_button', thing: thing
+    - else
+      = render 'own_button', thing: thing

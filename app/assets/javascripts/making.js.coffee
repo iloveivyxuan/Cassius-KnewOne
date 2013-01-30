@@ -25,6 +25,8 @@ window.Making =
     $ ->
       view = new Making.Views.ThingSummary
         el: "#thing_summary"
+      Making.Fancy()
+      Making.Own()
 
   ReviewEdit: () ->
     $ ->
@@ -48,6 +50,18 @@ window.Making =
       fixed: true
       minHeight: 400
       lang: 'zh_cn'
+
+  Fancy: () ->
+    $('.fancy').on "ajax:success a", (e, html, status, xhr) ->
+      $(e.target).replaceWith html
+    $('.fancy .unfancy').hover (e) ->
+      $(this).find('span').text "取消喜欢"
+    , (e) ->
+      $(this).find('span').text "已喜欢"
+
+  Own: () ->
+    $('.own').on "ajax:success a", (e, html, status, xhr) ->
+      $(e.target).replaceWith html
 
   Rating: ($raty, score, name) ->
     $raty.raty

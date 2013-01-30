@@ -11,21 +11,24 @@ header#thing_summary
             | 剩余
             em= "#{@thing.stock}"
             = " / #{@thing.batch}"
+    .actions
       .shop
         = link_to @thing.shop, class: "btn btn-success" do
           i.icon-shopping-cart
-          | 购买
-    - unless @thing.official_site.blank?
-      .official_site
-        = link_to @thing.official_site, target: "_blank", class: "btn btn-info" do
-          i.icon-info-sign
-          | 官方网站
+          span 购买
+      - unless @thing.official_site.blank?
+        .official_site
+          = link_to @thing.official_site, target: "_blank", class: "btn" do
+            i.icon-info-sign
+            span 官方网站
+      = render "fancy", thing: @thing
+      = render "own", thing: @thing
     blockquote= @thing.description  
     .photos
       - @thing.photos.each do |photo|
         = image_tag photo.url(:small), alt: photo.name, 
         class: "review_photo", data: {url: photo.url(:huge)} 
-    .actions
+    .edits
       / = link_to "#", class: "btn" do
       /   i.icon-share 
       /   | 分享
@@ -40,7 +43,10 @@ header#thing_summary
 section#thing_content
   figure#photo_main
      = image_tag @thing.photos.first.url(:huge), alt: @thing.title
-     figcaption= @thing.title
+     figcaption
+       span.title= @thing.title
+       = thing_fanciers(@thing)
+       = thing_owners(@thing)
   - if can? :create, Review
     #new_review
       = link_to new_thing_review_path(@thing), class: "btn btn-primary" do

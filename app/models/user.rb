@@ -33,11 +33,11 @@ class User
     end
   end
 
-  ## Posts
-  has_many :posts, class_name: "Post", inverse_of: :author
-
   ## Photos
   has_many :photos
+
+  ## Posts
+  has_many :posts, class_name: "Post", inverse_of: :author
 
   def things
     posts.where(_type: "Thing")
@@ -46,4 +46,8 @@ class User
   def reviews
     posts.where(_type: "Review")
   end
+
+  ## Things
+  has_and_belongs_to_many :fancies, class_name: "Thing", inverse_of: :fanciers
+  has_and_belongs_to_many :owns, class_name: "Thing", inverse_of: :owners
 end

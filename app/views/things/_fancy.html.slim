@@ -1,0 +1,6 @@
+- if user_signed_in?
+  .fancy
+    - if thing.fancied? current_user
+      = render 'unfancy_button', thing: thing
+    - else
+      = render 'fancy_button', thing: thing

@@ -16,6 +16,8 @@ class Thing < Post
   slug :title
 
   has_many :reviews, dependent: :delete
+  has_and_belongs_to_many :fanciers, class_name: "User", inverse_of: :fancies
+  has_and_belongs_to_many :owners, class_name: "User", inverse_of: :owns
 
   validates :description, length: { maximum: 2048 }
 
@@ -23,6 +25,30 @@ class Thing < Post
 
   def photos
     Photo.find_with_order photo_ids
+  end
+
+  def fancy(user)
+    fanciers << user unless fancied?(user)
+  end
+
+  def unfancy(user)
+    fanciers.delete user if fancied?(user)
+  end
+
+  def fancied?(user)
+    fanciers.include? user
+  end
+
+  def own(user)
+    owners << user unless owned?(user)
+  end
+
+  def unown(user)
+    owners.delete user if owned?(user)
+  end
+
+  def owned?(user)
+    owners.include? user
   end
 
   def add_score(score)
