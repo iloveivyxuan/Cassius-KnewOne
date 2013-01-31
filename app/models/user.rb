@@ -8,6 +8,7 @@ class User
   field :name,               type: String, default: ""
   field :admin,  type: Boolean, default: false
   field :description, type: String, default: ""
+  field :karma, type: Integer, default: 0
   mount_uploader :avatar, ImageUploader
 
   attr_accessible :email, :name, :description, :avatar
@@ -50,4 +51,15 @@ class User
   ## Things
   has_and_belongs_to_many :fancies, class_name: "Thing", inverse_of: :fanciers
   has_and_belongs_to_many :owns, class_name: "Thing", inverse_of: :owners
+
+  ## Karma & Rank
+  def rank
+    return 0 if karma < 0
+    @rank ||= (Math.sqrt karma/10).floor
+  end
+
+  def progress
+    return 0 if karma < 0
+    @progress ||= (karma - rank.abs2*10).to_f*100 / ((rank+1).abs2*10 - rank.abs2*10).to_f
+  end
 end

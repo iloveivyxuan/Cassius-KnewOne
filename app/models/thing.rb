@@ -23,16 +23,22 @@ class Thing < Post
 
   default_scope desc(:priority, :created_at)
 
+  after_update :inc_karma
+
   def photos
     Photo.find_with_order photo_ids
   end
 
   def fancy(user)
-    fanciers << user unless fancied?(user)
+    return if fancied?(user)
+    fanciers << user
+    user.inc :karma, Settings.karma.fancy
   end
 
   def unfancy(user)
-    fanciers.delete user if fancied?(user)
+    return unless fancied?(user)
+    fanciers.delete user
+    user.inc :karma, -Settings.karma.fancy
   end
 
   def fancied?(user)
@@ -40,11 +46,15 @@ class Thing < Post
   end
 
   def own(user)
-    owners << user unless owned?(user)
+    return if owned?(user)
+    owners << user
+    user.inc :karma, Settings.karma.own
   end
 
   def unown(user)
-    owners.delete user if owned?(user)
+    return unless owned?(user)
+    owners.delete user
+    user.inc :karma, -Settings.karma.own
   end
 
   def owned?(user)
@@ -62,4 +72,15 @@ class Thing < Post
     scores[score] -= 1
     save
   end
+
+  def inc_karma
+    return unless priority_changed?
+    old_priority = changed_attributes["priority"]
+    if old_priority <= 0 and priority > 0
+      author.inc :karma, Settings.karma.thing
+    elsif old_priority > 0 and priority <= 0
+      author.inc :karma, -Settings.karma.thing
+    end
+  end
+
 end

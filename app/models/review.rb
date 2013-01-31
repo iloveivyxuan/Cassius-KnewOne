@@ -23,8 +23,13 @@ class Review < Post
   after_destroy :destroy_score
 
   def vote(user, love)
-    unless voted?(user)
-      (love ? lovers : foes) << user
+    return if voted?(user)
+    if love
+      lovers << user
+      author.inc :karma, Settings.karma.review
+    else
+      foes << user
+      author.inc :karma, -Settings.karma.review
     end
   end
 

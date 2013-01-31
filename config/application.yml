@@ -11,6 +11,11 @@ defaults: &defaults
   twitter:
     consumer_key: ""
     consumer_secret: ""
+  karma:
+    thing: 10
+    review: 5
+    fancy: 1
+    own: 1
 
 development:
   <<: *defaults
