@@ -16,10 +16,15 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       #   #Binding auth from Auths#index
       #   redirect_to user_auths_path(current_user)
       # end
+      redirect_to root_path
     else
       user = User.create_from_omniauth(auth_data)
       sign_in_and_redirect user
     end
+  end
+
+  def failure
+    redirect_to root_path
   end
 
   alias_method :weibo, :all
