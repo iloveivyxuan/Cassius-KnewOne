@@ -24,6 +24,11 @@ class Ability
       can :destroy, Comment do |comment|
         comment.author == user
       end
+
+      can :vote, Review
+      can :fancy, Thing
+      can :own, Thing
+
       basic
     end
   end
