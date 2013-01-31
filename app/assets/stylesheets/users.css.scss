@@ -65,10 +65,32 @@
     }
   }
 
-  .avatar {margin: 1em 0;}
-  h2 {
+  .avatar {margin-top: 1em;}
+
+  h2.name {
+    margin: 0;
     font-size: 18px;
-    margin: .5em 0;
   }
-  blockquote {color: $fontLightColor;}
+
+  .karma {
+    margin: 0;
+    @include clearfix;
+
+    .rank {
+      float: left;
+      width: 25%;
+      margin: 0;
+      font-family: "orbitron-bold";
+      color: $blue;
+    }
+    .progress {
+      float: left;
+      width: 60%;
+    }
+  }
+
+  blockquote {
+    margin-top: 1em;
+    color: $fontLightColor;
+  }
 }
