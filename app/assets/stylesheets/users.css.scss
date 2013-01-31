@@ -86,6 +86,9 @@
     .progress {
       float: left;
       width: 60%;
+      .bar {
+        @include transition(width 1s, opacity 0.22s ease-out);
+      }
     }
   }
 
