@@ -68,8 +68,14 @@ form.edit_review {
 
   > footer {
     padding-top: 2em;
+    @include clearfix;
 
-    .voting {}
+    > * {
+      float: left;
+      margin-right: 2em;
+    }
+
+    .share {margin-top: -5px;}
   }
 
   aside#review_comments {

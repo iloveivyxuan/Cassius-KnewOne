@@ -21,7 +21,7 @@ header#thing_summary
           = link_to @thing.official_site, target: "_blank", class: "btn" do
             i.icon-info-sign
             span 官方网站
-      = render "share", thing: @thing
+      = render "shared/share_button"
       = render "fancy", thing: @thing
       = render "own", thing: @thing
     blockquote= @thing.description  
@@ -61,7 +61,7 @@ section#thing_content
     data: {signin: user_signed_in?, postid: @thing.id.to_s, title: "短评"} 
 
 - if user_signed_in?
-  = render 'shared/share', content: thing_share_content(@thing), pic: @thing.photos.first.url(:huge)
+  = render 'shared/share', content: thing_share_content(@thing) 
   
 - content_for :stylesheet do
   = stylesheet_link_tag "redactor"

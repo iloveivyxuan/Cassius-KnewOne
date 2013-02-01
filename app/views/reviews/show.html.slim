@@ -27,9 +27,15 @@ section#review_details
         = render "not_voted", review: @review
       - else
         = render "voted", review: @review
+    = render "shared/share_button"
+
+
   - if user_signed_in? or @review.comments.count > 0
     = content_tag :aside, "", id: "review_comments", 
       data: {signin: user_signed_in?, postid: @review.id.to_s, title: "回复"} 
+
+  - if user_signed_in?
+    = render 'shared/share', content: review_share_content(@review) 
   
 - content_for :script do
   javascript:

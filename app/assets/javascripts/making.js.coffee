@@ -39,6 +39,7 @@ window.Making =
   ReviewShow: () ->
     $ ->
       Making.Voting()
+      Making.Sharing()
     
   Editor: ($form) ->
     csrf_token = $('meta[name=csrf-token]').attr('content');

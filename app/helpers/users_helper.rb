@@ -20,10 +20,10 @@ module UsersHelper
 
   def provider_share(user)
     provider = user.current_auth.provider
-    {
-      weibo: "微博分享",
-      twitter: "发Tweet"
-    }[provider.to_sym]
+    raw({
+      weibo: "<i class=\"icon-eye-open\"></i>微博分享",
+      twitter: "<i class=\"icon-twitter\"></i>发Tweet"
+    }[provider.to_sym])
   end
 
   def user_provider(user)
