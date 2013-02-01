@@ -73,6 +73,9 @@ form.edit_review {
     > * {
       float: left;
       margin-right: 2em;
+      @media screen and (max-width: 767px) {
+        float: none;
+      }
     }
 
     .share {margin-top: -5px;}
