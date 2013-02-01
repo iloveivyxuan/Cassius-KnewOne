@@ -4,6 +4,7 @@ class Auth
   field :uid, type: Integer
   field :name, type: String
   field :access_token, type: String
+  field :access_token_secret, type: String
   field :expires_at, type: Time
   field :nickname, type: String, default: ""
   field :location, type: String, default: ""
@@ -27,6 +28,7 @@ class Auth
         uid: data[:uid],
         name: data[:info][:name],
         access_token: data[:credentials][:token],
+        access_secret: data[:credentials][:secret],
         expires_at: data[:credentials][:expires_at],
         nickname: data[:info][:nickname],
         description: data[:info][:description],
@@ -41,9 +43,7 @@ class Auth
   end
 
   def parse_image(data)
-    provider_image = provider + "_image"
-    image = send provider_image, data if respond_to? provider_image
-    image
+    send "#{provider}_image", data
   end
 
   def weibo_image(data)
@@ -55,8 +55,7 @@ class Auth
   end
 
   def share(content)
-    method = "#{provider}_share".to_sym
-    send method, content if respond_to? method
+    send "#{provider}_share", content
   end
 
   def weibo_share(content)
@@ -66,5 +65,16 @@ class Auth
       client.statuses.update content
     rescue OAuth2::Error
     end
+  end
+
+  def twitter_share(content)
+    Twitter.configure do |config|
+      config.oauth_token = access_token
+      config.oauth_token_secret = access_secret
+    end
+
+    client = Twitter::Client.new oauth_token: access_token,
+      oauth_token_secret: access_secret
+    client.update content
   end
 end

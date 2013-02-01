@@ -18,6 +18,14 @@ module UsersHelper
     send "#{@user.current_auth.provider}_website", user.current_auth
   end
 
+  def provider_share(user)
+    provider = user.current_auth.provider
+    {
+      weibo: "微博分享",
+      twitter: "发Tweet"
+    }[provider.to_sym]
+  end
+
   def user_provider(user)
     send "#{@user.current_auth.provider}_home", user.current_auth
   end

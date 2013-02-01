@@ -66,7 +66,7 @@
   }
 
   .actions {
-    .shop, .fancy, .own, .official_site {
+    .shop, .fancy, .own, .official_site, .share {
       margin: 1em 0;
       a, button {
         text-align: left;
@@ -81,6 +81,7 @@
     .fancy {button i {color: $pink;}}
     .own {button i {color: $purple;}}
     .official_site {a i {color: $blue;}}
+    .share {button i {color: $blue;}}
   }
 
   blockquote {
@@ -123,7 +124,7 @@
 
     .actions {
       display: inline-block;
-      .shop, .fancy, .own {
+      .shop, .fancy, .own, .share {
         display: inline-block;
         margin-right: .8em;
         a, button {

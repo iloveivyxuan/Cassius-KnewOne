@@ -235,3 +235,9 @@ input {
   color: $purple;
   i {margin-right: .5em;}
 }
+
+.share_modal {
+  form {
+    textarea {width: 90%;}
+  }
+}

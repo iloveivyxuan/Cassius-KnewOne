@@ -25,6 +25,7 @@ gem 'devise'
 gem 'omniauth-weibo-oauth2'
 gem 'weibo_2'
 gem 'omniauth-twitter'
+gem 'twitter'
 gem 'cancan'
 # configurations
 gem 'settingslogic'

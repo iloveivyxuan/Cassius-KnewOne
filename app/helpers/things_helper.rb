@@ -34,4 +34,9 @@ module ThingsHelper
       end
     end
   end
+
+  def thing_share_content(thing)
+    %{我在##{brand}#发现了一个酷产品, #{thing_title(thing)}: #{thing_url(thing)}
+}
+  end
 end

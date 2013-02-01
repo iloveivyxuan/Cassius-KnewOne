@@ -28,6 +28,7 @@ class Ability
       can :vote, Review
       can :fancy, Thing
       can :own, Thing
+      can :share, User
 
       basic
     end

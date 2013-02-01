@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class UsersController < ApplicationController
   load_and_authorize_resource
 
@@ -8,5 +9,10 @@ class UsersController < ApplicationController
     @reviews = @user.reviews
     @fancies = @user.fancies
     @owns = @user.owns
+  end
+
+  def share
+    current_user.current_auth.share  params[:share][:content]
+    render layout: false
   end
 end

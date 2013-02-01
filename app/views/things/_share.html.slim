@@ -1,0 +1,5 @@
+- if user_signed_in?
+  .share
+    = button_tag title: "分享", class: "btn" do
+      i.icon-share-alt
+      span= provider_share(current_user)

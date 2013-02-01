@@ -27,6 +27,7 @@ window.Making =
         el: "#thing_summary"
       Making.Fancy()
       Making.Own()
+      Making.Sharing()
 
   ReviewEdit: () ->
     $ ->
@@ -86,6 +87,23 @@ window.Making =
       .appendTo($form)
     .end().on "ajax:success", (e, html, status, xhr) ->
       $form.replaceWith html
+
+  Sharing: () ->
+    $share = $(".share_modal")
+
+    $share.on "submit form", ->
+      $share.modal("hide")
+      $(".share button").addClass("active")
+
+    $share.find(".share_cancel").click (e) ->
+      e.preventDefault()
+      $share.modal("hide")
+    .end().find(".share_submit").click (e) ->
+      $share.find("form").submit()
+
+    $(".share button").click (e) ->
+      e.preventDefault()
+      $share.modal()
 
   Comments: (el) ->
     $ ->

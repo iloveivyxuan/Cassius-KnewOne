@@ -2,6 +2,7 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def all
     auth_data = request.env["omniauth.auth"]
+    logger.debug auth_data.to_yaml
     user = User.find_by_omniauth(auth_data)
     if user
       user.update_from_omniauth(auth_data)
