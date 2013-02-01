@@ -68,7 +68,7 @@
   .avatar {margin-top: 1em;}
 
   h2.name {
-    margin: 0;
+    margin-top: .5em;
     font-size: 18px;
   }
 
@@ -92,8 +92,14 @@
     }
   }
 
-  blockquote {
+  address, blockquote {
     margin-top: 1em;
     color: $fontLightColor;
+    i {margin-right: 1em;}
+  }
+
+  .urls {
+    > * {margin-right: 1em;}
+    a i {color: $blue;}
   }
 }

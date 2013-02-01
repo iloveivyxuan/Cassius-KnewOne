@@ -4,6 +4,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     auth_data = request.env["omniauth.auth"]
     user = User.find_by_omniauth(auth_data)
     if user
+      user.update_from_omniauth(auth_data)
       sign_in_and_redirect user
     elsif user_signed_in?
       # current_user.auths << Auth.from_omniauth(auth_data)

@@ -4,14 +4,13 @@ class User
 
   devise :omniauthable
 
-  field :email,              type: String, default: ""
-  field :name,               type: String, default: ""
+  field :email,  type: String, default: ""
+  field :name, type: String
   field :admin,  type: Boolean, default: false
-  field :description, type: String, default: ""
   field :karma, type: Integer, default: 0
   mount_uploader :avatar, ImageUploader
 
-  attr_accessible :email, :name, :description, :avatar
+  attr_accessible :email, :avatar
 
   ## Omniauthable
   embeds_many :auths
@@ -26,11 +25,23 @@ class User
       create do |user|
         auth = Auth.from_omniauth(data)
         user.auths << auth
-        data = auth.standize(data)
-        user.name = data[:info][:name]
-        user.description = data[:info][:description]
-        user.remote_avatar_url = data[:info][:image]
+        user.name = auth.name
+        user.remote_avatar_url = auth.parse_image(data)
       end
+    end
+  end
+
+  def current_auth
+    auths.first
+  end
+
+  def update_from_omniauth(data)
+    auth = auths.where(provider: data[:provider]).first
+    if auth
+      auth.update_from_omniauth(data)
+      self.name = auth.name
+      self.remote_avatar_url = auth.parse_image(data)
+      save
     end
   end
 

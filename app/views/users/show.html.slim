@@ -1,13 +1,16 @@
 header#user_summary
   .summary_wrapper
-    .avatar= image_tag @user.avatar.url(:small), alt: @user.name
-    h2.name
-      = @user.name
+    .avatar= user_avatar(@user, :small)
+    h2.name= @user.name
     .karma
       .rank Lv.#{@user.rank}
       .progress title="#{@user.progress}%"
         .bar style="width: #{@user.progress}%;"
-    blockquote= @user.description
+    .urls
+      = user_website(@user)
+      = user_provider(@user)
+    address = user_location(@user)
+    blockquote= user_desciption(@user)
 
 section#user_content
   .tabbable.content_wrapper

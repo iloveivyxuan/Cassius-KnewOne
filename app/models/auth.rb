@@ -5,6 +5,11 @@ class Auth
   field :name, type: String
   field :access_token, type: String
   field :expires_at, type: Time
+  field :nickname, type: String, default: ""
+  field :location, type: String, default: ""
+  field :description, type: String, default: ""
+  field :urls, type: Hash, default: {}
+
   embedded_in :user
 
   validates :provider, presence: true
@@ -13,37 +18,45 @@ class Auth
 
   class << self
     def from_omniauth(data)
-      new provider: data[:provider],
-      uid: data[:uid],
-      name: data[:info][:name],
-      access_token: data[:credentials][:token],
-      expires_at: data[:credentials][:expires_at]
+      new omniauth_to_auth(data)
+    end
+
+    def omniauth_to_auth(data)
+      {
+        provider: data[:provider],
+        uid: data[:uid],
+        name: data[:info][:name],
+        access_token: data[:credentials][:token],
+        expires_at: data[:credentials][:expires_at],
+        nickname: data[:info][:nickname],
+        description: data[:info][:description],
+        location: data[:info][:location],
+        urls: data[:info][:urls]
+      }
     end
   end
 
-  def standize(data)
-    provider_extra = data[:provider] + "_extra"
-    data = send provider_extra, data if respond_to? provider_extra
-    data
+  def update_from_omniauth(data)
+    update_attributes Auth.omniauth_to_auth(data)
   end
 
-  def weibo_extra(data)
-    data[:info][:image] = data[:extra][:raw_info][:avatar_large] + ".jpg"
-    data
+  def parse_image(data)
+    provider_image = provider + "_image"
+    image = send provider_image, data if respond_to? provider_image
+    image
   end
 
-  def url
-    method = "#{provider}_url".to_sym
-    send method if respond_to? method
+  def weibo_image(data)
+    data[:extra][:raw_info][:avatar_large] + ".jpg"
+  end
+
+  def twitter_image(data)
+    data[:info][:image].sub('_normal', '')
   end
 
   def share(content)
     method = "#{provider}_share".to_sym
     send method, content if respond_to? method
-  end
-
-  def weibo_url
-    "http://weibo.com/u/#{uid}"
   end
 
   def weibo_share(content)
