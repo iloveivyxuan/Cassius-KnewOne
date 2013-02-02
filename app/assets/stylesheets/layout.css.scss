@@ -45,16 +45,37 @@ body > header {
 
       .nav_new_thing {
         margin-top: 1px;
+        
         @media screen and (max-width: 979px) {
           display: none;
         }
       }
 
+      .messages_count {
+        margin-top: 9px;
+        margin-right: 1em;
+        a {
+          display: inline-block;
+          width: 20px;
+          line-height: 20px;
+          padding: 0;
+          background: $blue;
+          font-size: 10px;
+          text-align: center;
+          color: white;
+          @include border-radius(10px);
+          &:hover {
+            background: $blue;
+            color: white;
+          }
+        }
+      }
+
       .nav_user {
         margin-top: 10px;
-
-        > a {
-          padding: 0 0 0 4em;
+        
+        > a.dropdown {
+          padding: 0;
           img {
             margin-right: 1em;
             width: 20px;
@@ -62,14 +83,13 @@ body > header {
             margin-bottom: 3px;
           }
           .icon-caret-down {padding-left: .5em;}
-
-          @media screen and (max-width: 979px) {
-            padding: 0;
-          }
         }
 
         > .dropdown-menu {
           margin-top: 5px;
+          li {
+            a i {margin-right: 1em;}
+          }
         }
       }
 
@@ -103,14 +123,14 @@ body > footer {
 
   #contacts {
     width: 40%;
-    
+
     li {
       padding: 1em 0;
       a {
         color: $fontLightColor;
         &:hover {color: $blue;}
       }
-      
+
       i {
         margin-right: 1em;
       }

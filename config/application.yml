@@ -16,6 +16,8 @@ defaults: &defaults
     review: 5
     fancy: 1
     own: 1
+  messages:
+    length: 100
 
 development:
   <<: *defaults

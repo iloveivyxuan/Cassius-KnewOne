@@ -10,6 +10,11 @@
       <a href="{{url}}">{{name}}</a>
     {{/with}}
     {{{created_time_tag}}}
+    {{#if can_reply}}
+      <a class="reply" title="回复">
+        <i class="icon-reply"></i>
+      </a>
+    {{/if}}
     {{#if can_destroy}}
       <a class="destroy">
         <i class="icon-trash"></i>

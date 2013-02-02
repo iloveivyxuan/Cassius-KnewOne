@@ -63,6 +63,16 @@ class User
   has_and_belongs_to_many :fancies, class_name: "Thing", inverse_of: :fanciers
   has_and_belongs_to_many :owns, class_name: "Thing", inverse_of: :owners
 
+  ## Messageable
+  embeds_many :messages
+
+  def send_message(receivers, message)
+    message.senders << self
+    receivers.each do |receiver|
+      receiver.messages << message
+    end
+  end
+
   ## Karma & Rank
   def rank
     return 0 if karma < 0
@@ -73,4 +83,5 @@ class User
     return 0 if karma < 0
     @progress ||= (karma - rank.abs2*10).to_f*100 / ((rank+1).abs2*10 - rank.abs2*10).to_f
   end
+
 end

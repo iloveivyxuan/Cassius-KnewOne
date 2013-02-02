@@ -30,6 +30,9 @@ class Ability
       can :own, Thing
       can :share, User
 
+      can :readall, Message
+      can :read, Message
+
       basic
     end
   end

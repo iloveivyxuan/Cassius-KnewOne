@@ -5,6 +5,7 @@ class Making.Views.Comment extends Backbone.View
 
   events:
     'click .destroy': 'destroy'
+    'click .reply': 'reply'
 
   render: =>
     @$el.html @template(@model.attributes)
@@ -16,3 +17,10 @@ class Making.Views.Comment extends Backbone.View
       @$el.fadeOut =>
         @remove()
       @model.destroy()
+
+  reply: (e) =>
+    e.preventDefault()
+    $('form#create_comment textarea')
+      .focus()
+      .val('@' + @model.get('author').name)
+      

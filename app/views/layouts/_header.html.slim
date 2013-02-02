@@ -4,11 +4,17 @@ header
       = link_to root_path, class: "brand" do
         = logo
         = brand
-      ul.nav.pull-right
+      ul.nav.pull-left
         - if user_signed_in?
           li.nav_new_thing= link_to new_thing_path do
             i.icon-magic
-            |  推荐产品
+            |  分享产品
+      ul.nav.pull-right
+        - if user_signed_in?
+          - if unread_messages_count > 0
+            li.messages_count
+              = link_to unread_messages_count, messages_path,
+                title: "#{unread_messages_count}个未读消息"
           li.nav_user
             = link_to '#', class: "dropdown", data: {toggle: "dropdown"} do
               = image_tag current_user.avatar.url(:tiny), class: "user_avatar img-circle"
@@ -18,16 +24,19 @@ header
               - if current_user.admin?
                 li= link_to admin_things_path do
                   i.icon-dashboard
-                  |  管理产品
+                  | 管理产品
               li= link_to current_user do
                 i.icon-user
-                |  个人主页
+                | 个人主页
+              li= link_to messages_path do
+                i.icon-bell
+                | 我的消息
               / li= link_to '#' do
               /   i.icon-cog
               /   |  设置
               li= link_to destroy_user_session_path, method: :delete do
                 i.icon-signout
-                |  登出
+                | 登出
         - else
           li.signin_tip 登录:
           li.signin

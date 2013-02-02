@@ -4,6 +4,9 @@ class ReviewsController < ApplicationController
   after_filter :store_location, only: [:show]
 
   def show
+    if user_signed_in?
+      CommentMessage.read_by_post(current_user, @review)
+    end
   end
 
   def new

@@ -28,6 +28,13 @@ Making::Application.routes.draw do
   resources :photos, only: [:create, :destroy, :show]
   resources :review_photos, only: [:create]
 
+  resources :messages, only: [:index] do
+    get 'page/:page', action: :index, on: :collection
+    collection do
+      post 'readall'
+    end
+  end
+
   get '/search', to: 'home#search', as: :search
   get '/sandbox', to: 'home#sandbox'
 

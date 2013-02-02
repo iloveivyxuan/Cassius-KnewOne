@@ -1,8 +1,8 @@
-- provide :title, "推荐产品"
+- provide :title, "分享产品"
 
 hgroup#thing_form_header
-  h1 推荐产品
-  p 感谢您为我们推荐<b>您喜欢</b>的新/奇/酷产品，一旦产品经过我们的编辑审核通过，将来有可能获得很大的优惠喔！
+  h1 分享产品
+  p 感谢您分享<b>您喜欢</b>的新/奇/酷产品，一旦产品经过我们的编辑审核通过，将来有可能获得很大的优惠喔！
 
 = simple_form_for @thing, html: {class: "thing_form form-horizontal pull-left"} do |f|
   = f.input :title, placeholder: "真实准确的品牌型号", 
@@ -10,9 +10,9 @@ hgroup#thing_form_header
   = f.input :subtitle, placeholder: "您对产品的一句话介绍",
             hint: "选填, 请用最简短的词语描绘这个产品，30字以内", input_html: {maxlength: 30}
   = f.input :shop, as: :url, placeholder: "产品的可购买网址链接",
-            hint: "选填，请推荐在国内可以买到该产品的靠谱的网站链接，我们会进行核实"
+            hint: "选填，请分享在国内可以买到该产品的靠谱的网站链接，我们会进行核实"
   = f.input :price, as: :integer, 
-            hint: "选填，请填写你推荐的购买网址中该产品的价格，如没有填写购买链接，价格是无效的喔"
+            hint: "选填，请填写你分享的购买网址中该产品的价格，如没有填写购买链接，价格是无效的喔"
   = f.input :is_shop, as: :boolean, 
             hint: "选填，如果您自己在代理销售此产品，请选择此项"
   = f.input :official_site, as: :url, placeholder: "品牌官方网站的该产品介绍链接地址",

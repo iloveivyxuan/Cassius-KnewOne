@@ -57,7 +57,7 @@
     overflow: hidden;
     color: $fontLightColor;
   }
-  
+
   p {
     text-align: center;
     color: $fontLightColor;
@@ -145,13 +145,20 @@ input {
   text-align: center;
 }
 
+time {
+  color: $fontLightColor;
+  font-size: .8em;
+}
+
 .author {
   margin-top: 1em;
   > * {
-    vertical-align: bottom;
     margin-right: .5em;
   }
-  time {color: $fontLightColor;}
+
+  img {
+    vertical-align: -2px;
+  }
 }
 
 .score {
