@@ -84,6 +84,22 @@
     }
   }
 
+  @media screen and (min-width: 2560px) { 
+    li {
+      @include thing(300px);
+    }
+
+    li:nth-of-type(4n+1) {
+      @include thing(300px);
+      padding: 1em;
+    }
+
+    li:nth-of-type(6n+1), li:nth-of-type(6n+2) {
+      @include thing(640px);
+      padding: 2em 1.58em;
+    }
+  }
+
   /* @media screen and (min-width: 1920px) { */
   /*   li:nth-of-type(5n+1) { */
   /*     width: 95%; */
