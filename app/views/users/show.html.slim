@@ -35,11 +35,11 @@ section#user_content
           b #{@things.count}
     .tab-content
       ul#fancies.tab-pane.active
-        = render @fancies
+        = render @fancies, size: :normal
       ul#owns.tab-pane
-        = render @owns
+        = render @owns, size: :normal
       ul#reviews.tab-pane
         = render partial: "review", collection: @reviews
       ul#things.tab-pane
-        = render @things
+        = render @things, size: :normal
 

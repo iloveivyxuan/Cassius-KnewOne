@@ -104,7 +104,7 @@
   @media screen and (max-width: 979px) {
     position: fixed;
     bottom: 0;
-    margin-left: -28px;
+    margin-left: -53px;
     @include background(rgba(0, 0, 0, 0.5));
     @include border-radius(0);
     @include box-shadow(none);
@@ -161,64 +161,64 @@
   }
 }
 
-#things {
-  ul {
-    margin: 0 auto;
-    width: 680px;
-    @media screen and (max-width: 767px) {
-      width: 280px;
-    }
+/* #things { */
+/*   ul { */
+/*     margin: 0 auto; */
+/*     width: 680px; */
+/*     @media screen and (max-width: 767px) { */
+/*       width: 280px; */
+/*     } */
 
-    $padding: 20px;
+/*     $padding: 20px; */
 
-    li {
-      padding: $padding;
-      margin-bottom: 2em;
-      background: white;
+/*     li { */
+/*       padding: $padding; */
+/*       margin-bottom: 2em; */
+/*       background: white; */
 
-      > a {
-        display: block;
-        position: relative;
+/*       > a { */
+/*         display: block; */
+/*         position: relative; */
 
-        img {
-          width: 640px;
-          max-height: 640px;
-          margin: 0 auto;
+/*         img { */
+/*           width: 640px; */
+/*           max-height: 640px; */
+/*           margin: 0 auto; */
 
-          @media screen and (max-width: 767px) {
-            width: 240px;
-            max-height: 240px;
-          }
-        }
+/*           @media screen and (max-width: 767px) { */
+/*             width: 240px; */
+/*             max-height: 240px; */
+/*           } */
+/*         } */
 
-        h4 {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          display: none;
-          color: white;
-          margin: 0;
-          padding: 1em 0;
-          font-size: 1.2em;
-          @include background(rgba(0, 0, 0, 0.5));
-          text-align: center;
+/*         h4 { */
+/*           position: absolute; */
+/*           bottom: 0; */
+/*           left: 0; */
+/*           right: 0; */
+/*           display: none; */
+/*           color: white; */
+/*           margin: 0; */
+/*           padding: 1em 0; */
+/*           font-size: 1.2em; */
+/*           @include background(rgba(0, 0, 0, 0.5)); */
+/*           text-align: center; */
 
-          small {margin-left: 1em;}
+/*           small {margin-left: 1em;} */
 
-          @media screen and (max-width: 979px) {
-            position: relative;
-            display: block;
-            background: white;
-            margin-top: 1em;
-            color: $gray;
-          }
-        }
+/*           @media screen and (max-width: 979px) { */
+/*             position: relative; */
+/*             display: block; */
+/*             background: white; */
+/*             margin-top: 1em; */
+/*             color: $gray; */
+/*           } */
+/*         } */
 
-        &:hover h4 {
-          display: block;
-        }
-      }
-    }
-  }
-}
+/*         &:hover h4 { */
+/*           display: block; */
+/*         } */
+/*       } */
+/*     } */
+/*   } */
+/* } */

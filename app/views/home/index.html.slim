@@ -1,11 +1,6 @@
-section#things
-  ul
-    - @things.each do |thing|
-      li.thing 
-        = link_to thing do
-          = thing_photo(thing, :middle)
-          h4
-            = thing_title(thing)
-            = thing_price(thing)
+section#home_things
+  .wrapper
+    ul= render @things, size: :middle
 
-
+aside#home_gifts
+  p 建设中区域，请期待开放

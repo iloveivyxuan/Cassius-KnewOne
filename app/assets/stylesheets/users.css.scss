@@ -48,8 +48,11 @@
 
   #things, #fancies, #owns {
     li {
-      @include thing();
-      float: left;
+      @include thing(320px);
+
+      @media screen and (max-width: 767px) {
+        @include thing(200px);
+      }
     }
   }
 }
@@ -57,7 +60,7 @@
 #user_summary {
   @include right-layout;
   @include section-decorate;
-  
+
   .summary_wrapper {
     margin: 1em;
     @media screen and (max-width: 979px) {

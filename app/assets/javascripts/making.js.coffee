@@ -10,12 +10,6 @@ window.Making =
         $(".spinning").remove()
       Making.Score()
 
-  ThingsIndex: ->
-    $ ->
-      collection = new Making.Collections.Things
-      view = new Making.Views.ThingsIndex(collection: collection)
-      $('#things').html(view.render().el)
-
   ThingsNew: ->
     $ ->
       view = new Making.Views.ThingsNew

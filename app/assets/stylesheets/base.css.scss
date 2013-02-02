@@ -28,10 +28,8 @@
   }
 }
 
-@mixin thing() {
-  $size: 320px;
-  $mobileSize: 220px;
-
+@mixin thing($size) {
+  float: left;
   width: $size;
   margin: 1em;
 
@@ -62,21 +60,8 @@
     text-align: center;
     color: $fontLightColor;
     height: 20px;
-    > * {margin-right: .5em;}
-  }
-
-  @media screen and (max-width: 767px) {
-    width: $mobileSize;
     margin: 0;
-
-    > a {
-      width: $mobileSize;
-      height: $mobileSize;
-      img {
-        max-width: $mobileSize;
-        max-height: $mobileSize;
-      }
-    }
+    > * {margin-right: .5em;}
   }
 }
 
