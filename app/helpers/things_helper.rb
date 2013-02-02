@@ -29,7 +29,7 @@ module ThingsHelper
     c = thing.owners.count
     if c > 0
       content_tag :span, class: "owners" do
-        content_tag(:i, "", class: "icon-check")
+        content_tag(:i, "", class: "icon-bookmark")
         .concat content_tag(:small, c)
       end
     end
