@@ -84,8 +84,12 @@
     .share {button i {color: $blue;}}
   }
 
+  .author {
+    margin-top: 2em;
+  }
+
   blockquote {
-    margin: 2em 0;
+    margin: 1em 0 2em;
   }
 
   .photos {

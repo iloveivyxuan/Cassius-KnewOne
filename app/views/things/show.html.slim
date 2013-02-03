@@ -28,15 +28,17 @@ header#thing_summary
       = render "shared/share_button"
       = render "fancy", thing: @thing
       = render "own", thing: @thing
+    .author
+      = link_to @thing.author do
+        = user_avatar(@thing.author, :tiny)
+      = link_to @thing.author do
+        = @thing.author.name
     blockquote= @thing.description  
     .photos
       - @thing.photos.each do |photo|
         = image_tag photo.url(:small), alt: photo.name, 
         class: "review_photo", data: {url: photo.url(:huge)} 
     .edits
-      / = link_to "#", class: "btn" do
-      /   i.icon-share 
-      /   | 分享
       - if can? :update, @thing
         = link_to edit_thing_path(@thing), class: "btn" do
           i.icon-edit 
