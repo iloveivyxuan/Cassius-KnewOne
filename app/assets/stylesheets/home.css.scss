@@ -122,11 +122,29 @@
 #home_gifts {
   @include section-decorate;
   margin: 1em;
-  height: 200px;
+
+  .wrapper {padding: 2em;}
+
+  h3 {
+    font-size: 18px;
+    line-height: 26px;
+    i {margin-right: .2em;}
+    color: $red;
+  }
 
   p {
-    padding: 2em;
     color: $fontLightColor;
+    i {
+      margin-right: .5em;
+      color: $red;
+    }
+  }
+
+  ol {
+    list-style: decimal;
+    color: $fontLightColor;
+    margin-left: 1.5em;
+    margin-bottom: 1em;
   }
 
   @media screen and (min-width: 320px) {
