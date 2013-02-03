@@ -15,14 +15,16 @@ header#thing_summary
             = " / #{@thing.batch}"
     .actions
       .shop
-        = link_to @thing.shop, class: "btn btn-success" do
-          i.icon-shopping-cart
-          span 购买
+        = link_to @thing.shop do
+          = button_tag class: "btn btn-success" do
+            i.icon-shopping-cart
+            span 购买
       - unless @thing.official_site.blank?
         .official_site
-          = link_to @thing.official_site, target: "_blank", class: "btn" do
-            i.icon-info-sign
-            span 官方网站
+          = link_to @thing.official_site, target: "_blank" do
+            = button_tag class: "btn" do
+              i.icon-info-sign
+              span 官方网站
       = render "shared/share_button"
       = render "fancy", thing: @thing
       = render "own", thing: @thing
