@@ -7,7 +7,7 @@
     padding: 1em;
   }
 
-  @media screen and (min-width: 768px) { 
+  @media screen and (min-width: 768px) {
     li {
       @include thing(274px);
     }
@@ -17,9 +17,9 @@
     }
   }
 
-  @media screen and (min-width: 1024px) { 
+  @media screen and (min-width: 1024px) {
     @include left-layout;
-    
+
     li {
       @include thing(250px);
       margin: .5em;
@@ -31,7 +31,7 @@
     }
   }
 
-  @media screen and (min-width: 1280px) { 
+  @media screen and (min-width: 1280px) {
     li {
       @include thing(320px);
       margin: .5em;
@@ -44,7 +44,7 @@
     }
   }
 
-  @media screen and (min-width: 1440px) { 
+  @media screen and (min-width: 1440px) {
     li {
       @include thing(360px);
       margin: .5em;
@@ -57,7 +57,7 @@
     }
   }
 
-  @media screen and (min-width: 1680px) { 
+  @media screen and (min-width: 1680px) {
     li {
       @include thing(400px);
     }
@@ -68,7 +68,7 @@
     }
   }
 
-  @media screen and (min-width: 1920px) { 
+  @media screen and (min-width: 1920px) {
     li {
       @include thing(300px);
     }
@@ -84,7 +84,7 @@
     }
   }
 
-  @media screen and (min-width: 2560px) { 
+  @media screen and (min-width: 2560px) {
     li {
       @include thing(300px);
     }
@@ -99,24 +99,6 @@
       padding: 2em 1.58em;
     }
   }
-
-  /* @media screen and (min-width: 1920px) { */
-  /*   li:nth-of-type(5n+1) { */
-  /*     width: 95%; */
-  /*     text-align: center; */
-  /*     $size: 600px; */
-  /*     > a { */
-  /*       display: inline-block; */
-  /*       width: $size; */
-  /*       height: $size; */
-
-  /*       img { */
-  /*         max-width: $size; */
-  /*         max-height: $size; */
-  /*       } */
-  /*     } */
-  /*   } */
-  /* } */
 }
 
 #home_gifts {
@@ -125,19 +107,17 @@
 
   .wrapper {padding: 2em;}
 
-  h4 {
+  h3 {
+    font-weight: bold;
     color: $red;
+    i {margin-right: 8px;}
   }
 
   p {
     color: $fontLightColor;
-    &:first-of-type {
-      color: $red;
-      font-weight: bold;
-    }
     i {
       margin-right: .5em;
-      color: $red;
+      color: $blue;
     }
   }
 
