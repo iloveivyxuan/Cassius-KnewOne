@@ -22,7 +22,9 @@ p
   | #{link_to "这里", "/things/jawbone-up-2nd-generation"}的范例
 p 每日统计时间为0:00-24:00，由后台系统计算会员当日获得“喜欢”及“有用”数量总和，次日通过官方微博公布获奖者， 奖品会是knewone.com上的新奇酷产品噢，节后统一发出。
 
-h4 最新产品  
+h4 
+  | 最新产品 
+  = link_to "查看更多 >", things_path
 ul#home_new_things
   = render @new_things, size: :normal  
   

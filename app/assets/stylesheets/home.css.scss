@@ -116,7 +116,7 @@
     color: $fontLightColor;
     i {
       margin-right: .5em;
-      color: $blue;
+      color: $red;
     }
   }
 
@@ -131,7 +131,13 @@
     border-top: 1px dashed #ccc;
     margin: 2em 0;
     padding-top: 2em;
-    color: $red;
+    color: $blue;
+
+    a {
+      display: inline-block;
+      float: right;
+      font-size: 14px;
+    }
   }
 
   @media screen and (min-width: 320px) {
