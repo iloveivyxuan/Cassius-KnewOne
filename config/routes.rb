@@ -8,7 +8,7 @@ Making::Application.routes.draw do
     get 'signin' => 'devise/sessions#new', as: :new_user_session
     delete 'signout' => 'devise/sessions#destroy', as: :destroy_user_session
   end
-  resources :users, only: [:show] do
+  resources :users, only: [:show, :index] do
     member {post 'share'}
   end
 

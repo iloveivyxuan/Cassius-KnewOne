@@ -1,0 +1,6 @@
+li
+  = link_to user do
+    = user_avatar(user, :small)
+  h4
+    = user.name
+    = user_provider(user)

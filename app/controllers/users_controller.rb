@@ -11,6 +11,10 @@ class UsersController < ApplicationController
     @owns = @user.owns
   end
 
+  def index
+    @users = User.desc(:created_at).page params[:page]
+  end
+
   def share
     current_user.current_auth.share  params[:share][:content]
     render layout: false

@@ -5,17 +5,17 @@ module UsersHelper
   end
 
   def user_location(user)
-    location = @user.current_auth.location
+    location = user.current_auth.location
     return nil if location.blank?
     content_tag(:i, "", class: "icon-map-marker") + location
   end
 
   def user_desciption(user)
-    @user.current_auth.description
+    user.current_auth.description
   end
 
   def user_website(user)
-    send "#{@user.current_auth.provider}_website", user.current_auth
+    send "#{user.current_auth.provider}_website", user.current_auth
   end
 
   def provider_share(user)
@@ -27,7 +27,7 @@ module UsersHelper
   end
 
   def user_provider(user)
-    send "#{@user.current_auth.provider}_home", user.current_auth
+    send "#{user.current_auth.provider}_home", user.current_auth
   end
 
   def twitter_website(auth)

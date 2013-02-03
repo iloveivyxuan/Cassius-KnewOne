@@ -84,4 +84,6 @@ class User
     @progress ||= (karma - rank.abs2*10).to_f*100 / ((rank+1).abs2*10 - rank.abs2*10).to_f
   end
 
+  ## Pagination
+  paginates_per 50
 end
