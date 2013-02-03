@@ -20,6 +20,7 @@ class ThingsController < PostsController
   def create
     @thing = Thing.new params[:thing].merge(author: current_user)
     if @thing.save
+      @thing.fancy current_user
       redirect_to @thing
     else
       render 'new'
