@@ -15,7 +15,7 @@ header#thing_summary
             = " / #{@thing.batch}"
     .actions
       .shop
-        = link_to @thing.shop do
+        = link_to @thing.shop, class: "track_event", data: {action: "buy", category: "thing", label: @thing.title} do
           = button_tag class: "btn btn-success" do
             i.icon-shopping-cart
             span 购买

@@ -9,6 +9,13 @@ window.Making =
       $(document).ajaxComplete ->
         $(".spinning").remove()
       Making.Score()
+      $(".track_event").click ->
+         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
+
+  TrackEvent: (category, action, label) ->  
+    try
+      _hmt.push ['_trackEvent', category, action, label]
+    catch error
 
   ThingsNew: ->
     $ ->
