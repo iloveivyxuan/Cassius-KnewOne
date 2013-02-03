@@ -161,64 +161,19 @@
   }
 }
 
-/* #things { */
-/*   ul { */
-/*     margin: 0 auto; */
-/*     width: 680px; */
-/*     @media screen and (max-width: 767px) { */
-/*       width: 280px; */
-/*     } */
+#things_index {
+  .controls {
+    @include clearfix();
+    width: 100%;
+    a {
+      display: inline-block;
+      i {padding-top: 4px;}
+    }
+  }
 
-/*     $padding: 20px; */
-
-/*     li { */
-/*       padding: $padding; */
-/*       margin-bottom: 2em; */
-/*       background: white; */
-
-/*       > a { */
-/*         display: block; */
-/*         position: relative; */
-
-/*         img { */
-/*           width: 640px; */
-/*           max-height: 640px; */
-/*           margin: 0 auto; */
-
-/*           @media screen and (max-width: 767px) { */
-/*             width: 240px; */
-/*             max-height: 240px; */
-/*           } */
-/*         } */
-
-/*         h4 { */
-/*           position: absolute; */
-/*           bottom: 0; */
-/*           left: 0; */
-/*           right: 0; */
-/*           display: none; */
-/*           color: white; */
-/*           margin: 0; */
-/*           padding: 1em 0; */
-/*           font-size: 1.2em; */
-/*           @include background(rgba(0, 0, 0, 0.5)); */
-/*           text-align: center; */
-
-/*           small {margin-left: 1em;} */
-
-/*           @media screen and (max-width: 979px) { */
-/*             position: relative; */
-/*             display: block; */
-/*             background: white; */
-/*             margin-top: 1em; */
-/*             color: $gray; */
-/*           } */
-/*         } */
-
-/*         &:hover h4 { */
-/*           display: block; */
-/*         } */
-/*       } */
-/*     } */
-/*   } */
-/* } */
+  li {
+    @include thing(320px);
+    @include section-decorate;
+    padding: 1em;
+  }
+}

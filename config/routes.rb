@@ -19,6 +19,7 @@ Making::Application.routes.draw do
     collection {get 'admin'}
     member {post 'fancy'}
     member {post 'own'}
+    get 'date/:date', action: :index, on: :collection
   end
 
   resources :posts, only: [] do

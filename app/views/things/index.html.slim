@@ -1,1 +1,10 @@
-= @things_json
+section#things_index
+  .controls
+    = link_to "#{things_path}/date/#{@date.prev_day.to_s}", class: "btn btn-link pull-left" do
+      i.icon-chevron-left
+      | 前一天  
+    - unless Date.today <= @date
+      = link_to "#{things_path}/date/#{@date.next_day.to_s}", class: "btn btn-link pull-right" do
+        | 后一天  
+        i.icon-chevron-right
+  ul= render @things, size: :normal

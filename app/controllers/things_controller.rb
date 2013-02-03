@@ -3,11 +3,10 @@ class ThingsController < PostsController
   after_filter :store_location, only: [:show]
 
   def index
-    @things = Thing.all
-    respond_to do |format|
-      format.html {redirect_to root_path}
-      format.json
-    end
+    params[:date] ||= Date.today.to_s
+    @date = Date.parse params[:date]
+    @ndate = @date.next_day
+    @things = Thing.where(created_at: (@date..@ndate))
   end
 
   def admin
