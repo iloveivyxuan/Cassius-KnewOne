@@ -10,7 +10,10 @@ window.Making =
         $(".spinning").remove()
       Making.Score()
       $(".track_event").click ->
-         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
+        Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
+      $(".disabled").click (e) ->
+        e.preventDefault()
+        e.stopPropagation()
 
   TrackEvent: (category, action, label) ->  
     try
