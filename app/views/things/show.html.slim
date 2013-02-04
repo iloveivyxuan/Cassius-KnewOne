@@ -52,6 +52,10 @@ section#thing_content
      = thing_photo(@thing, :huge)
      figcaption
        span.title= @thing.title
+       small.author
+         | by
+         = link_to @thing.author do
+           = @thing.author.name
        = thing_fanciers(@thing)
        = thing_owners(@thing)
   - if can? :create, Review
