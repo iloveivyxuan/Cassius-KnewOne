@@ -15,8 +15,9 @@ header#thing_summary
             = " / #{@thing.batch}"
     .actions
       .shop
-        = link_to @thing.shop, class: "track_event", data: {action: "buy", category: "thing", label: @thing.title} do
-          = button_tag class: "btn btn-success" do
+        = link_to @thing.shop, title: ("暂时没有商店可购买" if @thing.shop.blank?),
+          class: "track_event", data: {action: "buy", category: "thing", label: @thing.title} do
+          = button_tag class: "btn btn-success #{'disabled' if @thing.shop.blank?}" do
             i.icon-shopping-cart
             span 购买
       - unless @thing.official_site.blank?
