@@ -1,69 +1,39 @@
 - provide :title, thing_title(@thing)
 
 header#thing_summary
-  .summary_wrapper
-    hgroup
-      h1= @thing.title
-      h2= @thing.subtitle
-    - unless @thing.shop.blank?  
-      .price
-        = thing_price(@thing)
-        - unless @thing.stock.blank?
-          span 
-            | 剩余
-            em= "#{@thing.stock}"
-            = " / #{@thing.batch}"
-    .actions
-      .shop
-        = link_to @thing.shop, title: ("暂时没有商店可购买" if @thing.shop.blank?),
-          class: "track_event", data: {action: "buy", category: "thing", label: @thing.title} do
-          = button_tag class: "btn btn-success #{'disabled' if @thing.shop.blank?}" do
-            i.icon-shopping-cart
-            span 购买
-      - unless @thing.official_site.blank?
-        .official_site
-          = link_to @thing.official_site, target: "_blank" do
-            = button_tag class: "btn" do
-              i.icon-info-sign
-              span 官方网站
-      = render "shared/share_button"
-      = render "fancy", thing: @thing
-      = render "own", thing: @thing
-    .author
-      = link_to @thing.author do
-        = user_avatar(@thing.author, :tiny)
-      = link_to @thing.author do
-        = @thing.author.name
-    blockquote= @thing.description  
-    .photos
-      - @thing.photos.each do |photo|
-        = image_tag photo.url(:small), alt: photo.name, 
-        class: "review_photo", data: {url: photo.url(:huge)} 
-    .edits
-      - if can? :update, @thing
-        = link_to edit_thing_path(@thing), class: "btn" do
-          i.icon-edit 
-          | 编辑
-        = link_to @thing, method: :delete, data: {confirm: "您确认要删除吗?"}, class: "btn" do
-          i.icon-trash
-          | 删除
+  = render "summary", thing: @thing
 
 section#thing_content
-  figure#photo_main
-     = thing_photo(@thing, :huge)
-     figcaption
-       span.title= @thing.title
-       small.author
-         | by
-         = link_to @thing.author do
-           = @thing.author.name
-       = thing_fanciers(@thing)
-       = thing_owners(@thing)
+  figure
+    #photo_main.carousel.slide
+      .carousel-inner
+        - @thing.photos.each_with_index do |photo, index|
+          div class="item #{'active' if index == 0}"
+            = image_tag photo.url(:huge), alt: photo.name
+      - if @thing.photos.count > 1
+        = link_to "#photo_main", class: "carousel-control left hide", data: {slide: "prev"} do
+          i.icon-angle-left
+        = link_to "#photo_main", class: "carousel-control right hide", data: {slide: "next"} do
+          i.icon-angle-right
+    - if @thing.photos.count > 1
+      ol.photo_indicators
+        - @thing.photos.each_with_index do |photo, index|
+          = content_tag :li, data: {target: "#photo_main", "slide-to" => index} do
+            = image_tag photo.url(:small), alt: photo.name
+    figcaption
+      span.title= @thing.title
+      small.author
+        | by
+        = link_to @thing.author.name, @thing.author
+      = thing_fanciers(@thing)
+      = thing_owners(@thing)
+
   - if can? :create, Review
     #new_review
       = link_to new_thing_review_path(@thing), class: "btn btn-primary" do
         i.icon-pencil
         | 发布评测
+
   ul#reviews
     = render partial: "review", collection: @thing.reviews
 

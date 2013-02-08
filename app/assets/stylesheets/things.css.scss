@@ -6,10 +6,39 @@
     padding: 20px;
     @include section-decorate;
 
-    img {
-      display: block;
-      margin: 0 auto;
-      max-height: 600px;
+    #photo_main {
+      img {
+        display: block;
+        margin: 0 auto;
+        max-height: 600px;
+      }
+
+      .carousel-control {
+        font-size: 28px;
+        i {padding-top: 5px;}
+      }
+
+      @media screen and (min-width: 1024px) {
+        &:hover {
+          .carousel-control {display: block;}
+        }
+      }
+    }
+
+    .photo_indicators {
+      @include clearfix();
+      li {
+        float: left;
+        margin: 1em 1em 1em 0;
+        cursor: pointer;
+
+        img {
+          @media screen and (max-width: 767px) {
+            width: 66px;
+            height: 66px;
+          }
+        }
+      }
     }
 
     figcaption {
@@ -83,7 +112,6 @@
 
       a {width: 100%;}
       button {width: 50%;}
-
     }
 
     .fancy {button i {color: $pink;}}
@@ -100,14 +128,6 @@
     margin: 1em 0 2em;
   }
 
-  .photos {
-    margin-left: -.5em;
-    img {
-      margin: .5em;
-      cursor: pointer;
-    }
-  }
-
   .edits {
     margin: 1em 0;
     > * {margin-right: 1em;}
@@ -121,8 +141,8 @@
     @include border-radius(0);
     @include box-shadow(none);
     text-align: center;
-    
-    hgroup, blockquote, .photos, .edits, .author {
+
+    hgroup, blockquote, .edits, .author {
       display: none;
     }
 

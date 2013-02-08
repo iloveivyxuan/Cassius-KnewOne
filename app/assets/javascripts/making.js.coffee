@@ -27,11 +27,12 @@ window.Making =
 
   ThingShow: ->
     $ ->
-      view = new Making.Views.ThingSummary
-        el: "#thing_summary"
       Making.Fancy()
       Making.Own()
       Making.Sharing()
+      # It should be replaced by bootstrap 2.3.0 carousel indicators
+      $('.photo_indicators li').click (e) ->
+        $($(@).data('target')).carousel($(@).data('slide-to'))
 
   ReviewEdit: () ->
     $ ->
