@@ -125,22 +125,19 @@ body > footer {
     width: 40%;
 
     li {
-      padding: 1em 0;
+      margin: 1em 0;
+      color: $fontLightColor;
       a {
-        color: $fontLightColor;
+        color: $fontLightColor;        
         &:hover {color: $blue;}
       }
 
       i {
         margin-right: 1em;
       }
-      img {
-        margin-right: 1em;
-        vertical-align: -1px;
-      }
 
-      &.copyright {
-        padding-top: 3px;
+      &.icon-copyright a {
+        font-size: 12px;
       }
     }
   }
