@@ -1,47 +1,44 @@
 - provide :title, @review.title
 
+header#thing_summary
+  = render "things/summary", thing: @review.thing
+
 section#review_details
-  header
-    hgroup
-      = link_to "< #{@thing.title}", @thing
-      = link_to @thing, title: thing_title(@thing) do
-        = thing_photo @thing, :normal
+  .review_wrapper
+    header
       h1= @review.title
-    .score data-score=@review.score
-    .author
-      = link_to @review.author do
-        = image_tag @review.author.avatar.url, class: "user_avatar"
-      = link_to @review.author do
-        = @review.author.name
-      = time_ago_tag(@review.created_at)
-      - if can? :update, @review
-        span.actions
-          = link_to edit_thing_review_path(@thing, @review) do 
-            i.icon-edit
-          = link_to thing_review_path(@thing, @review), method: :delete, 
-          data: {confirm: "您确定要删除吗?"} do 
-            i.icon-trash
-  section
-    = raw @review.content
-  footer
-    .voting
-      - if can? :vote, @review and !@review.voted?(current_user)
-        = render "not_voted", review: @review
-      - else
-        = render "voted", review: @review
-    = render "shared/share_button"
+      .score data-score=@review.score
+      .author
+        = link_to @review.author do
+          = image_tag @review.author.avatar.url, class: "user_avatar"
+        = link_to @review.author do
+          = @review.author.name
+        = time_ago_tag(@review.created_at)
+        - if can? :update, @review
+          span.actions
+            = link_to edit_thing_review_path(@thing, @review) do 
+              i.icon-edit
+            = link_to thing_review_path(@thing, @review), method: :delete, 
+            data: {confirm: "您确定要删除吗?"} do 
+              i.icon-trash
+    section
+      = raw @review.content
+    footer
+      .voting
+        - if can? :vote, @review and !@review.voted?(current_user)
+          = render "not_voted", review: @review
+        - else
+          = render "voted", review: @review
+      = render "shared/share_button"
 
-
-  - if user_signed_in? or @review.comments.count > 0
-    = content_tag :aside, "", id: "review_comments", 
+    - if user_signed_in? or @review.comments.count > 0
+      = content_tag :aside, "", id: "review_comments", 
       data: {signin: user_signed_in?, postid: @review.id.to_s, title: "回复"} 
 
-  - if user_signed_in?
-    = render 'shared/share', content: review_share_content(@review) 
+    - if user_signed_in?
+      = render 'shared/share', content: review_share_content(@review) 
   
 - content_for :script do
   javascript:
     Making.ReviewShow();
     Making.Comments("#review_comments")
-
-    

@@ -24,8 +24,8 @@
             i.icon-info-sign
             span 官方网站
     = render "shared/share_button"
-    = render "fancy", thing: thing
-    = render "own", thing: thing
+    = render "things/fancy", thing: thing
+    = render "things/own", thing: thing
   .author
     = link_to thing.author do
       = user_avatar(thing.author, :tiny)

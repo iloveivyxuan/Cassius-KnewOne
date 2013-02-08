@@ -45,6 +45,8 @@ window.Making =
     $ ->
       Making.Voting()
       Making.Sharing()
+      Making.Fancy()
+      Making.Own()
     
   Editor: ($form) ->
     csrf_token = $('meta[name=csrf-token]').attr('content');

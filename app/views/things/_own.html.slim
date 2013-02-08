@@ -2,6 +2,6 @@
   = form_tag own_thing_path(thing), remote: true, class: "own", 
     data: {type: 'html'} do
     - if thing.owned? current_user
-      = render 'unown_button', thing: thing
+      = render 'things/unown_button', thing: thing
     - else
-      = render 'own_button', thing: thing
+      = render 'things/own_button', thing: thing
