@@ -13,13 +13,17 @@ Making::Application.routes.draw do
   end
 
   resources :things do
-    resources :reviews do
+    resources :reviews, except: [:index] do
       member {post 'vote'}
     end
     collection {get 'admin'}
     member {post 'fancy'}
     member {post 'own'}
     get 'date/:date', action: :index, on: :collection
+  end
+
+  resources :reviews, only: [:index] do
+    get 'page/:page', action: :index, on: :collection
   end
 
   resources :posts, only: [] do

@@ -1,7 +1,11 @@
 class ReviewsController < ApplicationController
-  load_and_authorize_resource :thing
+  load_and_authorize_resource :thing, except: [:index]
   load_and_authorize_resource
   after_filter :store_location, only: [:show]
+
+  def index
+    @reviews = Review.page params[:page]
+  end
 
   def show
     if user_signed_in?

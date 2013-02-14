@@ -1,0 +1,4 @@
+ul#reviews
+  = render partial: "users/review", collection: @reviews
+
+= paginate @reviews

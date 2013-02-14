@@ -66,10 +66,19 @@
   }
 
   ul#reviews {
-    > li {
+    li.review {
       margin: 2em 0;
       padding: 2em;
       @include section-decorate;
+
+      article {
+        header {
+          h3 {
+            background: #f4f4f4;
+            padding: 0 .5em;
+          }
+        }
+      }
     }
   }
 }
