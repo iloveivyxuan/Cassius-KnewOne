@@ -20,6 +20,7 @@ zh-CN:
         is_shop: '是否为商家'
         official_site: '官方链接'
         price: '价格'
+        price_unit: '货币类型'
         photos: '图片'
         description: '简介'
         photo: '图像'

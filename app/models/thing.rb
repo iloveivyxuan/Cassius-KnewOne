@@ -2,6 +2,7 @@
 class Thing < Post
   field :shop, type: String, default: ""
   field :price, type: Float
+  field :price_unit, type: String, default: "¥"
   field :subtitle, type: String, default: ""
   field :official_site, type: String, default: ""
   field :description, type: String, default: ""

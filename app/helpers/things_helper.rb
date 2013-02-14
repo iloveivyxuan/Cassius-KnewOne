@@ -6,7 +6,8 @@ module ThingsHelper
 
   def thing_price(thing)
     if thing.price.to_i > 0
-      content_tag :small, "¥#{thing.price.to_i}"
+      content_tag :small,
+        number_to_currency(thing.price, precision: 2, unit: thing.price_unit)
     end
   end
 
