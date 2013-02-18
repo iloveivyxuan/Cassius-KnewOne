@@ -6,6 +6,7 @@ json.can_reply can?(:create, comment)
 
 json.author do
   json.name comment.author.name
+  json.nickname comment.author.current_auth.nickname
   json.url url_for(comment.author)
   json.photo_url comment.author.avatar.url
 end
