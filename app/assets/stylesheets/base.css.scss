@@ -96,30 +96,8 @@ input {
   margin-right: -1px;
 }
 
-#modal-gallery.modal-fullscreen {
-  .modal-header {
-    background: #333;
-    &:hover {@include opacity(0.8);}
-
-    .modal-play, .modal-play:hover {
-      color: #fff;
-      position: absolute;
-      top: 20px;
-      right: 8%;
-      cursor: pointer;
-    }
-
-    .close, .close:hover {
-      position: absolute;
-      top: 18px;
-      right: 3%;
-      color: #fff;
-    }
-  }
-}
-
-.modal-loading .modal-image {
-  background: url(loading.gif) center no-repeat;
+.popover {
+  color: $fontLightColor;
 }
 
 .brand {

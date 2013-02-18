@@ -11,6 +11,24 @@ module ThingsHelper
     end
   end
 
+  def thing_shop(thing)
+    link_to thing.shop, class: "track_event thing_shop", data: {
+      # analystics
+      action: "buy",
+      category: "thing",
+      label: thing.title,
+      # popover
+      placement: "bottom",
+      title: "暂时不能购买",
+      content: "抱歉，目前还没有合适的渠道让您购买到此商品，不过，我们会一直追踪此商品的最新动向，一旦您所在的地区可以购买，我们会第一时间提供最靠谱的购买渠道，敬请期待"
+    } do
+        button_tag class: "btn btn-success #{'disabled' if thing.shop.blank?}" do
+          content_tag(:i, "", class: "icon-shopping-cart")
+          .concat content_tag(:span, "购买")
+        end
+    end
+  end
+
   def thing_photo(thing, size, options = {})
     url = thing.photos.first.url(size)
     image_tag url, options.merge(alt: thing_title(thing))

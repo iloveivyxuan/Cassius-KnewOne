@@ -11,9 +11,6 @@ window.Making =
       Making.Score()
       $(".track_event").click ->
         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
-      $(".disabled").click (e) ->
-        e.preventDefault()
-        e.stopPropagation()
 
   TrackEvent: (category, action, label) ->  
     try
@@ -30,6 +27,7 @@ window.Making =
       Making.Fancy()
       Making.Own()
       Making.Sharing()
+      Making.Shopping()
       # It should be replaced by bootstrap 2.3.0 carousel indicators
       $('.photo_indicators li').click (e) ->
         $($(@).data('target')).carousel($(@).data('slide-to'))
@@ -47,6 +45,7 @@ window.Making =
       Making.Sharing()
       Making.Fancy()
       Making.Own()
+      Making.Shopping()
     
   Editor: ($form) ->
     csrf_token = $('meta[name=csrf-token]').attr('content');
@@ -112,6 +111,13 @@ window.Making =
     $(".share button").click (e) ->
       e.preventDefault()
       $share.modal()
+
+  Shopping: () ->
+    $shop = $(".thing_shop")
+    if $shop.find("button").hasClass("disabled")
+      $shop.popover()
+      $shop.click (e) ->
+        e.preventDefault()
 
   Comments: (el) ->
     $ ->
