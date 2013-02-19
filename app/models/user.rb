@@ -25,7 +25,7 @@ class User
       create do |user|
         auth = Auth.from_omniauth(data)
         user.auths << auth
-        user.name = auth.name
+        user.name = auth.nickname
         user.remote_avatar_url = auth.parse_image(data)
       end
     end
@@ -39,7 +39,7 @@ class User
     auth = auths.where(provider: data[:provider]).first
     if auth
       auth.update_from_omniauth(data)
-      self.name = auth.name
+      self.name = auth.nickname
       self.remote_avatar_url = auth.parse_image(data)
       save
     end
