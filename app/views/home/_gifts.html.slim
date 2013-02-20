@@ -28,3 +28,9 @@ h4
 ul#home_new_things
   = render @new_things, size: :normal  
   
+h4
+  | 最新评测
+ul#home_new_reviews
+  - @new_reviews.each do |review|
+    li= link_to review.title, thing_review_path(review.thing, review)
+      
