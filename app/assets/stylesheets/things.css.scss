@@ -92,15 +92,19 @@
     margin: 0 1em;
   }
 
-  h1 {
-    margin: 0;
-    font-size: 24px;
-  }
+  hgroup {
+    margin-top: 1em;
 
-  h2 {
-    font-size: 18px;
-    margin: 0;
-    color: $fontLightColor;
+    h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin: 0;
+      color: $fontLightColor;
+    }
   }
 
   .price {

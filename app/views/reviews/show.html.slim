@@ -6,7 +6,10 @@ header#thing_summary
 section#review_details
   .review_wrapper
     header
-      h1= @review.title
+      hgroup
+        = link_to @thing, title: thing_title(@thing) do
+          = thing_photo @thing, :normal
+        h1= @review.title
       .score data-score=@review.score
       .author
         = link_to @review.author do
