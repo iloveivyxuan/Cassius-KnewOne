@@ -7,7 +7,8 @@ class PhotosController < ApplicationController
   end
 
   def create
-    photo = Photo.new(params[:photo].merge(user: current_user))
+    photo = Photo.new params[:photo]
+    photo.user = current_user
     if photo.save
       respond_to do |format|
         format.html {
