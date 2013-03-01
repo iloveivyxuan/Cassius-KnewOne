@@ -8,10 +8,7 @@ class Making.Views.Photo extends Backbone.View
     "click .destroy": "destroy"
 
   render: =>
-    @$el.html @template
-      small_url: @model.get('small_url')
-      url: @model.get('url')
-      name: @model.get('name')
+    @$el.html @template(@model.attributes)
     this
 
   destroy: (e) =>

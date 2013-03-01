@@ -28,9 +28,6 @@ window.Making =
       Making.Own()
       Making.Sharing()
       Making.Shopping()
-      # It should be replaced by bootstrap 2.3.0 carousel indicators
-      $('.photo_indicators li').click (e) ->
-        $($(@).data('target')).carousel($(@).data('slide-to'))
 
   ReviewEdit: () ->
     $ ->

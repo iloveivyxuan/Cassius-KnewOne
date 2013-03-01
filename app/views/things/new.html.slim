@@ -9,14 +9,6 @@ hgroup#thing_form_header
             hint: "如: Jawbone Up 2nd，30字以内", input_html: {maxlength: 30}
   = f.input :subtitle, placeholder: "您对产品的一句话介绍",
             hint: "选填, 请用最简短的词语描绘这个产品，30字以内", input_html: {maxlength: 30}
-  - if current_user.admin?
-    = f.input :shop, as: :url, placeholder: "产品的可购买网址链接",
-              hint: "选填，请分享在国内可以买到该产品的靠谱的网站链接，我们会进行核实"
-    = f.input :price, hint: "选填，请填写你分享的购买网址中该产品的价格，如没有填写购买链接，价格是无效的喔" do
-      = f.input_field :price_unit, collection: %w{¥ $ € £}
-      = f.input_field :price, as: :decimal
-    = f.input :is_shop, as: :boolean, 
-      hint: "选填，如果您自己在代理销售此产品，请选择此项"
   = f.input :official_site, as: :url, placeholder: "品牌官方网站的该产品介绍链接地址",
             hint: "选填，官方网站的介绍可以帮助顾客了解产品详细信息"
   = f.input :description, as: :text, input_html: {rows: 10, maxlength: 300}, 
@@ -24,6 +16,13 @@ hgroup#thing_form_header
             hint: "选填，请客观地描述产品功能和诞生背景，300字以内"
   - if current_user.admin?
     h3 管理区域
+    = f.input :shop, as: :url, placeholder: "产品的可购买网址链接",
+          hint: "选填，请分享在国内可以买到该产品的靠谱的网站链接，我们会进行核实"
+    = f.input :price, hint: "选填，请填写你分享的购买网址中该产品的价格，如没有填写购买链接，价格是无效的喔" do
+      = f.input_field :price_unit, collection: %w{¥ $ € £}
+      = f.input_field :price, as: :decimal
+    = f.input :is_shop, as: :boolean, 
+      hint: "选填，如果您自己在代理销售此产品，请选择此项"
     = f.input :stock, as: :integer
     = f.input :batch, as: :integer
     = f.input :priority, as: :integer
