@@ -1,5 +1,17 @@
-li
-  p= lottery.date
-  p= lottery.thing.title 
-  = link_to "edit", edit_lottery_path(lottery)
-  = link_to "delete", lottery, method: :delete
+tr.lottery
+  td.date
+    = lottery.date
+    - if can? :update, Lottery
+      = link_to edit_lottery_path(lottery) do
+        i.icon-edit
+      = link_to lottery, method: :delete do
+        i.icon-trash
+  td.thing
+    = link_to lottery.thing do
+      = thing_photo(lottery.thing, :small)
+      h5= thing_title(lottery.thing)
+  td.winner
+    - if lottery.winner
+      = link_to lottery.winner do
+        = user_avatar(lottery.winner, :small)
+        h5= lottery.winner.name 

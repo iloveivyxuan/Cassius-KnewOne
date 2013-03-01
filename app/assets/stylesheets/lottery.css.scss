@@ -1,0 +1,61 @@
+#lotteries {
+  @include section-decorate;
+  padding: 2em;
+
+  > header {
+    padding-bottom: 1em;
+    border-bottom: 1px dashed #ccc;
+    margin-bottom: 2em;
+
+    h3 {
+      font-weight: bold;
+      color: $red;
+      i {margin-right: .2em;}
+    }
+
+    p {
+      color: $fontLightColor;
+      i {
+        margin-right: .5em;
+        color: $red;
+      }
+    }
+
+    ol {
+      list-style: decimal;
+      color: $fontLightColor;
+      margin-left: 1.5em;
+      margin-bottom: 1em;
+    }
+  }
+
+  > section {
+    th, td {
+      text-align: center;
+      vertical-align: middle;
+      padding-top: 1em;
+      img {margin-bottom: .5em;}
+    }
+
+    caption {
+      text-align: left;
+      color: $fontLightColor;
+
+      i {
+        margin-right: .5em;
+        color: $red;
+      }
+    }
+
+    .lottery {
+      .date {
+        width: 25%;
+        a {margin-left: 1em;}
+      }
+
+      .thing {
+        width: 50%;
+      }
+    }
+  }
+}

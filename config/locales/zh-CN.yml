@@ -7,6 +7,7 @@ zh-CN:
       review: '评测'
       category: '分类'
       comment: '留言'
+      lottery: '奖励'
     attributes:
       post:
         title: '标题'
