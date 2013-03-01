@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails'
 gem 'rails-i18n'
 # database
-gem 'mongoid', '~> 3.0.0'
+gem 'mongoid'
 gem 'mongoid_slug'
 # components
 gem 'simple_form'
