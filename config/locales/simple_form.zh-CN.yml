@@ -35,6 +35,10 @@ zh-CN:
         name: '分类名称'
       comment:
         content: '内容'
+      lottery:
+        date: '中奖日期'
+        thing_link: "奖品链接"
+        winner_link: "获奖用户链接"
     placeholders:
       user:
         email: '请输入您的邮箱地址'

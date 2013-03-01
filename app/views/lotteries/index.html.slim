@@ -1,0 +1,8 @@
+h1 lotteries
+
+- if can? :create, Lottery
+  = link_to "发奖", new_lottery_path, class: "btn"
+
+ul= render @lotteries
+
+= paginate @lotteries

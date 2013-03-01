@@ -40,6 +40,10 @@ Making::Application.routes.draw do
     end
   end
 
+  resources :lotteries do
+    get 'page/:page', action: :index, on: :collection
+  end
+
   get '/search', to: 'home#search', as: :search
   get '/sandbox', to: 'home#sandbox'
 

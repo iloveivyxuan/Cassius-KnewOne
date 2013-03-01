@@ -1,0 +1,8 @@
+= simple_form_for @lottery do |f|
+  legend 记录中奖信息
+  fieldset
+    = f.input :date, as: :date, order: [:day, :month, :year],
+      start_year: Date.today.year-1, end_year: Date.today.year+1
+    = f.input :thing_link, as: :url, input_html: {class: "input-xxlarge"}
+    = f.input :winner_link, as: :url, input_html: {class: "input-xxlarge"}
+    = f.button :submit, class: "btn btn-primary"

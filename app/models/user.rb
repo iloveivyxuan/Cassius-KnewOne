@@ -63,6 +63,9 @@ class User
   has_and_belongs_to_many :fancies, class_name: "Thing", inverse_of: :fanciers
   has_and_belongs_to_many :owns, class_name: "Thing", inverse_of: :owners
 
+  ## Lotteries
+  has_many :lotteries, inverse_of: :winners
+
   ## Messageable
   embeds_many :messages
 

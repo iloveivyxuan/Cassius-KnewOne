@@ -44,5 +44,6 @@ class Ability
     can :read, Post
     can :read, User
     can :read, Comment
+    can :read, Lottery
   end
 end

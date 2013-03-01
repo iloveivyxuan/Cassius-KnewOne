@@ -1,0 +1,5 @@
+li
+  p= lottery.date
+  p= lottery.thing.title 
+  = link_to "edit", edit_lottery_path(lottery)
+  = link_to "delete", lottery, method: :delete
