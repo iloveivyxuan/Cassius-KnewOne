@@ -4,7 +4,7 @@ class ThingsController < PostsController
 
   def index
     begin
-      @date = Date.parse params[:date]
+      @date = Date.parse params[:date] if params[:date]
     rescue ArgumentError
       not_found
     end
