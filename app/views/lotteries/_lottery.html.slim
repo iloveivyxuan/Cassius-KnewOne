@@ -9,7 +9,7 @@ tr.lottery
   td.thing
     = link_to lottery.thing do
       = thing_photo(lottery.thing, :small)
-      h5= thing_title(lottery.thing)
+      h5= lottery.thing.title
   td.winner
     - if lottery.winner
       = link_to lottery.winner do
