@@ -3,8 +3,12 @@ class ThingsController < PostsController
   after_filter :store_location, only: [:show]
 
   def index
-    params[:date] ||= Date.today.to_s
-    @date = Date.parse params[:date]
+    begin
+      @date = Date.parse params[:date]
+    rescue ArgumentError
+      not_found
+    end
+    @date ||= Date.today
     @ndate = @date.next_day
     @things = Thing.where(created_at: (@date..@ndate))
   end
