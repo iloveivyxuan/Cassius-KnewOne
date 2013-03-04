@@ -58,6 +58,11 @@ class Auth
     send "#{provider}_share", content
   end
 
+  def follow
+    method = "#{provider}_follow"
+    send method if respond_to? method
+  end
+
   def weibo_share(content)
     client = WeiboOAuth2::Client.new
     client.get_token_from_hash(access_token: access_token, expires_at: expires_at)
@@ -76,5 +81,15 @@ class Auth
     client = Twitter::Client.new oauth_token: access_token,
       oauth_token_secret: access_secret
     client.update content
+  end
+
+  def weibo_follow
+    client = WeiboOAuth2::Client.new
+    client.get_token_from_hash(access_token: access_token, expires_at: expires_at)
+    begin
+      client.friendships.create(uid: Settings.weibo.official_uid,
+                                screen_name: Settings.weibo.official_screen_name)
+    rescue OAuth2::Error
+    end
   end
 end

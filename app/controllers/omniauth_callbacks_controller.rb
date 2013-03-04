@@ -22,6 +22,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user = User.create_from_omniauth(auth_data)
       sign_in_and_redirect user
     end
+
+    #follow office weibo
+    user.current_auth.follow if user
   end
 
   def failure
