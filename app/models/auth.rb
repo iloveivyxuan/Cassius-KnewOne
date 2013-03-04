@@ -92,4 +92,15 @@ class Auth
     rescue OAuth2::Error
     end
   end
+
+  def twitter_follow
+    Twitter.configure do |config|
+      config.oauth_token = access_token
+      config.oauth_token_secret = access_secret
+    end
+
+    client = Twitter::Client.new oauth_token: access_token,
+             oauth_token_secret: access_secret
+    client.follow Settings.twitter.official_uid
+  end
 end

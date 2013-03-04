@@ -30,6 +30,8 @@ development:
   twitter:
     consumer_key: "b7yWjr8pVZzebB3LELi2g"
     consumer_secret: "HF2HZgjiQuLy88xqwMeORuvC3RvEBrWi38ZMrDMFBpY"
+    official_uid: 1188607028
+    official_screen_name: "KnewOneCom"
 
 test:
   <<: *defaults
@@ -44,3 +46,5 @@ production:
   twitter:
     consumer_key: "0thYXvlBsdzmrqyPMIjT0A"
     consumer_secret: "U6CYRLqg51HPaod4P2in3Mw3bHSKq5301g27mnicJo"
+    official_uid: 1188607028
+    official_screen_name: "KnewOneCom"
