@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 class Thing < Post
-  field :shop, type: String, default: ""
-  field :price, type: Float
-  field :price_unit, type: String, default: "¥"
   field :subtitle, type: String, default: ""
   field :official_site, type: String, default: ""
   field :description, type: String, default: ""
+  field :photo_ids, type: Array, default: []
+
+  field :shop, type: String, default: ""
+  field :price, type: Float
+  field :price_unit, type: String, default: "¥"
   field :stock, type: Integer
   field :batch, type: Integer
-  field :photo_ids, type: Array, default: []
+
   field :scores, type: Array, default: []
-  field :is_shop, type: Boolean, default: false
   field :priority, type: Integer, default: 0
 
   include Mongoid::Slug
