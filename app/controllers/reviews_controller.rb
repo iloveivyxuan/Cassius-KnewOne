@@ -32,10 +32,7 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    @review.title = params[:review][:title]
-    @review.content = params[:review][:content]
-    @review.score = params[:review][:score]
-    if @review.save
+    if @review.update_attributes(params[:review])
       redirect_to thing_review_path(@thing, @review)
     else
       flash.now[:error] = @review.errors.full_messages.first
@@ -52,5 +49,4 @@ class ReviewsController < ApplicationController
     @review.vote current_user, params[:vote] == "true"
     render "_voted", locals: {review: @review}, layout: false
   end
-
 end

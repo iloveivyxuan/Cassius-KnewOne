@@ -35,7 +35,7 @@ section#thing_content
         | 发布评测
 
   ul#reviews
-    = render partial: "review", collection: @thing.reviews
+    = render partial: "review", collection: @reviews
 
 - if user_signed_in? or @thing.comments.count > 0
   = content_tag :aside, "", id: "thing_comments", 

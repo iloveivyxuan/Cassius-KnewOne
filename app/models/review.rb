@@ -1,6 +1,7 @@
 class Review < Post
   field :content, type: String, default: ""
   field :score, type: Integer, default: 0
+  field :is_top, type: Boolean, default: false
 
   belongs_to :thing
 
@@ -21,6 +22,7 @@ class Review < Post
   after_create :add_score
   after_update :update_score
   after_destroy :destroy_score
+  before_save :top
 
   def vote(user, love)
     return if voted?(user)
@@ -35,6 +37,12 @@ class Review < Post
 
   def voted?(user)
     lovers.include?(user) || foes.include?(user)
+  end
+
+  def top
+    if is_top
+      thing.top_review and thing.top_review.update_attributes(is_top: false)
+    end
   end
 
   private

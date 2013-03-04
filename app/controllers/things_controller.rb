@@ -33,6 +33,7 @@ class ThingsController < PostsController
 
   def show
     @thing = Thing.find(params[:id]) || not_found
+    @reviews = @thing.reviews.unscoped.desc(:is_top, :created_at)
     if user_signed_in?
       CommentMessage.read_by_post(current_user, @thing)
     end

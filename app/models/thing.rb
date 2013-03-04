@@ -31,6 +31,10 @@ class Thing < Post
     Photo.find_with_order photo_ids
   end
 
+  def top_review
+    reviews.where(is_top: true).first
+  end
+
   def fancy(user)
     return if fancied?(user)
     fanciers << user
