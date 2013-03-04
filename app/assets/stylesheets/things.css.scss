@@ -69,6 +69,7 @@
   ul#reviews {
     li.review {
       margin: 2em 0;
+      border-bottom: none;
       padding: 2em;
       @include section-decorate;
 
