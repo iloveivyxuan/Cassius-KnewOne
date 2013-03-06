@@ -5,6 +5,11 @@ class Lottery
   include Rails.application.routes.url_helpers
 
   field :date, type: Date
+  field :name, type: String
+  field :phone, type: Integer
+  field :address, type: String
+  field :is_delivered, type: Boolean
+  field :delivery, type: String
 
   belongs_to :winner, class_name: "User"
   belongs_to :thing

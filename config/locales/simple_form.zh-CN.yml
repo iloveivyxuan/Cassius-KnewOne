@@ -44,6 +44,11 @@ zh-CN:
         date: '中奖日期'
         thing_link: "奖品链接"
         winner_link: "获奖用户链接"
+        name: '姓名'
+        phone: '电话'
+        address: '地址'
+        is_delivered: '是否递送'
+        delivery: '递送信息'
     placeholders:
       user:
         email: '请输入您的邮箱地址'
