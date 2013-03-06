@@ -15,3 +15,16 @@ tr.lottery
       = link_to lottery.winner do
         = user_avatar(lottery.winner, :small)
         h5= lottery.winner.name 
+- if can? :manage, :all and lottery.winner
+  tr
+    td
+      = lottery.name
+      = lottery.phone
+    td
+      = lottery.address
+    td
+      - if lottery.is_delivered
+        = lottery.delivery
+      - else
+        | 未投递
+  
