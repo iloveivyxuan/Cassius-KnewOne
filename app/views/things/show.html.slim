@@ -37,6 +37,14 @@ section#thing_content
   ul#reviews
     = render partial: "review", collection: @reviews
 
+- if @thing.packages.present?
+  aside#thing_packages
+    .packages
+      h4
+        i.icon-inbox
+        | 套装
+      ul= render partial: "package", collection: @thing.packages
+
 - if user_signed_in? or @thing.comments.count > 0
   = content_tag :aside, "", id: "thing_comments", 
     data: {signin: user_signed_in?, postid: @thing.id.to_s, title: "短评"} 

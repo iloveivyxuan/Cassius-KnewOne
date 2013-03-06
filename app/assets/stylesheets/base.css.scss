@@ -80,16 +80,16 @@ a.btn-link {
   &:hover {text-decoration: none;}
 }
 
+i {
+  margin-right: .5em;
+}
+
 input {
   &:focus {outline: none !important;}
 }
 
 .btn-mini {
   text-shadow: none;
-}
-
-.btn {
-  i {margin-right: .5em;}
 }
 
 .add-on {
@@ -142,7 +142,7 @@ time {
   color: $fontLightColor;
 
   .lovers, .foes {
-    i, small {margin-right: .5em;}
+    small {margin-right: .5em;}
     b {font-weight: normal;}
   }
 
@@ -182,12 +182,10 @@ time {
 
 .fanciers {
   color: $red;
-  i {margin-right: .5em;}
 }
 
 .owners {
   color: $green;
-  i {margin-right: .5em;}
 }
 
 .share_modal {

@@ -31,6 +31,8 @@ zh-CN:
           title: '名称'
           shop: '购买链接'
           price: '价格'
+          photo: '图像'
+          stock: '剩余数量'
       review:
         title: "标题"
         content: "内容"

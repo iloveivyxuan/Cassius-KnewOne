@@ -190,6 +190,20 @@
   }
 }
 
+#thing_packages {
+  @include right-layout;
+  @include section-decorate;
+  margin-top: 2em;
+
+  .packages {
+    margin: 1em;
+    
+    h4 {
+      color: $fontLightColor;
+    }
+  }
+}
+
 #thing_comments {
   @include right-layout;
   @include section-decorate;
