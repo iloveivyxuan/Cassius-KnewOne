@@ -8,6 +8,7 @@ gem 'mongoid'
 gem 'mongoid_slug'
 # components
 gem 'simple_form'
+gem 'nested_form'
 gem 'kaminari'
 # presenters and views
 gem 'slim-rails'

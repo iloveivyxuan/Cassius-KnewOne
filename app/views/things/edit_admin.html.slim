@@ -1,0 +1,14 @@
+= simple_nested_form_for @thing, html: {multipart: true, class: "thing_form form-horizontal"} do |f|
+  fieldset
+    legend 购买信息
+    = hidden_field_tag :admin, true
+    = f.input :shop, as: :url
+    = f.input :price do
+      = f.input_field :price_unit, collection: %w{¥ $ € £}
+      = f.input_field :price, as: :decimal
+    = f.input :stock, as: :integer
+    = f.input :priority, as: :integer
+    = f.input :is_pre, as: :boolean
+  = f.simple_fields_for :packages 
+  = f.link_to_add "新增套装", :packages, class: "btn"
+  = f.button :submit, class: "btn-primary btn-large"  

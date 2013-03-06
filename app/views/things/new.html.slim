@@ -16,17 +16,6 @@ hgroup#thing_form_header
             hint: "选填，请客观地描述产品功能和诞生背景，300字以内"
   = f.button :submit, class: "btn-primary btn-large"
   
-  - if can? :manage, :all
-    legend 管理区域
-    fieldset
-      = f.input :shop, as: :url
-      = f.input :price do
-        = f.input_field :price_unit, collection: %w{¥ $ € £}
-        = f.input_field :price, as: :decimal
-      = f.input :stock, as: :integer
-      = f.input :batch, as: :integer
-      = f.input :priority, as: :integer
-    
 = simple_form_for Photo.new, html: {class: "pull-right"} do |f|
   .control-groups
     span.btn.btn-info.fileinput-button title="产品图片" data-content="请先为产品上传图片"

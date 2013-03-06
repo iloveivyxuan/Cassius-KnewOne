@@ -9,7 +9,6 @@
         span
           | 剩余
           em= "#{thing.stock}"
-          = " / #{thing.batch}"
   .actions
     .shop
       = thing_shop(thing)
@@ -27,7 +26,8 @@
       = user_avatar(thing.author, :tiny)
     = link_to thing.author do
       = thing.author.name
-  blockquote= thing.description
+  blockquote
+    = thing.description
   .edits
     - if can? :update, thing
       = link_to edit_thing_path(thing), class: "btn" do
@@ -36,4 +36,6 @@
       = link_to thing, method: :delete, data: {confirm: "您确认要删除吗?"}, class: "btn" do
         i.icon-trash
         | 删除
+    - if can? :manage, :all
+      = link_to "管理", edit_thing_path(thing, admin: true)
 

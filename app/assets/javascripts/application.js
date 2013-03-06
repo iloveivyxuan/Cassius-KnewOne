@@ -4,6 +4,7 @@
 //= require underscore
 //= require backbone
 //= require handlebars.runtime
+//= require jquery_nested_form
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/load-image
 //= require jquery.sortable

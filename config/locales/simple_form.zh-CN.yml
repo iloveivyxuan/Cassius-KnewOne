@@ -25,7 +25,12 @@ zh-CN:
         photo: '图像'
         stock: '剩余数量'
         batch: '进货数量'
+        is_pre: '是否预售'
         priority: '优先'
+        packages:
+          title: '名称'
+          shop: '购买链接'
+          price: '价格'
       review:
         title: "标题"
         content: "内容"

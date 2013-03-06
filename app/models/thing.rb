@@ -1,28 +1,31 @@
 # -*- coding: utf-8 -*-
 class Thing < Post
+  include Mongoid::Slug
+  slug :title
+
   field :subtitle, type: String, default: ""
   field :official_site, type: String, default: ""
   field :description, type: String, default: ""
   field :photo_ids, type: Array, default: []
+  validates :description, length: { maximum: 2048 }
 
   field :shop, type: String, default: ""
   field :price, type: Float
   field :price_unit, type: String, default: "¥"
   field :stock, type: Integer
-  field :batch, type: Integer
+  field :priority, type: Integer, default: 0
+  field :is_pre, type: Boolean, default: false
 
   field :scores, type: Array, default: []
-  field :priority, type: Integer, default: 0
 
-  include Mongoid::Slug
-  slug :title
+  # https://github.com/jnicklas/carrierwave/issues/81
+  embeds_many :packages, cascade_callbacks: true
+  accepts_nested_attributes_for :packages, allow_destroy: true
 
   has_many :reviews, dependent: :delete
   has_and_belongs_to_many :fanciers, class_name: "User", inverse_of: :fancies
   has_and_belongs_to_many :owners, class_name: "User", inverse_of: :owns
   has_many :lotteries, dependent: :delete
-
-  validates :description, length: { maximum: 2048 }
 
   default_scope desc(:priority, :created_at)
 
@@ -89,5 +92,4 @@ class Thing < Post
       author.inc :karma, -Settings.karma.thing
     end
   end
-
 end

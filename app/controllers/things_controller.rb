@@ -40,15 +40,19 @@ class ThingsController < PostsController
   end
 
   def edit
-    @photos = @thing.photos.map(&:to_jq_upload)
-    render 'new'
+    if params[:admin] and can? :manage, :all
+      render 'edit_admin'
+    else
+      @photos = @thing.photos.map(&:to_jq_upload)
+      render 'new'
+    end
   end
 
   def update
     if @thing.update_attributes(params[:thing])
       redirect_to @thing
     else
-      render 'new'
+      render(params[:admin] ? 'edit_admin' : 'new')
     end
   end
 
