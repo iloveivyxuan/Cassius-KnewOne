@@ -54,6 +54,16 @@ module ThingsHelper
     end
   end
 
+  def thing_reviews(thing)
+    c = thing.reviews.count
+    if c > 0
+      content_tag :span, class: "reviews_count" do
+        content_tag(:i, "", class: "icon-file-alt")
+        .concat content_tag(:small, c)
+      end
+    end
+  end
+
   def thing_share_content(thing)
     %{我在##{brand}#发现了一个酷产品, #{thing_title(thing)}: #{thing_url(thing)}
 }

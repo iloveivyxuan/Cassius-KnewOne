@@ -105,32 +105,10 @@
   @include section-decorate;
   margin: 1em;
 
-  .wrapper {padding: 2em;}
-
-  h3 {
-    font-weight: bold;
-    color: $red;
-  }
-
-  p {
-    color: $fontLightColor;
-    i {
-      margin-right: .5em;
-      color: $red;
-    }
-  }
-
-  ol {
-    list-style: decimal;
-    color: $fontLightColor;
-    margin-left: 1.5em;
-    margin-bottom: 1em;
-  }
+  .wrapper {padding: 1em 2em;}
 
   h4 {
-    border-top: 1px dashed #ccc;
-    margin: 2em 0;
-    padding-top: 2em;
+    margin: 1em 0;
     color: $blue;
 
     a {
@@ -164,6 +142,10 @@
     margin: 1em 0;
     text-align: center;
   }
+
+  padding-bottom: 2em;
+  border-bottom: 1px dashed #ccc;
+  margin-bottom: 2em;
 }
 
 #home_new_reviews {

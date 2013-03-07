@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   def index
     @things = Thing.gt(priority: 0)
     @new_things = Thing.unscoped.desc(:created_at).limit(5)
-    @new_reviews = Review.unscoped.desc(:created_at).limit(3)
+    @new_reviews = Review.unscoped.desc(:created_at).limit(10)
   end
 
   def sandbox

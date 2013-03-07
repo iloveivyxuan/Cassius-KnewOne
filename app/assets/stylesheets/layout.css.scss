@@ -14,6 +14,12 @@ body {
 }
 
 body > header {
+  margin-bottom: 3em;
+
+  @media screen and (max-width: 979px) {
+    margin-bottom: -2em;
+  }
+
   > nav {
     .navbar-inner {
       padding: 0 2%;
@@ -47,6 +53,15 @@ body > header {
         margin-top: 1px;
         
         @media screen and (max-width: 979px) {
+          display: none;
+        }
+      }
+
+      .nav_lotteries {
+        i {color: $red;}
+        margin-top: 1px;
+
+        @media screen and (max-width: 512px) {
           display: none;
         }
       }
