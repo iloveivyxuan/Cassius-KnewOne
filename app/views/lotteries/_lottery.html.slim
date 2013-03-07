@@ -14,6 +14,8 @@ tr.lottery
       = link_to lottery.contribution do
         = thing_photo(lottery.contribution, :small)
         p= lottery.contribution.title
+    - else
+      p.placeholder ?
   td.winner
     - if lottery.winner
       = link_to lottery.winner do
