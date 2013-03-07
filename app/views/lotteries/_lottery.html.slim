@@ -1,22 +1,34 @@
 tr.lottery
   td.date
-    = lottery.date
-    - if can? :update, Lottery
-      = link_to edit_lottery_path(lottery) do
-        i.icon-edit
-      = link_to lottery, method: :delete do
-        i.icon-trash
+    .date_icon
+      p
+        = lottery.date.day
+        span= lottery.date.strftime '%^b'
   td.thing
     = link_to lottery.thing do
       = thing_photo(lottery.thing, :small)
-      h5= lottery.thing.title
+      p= lottery.thing.title
+      /h5= lottery.thing.title
+  td.contribution
+    - if lottery.contribution
+      = link_to lottery.contribution do
+        = thing_photo(lottery.contribution, :small)
+        p= lottery.contribution.title
   td.winner
     - if lottery.winner
       = link_to lottery.winner do
         = user_avatar(lottery.winner, :small)
-        h5= lottery.winner.name 
-- if can? :manage, :all and lottery.winner
+        p= lottery.winner.name
+    - else
+      p.placeholder ?
+
+- if can? :manage, :all
   tr
+    td
+      = link_to edit_lottery_path(lottery) do
+        i.icon-edit
+      = link_to lottery, method: :delete do
+        i.icon-trash
     td
       = lottery.name
       = lottery.phone

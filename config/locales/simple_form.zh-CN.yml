@@ -38,6 +38,7 @@ zh-CN:
         content: '内容'
       lottery:
         date: '中奖日期'
+        contribution_link: "中奖产品链接"
         thing_link: "奖品链接"
         winner_link: "获奖用户链接"
         name: '姓名'

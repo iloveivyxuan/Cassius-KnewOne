@@ -145,7 +145,10 @@
 
   .edits {
     margin: 1em 0;
-    > * {margin-right: 1em;}
+    > * {
+      margin-right: .5em;
+      margin-bottom: .5em;
+    }
   }
 
   @media screen and (max-width: 979px) {
