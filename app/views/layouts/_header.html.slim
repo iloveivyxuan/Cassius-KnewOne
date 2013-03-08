@@ -1,5 +1,5 @@
 header
-  nav.navbar.navbar-static-top
+  nav.navbar.navbar-fixed-top
     .navbar-inner
       = link_to root_path, class: "brand" do
         = logo
@@ -9,6 +9,9 @@ header
           li.nav_new_thing= link_to new_thing_path do
             i.icon-magic
             |  分享产品
+        li.nav_lotteries= link_to lotteries_path do
+          i.icon-gift
+          |  天天有礼
       ul.nav.pull-right
         - if user_signed_in?
           - if unread_messages_count > 0

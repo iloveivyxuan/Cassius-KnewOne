@@ -37,5 +37,9 @@
         i.icon-trash
         | 删除
     - if can? :manage, :all
-      = link_to "管理", edit_thing_path(thing, admin: true)
-
+      = link_to edit_thing_path(thing, admin: true), class: "btn" do
+        i.icon-cogs
+        | 管理
+      = link_to new_lottery_path(contribution_link: thing_url(thing)), class: "btn" do
+        i.icon-gift
+        | 发奖

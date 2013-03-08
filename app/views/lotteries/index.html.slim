@@ -17,19 +17,20 @@
       i.icon-plus.icon-large
       | 评测最好是你拥有的产品，需要图文并茂，可以是一份开箱文，也可以是使用上手的教程，可以参考
       | #{link_to "这里", "/things/jawbone-up-2nd-generation"}的范例
+    p
+      i.icon-thumbs-up.icon-large
+      | 我们每日在这里和官方微博公布获奖者，奖品是网站上的新奇酷产品喔！
+      - if can? :create, Lottery
+        = link_to "发奖", new_lottery_path, class: "btn btn-small pull-right"
 
   section
     table.table
-      caption
-        i.icon-thumbs-up.icon-large
-        | 我们每日在这里和官方微博公布获奖者，奖品是网站上的新奇酷产品喔！
-        - if can? :create, Lottery
-          = link_to "发奖", new_lottery_path, class: "btn btn-small pull-right"
       thead
         tr
-          th.date 日期
-          th.thing 奖品
-          th.winner 获奖者
+          th 日期
+          th 奖品
+          th 获奖产品
+          th 获奖用户
       tbody
         = render @lotteries
     = paginate @lotteries
