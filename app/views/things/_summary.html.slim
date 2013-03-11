@@ -37,6 +37,6 @@
         i.icon-trash
         | 删除
     - if can? :manage, :all
-      = link_to new_lottery_path(contribution_link: thing_url(thing)), class: "btn" do
+      = link_to new_lottery_path(thing: thing), class: "btn" do
         i.icon-gift
         | 发奖

@@ -6,7 +6,11 @@ class LotteriesController < ApplicationController
   end
 
   def new
-    @lottery.contribution_link = params[:contribution_link]
+    if params[:thing]
+      thing = Thing.find params[:thing]
+      @lottery.contribution_link = thing_url(thing)
+      @lottery.winner_link = user_url(thing.author)
+    end
   end
 
   def create

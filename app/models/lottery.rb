@@ -45,6 +45,10 @@ class Lottery
     end
   end
 
+  def winner_link=(link)
+    self.winner = parse_user_link(link)
+  end
+
   def check_thing
     errors.add(:thing_link, "无法解析出正确的奖品") if thing.blank?
   end
@@ -54,15 +58,7 @@ class Lottery
   end
 
   def check_winner
-    return if @winner_link.blank?
-    reg = Regexp.new "http://#{Settings.host}/users/(\\h+)"
-    match_data = reg.match @winner_link
-    if match_data
-      self.winner = User.find match_data[1]
-      errors.add(:winner_link, "未找到指定用户") unless self.winner
-    else
-      errors.add(:winner_link, "无法解析出用户")
-    end
+    errors.add(:winner_link, "无法解析出用户") if winner.blank?
   end
 
   private
@@ -76,5 +72,12 @@ class Lottery
     reg = Regexp.new "http://#{Settings.host}/things/([\\w-]+)"
     match_data = reg.match(link)
     Thing.find match_data[1] if match_data
+  end
+
+  def parse_user_link(link)
+    return if link.blank?
+    reg = Regexp.new "http://#{Settings.host}/users/(\\h+)"
+    match_data = reg.match link
+    User.find match_data[1] if match_data
   end
 end
