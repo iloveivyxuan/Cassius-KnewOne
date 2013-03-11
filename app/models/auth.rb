@@ -54,8 +54,8 @@ class Auth
     data[:info][:image].sub('_normal', '')
   end
 
-  def share(content)
-    send "#{provider}_share", content
+  def share(content, photo_url)
+    send "#{provider}_share", content, photo_url
   end
 
   def follow
@@ -63,23 +63,29 @@ class Auth
     send method if respond_to? method
   end
 
-  def weibo_share(content)
+  def weibo_share(content, photo_url)
     client = WeiboOAuth2::Client.new
     client.get_token_from_hash(access_token: access_token, expires_at: expires_at)
     begin
-      client.statuses.update content
+      if photo_url
+        tmpfile = open photo_url
+        photo = File.open(tmpfile)
+        client.statuses.upload content, photo
+      else
+        client.statuses.update content
+      end
     rescue OAuth2::Error
     end
   end
 
-  def twitter_share(content)
+  def twitter_share(content, photo_url)
     Twitter.configure do |config|
       config.oauth_token = access_token
       config.oauth_token_secret = access_secret
     end
 
     client = Twitter::Client.new oauth_token: access_token,
-      oauth_token_secret: access_secret
+    oauth_token_secret: access_secret
     client.update content
   end
 
@@ -100,7 +106,7 @@ class Auth
     end
 
     client = Twitter::Client.new oauth_token: access_token,
-             oauth_token_secret: access_secret
+    oauth_token_secret: access_secret
     client.follow Settings.twitter.official_uid
   end
 end

@@ -29,8 +29,12 @@ module ThingsHelper
     end
   end
 
+  def thing_photo_url(thing, size)
+    thing.photos.first.url(size)
+  end
+
   def thing_photo(thing, size, options = {})
-    url = thing.photos.first.url(size)
+    url = thing_photo_url(thing, size)
     image_tag url, options.merge(alt: thing_title(thing))
   end
 
