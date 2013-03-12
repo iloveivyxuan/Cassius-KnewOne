@@ -12,7 +12,7 @@ module ThingsHelper
   end
 
   def thing_shop(thing)
-    link_to thing.shop, class: "track_event thing_shop", target: '_blank', data: {
+    link_to buy_thing_path(thing), class: "track_event thing_shop", target: '_blank', data: {
       # analystics
       action: "buy",
       category: "thing",
