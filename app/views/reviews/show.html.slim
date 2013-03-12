@@ -25,7 +25,7 @@ section#review_details
             data: {confirm: "您确定要删除吗?"} do 
               i.icon-trash
     section
-      = raw @review.content
+      = sanitize(raw @review.content)
     footer
       .voting
         - if can? :vote, @review and !@review.voted?(current_user)

@@ -20,7 +20,7 @@ class Making.Views.Comment extends Backbone.View
 
   reply: (e) =>
     e.preventDefault()
-    $('form#create_comment textarea')
-      .focus()
-      .val('@' + @model.get('author').name + ' ')
+    $textarea = $('form#create_comment textarea')
+    $textarea.focus()
+      .val($textarea.val() + ' @' + @model.get('author').name + ' ')
       

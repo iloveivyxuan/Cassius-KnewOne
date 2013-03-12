@@ -69,7 +69,7 @@ module ThingsHelper
   end
 
   def thing_share_content(thing)
-    %{我在##{brand}#发现了一个酷产品, #{thing_title(thing)}: #{thing_url(thing)}
-}
+    topic = user_topic_wrapper(current_user, brand)
+    %{我在#{topic}发现了一个酷产品, #{thing_title(thing)}: #{thing_url(thing)}}
   end
 end
