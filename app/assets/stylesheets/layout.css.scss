@@ -35,6 +35,8 @@ body > header {
       }
 
       form.navbar-search#nav_search {
+        margin-right: 1em;
+
         input.search-query, input.search-query:focus {
           padding-left: 29px;
           margin-top: 2px;
@@ -46,6 +48,10 @@ body > header {
           top: 7px;
           left: 11px;
           color: $navbarText;
+        }
+
+        @media screen and (max-width: 767px) {
+          display: none;
         }
       }
 
