@@ -7,6 +7,8 @@
     = simple_form_for :share, url: share_user_path(current_user), 
     remote: true, html: {"data-type" => "json"} do |f|
       = f.input :content, as: :text, label: false, input_html: {rows: 5, value: content}
+      = f.input :pic, as: :hidden, input_html: {value: pic}
+      
   .modal-footer
     = link_to "取消", "#", class: "btn share_cancel"
     = link_to "发布", "#", class: "btn btn-primary share_submit"

@@ -54,7 +54,6 @@ group :production do
 end
 
 group :development do
-  gem 'thin'
   gem 'quiet_assets'
 
   # deploy

@@ -39,7 +39,7 @@ section#review_details
       data: {signin: user_signed_in?, postid: @review.id.to_s, title: "回复"} 
 
     - if user_signed_in?
-      = render 'shared/share', content: review_share_content(@review) 
+      = render 'shared/share', content: review_share_content(@review), pic: thing_photo_url(@review.thing, :huge)
   
 - content_for :script do
   javascript:

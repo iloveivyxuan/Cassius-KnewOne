@@ -50,7 +50,7 @@ section#thing_content
     data: {signin: user_signed_in?, postid: @thing.id.to_s, title: "短评"} 
 
 - if user_signed_in?
-  = render 'shared/share', content: thing_share_content(@thing) 
+  = render 'shared/share', content: thing_share_content(@thing), pic: thing_photo_url(@thing, :huge)
   
 - content_for :stylesheet do
   = stylesheet_link_tag "redactor"
