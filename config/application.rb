@@ -82,7 +82,7 @@ module Making
       g.fixture_replacement :fabrication
     end
 
-    config.action_view.sanitized_allowed_tags = ['iframe']
+    config.action_view.sanitized_allowed_tags = ['embed']
     config.action_view.sanitized_allowed_attributes = ['style']
   end
 end
