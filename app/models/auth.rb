@@ -64,7 +64,7 @@ class Auth
   end
 
   def twitter_topic_wrapper(topic)
-    "##{topic} "
+    " ##{topic} "
   end
 
   def weibo_image(data)
