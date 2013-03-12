@@ -68,6 +68,11 @@ class Auth
     client.get_token_from_hash(access_token: access_token, expires_at: expires_at)
     begin
       if photo_url
+        #Open-URI has a 10KB limit on StringIO objects, anything above that and it stores it as a temp file.
+        if OpenURI::Buffer.const_defined?('StringMax')
+           OpenURI::Buffer.send :remove_const, 'StringMax'
+        end
+        OpenURI::Buffer.const_set 'StringMax', 0
         tmpfile = open photo_url
         photo = File.open(tmpfile)
         client.statuses.upload content, photo
