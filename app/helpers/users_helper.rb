@@ -30,6 +30,10 @@ module UsersHelper
     send "#{user.current_auth.provider}_home", user.current_auth
   end
 
+  def user_topic_wrapper(user, topic)
+    user.current_auth.topic_wrapper topic
+  end
+
   def twitter_website(auth)
     return if auth.urls["Website"].blank?
     link_to auth.urls["Website"], class: "website",

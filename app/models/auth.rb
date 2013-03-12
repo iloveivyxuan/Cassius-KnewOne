@@ -46,14 +46,6 @@ class Auth
     send "#{provider}_image", data
   end
 
-  def weibo_image(data)
-    data[:extra][:raw_info][:avatar_large] + ".jpg"
-  end
-
-  def twitter_image(data)
-    data[:info][:image].sub('_normal', '')
-  end
-
   def share(content, photo_url)
     send "#{provider}_share", content, photo_url
   end
@@ -61,6 +53,26 @@ class Auth
   def follow
     method = "#{provider}_follow"
     send method if respond_to? method
+  end
+
+  def topic_wrapper(topic)
+    send "#{provider}_topic_wrapper", topic
+  end
+
+  def weibo_topic_wrapper(topic)
+    "##{topic}#"
+  end
+
+  def twitter_topic_wrapper(topic)
+    "##{topic} "
+  end
+
+  def weibo_image(data)
+    data[:extra][:raw_info][:avatar_large] + ".jpg"
+  end
+
+  def twitter_image(data)
+    data[:info][:image].sub('_normal', '')
   end
 
   def weibo_share(content, photo_url)
