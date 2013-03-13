@@ -59,8 +59,8 @@
   footer#thing_footer
     .actions
       .shop
-        = thing_shop(@thing)
         = thing_price(@thing)
+        = thing_shop(@thing)
     .infos
       - if @thing.official_site.present?
         = link_to @thing.official_site, target: "_blank", title: "官方信息" do
