@@ -12,7 +12,9 @@ module ThingsHelper
   end
 
   def thing_shop(thing)
-    link_to buy_thing_path(thing), class: "track_event thing_shop", target: '_blank', data: {
+    link_to buy_thing_path(thing), target: '_blank',
+    class: "track_event thing_shop btn #{'disabled' if thing.shop.blank?}",
+    data: {
       # analystics
       action: "buy",
       category: "thing",
@@ -22,10 +24,8 @@ module ThingsHelper
       title: "暂时不能购买",
       content: "抱歉，目前还没有合适的渠道让您购买到此商品，不过，我们会一直追踪此商品的最新动向，一旦您所在的地区可以购买，我们会第一时间提供最靠谱的购买渠道，敬请期待"
     } do
-        button_tag class: "btn btn-success #{'disabled' if thing.shop.blank?}" do
-          content_tag(:i, "", class: "icon-shopping-cart")
-          .concat content_tag(:span, "购买")
-        end
+      content_tag(:i, "", class: "icon-shopping-cart")
+        .concat content_tag(:span, "购买")
     end
   end
 

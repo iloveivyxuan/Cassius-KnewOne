@@ -1,11 +1,46 @@
+.thing_wrapper {
+  @include section-decorate;
+  @include clearfix;
+  padding: 1em 2em;
+}
+
+#thing_header {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 2em;
+  
+  hgroup {
+    @include clearfix;
+    text-align: center;
+    h1 {
+      font-size: 24px;
+      margin: 0;
+    }
+
+    h2 {
+      margin: 0;
+      line-height: 24px;
+      font-size: 18px;
+      color: $fontLightColor;
+    }
+  }
+
+  nav {
+    margin-top: 1em;
+
+    .nav {
+      margin: 0;
+    }
+  }
+}
+
 #thing_content {
   @include left-layout;
+  width: 70%;
+  padding-right: 1em;
+  border-right: 1px solid #eee;
+  margin-right: 1em;
 
   figure {
-    margin: 0 0 2em 0;
-    padding: 20px;
-    @include section-decorate;
-
     #photo_main {
       img {
         display: block;
@@ -27,7 +62,7 @@
     }
 
     .photo_indicators {
-      @include clearfix();
+      @include clearfix;
       li {
         float: left;
         margin: 1em 1em 1em 0;
@@ -42,45 +77,79 @@
       }
     }
 
-    figcaption {
-      text-align: center;
-      margin-top: 1em;
-      > * {margin-right: 1em;}
-      .title {font-weight: bold;}
+  /* figcaption { */
+  /*   text-align: center; */
+  /*   margin-top: 1em; */
+  /*   > * {margin-right: 1em;} */
+  /*   .title {font-weight: bold;} */
 
-      small.author {
+  /*   small.author { */
+  /*     color: $fontLightColor; */
+  /*     a { */
+  /*       color: $fontLightColor; */
+  /*       margin-left: .5em; */
+  /*     } */
+  /*   } */
+  /* } */
+  }
+
+/* #new_review { */
+/*   margin: 1em 0; */
+/*   a { */
+/*     width: 30%; */
+/*     i {margin-right: 10%;} */
+/*   } */
+/* } */
+
+/* ul#reviews { */
+/*   li.review { */
+/*     margin: 2em 0; */
+/*     border-bottom: none; */
+/*     padding: 2em; */
+/*     @include section-decorate; */
+
+/*     article { */
+/*       header { */
+/*         h3 { */
+/*           background: #f4f4f4; */
+/*           padding: 0 .5em; */
+/*         } */
+/*       } */
+/*     } */
+/*   } */
+/* } */
+}
+
+#thing_footer {
+  @include right-layout;
+  width: 25%;
+
+  .actions {
+    .shop {
+      small {
+        margin-left: 1em;
         color: $fontLightColor;
-        a {
-          color: $fontLightColor;
-          margin-left: .5em;
-        }
+        font-size: 14px;
+        vertical-align: bottom;
       }
     }
   }
 
-  #new_review {
-    margin: 1em 0;
-    a {
-      width: 30%;
-      i {margin-right: 10%;}
+  .author {
+    blockquote {
+      margin-top: 1em;
+      color: $fontLightColor;
     }
   }
 
-  ul#reviews {
-    li.review {
-      margin: 2em 0;
-      border-bottom: none;
-      padding: 2em;
-      @include section-decorate;
-
-      article {
-        header {
-          h3 {
-            background: #f4f4f4;
-            padding: 0 .5em;
-          }
-        }
+  .shops {
+    .price {
+      color: $fontLightColor;
+      small {
+        font-size: $baseFontSize;
+        margin-right: 2em;
       }
+      em {color: $pink;}
     }
   }
 }
@@ -200,7 +269,7 @@
 
   .packages {
     margin: 1em;
-    
+
     h4 {
       color: $fontLightColor;
     }

@@ -110,11 +110,8 @@ window.Making =
       $share.modal()
 
   Shopping: () ->
-    $shop = $(".thing_shop")
-    if $shop.find("button").hasClass("disabled")
-      $shop.popover()
-      $shop.click (e) ->
-        e.preventDefault()
+    $(".thing_shop.disabled").popover().click (e) ->
+      e.preventDefault()
 
   Comments: (el) ->
     $ ->
