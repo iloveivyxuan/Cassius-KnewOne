@@ -27,6 +27,7 @@ zh-CN:
         stock: '剩余数量'
         batch: '进货数量'
         priority: '优先'
+        is_limit: '是否限量'
       review:
         title: "标题"
         content: "内容"

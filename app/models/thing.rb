@@ -11,6 +11,7 @@ class Thing < Post
   field :photo_ids, type: Array, default: []
   field :scores, type: Array, default: []
   field :is_shop, type: Boolean, default: false
+  field :is_limit, type: Boolean, default: false
   field :priority, type: Integer, default: 0
 
   include Mongoid::Slug

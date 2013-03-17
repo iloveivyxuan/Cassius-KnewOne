@@ -34,6 +34,13 @@ header
                 li= link_to users_path do
                   i.icon-group
                   | 用户列表
+                li= link_to guests_path do
+                  i.icon-tasks
+                  | 管理邀请
+              - if current_user.is_guest?
+                li= link_to limits_guests_path do
+                  i.icon-trophy
+                  | 限量产品
               li= link_to current_user do
                 i.icon-user
                 | 个人主页

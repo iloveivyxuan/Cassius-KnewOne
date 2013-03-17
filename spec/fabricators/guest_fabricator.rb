@@ -1,0 +1,2 @@
+Fabricator(:guest) do
+end

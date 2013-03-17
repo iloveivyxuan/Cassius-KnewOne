@@ -23,6 +23,7 @@ hgroup#thing_form_header
       = f.input_field :price, as: :decimal
     = f.input :is_shop, as: :boolean, 
       hint: "选填，如果您自己在代理销售此产品，请选择此项"
+    = f.input :is_limit, as: :boolean
     = f.input :stock, as: :integer
     = f.input :batch, as: :integer
     = f.input :priority, as: :integer
