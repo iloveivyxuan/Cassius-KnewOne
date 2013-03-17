@@ -5,7 +5,7 @@ module ThingsHelper
   end
 
   def thing_price(thing)
-    if thing.price.to_i > 0 and can_buy?
+    if thing.price.to_i > 0 and can_buy?(thing)
       content_tag :small,
         number_to_currency(thing.price, precision: 2, unit: thing.price_unit)
     end
