@@ -45,6 +45,13 @@ Making::Application.routes.draw do
     get 'page/:page', action: :index, on: :collection
   end
 
+  resources :guests do
+    collection do
+      get "activate/:token", action: :activate, as: :activate
+      get "limits"
+    end
+  end
+
   get '/search', to: 'home#search', as: :search
   get '/sandbox', to: 'home#sandbox'
 

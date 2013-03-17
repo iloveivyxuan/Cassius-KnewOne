@@ -85,5 +85,4 @@ class ThingsController < PostsController
   def buy
     redirect_to @thing.shop
   end
-
 end

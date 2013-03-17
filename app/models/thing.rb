@@ -7,12 +7,15 @@ class Thing < Post
   field :official_site, type: String, default: ""
   field :description, type: String, default: ""
   field :photo_ids, type: Array, default: []
+
   validates :description, length: { maximum: 2048 }
 
   field :shop, type: String, default: ""
   field :price, type: Float
   field :price_unit, type: String, default: "¥"
   field :stock, type: Integer
+  field :is_limit, type: Boolean, default: false
+
   field :priority, type: Integer, default: 0
   field :is_pre, type: Boolean, default: false
 

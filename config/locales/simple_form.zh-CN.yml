@@ -27,6 +27,7 @@ zh-CN:
         batch: '进货数量'
         is_pre: '是否预售'
         priority: '优先'
+        is_limit: '是否限量'
         packages:
           title: '名称'
           shop: '购买链接'

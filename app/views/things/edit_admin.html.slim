@@ -9,6 +9,7 @@
     = f.input :stock, as: :integer
     = f.input :priority, as: :integer
     = f.input :is_pre, as: :boolean
+    = f.input :is_limit, as: :boolean
   = f.simple_fields_for :packages 
   = f.link_to_add "新增套装", :packages, class: "btn"
   = f.button :submit, class: "btn-primary btn-large"  

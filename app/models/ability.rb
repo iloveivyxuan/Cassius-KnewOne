@@ -46,5 +46,7 @@ class Ability
     can :read, Comment
     can :read, Lottery
     can :buy,  Thing
+    can :activate, Guest
+    can :limits, Guest
   end
 end

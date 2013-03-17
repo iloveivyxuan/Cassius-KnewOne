@@ -1,0 +1,15 @@
+h1 邀请列表
+
+= simple_form_for Guest.new do |f|
+  = f.button :submit, class: "btn btn-primary"
+
+table.table
+  thead
+    tr
+      th 邀请链接
+      th 激活用户
+      th 操作
+    tbody
+      = render @guests
+
+= paginate @guests

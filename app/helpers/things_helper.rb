@@ -5,15 +5,25 @@ module ThingsHelper
   end
 
   def thing_price(thing)
-    if thing.price.to_i > 0
+    if thing.price.to_i > 0 and can_buy?(thing)
       content_tag :small,
-        number_to_currency(thing.price, precision: 2, unit: thing.price_unit)
+      number_to_currency(thing.price, precision: 2, unit: thing.price_unit)
+    end
+  end
+
+  def can_buy?(thing)
+    if thing.shop.blank?
+      false
+    elsif thing.is_limit?
+      current_user and current_user.is_guest?
+    else
+      true
     end
   end
 
   def thing_shop(thing)
     link_to buy_thing_path(thing), target: '_blank',
-    class: "track_event thing_shop btn #{'disabled' if thing.shop.blank?}",
+    class: "track_event thing_shop btn #{'disabled' unless can_buy?(thing)}",
     data: {
       # analystics
       action: "buy",
@@ -43,7 +53,7 @@ module ThingsHelper
     if c > 0
       content_tag :span, class: "fanciers" do
         content_tag(:i, "", class: "icon-heart")
-        .concat content_tag(:small, c)
+          .concat content_tag(:small, c)
       end
     end
   end
@@ -53,7 +63,7 @@ module ThingsHelper
     if c > 0
       content_tag :span, class: "owners" do
         content_tag(:i, "", class: "icon-bookmark")
-        .concat content_tag(:small, c)
+          .concat content_tag(:small, c)
       end
     end
   end
@@ -63,7 +73,7 @@ module ThingsHelper
     if c > 0
       content_tag :span, class: "reviews_count" do
         content_tag(:i, "", class: "icon-file-alt")
-        .concat content_tag(:small, c)
+          .concat content_tag(:small, c)
       end
     end
   end
