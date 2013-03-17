@@ -1,9 +1,11 @@
-p 
-  | 您的激活链接有效，但激活需要登陆：
-  = link_to user_omniauth_authorize_path(:weibo), class: "btn" do
-    = image_tag "weibo.png"
-    | 微博登陆
-  = link_to user_omniauth_authorize_path(:twitter), class: "btn" do
-    i.icon-twitter
-    | Twitter登陆
+.hero-unit
+  p 还有最后一步就成功了！请选择你的登陆方式：
+  p
+    = link_to user_omniauth_authorize_path(:weibo), class: "btn" do
+      = image_tag "weibo.png"
+      |   微博登陆
+  p
+    = link_to user_omniauth_authorize_path(:twitter), class: "btn" do
+      i.icon-twitter
+      | Twitter登陆
 
