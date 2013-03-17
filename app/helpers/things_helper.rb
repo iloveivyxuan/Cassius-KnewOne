@@ -16,6 +16,8 @@ module ThingsHelper
       false
     elsif thing.is_limit?
       current_user and current_user.is_guest?
+    else
+      true
     end
   end
 
