@@ -11,10 +11,9 @@ window.Making =
       Making.Score()
 
   Analystics: () ->
-    _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://")
     $ ->
       $('<script></script>')
-        .attr('src', _bdhmProtocol+"hm.baidu.com/h.js%3Fb44696b80ba45a90a23982e53f8347d0")
+        .attr('src', "http://hm.baidu.com/h.js%3Fb44696b80ba45a90a23982e53f8347d0")
         .appendTo('body')
       $(".track_event").click ->
         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
