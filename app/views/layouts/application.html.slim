@@ -21,5 +21,7 @@ doctype html
     = render 'layouts/footer'
     = javascript_include_tag "application"
     = yield :script
-    = render 'layouts/analystics' if Rails.env.production?
+    - if Rails.env.production?
+      javascript:
+        Making.Analystics();
 </html>
