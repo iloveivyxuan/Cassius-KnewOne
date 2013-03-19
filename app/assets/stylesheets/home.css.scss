@@ -107,6 +107,22 @@
 
   .wrapper {padding: 1em 2em;}
 
+  .activate_success {
+    background: #eee;
+    font-weight: bold;
+    color: $red;
+    padding: 1em;
+    @include border-radius(10px);
+  }
+
+  .welcome_guests {
+    color: $fontLightColor;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 1em;
+
+    i {color: $red;}
+  }
+
   h4 {
     margin: 1em 0;
     color: $blue;
