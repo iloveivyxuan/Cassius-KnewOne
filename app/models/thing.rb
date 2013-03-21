@@ -25,6 +25,8 @@ class Thing < Post
   embeds_many :packages, cascade_callbacks: true
   accepts_nested_attributes_for :packages, allow_destroy: true
 
+  include Mongoid::MultiParameterAttributes
+
   has_many :reviews, dependent: :delete
   has_and_belongs_to_many :fanciers, class_name: "User", inverse_of: :fancies
   has_and_belongs_to_many :owners, class_name: "User", inverse_of: :owns
@@ -33,7 +35,11 @@ class Thing < Post
   has_many :related_lotteries, class_name: "Lottery",
   inverse_of: :contributions, dependent: :delete
 
-  default_scope desc(:priority, :created_at)
+  validates :description, length: { maximum: 2048 }
+
+  scope :published, -> { lt(created_at: Time.now) }
+
+  default_scope desc(:created_at)
 
   after_update :inc_karma
 

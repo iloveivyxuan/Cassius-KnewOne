@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class GuestsController < ApplicationController
   load_and_authorize_resource
 
@@ -26,7 +27,8 @@ class GuestsController < ApplicationController
           @guest.user = current_user
           @guest.save
         end
-        render "activate_success"
+        flash[:activate] = true
+        redirect_to root_path
       end
     else
       render "activate_fail"

@@ -135,6 +135,12 @@ form.edit_review {
         }
       }
 
+      section {
+        p {
+          word-wrap: break-word;
+        }
+      }
+
       footer {
         color: $fontLightColor;
         span {

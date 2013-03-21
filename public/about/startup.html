@@ -20,6 +20,15 @@
     <!--[if lt IE 9]>
         <script src="lib/js/html5shiv.js"></script>
         <![endif]-->
+
+    <style>
+      .reveal section img {border: none;}
+      .reveal .programmer img {float: left;margin-left:45px;}
+      .reveal .programmer ul {margin-top: 30px;}
+      .reveal .learning img {width: 668px; height: 350px;}
+      .reveal .management img {height: 500px;}
+
+    </style>
   </head>
 
   <body>
@@ -29,7 +38,7 @@
 
         <section>
           <h1>Knewone</h1>
-          <h3>Building a Web Startup: </h3>
+          <h3>Lean Web Startup: </h3>
           <h4>A Programmer's Perspective</h4>
           <p>
             <small>Created by <a href="http://weibo.com/coocooba">@_李路</a></small>
@@ -37,117 +46,219 @@
         </section>
 
         <section>
-          <h2>1. Start</h2>
+          <h2>Summary</h2>
+          <ol>
+            <li>Start</li>
+            <li>Stage</li>
+            <li>Stack</li>
+          </ol>
         </section>
 
         <section>
-          <h3>Vision</h3>
-          <p>
-            How to get startup ideas?
-          </p>
-          <p>
-            <q cite="http://www.paulgraham.com/startupideas.html">
-              Live in the future, then build what seems interesting.
-            </q>
-          </p>
+          <h2>1. Start</h2>
+          <img src="images/start_point.jpg">
+        </section>
+
+        <section>
+          <section>
+            <h3>Vision</h3>
+            <img src="images/vision.jpg">
+            <p>
+              How to get startup ideas?
+            </p>
+            <p>
+              <q cite="http://www.paulgraham.com/startupideas.html">
+                Live in the future, then build what seems interesting.
+              </q>
+            </p>
+          </section>
+          <section>
+            <p>
+              <q cite="Zen and the Art of Motorcycle Maintenance">
+                You want to know how to paint a perfect painting? It's easy. Make yourself perfect and then just paint naturally.
+              </q>
+            </p>
+          </section>
         </section>
 
         <section>
           <h3>Execution</h3>
+          <img src="images/runway.jpg">
+          <p>Take filght</p>
           <ul>
-            <li>Why every startup is experiment?</li>
-            <li>What's the runway of a startup?</li>
-            <li>How to be alive?</li>
+            <li>How long is your runway?</li>
+            <li>How many pivots can you do?</li>
           </ul>
         </section>
 
         <section>
           <h3>Team</h3>
+          <img src="images/team.png">
+          <p>How to operating a lean team?</p>
           <ul>
+            <li>Be a Broad-Based Contributor</li>
+            <li>Always be Observing</li>
             <li>Make decisions</li>
-            <li>Be proud</li>
           </ul>
         </section>
 
         <section>
-          <h3>Programmer</h3>
-          <ul>
-            <li>Be a hacker, not an engineer</li>
-            <li>Living on the edge</li>
-            <li>Pursue quality</li>
-          </ul>
+          <section class="programmer">
+            <h3>Programmer</h3>
+            <pre><code class="no-highlight">
+  qsort :: Ord a => [a] -> [a]
+  qsort [] = []
+  qsort (p:xs) = qsort [x | x<-xs, x < p] ++ [p] ++ qsort [x | x<-xs, x >= p]
+            </code></pre>
+            <img src="images/programmer.png">
+            <ul>
+              <li>Be a Hacker</li>
+              <li>Living on the Edge</li>
+              <li>Have Sense</li>
+            </ul>
+          </section>
+          <section>
+            <p>How to be a hacker?</p>
+            <p>
+              <q cite="Richard Stallman">
+                What they had in common was mainly love of excellence and programming. They wanted to make their programs that they used be as good as they could. They also wanted to make them do neat things. They wanted to be able to do something in a more exciting way than anyone believed possible and show "Look how wonderful this is. I bet you didn't believe this could be done".
+              </q>
+            </p>
+          </section>
         </section>
 
         <section>
           <h2>2. Stage</h2>
+          <img src="images/stage.jpg">
         </section>
 
         <section>
+          <h3>Loop</h3>
+          <img src="images/lean.png">
+        </section>
+
+        <section>
+          <section>
           <h3>Build</h3>
           <h4>Make Minimum Viable Products</h4>
+          <img src="images/mvp.png">
           <ul>
             <li>How to do minimum setup?</li>
             <li>How to do minimum design?</li>
             <li>How to do minimum programming?</li>
-            <li>DIY and DRY</li>
           </ul>
+          </section>
+          <section>
+            <h3>What's the MVP?</h3>
+            <img src="images/mvp2.png">
+          </section>
         </section>
 
         <section>
           <h3>Measure</h3>
-          <h4>All about customers</h4>
+          <h4>Customer Behaviour</h4>
+          <img src="images/customers.jpg">
           <ul>
             <li>Customer engagement</li>
             <li>Customer analytics</li>
             <li>Customer feedbacks</li>
-            <li>Customers drive a pivot</li>
           </ul>
         </section>
 
         <section>
-          <h3>Management</h3>
-          <ul>
-            <li>Priority of tasks</li>
-            <li>Tracking issues</li>
-            <li>As simple as you can</li>
-          </ul>
+          <section class="learning">
+            <h3>Learn</h3>
+            <h4>What Customers Want</h4>
+            <img src="images/learn.jpg">
+            <ul>
+              <li>Priority of tasks</li>
+              <li>Tracking issues</li>
+              <li>Pivot</li>
+            </ul>
+          </section>
+          <section class="management">
+            <h3>Management</h3>
+            <img src="images/kiss.jpg">
+          </section>
         </section>
 
         <section>
           <h2>3. Stack</h2>
+          <img src="images/stack.jpg">
         </section>
 
         <section>
+          <section>
           <h3>Framework</h3>
+          <img src="images/omakase.jpg">
+          <h4>Omakase</h4>
           <ul>
-            <li>Why full-stack?</li>
-            <li>Why Ruby on Rails</li>
-            <li>Join the community</li>
+            <li>Programmer Happiness</li>
+            <li>Sustainable Productivity</li>
+            <li>Community</li>
           </ul>
+          </section>
+          <section>
+            <h3>Ruby on Rails</h3>
+            <img src="images/rails.png">
+            <h4>Full Stack Omakase</h4>
+          </section>
+          <section>
+            <h3>Github</h3>
+            <img src="images/github.png">
+            <h4>Build software better, together</h4>
+          </section>
         </section>
 
         <section>
+          <section>
           <h3>Frontend</h3>
+          <img src="images/frontend.jpg">
           <ul>
             <li>Modernize your product</li>
             <li>Be responsive</li>
             <li>How to design the interface?</li>
             <li>Never reinvent the wheels</li>
           </ul>
+          </section>
+          <section>
+            <h3>Responsive Design</h3>
+            <img src="images/responsive.png">
+            <h4>Mobile first</h4>
+          </section>
+          <section>
+            <h3>Twitter Bootstrap</h3>
+            <img src="images/bootstrap.png">
+            <h4>Front-end framework for faster and easier web development</h4>
+          </section>
         </section>
 
         <section>
+          <section>
           <h3>Backend</h3>
+          <img src="images/backend.jpg">
           <ul>
             <li>Database for startups</li>
             <li>How to deploy?</li>
             <li>Monitor running status</li>
             <li>Premature optimization is the root of all evil</li>
           </ul>
+          </section>
+          <section>
+            <h3>Cloud</h3>
+            <img src="images/cloud.jpg">
+            <p>SASS, PAAS and Storage help startups</p>
+          </section>
+          <section>
+            <h3>MongoDB</h3>
+            <img src="images/mongo.jpg">
+            <h4>Nosql Database</h4>
+          </section>
         </section>
 
         <section>
           <h2>THE END</h2>
+          <p>Powered by <a href="https://github.com/hakimel/reveal.js">Reveal.js</a></p>
         </section>
 
       </div>

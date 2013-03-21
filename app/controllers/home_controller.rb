@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
-    @things = Thing.gt(priority: 0)
-    @new_things = Thing.unscoped.desc(:created_at).limit(5)
+    @things = Thing.unscoped.published.gt(priority: 0).desc(:priority, :created_at)
+    @new_things = Thing.published.limit(5)
     @new_reviews = Review.unscoped.desc(:created_at).limit(10)
   end
 

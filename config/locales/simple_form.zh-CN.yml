@@ -28,6 +28,7 @@ zh-CN:
         is_pre: '是否预售'
         priority: '优先'
         is_limit: '是否限量'
+        created_at: '创建时间'
         packages:
           title: '名称'
           shop: '购买链接'
