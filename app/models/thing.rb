@@ -13,9 +13,12 @@ class Thing < Post
   field :is_shop, type: Boolean, default: false
   field :is_limit, type: Boolean, default: false
   field :priority, type: Integer, default: 0
+  field :published_at, type: DateTime
 
   include Mongoid::Slug
   slug :title
+
+  include Mongoid::MultiParameterAttributes
 
   has_many :reviews, dependent: :delete
   has_and_belongs_to_many :fanciers, class_name: "User", inverse_of: :fancies
@@ -27,7 +30,9 @@ class Thing < Post
 
   validates :description, length: { maximum: 2048 }
 
-  default_scope desc(:priority, :created_at)
+  scope :published, -> { lt(created_at: Time.now) }
+
+  default_scope desc(:created_at)
 
   after_update :inc_karma
 

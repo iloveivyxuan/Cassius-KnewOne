@@ -27,6 +27,7 @@ hgroup#thing_form_header
     = f.input :stock, as: :integer
     = f.input :batch, as: :integer
     = f.input :priority, as: :integer
+    = f.input :created_at, as: :datetime
   = f.button :submit, class: "btn-primary btn-large"
 
 = simple_form_for Photo.new, html: {class: "pull-right"} do |f|
