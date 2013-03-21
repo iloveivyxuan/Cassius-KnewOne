@@ -10,6 +10,7 @@ class LotteriesController < ApplicationController
       thing = Thing.find params[:thing]
       @lottery.contribution_link = thing_url(thing)
       @lottery.winner_link = user_url(thing.author)
+      @lottery.date = thing.created_at
     end
   end
 
