@@ -1,8 +1,10 @@
-section#home_things
-  .wrapper
-    ul= render @things, size: :middle
+.home_wrapper
 
-aside#home_gifts
-  .wrapper= render 'gifts'
-  
+  section#home_things
+    .wrapper
+      ul= render @things, size: :middle
+
+  aside#home_gifts
+    .wrapper= render 'gifts'
+
   

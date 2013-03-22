@@ -23,7 +23,7 @@ module ThingsHelper
 
   def thing_shop(thing)
     link_to buy_thing_path(thing), target: '_blank',
-    class: "track_event thing_shop btn #{'disabled' unless can_buy?(thing)}",
+    class: "track_event thing_shop btn btn-success #{'disabled' unless can_buy?(thing)}",
     data: {
       # analystics
       action: "buy",

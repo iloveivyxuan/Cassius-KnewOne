@@ -1,33 +1,8 @@
 .summary_wrapper
-  hgroup
-    h1= thing.title
-    h2= thing.subtitle
-  - unless thing.shop.blank?
-    .price
-      = thing_price(thing)
-      - unless thing.stock.blank?
-        span
-          | 剩余
-          em= "#{thing.stock}"
   .actions
-    .shop
-      = thing_shop(thing)
-    - unless thing.official_site.blank?
-      .official_site
-        = link_to thing.official_site, target: "_blank" do
-          = button_tag class: "btn" do
-            i.icon-info-sign
-            span 官方网站
     = render "shared/share_button"
     = render "things/fancy", thing: thing
     = render "things/own", thing: thing
-  .author
-    = link_to thing.author do
-      = user_avatar(thing.author, :tiny)
-    = link_to thing.author do
-      = thing.author.name
-  blockquote
-    = thing.description
   .edits
     - if can? :update, thing
       = link_to edit_thing_path(thing), class: "btn" do

@@ -1,5 +1,18 @@
 # -*- coding: utf-8 -*-
 module ApplicationHelper
+  def present(object, klass = nil)
+    klass ||= "#{object.class}Presenter".constantize
+    presenter = klass.new(object, self)
+    yield presenter if block_given?
+    presenter
+  end
+
+  def link_to_with_icon(body, icon_class, options = {}, html_options = {})
+    link_to options, html_options do
+      content_tag(:i, "", class: "icon-#{icon_class}") + body
+    end
+  end
+
   def brand
     "knewone"
   end

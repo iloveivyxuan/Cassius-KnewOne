@@ -1,45 +1,47 @@
 - provide :title, @user.name
 
-header#user_summary
-  .summary_wrapper
-    .avatar= user_avatar(@user, :small)
-    h2.name= @user.name
-    .karma
-      .rank Lv.#{@user.rank}
-      .progress title="#{@user.progress}%"
-        .bar style="width: #{@user.progress}%;"
-    .urls
-      = user_website(@user)
-      = user_provider(@user)
-    address = user_location(@user)
-    blockquote= user_desciption(@user)
+.user_wrapper
 
-section#user_content
-  .tabbable.content_wrapper
-    ul.nav.nav-tabs
-      li.active
-        = link_to "#fancies", data: {toggle: "tab"} do
-          | 喜欢
-          b #{@fancies.count}
-      li
-        = link_to "#owns", data: {toggle: "tab"} do
-          | 拥有
-          b #{@owns.count}
-      li
-        = link_to "#reviews", data: {toggle: "tab"} do
-          | 评测
-          b #{@reviews.count}
-      li
-        = link_to "#things", data: {toggle: "tab"} do
-          | 分享
-          b #{@things.count}
-    .tab-content
-      ul#fancies.tab-pane.active
-        = render @fancies, size: :normal
-      ul#owns.tab-pane
-        = render @owns, size: :normal
-      ul#reviews.tab-pane
-        = render partial: "review", collection: @reviews
-      ul#things.tab-pane
-        = render @things, size: :normal
+  header#user_summary
+    .summary_wrapper
+      .avatar= user_avatar(@user, :small)
+      h2.name= @user.name
+      .karma
+        .rank Lv.#{@user.rank}
+        .progress title="#{@user.progress}%"
+          .bar style="width: #{@user.progress}%;"
+      .urls
+        = user_website(@user)
+        = user_provider(@user)
+      address = user_location(@user)
+      blockquote= user_desciption(@user)
+
+  section#user_content
+    .tabbable.content_wrapper
+      ul.nav.nav-tabs
+        li.active
+          = link_to "#fancies", data: {toggle: "tab"} do
+            | 喜欢
+            b #{@fancies.count}
+        li
+          = link_to "#owns", data: {toggle: "tab"} do
+            | 拥有
+            b #{@owns.count}
+        li
+          = link_to "#reviews", data: {toggle: "tab"} do
+            | 评测
+            b #{@reviews.count}
+        li
+          = link_to "#things", data: {toggle: "tab"} do
+            | 分享
+            b #{@things.count}
+      .tab-content
+        ul#fancies.tab-pane.active
+          = render @fancies, size: :normal
+        ul#owns.tab-pane
+          = render @owns, size: :normal
+        ul#reviews.tab-pane
+          = render partial: "review", collection: @reviews
+        ul#things.tab-pane
+          = render @things, size: :normal
 
