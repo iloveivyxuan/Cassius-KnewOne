@@ -4,9 +4,9 @@
       div class="item #{'active' if index == 0}"
         = image_tag photo.url(:huge), alt: photo.name
   - if thing.photos.count > 1
-    = link_to_with_icon "", "angle-left", "#photo_main", data: {slide: "prev"},
+    = link_to_with_icon "", "icon-angle-left", "#photo_main", data: {slide: "prev"},
     class: "carousel-control left hide"
-    = link_to_with_icon "", "angle-right", "#photo_main", data: {slide: "next"},
+    = link_to_with_icon "", "icon-angle-right", "#photo_main", data: {slide: "next"},
     class: "carousel-control right hide"
   - if thing.photos.count > 1
     ul.photo_indicators

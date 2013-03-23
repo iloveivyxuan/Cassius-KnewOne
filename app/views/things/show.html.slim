@@ -13,9 +13,12 @@
       .top_review= thing.top_review
 
     footer#thing_footer
+      .shop
+        = thing.price
+        = thing.shop
       .actions
-        .price= thing.price
-        .shop= thing.shop
+        .fanciers= render "fancy", thing_presenter: thing
+/        .owners= render "own", thing_presenter: thing
 /     .infos
       
 /       - if @thing.official_site.present?

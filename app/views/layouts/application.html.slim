@@ -19,6 +19,7 @@ doctype html
     section.container-fluid
       = yield
     = render 'layouts/footer'
+    = render 'shared/login'
     = javascript_include_tag "application"
     = yield :script
     = render 'layouts/analystics' if Rails.env.production?

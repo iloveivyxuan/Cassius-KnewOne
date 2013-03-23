@@ -1,0 +1,3 @@
+<% present @thing do |thing_presenter| %>
+   $(".fanciers").html("<%=j render('fancy', thing_presenter: thing_presenter) %>")
+<% end %>

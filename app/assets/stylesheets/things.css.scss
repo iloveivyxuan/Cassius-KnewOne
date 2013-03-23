@@ -124,18 +124,33 @@
   @include right-layout;
   width: 171px;
 
-  .actions {
-    > * {margin-bottom: 1em;}
+  > * {
+    padding-bottom: 2em;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 2em;
+  }
 
-    .price {
+  .shop {
+    small {
+      display: block;
       color: $fontLightColor;
       font-size: 1.5em;
+      margin-bottom: .5em;
     }
 
-    .shop {
-      a {
-        width: 60%;
-        i {margin-right: 1em;}
+    a {
+      width: 120px;
+      i {margin-right: 1em;}
+    }
+  }
+
+  .actions {
+    padding-left: 10px;
+    > * {
+      i {margin-right: 1em;}
+      small {
+        margin-left: 1em;
+        color: $fontLightColor;
       }
     }
   }

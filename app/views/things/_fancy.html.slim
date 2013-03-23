@@ -1,7 +1,12 @@
-- if user_signed_in?
-  = form_tag fancy_thing_path(thing), remote: true, class: "fancy", 
-    data: {type: 'html'} do
-    - if thing.fancied? current_user
-      = render 'things/unfancy_button', thing: thing
-    - else
-      = render 'things/fancy_button', thing: thing
+- if thing_presenter.fancied?
+  = link_to_with_icon "", "icon-heart icon-2x", fancy_thing_path(thing_presenter.thing), 
+  remote: true, method: :post, title: "取消喜欢此产品"
+- elsif user_signed_in?
+  = link_to_with_icon "", "icon-heart-empty icon-2x", fancy_thing_path(thing_presenter.thing), 
+  remote: true, method: :post, title: "喜欢此产品"
+- else
+  = link_to_with_icon "", "icon-heart-empty icon-2x", "#", title: "喜欢此产品", 
+  data: {toggle: "modal", target: "#login-modal"}
+
+= thing_presenter.fanciers_count
+small 喜欢

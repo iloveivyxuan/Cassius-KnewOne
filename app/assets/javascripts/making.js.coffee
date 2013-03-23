@@ -24,7 +24,6 @@ window.Making =
 
   ThingShow: ->
     $ ->
-      Making.Fancy()
       Making.Own()
       Making.Sharing()
       Making.Shopping()
@@ -40,7 +39,6 @@ window.Making =
     $ ->
       Making.Voting()
       Making.Sharing()
-      Making.Fancy()
       Making.Own()
       Making.Shopping()
     
@@ -55,14 +53,6 @@ window.Making =
       fixed: true
       minHeight: 400
       lang: 'zh_cn'
-
-  Fancy: () ->
-    $('.fancy').on "ajax:success", (e, html, status, xhr) ->
-      $(@).find('button').replaceWith html
-    $('.fancy .unfancy').hover (e) ->
-      $(this).find('span').text "取消喜欢"
-    , (e) ->
-      $(this).find('span').text "已喜欢"
 
   Own: () ->
     $('.own').on "ajax:success", (e, html, status, xhr) ->

@@ -9,7 +9,7 @@ module ApplicationHelper
 
   def link_to_with_icon(body, icon_class, options = {}, html_options = {})
     link_to options, html_options do
-      content_tag(:i, "", class: "icon-#{icon_class}") + body
+      content_tag(:i, "", class: icon_class) + body
     end
   end
 

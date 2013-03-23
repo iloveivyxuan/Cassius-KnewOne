@@ -60,12 +60,13 @@ class ThingsController < PostsController
   def fancy
     if @thing.fancied? current_user
       @thing.unfancy current_user
-      render "_fancy_button", locals: {thing: @thing}, layout: false
     else
       @thing.fancy current_user
-      render "_unfancy_button", locals: {thing: @thing}, layout: false
     end
-
+    respond_to do |format|
+      format.html { redirect_to @thing }
+      format.js
+    end
   end
 
   def own
