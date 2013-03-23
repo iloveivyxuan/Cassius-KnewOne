@@ -15,9 +15,13 @@ class ThingPresenter < ApplicationPresenter
   end
 
   def author
-    link_to thing.author do
-      user_avatar(thing.author, :tiny).concat thing.author.name
+    img = link_to thing.author do
+      user_avatar(thing.author, :tiny)
     end
+    name = link_to thing.author do
+      thing.author.name
+    end
+    img.concat name
   end
 
   def price
@@ -29,7 +33,7 @@ class ThingPresenter < ApplicationPresenter
 
   def shop
     link_to_with_icon "购买", "icon-shopping-cart icon-large", buy_thing_path(thing), target: '_blank',
-    class: "track_event btn btn-success #{'disabled' unless can_buy?}",
+    class: "track_event thing_shop btn btn-success btn-large #{'disabled' unless can_buy?}",
     data: {
       # analystics
       action: "buy",
@@ -42,12 +46,30 @@ class ThingPresenter < ApplicationPresenter
     }
   end
 
+  def official_site
+    if thing.official_site.present?
+      link_to_with_icon "", "icon-info-sign", thing.official_site, target: "_blank", title: "官方信息"
+    end
+  end
+
   def fancied?
     user_signed_in? and thing.fancied?(current_user)
   end
 
   def fanciers_count
     content_tag :span, thing.fanciers.count, class: "fanciers_count"
+  end
+
+  def owned?
+    user_signed_in? and thing.owned?(current_user)
+  end
+
+  def owners_count
+    content_tag :span, thing.owners.count, class: "owners_count"
+  end
+
+  def owners
+    thing.owners.desc(:created_at).limit(10)
   end
 
   private

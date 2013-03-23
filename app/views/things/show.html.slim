@@ -1,85 +1,37 @@
-- present @thing do |thing|
-  - provide :title, thing.full_title
+- present @thing do |tp|
+  - provide :title, tp.full_title
 
   .thing_wrapper
 
-    header#thing_header= render "header", thing: thing
+    header#thing_header= render "header", tp: tp
 
     section#thing_content
-      .photos= render "carousel", thing: thing
-      .author
-        blockquote= thing.description
-        = thing.author
-      .top_review= thing.top_review
+      .photos= render "carousel", tp: tp
+      .author_desc
+        .author= tp.author
+        blockquote= tp.description
+      .top_review
+        = tp.top_review
 
     footer#thing_footer
       .shop
-        = thing.price
-        = thing.shop
+        = tp.price
+        = tp.shop
       .actions
-        .fanciers= render "fancy", thing_presenter: thing
-/        .owners= render "own", thing_presenter: thing
-/     .infos
-      
-/       - if @thing.official_site.present?
-/         = link_to @thing.official_site, target: "_blank", title: "官方信息" do
-/           i.icon-info-sign
-/       = link_to "#", title: "RSS" do
-/         i.icon-rss
+        .fanciers= render "fancy", thing_presenter: tp
+        .owners= render "own", thing_presenter: tp
+
      
+/   - if can? :create, Review
+/     #new_review
+/       = link_to new_thing_review_path(@thing), class: "btn btn-primary" do
+/         i.icon-pencil
+/         | 发布评测
 
+/   ul#reviews
+/     = render partial: "review", collection: @reviews
 
-/ / section#thing_content
-/ /   figure
-/ /     #photo_main.carousel.slide
-/ /       .carousel-inner
-/ /         - @thing.photos.each_with_index do |photo, index|
-/ /           div class="item #{'active' if index == 0}"
-/ /             = image_tag photo.url(:huge), alt: photo.name
-/ /       - if @thing.photos.count > 1
-/ /         = link_to "#photo_main", class: "carousel-control left hide", data: {slide: "prev"} do
-/ /           i.icon-angle-left
-/ /         = link_to "#photo_main", class: "carousel-control right hide", data: {slide: "next"} do
-/ /           i.icon-angle-right
-/ /     - if @thing.photos.count > 1
-/ /       ol.photo_indicators
-/ /         - @thing.photos.each_with_index do |photo, index|
-/ /           = content_tag :li, data: {target: "#photo_main", "slide-to" => index} do
-/ /             = image_tag photo.url(:small), alt: photo.name
-/ /     figcaption
-/ /       span.title= @thing.title
-/ /       small.author
-/ /         | by
-/ /         = link_to @thing.author.name, @thing.author
-/ /       = thing_fanciers(@thing)
-/ /       = thing_owners(@thing)
-
-/ /   - if can? :create, Review
-/ /     #new_review
-/ /       = link_to new_thing_review_path(@thing), class: "btn btn-primary" do
-/ /         i.icon-pencil
-/ /         | 发布评测
-
-/ /   ul#reviews
-/ /     = render partial: "review", collection: @reviews
-
-/ / - if @thing.packages.present?
-/ /   aside#thing_packages
-/ /     .packages
-/ /       h4
-/ /         i.icon-inbox
-/ /         | 套装
-/ /       ul= render partial: "package", collection: @thing.packages
-
-/ / - if user_signed_in? or @thing.comments.count > 0
-/ /   = content_tag :aside, "", id: "thing_comments", 
-/ /     data: {signin: user_signed_in?, postid: @thing.id.to_s, title: "短评"} 
-
-/ / - if user_signed_in?
-/ /   = render 'shared/share', content: thing_share_content(@thing), pic: thing_photo_url(@thing, :huge)
-  
-
-/ - content_for :script do
-/   javascript:
-/     Making.ThingShow();
+- content_for :script do
+  javascript:
+    Making.ThingShow();
 

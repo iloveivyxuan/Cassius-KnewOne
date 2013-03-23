@@ -63,6 +63,7 @@ class ThingsController < PostsController
     else
       @thing.fancy current_user
     end
+
     respond_to do |format|
       format.html { redirect_to @thing }
       format.js
@@ -72,10 +73,13 @@ class ThingsController < PostsController
   def own
     if @thing.owned? current_user
       @thing.unown current_user
-      render "_own_button", locals: {thing: @thing}, layout: false
     else
       @thing.own current_user
-      render "_unown_button", locals: {thing: @thing}, layout: false
+    end
+
+    respond_to do |format|
+      format.html { redirect_to @thing }
+      format.js
     end
   end
 

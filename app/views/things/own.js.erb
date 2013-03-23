@@ -1,0 +1,3 @@
+<% present @thing do |thing_presenter| %>
+   $(".owners").html("<%=j render('own', thing_presenter: thing_presenter) %>")
+<% end %>

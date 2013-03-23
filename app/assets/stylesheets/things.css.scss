@@ -32,6 +32,14 @@
     .nav {
       margin: 0;
     }
+
+    .operations {
+      float: right;
+      text-align: right;
+      width: 25%;
+      margin-top: .4em;
+      i {margin-right: 1em;}
+    }
   }
 }
 
@@ -98,21 +106,17 @@
     }
   }
 
-  .author {
+  .author_desc {
     @include clearfix;
 
     blockquote {
-      float: left;
-      width: 60%;
-      margin-bottom: 0;
       color: $fontLightColor;
+      margin-bottom: 0;
     }
 
-    a {
+    .author {
       float: right;
-      display: block;
-      width: 20%;
-      img {margin-right: 1em;}
+      margin: 0 2em;
     }
 
   }
@@ -133,24 +137,38 @@
   .shop {
     small {
       display: block;
-      color: $fontLightColor;
-      font-size: 1.5em;
-      margin-bottom: .5em;
+      font-size: 1.2em;
+      margin-bottom: 1em;
     }
 
     a {
-      width: 120px;
-      i {margin-right: 1em;}
+      width: 100px;
+      i {
+        margin-right: 1.5em;
+        margin-left: -1em;
+      }
     }
   }
 
   .actions {
     padding-left: 10px;
     > * {
-      i {margin-right: 1em;}
+      margin-bottom: 1em;
+      i {
+        vertical-align: -3px;
+        margin-right: 1em;
+      }
       small {
         margin-left: 1em;
         color: $fontLightColor;
+      }
+    }
+
+    .owners {
+      margin-left: 2px;
+      ul {
+        a {color: $blue;}
+        img {margin-right: .7em;}
       }
     }
   }

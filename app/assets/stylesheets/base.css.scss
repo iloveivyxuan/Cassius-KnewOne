@@ -52,7 +52,7 @@
     text-align: center;
     margin: 1em 0 .5em;
     height: 20px;
-    font-size: 14px;
+    font-size: $baseFontSize;
     overflow: hidden;
     color: $fontLightColor;
   }
@@ -121,7 +121,7 @@ time {
 .author {
   margin-top: 1em;
   > * {
-    margin-right: .5em;
+    margin-right: 1em;
   }
 
   img {
@@ -180,13 +180,9 @@ time {
   }
 }
 
-.fanciers {
+.fanciers, .owners {
   color: $red;
   a {color: $red;}
-}
-
-.owners {
-  color: $green;
 }
 
 .reviews_count {
@@ -203,4 +199,11 @@ time {
 .redactor_editor {
   ul {list-style: disc;}
   ol {list-style: decimal;}
+}
+
+#login-modal {
+  .modal-body {
+    text-align: center;
+    .weibo_sign_in img {vertical-align: -5px;}
+  }
 }

@@ -1,7 +1,14 @@
-- if user_signed_in?
-  = form_tag own_thing_path(thing), remote: true, class: "own", 
-    data: {type: 'html'} do
-    - if thing.owned? current_user
-      = render 'things/unown_button', thing: thing
-    - else
-      = render 'things/own_button', thing: thing
+- if thing_presenter.owned?
+  = link_to_with_icon "", "icon-check icon-2x", own_thing_path(thing_presenter.thing), 
+  remote: true, method: :post, title: "取消拥有此产品"
+- elsif user_signed_in?
+  = link_to_with_icon "", "icon-check-empty icon-2x", own_thing_path(thing_presenter.thing), 
+  remote: true, method: :post, title: "拥有此产品"
+- else
+  = link_to_with_icon "", "icon-check-empty icon-2x", "#", title: "拥有此产品", 
+  data: {toggle: "modal", target: "#login-modal"}
+
+= thing_presenter.owners_count
+small 拥有
+
+ul= render thing_presenter.owners

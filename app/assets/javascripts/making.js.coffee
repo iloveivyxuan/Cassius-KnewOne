@@ -24,7 +24,6 @@ window.Making =
 
   ThingShow: ->
     $ ->
-      Making.Own()
       Making.Sharing()
       Making.Shopping()
 
@@ -39,7 +38,6 @@ window.Making =
     $ ->
       Making.Voting()
       Making.Sharing()
-      Making.Own()
       Making.Shopping()
     
   Editor: ($form) ->
@@ -53,10 +51,6 @@ window.Making =
       fixed: true
       minHeight: 400
       lang: 'zh_cn'
-
-  Own: () ->
-    $('.own').on "ajax:success", (e, html, status, xhr) ->
-      $(@).find('button').replaceWith html
 
   Rating: ($raty, score, name) ->
     $raty.raty

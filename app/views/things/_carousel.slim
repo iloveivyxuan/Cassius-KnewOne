@@ -1,15 +1,15 @@
 #photo_main.carousel.slide
   .carousel-inner
-    - thing.photos.each_with_index do |photo, index|
+    - tp.photos.each_with_index do |photo, index|
       div class="item #{'active' if index == 0}"
         = image_tag photo.url(:huge), alt: photo.name
-  - if thing.photos.count > 1
+  - if tp.photos.count > 1
     = link_to_with_icon "", "icon-angle-left", "#photo_main", data: {slide: "prev"},
     class: "carousel-control left hide"
     = link_to_with_icon "", "icon-angle-right", "#photo_main", data: {slide: "next"},
     class: "carousel-control right hide"
-  - if thing.photos.count > 1
+  - if tp.photos.count > 1
     ul.photo_indicators
-      - thing.photos.each_with_index do |photo, index|
+      - tp.photos.each_with_index do |photo, index|
         = content_tag :li, class: 'thumbnail', data: {target: "#photo_main", "slide-to" => index} do
           = image_tag photo.url(:small), alt: photo.name
