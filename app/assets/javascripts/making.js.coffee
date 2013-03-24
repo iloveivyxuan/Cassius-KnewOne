@@ -10,6 +10,7 @@ window.Making =
         $(".spinning").remove()
       Making.Score()
       Making.Sharing()
+      $(".popover-toggle").popover()
       $(".track_event").click ->
         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
 
@@ -23,10 +24,6 @@ window.Making =
       view = new Making.Views.ThingsNew
         el: "form.thing_form"
 
-  ThingShow: ->
-    $ ->
-      Making.Shopping()
-
   ReviewEdit: () ->
     $ ->
       Making.Editor $('form.edit_review')
@@ -34,11 +31,6 @@ window.Making =
       $el.replaceWith('<div class="rating"></div>')
       Making.Rating $('.rating'), $el.val(), $el.attr('name')
 
-  ReviewShow: () ->
-    $ ->
-      Making.Voting()
-      Making.Shopping()
-    
   Editor: ($form) ->
     csrf_token = $('meta[name=csrf-token]').attr('content');
     csrf_param = $('meta[name=csrf-param]').attr('content');
@@ -80,10 +72,6 @@ window.Making =
 
     $share.on "submit form", ->
       $share.modal("hide")
-
-  Shopping: () ->
-    $(".thing_shop.disabled").popover().click (e) ->
-      e.preventDefault()
 
   Comments: (el) ->
     $ ->

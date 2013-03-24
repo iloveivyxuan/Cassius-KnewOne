@@ -17,6 +17,6 @@ class UsersController < ApplicationController
 
   def share
     current_user.current_auth.share  params[:share][:content], params[:share][:pic]
-    render layout: false
+    render nothing: true
   end
 end

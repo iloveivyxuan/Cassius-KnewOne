@@ -13,7 +13,7 @@ Making::Application.routes.draw do
   end
 
   resources :things do
-    resources :reviews, except: [:index] do
+    resources :reviews do
       member {post 'vote'}
     end
     collection {get 'admin'}
@@ -22,10 +22,7 @@ Making::Application.routes.draw do
     member {get 'buy'}
     get 'date/:date', action: :index, on: :collection
   end
-
-  resources :reviews, only: [:index] do
-    get 'page/:page', action: :index, on: :collection
-  end
+  get '/reviews_admin', to: "reviews#admin", as: :reviews_admin
 
   resources :posts, only: [] do
     resources :comments

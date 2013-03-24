@@ -1,0 +1,15 @@
+- content_for :content do
+  - present @thing do |tp|
+    - provide :title, tp.full_title
+    .thing_wrapper
+      header#thing_header= render "things/header", tp: tp
+      section#thing_content= yield
+      footer#thing_footer
+        .shop
+          = tp.price
+          = tp.shop
+        .actions
+          .fanciers= render "things/fancy", thing_presenter: tp
+          .owners= render "things/own", thing_presenter: tp
+
+= render template: 'layouts/application'

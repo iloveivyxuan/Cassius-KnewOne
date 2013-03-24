@@ -1,10 +1,15 @@
-class ReviewsController < ApplicationController
-  load_and_authorize_resource :thing, except: [:index]
-  load_and_authorize_resource
+class ReviewsController < PostsController
+  load_and_authorize_resource :thing, except: [:admin]
   after_filter :store_location, only: [:show]
+  layout 'thing', only: [:index, :show]
+
+  def admin
+    @reviews = Review.page params[:page]
+    render 'index'
+  end
 
   def index
-    @reviews = Review.page params[:page]
+    @reviews = @thing.reviews.page params[:page]
   end
 
   def show
@@ -47,6 +52,6 @@ class ReviewsController < ApplicationController
 
   def vote
     @review.vote current_user, params[:vote] == "true"
-    render "_voted", locals: {review: @review}, layout: false
+    render "_voting", locals: {review: @review}, layout: false
   end
 end

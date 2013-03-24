@@ -22,77 +22,51 @@ form.edit_review {
   }
 }
 
-#review_details {
-  @include left-layout;
-  @include section-decorate;
+.lovers {
+  color: $fontLightColor;
+}
 
-  .review_wrapper {
-    padding: 2em;
+#review_show {
+  > header {
+    h3 { margin: 0; }
+    .actions {margin-top: .5em;}
+  }
 
-    > header {
-      @include clearfix;
+  > section {
+    margin-top: 1em;
+    padding: 1em 0;
+    border-top: 1px solid #eee;
+  }
 
-      h1 {
-        font-size: 28px;
-        margin: 0;
-      }
-      	
-      hgroup {
-        h1 {
-          font-size: 28px;
-          margin:  .5em 0;
-        }
-        
-        img {
-          display: block;
-          float: right;
-          max-width: 180px;
-          max-height: 180px;
-          margin: 1em 3% 0;
-          @media screen and (max-width: 767px) {
-            float: none;
-            margin: 0 auto;
-          }
-        }
-      }
+  > footer {
+    @include clearfix;
 
-      .author .actions a {
-        margin-left: 1em;
-        vertical-align: bottom;
+    > * {
+      float: left;
+      margin-right: 2em;
+      @media screen and (max-width: 767px) {
+        float: none;
       }
     }
 
-    > section {
-      margin-top: 2em;
-      padding: 2em 0;
-      border-top: 1px solid #ccc;
-      border-bottom: 1px solid #ccc;
-    }
-
-    > footer {
-      padding-top: 2em;
-      @include clearfix;
-
-      > * {
-        float: left;
-        margin-right: 2em;
-        @media screen and (max-width: 767px) {
-          float: none;
-        }
+    .voting {
+      form {
+        small {color: $fontLightColor;}
+        button {margin-left: 1em;}
       }
-
-      .share {margin-top: -5px;}
     }
 
-    aside#review_comments {
-      margin-top: 2em;
+    .share {margin-top: -5px;}
+  }
 
-      .comments {
-        form#create_comment {
-          textarea {width: 39%;}
-          @media screen and (max-width: 979px) {
-            textarea {width: 95%;}
-          }
+  aside#review_comments {
+    margin-top: 2em;
+
+    .comments {
+      form#create_comment {
+        textarea {width: 50%;}
+        @media screen and (max-width: 979px) {
+          textarea {width: 95%;}
         }
       }
     }
@@ -101,30 +75,32 @@ form.edit_review {
 
 #reviews {
   .review {
-    padding-bottom: 1em;
-    border-bottom: 1px dashed #ccc;
-    margin: 1em 0;
-
-    @include clearfix;
-
-    figure {
-      float: right;
-      width: 36%;
-      text-align: center;
-      margin: 1em;
-
-      img {
-        max-width: 100%;
-        max-height: 280px;
-      }
-
-      @media screen and (max-width: 979px) {
-        float: none;
-        width: 95%;
-        text-align: left;
-        margin: 1em 0;
-      }
+    &:not(:last-child) {
+      padding-bottom: 2em;
+      border-bottom: 1px dashed #ccc;
+      margin-bottom: 2em;
     }
+
+    /* @include clearfix; */
+
+    /* figure { */
+    /*   float: right; */
+    /*   width: 36%; */
+    /*   text-align: center; */
+    /*   margin: 1em; */
+
+    /*   img { */
+    /*     max-width: 100%; */
+    /*     max-height: 280px; */
+    /*   } */
+
+    /*   @media screen and (max-width: 979px) { */
+    /*     float: none; */
+    /*     width: 95%; */
+    /*     text-align: left; */
+    /*     margin: 1em 0; */
+    /*   } */
+    /* } */
 
     article {
       header {
@@ -142,7 +118,6 @@ form.edit_review {
       }
 
       footer {
-        color: $fontLightColor;
         span {
           padding-right: 1em;
         }

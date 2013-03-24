@@ -1,27 +1,11 @@
 - present @thing do |tp|
-  - provide :title, tp.full_title
+  .photos= render "carousel", tp: tp
+  .author_desc
+    .author= tp.author
+    blockquote= tp.description
+  .top_review
+    = tp.top_review
 
-  .thing_wrapper
-
-    header#thing_header= render "header", tp: tp
-
-    section#thing_content
-      .photos= render "carousel", tp: tp
-      .author_desc
-        .author= tp.author
-        blockquote= tp.description
-      .top_review
-        = tp.top_review
-
-    footer#thing_footer
-      .shop
-        = tp.price
-        = tp.shop
-      .actions
-        .fanciers= render "fancy", thing_presenter: tp
-        .owners= render "own", thing_presenter: tp
-
-     
 /   - if can? :create, Review
 /     #new_review
 /       = link_to new_thing_review_path(@thing), class: "btn btn-primary" do
@@ -30,8 +14,3 @@
 
 /   ul#reviews
 /     = render partial: "review", collection: @reviews
-
-- content_for :script do
-  javascript:
-    Making.ThingShow();
-

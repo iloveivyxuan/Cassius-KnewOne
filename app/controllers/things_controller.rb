@@ -1,5 +1,4 @@
 class ThingsController < PostsController
-
   after_filter :store_location, only: [:show]
 
   def index
@@ -33,6 +32,7 @@ class ThingsController < PostsController
 
   def show
     @thing = Thing.find(params[:id]) || not_found
+    render layout: 'thing'
   end
 
   def edit

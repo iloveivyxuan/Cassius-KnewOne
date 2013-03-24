@@ -4,24 +4,22 @@ hgroup
 
 nav
   .operations
-    = link_to_with_icon "", "icon-share-alt", "#thing_share", title: "分享", 
-    data: {toggle: 'modal'}
+    = link_to_with_icon "", "icon-share-alt", user_signed_in? ? "#thing_share" : "#login-modal",
+    title: "分享", data: {toggle: 'modal'}
     = tp.official_site
     - if can? :update, tp.thing
-      = link_to_with_icon "", "icon-edit", edit_thing_path(tp.thing)
+      = link_to_with_icon "", "icon-edit", edit_thing_path(tp.thing), title: "编辑"
       = link_to_with_icon "", "icon-trash", tp.thing, method: :delete, 
-      data: {confirm: "您确认要删除吗?"}
+      data: {confirm: "您确认要删除吗?"}, title: "删除"
     - if can? :manage, :all
-      = link_to_with_icon "", "icon-cogs", edit_thing_path(tp.thing, admin: true)
-      = link_to_with_icon "", "icon-gift", new_lottery_path(thing: tp.thing)
+      = link_to_with_icon "", "icon-cogs", edit_thing_path(tp.thing, admin: true), title: "管理"
+      = link_to_with_icon "", "icon-gift", new_lottery_path(thing: tp.thing), title: "发奖"
   ul.nav.nav-pills
-    li.disabled= link_to_with_icon "产品", "icon-magic"
-    li= link_to_with_icon "帖子 184", "icon-file-alt"
-    li= link_to_with_icon "评测 32", "icon-book"
-    li= link_to_with_icon "新闻 121", "icon-link"
-    Li= link_to_with_icon "照片 29", "icon-camera"
+    li.disabled= link_to_with_icon "产品", "icon-magic", tp.thing
+    li= link_to_with_icon "评测", "icon-book", thing_reviews_path(tp.thing)
+    li= link_to_with_icon "新闻", "icon-link"
 
-= render 'shared/share', id: 'thing_share', content: tp.share_content, pic: tp.photo_url(:huge)
+= render 'shared/share', id: 'thing_share', content: tp.share_content, pic: tp.photo_url(:huge) 
   
 
 

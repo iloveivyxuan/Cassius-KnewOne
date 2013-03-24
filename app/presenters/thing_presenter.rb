@@ -10,18 +10,12 @@ class ThingPresenter < ApplicationPresenter
   def top_review
     review = thing.reviews.where(is_top: true).first
     if review
-      ReviewPresenter.new(review, @template).content
+      present(review).content
     end
   end
 
   def author
-    img = link_to thing.author do
-      user_avatar(thing.author, :tiny)
-    end
-    name = link_to thing.author do
-      thing.author.name
-    end
-    img.concat name
+    present(thing.author).as_author
   end
 
   def photo_url(size)
@@ -40,18 +34,20 @@ class ThingPresenter < ApplicationPresenter
   end
 
   def shop
-    link_to_with_icon "购买", "icon-shopping-cart icon-large", buy_thing_path(thing), target: '_blank',
-    class: "track_event thing_shop btn btn-success btn-large #{'disabled' unless can_buy?}",
-    data: {
-      # analystics
-      action: "buy",
-      category: "thing",
-      label: title,
-      # popover
-      placement: "bottom",
-      title: "暂时不能购买",
-      content: "抱歉，目前还没有合适的渠道让您购买到此商品，不过，我们会一直追踪此商品的最新动向，一旦您所在的地区可以购买，我们会第一时间提供最靠谱的购买渠道，敬请期待"
-    }
+    if can_buy?
+      link_to_with_icon "购买", "icon-shopping-cart icon-large", buy_thing_path(thing), target: '_blank',
+      class: "track_event btn btn-success btn-large",
+      data: {action: "buy", category: "thing", label: title}
+    else
+      link_to_with_icon "购买", "icon-shopping-cart icon-large", "#",
+      class: "btn btn-large disabled popover-toggle",
+      data: {
+        toggle: "popover",
+        placement: "bottom",
+        title: "暂时不能购买",
+        content: "抱歉，目前还没有合适的渠道让您购买到此商品，不过，我们会一直追踪此商品的最新动向，一旦您所在的地区可以购买，我们会第一时间提供最靠谱的购买渠道，敬请期待"
+      }
+    end
   end
 
   def official_site
@@ -81,7 +77,8 @@ class ThingPresenter < ApplicationPresenter
   end
 
   def share_content
-    topic = user_topic_wrapper(current_user, brand)
+    user_signed_in? or return
+    topic = present(current_user).topic_wrapper(brand)
     %{我在#{topic}发现了一个酷产品, #{title}: #{thing_url(thing)}}
   end
 
