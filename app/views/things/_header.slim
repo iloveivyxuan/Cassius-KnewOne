@@ -15,9 +15,12 @@ nav
       = link_to_with_icon "", "icon-cogs", edit_thing_path(tp.thing, admin: true), title: "管理"
       = link_to_with_icon "", "icon-gift", new_lottery_path(thing: tp.thing), title: "发奖"
   ul.nav.nav-pills
-    li.disabled= link_to_with_icon "产品", "icon-magic", tp.thing
-    li= link_to_with_icon "评测", "icon-book", thing_reviews_path(tp.thing)
-    li= link_to_with_icon "新闻", "icon-link", thing_links_path(tp.thing)
+    = nav_tab :thing do
+      = link_to_with_icon "产品", "icon-magic", tp.thing
+    = nav_tab :reviews do
+      = link_to_with_icon "评测", "icon-book", thing_reviews_path(tp.thing)
+    = nav_tab :links do
+      = link_to_with_icon "新闻", "icon-link", thing_links_path(tp.thing)
 
 = render 'shared/share', id: 'thing_share', content: tp.share_content, pic: tp.photo_url(:huge) 
   
