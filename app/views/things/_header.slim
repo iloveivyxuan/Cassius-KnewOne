@@ -4,8 +4,6 @@ hgroup
 
 nav
   .operations
-    = link_to_with_icon "", "icon-share-alt", user_signed_in? ? "#thing_share" : "#login-modal",
-    title: "分享", data: {toggle: 'modal'}
     = tp.official_site
     - if can? :update, tp.thing
       = link_to_with_icon "", "icon-edit", edit_thing_path(tp.thing), title: "编辑"
@@ -21,8 +19,6 @@ nav
       = link_to_with_icon "评测", "icon-book", thing_reviews_path(tp.thing)
     = nav_tab :links do
       = link_to_with_icon "新闻", "icon-link", thing_links_path(tp.thing)
-
-= render 'shared/share', id: 'thing_share', content: tp.share_content, pic: tp.photo_url(:huge) 
   
 
 

@@ -156,9 +156,14 @@ time {
   }
 }
 
-.fanciers, .owners {
+.fanciers {
   color: $red;
   a {color: $red;}
+}
+
+.owners {
+  color: $green;
+  a {color: $green;}
 }
 
 .reviews_count {
