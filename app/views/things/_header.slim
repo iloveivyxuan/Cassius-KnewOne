@@ -1,9 +1,11 @@
 hgroup
   h1= tp.title
   h2= tp.subtitle
+
 nav
   .operations
-    = link_to_with_icon "", "icon-share-alt", "#", title: "分享"
+    = link_to_with_icon "", "icon-share-alt", "#thing_share", title: "分享", 
+    data: {toggle: 'modal'}
     = tp.official_site
     - if can? :update, tp.thing
       = link_to_with_icon "", "icon-edit", edit_thing_path(tp.thing)
@@ -19,7 +21,7 @@ nav
     li= link_to_with_icon "新闻 121", "icon-link"
     Li= link_to_with_icon "照片 29", "icon-camera"
 
-/= render 'shared/share', content: thing_share_content(@thing), pic: thing_photo_url(@thing, :huge)
+= render 'shared/share', id: 'thing_share', content: tp.share_content, pic: tp.photo_url(:huge)
   
 
 

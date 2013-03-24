@@ -9,6 +9,7 @@ window.Making =
       $(document).ajaxComplete ->
         $(".spinning").remove()
       Making.Score()
+      Making.Sharing()
       $(".track_event").click ->
         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
 
@@ -24,7 +25,6 @@ window.Making =
 
   ThingShow: ->
     $ ->
-      Making.Sharing()
       Making.Shopping()
 
   ReviewEdit: () ->
@@ -37,7 +37,6 @@ window.Making =
   ReviewShow: () ->
     $ ->
       Making.Voting()
-      Making.Sharing()
       Making.Shopping()
     
   Editor: ($form) ->
@@ -81,17 +80,6 @@ window.Making =
 
     $share.on "submit form", ->
       $share.modal("hide")
-      $(".share button").addClass("active")
-
-    $share.find(".share_cancel").click (e) ->
-      e.preventDefault()
-      $share.modal("hide")
-    .end().find(".share_submit").click (e) ->
-      $share.find("form").submit()
-
-    $(".share button").click (e) ->
-      e.preventDefault()
-      $share.modal()
 
   Shopping: () ->
     $(".thing_shop.disabled").popover().click (e) ->

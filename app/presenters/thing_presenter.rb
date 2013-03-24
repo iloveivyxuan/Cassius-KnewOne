@@ -24,6 +24,14 @@ class ThingPresenter < ApplicationPresenter
     img.concat name
   end
 
+  def photo_url(size)
+    thing.photos.first.url(size)
+  end
+
+  def photo(size)
+    image_tag photo_url(size), options.merge(alt: title)
+  end
+
   def price
     if thing.price.to_i > 0 and can_buy?
       content_tag :small,
@@ -70,6 +78,11 @@ class ThingPresenter < ApplicationPresenter
 
   def owners
     thing.owners.desc(:created_at).limit(10)
+  end
+
+  def share_content
+    topic = user_topic_wrapper(current_user, brand)
+    %{我在#{topic}发现了一个酷产品, #{title}: #{thing_url(thing)}}
   end
 
   private
