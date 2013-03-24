@@ -3,14 +3,7 @@
   .author_desc
     .author= tp.author
     blockquote= tp.description
-  .top_review
-    = tp.top_review
+  = tp.top_review
 
-/   - if can? :create, Review
-/     #new_review
-/       = link_to new_thing_review_path(@thing), class: "btn btn-primary" do
-/         i.icon-pencil
-/         | 发布评测
-
-/   ul#reviews
-/     = render partial: "review", collection: @reviews
+  - if @reviews.present?
+    ul#reviews= render @reviews

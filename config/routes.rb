@@ -13,14 +13,19 @@ Making::Application.routes.draw do
   end
 
   resources :things do
-    resources :reviews do
-      member {post 'vote'}
-    end
     collection {get 'admin'}
     member {post 'fancy'}
     member {post 'own'}
     member {get 'buy'}
     get 'date/:date', action: :index, on: :collection
+
+    resources :reviews do
+      member {post 'vote'}
+    end
+
+    resources :links do
+      member {post 'digg'}
+    end
   end
   get '/reviews_admin', to: "reviews#admin", as: :reviews_admin
 

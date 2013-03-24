@@ -1,0 +1,6 @@
+= simple_form_for [@thing, @link], html: {class: "edit_link form-horizontal"} do |f|
+  = f.input :title
+  = f.input :url, as: :url
+  .submit 
+    = f.button :submit, class: 'btn btn-primary btn-large'
+

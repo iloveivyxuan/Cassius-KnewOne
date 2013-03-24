@@ -19,13 +19,13 @@ class Ability
 
       can :create, ReviewPhoto
       can :vote, Review
+      can :digg, Link
 
       can :create, Comment
       can :destroy, Comment do |comment|
         comment.author == user
       end
 
-      can :vote, Review
       can :fancy, Thing
       can :own, Thing
       can :share, User

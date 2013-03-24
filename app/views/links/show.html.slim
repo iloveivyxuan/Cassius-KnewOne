@@ -1,0 +1,24 @@
+- present @link do |lp|
+
+  - provide :title, lp.title
+
+  article#link_show
+
+    header
+      h3
+        = lp.full_title
+        = link_to_with_icon "", "icon-share-alt", 
+        user_signed_in? ? "#link_share" : "#login-modal",
+        title: "分享", data: {toggle: 'modal'}
+      = lp.author
+      = render 'shared/post_actions', post: lp.link, 
+      edit_post_path: lp.edit_path, post_path: lp.path
+    
+    = render 'shared/share', id: 'link_share', 
+      content: lp.share_content, pic: lp.thing_photo_url(:huge) 
+
+    = render 'shared/comments', post: lp.link, id: "link_comments"
+
+- content_for :script do
+  javascript:
+    Making.Comments("#link_comments")

@@ -40,6 +40,9 @@ zh-CN:
         content: "内容"
         score: "评分"
         is_top: "是否置顶"
+      link:
+        title: "标题"
+        url: "新闻链接"
       category:
         name: '分类名称'
       comment:

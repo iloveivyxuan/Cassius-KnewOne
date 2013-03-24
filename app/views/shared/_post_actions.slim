@@ -1,0 +1,5 @@
+- if can? :update, post
+  .actions
+    = link_to_with_icon "", "icon-edit", edit_post_path
+    = link_to_with_icon "", "icon-trash", post_path, 
+    method: :delete, data: {confirm: "您确定要删除吗?"}

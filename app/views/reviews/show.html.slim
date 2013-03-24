@@ -5,21 +5,24 @@
   article#review_show
 
     header
-      h3= rp.title
+      h3
+        = rp.title
+        = link_to_with_icon "", "icon-share-alt", 
+        user_signed_in? ? "#review_share" : "#login-modal",
+        title: "分享", data: {toggle: 'modal'}
+
       = rp.score
       = rp.author
-      = render 'actions', rp: rp
+      = render 'shared/post_actions', post: rp.review, 
+      edit_post_path: rp.edit_path, post_path: rp.path
     
     section= rp.content
       
     footer
       = render 'voting', review: rp.review
 
-      = link_to_with_icon "分享", "icon-share-alt", 
-        user_signed_in? ? "#review_share" : "#login-modal",
-        title: "分享", data: {toggle: 'modal'}
-      = render 'shared/share', id: 'review_share', 
-      content: rp.share_content, pic: rp.thing_photo_url(:huge) 
+    = render 'shared/share', id: 'review_share', 
+    content: rp.share_content, pic: rp.thing_photo_url(:huge) 
 
     = render 'shared/comments', post: rp.review, id: "review_comments"
 

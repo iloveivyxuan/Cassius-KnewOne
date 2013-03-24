@@ -32,6 +32,7 @@ class ThingsController < PostsController
 
   def show
     @thing = Thing.find(params[:id]) || not_found
+    @reviews = @thing.reviews.limit(5)
     render layout: 'thing'
   end
 
