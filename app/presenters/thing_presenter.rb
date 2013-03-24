@@ -36,7 +36,7 @@ class ThingPresenter < ApplicationPresenter
   def shop
     if can_buy?
       link_to_with_icon "购买", "icon-shopping-cart icon-large", buy_thing_path(thing), target: '_blank',
-      class: "track_event btn btn-success btn-large",
+      class: "track_event btn btn-success",
       data: {action: "buy", category: "thing", label: title}
     else
       link_to_with_icon "购买", "icon-shopping-cart icon-large", "#",

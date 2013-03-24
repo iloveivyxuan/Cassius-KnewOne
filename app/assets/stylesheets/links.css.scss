@@ -17,6 +17,7 @@ form.edit_link {
 #link_show {
   > header {
     h3 { 
+      word-wrap: break-word;          
       margin: 0; 
       i {margin-left: .5em;}
     }
@@ -51,7 +52,10 @@ form.edit_link {
     }
 
     article {
-      header {margin-bottom: 1em;}
+      header {
+        margin-bottom: 1em;
+        word-wrap: break-word;
+      }
 
       footer {
         span {padding-right: 1em;}

@@ -2,8 +2,11 @@
   @include section-decorate;
   @include clearfix;
   padding: 1em 20px;
-  width: 980px;
   margin: 0 auto;
+
+  @media screen and (min-width: 1024px) {
+    width: 980px;
+  }
 }
 
 #thing_header {
@@ -30,9 +33,16 @@
     margin-top: 1em;
 
     a {color: $fontLightColor;}
-    
+
     .nav {
       margin: 0;
+
+      @media screen and (max-width: 767px) {
+        a {
+          padding: {left: 9px; right: 9px;}
+        }
+      }
+
       .active {
         border-bottom: 1px solid $red;
         a {
@@ -45,8 +55,8 @@
     .operations {
       float: right;
       text-align: right;
-      width: 25%;
       margin-top: .4em;
+      
       i {margin-right: 1em;}
       a:hover {
         color: $textColor;
@@ -56,11 +66,13 @@
 }
 
 #thing_content {
-  @include left-layout;
-  width: 768px;
-  padding-right: 20px;
-  border-right: 1px solid #eee;
-  margin-right: 20px;
+  @media screen and (min-width: 1024px) {
+    @include left-layout;
+    width: 768px;
+    padding-right: 20px;
+    border-right: 1px solid #eee;
+    margin-right: 20px;
+  }
 
   > * {
     padding-bottom: 2em;
@@ -74,8 +86,11 @@
       margin: 0;
 
       .item {
-        height: $height;
-        line-height: $height;
+        @media screen and (min-width: 1024px) {
+          height: $height;
+          line-height: $height;
+        }
+
         text-align: center;
 
         img {
@@ -128,169 +143,85 @@
 
     .author {
       float: right;
-      margin: 0 2em;
+      margin: 0 3em;
     }
 
   }
-
-  .top_review {}
 }
 
 #thing_footer {
-  @include right-layout;
-  width: 171px;
+  @media screen and (min-width: 1024px) {
+    @include right-layout;
+    width: 171px;
 
-  > * {
-    padding-bottom: 2em;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 2em;
-  }
-
-  .shop {
-    small {
-      display: block;
-      font-size: 1.2em;
-      margin-bottom: 1em;
-    }
-
-    a {
-      width: 100px;
-      i {
-        margin-right: 1.5em;
-        margin-left: -1em;
-      }
-    }
-  }
-
-  .actions {
-    padding-left: 10px;
     > * {
-      margin-bottom: 1em;
-      i {
-        vertical-align: -3px;
-        margin-right: 1em;
-      }
+      padding-bottom: 2em;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 2em;
+    }
+
+    .shop {
       small {
-        margin-left: 1em;
-        color: $fontLightColor;
-      }
-    }
-
-    .owners {
-      margin-left: 2px;
-      ul {
-        a {color: $blue;}
-        img {margin-right: .7em;}
-      }
-    }
-  }
-}
-
-#thing_summary {
-  @include right-layout;
-  @include section-decorate;
-
-  .summary_wrapper {
-    margin: 0 1em;
-  }
-
-  hgroup {
-    margin-top: 1em;
-
-    h1 {
-      margin: 0;
-      font-size: 24px;
-    }
-
-    h2 {
-      font-size: 18px;
-      margin: 0;
-      color: $fontLightColor;
-    }
-  }
-
-  .price {
-    color: $fontLightColor;
-    small {
-      font-size: $baseFontSize;
-      margin-right: 2em;
-    }
-    em {color: $pink;}
-  }
-
-  .actions {
-    .shop, .fancy, .own, .official_site, .share {
-      margin: 1em 0;
-      a, button {
-        text-align: left;
-        i {margin-right: 20%;}
+        display: block;
+        font-size: 1.2em;
+        margin-bottom: 1em;
       }
 
-      a {width: 100%;}
-      button {width: 50%;}
-    }
-
-    .fancy {button i {color: $pink;}}
-    .own {button i {color: $green;}}
-    .official_site {a i {color: $blue;}}
-    .share {button i {color: $blue;}}
-  }
-
-  .author {
-    margin-top: 2em;
-  }
-
-  blockquote {
-    margin: 1em 0 2em;
-  }
-
-  .edits {
-    margin: 1em 0;
-    > * {
-      margin-right: .5em;
-      margin-bottom: .5em;
-    }
-  }
-
-  @media screen and (max-width: 979px) {
-    position: fixed;
-    bottom: 0;
-    margin-left: -53px;
-    @include background(rgba(0, 0, 0, 0.5));
-    @include border-radius(0);
-    @include box-shadow(none);
-    text-align: center;
-
-    hgroup, blockquote, .edits, .author {
-      display: none;
-    }
-
-    .price {
-      display: inline-block;
-      color: white;
-      margin-right: 1em;
-      em {color: lighten($pink, 30%);}
-      small {margin-right: 1em;}
+      a {
+        width: 100px;
+        i {
+          margin-right: 1.5em;
+          margin-left: -1em;
+        }
+      }
     }
 
     .actions {
-      display: inline-block;
-      .shop, .fancy, .own, .share {
-        display: inline-block;
-        margin-right: .8em;
-        a, button {
-          width: auto;
-          i {margin-right: 0;}
-          span {display: none;}
+      padding-left: 10px;
+      > * {
+        margin-bottom: 1em;
+        i {
+          vertical-align: -3px;
+          margin-right: 1em;
+        }
+        small {
+          margin-left: 1em;
+          color: $fontLightColor;
         }
       }
-      .official_site {display: none;}
-    }
 
+      .owners {
+        margin-left: 2px;
+      }
+    }
   }
 
-  @media screen and (max-width: 767px) {
-    margin-left: -20px;
+
+
+  @media screen and (max-width: 1023px) {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    @include background(rgba(0, 0, 0, 0.5));
+    text-align: center;
+    padding: 1em 0;
+
+    .shop {
+      display: inline;
+      margin-right: 2em;
+      small {display: none;}
+    }
+
+    .actions {
+      display: inline;
+      vertical-align: -5px;
+      > * {
+        display: inline;
+        margin-right: 1em;
+        small {display: none;}
+      }
+    }
   }
 }
 
