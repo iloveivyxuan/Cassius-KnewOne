@@ -52,7 +52,7 @@ class ThingPresenter < ApplicationPresenter
 
   def official_site
     if thing.official_site.present?
-      link_to_with_icon "", "icon-info-sign", thing.official_site, target: "_blank", title: "官方信息"
+      link_to_with_icon "", "icon-globe icon-large", thing.official_site, target: "_blank", title: "官方信息"
     end
   end
 
