@@ -40,7 +40,7 @@ class ThingPresenter < ApplicationPresenter
       data: {action: "buy", category: "thing", label: title}
     else
       link_to_with_icon "购买", "icon-shopping-cart icon-large", "#",
-      class: "btn btn-large disabled popover-toggle",
+      class: "btn disabled popover-toggle",
       data: {
         toggle: "popover",
         placement: "bottom",

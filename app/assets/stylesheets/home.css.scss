@@ -1,5 +1,9 @@
 .home_wrapper {
   margin: 0 7%;
+
+  @media screen and (max-width: 768px) {
+    margin: 0;
+  }
 }
 
 #home_things {
