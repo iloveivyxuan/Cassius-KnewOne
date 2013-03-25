@@ -39,6 +39,10 @@
     .nav {
       margin: 0;
 
+      a {
+        padding: {left: 11px; right: 11px;}
+      }
+
       .active {
         border-bottom: 1px solid $red;
         a {
