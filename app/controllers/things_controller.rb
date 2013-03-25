@@ -13,7 +13,7 @@ class ThingsController < PostsController
   end
 
   def admin
-    @things = Thing.all
+    @things = Thing.page params[:page]
   end
 
   def new
