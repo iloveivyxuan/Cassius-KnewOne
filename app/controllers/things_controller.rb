@@ -10,6 +10,11 @@ class ThingsController < PostsController
     @date ||= Date.today
     @ndate = @date.next_day
     @things = Thing.where(created_at: (@date..@ndate))
+
+    respond_to do |format|
+      format.html
+      format.json {@things = Thing.ne(shop: "")}
+    end
   end
 
   def admin
