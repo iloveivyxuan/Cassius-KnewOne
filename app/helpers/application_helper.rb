@@ -26,6 +26,11 @@ module ApplicationHelper
     [brand, content_for(:title)].reject(&:blank?).join('-')
   end
 
+  def feed_link_tag
+    feed_url = content_for?(:feed) ? content_for(:feed) : things_url(format: "atom")
+    auto_discovery_link_tag :atom, feed_url
+  end
+
   def notification
     [:error, :alert, :notice, :info, :success].each do |type|
       message = flash.now[type] || flash[type]

@@ -32,6 +32,8 @@
   nav {
     margin-top: 1em;
 
+    i {@extend .icon-large;}
+
     a {color: $fontLightColor;}
 
     .nav {

@@ -31,7 +31,7 @@ end
 
 guard 'livereload' do
   watch(%r{app/controllers/.+\.rb})
-  watch(%r{app/views/.+\.(erb|haml|slim|jbuilder)})
+  watch(%r{app/views/.+\.(erb|haml|slim|jbuilder|builder)})
   watch(%r{app/helpers/.+\.rb})
   watch(%r{app/presenters/.+\.rb})
   watch(%r{public/.+\.(css|js|html)})

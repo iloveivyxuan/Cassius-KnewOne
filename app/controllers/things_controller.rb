@@ -14,7 +14,8 @@ class ThingsController < PostsController
 
     respond_to do |format|
       format.html
-      format.json {@things = Thing.ne(shop: "")}
+      format.atom { @things = Thing.limit(10) }
+      format.json { @things = Thing.ne(shop: "") }
     end
   end
 
@@ -38,7 +39,7 @@ class ThingsController < PostsController
 
   def show
     @thing = Thing.find(params[:id]) || not_found
-    @reviews = @thing.reviews.limit(5)
+    @reviews = @thing.reviews.limit(10)
     render layout: 'thing'
   end
 

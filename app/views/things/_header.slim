@@ -1,3 +1,5 @@
+- provide :feed, thing_url(tp.thing, format: "atom")
+
 hgroup
   h1= tp.title
   h2= tp.subtitle
@@ -5,6 +7,7 @@ hgroup
 nav
   .operations
     = tp.official_site
+    = link_to_with_icon "", "icon-rss", thing_url(tp.thing, format: "atom")
     - if can? :update, tp.thing
       = link_to_with_icon "", "icon-edit", edit_thing_path(tp.thing), title: "编辑"
       = link_to_with_icon "", "icon-trash", tp.thing, method: :delete, 
