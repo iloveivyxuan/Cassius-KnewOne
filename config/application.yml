@@ -11,6 +11,10 @@ defaults: &defaults
   twitter:
     consumer_key: ""
     consumer_secret: ""
+  api:
+    user: "knewapi"
+    passwd: "sh13sm"
+    realm: "Knewone"
   karma:
     thing: 10
     review: 5

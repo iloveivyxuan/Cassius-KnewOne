@@ -1,5 +1,6 @@
 class ThingsController < PostsController
   after_filter :store_location, only: [:show]
+  before_filter :admin_authenticate, only: [:index]
 
   def index
     begin
@@ -91,5 +92,15 @@ class ThingsController < PostsController
 
   def buy
     redirect_to @thing.shop
+  end
+
+  private
+
+  def admin_authenticate
+    request.format == Mime::JSON or return
+    require 'digest/md5'
+    authenticate_or_request_with_http_digest(Settings.api.realm) do |username|
+      Digest::MD5.hexdigest [Settings.api.user, Settings.api.realm, Settings.api.passwd].join(":")
+    end
   end
 end
