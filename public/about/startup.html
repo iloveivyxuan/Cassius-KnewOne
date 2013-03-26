@@ -25,9 +25,13 @@
       .reveal section img {border: none;}
       .reveal .programmer img {float: left;margin-left:45px;}
       .reveal .programmer ul {margin-top: 30px;}
-      .reveal .learning img {width: 668px; height: 350px;}
-      .reveal .management img {height: 500px;}
-
+      .reveal .diy img {height: 500px;}
+      .reveal .crash img {height: 500px;}
+      .reveal .painting img {height: 500px;}
+      .reveal .learning img {width: 668px; height: 420px;}
+      .reveal .managgement img {height: 500px;}
+      .reveal .optimizing img {float: left; margin-left: 60px;}
+      .reveal .optimizing ul {margin-top: 40px;}
     </style>
   </head>
 
@@ -46,12 +50,17 @@
         </section>
 
         <section>
-          <h2>Summary</h2>
-          <ol>
-            <li>Start</li>
-            <li>Stage</li>
-            <li>Stack</li>
-          </ol>
+          <section>
+            <h2>Summary</h2>
+            <img src="images/no-waste.png">
+          </section>
+          <section>
+            <ol>
+              <li>Start</li>
+              <li>Stage</li>
+              <li>Stack</li>
+            </ol>
+          </section>
         </section>
 
         <section>
@@ -72,7 +81,8 @@
               </q>
             </p>
           </section>
-          <section>
+          <section class="painting">
+            <img src="images/painting.jpg">
             <p>
               <q cite="Zen and the Art of Motorcycle Maintenance">
                 You want to know how to paint a perfect painting? It's easy. Make yourself perfect and then just paint naturally.
@@ -82,30 +92,39 @@
         </section>
 
         <section>
-          <h3>Execution</h3>
-          <img src="images/runway.jpg">
-          <p>Take flight</p>
-          <ul>
-            <li>How long is your runway?</li>
-            <li>How many pivots can you do?</li>
-          </ul>
+          <section>
+            <h3>Take Flight</h3>
+            <img src="images/runway.gif">
+            <p>How long is your runway?</p>
+          </section>
+          <section class="crash">
+            <h3>Or Crash</h3>
+            <img src="images/crash.jpg">
+            <p>How many pivots can you do?</p>
+          </section>
         </section>
 
         <section>
-          <h3>Team</h3>
-          <img src="images/team.png">
-          <p>How to operating a lean team?</p>
-          <ul>
-            <li>Be a Broad-Based Contributor</li>
-            <li>Always be Observing</li>
-            <li>Make decisions</li>
-          </ul>
+          <section>
+            <h3>Team</h3>
+            <img src="images/team.png">
+            <p>Always be Observing and Make Decisions</li>
+          </section>
+          <section>
+            <h3>Start Small, Stay Small</h3>
+            <img src="images/small.png">
+          </section>
+          <section>
+            <h3>How to become a member?</h3>
+            <img src="images/contribute.jpg">
+            <p>Be a Broad-Based Contributor</p>
+          </section>
         </section>
 
         <section>
           <section class="programmer">
             <h3>Programmer</h3>
-            <pre><code class="no-highlight">
+            <pre><code class="haskell">
   qsort :: Ord a => [a] -> [a]
   qsort [] = []
   qsort (p:xs) = qsort [x | x<-xs, x < p] ++ [p] ++ qsort [x | x<-xs, x >= p]
@@ -118,10 +137,11 @@
             </ul>
           </section>
           <section>
-            <p>How to be a hacker?</p>
+            <h3>How to be a hacker?</h3>
+            <img src="images/hacker.jpg">
             <p>
               <q cite="Richard Stallman">
-                What they had in common was mainly love of excellence and programming. They wanted to make their programs that they used be as good as they could. They also wanted to make them do neat things. They wanted to be able to do something in a more exciting way than anyone believed possible and show "Look how wonderful this is. I bet you didn't believe this could be done".
+                What they had in common was mainly love of excellence and programming. They wanted to be able to do something in a more exciting way than anyone believed possible.
               </q>
             </p>
           </section>
@@ -139,30 +159,34 @@
 
         <section>
           <section>
-          <h3>Build</h3>
-          <h4>Make Minimum Viable Products</h4>
-          <img src="images/mvp.png">
-          <ul>
-            <li>How to do minimum setup?</li>
-            <li>How to do minimum design?</li>
-            <li>How to do minimum programming?</li>
-          </ul>
+            <h3>Build</h3>
+            <h4>Make Minimum Viable Products</h4>
+            <img src="images/mvp.png">
           </section>
           <section>
             <h3>What's the MVP?</h3>
             <img src="images/mvp2.png">
           </section>
+          <section class="diy">
+            <h3>And How to do?</h3>
+            <img src="images/diy.jpg">
+          </section>
         </section>
 
         <section>
-          <h3>Measure</h3>
-          <h4>Customer Behaviour</h4>
-          <img src="images/customers.jpg">
-          <ul>
-            <li>Customer engagement</li>
-            <li>Customer analytics</li>
-            <li>Customer feedbacks</li>
-          </ul>
+          <section>
+            <h3>Measure</h3>
+            <h4>Customer Behaviour</h4>
+            <img src="images/customers.jpg">
+          </section>
+          <section>
+            <h3>Do they love u?</h3>
+            <img src="images/love.jpg">
+          </section>
+          <section>
+            <h3>Do they pay u?</h3>
+            <img src="images/money.jpg">
+          </section>
         </section>
 
         <section>
@@ -170,10 +194,14 @@
             <h3>Learn</h3>
             <h4>What Customers Want</h4>
             <img src="images/learn.jpg">
+          </section>
+          <section class="optimizing">
+            <h3>Learn from Data</h3>
+            <img src="images/optimizing.jpg">
             <ul>
-              <li>Priority of tasks</li>
-              <li>Tracking issues</li>
-              <li>Pivot</li>
+              <li>Tracking</li>
+              <li>Sorting</li>
+              <li>Optimizing</li>
             </ul>
           </section>
           <section class="management">
@@ -190,18 +218,18 @@
         <section>
           <section>
           <h3>Framework</h3>
-          <img src="images/omakase.jpg">
+          <img src="images/omakese.jpg">
           <h4>Omakase</h4>
-          <ul>
-            <li>Programmer Happiness</li>
-            <li>Sustainable Productivity</li>
-            <li>Community</li>
-          </ul>
+
           </section>
           <section>
             <h3>Ruby on Rails</h3>
             <img src="images/rails.png">
-            <h4>Full Stack Omakase</h4>
+            <ul>
+              <li>Programmer Happiness</li>
+              <li>Sustainable Productivity</li>
+              <li>Community</li>
+            </ul>
           </section>
           <section>
             <h3>Github</h3>
