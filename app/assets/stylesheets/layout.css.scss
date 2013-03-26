@@ -72,6 +72,14 @@ body > header {
         }
       }
 
+      .nav_weibo {
+        margin-top: 1px;
+
+        @media screen and (max-width: 512px) {
+          display: none;
+        }
+      }
+
       .messages_count {
         margin-top: 9px;
         margin-right: 1em;

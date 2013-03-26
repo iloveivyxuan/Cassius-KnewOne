@@ -12,6 +12,9 @@ header
         li.nav_lotteries= link_to lotteries_path do
           i.icon-gift
           |  天天有礼
+        li.nav_weibo= link_to "http://weibo.com/knewone" do
+          i.icon-eye-open
+          | 关注微博
       ul.nav.pull-right
         - if user_signed_in?
           - if unread_messages_count > 0
