@@ -5,16 +5,20 @@ header
         = logo
         = brand
       ul.nav.pull-left
-        - if user_signed_in?
-          li.nav_new_thing= link_to new_thing_path do
-            i.icon-magic
-            |  分享产品
+        li.nav_new_thing= link_to new_thing_path do
+          i.icon-magic
+          |  分享产品
+        li.nav_things= link_to  things_path do
+          i.icon-th
+          | 每日更新
         li.nav_lotteries= link_to lotteries_path do
           i.icon-gift
           |  天天有礼
         li.nav_weibo= link_to "http://weibo.com/knewone" do
           i.icon-eye-open
           | 关注微博
+
+        
       ul.nav.pull-right
         - if user_signed_in?
           - if unread_messages_count > 0

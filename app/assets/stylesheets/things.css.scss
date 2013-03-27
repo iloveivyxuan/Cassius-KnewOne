@@ -229,6 +229,12 @@
   }
 }
 
+.things_wrapper {
+  @media screen and (min-width: 512px) {
+    padding: 0 7%;
+  }
+}
+
 #things_index {
   .controls {
     @include clearfix();
@@ -240,8 +246,12 @@
   }
 
   li {
-    @include thing(320px);
+    @include thing(272px);
     @include section-decorate;
     padding: 1em;
+    
+    @media screen and (max-width: 767px) {
+      @include thing(228px);
+    }
   }
 }

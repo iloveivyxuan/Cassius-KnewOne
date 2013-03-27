@@ -55,7 +55,7 @@ body > header {
         }
       }
 
-      .nav_new_thing {
+      .nav_new_thing, .nav_things, .nav_lotteries, .nav_weibo {
         margin-top: 1px;
         
         @media screen and (max-width: 979px) {
@@ -65,19 +65,6 @@ body > header {
 
       .nav_lotteries {
         i {color: $red;}
-        margin-top: 1px;
-
-        @media screen and (max-width: 512px) {
-          display: none;
-        }
-      }
-
-      .nav_weibo {
-        margin-top: 1px;
-
-        @media screen and (max-width: 512px) {
-          display: none;
-        }
       }
 
       .messages_count {
