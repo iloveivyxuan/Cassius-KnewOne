@@ -1,23 +1,23 @@
 header
   nav.navbar.navbar-fixed-top
     .navbar-inner
+
       = link_to root_path, class: "brand" do
         = logo
         = brand
-      ul.nav.pull-left
-        li.nav_new_thing= link_to new_thing_path do
-          i.icon-magic
-          |  分享产品
-        li.nav_things= link_to  things_path do
-          i.icon-th
-          | 每日更新
-        li.nav_lotteries= link_to lotteries_path do
-          i.icon-gift
-          |  天天有礼
-        li.nav_weibo= link_to "http://weibo.com/knewone" do
-          i.icon-eye-open
-          | 关注微博
 
+      ul.nav.pull-left
+        li.nav_new_thing
+          - if user_signed_in?
+            = link_to_with_icon "分享产品", "icon-magic", new_thing_path 
+          - else
+            = link_to_with_icon "分享产品", "icon-magic", "#", data: {toggle: "modal", target: "#login-modal"}
+        li.nav_things
+          = link_to_with_icon "每日更新", "icon-th", things_path 
+        li.nav_lotteries
+          = link_to_with_icon "天天有礼", "icon-gift", lotteries_path 
+        li.nav_weibo
+          = link_to_with_icon "关注微博", "icon-eye-open", "http://weibo.com/knewone"
         
       ul.nav.pull-right
         - if user_signed_in?
@@ -68,6 +68,7 @@ header
           li.signin
             = link_to user_omniauth_authorize_path(:weibo), class: "weibo_sign_in" do
               = image_tag "weibo.png"
+
       = form_tag(search_path, method: 'get', id: "nav_search", class: "navbar-search pull-right") do
         input.search-query.span2 type="search" name="q"
         i.icon-search
