@@ -33,6 +33,11 @@ Making::Application.routes.draw do
     resources :comments
   end
 
+  resources :groups do
+    resources :topics
+    get 'date/:date', action: :show, on: :member
+  end
+
   resources :photos, only: [:create, :destroy, :show]
   resources :review_photos, only: [:create]
 

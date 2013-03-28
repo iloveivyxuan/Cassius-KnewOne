@@ -44,6 +44,8 @@ class Ability
     can :read, Post
     can :read, User
     can :read, Comment
+    can :read, Group
+    can :read, Topic
     can :read, Lottery
     can :buy,  Thing
     can :activate, Guest

@@ -76,6 +76,10 @@ class User
     end
   end
 
+  ## Groups
+  has_many :found_groups, class_name: "Group", inverse_of: :founder
+  has_and_belongs_to_many :groups, inverse_of: :members
+
   ## Karma & Rank
   def rank
     return 0 if karma < 0

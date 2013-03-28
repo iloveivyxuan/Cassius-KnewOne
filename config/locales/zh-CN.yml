@@ -9,6 +9,7 @@ zh-CN:
       category: '分类'
       comment: '留言'
       lottery: '奖励'
+      group: '小组'
     attributes:
       post:
         title: '标题'

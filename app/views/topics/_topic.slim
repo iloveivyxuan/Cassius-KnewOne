@@ -1,0 +1,6 @@
+li
+  h4= topic.title
+  p= topic.content
+  p 
+    = link_to_with_icon "", "icon-edit", edit_group_topic_path(topic.group, topic) 
+    = link_to_with_icon "", "icon-trash", group_topic_path(topic.group), method: :delete, data: {confirm: "您确认要删除此小组吗?"}
