@@ -10,7 +10,7 @@ class ThingPresenter < ApplicationPresenter
   def top_review
     review = thing.reviews.where(is_top: true).first
     if review
-      content_tag :div, present(review).content, class: "top_review"
+      content_tag :div, present(review).content, class: "top_review review_content"
     end
   end
 

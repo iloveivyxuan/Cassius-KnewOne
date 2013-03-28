@@ -18,7 +18,7 @@
       = render 'shared/post_actions', post: rp.review, 
       edit_post_path: rp.edit_path, post_path: rp.path
     
-    section= rp.content
+    section.review_content= rp.content
       
     footer
       = render 'voting', review: rp.review
