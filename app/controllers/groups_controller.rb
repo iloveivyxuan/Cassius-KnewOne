@@ -7,6 +7,7 @@ class GroupsController < ApplicationController
 
   def show
     @topics = @group.topics.page params[:page]
+    render layout: 'group'
   end
 
   def new

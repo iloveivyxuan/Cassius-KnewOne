@@ -1,9 +1,2 @@
-.group_wrapper
-
-  h1= @group.name
-
-  .new_topic= link_to "发帖", new_group_topic_path(@group), class: 'btn' 
-
-  ul#topics= render @topics
-
-  = paginate @topics
+ul#topics= render @topics
+= paginate @topics

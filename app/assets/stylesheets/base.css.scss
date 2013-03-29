@@ -66,6 +66,17 @@
   }
 }
 
+@mixin fixed-wrapper {
+  @include section-decorate;
+  @include clearfix;
+  padding: 1em 20px;
+  margin: 0 auto;
+
+  @media screen and (min-width: 1024px) {
+    width: 980px;
+  }
+}
+
 ul, ol {
   list-style: none;
   margin: 0;
@@ -148,7 +159,7 @@ time {
     border-top: 5px solid #eee;
     padding-top: 2em;
 
-    li:not(:last-child) { 
+    li:not(:last-child) {
       border-bottom: 1px dashed #ccc;
       padding-bottom: 1em;
       margin-bottom: 1em;

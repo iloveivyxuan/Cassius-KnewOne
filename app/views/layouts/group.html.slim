@@ -1,0 +1,15 @@
+- content_for :content do
+  - provide :title, @group.name
+
+  .group_wrapper
+
+    header#group_header
+      - if user_signed_in? and current_user.is_guest?
+        .new_topic
+          = link_to_with_icon "发帖", "icon-pencil", new_group_topic_path(@group), class: 'btn btn-primary' 
+      h1= @group.name
+      p= @group.description
+
+    section#group_content= yield
+
+= render template: 'layouts/application'

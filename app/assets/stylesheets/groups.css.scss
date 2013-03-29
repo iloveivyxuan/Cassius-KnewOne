@@ -1,3 +1,34 @@
 .group_wrapper {
-  padding: 0 7%
+  @include fixed-wrapper;
+}
+
+#group_header {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 2em;
+
+  p {color: $fontLightColor;}
+
+  .new_topic {
+    float: right;
+    margin: {top: 3em; right: 2em;}
+  }
+}
+
+#topics {
+  .topic {
+    @include clearfix;
+    padding: 1em 0;
+    border-bottom: 1px dashed #ccc;
+
+    > a:first-child {
+      float: left;
+      img { @extend .img-rounded; }
+      margin-right: 2em;
+    }
+
+    h4 {
+      margin-right: 10%;
+      a {}
+    }
+  }
 }

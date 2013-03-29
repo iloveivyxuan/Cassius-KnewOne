@@ -1,12 +1,5 @@
 .thing_wrapper {
-  @include section-decorate;
-  @include clearfix;
-  padding: 1em 20px;
-  margin: 0 auto;
-
-  @media screen and (min-width: 1024px) {
-    width: 980px;
-  }
+  @include fixed-wrapper;
 }
 
 #thing_header {
