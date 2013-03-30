@@ -11,6 +11,8 @@ class Comment
   default_scope desc(:created_at)
 
   after_create :notify_related_users
+  after_create :update_commented_at
+  after_destroy :update_commented_at
 
   def content_users
     names = content.scan(/@(\S{2,20})/).flatten
@@ -28,5 +30,14 @@ class Comment
 
   def notify_related_users
     author.send_message related_users, CommentMessage.new(post: post)
+  end
+
+  def update_commented_at
+    post.reload
+    if post.comments.present?
+      post.update_attribute :commented_at, post.comments.first.created_at
+    else
+      post.update_attribute :commented_at, post.created_at
+    end
   end
 end

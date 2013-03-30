@@ -1,6 +1,5 @@
 class Topic < Post
   field :content, type: String, default: ""
-  field :commented_at, type: DateTime
 
   belongs_to :group
 

@@ -199,3 +199,29 @@ time {
     .weibo_sign_in img {vertical-align: -5px;}
   }
 }
+
+form.edit_post {
+  .controls {
+    input[type="text"] {width: 70%;}
+    input[type="url"] {width: 70%;}
+    input[type="range"] {display: none;}
+    textarea {display: none;}
+
+    .redactor_box {
+      width: 90%;
+      .redactor_editor {
+      }
+    }
+  }
+
+  .submit {
+    text-align: center;
+    input[type="submit"] {
+      width: 25%;
+      @media screen and (max-width: 767px) {
+        width: 80%;
+      }
+    }
+  }
+}
+

@@ -26,7 +26,7 @@ window.Making =
 
   ReviewEdit: () ->
     $ ->
-      Making.Editor $('form.edit_review')
+      Making.Editor $('form.edit_post')
       $el = $('input[type="range"]')
       $el.replaceWith('<div class="rating"></div>')
       Making.Rating $('.rating'), $el.val(), $el.attr('name')

@@ -1,4 +1,4 @@
-= simple_form_for [@group, @topic], html: {class: "edit_topic"} do |f|
+= simple_form_for [@group, @topic], html: {class: "edit_post"} do |f|
   = f.input :title
   = f.input :content, as: :text
   = f.button :submit, class: 'btn btn-primary btn-large'
@@ -8,4 +8,4 @@
 
 - content_for :script do
   javascript:
-    Making.Editor($('form.edit_topic'));
+    Making.Editor($('form.edit_post'));

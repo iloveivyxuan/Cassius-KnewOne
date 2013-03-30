@@ -1,7 +1,11 @@
 class TopicsController < PostsController
   load_and_authorize_resource :group
+  layout 'group'
 
   def show
+    if user_signed_in?
+      CommentMessage.read_by_post(current_user, @topic)
+    end
   end
 
   def new
@@ -32,6 +36,6 @@ class TopicsController < PostsController
 
   def destroy
     @topic.destroy
-    redirect_to group_topics_path(@group)
+    redirect_to group_path(@group)
   end
 end

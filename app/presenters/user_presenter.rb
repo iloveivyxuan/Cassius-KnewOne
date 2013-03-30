@@ -13,4 +13,12 @@ class UserPresenter < ApplicationPresenter
   def topic_wrapper(topic)
     user.current_auth.topic_wrapper topic
   end
+
+  def link_to_with_avatar(size)
+    link_to avatar(size), user
+  end
+
+  def link_to_with_name
+    link_to name, user
+  end
 end

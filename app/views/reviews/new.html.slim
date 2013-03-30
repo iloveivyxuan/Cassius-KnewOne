@@ -1,6 +1,6 @@
 - provide :nav, :reviews
 
-= simple_form_for [@thing, @review], html: {class: "edit_review form-horizontal"} do |f|
+= simple_form_for [@thing, @review], html: {class: "edit_post form-horizontal"} do |f|
   = f.input :title
   = f.input :score, as: :range, input_html: {max: 5, min: 1}
   - if can? :manage, :all

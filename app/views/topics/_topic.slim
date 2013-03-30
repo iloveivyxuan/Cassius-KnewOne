@@ -1,14 +1,11 @@
 li.topic
-  = link_to user_avatar(topic.author, :small), topic.author
-  h4= link_to topic.title, group_topic_path(topic.group, topic)
-  .summary
-    = link_to topic.author.name, topic.author
-    - if topic.comments.present?
-      span.commented_at
-        | 最后由
-        = link_to topic.comments.first.author.name, topic.comments.first.author
-        | 于
-        = time_ago_tag(topic.commented_at)
-        | 回复
+  - present topic do |tp|
+    = tp.author_avatar(:small)
+    aside= tp.comments_count
+    h4= link_to tp.title, tp.path
+    .summary
+      = tp.author_name
+      = tp.last_commented_at
+      
   
   

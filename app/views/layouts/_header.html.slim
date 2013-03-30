@@ -32,6 +32,9 @@ header
               i.icon-caret-down
             ul.dropdown-menu
               - if current_user.admin?
+                li= link_to groups_path do
+                  i.icon-group
+                  | 管理小组
                 li= link_to admin_things_path do
                   i.icon-dashboard
                   | 管理产品

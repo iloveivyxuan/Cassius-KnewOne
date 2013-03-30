@@ -6,6 +6,17 @@
   border-bottom: 1px solid #eee;
   margin-bottom: 2em;
 
+  h1 {
+    a {
+      color: $textColor;
+      &:hover {color: $linkColor;}
+
+      i {
+        vertical-align: 2px;
+      }
+    }
+  }
+
   p {color: $fontLightColor;}
 
   .new_topic {
@@ -26,9 +37,49 @@
       margin-right: 2em;
     }
 
-    h4 {
-      margin-right: 10%;
-      a {}
+    aside {
+      float: right;
+      margin: {top: 25px;right: 2em;}
+      a {
+        display: inline-block;
+        padding: 2px 8px 1px;
+        background: $grayLight;
+        color: $white;
+        @include border-radius(14px);
+      }
     }
+
+    h4 {
+      margin {right: 10%; top: 0;}
+    }
+
+    .summary {
+      margin-top: 20px;
+
+      .commented_at {
+        color: $fontLightColor;
+        margin-left: 2em;
+        
+        time {
+          font-size: 1em;
+          margin-left: .5em;
+        }
+        a {margin: 0 .5em;}
+      }
+    }
+  }
+}
+
+#topic_show {
+  > header {
+    margin-bottom: 2em;
+  }
+
+  #topic_comments {
+    margin-top: 2em;
+    border-top: 1px solid #eee;
+    padding-top: 2em;
+
+    textarea {width: 50%;}
   }
 }

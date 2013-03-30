@@ -13,6 +13,14 @@ class PostPresenter < ApplicationPresenter
     end
   end
 
+  def author_avatar(size)
+    present(post.author).link_to_with_avatar(size)
+  end
+
+  def author_name
+    present(post.author).link_to_with_name
+  end
+
   def content
     sanitize(raw @object.content)
   end

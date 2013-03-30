@@ -1,2 +1,19 @@
-h1= @topic.title
-p= @topic.content
+- present @topic do |tp|
+  - provide :title, tp.title
+
+  article#topic_show
+
+    header
+      h3= tp.title
+      = tp.author
+      = render 'shared/post_actions', post: tp.topic, 
+      edit_post_path: tp.edit_path, post_path: tp.path
+
+    section
+      = tp.content
+
+    = render 'shared/comments', post: tp.topic, id: "topic_comments"
+
+- content_for :script do
+  javascript:
+    Making.Comments("#topic_comments")
