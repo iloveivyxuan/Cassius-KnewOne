@@ -41,6 +41,7 @@ body > header {
           padding-left: 29px;
           margin-top: 2px;
           height: 16px;
+          @include border-radius(4px);
         }
 
         .icon-search {
