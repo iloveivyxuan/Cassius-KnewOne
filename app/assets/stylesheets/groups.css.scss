@@ -56,6 +56,11 @@
     .summary {
       margin-top: 20px;
 
+      a {
+        color: $fontLightColor;
+        &:hover {color: $textColor;}
+      }
+
       .commented_at {
         color: $fontLightColor;
         margin-left: 2em;
