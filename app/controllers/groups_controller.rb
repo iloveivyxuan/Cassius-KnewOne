@@ -1,7 +1,9 @@
 class GroupsController < ApplicationController
   load_and_authorize_resource
+  after_filter :store_location, only: [:show]
 
   def index
+    can? :manage, :all or not_found
     @groups = Group.all
   end
 

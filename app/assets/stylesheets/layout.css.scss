@@ -56,9 +56,17 @@ body > header {
         }
       }
 
-      .nav_new_thing, .nav_things, .nav_lotteries, .nav_weibo {
+      .nav_new_thing, .nav_things, .nav_lotteries, .nav_weibo, .nav_groups {
         margin-top: 1px;
-        
+      }
+
+      .nav_things, .nav_weibo, .nav_groups {
+        @media screen and (max-width: 767px) {
+          display: none;
+        }
+      }
+
+      .nav_new_thing, .nav_lotteries {
         @media screen and (max-width: 979px) {
           display: none;
         }

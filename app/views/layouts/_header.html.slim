@@ -18,6 +18,14 @@ header
           = link_to_with_icon "天天有礼", "icon-gift", lotteries_path 
         li.nav_weibo
           = link_to_with_icon "关注微博", "icon-eye-open", "http://weibo.com/knewone"
+        li.nav_groups.dropdown
+          = link_to '#', class: "dropdown-toggle", data: {toggle: "dropdown"} do
+            i.icon-group
+            | 小组
+            i.icon-caret-down
+          ul.dropdown-menu
+            - Group.all.each do |group|
+              li= link_to group.name, group
         
       ul.nav.pull-right
         - if user_signed_in?
