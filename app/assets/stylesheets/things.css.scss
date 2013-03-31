@@ -210,7 +210,7 @@
     .shop {
       display: inline;
       margin-right: 2em;
-      small {display: none;}
+      small, .tags {display: none;}
     }
 
     .actions {
