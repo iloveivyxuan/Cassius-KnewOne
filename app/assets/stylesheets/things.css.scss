@@ -193,8 +193,6 @@
     }
   }
 
-
-
   @media screen and (max-width: 1023px) {
     position: fixed;
     bottom: 0;
@@ -219,6 +217,18 @@
         small {display: none;}
       }
     }
+  }
+}
+
+#thing_packages {
+  @media screen and (min-width: 1024px) {
+    @include right-layout;
+    width: 171px;
+  }
+
+  .package {
+    border-bottom: 1px dashed #ccc;
+    margin-bottom: 2em;
   }
 }
 

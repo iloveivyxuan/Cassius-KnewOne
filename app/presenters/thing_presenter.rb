@@ -82,6 +82,12 @@ class ThingPresenter < ApplicationPresenter
     %{我在#{topic}发现了一个酷产品, #{title}: #{thing_url(thing)}}
   end
 
+  def packages
+    thing.packages.map do |p|
+      present p
+    end
+  end
+
   private
 
   def can_buy?
