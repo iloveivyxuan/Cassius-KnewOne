@@ -21,7 +21,7 @@ header
         li.nav_groups.dropdown
           = link_to '#', class: "dropdown-toggle", data: {toggle: "dropdown"} do
             i.icon-group
-            | 小组
+            span 小组
             i.icon-caret-down
           ul.dropdown-menu
             - Group.all.each do |group|
@@ -36,7 +36,7 @@ header
           li.nav_user
             = link_to '#', class: "dropdown", data: {toggle: "dropdown"} do
               = image_tag current_user.avatar.url(:tiny), class: "user_avatar img-circle"
-              = current_user.name
+              span= current_user.name
               i.icon-caret-down
             ul.dropdown-menu
               - if current_user.admin?
@@ -79,6 +79,8 @@ header
           li.signin
             = link_to user_omniauth_authorize_path(:weibo), class: "weibo_sign_in" do
               = image_tag "weibo.png"
+          li.signin_mobile
+            = link_to_with_icon "", "icon-signin", '#',  data: {toggle: "modal", target: "#login-modal"}
 
       = form_tag(search_path, method: 'get', id: "nav_search", class: "navbar-search pull-right") do
         input.search-query.span2 type="search" name="q"

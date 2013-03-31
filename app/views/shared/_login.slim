@@ -2,7 +2,7 @@
   .modal-header
     button.close type="button" data-dismiss="modal"
       | &times;
-    h4 此操作需要您登录
+    h4 登录
   .modal-body
     = link_to user_omniauth_authorize_path(:twitter), class: "twitter_sign_in" do
       i.icon-twitter.icon-4x
