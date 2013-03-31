@@ -99,6 +99,7 @@ class Thing < Post
   def inc_karma
     return unless priority_changed?
     old_priority = changed_attributes["priority"]
+    old_priority ||= 0
     if old_priority <= 0 and priority > 0
       author.inc :karma, Settings.karma.thing
     elsif old_priority > 0 and priority <= 0
