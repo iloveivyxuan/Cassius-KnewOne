@@ -52,13 +52,6 @@
     aside {
       float: right;
       margin: {top: 25px;right: 2em;}
-      a {
-        display: inline-block;
-        padding: 2px 8px 1px;
-        background: $grayLight;
-        color: $white;
-        @include border-radius(14px);
-      }
     }
 
     h4 {

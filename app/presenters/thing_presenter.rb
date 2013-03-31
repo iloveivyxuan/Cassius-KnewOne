@@ -88,6 +88,18 @@ class ThingPresenter < ApplicationPresenter
     end
   end
 
+  def limit
+    if thing.is_limit
+      content_tag :span, "限量产品", class: "label label-info"
+    end
+  end
+
+  def pre
+    if thing.is_pre
+      content_tag :span, "预售产品", class: "label label-success"
+    end
+  end
+
   private
 
   def can_buy?

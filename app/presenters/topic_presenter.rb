@@ -18,7 +18,9 @@ class TopicPresenter < PostPresenter
   end
 
   def comments_count
-    link_to topic.comments.count, path if topic.comments.present?
+    if topic.comments.present?
+      link_to topic.comments.count, path, class: "badge"
+    end
   end
 
   private
