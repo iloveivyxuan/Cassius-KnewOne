@@ -158,9 +158,9 @@
     }
 
     .shop {
-      small {
+      .price {
         display: block;
-        font-size: 1.2em;
+        font-size: 1.33em;
         margin-bottom: 1em;
       }
 
@@ -170,11 +170,6 @@
           margin-right: 1.5em;
           margin-left: -1em;
         }
-      }
-
-      .tags {
-        margin-top: 1em;
-        span {margin-right: 1em;}
       }
     }
 

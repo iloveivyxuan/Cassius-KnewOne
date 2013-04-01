@@ -6,11 +6,11 @@
       section#thing_content= yield
       footer#thing_footer
         .shop
-          = tp.price
-          = tp.shop
-          .tags
+          .price
             = tp.limit
             = tp.pre
+            = tp.price
+          = tp.shop
         .actions
           .share
             = link_to_with_icon "", "icon-share-alt icon-2x", 

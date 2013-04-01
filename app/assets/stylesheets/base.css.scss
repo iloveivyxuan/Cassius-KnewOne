@@ -179,7 +179,18 @@ time {
 
 .reviews_count {
   color: $blue;
-  i {margin-right: .5em;}
+}
+
+.can_buy {
+  color: $green;
+}
+
+.limit {
+  color: $purple;
+}
+
+.pre {
+  color: $orange;
 }
 
 .share_modal {

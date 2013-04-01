@@ -22,7 +22,7 @@ class ThingPresenter < ApplicationPresenter
     thing.photos.first.url(size)
   end
 
-  def photo(size)
+  def photo(size, options={})
     image_tag photo_url(size), options.merge(alt: title)
   end
 
@@ -76,6 +76,10 @@ class ThingPresenter < ApplicationPresenter
     thing.owners.desc(:created_at).limit(10)
   end
 
+  def reviews_count
+    content_tag :span, thing.reviews.count, class: "reviews_count"
+  end
+
   def share_content
     user_signed_in? or return
     topic = present(current_user).topic_wrapper(brand)
@@ -90,13 +94,25 @@ class ThingPresenter < ApplicationPresenter
 
   def limit
     if thing.is_limit
-      content_tag :span, "限量产品", class: "label label-info"
+      content_tag :span, title: "限量产品", class: "limit" do
+        content_tag(:i, "", class: "icon-trophy")
+      end
     end
   end
 
   def pre
     if thing.is_pre
-      content_tag :span, "预售产品", class: "label label-success"
+      content_tag :span, title: "预售产品", class: "pre" do
+        content_tag(:i, "", class: "icon-bell-alt")
+      end
+    end
+  end
+
+  def can_buy
+    if can_buy?
+      content_tag :span, title: "可以购买", class: "can_buy" do
+        content_tag :i, "", class: "icon-shopping-cart"
+      end
     end
   end
 

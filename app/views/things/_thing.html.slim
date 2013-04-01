@@ -1,9 +1,18 @@
 li.thing 
-  = link_to thing do
-    = thing_photo(thing, size)
-  h4= thing_title(thing)
-  p
-    = thing_price(thing)
-    = thing_fanciers(thing)
-    = thing_owners(thing)
-    = thing_reviews(thing)
+  - present thing do |tp|
+    = link_to tp.photo(size), tp.thing
+    h4= tp.full_title
+    p
+      span.fanciers
+        i.icon-heart
+        = tp.fanciers_count
+      span.owners
+        i.icon-check
+        = tp.owners_count
+      span.reviews_count
+        i.icon-file-alt
+        = tp.reviews_count
+      = tp.price
+      = tp.can_buy
+      = tp.pre
+      = tp.limit
