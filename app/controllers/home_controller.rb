@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @things = Thing.unscoped.published.gt(priority: 0).desc(:priority, :created_at)
+    @things = Thing.prior.page(params[:page]).per(24)
     @new_things = Thing.published.limit(5)
     @new_reviews = Review.unscoped.desc(:created_at).limit(10)
   end

@@ -1,5 +1,7 @@
 Making::Application.routes.draw do
-  root to: 'home#index'
+  root to: 'home#index' do
+    get 'page/:page', action: :index, on: :member
+  end
 
   devise_for :users, skip: [:sessions],
   controllers:  {omniauth_callbacks: "omniauth_callbacks"}

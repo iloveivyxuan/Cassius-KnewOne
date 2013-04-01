@@ -40,6 +40,8 @@ class Thing < Post
 
   scope :published, -> { lt(created_at: Time.now) }
 
+  scope :prior, -> { unscoped.published.gt(priority: 0).desc(:priority, :created_at) }
+
   default_scope desc(:created_at)
 
   after_update :inc_karma
@@ -106,4 +108,5 @@ class Thing < Post
       author.inc :karma, -Settings.karma.thing
     end
   end
+
 end
