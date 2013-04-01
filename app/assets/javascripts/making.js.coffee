@@ -80,7 +80,7 @@ window.Making =
       collection.url = "/posts/#{post_id}/comments"
       view = new Making.Views.CommentsIndex
         collection: collection
-        el: "#{el}"
+        el: el
 
 $ ->
   Making.initialize()
