@@ -1,6 +1,7 @@
 json.(comment, :id)
 json.content comment_content(comment)
-json.created_time_tag time_ago_tag(comment.created_at)
+json.created_at_words time_ago(comment.created_at)
+json.created_at comment.created_at
 json.can_destroy can?(:destroy, comment)
 json.can_reply can?(:create, comment)
 

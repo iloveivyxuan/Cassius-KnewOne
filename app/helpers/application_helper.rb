@@ -49,7 +49,11 @@ module ApplicationHelper
   end
 
   def time_ago_tag(time)
-    time_tag time, time_ago_in_words(time)+"前"
+    time_tag time, time_ago(time)
+  end
+
+  def time_ago(time)
+    time_ago_in_words(time)+"前"
   end
 
   def boolean_tag(val)

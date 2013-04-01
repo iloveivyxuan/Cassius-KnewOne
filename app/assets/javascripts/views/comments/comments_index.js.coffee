@@ -7,18 +7,23 @@ class Making.Views.CommentsIndex extends Backbone.View
     'click .all': 'all'
 
   initialize: ->
-    @start = 20
+    @start = 50
     @collection.on
-      reset: @render
+      reset: @render_list
       add: @prepend
+    @render()
     @collection.fetch
       beforeSend: =>
-        @$el.html(HandlebarsTemplates['shared/loading'])
+        @$('ul').html(HandlebarsTemplates['shared/loading'])
 
   render: =>
     @$el.html @template(title: @$el.data('title'))
     unless @$el.data("signin")
       @$('#create_comment').hide()
+    @$('.all').show()
+    this
+
+  render_list: =>
     if @collection.length <= @start
       @$('.all').hide()
     _.each @collection.first(@start), @append

@@ -27,10 +27,17 @@ body > header {
       .brand {
         margin-left: 40px;
         color: $blue;
+        position: relative;
+        @include transition(all 1s ease-in-out);
 
         img {
           position: absolute;
           left: -40px;
+        }
+
+        &:hover {
+          top: 20px;
+          @include transform(rotate(-165deg) scale(1.5));
         }
       }
 

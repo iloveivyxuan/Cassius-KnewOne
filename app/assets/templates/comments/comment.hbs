@@ -9,7 +9,7 @@
       </a>
       <a href="{{url}}">{{name}}</a>
     {{/with}}
-    {{{created_time_tag}}}
+    <time datetime="{{created_at}}">{{created_at_words}}</time>
     {{#if can_reply}}
       <a class="reply" title="回复">
         <i class="icon-reply"></i>
