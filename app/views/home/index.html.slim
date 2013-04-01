@@ -3,8 +3,9 @@
   section#home_things
     .wrapper
       ul= render @things, size: :middle
+    = paginate @things
 
   aside#home_gifts
     .wrapper= render 'gifts'
 
-  = paginate @things
+  
