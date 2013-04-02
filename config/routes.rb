@@ -18,6 +18,7 @@ Making::Application.routes.draw do
     member {post 'fancy'}
     member {post 'own'}
     member {get 'buy'}
+    member {get 'buy_package'}
     get 'date/:date', action: :index, on: :collection
 
     resources :reviews do
@@ -59,6 +60,8 @@ Making::Application.routes.draw do
       get "limits"
     end
   end
+
+  resources :suppliers, only: [:index, :create]
 
   get '/search', to: 'home#search', as: :search
   get '/sandbox', to: 'home#sandbox'

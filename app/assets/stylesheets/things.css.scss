@@ -187,8 +187,29 @@
         }
       }
 
+      .fanciers {
+        .fancied {
+          .icon-heart-empty {display: none;}
+        }
+        .unfancied {
+          .icon-heart {display: none;}
+          &:hover {
+            small {color: $red;}
+          }
+        }
+      }
+
       .owners {
         margin-left: 2px;
+        .owned {
+          .icon-check-empty {display: none;}
+        }
+        .unowned {
+          .icon-check {display: none;}
+          &:hover {
+            small {color: $green;}
+          }
+        }
       }
     }
   }

@@ -1,15 +1,19 @@
 # -*- coding: utf-8 -*-
 class PackagePresenter < ApplicationPresenter
   presents :package
+  delegate :title, to: :package
 
-  def link_to_with_photo(size=:normal)
-    link_to package.shop, target: '_blank' do
-      image_tag package.photo.url(size)
+  def buy(index)
+    link_to buy_package_thing_path(package.thing, index: index),
+    target: '_blank', class: "track_event",
+    data: {action: "buy", category: "thing_packages",
+      label: package.thing.title+'-'+title} do
+      yield
     end
   end
 
-  def title
-    link_to package.title, package.shop, target: '_blank'
+  def photo(size=:normal)
+    image_tag package.photo.url(size)
   end
 
   def price

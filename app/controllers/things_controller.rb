@@ -95,6 +95,10 @@ class ThingsController < PostsController
     redirect_to @thing.shop
   end
 
+  def buy_package
+    redirect_to @thing.packages[params[:index].to_i].shop
+  end
+
   private
 
   def admin_authenticate

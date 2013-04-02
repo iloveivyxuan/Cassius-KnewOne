@@ -134,7 +134,10 @@
     border-bottom: 1px dashed #ccc;
     padding-bottom: 1em;
 
-    i {color: $red;}
+    i {
+      color: $red;
+      margin-right: .2em;
+    }
   }
 
   h4 {

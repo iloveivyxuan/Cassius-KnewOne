@@ -13,14 +13,14 @@
           = tp.shop
         .actions
           .share
-            = link_to_with_icon "", "icon-share-alt icon-2x", 
-            user_signed_in? ? "#thing_share" : "#login-modal",
-            title: "分享", data: {toggle: 'modal'}
-            small 分享
+            = link_to user_signed_in? ? "#thing_share" : "#login-modal",
+            title: "分享", data: {toggle: 'modal'} do
+              i.icon-share-alt.icon-2x
+              small 分享
           .fanciers
-            = render "things/fancy", thing_presenter: tp
+            = render "things/fancy", tp: tp
           .owners
-            = render "things/own", thing_presenter: tp
+            = render "things/own", tp: tp
       aside#thing_packages
         ul= render partial: "things/package", collection: tp.packages
       = render 'shared/share', id: 'thing_share', content: tp.share_content, pic: tp.photo_url(:huge) 

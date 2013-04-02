@@ -1,12 +1,11 @@
-- if thing_presenter.owned?
-  = link_to_with_icon "", "icon-check icon-2x", own_thing_path(thing_presenter.thing), 
-  remote: true, method: :post, title: "取消拥有此产品"
-- elsif user_signed_in?
-  = link_to_with_icon "", "icon-check-empty icon-2x", own_thing_path(thing_presenter.thing), 
-  remote: true, method: :post, title: "拥有此产品"
-- else
-  = link_to_with_icon "", "icon-check-empty icon-2x", "#", title: "拥有此产品", 
-  data: {toggle: "modal", target: "#login-modal"}
+- link_path = user_signed_in? ? own_thing_path(tp.thing) : "#"
+- data = user_signed_in? ? nil : {toggle: "modal", target: "#login-modal"}
+- title = tp.owned? ? "取消拥有此产品" : "拥有此产品"
+- own_class = tp.owned? ? "owned" : "unowned"
 
-= thing_presenter.owners_count
-small 拥有
+= link_to link_path, remote: true, method: :post, class: own_class, 
+title: title, data: data do
+  i.icon-check.icon-2x
+  i.icon-check-empty.icon-2x
+  = tp.owners_count
+  small 拥有
