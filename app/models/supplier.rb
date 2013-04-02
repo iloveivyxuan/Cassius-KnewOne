@@ -6,6 +6,7 @@ class Supplier
   field :contact, type: String
   field :description, type: String
   field :url, type: String, default: ""
+  field :thing_title, type: String, default: ""
 
   validates :name, presence: true
   validates :contact, presence: true

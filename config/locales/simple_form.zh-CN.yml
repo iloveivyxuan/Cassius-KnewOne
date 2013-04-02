@@ -62,6 +62,11 @@ zh-CN:
         address: '地址'
         is_delivered: '是否递送'
         delivery: '递送信息'
+      supplier:
+        name: "姓名"
+        contact: "联系方式"
+        url: "网店链接"
+        description: "简要说明"
     placeholders:
       user:
         email: '请输入您的邮箱地址'

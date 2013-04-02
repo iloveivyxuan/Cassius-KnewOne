@@ -11,6 +11,7 @@
             = tp.pre
             = tp.price
           = tp.shop
+          = tp.supplier
         .actions
           .share
             = link_to user_signed_in? ? "#thing_share" : "#login-modal",
@@ -24,5 +25,6 @@
       aside#thing_packages
         ul= render partial: "things/package", collection: tp.packages
       = render 'shared/share', id: 'thing_share', content: tp.share_content, pic: tp.photo_url(:huge) 
+      = render 'things/supplier', tp: tp
 
 = render template: 'layouts/application'

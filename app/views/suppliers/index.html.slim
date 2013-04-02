@@ -1,1 +1,12 @@
-h1 Hello Suppliers
+.general_wrapper
+  - @suppliers.each do |s|
+    .dashed_divider
+      h4= s.thing_title 
+      p= s.created_at.to_date
+      p
+        span= s.name
+        span= s.contact
+      p= link_to s.url, s.url
+      p= s.description 
+  = paginate @suppliers
+

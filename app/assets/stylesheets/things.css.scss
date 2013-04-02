@@ -53,7 +53,7 @@
       @media screen and (max-width: 767px) {
         display: none;
       }
-      
+
       i {margin-right: 1em;}
       a:hover {
         color: $textColor;
@@ -171,6 +171,12 @@
           margin-left: -1em;
         }
       }
+
+      .supplier {
+        margin-top: 1em;
+        margin-left: 1.3em;
+        a {color: $fontLightColor;}
+      }
     }
 
     .actions {
@@ -273,9 +279,13 @@
     @include thing(272px);
     @include section-decorate;
     padding: 1em;
-    
+
     @media screen and (max-width: 767px) {
       @include thing(228px);
     }
   }
+}
+
+#supplier-modal {
+  input[type="text"], input[type="url"], textarea {width: 80%;}
 }

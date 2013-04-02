@@ -50,6 +50,13 @@ class ThingPresenter < ApplicationPresenter
     end
   end
 
+  def supplier
+    content_tag :div, class: "supplier" do
+      link_to_with_icon "申请供货", "icon-truck", "#",
+      data: {toggle: "modal", target: "#supplier-modal"}
+    end
+  end
+
   def official_site
     if thing.official_site.present?
       link_to_with_icon "", "icon-globe", thing.official_site, target: "_blank", title: "官方信息"
