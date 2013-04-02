@@ -28,7 +28,7 @@ body > header {
         margin-left: 40px;
         color: $blue;
         position: relative;
-        @include transition(all 1s ease-in-out);
+        @include transition(all 0.5s ease-in-out);
 
         img {
           position: absolute;
@@ -36,8 +36,8 @@ body > header {
         }
 
         &:hover {
-          top: 20px;
-          @include transform(rotate(-165deg) scale(1.5));
+          top: 10px;
+          @include rotate(-15deg);
         }
       }
 
