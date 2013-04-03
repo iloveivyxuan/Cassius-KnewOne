@@ -147,6 +147,34 @@
 }
 
 #thing_footer {
+
+  .actions {
+    .fanciers {
+      .fancied {
+        .icon-heart-empty {display: none;}
+      }
+      .unfancied {
+        .icon-heart {display: none;}
+        &:hover {
+          small {color: $red;}
+        }
+      }
+    }
+
+    .owners {
+      margin-left: 2px;
+      .owned {
+        .icon-check-empty {display: none;}
+      }
+      .unowned {
+        .icon-check {display: none;}
+        &:hover {
+          small {color: $green;}
+        }
+      }
+    }
+  }
+
   @media screen and (min-width: 1024px) {
     @include right-layout;
     width: 171px;
@@ -192,31 +220,6 @@
           color: $fontLightColor;
         }
       }
-
-      .fanciers {
-        .fancied {
-          .icon-heart-empty {display: none;}
-        }
-        .unfancied {
-          .icon-heart {display: none;}
-          &:hover {
-            small {color: $red;}
-          }
-        }
-      }
-
-      .owners {
-        margin-left: 2px;
-        .owned {
-          .icon-check-empty {display: none;}
-        }
-        .unowned {
-          .icon-check {display: none;}
-          &:hover {
-            small {color: $green;}
-          }
-        }
-      }
     }
   }
 
@@ -232,8 +235,7 @@
     .shop {
       display: inline;
       margin-right: 2em;
-      small, .tags {display: none;}
-      .supplier {display: none;}
+      .price, .supplier {display: none;}
     }
 
     .actions {
