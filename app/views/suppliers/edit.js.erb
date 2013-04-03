@@ -1,0 +1,3 @@
+$("#supplier_<%= @supplier.id %>")
+  .find('.note p')
+    .replaceWith("<%= j render 'note_form' %>");

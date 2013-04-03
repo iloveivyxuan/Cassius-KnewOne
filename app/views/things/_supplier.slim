@@ -10,7 +10,7 @@
       = f.input :contact
       = f.input :url, as: :url
       = f.input :description, as: :text, input_html: {rows: 5}
-      = f.input :thing_title, as: :hidden, input_html: {value: tp.title}
+      = f.input :thing_title, as: :hidden, input_html: {value: tp.thing.slug}
     .modal-footer
       = button_tag "取消", type: 'button', class: "btn", data: {dismiss: "modal"}
       = f.submit "发布", class: "btn btn-primary"

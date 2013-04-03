@@ -61,7 +61,7 @@ Making::Application.routes.draw do
     end
   end
 
-  resources :suppliers, only: [:index, :create]
+  resources :suppliers
 
   get '/search', to: 'home#search', as: :search
   get '/sandbox', to: 'home#sandbox'
