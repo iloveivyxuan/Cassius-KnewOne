@@ -9,7 +9,7 @@ window.Making =
       $(document).ajaxComplete ->
         $(".spinning").remove()
       Making.Score()
-      Making.ModalForm()
+      Making.Share()
       $(".popover-toggle").popover()
       $(".track_event").click ->
         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
@@ -67,8 +67,8 @@ window.Making =
     .end().on "ajax:success", (e, html, status, xhr) ->
       $form.replaceWith html
 
-  ModalForm: () ->
-    $modal = $(".modal")
+  Share: () ->
+    $modal = $(".share_modal")
 
     $modal.on "submit form", ->
       $modal.modal("hide")

@@ -1,0 +1,9 @@
+$('#supplier-modal')
+  .find(".modal-footer")
+    .empty().end()
+  .find(".modal-body").empty()
+    .append("<p>感谢您的帮助，我们已经记录了您留下的信息，会尽快与您取"
+            + "得联系</p>")
+    .end();
+
+setTimeout(function(){$('#supplier-modal').modal('hide');}, 3000);

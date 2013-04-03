@@ -7,6 +7,5 @@ class SuppliersController < ApplicationController
 
   def create
     Supplier.create params[:supplier]
-    render nothing: true
   end
 end

@@ -193,8 +193,9 @@ time {
   color: $orange;
 }
 
-.share_modal {
+.modal {
   form {
+    margin: 0;
     textarea {width: 90%;}
   }
 }
