@@ -2,9 +2,9 @@
   - @suppliers.each do |s|
     .dashed_divider id="supplier_#{s.id}"
       h4
-        - thing = Thing.find s.thing_title
+        - thing = Thing.where(title: s.thing_title).first
         - if thing
-          = link_to thing.title, thing
+          = link_to s.thing_title, thing
         - else
           = s.thing_title 
         
