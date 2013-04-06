@@ -136,6 +136,7 @@
     blockquote {
       color: $fontLightColor;
       margin-bottom: 0;
+      @include big-font;
     }
 
     .author {
