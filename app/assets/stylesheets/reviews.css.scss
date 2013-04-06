@@ -4,6 +4,7 @@
 
 .review_content {
   @include big-font;
+  iframe {border: none;}
   ol {list-style: decimal inside;}
   ul {list-style: disc inside;}
 }
@@ -95,6 +96,7 @@
       }
 
       section {
+        @include big-font;
         p {
           word-wrap: break-word;
         }
