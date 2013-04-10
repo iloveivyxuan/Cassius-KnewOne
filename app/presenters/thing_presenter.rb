@@ -43,7 +43,7 @@ class ThingPresenter < ApplicationPresenter
       class: "btn disabled popover-toggle",
       data: {
         toggle: "popover",
-        placement: "bottom",
+        placement: "top",
         title: "暂时不能购买",
         content: "抱歉，目前还没有合适的渠道让您购买到此商品，不过，我们会一直追踪此商品的最新动向，一旦您所在的地区可以购买，我们会第一时间提供最靠谱的购买渠道，敬请期待"
       }
