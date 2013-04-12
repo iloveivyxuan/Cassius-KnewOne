@@ -15,6 +15,7 @@ class Thing < Post
   field :price_unit, type: String, default: "¥"
   field :stock, type: Integer
   field :is_limit, type: Boolean, default: false
+  field :is_self_run, type: Boolean, default: false
 
   field :priority, type: Integer, default: 0
   field :is_pre, type: Boolean, default: false

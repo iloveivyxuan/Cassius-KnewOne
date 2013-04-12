@@ -201,10 +201,16 @@
         }
       }
 
-      .supplier {
+      .supplier, .self_run {
         margin-top: 1em;
         margin-left: 1.3em;
-        a {color: $fontLightColor;}
+        a {
+          color: $fontLightColor;
+        }
+      }
+
+      .self_run {
+        i {color: $purple;}
       }
     }
 
@@ -236,7 +242,7 @@
     .shop {
       display: inline;
       margin-right: 2em;
-      .price, .supplier {display: none;}
+      .price, .supplier, .self_run {display: none;}
     }
 
     .actions {

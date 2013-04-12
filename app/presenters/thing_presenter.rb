@@ -34,12 +34,15 @@ class ThingPresenter < ApplicationPresenter
   end
 
   def shop
+    word = "购买"
+    icon = "icon-shopping-cart icon-large"
+
     if can_buy?
-      link_to_with_icon "购买", "icon-shopping-cart icon-large", buy_thing_path(thing), target: '_blank',
+      link_to_with_icon word, icon, buy_thing_path(thing), target: '_blank',
       class: "track_event btn btn-success",
       data: {action: "buy", category: "thing", label: title}
     else
-      link_to_with_icon "购买", "icon-shopping-cart icon-large", "#",
+      link_to_with_icon word, icon, "#",
       class: "btn disabled popover-toggle",
       data: {
         toggle: "popover",
@@ -48,6 +51,19 @@ class ThingPresenter < ApplicationPresenter
         content: "抱歉，目前还没有合适的渠道让您购买到此商品，不过，我们会一直追踪此商品的最新动向，一旦您所在的地区可以购买，我们会第一时间提供最靠谱的购买渠道，敬请期待"
       }
     end
+  end
+
+  def self_run
+    content_tag :div, class: "self_run" do
+      link_to_with_icon "#{brand}直营", "icon-trophy", "#",
+      class: "popover-toggle",
+      data: {
+        toggle: "popover",
+        placement: "bottom",
+        title: "什么是#{brand}直营?",
+        content: "为了保证商品的质量，我们会从可靠的供应商处获得一些最受欢迎的产品，通过自己经营的网店进行销售，请大家放心购买"
+      }
+    end if thing.is_self_run?
   end
 
   def supplier
@@ -96,14 +112,6 @@ class ThingPresenter < ApplicationPresenter
   def packages
     thing.packages.map do |p|
       present p
-    end
-  end
-
-  def limit
-    if thing.is_limit
-      content_tag :span, title: "限量产品", class: "limit" do
-        content_tag(:i, "", class: "icon-trophy")
-      end
     end
   end
 
