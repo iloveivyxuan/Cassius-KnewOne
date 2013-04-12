@@ -131,6 +131,14 @@ class ThingPresenter < ApplicationPresenter
     end
   end
 
+  def limit
+    if thing.is_limit
+      content_tag :span, title: "限量产品", class: "limit" do
+        content_tag(:i, "", class: "icon-trophy")
+      end
+    end
+  end
+
   private
 
   def can_buy?
