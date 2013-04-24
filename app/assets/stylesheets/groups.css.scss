@@ -90,6 +90,10 @@
     border-top: 1px solid #eee;
     padding-top: 2em;
 
-    textarea {width: 50%;}
+    p.login_tip {
+      margin: 2em 0;
+    }
+
+    textarea {width: 80%;}
   }
 }

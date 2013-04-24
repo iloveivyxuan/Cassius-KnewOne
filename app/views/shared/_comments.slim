@@ -1,3 +1,2 @@
-- if can? :create, :comment or post.comments.count > 0
-  = content_tag :aside, "", id: id, 
-  data: {signin: user_signed_in?, postid: post.id.to_s, title: "回复"} 
+= content_tag :aside, "", id: id, 
+data: {signin: user_signed_in?, postid: post.id.to_s, title: "回复"} 

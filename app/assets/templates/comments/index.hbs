@@ -4,6 +4,11 @@
     {{title}}
   </h4>
   <form id="create_comment" class="comment_form">
+    <p class="login_tip">
+      需要您
+      <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#login-modal">登录</a>
+      之后才可以进行回复
+    </p>
     <div class="controls">
       <textarea name="comment_content" rows="5" maxlength="255" required></textarea>
       <p class="help-block">不超过250字</p>

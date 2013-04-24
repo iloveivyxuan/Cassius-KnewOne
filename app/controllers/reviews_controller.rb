@@ -1,6 +1,5 @@
 class ReviewsController < PostsController
   load_and_authorize_resource :thing, except: [:admin]
-  after_filter :store_location, only: [:index, :show]
   layout 'thing', except: [:admin]
 
   def admin

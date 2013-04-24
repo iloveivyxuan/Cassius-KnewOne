@@ -18,8 +18,11 @@ class Making.Views.CommentsIndex extends Backbone.View
 
   render: =>
     @$el.html @template(title: @$el.data('title'))
-    unless @$el.data("signin")
-      @$('#create_comment').hide()
+    if @$el.data("signin")
+      $('#create_comment p.login_tip').hide()
+    else
+      @disableForm()
+    
     @$('.all').show()
     this
 
@@ -28,6 +31,10 @@ class Making.Views.CommentsIndex extends Backbone.View
       @$('.all').hide()
     _.each @collection.first(@start), @append
     this
+
+  disableForm: =>
+    $('#create_comment')
+      .find('textarea,button').prop('disabled', true).addClass('disabled')
 
   create: (e) ->
     e.preventDefault()

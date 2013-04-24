@@ -1,6 +1,5 @@
 class LinksController < PostsController
   load_and_authorize_resource :thing
-  after_filter :store_location, only: [:index, :show]
   layout 'thing'
 
   def index
