@@ -8,6 +8,7 @@ class ThingsController < PostsController
     rescue ArgumentError
       not_found
     end
+
     @date ||= Date.today
     @ndate = @date.next_day
     @things = Thing.where(created_at: (@date..@ndate))

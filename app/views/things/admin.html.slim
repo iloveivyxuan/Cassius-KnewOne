@@ -3,6 +3,7 @@ h1 产品列表
 table.table.table-striped.table-hover.table-bordered
   tr
     th 名称
+    th 时间
     th 作者
     th 图片
     th 编辑
@@ -10,6 +11,7 @@ table.table.table-striped.table-hover.table-bordered
   - @things.each do |t|
     tr
       td= link_to t.title, t
+      td= t.created_at.strftime '%m-%d'
       td= t.author.name
       td= image_tag(t.photos.first.url(:small))
       td= link_to "编辑", edit_thing_path(t), class: "btn"
