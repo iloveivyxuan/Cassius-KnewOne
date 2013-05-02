@@ -283,9 +283,26 @@
 
 #things_index {
   @include clearfix();
+  margin: 0 auto;
+
+  @media screen and (min-width: 768px) {
+    width: 440px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 880px;
+  }
+
+  @media screen and (min-width: 1680px) {
+    width: 1360px;
+  }
+
+  @media screen and (min-width: 1920px) {
+    width: 1760px;
+  }
 
   li {
-    @include thing(272px);
+    @include thing(384px);
     @include section-decorate;
     padding: 1em;
 
