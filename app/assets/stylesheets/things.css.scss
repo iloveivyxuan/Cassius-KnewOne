@@ -282,14 +282,7 @@
 }
 
 #things_index {
-  .controls {
-    @include clearfix();
-    width: 100%;
-    a {
-      display: inline-block;
-      i {padding-top: 4px;}
-    }
-  }
+  @include clearfix();
 
   li {
     @include thing(272px);

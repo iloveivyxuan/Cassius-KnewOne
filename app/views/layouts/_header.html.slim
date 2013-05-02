@@ -21,7 +21,7 @@ header
           - else
             = link_to_with_icon "分享产品", "icon-magic", "#", data: {toggle: "modal", target: "#login-modal"}
         li.nav_things
-          = link_to_with_icon "每日更新", "icon-th", things_path 
+          = link_to_with_icon "最新产品", "icon-th", things_path 
         li.nav_lotteries
           = link_to_with_icon "天天有礼", "icon-gift", lotteries_path 
         li.nav_weibo
@@ -58,10 +58,6 @@ header
                 li= link_to suppliers_path do
                   i.icon-truck
                   | 供货信息
-              - if current_user.is_guest?
-                li= link_to limits_guests_path do
-                  i.icon-trophy
-                  | 限量产品
               li= link_to current_user do
                 i.icon-user
                 | 个人主页
@@ -70,7 +66,7 @@ header
                 | 我的消息
               li= link_to things_path do
                 i.icon-time
-                | 每日更新
+                | 最新产品
               li= link_to destroy_user_session_path, method: :delete do
                 i.icon-signout
                 | 登出

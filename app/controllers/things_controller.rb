@@ -3,20 +3,12 @@ class ThingsController < PostsController
   before_filter :admin_authenticate, only: [:index]
 
   def index
-    begin
-      @date = Date.parse params[:date] if params[:date]
-    rescue ArgumentError
-      not_found
-    end
-
-    @date ||= Date.today
-    @ndate = @date.next_day
-    @things = Thing.where(created_at: (@date..@ndate))
+    @things = Thing.published.page(params[:page])
 
     respond_to do |format|
       format.html
-      format.atom { @things = Thing.limit(10) }
-      format.json { @things = Thing.ne(shop: "") }
+      format.atom
+      format.json
     end
   end
 
