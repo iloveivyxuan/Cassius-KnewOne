@@ -297,10 +297,6 @@
     width: 1360px;
   }
 
-  @media screen and (min-width: 1920px) {
-    width: 1760px;
-  }
-
   li {
     @include thing(384px);
     @include section-decorate;
