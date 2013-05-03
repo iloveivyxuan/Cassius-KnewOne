@@ -21,6 +21,7 @@ class Thing < Post
   field :is_pre, type: Boolean, default: false
 
   field :scores, type: Array, default: []
+  field :fanciers_count, type: Integer, default: 0
 
   # https://github.com/jnicklas/carrierwave/issues/81
   embeds_many :packages, cascade_callbacks: true
@@ -58,12 +59,14 @@ class Thing < Post
   def fancy(user)
     return if fancied?(user)
     fanciers << user
+    update_attribute :fanciers_count, fanciers.count
     user.inc :karma, Settings.karma.fancy
   end
 
   def unfancy(user)
     return unless fancied?(user)
     fanciers.delete user
+    update_attribute :fanciers_count, fanciers.count
     user.inc :karma, -Settings.karma.fancy
   end
 
