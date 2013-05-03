@@ -306,6 +306,10 @@
       @include thing(228px);
     }
   }
+
+  .loading {
+    text-align: center;
+  }
 }
 
 #supplier-modal {

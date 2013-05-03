@@ -9,6 +9,7 @@
 //= require jquery-fileupload/vendor/load-image
 //= require jquery.sortable
 //= require jquery.raty
+//= require jquery.infinitescroll
 //= require redactor
 //= require redactor.zh-CN
 //= require_tree ../templates

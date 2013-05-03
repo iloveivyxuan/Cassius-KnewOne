@@ -4,3 +4,8 @@
     ul= render @things, size: :normal
 
   = paginate @things
+
+- content_for :script do
+  javascript:
+    Making.InfiniteScroll("#things_index", "li.thing")
+

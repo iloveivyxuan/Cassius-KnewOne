@@ -1,6 +1,6 @@
 li.thing 
   - present thing do |tp|
-    = link_to tp.photo(size), tp.thing
+    = link_to tp.photo(size), tp.thing, target: "_blank"
     h4= tp.full_title
     p
       - if tp.thing.fanciers.count > 0
