@@ -312,6 +312,14 @@
     width: 100%;
     text-align: center;
   }
+
+  .btn-group {
+    padding-left: 15px;
+    margin-bottom: 15px;
+    a {
+      color: #777;
+    }
+  }
 }
 
 #supplier-modal {
