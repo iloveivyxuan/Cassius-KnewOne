@@ -82,4 +82,15 @@ module ThingsHelper
     topic = user_topic_wrapper(current_user, brand)
     %{我在#{topic}发现了一个酷产品, #{thing_title(thing)}: #{thing_url(thing)}}
   end
+
+  def things_sort(sort)
+    case sort
+    when "self_run"
+      "直营产品"
+    when "fancy"
+      "热门产品"
+    else
+      "最新产品"
+    end
+  end
 end

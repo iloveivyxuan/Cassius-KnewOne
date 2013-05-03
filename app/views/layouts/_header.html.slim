@@ -22,8 +22,8 @@ header
             i.icon-caret-down
           ul.dropdown-menu
             li= link_to_with_icon "最新", "icon-coffee", things_path 
-            / li= link_to_with_icon "热门", "icon-beer", things_path 
-            li= link_to_with_icon "直营", "icon-trophy", things_path(self_run: true)
+            li= link_to_with_icon "热门", "icon-beer", things_path(sort: "fancy") 
+            li= link_to_with_icon "直营", "icon-trophy", things_path(sort: "self_run")
         li.nav_new_thing
           - if user_signed_in?
             = link_to_with_icon "分享产品", "icon-magic", new_thing_path 

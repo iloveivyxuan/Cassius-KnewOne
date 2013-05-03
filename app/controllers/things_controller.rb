@@ -4,7 +4,15 @@ class ThingsController < PostsController
 
   def index
     scope = Thing.published
-    scope = scope.where(is_self_run: true) if params[:self_run]
+    scope = case params[:sort]
+            when "self_run"
+              Thing.published.where(is_self_run: true)
+            when "fancy"
+              Thing.unscoped.published.desc(:fanciers_count)
+            else
+              Thing.published
+            end
+
     @things = scope.page(params[:page]).per(12)
 
     respond_to do |format|
