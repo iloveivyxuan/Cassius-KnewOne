@@ -26,9 +26,9 @@ header
             li= link_to_with_icon "直营", "icon-trophy", things_path(self_run: true)
         li.nav_new_thing
           - if user_signed_in?
-            = link_to_with_icon "分享", "icon-magic", new_thing_path 
+            = link_to_with_icon "分享产品", "icon-magic", new_thing_path 
           - else
-            = link_to_with_icon "分享", "icon-magic", "#", data: {toggle: "modal", target: "#login-modal"}
+            = link_to_with_icon "分享产品", "icon-magic", "#", data: {toggle: "modal", target: "#login-modal"}
         li.nav_lotteries
           = link_to_with_icon "天天有礼", "icon-gift", lotteries_path 
         li.nav_weibo
