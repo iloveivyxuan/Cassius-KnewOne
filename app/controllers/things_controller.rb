@@ -3,7 +3,9 @@ class ThingsController < PostsController
   before_filter :admin_authenticate, only: [:index]
 
   def index
-    @things = Thing.published.page(params[:page]).per(12)
+    scope = Thing.published
+    scope = scope.where(is_self_run: true) if params[:self_run]
+    @things = scope.page(params[:page]).per(12)
 
     respond_to do |format|
       format.html

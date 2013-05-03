@@ -67,21 +67,17 @@ body > header {
         margin-top: 1px;
       }
 
-      .nav_things  {
-        @media screen and (max-width: 767px) {
-          display: none;
-        }
-      }
-
       .nav_new_thing, .nav_lotteries, .nav_weibo {
         @media screen and (max-width: 1151px) {
           display: none;
         }
       }
 
-      .nav_groups span {
+      .nav_groups , .nav_things {
         @media screen and (max-width: 767px) {
-          display: none;
+          i.icon-caret-down {display: none;}
+          span {display: none;}
+          a {padding-right: 0;}
         }
       }
 
