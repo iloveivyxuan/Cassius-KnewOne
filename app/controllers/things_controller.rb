@@ -3,7 +3,7 @@ class ThingsController < PostsController
   before_filter :admin_authenticate, only: [:index]
 
   def index
-    @things = Thing.published.page(params[:page]).per(12)
+    @things = Thing.published.page(params[:page]).per(3)
 
     respond_to do |format|
       format.html

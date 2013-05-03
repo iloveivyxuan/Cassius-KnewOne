@@ -93,6 +93,9 @@ window.Making =
       animate: true
       loading:
         msg: $("<div class='loading'><i class='icon-spinner icon-spin icon-2x'></i></div>")
+      errorCallback: ->
+        $(container).find('.loading').html("<em>No more......</em>")
+       
 
 $ ->
   Making.initialize()
