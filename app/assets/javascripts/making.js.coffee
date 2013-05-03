@@ -85,12 +85,10 @@ window.Making =
   InfiniteScroll: (container, item) ->
     $('.pagination').hide()
     $(container).infinitescroll
-      debug: true
       navSelector: '.pagination'
       nextSelector: '.pagination a[rel="next"]'
       contentSelector: container + ' ul'
       itemSelector: item
-      animate: true
       loading:
         msg: $("<div class='loading'><i class='icon-spinner icon-spin icon-2x'></i></div>")
       errorCallback: ->
