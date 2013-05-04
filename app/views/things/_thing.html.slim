@@ -1,7 +1,8 @@
 li.thing 
   - present thing do |tp|
     = link_to tp.photo(size), tp.thing, target: "_blank"
-    h4= tp.full_title
+    h4 data-toggle="tooltip" data-placement="bottom" title=tp.full_title 
+      = tp.full_title
     p
       - if tp.thing.fanciers.count > 0
         span.fanciers
