@@ -6,7 +6,7 @@ hgroup#thing_form_header
 
 = simple_form_for @thing, html: {class: "thing_form form-horizontal pull-left"} do |f|
   = f.input :title, placeholder: "真实准确的品牌型号", 
-            hint: "如: Jawbone Up 2nd，30字以内", input_html: {maxlength: 30}
+            hint: "如: Jawbone Up 2nd，40字以内", input_html: {maxlength: 40}
   = f.input :subtitle, placeholder: "您对产品的一句话介绍",
             hint: "选填, 请用最简短的词语描绘这个产品，30字以内", input_html: {maxlength: 30}
   = f.input :official_site, as: :url, placeholder: "品牌官方网站的该产品介绍链接地址",
