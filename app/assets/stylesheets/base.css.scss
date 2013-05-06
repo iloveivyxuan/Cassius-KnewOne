@@ -60,6 +60,8 @@
     font-size: $baseFontSize;
     overflow: hidden;
     color: $fontLightColor;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   p {
