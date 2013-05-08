@@ -12,9 +12,9 @@
         = link_to_with_icon "", "icon-share-alt", 
         user_signed_in? ? "#link_share" : "#login-modal",
         title: "分享", data: {toggle: 'modal'}
+        = render 'shared/post_actions', post: lp.link, 
+        edit_post_path: lp.edit_path, post_path: lp.path
       = lp.author
-      = render 'shared/post_actions', post: lp.link, 
-      edit_post_path: lp.edit_path, post_path: lp.path
     
     = render 'shared/share', id: 'link_share', 
       content: lp.share_content, pic: lp.thing_photo_url(:huge) 

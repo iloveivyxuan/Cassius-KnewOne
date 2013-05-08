@@ -4,10 +4,11 @@
   article#topic_show
 
     header
-      h3= tp.title
+      h3
+        = tp.title
+        = render 'shared/post_actions', post: tp.topic, 
+        edit_post_path: tp.edit_path, post_path: tp.path
       = tp.author
-      = render 'shared/post_actions', post: tp.topic, 
-      edit_post_path: tp.edit_path, post_path: tp.path
 
     section
       = tp.content

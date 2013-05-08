@@ -12,11 +12,10 @@
         = link_to_with_icon "", "icon-share-alt", 
         user_signed_in? ? "#review_share" : "#login-modal",
         title: "分享", data: {toggle: 'modal'}
-
+        = render 'shared/post_actions', post: rp.review, 
+        edit_post_path: rp.edit_path, post_path: rp.path
       = rp.score
       = rp.author
-      = render 'shared/post_actions', post: rp.review, 
-      edit_post_path: rp.edit_path, post_path: rp.path
     
     section.review_content= rp.content
       

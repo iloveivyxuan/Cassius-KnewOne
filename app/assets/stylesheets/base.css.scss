@@ -142,6 +142,10 @@ time {
     margin-right: 1em;
   }
 
+  a i {
+    color: $fontLightColor;
+  }
+
   img {
     vertical-align: -2px;
   }
@@ -188,6 +192,8 @@ time {
     header {
       margin: 0;
       padding-left: 80px;
+
+      .reply {margin-right: 0;}
     }
 
     section {
