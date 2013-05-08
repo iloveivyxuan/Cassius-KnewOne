@@ -172,6 +172,20 @@ time {
       margin-bottom: 1em;
     }
   }
+
+  .comment {
+    @include clearfix();
+
+    header {
+      float: left;
+      width: 50px;
+      img {margin-bottom: .5em;}
+    }
+
+    section {
+      p {margin: .5em 0 0;}
+    }
+  }
 }
 
 .fanciers {
