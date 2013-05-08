@@ -176,13 +176,22 @@ time {
   .comment {
     @include clearfix();
 
-    header {
+    .avatar {
       float: left;
-      width: 50px;
-      img {margin-bottom: .5em;}
+      margin-right: 1em;
+      img {
+        width: 60px;
+        height: 60px;
+      }
+    }
+
+    header {
+      margin: 0;
+      padding-left: 80px;
     }
 
     section {
+      padding-left: 80px;
       p {margin: .5em 0 0;}
     }
   }

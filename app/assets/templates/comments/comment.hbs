@@ -1,28 +1,28 @@
 <article class="comment">
-  <header>
+  <div class="avatar">
     {{#with author}}
-      <a href="{{url}}">
-        <img src="{{photo_url}}">
-      </a>
+    <a href="{{url}}">
+      <img src="{{photo_url}}">
+    </a>
+    {{/with}}
+  </div>
+  <header class="author">
+    {{#with author}}
       <a href="{{url}}">{{name}}</a>
     {{/with}}
+    <time datetime="{{created_at}}">{{created_at_words}}</time>
+    {{#if can_reply}}
+      <a class="reply" title="回复">
+        <i class="icon-reply"></i>
+      </a>
+    {{/if}}
+    {{#if can_destroy}}
+      <a class="destroy">
+        <i class="icon-trash"></i>
+      </a>
+    {{/if}}
   </header>
   <section>
-    <p>
-      {{{content}}}
-      <span>
-        <time datetime="{{created_at}}">{{created_at_words}}</time>
-        {{#if can_reply}}
-          <a class="reply" title="回复">
-            <i class="icon-reply"></i>
-          </a>
-        {{/if}}
-        {{#if can_destroy}}
-          <a class="destroy">
-            <i class="icon-trash"></i>
-          </a>
-        {{/if}}
-      </span>  
-    </p>
+    <p>{{{content}}}</p>
   </section>
 </article>
