@@ -4,10 +4,12 @@
 
   section#things_index
     nav.btn-group
-      = link_to_with_icon "最新", "icon-coffee", things_path, 
+      = link_to_with_icon "最新", "icon-bolt", things_path, 
       class: "btn #{'active' unless params[:sort]}" 
-      = link_to_with_icon "热门", "icon-beer", things_path(sort: "fancy"), 
+      = link_to_with_icon "热门", "icon-fire", things_path(sort: "fancy"), 
       class: "btn #{'active' if params[:sort] == 'fancy'}"  
+      = link_to_with_icon "可购", "icon-shopping-cart", things_path(sort: "shop"), 
+      class: "btn #{'active' if params[:sort] == 'shop'}" 
       = link_to_with_icon "自营", "icon-trophy", things_path(sort: "self_run"), 
       class: "btn #{'active' if params[:sort] == 'self_run'}" 
 

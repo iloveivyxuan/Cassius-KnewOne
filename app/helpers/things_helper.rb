@@ -89,6 +89,8 @@ module ThingsHelper
       "直营产品"
     when "fancy"
       "热门产品"
+    when "shop"
+      "可购产品"
     else
       "最新产品"
     end
