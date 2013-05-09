@@ -9,6 +9,8 @@ class ThingsController < PostsController
               Thing.published.where(is_self_run: true)
             when "fancy"
               Thing.unscoped.published.desc(:fanciers_count)
+            when "shop"
+              Thing.ne(shop: "")
             else
               Thing.published
             end
