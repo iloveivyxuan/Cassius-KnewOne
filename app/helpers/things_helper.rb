@@ -86,7 +86,7 @@ module ThingsHelper
   def things_sort(sort)
     case sort
     when "self_run"
-      "直营产品"
+      "自营产品"
     when "fancy"
       "热门产品"
     when "shop"
