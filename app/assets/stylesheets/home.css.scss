@@ -118,6 +118,7 @@
 #home_gifts {
   @include section-decorate;
   margin: 1em;
+  display: none;
 
   .wrapper {padding: 1em 2em;}
 
@@ -151,16 +152,9 @@
     }
   }
 
-  @media screen and (min-width: 320px) {
-    width: 258px;
-  }
-
-  @media screen and (min-width: 768px) {
-    width: 632px;
-  }
-
   @media screen and (min-width: 1024px) {
     @include right-layout;
+    display: block;
     margin: .5em;
   }
 
