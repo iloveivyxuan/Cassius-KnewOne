@@ -55,12 +55,12 @@ class ThingPresenter < ApplicationPresenter
 
   def self_run
     content_tag :div, class: "self_run" do
-      link_to_with_icon "#{brand}直营", "icon-trophy", "#",
+      link_to_with_icon "#{brand}自营", "icon-trophy", "#",
       class: "popover-toggle",
       data: {
         toggle: "popover",
         placement: "bottom",
-        title: "什么是#{brand}直营?",
+        title: "什么是#{brand}自营?",
         content: "为了保证商品的质量，我们会从可靠的供应商处获得一些最受欢迎的产品，通过自己经营的网店进行销售，请大家放心购买"
       }
     end if thing.is_self_run?
