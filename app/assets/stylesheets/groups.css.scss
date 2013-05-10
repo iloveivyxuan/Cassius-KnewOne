@@ -85,6 +85,11 @@
     margin-bottom: 2em;
   }
 
+  > section {
+    ol {list-style: decimal inside;}
+    ul {list-style: disc inside;}
+  }
+
   #topic_comments {
     margin-top: 2em;
     border-top: 1px solid #eee;

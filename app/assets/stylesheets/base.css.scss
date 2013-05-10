@@ -292,3 +292,11 @@ form.edit_post {
   width: 100%;
   text-align: center;
 }
+
+.post_content {
+  @include big-font;
+  iframe {border: none;}
+  ol {list-style: decimal inside;}
+  ul {list-style: disc inside;}
+}
+

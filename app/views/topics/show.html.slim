@@ -10,7 +10,7 @@
         edit_post_path: tp.edit_path, post_path: tp.path
       = tp.author
 
-    section
+    section.post_content
       = tp.content
 
     = render 'shared/comments', post: tp.topic, id: "topic_comments"

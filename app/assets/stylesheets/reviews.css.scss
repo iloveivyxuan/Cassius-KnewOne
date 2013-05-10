@@ -2,13 +2,6 @@
   color: $fontLightColor;
 }
 
-.review_content {
-  @include big-font;
-  iframe {border: none;}
-  ol {list-style: decimal inside;}
-  ul {list-style: disc inside;}
-}
-
 #review_show {
   > header {
     h3 {
@@ -67,27 +60,6 @@
       border-bottom: 1px dashed #ccc;
       margin-bottom: 2em;
     }
-
-    /* @include clearfix; */
-
-    /* figure { */
-    /*   float: right; */
-    /*   width: 36%; */
-    /*   text-align: center; */
-    /*   margin: 1em; */
-
-    /*   img { */
-    /*     max-width: 100%; */
-    /*     max-height: 280px; */
-    /*   } */
-
-    /*   @media screen and (max-width: 979px) { */
-    /*     float: none; */
-    /*     width: 95%; */
-    /*     text-align: left; */
-    /*     margin: 1em 0; */
-    /*   } */
-    /* } */
 
     article {
       header {
