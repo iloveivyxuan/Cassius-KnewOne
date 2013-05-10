@@ -14,6 +14,9 @@ window.Making =
       $(".thing h4").tooltip()
       $(".track_event").click ->
         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
+      $('#go_top').click ->
+        $(@).fadeOut()
+        $('html,body').animate {scrollTop: 0}, 'slow'
 
   TrackEvent: (category, action, label) ->  
     try
@@ -94,6 +97,11 @@ window.Making =
         msg: $("<div class='loading'><i class='icon-spinner icon-spin icon-2x'></i></div>")
       errorCallback: ->
         $(container).find('.loading').html("<em>No more......</em>")
+    $(window).on 'scroll', ->
+      if $(window).scrollTop() > $(window).height()/2
+        $('#go_top').fadeIn() if $('#go_top').is(':hidden')
+      else
+        $('#go_top').fadeOut() if $('#go_top').is(':visible')
        
 
 $ ->
