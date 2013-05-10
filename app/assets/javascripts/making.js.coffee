@@ -93,10 +93,12 @@ window.Making =
       nextSelector: '.pagination a[rel="next"]'
       contentSelector: container + ' ul'
       itemSelector: item
+      pixelsFromNavToBottom: 100
+      debug: true
       loading:
-        msg: $("<div class='loading'><i class='icon-spinner icon-spin icon-2x'></i></div>")
+        msg: $("<div class='loading-things'><i class='icon-spinner icon-spin icon-4x'></i></div>")
       errorCallback: ->
-        $(container).find('.loading').html("<em>No more......</em>")
+        $(container).find('.loading-things').html("<em>没有更多了......</em>")
     $(window).on 'scroll', ->
       if $(window).scrollTop() > $(window).height()/2
         $('#go_top').fadeIn() if $('#go_top').is(':hidden')
