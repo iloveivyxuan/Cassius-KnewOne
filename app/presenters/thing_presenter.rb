@@ -28,21 +28,23 @@ class ThingPresenter < ApplicationPresenter
 
   def price
     if thing.price.to_i > 0 and can_buy?
-      content_tag :small,
-      number_to_currency(thing.price, precision: 2, unit: thing.price_unit)
+      content_tag :div,
+      number_to_currency(thing.price, precision: 2, unit: thing.price_unit),
+      class: "price"
     end
   end
 
   def shop
-    word = "购买"
-    icon = "icon-shopping-cart icon-large"
-
-    if can_buy?
-      link_to_with_icon word, icon, buy_thing_path(thing), target: '_blank',
+    if thing.is_pre and can_buy?
+      link_to_with_icon "预购", "icon-shopping-cart icon-large", buy_thing_path(thing), target: '_blank',
+      class: "track_event btn btn-warning",
+      data: {action: "buy", category: "thing", label: title}
+    elsif can_buy?
+      link_to_with_icon "购买", "icon-shopping-cart icon-large", buy_thing_path(thing), target: '_blank',
       class: "track_event btn btn-success",
       data: {action: "buy", category: "thing", label: title}
     else
-      link_to_with_icon word, icon, "#",
+      link_to_with_icon "购买", "icon-shopping-cart icon-large", "#",
       class: "btn disabled popover-toggle",
       data: {
         toggle: "popover",
@@ -116,9 +118,9 @@ class ThingPresenter < ApplicationPresenter
   end
 
   def pre
-    if thing.is_pre
-      content_tag :span, title: "预售产品", class: "pre" do
-        content_tag(:i, "", class: "icon-bell-alt")
+    if thing.is_pre and thing.pre_link
+      content_tag :div, class: "pre" do
+        link_to_with_icon "预售详情", "icon-bell-alt", thing.pre_link
       end
     end
   end

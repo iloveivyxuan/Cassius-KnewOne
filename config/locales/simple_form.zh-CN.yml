@@ -26,6 +26,7 @@ zh-CN:
         stock: '剩余数量'
         batch: '进货数量'
         is_pre: '是否预售'
+        pre_link: '预售说明'
         priority: '优先'
         is_limit: '是否限量'
         is_self_run: '是否自营'

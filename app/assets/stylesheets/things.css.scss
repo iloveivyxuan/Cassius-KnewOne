@@ -189,8 +189,8 @@
     .shop {
       .price {
         display: block;
-        font-size: 1.33em;
-        margin-bottom: 1em;
+        font-size: 1.2em;
+        margin-bottom: .8em;
       }
 
       a {
@@ -201,9 +201,12 @@
         }
       }
 
-      .supplier, .self_run {
+      .supplier, .self_run, .pre {
         margin-top: 1em;
         margin-left: 1.3em;
+      }
+
+      .supplier, .self_run {
         a {
           color: $fontLightColor;
         }
@@ -211,6 +214,10 @@
 
       .self_run {
         i {color: $purple;}
+      }
+
+      .pre {
+        i {color: $orange;}
       }
     }
 
