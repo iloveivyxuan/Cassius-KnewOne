@@ -3,6 +3,14 @@
   line-height: 24px;
 }
 
+@mixin triangle {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
 @mixin section-decorate {
   background: white;
   @include border-radius(8px);
@@ -38,6 +46,8 @@
   width: $size;
   margin: 1em;
 
+  position: relative;
+
   > a {
     background: white;
     display: table-cell;
@@ -71,6 +81,34 @@
     margin: 0;
     > * {margin-right: .5em;}
   }
+
+  .pre_ribbon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100px;
+    width: 100px;
+    overflow:hidden;
+    color: $white;
+    font-weight: bold;
+    letter-spacing: .5em;
+
+    span {
+      display: block;
+      width: 150px;
+      padding-left: 10px;
+      padding-top: 3px;
+      position:relative;
+      left: 20px;
+      top: -37px;
+      text-align: center;
+
+      @include transform-origin(0, 0);
+      @include rotate(45deg);
+      @include box-shadow(rgba(0, 0, 0, 0.3) 1px 1px 10px);
+      @include background($orange);
+    }
+  }
 }
 
 @mixin fixed-wrapper {
@@ -83,6 +121,7 @@
     width: 980px;
   }
 }
+
 
 ul, ol {
   list-style: none;
@@ -299,4 +338,3 @@ form.edit_post {
   ol {list-style: decimal inside;}
   ul {list-style: disc inside;}
 }
-

@@ -117,11 +117,15 @@ class ThingPresenter < ApplicationPresenter
   end
 
   def pre
-    if thing.is_pre and thing.pre_link
+    if pre?
       content_tag :div, class: "pre" do
         link_to_with_icon "预售详情", "icon-bell-alt", thing.pre_link
       end
     end
+  end
+
+  def pre?
+    thing.is_pre and thing.pre_link.present?
   end
 
   def can_buy
