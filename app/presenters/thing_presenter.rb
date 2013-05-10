@@ -28,9 +28,8 @@ class ThingPresenter < ApplicationPresenter
 
   def price
     if thing.price.to_i > 0 and can_buy?
-      content_tag :div,
-      number_to_currency(thing.price, precision: 2, unit: thing.price_unit),
-      class: "price"
+      content_tag :small,
+      number_to_currency(thing.price, precision: 2, unit: thing.price_unit)
     end
   end
 
