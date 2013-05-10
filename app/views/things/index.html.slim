@@ -15,9 +15,6 @@
 
   = paginate @things
 
-  aside#go_top title="回到顶部"
-    i.icon-circle-arrow-up.icon-4x
-
 - content_for :script do
   javascript:
     Making.InfiniteScroll("#things_index", "li.thing")

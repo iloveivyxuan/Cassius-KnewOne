@@ -88,16 +88,18 @@ window.Making =
 
   InfiniteScroll: (container, item) ->
     $('.pagination').hide()
-    $(container).infinitescroll
-      navSelector: '.pagination'
-      nextSelector: '.pagination a[rel="next"]'
-      contentSelector: container + ' ul'
-      itemSelector: item
-      pixelsFromNavToBottom: $('body > footer').height()
-      loading:
-        msg: $("<div class='loading-things'><i class='icon-spinner icon-spin icon-4x'></i></div>")
-      errorCallback: ->
-        $(container).find('.loading-things').html("<em>没有更多了......</em>")
+    $(container)
+      .after('<aside id="go_top"><i class="icon-circle-arrow-up icon-2x"></i></aside>')
+      .infinitescroll
+        navSelector: '.pagination'
+        nextSelector: '.pagination a[rel="next"]'
+        contentSelector: container + ' ul'
+        itemSelector: item
+        pixelsFromNavToBottom: $('body > footer').height()
+        loading:
+          msg: $("<div class='loading-things'><i class='icon-spinner icon-spin icon-4x'></i></div>")
+        errorCallback: ->
+          $(container).find('.loading-things').html("<em>没有更多了......</em>")
     $(window).on 'scroll', ->
       if $(window).scrollTop() > $(window).height()/2
         $('#go_top').fadeIn() if $('#go_top').is(':hidden')
