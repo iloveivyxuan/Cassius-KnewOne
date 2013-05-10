@@ -8,6 +8,9 @@
   aside#home_gifts
     .wrapper= render 'gifts'
 
+  aside#go_top title="回到顶部"
+    i.icon-circle-arrow-up.icon-4x
+
 - content_for :script do
   javascript:
     Making.InfiniteScroll("#home_things .wrapper", "li.thing")  
