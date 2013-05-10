@@ -327,4 +327,8 @@
   right: 5%;
   cursor: pointer;
   @include opacity(0.5);
+
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 }
