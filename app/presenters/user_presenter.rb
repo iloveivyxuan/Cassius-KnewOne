@@ -7,7 +7,7 @@ class UserPresenter < ApplicationPresenter
   end
 
   def as_author
-    link_to(avatar, user).concat link_to(name, user)
+    link_to(avatar(:small), user).concat link_to(name, user)
   end
 
   def topic_wrapper(topic)

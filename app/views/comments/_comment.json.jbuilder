@@ -8,5 +8,5 @@ json.can_reply can?(:create, comment)
 json.author do
   json.name comment.author.name
   json.url url_for(comment.author)
-  json.photo_url comment.author.avatar.url(:normal)
+  json.photo_url comment.author.avatar.url(:small)
 end

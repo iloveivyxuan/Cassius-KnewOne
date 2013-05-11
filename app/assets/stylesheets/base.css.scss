@@ -187,6 +187,9 @@ time {
 
   img {
     vertical-align: -2px;
+    @extend .img-rounded; 
+    width: 60px;
+    height: 60px;
   }
 }
 
@@ -226,7 +229,8 @@ time {
     .avatar {
       float: left;
       margin-right: 1em;
-      img {
+      img { 
+        @extend .img-rounded; 
         width: 60px;
         height: 60px;
       }
