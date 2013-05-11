@@ -35,7 +35,7 @@ class ThingPresenter < ApplicationPresenter
 
   def shop
     if thing.is_pre and can_buy?
-      link_to_with_icon "预购", "icon-shopping-cart icon-large", buy_thing_path(thing), target: '_blank',
+      link_to_with_icon "预售", "icon-shopping-cart icon-large", buy_thing_path(thing), target: '_blank',
       class: "track_event btn btn-warning",
       data: {action: "buy", category: "thing", label: title}
     elsif can_buy?
