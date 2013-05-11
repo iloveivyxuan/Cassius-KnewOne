@@ -4,6 +4,6 @@ module CommentsHelper
     comment.content_users.each do |u|
       content.gsub! "@#{u.name}", link_to("@#{u.name}", u)
     end
-    raw content
+    simple_format content
   end
 end
