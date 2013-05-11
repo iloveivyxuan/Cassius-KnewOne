@@ -41,7 +41,10 @@ class Review < Post
 
   def top
     if is_top
-      thing.top_review and thing.top_review.update_attributes(is_top: false)
+      top_review = thing.top_review
+      if top_review and top_review != self
+        top_review.update_attributes(is_top: false)
+      end
     end
   end
 
