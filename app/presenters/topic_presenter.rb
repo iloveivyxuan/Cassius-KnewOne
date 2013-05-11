@@ -23,6 +23,12 @@ class TopicPresenter < PostPresenter
     end
   end
 
+  def top
+    if topic.is_top
+      content_tag(:i, "", class: "icon-arrow-up", title: "置顶")
+    end
+  end
+
   private
 
   def last_comment_author

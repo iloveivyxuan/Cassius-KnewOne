@@ -2,7 +2,9 @@ li.topic
   - present topic do |tp|
     = tp.author_avatar(:small)
     aside= tp.comments_count
-    h4= link_to tp.title, tp.path
+    h4
+      = link_to tp.title, tp.path
+      = tp.top
     .summary
       = tp.author_name
       = tp.last_commented_at

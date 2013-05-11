@@ -2,6 +2,8 @@
 
 = simple_form_for [@group, @topic], html: {class: "edit_post"} do |f|
   = f.input :title
+  - if can? :manage, :all
+    = f.input :is_top, as: :boolean
   = f.input :content, as: :text
   = f.button :submit, class: 'btn btn-primary btn-large'
 
