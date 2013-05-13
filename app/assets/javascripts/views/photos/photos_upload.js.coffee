@@ -9,6 +9,7 @@ class Making.Views.PhotosUpload extends Backbone.View
       add: @addPhoto
     $('#new_photo').fileupload
       dataType: "json"
+      paramName: 'photo[image]' #rails 3.2.13 breaks multiple file upload, waiting for fixed
       dropzone: @$container
       add: @addFile
       progress: @progress
