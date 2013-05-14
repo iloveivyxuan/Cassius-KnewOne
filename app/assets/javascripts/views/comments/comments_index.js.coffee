@@ -1,5 +1,5 @@
 class Making.Views.CommentsIndex extends Backbone.View
-
+  
   template: HandlebarsTemplates['comments/index']
 
   events:
@@ -7,10 +7,8 @@ class Making.Views.CommentsIndex extends Backbone.View
     'click .all': 'all'
 
   initialize: ->
-    @start = 50
     @collection.on
-      reset: @renderList
-      add: @fadeAppend
+      add: @append
     @render()
     @collection.fetch
       beforeSend: =>
@@ -22,14 +20,6 @@ class Making.Views.CommentsIndex extends Backbone.View
       $('#create_comment p.login_tip').hide()
     else
       @disableForm()
-
-    @$('.all').hide()
-    this
-
-  renderList: =>
-    if @collection.length > @start
-      @$('.all').show()
-    _.each @collection.first(@start), @append
     this
 
   disableForm: =>
@@ -47,13 +37,4 @@ class Making.Views.CommentsIndex extends Backbone.View
 
   append: (comment) =>
     view = new Making.Views.Comment(model: comment)
-    view.render().$el.appendTo @$('ul')
-
-  fadeAppend: (comment) =>
-    view = new Making.Views.Comment(model: comment)
     view.render().$el.hide().appendTo(@$('ul')).fadeIn()
-
-  all: (e) =>
-    e.preventDefault()
-    $(e.target).remove()
-    _.each @collection.rest(@start), @append    
