@@ -8,7 +8,7 @@ class Comment
 
   validates :content, presence: true, length: {maximum: 300}
 
-  default_scope desc(:created_at)
+  default_scope asc(:created_at)
 
   after_create :notify_related_users
   after_create :update_commented_at

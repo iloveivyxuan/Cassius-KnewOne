@@ -9,26 +9,26 @@ class Making.Views.CommentsIndex extends Backbone.View
   initialize: ->
     @start = 50
     @collection.on
-      reset: @render_list
-      add: @prepend
+      reset: @renderList
+      add: @fadeAppend
     @render()
     @collection.fetch
       beforeSend: =>
         @$('ul').html(HandlebarsTemplates['shared/loading'])
 
   render: =>
-    @$el.html @template(title: @$el.data('title'))
+    @$el.html @template(title: @$el.data('title'), count: @$el.data('count'))
     if @$el.data("signin")
       $('#create_comment p.login_tip').hide()
     else
       @disableForm()
-    
-    @$('.all').show()
+
+    @$('.all').hide()
     this
 
-  render_list: =>
-    if @collection.length <= @start
-      @$('.all').hide()
+  renderList: =>
+    if @collection.length > @start
+      @$('.all').show()
     _.each @collection.first(@start), @append
     this
 
@@ -49,14 +49,11 @@ class Making.Views.CommentsIndex extends Backbone.View
     view = new Making.Views.Comment(model: comment)
     view.render().$el.appendTo @$('ul')
 
-  prepend: (comment) =>
+  fadeAppend: (comment) =>
     view = new Making.Views.Comment(model: comment)
-    view.render().$el.hide().prependTo(@$('ul')).fadeIn()
+    view.render().$el.hide().appendTo(@$('ul')).fadeIn()
 
   all: (e) =>
     e.preventDefault()
     $(e.target).remove()
     _.each @collection.rest(@start), @append    
-
-  
-    

@@ -1,2 +1,2 @@
 = content_tag :aside, "", id: id, 
-data: {signin: user_signed_in?, postid: post.id.to_s, title: "回复"} 
+data: {signin: user_signed_in?, postid: post.id.to_s, title: "回复", count: post.comments.count} 
