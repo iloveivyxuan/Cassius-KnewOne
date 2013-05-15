@@ -4,8 +4,7 @@
   = f.input :title
   - if can? :manage, :all
     = f.input :is_top, as: :boolean
-  .btn-toolbar data-role="editor-toolbar" data-target="#editor"
-  #editor contenteditable="true"
+  = render 'shared/editor'
   = f.input :content, as: :hidden
   /= f.input :content, as: :text
   = f.button :submit, class: 'btn btn-primary btn-large'

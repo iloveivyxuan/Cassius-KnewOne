@@ -8,12 +8,17 @@
  *
  * Original idea by:
  * Binny V A, http://www.openjs.com/scripts/events/keyboard_shortcuts/
+*/
+
+/*
+ * One small change is: now keys are passed by object { keys: '...' }
+ * Might be useful, when you want to pass some other data to your handler
  */
 
 (function(jQuery){
 
     jQuery.hotkeys = {
-        version: "0.8+",
+        version: "0.8",
 
         specialKeys: {
             8: "backspace", 9: "tab", 13: "return", 16: "shift", 17: "ctrl", 18: "alt", 19: "pause",
@@ -22,8 +27,8 @@
             96: "0", 97: "1", 98: "2", 99: "3", 100: "4", 101: "5", 102: "6", 103: "7",
             104: "8", 105: "9", 106: "*", 107: "+", 109: "-", 110: ".", 111 : "/",
             112: "f1", 113: "f2", 114: "f3", 115: "f4", 116: "f5", 117: "f6", 118: "f7", 119: "f8",
-            120: "f9", 121: "f10", 122: "f11", 123: "f12", 144: "numlock", 145: "scroll", 188: ",", 190: ".",
-            191: "/", 224: "meta"
+            120: "f9", 121: "f10", 122: "f11", 123: "f12", 144: "numlock", 145: "scroll", 186: ";", 191: "/",
+            220: "\\", 222: "'", 224: "meta"
         },
 
         shiftNums: {
@@ -34,48 +39,51 @@
     };
 
     function keyHandler( handleObj ) {
-
-        var origHandler = handleObj.handler,
-        //use namespace as keys so it works with event delegation as well
-        //will also allow removing listeners of a specific key combination
-        //and support data objects
-        keys = (handleObj.namespace || "").toLowerCase().split(" ");
-        keys = jQuery.map(keys, function(key) { return key.split("."); });
-
-        //no need to modify handler if no keys specified
-        if (keys.length === 1 && (keys[0] === "" || keys[0] === "autocomplete")) {
+        if ( typeof handleObj.data == 'undefined' ) {
             return;
         }
 
+        if ( typeof handleObj.data === "string" ) {
+            handleObj.data = { keys: handleObj.data };
+        }
+
+        // Only care when a possible input has been specified
+        if ( !handleObj.data.keys || typeof handleObj.data.keys !== "string" ) {
+            return;
+        }
+
+        var origHandler = handleObj.handler,
+            keys = handleObj.data.keys.toLowerCase().split(" "),
+            textAcceptingInputTypes = ["text", "password", "number", "email", "url", "range", "date", "month", "week", "time", "datetime", "datetime-local", "search", "color"];
+
         handleObj.handler = function( event ) {
             // Don't fire in text-accepting inputs that we didn't directly bind to
-            // important to note that $.fn.prop is only available on jquery 1.6+
             if ( this !== event.target && (/textarea|select/i.test( event.target.nodeName ) ||
-                                           event.target.type === "text" || $(event.target).prop('contenteditable') == 'true' )) {
+                jQuery.inArray(event.target.type, textAcceptingInputTypes) > -1 ) ) {
                 return;
             }
 
             // Keypress represents characters, not special keys
             var special = event.type !== "keypress" && jQuery.hotkeys.specialKeys[ event.which ],
-            character = String.fromCharCode( event.which ).toLowerCase(),
-            key, modif = "", possible = {};
+                character = String.fromCharCode( event.which ).toLowerCase(),
+                key, modif = "", possible = {};
 
             // check combinations (alt|ctrl|shift+anything)
             if ( event.altKey && special !== "alt" ) {
-                modif += "alt_";
+                modif += "alt+";
             }
 
             if ( event.ctrlKey && special !== "ctrl" ) {
-                modif += "ctrl_";
+                modif += "ctrl+";
             }
 
             // TODO: Need to make sure this works consistently across platforms
             if ( event.metaKey && !event.ctrlKey && special !== "meta" ) {
-                modif += "meta_";
+                modif += "meta+";
             }
 
             if ( event.shiftKey && special !== "shift" ) {
-                modif += "shift_";
+                modif += "shift+";
             }
 
             if ( special ) {
@@ -86,7 +94,7 @@
                 possible[ modif + jQuery.hotkeys.shiftNums[ character ] ] = true;
 
                 // "$" can be triggered as "Shift+4" or "Shift+$" or just "$"
-                if ( modif === "shift_" ) {
+                if ( modif === "shift+" ) {
                     possible[ jQuery.hotkeys.shiftNums[ character ] ] = true;
                 }
             }

@@ -34,11 +34,6 @@ body > header {
           position: absolute;
           left: -40px;
         }
-
-        &:hover {
-          top: 10px;
-          @include rotate(-15deg);
-        }
       }
 
       form.navbar-search#nav_search {
