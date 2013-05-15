@@ -35,17 +35,15 @@ window.Making =
       $el.replaceWith('<div class="rating"></div>')
       Making.Rating $('.rating'), $el.val(), $el.attr('name')
 
-  Editor: ($form) ->
+  Editor: (form) ->
     csrf_token = $('meta[name=csrf-token]').attr('content');
     csrf_param = $('meta[name=csrf-param]').attr('content');
     params = ""
     if csrf_param && csrf_token
       params = csrf_param + "=" + encodeURIComponent(csrf_token);
-    $form.find('textarea').redactor
-      imageUpload: "/review_photos?" + params
-      fixed: true
-      minHeight: 400
-      lang: 'zh_cn'
+    #imageUpload: "/review_photos?" + params
+    $(form).find("#editor").wysiwyg()
+
 
   Rating: ($raty, score, name) ->
     $raty.raty

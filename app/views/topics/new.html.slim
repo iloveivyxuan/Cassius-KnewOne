@@ -4,12 +4,12 @@
   = f.input :title
   - if can? :manage, :all
     = f.input :is_top, as: :boolean
-  = f.input :content, as: :text
+  .btn-toolbar data-role="editor-toolbar" data-target="#editor"
+  #editor contenteditable="true"
+  = f.input :content, as: :hidden
+  /= f.input :content, as: :text
   = f.button :submit, class: 'btn btn-primary btn-large'
-
-- content_for :stylesheet do
-  = stylesheet_link_tag "redactor"
 
 - content_for :script do
   javascript:
-    Making.Editor($('form.edit_post'));
+    Making.Editor('form.edit_post');

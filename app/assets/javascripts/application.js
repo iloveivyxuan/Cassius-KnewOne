@@ -10,8 +10,8 @@
 //= require jquery.sortable
 //= require jquery.raty
 //= require jquery.infinitescroll
-//= require redactor
-//= require redactor.zh-CN
+//= require jquery.hotkeys
+//= require bootstrap-wysiwyg
 //= require_tree ../templates
 //= require making
 //= require_tree ./models

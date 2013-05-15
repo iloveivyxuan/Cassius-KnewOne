@@ -283,11 +283,6 @@ time {
   }
 }
 
-.redactor_editor {
-  ul {list-style: disc;}
-  ol {list-style: decimal;}
-}
-
 #login-modal {
   .modal-body {
     text-align: center;
@@ -301,12 +296,6 @@ form.edit_post {
     input[type="url"] {width: 70%;}
     input[type="range"] {display: none;}
     textarea {display: none;}
-
-    .redactor_box {
-      width: 90%;
-      .redactor_editor {
-      }
-    }
   }
 
   .submit {
@@ -341,4 +330,9 @@ form.edit_post {
   iframe {border: none;}
   ol {list-style: decimal inside;}
   ul {list-style: disc inside;}
+}
+
+#editor {
+  overflow: scroll;
+  max-height: 500px;
 }
