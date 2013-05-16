@@ -352,6 +352,12 @@ form.edit_post {
 #editor-toolbar {
   @include user-select(none);
 
+  .create_link {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-right: -1px;
+  }
+
   .dropdown-menu a {
     cursor: pointer;
   }

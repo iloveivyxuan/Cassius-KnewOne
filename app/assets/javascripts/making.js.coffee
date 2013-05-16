@@ -44,8 +44,14 @@ window.Making =
     #imageUpload: "/review_photos?" + params
     $("#editor").wysiwyg()
     #https://github.com/twitter/bootstrap/issues/5687
-    $("#editor-toolbar").find('.btn-group > a').tooltip({container: 'body'})
-    
+    $("#editor-toolbar")
+      .find('.btn-group > a').tooltip({container: 'body'}).end()
+      .find('.dropdown-menu input')
+      .click ->
+        false
+      .change ->
+        $(@).parent('.dropdown-menu')
+          .siblings('.dropdown-toggle').dropdown('toggle')
 
   Rating: ($raty, score, name) ->
     $raty.raty
