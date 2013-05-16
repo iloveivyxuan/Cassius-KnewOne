@@ -35,7 +35,7 @@ class Comment
   def update_commented_at
     post.reload
     if post.comments.present?
-      post.update_attribute :commented_at, post.comments.first.created_at
+      post.update_attribute :commented_at, post.comments.last.created_at
     else
       post.update_attribute :commented_at, post.created_at
     end
