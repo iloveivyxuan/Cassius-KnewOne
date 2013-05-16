@@ -39,7 +39,7 @@
     };
 
     function keyHandler( handleObj ) {
-        if ( typeof handleObj.data == 'undefined' ) {
+        if ( !handleObj.data ) {
             return;
         }
 

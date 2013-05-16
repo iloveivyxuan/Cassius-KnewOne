@@ -35,24 +35,26 @@ window.Making =
       $el.replaceWith('<div class="rating"></div>')
       Making.Rating $('.rating'), $el.val(), $el.attr('name')
 
-  Editor: () ->
+  Editor: (form) ->
     csrf_token = $('meta[name=csrf-token]').attr('content');
     csrf_param = $('meta[name=csrf-param]').attr('content');
     params = ""
     if csrf_param && csrf_token
       params = csrf_param + "=" + encodeURIComponent(csrf_token);
     #imageUpload: "/review_photos?" + params
+    $(form).find('input[type="text"]').keypress (e) ->
+      return false if e.which == 13
     $("#editor").wysiwyg()
     #https://github.com/twitter/bootstrap/issues/5687
     $("#editor-toolbar")
       .find('.btn-group > a').tooltip({container: 'body'}).end()
       .find('.dropdown-menu input')
-      .click ->
-        false
-      .change ->
-        $(@).parent('.dropdown-menu')
-          .siblings('.dropdown-toggle').dropdown('toggle')
-
+        .click ->
+          false
+        .change ->
+          $(@).parent('.dropdown-menu')
+            .siblings('.dropdown-toggle').dropdown('toggle')
+    
   Rating: ($raty, score, name) ->
     $raty.raty
       scoreName: name

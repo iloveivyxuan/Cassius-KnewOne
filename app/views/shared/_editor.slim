@@ -49,11 +49,11 @@
     a.btn data-edit="justifyfull" title="两端对齐(Ctrl/⌘+j)"
       i.icon-align-justify
 
-  .btn-group
-    a.btn.create_link.dropdown-toggle data-toggle="dropdown" title="链接"
+  .btn-group.link
+    a.btn.dropdown-toggle data-toggle="dropdown" title="链接"
       i.icon-link
     .dropdown-menu.input-append
-      input.span2 placeholder="http://" type="text" data-edit="createLink"
+      input.span3 placeholder="http://" type="text" data-edit="createLink"
       button.btn type="button" 提交
     a.btn data-edit="unlink" title="移除链接"
       i.icon-unlink
@@ -69,6 +69,5 @@
       i.icon-undo
     a.btn data-edit="redo" title="重复(Ctrl/⌘+y)"
       i.icon-repeat
-
 
 #editor contenteditable="true"
