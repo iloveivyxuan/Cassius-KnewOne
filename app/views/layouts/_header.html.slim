@@ -21,8 +21,8 @@ header
             span 产品
             i.icon-caret-down
           ul.dropdown-menu
-            li= link_to_with_icon "最新", "icon-bolt", things_path 
-            li= link_to_with_icon "热门", "icon-fire", things_path(sort: "fancy") 
+            li= link_to_with_icon "最新", "icon-rocket", things_path 
+            li= link_to_with_icon "热门", "icon-bullseye", things_path(sort: "fancy") 
             li= link_to_with_icon "自营", "icon-trophy", things_path(sort: "self_run")
         li.nav_new_thing
           - if user_signed_in?
