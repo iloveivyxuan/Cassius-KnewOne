@@ -11,6 +11,7 @@ class Thing < Post
   validates :description, length: { maximum: 2048 }
 
   field :shop, type: String, default: ""
+  field :oversea_shop, type: String, default: ""
   field :price, type: Float
   field :price_unit, type: String, default: "¥"
   field :stock, type: Integer

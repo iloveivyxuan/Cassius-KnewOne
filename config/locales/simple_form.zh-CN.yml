@@ -17,6 +17,7 @@ zh-CN:
         title: '名称'
         subtitle: '一句话介绍'
         shop: '购买链接'
+        oversea_shop: '海外购买链接'
         official_site: '官方链接'
         price: '价格'
         price_unit: '货币类型'

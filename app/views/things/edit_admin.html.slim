@@ -6,6 +6,7 @@
     = f.input :price do
       = f.input_field :price_unit, collection: %w{¥ $ € £}
       = f.input_field :price, as: :decimal
+    = f.input :oversea_shop, as: :url
     = f.input :stock, as: :integer
     = f.input :priority, as: :integer
     = f.input :is_pre, as: :boolean
