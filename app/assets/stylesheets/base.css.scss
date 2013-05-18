@@ -290,23 +290,6 @@ time {
   }
 }
 
-form.edit_post {
-  .controls {
-    input[type="text"] {width: 70%;}
-    input[type="url"] {width: 70%;}
-    input[type="range"] {display: none;}
-  }
-
-  .submit {
-    text-align: center;
-    input[type="submit"] {
-      width: 25%;
-      @media screen and (max-width: 767px) {
-        width: 80%;
-      }
-    }
-  }
-}
 
 .general_wrapper {
   @include fixed-wrapper;
@@ -334,7 +317,6 @@ form.edit_post {
 #editor {
   overflow: scroll;
   max-height: 800px;
-  width: 760px;
   height: 300px;
   background-color: white;
   border: 1px solid #ccc;
@@ -386,5 +368,19 @@ form.edit_post {
     bottom: 0;
     left: 0;
     right: 0;
+  }
+}
+
+form.edit_post {
+  .controls {
+    input[type="text"] {width: 70%;}
+    input[type="url"] {width: 70%;}
+    input[type="range"] {display: none;}
+  }
+
+  .submit {
+    float: right;
+    input[type="submit"] {
+    }
   }
 }

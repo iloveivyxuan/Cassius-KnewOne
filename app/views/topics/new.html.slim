@@ -1,13 +1,15 @@
 - provide :new_topic, "no"
 
 = simple_form_for [@group, @topic], html: {class: "edit_post"} do |f|
-  = f.input :title
+  .submit
+    = f.button :submit, class: 'btn-primary'
+  = f.input :title, label: false, placeholder: "标题"
   = f.input :content, as: :hidden
-  = render 'shared/editor'
-  - if can? :manage, :all
-    = f.input :is_top, as: :boolean, label: false, inline_label: "置顶"
-  = f.button :submit, class: 'btn-primary btn-large'
- 
+  / - if can? :manage, :all
+  /   = f.input :is_top, as: :boolean, label: false, inline_label: "置顶"
+
+= render 'shared/editor'
+
 - content_for :script do
   javascript:
     Making.Editor('form.edit_post', '#topic_content');

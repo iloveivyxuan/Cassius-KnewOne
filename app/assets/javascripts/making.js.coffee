@@ -64,8 +64,9 @@ window.Making =
             .width($target.outerWidth())
             .height($target.outerHeight())
 
-    $(form).submit ->
-      $(content).val($('#editor').html())
+    $(form)
+      .submit ->
+        $(content).val($('#editor').html())
 
   Rating: ($raty, score, name) ->
     $raty.raty
