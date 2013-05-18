@@ -2,13 +2,12 @@
 
 = simple_form_for [@group, @topic], html: {class: "edit_post"} do |f|
   = f.input :title
-  - if can? :manage, :all
-    = f.input :is_top, as: :boolean
-  = render 'shared/editor'
   = f.input :content, as: :hidden
-  /= f.input :content, as: :text
-  = f.button :submit, class: 'btn btn-primary btn-large'
-
+  = render 'shared/editor'
+  - if can? :manage, :all
+    = f.input :is_top, as: :boolean, label: false, inline_label: "置顶"
+  = f.button :submit, class: 'btn-primary btn-large'
+ 
 - content_for :script do
   javascript:
-    Making.Editor('form.edit_post');
+    Making.Editor('form.edit_post', '#topic_content');

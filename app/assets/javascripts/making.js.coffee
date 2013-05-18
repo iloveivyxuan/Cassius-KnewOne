@@ -35,18 +35,14 @@ window.Making =
       $el.replaceWith('<div class="rating"></div>')
       Making.Rating $('.rating'), $el.val(), $el.attr('name')
 
-  Editor: (form) ->
-    csrf_token = $('meta[name=csrf-token]').attr('content');
-    csrf_param = $('meta[name=csrf-param]').attr('content');
-    params = ""
-    if csrf_param && csrf_token
-      params = csrf_param + "=" + encodeURIComponent(csrf_token);
-    #imageUpload: "/review_photos?" + params
-    $(form).find('input[type="text"]').keypress (e) ->
-      return false if e.which == 13
-    $("#editor").wysiwyg()
-    #https://github.com/twitter/bootstrap/issues/5687
+  Editor: (form, content) ->
+    $("#editor")
+      .wysiwyg
+        dragAndDropImages: false
+      .html($(content).val())
+
     $("#editor-toolbar")
+      #https://github.com/twitter/bootstrap/issues/5687
       .find('.btn-group > a').tooltip({container: 'body'}).end()
       .find('.dropdown-menu input')
         .click ->
@@ -54,7 +50,23 @@ window.Making =
         .change ->
           $(@).parent('.dropdown-menu')
             .siblings('.dropdown-toggle').dropdown('toggle')
-    
+        .end()
+      .find('input[type="file"]')
+        .each ->
+          $overlay = $(@)
+          $target = $($overlay.data('target'))
+          $overlay
+            .css('opacity', 0)
+            .css('position', 'absolute')
+            .attr('title', "插入图像(可以拖拽)")
+            .tooltip()
+            .offset($target.offset())
+            .width($target.outerWidth())
+            .height($target.outerHeight())
+
+    $(form).submit ->
+      $(content).val($('#editor').html())
+
   Rating: ($raty, score, name) ->
     $raty.raty
       scoreName: name

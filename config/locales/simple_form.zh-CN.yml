@@ -54,7 +54,6 @@ zh-CN:
         description: '一句话描述'
       topic:
         content: '内容'
-        is_top: '是否置顶'
       lottery:
         date: '中奖日期'
         contribution_link: "中奖产品链接"
