@@ -1,6 +1,6 @@
 - provide :nav, :updates
 
-- if can? :create, Update and @thing
+- if can? :create, Update and (@thing.author == current_user or can? :manage, :all)
   #new_update
     = link_to new_thing_update_path(@thing), class: "btn" do
       i.icon-pencil
