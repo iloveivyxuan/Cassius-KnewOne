@@ -3,9 +3,7 @@ class TopicsController < PostsController
   layout 'group'
 
   def show
-    if user_signed_in?
-      CommentMessage.read_by_post(current_user, @topic)
-    end
+    read_comments @topic
   end
 
   def new

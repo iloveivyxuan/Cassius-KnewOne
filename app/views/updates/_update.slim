@@ -1,0 +1,9 @@
+- present update do |up|
+  li.update
+    article
+      header
+        h4= link_to up.title, up.path
+      section
+        p= up.content
+      footer
+        = up.comments_count

@@ -46,6 +46,8 @@ zh-CN:
       link:
         title: "标题"
         url: "新闻链接"
+      update:
+        content: "内容"
       category:
         name: '分类名称'
       comment:

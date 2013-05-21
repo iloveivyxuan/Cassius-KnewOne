@@ -7,9 +7,7 @@ class LinksController < PostsController
   end
 
   def show
-    if user_signed_in?
-      CommentMessage.read_by_post(current_user, @link)
-    end
+    read_comments @link
   end
 
   def new

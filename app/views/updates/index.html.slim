@@ -1,0 +1,12 @@
+- provide :nav, :updates
+
+- if can? :create, Update and @thing
+  #new_update
+    = link_to new_thing_update_path(@thing), class: "btn" do
+      i.icon-pencil
+      | 发布更新
+
+ul#updates
+  = render @updates
+
+= paginate @updates

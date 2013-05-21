@@ -25,9 +25,9 @@
     = render 'shared/share', id: 'review_share', 
     content: rp.share_content, pic: rp.thing_photo_url(:huge) 
 
-    = render 'shared/comments', post: rp.review, id: "review_comments"
+    = render 'shared/comments', post: rp.review, id: "comments"
 
 - content_for :script do
   javascript:
     Making.Voting();
-    Making.Comments("#review_comments")
+    Making.Comments("#comments")

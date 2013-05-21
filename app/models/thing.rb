@@ -33,6 +33,7 @@ class Thing < Post
 
   has_many :reviews, dependent: :delete
   has_many :links, dependent: :delete
+  has_many :updates, dependent: :delete
   has_and_belongs_to_many :fanciers, class_name: "User", inverse_of: :fancies
   has_and_belongs_to_many :owners, class_name: "User", inverse_of: :owns
 
