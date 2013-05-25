@@ -12,9 +12,7 @@ class ReviewsController < PostsController
   end
 
   def show
-    if user_signed_in?
-      CommentMessage.read_by_post(current_user, @review)
-    end
+    read_comments @review
   end
 
   def new

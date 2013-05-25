@@ -201,6 +201,8 @@
         }
       }
 
+       .oversea_shop {margin-top: 1em;}
+
       .supplier, .self_run, .pre {
         margin-top: 1em;
         margin-left: 1.3em;
@@ -249,7 +251,7 @@
     .shop {
       display: inline;
       margin-right: 2em;
-      .price, .supplier, .self_run {display: none;}
+      .price, .supplier, .self_run, .oversea_shop {display: none;}
     }
 
     .actions {

@@ -22,6 +22,8 @@ nav
       = link_to_with_icon "评测", "icon-book", thing_reviews_path(tp.thing)
     = nav_tab :links do
       = link_to_with_icon "新闻", "icon-link", thing_links_path(tp.thing)
+    = nav_tab :updates do
+      = link_to_with_icon "更新", "icon-code-fork", thing_updates_path(tp.thing)
   
 
 

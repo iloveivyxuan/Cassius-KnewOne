@@ -1,0 +1,27 @@
+- provide :nav, :updates
+
+- present @update do |up|
+
+  - provide :title, up.title
+
+  article#update_show
+
+    header
+      h3
+        = up.title
+        = link_to_with_icon "", "icon-share-alt", 
+        user_signed_in? ? "#update_share" : "#login-modal",
+        title: "分享", data: {toggle: 'modal'}
+        = render 'shared/post_actions', post: up.update, 
+        edit_post_path: up.edit_path, post_path: up.path
+    
+    section.post_content= up.content
+      
+    = render 'shared/share', id: 'update_share', 
+    content: up.share_content, pic: up.thing_photo_url(:huge) 
+
+    = render 'shared/comments', post: up.update, id: "comments"
+
+- content_for :script do
+  javascript:
+    Making.Comments("#comments")

@@ -2,7 +2,7 @@
   color: $fontLightColor;
 }
 
-#review_show {
+#review_show, #update_show {
   > header {
     h3 {
       word-wrap: break-word;          
@@ -39,7 +39,7 @@
     .share {margin-top: -5px;}
   }
 
-  aside#review_comments {
+  aside#comments {
     margin-top: 2em;
 
     .comments {
@@ -82,3 +82,4 @@
     }
   }
 }
+

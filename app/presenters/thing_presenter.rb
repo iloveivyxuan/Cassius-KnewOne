@@ -54,6 +54,14 @@ class ThingPresenter < ApplicationPresenter
     end
   end
 
+  def oversea_shop
+    if thing.oversea_shop.present?
+      link_to_with_icon "海淘", "icon-plane icon-large", buy_thing_path(thing, oversea: true), target: '_blank',
+      class: "track_event btn btn-success oversea_shop",
+      data: {action: "buy", category: "thing", label: title}
+    end
+  end
+
   def self_run
     content_tag :div, class: "self_run" do
       link_to_with_icon "#{brand}自营", "icon-trophy", "#",
