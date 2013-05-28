@@ -28,51 +28,50 @@ window.Making =
       view = new Making.Views.ThingsNew
         el: "form.thing_form"
 
-  ReviewEdit: () ->
-    $ ->
-      Making.Editor $('form.edit_post')
-      $el = $('input[type="range"]')
-      $el.replaceWith('<div class="rating"></div>')
-      Making.Rating $('.rating'), $el.val(), $el.attr('name')
-
   Editor: (form, content) ->
-    $("#editor")
-      .wysiwyg
-        dragAndDropImages: false
-      .html($(content).val())
+    $ ->
+      $("#editor")
+        .wysiwyg
+          dragAndDropImages: false
+        .html($(content).val())
+        .fadeIn()
 
-    $("#editor-toolbar")
-      #https://github.com/twitter/bootstrap/issues/5687
-      .find('.btn-group > a').tooltip({container: 'body'}).end()
-      .find('.dropdown-menu input')
-        .click ->
-          false
-        .change ->
-          $(@).parent('.dropdown-menu')
-            .siblings('.dropdown-toggle').dropdown('toggle')
-        .end()
-      .find('input[type="file"]')
-        .each ->
-          $overlay = $(@)
-          $target = $($overlay.data('target'))
-          $overlay
-            .css('opacity', 0)
-            .css('position', 'absolute')
-            .attr('title', "插入图像(可以拖拽)")
-            .tooltip()
-            .offset($target.offset())
-            .width($target.outerWidth())
-            .height($target.outerHeight())
+      $("#editor-toolbar")
+        .fadeIn()
+        #https://github.com/twitter/bootstrap/issues/5687
+        .find('.btn-group > a').tooltip({container: 'body'}).end()
+        .find('.dropdown-menu input')
+          .click ->
+            false
+          .change ->
+            $(@).parent('.dropdown-menu')
+              .siblings('.dropdown-toggle').dropdown('toggle')
+          .end()
+        .find('input[type="file"]')
+          .each ->
+            $overlay = $(@)
+            $target = $($overlay.data('target'))
+            $overlay
+              .css('opacity', 0)
+              .css('position', 'absolute')
+              .attr('title', "插入图像(可以拖拽)")
+              .tooltip()
+              .offset($target.offset())
+              .width($target.outerWidth())
+              .height($target.outerHeight())
 
-    $(form)
-      .submit ->
-        $(content).val($('#editor').html())
+      $(form)
+        .submit (e) ->
+          $(content).val($('#editor').html())
 
-  Rating: ($raty, score, name) ->
-    $raty.raty
-      scoreName: name
-      score: score
-      path: '/assets/'
+  Rating: (form) ->
+    $ ->
+      $el = $(form).find('input[type="range"]')
+      $el.replaceWith('<div class="rating"></div>')
+      $('.rating').raty
+        scoreName: $el.attr('name')
+        score: $el.val()
+        path: '/assets/'
 
   Score: ->
     $('.score').each (i, el) ->

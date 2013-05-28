@@ -315,6 +315,7 @@ time {
 }
 
 #editor {
+  display: none;
   overflow: scroll;
   max-height: 800px;
   height: 300px;
@@ -334,6 +335,12 @@ time {
 
 #editor-toolbar {
   @include user-select(none);
+  display: none;
+  margin: 0;
+
+  .btn-group {
+    margin-bottom: 12px;
+  }
 
   .dropdown-menu {
     padding: .5em 1em 0;
@@ -372,15 +379,29 @@ time {
 }
 
 form.edit_post {
+  margin: 0;
+
   .controls {
-    input[type="text"] {width: 70%;}
-    input[type="url"] {width: 70%;}
+    input[type="text"], input[type="url"] {
+      width: 100%;
+      @media screen and (min-width: 768px) {
+        width: 70%;
+      }
+    }
     input[type="range"] {display: none;}
   }
 
   .submit {
-    float: right;
+    margin-bottom: 2em;
+
     input[type="submit"] {
+      width: 100%;
+    }
+
+    @media screen and (min-width: 768px) {
+      float: right;
+      width: 20%;
+      text-align: right;
     }
   }
 }

@@ -5,8 +5,8 @@
     = f.button :submit, class: 'btn-primary'
   = f.input :title, label: false, placeholder: "标题"
   = f.input :content, as: :hidden
-  / - if can? :manage, :all
-  /   = f.input :is_top, as: :boolean, label: false, inline_label: "置顶"
+  - if can? :manage, :all
+    = f.input :is_top, as: :boolean, label: false, inline_label: "置顶"
 
 = render 'shared/editor'
 

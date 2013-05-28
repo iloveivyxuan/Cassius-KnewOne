@@ -1,15 +1,17 @@
 - provide :nav, :reviews
 
-= simple_form_for [@thing, @review], html: {class: "edit_post form-horizontal"} do |f|
-  = f.input :title
-  = f.input :score, as: :range, input_html: {max: 5, min: 1}
-  - if can? :manage, :all
-    = f.input :is_top, as: :boolean
-  = f.input :content, as: :text
+= simple_form_for [@thing, @review], html: {class: "edit_post"} do |f|
   .submit 
-    = f.button :submit, class: 'btn btn-primary btn-large'
+    = f.button :submit, class: 'btn-primary'
+  = f.input :title, label: false, placeholder: "标题"
+  = f.input :content, as: :hidden
+  = f.input :score, as: :range, label: false, input_html: {max: 5, min: 1}
+  - if can? :manage, :all
+    = f.input :is_top, as: :boolean, label: false, inline_label: "置顶"
+
+= render 'shared/editor'
 
 - content_for :script do
   javascript:
-    Making.ReviewEdit();
-
+    Making.Editor('form.edit_post', '#review_content');
+    Making.Rating('form.edit_post');
