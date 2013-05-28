@@ -22,7 +22,7 @@
   width: 67%;
 
   @media screen and (min-width: 1024px) {
-    min-height: 1024px;
+    min-height: 800px;
   }
 
   @media screen and (max-width: 979px) {
@@ -404,4 +404,9 @@ form.edit_post {
       text-align: right;
     }
   }
+
+  #thing_content > & {
+    padding-bottom: 1em;
+  }
+
 }

@@ -1,15 +1,14 @@
 - provide :nav, :updates
 
-= simple_form_for [@thing, @update], html: {class: "edit_post form-horizontal"} do |f|
-  = f.input :title
-  = f.input :content, as: :text
+= simple_form_for [@thing, @update], html: {class: "edit_post"} do |f|
   .submit 
-    = f.button :submit, class: 'btn btn-primary btn-large'
+    = f.button :submit, class: 'btn btn-primary'
+  = f.input :title, label: false, placeholder: "标题"
+  = f.input :content, as: :hidden
 
-- content_for :stylesheet do
-  = stylesheet_link_tag "redactor"
+= render 'shared/editor'
 
 - content_for :script do
   javascript:
-    Making.Editor($('form.edit_post'));
+    Making.Editor('form.edit_post', '#update_content');
 
