@@ -56,12 +56,12 @@ header
                 li= link_to reviews_admin_path do
                   i.icon-pencil
                   | 管理评测
+                li= link_to guests_path do
+                  i.icon-tasks
+                  | 管理会员
                 li= link_to users_path do
                   i.icon-group
                   | 用户列表
-                li= link_to guests_path do
-                  i.icon-tasks
-                  | 管理邀请
                 li= link_to suppliers_path do
                   i.icon-truck
                   | 供货信息
@@ -74,6 +74,10 @@ header
               li= link_to things_path do
                 i.icon-time
                 | 最新产品
+              - if current_user.is_guest?
+                li= link_to limits_guests_path do
+                  i.icon-superscript
+                  | 限量产品
               li= link_to destroy_user_session_path, method: :delete do
                 i.icon-signout
                 | 登出
