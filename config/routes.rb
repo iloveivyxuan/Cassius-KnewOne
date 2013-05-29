@@ -25,10 +25,6 @@ Making::Application.routes.draw do
       member {post 'vote'}
     end
 
-    resources :links do
-      member {post 'digg'}
-    end
-
     resources :updates
   end
   get '/reviews_admin', to: "reviews#admin", as: :reviews_admin
