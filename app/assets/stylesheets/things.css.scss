@@ -132,7 +132,7 @@
 
   .author_desc {
     @include clearfix;
-
+    
     blockquote {
       color: $fontLightColor;
       margin-bottom: 0;
@@ -163,11 +163,16 @@
 
     .owners {
       margin-left: 2px;
+      
       .owned {
         .icon-check-empty {display: none;}
       }
+
       .unowned {
         .icon-check {display: none;}
+
+        .owners_count {margin-left: 4px;}
+        
         &:hover {
           small {color: $green;}
         }
