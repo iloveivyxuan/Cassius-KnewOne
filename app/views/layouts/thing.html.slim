@@ -3,25 +3,8 @@
     - provide :title, tp.full_title
     .thing_wrapper
       header#thing_header= render "things/header", tp: tp
+      section#thing_actions= render "things/actions", tp: tp
       section#thing_content= yield
-      footer#thing_footer
-        .shop
-          .price= tp.price
-          = tp.shop
-          = tp.oversea_shop
-          = tp.pre
-          = tp.self_run
-          = tp.supplier
-        .actions
-          .share
-            = link_to user_signed_in? ? "#thing_share" : "#login-modal",
-            title: "分享", data: {toggle: 'modal'} do
-              i.icon-share-alt.icon-2x
-              small 分享
-          .fanciers
-            = render "things/fancy", tp: tp
-          .owners
-            = render "things/own", tp: tp
       aside#thing_packages
         ul= render partial: "things/package", collection: tp.packages
       = render 'shared/share', id: 'thing_share', content: tp.share_content, pic: tp.photo_url(:huge) 

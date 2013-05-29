@@ -59,4 +59,5 @@ module ApplicationHelper
   def boolean_tag(val)
     val ? "yes" : "no"
   end
+
 end

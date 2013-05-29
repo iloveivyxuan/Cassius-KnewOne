@@ -132,7 +132,7 @@
 
   .author_desc {
     @include clearfix;
-    
+
     blockquote {
       color: $fontLightColor;
       margin-bottom: 0;
@@ -146,7 +146,19 @@
   }
 }
 
-#thing_footer {
+#thing_actions {
+
+  .shop {
+    .self_run {
+      a {
+        color: $fontLightColor;
+        i {
+          font-size: 1.2em;
+          color: $purple;
+        }
+      }
+    }
+  }
 
   .actions {
     .fanciers {
@@ -162,21 +174,20 @@
     }
 
     .owners {
-      margin-left: 2px;
-      
       .owned {
         .icon-check-empty {display: none;}
       }
 
       .unowned {
         .icon-check {display: none;}
-
-        .owners_count {margin-left: 4px;}
-        
         &:hover {
           small {color: $green;}
         }
       }
+    }
+
+    > * {
+      small {color: $fontLightColor;}
     }
   }
 
@@ -191,87 +202,94 @@
     }
 
     .shop {
+      > *:not(:last-child) {margin-bottom: 1em;}
+
       .price {
         display: block;
-        font-size: 1.2em;
-        margin-bottom: .8em;
+        small {font-size: 1.2em;}
+      }
+
+      .self_run {
+        margin-left: 1.2em;
       }
 
       a {
         width: 100px;
-        i {
-          margin-right: 1.5em;
-          margin-left: -1em;
-        }
+        i {margin-left: -1em; }
       }
 
-       .oversea_shop {margin-top: 1em;}
-
-      .supplier, .self_run, .pre {
-        margin-top: 1em;
-        margin-left: 1.3em;
-      }
-
-      .supplier, .self_run {
-        a {
-          color: $fontLightColor;
-        }
-      }
-
-      .self_run {
-        i {color: $purple;}
-      }
-
-      .pre {
-        i {color: $orange;}
-      }
     }
 
     .actions {
       padding-left: 10px;
+      
       > * {
-        margin-bottom: 1em;
-        i {
-          vertical-align: -3px;
-          margin-right: 1em;
-        }
+        i {margin-right: 1em;}
         small {
           margin-left: 1em;
-          color: $fontLightColor;
+          font-size: 1em;
         }
+      }
+
+      > *:not(:last-child) {margin-bottom: 1em;}
+
+      .fanciers, .owners, .share {
+        i {
+          font-size: 1.8em;
+          vertical-align: -3px;
+        }
+      }
+
+      .others {
+        padding-left: 5px;
+        a {color: $grayLight;}
+        i {margin-right: 2em;}
       }
     }
   }
 
   @media screen and (max-width: 1023px) {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    @include background(rgba(0, 0, 0, 0.3));
-    text-align: center;
-    padding: 1em 0;
+    @include clearfix();
+    margin-top: -1em;
 
     .shop {
-      display: inline;
-      margin-right: 2em;
-      .price, .supplier, .self_run, .oversea_shop {display: none;}
-    }
-
-    .actions {
-      display: inline;
-      vertical-align: -5px;
+      float: left;
+      height: 30px;
       > * {
         display: inline;
         margin-right: 1em;
+      }
+
+      .self_run {display: none;}
+    }
+
+    .actions {
+      float: right;
+      min-width: 180px;
+      text-align: right;
+      > * {
+        display: inline;
+        margin-left: 1em;
+        i {
+          margin-right: .2em;
+          font-size: 1.5em;
+        }
         small {display: none;}
       }
+      .others {display: none;}
     }
   }
 
   @media screen and (max-width: 767px) {
+    .shop {
+      float: none;
+      text-align: center;
+      margin-bottom: 1em;
+    }
     .actions {
-      .owners {display: none;}
+      float: none;
+      text-align: center;
+      margin-bottom: 1em;
     }
   }
 }

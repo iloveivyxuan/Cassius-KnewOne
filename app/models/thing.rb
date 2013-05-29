@@ -14,13 +14,11 @@ class Thing < Post
   field :oversea_shop, type: String, default: ""
   field :price, type: Float
   field :price_unit, type: String, default: "¥"
-  field :stock, type: Integer
   field :is_limit, type: Boolean, default: false
   field :is_self_run, type: Boolean, default: false
 
   field :priority, type: Integer, default: 0
   field :is_pre, type: Boolean, default: false
-  field :pre_link, type: String, default: ""
 
   field :scores, type: Array, default: []
   field :fanciers_count, type: Integer, default: 0

@@ -1,0 +1,15 @@
+.shop
+  = tp.self_run
+  .price= tp.price
+  = tp.shop
+  = tp.oversea_shop
+  
+.actions
+  .fanciers
+    = render "things/fancy", tp: tp
+  .owners
+    = render "things/own", tp: tp
+  .share
+    = render "shared/share_link", el: "#thing_share"
+  .others
+    = tp.supplier
