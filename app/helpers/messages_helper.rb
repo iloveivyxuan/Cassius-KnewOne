@@ -16,9 +16,6 @@ module MessagesHelper
     elsif post.class == Review
       content += "评测"
       content += link_to post.title, thing_review_path(post.thing, post)
-    elsif post.class == Link
-      content += "新闻"
-      content += link_to post.title, thing_link_path(post.thing, post)
     elsif post.class == Topic
       content += "帖子"
       content += link_to post.title, group_topic_path(post.group, post)
