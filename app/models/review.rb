@@ -6,6 +6,7 @@ class Review < Post
 
   has_and_belongs_to_many :lovers, class_name: "User", inverse_of: nil
   has_and_belongs_to_many :foes, class_name: "User", inverse_of: nil
+  field :lovers_count, type: Integer, default: 0
 
   validates :score, presence: true
   validate do |review|
@@ -15,7 +16,7 @@ class Review < Post
     end
   end
 
-  default_scope desc(:created_at)
+  default_scope desc(:is_top, :lovers_count)
 
   after_create :add_score
   after_update :update_score

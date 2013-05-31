@@ -44,7 +44,6 @@ class ThingsController < PostsController
 
   def show
     @thing = Thing.find(params[:id]) || not_found
-    @reviews = @thing.reviews.where(is_top: false).limit(10)
     render layout: 'thing'
   end
 
