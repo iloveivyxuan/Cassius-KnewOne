@@ -32,9 +32,10 @@
     = render 'shared/editor'
 
   #thing_form_submit
-    = button_tag "提交产品", class: "btn-primary btn-large"
+    = button_tag "提交产品", class: "btn btn-primary btn-large"
 
 - content_for :script do
   javascript:
     Making.ThingsNew();
     Making.Editor('#thing_content');
+    Making.FormLink("form.thing_form", "#thing_form_submit button");

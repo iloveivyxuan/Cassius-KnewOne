@@ -27,8 +27,11 @@ window.Making =
     $ ->
       view = new Making.Views.ThingsNew
         el: "form.thing_form"
-      $("#thing_form_submit button").click ->
-        $("form.thing_form").submit()
+
+  FormLink: (form, button) ->
+    $ ->
+      $(button).click ->
+        $(form).submit()
 
   Editor: (textarea) ->
     $ ->

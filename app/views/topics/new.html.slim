@@ -1,8 +1,6 @@
 - provide :new_topic, "no"
 
 = simple_form_for [@group, @topic], html: {class: "edit_post"} do |f|
-  .submit
-    = f.button :submit, class: 'btn-primary'
   = f.input :title, label: false, placeholder: "标题"
   = f.input :content, as: :hidden
   - if can? :manage, :all
@@ -10,6 +8,10 @@
 
 = render 'shared/editor'
 
+.post_submit
+  = button_tag "提交帖子", class: "btn btn-large btn-primary"
+
 - content_for :script do
   javascript:
     Making.Editor('#topic_content');
+    Making.FormLink("form.edit_post", ".post_submit button")
