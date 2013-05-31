@@ -1,17 +1,20 @@
-= simple_nested_form_for @thing, html: {multipart: true, class: "thing_form form-horizontal"} do |f|
-  fieldset
-    legend 购买信息
-    = hidden_field_tag :admin, true
-    = f.input :shop, as: :url
-    = f.input :price do
-      = f.input_field :price_unit, collection: %w{¥ $ € £}
-      = f.input_field :price, as: :decimal
-    = f.input :oversea_shop, as: :url
-    = f.input :priority, as: :integer
-    = f.input :is_pre, as: :boolean
-    = f.input :is_self_run, as: :boolean
-    = f.input :is_limit, as: :boolean
-    = f.input :created_at, as: :datetime
-  = f.simple_fields_for :packages 
-  = f.link_to_add "新增套装", :packages, class: "btn"
-  = f.button :submit, class: "btn-primary btn-large"  
+.thing_wrapper
+  = simple_nested_form_for @thing, html: {multipart: true, class: "thing_form_admin form-horizontal"} do |f|
+    fieldset
+      legend 购买信息
+      = hidden_field_tag :admin, true
+      = f.input :shop, as: :url
+      = f.input :oversea_shop, as: :url
+      = f.input :price do
+        = f.input_field :price_unit, collection: %w{¥ $ € £}
+        = f.input_field :price, as: :decimal
+      = f.input :priority, as: :integer
+      = f.input :is_pre, as: :boolean
+      = f.input :is_self_run, as: :boolean
+      = f.input :is_limit, as: :boolean
+      = f.input :created_at, as: :datetime
+    .packages
+      = f.simple_fields_for :packages 
+      = f.link_to_add "新增套装", :packages, class: "btn"
+    .submit
+      = f.button :submit, class: "btn-primary btn-large"  

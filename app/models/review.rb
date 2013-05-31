@@ -1,5 +1,4 @@
 class Review < Post
-  field :content, type: String, default: ""
   field :score, type: Integer, default: 0
   field :is_top, type: Boolean, default: false
 
@@ -8,7 +7,6 @@ class Review < Post
   has_and_belongs_to_many :lovers, class_name: "User", inverse_of: nil
   has_and_belongs_to_many :foes, class_name: "User", inverse_of: nil
 
-  validates :content, presence: true
   validates :score, presence: true
   validate do |review|
     unless (0..5).include? review.score
@@ -22,7 +20,6 @@ class Review < Post
   after_create :add_score
   after_update :update_score
   after_destroy :destroy_score
-  before_save :top
 
   def vote(user, love)
     return if voted?(user)
@@ -37,15 +34,6 @@ class Review < Post
 
   def voted?(user)
     lovers.include?(user) || foes.include?(user)
-  end
-
-  def top
-    if is_top
-      top_review = thing.top_review
-      if top_review and top_review != self
-        top_review.update_attributes(is_top: false)
-      end
-    end
   end
 
   private

@@ -8,7 +8,7 @@ class Thing < Post
   field :description, type: String, default: ""
   field :photo_ids, type: Array, default: []
 
-  validates :description, length: { maximum: 2048 }
+  validates :description, length: { maximum: 65536 }
 
   field :shop, type: String, default: ""
   field :oversea_shop, type: String, default: ""

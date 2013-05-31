@@ -2,10 +2,4 @@
 
 - present @thing do |tp|
   .photos= render "carousel", tp: tp
-  .author_desc
-    .author= tp.author
-    blockquote= tp.description
-  = tp.top_review
-
-  - if @reviews.present?
-    ul#reviews= render @reviews
+  .post_content= tp.content

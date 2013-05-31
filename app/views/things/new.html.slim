@@ -1,35 +1,40 @@
 - provide :title, "分享产品"
 
-hgroup#thing_form_header
-  h1 分享产品
-  p 感谢您分享您喜欢的新/奇/酷产品，一旦产品经过我们的编辑审核通过，将来有可能获得很大的优惠喔！
-
-= simple_form_for @thing, html: {class: "thing_form form-horizontal pull-left"} do |f|
-  = f.input :title, placeholder: "真实准确的品牌型号", 
-            hint: "如: Jawbone Up 2nd，40字以内", input_html: {maxlength: 40}
-  = f.input :subtitle, placeholder: "您对产品的一句话介绍",
-            hint: "选填, 请用最简短的词语描绘这个产品，30字以内", input_html: {maxlength: 30}
-  = f.input :official_site, as: :url, placeholder: "品牌官方网站的该产品介绍链接地址",
-            hint: "选填，官方网站的介绍可以帮助顾客了解产品详细信息"
-  = f.input :description, as: :text, input_html: {rows: 10, maxlength: 300}, 
-            placeholder: "产品背景功能的简略介绍",
-            hint: "选填，请客观地描述产品功能和诞生背景，300字以内"
-  = f.button :submit, class: "btn-primary btn-large"
+.thing_wrapper
   
-= simple_form_for Photo.new, html: {class: "pull-right"} do |f|
-  .control-groups
-    span.btn.btn-info.fileinput-button title="产品图片" data-content="请先为产品上传图片"
-      i.icon-cloud-upload
-      span 上传产品照片
-      = f.file_field :image, multiple: true, name: "photo[image]"
-    span.help-block
-      | 产品至少需要上传一张照片（多张会更好），如果想要很好的展现产品，我们建议您的照片宽度至少大于1152像素，光线充足并适当留白
-  = content_tag :div, id: "photos", 
-  data: {photos: @photos, toggle: "modal-gallery", target: "#modal-gallery"} do
-    p 将照片文件直接从桌面拖到这里进行上传
+  hgroup#thing_form_header
+    h1 分享产品
+    p 感谢您分享您喜欢的新/奇/酷产品，一旦产品经过我们的编辑审核通过，将来有可能获得很大的优惠喔！
 
-= render 'shared/image_gallery'
+  = simple_form_for @thing, html: {class: "thing_form form-horizontal pull-left"} do |f|
+    = f.input :title, placeholder: "真实准确的品牌型号，40字以内", input_html: {maxlength: 40}
+    = f.input :subtitle, placeholder: "您对产品的一句话介绍，40字以内", input_html: {maxlength: 40}
+    = f.input :official_site, as: :url, placeholder: "品牌官方网站的该产品链接地址"
+    = f.input :content, as: :hidden
+
+  #thing_form_content
+    = simple_form_for Photo.new do |f|
+      .control-groups
+        span.btn.btn-info.fileinput-button title="请为产品上传图片" data-placement="right"
+          i.icon-cloud-upload
+          span 上传产品照片
+          = f.file_field :image, multiple: true, name: "photo[image]"
+        span.help-block
+          | 产品至少需要上传一张照片（多张会更好），我们建议您的照片宽度至少大于1152像素，光线充足并适当留白
+      = content_tag :div, id: "photos", data: {photos: @photos} do
+        p 
+          i.icon-reply-all.icon-2x
+          | 可以将照片文件直接从桌面拖拽进来
+
+    .control-groups
+      span.help-block
+        | 请填写产品的简要描述信息
+    = render 'shared/editor'
+
+  #thing_form_submit
+    = button_tag "提交产品", class: "btn-primary btn-large"
 
 - content_for :script do
   javascript:
     Making.ThingsNew();
+    Making.Editor('#thing_content');

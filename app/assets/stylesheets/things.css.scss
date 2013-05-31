@@ -129,21 +129,6 @@
       }
     }
   }
-
-  .author_desc {
-    @include clearfix;
-
-    blockquote {
-      color: $fontLightColor;
-      margin-bottom: 0;
-    }
-
-    .author {
-      float: right;
-      margin: 0 2em;
-    }
-
-  }
 }
 
 #thing_actions {

@@ -3,6 +3,7 @@ class Post
   include Mongoid::Timestamps
 
   field :title, type: String
+  field :content, type: String, default: ""
   field :commented_at, type: DateTime
 
   belongs_to :author, class_name: "User", inverse_of: :post
@@ -10,6 +11,7 @@ class Post
   embeds_many :comments
 
   validates :title, presence: true
+  validates :content, presence: true
 
   after_create :update_commented_at
 

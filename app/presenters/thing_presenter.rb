@@ -1,17 +1,10 @@
 # -*- coding: utf-8 -*-
 class ThingPresenter < ApplicationPresenter
   presents :thing
-  delegate :title, :subtitle, :description, :photos, to: :thing
+  delegate :title, :subtitle, :photos, to: :thing
 
   def full_title
     [title, subtitle].reject(&:blank?).join(' - ')
-  end
-
-  def top_review
-    review = thing.reviews.where(is_top: true).first
-    if review
-      content_tag :div, present(review).content, class: "top_review post_content"
-    end
   end
 
   def author
@@ -24,6 +17,10 @@ class ThingPresenter < ApplicationPresenter
 
   def photo(size, options={})
     image_tag photo_url(size), options.merge(alt: title)
+  end
+
+  def content
+    sanitize(raw thing.content)
   end
 
   def price

@@ -27,14 +27,18 @@ window.Making =
     $ ->
       view = new Making.Views.ThingsNew
         el: "form.thing_form"
+      $("#thing_form_submit button").click ->
+        $("form.thing_form").submit()
 
-  Editor: (form, content) ->
+  Editor: (textarea) ->
     $ ->
       $("#editor")
         .wysiwyg
           dragAndDropImages: false
-        .html($(content).val())
+        .html($(textarea).val())
         .fadeIn()
+        .on "drop", (e) ->
+          e.stopPropagation()
 
       $("#editor-toolbar")
         .fadeIn()
@@ -60,9 +64,9 @@ window.Making =
               .width($target.outerWidth())
               .height($target.outerHeight())
 
-      $(form)
+      $(textarea).closest('form')
         .submit (e) ->
-          $(content).val($('#editor').html())
+          $(textarea).val $('#editor').html()
 
   Rating: (form) ->
     $ ->

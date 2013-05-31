@@ -10,8 +10,9 @@ class Making.Views.PhotosUpload extends Backbone.View
     $('#new_photo').fileupload
       dataType: "json"
       paramName: 'photo[image]' #rails 3.2.13 breaks multiple file upload, waiting for fixed
-      dropzone: @$container
       add: @addFile
+      dragover: @dragover
+      drop: @drop
       progress: @progress
       done: @done
       fail: @fail
@@ -22,12 +23,19 @@ class Making.Views.PhotosUpload extends Backbone.View
     this
 
   addFile: (e, data) =>
+    @$container.find('p').remove()
     file = data.files[0]
     data.view = new Making.Views.PhotoPreview
       model: file
     @$el.append data.view.render().el
     if data.view.validate()
       data.submit()
+
+  dragover: (e) =>
+    @$container.addClass("dragover")
+
+  drop: (e) =>
+    @$container.removeClass("dragover")
 
   progress: (e, data) =>
     data.view.progress data
@@ -49,5 +57,3 @@ class Making.Views.PhotosUpload extends Backbone.View
     @$el.sortable
       items: '.uploaded'
       handle: '.move'
-
-
