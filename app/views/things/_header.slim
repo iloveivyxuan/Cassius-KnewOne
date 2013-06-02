@@ -17,11 +17,23 @@ nav
       = link_to_with_icon "", "icon-gift", new_lottery_path(thing: tp.thing), title: "发奖"
   ul.nav.nav-pills
     = nav_tab :thing do
-      = link_to_with_icon "产品", "icon-magic", tp.thing
+      = link_to tp.thing do
+        i.icon-magic
+        span 产品
     = nav_tab :reviews do
-      = link_to_with_icon "评测", "icon-book", thing_reviews_path(tp.thing)
+      = link_to thing_reviews_path(tp.thing) do
+        i.icon-book
+        span 评测
     = nav_tab :updates do
-      = link_to_with_icon "更新", "icon-code-fork", thing_updates_path(tp.thing)
+      = link_to thing_updates_path(tp.thing) do
+        i.icon-code-fork
+        span 更新
+    = nav_tab :comments do
+      = link_to comments_thing_path(tp.thing) do
+        i.icon-comments
+        span 留言
+          
+      
   
 
 

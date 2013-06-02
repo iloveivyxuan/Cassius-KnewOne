@@ -48,6 +48,7 @@ class Ability
     can :read, Lottery
     can :buy,  Thing
     can :buy_package, Thing
+    can :comments, Thing
     can :activate, Guest
     can :limits, Guest
     can :create, Supplier

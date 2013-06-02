@@ -19,6 +19,7 @@ Making::Application.routes.draw do
     member {post 'own'}
     member {get 'buy'}
     member {get 'buy_package'}
+    member {get 'comments'}
     get 'date/:date', action: :index, on: :collection
 
     resources :reviews do

@@ -43,6 +43,14 @@
           background: transparent;
         }
       }
+
+      @media screen and (max-width: 767px) {
+        a {
+          span {display: none;}
+          i {margin: 0;}
+        }
+      }
+
     }
 
     .operations {
@@ -359,4 +367,19 @@
   right: 5%;
   cursor: pointer;
   @include opacity(0.5);
+}
+
+#thing_comments {
+  .comments {
+    > h4 {display: none;}
+    
+    ul {
+      padding: 0;
+      border: none;
+    }
+
+    .comment_form {
+      textarea {width: 95%;}
+    }
+  }
 }

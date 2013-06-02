@@ -103,6 +103,10 @@ class ThingsController < PostsController
     redirect_to @thing.packages[params[:index].to_i].shop
   end
 
+  def comments
+    render layout: 'thing'
+  end
+
   private
 
   def admin_authenticate
