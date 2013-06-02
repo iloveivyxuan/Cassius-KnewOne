@@ -1,14 +1,10 @@
 # -*- coding: utf-8 -*-
-class ThingPresenter < ApplicationPresenter
+class ThingPresenter < PostPresenter
   presents :thing
   delegate :title, :subtitle, :photos, to: :thing
 
   def full_title
     [title, subtitle].reject(&:blank?).join(' - ')
-  end
-
-  def author
-    present(thing.author).as_author
   end
 
   def photo_url(size)
@@ -20,7 +16,9 @@ class ThingPresenter < ApplicationPresenter
   end
 
   def content
-    sanitize(raw thing.content)
+    content_tag :div, class: "post_content" do
+      sanitize(raw thing.content)
+    end if thing.content.present?
   end
 
   def price

@@ -3,7 +3,7 @@
   .price= tp.price
   = tp.shop
   = tp.oversea_shop
-  
+
 .actions
   .fanciers
     = render "things/fancy", tp: tp
@@ -13,3 +13,8 @@
     = render "shared/share_link", el: "#thing_share"
   .others
     = tp.supplier
+
+.author_info
+  p 产品分享自:
+  = tp.author
+

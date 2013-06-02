@@ -5,15 +5,16 @@ tr.lottery
         = lottery.date.day
         span= lottery.date.strftime '%^b'
   td.thing
-    = link_to lottery.thing do
-      = thing_photo(lottery.thing, :small)
-      p= lottery.thing.title
-      /h5= lottery.thing.title
+    - present lottery.thing do |tp|
+      = link_to tp.thing do
+        = tp.photo(:small)
+        p= tp.title
   td.contribution
     - if lottery.contribution
-      = link_to lottery.contribution do
-        = thing_photo(lottery.contribution, :small)
-        p= lottery.contribution.title
+      - present lottery.contribution do |tp|
+        = link_to tp.thing do
+          = tp.photo(:small)
+          p= tp.title
     - else
       p.placeholder ?
   td.winner

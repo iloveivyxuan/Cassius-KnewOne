@@ -176,6 +176,12 @@
     }
   }
 
+  .author_info {
+    p {
+      color: $fontLightColor;
+    }
+  }
+
   @media screen and (min-width: 1024px) {
     @include right-layout;
     width: 171px;
@@ -263,6 +269,8 @@
       }
       .others {display: none;}
     }
+
+    .author_info {display: none;}
   }
 
   @media screen and (max-width: 767px) {
