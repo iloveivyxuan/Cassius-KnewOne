@@ -9,8 +9,12 @@ class PostPresenter < ApplicationPresenter
   def author
     content_tag :div, class: "author" do
       present(@object.author)
-        .as_author.concat time_ago_tag(@object.created_at)
+        .as_author.concat created_at
     end
+  end
+
+  def created_at
+    time_ago_tag(@object.created_at)
   end
 
   def author_avatar(size)

@@ -71,10 +71,8 @@ class ThingPresenter < PostPresenter
   end
 
   def supplier
-    content_tag :div, class: "supplier" do
-      link_to_with_icon "申请供货", "icon-truck", "#",
-      data: {toggle: "modal", target: "#supplier-modal"}
-    end
+    link_to_with_icon "我有此产品想出售", "icon-truck", "#",
+    data: {toggle: "modal", target: "#supplier-modal"}
   end
 
   def official_site

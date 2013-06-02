@@ -177,15 +177,18 @@
   }
 
   .author_info {
-    p {color: $fontLightColor;}
+    p {
+      color: $fontLightColor;
+      time {margin-right: 1em;}
+    }
     .author {
-      time {display: block;}
+      time {display: none;}
     }
   }
 
   @media screen and (min-width: 1024px) {
     @include right-layout;
-    width: 171px;
+    width: 170px;
 
     > * {
       padding-bottom: 2em;
@@ -213,12 +216,13 @@
     }
 
     .actions {
-      padding-left: 10px;
-      
+      margin-right: 2em;
+
       > * {
-        i {margin-right: 1em;}
+        text-align: right;
+        i {float: left;}
         small {
-          margin-left: 1em;
+          margin-left: 2em;
           font-size: 1em;
         }
       }
@@ -226,16 +230,19 @@
       > *:not(:last-child) {margin-bottom: 1em;}
 
       .fanciers, .owners, .share {
-        i {
-          font-size: 1.8em;
-          vertical-align: -3px;
-        }
+        a {line-height: 1.8em;}
+        i {font-size: 1.8em;}
       }
 
-      .others {
-        padding-left: 5px;
-        a {color: $grayLight;}
-        i {margin-right: 2em;}
+      .supplier {
+        a {
+          color: $grayLight;
+          i {
+            padding-top: 2px;
+            margin-left: 5px;
+            margin-right: 0;
+          }
+        }
       }
     }
   }
@@ -268,7 +275,7 @@
         }
         small {display: none;}
       }
-      .others {display: none;}
+      .supplier {display: none;}
     }
 
     .author_info {display: none;}
@@ -291,7 +298,7 @@
 #thing_packages {
   @media screen and (min-width: 1024px) {
     @include right-layout;
-    width: 171px;
+    width: 170px;
   }
 
   .package {

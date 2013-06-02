@@ -11,10 +11,12 @@
     = render "things/own", tp: tp
   .share
     = render "shared/share_link", el: "#thing_share"
-  .others
+  .supplier
     = tp.supplier
 
 .author_info
-  p 产品分享自:
+  p 
+    = tp.created_at
+    small 分享自
   = tp.author
 
