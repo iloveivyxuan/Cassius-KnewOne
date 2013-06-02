@@ -4,10 +4,10 @@
     .wrapper
       ul= render @things, size: :middle
       
-  = paginate @things
-
   aside#home_gifts
     .wrapper= render 'gifts'
+
+  = paginate @things
 
 - content_for :script do
   javascript:
