@@ -102,7 +102,15 @@ class ThingPresenter < PostPresenter
   end
 
   def reviews_count
-    content_tag :span, thing.reviews.count, class: "reviews_count"
+    thing.reviews.count
+  end
+
+  def updates_count
+    thing.updates.count
+  end
+
+  def comments_count
+    thing.comments.count
   end
 
   def share_content

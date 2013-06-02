@@ -34,6 +34,13 @@
 
       a {
         padding: {left: 11px; right: 11px;}
+        .badge {
+          position: relative;
+          bottom: 1px;
+          left: 3px;
+          font-size: .8em;
+          line-height: 1em;
+        }
       }
 
       .active {
@@ -41,6 +48,9 @@
         a {
           color: $textColor;
           background: transparent;
+          .badge {
+            @extend .badge-inverse;
+          }
         }
       }
 
