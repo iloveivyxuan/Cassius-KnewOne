@@ -1,7 +1,8 @@
 - provide :feed, thing_url(tp.thing, format: "atom")
 
 hgroup
-  h1= tp.title
+  h1
+    = content_for(:nav) != "thing" ? link_to(tp.title, tp.thing) : tp.title
   h2= tp.subtitle
 
 nav

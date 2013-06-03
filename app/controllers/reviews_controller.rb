@@ -8,7 +8,7 @@ class ReviewsController < PostsController
   end
 
   def index
-    @reviews = @thing.reviews.page params[:page]
+    @reviews = @thing.reviews.page(params[:page])
   end
 
   def show

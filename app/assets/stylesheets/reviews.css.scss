@@ -62,23 +62,9 @@
     }
 
     article {
-      header {
-        margin-bottom: 2em;
-        word-wrap: break-word;          
-      }
-
-      section {
-        p {
-          word-wrap: break-word;
-        }
-      }
-
-      footer {
-        span {
-          padding-right: 1em;
-        }
-      }
+      .author, .score {display: inline;}
     }
   }
 }
 
+#new_review {text-align: center;}

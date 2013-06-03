@@ -1,12 +1,10 @@
 - provide :nav, :reviews
 
-- if can? :create, Review and @thing
-  #new_review
-    = link_to new_thing_review_path(@thing), class: "btn" do
-      i.icon-pencil
-      | 发布评测
-
-ul#reviews
-  = render @reviews
-
-= paginate @reviews
+- if @reviews.present?
+  = render 'link_to_new', thing: @thing
+  ul#reviews= render @reviews
+  = paginate @reviews
+- else
+  .hero-unit
+    p 还没有人为 #{@thing.title} 撰写评测，=_="
+    = render 'link_to_new', thing: @thing

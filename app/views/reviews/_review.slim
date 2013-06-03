@@ -1,10 +1,15 @@
 - present review do |rp|
   li.review
-    article
+    article.post
       header
-        h4= link_to rp.title, rp.path
-        = rp.score
+        h3= link_to rp.title, rp.path
         = rp.author
+        = rp.score
+      aside
+        = link_to_with_icon "", "icon-expand-alt icon-large", "#",
+          class: "post_expand", title: "展开"
+        = link_to_with_icon "", "icon-collapse-alt icon-large", "#",
+          class: "post_collapse hide", title: "收起"
       section
         .post_content.post_summary
           = rp.content

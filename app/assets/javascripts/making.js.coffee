@@ -15,6 +15,7 @@ window.Making =
       $(".track_event").click ->
         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
       Making.GoTop()
+      Making.PostCollapse()
 
   GoTop: ->
     $(window).on 'scroll', ->
@@ -31,6 +32,25 @@ window.Making =
     try
       _hmt.push ['_trackEvent', category, action, label]
     catch error
+
+  PostCollapse: () ->
+    $('article.post')
+      .find('.post_summary').css('max-height', '500px').end()
+      .find('.post_expand').click ->
+        $(@).hide()
+          .closest('aside')
+          .find('.post_collapse').show().end()
+          .closest('article')
+          .find('.post_summary').css('max-height', 'none')
+        false
+      .end()
+      .find('.post_collapse').click ->
+        $(@).hide()
+          .closest('aside')
+          .find('.post_expand').show().end()
+          .closest('article')
+          .find('.post_summary').css('max-height', '500px')
+        false
 
   ThingsNew: ->
     $ ->
