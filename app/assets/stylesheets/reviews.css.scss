@@ -62,7 +62,9 @@
     }
 
     article {
-      .author, .score {display: inline;}
+      @media screen and (min-width: 768px) {
+        .author, .score {display: inline;}
+      }
     }
   }
 }
