@@ -14,9 +14,18 @@ window.Making =
       $(".thing h4").tooltip()
       $(".track_event").click ->
         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
-      $('#go_top').click ->
-        $(@).fadeOut()
-        $('html,body').animate {scrollTop: 0}, 'slow'
+      Making.GoTop()
+
+  GoTop: ->
+    $(window).on 'scroll', ->
+      if $(window).scrollTop() > $(window).height()/2
+        $('#go_top').fadeIn() if $('#go_top').is(':hidden')
+      else
+        $('#go_top').fadeOut() if $('#go_top').is(':visible')
+    
+    $('#go_top').click ->
+      $(@).fadeOut()
+      $('html,body').animate {scrollTop: 0}, 'slow'
 
   TrackEvent: (category, action, label) ->  
     try
@@ -116,7 +125,6 @@ window.Making =
   InfiniteScroll: (container, item) ->
     $('.pagination').hide()
     $(container)
-      .after('<aside id="go_top"><i class="icon-circle-arrow-up icon-2x"></i></aside>')
       .infinitescroll
         navSelector: '.pagination'
         nextSelector: '.pagination a[rel="next"]'
@@ -127,12 +135,7 @@ window.Making =
           msg: $("<div class='loading-things'><i class='icon-spinner icon-spin icon-4x'></i></div>")
         errorCallback: ->
           $(container).find('.loading-things').html("<em>没有更多了......</em>")
-    $(window).on 'scroll', ->
-      if $(window).scrollTop() > $(window).height()/2
-        $('#go_top').fadeIn() if $('#go_top').is(':hidden')
-      else
-        $('#go_top').fadeOut() if $('#go_top').is(':visible')
-       
+
 
 $ ->
   Making.initialize()
