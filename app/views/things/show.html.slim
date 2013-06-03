@@ -3,3 +3,10 @@
 - present @thing do |tp|
   .photos= render "carousel", tp: tp
   = tp.content
+
+= render 'shared/comments', post: @thing, id: "thing_comments"
+
+- content_for :script do
+  javascript:
+    Making.Comments("#thing_comments")
+

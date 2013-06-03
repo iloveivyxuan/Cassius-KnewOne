@@ -24,17 +24,17 @@ nav
       = link_to thing_reviews_path(tp.thing) do
         i.icon-book
         span 评测
-        span.badge= tp.reviews_count
+        small= tp.reviews_count
     = nav_tab :updates do
       = link_to thing_updates_path(tp.thing) do
         i.icon-code-fork
         span 更新
-        span.badge= tp.updates_count
+        small= tp.updates_count
     = nav_tab :comments do
       = link_to comments_thing_path(tp.thing) do
         i.icon-comments
         span 留言
-        span.badge= tp.comments_count
+        small= tp.comments_count
         
       
   
