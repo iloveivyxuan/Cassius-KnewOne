@@ -44,6 +44,7 @@ class ThingsController < PostsController
 
   def show
     @thing = Thing.find(params[:id]) || not_found
+    read_comments @thing
     render layout: 'thing'
   end
 
@@ -104,6 +105,7 @@ class ThingsController < PostsController
   end
 
   def comments
+    read_comments @thing
     render layout: 'thing'
   end
 
