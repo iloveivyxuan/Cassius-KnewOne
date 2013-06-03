@@ -33,10 +33,6 @@ class PostPresenter < ApplicationPresenter
     @object.thing.present? and present(@object.thing).photo_url(size)
   end
 
-  def summary
-    truncate strip_tags(raw @object.content), length: 300
-  end
-
   def comments_count
     content_tag :span, class: "comments" do
       c = @object.comments.count

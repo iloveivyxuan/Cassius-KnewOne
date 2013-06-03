@@ -308,6 +308,11 @@ time {
   ul {list-style: disc inside;}
 }
 
+.post_summary {
+  //max-height: 500px;
+  overflow: hidden;
+}
+
 #editor {
   display: none;
   overflow: scroll;

@@ -14,10 +14,6 @@ class ReviewPresenter < PostPresenter
     content_tag :div, "", data: {score: review.score}, class: "score"
   end
 
-  def summary
-    raw super.concat link_to_with_icon "", "icon-file-alt", path, class: "details"
-  end
-
   def lovers_count
     lc, fc = review.lovers.count, review.foes.count
     lc <= 0 and return

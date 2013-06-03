@@ -10,7 +10,7 @@ gem 'mongoid_slug'
 gem 'simple_form'
 gem 'nested_form'
 gem 'kaminari'
-# presenters and views
+# views
 gem 'slim-rails'
 gem 'jbuilder'
 # javascripts
