@@ -112,8 +112,10 @@
         font-size: 28px;
         top: 265px;
         i {
-          padding-top: 5px;
-          margin: 0;
+          /* padding-top: 5px; */
+          position: relative;
+          top: 3px;
+          margin: 0; 
         }
       }
 
