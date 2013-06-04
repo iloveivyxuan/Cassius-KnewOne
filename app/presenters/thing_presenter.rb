@@ -52,7 +52,7 @@ class ThingPresenter < PostPresenter
   def oversea_shop
     if thing.oversea_shop.present?
       link_to_with_icon "海淘", "icon-plane icon-large", buy_thing_path(thing, oversea: true), target: '_blank',
-      class: "track_event btn btn-success oversea_shop",
+      class: "track_event btn oversea_shop",
       data: {action: "buy", category: "thing", label: title}
     end
   end
