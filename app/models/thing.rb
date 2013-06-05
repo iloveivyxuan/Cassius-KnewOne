@@ -19,6 +19,7 @@ class Thing < Post
 
   field :priority, type: Integer, default: 0
   field :is_pre, type: Boolean, default: false
+  field :pre_over_at, type: DateTime
 
   field :scores, type: Array, default: []
   field :fanciers_count, type: Integer, default: 0

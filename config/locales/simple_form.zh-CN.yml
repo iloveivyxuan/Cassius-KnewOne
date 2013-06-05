@@ -32,6 +32,7 @@ zh-CN:
         is_limit: '是否限量'
         is_self_run: '是否自营'
         created_at: '创建时间'
+        pre_over_at: '预售结束时间'
         packages:
           title: '名称'
           shop: '购买链接'
