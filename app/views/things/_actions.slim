@@ -1,7 +1,7 @@
 .shop
   = tp.self_run
   .price= tp.price
-  = tp.pre_over_at
+  = render "things/pre_over_at", tp: tp
   = tp.shop
   = tp.oversea_shop
 

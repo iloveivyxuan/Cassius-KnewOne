@@ -115,7 +115,7 @@
           /* padding-top: 5px; */
           position: relative;
           top: 3px;
-          margin: 0; 
+          margin: 0;
         }
       }
 
@@ -154,6 +154,18 @@
           font-size: 1.2em;
           color: $purple;
         }
+      }
+    }
+
+    .pre_over_at {
+      i {
+        margin-right: .2em;
+        font-size: 1.5em;
+        color: $red;
+      }
+      time {
+        font-size: 1.2em;
+        color: $red;
       }
     }
   }
@@ -218,10 +230,9 @@
       }
 
       a {
-        width: 120px; 
-        i {margin-right: 1em; } 
+        width: 120px;
+        i {margin-right: 1em; }
       }
-
     }
 
     .actions {
@@ -297,6 +308,7 @@
       margin-bottom: 1em;
       .pre_over_at {display: none;}
     }
+
     .actions {
       float: none;
       text-align: center;
@@ -385,4 +397,3 @@
     }
   }
 }
-

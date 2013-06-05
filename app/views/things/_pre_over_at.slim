@@ -1,0 +1,7 @@
+- time = tp.thing.pre_over_at
+- if tp.pre? and time.present?
+  p.pre_over_at
+    i.icon-time
+    | 预购将在
+    = time_tag time, distance_of_time_in_words_to_now(time)
+    | 后结束

@@ -57,13 +57,6 @@ class ThingPresenter < PostPresenter
     end
   end
 
-  def pre_over_at
-    time = thing.pre_over_at
-    content_tag :div, class: "pre_over_at" do
-      time_tag time, distance_of_time_in_words_to_now(time)+"后到期"
-    end if pre? and time.present?
-  end
-
   def self_run
     content_tag :div, class: "self_run" do
       link_to_with_icon "#{brand}自营", "icon-trophy", "#",
