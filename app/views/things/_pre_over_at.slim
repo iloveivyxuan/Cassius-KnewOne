@@ -1,5 +1,5 @@
 - time = tp.thing.pre_over_at
-- if tp.pre? and time.present?
+- if tp.pre? and time.present? and time > Time.now
   p.pre_over_at
     i.icon-time
     | 预购将在
