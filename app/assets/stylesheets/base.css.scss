@@ -104,6 +104,28 @@
       @include background($orange);
     }
   }
+
+  .pre_over_at {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1em 0;
+    color: white;
+    font-size: 1.2em;
+    @include background(rgba(0,0,0,0.5));
+    i {
+      font-size: 1.5em;
+    }
+    time {
+      font-size: 1.2em;
+      margin-left: .5em;
+    }
+    i,time {color: $orange;}
+  }
+
+  &:hover .pre_over_at {display: block;}
 }
 
 @mixin fixed-wrapper {
