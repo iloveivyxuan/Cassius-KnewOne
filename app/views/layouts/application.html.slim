@@ -18,7 +18,6 @@ doctype html
   body
     = render 'layouts/header'
     section.container-fluid= content_for?(:content) ? yield(:content) : yield
-    = render 'layouts/footer'
     = render 'shared/login'
     = javascript_include_tag "application"
     = yield :script

@@ -24,6 +24,15 @@ header
             li= link_to_with_icon "最新", "icon-rocket", things_path 
             li= link_to_with_icon "热门", "icon-bullseye", things_path(sort: "fancy") 
             li= link_to_with_icon "自营", "icon-trophy", things_path(sort: "self_run")
+        li.nav_help.dropdown
+          = link_to '#', class: "dropdown-toggle", data: {toggle: "dropdown"} do
+            i.icon-road
+            span 关于我们
+            i.icon-caret-down
+          ul.dropdown-menu
+            li= link_to_with_icon "微博", "icon-eye-open", "http://weibo.com/knewone"
+            li= link_to_with_icon "吐槽", "icon-leaf", "/things/knewone" 
+            li= link_to_with_icon "邮件", "icon-envelope", "mailto:hello@knewone.com" 
         li.nav_new_thing
           - if user_signed_in?
             = link_to_with_icon "分享产品", "icon-magic", new_thing_path 
@@ -31,9 +40,6 @@ header
             = link_to_with_icon "分享产品", "icon-magic", "#", data: {toggle: "modal", target: "#login-modal"}
         li.nav_lotteries
           = link_to_with_icon "天天有礼", "icon-gift", lotteries_path 
-        li.nav_weibo
-          = link_to_with_icon "关注微博", "icon-eye-open", "http://weibo.com/knewone"
-        
       ul.nav.pull-right
         - if user_signed_in?
           - if unread_messages_count > 0

@@ -58,11 +58,12 @@ body > header {
         }
       }
 
-      .nav_new_thing, .nav_things, .nav_lotteries, .nav_weibo, .nav_groups {
+      .nav_new_thing, .nav_things, .nav_lotteries, .nav_help, .nav_groups {
         margin-top: 1px;
+        i.icon-caret-down {margin-left: .2em;}
       }
 
-      .nav_new_thing, .nav_lotteries, .nav_weibo {
+      .nav_new_thing, .nav_lotteries, .nav_help {
         @media screen and (max-width: 1151px) {
           display: none;
         }
