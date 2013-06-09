@@ -6,7 +6,6 @@ class User
 
   field :email,  type: String, default: ""
   field :name, type: String
-  field :admin,  type: Boolean, default: false
   field :karma, type: Integer, default: 0
   mount_uploader :avatar, ImageUploader
 
@@ -43,6 +42,14 @@ class User
       self.remote_avatar_url = auth.parse_image(data)
       save
     end
+  end
+
+  ## Roles
+  field :role, type: String, default: ""
+  ROLES = %w[vip editor admin]
+
+  def role?(base_role)
+    ROLES.index(base_role.to_s) <= (ROLES.index(role) || -1)
   end
 
   ## Photos

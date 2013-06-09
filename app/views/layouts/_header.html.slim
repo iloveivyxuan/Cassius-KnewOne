@@ -52,7 +52,7 @@ header
               span= current_user.name
               i.icon-caret-down
             ul.dropdown-menu
-              - if current_user.admin?
+              - if can? :manage, :all
                 li= link_to groups_path do
                   i.icon-group
                   | 管理小组

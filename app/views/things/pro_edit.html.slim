@@ -1,5 +1,5 @@
 .thing_wrapper
-  = simple_nested_form_for @thing, html: {multipart: true, class: "thing_form_admin form-horizontal"} do |f|
+  = simple_nested_form_for @thing, url: pro_update_thing_path(@thing), html: {multipart: true, class: "editor_thing_form form-horizontal"} do |f|
     fieldset
       legend 购买信息
       = hidden_field_tag :admin, true
