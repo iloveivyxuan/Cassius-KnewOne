@@ -150,7 +150,7 @@ window.Making =
         nextSelector: '.pagination a[rel="next"]'
         contentSelector: container + ' ul'
         itemSelector: item
-        pixelsFromNavToBottom: $('body > footer').height()
+        pixelsFromNavToBottom: 150
         loading:
           msg: $("<div class='loading-things'><i class='icon-spinner icon-spin icon-4x'></i></div>")
         errorCallback: ->
