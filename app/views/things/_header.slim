@@ -15,7 +15,7 @@ nav
       = link_to_with_icon "", "icon-trash", tp.thing, method: :delete, 
       data: {confirm: "您确认要删除吗?"}, title: "删除"
     - if can? :pro_edit, tp.thing
-      = link_to_with_icon "", "icon-cogs", pro_edit_thing_path, title: "管理"
+      = link_to_with_icon "", "icon-cogs", pro_edit_thing_path(tp.thing), title: "管理"
     - if can? :manage, :all
       = link_to_with_icon "", "icon-gift", new_lottery_path(thing: tp.thing), title: "发奖"
   ul.nav.nav-pills
