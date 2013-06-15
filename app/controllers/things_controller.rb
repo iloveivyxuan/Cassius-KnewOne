@@ -92,7 +92,7 @@ class ThingsController < PostsController
   end
 
   def buy
-    redirect_to (params[:oversea] ? @thing.oversea_shop : @thing.shop)
+    redirect_to @thing.shop
   end
 
   def buy_package
