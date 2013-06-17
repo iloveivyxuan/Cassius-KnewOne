@@ -24,7 +24,12 @@ class ThingsController < PostsController
   end
 
   def admin
-    @things = Thing.page params[:page]
+    if params[:can_buy]
+      @things = Thing.nor(shop: "", oversea_shop: "").page params[:page]
+    else
+      @things = Thing.page params[:page]
+    end
+
   end
 
   def new
