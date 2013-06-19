@@ -107,7 +107,6 @@ class ThingPresenter < PostPresenter
 
   def updates_count
     show_count thing.updates.count
-    thing.updates.count
   end
 
   def comments_count
