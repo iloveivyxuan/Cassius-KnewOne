@@ -11,4 +11,8 @@ class ApplicationPresenter
   def method_missing(*args, &block)
     @template.send(*args, &block)
   end
+
+  def show_count(count)
+    (count > 0) ? count : ""
+  end
 end

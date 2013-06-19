@@ -102,15 +102,16 @@ class ThingPresenter < PostPresenter
   end
 
   def reviews_count
-    thing.reviews.count
+    show_count thing.reviews.count
   end
 
   def updates_count
+    show_count thing.updates.count
     thing.updates.count
   end
 
   def comments_count
-    thing.comments.count
+    show_count thing.comments.count
   end
 
   def share_content

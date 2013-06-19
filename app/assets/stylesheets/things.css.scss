@@ -36,6 +36,7 @@
         padding: {left: 11px; right: 11px;}
         small {
           margin-left: .5em;
+          color: $blue;
         }
       }
 
@@ -44,6 +45,7 @@
         a {
           color: $textColor;
           background: transparent;
+          small {color: $textColor;}
         }
       }
 
