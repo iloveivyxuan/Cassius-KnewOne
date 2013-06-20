@@ -12,27 +12,47 @@
   @include box-shadow(rgba(0, 0, 0, 0.1) 1px 1px 10px);
 }
 
-@mixin left-layout {
-  float: left;
-  width: 67%;
-
+@mixin left-layout($with_border: true) {
   @media screen and (min-width: 1024px) {
+    float: left;
+    width: 68%;
+    @if $with_border {
+      width: 64%;
+      padding-right: 1.9%;
+      border-right: 1px solid #eee;
+      margin-right: 1.9%;
+    }
     min-height: 800px;
-  }
-
-  @media screen and (max-width: 979px) {
-    float: none;
-    width: 100%;
   }
 }
 
 @mixin right-layout {
-  float: right;
-  width: 31%;
+  @media screen and (min-width: 1024px) {
+    float: right;
+    width: 32%;
+  }
+}
 
-  @media screen and (max-width: 979px) {
-    float: none;
-    width: 100%;
+@mixin fixed-wrapper {
+  @include section-decorate;
+  @include clearfix;
+  padding: 1em 20px;
+  margin: 0 auto;
+
+  @media screen and (min-width: 1024px) {
+    width: 980px;
+  }
+}
+
+@mixin responsive-wrapper {
+  @include section-decorate;
+  @include clearfix;
+  padding: 1em 20px;
+  margin: 0 auto;
+
+  @media screen and (min-width: 1024px) {
+    min-width: 980px;
+    width: 62%;
   }
 }
 
@@ -128,17 +148,15 @@
   &:hover .pre_over_at {display: block;}
 }
 
-@mixin fixed-wrapper {
+@mixin thing-in-list($size) {
+  @include thing($size);
   @include section-decorate;
-  @include clearfix;
-  padding: 1em 20px;
-  margin: 0 auto;
+  padding: 1em;
 
-  @media screen and (min-width: 1024px) {
-    width: 980px;
+  @media screen and (max-width: 767px) {
+    @include thing(228px);
   }
 }
-
 
 ul, ol {
   list-style: none;

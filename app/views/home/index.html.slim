@@ -1,11 +1,10 @@
 .home_wrapper
 
   section#home_things
-    .wrapper
-      ul= render @things, size: :middle
+    ul= render @things, size: :normal
       
-  aside#home_gifts
-    .wrapper= render 'gifts'
+  aside#home_news
+    .wrapper= render 'news'
 
   = paginate @things
 

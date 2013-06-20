@@ -1,5 +1,5 @@
 .thing_wrapper {
-  @include fixed-wrapper;
+  @include responsive-wrapper;
 }
 
 #thing_header {
@@ -76,13 +76,7 @@
 }
 
 #thing_content {
-  @media screen and (min-width: 1024px) {
-    @include left-layout;
-    width: 768px;
-    padding-right: 20px;
-    border-right: 1px solid #eee;
-    margin-right: 20px;
-  }
+  @include left-layout;
 
   > * {
     padding-bottom: 2em;
@@ -147,6 +141,7 @@
 }
 
 #thing_actions {
+  @include right-layout;
 
   .shop {
     .self_run {
@@ -214,8 +209,6 @@
   }
 
   @media screen and (min-width: 1024px) {
-    @include right-layout;
-    width: 170px;
 
     > * {
       padding-bottom: 2em;
@@ -320,10 +313,7 @@
 }
 
 #thing_packages {
-  @media screen and (min-width: 1024px) {
-    @include right-layout;
-    width: 170px;
-  }
+  @include right-layout;
 
   .package {
     border-bottom: 1px dashed #ccc;
@@ -353,15 +343,7 @@
     width: 1360px;
   }
 
-  li {
-    @include thing(384px);
-    @include section-decorate;
-    padding: 1em;
-
-    @media screen and (max-width: 767px) {
-      @include thing(228px);
-    }
-  }
+  li.thing { @include thing-in-list(384px); }
 
   .btn-group {
     padding-left: 15px;
