@@ -13,8 +13,8 @@
   }
 
   #things, #fancies, #owns {
-    li {
-      @include thing(320px);
+    li.thing {
+      @include thing(270px);
 
       @media screen and (max-width: 767px) {
         @include thing(200px);

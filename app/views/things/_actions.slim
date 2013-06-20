@@ -1,6 +1,7 @@
 .shop
-  = tp.self_run
-  .price= tp.price
+  .price
+    = tp.price
+    = tp.self_run
   = render "things/pre_over_at", tp: tp
   = tp.shop
   = tp.oversea_shop
@@ -16,8 +17,14 @@
     = tp.supplier
 
 .author_info
-  p 
-    = tp.created_at
-    small 分享自
   = tp.author
 
+.new_reviews
+  h4
+    i.icon-book
+    | 评测
+    = link_to_with_icon "", "icon-double-angle-right icon-large pull-right", 
+    thing_reviews_path(tp.thing)
+  ul
+    - tp.reviews(10).each do |review|
+      li= link_to review.title, thing_review_path(review.thing, review)

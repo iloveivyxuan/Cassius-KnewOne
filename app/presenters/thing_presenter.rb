@@ -58,20 +58,20 @@ class ThingPresenter < PostPresenter
   end
 
   def self_run
-    content_tag :div, class: "self_run" do
+    if thing.is_self_run?
       link_to_with_icon "#{brand}自营", "icon-trophy", "#",
-      class: "popover-toggle",
+      class: "popover-toggle self_run",
       data: {
         toggle: "popover",
         placement: "bottom",
         title: "什么是#{brand}自营?",
         content: "为了保证商品的质量，我们会从可靠的供应商处获得一些最受欢迎的产品，通过自己经营的网店进行销售，请大家放心购买"
       }
-    end if thing.is_self_run?
+    end
   end
 
   def supplier
-    link_to_with_icon "我有此产品想出售", "icon-truck", "#",
+    link_to_with_icon "我可以提供此产品", "icon-truck", "#",
     data: {toggle: "modal", target: "#supplier-modal"}
   end
 
@@ -117,6 +117,10 @@ class ThingPresenter < PostPresenter
     user_signed_in? or return
     topic = present(current_user).topic_wrapper(brand)
     %{我在#{topic}发现了一个酷产品, #{title}: #{thing_url(thing)}}
+  end
+
+  def reviews(limit)
+    thing.reviews.limit(limit)
   end
 
   def packages

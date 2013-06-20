@@ -108,7 +108,6 @@
         font-size: 28px;
         top: 265px;
         i {
-          /* padding-top: 5px; */
           position: relative;
           top: 3px;
           margin: 0;
@@ -145,12 +144,12 @@
 
   .shop {
     .self_run {
-      a {
-        color: $fontLightColor;
-        i {
-          font-size: 1.2em;
-          color: $purple;
-        }
+      margin-left: 2em;
+      color: $fontLightColor;
+      vertical-align: 1px;
+      i {
+        font-size: 1.2em;
+        color: $purple;
       }
     }
 
@@ -198,18 +197,12 @@
     }
   }
 
-  .author_info {
-    p {
-      color: $fontLightColor;
-      time {margin-right: 1em;}
-    }
-    .author {
-      time {display: none;}
-    }
+  .new_reviews {
+    h4 {color: $fontLightColor;}
+    li {margin-top: 1em;}
   }
 
   @media screen and (min-width: 1024px) {
-
     > * {
       padding-bottom: 2em;
       border-bottom: 1px solid #eee;
@@ -224,14 +217,14 @@
         small {font-size: 1.2em;}
       }
 
-      a {
-        width: 120px;
-        i {margin-right: 1em; }
+      > a {
+        display: block;
+        width: 50%;
+        i {margin-right: 1em;}
       }
     }
 
     .actions {
-      margin-right: 2em;
 
       > * {
         text-align: right;
@@ -242,6 +235,7 @@
         }
       }
 
+      > * {width: 47%;}
       > *:not(:last-child) {margin-bottom: 1em;}
 
       .fanciers, .owners, .share {
@@ -281,6 +275,7 @@
       float: right;
       width: 240px;
       text-align: right;
+
       > * {
         display: inline;
         margin-left: 1em;
@@ -290,10 +285,11 @@
         }
         small {display: none;}
       }
+
       .supplier {display: none;}
     }
 
-    .author_info {display: none;}
+    .new_reviews, .author_info {display: none;}
   }
 
   @media screen and (max-width: 767px) {

@@ -4,7 +4,7 @@
     | 恭喜您激活高级会员身份！
 h4 
   | 最新产品 
-  = link_to "全部 >", things_path
+  = link_to_with_icon "", "icon-double-angle-right icon-large", things_path
 ul#home_new_things
   = render @new_things, size: :normal  
 h4
