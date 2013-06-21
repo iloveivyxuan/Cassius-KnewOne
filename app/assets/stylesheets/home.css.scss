@@ -15,7 +15,7 @@
   }
 
   @media screen and (min-width: 1520px) {
-    width: 1365px;
+    width: 1400px;
     #home_things {
       li.thing {@include thing-in-list(400px);}
     }
@@ -81,7 +81,11 @@
 
 #home_new_things {
   li.thing {
-    h4, p {display: none;}
+    h4 {
+      font-size: 1em;
+      color: $fontLightColor;
+    }
+    p {display: none;}
     margin: 1em 0;
     text-align: center;
   }
