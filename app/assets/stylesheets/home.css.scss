@@ -9,10 +9,16 @@
 
   @media screen and (min-width: 1024px) {
     width: 980px;
+    #home_things {
+      li.thing {@include thing-in-list(270px);}
+    }
   }
 
   @media screen and (min-width: 1520px) {
-    width: 1460px;
+    width: 1365px;
+    #home_things {
+      li.thing {@include thing-in-list(400px);}
+    }
   }
 
   .pagination {
