@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
   def index
-    @things = Thing.prior.page(params[:page]).per(18)
-    @new_things = Thing.published.limit(5)
-    @new_reviews = Review.unscoped.desc(:created_at).limit(10)
+    @things = Thing.prior.page(params[:page]).per(20)
+    @new_things = Thing.published.limit(10)
+    @new_reviews = Review.unscoped.desc(:created_at).limit(20)
   end
 
   def sandbox
