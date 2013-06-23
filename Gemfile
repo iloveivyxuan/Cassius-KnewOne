@@ -10,6 +10,7 @@ gem 'mongoid_slug'
 gem 'simple_form'
 gem 'nested_form'
 gem 'kaminari'
+gem 'rinku'
 # views
 gem 'slim-rails'
 gem 'jbuilder'

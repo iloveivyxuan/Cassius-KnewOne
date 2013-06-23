@@ -285,7 +285,10 @@ time {
 
     section {
       padding-left: 80px;
-      p {margin: .5em 0 0;}
+      p {
+        margin: .5em 0 0;
+        word-wrap: break-word;
+      }
     }
   }
 }
