@@ -29,10 +29,13 @@
 .sass-cache
 /public/assets
 
-# Test 
+# Test
 capybara-*.html
 .rspec
 /spec/tmp/*
 
 # Vagrant
 .vagrant
+
+# RubyMine
+.idea
