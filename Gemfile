@@ -40,6 +40,7 @@ group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'turbo-sprockets-rails3'
+  gem 'therubyracer'
 
   # components
   gem "jquery-fileupload-rails"
