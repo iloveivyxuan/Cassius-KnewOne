@@ -5,7 +5,7 @@ require 'bundler/capistrano'
 
 server_list = {
   'production' => '106.186.20.196',
-  'staging' => '106.186.20.196'
+  'staging' => '61.174.15.157'
 }
 
 target = server_list[ENV['STAGE'] || 'production']
