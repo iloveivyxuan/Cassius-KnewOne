@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # rails and friends
-gem 'rails'
+gem 'rails', '3.2.13'
 gem 'rails-i18n'
 # database
 gem 'mongoid'
@@ -56,6 +56,7 @@ end
 
 group :development do
   gem 'quiet_assets'
+  gem 'thin'
 
   # deploy
   gem 'capistrano'
