@@ -3,7 +3,14 @@ set :rvm_type, :system
 require "rvm/capistrano"
 require 'bundler/capistrano'
 
-server "106.186.20.196", :web, :app, :db, primary: true
+server_list = {
+  'production' => '106.186.20.196',
+  'staging' => '106.186.20.196'
+}
+
+target = server_list[ENV['STAGE'] || 'production']
+
+server target, :web, :app, :db, primary: true
 
 set :application, "making"
 set :user, "deployer"
