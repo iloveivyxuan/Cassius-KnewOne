@@ -383,7 +383,7 @@ DEPENDENCIES
   omniauth-twitter
   omniauth-weibo-oauth2
   quiet_assets
-  rails (= 3.2.13)
+  rails (~> 3.2.13)
   rails-i18n
   rb-fsevent
   rb-inotify
