@@ -26,7 +26,7 @@ class PostPresenter < ApplicationPresenter
   end
 
   def content
-    sanitize(raw @object.content)
+    sanitize(@object.content)
   end
 
   def thing_photo_url(size)

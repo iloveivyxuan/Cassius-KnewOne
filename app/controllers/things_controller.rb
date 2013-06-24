@@ -2,7 +2,6 @@ class ThingsController < PostsController
   after_filter :store_location, only: [:show]
 
   def index
-    scope = Thing.published
     scope = case params[:sort]
             when "self_run"
               Thing.published.where(is_self_run: true)
