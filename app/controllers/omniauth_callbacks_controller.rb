@@ -1,26 +1,21 @@
 # -*- coding: utf-8 -*-
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  def all
-    auth_data = request.env["omniauth.auth"]
-    user = User.find_by_omniauth(auth_data)
-    if user
-      user.update_from_omniauth(auth_data)
-      sign_in_and_redirect user
+  def callback
+    omniauth = request.env['omniauth.auth']
+
+    if user = User.find_by_omniauth(omniauth)
+      user.update_from_omniauth(omniauth)
+      sign_in user
+      redirect_back_or root_path
     elsif user_signed_in?
-      # current_user.auths << Auth.from_omniauth(auth_data)
-      # flash[:success] = "您与#{auth_data[:provider]}的绑定成功"
-      # if id = cookies['interview_shared'] and interview = Interview.find(id)
-      #   #Binding auth from Interviews#show, share the interview
-      #   flash[:share] = current_user.auths?
-      #   redirect_to topic_interview_path(interview.topic, interview)
-      # else
-      #   #Binding auth from Auths#index
-      #   redirect_to user_auths_path(current_user)
-      # end
-      redirect_to root_path
+      current_user.auths<< Auth.from_omniauth(omniauth)
+      user.update_from_omniauth(omniauth)
+      redirect_to after_sign_in_path_for(current_user)
     else
-      user = User.create_from_omniauth(auth_data)
-      sign_in_and_redirect user
+      user = User.create_from_omniauth(omniauth)
+      user.update_from_omniauth(omniauth)
+      sign_in user
+      redirect_back_or edit_user_registration_path(:new => true)
     end
   end
 
@@ -28,7 +23,12 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     redirect_to root_path
   end
 
-  alias_method :weibo, :all
-  alias_method :twitter, :all
+  # This is solution for existing accout want bind Google login but current_user is always nil
+  # https://github.com/intridea/omniauth/issues/185
+  def handle_unverified_request
+    true
+  end
 
+  alias_method :weibo, :callback
+  alias_method :twitter, :callback
 end

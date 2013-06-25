@@ -60,4 +60,7 @@ module ApplicationHelper
     val ? "yes" : "no"
   end
 
+  def redirect_back_or(path)
+    redirect_to(session[:previous_url] || path)
+  end
 end

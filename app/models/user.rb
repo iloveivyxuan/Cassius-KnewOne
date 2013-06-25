@@ -2,7 +2,7 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable, :omniauthable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, :trackable
 
   field :name, type: String
   field :karma, type: Integer, default: 0
@@ -124,4 +124,12 @@ class User
 
   ## Pagination
   paginates_per 50
+
+  def email_required?
+    false
+  end
+
+  def password_required?
+    encrypted_password.present?
+  end
 end

@@ -16,7 +16,12 @@ class UsersController < ApplicationController
   end
 
   def share
-    current_user.current_auth.share  params[:share][:content], params[:share][:pic]
+    current_user.current_auth.share params[:share][:content], params[:share][:pic]
     render nothing: true
+  end
+
+  def bind
+    session[:previous_url] = params[:refer]
+    redirect_to user_omniauth_authorize_path(params[:auth_by])
   end
 end
