@@ -30,7 +30,7 @@ header
             span 关于我们
             i.icon-caret-down
           ul.dropdown-menu
-            li= link_to_with_icon "微博", "icon-eye-open", "http://weibo.com/knewone"
+            li= link_to_with_icon "微博", "icon-weibo", "http://weibo.com/knewone"
             li= link_to_with_icon "吐槽", "icon-leaf", "/things/knewone" 
             li= link_to_with_icon "邮件", "icon-envelope", "mailto:hello@knewone.com" 
         li.nav_new_thing
@@ -94,7 +94,7 @@ header
               i.icon-twitter
           li.signin
             = link_to user_omniauth_authorize_path(:weibo), class: "weibo_sign_in" do
-              = image_tag "weibo.png"
+              i.icon-weibo
           li.signin_mobile
             = link_to_with_icon "", "icon-signin", '#',  data: {toggle: "modal", target: "#login-modal"}
 

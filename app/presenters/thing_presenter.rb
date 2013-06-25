@@ -8,7 +8,7 @@ class ThingPresenter < PostPresenter
   end
 
   def photo_url(size)
-    thing.photos.first.url(size)
+    thing.cover.url(size)
   end
 
   def photo(size, options={})

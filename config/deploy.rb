@@ -2,15 +2,16 @@ set :rvm_ruby_string, 'default'
 set :rvm_type, :system
 require "rvm/capistrano"
 require 'bundler/capistrano'
+require 'capistrano-unicorn'
 
 server_list = {
-  'production' => '106.186.20.196',
-  'staging' => '106.186.20.196'
+  'production' => {host: '106.186.20.196', branch: 'master', stage: 'production'},
+  'staging' => {host: '61.174.15.157', branch: 'staging', stage: 'staging'}
 }
 
 target = server_list[ENV['STAGE'] || 'production']
 
-server target, :web, :app, :db, primary: true
+server target[:host], :web, :app, :db, primary: true
 
 set :application, "making"
 set :user, "deployer"
@@ -20,7 +21,9 @@ set :use_sudo, false
 
 set :scm, :git
 set :repository,  "git@github.com:lilu/making.git"
-set :branch, "master"
+set :branch, target[:branch]
+
+set :rails_stage, target[:stage]
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
@@ -36,23 +39,20 @@ namespace :deploy do
 end
 
 namespace :deploy do
-  %w[start stop restart].each do |command|
-    desc "#{command} unicorn server"
-    task command, roles: :app, except: {no_release: true} do
-      run "/etc/init.d/unicorn_#{application} #{command}"
-    end
-  end
-
   desc "Make sure local git is in sync with remote."
   task :check_revision, roles: :web do
-    unless `git rev-parse HEAD` == `git rev-parse origin/master`
-      puts "WARNING: HEAD is not the same as origin/master"
+    unless `git rev-parse HEAD` == `git rev-parse origin/#{target[:branch]}`
+      puts "WARNING: HEAD is not the same as origin/#{target[:branch]}"
       puts "Run `git push` to sync changes."
       exit
     end
   end
   before "deploy", "deploy:check_revision"
 end
+
+after 'deploy:start', 'unicorn:start'
+after 'deploy:stop', 'unicorn:stop'
+after 'deploy:restart', 'unicorn:restart'
 
 require './config/boot'
 require 'airbrake/capistrano'

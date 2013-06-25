@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+#source 'https://rubygems.org'
+source 'http://ruby.taobao.org'
 
 # rails and friends
 gem 'rails', '~> 3.2.13'
@@ -31,7 +32,8 @@ gem 'twitter'
 gem 'cancan'
 # configurations
 gem 'settingslogic'
-# exception notificaton
+# monitoring
+gem "newrelic_rpm"
 gem "airbrake"
 
 group :assets do
@@ -39,6 +41,7 @@ group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'turbo-sprockets-rails3'
+  gem 'therubyracer'
 
   # components
   gem "jquery-fileupload-rails"
@@ -61,6 +64,7 @@ group :development do
   # deploy
   gem 'capistrano'
   gem 'rvm-capistrano'
+  gem 'capistrano-unicorn'
 end
 
 group :development, :test do

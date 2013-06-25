@@ -20,6 +20,13 @@ defaults: &defaults
   messages:
     length: 100
 
+staging:
+  <<: *defaults
+  host: "staging.knewone.com"
+  weibo:
+    consumer_key: "3079511285"
+    consumer_secret: "c61380eac5aef30a3a88a8818cc16263"
+
 development:
   <<: *defaults
   host: "making.dev"

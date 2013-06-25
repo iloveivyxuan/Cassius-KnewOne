@@ -20,6 +20,7 @@ module UsersHelper
     return nil unless user.current_auth
     provider = user.current_auth.provider
     raw({
+<<<<<<< HEAD
             weibo: "<i class=\"icon-eye-open\"></i><span>微博分享</span>",
             twitter: "<i class=\"icon-twitter\"></i><span>发Tweet</span>"
         }[provider.to_sym])
@@ -54,10 +55,55 @@ module UsersHelper
       end
     end
     nil
+=======
+      weibo: "<i class=\"icon-weibo\"></i><span>微博分享</span>",
+      twitter: "<i class=\"icon-twitter\"></i><span>发Tweet</span>"
+    }[provider.to_sym])
+  end
+
+  def user_provider(user)
+    send "#{user.current_auth.provider}_home", user.current_auth
+>>>>>>> staging
   end
 
   def user_topic_wrapper(user, topic)
     return nil unless user.current_auth
     user.current_auth.topic_wrapper topic
   end
+<<<<<<< HEAD
+=======
+
+  def twitter_website(auth)
+    return if auth.urls["Website"].blank?
+    link_to auth.urls["Website"], class: "website",
+    title: "个人网站", target: "_blank" do
+      content_tag :i, "", class: "icon-globe icon-large"
+    end
+  end
+
+  def twitter_home(auth)
+    return if auth.urls["Twitter"].blank?
+    link_to auth.urls["Twitter"], class: "provider",
+    title: "Twitter 主页", target: "_blank" do
+      content_tag :i, "", class: "icon-twitter icon-large"
+    end
+  end
+
+  def weibo_website(auth)
+    return if auth.urls["Blog"].blank?
+    link_to auth.urls["Blog"], class: "website",
+    title: "个人博客", target: "_blank" do
+      content_tag :i, "", class: "icon-globe icon-large"
+    end
+  end
+
+  def weibo_home(auth)
+    return if auth.urls["Weibo"].blank?
+    link_to auth.urls["Weibo"], class: "provider",
+    title: "微博页面", target: "_blank" do
+      content_tag :i, "", class: "icon-weibo icon-large"
+    end
+  end
+
+>>>>>>> staging
 end
