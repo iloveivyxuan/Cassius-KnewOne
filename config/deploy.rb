@@ -5,13 +5,13 @@ require 'bundler/capistrano'
 require 'capistrano-unicorn'
 
 server_list = {
-  'production' => '106.186.20.196',
-  'staging' => '61.174.15.157'
+  'production' => {host: '106.186.20.196', branch: 'master', stage: 'production'},
+  'staging' => {host: '61.174.15.157', branch: 'staging', stage: 'staging'}
 }
 
 target = server_list[ENV['STAGE'] || 'production']
 
-server target, :web, :app, :db, primary: true
+server target[:host], :web, :app, :db, primary: true
 
 set :application, "making"
 set :user, "deployer"
@@ -21,7 +21,9 @@ set :use_sudo, false
 
 set :scm, :git
 set :repository,  "git@github.com:lilu/making.git"
-set :branch, "master"
+set :branch, target[:branch]
+
+set :rails_stage, target[:stage]
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
