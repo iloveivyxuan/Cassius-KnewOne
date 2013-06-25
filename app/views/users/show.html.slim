@@ -11,8 +11,7 @@
         .progress title="#{@user.progress}%"
           .bar style="width: #{@user.progress}%;"
       .urls
-        = user_website(@user)
-        = user_provider(@user)
+        = user_links(@user)
       address = user_location(@user)
       blockquote= user_desciption(@user)
 

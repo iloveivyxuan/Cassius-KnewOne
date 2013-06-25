@@ -2,13 +2,20 @@ Making::Application.routes.draw do
   root to: 'home#index'
   get '/page/:page', to: "home#index"
 
-  devise_for :users, skip: [:sessions],
-  controllers:  {omniauth_callbacks: "omniauth_callbacks"}
+  #devise_for :users, skip: [:sessions],
+  #controllers:  {omniauth_callbacks: "omniauth_callbacks"}
 
-  as :user do
-    get 'signin' => 'devise/sessions#new', as: :new_user_session
-    delete 'signout' => 'devise/sessions#destroy', as: :destroy_user_session
-  end
+  #as :user do
+  #  get 'sign_in' => 'devise/sessions#new', as: :new_user_session
+  #  delete 'sign_out' => 'devise/sessions#destroy', as: :destroy_user_session
+  #  post 'sign_in' => 'devise/sessions', as: :user_session
+  #end
+
+  #resources :users, only: [:show, :index] do
+  #  member {post 'share'}
+  #end
+
+  devise_for :users, controllers:  {omniauth_callbacks: "omniauth_callbacks"}
   resources :users, only: [:show, :index] do
     member {post 'share'}
   end
