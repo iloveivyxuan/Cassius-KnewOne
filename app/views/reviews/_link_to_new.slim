@@ -1,4 +1,5 @@
-- if can? :create, Review and thing
-  #new_review_link
-    = link_to_with_icon "我要评测这个产品", "icon-pencil",  
-      new_thing_review_path(thing), class: "btn btn-primary" 
+#new_review_link
+  - if user_signed_in?
+    = link_to_with_icon "我想写写这个产品", "icon-pencil", new_thing_review_path(thing), class: 'btn btn-primary' 
+  - else
+    = link_to_with_icon "我想写写这个产品", "icon-pencil", '#', class: 'btn disabled', data: {toggle: "modal", target: "#login-modal"}
