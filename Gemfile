@@ -64,6 +64,7 @@ group :development do
   # deploy
   gem 'capistrano'
   gem 'rvm-capistrano'
+  gem 'capistrano-unicorn'
 end
 
 group :development, :test do

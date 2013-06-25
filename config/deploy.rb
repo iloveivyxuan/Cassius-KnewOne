@@ -2,6 +2,7 @@ set :rvm_ruby_string, 'default'
 set :rvm_type, :system
 require "rvm/capistrano"
 require 'bundler/capistrano'
+require 'capistrano-unicorn'
 
 server_list = {
   'production' => '106.186.20.196',
@@ -36,12 +37,12 @@ namespace :deploy do
 end
 
 namespace :deploy do
-  %w[start stop restart].each do |command|
-    desc "#{command} unicorn server"
-    task command, roles: :app, except: {no_release: true} do
-      run "/etc/init.d/unicorn_#{application} #{command}"
-    end
-  end
+  #%w[start stop restart].each do |command|
+  #  desc "#{command} unicorn server"
+  #  task command, roles: :app, except: {no_release: true} do
+  #    run "/etc/init.d/unicorn_#{application} #{command}"
+  #  end
+  #end
 
   desc "Make sure local git is in sync with remote."
   task :check_revision, roles: :web do
@@ -53,6 +54,10 @@ namespace :deploy do
   end
   before "deploy", "deploy:check_revision"
 end
+
+after 'deploy:start', 'unicorn:start'
+after 'deploy:stop', 'unicorn:stop'
+after 'deploy:restart', 'unicorn:restart'
 
 require './config/boot'
 require 'airbrake/capistrano'
