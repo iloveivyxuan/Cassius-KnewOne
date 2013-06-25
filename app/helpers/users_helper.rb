@@ -21,7 +21,7 @@ module UsersHelper
   def provider_share(user)
     provider = user.current_auth.provider
     raw({
-      weibo: "<i class=\"icon-eye-open\"></i><span>微博分享</span>",
+      weibo: "<i class=\"icon-weibo\"></i><span>微博分享</span>",
       twitter: "<i class=\"icon-twitter\"></i><span>发Tweet</span>"
     }[provider.to_sym])
   end
@@ -62,7 +62,7 @@ module UsersHelper
     return if auth.urls["Weibo"].blank?
     link_to auth.urls["Weibo"], class: "provider",
     title: "微博页面", target: "_blank" do
-      content_tag :i, "", class: "icon-eye-open icon-large"
+      content_tag :i, "", class: "icon-weibo icon-large"
     end
   end
 
