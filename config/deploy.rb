@@ -37,13 +37,6 @@ namespace :deploy do
 end
 
 namespace :deploy do
-  #%w[start stop restart].each do |command|
-  #  desc "#{command} unicorn server"
-  #  task command, roles: :app, except: {no_release: true} do
-  #    run "/etc/init.d/unicorn_#{application} #{command}"
-  #  end
-  #end
-
   desc "Make sure local git is in sync with remote."
   task :check_revision, roles: :web do
     unless `git rev-parse HEAD` == `git rev-parse origin/master`
