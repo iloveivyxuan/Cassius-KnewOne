@@ -42,6 +42,7 @@ class Ability
     can :fancy, Thing
     can :own, Thing
     can :share, User
+    can :bind, User
 
     can :readall, Message
     can :read, Message

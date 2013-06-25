@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  include ApplicationHelper
+
   def callback
     omniauth = request.env['omniauth.auth']
 
