@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new('Not Found')
   end
 
-  def store_location
+  def store_location(url=nil)
     session[:previous_url] = request.fullpath unless request.fullpath =~ /\/users/
   end
 
