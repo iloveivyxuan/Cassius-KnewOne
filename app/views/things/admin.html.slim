@@ -19,7 +19,7 @@
         td= link_to t.title, t
         td= t.created_at.strftime '%m-%d'
         td= t.author.name
-        td= image_tag(t.photos.first.url(:small))
+        td= image_tag(t.cover.url(:small))
         td= link_to "编辑", edit_thing_path(t), class: "btn"
         td= link_to "发奖", new_lottery_path(thing: t), class: "btn"
         td= t.fanciers_count
