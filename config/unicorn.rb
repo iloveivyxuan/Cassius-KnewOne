@@ -42,6 +42,10 @@ pid "#{APP_ROOT}/tmp/pids/unicorn.pid"
 stderr_path "#{APP_ROOT}/log/unicorn.log"
 stdout_path "#{APP_ROOT}/log/unicorn.log"
 
+# Load app into the master before forking workers for super-fast
+# worker spawn times
+preload_app true
+
 # combine Ruby 2.0.0dev or REE with "preload_app true" for memory savings
 # http://rubyenterpriseedition.com/faq.html#adapt_apps_for_cow
 if GC.respond_to?(:copy_on_write_friendly=)
