@@ -32,7 +32,8 @@ gem 'twitter'
 gem 'cancan'
 # configurations
 gem 'settingslogic'
-# exception notificaton
+# monitoring
+gem "newrelic_rpm"
 gem "airbrake"
 
 group :assets do
