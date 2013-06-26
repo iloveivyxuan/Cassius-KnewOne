@@ -26,6 +26,9 @@ staging:
   weibo:
     consumer_key: "3079511285"
     consumer_secret: "c61380eac5aef30a3a88a8818cc16263"
+  twitter:
+    consumer_key: "U9VHQOn7YdAPSPpHbgQlhw"
+    consumer_secret: "gWHCnopPDSNAghYhAG9SSvupi12CdOrJD51iJYDyQU"
 
 development:
   <<: *defaults
