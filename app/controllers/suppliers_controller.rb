@@ -7,6 +7,7 @@ class SuppliersController < ApplicationController
 
   def create
     Supplier.create params[:supplier]
+    respond_to { |format| format.js }
   end
 
   def edit
