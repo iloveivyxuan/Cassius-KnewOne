@@ -20,6 +20,6 @@ class TwitterAuthHandler
   end
 
   def parse_image(auth)
-    auth[:extra][:raw_info][:avatar_large] + ".jpg"
+    auth[:info][:image].sub('_normal', '')
   end
 end
