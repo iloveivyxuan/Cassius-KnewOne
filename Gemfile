@@ -89,4 +89,7 @@ group :development, :test do
   # system notifications
   gem 'growl', require: false
   gem 'libnotify', require: false
+
+  # fake email sending
+  gem 'letter_opener'
 end
