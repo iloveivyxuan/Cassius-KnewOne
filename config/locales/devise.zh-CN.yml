@@ -46,6 +46,7 @@ zh-CN:
     omniauth_callbacks:
       success: '成功地从 %{kind}获得授权.'
       failure: '因为 %{reason}，所以您无法从 %{kind}获得授权.'
+      bounded: '%{kind}已被其他用户绑定，您可以联系我们来解决。'
     mailer:
       confirmation_instructions:
         subject: '激活信息'

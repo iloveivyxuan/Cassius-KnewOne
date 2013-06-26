@@ -60,7 +60,10 @@ module ApplicationHelper
     val ? "yes" : "no"
   end
 
-  def redirect_back_or(path)
-    redirect_to(session[:previous_url] || path)
+  def redirect_back_or(path, flash = {})
+    flash.each_pair do |k,v|
+      flash[k] = v
+    end
+    redirect_to(session.delete(:previous_url) || path)
   end
 end

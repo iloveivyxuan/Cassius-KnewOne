@@ -6,9 +6,14 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     omniauth = request.env['omniauth.auth']
 
     if user = User.find_by_omniauth(omniauth)
+      # Auth already bound
+      if user_signed_in? && user.id != current_user.id
+        return redirect_back_or root_path, :error => t('devise.omniauth_callbacks.bounded', kind: omniauth.provider)
+      end
+
       user.update_from_omniauth(omniauth)
       sign_in user
-      redirect_back_or root_path
+      redirect_back_or root_path, :notice => t('devise.omniauth_callbacks.success', kind: omniauth.provider)
     elsif user_signed_in?
       current_user.auths<< Auth.from_omniauth(omniauth)
       user.update_from_omniauth(omniauth)

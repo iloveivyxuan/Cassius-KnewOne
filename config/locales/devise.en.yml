@@ -49,6 +49,7 @@ en:
     omniauth_callbacks:
       success: 'Successfully authenticated from %{kind} account.'
       failure: 'Could not authenticate you from %{kind} because "%{reason}".'
+      bounded: '%{kind} has already bound by other user, please contact us to solve this.'
     mailer:
       confirmation_instructions:
         subject: 'Confirmation instructions'
