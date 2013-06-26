@@ -29,31 +29,20 @@ module UsersHelper
     sites = user.auths.collect(&:urls).reduce(&:merge) || {}
     sites.delete "Blog" if sites["Website"] == sites["Blog"]
 
+    html = []
     sites.each_pair do |k, v|
       case k
         when 'Website'
-          link_to v, class: "website",
-                  title: "个人网站", target: "_blank" do
-            content_tag :i, "", class: "icon-globe icon-large"
-          end
+          html<< link_to_with_icon(nil, 'icon-globe icon-large', v, title: "个人网站", target: "_blank", class: 'website')
         when 'Twitter'
-          link_to v, class: "provider",
-                  title: "Twitter 主页", target: "_blank" do
-            content_tag :i, "", class: "icon-twitter icon-large"
-          end
+          html<< link_to_with_icon(nil, 'icon-twitter icon-large', v, title: "Twitter 主页", target: "_blank", class: 'provider')
         when 'Weibo'
-          link_to v, class: "provider",
-                  title: "微博页面", target: "_blank" do
-            content_tag :i, "", class: "icon-eye-open icon-large"
-          end
+          html<< link_to_with_icon(nil, 'icon-eye-open icon-large', v, title: "微博页面", target: "_blank", class: 'provider')
         when 'Blog'
-          link_to v, class: "website",
-                  title: "个人博客", target: "_blank" do
-            content_tag :i, "", class: "icon-globe icon-large"
-          end
+          html<< link_to_with_icon(nil, 'icon-globe icon-large', v, title: "个人博客", target: "_blank", class: 'website')
       end
     end
-    nil
+    html.join.html_safe
   end
 
   def user_topic_wrapper(user, topic)
