@@ -16,7 +16,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_back_or root_path, :notice => t('devise.omniauth_callbacks.success', kind: omniauth.provider)
     elsif user_signed_in?
       current_user.auths<< Auth.from_omniauth(omniauth)
-      user.update_from_omniauth(omniauth)
+      current_user.update_from_omniauth(omniauth)
       redirect_to after_sign_in_path_for(current_user)
     else
       user = User.create_from_omniauth(omniauth)

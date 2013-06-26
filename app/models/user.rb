@@ -127,6 +127,6 @@ class User
   paginates_per 50
 
   def email_required?
-    false
+    current_auth.nil?
   end
 end
