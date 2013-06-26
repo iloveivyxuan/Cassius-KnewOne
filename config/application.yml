@@ -43,6 +43,9 @@ development:
     consumer_secret: "HF2HZgjiQuLy88xqwMeORuvC3RvEBrWi38ZMrDMFBpY"
     official_uid: 1188607028
     official_screen_name: "KnewOneCom"
+  kexue:
+    enable: true
+    host: '127.0.0.1:8087'
 
 test:
   <<: *defaults

@@ -207,7 +207,12 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   config.omniauth :weibo, Settings.weibo.consumer_key, Settings.weibo.consumer_secret
-  config.omniauth :twitter, Settings.twitter.consumer_key, Settings.twitter.consumer_secret
+
+  kexue_opts = {}
+  if Settings.kexue.enable
+    kexue_opts.merge! client_options: {proxy: 'http://127.0.0.1:8087'}
+  end
+  config.omniauth :twitter, Settings.twitter.consumer_key, Settings.twitter.consumer_secret, kexue_opts
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
