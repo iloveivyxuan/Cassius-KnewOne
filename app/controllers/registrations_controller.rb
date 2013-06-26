@@ -1,14 +1,18 @@
 class RegistrationsController < Devise::RegistrationsController
   def update
     @user = User.find(current_user.id)
-
+    logger.info params
     successfully_updated = if needs_password?(@user, params)
                              @user.update_with_password(params[:user])
                            else
-                             # remove the virtual current_password attribute update_without_password
-                             # doesn't know how to ignore it
-                             params[:user].delete(:current_password)
-                             @user.update_without_password(params[:user])
+                             if params[:user][:password].blank?
+                               @user.assign_attributes(params[:user])
+                               @user.valid?
+                               @user.errors.add(:password, @user.password.blank? ? :blank : :invalid)
+                               false
+                             else
+                               @user.update_attributes params[:user]
+                             end
                            end
 
     if successfully_updated
@@ -22,11 +26,10 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   private
-
   # check if we need password to update user data
   # ie if password or email was changed
   # extend this as needed
   def needs_password?(user, params)
-    user.password.present?
+    !user.email.blank?
   end
 end

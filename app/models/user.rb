@@ -8,7 +8,7 @@ class User
   field :karma, type: Integer, default: 0
 
   ## Database authenticatable
-  field :email,              :type => String, :default => ''
+  field :email,              :type => String
   field :encrypted_password, :type => String
 
   ## Recoverable
@@ -44,6 +44,7 @@ class User
         user.auths << auth
         user.name = auth.nickname
         user.remote_avatar_url = auth.parse_image(data)
+        user.password = Digest::MD5.hexdigest auth.access_token
       end
     end
   end
@@ -127,9 +128,5 @@ class User
 
   def email_required?
     false
-  end
-
-  def password_required?
-    encrypted_password.present?
   end
 end

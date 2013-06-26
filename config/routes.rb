@@ -2,12 +2,11 @@ Making::Application.routes.draw do
   root to: 'home#index'
   get '/page/:page', to: "home#index"
 
-  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks", :registrations => "registrations"} do
-    resources :users, only: [:show, :index] do
-      collection do
-        post 'share'
-        get 'bind'
-      end
+  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks", :registrations => "registrations"}
+  resources :users, only: [:show, :index] do
+    collection do
+      post 'share'
+      get 'bind'
     end
   end
 
