@@ -12,6 +12,9 @@ defaults: &defaults
   twitter:
     consumer_key: ""
     consumer_secret: ""
+  kexue:
+    enable: false
+    host: '127.0.0.1:8087'
   karma:
     thing: 10
     review: 5
@@ -29,6 +32,9 @@ staging:
   twitter:
     consumer_key: "U9VHQOn7YdAPSPpHbgQlhw"
     consumer_secret: "gWHCnopPDSNAghYhAG9SSvupi12CdOrJD51iJYDyQU"
+  kexue:
+    enable: true
+    host: '127.0.0.1:8087'
 
 development:
   <<: *defaults
@@ -43,9 +49,6 @@ development:
     consumer_secret: "HF2HZgjiQuLy88xqwMeORuvC3RvEBrWi38ZMrDMFBpY"
     official_uid: 1188607028
     official_screen_name: "KnewOneCom"
-  kexue:
-    enable: true
-    host: '127.0.0.1:8087'
 
 test:
   <<: *defaults
