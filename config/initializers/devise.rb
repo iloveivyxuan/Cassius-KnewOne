@@ -210,7 +210,7 @@ Devise.setup do |config|
 
   kexue_opts = {}
   if Settings.kexue.enable
-    kexue_opts.merge! client_options: {proxy: 'http://127.0.0.1:8087'}
+    kexue_opts.merge! client_options: {site: Settings.kexue.site}
   end
   config.omniauth :twitter, Settings.twitter.consumer_key, Settings.twitter.consumer_secret, kexue_opts
 
