@@ -4,14 +4,17 @@ require "rvm/capistrano"
 require 'bundler/capistrano'
 require 'capistrano-unicorn'
 
-server_list = {
+SERVER_LIST = {
   'production' => {host: '106.186.20.196', branch: 'master', stage: 'production'},
   'staging' => {host: '61.174.15.157', branch: 'staging', stage: 'staging'}
 }
+env = ENV['STAGE'] || 'production'
 
-target = server_list[ENV['STAGE'] || 'production']
+target = SERVER_LIST[env]
 
 server target[:host], :web, :app, :db, primary: true
+
+set :rails_env, env
 
 set :application, "making"
 set :user, "deployer"
