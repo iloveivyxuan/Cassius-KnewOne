@@ -1,10 +1,12 @@
 - provide :nav, :reviews
 
 - if @reviews.present?
-  = render 'link_to_new', thing: @thing
+  #new_review_link
+    = render 'link_to_new', thing: @thing
   ul#reviews= render @reviews
   = paginate @reviews
 - else
   .hero-unit
     p 还没有人为 #{@thing.title} 撰写评测，=_="
-    = render 'link_to_new', thing: @thing
+    #new_review_link
+      = render 'link_to_new', thing: @thing

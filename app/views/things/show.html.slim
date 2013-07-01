@@ -4,7 +4,9 @@
   .photos= render "carousel", tp: tp
   = tp.content
 
-= render 'shared/comments', post: @thing, id: "thing_comments"
+  = render 'reviews', tp: tp
+
+  = render 'shared/comments', post: @thing, id: "thing_comments"
 
 - content_for :script do
   javascript:

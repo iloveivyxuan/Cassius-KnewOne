@@ -5,14 +5,9 @@
         h3= link_to rp.title, rp.path
         = rp.author
         = rp.score
-      aside
-        = link_to_with_icon "", "icon-chevron-sign-down icon-large", "#",
-          class: "post_expand", title: "展开"
-        = link_to_with_icon "", "icon-chevron-sign-up icon-large", "#",
-          class: "post_collapse hide", title: "收起"
       section
-        .post_content.post_summary
-          = rp.content
+        .post_content
+          = rp.summary
       footer
         = rp.lovers_count
         = rp.comments_count
