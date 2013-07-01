@@ -29,6 +29,10 @@ class PostPresenter < ApplicationPresenter
     sanitize(@object.content)
   end
 
+  def summary
+    truncate strip_tags(@object.content), length: 360, omission: "......"
+  end
+
   def thing_photo_url(size)
     @object.thing.present? and present(@object.thing).photo_url(size)
   end

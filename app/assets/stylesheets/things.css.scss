@@ -144,7 +144,6 @@
 
   .shop {
     .self_run {
-      margin-left: 2em;
       color: $fontLightColor;
       vertical-align: 1px;
       i {
@@ -195,11 +194,6 @@
     > * {
       small {color: $fontLightColor;}
     }
-  }
-
-  .new_reviews {
-    h4 {color: $fontLightColor;}
-    li {margin-top: 1em;}
   }
 
   @media screen and (min-width: 1024px) {
@@ -365,15 +359,20 @@
 
 #thing_comments {
   .comments {
-    > h4 {display: none;}
-
-    ul {
-      padding: 0;
-      border: none;
-    }
-
     .comment_form {
       textarea {width: 95%;}
     }
+  }
+}
+
+#thing_reviews {
+  h4 {
+    color: $fontLightColor;
+    .btn {margin-left: 2em;}
+  }
+  ul {
+    margin: 1em 0;
+    border-top: 5px solid #eee;
+    padding-top: .5em;
   }
 }
