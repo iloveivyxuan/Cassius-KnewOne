@@ -210,7 +210,11 @@ Devise.setup do |config|
 
   kexue_opts = {}
   if Settings.kexue.enable
-    kexue_opts.merge! client_options: {site: Settings.kexue.site}
+    kexue_opts.merge! client_options:
+                          {
+                              proxy: Settings.twitter.kexue.proxy, ssl:
+                              {ca_file: Settings.twitter.kexue.cert_file}
+                          }
   end
   config.omniauth :twitter, Settings.twitter.consumer_key, Settings.twitter.consumer_secret, kexue_opts
 

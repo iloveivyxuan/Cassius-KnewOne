@@ -14,7 +14,6 @@ defaults: &defaults
     consumer_secret: ""
   kexue:
     enable: false
-    site: 'http://kexue.knewone.com/'
   karma:
     thing: 10
     review: 5
@@ -34,7 +33,8 @@ staging:
     consumer_secret: "gWHCnopPDSNAghYhAG9SSvupi12CdOrJD51iJYDyQU"
   kexue:
     enable: true
-    site: 'http://kexue.knewone.com/'
+    proxy: 'http://127.0.0.1:8087'
+    cert_file: '/usr/local/goagent/local/CA.crt'
 
 development:
   <<: *defaults
@@ -49,10 +49,6 @@ development:
     consumer_secret: "HF2HZgjiQuLy88xqwMeORuvC3RvEBrWi38ZMrDMFBpY"
     official_uid: 1188607028
     official_screen_name: "KnewOneCom"
-  kexue:
-    enable: true
-    site: 'http://kexue.knewone.com/'
-
 test:
   <<: *defaults
 
