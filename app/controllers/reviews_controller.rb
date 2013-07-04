@@ -50,6 +50,6 @@ class ReviewsController < PostsController
 
   def vote
     @review.vote current_user, params[:vote] == "true"
-    render "_voting", locals: {review: @review}, layout: false
+    render :partial => 'voting', locals: {review: @review}, layout: false
   end
 end

@@ -29,7 +29,6 @@ class ThingsController < PostsController
     else
       @things = Thing.page params[:page]
     end
-
   end
 
   def new
