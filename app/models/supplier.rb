@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class Supplier
   include Mongoid::Document
   include Mongoid::Timestamps

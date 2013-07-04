@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module CommentsHelper
   def comment_content(comment)
     require 'rails_rinku'

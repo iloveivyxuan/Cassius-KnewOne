@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class Review < Post
   field :score, type: Integer, default: 0
   field :is_top, type: Boolean, default: false

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class ThingsController < PostsController
   after_filter :store_location, only: [:show]
 

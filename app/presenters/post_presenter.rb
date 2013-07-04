@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class PostPresenter < ApplicationPresenter
   presents :post
   delegate :title, to: :post

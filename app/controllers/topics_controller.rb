@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class TopicsController < PostsController
   load_and_authorize_resource :group
   layout 'group'

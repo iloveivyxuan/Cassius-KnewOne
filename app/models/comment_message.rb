@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class CommentMessage < Message
   belongs_to :post
 

@@ -33,8 +33,8 @@ gem 'cancan'
 # configurations
 gem 'settingslogic'
 # monitoring
-gem "newrelic_rpm"
-gem "airbrake"
+gem 'newrelic_rpm'
+gem 'airbrake'
 
 group :assets do
   gem 'sass-rails'
@@ -44,8 +44,8 @@ group :assets do
   gem 'therubyracer'
 
   # components
-  gem "jquery-fileupload-rails"
-  gem "handlebars_assets"
+  gem 'jquery-fileupload-rails'
+  gem 'handlebars_assets'
 
   # stylesheets library
   gem 'compass-rails'

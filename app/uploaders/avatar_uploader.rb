@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AvatarUploader < ImageUploader
 
   # Provide a default URL as a default if there hasn't been a file uploaded

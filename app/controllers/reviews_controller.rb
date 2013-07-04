@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class ReviewsController < PostsController
   load_and_authorize_resource :thing, except: [:admin]
   layout 'thing', except: [:admin]

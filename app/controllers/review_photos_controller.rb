@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class ReviewPhotosController < ApplicationController
   load_and_authorize_resource
 

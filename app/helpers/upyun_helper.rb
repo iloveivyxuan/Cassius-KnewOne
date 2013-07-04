@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module UpyunHelper
   def upyun_policy
     raw = {

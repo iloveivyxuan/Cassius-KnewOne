@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class HomeController < ApplicationController
   def index
     @things = Thing.prior.page(params[:page]).per(20)
