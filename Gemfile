@@ -41,7 +41,7 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
-  gem 'turbo-sprockets-rails3'
+  # gem 'turbo-sprockets-rails3' # seems bug with ruby 2.0
   gem 'therubyracer'
 
   # components

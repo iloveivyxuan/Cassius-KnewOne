@@ -30,16 +30,6 @@ set :rails_stage, target[:stage]
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
-after "deploy", "deploy:cleanup" # keep only the last 5 releases
-
-namespace :deploy do
-  namespace :assets do
-    desc "Clean expired assets."
-    task :clean_expired, roles: assets_role, except: {no_release: true} do
-      run "cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} #{asset_env} assets:clean_expired"
-    end
-  end
-end
 
 namespace :deploy do
   desc "Make sure local git is in sync with remote."

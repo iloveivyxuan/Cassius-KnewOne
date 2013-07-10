@@ -5,7 +5,7 @@ class Auth
   field :uid, type: Integer
   field :name, type: String
   field :access_token, type: String
-  field :access_secret, type: String
+  field :access_token_secret, type: String
   field :expires_at, type: Time
   field :nickname, type: String, default: ""
   field :location, type: String, default: ""
@@ -26,7 +26,7 @@ class Auth
 
   def initialize_auth_handler
     @handler = "#{provider}_auth_handler".classify.constantize.
-        new access_token: self.access_token, expires_at: self.expires_at, access_secret: self.access_secret
+        new access_token: self.access_token, expires_at: self.expires_at, access_secret: self.access_token_secret
   end
 
   class << self
