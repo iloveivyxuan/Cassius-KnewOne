@@ -29,15 +29,8 @@ staging:
     consumer_key: "3079511285"
     consumer_secret: "c61380eac5aef30a3a88a8818cc16263"
   twitter:
-# twitter identity site by hostname? use staging.knewone.com will give 401
-#   consumer_key: "U9VHQOn7YdAPSPpHbgQlhw"
-#   consumer_secret: "gWHCnopPDSNAghYhAG9SSvupi12CdOrJD51iJYDyQU"
     consumer_key: "0thYXvlBsdzmrqyPMIjT0A"
     consumer_secret: "U6CYRLqg51HPaod4P2in3Mw3bHSKq5301g27mnicJo"
-  kexue:
-    enable: true
-    proxy: 'http://127.0.0.1:8087'
-    cert_file: '/usr/local/goagent/local/CA.crt'
 
 development:
   <<: *defaults
@@ -67,3 +60,7 @@ production:
     consumer_secret: "U6CYRLqg51HPaod4P2in3Mw3bHSKq5301g27mnicJo"
     official_uid: 1188607028
     official_screen_name: "KnewOneCom"
+  kexue:
+    enable: true
+    proxy: 'http://127.0.0.1:8087'
+    cert_file: '/usr/local/goagent/local/CA.crt'
