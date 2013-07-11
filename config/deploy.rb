@@ -5,8 +5,8 @@ require 'bundler/capistrano'
 require 'capistrano-unicorn'
 
 SERVER_LIST = {
-  'staging' => {host: '106.186.20.196', branch: 'master', stage: 'staging'},
-  'production' => {host: '61.174.15.157', branch: 'staging', stage: 'production'}
+  'staging' => {host: '106.186.20.196', branch: 'staging', stage: 'staging'},
+  'production' => {host: '61.174.15.157', branch: 'master', stage: 'production'}
 }
 env = ENV['STAGE'] || 'production'
 
