@@ -20,7 +20,7 @@ module UsersHelper
     return nil unless user.current_auth
     provider = user.current_auth.provider
     raw({
-            weibo: "<i class=\"icon-eye-open\"></i><span>微博分享</span>",
+            weibo: "<i class=\"icon-weibo\"></i><span>微博分享</span>",
             twitter: "<i class=\"icon-twitter\"></i><span>发Tweet</span>"
         }[provider.to_sym])
   end
@@ -37,7 +37,7 @@ module UsersHelper
         when 'Twitter'
           html<< link_to_with_icon(nil, 'icon-twitter icon-large', v, title: "Twitter 主页", target: "_blank", class: 'provider')
         when 'Weibo'
-          html<< link_to_with_icon(nil, 'icon-eye-open icon-large', v, title: "微博页面", target: "_blank", class: 'provider')
+          html<< link_to_with_icon(nil, 'icon-weibo icon-large', v, title: "微博页面", target: "_blank", class: 'provider')
         when 'Blog'
           html<< link_to_with_icon(nil, 'icon-globe icon-large', v, title: "个人博客", target: "_blank", class: 'website')
       end
