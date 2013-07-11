@@ -80,8 +80,6 @@ group :development, :test do
   gem 'ffaker'
   gem 'database_cleaner'
 
-  gem 'pry-rails'
-
   # file system handling
   # please don't develop at windows
   gem 'rb-fsevent', require: false
