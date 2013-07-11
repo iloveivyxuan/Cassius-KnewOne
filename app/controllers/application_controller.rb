@@ -22,6 +22,6 @@ class ApplicationController < ActionController::Base
   private
 
   def trim_param_id
-    params[:id].gsub! /[^\w]$/, ''
+    params[:id] and params[:id].gsub! /[^\w]$/, ''
   end
 end
