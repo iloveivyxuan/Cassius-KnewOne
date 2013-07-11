@@ -118,7 +118,7 @@ class ThingPresenter < PostPresenter
     topic = present(current_user).topic_wrapper(brand)
     str = "我在#{topic}发现了一个酷产品, #{title}: #{thing_url(thing)}"
     if current_user.current_auth && current_user.equal_auth_provider?(thing.author)
-      str += "，感谢 @#{thing.author.current_auth.nickname} !"
+      str += ", 感谢 @#{thing.author.current_auth.nickname} !"
     end
     str
   end
