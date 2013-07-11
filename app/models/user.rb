@@ -54,6 +54,10 @@ class User
     auths.first
   end
 
+  def equal_auth_provider?(another_user)
+    another_user.current_auth && current_auth.provider == another_user.current_auth.provider
+  end
+
   def update_from_omniauth(data)
     auth = auths.where(provider: data[:provider]).first
     if auth
@@ -127,6 +131,7 @@ class User
   ## Pagination
   paginates_per 50
 
+  private
   def email_required?
     current_auth.nil?
   end
