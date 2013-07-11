@@ -116,7 +116,11 @@ class ThingPresenter < PostPresenter
   def share_content
     user_signed_in? or return
     topic = present(current_user).topic_wrapper(brand)
-    %{我在#{topic}发现了一个酷产品, #{title}: #{thing_url(thing)}}
+    str = "我在#{topic}发现了一个酷产品, #{title}: #{thing_url(thing)}"
+    if current_user.current_auth && current_user.equal_auth_provider?(thing.author)
+      str += "，感谢 @#{thing.author.current_auth.nickname} !"
+    end
+    str
   end
 
   def reviews(limit)
