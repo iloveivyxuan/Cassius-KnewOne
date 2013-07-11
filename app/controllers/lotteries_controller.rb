@@ -8,11 +8,14 @@ class LotteriesController < ApplicationController
 
   def new
     if params[:thing]
-      thing = Thing.find params[:thing]
-      @lottery.contribution_link = thing_url(thing)
-      @lottery.winner_link = user_url(thing.author)
-      @lottery.date = thing.created_at
+      post = Thing.find params[:thing]
+      @lottery.contribution_link = thing_url(post)
+    elsif params[:review]
+      post = Review.find params[:review]
+      @lottery.contribution_link = thing_review_url(post.thing, post)
     end
+    @lottery.winner_link = user_url(post.author)
+    @lottery.date = post.created_at
   end
 
   def create

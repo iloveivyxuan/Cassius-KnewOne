@@ -13,7 +13,7 @@ class Lottery
 
   belongs_to :winner, class_name: "User"
   belongs_to :thing, class_name: "Thing", inverse_of: :lotteries
-  belongs_to :contribution, class_name: "Thing", inverse_of: :related_lotteries
+  belongs_to :contribution, class_name: "Post", inverse_of: :related_lotteries
 
   attr_writer :winner_link
   validates :date, presence: true
@@ -32,11 +32,16 @@ class Lottery
   end
 
   def contribution_link
-    link_to_thing contribution
+    case contribution.class
+    when Thing
+      link_to_thing contribution
+    when Review
+      link_to_review contribution
+    end
   end
 
   def contribution_link=(link)
-    self.contribution = parse_thing_link link
+    self.contribution = parse_review_link(link) || parse_thing_link(link)
   end
 
   def winner_link
@@ -50,11 +55,11 @@ class Lottery
   end
 
   def check_thing
-    errors.add(:thing_link, "无法解析出正确的奖品") if thing.blank?
+    errors.add(:thing_link, "无法解析出奖品") if thing.blank?
   end
 
   def check_contribution
-    errors.add(:contribution_link, "无法解析出正确的获奖产品") if contribution.blank?
+    errors.add(:contribution_link, "无法解析出获奖原因") if contribution.blank?
   end
 
   def check_winner
@@ -67,17 +72,29 @@ class Lottery
     thing_url thing, host: Settings.host if thing
   end
 
+  def link_to_review(review)
+    thing_review_url review.thing, review, host: Settings.host if review
+  end
+
   def parse_thing_link(link)
-    return if link.blank?
-    reg = Regexp.new "http://(www\.)?#{Settings.host}/things/([\\w-]+)"
-    match_data = reg.match(link)
-    Thing.find match_data[2] if match_data
+    id = parse_link link, "/things/([\\w-]+)"
+    id and Thing.find(id)
+  end
+
+  def parse_review_link(link)
+    id = parse_link link, "/things/[\\w-]+/reviews/(\\h+)"
+    id and Review.find(id)
   end
 
   def parse_user_link(link)
+    id = parse_link link, "/users/(\\h+)"
+    id and User.find(id)
+  end
+
+  def parse_link(link, path_reg)
     return if link.blank?
-    reg = Regexp.new "http://(www\.)?#{Settings.host}/users/(\\h+)"
+    reg = Regexp.new "http://(www\.)?#{Settings.host}#{path_reg}"
     match_data = reg.match link
-    User.find match_data[2] if match_data
+    match_data and match_data[2]
   end
 end

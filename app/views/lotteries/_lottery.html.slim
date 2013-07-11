@@ -10,11 +10,16 @@ tr.lottery
         = tp.photo(:small)
         p= tp.title
   td.contribution
-    - if lottery.contribution
+    - if lottery.contribution.class == Thing
       - present lottery.contribution do |tp|
         = link_to tp.thing do
           = tp.photo(:small)
           p= tp.title
+    - elsif lottery.contribution.class == Review
+      - present lottery.contribution.thing do |tp|
+        = link_to thing_review_path(tp.thing, lottery.contribution) do
+          = tp.photo(:small)
+          p= lottery.contribution.title
     - else
       p.placeholder ?
   td.winner

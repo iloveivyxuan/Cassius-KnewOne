@@ -36,8 +36,6 @@ class Thing < Post
   has_and_belongs_to_many :owners, class_name: "User", inverse_of: :owns
 
   has_many :lotteries, dependent: :delete
-  has_many :related_lotteries, class_name: "Lottery",
-  inverse_of: :contributions, dependent: :delete
 
   validates :description, length: { maximum: 2048 }
 

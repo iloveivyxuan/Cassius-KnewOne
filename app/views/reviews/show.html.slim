@@ -14,6 +14,8 @@
         title: "分享", data: {toggle: 'modal'}
         = render 'shared/post_actions', post: rp.review, 
         edit_post_path: rp.edit_path, post_path: rp.path
+        - if can? :manage, :all
+          small= link_to_with_icon "", "icon-gift", new_lottery_path(review: rp.review), title: "发奖"
       = rp.score
       = rp.author
     
