@@ -69,15 +69,15 @@ class Lottery
 
   def parse_thing_link(link)
     return if link.blank?
-    reg = Regexp.new "http://#{Settings.host}/things/([\\w-]+)"
+    reg = Regexp.new "http://(www\.)?#{Settings.host}/things/([\\w-]+)"
     match_data = reg.match(link)
-    Thing.find match_data[1] if match_data
+    Thing.find match_data[2] if match_data
   end
 
   def parse_user_link(link)
     return if link.blank?
-    reg = Regexp.new "http://#{Settings.host}/users/(\\h+)"
+    reg = Regexp.new "http://(www\.)?#{Settings.host}/users/(\\h+)"
     match_data = reg.match link
-    User.find match_data[1] if match_data
+    User.find match_data[2] if match_data
   end
 end
