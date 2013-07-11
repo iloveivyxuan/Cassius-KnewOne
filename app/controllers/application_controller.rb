@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 class ApplicationController < ActionController::Base
+  before_filter :trim_param_id
+
   protect_from_forgery
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to '/403', alert: exception.message
@@ -15,5 +17,11 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     session[:previous_url] || root_path
+  end
+
+  private
+
+  def trim_param_id
+    params[:id].gsub! /[^\w]$/, ''
   end
 end
