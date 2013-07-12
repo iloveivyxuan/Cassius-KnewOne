@@ -11,6 +11,7 @@
 
 .post_submit
   = button_tag "提交评测", class: "btn btn-large btn-primary "
+  = provider_sync if @review.new_record?
 
 - content_for :script do
   javascript:

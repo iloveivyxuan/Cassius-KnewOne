@@ -33,3 +33,5 @@
   javascript:
     Making.Voting();
     Making.Comments("#comments")
+    if ("#{flash[:provider_sync]}" == "true") 
+      $(function(){$('#review_share').modal('show')})  

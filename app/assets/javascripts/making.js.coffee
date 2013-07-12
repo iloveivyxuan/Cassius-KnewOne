@@ -34,19 +34,14 @@ window.Making =
 
   ThingsNew: ->
     $ ->
-      form = "form.thing_form"
       view = new Making.Views.ThingsNew
-        el: form
-
-      button = "#thing_form_submit button"
-      $(button).click ->
-        is_sync = $('#check_provider_sync input').prop('checked')
-        $(form).find('#provider_sync').val(is_sync)
-        $(form).submit()
+        el: "form.thing_form"
 
   FormLink: (form, button) ->
     $ ->
       $(button).click ->
+        is_sync = $('#check_provider_sync input').prop('checked')
+        $("<input name='provider_sync' type='hidden' value=#{is_sync}>").appendTo(form)
         $(form).submit()
 
   Editor: (textarea) ->

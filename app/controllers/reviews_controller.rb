@@ -24,6 +24,7 @@ class ReviewsController < PostsController
     @review = Review.new params[:review]
       .merge(author: current_user, thing: @thing)
     if @review.save
+      flash[:provider_sync] = params[:provider_sync]
       redirect_to thing_review_path(@thing, @review)
     else
       render 'new'

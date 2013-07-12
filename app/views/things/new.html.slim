@@ -11,7 +11,6 @@
     = f.input :subtitle, placeholder: "您对产品的一句话介绍，40字以内", input_html: {maxlength: 40}
     = f.input :official_site, as: :url, placeholder: "品牌官方网站的该产品链接地址"
     = f.input :content, as: :hidden
-    = hidden_field_tag 'provider_sync', ''
 
   #thing_form_content
     = simple_form_for Photo.new do |f|
@@ -40,3 +39,4 @@
   javascript:
     Making.ThingsNew();
     Making.Editor('#thing_content');
+    Making.FormLink('form.thing_form', '#thing_form_submit button');
