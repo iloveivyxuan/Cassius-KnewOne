@@ -34,8 +34,15 @@ window.Making =
 
   ThingsNew: ->
     $ ->
+      form = "form.thing_form"
       view = new Making.Views.ThingsNew
-        el: "form.thing_form"
+        el: form
+
+      button = "#thing_form_submit button"
+      $(button).click ->
+        is_sync = $('#check_provider_sync input').prop('checked')
+        $(form).find('#provider_sync').val(is_sync)
+        $(form).submit()
 
   FormLink: (form, button) ->
     $ ->

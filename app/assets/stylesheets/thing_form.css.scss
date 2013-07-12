@@ -111,7 +111,12 @@ form#new_photo {
 }
 
 #thing_form_submit {
+  margin-bottom: 1em;
   button {width: 30%;}
+  label {
+    color: $fontLightColor;
+    margin-left: 2em;
+  }
 }
 
 form.editor_thing_form {

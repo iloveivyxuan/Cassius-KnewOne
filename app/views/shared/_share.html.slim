@@ -6,7 +6,7 @@
       .modal-header
         = button_tag type: 'button', class: 'close', data: {dismiss: "modal"} do
           raw &times;
-        h3= provider_share(current_user)
+        h3= provider_share
       .modal-body
         = f.input :content, as: :text, label: false, input_html: {rows: 5, value: content}
         = f.input :pic, as: :hidden, input_html: {value: pic}
