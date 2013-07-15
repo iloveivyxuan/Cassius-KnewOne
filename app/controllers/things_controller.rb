@@ -39,7 +39,7 @@ class ThingsController < PostsController
     @thing = Thing.new params[:thing].merge(author: current_user)
     if @thing.save
       @thing.fancy current_user
-      redirect_to @thing
+      redirect_to @thing, flash: {provider_sync: params[:provider_sync]}
     else
       render 'new'
     end

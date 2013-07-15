@@ -16,13 +16,21 @@ module UsersHelper
     user.current_auth.description
   end
 
-  def provider_share(user)
-    return nil unless user.current_auth
-    provider = user.current_auth.provider
+  def provider_share
+    return nil unless current_user && current_user.current_auth
     raw({
             weibo: "<i class=\"icon-weibo\"></i><span>微博分享</span>",
             twitter: "<i class=\"icon-twitter\"></i><span>发Tweet</span>"
-        }[provider.to_sym])
+        }[current_user.current_auth.provider.to_sym])
+  end
+
+  def provider_sync
+    return nil unless current_user && current_user.current_auth
+    provider_text = {
+      weibo: "分享到微博",
+      twitter: "分享到Twitter"
+    }[current_user.current_auth.provider.to_sym]
+    raw "<label id='check_provider_sync' class='checkbox inline'><input type='checkbox' checked>#{provider_text}</label>"
   end
 
   def user_links(user)

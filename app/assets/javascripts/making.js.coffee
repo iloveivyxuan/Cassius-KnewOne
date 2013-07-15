@@ -40,6 +40,8 @@ window.Making =
   FormLink: (form, button) ->
     $ ->
       $(button).click ->
+        is_sync = $('#check_provider_sync input').prop('checked')
+        $("<input name='provider_sync' type='hidden' value=#{is_sync}>").appendTo(form)
         $(form).submit()
 
   Editor: (textarea) ->
