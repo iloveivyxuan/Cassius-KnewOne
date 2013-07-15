@@ -120,10 +120,12 @@ class ThingPresenter < PostPresenter
       "我在#{topic}上分享了一个酷产品, #{title}: #{thing_url(thing)}"
     else
       str = "我在#{topic}发现了一个酷产品, #{title}: #{thing_url(thing)}"
-      if current_user.current_auth && current_user != thing.author && current_user.equal_auth_provider?(thing.author)
-        str += " (感谢 @#{thing.author.current_auth.nickname} )"
-      else
-        str += " (感谢 #{thing.author.current_auth.nickname} from twitter)"
+      if current_user.current_auth && current_user != thing.author
+        if current_user.equal_auth_provider?(thing.author)
+          str += " (感谢 @#{thing.author.current_auth.nickname} )"
+        else
+          str += " (感谢 #{thing.author.current_auth.nickname} from twitter)"
+        end
       end
       str
     end
