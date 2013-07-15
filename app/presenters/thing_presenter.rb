@@ -123,8 +123,8 @@ class ThingPresenter < PostPresenter
       if current_user.current_auth && current_user != thing.author
         if current_user.equal_auth_provider?(thing.author)
           str += " (感谢 @#{thing.author.current_auth.nickname} )"
-        else
-          str += " (感谢 #{thing.author.current_auth.nickname} from twitter)"
+        elsif thing.author.current_auth
+          str += " (感谢 #{thing.author.current_auth.nickname} from #{thing.author.current_auth.provider})"
         end
       end
       str
