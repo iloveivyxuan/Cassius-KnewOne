@@ -122,9 +122,9 @@ class ThingPresenter < PostPresenter
       str = "我在#{topic}发现了一个酷产品, #{title}: #{thing_url(thing)}"
       if current_user.current_auth && current_user != thing.author
         if current_user.equal_auth_provider?(thing.author)
-          str += " (感谢 @#{thing.author.current_auth.nickname} )"
+          str += " (感谢 @#{thing.author.current_auth.nickname} 分享)"
         elsif thing.author.current_auth
-          str += " (感谢 #{thing.author.current_auth.nickname} from #{thing.author.current_auth.provider})"
+          str += " (感谢 #{thing.author.current_auth.nickname} from #{thing.author.current_auth.provider} 分享)"
         end
       end
       str
