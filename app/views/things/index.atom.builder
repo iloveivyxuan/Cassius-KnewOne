@@ -7,6 +7,7 @@ atom_feed language: "zh-CN" do |feed|
       entry.title thing.title
       entry.subtitle thing.subtitle
       entry.content thing.description
+      entry.cover thing.cover.url(:normal)
       entry.author do |author|
         author.name thing.author.name
       end
