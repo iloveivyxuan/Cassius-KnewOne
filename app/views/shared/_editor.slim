@@ -15,20 +15,11 @@
         i.icon-underline
 
     .btn-group
-      a.btn data-edit="insertunorderedlist" title="无序列表"
-        i.icon-list-ul
-      a.btn data-edit="insertorderedlist" title="有序列表"
-        i.icon-list-ol
-      a.btn data-edit="indent" title="缩进(Tab)"
-        i.icon-indent-right
-      a.btn data-edit="outdent" title="减少缩进(Shift+Tab)"
-        i.icon-indent-left
-
-    .btn-group
       a.btn.link.dropdown-toggle data-toggle="dropdown" title="链接"
         i.icon-link
       .dropdown-menu
-        input.span3 placeholder="http://" type="text" data-edit="createLink"
+        input placeholder="http://" type="text" data-edit="createLink"
+        button.btn type="button" 提交
       a.btn data-edit="unlink" title="移除链接"
         i.icon-unlink
 
@@ -39,7 +30,18 @@
       a.btn.video.dropdown-toggle data-toggle="dropdown" title="插入视频"
         i.icon-film
       .dropdown-menu
-        input.span3 placeholder="插入视频代码(建议非flash)" type="text" data-edit="insertHtml"
+        input placeholder="插入视频代码(建议非flash)" type="text" data-edit="insertHtml"
+        button.btn type="button" 提交
+
+    .btn-group
+      a.btn data-edit="insertunorderedlist" title="无序列表"
+        i.icon-list-ul
+      a.btn data-edit="insertorderedlist" title="有序列表"
+        i.icon-list-ol
+      a.btn data-edit="indent" title="缩进(Tab)"
+        i.icon-indent-right
+      a.btn data-edit="outdent" title="减少缩进(Shift+Tab)"
+        i.icon-indent-left
 
     .btn-group
       a.btn data-edit="undo" title="撤销(Ctrl/⌘+z)"
