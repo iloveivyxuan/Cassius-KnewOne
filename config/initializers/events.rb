@@ -33,7 +33,7 @@ WebsocketRails.setup do |config|
   # when making it private, set the following to true.
   # config.keep_subscribers_when_private = false
 
-  if Rails.env.production?
+  if Rails.env.production? or Rails.env.staging?
     config.standalone = true
     config.synchronize = true
     config.standalone_port = 3001
