@@ -54,7 +54,6 @@ Making::Application.routes.draw do
   resources :guests do
     collection do
       get "activate/:token", action: :activate, as: :activate
-      get "limits"
     end
   end
 

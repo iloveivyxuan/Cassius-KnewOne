@@ -22,14 +22,15 @@ class ThingPresenter < PostPresenter
   end
 
   def price
-    if thing.price.to_i > 0 and can_buy?
+    if thing.price.to_i > 0
       content_tag :small,
-                  number_to_currency(thing.price, precision: 2, unit: thing.price_unit)
+      number_to_currency(thing.price, precision: 2,
+                         unit: thing.price_unit)
     end
   end
 
   def shop
-    if thing.is_pre and can_buy?
+    if pre? and can_buy?
       link_to_with_icon "预购", "icon-shopping-cart icon-large", buy_thing_path(thing), target: '_blank',
                         class: "track_event btn btn-warning",
                         data: {action: "buy", category: "thing", label: title}
@@ -141,35 +142,19 @@ class ThingPresenter < PostPresenter
     end
   end
 
-  def pre?
-    thing.is_pre
-  end
-
   def can_buy
-    if can_buy?
-      content_tag :span, title: "可以购买", class: "can_buy" do
-        content_tag :i, "", class: "icon-shopping-cart"
-      end
-    end
+    content_tag :span, title: "可以购买", class: "can_buy" do
+      content_tag :i, "", class: "icon-shopping-cart"
+    end if can_buy?
   end
 
-  def limit
-    if thing.is_limit
-      content_tag :span, title: "限量产品", class: "limit" do
-        content_tag(:i, "", class: "icon-trophy")
-      end
-    end
+  def pre?
+    thing.stage == :presale
   end
 
   private
 
   def can_buy?
-    if thing.shop.blank?
-      false
-    elsif thing.is_limit?
-      current_user and current_user.is_guest?
-    else
-      true
-    end
+    thing.shop.present?
   end
 end

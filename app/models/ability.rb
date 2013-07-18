@@ -61,7 +61,6 @@ class Ability
     can :buy_package, Thing
     can :comments, Thing
     can :activate, Guest
-    can :limits, Guest
     can :create, Supplier
   end
 end
