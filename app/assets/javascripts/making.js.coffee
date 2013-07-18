@@ -83,7 +83,8 @@ window.Making =
 
       $(textarea).closest('form')
         .submit (e) ->
-          $(textarea).val $('#editor').html()
+          resque = $('#editor').html()
+          $(textarea).val resque.replace(/<!--.*?-->/g, '')
           $sisyphus.manuallyReleaseData()
           
   Rating: (form) ->
