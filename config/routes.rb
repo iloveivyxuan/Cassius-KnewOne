@@ -10,6 +10,10 @@ Making::Application.routes.draw do
     end
   end
 
+  namespace :customer_service do
+    get 'chat', :to => 'chat#index'
+  end
+
   resources :things do
     collection { get 'admin' }
     member { post 'fancy' }

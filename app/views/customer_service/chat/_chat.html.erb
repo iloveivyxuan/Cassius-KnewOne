@@ -1,0 +1,50 @@
+<% if user_signed_in? %>
+  <div>
+    <p>customer service</p>
+
+    <div id="container">
+      Welcome<br>
+    </div>
+    <textarea id="message">Text here...</textarea>
+    <button id="send">Ask</button>
+  </div>
+
+  <%= content_for :script do %>
+    <script>
+      var container = $('#container');
+      var dispatcher = new WebSocketRails(document.domain + ':3000/websocket');
+      dispatcher.on_open = function (data) {
+        var client_id = data.connection_id + '';
+        var channel = dispatcher.subscribe(client_id);
+
+        channel.bind('customer_ask', function(data) {
+          container.append('[' + data.time + '] Customer ' + data.identity + ' asked: ' + data.body + '<br>');
+        });
+        channel.bind('staff_answer', function(data) {
+          container.append('[' + data.time + '] Staff ' + data.identity + ' answered: ' + data.body + '<br>');
+        });
+        channel.bind('no_staff', function(data) {
+          container.append('[' + data.time + '] No staff or error happend, plz refresh broswer to retry.<br>');
+        });
+        channel.bind('staff_changed', function(data) {
+          container.append('[' + data.time + '] Another staff is serving you.<br>');
+        });
+      };
+      dispatcher.trigger('customer_assign', {location: document.documentURI}, function(data) {
+        console.log('get staff channel success.');
+      }, function() {
+        container.append('No staff now.<br>');
+        console.log('get staff channel failure.');
+      });
+      $('#send').click(function() {
+        var textarea = $('#message');
+        dispatcher.trigger('ask', {body: textarea.val()}, function() {
+          console.log('send success');
+          textarea.val('');
+        }, function() {
+          console.log('send failure');
+        })
+      });
+    </script>
+  <% end %>
+<% end %>
