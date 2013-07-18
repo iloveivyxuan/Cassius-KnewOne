@@ -46,18 +46,23 @@ end
 namespace :customer_service do
   desc "Start customer service"
   task :start, :roles => :web do
-    run("cd #{deploy_to}/current && /usr/bin/env rake websocket_rails:start_server RAILS_ENV=#{rails_stage}")
+    run("cd #{deploy_to}/current && bundle exec rake websocket_rails:start_server RAILS_ENV=#{rails_stage}")
   end
 
   desc "Stop customer service"
   task :stop, :roles => :web do
-    run("cd #{deploy_to}/current && /usr/bin/env rake websocket_rails:stop_server RAILS_ENV=#{rails_stage}")
+    run("cd #{deploy_to}/current && bundle exec rake websocket_rails:stop_server RAILS_ENV=#{rails_stage}")
   end
 
   desc "Restart customer service"
-  task :stop, :roles => :web do
-    run("cd #{deploy_to}/current && /usr/bin/env rake websocket_rails:stop_server RAILS_ENV=#{rails_stage}")
-    run("cd #{deploy_to}/current && /usr/bin/env rake websocket_rails:start_server RAILS_ENV=#{rails_stage}")
+  task :restart, :roles => :web do
+    begin
+      run("cd #{deploy_to}/current && bundle exec rake websocket_rails:stop_server RAILS_ENV=#{rails_stage}")
+    rescue Exception
+      puts 'maybe not start'
+    ensure
+      run("cd #{deploy_to}/current && bundle exec rake websocket_rails:start_server RAILS_ENV=#{rails_stage}")
+    end
   end
 end
 

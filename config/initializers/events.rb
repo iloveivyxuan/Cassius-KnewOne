@@ -36,7 +36,7 @@ WebsocketRails.setup do |config|
   if Rails.env.production? or Rails.env.staging?
     config.standalone = true
     config.synchronize = true
-    config.standalone_port = 3000
+    config.standalone_port = 3001
     # config.redis_options = {:host => 'your.host', :port => '6379'}
   else
     config.standalone = false
