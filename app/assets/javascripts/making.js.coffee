@@ -54,6 +54,9 @@ window.Making =
         .on "drop", (e) ->
           e.stopPropagation()
 
+      $sisyphus = $("#editor-wrapper").sisyphus
+        timeout: 5
+
       $("#editor-toolbar")
         .fadeIn()
         #https://github.com/twitter/bootstrap/issues/5687
@@ -80,8 +83,10 @@ window.Making =
 
       $(textarea).closest('form')
         .submit (e) ->
-          $(textarea).val $('#editor').html()
-
+          resque = $('#editor').html()
+          $(textarea).val resque.replace(/<!--.*?-->/g, '')
+          $sisyphus.manuallyReleaseData()
+          
   Rating: (form) ->
     $ ->
       $el = $(form).find('input[type="range"]')

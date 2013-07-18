@@ -12,6 +12,7 @@
 //= require jquery.infinitescroll
 //= require jquery.hotkeys
 //= require bootstrap-wysiwyg
+//= require sisyphus
 //= require_tree ../templates
 //= require making
 //= require_tree ./models
