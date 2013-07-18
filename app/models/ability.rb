@@ -3,6 +3,8 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    cannot :manage, :all
+
     if user.blank?
       basic
     elsif user.role? :admin

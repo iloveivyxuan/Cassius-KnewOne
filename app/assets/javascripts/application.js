@@ -18,3 +18,4 @@
 //= require_tree ./collections
 //= require_tree ./views
 //= require_tree ./routers
+//= require websocket_rails/main

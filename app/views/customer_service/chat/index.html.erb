@@ -1,0 +1,72 @@
+<div id="notifications">
+  -- Global notifications --<br>
+</div>
+<br>
+<div id="container">
+
+</div>
+
+<%= content_for :script do %>
+  <script>
+    var container = $('#container');
+
+    var dispatcher = new WebSocketRails(document.domain + ':3000/websocket');
+
+    dispatcher.on_open = function (data) {
+      var client_id = data.connection_id + '';
+      var channel = dispatcher.subscribe(client_id);
+      channel.bind('customer_assign', function (data) {
+        var customer_id = data.customer_id;
+        var customer_channel = data.channel;
+        container.append('<div><div id="user_' + customer_channel + '"></div><div id="user_' + customer_channel +'_form"></div></div>');
+        var customer_container = $('#user_' + customer_channel);
+
+        var customer_form_container = $('#user_' + customer_channel + '_form');
+        customer_form_container.append('<textarea id="user_' + customer_channel + '_message">Text here...</textarea>');
+        customer_form_container.append('<button id="user_' + customer_channel + '_send">Answer</button>');
+        $('#user_' + customer_channel + '_send').click(function() {
+          var textarea = $('#user_' + customer_channel + '_message');
+          dispatcher.trigger('answer', {customer_id: customer_id, body:textarea.val()}, function() {
+            textarea.val('');
+            console.log('send success');
+          }, function() {
+            console.log('send failure');
+          });
+        })
+
+        customer_container.append('[' + data.time + '] Customer ' + data.identity + ' who watching ' + data.location + ' is assigned to you.<br>');
+      });
+
+      channel.bind('customer_offline', function (data) {
+        var target_container = $('#user_' + data.channel);
+        target_container.append('[' + data.time + '] Customer ' + data.identity + ' is offline.<br>');
+      });
+      channel.bind('customer_ask', function(data) {
+        var target_container = $('#user_' + data.channel);
+        target_container.append('[' + data.time + '] Customer ' + data.identity + ' asked: ' + data.body + '<br>');
+      });
+      channel.bind('staff_answer', function(data) {
+        var target_container = $('#user_' + data.channel);
+        target_container.append('[' + data.time + '] Server ' + data.identity + ' answered: ' + data.body + '<br>');
+      });
+    };
+
+    var admin_channel = dispatcher.subscribe('admin');
+    var notification_container = $('#notifications');
+    admin_channel.bind('customer_online', function (data) {
+      notification_container.append('[' + data.time + '] Customer ' + data.identity + ' is online.<br>');
+    });
+    admin_channel.bind('customer_offline', function (data) {
+      notification_container.append('[' + data.time + '] Customer ' + data.identity + ' is offline.<br>');
+    })
+    admin_channel.bind('staff_online', function (data) {
+      notification_container.append('[' + data.time + '] Server ' + data.identity + ' is online.<br>');
+    });
+    admin_channel.bind('staff_offline', function (data) {
+      notification_container.append('[' + data.time + '] Server ' + data.identity + ' is offline.<br>');
+    });
+    admin_channel.bind('customer_assign_changed', function (data) {
+      notification_container.append('[' + data.time + '] Server ' + data.to + ' is serving customer ' + data.identity + ' instead of ' + data.from + '.<br>');
+    });
+  </script>
+<% end %>
