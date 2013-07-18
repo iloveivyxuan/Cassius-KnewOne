@@ -3,7 +3,7 @@ module CustomerService
     attr_reader :client_id, :user_id
     attr_accessor :staff
 
-    delegate :email, :to => :user
+    delegate :email, :name, :to => :user
 
     def initialize(client_id, user_id)
       @client_id = client_id.to_s
@@ -27,7 +27,7 @@ module CustomerService
       dialog
     end
 
-    def recent(limit = 20)
+    def recent(limit = 10)
       Dialog.limit(limit).sort(:natural => 1)
     end
   end

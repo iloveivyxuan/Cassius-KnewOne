@@ -3,7 +3,7 @@ module CustomerService
     attr_reader :client_id, :user_id
     attr_reader :customers
 
-    delegate :email, :to => :user
+    delegate :email, :name, :to => :user
 
     def initialize(client_id, user_id)
       @client_id = client_id.to_s
@@ -41,5 +41,4 @@ module CustomerService
       @client_id
     end
   end
-
 end

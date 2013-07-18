@@ -14,7 +14,7 @@ module CustomerService
     attr_accessible :body, :meta
 
     def meta
-      @meta ||= JSON.parse super
+      @meta ||= JSON.parse super unless super.blank?
     end
 
     def meta=(opt = {})

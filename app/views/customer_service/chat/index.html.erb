@@ -1,15 +1,27 @@
-<div id="notifications">
-  -- Global notifications --<br>
-</div>
-<br>
-<div id="container">
+<div class="customer_service_wrapper">
+
+  <div id="container">
+
+  </div>
+
+  <div class="tabbable">
+    <ul class="nav nav-tabs" id="chat-tabs">
+      <li class="active"><a href="#global_notifications" data-toggle="tab">Global</a></li>
+
+    </ul>
+    <div class="tab-content" id="chat-container">
+      <div class="tab-pane active" id="global_notifications">
+
+      </div>
+    </div>
+  </div>
 
 </div>
 
 <%= content_for :script do %>
   <script>
-    var container = $('#container');
-
+    var container = $('#chat-container');
+    var tab_container = $('#chat-tabs');
     var dispatcher = new WebSocketRails(document.domain + ':3000/websocket');
 
     dispatcher.on_open = function (data) {
@@ -18,12 +30,14 @@
       channel.bind('customer_assign', function (data) {
         var customer_id = data.customer_id;
         var customer_channel = data.channel;
-        container.append('<div><div id="user_' + customer_channel + '"></div><div id="user_' + customer_channel +'_form"></div></div>');
+        tab_container.append('<li><a href="#user_' + customer_channel + '" data-toggle="tab">' + data.identity + '</a></li>');
+        container.append('<div class="tab-pane" id="user_' + customer_channel + '"><div id="user_' + customer_channel + '_messages"></div></div>');
         var customer_container = $('#user_' + customer_channel);
+        customer_container.append('<div id="user_' + customer_channel +'_form"></div>');
 
         var customer_form_container = $('#user_' + customer_channel + '_form');
         customer_form_container.append('<textarea id="user_' + customer_channel + '_message">Text here...</textarea>');
-        customer_form_container.append('<button id="user_' + customer_channel + '_send">Answer</button>');
+        customer_form_container.append('<button id="user_' + customer_channel + '_send" class="btn btn-primary">Answer</button>');
         $('#user_' + customer_channel + '_send').click(function() {
           var textarea = $('#user_' + customer_channel + '_message');
           dispatcher.trigger('answer', {customer_id: customer_id, body:textarea.val()}, function() {
@@ -34,25 +48,40 @@
           });
         })
 
-        customer_container.append('[' + data.time + '] Customer ' + data.identity + ' who watching ' + data.location + ' is assigned to you.<br>');
+        var target_container = $('#user_' + data.channel + '_messages');
+        target_container.append('[' + data.time + '] Customer ' + data.identity + ' who watching <a href="' + data.location + '">' + data.location + '</a> is assigned to you.<br>');
+
+        dispatcher.trigger('customer_context', {customer_id: customer_id}, function(data) {
+          var context = "----- context begin -----<br>";
+          for(var i in data) {
+            var dialog = data[i];
+            context += '[' + dialog.time + '] ' + dialog.identity + ' said:<br> ' + dialog.body + '<br>'
+          }
+          context += "----- context end -----<br>";
+
+          target_container.append(context);
+        }, function() {
+          console.log('get customer context failure');
+        });
       });
 
       channel.bind('customer_offline', function (data) {
-        var target_container = $('#user_' + data.channel);
-        target_container.append('[' + data.time + '] Customer ' + data.identity + ' is offline.<br>');
+        var target_container = $('#user_' + data.channel + '_messages');
+        target_container.append('[' + data.time + '] Customer ' + data.identity + ' is offline.<br><br>');
+        $('#user_' + data.channel + '_form').hide();
       });
       channel.bind('customer_ask', function(data) {
-        var target_container = $('#user_' + data.channel);
-        target_container.append('[' + data.time + '] Customer ' + data.identity + ' asked: ' + data.body + '<br>');
+        var target_container = $('#user_' + data.channel + '_messages');
+        target_container.append('[' + data.time + '] Customer ' + data.identity + ' asked:<br> ' + data.body + '<br><br>');
       });
       channel.bind('staff_answer', function(data) {
-        var target_container = $('#user_' + data.channel);
-        target_container.append('[' + data.time + '] Server ' + data.identity + ' answered: ' + data.body + '<br>');
+        var target_container = $('#user_' + data.channel + '_messages');
+        target_container.append('[' + data.time + '] Server ' + data.identity + ' answered:<br> ' + data.body + '<br><br>');
       });
     };
 
     var admin_channel = dispatcher.subscribe('admin');
-    var notification_container = $('#notifications');
+    var notification_container = $('#global_notifications');
     admin_channel.bind('customer_online', function (data) {
       notification_container.append('[' + data.time + '] Customer ' + data.identity + ' is online.<br>');
     });

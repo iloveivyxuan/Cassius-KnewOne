@@ -54,5 +54,5 @@ WebsocketRails::EventMap.describe do
 
   subscribe :ask, :to => CustomerService::ServiceController, :with_method => :ask
   subscribe :answer, :to => CustomerService::ServiceController, :with_method => :answer
-  subscribe :context, :to => CustomerService::ServiceController, :with_method => :context
+  subscribe :customer_context, :to => CustomerService::ServiceController, :with_method => :customer_context
 end
