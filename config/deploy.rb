@@ -60,9 +60,8 @@ namespace :customer_service do
       run("cd #{deploy_to}/current && bundle exec rake websocket_rails:stop_server RAILS_ENV=#{rails_stage}")
     rescue Exception
       puts 'maybe not start'
-    ensure
-      run("cd #{deploy_to}/current && bundle exec rake websocket_rails:start_server RAILS_ENV=#{rails_stage}")
     end
+    run("cd #{deploy_to}/current && bundle exec rake websocket_rails:start_server RAILS_ENV=#{rails_stage}")
   end
 end
 
