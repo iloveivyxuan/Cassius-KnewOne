@@ -22,19 +22,23 @@ module CustomerService
     def client_disconnected
       if current_user.role?(:admin)
         staff = offline_staff
-        staff.customers.each do |c|
-          online_staffs.values.sample.serve c
-          staff.serve(c)
+        staff.customers.values.each do |c|
+          if another_staff = online_staffs.values.sample
+            another_staff.serve c
 
-          broadcast_to 'admin', :customer_assign_changed, {:from => staff.name,
-                                                           :to => c.staff.name,
-                                                           :identity => c.name,
-                                                           :time => Time.now}
-          broadcast_to staff.channel, :customer_assign, {
-              :channel => c.channel,
-              :identity => customer.name,
-              :location => message[:location],
-              :time => Time.now}
+            broadcast_to 'admin', :customer_assign_changed, {:from => staff.name,
+                                                             :to => c.staff.name,
+                                                             :identity => c.name,
+                                                             :time => Time.now}
+            broadcast_to another_staff.channel, :customer_assign, {
+                :channel => c.channel,
+                :identity => customer.name,
+                :location => message[:location],
+                :time => Time.now}
+            broadcast_to c.channel, :staff_changed, {:time => Time.now}
+          else
+            broadcast_to c.channel, :no_staff, {:time => Time.now}
+          end
         end
 
         broadcast_to 'admin', :staff_offline, {:identity => staff.name, :time => Time.now}
@@ -114,13 +118,13 @@ module CustomerService
       else
         dialogs = current_customer.recent
       end
-        context = dialogs.collect do |d|
-          {
-              :identity => d.sender.name,
-              :body => d.body,
-              :time => d.created_at
-          }
-        end
+      context = dialogs.collect do |d|
+        {
+            :identity => d.sender.name,
+            :body => d.body,
+            :time => d.created_at
+        }
+      end
 
       trigger_success(context)
     end

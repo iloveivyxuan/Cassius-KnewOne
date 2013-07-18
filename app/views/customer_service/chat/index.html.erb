@@ -1,21 +1,12 @@
 <div class="customer_service_wrapper">
-
-  <div id="container">
-
-  </div>
-
   <div class="tabbable">
     <ul class="nav nav-tabs" id="chat-tabs">
       <li class="active"><a href="#global_notifications" data-toggle="tab">Global</a></li>
-
     </ul>
     <div class="tab-content" id="chat-container">
-      <div class="tab-pane active" id="global_notifications">
-
-      </div>
+      <div class="tab-pane active" id="global_notifications"></div>
     </div>
   </div>
-
 </div>
 
 <%= content_for :script do %>
@@ -30,7 +21,7 @@
       channel.bind('customer_assign', function (data) {
         var customer_id = data.customer_id;
         var customer_channel = data.channel;
-        tab_container.append('<li><a href="#user_' + customer_channel + '" data-toggle="tab">' + data.identity + '</a></li>');
+        tab_container.append('<li><a href="#user_' + customer_channel + '" data-toggle="tab" id="user_' + customer_channel + '_tab">' + data.identity + '</a></li>');
         container.append('<div class="tab-pane" id="user_' + customer_channel + '"><div id="user_' + customer_channel + '_messages"></div></div>');
         var customer_container = $('#user_' + customer_channel);
         customer_container.append('<div id="user_' + customer_channel +'_form"></div>');
@@ -69,6 +60,7 @@
         var target_container = $('#user_' + data.channel + '_messages');
         target_container.append('[' + data.time + '] Customer ' + data.identity + ' is offline.<br><br>');
         $('#user_' + data.channel + '_form').hide();
+        $('#user_' + data.channel + '_tab').append('(offline)');
       });
       channel.bind('customer_ask', function(data) {
         var target_container = $('#user_' + data.channel + '_messages');
@@ -76,7 +68,7 @@
       });
       channel.bind('staff_answer', function(data) {
         var target_container = $('#user_' + data.channel + '_messages');
-        target_container.append('[' + data.time + '] Server ' + data.identity + ' answered:<br> ' + data.body + '<br><br>');
+        target_container.append('[' + data.time + '] Staff ' + data.identity + ' answered:<br> ' + data.body + '<br><br>');
       });
     };
 
@@ -89,13 +81,13 @@
       notification_container.append('[' + data.time + '] Customer ' + data.identity + ' is offline.<br>');
     })
     admin_channel.bind('staff_online', function (data) {
-      notification_container.append('[' + data.time + '] Server ' + data.identity + ' is online.<br>');
+      notification_container.append('[' + data.time + '] Staff ' + data.identity + ' is online.<br>');
     });
     admin_channel.bind('staff_offline', function (data) {
-      notification_container.append('[' + data.time + '] Server ' + data.identity + ' is offline.<br>');
+      notification_container.append('[' + data.time + '] Staff ' + data.identity + ' is offline.<br>');
     });
     admin_channel.bind('customer_assign_changed', function (data) {
-      notification_container.append('[' + data.time + '] Server ' + data.to + ' is serving customer ' + data.identity + ' instead of ' + data.from + '.<br>');
+      notification_container.append('[' + data.time + '] Staff ' + data.to + ' is serving customer ' + data.identity + ' instead of ' + data.from + '.<br>');
     });
   </script>
 <% end %>

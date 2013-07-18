@@ -21,7 +21,13 @@
           container.append('[' + data.time + '] Customer ' + data.identity + ' asked: ' + data.body + '<br>');
         });
         channel.bind('staff_answer', function(data) {
-          container.append('[' + data.time + '] Server ' + data.identity + ' answered: ' + data.body + '<br>');
+          container.append('[' + data.time + '] Staff ' + data.identity + ' answered: ' + data.body + '<br>');
+        });
+        channel.bind('no_staff', function(data) {
+          container.append('[' + data.time + '] No staff or error happend, plz refresh broswer to retry.<br>');
+        });
+        channel.bind('staff_changed', function(data) {
+          container.append('[' + data.time + '] Another staff is serving you.<br>');
         });
       };
       dispatcher.trigger('customer_assign', {location: document.documentURI}, function(data) {
