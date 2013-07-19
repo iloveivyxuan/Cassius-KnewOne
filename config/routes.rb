@@ -11,7 +11,7 @@ Making::Application.routes.draw do
   end
 
   namespace :customer_service do
-    get 'chat', :to => 'chat#index'
+    get '/', :to => 'dialogs#index'
   end
 
   resources :things do

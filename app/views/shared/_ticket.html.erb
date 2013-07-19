@@ -1,0 +1,49 @@
+<%- if user_signed_in? %>
+  <div id="ticket">
+    <div class="ticket-header">
+      <h1 class="title">在线客服 (Beta™)</h1>
+      <ul class="actions">
+        <li><a href="javascript:void(0)" class="hide">&nbsp;_&nbsp;</a></li>
+        <li><a href="javascript:void(0)" class="show">&nbsp;☐&nbsp;</a></li>
+      </ul>
+    </div>
+    <div class="ticket-body">
+      <div class="answer">
+        <div class="sender">
+          <%= image_tag 'logos/1.png', :class => 'img-circle avatar' %>
+          <p>Knewone</p>
+        </div>
+        <div class="body">
+          您好，有什么可以帮您的？
+        </div>
+      </div>
+
+      <div class="system">
+        ---- 发生错误，请刷新浏览器 ----
+      </div>
+
+      <div class="ask">
+        <div class="sender">
+          <%= image_tag current_user.avatar.url, :class => 'img-circle avatar' %>
+          <p>Jasl-光誓</p>
+        </div>
+        <div class="body">
+          你好，我喜欢网站上推荐的一款产品，就是call on duty那个镜片夹，现在有没有货？该如何购买？
+        </div>
+      </div>
+
+      <div class="answer">
+        <div class="sender">
+          <%= image_tag 'logos/1.png', :class => 'img-circle avatar' %>
+          <p>Knewone</p>
+        </div>
+        <div class="body">
+          你好，我喜欢网站上推荐的一款产品，就是call on duty那个镜片夹，现在有没有货？该如何购买？
+        </div>
+      </div>
+    </div>
+    <div class="ticket-footer">
+      <textarea id="cs_msg" rows="2" placeholder="Type here and hit <enter> to chat"></textarea>
+    </div>
+  </div>
+<% end -%>

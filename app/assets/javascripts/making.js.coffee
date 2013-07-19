@@ -15,6 +15,7 @@ window.Making =
       $(".track_event").click ->
         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
       Making.GoTop()
+      Making.Ticket()
 
   GoTop: ->
     $(window).on 'scroll', ->
@@ -26,6 +27,29 @@ window.Making =
     $('#go_top').click ->
       $(@).fadeOut()
       $('html,body').animate {scrollTop: 0}, 'slow'
+
+  Ticket: ->
+    $ ->
+      $ticket = $('#ticket')
+      body_height = $ticket.height() - $ticket.find('.ticket-header').height()
+
+      $ticket.css('bottom', -body_height)
+
+      $ticket.find('.show').click ->
+        $ticket.find('.ticket-body').scrollTop($ticket.find('.ticket-body')[0].scrollHeight)
+        $ticket.animate({bottom: 0})
+        $(@).hide()
+        $ticket.find('.hide').show()
+      $ticket.find('.hide').click ->
+        $ticket.animate({bottom: -body_height})
+        $(@).hide()
+        $ticket.find('.show').show()
+
+      $ticket.find('textarea').keypress ->
+        if event.ctrlKey && event.keyCode == 13
+          if $(@).val().replace('/[\s\r\n]/g', '') != ""
+            $(@).val('')
+          false
 
   TrackEvent: (category, action, label) ->  
     try
