@@ -1,6 +1,7 @@
 json.array!(@things) do |thing|
   present thing do |tp|
     json.(tp, :title)
+    json.(tp, :subtitle)
     json.url thing_url(tp.thing)
     json.photo tp.photo_url(:huge)
     json.(tp, :content)
