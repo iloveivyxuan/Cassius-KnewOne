@@ -22,12 +22,12 @@ window.Making =
         $('#go_top').fadeIn() if $('#go_top').is(':hidden')
       else
         $('#go_top').fadeOut() if $('#go_top').is(':visible')
-    
+
     $('#go_top').click ->
       $(@).fadeOut()
       $('html,body').animate {scrollTop: 0}, 'slow'
 
-  TrackEvent: (category, action, label) ->  
+  TrackEvent: (category, action, label) ->
     try
       _hmt.push ['_trackEvent', category, action, label]
     catch error
@@ -86,7 +86,7 @@ window.Making =
           resque = $('#editor').html()
           $(textarea).val resque.replace(/<!--.*?-->/g, '')
           $sisyphus.manuallyReleaseData()
-          
+
   Rating: (form) ->
     $ ->
       $el = $(form).find('input[type="range"]')
@@ -115,10 +115,25 @@ window.Making =
       $form.replaceWith html
 
   Share: () ->
+    share_content_length = ($el) ->
+      count = 0.0
+      for w in $el.val().replace(/http:\/\/[a-z]+\.[^ \u4e00-\u9fa5]+/g, 'urlurlhereurlurlhere')
+        count += (if /[\x00-\xff]/.test(w) then 0.5 else 1.0)
+      Math.ceil(count)
+
+    control_modal = ($el) ->
+      available_words = 140 - share_content_length($el.find('textarea'))
+      if available_words > 0
+        $el.find('input[type="submit"]').removeAttr('disabled')
+      else
+        $el.find('input[type="submit"]').attr('disabled', 'disabled')
+      $el.find('.words-check').text("还可以输入#{available_words}字")
+
     $modal = $(".share_modal")
 
-    $modal.on "submit form", ->
-      $modal.modal("hide")
+    $modal.on('propertychange input', 'textarea', -> control_modal($(@).closest('.share_modal')))
+    $modal.on('shown', -> control_modal($(@)))
+    $modal.on("submit form", -> $modal.modal("hide"))
 
   Comments: (el) ->
     $ ->
