@@ -61,6 +61,7 @@ WebsocketRails::EventMap.describe do
   subscribe :client_disconnected, :to => CustomerService::ServiceController, :with_method => :client_disconnected
 
   subscribe :customer_assign, :to => CustomerService::ServiceController, :with_method => :customer_assign
+  subscribe :has_online_staff, :to => CustomerService::ServiceController, :with_method => :has_online_staff
 
   subscribe :ask, :to => CustomerService::ServiceController, :with_method => :ask
   subscribe :answer, :to => CustomerService::ServiceController, :with_method => :answer

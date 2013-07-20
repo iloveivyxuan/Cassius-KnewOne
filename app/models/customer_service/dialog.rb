@@ -20,5 +20,9 @@ module CustomerService
     def meta=(opt = {})
       super(opt.to_json)
     end
+
+    def kind
+      self.sender == self.user ? 'ask' : 'answer'
+    end
   end
 end

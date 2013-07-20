@@ -15,6 +15,10 @@ module CustomerService
       ::User.find @user_id
     end
 
+    def avatar
+      self.user.avatar.url(:small)
+    end
+
     def serve(customer)
       customer.staff = self
       @customers.merge! customer.user_id => customer

@@ -78,12 +78,14 @@ module CustomerService
               :body => dialog.body,
               :time => dialog.created_at,
               :identity => current_customer.name,
+              :avatar => current_customer.avatar,
               :channel => current_customer.channel
           }
           broadcast_to current_customer.channel, :customer_ask, {
               :body => dialog.body,
               :time => dialog.created_at,
-              :identity => current_customer.name
+              :identity => current_customer.name,
+              :avatar => current_customer.avatar
           }
         end
         trigger_success({})
@@ -98,12 +100,14 @@ module CustomerService
         broadcast_to customer_channel, :staff_answer, {
             :body => dialog.body,
             :time => dialog.created_at,
-            :identity => current_staff.name
+            :identity => current_staff.name,
+            :avatar => current_staff.avatar
         }
         broadcast_to current_staff.channel, :staff_answer, {
             :body => dialog.body,
             :time => dialog.created_at,
             :identity => current_staff.name,
+            :avatar => current_staff.avatar,
             :channel => customer_channel
         }
         trigger_success({})
@@ -121,12 +125,18 @@ module CustomerService
       context = dialogs.collect do |d|
         {
             :identity => d.sender.name,
+            :avatar => d.sender.avatar.url(:small),
+            :kind => d.kind,
             :body => d.body,
             :time => d.created_at
         }
       end
 
       trigger_success(context)
+    end
+
+    def has_online_staff
+      trigger_success({:result => (online_staffs.length > 0)})
     end
 
     private

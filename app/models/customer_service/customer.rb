@@ -18,6 +18,10 @@ module CustomerService
       ::User.find @user_id
     end
 
+    def avatar
+      self.user.avatar.url(:small)
+    end
+
     def ask(body, meta = {})
       dialog = Dialog.new :body => body
       dialog.user = self.user
