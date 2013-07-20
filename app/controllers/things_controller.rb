@@ -4,8 +4,6 @@ require 'open-uri'
 class ThingsController < PostsController
   after_filter :store_location, only: [:show]
 
-  caches_action :weixin_qr, :expires_in => 30.minutes
-
   def index
     scope = case params[:sort]
             when "self_run"
@@ -131,6 +129,7 @@ class ThingsController < PostsController
 
     `qrencode -o #{file} '#{url}'`
     if $?.success?
+      expires_in 15.minutes
       send_data File.read(file), :disposition => 'inline', :type => 'image/png'
     else
       render :text => 'error, retry.'
