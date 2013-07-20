@@ -61,6 +61,7 @@ namespace :customer_service do
     rescue Exception
       puts 'maybe not start'
     end
+    sleep 5 # ensure server stop
     run("cd #{deploy_to}/current && bundle exec rake websocket_rails:start_server RAILS_ENV=#{rails_stage}")
   end
 end
