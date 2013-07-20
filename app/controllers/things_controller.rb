@@ -4,7 +4,7 @@ require 'open-uri'
 class ThingsController < PostsController
   after_filter :store_location, only: [:show]
 
-  caches_action :weixin_qr, :expires_in => 1.hour
+  caches_action :weixin_qr, :expires_in => 30.minutes
 
   def index
     scope = case params[:sort]
