@@ -32,7 +32,7 @@ module CustomerService
     end
 
     def recent(limit = 10)
-      Dialog.limit(limit).sort(:natural => 1)
+      Dialog.where(:user => self.user).limit(limit).order_by([:created_at, :desc]).reverse
     end
   end
 end
