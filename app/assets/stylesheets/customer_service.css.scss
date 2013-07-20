@@ -5,7 +5,8 @@
 #ticket {
   z-index: 10;
   position: fixed;
-  right: 10em;
+  right: 0;
+  display: none;
   height: 340px;
   width: 300px;
   @include border-radius(4px);

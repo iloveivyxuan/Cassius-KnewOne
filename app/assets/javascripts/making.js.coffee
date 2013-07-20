@@ -39,10 +39,28 @@ window.Making =
       gen_system_html = (reason) ->
         "<div class='system'>--- #{reason} ---</div>"
 
+      url = "#{document.domain}:3000/websocket"
       $ticket = $('#ticket')
-
       $container = $('#ticket').find('.dialogs')
-      dispatcher = new WebSocketRails(document.domain + ':3000/websocket')
+      dispatcher = new WebSocketRails(url)
+
+      body_height = $ticket.height() - $ticket.find('.ticket-header').height()
+
+      $ticket.css('bottom', -body_height)
+      $ticket.show()
+
+      $ticket.find('.show').click ->
+        $ticket.animate({bottom: 0})
+        $(@).hide()
+        $ticket.find('.hide').show()
+      $ticket.find('.hide').click ->
+        $ticket.animate({bottom: -body_height})
+        $(@).hide()
+        $ticket.find('.show').show()
+      $ticket.find('.close').click ->
+        $ticket.hide()
+        $container.html('')
+        $ticket.find('*').off()
 
       dispatcher.on_open = (data) ->
         client_id = data.connection_id + ''
@@ -68,39 +86,26 @@ window.Making =
           console.log('[' + data.time + '] Another staff is serving you.<br>')
         )
 
-      dispatcher.trigger('customer_context', {},
-      (data) ->
-        context_html = ""
-        for dialog in data
-          context_html += gen_dialog_html(dialog.kind, dialog)
-        context_html += gen_system_html('聊天记录结束')
-        $container.append(context_html)
-      ,
-      ->
-        console.log('get customer context failure')
-      )
+        dispatcher.trigger('customer_context', {},
+        (data) ->
+          context_html = ""
+          for dialog in data
+            context_html += gen_dialog_html(dialog.kind, dialog)
+          context_html += gen_system_html('聊天记录结束')
+          $container.append(context_html)
+        ,
+        ->
+          console.log('get customer context failure')
+        )
 
-      dispatcher.trigger('customer_assign', {location: document.documentURI},
-      (data) ->
-        console.log('get staff channel success.')
-      ,
-      () ->
-        $container.append(gen_system_html('没有客服在线'))
-        console.log('get staff channel failure.')
-      )
-
-      body_height = $ticket.height() - $ticket.find('.ticket-header').height()
-
-      $ticket.css('bottom', -body_height)
-
-      $ticket.find('.show').click ->
-        $ticket.animate({bottom: 0})
-        $(@).hide()
-        $ticket.find('.hide').show()
-      $ticket.find('.hide').click ->
-        $ticket.animate({bottom: -body_height})
-        $(@).hide()
-        $ticket.find('.show').show()
+        dispatcher.trigger('customer_assign', {location: document.documentURI},
+        (data) ->
+          console.log('get staff channel success.')
+        ,
+        () ->
+          $container.append(gen_system_html('没有客服在线'))
+          console.log('get staff channel failure.')
+        )
 
       $ticket.find('.ticket-body').on("DOMSubtreeModified",
       ->
