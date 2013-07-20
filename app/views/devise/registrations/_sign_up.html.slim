@@ -1,0 +1,9 @@
+= simple_form_for(:user, url: user_registration_path) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :email, required: true, autofocus: true
+    = f.input :nickname, required: true
+    = f.input :password, required: true
+    = f.input :password_confirmation, required: true
+  .form-actions
+    = f.button :submit, "Sign up"

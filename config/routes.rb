@@ -2,7 +2,9 @@ Making::Application.routes.draw do
   root to: 'home#index'
   get '/page/:page', to: "home#index"
 
-  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks", :registrations => "registrations"}
+  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks", :registrations => "registrations"} do
+    put 'profile', :to => 'profiles#update'
+  end
   resources :users, only: [:show, :index] do
     collection do
       post 'share'
@@ -63,6 +65,6 @@ Making::Application.routes.draw do
   get '/search', to: 'home#search', as: :search
   get '/sandbox', to: 'home#sandbox'
 
-  match "/404", :to => "home#not_found"
-  match "/403", :to => "home#forbidden"
+  get "/404", :to => "home#not_found"
+  get "/403", :to => "home#forbidden"
 end
