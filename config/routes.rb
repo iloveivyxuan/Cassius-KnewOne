@@ -11,14 +11,20 @@ Making::Application.routes.draw do
   end
 
   resources :things do
-    collection { get 'admin' }
-    member { post 'fancy' }
-    member { post 'own' }
-    member { get 'buy' }
-    member { get 'buy_package' }
-    member { get 'comments' }
-    member { get 'pro_edit' }
-    member { put 'pro_update' }
+    collection do
+      get 'admin'
+    end
+
+    member do
+      post 'fancy'
+      post 'own'
+      get 'buy'
+      get 'buy_package'
+      get 'comments'
+      get 'pro_edit'
+      put 'pro_update'
+      get 'weixin_qr'
+    end
 
     resources :reviews do
       member { post 'vote' }

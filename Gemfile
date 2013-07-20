@@ -37,6 +37,8 @@ gem 'settingslogic'
 gem 'newrelic_rpm'
 gem 'airbrake'
 
+gem 'rest-client'
+
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
