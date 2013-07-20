@@ -127,12 +127,14 @@ class ThingsController < PostsController
     rand = %w( 4 3 1 2 9 8 2 5 4 0 5 7 7 6 5 ).shuffle.join('')
     res = RestClient.get "https://open.weixin.qq.com/qr/set/?a=1&title=#{URI::encode(@thing.title)}&url=#{thing_url(@thing)}&img=#{@thing.cover.url}&appid=&r=0.#{rand}"
     url = "http://open.weixin.qq.com/qr/#{/showWxBox\("(.+)"\)/.match(res)[1]}#wechat_redirect"
-    file = Rails.root.join("tmp/weixin_qr/#{@thing.id}.png")
-    `qrencode -o #{file} '#{url}'`
+    path = Rails.root.join("tmp/weixin_qr")
+    file = path.join("#{@thing.id}.png")
+
+    `mkdir #{path} && qrencode -o #{file} '#{url}'`
     if $?.success?
       send_data File.read(file), :disposition => 'inline', :content_type => 'image/png'
     else
-      render :text => 'error'
+      render :text => 'error, retry.'
     end
   end
 end
