@@ -129,7 +129,7 @@ class ThingsController < PostsController
 
     `qrencode -o #{file} '#{url}'`
     if $?.success?
-      expires_in 15.minutes
+      response.headers["Expires"] = CGI.rfc1123_date(Time.now + 15.minutes)
       send_data File.read(file), :disposition => 'inline', :type => 'image/png'
     else
       render :text => 'error, retry.'
