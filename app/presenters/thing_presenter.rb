@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 class ThingPresenter < PostPresenter
   presents :thing
-  delegate :title, :subtitle, :photos, :author, to: :thing
+  delegate :title, :subtitle, :photos, to: :thing
 
   def full_title
     [title, subtitle].reject(&:blank?).join(' - ')

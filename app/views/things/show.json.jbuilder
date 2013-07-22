@@ -1,14 +1,15 @@
-present @thing do |tp|
-  json.(tp, :title)
-  json.(tp, :subtitle)
-  json.url thing_url(tp.thing)
-  json.photo tp.photo_url(:huge)
-  json.(tp, :content)
-  json.(tp.thing, :price_unit)
-  json.(tp.thing, :price)
-  json.set! :author do
-    json.avatar tp.author.avatar.url
-    json.user_id tp.author.id
-    json.name tp.author.name
-  end
+json.title @thing.title
+json.subtitle @thing.subtitle
+json.url thing_url(@thing)
+json.content @thing.content
+json.price_unit @thing.price_unit
+json.price @thing.price
+json.photo @thing.cover.url(:huge)
+json.photos @thing.photos do |photo|
+  json.url photo.image.url
+end
+json.author do
+  json.avatar @thing.author.avatar.url(:small)
+  json.id @thing.author.id
+  json.name @thing.author.name
 end
