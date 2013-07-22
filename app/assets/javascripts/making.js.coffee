@@ -69,6 +69,7 @@ window.Making =
         $ticket.find('.hide').hide()
         $ticket.find('*').off()
         dispatcher.trigger('client_disconnected')
+        $.cookie('ticket_autorun', false, { expires: 1 })
         window.TicketEnabled = false
 
       dispatcher.on_open = (data) ->
