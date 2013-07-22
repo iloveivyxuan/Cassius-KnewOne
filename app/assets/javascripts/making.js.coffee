@@ -34,6 +34,7 @@ window.Making =
 
   TicketOn: ->
     $ ->
+      return if window.TicketEnabled
       gen_dialog_html = (kind, data) ->
         html = "<div class='#{kind}'>"
         html += "<div class='sender'><img src='#{data.avatar}' class='img-circle avatar'><p>#{data.identity}</p></div>"
