@@ -1,11 +1,14 @@
 json.array!(@things) do |thing|
-  present thing do |tp|
-    json.(tp, :title)
-    json.(tp, :subtitle)
-    json.url thing_url(tp.thing)
-    json.photo tp.photo_url(:huge)
-    json.(tp, :content)
-    json.(tp.thing, :price_unit)
-    json.(tp.thing, :price)
+  json.title thing.title
+  json.subtitle thing.subtitle
+  json.url thing_url(thing)
+  json.photo thing.cover.url(:huge)
+  json.content thing.content
+  json.price_unit thing.price_unit
+  json.price thing.price
+  json.author do
+    json.avatar thing.author.avatar.url
+    json.id thing.author.id
+    json.name thing.author.name
   end
 end
