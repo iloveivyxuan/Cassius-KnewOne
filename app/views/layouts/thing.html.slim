@@ -7,7 +7,5 @@
       section#thing_content= yield
       aside#thing_packages
         ul= render partial: "things/package", collection: tp.packages
-      = render 'shared/share', id: 'thing_share', content: tp.share_content, pic: tp.photo_url(:huge) 
-      = render 'things/supplier', tp: tp
 
 = render template: 'layouts/application'

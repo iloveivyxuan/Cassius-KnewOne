@@ -71,11 +71,6 @@ class ThingPresenter < PostPresenter
     end
   end
 
-  def supplier
-    link_to_with_icon "我可以提供此产品", "icon-truck", "#",
-                      data: {toggle: "modal", target: "#supplier-modal"}
-  end
-
   def official_site
     if thing.official_site.present?
       link_to_with_icon "", "icon-globe", thing.official_site, target: "_blank", title: "官方信息"

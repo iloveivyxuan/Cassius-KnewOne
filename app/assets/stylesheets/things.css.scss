@@ -198,7 +198,7 @@
   }
 
   @media screen and (min-width: 1024px) {
-    > * {
+    > *:not(:last-child) {
       padding-bottom: 2em;
       border-bottom: 1px solid #eee;
       margin-bottom: 2em;
@@ -220,22 +220,28 @@
     }
 
     .actions {
-
       > * {
         text-align: right;
+        width: 47%;
         i {float: left;}
-        small {
-          margin-left: 2em;
-          font-size: 1em;
+        small {font-size: 1em;}
+
+        &:not(:last-child) {
+          margin-bottom: 1em;
+        }
+
+        &:not(.supplier) {
+          a {line-height: 1.8em;}
+          i {font-size: 1.8em;}
         }
       }
 
-      > * {width: 47%;}
-      > *:not(:last-child) {margin-bottom: 1em;}
+      .fanciers, .owners {
+        small {margin-left: 2em;}
+      }
 
-      .fanciers, .owners, .share {
-        a {line-height: 1.8em;}
-        i {font-size: 1.8em;}
+      .wechat {
+        i {color: lighten($green, 15%);}
       }
 
       .supplier {
@@ -281,6 +287,7 @@
         small {display: none;}
       }
 
+      .wechat {display: none;}
       .supplier {display: none;}
     }
 
@@ -345,8 +352,12 @@
   }
 }
 
-#supplier-modal {
+#thing_supplier {
   input[type="text"], input[type="url"], textarea {width: 80%;}
+}
+
+#thing_share_wechat {
+  .modal-body {text-align: center;}
 }
 
 #go_top {
@@ -377,3 +388,4 @@
     padding-top: .5em;
   }
 }
+

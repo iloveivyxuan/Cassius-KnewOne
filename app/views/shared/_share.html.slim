@@ -11,5 +11,6 @@
         = f.input :content, as: :text, label: false, input_html: {rows: 5, value: content}
         = f.input :pic, as: :hidden, input_html: {value: pic}
       .modal-footer
+        span class="words-check"
         = button_tag "取消", type: 'button', class: "btn", data: {dismiss: "modal"}
         = f.submit "发布", class: "btn btn-primary"

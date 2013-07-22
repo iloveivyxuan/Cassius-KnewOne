@@ -1,0 +1,7 @@
+#thing_share_wechat.modal.hide.fade
+  .modal-header
+    = button_tag type: 'button', class: 'close', data: {dismiss: "modal"} do
+      raw &times;
+    h5 请在微信中扫描以下二维码，以将此产品分享到朋友圈
+  .modal-body
+    = image_tag wechat_qr_thing_path(tp.thing, format: :svg)

@@ -60,6 +60,7 @@ class Ability
     can :buy,  Thing
     can :buy_package, Thing
     can :comments, Thing
+    can :wechat_qr, Thing
     can :activate, Guest
     can :create, Supplier
   end
