@@ -7,15 +7,13 @@ module CustomerService
 
     def client_connected
       if current_user.role?(:admin)
-        staff = Staff.new client_id, current_user.id
-        online_staff staff
+        staff = online_staff
 
-        broadcast_to 'admin', :staff_online, {:identity => staff.name, :time => Time.now}
+        broadcast_to 'admin', :staff_online, notice_message(staff)
       else
-        customer = Customer.new client_id, current_user.id
-        online_customer customer
+        customer = online_customer
 
-        broadcast_to 'admin', :customer_online, {:identity => customer.name, :time => Time.now}
+        broadcast_to 'admin', :customer_online, notice_message(customer)
       end
     end
 
@@ -26,31 +24,27 @@ module CustomerService
           if another_staff = online_staffs.values.sample
             another_staff.serve c
 
-            broadcast_to 'admin', :customer_assign_changed, {:from => staff.name,
-                                                             :to => c.staff.name,
-                                                             :identity => c.name,
-                                                             :time => Time.now}
-            broadcast_to another_staff.channel, :customer_assign, {
-                :channel => c.channel,
-                :identity => customer.name,
-                :location => message[:location],
-                :time => Time.now}
+            broadcast_to 'admin', :customer_assign_changed, notice_message(c,
+                                                                           :from => staff.name,
+                                                                           :to => c.staff.name)
+            broadcast_to another_staff.channel, :customer_assign, notice_message(customer,
+                                                                                 :channel => c.channel,
+                                                                                 :location => message[:location])
             broadcast_to c.channel, :staff_changed, {:time => Time.now}
           else
             broadcast_to c.channel, :no_staff, {:time => Time.now}
           end
         end
 
-        broadcast_to 'admin', :staff_offline, {:identity => staff.name, :time => Time.now}
+        broadcast_to 'admin', :staff_offline, notice_message(staff)
       else
         if staff = current_customer.staff
-          broadcast_to staff.channel, :customer_offline, {:identity => current_customer.name,
-                                                          :channel => current_customer.channel,
-                                                          :time => Time.now}
+          broadcast_to staff.channel, :customer_offline, notice_message(current_customer,
+                                                                        :channel => current_customer.channel)
         end
         customer = offline_customer
 
-        broadcast_to 'admin', :customer_offline, {:identity => customer.name, :time => Time.now}
+        broadcast_to 'admin', :customer_offline, notice_message(customer)
       end
     end
 
@@ -59,12 +53,10 @@ module CustomerService
       if staff = online_staffs.values.sample
         staff.serve(customer)
 
-        broadcast_to staff.channel, :customer_assign, {
-            :customer_id => customer.user_id,
-            :channel => customer.channel,
-            :identity => customer.name,
-            :location => message[:location],
-            :time => Time.now}
+        broadcast_to staff.channel, :customer_assign, notice_message(customer,
+                                                                     :customer_id => customer.user_id,
+                                                                     :channel => customer.channel,
+                                                                     :location => message[:location])
         trigger_success({})
       else
         trigger_failure({})
@@ -74,19 +66,9 @@ module CustomerService
     def ask
       if dialog = current_customer.ask(message[:body])
         if current_customer.staff
-          broadcast_to current_customer.staff.channel, :customer_ask, {
-              :body => dialog.body,
-              :time => dialog.created_at,
-              :identity => current_customer.name,
-              :avatar => current_customer.avatar,
-              :channel => current_customer.channel
-          }
-          broadcast_to current_customer.channel, :customer_ask, {
-              :body => dialog.body,
-              :time => dialog.created_at,
-              :identity => current_customer.name,
-              :avatar => current_customer.avatar
-          }
+          broadcast_to current_customer.staff.channel, :customer_ask,
+                       content_message(current_customer, dialog, :channel => current_customer.channel)
+          broadcast_to current_customer.channel, :customer_ask, content_message(current_customer, dialog)
         end
         trigger_success({})
       else
@@ -97,19 +79,10 @@ module CustomerService
     def answer
       if dialog = current_staff.answer(message[:customer_id], message[:body])
         customer_channel = current_staff.customer(message[:customer_id]).channel
-        broadcast_to customer_channel, :staff_answer, {
-            :body => dialog.body,
-            :time => dialog.created_at,
-            :identity => current_staff.name,
-            :avatar => current_staff.avatar
-        }
-        broadcast_to current_staff.channel, :staff_answer, {
-            :body => dialog.body,
-            :time => dialog.created_at,
-            :identity => current_staff.name,
-            :avatar => current_staff.avatar,
-            :channel => customer_channel
-        }
+        broadcast_to customer_channel, :staff_answer, content_message(current_staff, dialog)
+
+        broadcast_to current_staff.channel, :staff_answer,
+                     content_message(current_staff, dialog, :channel => customer_channel)
         trigger_success({})
       else
         trigger_failure({})
@@ -124,11 +97,11 @@ module CustomerService
       end
       context = dialogs.collect do |d|
         {
+            :body => d.body,
+            :time => d.created_at,
             :identity => d.sender.name,
             :avatar => d.sender.avatar.url(:small),
-            :kind => d.kind,
-            :body => d.body,
-            :time => d.created_at
+            :kind => d.kind
         }
       end
 
@@ -140,6 +113,19 @@ module CustomerService
     end
 
     private
+    def notice_message(sender, extra = {})
+      {:identity => sender.name, :time => Time.now}.merge extra
+    end
+
+    def content_message(sender, content, extra = {})
+      {
+          :body => content.body,
+          :time => content.created_at,
+          :identity => sender.name,
+          :avatar => sender.avatar
+      }.merge extra
+    end
+
     def online_customers
       controller_store[:customers]
     end
@@ -148,8 +134,10 @@ module CustomerService
       controller_store[:staffs]
     end
 
-    def online_customer(customer)
+    def online_customer
+      customer = Customer.new client_id, current_user.id
       online_customers.merge! client_id => customer
+      customer
     end
 
     def current_customer
@@ -160,8 +148,10 @@ module CustomerService
       online_staffs[client_id]
     end
 
-    def online_staff(staff)
+    def online_staff
+      staff = Staff.new client_id, current_user.id
       online_staffs.merge! client_id => staff
+      staff
     end
 
     def offline_customer

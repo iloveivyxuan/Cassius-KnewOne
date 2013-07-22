@@ -15,6 +15,7 @@ window.Making =
       $(".track_event").click ->
         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
       Making.GoTop()
+      Making.TicketSwitch()
 
   GoTop: ->
     $(window).on 'scroll', ->
@@ -27,7 +28,11 @@ window.Making =
       $(@).fadeOut()
       $('html,body').animate {scrollTop: 0}, 'slow'
 
-  Ticket: ->
+  TicketSwitch: ->
+    $('#ticket_switch').click ->
+      window.Making.TicketOn() unless window.TicketEnabled
+
+  TicketOn: ->
     $ ->
       gen_dialog_html = (kind, data) ->
         html = "<div class='#{kind}'>"
@@ -60,7 +65,11 @@ window.Making =
       $ticket.find('.close').click ->
         $ticket.hide()
         $container.html('')
+        $ticket.find('.show').show()
+        $ticket.find('.hide').hide()
         $ticket.find('*').off()
+        dispatcher.trigger('client_disconnected')
+        window.TicketEnabled = false
 
       dispatcher.on_open = (data) ->
         client_id = data.connection_id + ''
@@ -125,6 +134,8 @@ window.Making =
             )
           $(@).val('')
           false
+
+      window.TicketEnabled = true
 
   TrackEvent: (category, action, label) ->
     try
