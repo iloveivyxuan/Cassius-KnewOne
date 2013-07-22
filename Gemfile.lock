@@ -279,6 +279,9 @@ GEM
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rinku (1.7.3)
+    rqrcode (0.4.2)
+    rqrcode-rails3 (0.1.6)
+      rqrcode (>= 0.4.2)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -401,8 +404,8 @@ DEPENDENCIES
   rails-i18n
   rb-fsevent
   rb-inotify
-  rest-client
   rinku
+  rqrcode-rails3
   rspec-rails
   rvm-capistrano
   sass-rails
