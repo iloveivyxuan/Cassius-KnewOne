@@ -15,7 +15,7 @@
     = link_to user_signed_in? ? "#thing_share" : "#login-modal", title: "分享", 
     data: {toggle: 'modal', keyboard: false} do
       i.icon-share-alt.icon-fixed-width
-      small 分享
+      small 微博分享
   .wechat
     = link_to "#thing_share_wechat", title: "微信朋友圈分享", 
     data: {toggle: 'modal'} do
@@ -30,7 +30,7 @@
 
 .action_modals
   = render 'shared/share', id: 'thing_share', content: tp.share_content, pic: tp.photo_url(:huge) 
-  = render 'wechat', tp: tp
-  = render 'supplier', tp: tp
+  = render 'things/wechat', tp: tp
+  = render 'things/supplier', tp: tp
 
 
