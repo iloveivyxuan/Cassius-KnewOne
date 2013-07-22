@@ -120,27 +120,18 @@ class ThingsController < PostsController
 
   def wechat_qr
     # require 'rest_client'
-    # require 'open-uri'
-    # rand = %w( 4 3 1 2 9 8 2 5 4 0 5 7 7 6 5 ).shuffle.join('')
-    # add param from wechat
-    # res = RestClient.get "https://open.weixin.qq.com/qr/set/?a=1&title=#{URI::encode(@thing.title)}&url=#{thing_url(@thing)}&img=#{@thing.cover.url}&appid=&r=0.#{rand}"
-    # url = "http://open.weixin.qq.com/qr/#{/showWxBox\("(.+)"\)/.match(res)[1]}#wechat_redirect"
-    # file = Rails.root.join("tmp/#{@thing.id}.png")
-
-    # `qrencode -o #{file} '#{url}'`
-    # if $?.success?
-    #   response.headers["Expires"] = CGI.rfc1123_date(Time.now + 15.minutes)
-    #   send_data File.read(file), :disposition => 'inline', :type => 'image/png'
-    # else
-    #   render :text => 'error, retry.'
-    # end
-
-    url = "http://knewone.com"
+    url_set = %{
+https://open.weixin.qq.com/qr/set/?a=1\
+&title=#{URI::encode(@thing.title)}\
+&url=#{thing_url(@thing)}\
+&img=#{@thing.cover.url}\
+&appid=&r=#{rand}}
+    res = RestClient.get url_set
+    url_get = "http://open.weixin.qq.com/qr/#{/showWxBox\("(.+)"\)/.match(res)[1]}#wechat_redirect"
 
     expires_in 30.minutes
     respond_to do |format|
-      format.html {render text: url}
-      format.svg  {render qrcode: url}
+      format.svg  {render qrcode: url_get, unit: 6}
     end
   end
 end
