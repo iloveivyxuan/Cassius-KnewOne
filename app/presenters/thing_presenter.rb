@@ -112,9 +112,9 @@ class ThingPresenter < PostPresenter
     user_signed_in? or return
     topic = present(current_user).topic_wrapper(brand)
     if current_user == thing.author
-      "我在#{topic}上分享了一个酷产品, #{title}: #{thing_url(thing)}"
+      "我在#{topic}上分享了一个酷产品, #{title}: #{thing_url(thing, :refer => 'weibo')}"
     else
-      str = "我在#{topic}发现了一个酷产品, #{title}: #{thing_url(thing)}"
+      str = "我在#{topic}发现了一个酷产品, #{title}: #{thing_url(thing, :refer => 'weibo')}"
       if current_user.current_auth && current_user != thing.author
         if current_user.equal_auth_provider?(thing.author)
           str += " (感谢 @#{thing.author.current_auth.nickname} 分享)"

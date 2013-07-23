@@ -35,6 +35,6 @@ class ReviewPresenter < PostPresenter
       content = "我在#{share_topic}分享了 @#{review.author.current_auth.nickname} 对#{review.thing.title}的评测: "
     end
 
-    content += thing_review_url(review.thing, review)
+    content += thing_review_url(review.thing, review, :refer => 'weibo')
   end
 end

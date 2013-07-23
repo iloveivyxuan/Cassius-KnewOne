@@ -123,7 +123,7 @@ class ThingsController < PostsController
     url_set = %{
 https://open.weixin.qq.com/qr/set/?a=1\
 &title=#{URI::encode(@thing.title)}\
-&url=#{thing_url(@thing)}\
+&url=#{thing_url(@thing, :refer => 'wechat')}\
 &img=#{@thing.cover.url}\
 &appid=&r=#{rand}}
     res = RestClient.get url_set
