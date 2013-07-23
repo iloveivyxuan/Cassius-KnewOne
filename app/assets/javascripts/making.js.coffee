@@ -137,6 +137,7 @@ window.Making =
           $(@).val('')
           false
 
+      $.cookie('ticket_autorun', true)
       window.TicketEnabled = true
 
   TrackEvent: (category, action, label) ->
