@@ -5,7 +5,10 @@ class User
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, :trackable
 
-  field :name, type: String
+  field :name, type: String, :default => ''
+  field :nickname, type: String, :default => ''
+  field :description, type: String, :default => ''
+  field :location, type: String, :default => ''
   field :karma, type: Integer, default: 0
 
   ## Database authenticatable
@@ -28,7 +31,8 @@ class User
 
   mount_uploader :avatar, AvatarUploader
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :avatar, :name
+  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :avatar, :avatar_cache, :name, :nickname, :description, :location
 
   ## Omniauthable
   embeds_many :auths
@@ -43,7 +47,10 @@ class User
       create do |user|
         auth = Auth.from_omniauth(data)
         user.auths << auth
-        user.name = auth.nickname
+        user.name = auth.name
+        user.nickname = auth.nickname
+        user.location = auth.location
+        user.description = auth.description
         user.remote_avatar_url = auth.parse_image(data)
         user.password = Digest::MD5.hexdigest auth.access_token
       end
@@ -62,7 +69,10 @@ class User
     auth = auths.where(provider: data[:provider]).first
     if auth
       auth.update_from_omniauth(data)
-      self.name = auth.nickname
+      self.name = auth.name
+      self.nickname = auth.nickname
+      self.location = auth.location
+      self.description = auth.description
       self.remote_avatar_url = auth.parse_image(data)
       save
     end
