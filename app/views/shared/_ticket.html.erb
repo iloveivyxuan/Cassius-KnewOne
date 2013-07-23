@@ -9,15 +9,14 @@
       </ul>
     </div>
     <div class="ticket-body">
-      <div class="dialogs"></div>
     </div>
     <div class="ticket-footer">
-      <textarea id="cs_msg" rows="2" placeholder="Type here and hit <ctrl+enter> to chat"></textarea>
+      <textarea id="cs_msg" rows="2" placeholder="Type here and hit <enter> to chat"></textarea>
     </div>
   </div>
   <%= content_for :script do %>
     <script>
-      if (($.cookie('ticket_autorun') === undefined) || $.cookie('ticket_autorun') === 'true' ) {
+      if (($.cookie('ticket_autorun') === undefined) || $.cookie('ticket_autorun') === 'true') {
         window.Making.TicketOn();
       }
     </script>

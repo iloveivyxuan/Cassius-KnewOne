@@ -1,4 +1,5 @@
 <div class="customer_service_wrapper">
+  <a href="javascript:void(0)" id="clean_offline" class="btn btn-danger">clean offline</a> <br><br>
   <div class="tabbable">
     <ul class="nav nav-tabs" id="chat-tabs">
       <li class="active"><a href="#global_notifications" data-toggle="tab">Global</a></li>
@@ -58,12 +59,21 @@
 
       channel.bind('customer_offline', function (data) {
         var target_container = $('#user_' + data.channel + '_messages');
+        var tab = $('#user_' + data.channel + '_tab');
         target_container.append('[' + data.time + '] Customer ' + data.identity + ' is offline.<br><br>');
         $('#user_' + data.channel + '_form').hide();
-        $('#user_' + data.channel + '_tab').append('(offline)');
+        tab.append('(offline)');
+        tab.parent().addClass('offline');
       });
       channel.bind('customer_ask', function(data) {
         var target_container = $('#user_' + data.channel + '_messages');
+        var tab = $('#user_' + data.channel + '_tab');
+        document.title = 'unhandled message from ' + data.identity;
+        tab.text(data.identity + '(new)');
+        tab.click(function() {
+          tab.text(data.identity);
+          $(this).off('click');
+        })
         target_container.append('[' + data.time + '] Customer ' + data.identity + ' asked:<br> ' + data.body + '<br><br>');
       });
       channel.bind('staff_answer', function(data) {
@@ -89,5 +99,9 @@
     admin_channel.bind('customer_assign_changed', function (data) {
       notification_container.append('[' + data.time + '] Staff ' + data.to + ' is serving customer ' + data.identity + ' instead of ' + data.from + '.<br>');
     });
+
+    $('#clean_offline').click(function() {
+      $('.offline').remove();
+    })
   </script>
 <% end %>

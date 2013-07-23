@@ -38,7 +38,10 @@ window.Making =
       gen_dialog_html = (kind, data) ->
         html = "<div class='#{kind}'>"
         html += "<div class='sender'><img src='#{data.avatar}' class='img-circle avatar'><p>#{data.identity}</p></div>"
+        html += "<div class='body-wrapper'>"
+        html += "<div class='triangle-wrapper'><div class='triangle-outer'></div><div class='triangle-inner'></div></div>"
         html += "<div class='body'>#{data.body}</div>"
+        html += "</div>"
         html += "</div>"
         html
 
@@ -47,7 +50,7 @@ window.Making =
 
       url = "#{document.domain}:3000/websocket"
       $ticket = $('#ticket')
-      $container = $('#ticket').find('.dialogs')
+      $container = $('#ticket').find('.ticket-body')
       dispatcher = new WebSocketRails(url)
 
       body_height = $ticket.height() - $ticket.find('.ticket-header').height()
@@ -125,7 +128,7 @@ window.Making =
 
       $ticket.find('textarea').keypress ->
         $this = $(@)
-        if event.ctrlKey && event.keyCode == 13
+        if event.keyCode == 13
           if $(@).val().replace('/[\s\r\n]/g', '') != ""
             dispatcher.trigger('ask', {body: $this.val()},
             ->

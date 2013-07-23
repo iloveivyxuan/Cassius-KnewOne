@@ -50,6 +50,7 @@
       }
     }
   }
+
   .ticket-body {
     height: 228px;
     overflow-y: scroll;
@@ -73,38 +74,101 @@
     .ask, .answer {
       margin: 12px;
       @include clearfix();
+      .body-wrapper {
+        position: relative;
+        display: table-cell;
+        vertical-align: middle;
+        overflow: hidden;
 
-      .body {
-        @include border-radius(4px);
-        max-width: 180px;
-        word-break: break-all;
-        padding: 14px 10px 14px 10px;
-        font-size: 12px;
-        line-height: 18px;
-        border: #dee2e5 solid 1px;
+        .triangle-wrapper {
+          position: absolute;
+          top: 44%;
+          height: 4px;
+          width: 4px;
+        }
+
+        .body {
+          @include border-radius(4px);
+          max-width: 176px;
+          word-break: break-all;
+          padding: 14px 10px 14px 10px;
+          font-size: 12px;
+          line-height: 18px;
+          border: #dee2e5 solid 1px;
+        }
       }
     }
 
     .ask {
-      .sender, .body {
+      .sender, .body-wrapper {
         float: right;
       }
       .sender {
         margin-left: 14px;
       }
+      .triangle-wrapper {
+        right: 0;
+
+        .triangle-outer {
+          &:after {
+            @include triangle;
+            top: 0;
+            right: 0;
+            border-left: 4px solid #dee2e5;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+          }
+        }
+        .triangle-inner {
+          &:after {
+            @include triangle;
+            top: 0;
+            right: 1px;
+            border-left: 4px solid #fbfbfb;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+          }
+        }
+      }
       .body {
+        margin-right: 3px;
         background-color: #fbfbfb;
       }
     }
 
     .answer {
-      .sender, .body {
+      .sender, .body-wrapper {
         float: left;
       }
       .sender {
         margin-right: 14px;
       }
+      .triangle-wrapper {
+        left: 0;
+
+        .triangle-outer {
+          &:after {
+            @include triangle;
+            top: 0;
+            left: 0;
+            border-right: 4px solid #dee2e5;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+          }
+        }
+        .triangle-inner {
+          &:after {
+            @include triangle;
+            top: 0;
+            left: 1px;
+            border-right: 4px solid #88d0ff;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+          }
+        }
+      }
       .body {
+        margin-left: 3px;
         background-color: #88d0ff;
       }
     }
