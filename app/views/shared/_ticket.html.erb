@@ -17,7 +17,7 @@
   </div>
   <%= content_for :script do %>
     <script>
-      if ($.cookie('ticket_autorun') === undefined || !$.cookie('ticket_autorun')) {
+      if (($.cookie('ticket_autorun') === undefined) || $.cookie('ticket_autorun') === 'true' ) {
         window.Making.TicketOn();
       }
     </script>

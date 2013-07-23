@@ -66,12 +66,12 @@ window.Making =
       $ticket.find('.close').click ->
         $ticket.hide()
         $container.html('')
+        $.cookie('ticket_autorun', false)
+        window.TicketEnabled = false
         $ticket.find('.show').show()
         $ticket.find('.hide').hide()
         $ticket.find('*').off()
         dispatcher.trigger('client_disconnected')
-        $.cookie('ticket_autorun', false, { expires: 1 })
-        window.TicketEnabled = false
 
       dispatcher.on_open = (data) ->
         client_id = data.connection_id + ''
