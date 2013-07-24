@@ -287,7 +287,10 @@
         small {display: none;}
       }
 
-      .wechat {display: none;}
+      .wechat {
+        i {color: lighten($green, 15%);}
+        text-decoration: none;
+      }
       .supplier {display: none;}
     }
 
