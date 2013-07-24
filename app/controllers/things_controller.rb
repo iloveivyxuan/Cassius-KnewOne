@@ -3,14 +3,14 @@ class ThingsController < PostsController
 
   def index
     scope = case params[:sort]
-            when "self_run"
-              Thing.published.where(is_self_run: true)
-            when "fancy"
-              Thing.unscoped.published.desc(:fanciers_count)
-            when "shop"
-              Thing.ne(shop: "")
-            else
-              Thing.published
+              when "self_run"
+                Thing.published.where(is_self_run: true)
+              when "fancy"
+                Thing.unscoped.published.desc(:fanciers_count)
+              when "shop"
+                Thing.ne(shop: "")
+              else
+                Thing.published
             end
 
     @things = scope.page(params[:page]).per(12)
@@ -131,7 +131,8 @@ https://open.weixin.qq.com/qr/set/?a=1\
 
     expires_in 30.minutes
     respond_to do |format|
-      format.svg  {render qrcode: url_get, unit: 6}
+      format.svg { render qrcode: url_get, unit: 6 }
+      format.html { redirect_to url_get }
     end
   end
 end
