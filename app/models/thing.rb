@@ -16,10 +16,10 @@ class Thing < Post
   field :stage, type: Symbol, default: :concept
   field :stage_end_at, type: DateTime
   STAGES = {
-    concept: "概念品",
+    concept: "研发中",
     domestic: "国内导购",
     abroad: "国外海淘",
-    presell: "预售",
+    presell: "预购",
     ship: "运送中",
     stock: "现货",
     exclusive: "限量"
@@ -42,9 +42,8 @@ class Thing < Post
   has_many :lotteries, dependent: :delete
 
   scope :published, -> { lt(created_at: Time.now) }
-
   scope :prior, -> { unscoped.published.gt(priority: 0).desc(:priority, :created_at) }
-
+  scope :self_run, -> { published.in(stage: STAGES.keys.from(3)) }
   default_scope desc(:created_at)
 
   after_update :inc_karma
@@ -118,4 +117,7 @@ class Thing < Post
     end
   end
 
+  def self_run?
+    STAGES.keys.index(stage) > 2
+  end
 end

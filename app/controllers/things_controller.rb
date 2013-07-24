@@ -4,11 +4,9 @@ class ThingsController < PostsController
   def index
     scope = case params[:sort]
             when "self_run"
-              Thing.published.in(stage: [:presell, :ship, :stock])
+              Thing.self_run
             when "fancy"
               Thing.unscoped.published.desc(:fanciers_count)
-            when "shop"
-              Thing.ne(shop: "")
             else
               Thing.published
             end

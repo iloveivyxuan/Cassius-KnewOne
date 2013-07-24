@@ -1,8 +1,8 @@
 - present thing do |tp|
   li.thing
-    - if tp.pre?
-      .pre_ribbon 
-        span 预购
+    - if tp.self_run?
+      .pre_ribbon class="#{tp.stage}"
+        span= tp.stage_text
     = link_to tp.photo(size), tp.thing, target: "_blank"
     h4 data-toggle="tooltip" data-placement="bottom" title=tp.full_title 
       = tp.full_title
@@ -20,5 +20,4 @@
           i.icon-book
           = tp.reviews_count
       = tp.price
-      = tp.can_buy
     = render "things/stage_end_at", tp: tp

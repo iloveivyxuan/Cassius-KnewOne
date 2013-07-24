@@ -11,6 +11,8 @@ window.Making =
       Making.Score()
       Making.Share()
       $(".popover-toggle").popover()
+      $("a.disabled").click -> 
+        false
       $(".thing h4").tooltip()
       $(".track_event").click ->
         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')

@@ -122,7 +122,16 @@
       @include transform-origin(0, 0);
       @include rotate(45deg);
       @include box-shadow(rgba(0, 0, 0, 0.3) 1px 1px 10px);
-      @include background($orange);
+    }
+
+    &.presell, &.ship {
+      span {@include background($orange);}
+    }
+    &.stock {
+      span {@include background($green);}
+    }
+    &.exclusive {
+      span {@include background($purple);}
     }
   }
 
@@ -309,10 +318,6 @@ time {
 
 .reviews_count {
   color: $blue;
-}
-
-.can_buy {
-  color: $green;
 }
 
 .pre {
