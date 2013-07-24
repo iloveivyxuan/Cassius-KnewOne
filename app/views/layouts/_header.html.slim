@@ -83,9 +83,9 @@ header
               li= link_to things_path do
                 i.icon-time
                 | 最新产品
-              li= link_to 'javascript:void(0)', :id => 'ticket_switch' do
-                i.icon-user
-                | 在线客服
+              /li= link_to 'javascript:void(0)', :id => 'ticket_switch' do
+              /  i.icon-user
+              /  | 在线客服
               - if current_user.is_guest?
                 li= link_to limits_guests_path do
                   i.icon-superscript
