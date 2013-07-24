@@ -131,13 +131,13 @@
       letter-spacing: .25em;
       span {
         @include background($orange);
-        @include opacity(0.75);
+        @include opacity(0.8);
       }
     }
     &.stock {
       span {
         @include background($green);
-        @include opacity(0.75);
+        @include opacity(0.8);
       }
     }
     &.exclusive {
