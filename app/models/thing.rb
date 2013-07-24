@@ -2,7 +2,6 @@
 class Thing < Post
   include Mongoid::Slug
   slug :title
-
   field :subtitle, type: String, default: ""
   field :official_site, type: String, default: ""
   field :description, type: String, default: ""
@@ -10,21 +9,19 @@ class Thing < Post
   validates :description, length: { maximum: 2048 }
 
   field :shop, type: String, default: ""
-  field :oversea_shop, type: String, default: ""
   field :price, type: Float
-  CURRENCY_LIST = %w{¥ $ € £}
   field :price_unit, type: String, default: "¥"
-
+  CURRENCY_LIST = %w{¥ $ € £}
   field :priority, type: Integer, default: 0
-  field :is_self_run, type: Boolean, default: false
-
-  field :stage, type: Symbol, default: :nosale
+  field :stage, type: Symbol, default: :concept
   field :stage_end_at, type: DateTime
   STAGES = {
-    nosale: "无售",
-    presale: "预售",
-    shipping: "运送中",
-    sale: "现货",
+    concept: "概念品",
+    domestic: "国内导购",
+    abroad: "国外海淘",
+    presell: "预售",
+    ship: "运送中",
+    stock: "现货",
     exclusive: "限量"
   }
   validates :stage, inclusion: { in: STAGES.keys }

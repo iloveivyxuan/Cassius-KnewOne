@@ -50,27 +50,6 @@ class ThingPresenter < PostPresenter
     end
   end
 
-  def oversea_shop
-    if thing.oversea_shop.present?
-      link_to_with_icon "海淘", "icon-plane icon-large", thing.oversea_shop, target: '_blank',
-                        class: "track_event btn btn-info oversea_shop",
-                        data: {action: "buy", category: "thing", label: title}
-    end
-  end
-
-  def self_run
-    if thing.is_self_run?
-      link_to_with_icon "#{brand}自营", "icon-trophy", "#",
-                        class: "popover-toggle self_run",
-                        data: {
-                            toggle: "popover",
-                            placement: "bottom",
-                            title: "什么是#{brand}自营?",
-                            content: "为了保证商品的质量，我们会从可靠的供应商处获得一些最受欢迎的产品，通过自己经营的网店进行销售，请大家放心购买"
-                        }
-    end
-  end
-
   def official_site
     if thing.official_site.present?
       link_to_with_icon "", "icon-globe", thing.official_site, target: "_blank", title: "官方信息"
@@ -144,7 +123,7 @@ class ThingPresenter < PostPresenter
   end
 
   def pre?
-    thing.stage == :presale
+    thing.stage == :presell
   end
 
   private

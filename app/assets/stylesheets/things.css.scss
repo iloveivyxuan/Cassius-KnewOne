@@ -143,15 +143,6 @@
   @include right-layout;
 
   .shop {
-    .self_run {
-      margin-left: .5em;
-      color: $fontLightColor;
-      vertical-align: 1px;
-      i {
-        font-size: 1.2em;
-        color: $purple;
-      }
-    }
 
     .pre_over_at {
       i {
@@ -269,7 +260,6 @@
         margin-right: 1em;
       }
 
-      .self_run {display: none;}
     }
 
     .actions {
