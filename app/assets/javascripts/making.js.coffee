@@ -30,7 +30,9 @@ window.Making =
 
   TicketSwitch: ->
     $('#ticket_switch').click ->
-      window.Making.TicketOn() unless window.TicketEnabled
+      unless window.TicketEnabled
+        window.Making.TicketOn()
+        $('#ticket .show').click()
 
   TicketOn: ->
     $ ->
@@ -50,7 +52,7 @@ window.Making =
 
       url = "#{document.domain}:3000/websocket"
       $ticket = $('#ticket')
-      $container = $('#ticket').find('.ticket-body')
+      $container = $('#ticket').find('.ticket-body .dialogs')
       dispatcher = new WebSocketRails(url)
 
       body_height = $ticket.height() - $ticket.find('.ticket-header').height()
@@ -100,33 +102,36 @@ window.Making =
           console.log('[' + data.time + '] Another staff is serving you.<br>')
         )
 
-        dispatcher.trigger('customer_context', {},
-        (data) ->
-          context_html = ""
-          for dialog in data
-            context_html += gen_dialog_html(dialog.kind, dialog)
-          context_html += gen_system_html('聊天记录结束')
-          $container.append(context_html)
-        ,
-        ->
-          console.log('get customer context failure')
-        )
-
         dispatcher.trigger('customer_assign', {location: document.documentURI},
         (data) ->
           console.log('get staff channel success.')
+          dispatcher.trigger('customer_context', {},
+          (data) ->
+            context_html = ""
+            for dialog in data
+              context_html += gen_dialog_html(dialog.kind, dialog)
+            context_html += gen_system_html('聊天记录结束')
+            $container.append(context_html)
+          ,
+          ->
+            console.log('get customer context failure')
+          )
         ,
         () ->
           $container.append(gen_system_html('没有客服在线'))
           console.log('get staff channel failure.')
+
+          $container.parent().hide()
+          $ticket.find('.ticket-message').show()
+          dispatcher.trigger('client_disconnected')
         )
 
-      $ticket.find('.ticket-body').on("DOMSubtreeModified",
+      $container.on("DOMSubtreeModified",
       ->
         $(@).scrollTop(@.scrollHeight)
       )
 
-      $ticket.find('textarea').keypress ->
+      $ticket.find('.dialog-form textarea').keypress ->
         $this = $(@)
         if event.keyCode == 13
           if $(@).val().replace('/[\s\r\n]/g', '') != ""

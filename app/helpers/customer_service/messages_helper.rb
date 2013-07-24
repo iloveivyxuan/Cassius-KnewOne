@@ -1,0 +1,2 @@
+module CustomerService::MessagesHelper
+end

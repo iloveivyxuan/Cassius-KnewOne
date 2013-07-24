@@ -1,4 +1,5 @@
 Making::Application.routes.draw do
+
   root to: 'home#index'
   get '/page/:page', to: "home#index"
 
@@ -12,6 +13,8 @@ Making::Application.routes.draw do
 
   namespace :customer_service do
     get '/', :to => 'dialogs#index'
+
+    resources :tickets, :only => [:destroy, :index, :create]
   end
 
   resources :things do

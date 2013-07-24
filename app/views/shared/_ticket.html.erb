@@ -4,14 +4,21 @@
       <h1 class="title">在线客服 (Beta™)</h1>
       <ul class="actions">
         <li><a href="javascript:void(0)" class="hide">&nbsp;_&nbsp;</a></li>
-        <li><a href="javascript:void(0)" class="show">&nbsp;☐&nbsp;</a></li>
+        <li><a href="javascript:void(0)" class="show">&nbsp;+&nbsp;</a></li>
         <li><a href="javascript:void(0)" class="close">&nbsp;×&nbsp;</a></li>
       </ul>
     </div>
     <div class="ticket-body">
+      <div class="dialogs"></div>
+      <div class="dialog-form">
+        <textarea id="cs_msg" rows="2" placeholder="Type here and hit <enter> to chat"></textarea>
+      </div>
     </div>
-    <div class="ticket-footer">
-      <textarea id="cs_msg" rows="2" placeholder="Type here and hit <enter> to chat"></textarea>
+    <div class="ticket-message">
+      <p>
+        我们暂时不在线，请留言，我们会尽快联系你，谢谢。
+      </p>
+      <%= render 'customer_service/tickets/form' %>
     </div>
   </div>
   <%= content_for :script do %>

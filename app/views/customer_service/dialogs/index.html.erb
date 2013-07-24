@@ -10,6 +10,15 @@
   </div>
 </div>
 
+<%= content_for :stylesheet do %>
+  <style type="text/css">
+    .messages {
+      max-height: 450px;
+      overflow-y: scroll;
+    }
+  </style>
+<% end %>
+
 <%= content_for :script do %>
   <script>
     var container = $('#chat-container');
@@ -23,7 +32,7 @@
         var customer_id = data.customer_id;
         var customer_channel = data.channel;
         tab_container.append('<li><a href="#user_' + customer_channel + '" data-toggle="tab" id="user_' + customer_channel + '_tab">' + data.identity + '</a></li>');
-        container.append('<div class="tab-pane" id="user_' + customer_channel + '"><div id="user_' + customer_channel + '_messages"></div></div>');
+        container.append('<div class="tab-pane" id="user_' + customer_channel + '"><div id="user_' + customer_channel + '_messages" class="messages"></div></div>');
         var customer_container = $('#user_' + customer_channel);
         customer_container.append('<div id="user_' + customer_channel +'_form"></div>');
 
@@ -38,9 +47,18 @@
           }, function() {
             console.log('send failure');
           });
-        })
+        });
+        $('#user_' + customer_channel + '_message').keypress(function() {
+          if(event.keyCode == 13) {
+            $('#user_' + customer_channel + '_send').click();
+          }
+        });
 
         var target_container = $('#user_' + data.channel + '_messages');
+        target_container.on("DOMSubtreeModified", function () {
+          $(this).scrollTop(this.scrollHeight);
+        });
+
         target_container.append('[' + data.time + '] Customer ' + data.identity + ' who watching <a href="' + data.location + '">' + data.location + '</a> is assigned to you.<br>');
 
         dispatcher.trigger('customer_context', {customer_id: customer_id}, function(data) {
@@ -62,8 +80,11 @@
         var tab = $('#user_' + data.channel + '_tab');
         target_container.append('[' + data.time + '] Customer ' + data.identity + ' is offline.<br><br>');
         $('#user_' + data.channel + '_form').hide();
-        tab.append('(offline)');
-        tab.parent().addClass('offline');
+//        tab.append('(offline)');
+//        tab.parent().addClass('offline');
+
+        tab.parent().remove();
+        target_container.parent().remove();
       });
       channel.bind('customer_ask', function(data) {
         var target_container = $('#user_' + data.channel + '_messages');
