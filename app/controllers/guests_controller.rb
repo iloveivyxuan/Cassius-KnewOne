@@ -34,10 +34,4 @@ class GuestsController < ApplicationController
       render "activate_fail"
     end
   end
-
-  def limits
-    redirect_to root_path unless current_user and current_user.is_guest?
-    @things = Thing.where(is_limit: true)
-  end
-
 end

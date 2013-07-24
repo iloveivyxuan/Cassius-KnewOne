@@ -143,17 +143,8 @@
   @include right-layout;
 
   .shop {
-    .self_run {
-      margin-left: .5em;
-      color: $fontLightColor;
-      vertical-align: 1px;
-      i {
-        font-size: 1.2em;
-        color: $purple;
-      }
-    }
-
     .pre_over_at {
+      margin: 0;
       i {
         margin-right: .2em;
         font-size: 1.5em;
@@ -212,10 +203,11 @@
         small {font-size: 1.2em;}
       }
 
-      > a {
-        display: block;
-        width: 50%;
-        i {margin-right: 1em;}
+      .buy {
+        a {
+          width: 50%;
+          i {margin-right: 1em;}
+        }
       }
     }
 
@@ -223,17 +215,18 @@
       > * {
         text-align: right;
         width: 47%;
-        i {float: left;}
+        a {line-height: 1.8em;}
+        i {
+          float: left;
+          font-size: 1.8em;
+        }
         small {font-size: 1em;}
 
         &:not(:last-child) {
           margin-bottom: 1em;
         }
 
-        &:not(.supplier) {
-          a {line-height: 1.8em;}
-          i {font-size: 1.8em;}
-        }
+        
       }
 
       .fanciers, .owners {
@@ -241,18 +234,11 @@
       }
 
       .wechat {
-        i {color: lighten($green, 15%);}
+        i {color: $textColor;}
       }
 
       .supplier {
-        a {
-          color: $grayLight;
-          i {
-            padding-top: 2px;
-            margin-left: 5px;
-            margin-right: 0;
-          }
-        }
+        i {color: $grayLight;}
       }
     }
   }
@@ -269,7 +255,6 @@
         margin-right: 1em;
       }
 
-      .self_run {display: none;}
     }
 
     .actions {
@@ -298,13 +283,19 @@
     .shop {
       float: none;
       text-align: center;
+      height: auto;
+      .pre_over_at {
+        i {display: none;}
+        font-size: .8em;
+        display: block;
+      }
       margin-bottom: 1em;
-      .pre_over_at {display: none;}
     }
 
     .actions {
       float: none;
       text-align: center;
+      width: 100%;
       margin-bottom: 1em;
     }
   }
@@ -388,4 +379,3 @@
     padding-top: .5em;
   }
 }
-

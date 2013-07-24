@@ -2,33 +2,37 @@
 class Thing < Post
   include Mongoid::Slug
   slug :title
-
   field :subtitle, type: String, default: ""
   field :official_site, type: String, default: ""
   field :description, type: String, default: ""
   field :photo_ids, type: Array, default: []
-
-  validates :description, length: { maximum: 65536 }
+  validates :description, length: { maximum: 2048 }
 
   field :shop, type: String, default: ""
-  field :oversea_shop, type: String, default: ""
   field :price, type: Float
   field :price_unit, type: String, default: "¥"
-  field :is_limit, type: Boolean, default: false
-  field :is_self_run, type: Boolean, default: false
-
+  CURRENCY_LIST = %w{¥ $ € £}
   field :priority, type: Integer, default: 0
-  field :is_pre, type: Boolean, default: false
-  field :pre_over_at, type: DateTime
-
-  field :scores, type: Array, default: []
-  field :fanciers_count, type: Integer, default: 0
+  field :stage, type: Symbol, default: :concept
+  field :stage_end_at, type: DateTime
+  STAGES = {
+    concept: "研发中",
+    domestic: "国内导购",
+    abroad: "国外海淘",
+    presell: "预购",
+    ship: "运送中",
+    stock: "现货",
+    exclusive: "限量"
+  }
+  validates :stage, inclusion: { in: STAGES.keys }
 
   # https://github.com/jnicklas/carrierwave/issues/81
   embeds_many :packages, cascade_callbacks: true
   accepts_nested_attributes_for :packages, allow_destroy: true
-
   include Mongoid::MultiParameterAttributes
+
+  field :scores, type: Array, default: []
+  field :fanciers_count, type: Integer, default: 0
 
   has_many :reviews, dependent: :delete
   has_many :updates, dependent: :delete
@@ -37,12 +41,9 @@ class Thing < Post
 
   has_many :lotteries, dependent: :delete
 
-  validates :description, length: { maximum: 2048 }
-
   scope :published, -> { lt(created_at: Time.now) }
-
   scope :prior, -> { unscoped.published.gt(priority: 0).desc(:priority, :created_at) }
-
+  scope :self_run, -> { published.in(stage: STAGES.keys.from(3)) }
   default_scope desc(:created_at)
 
   after_update :inc_karma
@@ -116,4 +117,7 @@ class Thing < Post
     end
   end
 
+  def self_run?
+    STAGES.keys.index(stage) > 2
+  end
 end

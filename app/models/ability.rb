@@ -64,7 +64,6 @@ class Ability
     can :comments, Thing
     can :wechat_qr, Thing
     can :activate, Guest
-    can :limits, Guest
     can :create, Supplier
   end
 end

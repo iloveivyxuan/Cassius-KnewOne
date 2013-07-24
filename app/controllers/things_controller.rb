@@ -4,11 +4,9 @@ class ThingsController < PostsController
   def index
     scope = case params[:sort]
             when "self_run"
-              Thing.published.where(is_self_run: true)
+              Thing.self_run
             when "fancy"
               Thing.unscoped.published.desc(:fanciers_count)
-            when "shop"
-              Thing.ne(shop: "")
             else
               Thing.published
             end
@@ -24,7 +22,7 @@ class ThingsController < PostsController
 
   def admin
     if params[:can_buy]
-      @things = Thing.nor(shop: "", oversea_shop: "").page params[:page]
+      @things = Thing.ne(shop: "").page params[:page]
     else
       @things = Thing.page params[:page]
     end

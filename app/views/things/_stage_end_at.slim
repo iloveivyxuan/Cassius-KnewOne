@@ -1,0 +1,13 @@
+- if tp.stage_end_at.present? and tp.stage_end_at > Time.now
+  - if tp.stage == :presell
+    p.pre_over_at
+      i.icon-time
+      | 预购将在
+      = time_tag tp.stage_end_at, distance_of_time_in_words_to_now(tp.stage_end_at)
+      | 后结束
+  - elsif tp.stage == :ship
+    p.pre_over_at
+      i.icon-time
+      | 此产品将在
+      = time_tag tp.stage_end_at, distance_of_time_in_words_to_now(tp.stage_end_at)
+      | 后到货

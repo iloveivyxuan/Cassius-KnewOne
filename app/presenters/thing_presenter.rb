@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 class ThingPresenter < PostPresenter
   presents :thing
-  delegate :title, :subtitle, :photos, to: :thing
+  delegate :title, :subtitle, :photos,
+  :stage, :self_run?, :stage_end_at, to: :thing
 
   def full_title
     [title, subtitle].reject(&:blank?).join(' - ')
@@ -22,51 +23,89 @@ class ThingPresenter < PostPresenter
   end
 
   def price
-    if thing.price.to_i > 0 and can_buy?
+    if thing.price.to_i > 0
       content_tag :small,
-                  number_to_currency(thing.price, precision: 2, unit: thing.price_unit)
+      number_to_currency(thing.price, precision: 2,
+                         unit: thing.price_unit)
     end
   end
 
-  def shop
-    if thing.is_pre and can_buy?
-      link_to_with_icon "预购", "icon-shopping-cart icon-large", buy_thing_path(thing), target: '_blank',
-                        class: "track_event btn btn-warning",
-                        data: {action: "buy", category: "thing", label: title}
-    elsif can_buy?
-      link_to_with_icon "购买", "icon-shopping-cart icon-large", buy_thing_path(thing), target: '_blank',
-                        class: "track_event btn btn-success",
-                        data: {action: "buy", category: "thing", label: title}
+  def concept
+    link_to_with_icon "研发中", "icon-wrench icon-large", "#",
+    title: "概念产品", class: "btn disabled popover-toggle",
+    data: {
+      toggle: "popover",
+      placement: "bottom",
+      content: "由于产品还在研发之中，目前还没有合适的渠道让您购买到此商品，不过，我们会一直追踪此商品的最新动向，一旦您所在的地区可以购买，我们会第一时间提供最靠谱的购买渠道，敬请期待"
+    }
+  end
+
+  def domestic
+    link_to_with_icon "网购", "icon-location-arrow icon-large", buy_thing_path(thing),
+    title: title, class: "btn btn-info track_event", target: "_blank",
+    data: {
+      action: "buy",
+      category: "domestic",
+      label: title
+    }
+  end
+
+  def abroad
+    link_to_with_icon "海淘", "icon-plane icon-large", buy_thing_path(thing),
+    title: title, class: "btn btn-info track_event", target: "_blank",
+    data: {
+      action: "buy",
+      category: "abroad",
+      label: title
+    }
+  end
+
+  def presell
+    link_to_with_icon "预购", "icon-phone icon-large", buy_thing_path(thing),
+    title: title, class: "btn btn-warning track_event", target: "_blank",
+    data: {
+      action: "buy",
+      category: "presell",
+      label: title
+    }
+  end
+
+  def ship
+    link_to_with_icon "到货中", "icon-anchor icon-large", "#",
+    title: "断货产品", class: "btn btn-success disabled popover-toggle",
+    data: {
+      toggle: "popover",
+      placement: "bottom",
+      content: "十分抱歉，我们当前没有此产品的库存，不过，一旦新一批产品到货，我们将会通知每位喜欢此产品的用户"
+    }
+  end
+
+  def stock
+    link_to_with_icon "购买", "icon-shopping-cart icon-large", buy_thing_path(thing),
+    title: title, class: "btn btn-success track_event", target: "_blank",
+    data: {
+      action: "buy",
+      category: "stock",
+      label: title
+    }
+  end
+
+  def exclusive
+    link_to_with_icon "限量", "icon-credit-card icon-large", "#",
+    title: "限量产品", class: "btn btn-inverse disabled popover-toggle",
+    data: {
+      toggle: "popover",
+      placement: "bottom",
+      content: "此产品数量非常有限，因此我们只提供给少数最狂热的爱好者，敬请谅解"
+    }
+  end
+
+  def buy
+    if thing.shop.present?
+      link = send stage if respond_to? stage
+      link || concept
     else
-      link_to_with_icon "购买", "icon-shopping-cart icon-large", "#",
-                        class: "btn disabled popover-toggle",
-                        data: {
-                            toggle: "popover",
-                            placement: "top",
-                            title: "暂时不能购买",
-                            content: "抱歉，目前还没有合适的渠道让您购买到此商品，不过，我们会一直追踪此商品的最新动向，一旦您所在的地区可以购买，我们会第一时间提供最靠谱的购买渠道，敬请期待"
-                        }
-    end
-  end
-
-  def oversea_shop
-    if thing.oversea_shop.present?
-      link_to_with_icon "海淘", "icon-plane icon-large", thing.oversea_shop, target: '_blank',
-                        class: "track_event btn btn-info oversea_shop",
-                        data: {action: "buy", category: "thing", label: title}
-    end
-  end
-
-  def self_run
-    if thing.is_self_run?
-      link_to_with_icon "#{brand}自营", "icon-trophy", "#",
-                        class: "popover-toggle self_run",
-                        data: {
-                            toggle: "popover",
-                            placement: "bottom",
-                            title: "什么是#{brand}自营?",
-                            content: "为了保证商品的质量，我们会从可靠的供应商处获得一些最受欢迎的产品，通过自己经营的网店进行销售，请大家放心购买"
-                        }
+      concept
     end
   end
 
@@ -136,35 +175,7 @@ class ThingPresenter < PostPresenter
     end
   end
 
-  def pre?
-    thing.is_pre
-  end
-
-  def can_buy
-    if can_buy?
-      content_tag :span, title: "可以购买", class: "can_buy" do
-        content_tag :i, "", class: "icon-shopping-cart"
-      end
-    end
-  end
-
-  def limit
-    if thing.is_limit
-      content_tag :span, title: "限量产品", class: "limit" do
-        content_tag(:i, "", class: "icon-trophy")
-      end
-    end
-  end
-
-  private
-
-  def can_buy?
-    if thing.shop.blank?
-      false
-    elsif thing.is_limit?
-      current_user and current_user.is_guest?
-    else
-      true
-    end
+  def stage_text
+    Thing.const_get(:STAGES)[stage]
   end
 end
