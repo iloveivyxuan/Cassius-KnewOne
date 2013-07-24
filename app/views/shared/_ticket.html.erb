@@ -1,0 +1,24 @@
+<%- if user_signed_in? && !current_user.role?(:editor) %>
+  <div id="ticket">
+    <div class="ticket-header">
+      <h1 class="title">在线客服 (Beta™)</h1>
+      <ul class="actions">
+        <li><a href="javascript:void(0)" class="hide">&nbsp;_&nbsp;</a></li>
+        <li><a href="javascript:void(0)" class="show">&nbsp;☐&nbsp;</a></li>
+        <li><a href="javascript:void(0)" class="close">&nbsp;×&nbsp;</a></li>
+      </ul>
+    </div>
+    <div class="ticket-body">
+    </div>
+    <div class="ticket-footer">
+      <textarea id="cs_msg" rows="2" placeholder="Type here and hit <enter> to chat"></textarea>
+    </div>
+  </div>
+  <%= content_for :script do %>
+    <script>
+      if (($.cookie('ticket_autorun') === undefined) || $.cookie('ticket_autorun') === 'true') {
+        window.Making.TicketOn();
+      }
+    </script>
+  <% end -%>
+<% end -%>

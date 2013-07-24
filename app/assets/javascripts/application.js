@@ -11,6 +11,7 @@
 //= require jquery.raty
 //= require jquery.infinitescroll
 //= require jquery.hotkeys
+//= require jquery.cookie
 //= require bootstrap-wysiwyg
 //= require sisyphus
 //= require_tree ../templates
@@ -19,3 +20,4 @@
 //= require_tree ./collections
 //= require_tree ./views
 //= require_tree ./routers
+//= require websocket_rails/main

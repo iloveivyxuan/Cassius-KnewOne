@@ -1,0 +1,192 @@
+.customer_service_wrapper {
+  @include responsive-wrapper;
+}
+
+#ticket {
+  z-index: 10;
+  position: fixed;
+  right: 0;
+  display: none;
+  height: 340px;
+  width: 300px;
+  @include border-radius(4px);
+  @include box-shadow(rgba(0, 0, 0, 0.1) 1px 1px 10px);
+  background-color: #ffffff;
+
+  .ticket-header {
+    background-color: #576071;
+    height: 48px;
+    @include border-top-radius(2px);
+    margin: 2px 2px 0 2px;
+
+    .title {
+      margin: 0 10px;
+      font-size: 16px;
+      color: #ffffff;
+      float: left;
+      line-height: 48px;
+      letter-spacing: 1px;
+    }
+    .actions {
+      float: right;
+      margin: 0;
+      li {
+        list-style-type: none;
+        margin-right: 10px;
+        float: left;
+        a {
+          font-size: 16px;
+          line-height: 48px;
+          color: #a9adb0;
+          &:hover {
+            color: #ffffff;
+          }
+          font-weight: bolder;
+
+          &.hide {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .ticket-body {
+    height: 228px;
+    overflow-y: scroll;
+    margin: 0 2px 0 2px;
+    .sender {
+      text-align: center;
+      img {
+        width: 40px;
+        height: 40px;
+      }
+      p {
+        max-width: 40px;
+        font-size: 8px;
+        line-height: 8px;
+        word-break: break-all;
+        margin: 2px 0 0 0;
+        color: #88d0ff;
+      }
+    }
+
+    .ask, .answer {
+      margin: 12px;
+      @include clearfix();
+      .body-wrapper {
+        position: relative;
+        display: table-cell;
+        vertical-align: middle;
+        overflow: hidden;
+
+        .triangle-wrapper {
+          position: absolute;
+          top: 44%;
+          height: 4px;
+          width: 4px;
+        }
+
+        .body {
+          @include border-radius(4px);
+          max-width: 176px;
+          word-break: break-all;
+          padding: 14px 10px 14px 10px;
+          font-size: 12px;
+          line-height: 18px;
+          border: #dee2e5 solid 1px;
+        }
+      }
+    }
+
+    .ask {
+      .sender, .body-wrapper {
+        float: right;
+      }
+      .sender {
+        margin-left: 14px;
+      }
+      .triangle-wrapper {
+        right: 0;
+
+        .triangle-outer {
+          &:after {
+            @include triangle;
+            top: 0;
+            right: 0;
+            border-left: 4px solid #dee2e5;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+          }
+        }
+        .triangle-inner {
+          &:after {
+            @include triangle;
+            top: 0;
+            right: 1px;
+            border-left: 4px solid #fbfbfb;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+          }
+        }
+      }
+      .body {
+        margin-right: 3px;
+        background-color: #fbfbfb;
+      }
+    }
+
+    .answer {
+      .sender, .body-wrapper {
+        float: left;
+      }
+      .sender {
+        margin-right: 14px;
+      }
+      .triangle-wrapper {
+        left: 0;
+
+        .triangle-outer {
+          &:after {
+            @include triangle;
+            top: 0;
+            left: 0;
+            border-right: 4px solid #dee2e5;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+          }
+        }
+        .triangle-inner {
+          &:after {
+            @include triangle;
+            top: 0;
+            left: 1px;
+            border-right: 4px solid #88d0ff;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+          }
+        }
+      }
+      .body {
+        margin-left: 3px;
+        background-color: #88d0ff;
+      }
+    }
+
+    .system {
+      text-align: center;
+      font-size: 12px;
+    }
+  }
+  .ticket-footer {
+    margin: 10px;
+    textarea {
+      margin: 0;
+      width: 266px;
+      font-size: 12px;
+      line-height: 16px;
+      border: #dae5eb solid 1px;
+      resize: none;
+    }
+  }
+}

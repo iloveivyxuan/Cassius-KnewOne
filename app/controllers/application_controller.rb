@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
     session[:previous_url] || root_path
   end
 
+  def require_admin
+    redirect_to '/403' unless current_user and current_user.role?(:admin)
+  end
+
   private
 
   def trim_param_id

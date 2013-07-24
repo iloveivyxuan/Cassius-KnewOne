@@ -38,6 +38,8 @@ gem 'settingslogic'
 gem 'newrelic_rpm'
 gem 'airbrake'
 
+gem 'websocket-rails'
+
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
