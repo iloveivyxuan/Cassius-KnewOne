@@ -71,7 +71,7 @@ class ThingPresenter < PostPresenter
   end
 
   def ship
-    link_to_with_icon "到货中", "icon-anchor icon-large", "#",
+    link_to_with_icon "即将到货", "icon-anchor icon-large", "#",
     title: "断货产品", class: "btn btn-success disabled popover-toggle",
     data: {
       toggle: "popover",

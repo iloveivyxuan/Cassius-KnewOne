@@ -20,7 +20,7 @@ class Thing < Post
     domestic: "国内导购",
     abroad: "国外海淘",
     presell: "预购",
-    ship: "运送中",
+    ship: "即将到货",
     stock: "现货",
     exclusive: "限量"
   }

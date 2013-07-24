@@ -124,7 +124,11 @@
       @include box-shadow(rgba(0, 0, 0, 0.3) 1px 1px 10px);
     }
 
-    &.presell, &.ship {
+    &.presell {
+      span {@include background($orange);}
+    }
+    &.ship {
+      letter-spacing: .25em;
       span {@include background($orange);}
     }
     &.stock {
