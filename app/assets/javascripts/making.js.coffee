@@ -16,17 +16,9 @@ window.Making =
       $(".thing h4").tooltip()
       $(".track_event").click ->
         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
+      $(".post_content").fitVids()
       Making.GoTop()
-      Making.EmbedVideo()
       Making.TicketSwitch()
-
-  EmbedVideo: ->
-    $iframe = $('.post_content').find('iframe')
-    return unless $iframe.length > 0
-    width = $('.post_content').width()
-    o_width = $iframe.width()
-    $iframe.width(width).height (index, o_height) ->
-      o_height * width / o_width
 
   GoTop: ->
     $(window).on 'scroll', ->

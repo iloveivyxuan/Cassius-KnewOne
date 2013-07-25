@@ -12,6 +12,7 @@
 //= require jquery.infinitescroll
 //= require jquery.hotkeys
 //= require jquery.cookie
+//= require jquery.fitvids
 //= require bootstrap-wysiwyg
 //= require sisyphus
 //= require_tree ../templates

@@ -183,6 +183,11 @@ ul, ol {
   margin: 0;
 }
 
+video {
+  width: 100%    !important;
+  height: auto   !important;
+}
+
 a {
   &:focus {outline: none;}
   &:hover {text-decoration: none;}
