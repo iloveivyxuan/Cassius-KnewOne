@@ -71,12 +71,6 @@ header
                 li= link_to suppliers_path do
                   i.icon-truck
                   | 供货信息
-                li= link_to customer_service_path do
-                  i.icon-group
-                  | 客服后台
-                li= link_to customer_service_tickets_path do
-                  i.icon-group
-                  | 用户留言
               li= link_to current_user do
                 i.icon-user
                 | 个人主页
@@ -86,9 +80,6 @@ header
               li= link_to things_path do
                 i.icon-time
                 | 最新产品
-              li= link_to 'javascript:void(0)', :id => 'ticket_switch' do
-                i.icon-user
-                | 在线客服
               li= link_to destroy_user_session_path, method: :delete do
                 i.icon-signout
                 | 登出

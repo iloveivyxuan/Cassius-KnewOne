@@ -50,7 +50,7 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
-    capistrano-unicorn (0.1.9)
+    capistrano-unicorn (0.1.10)
       capistrano
     carrierwave (0.9.0)
       activemodel (>= 3.2.0)
@@ -94,8 +94,6 @@ GEM
       execjs
     eco-source (1.1.0.rc.1)
     ejs (1.1.1)
-    em-synchrony (1.0.3)
-      eventmachine (>= 1.0.0.beta.1)
     em-websocket (0.5.0)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.5.3)
@@ -106,9 +104,6 @@ GEM
     fabrication (2.7.2)
     faraday (0.8.7)
       multipart-post (~> 1.1)
-    faye-websocket (0.6.2)
-      eventmachine (>= 0.12.0)
-      websocket-driver (>= 0.2.0)
     ffaker (1.16.2)
     ffi (1.9.0)
     font-awesome-rails (3.2.1.2)
@@ -148,7 +143,6 @@ GEM
     hashie (1.2.0)
     highline (1.6.19)
     hike (1.2.3)
-    hiredis (0.4.5)
     http_parser.rb (0.5.3)
     httpauth (0.2.0)
     i18n (0.6.4)
@@ -281,7 +275,6 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
-    redis (3.0.4)
     ref (1.0.5)
     rest-client (1.6.7)
       mime-types (>= 1.16)
@@ -359,15 +352,6 @@ GEM
       raindrops (~> 0.7)
     warden (1.2.3)
       rack (>= 1.0)
-    websocket-driver (0.2.1)
-    websocket-rails (0.4.9)
-      em-synchrony
-      faye-websocket
-      hiredis
-      rack
-      rails
-      redis
-      thin
     weibo_2 (0.1.1)
       hashie (~> 1.2.0)
       json (~> 1.7.3)
@@ -433,5 +417,4 @@ DEPENDENCIES
   twitter
   uglifier
   unicorn
-  websocket-rails
   weibo_2
