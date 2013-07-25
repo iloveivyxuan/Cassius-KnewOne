@@ -52,9 +52,25 @@
   }
 
   .ticket-body {
-    height: 228px;
-    overflow-y: scroll;
     margin: 0 2px 0 2px;
+
+    .dialog-form {
+      margin: 10px;
+      textarea {
+        margin: 0;
+        width: 266px;
+        font-size: 12px;
+        line-height: 16px;
+        border: #dae5eb solid 1px;
+        resize: none;
+      }
+    }
+
+    .dialogs {
+      height: 228px;
+      overflow-y: scroll;
+    }
+
     .sender {
       text-align: center;
       img {
@@ -178,10 +194,12 @@
       font-size: 12px;
     }
   }
-  .ticket-footer {
-    margin: 10px;
+
+  .ticket-message {
+    display: none;
+    padding: 60px 10px 10px 10px;
     textarea {
-      margin: 0;
+      margin: 0 0 11px 0;
       width: 266px;
       font-size: 12px;
       line-height: 16px;
