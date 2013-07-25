@@ -29,6 +29,4 @@ Making::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.delivery_method = :letter_opener
-
-  config.middleware.delete Rack::Lock # for websocket-rails
 end

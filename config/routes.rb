@@ -13,12 +13,6 @@ Making::Application.routes.draw do
     end
   end
 
-  namespace :customer_service do
-    get '/', :to => 'dialogs#index'
-
-    resources :tickets, :only => [:destroy, :index, :create]
-  end
-
   resources :things do
     collection do
       get 'admin'

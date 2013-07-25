@@ -18,7 +18,17 @@ window.Making =
         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
       $(".post_content").fitVids()
       Making.GoTop()
-      Making.TicketSwitch()
+
+  OlarkOn: ->
+    $ ->
+      $('olark_switch').click ->
+        olark('api.box.expand')
+
+  OlarkSetUser: (name, email, id) ->
+    olark('api.visitor.updateFullName', {fullName: name}) if name
+    olark('api.chat.updateVisitorNickname', {snippet: name }) if name
+    olark('api.visitor.updateEmailAddress', {emailAddress: email}) if email
+    olark('api.visitor.updateCustomFields', {customerId: id}) if id
 
   GoTop: ->
     $(window).on 'scroll', ->
@@ -30,126 +40,6 @@ window.Making =
     $('#go_top').click ->
       $(@).fadeOut()
       $('html,body').animate {scrollTop: 0}, 'slow'
-
-  TicketSwitch: ->
-    $('#ticket_switch').click ->
-      unless window.TicketEnabled
-        window.Making.TicketOn()
-        $('#ticket .show').click()
-
-  TicketOn: ->
-    $ ->
-      return if window.TicketEnabled
-      gen_dialog_html = (kind, data) ->
-        html = "<div class='#{kind}'>"
-        html += "<div class='sender'><img src='#{data.avatar}' class='img-circle avatar'><p>#{data.identity}</p></div>"
-        html += "<div class='body-wrapper'>"
-        html += "<div class='triangle-wrapper'><div class='triangle-outer'></div><div class='triangle-inner'></div></div>"
-        html += "<div class='body'>#{data.body}</div>"
-        html += "</div>"
-        html += "</div>"
-        html
-
-      gen_system_html = (reason) ->
-        "<div class='system'>--- #{reason} ---</div>"
-
-      url = "#{document.domain}:3000/websocket"
-      $ticket = $('#ticket')
-      $container = $('#ticket').find('.ticket-body .dialogs')
-      dispatcher = new WebSocketRails(url)
-
-      body_height = $ticket.height() - $ticket.find('.ticket-header').height()
-
-      $ticket.css('bottom', -body_height)
-      $ticket.show()
-
-      $ticket.find('.show').click ->
-        $ticket.animate({bottom: 0})
-        $(@).hide()
-        $ticket.find('.hide').show()
-      $ticket.find('.hide').click ->
-        $ticket.animate({bottom: -body_height})
-        $(@).hide()
-        $ticket.find('.show').show()
-      $ticket.find('.close').click ->
-        $ticket.hide()
-        $container.html('')
-        $.cookie('ticket_autorun', false)
-        window.TicketEnabled = false
-        $ticket.find('.show').show()
-        $ticket.find('.hide').hide()
-        $ticket.find('*').off()
-        dispatcher.trigger('client_disconnected')
-
-      dispatcher.on_open = (data) ->
-        client_id = data.connection_id + ''
-        channel = dispatcher.subscribe(client_id)
-
-        channel.bind('customer_ask',
-        (data) ->
-          console.log("[#{data.time}] Customer #{data.identity} asked:\n #{data.body}")
-          $container.append(gen_dialog_html('ask', data))
-        )
-        channel.bind('staff_answer',
-        (data) ->
-          console.log("[#{data.time}] Staff #{data.identity} answered:\n #{data.body}")
-          $container.append(gen_dialog_html('answer', data))
-        )
-        channel.bind('no_staff',
-        (data) ->
-          console.log("[#{data.time}] No staff or error happend, plz refresh broswer to retry.<br>")
-          $container.append(gen_system_html('没有客服在线'))
-        )
-        channel.bind('staff_changed',
-        (data) ->
-          console.log('[' + data.time + '] Another staff is serving you.<br>')
-        )
-
-        dispatcher.trigger('customer_assign', {location: document.documentURI},
-        (data) ->
-          console.log('get staff channel success.')
-          dispatcher.trigger('customer_context', {},
-          (data) ->
-            context_html = ""
-            for dialog in data
-              context_html += gen_dialog_html(dialog.kind, dialog)
-            context_html += gen_system_html('聊天记录结束')
-            $container.append(context_html)
-          ,
-          ->
-            console.log('get customer context failure')
-          )
-        ,
-        () ->
-          $container.append(gen_system_html('没有客服在线'))
-          console.log('get staff channel failure.')
-
-          $container.parent().hide()
-          $ticket.find('.ticket-message').show()
-          dispatcher.trigger('client_disconnected')
-        )
-
-      $container.on("DOMSubtreeModified",
-      ->
-        $(@).scrollTop(@.scrollHeight)
-      )
-
-      $ticket.find('.dialog-form textarea').keypress ->
-        $this = $(@)
-        if event.keyCode == 13
-          if $(@).val().replace('/[\s\r\n]/g', '') != ""
-            dispatcher.trigger('ask', {body: $this.val()},
-            ->
-              console.log('send success')
-            ,
-            ->
-              console.log('send failure')
-            )
-          $(@).val('')
-          false
-
-      $.cookie('ticket_autorun', true)
-      window.TicketEnabled = true
 
   TrackEvent: (category, action, label) ->
     try
