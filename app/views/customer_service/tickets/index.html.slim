@@ -1,11 +1,12 @@
-h1 Listing customer_service_tickets
+.customer_service_wrapper
+  h1 Listing customer_service_tickets
 
-table
-  tr
-    th Body
-    th
-
-  - @customer_service_tickets.each do |customer_service_ticket|
+  table
     tr
-      td = customer_service_ticket.body
-      td = link_to 'Destroy', customer_service_ticket, :confirm => 'Are you sure?', :method => :delete
+      th Body
+      th
+
+    - @customer_service_tickets.each do |customer_service_ticket|
+      tr
+        td = customer_service_ticket.body
+        td = link_to 'Destroy', customer_service_ticket, :confirm => 'Are you sure?', :method => :delete
