@@ -80,6 +80,9 @@ header
               li= link_to things_path do
                 i.icon-time
                 | 最新产品
+              li= link_to 'javascript:void(0)', class: 'olark_switch' do
+                i.icon-comment-alt
+                | 在线客服
               li= link_to destroy_user_session_path, method: :delete do
                 i.icon-signout
                 | 登出

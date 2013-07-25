@@ -17,7 +17,17 @@ window.Making =
       $(".track_event").click ->
         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
       Making.GoTop()
-      Making.TicketSwitch()
+
+  OlarkOn: ->
+    $ ->
+      $('olark_switch').click ->
+        olark('api.box.expand')
+
+  OlarkSetUser: (name, email, id) ->
+    olark('api.visitor.updateFullName', {fullName: name}) if name
+    olark('api.chat.updateVisitorNickname', {snippet: name }) if name
+    olark('api.visitor.updateEmailAddress', {emailAddress: email}) if email
+    olark('api.visitor.updateCustomFields', {customerId: id}) if id
 
   GoTop: ->
     $(window).on 'scroll', ->

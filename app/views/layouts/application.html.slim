@@ -22,9 +22,9 @@ doctype html
     = render 'shared/login'
     = javascript_include_tag "application"
     = yield :script
+    = render 'layouts/olark'
     - if Rails.env.production? || Rails.env.staging?
       = render 'layouts/analystics'
       = render 'layouts/vglnk'
-      = render 'layouts/olark'
 </html>
 

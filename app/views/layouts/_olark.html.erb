@@ -18,3 +18,8 @@ loader: "static.olark.com/jsclient/loader0.js",name:"olark",methods:["configure"
 /* custom configuration goes here (www.olark.com/documentation) */
 olark.identify('8519-382-10-4320');/*]]>*/</script><noscript><a href="https://www.olark.com/site/8519-382-10-4320/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript>
 <!-- end olark code -->
+<%- if user_signed_in? %>
+  <script>
+    window.Making.OlarkSetUser('<%= current_user.nickname %>', '<%= current_user.email %>', '<%= current_user.id%>');
+  </script>
+<% end -%>
