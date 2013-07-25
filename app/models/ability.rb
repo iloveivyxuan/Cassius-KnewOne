@@ -49,6 +49,8 @@ class Ability
 
     can :readall, Message
     can :read, Message
+
+    can :create, CustomerService::Ticket
   end
 
   def basic

@@ -3,20 +3,27 @@
     <div class="ticket-header">
       <h1 class="title">在线客服 (Beta™)</h1>
       <ul class="actions">
-        <li><a href="javascript:void(0)" class="hide">&nbsp;_&nbsp;</a></li>
-        <li><a href="javascript:void(0)" class="show">&nbsp;☐&nbsp;</a></li>
-        <li><a href="javascript:void(0)" class="close">&nbsp;×&nbsp;</a></li>
+        <li><a href="javascript:void(0)" class="hide"><i class="icon-minus"></i></a></li>
+        <li><a href="javascript:void(0)" class="show"><i class="icon-plus"></i></a></li>
+        <li><a href="javascript:void(0)" class="close"><i class="icon-remove"></i></a></li>
       </ul>
     </div>
     <div class="ticket-body">
+      <div class="dialogs"></div>
+      <div class="dialog-form">
+        <textarea id="cs_msg" rows="2" placeholder="在这里输入，按<回车>提交"></textarea>
+      </div>
     </div>
-    <div class="ticket-footer">
-      <textarea id="cs_msg" rows="2" placeholder="Type here and hit <enter> to chat"></textarea>
+    <div class="ticket-message">
+      <p>
+        我们暂时不在线，请留言，我们会尽快联系你，谢谢。
+      </p>
+      <%= render 'customer_service/tickets/form' %>
     </div>
   </div>
   <%= content_for :script do %>
     <script>
-      if (($.cookie('ticket_autorun') === undefined) || $.cookie('ticket_autorun') === 'true') {
+      if ($.cookie('ticket_autorun') === 'true') {
         window.Making.TicketOn();
       }
     </script>
