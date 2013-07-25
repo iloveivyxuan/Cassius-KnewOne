@@ -23,7 +23,7 @@ module ApplicationHelper
   end
 
   def page_title
-    [brand, content_for(:title)].reject(&:blank?).join('-')
+    raw [brand, content_for(:title)].reject(&:blank?).join('-')
   end
 
   def feed_link_tag

@@ -225,8 +225,6 @@
         &:not(:last-child) {
           margin-bottom: 1em;
         }
-
-        
       }
 
       .fanciers, .owners {
@@ -238,7 +236,11 @@
       }
 
       .supplier {
-        i {color: $grayLight;}
+        i {
+          color: $grayLight;
+          font-size: 1.2em;
+          padding: 2px 0 0 6px;
+        }
       }
     }
   }
