@@ -14,15 +14,12 @@ window.Making =
       $("a.disabled").click -> 
         false
       $(".thing h4").tooltip()
+      $(".post_content").fitVids()
       $(".track_event").click ->
         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
-      $(".post_content").fitVids()
-      Making.GoTop()
-
-  OlarkOn: ->
-    $ ->
-      $('olark_switch').click ->
+      $('.olark_chat').click ->
         olark('api.box.expand')
+      Making.GoTop()
 
   OlarkSetUser: (name, email, id) ->
     olark('api.visitor.updateFullName', {fullName: name}) if name
