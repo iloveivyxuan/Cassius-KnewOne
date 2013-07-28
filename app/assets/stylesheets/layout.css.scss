@@ -58,7 +58,7 @@ body > header {
         }
       }
 
-      .nav_new_thing, .nav_things, .nav_lotteries, .nav_help, .nav_groups {
+      .nav_new_thing, .nav_things, .nav_olark, .nav_lotteries, .nav_help, .nav_groups {
         margin-top: 1px;
         i.icon-caret-down {margin-left: .2em;}
       }
@@ -69,11 +69,17 @@ body > header {
         }
       }
 
-      .nav_groups , .nav_things {
+      .nav_things, .nav_olark {
         @media screen and (max-width: 767px) {
           i.icon-caret-down {display: none;}
           span {display: none;}
           a {padding-right: 0;}
+        }
+      }
+
+      .nav_groups {
+        @media screen and (max-width: 767px) {
+          display: none;
         }
       }
 

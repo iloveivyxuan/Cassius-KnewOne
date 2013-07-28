@@ -38,6 +38,10 @@ header
             = link_to_with_icon "分享产品", "icon-magic", new_thing_path 
           - else
             = link_to_with_icon "分享产品", "icon-magic", "#", data: {toggle: "modal", target: "#login-modal"}
+        li.nav_olark
+          = link_to 'javascript:void(0)', class: 'olark_chat' do
+            i.icon-user-md
+            span 在线帮助
         li.nav_lotteries
           = link_to_with_icon "天天有礼", "icon-gift", lotteries_path 
       ul.nav.pull-right
@@ -80,9 +84,6 @@ header
               li= link_to things_path do
                 i.icon-time
                 | 最新产品
-              li= link_to 'javascript:void(0)', class: 'olark_chat' do
-                i.icon-user-md
-                | 在线帮助
               li= link_to destroy_user_session_path, method: :delete do
                 i.icon-signout
                 | 登出
