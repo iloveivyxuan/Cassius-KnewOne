@@ -165,7 +165,7 @@
       .unfancied {
         .icon-heart {display: none;}
         &:hover {
-          small {color: $red;}
+          span:last-child {color: $red;}
         }
       }
     }
@@ -178,13 +178,9 @@
       .unowned {
         .icon-check {display: none;}
         &:hover {
-          small {color: $green;}
+          span:last-child {color: $green;}
         }
       }
-    }
-
-    > * {
-      small {color: $fontLightColor;}
     }
   }
 
@@ -215,31 +211,30 @@
       > * {
         text-align: right;
         width: 47%;
+        &:not(:last-child) {margin-bottom: 1em;}
+        
         a {line-height: 1.8em;}
+        
         i {
           float: left;
           font-size: 1.8em;
+          @include icon-fixed-width;
         }
-        small {font-size: 1em;}
 
-        &:not(:last-child) {
-          margin-bottom: 1em;
-        }
+        span:last-child {color: $fontLightColor;}
       }
 
       .fanciers, .owners {
-        small {margin-left: 2em;}
+        span:last-child {margin-left: 2em;}
       }
 
       .wechat {
-        i {color: $textColor;}
+        i {color: $green;}
       }
 
       .supplier {
         i {
           color: $grayLight;
-          font-size: 1.2em;
-          padding: 2px 0 0 6px;
         }
       }
     }
@@ -271,7 +266,7 @@
           margin-right: .2em;
           font-size: 1.5em;
         }
-        small {display: none;}
+        span:last-child {display: none;}
       }
 
       .wechat {display: none;}

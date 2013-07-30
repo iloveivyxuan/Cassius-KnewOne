@@ -8,21 +8,24 @@
     = render "things/fancy", tp: tp
   .owners
     = render "things/own", tp: tp
+  .support
+    = link_to 'javascript:void(0)', class: 'olark_chat' do
+      i.icon-user-md
+      span 在线帮助
   .share
     = link_to user_signed_in? ? "#thing_share" : "#login-modal", title: "分享", 
     data: {toggle: 'modal', keyboard: false} do
-      i.icon-share-alt.icon-fixed-width
-      small 微博分享
+      = provider_share
   .wechat
     = link_to "#thing_share_wechat", title: "微信朋友圈分享", 
     data: {toggle: 'modal'} do
-      i.icon-qrcode.icon-fixed-width
-      small 微信朋友圈分享
+      i.icon-qrcode
+      span 微信朋友圈分享
   .supplier
     = link_to "#thing_supplier", title: "提供产品", 
     data: {toggle: "modal", keyboard: false} do
-      i.icon-truck.icon-fixed-width
-      small 我可以提供此产品
+      i.icon-truck
+      span 我想提供此产品
 
 .author_info
   = tp.author_tag

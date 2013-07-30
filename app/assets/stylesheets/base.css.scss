@@ -57,6 +57,13 @@
   }
 }
 
+@mixin icon-fixed-width {
+  display: inline-block;
+  width: 1.1428571428571428em;
+  text-align: center;
+  padding-right: 0.2857142857142857em;
+}
+
 @mixin thing($size) {
   float: left;
   width: $size;
@@ -228,6 +235,10 @@ input {
 
 .icon-weibo {
   color: $red;
+}
+
+.icon-user-md {
+  color: $pink;
 }
 
 .spinning {

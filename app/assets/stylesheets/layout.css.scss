@@ -69,7 +69,7 @@ body > header {
         }
       }
 
-      .nav_things, .nav_olark {
+      .nav_things, .nav_groups {
         @media screen and (max-width: 767px) {
           i.icon-caret-down {display: none;}
           span {display: none;}
@@ -77,7 +77,7 @@ body > header {
         }
       }
 
-      .nav_groups {
+      .nav_olark {
         @media screen and (max-width: 767px) {
           display: none;
         }
