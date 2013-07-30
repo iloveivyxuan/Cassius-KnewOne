@@ -5,7 +5,5 @@
       header#thing_header= render "things/header", tp: tp
       section#thing_actions= render "things/actions", tp: tp
       section#thing_content= yield
-      aside#thing_packages
-        ul= render partial: "things/package", collection: tp.packages
 
 = render template: 'layouts/application'
