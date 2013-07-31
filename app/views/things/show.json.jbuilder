@@ -5,6 +5,9 @@ json.content @thing.content
 json.price_unit @thing.price_unit
 json.price @thing.price
 json.photo @thing.cover.url(:huge)
+json.official_site @thing.official_site
+json.buy_url buy_thing_url(@thing)
+json
 json.photos @thing.photos do |photo|
   json.url photo.image.url
 end
