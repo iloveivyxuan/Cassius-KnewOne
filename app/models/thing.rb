@@ -13,6 +13,7 @@ class Thing < Post
   field :price_unit, type: String, default: "¥"
   CURRENCY_LIST = %w{¥ $ € £}
   field :priority, type: Integer, default: 0
+  field :recommended, type: Boolean, default: false
   field :stage, type: Symbol, default: :concept
   field :stage_end_at, type: DateTime
   STAGES = {

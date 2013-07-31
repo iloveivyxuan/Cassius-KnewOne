@@ -132,4 +132,38 @@ https://open.weixin.qq.com/qr/set/?a=1\
       format.svg  {render qrcode: url_get, unit: 6}
     end
   end
+
+  def resort
+    ordered_things = []
+
+    things = Thing.gt(priority: 0).to_a
+    self_run = things.select(&:self_run?).group_by(&:recommended?).values.reduce &:+
+    ugc = (things - self_run).group_by(&:recommended?).values.reduce &:+
+    count = things.count
+
+    self_run.each do |s|
+      s.priority = count
+      count -= 1
+      ordered_things<< s
+
+      (Random.new(SecureRandom.uuid.gsub(/[-a-z]/, '').to_i).rand(4)).times do
+        t = ugc.pop
+        puts t.title
+        puts count
+        t.priority = count
+        count -= 1
+        ordered_things<< t
+      end
+    end
+
+    ugc.each do |t|
+      t.priority = count
+      count -= 1
+      ordered_things<< t
+    end
+
+    ordered_things.each &:save
+
+    redirect_to admin_things_path
+  end
 end

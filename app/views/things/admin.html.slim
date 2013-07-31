@@ -2,7 +2,9 @@
 
   hgroup
     h1 产品列表
-    p= link_to "可购产品列表", admin_things_path(can_buy: true)
+    p
+      = link_to "自动更新显示权重", resort_things_path, class: 'btn'
+      = link_to "可购产品列表", admin_things_path(can_buy: true), class: 'btn'
 
   table.table.table-striped.table-hover.table-bordered
     tr

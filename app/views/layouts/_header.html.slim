@@ -43,7 +43,7 @@ header
             i.icon-user-md
             span 在线帮助
         li.nav_lotteries
-          = link_to_with_icon "天天有礼", "icon-gift", lotteries_path 
+          = link_to_with_icon "天天有礼", "icon-gift", lotteries_path
       ul.nav.pull-right
         - if user_signed_in?
           - if unread_messages_count > 0

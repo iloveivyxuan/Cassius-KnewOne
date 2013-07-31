@@ -16,6 +16,7 @@ Making::Application.routes.draw do
   resources :things do
     collection do
       get 'admin'
+      get 'resort'
     end
 
     member do
