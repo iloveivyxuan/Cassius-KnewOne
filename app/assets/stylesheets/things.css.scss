@@ -188,6 +188,10 @@
         }
       }
     }
+
+    .support, .share, .wechat, .supplier {
+      i {color: $linkColor;}
+    }
   }
 
   .package:not(:last-child) {
@@ -240,16 +244,6 @@
 
       .fanciers, .owners {
         span:last-child {margin-left: 2em;}
-      }
-
-      .wechat {
-        i {color: $green;}
-      }
-
-      .supplier {
-        i {
-          color: $grayLight;
-        }
       }
     }
 
