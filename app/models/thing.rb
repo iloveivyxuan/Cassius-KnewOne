@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 class Thing < Post
   include Mongoid::Slug
-  slug :title
+  slug :title, history: true
   field :subtitle, type: String, default: ""
   field :official_site, type: String, default: ""
   field :description, type: String, default: ""
