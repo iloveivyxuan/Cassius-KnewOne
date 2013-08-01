@@ -131,7 +131,7 @@ class Thing < Post
 
       things = self.where(lock_priority: false).gt(priority: 0).to_a
 
-      self_run = things.select(&:self_run?).group_by(&:recommended?).values.reduce &:+
+      self_run = things.select(&:self_run?).group_by(&:recommended?).values.reduce(&:+).reverse
       ugc = (things - self_run).group_by(&:recommended?).values.reduce &:+
       count = things.count
 
