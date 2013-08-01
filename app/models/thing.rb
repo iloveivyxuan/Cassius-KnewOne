@@ -154,7 +154,7 @@ class Thing < Post
         ordered_things<< t
       end
 
-      ordered_things.each &:save
+      ordered_things.each {|t| t.save(validate: false)}
     end
   end
 end
