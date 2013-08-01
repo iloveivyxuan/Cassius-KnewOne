@@ -19,6 +19,8 @@ zh-CN:
         shop: '购买'
         price: '价格'
         description: '简介'
+        recommended: '优先排序'
+        lock_priority: '锁定优先级'
   errors:
     messages:
       extension_white_list_error: '上传文件格式不正确'

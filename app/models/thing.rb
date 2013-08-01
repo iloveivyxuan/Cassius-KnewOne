@@ -12,8 +12,11 @@ class Thing < Post
   field :price, type: Float
   field :price_unit, type: String, default: "¥"
   CURRENCY_LIST = %w{¥ $ € £}
+
   field :priority, type: Integer, default: 0
   field :recommended, type: Boolean, default: false
+  field :lock_priority, type: Boolean, default: false
+
   field :stage, type: Symbol, default: :concept
   field :stage_end_at, type: DateTime
   STAGES = {
@@ -120,5 +123,38 @@ class Thing < Post
 
   def self_run?
     STAGES.keys.index(stage) > 2
+  end
+
+  class<< self
+    def resort!
+      ordered_things = []
+
+      things = self.where(lock_priority: false).gt(priority: 0).to_a
+
+      self_run = things.select(&:self_run?).group_by(&:recommended?).values.reduce &:+
+      ugc = (things - self_run).group_by(&:recommended?).values.reduce &:+
+      count = things.count
+
+      self_run.each do |s|
+        s.priority = count
+        count -= 1
+        ordered_things<< s
+
+        (Random.new(SecureRandom.uuid.gsub(/[-a-z]/, '').to_i).rand(97) % 4).times do
+          t = ugc.pop
+          t.priority = count
+          count -= 1
+          ordered_things<< t
+        end
+      end
+
+      ugc.each do |t|
+        t.priority = count
+        count -= 1
+        ordered_things<< t
+      end
+
+      ordered_things.each &:save
+    end
   end
 end
