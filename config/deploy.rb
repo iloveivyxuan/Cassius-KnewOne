@@ -3,6 +3,7 @@ set :rvm_type, :system
 require "rvm/capistrano"
 require 'bundler/capistrano'
 require 'capistrano-unicorn'
+require 'whenever/capistrano'
 
 SERVER_LIST = {
   'staging' => {host: '106.186.20.196', branch: 'staging', stage: 'staging'},
