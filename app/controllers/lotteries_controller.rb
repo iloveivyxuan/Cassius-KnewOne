@@ -3,7 +3,34 @@ class LotteriesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @lotteries = Lottery.page params[:page]
+    respond_to do |format|
+      format.html { @lotteries = @lotteries.page params[:page] }
+      format.csv do
+        lines = [%w(日期 奖品 获奖原因 获奖用户) + (can?(:manage, :all) ? %w(姓名 电话 地址 发货) : %w())]
+
+        @lotteries.each do |lottery|
+          cols = [
+              lottery.date,
+              lottery.thing.title,
+              (lottery.contribution ? lottery.contribution.title : '?'), lottery.winner.name
+          ]
+          if can?(:manage, :all)
+            cols += [
+                lottery.name, '| ' + lottery.phone.to_s,
+                lottery.address,
+                (lottery.is_delivered ? '| ' + lottery.delivery : '未投递')
+            ]
+          end
+          lines<< cols
+        end
+
+        csv = CSV.generate :col_sep => ';' do |csv|
+          lines.each {|l| csv<< l }
+        end
+
+        send_data csv.encode 'gb2312', :replace => ''
+      end
+    end
   end
 
   def new
@@ -19,7 +46,7 @@ class LotteriesController < ApplicationController
   end
 
   def create
-     @lottery = Lottery.new params[:lottery]
+    @lottery = Lottery.new params[:lottery]
     if @lottery.save
       redirect_to lotteries_path
     else
