@@ -129,7 +129,7 @@ class Thing < Post
     def resort!
       ordered_things = []
 
-      things = self.where(lock_priority: false).gt(priority: 0).to_a
+      things = self.where(lock_priority: false).gt(priority: 0).to_a.shuffle
 
       self_run = things.select(&:self_run?).group_by(&:recommended?).values.reduce(&:+).reverse
       ugc = (things - self_run).group_by(&:recommended?).values.reduce &:+
@@ -140,7 +140,7 @@ class Thing < Post
         count -= 1
         ordered_things<< s
 
-        (Random.new(SecureRandom.uuid.gsub(/[-a-z]/, '').to_i).rand(97) % 4).times do
+        (Random.new(SecureRandom.uuid.gsub(/[-a-z]/, '').to_i).rand(87) % 4).times do
           t = ugc.pop
           t.priority = count
           count -= 1
