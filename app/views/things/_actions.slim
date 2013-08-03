@@ -16,11 +16,11 @@
     = link_to user_signed_in? ? "#thing_share" : "#login-modal", title: "分享", 
     data: {toggle: 'modal', keyboard: false} do
       = provider_share
-  .wechat
-    = link_to "#thing_share_wechat", title: "微信朋友圈分享", 
-    data: {toggle: 'modal'} do
-      i.icon-qrcode
-      span 微信朋友圈分享
+  /.wechat
+  /  = link_to "#thing_share_wechat", title: "微信朋友圈分享",
+  /  data: {toggle: 'modal'} do
+  /    i.icon-qrcode
+  /    span 微信朋友圈分享
   .supplier
     = link_to "#thing_supplier", title: "提供产品", 
     data: {toggle: "modal", keyboard: false} do
