@@ -16,11 +16,11 @@
     data: {toggle: 'modal', keyboard: false} do
       i.icon-share-alt.icon-fixed-width
       small 分享
-  /.wechat
-  /  = link_to "#thing_share_wechat", title: "微信朋友圈分享",
-  /    data: {toggle: 'modal'} do
-  /      i.icon-comments.icon-fixed-width
-  /      small 微信朋友圈分享
+  .wechat
+    = link_to "#thing_share_wechat", title: "微信朋友圈分享",
+      data: {toggle: 'modal'} do
+        i.icon-comments.icon-fixed-width
+        small 微信朋友圈分享
   .supplier
     = link_to_with_icon "我可以提供此产品", "icon-truck", "#thing_supplier",
     data: {toggle: "modal", keyboard: false}
