@@ -37,6 +37,8 @@ gem 'settingslogic'
 # monitoring
 gem 'newrelic_rpm'
 gem 'airbrake'
+# tag
+gem 'mongoid_taggable'
 
 group :assets do
   gem 'sass-rails'
