@@ -3,6 +3,7 @@ set :rvm_type, :system
 require "rvm/capistrano"
 require 'bundler/capistrano'
 require 'capistrano-unicorn'
+require 'whenever/capistrano'
 
 SERVER_LIST = {
   'staging' => {host: '106.186.20.196', branch: 'staging', stage: 'staging'},
@@ -30,6 +31,9 @@ set :rails_stage, target[:stage]
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
+
+set :whenever_command, "bundle exec whenever"
+set :whenever_roles, :app
 
 namespace :deploy do
   desc "Make sure local git is in sync with remote."

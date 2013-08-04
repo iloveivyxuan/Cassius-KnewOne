@@ -37,6 +37,8 @@ gem 'settingslogic'
 # monitoring
 gem 'newrelic_rpm'
 gem 'airbrake'
+#crontab
+gem 'whenever', :require => false
 
 group :assets do
   gem 'sass-rails'
