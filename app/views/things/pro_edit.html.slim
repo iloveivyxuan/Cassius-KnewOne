@@ -3,6 +3,7 @@
     fieldset
       legend 购买信息
       = hidden_field_tag :admin, true
+      = f.input :tags
       = f.input :shop, as: :url
       = f.input :price do
         = f.input_field :price_unit, collection: Thing.const_get(:CURRENCY_LIST)
@@ -19,3 +20,9 @@
       = f.link_to_add "新增套装", :packages, class: "btn"
     .submit
       = f.button :submit, class: "btn-primary btn-large"  
+
+- content_for :script do
+  javascript:
+    $(document).ready(function() {
+            $("#thing_tags").tagsInput();
+        });

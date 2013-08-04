@@ -3,6 +3,8 @@ class Post
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  include Mongoid::Taggable
+
   field :title, type: String
   field :content, type: String, default: ""
   field :commented_at, type: DateTime

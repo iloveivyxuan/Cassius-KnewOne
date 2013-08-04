@@ -39,6 +39,8 @@ gem 'newrelic_rpm'
 gem 'airbrake'
 #crontab
 gem 'whenever', :require => false
+# tag
+gem 'mongoid_taggable'
 
 group :assets do
   gem 'sass-rails'

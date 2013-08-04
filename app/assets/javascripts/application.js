@@ -15,6 +15,7 @@
 //= require jquery.fitvids
 //= require bootstrap-wysiwyg
 //= require sisyphus
+//= require jquery.tagsinput
 //= require_tree ../templates
 //= require making
 //= require_tree ./models

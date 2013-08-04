@@ -83,7 +83,7 @@ GEM
       compass (>= 0.12.2, < 0.14)
     daemons (1.1.9)
     database_cleaner (1.1.1)
-    devise (3.0.0)
+    devise (3.0.1)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -200,6 +200,9 @@ GEM
     mongoid_slug (3.1.2)
       mongoid (> 3.0)
       stringex (~> 1.4)
+    mongoid_taggable (1.1.1)
+      mongoid (>= 3)
+      rake
     moped (1.5.0)
     multi_json (1.7.7)
     multipart-post (1.2.0)
@@ -399,6 +402,7 @@ DEPENDENCIES
   mongoid
   mongoid-rspec
   mongoid_slug
+  mongoid_taggable
   nested_form
   newrelic_rpm
   omniauth-twitter
