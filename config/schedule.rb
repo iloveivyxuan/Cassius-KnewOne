@@ -26,5 +26,5 @@ app_path = "#{Pathname.new(__FILE__).realpath.dirname}/../"
 set :output, "#{app_path}/log/cron_log.log"
 
 every 1.days do
-  command '~/backup perform -t site_backup'
+  command 'backup perform -t site_backup -r ~/Backup'
 end
