@@ -45,5 +45,4 @@ class Photo
       "filelink" => url
     }
   end
-
 end
