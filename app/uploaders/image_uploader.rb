@@ -9,8 +9,9 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded
   def default_url
-    "http://#{upyun_bucket_domain}/#{store_dir}/" +
-      ["default.png", version_name].compact.join('!')
+    i = 1.upto(22).to_a.shuffle.first
+    "http://#{upyun_bucket_domain}/logos/" +
+        ["#{i}.png", version_name].compact.join('!')
   end
 
   # Override url method to implement with "Image Space"

@@ -57,7 +57,11 @@ class Thing < Post
   end
 
   def cover
-    Photo.find photo_ids.first
+    begin
+      Photo.find photo_ids.first
+    rescue Mongoid::Errors::DocumentNotFound
+      Photo.new
+    end
   end
 
   def top_review
