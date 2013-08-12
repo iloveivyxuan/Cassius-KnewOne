@@ -3,9 +3,9 @@
 # Ruby, Java, .NET, PHP, and Python applications with deep visibility and low overhead.
 # For more information, visit www.newrelic.com.
 #
-# Generated June 25, 2013
+# Generated August 12, 2013
 #
-# This configuration file is custom generated for knewone.com
+# This configuration file is custom generated for KnewOne
 
 
 # Here are the settings that are common to all environments
@@ -15,7 +15,7 @@ common: &default_settings
   # You must specify the license key associated with your New Relic
   # account.  This key binds your Agent's data to your account in the
   # New Relic service.
-  license_key: '1b222fc22b094d4adcf31414577ef349dc80d23a'
+  license_key: '5247c456f69466aff0308d995f7145a8f0d8e56c'
 
   # Agent Enabled (Ruby/Rails Only)
   # Use this setting to force the agent to run or not run.
