@@ -8,6 +8,7 @@ gem 'rails-i18n'
 # database
 gem 'mongoid'
 gem 'mongoid_slug'
+gem 'mongoid_taggable'
 # components
 gem 'simple_form'
 gem 'nested_form'
@@ -38,9 +39,7 @@ gem 'settingslogic'
 gem 'newrelic_rpm'
 gem 'airbrake'
 #crontab
-gem 'whenever', :require => false
-# tag
-gem 'mongoid_taggable'
+gem 'whenever', require: false
 
 group :assets do
   gem 'sass-rails'
