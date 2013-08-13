@@ -2,6 +2,7 @@ Making::Application.routes.draw do
 
   root to: 'home#index'
   get '/page/:page', to: "home#index"
+  get 'qr_entry', to: "home#qr_entry"
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks", :registrations => "registrations"} do
     put 'profile', :to => 'profiles#update'

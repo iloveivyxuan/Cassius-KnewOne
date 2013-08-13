@@ -6,6 +6,9 @@ class HomeController < ApplicationController
     @new_reviews = Review.unscoped.desc(:created_at).limit(20)
   end
 
+  def qr_entry
+  end
+
   def sandbox
   end
 
