@@ -60,6 +60,10 @@ class Ability
 
     can :readall, Message
     can :read, Message
+
+    can :manage, CartItem do |cart_item|
+      cart_item.user == user && !cart_item.paid
+    end
   end
 
   def basic

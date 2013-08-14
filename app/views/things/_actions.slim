@@ -1,6 +1,8 @@
 .shop
   .price= tp.price
-  .buy= tp.buy
+  .buy
+    = tp.buy
+    = render partial: 'cart_form', locals: {thing: tp.id, kind: []} if user_signed_in?
   = render "things/stage_end_at", tp: tp
 
 .actions

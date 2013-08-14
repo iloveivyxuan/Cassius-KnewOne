@@ -14,6 +14,10 @@ Making::Application.routes.draw do
     end
   end
 
+  resource :cart, :only => [:show, :create, :destroy, :update] do
+    put 'batch', to: 'carts#update_multiple'
+  end
+
   resources :things do
     collection do
       get 'admin'

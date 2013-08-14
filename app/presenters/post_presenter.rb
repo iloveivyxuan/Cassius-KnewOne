@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 class PostPresenter < ApplicationPresenter
   presents :post
-  delegate :title, to: :post
+  delegate :title, :id, to: :post
 
   def path
     #abstract

@@ -37,6 +37,8 @@ class User
   ## Omniauthable
   embeds_many :auths
 
+  has_many :cart_items
+
   class << self
     def find_by_omniauth(data)
       where("auths.provider" => data[:provider])
