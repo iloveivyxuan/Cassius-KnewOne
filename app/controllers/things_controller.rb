@@ -117,22 +117,4 @@ class ThingsController < PostsController
       render 'pro_edit'
     end
   end
-
-  def wechat_qr
-    # require 'rest_client'
-    url_set = %{
-https://open.weixin.qq.com/qr/set/?a=1\
-&title=#{URI::encode(@thing.title)}\
-&url=#{thing_url(@thing)}\
-&img=#{@thing.cover.url}\
-&appid=&r=#{rand}}
-    res = RestClient.get url_set
-    url_get = "http://open.weixin.qq.com/qr/#{/showWxBox\("(.+)"\)/.match(res)[1]}#wechat_redirect"
-
-    expires_in 30.minutes
-    respond_to do |format|
-      format.svg { render qrcode: url_get, unit: 6 }
-      format.html { redirect_to url_get }
-    end
-  end
 end
