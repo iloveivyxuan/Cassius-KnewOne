@@ -28,7 +28,6 @@ Making::Application.routes.draw do
       get 'comments'
       get 'pro_edit'
       put 'pro_update'
-      get 'wechat_qr'
     end
 
     resources :reviews do
