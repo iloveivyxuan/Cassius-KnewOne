@@ -231,7 +231,10 @@
         width: 69%;
         &:not(:last-child) {margin-bottom: 1em;}
 
-        a {line-height: 1.8em;}
+        a {
+          line-height: 1.8em;
+          text-decoration: none;
+        }
 
         i {
           float: left;

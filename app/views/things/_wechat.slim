@@ -2,6 +2,13 @@
   .modal-header
     = button_tag type: 'button', class: 'close', data: {dismiss: "modal"} do
       raw &times;
-    h5 请在微信中扫描以下二维码，以将此产品分享到朋友圈
+    h5
+      |请在微信中扫描以下二维码，然后您可以轻触屏幕右上角的
+      i.icon-share<
+      |分享给朋友们
   .modal-body
-    /= image_tag wechat_qr_thing_path(tp.thing, format: :svg)
+    .qr-field
+
+- content_for :script do
+  javascript:
+    $('.qr-field').qrcode({render: 'image', ecLevel: 'L', text: document.URL});

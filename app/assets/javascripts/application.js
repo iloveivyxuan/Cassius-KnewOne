@@ -13,6 +13,7 @@
 //= require jquery.hotkeys
 //= require jquery.cookie
 //= require jquery.fitvids
+//= require jquery.qrcode
 //= require bootstrap-wysiwyg
 //= require sisyphus
 //= require jquery.tagsinput
