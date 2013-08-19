@@ -50,6 +50,14 @@ header
             li.messages_count
               = link_to unread_messages_count, messages_path,
                 title: "#{unread_messages_count}个未读消息"
+          li.nav_test.dropdown
+            = link_to '#', class: "dropdown-toggle", data: {toggle: "dropdown"} do
+              i.icon-road
+              span 测试功能
+              i.icon-caret-down
+            ul.dropdown-menu
+              li= link_to_with_icon "购物车", "icon-shopping-cart", cart_path
+              li= link_to_with_icon "收货地址", "icon-shopping-cart", addresses_path
           li.nav_user
             = link_to '#', class: "dropdown", data: {toggle: "dropdown"} do
               = image_tag current_user.avatar.url(:tiny), class: "user_avatar img-circle"

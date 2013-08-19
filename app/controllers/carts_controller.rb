@@ -61,6 +61,6 @@ class CartsController < ApplicationController
   private
 
   def user_cart
-    current_user.cart_items.cart
+    current_user.cart_items
   end
 end

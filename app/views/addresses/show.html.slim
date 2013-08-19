@@ -1,0 +1,19 @@
+p#notice = notice
+
+p
+  strong Area:
+  = @address.area
+p
+  strong Address:
+  = @address.address
+p
+  strong Name:
+  = @address.name
+p
+  strong Phone:
+  = @address.phone
+p
+  strong Zip code:
+  = @address.zip_code
+
+= link_to 'Edit', edit_address_path(@address)

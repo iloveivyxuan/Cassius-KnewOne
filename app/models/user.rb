@@ -37,6 +37,8 @@ class User
   ## Omniauthable
   embeds_many :auths
 
+  # Payment
+  has_many :addresses
   has_many :cart_items
 
   class << self

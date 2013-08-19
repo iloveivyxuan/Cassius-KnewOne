@@ -62,7 +62,12 @@ class Ability
     can :read, Message
 
     can :manage, CartItem do |cart_item|
-      cart_item.user == user && !cart_item.paid
+      cart_item.user == user
+    end
+
+    can :create, Address
+    can :manage, Address do |address|
+      address.user == user
     end
   end
 
