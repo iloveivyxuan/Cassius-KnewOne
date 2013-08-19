@@ -7,6 +7,7 @@ class HomeController < ApplicationController
   end
 
   def qr_entry
+    redirect_to "http://weixin.qq.com/r/dnVje6XEuvjFreEY9yBk"
   end
 
   def sandbox
