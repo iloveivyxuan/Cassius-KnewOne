@@ -131,13 +131,6 @@ class User
     @progress ||= (karma - rank.abs2*10).to_f*100 / ((rank+1).abs2*10 - rank.abs2*10).to_f
   end
 
-  ## Guest
-  has_one :guest
-
-  def is_guest?
-    Guest.where(user_id: id).present?
-  end
-
   ## Pagination
   paginates_per 50
 

@@ -61,17 +61,6 @@
     @include border-radius(10px);
   }
 
-  .welcome_guests {
-    color: $fontLightColor;
-    border-bottom: 1px dashed #ccc;
-    padding-bottom: 1em;
-
-    i {
-      color: $red;
-      margin-right: .2em;
-    }
-  }
-
   h4 {
     margin: 1em 0;
     color: $blue;

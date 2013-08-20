@@ -21,8 +21,8 @@ header
             span 产品
             i.icon-caret-down
           ul.dropdown-menu
-            li= link_to_with_icon "最新", "icon-rocket", things_path 
-            li= link_to_with_icon "热门", "icon-bullseye", things_path(sort: "fancy") 
+            li= link_to_with_icon "最新", "icon-rocket", things_path
+            li= link_to_with_icon "热门", "icon-bullseye", things_path(sort: "fancy")
             li= link_to_with_icon "自营", "icon-trophy", things_path(sort: "self_run")
         li.nav_help.dropdown
           = link_to '#', class: "dropdown-toggle", data: {toggle: "dropdown"} do
@@ -31,11 +31,11 @@ header
             i.icon-caret-down
           ul.dropdown-menu
             li= link_to_with_icon "微博", "icon-weibo", "http://weibo.com/knewone"
-            li= link_to_with_icon "吐槽", "icon-leaf", "/things/knewone" 
-            li= link_to_with_icon "邮件", "icon-envelope", "mailto:hello@knewone.com" 
+            li= link_to_with_icon "吐槽", "icon-leaf", "/things/knewone"
+            li= link_to_with_icon "邮件", "icon-envelope", "mailto:hello@knewone.com"
         li.nav_new_thing
           - if user_signed_in?
-            = link_to_with_icon "分享产品", "icon-magic", new_thing_path 
+            = link_to_with_icon "分享产品", "icon-magic", new_thing_path
           - else
             = link_to_with_icon "分享产品", "icon-magic", "#", data: {toggle: "modal", target: "#login-modal"}
         li.nav_olark
@@ -66,9 +66,6 @@ header
                 li= link_to reviews_admin_path do
                   i.icon-pencil
                   | 管理评测
-                li= link_to guests_path do
-                  i.icon-tasks
-                  | 管理会员
                 li= link_to users_path do
                   i.icon-group
                   | 用户列表
