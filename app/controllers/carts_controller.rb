@@ -7,7 +7,7 @@ class CartsController < ApplicationController
 
   def create
     cart_item = user_cart.where(:thing => params[:cart_item][:thing],
-                                :kind => params[:cart_item][:kind]).first
+                                :kind_id => params[:cart_item][:kind_id]).first
     if cart_item.nil?
       cart_item = current_user.cart_items.build params[:cart_item]
     else
@@ -15,6 +15,9 @@ class CartsController < ApplicationController
     end
 
     authorize! :create, cart_item
+    puts '====='
+    puts cart_item.to_json
+    puts '====='
     result = cart_item.save!
 
     respond_to do |format|

@@ -83,3 +83,7 @@
     a {display: block;}
   }
 }
+
+.login_wrapper {
+  @include responsive-wrapper;
+}

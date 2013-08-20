@@ -40,6 +40,7 @@ class User
   # Payment
   has_many :addresses
   has_many :cart_items
+  has_many :orders
 
   class << self
     def find_by_omniauth(data)

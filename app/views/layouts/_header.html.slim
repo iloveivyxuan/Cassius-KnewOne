@@ -95,6 +95,8 @@ header
         - else
           li.signin_tip 登录:
           li.signin
+            li= link_to_with_icon "邮箱登录", "icon-envelope", new_user_session_path
+          li.signin
             = link_to user_omniauth_authorize_path(:twitter), class: "twitter_sign_in" do
               i.icon-twitter
           li.signin

@@ -1,5 +1,13 @@
 = simple_form_for :cart_item, url: cart_path, remote: true, method: :post do |f|
-  = f.input :thing, as: :hidden, input_html: {value: thing}
+  = f.input :thing, as: :hidden, input_html: {value: thing.id}, label: false, wrapper: false
+  ul
+    - thing.kinds.selling.each do |k|
+      li
+        = image_tag k.photo, size: '64x64'
+        = k.title
+        br
+        = k.stock
+        = f.input :kind_id, as: :single_radio, value: k.id, label: false, input_html: {disabled: k.stock.zero?}
   = f.input :quantity, as: :integer, include_blank: false, required: true, label: false,\
             input_html: {min:1, value: 1, class: 'input-medium'}
   = f.submit "加入购物车", class: "btn btn-success"

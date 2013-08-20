@@ -1,0 +1,10 @@
+fieldset.kind_fields
+  legend 型号
+  = f.input :title
+  = f.input :price, as: :decimal
+  = f.input :stock, as: :integer
+  = f.input :photo, as: :file
+  = f.input :photo_cache, as: :hidden
+  = f.input :selling, as: :boolean
+  = f.input :note
+  = f.link_to_remove "删除", class: "remove_kind pull-right"

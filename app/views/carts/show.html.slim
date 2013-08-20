@@ -5,6 +5,7 @@
       tr
         th Thing
         th Quantity
+        th Kind
         th
       - @cart_items.each_with_index do |cart_item, i|
         tr
@@ -12,6 +13,7 @@
           td
             = hidden_field_tag "cart_items[][id]", cart_item.id
             = number_field_tag "cart_items[][quantity]", cart_item.quantity, required: true, min: 1
+          td = cart_item.kind.title
           td = link_to '删除', cart_path(id: cart_item.id), method: :delete, remote: true, class: 'remote-delete', data: {confirm: '确定要从购物车中删除吗？'}
     = submit_tag '修改数量'
 
