@@ -12,7 +12,7 @@ nav
     - if can? :update, tp.thing
       = link_to_with_icon "", "icon-edit", edit_thing_path(tp.thing), title: "编辑"
     - if can? :destroy, tp.thing
-      = link_to_with_icon "", "icon-trash", tp.thing, method: :delete, 
+      = link_to_with_icon "", "icon-trash", tp.thing, method: :delete,
       data: {confirm: "您确认要删除吗?"}, title: "删除"
     - if can? :pro_edit, tp.thing
       = link_to_with_icon "", "icon-cogs", pro_edit_thing_path(tp.thing), title: "管理"
@@ -28,18 +28,8 @@ nav
         i.icon-book
         span 评测
         small= tp.reviews_count
-    = nav_tab :updates do
-      = link_to thing_updates_path(tp.thing) do
-        i.icon-code-fork
-        span 更新
-        small= tp.updates_count
     = nav_tab :comments do
       = link_to comments_thing_path(tp.thing) do
         i.icon-comments
         span 留言
         small= tp.comments_count
-        
-      
-  
-
-

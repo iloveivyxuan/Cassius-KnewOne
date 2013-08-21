@@ -33,9 +33,8 @@ Making::Application.routes.draw do
     resources :reviews do
       member { post 'vote' }
     end
-
-    resources :updates
   end
+
   get '/reviews_admin', to: "reviews#admin", as: :reviews_admin
 
   resources :posts, only: [] do
