@@ -39,7 +39,11 @@ gem 'newrelic_rpm'
 gem 'airbrake'
 # crontab
 gem 'whenever', require: false
-gem 'area_select_cn', github: 'jasl/area_cn_select'
+# area select helper
+gem 'area_select_cn', github: 'Kehao/area_cn_select'
+# state machine
+gem 'state_machine'
+gem 'state_machine-audit_trail'
 
 group :assets do
   gem 'sass-rails'
