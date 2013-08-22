@@ -41,9 +41,6 @@ gem 'airbrake'
 gem 'whenever', require: false
 # area select helper
 gem 'area_select_cn', github: 'Kehao/area_cn_select'
-# state machine
-gem 'state_machine'
-gem 'state_machine-audit_trail'
 
 group :assets do
   gem 'sass-rails'

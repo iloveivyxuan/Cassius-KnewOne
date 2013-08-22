@@ -4,14 +4,10 @@ class CartItem
 
   belongs_to :thing
   belongs_to :user
+  belongs_to :kind, class_name: 'ThingKind'
 
   field :quantity, type: Integer, :default => 1
-  field :kind_id, type: String
 
-  validates :quantity, :user, :thing, :kind_id, :presence => true
+  validates :quantity, :user, :thing, :kind, :presence => true
   validates :quantity, :numericality => { only_integer: true, greater_than: 0 }
-
-  def kind
-    thing.kinds.selling.find(self.kind_id)
-  end
 end

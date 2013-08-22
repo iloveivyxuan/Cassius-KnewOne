@@ -7,7 +7,7 @@
         = k.title
         br
         = k.stock
-        = f.input :kind_id, as: :single_radio, value: k.id, label: false, input_html: {disabled: k.stock.zero?}
+        = f.input :kind, as: :single_radio, value: k.id, label: false, input_html: {disabled: k.stock <= 0}
   = f.input :quantity, as: :integer, include_blank: false, required: true, label: false,\
             input_html: {min:1, value: 1, class: 'input-medium'}
   = f.submit "加入购物车", class: "btn btn-success"

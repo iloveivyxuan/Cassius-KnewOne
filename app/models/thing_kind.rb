@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-class Kind
+class ThingKind
   include Mongoid::Document
 
-  embedded_in :thing
+  belongs_to :thing
 
   field :stock, type: Integer, default: 0
   field :title, type: String, default: ''
