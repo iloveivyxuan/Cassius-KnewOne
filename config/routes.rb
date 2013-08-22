@@ -14,6 +14,15 @@ Making::Application.routes.draw do
       post 'share'
       get 'bind'
     end
+    resources :orders, only: [:index, :show] do
+      collection do
+        get 'admin'
+      end
+      member do
+        get 'pay'
+        get 'cancel'
+      end
+    end
   end
 
   resource :cart, :only => [:show, :create, :destroy, :update] do

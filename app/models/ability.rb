@@ -69,6 +69,10 @@ class Ability
     can :manage, Address do |address|
       address.user == user
     end
+
+    can [:read, :pay, :cancel], Order do |order|
+      order.user == user
+    end
   end
 
   def basic

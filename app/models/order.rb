@@ -6,9 +6,10 @@ class Order
   belongs_to :user
   belongs_to :address
   embeds_many :order_items
+  has_many :order_histories
 
   field :trade_no, type: String
-  field :state, type: String, default: :pending
+  field :state, type: Symbol, default: :pending
 
   STATES = {:pending => '等待付款',
            :paid => '已付款，等待确认',
@@ -16,6 +17,8 @@ class Order
            :shipped => '已发货',
            :canceled => '订单取消'}
   validates :state, presence: true, inclusion: { in: STATES.keys }
+  validates :address, :user, presence: true
+  attr_protected :state, :trade_no
 
   def state
     super.to_sym
@@ -62,18 +65,24 @@ class Order
 
     order_items.each &:claim_stock
     update_attributes trade_no: trade_no, state: :paid
+
+    order_histories.create from: :pending, to: :paid
   end
 
   def confirm_payment!(trade_no)
     return false unless can_confirm_payment? && self.trade_no == trade_no
 
     update_attributes state: :confirmed
+
+    order_histories.create from: :paid, to: :confirmed
   end
 
   def ship!
     return false unless can_shipped?
 
     update_attributes state: :shipped
+
+    order_histories.create from: :confirmed, to: :shipped
   end
 
   def cancel!
@@ -81,6 +90,8 @@ class Order
 
     order_items.each &:revert_stock
     update_attributes state: :canceled
+
+    order_histories.create from: :pending, to: :canceled
   end
 
   private
