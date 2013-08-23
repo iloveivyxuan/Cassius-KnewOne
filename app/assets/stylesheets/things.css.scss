@@ -190,7 +190,7 @@
     }
 
     .support, .share, .wechat, .supplier {
-      i {color: $linkColor;}
+      i {color: $fontLightColor;}
     }
   }
 
@@ -261,7 +261,7 @@
 
   @media screen and (max-width: 1023px) {
     @include clearfix();
-    margin-bottom: 1em;
+    margin-bottom: 2em;
 
     .shop {
       float: left;
@@ -386,3 +386,107 @@
     padding-top: .5em;
   }
 }
+
+.lovers {
+  color: $fontLightColor;
+}
+
+#review_show, #story_show {
+  > header {
+    h3 {
+      word-wrap: break-word;          
+      margin: 0;
+    }
+  }
+
+  > section {
+    margin-top: 1em;
+    padding: 1em 0;
+    border-top: 1px solid #eee;
+  }
+
+  > footer {
+    @include clearfix;
+
+    > * {
+      margin-right: 2em;
+    }
+
+    .voting {
+      display: inline-block;
+      form {
+        small {color: $fontLightColor;}
+        button {margin-left: 1em;}
+      }
+    }
+
+    .share {margin-top: -5px;}
+  }
+
+  aside#comments {
+    margin-top: 2em;
+
+    .comments {
+      form#create_comment {
+        textarea {width: 50%;}
+        @media screen and (max-width: 979px) {
+          textarea {width: 95%;}
+        }
+      }
+    }
+  }
+}
+
+#reviews {
+  .review {
+    &:not(:last-child) {
+      padding-bottom: 2em;
+      border-bottom: 1px dashed #ccc;
+      margin-bottom: 2em;
+    }
+
+    article {
+      @media screen and (min-width: 768px) {
+        .author, .score {display: inline;}
+      }
+
+      .details {
+        i {margin-left: 1em;}
+      }
+
+      footer {
+        > * {
+          display: inline-block;
+          margin-top: 1em;
+        }
+      }
+    }
+  }
+}
+
+#timeline {
+  .story {
+    position: relative;
+    border-left: 5px solid #eee;
+    padding-left: 2em;
+    margin-bottom: 1em;
+
+    figure {
+      position: absolute;
+      margin: 0;
+      background: white;
+      color: $fontLightColor;
+      left: -.5em;
+      font-size: 1.6em;
+      padding-bottom: .625em;
+    }
+
+    article {
+      footer {
+        padding-top: 1em;
+        > * {margin-right: 2em;}
+      }
+    }
+  }
+}
+

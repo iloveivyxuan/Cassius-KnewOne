@@ -40,8 +40,10 @@ zh-CN:
         content: "内容"
         score: "评分"
         is_top: "是否置顶"
-      update:
+      story:
+        title: "标题"
         content: "内容"
+        occured_at: "日期"
       category:
         name: '分类名称'
       comment:

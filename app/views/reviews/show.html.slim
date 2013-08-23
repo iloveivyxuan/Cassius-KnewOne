@@ -1,37 +1,32 @@
 - provide :nav, :reviews
+- provide :title, @review.title
 
 - present @review do |rp|
 
-  - provide :title, rp.title
-
   article#review_show
-
     header
-      h3
-        = rp.title
-        = link_to_with_icon "", "icon-share-alt", 
-        user_signed_in? ? "#review_share" : "#login-modal",
-        title: "分享", data: {toggle: 'modal'}
-        = render 'shared/post_actions', post: rp.review, 
-        edit_post_path: rp.edit_path, post_path: rp.path
-        - if can? :manage, :all
-          small= link_to_with_icon "", "icon-gift", new_lottery_path(review: rp.review), title: "发奖"
+      h3= rp.title
       = rp.score
       = rp.author_tag
-    
+
     section.post_content= rp.content
-      
+
     footer
       = render 'voting', review: rp.review
+      = link_to_with_icon "分享", "icon-share icon-large",
+        user_signed_in? ? "#review_share" : "#login-modal",
+        title: "分享", data: {toggle: 'modal'}
+      = render 'shared/post_actions', post: rp.review,
+        edit_post_path: rp.edit_path, post_path: rp.path
 
-    = render 'shared/share', id: 'review_share', 
-    content: rp.share_content, pic: rp.thing_photo_url(:huge) 
+    = render 'shared/share', id: 'review_share',
+    content: rp.share_content, pic: rp.thing_photo_url(:huge)
 
     = render 'shared/comments', post: rp.review, id: "comments"
 
 - content_for :script do
   javascript:
-    Making.Voting();
+    Making.Voting()
     Making.Comments("#comments")
-    if ("#{flash[:provider_sync]}" == "true") 
-      $(function(){$('#review_share').modal('show')})  
+    if ("#{flash[:provider_sync]}" == "true")
+      $(function(){$('#review_share').modal('show')})

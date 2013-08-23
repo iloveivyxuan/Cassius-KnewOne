@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 class Thing < Post
   include Mongoid::Slug
+  include Mongoid::MultiParameterAttributes
+
   slug :title, history: true
   field :subtitle, type: String, default: ""
   field :official_site, type: String, default: ""
@@ -33,12 +35,12 @@ class Thing < Post
   # https://github.com/jnicklas/carrierwave/issues/81
   embeds_many :packages, cascade_callbacks: true
   accepts_nested_attributes_for :packages, allow_destroy: true
-  include Mongoid::MultiParameterAttributes
 
   field :scores, type: Array, default: []
   field :fanciers_count, type: Integer, default: 0
 
   has_many :reviews, dependent: :delete
+  has_many :stories, dependent: :delete
   has_and_belongs_to_many :fanciers, class_name: "User", inverse_of: :fancies
   has_and_belongs_to_many :owners, class_name: "User", inverse_of: :owns
 

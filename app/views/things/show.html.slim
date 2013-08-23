@@ -3,11 +3,12 @@
 - present @thing do |tp|
   .photos= render "carousel", tp: tp
   = tp.content
+  = render 'stories/timeline', tp: tp
   = render 'reviews', tp: tp
   = render 'shared/comments', post: @thing, id: "thing_comments"
 
 - content_for :script do
   javascript:
     Making.Comments("#thing_comments")
-    if ("#{flash[:provider_sync]}" == "true") 
+    if ("#{flash[:provider_sync]}" == "true")
       $(function(){$('#thing_share').modal('show')})

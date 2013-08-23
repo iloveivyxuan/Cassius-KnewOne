@@ -269,7 +269,10 @@ time {
 }
 
 .post_actions {
-  margin-left: 5px;
+  i {
+    color: $fontLightColor;
+    margin-right: 1em;
+  }
 }
 
 .score {
@@ -340,6 +343,10 @@ time {
 
 .reviews_count {
   color: $blue;
+}
+
+.comments_count {
+  color: $fontLightColor;
 }
 
 .pre {

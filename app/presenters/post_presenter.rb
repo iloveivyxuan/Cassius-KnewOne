@@ -31,7 +31,10 @@ class PostPresenter < ApplicationPresenter
   end
 
   def summary
-    truncate strip_tags(@object.content), length: 360, omission: "......"
+    truncate(strip_tags(@object.content), length: 512,
+             omission: (link_to_with_icon nil,
+                        "icon-ellipsis-horizontal", path, class: "details")
+    ).html_safe
   end
 
   def thing_photo_url(size)
@@ -39,9 +42,9 @@ class PostPresenter < ApplicationPresenter
   end
 
   def comments_count
-    content_tag :span, class: "comments" do
-      c = @object.comments.count
-      link_to_with_icon (c > 0 ? c : ""), "icon-comments-alt", path
+    if @object.comments.present?
+      link_to_with_icon @object.comments.count, "icon-comments-alt",
+      path, class: "comments_count"
     end
   end
 

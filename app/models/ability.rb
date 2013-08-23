@@ -13,6 +13,7 @@ class Ability
       basic
       signed user
       can :update, Post
+      can :update, Story
       can :pro_edit, Thing
       can :pro_update, Thing
     else
@@ -27,6 +28,10 @@ class Ability
     can :create, Post
     can [:update, :destroy], Post do |post|
       post.author == user
+    end
+
+    can [:update, :destroy], Story do |story|
+      story.thing.author == user or story.author == user
     end
 
     can :create, Photo

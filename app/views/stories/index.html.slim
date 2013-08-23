@@ -1,0 +1,10 @@
+- provide :nav, :stories
+
+- present @thing do |tp|
+
+  = render 'timeline', tp: tp
+
+  - if can? :update, tp.thing
+    #new_story
+      = link_to_with_icon "发布新故事", "icon-pencil",
+      new_thing_story_path(tp.thing), class: "btn"
