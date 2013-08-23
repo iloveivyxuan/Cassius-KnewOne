@@ -1,18 +1,21 @@
 .home_wrapper
 
   header#home_welcome
-    h2 
+    h2
       i.icon-road
       | 创想改变生活
 
   section#home_things
     ul= render @things, size: :normal
-      
+
   aside#home_news
     .wrapper= render 'news'
 
   = paginate @things
 
+  aside#site_filling
+    small 粤ICP备13057487号
+
 - content_for :script do
   javascript:
-    Making.InfiniteScroll("#home_things", "#home_things li.thing")  
+    Making.InfiniteScroll("#home_things", "#home_things li.thing")
