@@ -16,7 +16,7 @@ class TwitterAuthHandler
   end
 
   def topic_wrapper(topic)
-    "##{topic}#"
+    "@#{topic} "
   end
 
   def parse_image(auth)
