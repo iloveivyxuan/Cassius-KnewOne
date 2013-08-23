@@ -1,7 +1,5 @@
 Making::Application.routes.draw do
 
-  resources :addresses
-
   root to: 'home#index'
   get '/page/:page', to: "home#index"
   get 'qr_entry', to: "home#qr_entry"
@@ -14,19 +12,18 @@ Making::Application.routes.draw do
       post 'share'
       get 'bind'
     end
-    resources :orders, only: [:index, :show] do
-      collection do
-        get 'admin'
-      end
-      member do
-        get 'pay'
-        get 'cancel'
-      end
+  end
+  resources :addresses
+  resources :orders, only: [:index, :show, :create, :new] do
+    member do
+      put 'pay'
+      put 'cancel'
     end
   end
-
-  resource :cart, :only => [:show, :create, :destroy, :update] do
-    put 'batch', to: 'carts#update_multiple'
+  resources :cart_items, :only => [:index, :create, :destroy, :update] do
+    member do
+      put 'increment'
+    end
   end
 
   resources :things do

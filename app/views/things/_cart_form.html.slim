@@ -1,13 +1,14 @@
-= simple_form_for :cart_item, url: cart_path, remote: true, method: :post do |f|
+= simple_form_for :cart_item, url: cart_items_path, remote: true, method: :post do |f|
   = f.input :thing, as: :hidden, input_html: {value: thing.id}, label: false, wrapper: false
   ul
     - thing.kinds.selling.each do |k|
       li
-        = image_tag k.photo, size: '64x64'
+        /= image_tag k.photo, size: '64x64'
         = k.title
         br
         = k.stock
-        = f.input :kind, as: :single_radio, value: k.id, label: false, input_html: {disabled: k.stock <= 0}
+        = f.input :kind, as: :single_radio,
+                  value: k.id, label: false, class: 'kind', input_html: {disabled: k.stock <= 0, data: {stock: k.stock}}
   = f.input :quantity, as: :integer, include_blank: false, required: true, label: false,\
             input_html: {min:1, value: 1, class: 'input-medium'}
   = f.submit "加入购物车", class: "btn btn-success"
@@ -17,3 +18,7 @@
     $('.cart_item').bind("ajax:success", function(xhr, data, status) {
                          alert('添加成功');
                        });
+    $('.kind').click(function() {
+      $this = $(this);
+      $('#cart_item_quantity').attr('max', $this.attr('data-stock'));
+    });

@@ -9,5 +9,8 @@ class CartItem
   field :quantity, type: Integer, :default => 1
 
   validates :quantity, :user, :thing, :kind, :presence => true
-  validates :quantity, :numericality => { only_integer: true, greater_than: 0 }
+  validates :quantity, :numericality => {
+      only_integer: true,
+      greater_than: 0,
+      less_than_or_equal_to: Proc.new {|item| item.kind.stock} }
 end

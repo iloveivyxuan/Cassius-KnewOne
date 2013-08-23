@@ -1,0 +1,51 @@
+.carts_wrapper
+  table
+    tr
+      th Thing
+      th Quantity
+      th Kind
+      th
+    - @cart_items.each_with_index do |cart_item, i|
+      tr
+        td = cart_item.thing.title
+        td
+          = link_to '-', increment_cart_item_path(cart_item.id, step: -1),
+                    class: 'increment btn', method: :put, remote: true
+          = hidden_field_tag "cart_items[][id]", cart_item.id, class: 'item_id'
+          = number_field_tag "cart_items[][quantity]", cart_item.quantity,
+                             required: true, class: 'item_quantity', min: 1
+          = link_to '+', increment_cart_item_path(cart_item.id, step: 1),
+                    class: 'increment btn', method: :put, remote: true
+        td = cart_item.kind.title
+        td = link_to '删除', cart_item_path(id: cart_item.id),
+                            method: :delete, remote: true, class: 'remote-delete',
+                            data: {confirm: '确定要从购物车中删除吗？'}
+
+  = link_to '结算', new_order_path
+
+- content_for :script do
+  javascript:
+    $('.remote-delete').bind("ajax:success", function(xhr, data, status) {
+                         $(this).closest('tr').remove();
+                       });
+    $('.item_quantity').blur(function() {
+       var $this = $(this);
+       var quantity = $this.val();
+       var id = $this.parent().find('.item_id').val();
+       $.ajax({
+         url: '/cart_items/' + id,
+         type: 'PUT',
+         data: { cart_item: { quantity: quantity } },
+         success: function(data) {
+           console.log(data);
+           $this.val(data.quantity);
+         },
+       });
+    });
+
+
+    $('.increment').bind("ajax:success", function(xhr, data, status) {
+                                            $(this).parent().find('.item_quantity').val(data.quantity);
+                                          });
+
+

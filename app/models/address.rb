@@ -1,5 +1,6 @@
 class Address
   include Mongoid::Document
+  include AreaSelectCn::ActsAsAreaSelectable
   field :district, type: Integer
   field :address, type: String
   field :name, type: String
@@ -8,9 +9,9 @@ class Address
 
   belongs_to :user
 
-  def area
-    AreaSelectCn::Id.new(self.district).area_name(default = '-')
-  end
+  acts_as_area_field :district
 
-  attr_accessible :district, :address, :name, :phone, :zip_code
+  def full
+    "#{district.area_name ' '} #{address}"
+  end
 end

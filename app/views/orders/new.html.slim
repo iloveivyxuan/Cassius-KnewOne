@@ -1,0 +1,20 @@
+.orders_wrapper
+  table
+    tr
+      th Thing
+      th Quantity
+      th Kind
+      th
+    - @order.order_items.each do |item|
+      tr
+        td = item.thing_kind.thing.title
+        td = item.quantity
+        td = item.thing_kind.title
+
+  = simple_form_for @order do |f|
+    = f.association :address, as: :radio_buttons, collection: current_user.addresses,
+                    label_method: :full
+    = f.input :deliver_by, as: :radio_buttons, collection: Order::DELIVER_METHOD,
+              label_method: lambda { |v| v[1][:name] }, value_method: lambda { |v| v[0] }
+    = f.input :note
+    = f.submit

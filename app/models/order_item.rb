@@ -3,6 +3,7 @@ class OrderItem
   include Mongoid::Timestamps
 
   field :quantity, type: Integer
+  field :price, type: BigDecimal
 
   belongs_to :thing_kind
 
@@ -11,10 +12,22 @@ class OrderItem
   validates :quantity, :numericality => { only_integer: true, greater_than: 0 }
 
   def claim_stock!
+    puts thing_kind.stock
     thing_kind.inc :stock, -self.quantity # always positive
+    puts thing_kind.stock
   end
 
   def revert_stock!
     thing_kind.inc :stock, self.quantity
+  end
+
+  class<< self
+    def build_by_cart_item(order, item)
+      order.order_items.build({
+        quantity: item.quantity,
+        thing_kind: item.kind,
+        price: item.kind.price
+      })
+    end
   end
 end
