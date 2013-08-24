@@ -24,7 +24,7 @@ class Order
       :zt => {name: '中通', price: 8}
   }
   validates :state, presence: true, inclusion: {in: STATES.keys}
-  validates :delivery_by, presence: true, inclusion: {in: DELIVER_METHOD.keys}
+  validates :deliver_by, presence: true, inclusion: {in: DELIVER_METHOD.keys}
   validates :address, :user, presence: true
   attr_protected :state, :trade_no
 
