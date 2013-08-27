@@ -169,12 +169,6 @@ class ThingPresenter < PostPresenter
     thing.reviews.limit(limit)
   end
 
-  def packages
-    thing.packages.map do |p|
-      present p
-    end
-  end
-
   def stage_text
     Thing.const_get(:STAGES)[stage]
   end

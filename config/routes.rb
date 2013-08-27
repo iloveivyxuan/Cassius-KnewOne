@@ -24,7 +24,6 @@ Making::Application.routes.draw do
       post 'fancy'
       post 'own'
       get 'buy'
-      get 'buy_package'
       get 'comments'
       get 'pro_edit'
       put 'pro_update'

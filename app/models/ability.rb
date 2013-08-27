@@ -65,7 +65,6 @@ class Ability
     can :read, Topic
     can :read, Lottery
     can :buy,  Thing
-    can :buy_package, Thing
     can :comments, Thing
     can :wechat_qr, Thing
     can :create, Supplier

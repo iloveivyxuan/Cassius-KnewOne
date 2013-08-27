@@ -100,10 +100,6 @@ class ThingsController < PostsController
 
   end
 
-  def buy_package
-    redirect_to @thing.packages[params[:index].to_i].shop
-  end
-
   def comments
     read_comments @thing
     render layout: 'thing'

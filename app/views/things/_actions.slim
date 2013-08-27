@@ -30,10 +30,6 @@
 .author_info
   = tp.author_tag
 
-- if tp.packages.present?
-  .packages
-    ul= render partial: "things/package", collection: tp.packages
-
 .action_modals
   = render 'shared/share', id: 'thing_share', content: tp.share_content, pic: tp.photo_url(:huge)
   = render 'things/wechat', tp: tp

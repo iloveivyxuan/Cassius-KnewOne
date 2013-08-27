@@ -32,10 +32,6 @@ class Thing < Post
   }
   validates :stage, inclusion: { in: STAGES.keys }
 
-  # https://github.com/jnicklas/carrierwave/issues/81
-  embeds_many :packages, cascade_callbacks: true
-  accepts_nested_attributes_for :packages, allow_destroy: true
-
   field :scores, type: Array, default: []
   field :fanciers_count, type: Integer, default: 0
 
