@@ -12,6 +12,7 @@ class Order
   field :state, type: Symbol, default: :pending
   field :deliver_by, type: Symbol, default: :sf
   field :note, type: String
+  field :admin_note, type: String
   field :total_price, type: BigDecimal
 
   STATES = {:pending => '等待付款',
@@ -19,7 +20,8 @@ class Order
             :confirmed => '已付款',
             :shipped => '已发货',
             :canceled => '订单取消',
-            :closed => '订单关闭'}
+            :closed => '订单关闭',
+            :refunded => '已协商退款'}
   DELIVER_METHOD = {
       :sf => {name: '顺丰', price: 18},
       :zt => {name: '中通', price: 8}
@@ -70,6 +72,10 @@ class Order
     self.state == :closed
   end
 
+  def refunded?
+    self.state == :refunded
+  end
+
   def can_pay?
     pending?
   end
@@ -88,6 +94,10 @@ class Order
 
   def can_close?
     pending?
+  end
+
+  def can_refund?
+    confirmed? || shipped?
   end
 
   def pay!(trade_no)
@@ -133,10 +143,20 @@ class Order
     return false unless can_close?
 
     order_items.each &:revert_stock!
-    self.state = :canceled
+    self.state = :closed
     save!
 
     order_histories.create from: :pending, to: :closed
+  end
+
+  def refund!
+    return false unless can_refund?
+
+    state = self.state
+    self.state = :refunded
+    save!
+
+    order_histories.create from: state, to: :closed
   end
 
   def all_products_have_stock?
