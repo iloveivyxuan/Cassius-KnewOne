@@ -104,6 +104,9 @@ class User
   has_and_belongs_to_many :fancies, class_name: "Thing", inverse_of: :fanciers
   has_and_belongs_to_many :owns, class_name: "Thing", inverse_of: :owners
 
+  ## Features
+  has_and_belongs_to_many :fancy_features, class_name: "Feature", inverse_of: :fanciers
+
   ## Lotteries
   has_many :lotteries, inverse_of: :winners
 

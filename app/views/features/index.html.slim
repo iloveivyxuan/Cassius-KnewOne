@@ -1,0 +1,9 @@
+- provide :nav, :features
+
+#features
+  ul= render @thing.features
+
+- if can? :update, @thing
+  #new_feature
+    = link_to_with_icon "发布新特性", "icon-pencil",
+    new_thing_feature_path(@thing), class: "btn"

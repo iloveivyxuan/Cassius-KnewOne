@@ -1,4 +1,4 @@
-class StoriesController < PostsController
+class FeaturesController < PostsController
   load_and_authorize_resource :thing
   layout 'thing'
 
@@ -10,15 +10,15 @@ class StoriesController < PostsController
 
   def new
     authorize! :update, @thing
-    @story = Story.new
+    @feature = Feature.new
   end
 
   def create
     authorize! :update, @thing
-    @story = Story.new params[:story]
+    @feature = Feature.new params[:feature]
       .merge(author: current_user, thing: @thing)
-    if @story.save
-      redirect_to thing_stories_path(@thing)
+    if @feature.save
+      redirect_to thing_features_path(@thing)
     else
       render 'new'
     end
@@ -29,15 +29,15 @@ class StoriesController < PostsController
   end
 
   def update
-    if @story.update_attributes(params[:story])
-      redirect_to thing_stories_path(@thing)
+    if @feature.update_attributes(params[:feature])
+      redirect_to thing_features_path(@thing)
     else
       render 'new'
     end
   end
 
   def destroy
-    @story.destroy
-    redirect_to thing_stories_path(@thing)
+    @feature.destroy
+    redirect_to thing_features_path(@thing)
   end
 end

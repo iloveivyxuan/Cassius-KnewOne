@@ -33,13 +33,16 @@ class Thing < Post
   validates :stage, inclusion: { in: STAGES.keys }
 
   field :scores, type: Array, default: []
-  field :fanciers_count, type: Integer, default: 0
-
   has_many :reviews, dependent: :delete
+
+  field :fanciers_count, type: Integer, default: 0
+  has_and_belongs_to_many :fanciers, class_name: "User", inverse_of: :fancies
+  include Fancy
+
+  has_and_belongs_to_many :owners, class_name: "User", inverse_of: :owns
+
   has_many :stories, dependent: :delete
   has_many :features, dependent: :delete
-  has_and_belongs_to_many :fanciers, class_name: "User", inverse_of: :fancies
-  has_and_belongs_to_many :owners, class_name: "User", inverse_of: :owns
 
   has_many :lotteries, dependent: :delete
 
@@ -64,24 +67,6 @@ class Thing < Post
 
   def top_review
     reviews.where(is_top: true).first
-  end
-
-  def fancy(user)
-    return if fancied?(user)
-    fanciers << user
-    update_attribute :fanciers_count, fanciers.count
-    user.inc :karma, Settings.karma.fancy
-  end
-
-  def unfancy(user)
-    return unless fancied?(user)
-    fanciers.delete user
-    update_attribute :fanciers_count, fanciers.count
-    user.inc :karma, -Settings.karma.fancy
-  end
-
-  def fancied?(user)
-    fanciers.include? user
   end
 
   def own(user)

@@ -1,0 +1,20 @@
+- provide :nav, :features
+- provide :title, @feature.title
+
+- present @feature do |fp|
+
+  article#feature_show
+    header
+      h3= fp.title
+
+    section.post_content= fp.content
+
+    footer
+      = render 'shared/post_actions', post: fp.feature,
+        edit_post_path: fp.edit_path, post_path: fp.path
+
+    = render 'shared/comments', post: fp.feature, id: "comments"
+
+  - content_for :script do
+    javascript:
+      Making.Comments("#comments")
