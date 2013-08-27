@@ -59,6 +59,7 @@ header
               li= link_to_with_icon "购物车", "icon-shopping-cart", cart_items_path
               li= link_to_with_icon "收货地址", "icon-shopping-cart", addresses_path
               li= link_to_with_icon "订单", "icon-shopping-cart", orders_path
+              li= link_to_with_icon "订单后台", "icon-shopping-cart", haven_orders_path
           li.nav_user
             = link_to '#', class: "dropdown", data: {toggle: "dropdown"} do
               = image_tag current_user.avatar.url(:tiny), class: "user_avatar img-circle"
@@ -95,8 +96,10 @@ header
                 | 登出
         - else
           li.signin_tip 登录:
+          li.signup
+            = link_to_with_icon "邮箱注册", "icon-envelope", new_user_registration_path
           li.signin
-            li= link_to_with_icon "邮箱登录", "icon-envelope", new_user_session_path
+            = link_to_with_icon "邮箱登录", "icon-envelope", new_user_session_path
           li.signin
             = link_to user_omniauth_authorize_path(:twitter), class: "twitter_sign_in" do
               i.icon-twitter

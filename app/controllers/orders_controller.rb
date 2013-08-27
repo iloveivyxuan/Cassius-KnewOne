@@ -1,8 +1,9 @@
 class OrdersController < ApplicationController
   before_filter :have_items_in_cart, :only => [:new, :create]
-  load_and_authorize_resource
+  load_and_authorize_resource except: :index
 
   def index
+    @orders = current_user.orders
   end
 
   def show
@@ -23,6 +24,11 @@ class OrdersController < ApplicationController
   end
 
   def pay
+    # TODO: NYI
+    @order.pay!('test')
+    @order.confirm_payment!('test')
+
+    redirect_to orders_path
   end
 
   def cancel

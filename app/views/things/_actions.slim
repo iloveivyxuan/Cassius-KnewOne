@@ -2,7 +2,7 @@
   .price= tp.price
   .buy
     = tp.buy
-    = render partial: 'cart_form', locals: {thing: @thing} if user_signed_in?
+    = render partial: 'cart_form', locals: {thing: @thing} if can? :put_in_cart, @thing
   = render "things/stage_end_at", tp: tp
 
 .actions

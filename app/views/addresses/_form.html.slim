@@ -1,4 +1,4 @@
-= simple_form_for @address do |f|
+= simple_form_for (@address || Address.new) do |f|
   = f.error_notification
   = f.input :district, :as => :district_select_ul
   = f.input :address, required: true

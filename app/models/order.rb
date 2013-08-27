@@ -18,7 +18,8 @@ class Order
             :paid => '已付款，等待确认',
             :confirmed => '已付款',
             :shipped => '已发货',
-            :canceled => '订单取消'}
+            :canceled => '订单取消',
+            :closed => '订单关闭'}
   DELIVER_METHOD = {
       :sf => {name: '顺丰', price: 18},
       :zt => {name: '中通', price: 8}
@@ -65,6 +66,10 @@ class Order
     self.state == :canceled
   end
 
+  def closed?
+    self.state == :closed
+  end
+
   def can_pay?
     pending?
   end
@@ -73,11 +78,15 @@ class Order
     paid?
   end
 
-  def can_shipped?
+  def can_ship?
     confirmed?
   end
 
   def can_cancel?
+    pending?
+  end
+
+  def can_close?
     pending?
   end
 
@@ -102,9 +111,9 @@ class Order
   end
 
   def ship!
-    return false unless can_shipped?
+    return false unless can_ship?
 
-    self.state = :shipped!
+    self.state = :shipped
     save!
 
     order_histories.create from: :confirmed, to: :shipped
@@ -118,6 +127,16 @@ class Order
     save!
 
     order_histories.create from: :pending, to: :canceled
+  end
+
+  def close!
+    return false unless can_close?
+
+    order_items.each &:revert_stock!
+    self.state = :canceled
+    save!
+
+    order_histories.create from: :pending, to: :closed
   end
 
   def all_products_have_stock?

@@ -26,6 +26,14 @@ Making::Application.routes.draw do
     end
   end
 
+  namespace :haven do
+    resources :orders, only: [:index, :show] do
+      member do
+        put 'ship'
+      end
+    end
+  end
+
   resources :things do
     collection do
       get 'admin'

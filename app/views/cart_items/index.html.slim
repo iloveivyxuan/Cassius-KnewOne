@@ -25,7 +25,7 @@
 
 - content_for :script do
   javascript:
-    $('.remote-delete').bind("ajax:success", function(xhr, data, status) {
+    $('.remote-delete').on("ajax:success", function(xhr, data, status) {
                          $(this).closest('tr').remove();
                        });
     $('.item_quantity').blur(function() {
@@ -44,8 +44,6 @@
     });
 
 
-    $('.increment').bind("ajax:success", function(xhr, data, status) {
+    $('.increment').on("ajax:success", function(xhr, data, status) {
                                             $(this).parent().find('.item_quantity').val(data.quantity);
                                           });
-
-

@@ -24,7 +24,6 @@ class AddressesController < ApplicationController
   # GET /addresses/new.json
   def new
     @address = current_user.addresses.build
-    @address.district = '000000'
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,6 +43,7 @@ class AddressesController < ApplicationController
       if @address.save
         format.html { redirect_to @address, notice: 'Address was successfully created.' }
         format.json { render json: @address, status: :created, location: @address }
+        format.js { render 'create_at_order' }
       else
         format.html { render action: "new" }
         format.json { render json: @address.errors, status: :unprocessable_entity }
