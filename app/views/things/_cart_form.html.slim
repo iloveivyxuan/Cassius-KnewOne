@@ -1,24 +1,43 @@
+- first_kind = thing.kinds.selling.first
 = simple_form_for :cart_item, url: cart_items_path, remote: true, method: :post do |f|
   = f.input :thing, as: :hidden, input_html: {value: thing.id}, label: false, wrapper: false
+  = f.input :kind_id, as: :hidden, input_html: {value: thing.kinds.selling.first.id}
   ul
-    - thing.kinds.selling.each do |k|
-      li
-        /= image_tag k.photo, size: '64x64'
-        = k.title
-        br
-        = k.stock
-        = f.input :kind, as: :single_radio,
-                  value: k.id, label: false, class: 'kind', input_html: {disabled: k.stock <= 0, data: {stock: k.stock}}
-  = f.input :quantity, as: :integer, include_blank: false, required: true, label: false,\
-            input_html: {min:1, value: 1, class: 'input-medium'}
-  = f.submit "加入购物车", class: "btn btn-success"
+    li
+      span.price
+        | ￥
+        = first_kind.price
+    li.kind
+      a.kind-select.selected[href="javascript:void(0)" data-stock="#{first_kind.stock}"
+                             data-price="#{first_kind.price}" data-kind-id="#{first_kind.id}"]
+        = first_kind.title
+    - thing.kinds.selling.drop(1).each do |k|
+      li.kind
+        a.kind-select[href="javascript:void(0)" data-stock="#{k.stock}" data-price="#{k.price}" data-kind-id="#{k.id}"]
+          = k.title
+    li
+      = f.input_field :quantity, type: :number, \
+                      required: true, value: 1, min: 1, max: first_kind.stock, class: 'input-medium', step: 1
+      span.kind-stock
+        | 库存
+        = first_kind.stock
+        | 件
+    li
+      = button_tag(type: 'submit', class: "btn btn-success") do
+        i.icon-shopping-cart.icon-large
+        | 添加到购物车
 
 - content_for :script do
   javascript:
     $('.cart_item').bind("ajax:success", function(xhr, data, status) {
                          alert('添加成功');
                        });
-    $('.kind').click(function() {
+    $('.kind-select').click(function() {
       $this = $(this);
-      $('#cart_item_quantity').attr('max', $this.attr('data-stock'));
+      $('#cart_item_kind_id').val($this.attr('data-kind-id'));
+      $('.kind > .kind-select').removeClass('selected');
+      $('#cart_item_quantity').prop('max', $this.attr('data-stock'));
+      $('.cart span.price').text('￥'+$this.attr('data-price'));
+      $('.cart span.kind-stock').text('库存'+$this.attr('data-stock')+'件');
+      $this.addClass('selected');
     });

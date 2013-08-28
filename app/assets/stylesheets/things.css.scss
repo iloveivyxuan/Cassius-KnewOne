@@ -172,6 +172,35 @@
         color: $red;
       }
     }
+
+    .cart {
+      .kind-select {
+        @include border-radius(1px);
+        width: 90%;
+        display: block;
+        padding: 0.5em;
+        border: 1px solid #dbdbdb;
+        margin-bottom: 0.5em;
+        background-color: #ffffff;
+        &:hover, &.selected {
+          border-color: #f1785b;
+        }
+      }
+
+      input {
+        background-color: #ffffff;
+      }
+
+      .kind-stock {
+        margin-left: 1em;
+        line-height: 2em;
+      }
+
+      span.price {
+        font-size: 1.5em;
+        margin-bottom: 1.5em;
+      }
+    }
   }
 
   .actions {
@@ -254,6 +283,11 @@
         margin-right: 1em;
       }
 
+      .cart {
+        position: relative;
+        display: block;
+        z-index: 20;
+      }
     }
 
     .actions {

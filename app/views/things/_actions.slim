@@ -1,7 +1,8 @@
 .shop
-  .price= tp.price
-  .buy
-    = tp.buy
+  /.price= tp.price
+  /.buy
+  /  = tp.buy
+  .cart
     = render partial: 'cart_form', locals: {thing: @thing} if can? :put_in_cart, @thing
   = render "things/stage_end_at", tp: tp
 

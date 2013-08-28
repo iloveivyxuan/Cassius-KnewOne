@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.place_order(current_user, params[:order])
     if @order.save!
-      redirect_to orders_path
+      redirect_to @order
     else
       render 'new'
     end

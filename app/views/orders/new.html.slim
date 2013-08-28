@@ -4,12 +4,14 @@
       th Thing
       th Kind
       th Quantity
+      th Price
       th
     - @order.order_items.each do |item|
       tr
         td = item.thing_kind.thing.title
         td = item.thing_kind.title
         td = item.quantity
+        td = item.price
 
   = simple_form_for @order do |f|
     = f.association :address, as: :radio_buttons, collection: current_user.addresses,
@@ -35,6 +37,7 @@
       = f.input :name, required: true
       = f.input :phone, required: true
       = f.input :zip_code
+      strong.total_price
     .modal-footer
       = f.button :submit
 

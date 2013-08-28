@@ -3,7 +3,7 @@ class OrderItem
   include Mongoid::Timestamps
 
   field :quantity, type: Integer
-  field :price, type: BigDecimal
+  field :single_price, type: BigDecimal
 
   belongs_to :thing_kind
 
@@ -21,12 +21,16 @@ class OrderItem
     thing_kind.inc :stock, self.quantity
   end
 
+  def price
+    self.single_price * self.quantity
+  end
+
   class<< self
     def build_by_cart_item(order, item)
       order.order_items.build({
         quantity: item.quantity,
         thing_kind: item.kind,
-        price: item.kind.price
+        single_price: item.kind.price
       })
     end
   end
