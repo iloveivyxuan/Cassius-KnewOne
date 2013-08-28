@@ -2,21 +2,24 @@
   table
     tr
       th Thing
-      th Quantity
       th Kind
+      th Quantity
       th
     - @order.order_items.each do |item|
       tr
         td = item.thing_kind.thing.title
-        td = item.quantity
         td = item.thing_kind.title
+        td = item.quantity
 
   = simple_form_for @order do |f|
     = f.association :address, as: :radio_buttons, collection: current_user.addresses,
                     label_method: :full
     a.btn[data-toggle="modal" role="button" href="#new-address"] 新地址
-    = f.input :deliver_by, as: :radio_buttons, collection: Order::DELIVER_METHOD,
-              label_method: lambda { |v| v[1][:name] }, value_method: lambda { |v| v[0] }
+    = f.input :deliver_by, as: :radio_buttons do
+      - Order::DELIVER_METHOD.each do |k, v|
+        label.radio
+          = f.radio_button :deliver_by, k, :'data-price' => v[:price]
+          = v[:name]
     = f.input :note
     = f.submit
 

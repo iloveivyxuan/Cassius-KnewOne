@@ -22,6 +22,22 @@ module OrdersHelper
     end
   end
 
+  def close_link(order)
+    if order.can_close?
+      link_to '关闭', close_haven_order_path(order),
+              data: {confirm: '确认关闭？'},
+              method: 'put'
+    end
+  end
+
+  def refund_link(order)
+    if order.can_refund?
+      link_to '退货', refund_haven_order_path(order),
+              data: {confirm: '确认退货？'},
+              method: 'put'
+    end
+  end
+
   def order_operations(order)
     [
         link_to('查看', order),

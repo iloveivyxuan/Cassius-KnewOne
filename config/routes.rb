@@ -27,9 +27,11 @@ Making::Application.routes.draw do
   end
 
   namespace :haven do
-    resources :orders, only: [:index, :show] do
+    resources :orders, only: [:index, :show, :update] do
       member do
         put 'ship'
+        put 'close'
+        put 'refund'
       end
     end
   end

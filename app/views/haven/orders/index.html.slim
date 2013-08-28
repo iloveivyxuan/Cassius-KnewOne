@@ -8,4 +8,4 @@
       tr
         td = order.created_at
         td = order.humanize_state
-        td = ship_link(order)
+        td = link_to '查看', haven_order_path(order)

@@ -13,7 +13,8 @@ class Order
   field :deliver_by, type: Symbol, default: :sf
   field :note, type: String
   field :admin_note, type: String
-  field :total_price, type: BigDecimal
+  field :things_price, type: BigDecimal
+  field :deliver_price, type: BigDecimal
 
   STATES = {:pending => '等待付款',
             :paid => '已付款，等待确认',
@@ -29,16 +30,30 @@ class Order
   validates :state, presence: true, inclusion: {in: STATES.keys}
   validates :deliver_by, presence: true, inclusion: {in: DELIVER_METHOD.keys}
   validates :address, :user, presence: true
-  attr_protected :state, :trade_no
+  attr_accessible :address_id, :note, :deliver_by
+  attr_accessible :state, :admin_note, :as => :admin
 
   before_create do
-    self.total_price = order_items.map(&:price).reduce(&:+) + DELIVER_METHOD[self.deliver_by][:price]
+    self.things_price = order_items.map(&:price).reduce(&:+)
+    self.deliver_price = DELIVER_METHOD[self.deliver_by][:price]
   end
 
   after_create do
     user.cart_items.destroy_all(:kind.in => order_items.map(&:thing_kind))
     order_items.each &:claim_stock!
   end
+
+  def total_price
+    self.things_price + self.deliver_price
+  end
+
+  scope :pending, -> { where state: :pending }
+  scope :paid, -> { where state: :paid }
+  scope :confirmed, -> { where state: :confirmed }
+  scope :shipped, -> { where state: :shipped }
+  scope :canceled, -> { where state: :canceled }
+  scope :closed, -> { where state: :closed }
+  scope :refunded, -> { where state: :refunded }
 
   def state
     super.to_sym

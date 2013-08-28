@@ -1,2 +1,19 @@
-h1 Orders#show
-p Find me in app/views/orders/show.html.slim
+.orders_wrapper
+  table
+    tr
+      th Thing
+      th Kind
+      th Quantity
+      th
+    - @order.order_items.each do |item|
+      tr
+        td = item.thing_kind.thing.title
+        td = item.thing_kind.title
+        td = item.quantity
+  = simple_form_for @order, url: haven_order_path(@order) do |f|
+    = f.input :admin_note, as: :text
+    = f.submit
+  br
+  = ship_link(@order)
+  = close_link(@order)
+  = refund_link(@order)

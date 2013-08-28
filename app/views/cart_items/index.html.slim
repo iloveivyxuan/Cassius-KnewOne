@@ -21,7 +21,7 @@
                             method: :delete, remote: true, class: 'remote-delete',
                             data: {confirm: '确定要从购物车中删除吗？'}
 
-  = link_to '结算', new_order_path
+  = order_link
 
 - content_for :script do
   javascript:
