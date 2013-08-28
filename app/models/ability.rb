@@ -16,6 +16,7 @@ class Ability
       can :update, Story
       can :pro_edit, Thing
       can :pro_update, Thing
+      can :update, Lottery
     else
       basic
       signed user

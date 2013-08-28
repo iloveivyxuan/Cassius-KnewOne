@@ -30,7 +30,7 @@ tr.lottery
     - else
       p.placeholder ?
 
-- if can? :manage, :all
+- if can? :update, Lottery
   tr
     td
       = link_to edit_lottery_path(lottery) do
@@ -47,4 +47,3 @@ tr.lottery
         = lottery.delivery
       - else
         | 未投递
-  
