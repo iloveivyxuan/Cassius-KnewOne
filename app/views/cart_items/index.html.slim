@@ -1,32 +1,52 @@
 .carts_wrapper
-  table
-    tr
-      th Thing
-      th Quantity
-      th Kind
-      th
-    - @cart_items.each_with_index do |cart_item, i|
-      tr
-        td = cart_item.thing.title
-        td
-          = link_to '-', increment_cart_item_path(cart_item.id, step: -1),
-                    class: 'increment btn', method: :put, remote: true
-          = hidden_field_tag "cart_items[][id]", cart_item.id, class: 'item_id'
-          = number_field_tag "cart_items[][quantity]", cart_item.quantity,
-                             required: true, class: 'item_quantity', min: 1
-          = link_to '+', increment_cart_item_path(cart_item.id, step: 1),
-                    class: 'increment btn', method: :put, remote: true
-        td = cart_item.kind.title
-        td = link_to '删除', cart_item_path(id: cart_item.id),
-                            method: :delete, remote: true, class: 'remote-delete',
-                            data: {confirm: '确定要从购物车中删除吗？'}
-
-  = order_link
+  .cart_header
+    h1.title.pull-left 我的购物车
+    .opts.pull-right
+      = delete_multiple_link
+      = place_order_link
+  hr.divider
+  .cart_items
+    - @cart_items.each do |item|
+      .cart_item
+        .item_info
+          .multiple_select = check_box_tag 'items[]', item.id
+          .thing_cover = image_tag item.thing.cover.url(:middle)
+          .info
+            .title = link_to item.thing.title, item.thing
+            .kind = item.kind.title
+            div = link_to '删除', cart_item_path(id: item.id),
+                                          method: :delete, remote: true, class: 'remote-delete'
+        .item_opt
+          div
+            .input-append
+              = hidden_field_tag "cart_items[][id]", item.id, class: 'item_id'
+              = link_to '-', increment_cart_item_path(item.id, step: -1),
+                        class: 'increment btn', method: :put, remote: true
+              = number_field_tag "cart_items[][quantity]", item.quantity,
+                                 required: true, class: 'item_quantity span1', min: 1
+              = link_to '+', increment_cart_item_path(item.id, step: 1),
+                        class: 'increment btn', method: :put, remote: true
+            span.price
+              | ￥
+              = item.price
+          .item_note
+            = item.kind.note
+  hr.divider
+  .cart_items_price
+    p.pull-right
+      | 总计（不包含运费）
+      span.price.total_price
+        | ￥
+        = @cart_items.map(&:price).reduce(&:+)
+  hr.divider
+  .cart_footer
+    .pull-right
+      = place_order_link
 
 - content_for :script do
   javascript:
     $('.remote-delete').on("ajax:success", function(xhr, data, status) {
-                         $(this).closest('tr').remove();
+                         $(this).closest('.cart_item').remove();
                        });
     $('.item_quantity').blur(function() {
        var $this = $(this);
@@ -35,10 +55,11 @@
        $.ajax({
          url: '/cart_items/' + id,
          type: 'PUT',
-         data: { cart_item: { quantity: quantity } },
+         data: { quantity: quantity },
          success: function(data) {
-           console.log(data);
            $this.val(data.quantity);
+           $this.parent().parent().find('.price').text('￥' + data.price);
+           $('.total_price').text('￥' + data.total_price);
          },
        });
     });
@@ -46,4 +67,12 @@
 
     $('.increment').on("ajax:success", function(xhr, data, status) {
                                             $(this).parent().find('.item_quantity').val(data.quantity);
+                                            $(this).parent().parent().find('.price').text('￥' + data.price);
+                                            $('.total_price').text('￥' + data.total_price);
                                           });
+
+    $('.delete-multiple').click(function() {
+      $('input[name="items[]"]:checked').each(function(i, item) {
+        $(item).closest('.cart_item').find('.remote-delete').trigger('click.rails');
+      });
+    });

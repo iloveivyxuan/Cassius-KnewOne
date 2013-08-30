@@ -1,9 +1,107 @@
 .carts_wrapper {
   @include responsive-wrapper;
 
+  padding: 2em;
+
   input[type=number]::-webkit-inner-spin-button,
   input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+
+  .item_quantity {
+    text-align: center;
+    width: 2em !important;
+  }
+
+  .place-order {
+    width: 4em;
+    height: 0.75em;
+    line-height: 0.75em;
+    margin-left: 1em;
+  }
+
+  .price {
+    color: #cc3300;
+    line-height: 32px;
+    font-size: 1.25em;
+  }
+
+  .cart_items {
+    .cart_item {
+      @include clearfix;
+
+      margin-bottom: 1em;
+
+      .item_info {
+        float: left;
+
+        .multiple_select {
+          float: left;
+          line-height: 120px;
+          margin-right: 1em;
+        }
+
+        .thing_cover {
+          float: left;
+          width: 180px;
+          margin-right: 1em;
+          img {
+            height: 120px;
+          }
+        }
+
+        .info {
+          float: left;
+
+          .title {
+            a {
+              color: #374a75;
+              font-size: 28px;
+            }
+          }
+
+          .kind {
+            line-height: (120px - 32px - 22px);
+          }
+        }
+      }
+
+      .item_opt {
+        float: right;
+        text-align: right;
+        .price {
+          margin-left: 2em;
+          min-width: 6em;
+          display: inline-block;
+        }
+
+        .item_note {
+          line-height: 120px;
+        }
+      }
+    }
+  }
+
+  .cart_header {
+    @include clearfix;
+
+    .title {
+      margin: 0;
+    }
+
+    .delete-multiple {
+      &.disabled &:hover, &.disabled {
+        color: #a9a9a9;
+      }
+    }
+  }
+
+  hr.divider {
+    margin-top: 0;
+  }
+
+  .cart_items_price {
+    @include clearfix;
   }
 }

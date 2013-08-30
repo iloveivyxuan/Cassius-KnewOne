@@ -15,6 +15,6 @@ class CartItem
       less_than_or_equal_to: Proc.new {|item| item.kind.stock} }
 
   def price
-    kind.price * self.quantity
+    self.kind.price * self.quantity
   end
 end

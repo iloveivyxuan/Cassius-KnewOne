@@ -14,7 +14,7 @@ class CartItemsController < ApplicationController
     end
 
     # authorize! :create, cart_item # no need to check
-    result = cart_item.save!
+    result = cart_item.save
 
     respond_to do |format|
       format.json { render :json => {:result => result} }
@@ -25,9 +25,12 @@ class CartItemsController < ApplicationController
   def update
     cart_item = user_cart.find(params[:id])
     cart_item.update_attributes quantity: params[:quantity]
+    cart_item = cart_item.reload
 
     respond_to do |format|
-      format.json { render :json => {quantity: cart_item.reload.quantity} }
+      format.json { render :json => {quantity: cart_item.quantity,
+                                     price: cart_item.price,
+                                     total_price: total_price} }
       format.html { redirect_to cart_items_path }
     end
   end
@@ -35,9 +38,12 @@ class CartItemsController < ApplicationController
   def increment
     cart_item = user_cart.find(params[:id])
     cart_item.update_attributes quantity: cart_item.quantity + (params[:step].to_i || 1)
+    cart_item = cart_item.reload
 
     respond_to do |format|
-      format.json { render :json => {quantity: cart_item.reload.quantity} }
+      format.json { render :json => {quantity: cart_item.quantity,
+                                     price: cart_item.price,
+                                     total_price: total_price} }
       format.html { redirect_to cart_items_path }
     end
   end
@@ -58,4 +64,9 @@ class CartItemsController < ApplicationController
   def user_cart
     current_user.cart_items
   end
+
+  def total_price
+    user_cart.map(&:price).reduce(&:+)
+  end
+
 end

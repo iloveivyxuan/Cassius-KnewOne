@@ -1,6 +1,10 @@
 # encoding: utf-8
 module CartsHelper
-  def order_link
-    link_to '结算', new_order_path unless @cart_items.empty?
+  def place_order_link
+    link_to '结算', new_order_path, class: 'btn btn-large btn-success place-order', disabled: @cart_items.empty?
+  end
+
+  def delete_multiple_link
+    link_to '删除', 'javascript:void(0)', class: 'delete-multiple disabled', disabled: true
   end
 end
