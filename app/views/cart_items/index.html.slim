@@ -20,12 +20,14 @@
           div
             .input-append
               = hidden_field_tag "cart_items[][id]", item.id, class: 'item_id'
-              = link_to '-', increment_cart_item_path(item.id, step: -1),
-                        class: 'increment btn', method: :put, remote: true
+              = link_to increment_cart_item_path(item.id, step: -1),
+                        class: 'increment btn', method: :put, remote: true do
+                i.icon-minus
               = number_field_tag "cart_items[][quantity]", item.quantity,
                                  required: true, class: 'item_quantity span1', min: 1
-              = link_to '+', increment_cart_item_path(item.id, step: 1),
-                        class: 'increment btn', method: :put, remote: true
+              = link_to increment_cart_item_path(item.id, step: 1),
+                        class: 'increment btn', method: :put, remote: true do
+                i.icon-plus
             span.price
               | ￥
               = item.price
@@ -37,7 +39,7 @@
       | 总计（不包含运费）
       span.price.total_price
         | ￥
-        = @cart_items.map(&:price).reduce(&:+)
+        = @cart_items.map(&:price).reduce(&:+) || 0
   hr.divider
   .cart_footer
     .pull-right
@@ -47,6 +49,8 @@
   javascript:
     $('.remote-delete').on("ajax:success", function(xhr, data, status) {
                          $(this).closest('.cart_item').remove();
+                         console.log(data);
+                         $('.total_price').text('￥' + data.total_price);
                        });
     $('.item_quantity').blur(function() {
        var $this = $(this);

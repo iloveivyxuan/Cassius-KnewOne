@@ -53,8 +53,13 @@ class CartItemsController < ApplicationController
     authorize! :destroy, cart_item
     cart_item.destroy
 
+    puts '====='
+    puts user_cart.select(&:persisted?).size
+    puts total_price
+    puts '====='
+
     respond_to do |format|
-      format.json { head :no_content }
+      format.json { render :json => {total_price: total_price} }
       format.html { redirect_to cart_items_path }
     end
   end
@@ -66,7 +71,6 @@ class CartItemsController < ApplicationController
   end
 
   def total_price
-    user_cart.map(&:price).reduce(&:+)
+    user_cart.select(&:persisted?).map(&:price).reduce(&:+) || 0
   end
-
 end

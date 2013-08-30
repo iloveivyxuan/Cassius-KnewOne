@@ -30,9 +30,14 @@
 
   - content_for :script do
     javascript:
-      $('.cart_item').bind("ajax:success", function(xhr, data, status) {
-                           alert('添加成功');
-                         });
+      $('.cart_item').bind("ajax:success",
+        function(xhr, data, status) {
+          if(data.result) {
+            alert('添加成功');
+          } else {
+            alert('超过最大库存，添加失败');
+          }
+       });
       $('.kind-select').click(function() {
         $this = $(this);
         $('#cart_item_kind_id').val($this.attr('data-kind-id'));

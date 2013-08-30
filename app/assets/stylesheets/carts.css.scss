@@ -70,6 +70,13 @@
       .item_opt {
         float: right;
         text-align: right;
+
+        .input-append {
+          i {
+            margin: 0;
+          }
+        }
+
         .price {
           margin-left: 2em;
           min-width: 6em;
