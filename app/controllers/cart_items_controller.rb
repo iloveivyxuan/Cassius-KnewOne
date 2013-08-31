@@ -2,7 +2,8 @@ class CartItemsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @cart_items = user_cart
+    @has_stock_items = user_cart.select(&:has_stock?)
+    @out_stock_items = (user_cart - @has_stock_items)#.each &:destroy
   end
 
   def create

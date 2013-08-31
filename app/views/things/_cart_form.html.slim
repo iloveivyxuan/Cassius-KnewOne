@@ -1,21 +1,28 @@
 - if thing.kinds.any?
-  - first_kind = thing.kinds.selling.first
+  - first_kind = thing.kinds.selling.has_stock.first
   = simple_form_for :cart_item, url: cart_items_path, remote: true, method: :post do |f|
     = f.input :thing, as: :hidden, input_html: {value: thing.id}, label: false, wrapper: false
-    = f.input :kind_id, as: :hidden, input_html: {value: thing.kinds.selling.first.id}
+    = f.input :kind_id, as: :hidden, input_html: {value: first_kind.id}
     ul
       li
         span.price
           | ￥
           = first_kind.price
-      li.kind
-        a.kind-select.selected[href="javascript:void(0)" data-stock="#{first_kind.stock}"
-                               data-price="#{first_kind.price}" data-kind-id="#{first_kind.id}"]
-          = first_kind.title
-      - thing.kinds.selling.drop(1).each do |k|
+      - thing.kinds.selling.each do |k|
         li.kind
-          a.kind-select[href="javascript:void(0)" data-stock="#{k.stock}" data-price="#{k.price}" data-kind-id="#{k.id}"]
-            = k.title
+          - if k.stock > 0
+            - if first_kind == k
+              a.kind-select.selected[href="javascript:void(0)"
+                                     data-stock="#{k.stock}" data-price="#{k.price}" data-kind-id="#{k.id}"]
+                = k.title
+            - else
+              a.kind-select[href="javascript:void(0)"
+                            data-stock="#{k.stock}" data-price="#{k.price}" data-kind-id="#{k.id}"]
+                = k.title
+          - else
+            span.kind-select-disabled[href="javascript:void(0)"
+                                      data-stock="#{k.stock}" data-price="#{k.price}" data-kind-id="#{k.id}"]
+              = k.title
       li
         = f.input_field :quantity, type: :number, \
                         required: true, value: 1, min: 1, max: first_kind.stock, class: 'input-small', step: 1

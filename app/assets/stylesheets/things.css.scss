@@ -174,7 +174,7 @@
     }
 
     .cart {
-      .kind-select {
+      .kind-select, .kind-select-disabled {
         @include border-radius(1px);
         width: 90%;
         display: block;
@@ -182,9 +182,16 @@
         border: 1px solid #dbdbdb;
         margin-bottom: 0.5em;
         background-color: #ffffff;
+      }
+
+      .kind-select {
         &:hover, &.selected {
           border-color: #f1785b;
         }
+      }
+
+      .kind-select-disabled {
+        color: #dbdbdb;
       }
 
       input {

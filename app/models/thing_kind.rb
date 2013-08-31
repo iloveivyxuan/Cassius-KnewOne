@@ -12,6 +12,7 @@ class ThingKind
   field :selling, type: Boolean, default: false
 
   scope :selling, -> { where :selling => true }
+  scope :has_stock, -> { where :stock.gt => 0 }
 
   mount_uploader :photo, ImageUploader
 end

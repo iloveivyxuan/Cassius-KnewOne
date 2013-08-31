@@ -27,7 +27,11 @@
     font-size: 1.25em;
   }
 
-  .cart_items {
+  .out_stock_header {
+    font-size: 1.5em;
+  }
+
+  .cart_items, .out_stock_cart_items {
     .cart_item {
       @include clearfix;
 
@@ -84,7 +88,7 @@
         }
 
         .item_note {
-          line-height: 120px;
+          margin-top: (120px - 32px - 11px - 22px);
         }
       }
     }
