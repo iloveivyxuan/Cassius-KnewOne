@@ -12,9 +12,9 @@ class CartItemsController < ApplicationController
       cart_item = current_user.cart_items.build params[:cart_item]
     else
       cart_item.quantity += params[:cart_item][:quantity].to_i
+      cart_item.quantity = cart_item.kind.stock unless cart_item.has_stock?
     end
 
-    # authorize! :create, cart_item # no need to check
     result = cart_item.save
 
     respond_to do |format|
@@ -25,8 +25,9 @@ class CartItemsController < ApplicationController
 
   def update
     cart_item = user_cart.find(params[:id])
-    cart_item.update_attributes quantity: params[:quantity]
-    cart_item = cart_item.reload
+    cart_item.quantity = params[:quantity]
+    cart_item.quantity = cart_item.kind.stock unless cart_item.has_stock?
+    cart_item.save
 
     respond_to do |format|
       format.json { render :json => {quantity: cart_item.quantity,
@@ -38,8 +39,9 @@ class CartItemsController < ApplicationController
 
   def increment
     cart_item = user_cart.find(params[:id])
-    cart_item.update_attributes quantity: cart_item.quantity + (params[:step].to_i || 1)
-    cart_item = cart_item.reload
+    cart_item.quantity = cart_item.quantity + (params[:step].to_i || 1)
+    cart_item.quantity = cart_item.kind.stock unless cart_item.has_stock?
+    cart_item.save
 
     respond_to do |format|
       format.json { render :json => {quantity: cart_item.quantity,
