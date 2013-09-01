@@ -68,6 +68,7 @@ class Ability
     can :buy,  Thing
     can :comments, Thing
     can :wechat_qr, Thing
+    can :random, Thing
     can :create, Supplier
   end
 end

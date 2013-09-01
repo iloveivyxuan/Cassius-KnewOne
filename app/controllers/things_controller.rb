@@ -121,4 +121,10 @@ class ThingsController < PostsController
 
     redirect_to admin_things_path
   end
+
+  def random
+    # TODO: optimize later
+    @thing = Thing.published.sample
+    render action: 'show', layout: 'thing'
+  end
 end
