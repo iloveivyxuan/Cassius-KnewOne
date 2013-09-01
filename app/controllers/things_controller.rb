@@ -125,6 +125,6 @@ class ThingsController < PostsController
   def random
     # TODO: optimize later
     @thing = Thing.published.sample
-    render action: 'show', layout: 'thing'
+    redirect_to thing_path(@thing, format: params[:format])
   end
 end
