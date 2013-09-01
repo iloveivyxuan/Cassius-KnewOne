@@ -7,11 +7,15 @@ class ThingsController < PostsController
               Thing.self_run
             when "fancy"
               Thing.unscoped.published.desc(:fanciers_count)
+            when "random"
+              # TODO: may need optimize
+              size = Thing.published.size
+              Thing.published.skip(rand(size))
             else
               Thing.published
             end
 
-    @things = scope.page(params[:page]).per(12)
+    @things = scope.page(params[:page]).per(params[:per] || 12)
 
     respond_to do |format|
       format.html
@@ -95,7 +99,7 @@ class ThingsController < PostsController
   def buy
     respond_to do |format|
       format.html { redirect_to @thing.shop }
-      format.json { render json: { type: 'taobao', id: '25312892353' } } #fake
+      format.json { render json: {type: 'taobao', id: '25312892353'} } #fake
     end
 
   end
@@ -120,11 +124,5 @@ class ThingsController < PostsController
     Thing.resort!
 
     redirect_to admin_things_path
-  end
-
-  def random
-    # TODO: optimize later
-    @thing = Thing.published.sample
-    redirect_to thing_path(@thing, format: params[:format])
   end
 end
