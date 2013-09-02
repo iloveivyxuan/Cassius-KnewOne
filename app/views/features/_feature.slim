@@ -6,6 +6,7 @@
       section.post_content
         = fp.content
       footer
+        = render "fancy", fp: fp
         = fp.comments_count
         = render 'shared/post_actions', post: fp.feature,
         edit_post_path: fp.edit_path, post_path: fp.path
