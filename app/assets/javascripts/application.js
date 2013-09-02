@@ -17,7 +17,7 @@
 //= require bootstrap-wysiwyg
 //= require sisyphus
 //= require jquery.tagsinput
-//= require area_select_cn/jquery.district-ul
+//= require district_cn_selector/jquery.district
 //= require_tree ../templates
 //= require making
 //= require_tree ./models
