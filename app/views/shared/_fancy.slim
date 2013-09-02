@@ -1,0 +1,10 @@
+- path = user_signed_in? ? p.fancy_path : "#"
+- data = user_signed_in? ? nil : {toggle: "modal", target: "#login-modal"}
+- title = p.fancied? ? "取消喜欢" : "喜欢"
+- fancy_class = p.fancied? ? "fancied" : "unfancied"
+
+= link_to path, remote: true, method: :post, class: fancy_class, title: title, data: data do
+  i.icon-heart
+  i.icon-heart-empty
+  = p.fanciers_count
+  span 喜欢

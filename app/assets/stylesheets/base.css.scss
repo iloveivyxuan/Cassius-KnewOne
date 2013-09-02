@@ -334,11 +334,33 @@ time {
 .fanciers {
   color: $red;
   a {color: $red;}
+
+  .fancied {
+    .icon-heart-empty {display: none !important;}
+  }
+
+  .unfancied {
+    .icon-heart {display: none !important;}
+    &:hover {
+      span:last-child {color: $red;}
+    }
+  }
 }
 
 .owners {
   color: $green;
   a {color: $green;}
+
+  .owned {
+    .icon-check-empty {display: none !important;}
+  }
+
+  .unowned {
+    .icon-check {display: none !important;}
+    &:hover {
+      span:last-child {color: $green;}
+    }
+  }
 }
 
 .reviews_count {
@@ -539,5 +561,3 @@ label#check_provider_sync {
   color: $fontLightColor;
   margin-left: 2em;
 }
-
-

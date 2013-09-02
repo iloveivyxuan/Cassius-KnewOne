@@ -164,30 +164,7 @@
   }
 
   .actions {
-    .fanciers {
-      .fancied {
-        .icon-heart-empty {display: none;}
-      }
-      .unfancied {
-        .icon-heart {display: none;}
-        &:hover {
-          span:last-child {color: $red;}
-        }
-      }
-    }
 
-    .owners {
-      .owned {
-        .icon-check-empty {display: none;}
-      }
-
-      .unowned {
-        .icon-check {display: none;}
-        &:hover {
-          span:last-child {color: $green;}
-        }
-      }
-    }
 
     .support, .share, .wechat, .supplier {
       i {color: $fontLightColor;}

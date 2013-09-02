@@ -115,12 +115,8 @@ class ThingPresenter < PostPresenter
     end
   end
 
-  def fancied?
-    user_signed_in? and thing.fancied?(current_user)
-  end
-
-  def fanciers_count
-    content_tag :span, thing.fanciers.count, class: "fanciers_count"
+  def fancy_path
+    fancy_thing_path(thing)
   end
 
   def owned?

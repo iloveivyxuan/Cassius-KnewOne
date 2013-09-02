@@ -32,12 +32,11 @@ class Thing < Post
   }
   validates :stage, inclusion: { in: STAGES.keys }
 
+  include Fancyable
+  has_and_belongs_to_many :fanciers, class_name: "User", inverse_of: :fancies
+
   field :scores, type: Array, default: []
   has_many :reviews, dependent: :delete
-
-  field :fanciers_count, type: Integer, default: 0
-  has_and_belongs_to_many :fanciers, class_name: "User", inverse_of: :fancies
-  include Fancy
 
   has_and_belongs_to_many :owners, class_name: "User", inverse_of: :owns
 

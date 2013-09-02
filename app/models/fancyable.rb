@@ -1,4 +1,10 @@
-module Fancy
+module Fancyable
+  extend ActiveSupport::Concern
+
+  included do
+    field :fanciers_count, type: Integer, default: 0
+  end
+
   def fancy(user)
     return if fancied?(user)
     fanciers << user

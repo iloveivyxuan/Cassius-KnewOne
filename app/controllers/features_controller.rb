@@ -40,4 +40,17 @@ class FeaturesController < PostsController
     @feature.destroy
     redirect_to thing_features_path(@thing)
   end
+
+  def fancy
+    if @feature.fancied? current_user
+      @feature.unfancy current_user
+    else
+      @feature.fancy current_user
+    end
+
+    respond_to do |format|
+      format.html { redirect_to @feature }
+      format.js
+    end
+  end
 end

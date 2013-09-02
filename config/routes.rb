@@ -33,7 +33,9 @@ Making::Application.routes.draw do
       member { post 'vote' }
     end
     resources :stories
-    resources :features
+    resources :features do
+      member {post 'fancy'}
+    end
   end
 
   get '/reviews_admin', to: "reviews#admin", as: :reviews_admin
