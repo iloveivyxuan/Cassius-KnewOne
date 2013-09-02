@@ -157,5 +157,10 @@ class Thing < Post
 
       ordered_things.each {|t| t.save(validate: false)}
     end
+
+    def rand_records(per = 1)
+      size = self.count
+      (1..per).map { Thing.skip(rand(size)).first }
+    end
   end
 end
