@@ -393,6 +393,11 @@
     }
 
     .share {margin-top: -5px;}
+
+    .fanciers {
+      float: right;
+      i {margin-right: 2em;}
+    }
   }
 
   aside#comments {
@@ -425,13 +430,6 @@
       .details {
         i {margin-left: 1em;}
       }
-
-      footer {
-        > * {
-          display: inline-block;
-          margin-top: 1em;
-        }
-      }
     }
   }
 }
@@ -452,13 +450,22 @@
       font-size: 1.6em;
       padding-bottom: .625em;
     }
-
-    article {
-      footer {
-        padding-top: 1em;
-        > * {margin-right: 2em;}
-      }
-    }
   }
 }
 
+#features {
+  .feature {
+    @include clearfix;
+
+    &:not(:last-child) {
+      padding-bottom: 2em;
+      border-bottom: 1px dashed #ccc;
+      margin-bottom: 2em;
+    }
+
+    .fanciers {
+      float: right;
+      i {margin-right: 2em;}
+    }
+  }
+}

@@ -1,6 +1,6 @@
 - present feature do |fp|
   li.feature
-    article id=fp.dom_id
+    article.post id=fp.dom_id
       header
         h3= link_to fp.title, fp.path
       section.post_content
@@ -9,4 +9,4 @@
         = fp.comments_count
         = render 'shared/post_actions', post: fp.feature,
         edit_post_path: fp.edit_path, post_path: fp.path
-        .fanciers= render "shared/fancy", p: fp
+        span.fanciers= render "shared/fancy", p: fp

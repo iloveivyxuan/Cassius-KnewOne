@@ -12,6 +12,7 @@
     footer
       = render 'shared/post_actions', post: fp.feature,
         edit_post_path: fp.edit_path, post_path: fp.path
+      span.fanciers= render "shared/fancy", p: fp
 
     = render 'shared/comments', post: fp.feature, id: "comments"
 

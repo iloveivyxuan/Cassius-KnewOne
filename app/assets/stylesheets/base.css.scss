@@ -542,18 +542,16 @@ article.post {
     word-wrap: break-word;
   }
 
-  aside {
-    float: right;
-    margin-top: -3.6em;
-  }
-
   section {
     p {word-wrap: break-word;}
   }
 
   footer {
-    span {padding-right: 1em;}
-    a {margin-right: 1em;}
+    > * {
+      display: inline-block;
+      margin-top: 1em;
+      margin-right: 2em;
+    }
   }
 }
 
