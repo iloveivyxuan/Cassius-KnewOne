@@ -159,8 +159,7 @@ class Thing < Post
     end
 
     def rand_records(per = 1)
-      size = self.count
-      (1..per).map { Thing.skip(rand(size)).first }
+      (0...Thing.count).to_a.shuffle.slice(0, per).map { |i| Thing.skip(i).first }
     end
   end
 end

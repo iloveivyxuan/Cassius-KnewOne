@@ -4,12 +4,12 @@
 
   section#things_index
     nav.btn-group
-      = link_to_with_icon "最新", "icon-rocket", things_path, 
-      class: "btn #{'active' unless params[:sort]}" 
-      = link_to_with_icon "热门", "icon-bullseye", things_path(sort: "fancy"), 
-      class: "btn #{'active' if params[:sort] == 'fancy'}"  
-      = link_to_with_icon "自营", "icon-trophy", things_path(sort: "self_run"), 
-      class: "btn #{'active' if params[:sort] == 'self_run'}" 
+      = link_to_with_icon "最新", "icon-rocket", things_path,
+      class: "btn #{'active' unless params[:sort]}"
+      = link_to_with_icon "热门", "icon-bullseye", things_path(sort: "fancy"),
+      class: "btn #{'active' if params[:sort] == 'fancy'}"
+      = link_to_with_icon "自营", "icon-trophy", things_path(sort: "self_run"),
+      class: "btn #{'active' if params[:sort] == 'self_run'}"
 
     ul= render @things, size: :normal
 
@@ -18,4 +18,3 @@
 - content_for :script do
   javascript:
     Making.InfiniteScroll("#things_index", "li.thing")
-

@@ -2,24 +2,24 @@ class ThingsController < PostsController
   after_filter :store_location, only: [:show]
 
   def index
-    per = params[:per].to_i || 12
+    per = (params[:per] || 12).to_i
 
     scope = case params[:sort]
-              when "self_run"
-                Thing.self_run
-              when "fancy"
-                Thing.unscoped.published.desc(:fanciers_count)
-              when "random"
-                Thing.rand_records per
-              else
-                Thing.published
+            when "self_run"
+              Thing.self_run
+            when "fancy"
+              Thing.unscoped.published.desc(:fanciers_count)
+            when "random"
+              Thing.rand_records per
+            else
+              Thing.published
             end
 
-    @things = if params[:sort] == "random"
-                @things = Kaminari.paginate_array(scope).page(params[:page])
-              else
-                @things = scope.page(params[:page]).per(per)
-              end
+    if params[:sort] == "random"
+      @things = Kaminari.paginate_array(scope).page(params[:page])
+    else
+      @things = scope.page(params[:page]).per(per)
+    end
 
     respond_to do |format|
       format.html
