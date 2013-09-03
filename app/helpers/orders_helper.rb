@@ -30,14 +30,6 @@ module OrdersHelper
     end
   end
 
-  def refund_link(order)
-    if order.can_refund?
-      link_to '退货', refund_haven_order_path(order),
-              data: {confirm: '确认退货？'},
-              method: 'put'
-    end
-  end
-
   def order_operations(order)
     [
         link_to('查看', order),
