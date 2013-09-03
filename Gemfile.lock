@@ -1,3 +1,22 @@
+GIT
+  remote: https://github.com/jasl/district_cn.git
+  revision: 29f6554f4e3ef003a7418371eb80ebd7cce746f3
+  branch: hack
+  specs:
+    district_cn (1.0.3)
+      activesupport (>= 3.2.0)
+      json (~> 1.7.5)
+
+GIT
+  remote: https://github.com/jasl/district_cn_selector.git
+  revision: 02b9521f33be4d63633c1548270a51d88834f8fc
+  branch: hack
+  specs:
+    district_cn_selector (1.0.1)
+      district_cn (>= 1.0.2)
+      jquery-rails
+      rails (>= 3.2.6)
+
 GEM
   remote: http://ruby.taobao.org/
   specs:
@@ -377,6 +396,8 @@ DEPENDENCIES
   compass-rails
   database_cleaner
   devise
+  district_cn!
+  district_cn_selector!
   fabrication
   ffaker
   font-awesome-rails
