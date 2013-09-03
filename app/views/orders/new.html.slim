@@ -1,29 +1,50 @@
 .orders_wrapper
-  table
-    tr
-      th Thing
-      th Kind
-      th Quantity
-      th Price
-      th
-    - @order.order_items.each do |item|
-      tr
-        td = item.thing_kind.thing.title
-        td = item.thing_kind.title
-        td = item.quantity
-        td = item.price
-
   = simple_form_for @order do |f|
-    = f.association :address, as: :radio_buttons, collection: current_user.addresses,
-                    label_method: :full
-    a.btn[data-toggle="modal" role="button" href="#new-address"] 新地址
-    = f.input :deliver_by, as: :radio_buttons do
-      - Order::DELIVER_METHOD.each do |k, v|
-        label.radio
-          = f.radio_button :deliver_by, k, :'data-price' => v[:price]
-          = v[:name]
-    = f.input :note
-    = f.submit
+    .order_header
+      h1.title.pull-left 提交订单
+      .opts.pull-right
+        = f.submit '提交订单', class: 'btn btn-large btn-success make-order'
+    hr.divider
+    .cart_items
+      - @order.order_items.each do |item|
+        .cart_item
+          .item_info
+            .thing_cover = image_tag item.thing_kind.thing.cover.url(:middle)
+            .info
+              .title = link_to item.thing_kind.thing.title, item.thing_kind.thing
+              .kind = item.thing_kind.title
+          .item_opt
+            span.quantity = item.quantity
+            span.price
+              | ￥
+              = item.price
+            .item_note
+              = item.thing_kind.note
+      hr.divider
+      .order_form
+        = f.association :address, as: :radio_buttons, collection: current_user.addresses,
+                        label_method: :full_with_contact
+        a.btn[data-toggle="modal" role="button" href="#new-address"] 新地址
+        = f.input :deliver_by, as: :radio_buttons do
+          ul.deliver_by_list
+            - Order::DELIVER_METHOD.each do |k, v|
+              li.radio
+                = f.radio_button :deliver_by, k, :'data-price' => v[:price], class: 'deliver_method'
+                = "#{v[:name]}（￥#{v[:price]}）"
+        = f.input :note
+      hr.divider
+      .cart_items_price
+        p.pull-right
+          | 总计（不包含运费）
+          - price = @order.order_items.map(&:price).reduce(&:+) || 0
+          span.price.total_price[data-price=price]
+            | ￥
+            = price
+      hr.divider
+      .order_footer
+        .pull-right
+          = link_to '返回到购物车', cart_items_path, class: 'btn btn-large btn-success'
+          = f.submit '提交订单', class: 'btn btn-large btn-success make-order'
 
 .modal.hide.fade#new-address[role="dialog" tabindex="-1" aria-labelledby="new-address-label" aria-hidden="true"]
   = simple_form_for Address.new, url: addresses_path(format: :js), html: {:'data-type' => :html}, :remote => true do |f|
@@ -51,4 +72,12 @@
         $addresses.append(data);
         $addresses.find('.radio > input').last().prop('checked', true);
         $modal.modal('hide');
-      });
+      }
+    );
+
+    $('.deliver_method').on('change',
+      function() {
+        price = parseFloat($(this).attr('data-price')) + parseFloat($('.total_price').attr('data-price'));
+        $('.total_price').text('￥' + price.toFixed(1));
+      }
+    );

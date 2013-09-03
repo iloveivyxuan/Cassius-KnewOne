@@ -24,8 +24,8 @@ class Order
             :closed => '订单关闭',
             :refunded => '已协商退款'}
   DELIVER_METHOD = {
-      :sf => {name: '顺丰', price: 18},
-      :zt => {name: '中通', price: 8}
+      :sf => {name: '顺丰', price: 18.0},
+      :zt => {name: '中通', price: 8.0}
   }
   validates :state, presence: true, inclusion: {in: STATES.keys}
   validates :deliver_by, presence: true, inclusion: {in: DELIVER_METHOD.keys}

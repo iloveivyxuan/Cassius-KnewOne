@@ -9,6 +9,7 @@ zh-CN:
       comment: '留言'
       lottery: '奖励'
       group: '小组'
+      order: '订单'
     attributes:
       post:
         title: '标题'
@@ -21,6 +22,11 @@ zh-CN:
         description: '简介'
         recommended: '优先排序'
         lock_priority: '锁定优先级'
+      order:
+        deliver_by: '物流'
+        note: '备注'
+        admin_note: '管理员备注'
+        address: '收货地址'
   errors:
     messages:
       extension_white_list_error: '上传文件格式不正确'

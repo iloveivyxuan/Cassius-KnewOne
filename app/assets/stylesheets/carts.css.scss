@@ -15,9 +15,8 @@
   }
 
   .place-order {
-    width: 4em;
-    height: 0.75em;
-    line-height: 0.75em;
+    padding-left: 2em;
+    padding-right: 2em;
     margin-left: 1em;
   }
 
@@ -96,6 +95,8 @@
 
   .cart_header {
     @include clearfix;
+
+    margin-bottom: 1em;
 
     .title {
       margin: 0;

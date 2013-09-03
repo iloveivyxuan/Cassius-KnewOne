@@ -15,4 +15,8 @@ class Address
   def full
     "#{district.area_name ' '} #{address}"
   end
+
+  def full_with_contact
+    "#{name}, #{phone}, #{full} #{", #{zip_code}" if zip_code.present?}"
+  end
 end

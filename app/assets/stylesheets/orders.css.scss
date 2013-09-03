@@ -1,3 +1,110 @@
 .orders_wrapper {
   @include responsive-wrapper;
+
+  padding: 2em;
+
+  .btn {
+    padding-left: 2em;
+    padding-right: 2em;
+    margin-left: 1em;
+  }
+
+  .price {
+    color: #cc3300;
+    line-height: 32px;
+    font-size: 1.25em;
+  }
+
+  .cart_items{
+    .cart_item {
+      @include clearfix;
+
+      margin-bottom: 1em;
+
+      .item_info {
+        float: left;
+
+        .thing_cover {
+          float: left;
+          width: 180px;
+          margin-right: 1em;
+          img {
+            height: 120px;
+          }
+        }
+
+        .info {
+          float: left;
+
+          .title {
+            a {
+              color: #374a75;
+              font-size: 28px;
+            }
+          }
+
+          .kind {
+            line-height: (120px - 32px - 22px);
+          }
+        }
+      }
+
+      .item_opt {
+        float: right;
+        text-align: right;
+
+        .price {
+          margin-left: 2em;
+          min-width: 6em;
+          display: inline-block;
+        }
+
+        .item_note {
+          margin-top: (120px - 32px - 11px - 22px);
+        }
+      }
+    }
+  }
+
+  .order_header {
+    @include clearfix;
+
+    margin-bottom: 1em;
+
+    .title {
+      margin: 0;
+    }
+  }
+
+  hr.divider {
+    margin-top: 0;
+  }
+
+  .cart_items_price {
+    @include clearfix;
+  }
+
+  .control-group {
+    @include clearfix;
+
+    .control-label {
+      float: left;
+      margin-right: 1em;
+      width: 6em;
+      text-align: right;
+    }
+
+    .controls {
+      float: left;
+    }
+
+    .deliver_by_list {
+      @include clearfix;
+
+      li {
+        float: left;
+        margin-right: 1em;
+      }
+    }
+  }
 }
