@@ -1,12 +1,11 @@
-- reviews = tp.reviews(3)
+- reviews = tp.reviews(5)
 - if reviews.present?
-  aside#thing_reviews
+  #thing_reviews.thing_module
     h4
       i.icon-book
       | 评测
       = render 'reviews/link_to_new', thing: tp.thing
-      = link_to_with_icon "", "icon-double-angle-right icon-large pull-right", 
+      = link_to_with_icon "", "icon-double-angle-right icon-large",
         thing_reviews_path(tp.thing)
     ul#reviews
       = render reviews
-  

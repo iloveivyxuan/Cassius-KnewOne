@@ -2,6 +2,17 @@
   @include responsive-wrapper;
 }
 
+.thing_module {
+  h4 {
+    color: $fontLightColor;
+    .btn {margin-left: 2em;}
+    padding-bottom: .5em;
+    border-bottom: 5px solid #eee;
+    i.icon-double-angle-right {float: right;}
+  }
+  ul {margin: 1em 0;}  
+}
+
 #thing_header {
   border-bottom: 1px solid #eee;
   margin-bottom: 2em;
@@ -344,18 +355,6 @@
     .comment_form {
       textarea {width: 95%;}
     }
-  }
-}
-
-#thing_reviews {
-  h4 {
-    color: $fontLightColor;
-    .btn {margin-left: 2em;}
-  }
-  ul {
-    margin: 1em 0;
-    border-top: 5px solid #eee;
-    padding-top: .5em;
   }
 }
 
