@@ -1,4 +1,4 @@
-<label class="radio radio">
+<label class="radio">
   <input class="radio_buttons required" id="order_address_id_<%= @address.id %>" name="order[address_id]" required="required" type="radio" value="<%= @address.id %>">
-  <%= @address.full %>
+  <%= @address.full_with_contact %>
 </label>

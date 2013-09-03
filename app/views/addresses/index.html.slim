@@ -17,10 +17,8 @@
         td = address.name
         td = address.phone
         td = address.zip_code
-        td = link_to 'Show', address
         td = link_to 'Edit', edit_address_path(address)
         td = link_to 'Destroy', address, :confirm => 'Are you sure?', :method => :delete
-
   br
 
   == render 'form'

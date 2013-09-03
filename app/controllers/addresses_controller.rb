@@ -41,7 +41,7 @@ class AddressesController < ApplicationController
     @address = current_user.addresses.build params[:address]
     respond_to do |format|
       if @address.save
-        format.html { redirect_to @address, notice: 'Address was successfully created.' }
+        format.html { redirect_to addresses_path, notice: 'Address was successfully created.' }
         format.json { render json: @address, status: :created, location: @address }
         format.js { render 'create_at_order' }
       else
@@ -56,7 +56,7 @@ class AddressesController < ApplicationController
   def update
     respond_to do |format|
       if @address.update_attributes(params[:address])
-        format.html { redirect_to @address, notice: 'Address was successfully updated.' }
+        format.html { redirect_to addresses_path, notice: 'Address was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -71,7 +71,7 @@ class AddressesController < ApplicationController
     @address.destroy
 
     respond_to do |format|
-      format.html { redirect_to addresses_url }
+      format.html { redirect_to addresses_path }
       format.json { head :no_content }
     end
   end

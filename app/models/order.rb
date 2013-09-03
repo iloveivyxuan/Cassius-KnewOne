@@ -8,14 +8,6 @@ class Order
   embeds_many :order_items
   has_many :order_histories
 
-  field :trade_no, type: String
-  field :state, type: Symbol, default: :pending
-  field :deliver_by, type: Symbol, default: :sf
-  field :note, type: String
-  field :admin_note, type: String
-  field :things_price, type: BigDecimal
-  field :deliver_price, type: BigDecimal
-
   STATES = {:pending => '等待付款',
             :paid => '已付款，等待确认',
             :confirmed => '已付款',
@@ -27,10 +19,19 @@ class Order
       :sf => {name: '顺丰', price: 18.0},
       :zt => {name: '中通', price: 8.0}
   }
+
+  field :trade_no, type: String
+  field :state, type: Symbol, default: :pending
+  field :deliver_by, type: Symbol, default: :sf
+  field :note, type: String
+  field :admin_note, type: String
+  field :things_price, type: BigDecimal
+  field :deliver_price, type: BigDecimal, default: DELIVER_METHOD.first[1][:price]
+
   validates :state, presence: true, inclusion: {in: STATES.keys}
   validates :deliver_by, presence: true, inclusion: {in: DELIVER_METHOD.keys}
   validates :address, :user, presence: true
-  attr_accessible :address_id, :note, :deliver_by
+  attr_accessible :address, :note, :deliver_by
   attr_accessible :state, :admin_note, :as => :admin
 
   before_create do

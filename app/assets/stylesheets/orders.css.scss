@@ -83,28 +83,38 @@
   .cart_items_price {
     @include clearfix;
   }
+}
 
-  .control-group {
+.control-group {
+  @include clearfix;
+
+  .control-label {
+    float: left;
+    margin-right: 1em;
+    width: 6em;
+    text-align: right;
+
+    abbr[title] {
+      border-bottom: none;
+    }
+  }
+
+  .controls {
+    float: left;
+  }
+
+  .deliver_by_list {
     @include clearfix;
 
-    .control-label {
+    li {
       float: left;
       margin-right: 1em;
-      width: 6em;
-      text-align: right;
     }
+  }
 
-    .controls {
-      float: left;
-    }
-
-    .deliver_by_list {
-      @include clearfix;
-
-      li {
-        float: left;
-        margin-right: 1em;
-      }
+  .district_select {
+    select {
+      margin-right: 1em;
     }
   }
 }

@@ -10,6 +10,7 @@ zh-CN:
       lottery: '奖励'
       group: '小组'
       order: '订单'
+      address: '收货地址'
     attributes:
       post:
         title: '标题'
@@ -27,6 +28,12 @@ zh-CN:
         note: '备注'
         admin_note: '管理员备注'
         address: '收货地址'
+      address:
+        district: '地区'
+        address: '地址'
+        name: '联系人'
+        phone: '电话'
+        zip_code: '邮编'
   errors:
     messages:
       extension_white_list_error: '上传文件格式不正确'

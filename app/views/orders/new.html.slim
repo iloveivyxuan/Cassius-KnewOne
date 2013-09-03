@@ -22,9 +22,20 @@
               = item.thing_kind.note
       hr.divider
       .order_form
-        = f.association :address, as: :radio_buttons, collection: current_user.addresses,
-                        label_method: :full_with_contact
-        a.btn[data-toggle="modal" role="button" href="#new-address"] 新地址
+        .control-group.order_address
+          label.control-label * 收货地址
+          .controls
+            .addresses
+              - current_user.addresses.each do |a|
+                label.radio[for="order_address_id_#{a.id}"]
+                  - if @order.address == a
+                    = f.radio_button :address, a.id, required: 'required', class: 'radio_buttons required',
+                                                     id: "address_#{a.id}", checked: 'checked'
+                  - else
+                    = f.radio_button :address, a.id, required: 'required', class: 'radio_buttons required',
+                                                     id: "order_address_id_#{a.id}"
+                  = a.full_with_contact
+            a.new_address_btn[data-toggle="modal" role="button" href="#new-address"] 新地址
         = f.input :deliver_by, as: :radio_buttons do
           ul.deliver_by_list
             - Order::DELIVER_METHOD.each do |k, v|
@@ -35,11 +46,11 @@
       hr.divider
       .cart_items_price
         p.pull-right
-          | 总计（不包含运费）
-          - price = @order.order_items.map(&:price).reduce(&:+) || 0
-          span.price.total_price[data-price=price]
+          | 总计
+          - price = (@order.order_items.map(&:price).reduce(&:+) || 0)
+          span.price.total_price[data-things-price=price]
             | ￥
-            = price
+            = price + @order.deliver_price
       hr.divider
       .order_footer
         .pull-right
@@ -49,18 +60,26 @@
 .modal.hide.fade#new-address[role="dialog" tabindex="-1" aria-labelledby="new-address-label" aria-hidden="true"]
   = simple_form_for Address.new, url: addresses_path(format: :js), html: {:'data-type' => :html}, :remote => true do |f|
     .modal-header
-      button.close[type="button" data-dismiss="modal" aria-hidden="true"] &times;
+      - if current_user.addresses.any?
+        button.close[type="button" data-dismiss="modal" aria-hidden="true"] &times;
       h3#new-address-label 添加新收货地址
     .modal-body
-      = f.error_notification
-      = f.input :district, :as => :district_select_ul
-      = f.input :address, required: true
       = f.input :name, required: true
+      = f.input :district, :as => :district_select
+      = f.input :address, required: true
       = f.input :phone, required: true
       = f.input :zip_code
-      strong.total_price
     .modal-footer
-      = f.button :submit
+      = f.button :submit, class: 'btn btn-large btn-success'
+
+- if current_user.addresses.empty?
+  - content_for :script do
+    javascript:
+      $('#new-address').modal({
+        show: true,
+        backdrop: 'static',
+        keyboard: false
+      });
 
 - content_for :script do
   javascript:
@@ -68,7 +87,7 @@
       function(xhr, data, status) {
         var $this = $(this);
         var $modal = $this.parent();
-        var $addresses = $('.order_address');
+        var $addresses = $('.order_address .controls .addresses');
         $addresses.append(data);
         $addresses.find('.radio > input').last().prop('checked', true);
         $modal.modal('hide');
@@ -77,7 +96,7 @@
 
     $('.deliver_method').on('change',
       function() {
-        price = parseFloat($(this).attr('data-price')) + parseFloat($('.total_price').attr('data-price'));
+        price = parseFloat($(this).attr('data-price')) + parseFloat($('.total_price').attr('data-things-price'));
         $('.total_price').text('￥' + price.toFixed(1));
       }
     );

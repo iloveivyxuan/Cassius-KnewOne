@@ -40,8 +40,8 @@ gem 'airbrake'
 # crontab
 gem 'whenever', require: false
 # area select helper
-gem 'district_cn', git: 'https://github.com/jasl/district_cn.git', branch: 'fix_acts_as'
-gem 'district_cn_selector'
+gem 'district_cn', git: 'https://github.com/jasl/district_cn.git', branch: 'hack'
+gem 'district_cn_selector', git: 'https://github.com/jasl/district_cn_selector.git', branch: 'hack'
 
 group :assets do
   gem 'sass-rails'
