@@ -101,12 +101,6 @@
     .title {
       margin: 0;
     }
-
-    .delete-multiple {
-      &.disabled &:hover, &.disabled {
-        color: #a9a9a9;
-      }
-    }
   }
 
   hr.divider {

@@ -2,14 +2,12 @@
   .cart_header
     h1.title.pull-left 我的购物车
     .opts.pull-right
-      = delete_multiple_link
       = place_order_link
   hr.divider
   .cart_items
     - @has_stock_items.each do |item|
       .cart_item
         .item_info
-          .multiple_select = check_box_tag 'items[]', item.id
           .thing_cover = image_tag item.thing.cover.url(:middle)
           .info
             .title = link_to item.thing.title, item.thing
@@ -93,9 +91,3 @@
                                             $(this).parent().parent().find('.price').text('￥' + data.price);
                                             $('.total_price').text('￥' + data.total_price);
                                           });
-
-    $('.delete-multiple').click(function() {
-      $('input[name="items[]"]:checked').each(function(i, item) {
-        $(item).closest('.cart_item').find('.remote-delete').trigger('click.rails');
-      });
-    });
