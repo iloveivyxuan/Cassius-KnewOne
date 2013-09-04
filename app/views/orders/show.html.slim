@@ -1,14 +1,51 @@
 .orders_wrapper
-  table
-    tr
-      th Thing
-      th Kind
-      th Quantity
-      th
+  .order_header
+    h1.title.pull-left 订单信息
+    .opts.pull-right
+      = pay_link(@order)
+  hr.divider
+  .order_info
+    dl
+      dt 收货地址
+      dd = @order.address_text
+      dt 物流方式
+      dd = @order.deliver_method_text
+      dt 订单状态
+      dd = @order.state_text
+      dt 创建时间
+      dd = date_time_text @order.created_at
+      - if @order.paid_at
+        dt 付款时间
+        dd = date_time_text @order.paid_at
+      - if @order.shipped_at
+        dt 发货时间
+        dd = date_time_text @order.shipped_at
+    p.pull-right
+      | 总计
+      span.price.total_price
+        | ￥
+        = @order.total_price
+  hr.divider
+  .cart_items
     - @order.order_items.each do |item|
-      tr
-        td = item.thing_kind.thing.title
-        td = item.thing_kind.title
-        td = item.quantity
-
-  = order_operations(@order)
+      .cart_item
+        .item_info
+          .thing_cover = image_tag item.thing_kind.thing.cover.url(:middle)
+          .info
+            .title = link_to item.thing_kind.thing.title, item.thing_kind.thing
+            .kind = item.thing_kind.title
+        .item_opt
+          span.quantity = item.quantity
+          span.price
+            | ￥
+            = item.price
+          .item_note
+            = item.thing_kind.note
+  hr.divider
+  .order_tips
+    ul
+      - if @order.pending?
+        li 请您在24小时之内支付，否则订单将自动取消。
+  .order_footer
+    .pull-right
+      = order_operations(@order)

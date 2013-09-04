@@ -80,7 +80,7 @@
     margin-top: 0;
   }
 
-  .cart_items_price {
+  .cart_items_price, .order_info {
     @include clearfix;
   }
 }

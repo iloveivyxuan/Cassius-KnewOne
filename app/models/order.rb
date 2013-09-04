@@ -4,7 +4,15 @@ class Order
   include Mongoid::Timestamps
 
   belongs_to :user
-  belongs_to :address
+
+  attr_accessor :address
+  field :district, type: String
+  field :location, type: String
+  field :contact_name, type: String
+  field :phone, type: String
+  field :zip_code, type: String
+  validates :district, :location, :contact_name, :phone, presence: true
+
   embeds_many :order_items
   has_many :order_histories
 
@@ -15,37 +23,41 @@ class Order
             :canceled => '订单取消',
             :closed => '订单关闭',
             :refunded => '已协商退款'}
-  DELIVER_METHOD = {
+  DELIVER_METHODS = {
       :sf => {name: '顺丰', price: 18.0},
       :zt => {name: '中通', price: 8.0}
   }
 
-  field :trade_no, type: String
   field :state, type: Symbol, default: :pending
+  field :paid_at, type: Time
+  field :confirmed_at, type: DateTime
+  field :shipped_at, type: DateTime
+  field :canceled_at, type: DateTime
+  field :closed_at, type: DateTime
+  field :refunded_at, type: DateTime
+
   field :deliver_by, type: Symbol, default: :sf
+  field :deliver_no, type: String
   field :note, type: String
   field :admin_note, type: String
-  field :things_price, type: BigDecimal
-  field :deliver_price, type: BigDecimal, default: DELIVER_METHOD.first[1][:price]
+  field :trade_no, type: String
+  field :deliver_price, type: BigDecimal, default: DELIVER_METHODS.first[1][:price]
 
   validates :state, presence: true, inclusion: {in: STATES.keys}
-  validates :deliver_by, presence: true, inclusion: {in: DELIVER_METHOD.keys}
-  validates :address, :user, presence: true
-  attr_accessible :address, :note, :deliver_by
-  attr_accessible :state, :admin_note, :as => :admin
+  validates :deliver_by, presence: true, inclusion: {in: DELIVER_METHODS.keys}
+  validates :user, presence: true
+  attr_accessible :note, :deliver_by
+  attr_accessible :state, :admin_note, :deliver_no, :trade_no,
+                  :paid_at, :confirmed_at, :shipped_at, :canceled_at, :closed_at, :refunded_at,
+                  :as => :admin
 
   before_create do
-    self.things_price = order_items.map(&:price).reduce(&:+)
-    self.deliver_price = DELIVER_METHOD[self.deliver_by][:price]
+    self.deliver_price = DELIVER_METHODS[self.deliver_by][:price]
   end
 
   after_create do
     user.cart_items.destroy_all(:kind.in => order_items.map(&:thing_kind))
     order_items.each &:claim_stock!
-  end
-
-  def total_price
-    self.things_price + self.deliver_price
   end
 
   scope :pending, -> { where state: :pending }
@@ -58,10 +70,6 @@ class Order
 
   def state
     super.to_sym
-  end
-
-  def humanize_state
-    STATES[self.state]
   end
 
   def pending?
@@ -120,6 +128,7 @@ class Order
     return false unless can_pay?
 
     self.state = :paid
+    self.paid_at = Time.now
     self.trade_no = trade_no
     save!
 
@@ -129,8 +138,8 @@ class Order
   def confirm_payment!(trade_no)
     return false unless can_confirm_payment? && self.trade_no == trade_no
 
-    update_attributes! state: :confirmed
     self.state = :confirmed
+    self.confirmed_at = Time.now
     save!
 
     order_histories.create from: :paid, to: :confirmed
@@ -140,6 +149,7 @@ class Order
     return false unless can_ship?
 
     self.state = :shipped
+    self.shipped_at = Time.now
     save!
 
     order_histories.create from: :confirmed, to: :shipped
@@ -150,6 +160,7 @@ class Order
 
     order_items.each &:revert_stock!
     self.state = :canceled
+    self.canceled_at = Time.now
     save!
 
     order_histories.create from: :pending, to: :canceled
@@ -160,6 +171,7 @@ class Order
 
     order_items.each &:revert_stock!
     self.state = :closed
+    self.closed_at = Time.now
     save!
 
     order_histories.create from: :pending, to: :closed
@@ -170,6 +182,7 @@ class Order
 
     state = self.state
     self.state = :refunded
+    self.refunded_at = Time.now
     save!
 
     order_histories.create from: state, to: :closed
@@ -179,9 +192,43 @@ class Order
     order_items.map { |item| item.thing_kind.stock >= item.quantity }.reduce &:&
   end
 
+  def set_address(address)
+    self.district = address.district.area_name ' '
+    self.location = address.address
+    self.contact_name = address.name
+    self.phone = address.phone
+    self.zip_code = address.zip_code
+  end
+
+  def address_text
+    "#{contact_name}, #{phone}, #{district} #{location} #{", #{zip_code}" if zip_code.present?}"
+  end
+
+  def deliver_method_text
+    DELIVER_METHODS[self.deliver_by][:name]
+  end
+
+  def state_text
+    STATES[self.state]
+  end
+
+  def items_price
+    order_items.map(&:price).reduce(&:+) || 0
+  end
+
+  def total_price
+    items_price + self.deliver_price
+  end
+
   class<< self
     def place_order(user, params = {})
+      address = if params[:address]
+                  user.addresses.find(params.delete(:address))
+                elsif user.addresses.any?
+                  user.addresses.first
+                end
       order = user.orders.build params
+      order.set_address address if address
       user.cart_items.each { |item| OrderItem.build_by_cart_item(order, item) if item.has_stock? }
       order
     end

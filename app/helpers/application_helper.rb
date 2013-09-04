@@ -66,4 +66,8 @@ module ApplicationHelper
     end
     redirect_to(session.delete(:previous_url) || path)
   end
+
+  def date_time_text(time)
+    time.strftime '%Y-%m-%d %H:%M:%S'
+  end
 end

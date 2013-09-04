@@ -28,12 +28,12 @@ class OrdersController < ApplicationController
     @order.pay!('test')
     @order.confirm_payment!('test')
 
-    redirect_to orders_path
+    redirect_to @order
   end
 
   def cancel
     @order.cancel!
-    redirect_to orders_path
+    redirect_to @order
   end
 
   private

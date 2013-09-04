@@ -2,15 +2,15 @@
 module OrdersHelper
   def pay_link(order)
     if order.can_pay?
-      link_to '支付', pay_order_path(order), method: 'put'
+      link_to '立即支付', pay_order_path(order), method: 'put', class: 'btn btn-large btn-success'
     end
   end
 
   def cancel_link(order)
     if order.can_cancel?
-      link_to '取消', cancel_order_path(order),
+      link_to '取消订单', cancel_order_path(order),
               data: {confirm: '真的要取消这个订单么？'},
-              method: 'put'
+              method: 'put', class: 'btn btn-large'
     end
   end
 
@@ -18,7 +18,7 @@ module OrdersHelper
     if order.can_ship?
       link_to '发货', ship_haven_order_path(order),
               data: {confirm: '确认发货？'},
-              method: 'put'
+              method: 'put', class: 'btn'
     end
   end
 
@@ -26,15 +26,14 @@ module OrdersHelper
     if order.can_close?
       link_to '关闭', close_haven_order_path(order),
               data: {confirm: '确认关闭？'},
-              method: 'put'
+              method: 'put', class: 'btn'
     end
   end
 
   def order_operations(order)
     [
-        link_to('查看', order),
-        pay_link(order),
-        cancel_link(order)
-    ].compact.join(' | ').html_safe
+        cancel_link(order),
+        pay_link(order)
+    ].compact.join('').html_safe
   end
 end
