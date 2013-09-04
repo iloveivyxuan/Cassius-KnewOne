@@ -34,15 +34,19 @@
         = button_tag(type: 'submit', class: "btn btn-success") do
           i.icon-shopping-cart.icon-large
           | 添加到购物车
+      li
+        .cart-info.alert
 
   - content_for :script do
     javascript:
       $('.cart_item').bind("ajax:success",
         function(xhr, data, status) {
           if(data.result) {
-            alert('添加成功');
+            $('.cart-info').removeClass('alert-success alert-error').addClass('alert-success').text('添加成功！').fadeIn();
+            $('.cart_items_count').text(data.cart_items_count);
+            $('#cart_item_quantity').val(1);
           } else {
-            alert('超过最大库存，添加失败');
+            $('.cart-info').removeClass('alert-success alert-error').addClass('alert-error').text('添加失败！');
           }
        });
       $('.kind-select').click(function() {

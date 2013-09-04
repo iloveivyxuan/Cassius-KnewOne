@@ -29,13 +29,18 @@
               - current_user.addresses.each do |a|
                 label.radio[for="order_address_id_#{a.id}"]
                   - if @order.address == a
-                    = f.radio_button :address, a.id, required: 'required', class: 'radio_buttons required',
-                                                     id: "address_#{a.id}", checked: 'checked'
+                    = f.radio_button :address, a.id, required: 'required',
+                                                     class: 'radio_buttons required order_address_radio',
+                                                     id: "order_address_id_#{a.id}", checked: 'checked'
                   - else
-                    = f.radio_button :address, a.id, required: 'required', class: 'radio_buttons required',
+                    = f.radio_button :address, a.id, required: 'required',
+                                                     class: 'radio_buttons required order_address_radio',
                                                      id: "order_address_id_#{a.id}"
                   = a.full_with_contact
-            a.new_address_btn[data-toggle="modal" role="button" href="#new-address"] 新地址
+                  = link_to '编辑', edit_address_path(a, modal: true), class: 'new_address_btn',
+                                                 data: {toggle: 'modal', role: 'button', target: '#address-modal'}
+            = link_to '新地址', new_address_path(modal: true), class: 'new_address_btn',
+                               data: {toggle: 'modal', role: 'button', target: '#address-modal'}
         = f.input :deliver_by, as: :radio_buttons do
           ul.deliver_by_list
             - Order::DELIVER_METHOD.each do |k, v|
@@ -57,46 +62,44 @@
           = link_to '返回到购物车', cart_items_path, class: 'btn btn-large'
           = f.submit '提交订单', class: 'btn btn-large btn-success make-order'
 
-.modal.hide.fade#new-address[role="dialog" tabindex="-1" aria-labelledby="new-address-label" aria-hidden="true"]
-  = simple_form_for Address.new, url: addresses_path(format: :js), html: {:'data-type' => :html}, :remote => true do |f|
-    .modal-header
-      - if current_user.addresses.any?
-        button.close[type="button" data-dismiss="modal" aria-hidden="true"] &times;
-      h3#new-address-label 添加新收货地址
-    .modal-body
-      = f.input :name, required: true
-      = f.input :district, :as => :district_select
-      = f.input :address, required: true
-      = f.input :phone, required: true
-      = f.input :zip_code
-    .modal-footer
-      = f.button :submit, class: 'btn btn-large btn-success'
+.modal.remote-modal.hide.fade#address-modal[role="dialog" tabindex="-1" aria-labelledby="address-label" aria-hidden="true"]
+  .modal-header
+    button.close[type="button" data-dismiss="modal" aria-hidden="true"] &times;
+    h3#new-address-label 管理收货地址
+  .modal-body
+  .modal-footer
+    = link_to '确定', 'javascript:void(0)', class: 'btn btn-large btn-success address-modal-submit-btn'
 
 - if current_user.addresses.empty?
   - content_for :script do
     javascript:
-      $('#new-address').modal({
-        show: true,
-        backdrop: 'static',
-        keyboard: false
-      });
+      $('.order_address').on('change',
+          function() {
+            $('.make-order').removeAttr("disabled");
+          }
+        );
+      $('.make-order').attr("disabled","disabled");
+      $('#new-address').modal('show');
 
 - content_for :script do
   javascript:
-    $('#new_address').on("ajax:success",
-      function(xhr, data, status) {
-        var $this = $(this);
-        var $modal = $this.parent();
-        var $addresses = $('.order_address .controls .addresses');
-        $addresses.append(data);
-        $addresses.find('.radio > input').last().prop('checked', true);
-        $modal.modal('hide');
-      }
-    );
+    $('body').on('hidden', '.remote-modal', function () {
+      $(this).removeData('modal');
+    });
+
+    $('.address-modal-submit-btn').click(function() {
+      $('.address-form .hidden_submit_btn').click();
+    });
 
     $('.deliver_method').on('change',
       function() {
         price = parseFloat($(this).attr('data-price')) + parseFloat($('.total_price').attr('data-things-price'));
         $('.total_price').text('￥' + price.toFixed(1));
+      }
+    );
+
+    $('.order_address').on('change',
+      function() {
+        console.log('wtf');
       }
     );

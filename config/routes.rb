@@ -13,7 +13,7 @@ Making::Application.routes.draw do
       get 'bind'
     end
   end
-  resources :addresses
+  resources :addresses, except: [:show]
   resources :orders, only: [:index, :show, :create, :new] do
     member do
       put 'pay'

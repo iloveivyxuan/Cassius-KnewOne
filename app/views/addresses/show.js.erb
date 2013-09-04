@@ -1,0 +1,6 @@
+<label class="radio" for="order_address_id_<%= @address.id %>">
+  <input class="radio_buttons required order_address_radio" id="order_address_id_<%= @address.id %>" name="order[address]" required="required" type="radio" value="<%= @address.id %>">
+  <%= @address.full_with_contact %>
+  <%= link_to '编辑', edit_address_path(@address, modal: true), class: 'new_address_btn',
+              data: {toggle: 'modal', role: 'button', target: '#address-modal'} %>
+</label>

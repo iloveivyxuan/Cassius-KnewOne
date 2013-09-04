@@ -1,0 +1,34 @@
+- url = @address.persisted? ? address_path(@address, format: :js) : addresses_path(format: :js)
+= simple_form_for @address, url: url, html: {:'data-type' => :html, class: 'address-form'}, :remote => true do |f|
+  = f.input :name, required: true
+  = f.input :district, :as => :district_select
+  = f.input :address, required: true
+  = f.input :phone, required: true
+  = f.input :zip_code
+  = f.submit class: 'hidden_submit_btn'
+
+  javascript:
+    jQuery.District('.district_select',
+      {
+        onChange: function($container,code){
+          $container.find(".select-value").val(code);
+        }
+      });
+
+    $('.address-form').on("ajax:success",
+      function(xhr, data, status) {
+        var $this = $(this);
+        var $addresses = $('.order_address .controls .addresses');
+
+        var exist_item = $('#' + $(data).find('input').attr('id'));
+        if(exist_item.size() == 0) {
+          $addresses.append(data);
+          $addresses.find('.radio > input').last().click();
+        } else {
+          exist_item.parent().replaceWith(data);
+          $('#' + $(data).find('input').attr('id')).click();
+        }
+
+        $this.closest('.modal').modal('hide');
+      }
+    );

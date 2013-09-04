@@ -60,6 +60,10 @@ header
               li= link_to_with_icon "收货地址", "icon-shopping-cart", addresses_path
               li= link_to_with_icon "订单", "icon-shopping-cart", orders_path
               li= link_to_with_icon "订单后台", "icon-shopping-cart", haven_orders_path
+          li.nav_cart
+            = link_to cart_items_path do
+              span.cart_items_count.badge.badge-info = cart_items_count
+              | 购物车
           li.nav_user
             = link_to '#', class: "dropdown", data: {toggle: "dropdown"} do
               = image_tag current_user.avatar.url(:tiny), class: "user_avatar img-circle"

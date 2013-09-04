@@ -18,7 +18,7 @@ class CartItemsController < ApplicationController
     result = cart_item.save
 
     respond_to do |format|
-      format.json { render :json => {:result => result} }
+      format.json { render :json => {:result => result, :cart_items_count => cart_item_count} }
       format.html { redirect_to cart_items_path }
     end
   end
@@ -32,7 +32,8 @@ class CartItemsController < ApplicationController
     respond_to do |format|
       format.json { render :json => {quantity: cart_item.quantity,
                                      price: cart_item.price,
-                                     total_price: total_price} }
+                                     total_price: total_price,
+                                     cart_items_count: cart_item_count} }
       format.html { redirect_to cart_items_path }
     end
   end
@@ -57,7 +58,8 @@ class CartItemsController < ApplicationController
     cart_item.destroy
 
     respond_to do |format|
-      format.json { render :json => {total_price: total_price} }
+      format.json { render :json => {total_price: total_price,
+                                     cart_items_count: cart_item_count} }
       format.html { redirect_to cart_items_path }
     end
   end
@@ -66,6 +68,10 @@ class CartItemsController < ApplicationController
 
   def user_cart
     current_user.cart_items
+  end
+
+  def cart_item_count
+    user_cart.select(&:persisted?).count
   end
 
   def total_price

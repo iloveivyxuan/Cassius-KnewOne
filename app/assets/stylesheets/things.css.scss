@@ -180,8 +180,11 @@
         display: block;
         padding: 0.5em;
         border: 1px solid #dbdbdb;
-        margin-bottom: 0.5em;
         background-color: #ffffff;
+      }
+
+      li {
+        margin-bottom: 1em;
       }
 
       .kind-select {
@@ -196,6 +199,7 @@
 
       input {
         background-color: #ffffff;
+        margin-bottom: 0;
       }
 
       .kind-stock {
@@ -207,12 +211,14 @@
         font-size: 1.5em;
         margin-bottom: 1.5em;
       }
+
+      .cart-info {
+        display: none;
+      }
     }
   }
 
   .actions {
-
-
     .support, .share, .wechat, .supplier {
       i {color: $fontLightColor;}
     }

@@ -11,28 +11,34 @@ class AddressesController < ApplicationController
     end
   end
 
-  # GET /addresses/1
-  # GET /addresses/1.json
-  def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @address }
-    end
-  end
-
   # GET /addresses/new
   # GET /addresses/new.json
   def new
     @address = current_user.addresses.build
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html do
+        if params[:modal].blank?
+          render 'new'
+        else
+          render 'new_or_edit', layout: false
+        end
+      end
       format.json { render json: @address }
     end
   end
 
   # GET /addresses/1/edit
   def edit
+    respond_to do |format|
+      format.html do
+        if params[:modal].blank?
+          render 'new'
+        else
+          render 'new_or_edit', layout: false
+        end
+      end
+    end
   end
 
   # POST /addresses
@@ -43,7 +49,7 @@ class AddressesController < ApplicationController
       if @address.save
         format.html { redirect_to addresses_path, notice: 'Address was successfully created.' }
         format.json { render json: @address, status: :created, location: @address }
-        format.js { render 'create_at_order' }
+        format.js { render 'show' }
       else
         format.html { render action: "new" }
         format.json { render json: @address.errors, status: :unprocessable_entity }
@@ -58,6 +64,7 @@ class AddressesController < ApplicationController
       if @address.update_attributes(params[:address])
         format.html { redirect_to addresses_path, notice: 'Address was successfully updated.' }
         format.json { head :no_content }
+        format.js { render 'show' }
       else
         format.html { render action: "edit" }
         format.json { render json: @address.errors, status: :unprocessable_entity }

@@ -7,4 +7,8 @@ module CartsHelper
   def delete_multiple_link
     link_to '删除', 'javascript:void(0)', class: 'delete-multiple disabled', disabled: true
   end
+
+  def cart_items_count
+    current_user.cart_items.size
+  end
 end

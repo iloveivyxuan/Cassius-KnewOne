@@ -68,8 +68,8 @@
   javascript:
     $('.remote-delete').on("ajax:success", function(xhr, data, status) {
                          $(this).closest('.cart_item').remove();
-                         console.log(data);
                          $('.total_price').text('￥' + data.total_price);
+                         $('.cart_items_count').text(data.cart_items_count);
                        });
     $('.item_quantity').blur(function() {
        var $this = $(this);
