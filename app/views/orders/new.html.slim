@@ -45,8 +45,9 @@
         ul.deliver_by_list
           - Order::DELIVER_METHODS.each do |k, v|
             li.radio
-              = f.radio_button :deliver_by, k, :'data-price' => v[:price], class: 'deliver_method'
-              = "#{v[:name]}（￥#{v[:price]}）"
+              - deliver_price = Order.calculate_deliver_price_by_method_and_price(k, @order.items_price)
+              = f.radio_button :deliver_by, k, :'data-price' => deliver_price, class: 'deliver_method'
+              = "#{v[:name]}（￥#{deliver_price}）"
       = f.input :note
     hr.divider
     .cart_items_price
@@ -68,17 +69,6 @@
   .modal-body
   .modal-footer
     = link_to '确定', 'javascript:void(0)', class: 'btn btn-large btn-success address-modal-submit-btn'
-
-- if current_user.addresses.empty?
-  - content_for :script do
-    javascript:
-      $('.order_address').on('change',
-          function() {
-            $('.make-order').removeAttr("disabled");
-          }
-        );
-      $('.make-order').attr("disabled","disabled");
-      $('.new_address_btn').click();
 
 - content_for :script do
   javascript:
@@ -102,3 +92,13 @@
         console.log('wtf');
       }
     );
+
+    if($('.addresses').children().length == 0) {
+      $('.order_address').on('change',
+          function() {
+            $('.make-order').removeAttr("disabled");
+          }
+        );
+      $('.make-order').attr("disabled","disabled");
+      $('.new_address_btn').click();
+    }

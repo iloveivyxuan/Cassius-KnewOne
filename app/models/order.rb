@@ -41,7 +41,7 @@ class Order
   field :note, type: String
   field :admin_note, type: String
   field :trade_no, type: String
-  field :deliver_price, type: BigDecimal, default: DELIVER_METHODS.first[1][:price]
+  field :deliver_price, type: BigDecimal#, default: DELIVER_METHODS.first[1][:price]
 
   validates :state, presence: true, inclusion: {in: STATES.keys}
   validates :deliver_by, presence: true, inclusion: {in: DELIVER_METHODS.keys}
@@ -52,7 +52,7 @@ class Order
                   :as => :admin
 
   before_create do
-    self.deliver_price = DELIVER_METHODS[self.deliver_by][:price]
+    self.deliver_price = calculate_deliver_price
   end
 
   after_create do
@@ -212,12 +212,16 @@ class Order
     STATES[self.state]
   end
 
+  def calculate_deliver_price
+    Order.calculate_deliver_price_by_method_and_price(self.deliver_by, items_price)
+  end
+
   def items_price
     order_items.map(&:price).reduce(&:+) || 0
   end
 
   def total_price
-    items_price + self.deliver_price
+    items_price + (self.deliver_price || calculate_deliver_price)
   end
 
   class<< self
@@ -231,6 +235,18 @@ class Order
       order.set_address address if address
       user.cart_items.each { |item| OrderItem.build_by_cart_item(order, item) if item.has_stock? }
       order
+    end
+
+    def calculate_deliver_price_by_method_and_price(method, items_price)
+      price = case items_price
+                when 1..500
+                  DELIVER_METHODS[method][:price]
+                when 500..1000
+                  DELIVER_METHODS[method][:price] - 10
+                else
+                  DELIVER_METHODS[method][:price] - 20
+              end
+      price > 0 ? price : 0
     end
   end
 end
