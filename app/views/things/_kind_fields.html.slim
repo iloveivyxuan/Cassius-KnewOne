@@ -3,6 +3,9 @@ fieldset.kind_fields
   = f.input :title
   = f.input :price, as: :decimal
   = f.input :stock, as: :integer
+  = f.input :stage, collection: ThingKind::STAGES,
+            include_blank: false, label_method: :last, value_method: :first
+  = f.input :estimates_at, as: :datetime
   = f.input :photo, as: :file
   = f.input :photo_cache, as: :hidden
   = f.input :selling, as: :boolean

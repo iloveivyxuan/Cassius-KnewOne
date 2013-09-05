@@ -11,6 +11,25 @@ class ThingKind
 
   field :selling, type: Boolean, default: false
 
+  field :stage, type: Symbol, default: :stock
+  field :estimates_at, type: DateTime
+
+  before_validation do
+    # simple_form BUG!!! datetime field can not mix up in nested form, Hack for now
+    datetime = []
+    (1..5).each do |i|
+      datetime<< attributes.delete("estimates_at(#{i}i)").to_i
+    end
+    self.estimates_at = Time.new *datetime if datetime.reduce(&:+) != 0
+  end
+
+  STAGES = {
+      stock: "现货",
+      ship: "即将到货",
+      exclusive: "限量"
+  }
+  validates :stage, inclusion: { in: STAGES.keys }
+
   scope :selling, -> { where :selling => true }
   scope :has_stock, -> { where :stock.gt => 0 }
 

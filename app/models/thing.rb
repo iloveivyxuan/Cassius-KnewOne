@@ -26,9 +26,7 @@ class Thing < Post
     domestic: "国内导购",
     abroad: "国外海淘",
     presell: "预购",
-    ship: "即将到货",
-    stock: "现货",
-    exclusive: "限量"
+    selfrun: "自营" # need migration, keep ship stock exclusive for now
   }
   validates :stage, inclusion: { in: STAGES.keys }
 

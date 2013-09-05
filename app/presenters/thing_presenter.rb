@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 class ThingPresenter < PostPresenter
   presents :thing
-  delegate :title, :subtitle, :photos,
-  :stage, :self_run?, :stage_end_at, to: :thing
+  delegate :title, :subtitle, :photos, :self_run?, :stage_end_at, to: :thing
 
   def full_title
     [title, subtitle].reject(&:blank?).join(' - ')
@@ -23,10 +22,11 @@ class ThingPresenter < PostPresenter
   end
 
   def price
-    if thing.price.to_i > 0
+    if thing.kinds.size > 0
+      p = thing.kinds.map(&:price).min
       content_tag :small,
-      number_to_currency(thing.price, precision: 2,
-                         unit: thing.price_unit)
+      number_to_currency(p, precision: 2,
+                            unit: thing.price_unit)
     end
   end
 
@@ -165,7 +165,28 @@ class ThingPresenter < PostPresenter
     thing.reviews.limit(limit)
   end
 
+  def stage
+    if thing.stage == :selfrun
+      if thing.kinds.size == 0
+        :concept
+      else
+        thing.kinds.map { |kind| [kind.stage, ThingKind::STAGES.keys.index(kind.stage)] }.sort_by { |i| i[1] }.first[0]
+      end
+    else
+      thing.stage
+    end
+  end
+
   def stage_text
-    Thing.const_get(:STAGES)[stage]
+    if thing.stage == :selfrun
+      if thing.kinds.size == 0
+        :concept
+      else
+        thing.kinds.map { |kind| [kind.stage, ThingKind::STAGES.keys.index(kind.stage)] }.sort_by { |i| i[1] }.first[0]
+      end
+    else
+      thing.stage
+    end
+    (Thing::STAGES.merge ThingKind::STAGES)[stage]
   end
 end
