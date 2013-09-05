@@ -14,7 +14,6 @@ gem 'simple_form'
 gem 'nested_form'
 gem 'kaminari'
 gem 'rinku'
-gem 'rqrcode-rails3'
 # views
 gem 'slim-rails'
 gem 'jbuilder'
