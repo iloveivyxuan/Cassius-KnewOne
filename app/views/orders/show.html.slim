@@ -5,42 +5,34 @@
       = pay_link(@order)
   hr.divider
   .order_info
-    dl
-      dt 收货地址
-      dd = @order.address_text
-      dt 物流方式
-      dd = @order.deliver_method_text
-      dt 订单状态
-      dd = @order.state_text
-      dt 创建时间
-      dd = date_time_text @order.created_at
-      - if @order.paid_at
-        dt 付款时间
-        dd = date_time_text @order.paid_at
+    ul
+      li
+        strong.field 订单编号：
+        span = @order.id
+      li
+        strong.field 收货地址：
+        span = @order.address_text
+      li
+        strong.field 物流方式：
+        span = @order.deliver_method_text
+      li
+        strong.field 订单状态：
+        span = @order.state_text
+      li
+        strong.field 创建时间：
+        span = date_time_text @order.created_at
       - if @order.shipped_at
-        dt 发货时间
-        dd = date_time_text @order.shipped_at
+        li
+          strong.field 发货时间：
+          span = date_time_text @order.shipped_at
     p.pull-right
       | 总计
       span.price.total_price
         | ￥
         = @order.total_price
   hr.divider
-  .cart_items
-    - @order.order_items.each do |item|
-      .cart_item
-        .item_info
-          .thing_cover = image_tag item.thing.cover.url(:middle)
-          .info
-            .title = link_to item.thing.title, item.thing
-            .kind = item.kind.title
-        .item_opt
-          span.quantity = item.quantity
-          span.price
-            | ￥
-            = item.price
-          .item_note
-            = item.kind.note
+  .order_items
+    = render partial: 'orders/order_item', collection: @order.order_items
   hr.divider
   .order_tips
     ul

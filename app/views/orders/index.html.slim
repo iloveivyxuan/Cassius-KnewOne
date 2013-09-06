@@ -1,13 +1,6 @@
 .orders_wrapper
-  table
-    tr
-      th created_at
-      th status
-      th operations
-    - @orders.each do |order|
-      tr
-        td = order.created_at
-        td = order.state_text
-        td
-          = link_to('查看', order)
-          = order_operations(order)
+  .order_header
+    h1.title.pull-left 我的订单
+  hr.divider
+  .orders
+    = render @orders

@@ -11,19 +11,17 @@
 
   .price {
     color: #cc3300;
-    line-height: 32px;
     font-size: 1.25em;
   }
 
-  .cart_items{
-    .cart_item {
+  .order_items {
+    .order_item {
       @include clearfix;
-
       margin-bottom: 1em;
 
       .item_info {
         float: left;
-
+        width: 70%;
         .thing_cover {
           float: left;
           width: 180px;
@@ -35,29 +33,29 @@
 
         .info {
           float: left;
-
+          width: 280px;
           .title {
+            height: 48px;
             a {
               color: #374a75;
-              font-size: 28px;
+              font-size: 1.25em;
             }
           }
-
           .kind {
-            line-height: (120px - 32px - 22px);
+            line-height: (120px - 48px - 22px);
           }
         }
       }
 
+      .item_quantity {
+        float: left;
+        width: 10%;
+      }
+
       .item_opt {
         float: right;
+        width: 20%;
         text-align: right;
-
-        .price {
-          margin-left: 2em;
-          min-width: 6em;
-          display: inline-block;
-        }
 
         .item_note {
           margin-top: (120px - 32px - 11px - 22px);
@@ -82,6 +80,58 @@
 
   .cart_items_price, .order_info {
     @include clearfix;
+  }
+
+  .order {
+    @include clearfix;
+    .order_info {
+      @include clearfix;
+      margin-bottom: 2em;
+      .left {
+        float: left;
+        width: 50%;
+      }
+
+      .middle {
+        float: left;
+        width: 20%;
+        text-align: right;
+      }
+
+      .right {
+        float: left;
+        width: 30%;
+        text-align: right;
+      }
+
+      li {
+        margin-bottom: 1em;
+        .field {
+          width: 5em;
+          text-align: right;
+          display: inline-block;
+        }
+
+        span strong {
+          padding-left: 0.1em;
+          padding-right: 0.5em;
+        }
+      }
+    }
+
+    .order_items {
+      float: left;
+      width: 70%;
+    }
+
+    .order_opts {
+      float: left;
+      width: 30%;
+      text-align: right;
+      .btn {
+        margin-bottom: 0.5em;
+      }
+    }
   }
 }
 

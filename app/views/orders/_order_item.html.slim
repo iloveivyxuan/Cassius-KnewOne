@@ -1,0 +1,14 @@
+.order_item
+  .item_info
+    .thing_cover = image_tag order_item.thing.cover.url(:middle)
+    .info
+      .title = link_to order_item.thing.title, order_item.thing
+      .kind = order_item.kind.title
+  .item_quantity
+    .quantity = order_item.quantity
+  .item_opt
+    .price
+      | ￥
+      = order_item.price
+    .item_note
+      = order_item.kind.note

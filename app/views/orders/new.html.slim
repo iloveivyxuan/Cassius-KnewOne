@@ -5,21 +5,8 @@
       .opts.pull-right
         = f.submit '提交订单', class: 'btn btn-large btn-success make-order'
     hr.divider
-    .cart_items
-      - @order.order_items.each do |item|
-        .cart_item
-          .item_info
-            .thing_cover = image_tag item.thing.cover.url(:middle)
-            .info
-              .title = link_to item.thing.title, item.thing
-              .kind = item.kind.title
-          .item_opt
-            span.quantity = item.quantity
-            span.price
-              | ￥
-              = item.price
-            .item_note
-              = item.kind.note
+    .order_items
+      = render partial: 'orders/order_item', collection: @order.order_items
     hr.divider
     .order_form
       .control-group.order_address
