@@ -30,17 +30,17 @@
     - @order.order_items.each do |item|
       .cart_item
         .item_info
-          .thing_cover = image_tag item.thing_kind.thing.cover.url(:middle)
+          .thing_cover = image_tag item.thing.cover.url(:middle)
           .info
-            .title = link_to item.thing_kind.thing.title, item.thing_kind.thing
-            .kind = item.thing_kind.title
+            .title = link_to item.thing.title, item.thing
+            .kind = item.kind.title
         .item_opt
           span.quantity = item.quantity
           span.price
             | ￥
             = item.price
           .item_note
-            = item.thing_kind.note
+            = item.kind.note
   hr.divider
   .order_tips
     ul

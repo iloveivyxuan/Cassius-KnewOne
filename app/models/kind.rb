@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-class ThingKind
+class Kind
   include Mongoid::Document
 
-  belongs_to :thing
+  embedded_in :thing
 
   field :stock, type: Integer, default: 0
   field :title, type: String, default: ''
@@ -34,4 +34,8 @@ class ThingKind
   scope :has_stock, -> { where :stock.gt => 0 }
 
   mount_uploader :photo, ImageUploader
+
+  def self.find_kind_by_thing(thing_id, id)
+    Thing.find(thing_id).find_kind(id)
+  end
 end

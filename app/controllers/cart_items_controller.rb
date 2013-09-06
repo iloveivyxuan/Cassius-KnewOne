@@ -7,7 +7,7 @@ class CartItemsController < ApplicationController
   end
 
   def create
-    cart_item = user_cart.where(:kind_id => params[:cart_item][:kind_id]).first
+    cart_item = user_cart.find_by_thing_and_kind params[:cart_item][:thing], params[:cart_item][:kind_id]
     if cart_item.nil?
       cart_item = current_user.cart_items.build params[:cart_item]
     else

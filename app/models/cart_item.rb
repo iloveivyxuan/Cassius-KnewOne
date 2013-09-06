@@ -5,11 +5,11 @@ class CartItem
 
   belongs_to :thing
   belongs_to :user
-  belongs_to :kind, class_name: 'ThingKind'
 
   field :quantity, type: Integer, :default => 1
+  field :kind_id, type: String
 
-  validates :quantity, :user, :thing, :kind, :presence => true
+  validates :quantity, :user, :thing, :kind_id, :presence => true
   validate do
     errors.add :quantity, "#{kind.title} 超过库存。" if kind.stock < self.quantity
   end
@@ -23,5 +23,13 @@ class CartItem
 
   def has_stock?
     kind.stock >= self.quantity
+  end
+
+  def kind
+    thing.find_kind self.kind_id
+  end
+
+  def self.find_by_thing_and_kind(thing_id, kind_id)
+    where(thing: thing_id, kind_id: kind_id).first
   end
 end

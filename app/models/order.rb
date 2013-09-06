@@ -56,7 +56,7 @@ class Order
   end
 
   after_create do
-    user.cart_items.destroy_all(:kind.in => order_items.map(&:thing_kind))
+    user.cart_items.destroy_all(:thing.in => order_items.map(&:thing), :kind_id.in => order_items.map(&:kind).map(&:id))
     order_items.each &:claim_stock!
   end
 
@@ -189,7 +189,7 @@ class Order
   end
 
   def all_products_have_stock?
-    order_items.map { |item| item.thing_kind.stock >= item.quantity }.reduce &:&
+    order_items.map { |item| item.kind.stock >= item.quantity }.reduce &:&
   end
 
   def set_address(address)

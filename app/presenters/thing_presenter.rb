@@ -170,7 +170,7 @@ class ThingPresenter < PostPresenter
       if thing.kinds.size == 0
         :concept
       else
-        thing.kinds.map { |kind| [kind.stage, ThingKind::STAGES.keys.index(kind.stage)] }.sort_by { |i| i[1] }.first[0]
+        thing.kinds.map { |kind| [kind.stage, Kind::STAGES.keys.index(kind.stage)] }.sort_by { |i| i[1] }.first[0]
       end
     else
       thing.stage
@@ -182,11 +182,11 @@ class ThingPresenter < PostPresenter
       if thing.kinds.size == 0
         :concept
       else
-        thing.kinds.map { |kind| [kind.stage, ThingKind::STAGES.keys.index(kind.stage)] }.sort_by { |i| i[1] }.first[0]
+        thing.kinds.map { |kind| [kind.stage, Kind::STAGES.keys.index(kind.stage)] }.sort_by { |i| i[1] }.first[0]
       end
     else
       thing.stage
     end
-    (Thing::STAGES.merge ThingKind::STAGES)[stage]
+    (Thing::STAGES.merge Kind::STAGES)[stage]
   end
 end

@@ -7,8 +7,8 @@
       th
     - @order.order_items.each do |item|
       tr
-        td = item.thing_kind.thing.title
-        td = item.thing_kind.title
+        td = item.thing.title
+        td = item.kind.title
         td = item.quantity
   = simple_form_for @order, url: haven_order_path(@order) do |f|
     = f.input :admin_note, as: :text

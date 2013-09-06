@@ -48,7 +48,7 @@ class Thing < Post
   scope :self_run, -> { published.in(stage: STAGES.keys.from(3)) }
   default_scope desc(:created_at)
 
-  has_many :kinds, :class_name => 'ThingKind'
+  embeds_many :kinds
   accepts_nested_attributes_for :kinds, allow_destroy: true
 
   def find_selling_kind(thing_id, kind_id)
@@ -114,6 +114,10 @@ class Thing < Post
 
   def self_run?
     STAGES.keys.index(stage) > 2
+  end
+
+  def find_kind(id)
+    kinds.find id
   end
 
   class<< self
