@@ -14,7 +14,8 @@ class OrderItem
   validates :quantity, :numericality => { only_integer: true, greater_than: 0 }
 
   def claim_stock!
-    kind.inc :stock, -self.quantity # always positive
+    # protect race condition, over selling should throw nil error
+    thing.kinds.where(:id => self.kind_id, :stock.gt => self.quantity).first.inc :stock, -self.quantity # always positive
   end
 
   def revert_stock!

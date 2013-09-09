@@ -53,11 +53,12 @@ class Order
 
   before_create do
     self.deliver_price = calculate_deliver_price
+    # mongoid may not rollback when error occurred
+    order_items.each &:claim_stock!
   end
 
   after_create do
     user.cart_items.destroy_all(:thing.in => order_items.map(&:thing), :kind_id.in => order_items.map(&:kind).map(&:id))
-    order_items.each &:claim_stock!
   end
 
   scope :pending, -> { where state: :pending }
