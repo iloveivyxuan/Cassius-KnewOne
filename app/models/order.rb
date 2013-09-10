@@ -63,44 +63,15 @@ class Order
 
   default_scope -> { order_by(:created_at => :desc) }
 
-  scope :pending, -> { where state: :pending }
-  scope :paid, -> { where state: :paid }
-  scope :confirmed, -> { where state: :confirmed }
-  scope :shipped, -> { where state: :shipped }
-  scope :canceled, -> { where state: :canceled }
-  scope :closed, -> { where state: :closed }
-  scope :refunded, -> { where state: :refunded }
-
   def state
     super.to_sym
   end
 
-  def pending?
-    self.state == :pending
-  end
-
-  def paid?
-    self.state == :paid
-  end
-
-  def confirmed?
-    self.state == :confirmed
-  end
-
-  def shipped?
-    self.state == :shipped
-  end
-
-  def canceled?
-    self.state == :canceled
-  end
-
-  def closed?
-    self.state == :closed
-  end
-
-  def refunded?
-    self.state == :refunded
+  STATES.keys.each do |s|
+    scope s, -> { where state: s }
+    define_method :"#{s}?" do
+      state == s
+    end
   end
 
   def can_pay?
