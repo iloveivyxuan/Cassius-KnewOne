@@ -28,3 +28,7 @@ set :output, "#{app_path}/log/cron_log.log"
 every 1.days do
   command 'backup perform -t site_backup -r ~/Backup'
 end
+
+every 1.day, :at => '3:00 am' do
+  runner 'Order.reminds_orders'
+end

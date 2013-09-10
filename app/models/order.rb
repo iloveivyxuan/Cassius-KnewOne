@@ -14,7 +14,7 @@ class Order
   validates :district, :location, :contact_name, :phone, presence: true
 
   embeds_many :order_items
-  has_many :order_histories
+  embeds_many :order_histories
 
   STATES = {:pending => '等待付款',
             :paid => '已付款，等待确认',
@@ -60,6 +60,8 @@ class Order
   after_create do
     user.cart_items.destroy_all(:thing.in => order_items.map(&:thing), :kind_id.in => order_items.map(&:kind).map(&:id))
   end
+
+  default_scope -> { order_by(:created_at => :desc) }
 
   scope :pending, -> { where state: :pending }
   scope :paid, -> { where state: :paid }
@@ -248,6 +250,10 @@ class Order
                   DELIVER_METHODS[method][:price] - 20
               end
       price > 0 ? price : 0
+    end
+
+    def reminds_orders
+      pending.where(:created_at.lt => 1.days.ago).each(&:close!)
     end
   end
 end
