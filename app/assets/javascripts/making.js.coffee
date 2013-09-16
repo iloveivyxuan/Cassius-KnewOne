@@ -11,7 +11,7 @@ window.Making =
       Making.Score()
       Making.Share()
       $(".popover-toggle").popover()
-      $("a.disabled").click -> 
+      $("a.disabled").click ->
         false
       $(".thing h4").tooltip()
       $(".post_content").fitVids()

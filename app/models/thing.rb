@@ -113,7 +113,7 @@ class Thing < Post
   end
 
   def self_run?
-    STAGES.keys.index(stage) > 2
+    (STAGES.keys.index(stage) || 0) > 2
   end
 
   def find_kind(id)

@@ -18,16 +18,13 @@ class Kind
   STAGES = {
       stock: "现货",
       ship: "即将到货",
-      exclusive: "限量"
+      exclusive: "限量",
+      hidden: "下架"
   }
   validates :stage, inclusion: { in: STAGES.keys }
 
-  scope :selling, -> { where :selling => true }
-  scope :has_stock, -> { where :stock.gt => 0 }
+  scope :selling, -> { ne stage: :hidden }
+  scope :has_stock, -> { gt stock: 0 }
 
   mount_uploader :photo, ImageUploader
-
-  def self.find_kind_by_thing(thing_id, id)
-    Thing.find(thing_id).find_kind(id)
-  end
 end
