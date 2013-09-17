@@ -173,7 +173,7 @@
       }
     }
 
-    .cart {
+    .buy {
       .kind-select, .kind-select-disabled {
         @include border-radius(1px);
         width: 90%;
@@ -209,11 +209,19 @@
 
       span.price {
         font-size: 1.5em;
-        margin-bottom: 1.5em;
+        //margin-bottom: 1.5em;
       }
 
       .cart-info {
         display: none;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .estimate-info {
+        display: block;
       }
     }
   }

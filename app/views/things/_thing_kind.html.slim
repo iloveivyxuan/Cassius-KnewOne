@@ -1,0 +1,11 @@
+li.kind
+  = link_to no_link_href, class: k.has_stock? ? 'kind-select' : 'kind-select-disabled',
+                          data: { :stock => k.stock, :price => k.price, :'kind-id' => k.id.to_s } do
+    = k.title
+      .estimates_at.hidden
+        - if k.prompt_good?
+          i.icon-time
+            | 此产品将在
+            = time_tag k.estimates_at, distance_of_time_in_words_to_now(k.estimates_at)
+            | 后到货
+

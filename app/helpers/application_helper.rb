@@ -70,4 +70,8 @@ module ApplicationHelper
   def date_time_text(time)
     time.strftime '%Y-%m-%d %H:%M:%S'
   end
+
+  def no_link_href
+    'javascript:void(0)'
+  end
 end

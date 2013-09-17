@@ -1,75 +1,33 @@
-- if thing.kinds.any?
-  - first_kind = thing.kinds.selling.has_stock.first || Kind.new
-  = simple_form_for :cart_item, url: cart_items_path, remote: true, method: :post do |f|
-    = f.input :thing, as: :hidden, input_html: {value: thing.id}, label: false, wrapper: false
-    = f.input :kind_id, as: :hidden, input_html: {value: first_kind.id}
-    ul
-      li
-        span.price
-          | ￥
-          = first_kind.price
-      - thing.kinds.selling.each do |k|
-        li.kind
-          - if k.stock > 0
-            - if first_kind == k
-              a.kind-select.selected[href="javascript:void(0)"
-                                     data-stock="#{k.stock}" data-price="#{k.price}" data-kind-id="#{k.id}"]
-                = k.title
-                - if k.stage == :ship && thing.stage != :presell
-                  i.icon-time
-                    | 此产品将在
-                    = time_tag k.estimates_at, distance_of_time_in_words_to_now(k.estimates_at)
-                    | 后到货
-            - else
-              a.kind-select[href="javascript:void(0)"
-                            data-stock="#{k.stock}" data-price="#{k.price}" data-kind-id="#{k.id}"]
-                = k.title
-                - if k.stage == :ship && thing.stage != :presell
-                  i.icon-time
-                    | 此产品将在
-                    = time_tag k.estimates_at, distance_of_time_in_words_to_now(k.estimates_at)
-                    | 后到货
-          - else
-            span.kind-select-disabled[href="javascript:void(0)"
-                                      data-stock="#{k.stock}" data-price="#{k.price}" data-kind-id="#{k.id}"]
-              = k.title
-              - if k.stage == :ship && thing.stage != :presell
-                i.icon-time
-                  | 此产品将在
-                  = time_tag k.estimates_at, distance_of_time_in_words_to_now(k.estimates_at)
-                  | 后到货
-      li
-        = f.input_field :quantity, type: :number, \
-                        required: true, value: 1, min: 1, max: first_kind.stock, class: 'input-small', step: 1
-        span.kind-stock
-          | 库存
-          = first_kind.stock
-          | 件
-      li
-        = button_tag(type: 'submit', class: "btn btn-success") do
-          i.icon-shopping-cart.icon-large
-          | 添加到购物车
-      li.cart-info
-        .alert
+- first_kind = thing.kinds.selling.has_stock.first || Kind.new
+= simple_form_for :cart_item, url: cart_items_path, remote: true, method: :post do |f|
+  = f.input :thing, as: :hidden, input_html: {value: thing.id}, label: false, wrapper: false
+  = f.input :kind_id, as: :hidden
+  ul
+    = render partial: 'thing_kind', collection: thing.kinds.selling, as: :k
+    li
+      = f.input_field :quantity, type: :number, \
+                      required: true, value: 1, min: 1, class: 'input-small', step: 1
+      span.kind-stock
+        | 库存
+        = first_kind.stock
+        | 件
+      .estimate-info
+    li
+      = button_tag(type: 'submit', class: "btn btn-success") do
+        i.icon-shopping-cart.icon-large
+        | 添加到购物车
+    li.cart-info
+      .alert.alert-success 添加成功！
 
-  - content_for :script do
-    javascript:
-      $('.cart_item').bind("ajax:success",
-        function(xhr, data, status) {
-          if(data.result) {
-            $('.cart-info').children('.alert').removeClass('alert-success alert-error').addClass('alert-success').text('添加成功！').parent().fadeIn();
-            $('.cart_items_count').text(data.cart_items_count);
-            $('#cart_item_quantity').val(1);
-          } else {
-            $('.cart-info').children('.alert').removeClass('alert-success alert-error').addClass('alert-error').text('添加失败！').parent().fadeIn();
-          }
-       });
-      $('.kind-select').click(function() {
-        $this = $(this);
-        $('#cart_item_kind_id').val($this.attr('data-kind-id'));
-        $('.kind > .kind-select').removeClass('selected');
-        $('#cart_item_quantity').prop('max', $this.attr('data-stock'));
-        $('.cart span.price').text('￥'+$this.attr('data-price'));
-        $('.cart span.kind-stock').text('库存'+$this.attr('data-stock')+'件');
-        $this.addClass('selected');
-      });
+- content_for :script do
+  javascript:
+    $('.kind-select').click(function() {
+      $this = $(this);
+      $('#cart_item_kind_id').val($this.attr('data-kind-id'));
+      $('.kind > .kind-select').removeClass('selected');
+      $('#cart_item_quantity').prop('max', $this.attr('data-stock'));
+      $('.shop .price small').text('￥ '+$this.attr('data-price'));
+      $('.buy span.kind-stock').text('库存'+$this.attr('data-stock')+'件');
+      $('.buy .estimate-info').html($this.children('.estimates_at').html());
+      $this.addClass('selected');
+    }).first().trigger('click');

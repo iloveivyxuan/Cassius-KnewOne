@@ -207,7 +207,7 @@ class Order
                 end
       order = user.orders.build params
       order.set_address address if address
-      user.cart_items.each { |item| OrderItem.build_by_cart_item(order, item) if item.has_stock? }
+      user.cart_items.each { |item| OrderItem.build_by_cart_item(order, item) if item.has_enough_stock? }
       order
     end
 
