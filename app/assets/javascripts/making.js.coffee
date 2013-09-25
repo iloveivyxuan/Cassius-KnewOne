@@ -11,13 +11,13 @@ window.Making =
       Making.Score()
       Making.Share()
       $(".popover-toggle").popover()
-      $("a.disabled").click -> 
+      $("a.disabled").click ->
         false
       $(".thing h4").tooltip()
       $(".post_content").fitVids()
       $(".track_event").click ->
         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
-      $('.olark_chat').click ->
+      $('a[href="#olark_chat"]').click ->
         olark('api.box.expand')
       Making.GoTop()
 
