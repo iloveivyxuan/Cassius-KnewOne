@@ -42,6 +42,7 @@ gem 'whenever', require: false
 # area select helper
 # gem 'district_cn', git: 'https://github.com/jasl/district_cn.git', branch: 'hack'
 # gem 'district_cn_selector', git: 'https://github.com/jasl/district_cn_selector.git', branch: 'hack'
+gem 'jasl_tenpay', github: 'jasl/tenpay'
 
 group :assets do
   gem 'sass-rails'

@@ -34,6 +34,7 @@ class Order
   field :note, type: String
   field :admin_note, type: String
   field :trade_no, type: String
+  field :trade_state, type: String
   field :deliver_price, type: BigDecimal#, default: DELIVER_METHODS.first[1][:price]
 
   validates :state, presence: true, inclusion: {in: STATES.keys}
@@ -74,7 +75,7 @@ class Order
   end
 
   def can_confirm_payment?
-    paid?
+    paid? || pending?
   end
 
   def can_ship?
@@ -104,12 +105,14 @@ class Order
   end
 
   def confirm_payment!(trade_no)
-    return false unless can_confirm_payment? && self.trade_no == trade_no
+    return false unless can_confirm_payment?
 
+    state = self.state
     self.state = :confirmed
+    self.trade_no = trade_no
     save!
 
-    order_histories.create from: :paid, to: :confirmed
+    order_histories.create from: state, to: :confirmed
   end
 
   def ship!
@@ -182,7 +185,7 @@ class Order
 
     def calculate_deliver_price_by_method_and_price(method, items_price)
       price = case items_price
-                when 1..500
+                when 0..500
                   DELIVER_METHODS[method][:price]
                 when 500..1000
                   DELIVER_METHODS[method][:price] - 10

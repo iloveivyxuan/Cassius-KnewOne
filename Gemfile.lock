@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/jasl/tenpay.git
+  revision: 2ea42ed6c5875f0f56d5ee06f645410f8f36444b
+  specs:
+    jasl_tenpay (1.0.1)
+
 GEM
   remote: http://ruby.taobao.org/
   specs:
@@ -214,7 +220,7 @@ GEM
     net-ssh (2.7.0)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
-    newrelic_rpm (3.6.7.152)
+    newrelic_rpm (3.6.7.159)
     oauth (0.4.7)
     oauth2 (0.8.1)
       faraday (~> 0.8)
@@ -390,6 +396,7 @@ DEPENDENCIES
   guard-rspec
   guard-spork
   handlebars_assets
+  jasl_tenpay!
   jasminerice
   jbuilder
   jquery-fileupload-rails

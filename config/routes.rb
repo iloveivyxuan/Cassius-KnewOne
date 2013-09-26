@@ -18,6 +18,8 @@ Making::Application.routes.draw do
     member do
       put 'pay'
       put 'cancel'
+      get 'tenpay_notify'
+      get 'tenpay_callback'
     end
   end
   resources :cart_items, :only => [:index, :create, :destroy, :update] do
