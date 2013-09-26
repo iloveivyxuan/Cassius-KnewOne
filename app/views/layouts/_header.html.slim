@@ -69,6 +69,7 @@ header
                 li= link_to users_path do
                   i.icon-group
                   | 用户列表
+              - if can? :manage, Supplier
                 li= link_to suppliers_path do
                   i.icon-truck
                   | 供货信息

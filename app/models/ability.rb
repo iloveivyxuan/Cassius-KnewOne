@@ -18,6 +18,7 @@ class Ability
       can :pro_edit, Thing
       can :pro_update, Thing
       can :update, Lottery
+      can :manage, Supplier
     else
       basic
       signed user
