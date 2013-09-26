@@ -174,6 +174,10 @@ class Order
     items_price + (self.deliver_price || calculate_deliver_price)
   end
 
+  def total_cents
+    (total_price * 100).to_i
+  end
+
   class<< self
     def build_order(user, params = {})
       address_id = params.delete :address_id

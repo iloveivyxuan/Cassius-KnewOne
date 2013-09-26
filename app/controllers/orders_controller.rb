@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
   def pay
     url = generate_tenpay_url :subject => 'KnewOne购物',
                               :body => "KnewOne订单号: #{@order.order_no}",
-                              :total_fee => @order.total_price * 100,
+                              :total_fee => @order.total_cents,
                               :out_trade_no => @order.order_no
     redirect_to url
   end
