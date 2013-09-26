@@ -38,7 +38,7 @@ class User
   embeds_many :auths
 
   # Payment
-  has_many :addresses
+  embeds_many :addresses
   embeds_many :cart_items
   has_many :orders
 

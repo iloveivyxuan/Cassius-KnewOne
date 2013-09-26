@@ -12,29 +12,12 @@
       .control-group.order_address
         label.control-label * 收货地址
         .controls
-          .addresses
-            - current_user.addresses.each do |a|
-              label.radio[for="order_address_id_#{a.id}"]
-                - if @order.address == a
-                  = f.radio_button :address, a.id, required: 'required',
-                                                   class: 'radio_buttons required order_address_radio',
-                                                   id: "order_address_id_#{a.id}", checked: 'checked'
-                - else
-                  = f.radio_button :address, a.id, required: 'required',
-                                                   class: 'radio_buttons required order_address_radio',
-                                                   id: "order_address_id_#{a.id}"
-                = a.full_with_contact
-                = link_to '编辑', edit_address_path(a, modal: true), class: 'edit_address_btn',
-                                               data: {toggle: 'modal', role: 'button', target: '#address-modal'}
-          = link_to '新地址', new_address_path(modal: true), class: 'new_address_btn',
-                             data: {toggle: 'modal', role: 'button', target: '#address-modal'}
+          .addresses = render current_user.addresses
+          = link_to '新地址', no_link_href, class: 'new_address_btn',
+                             data: {toggle: 'modal', role: 'button', target: '#new-address-modal'}
       = f.input :deliver_by, as: :radio_buttons do
         ul.deliver_by_list
-          - Order::DELIVER_METHODS.each do |k, v|
-            li.radio
-              - deliver_price = Order.calculate_deliver_price_by_method_and_price(k, @order.items_price)
-              = f.radio_button :deliver_by, k, :'data-price' => deliver_price, class: 'deliver_method'
-              = "#{v[:name]}（￥#{deliver_price}）"
+          = render partial: 'deliver_methods', locals: {f: f}
       = f.input :note
     hr.divider
     .cart_items_price
@@ -49,34 +32,16 @@
         = link_to '返回到购物车', cart_items_path, class: 'btn btn-large'
         = f.submit '提交订单', class: 'btn btn-large btn-success make-order'
 
-.modal.remote-modal.hide.fade#address-modal[role="dialog" tabindex="-1" aria-labelledby="address-modal-label" aria-hidden="true"]
-  .modal-header
-    button.close[type="button" data-dismiss="modal" aria-hidden="true"] &times;
-    h3#address-modal-label 管理收货地址
-  .modal-body
-  .modal-footer
-    = link_to '确定', 'javascript:void(0)', class: 'btn btn-large btn-success address-modal-submit-btn'
+- content_for :modals
+  = render partial: 'addresses/address_modal',
+           locals: { address: Address.new, modal_name: 'new-address-modal', modal_title: '添加收货地址' }
 
 - content_for :script do
   javascript:
-    $('body').on('hidden', '.remote-modal', function () {
-      $(this).removeData('modal');
-    });
-
-    $('.address-modal-submit-btn').click(function() {
-      $('.address-form .hidden_submit_btn').click();
-    });
-
     $('.deliver_method').on('change',
       function() {
         price = parseFloat($(this).attr('data-price')) + parseFloat($('.total_price').attr('data-things-price'));
         $('.total_price').text('￥' + price.toFixed(1));
-      }
-    );
-
-    $('.order_address').on('change',
-      function() {
-        console.log('wtf');
       }
     );
 
@@ -89,3 +54,23 @@
       $('.make-order').attr("disabled","disabled");
       $('.new_address_btn').click();
     }
+
+    $('.order_address_radio').first().click();
+
+    $('.address-form').on("ajax:success",
+      function(xhr, data, status) {
+        var $this = $(this);
+        var $addresses = $('.order_address .controls .addresses');
+
+        var exist_item = $('#' + $(data).find('input').attr('id'));
+        if(exist_item.size() == 0) {
+          $addresses.append(data);
+          $addresses.find('.radio > input').last().click();
+        } else {
+          exist_item.parent().replaceWith(data);
+          $('#' + $(data).find('input').attr('id')).click();
+        }
+
+        $this.closest('.modal').modal('hide');
+      }
+    );

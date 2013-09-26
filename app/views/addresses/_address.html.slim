@@ -1,0 +1,11 @@
+= label_tag "order_address_id_#{address.id}", class: 'radio'
+  = radio_button_tag 'order[address_id]', address.id,
+                     id: "order_address_id_#{address.id}",
+                     class: 'radio_buttons required order_address_radio', required: "required"
+  = address.full_with_contact
+  = link_to '编辑', no_link_href, class: 'edit_address_btn',
+                                 data: {toggle: 'modal', role: 'button', target: "#address-#{address.id}-modal"}
+
+- content_for :modals do
+  = render partial: 'addresses/address_modal',
+           locals: { address: address, modal_name: "address-#{address.id}-modal", modal_title: '修改收货地址' }

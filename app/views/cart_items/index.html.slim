@@ -5,58 +5,14 @@
       = place_order_link
   hr.divider
   .cart_items
-    - @has_stock_items.each do |item|
-      .cart_item
-        .item_info
-          .thing_cover = image_tag item.thing.cover.url(:middle)
-          .info
-            .title = link_to item.thing.title, item.thing
-            .kind = item.kind.title
-            div = link_to '删除', cart_item_path(id: item.id),
-                                          method: :delete, remote: true, class: 'remote-delete'
-        .item_opt
-          .input-append
-            = hidden_field_tag "cart_items[][id]", item.id, class: 'item_id'
-            = link_to increment_cart_item_path(item.id, step: -1),
-                      class: 'increment btn', method: :put, remote: true do
-              i.icon-minus
-            = number_field_tag "cart_items[][quantity]", item.quantity,
-                               required: true, class: 'item_quantity span1', min: 1
-            = link_to increment_cart_item_path(item.id, step: 1),
-                      class: 'increment btn', method: :put, remote: true do
-              i.icon-plus
-          span.price
-            | ￥
-            = item.price
-          .item_note
-            = item.kind.note
+    = render @cart_items
   hr.divider
-  - if @out_stock_items.any?
-    h2.out_stock_header 下列产品已无库存
-    hr.divider
-    .out_stock_cart_items
-      - @out_stock_items.each do |item|
-        .cart_item
-          .item_info
-            .multiple_select = check_box_tag 'items[]', item.id
-            .thing_cover = image_tag item.thing.cover.url(:middle)
-            .info
-              .title = link_to item.thing.title, item.thing
-              .kind = item.kind.title
-              div = link_to '删除', cart_item_path(id: item.id),
-                            method: :delete, remote: true, class: 'remote-delete'
-          .item_opt
-            p
-              | 现有库存
-              = item.kind.stock
-              | 个
-    hr.divider
   .cart_items_price
     p.pull-right
       | 总计（不包含运费）
-      span.price.total_price
+      span.total_price
         | ￥
-        = @has_stock_items.map(&:price).reduce(&:+) || 0
+        = @cart_items.map(&:price).reduce(&:+) || 0
   hr.divider
   .cart_footer
     .pull-right
@@ -64,11 +20,6 @@
 
 - content_for :script do
   javascript:
-    $('.remote-delete').on("ajax:success", function(xhr, data, status) {
-                         $(this).closest('.cart_item').remove();
-                         $('.total_price').text('￥' + data.total_price);
-                         $('.cart_items_count').text(data.cart_items_count);
-                       });
     $('.item_quantity').blur(function() {
        var $this = $(this);
        var quantity = $this.val();
@@ -85,9 +36,8 @@
        });
     });
 
-
     $('.increment').on("ajax:success", function(xhr, data, status) {
                                             $(this).parent().find('.item_quantity').val(data.quantity);
-                                            $(this).parent().parent().find('.price').text('￥' + data.price);
+                                            $(this).parent().parent().find('.price').text('￥ ' + data.price);
                                             $('.total_price').text('￥' + data.total_price);
                                           });

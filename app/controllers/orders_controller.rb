@@ -10,12 +10,13 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.place_order(current_user)
+    @order = Order.build_order(current_user)
     @order.address = current_user.addresses.first
+    @order.deliver_by = :sf
   end
 
   def create
-    @order = Order.place_order(current_user, params[:order])
+    @order = Order.build_order(current_user, params[:order])
     if @order.save!
       redirect_to @order
     else

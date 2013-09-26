@@ -4,14 +4,8 @@ class Order
   include Mongoid::Timestamps
 
   belongs_to :user
-
-  attr_accessor :address
-  field :district, type: String
-  field :location, type: String
-  field :contact_name, type: String
-  field :phone, type: String
-  field :zip_code, type: String
-  validates :district, :location, :contact_name, :phone, presence: true
+  embeds_one :address
+  attr_accessor :address_id
 
   embeds_many :order_items
   embeds_many :order_histories
@@ -27,16 +21,15 @@ class Order
       :sf => {name: '顺丰', price: 18.0},
       :zt => {name: '中通', price: 8.0}
   }
+  PAYMENT_METHOD = {
+      :tenpay => '财付通',
+      :alipay => '支付宝'
+  }
 
   field :state, type: Symbol, default: :pending
-  field :paid_at, type: Time
-  field :confirmed_at, type: DateTime
-  field :shipped_at, type: DateTime
-  field :canceled_at, type: DateTime
-  field :closed_at, type: DateTime
-  field :refunded_at, type: DateTime
-
-  field :deliver_by, type: Symbol, default: :sf
+  field :payment_method, type: Symbol
+  field :order_no, type: String
+  field :deliver_by, type: Symbol
   field :deliver_no, type: String
   field :note, type: String
   field :admin_note, type: String
@@ -45,13 +38,15 @@ class Order
 
   validates :state, presence: true, inclusion: {in: STATES.keys}
   validates :deliver_by, presence: true, inclusion: {in: DELIVER_METHODS.keys}
+  validates :payment_method, inclusion: {in: PAYMENT_METHOD.keys, allow_blank: true}
+  validates_associated :address
   validates :user, presence: true
-  attr_accessible :note, :deliver_by
+  attr_accessible :note, :deliver_by, :address_id
   attr_accessible :state, :admin_note, :deliver_no, :trade_no,
-                  :paid_at, :confirmed_at, :shipped_at, :canceled_at, :closed_at, :refunded_at,
                   :as => :admin
 
   before_create do
+    self.order_no = SecureRandom.uuid.split('-')[-1]
     self.deliver_price = calculate_deliver_price
     # mongoid may not rollback when error occurred
     order_items.each &:claim_stock!
@@ -102,7 +97,6 @@ class Order
     return false unless can_pay?
 
     self.state = :paid
-    self.paid_at = Time.now
     self.trade_no = trade_no
     save!
 
@@ -113,7 +107,6 @@ class Order
     return false unless can_confirm_payment? && self.trade_no == trade_no
 
     self.state = :confirmed
-    self.confirmed_at = Time.now
     save!
 
     order_histories.create from: :paid, to: :confirmed
@@ -123,7 +116,6 @@ class Order
     return false unless can_ship?
 
     self.state = :shipped
-    self.shipped_at = Time.now
     save!
 
     order_histories.create from: :confirmed, to: :shipped
@@ -134,7 +126,6 @@ class Order
 
     order_items.each &:revert_stock!
     self.state = :canceled
-    self.canceled_at = Time.now
     save!
 
     order_histories.create from: :pending, to: :canceled
@@ -145,7 +136,6 @@ class Order
 
     order_items.each &:revert_stock!
     self.state = :closed
-    self.closed_at = Time.now
     save!
 
     order_histories.create from: :pending, to: :closed
@@ -156,7 +146,6 @@ class Order
 
     state = self.state
     self.state = :refunded
-    self.refunded_at = Time.now
     save!
 
     order_histories.create from: state, to: :closed
@@ -166,24 +155,8 @@ class Order
     order_items.map { |item| item.kind.stock >= item.quantity }.reduce &:&
   end
 
-  def set_address(address)
-    self.district = address.district.area_name ' '
-    self.location = address.address
-    self.contact_name = address.name
-    self.phone = address.phone
-    self.zip_code = address.zip_code
-  end
-
-  def address_text
-    "#{contact_name}, #{phone}, #{district} #{location} #{", #{zip_code}" if zip_code.present?}"
-  end
-
   def deliver_method_text
     DELIVER_METHODS[self.deliver_by][:name]
-  end
-
-  def state_text
-    STATES[self.state]
   end
 
   def calculate_deliver_price
@@ -199,14 +172,10 @@ class Order
   end
 
   class<< self
-    def place_order(user, params = {})
-      address = if params[:address]
-                  user.addresses.find(params.delete(:address))
-                elsif user.addresses.any?
-                  user.addresses.first
-                end
+    def build_order(user, params = {})
+      address_id = params.delete :address_id
       order = user.orders.build params
-      order.set_address address if address
+      order.address = user.addresses.find(address_id) if address_id
       user.cart_items.each { |item| OrderItem.build_by_cart_item(order, item) if item.has_enough_stock? }
       order
     end
@@ -223,7 +192,7 @@ class Order
       price > 0 ? price : 0
     end
 
-    def reminds_orders
+    def cleanup_expired_orders
       pending.where(:created_at.lt => 1.days.ago).each(&:close!)
     end
   end

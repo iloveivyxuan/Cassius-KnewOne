@@ -1,48 +1,29 @@
 class AddressesController < ApplicationController
-  load_and_authorize_resource
-  before_filter :find_user_addresses, :only => :index
+  before_filter :authenticate_user!
 
-  # GET /addresses
-  # GET /addresses.json
   def index
+    @addresses = current_user.addresses
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @addresses }
     end
   end
 
-  # GET /addresses/new
-  # GET /addresses/new.json
   def new
     @address = current_user.addresses.build
-
     respond_to do |format|
-      format.html do
-        if params[:modal].blank?
-          render 'new'
-        else
-          render 'new_or_edit', layout: false
-        end
-      end
+      format.html { render 'new' }
       format.json { render json: @address }
     end
   end
 
-  # GET /addresses/1/edit
   def edit
+    @address = current_user.addresses.find params[:id]
     respond_to do |format|
-      format.html do
-        if params[:modal].blank?
-          render 'new'
-        else
-          render 'new_or_edit', layout: false
-        end
-      end
+      format.html { render 'new' }
     end
   end
 
-  # POST /addresses
-  # POST /addresses.json
   def create
     @address = current_user.addresses.build params[:address]
     respond_to do |format|
@@ -57,9 +38,8 @@ class AddressesController < ApplicationController
     end
   end
 
-  # PUT /addresses/1
-  # PUT /addresses/1.json
   def update
+    @address = current_user.addresses.find params[:id]
     respond_to do |format|
       if @address.update_attributes(params[:address])
         format.html { redirect_to addresses_path, notice: 'Address was successfully updated.' }
@@ -72,20 +52,12 @@ class AddressesController < ApplicationController
     end
   end
 
-  # DELETE /addresses/1
-  # DELETE /addresses/1.json
   def destroy
+    @address = current_user.addresses.find params[:id]
     @address.destroy
-
     respond_to do |format|
       format.html { redirect_to addresses_path }
       format.json { head :no_content }
     end
-  end
-
-  private
-
-  def find_user_addresses
-    @addresses = current_user.addresses
   end
 end

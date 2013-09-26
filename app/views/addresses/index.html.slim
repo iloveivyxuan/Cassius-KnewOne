@@ -1,7 +1,6 @@
 .addresses_wrapper
   table
     tr
-      th Area
       th Address
       th Name
       th Phone
@@ -12,8 +11,7 @@
 
     - @addresses.each do |address|
       tr
-        td = address.district.area_name
-        td = address.address
+        td = address.full
         td = address.name
         td = address.phone
         td = address.zip_code

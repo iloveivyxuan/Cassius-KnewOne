@@ -10,8 +10,6 @@ class Kind
   field :note, type: String, default: ''
   field :price, type: BigDecimal, default: 0.0
 
-  field :selling, type: Boolean, default: false
-
   field :stage, type: Symbol, default: :stock
   field :estimates_at, type: DateTime
 

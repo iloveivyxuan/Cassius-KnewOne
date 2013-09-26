@@ -29,7 +29,8 @@ zh-CN:
         admin_note: '管理员备注'
         address: '收货地址'
       address:
-        district: '地区'
+        province: '省市'
+        district: '市区'
         address: '地址'
         name: '联系人'
         phone: '电话'

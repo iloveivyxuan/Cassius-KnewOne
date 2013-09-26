@@ -30,5 +30,5 @@ every 1.days do
 end
 
 every 1.day, :at => '3:00 am' do
-  runner 'Order.reminds_orders'
+  runner 'Order.cleanup_expired_orders'
 end

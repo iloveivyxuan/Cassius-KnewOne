@@ -1,0 +1,5 @@
+- Order::DELIVER_METHODS.each do |k, v|
+  li.radio
+    - deliver_price = Order.calculate_deliver_price_by_method_and_price(k, @order.items_price)
+    = f.radio_button :deliver_by, k, :'data-price' => deliver_price, class: 'deliver_method'
+    = "#{v[:name]}（￥#{deliver_price}）"

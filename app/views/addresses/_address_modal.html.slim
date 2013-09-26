@@ -1,0 +1,17 @@
+- url = address.persisted? ? address_path(address, format: :js) : addresses_path(format: :js)
+= content_tag :div, :class => 'modal hide fade', :id => modal_name, :role => 'dialog', :tabindex => '-1',
+                    :'aria-labelledby' => 'address-modal-label', :'aria-hidden' => 'true' do
+  = simple_form_for address, html: {:'data-type' => :html, class: 'address-form', id: "address-form-#{address.id}"},
+                             remote: true, url: url do |f|
+    .modal-header
+        button.close[type="button" data-dismiss="modal" aria-hidden="true"] &times;
+        h3#address-modal-label = modal_title
+    .modal-body
+      = f.input :province, collection: Settings.province, prompt: '省市', required: true
+      = f.input :district, required: true
+      = f.input :address, required: true
+      = f.input :name, required: true
+      = f.input :phone, required: true
+      = f.input :zip_code
+    .modal-footer
+      = f.button :submit, class: 'btn btn-large btn-success address-modal-submit-btn'

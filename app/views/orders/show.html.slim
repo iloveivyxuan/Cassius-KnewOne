@@ -8,23 +8,19 @@
     ul
       li
         strong.field 订单编号：
-        span = @order.id
+        span = @order.order_no
       li
         strong.field 收货地址：
-        span = @order.address_text
+        span = address_text @order
       li
         strong.field 物流方式：
         span = @order.deliver_method_text
       li
         strong.field 订单状态：
-        span = @order.state_text
+        span = state_text @order
       li
         strong.field 创建时间：
         span = date_time_text @order.created_at
-      - if @order.shipped_at
-        li
-          strong.field 发货时间：
-          span = date_time_text @order.shipped_at
     p.pull-right
       | 总计
       span.price.total_price

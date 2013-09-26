@@ -2,8 +2,7 @@ class CartItemsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @has_stock_items = user_cart.select(&:has_enough_stock?)
-    @out_stock_items = (user_cart - @has_stock_items)#.each &:destroy
+    @cart_items = user_cart
   end
 
   def create
@@ -17,11 +16,14 @@ class CartItemsController < ApplicationController
     end
   end
 
-  def update
-    current_cart_item.quantity_increment(params[:quantity])
-    current_cart_item.save
+  def update_multiple
+    params[:cart_items].map do |item|
+      cart_item = user_cart.find(item.delete(:id))
+      cart_item.update_attributes item
+    end
 
     respond_to do |format|
+      format.json { render :json => {:result => result} }
       format.html { redirect_to new_order_path }
     end
   end

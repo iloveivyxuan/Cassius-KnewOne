@@ -1,6 +1,7 @@
 = simple_form_for (@address || Address.new) do |f|
   = f.error_notification
-  = f.input :district, :as => :district_select
+  = f.input :province, collection: Settings.province, prompt: '省市', required: true
+  = f.input :district, required: true
   = f.input :address, required: true
   = f.input :name, required: true
   = f.input :phone, required: true

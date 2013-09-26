@@ -72,6 +72,6 @@ module ApplicationHelper
   end
 
   def no_link_href
-    'javascript:void(0)'
+    '#'
   end
 end

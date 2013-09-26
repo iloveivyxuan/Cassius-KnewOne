@@ -169,6 +169,10 @@ window.Making =
         errorCallback: ->
           $(container).find('.loading-things').html("<em>没有更多了......</em>")
 
+  CalculatePrice: ($el) ->
+    price = parseFloat($el.children('.price').attr('data-price'))
+    quantity = parseFloat($el.children('.item_quantity').val())
+    $el.children('.price').text("￥ #{price * quantity}")
 
 $ ->
   Making.initialize()

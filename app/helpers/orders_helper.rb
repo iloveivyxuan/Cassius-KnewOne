@@ -36,4 +36,16 @@ module OrdersHelper
         pay_link(order)
     ].compact.join('').html_safe
   end
+
+  def state_text(order)
+    Order::STATES[order.state]
+  end
+
+  def address_text(order)
+    order.address.full_with_contact
+  end
+
+  def contact_text(order)
+    order.address.name
+  end
 end

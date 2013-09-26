@@ -20,8 +20,8 @@
     margin-left: 1em;
   }
 
-  .price {
-    color: #cc3300;
+  .price, .total_price {
+    color: red;
     line-height: 32px;
     font-size: 1.25em;
   }
@@ -74,7 +74,7 @@
           }
         }
 
-        .price {
+        .price{
           margin-left: 2em;
           min-width: 6em;
           display: inline-block;

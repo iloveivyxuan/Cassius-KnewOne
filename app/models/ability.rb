@@ -69,10 +69,7 @@ class Ability
       cart_item.user == user
     end
 
-    can :create, Address
-    can :manage, Address do |address|
-      address.user == user
-    end
+    can :manage, Address
 
     can :create, Order
     can [:read, :pay, :cancel], Order do |order|
