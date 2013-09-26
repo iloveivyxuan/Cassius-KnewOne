@@ -7,6 +7,7 @@ class Ability
 
     if user.blank?
       basic
+      pay_callback
     elsif user.role? :admin
       can :manage, :all
     elsif user.role? :editor
@@ -89,5 +90,9 @@ class Ability
     can :comments, Thing
     can :wechat_qr, Thing
     can :create, Supplier
+  end
+
+  def pay_callback
+    can :tenpay_notify, Order
   end
 end
