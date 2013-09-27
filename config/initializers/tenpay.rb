@@ -1,2 +1,2 @@
-JaslTenpay.pid = '1900000113'
-JaslTenpay.key = 'e82573dc7e6136ba414f2e2affbe39fa'
+JaslTenpay.pid = '1217165001'
+JaslTenpay.key = 'a30a93a07e7d72c8aba2972011ce63a5'
