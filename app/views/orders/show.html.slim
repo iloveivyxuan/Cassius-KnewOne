@@ -37,3 +37,6 @@
   .order_footer
     .pull-right
       = order_operations(@order)
+
+= content_for :modals do
+  = render partial: 'pay_modal', locals: {order: @order}

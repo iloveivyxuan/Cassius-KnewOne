@@ -1,0 +1,9 @@
+.modal.hide.fade#pay-modal[tabindex="-1" role="dialog" aria-labelledby="pay-modal-label" aria-hidden="true"]
+  .modal-header
+    button.close[type="button" data-dismiss="modal" aria-hidden="true"] ×
+    h3#pay-modal-label 选择支付方式
+  .modal-body
+   ul.pay-method-list
+     li
+       = link_to tenpay_order_path(order) do
+         = image_tag 'cft.gif', alt: '财付通支付', title: '财付通支付'

@@ -94,21 +94,23 @@ class Order
     confirmed? || shipped?
   end
 
-  def pay!(trade_no)
+  def pay!(trade_no, method)
     return false unless can_pay?
 
     self.state = :paid
+    self.payment_method = method
     self.trade_no = trade_no
     save!
 
     order_histories.create from: :pending, to: :paid
   end
 
-  def confirm_payment!(trade_no)
+  def confirm_payment!(trade_no, method)
     return false unless can_confirm_payment?
 
     state = self.state
     self.state = :confirmed
+    self.payment_method = method
     self.trade_no = trade_no
     save!
 

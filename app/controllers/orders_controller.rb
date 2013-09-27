@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def pay
+  def tenpay
     url = generate_tenpay_url :subject => 'KnewOne购物',
                               :body => "KnewOne订单号: #{@order.order_no}",
                               :total_fee => @order.total_cents,
@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
 
   def tenpay_notify
     if JaslTenpay::Notify.verify? params.except(*request.path_parameters.keys)
-      @order.confirm_payment!(params[:transaction_id])
+      @order.confirm_payment!(params[:transaction_id], :tenpay)
       render text: 'success'
     else
       render text: 'fail'
@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
   def tenpay_callback
     # notify may reach earlier than callback
     if JaslTenpay::Sign.verify? params.except(*request.path_parameters.keys)
-      @order.pay!(params[:transaction_id])
+      @order.pay!(params[:transaction_id], :tenpay)
     end
 
     redirect_to @order

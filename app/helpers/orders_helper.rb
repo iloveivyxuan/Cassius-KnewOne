@@ -2,7 +2,7 @@
 module OrdersHelper
   def pay_link(order, css = 'btn btn-large btn-success')
     if order.can_pay?
-      link_to '立即支付', pay_order_path(order), method: 'put', class: css
+      link_to '立即支付', '#pay-modal', class: css, data: {toggle: 'modal'}, role: 'button'
     end
   end
 
@@ -10,7 +10,7 @@ module OrdersHelper
     if order.can_cancel?
       link_to '取消订单', cancel_order_path(order),
               data: {confirm: '真的要取消这个订单么？'},
-              method: 'put', class: css
+              class: css
     end
   end
 

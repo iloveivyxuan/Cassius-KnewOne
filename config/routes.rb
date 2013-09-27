@@ -16,8 +16,8 @@ Making::Application.routes.draw do
   resources :addresses, except: [:show]
   resources :orders, only: [:index, :show, :create, :new] do
     member do
-      put 'pay'
-      put 'cancel'
+      get 'tenpay'
+      get 'cancel'
       get 'tenpay_notify'
       get 'tenpay_callback'
     end
