@@ -2,11 +2,11 @@
   = f.input :thing, as: :hidden, input_html: {value: thing.id}, label: false, wrapper: false
   = f.input :kind_id, as: :hidden
   ul
-    = render partial: 'thing_kind', collection: thing.kinds.selling, as: :k
+    = render partial: 'things/thing_kind', collection: thing.kinds.selling, as: :k
     li
       = f.input_field :quantity, type: :number, \
                       required: true, value: 1, min: 1, class: 'input-small', step: 1
-      span.kind-stock 库存 - 件
+      span.kind-stock 库存 0 件
       .estimate-info
     li
       = button_tag(type: 'submit', class: "btn btn-success") do
