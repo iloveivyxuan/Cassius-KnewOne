@@ -1,32 +1,35 @@
 .shop
-  .price = tp.price
   .buy
     = tp.buy
+  .buy-button
+    .price = tp.price
+    = link_to_with_icon "购买", "icon-shopping-cart icon-large", '#buy-modal',
+                        title: tp.title, class: "btn btn-success track_event", target: "_blank",
+                        data: {toggle: 'modal'}, role: 'btn'
   = render "things/stage_end_at", tp: tp
-
 .actions
   .fanciers
     = render "shared/fancy", p: tp
   .owners
     = render "things/own", tp: tp
   .support
-    = link_to 'javascript:void(0)', class: 'olark_chat' do
+    = link_to '#olark_chat' do
       i.icon-user-md
       span 在线帮助
   .share
     = link_to user_signed_in? ? "#thing_share" : "#login-modal", title: "分享",
-    data: {toggle: 'modal', keyboard: false} do
-      = provider_share
+              data: {toggle: 'modal', keyboard: false} do
+                = provider_share
   .wechat
     = link_to "#thing_share_wechat", title: "微信朋友圈分享",
-    data: {toggle: 'modal'} do
-      i.icon-qrcode
-      span 分享到微信
+              data: {toggle: 'modal'} do
+                i.icon-qrcode
+                span 分享到微信
   .supplier
     = link_to "#thing_supplier", title: "提供产品",
-    data: {toggle: "modal", keyboard: false} do
-      i.icon-truck
-      span 我想提供此产品
+              data: {toggle: "modal", keyboard: false} do
+                i.icon-truck
+                span 我想提供此产品
 
 .author_info
   = tp.author_tag
@@ -35,3 +38,17 @@
   = render 'shared/share', id: 'thing_share', content: tp.share_content, pic: tp.photo_url(:huge)
   = render 'things/wechat', tp: tp
   = render 'things/supplier', tp: tp
+  = render 'things/buy', tp: tp
+
+- content_for :script do
+  javascript:
+    $('.kind-select').click(function() {
+      $this = $(this);
+      $('.cart_item_kind_id').val($this.attr('data-kind-id'));
+      $('.kind > .kind-select').removeClass('selected');
+      $('.cart_item_quantity').prop('max', $this.attr('data-stock'));
+      $('.buy .price small').text('￥ '+$this.attr('data-price'));
+      $('.buy span.kind-stock').text('库存'+$this.attr('data-stock')+'件');
+      $('.buy .estimate-info').html($this.children('.estimates_at').html());
+      $this.addClass('selected');
+    }).first().trigger('click');

@@ -158,7 +158,6 @@
 }
 
 #thing_actions {
-
   .shop {
     .pre_over_at {
       margin: 0;
@@ -170,58 +169,6 @@
       time {
         font-size: 1em;
         color: $red;
-      }
-    }
-
-    .buy {
-      .kind-select, .kind-select-disabled {
-        @include border-radius(1px);
-        width: 90%;
-        display: block;
-        padding: 0.5em;
-        border: 1px solid #dbdbdb;
-        background-color: #ffffff;
-      }
-
-      li {
-        margin-bottom: 1em;
-      }
-
-      .kind-select {
-        &:hover, &.selected {
-          border-color: #f1785b;
-        }
-      }
-
-      .kind-select-disabled {
-        color: #dbdbdb;
-      }
-
-      input {
-        background-color: #ffffff;
-        margin-bottom: 0;
-      }
-
-      .kind-stock {
-        margin-left: 1em;
-        line-height: 2em;
-      }
-
-      span.price {
-        font-size: 1.5em;
-        //margin-bottom: 1.5em;
-      }
-
-      .cart-info {
-        display: none;
-      }
-
-      .hidden {
-        display: none;
-      }
-
-      .estimate-info {
-        display: block;
       }
     }
   }
@@ -250,11 +197,8 @@
         small {font-size: 1.2em;}
       }
 
-      .buy {
-        a {
-          width: 60%;
-          i {margin-right: 1em;}
-        }
+      .buy-button {
+        display: none;
       }
     }
 
@@ -299,15 +243,14 @@
     .shop {
       float: left;
       height: 30px;
-      > * {
-        display: inline;
-        margin-right: 1em;
+      .buy-button {
+        > * {
+          display: inline;
+          margin-right: 1em;
+        }
       }
-
-      .cart {
-        position: relative;
-        display: block;
-        z-index: 20;
+      .buy {
+        display: none;
       }
     }
 
@@ -344,6 +287,10 @@
         display: block;
       }
       margin-bottom: 1em;
+
+      .buy {
+        display: none;
+      }
     }
 
     .actions {
@@ -352,6 +299,57 @@
       width: 100%;
       margin-bottom: 1em;
     }
+  }
+}
+
+.buy {
+  .kind-select, .kind-select-disabled {
+    @include border-radius(1px);
+    width: 90%;
+    display: block;
+    padding: 0.5em;
+    border: 1px solid #dbdbdb;
+    background-color: #ffffff;
+  }
+
+  li {
+    margin-bottom: 1em;
+  }
+
+  .kind-select {
+    &:hover, &.selected {
+      border-color: #f1785b;
+    }
+  }
+
+  .kind-select-disabled {
+    color: #dbdbdb;
+  }
+
+  input {
+    background-color: #ffffff;
+    margin-bottom: 0;
+  }
+
+  .kind-stock {
+    margin-left: 1em;
+    line-height: 2em;
+  }
+
+  span.price {
+    font-size: 1.5em;
+  }
+
+  .cart-info {
+    display: none;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .estimate-info {
+    display: block;
   }
 }
 

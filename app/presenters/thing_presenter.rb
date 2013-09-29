@@ -22,57 +22,58 @@ class ThingPresenter < PostPresenter
   end
 
   def price
-    p = if thing.kinds.size > 0
-          thing.kinds.map(&:price).min
-        elsif thing.price.present?
-          thing.price
-        end
+    @p ||= if thing.kinds.size > 0
+             thing.kinds.map(&:price).min
+           elsif thing.price.present?
+             thing.price
+           end
 
     content_tag :small,
-                number_to_currency(p, precision: 2,
+                number_to_currency(@p, precision: 2,
                                    unit: thing.price_unit)
   end
 
   def concept
     link_to_with_icon "研发中", "icon-wrench icon-large", "#",
-    title: "概念产品", class: "btn disabled popover-toggle",
-    data: {
-      toggle: "popover",
-      placement: "bottom",
-      content: "由于产品还在研发之中，目前还没有合适的渠道让您购买到此商品，不过，我们会一直追踪此商品的最新动向，一旦您所在的地区可以购买，我们会第一时间提供最靠谱的购买渠道，敬请期待"
-    }
+                      title: "概念产品", class: "btn disabled popover-toggle",
+                      data: {
+                          toggle: "popover",
+                          placement: "bottom",
+                          content: "由于产品还在研发之中，目前还没有合适的渠道让您购买到此商品，不过，我们会一直追踪此商品的最新动向，一旦您所在的地区可以购买，我们会第一时间提供最靠谱的购买渠道，敬请期待"
+                      }
   end
 
   def domestic
     link_to_with_icon "网购", "icon-location-arrow icon-large", buy_thing_path(thing),
-    title: title, class: "btn btn-info track_event", target: "_blank",
-    data: {
-      action: "buy",
-      category: "domestic",
-      label: title
-    }
+                      title: title, class: "btn btn-info track_event", target: "_blank",
+                      data: {
+                          action: "buy",
+                          category: "domestic",
+                          label: title
+                      }
   end
 
   def abroad
     link_to_with_icon "海淘", "icon-plane icon-large", buy_thing_path(thing),
-    title: title, class: "btn btn-info track_event", target: "_blank",
-    data: {
-      action: "buy",
-      category: "abroad",
-      label: title
-    }
+                      title: title, class: "btn btn-info track_event", target: "_blank",
+                      data: {
+                          action: "buy",
+                          category: "abroad",
+                          label: title
+                      }
   end
 
   def selfrun
     if thing.kinds.any?
-      render partial: 'things/cart_form', locals: {thing: thing} #if can? :put_in_cart, thing
+      render partial: 'things/cart_form', locals: {thing: thing, tp: self} #if can? :put_in_cart, thing
     end
   end
+
   alias_method :presell, :selfrun
 
   def buy
     if thing.shop.present? || thing.self_run?
-      link = send thing.stage if respond_to? thing.stage
+      send thing.stage if respond_to? thing.stage
     else
       concept
     end
