@@ -65,7 +65,7 @@ class ThingPresenter < PostPresenter
 
   def selfrun
     if thing.kinds.any?
-      render partial: 'things/cart_form', locals: {thing: thing} if can? :put_in_cart, thing
+      render partial: 'things/cart_form', locals: {thing: thing} #if can? :put_in_cart, thing
     end
   end
   alias_method :presell, :selfrun
@@ -73,7 +73,6 @@ class ThingPresenter < PostPresenter
   def buy
     if thing.shop.present? || thing.self_run?
       link = send thing.stage if respond_to? thing.stage
-      link || concept
     else
       concept
     end
