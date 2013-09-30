@@ -82,7 +82,7 @@ class ThingPresenter < PostPresenter
   def buy_modal_trigger_btn
     if user_signed_in?
       link_to_with_icon "购买", "icon-shopping-cart icon-large", '#buy-modal',
-                        title: tp.title, class: "btn btn-success track_event", target: "_blank",
+                        title: title, class: "btn btn-success track_event", target: "_blank",
                         data: {toggle: 'modal', target: '#buy-modal'}, role: 'btn'
     else
       link_to_with_icon "购买", "icon-shopping-cart icon-large", "#", role: 'btn',
