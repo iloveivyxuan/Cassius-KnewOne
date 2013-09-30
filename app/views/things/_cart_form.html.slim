@@ -10,8 +10,12 @@
       span.kind-stock 库存 0 件
       .estimate-info
     li
-      = button_tag(type: 'submit', class: "btn btn-success") do
-        i.icon-shopping-cart.icon-large
-        | 添加到购物车
+      - if user_signed_in?
+        = button_tag(type: 'submit', class: "btn btn-success") do
+          i.icon-shopping-cart.icon-large
+          | 添加到购物车
+      - else
+        = link_to_with_icon "登录后购买", "icon-shopping-cart icon-large", "#", role: 'btn',
+                            class: "btn btn-success track_event", data: {toggle: "modal", target: "#login-modal"}
     li.cart-info
       .alert.alert-success 添加成功！

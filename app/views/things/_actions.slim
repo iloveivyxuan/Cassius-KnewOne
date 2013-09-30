@@ -3,9 +3,7 @@
     = tp.buy
   .buy-button
     .price = tp.price
-    = link_to_with_icon "购买", "icon-shopping-cart icon-large", '#buy-modal',
-                        title: tp.title, class: "btn btn-success track_event", target: "_blank",
-                        data: {toggle: 'modal'}, role: 'btn'
+    = tp.buy_modal_trigger_btn
   = render "things/stage_end_at", tp: tp
 .actions
   .fanciers
