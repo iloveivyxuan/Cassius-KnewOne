@@ -1,40 +1,36 @@
 .orders_wrapper
-  = simple_form_for @order do |f|
-    .order_header
-      h1.title.pull-left 提交订单
-      .opts.pull-right
-        = f.submit '提交订单', class: 'btn btn-large btn-success make-order'
-    hr.divider
-    .order_items
-      = render partial: 'orders/order_item', collection: @order.order_items
-    hr.divider
-    .order_form
-      .control-group.order_address
-        label.control-label * 收货地址
-        .controls
-          .addresses = render current_user.addresses
-          = link_to '新地址', no_link_href, class: 'new_address_btn',
-                             data: {toggle: 'modal', role: 'button', target: '#new-address-modal'}
+  .order_header
+    h1.title.pull-left 提交订单
+    .opts.pull-right
+      = link_to '提交订单', no_link_href, class: 'btn btn-large btn-success make-order'
+  .cart_items
+    = render partial: 'orders/order_item', collection: @order.order_items
+  .order_form
+    .control-group.order_address
+      label.control-label * 收货地址
+      .controls
+        .addresses = render partial: 'addresses/address_radio', collection: current_user.addresses, as: :address
+        = link_to '新地址', no_link_href, class: 'new_address_btn',
+                           data: {toggle: 'modal', role: 'button', target: '#new-address-modal'}
+        = render partial: 'addresses/address_modal', \
+                 locals: {address: Address.new, modal_name: 'new-address-modal', modal_title: '添加收货地址', remote: true}
+    = simple_form_for @order do |f|
+      = f.input :address_id, as: :hidden
       = f.input :deliver_by, as: :radio_buttons do
         ul.deliver_by_list
           = render partial: 'deliver_methods', locals: {f: f}
       = f.input :note
-    hr.divider
-    .cart_items_price
-      p.pull-right
-        | 总计
-        span.price.total_price[data-things-price="#{@order.items_price}"]
-          | ￥
-          = @order.total_price
-    hr.divider
-    .order_footer
-      .pull-right
-        = link_to '返回到购物车', cart_items_path, class: 'btn btn-large'
-        = f.submit '提交订单', class: 'btn btn-large btn-success make-order'
-
-- content_for :modals
-  = render partial: 'addresses/address_modal',
-           locals: { address: Address.new, modal_name: 'new-address-modal', modal_title: '添加收货地址' }
+  .order_items_price
+    p.pull-right
+      | 总计
+      span.price.total_price[data-things-price="#{@order.items_price}"]
+        | ￥
+        = @order.total_price
+  .order_footer
+    .pull-right
+      ul
+        li = link_to '返回到购物车', cart_items_path, class: 'btn btn-large'
+        li = link_to '提交订单', no_link_href, class: 'btn btn-large btn-success make-order'
 
 - content_for :script do
   javascript:
@@ -55,22 +51,12 @@
       $('.new_address_btn').click();
     }
 
+    $('.make-order').click(function() {
+      $('#new_order').submit();
+    });
+
+    $('.addresses').on('click', '.order_address_radio', function() {
+      $('#order_address_id').val($(this).val());
+    });
+
     $('.order_address_radio').first().click();
-
-    $('.address-form').on("ajax:success",
-      function(xhr, data, status) {
-        var $this = $(this);
-        var $addresses = $('.order_address .controls .addresses');
-
-        var exist_item = $('#' + $(data).find('input').attr('id'));
-        if(exist_item.size() == 0) {
-          $addresses.append(data);
-          $addresses.find('.radio > input').last().click();
-        } else {
-          exist_item.parent().replaceWith(data);
-          $('#' + $(data).find('input').attr('id')).click();
-        }
-
-        $this.closest('.modal').modal('hide');
-      }
-    );

@@ -91,17 +91,25 @@
     @include clearfix;
 
     margin-bottom: 1em;
-
     .title {
       margin: 0;
     }
   }
 
-  hr.divider {
-    margin-top: 0;
+  .cart_header, .cart_items, .cart_items_price {
+    padding: 1em 0 1em 0;
+    border-bottom: 1px solid darkgray;
+  }
+
+  .cart_footer {
+    @include clearfix;
   }
 
   .cart_items_price {
     @include clearfix;
+    margin-bottom: 1em;
+    p {
+      margin: 0;
+    }
   }
 }

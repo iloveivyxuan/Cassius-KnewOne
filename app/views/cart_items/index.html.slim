@@ -4,17 +4,14 @@
       h1.title.pull-left 我的购物车
       .opts.pull-right
         = place_order_link
-    hr.divider
     .cart_items
       = render @cart_items
-    hr.divider
     .cart_items_price
       p.pull-right
         | 总计（不包含运费）
         span.total_price
           | ￥
           = @cart_items.map(&:price).reduce(&:+) || 0
-    hr.divider
     .cart_footer
       .pull-right
         = place_order_link

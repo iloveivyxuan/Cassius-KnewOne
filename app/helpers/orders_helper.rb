@@ -2,7 +2,8 @@
 module OrdersHelper
   def pay_link(order, css = 'btn btn-large btn-success')
     if order.can_pay?
-      link_to '立即支付', '#pay-modal', class: css, data: {toggle: 'modal'}, role: 'button'
+      #link_to '立即支付', '#pay-modal', class: css, data: {toggle: 'modal'}, role: 'button'
+      link_to '立即支付', alipay_order_path(order), class: css, data: {toggle: 'modal'}, role: 'button'
     end
   end
 

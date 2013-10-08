@@ -14,7 +14,7 @@
     font-size: 1.25em;
   }
 
-  .order_items {
+  .order_items, .cart_items {
     .order_item {
       @include clearfix;
       margin-bottom: 1em;
@@ -74,12 +74,28 @@
     }
   }
 
-  hr.divider {
-    margin-top: 0;
+  .order_header, .cart_items, .order_form, .order_items_price, .order, .order_info {
+    padding: 1em 0 1em 0;
+    border-bottom: 1px solid darkgray;
   }
 
-  .cart_items_price, .order_info {
+  .order_items_price {
+    margin-bottom: 1em;
+  }
+
+  .order_footer {
+    ul {
+      li {
+        float: left;
+      }
+    }
+  }
+
+  .order_items_price, .order_info {
     @include clearfix;
+    p {
+      margin: 0;
+    }
   }
 
   .order {

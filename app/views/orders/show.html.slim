@@ -3,7 +3,6 @@
     h1.title.pull-left 订单信息
     .opts.pull-right
       = pay_link(@order)
-  hr.divider
   .order_info
     ul
       li
@@ -26,17 +25,14 @@
       span.price.total_price
         | ￥
         = @order.total_price
-  hr.divider
-  .order_items
+  .cart_items
     = render partial: 'orders/order_item', collection: @order.order_items
-  hr.divider
   .order_tips
     ul
       - if @order.pending?
-        li 请您在24小时之内支付，否则订单将自动取消。
+        li * 请您在24小时之内支付，否则订单将自动取消。
   .order_footer
     .pull-right
       = order_operations(@order)
 
-= content_for :modals do
-  = render partial: 'pay_modal', locals: {order: @order}
+  /= render partial: 'pay_modal', locals: {order: @order}

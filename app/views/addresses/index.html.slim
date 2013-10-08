@@ -1,22 +1,11 @@
 .addresses_wrapper
-  table
-    tr
-      th Address
-      th Name
-      th Phone
-      th Zip code
-      th
-      th
-      th
-
-    - @addresses.each do |address|
-      tr
-        td = address.full
-        td = address.name
-        td = address.phone
-        td = address.zip_code
-        td = link_to 'Edit', edit_address_path(address)
-        td = link_to 'Destroy', address, :confirm => 'Are you sure?', :method => :delete
-  br
-
-  == render 'form'
+  .addresses_header
+    h1.title.pull-left 收货地址
+  .addresses
+    ul
+      = render @addresses
+    br
+    = link_to '新地址', no_link_href, class: 'new_address_btn',
+                       data: {toggle: 'modal', role: 'button', target: '#new-address-modal'}
+    = render partial: 'addresses/address_modal', \
+             locals: {address: Address.new, modal_name: 'new-address-modal', modal_title: '添加收货地址'}
