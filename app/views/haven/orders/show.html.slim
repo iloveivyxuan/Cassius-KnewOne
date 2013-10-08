@@ -10,10 +10,12 @@
         td = item.thing.title
         td = item.kind.title
         td = item.quantity
+  br
+  p = @order.note
+  br
   = simple_form_for @order, url: haven_order_path(@order) do |f|
     = f.input :admin_note, as: :text
     = f.submit
   br
   = ship_link(@order)
   = close_link(@order)
-  = refund_link(@order)
