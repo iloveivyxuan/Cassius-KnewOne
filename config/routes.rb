@@ -16,13 +16,19 @@ Making::Application.routes.draw do
   resources :addresses, except: [:show]
   resources :orders, only: [:index, :show, :create, :new] do
     member do
-      get 'tenpay'
       get 'cancel'
+      get 'tenpay'
       get 'tenpay_notify'
       get 'tenpay_callback'
+      get 'alipay'
+      post 'alipay_notify'
+      get 'alipay_callback'
     end
   end
-  resources :cart_items, :only => [:index, :create, :destroy, :update] do
+  resources :cart_items, :only => [:index, :create, :destroy] do
+    collection do
+      put 'batch', :to => 'cart_items#update_batch'
+    end
     member do
       put 'increment'
     end

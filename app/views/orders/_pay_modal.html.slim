@@ -7,3 +7,6 @@
      li
        = link_to tenpay_order_path(order) do
          = image_tag 'cft.gif', alt: '财付通支付', title: '财付通支付'
+     li
+       = link_to alipay_order_path(order) do
+         = image_tag 'alipay.gif', alt: '支付宝支付', title: '支付宝支付'

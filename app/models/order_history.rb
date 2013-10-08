@@ -7,4 +7,5 @@ class OrderHistory
 
   field :from, type: Symbol, default: :initial
   field :to, type: Symbol
+  field :raw, type: Hash
 end

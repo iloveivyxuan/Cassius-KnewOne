@@ -94,7 +94,7 @@ class Order
     confirmed? || shipped?
   end
 
-  def pay!(trade_no, method)
+  def pay!(trade_no, method, raw)
     return false unless can_pay?
 
     self.state = :paid
@@ -102,10 +102,10 @@ class Order
     self.trade_no = trade_no
     save!
 
-    order_histories.create from: :pending, to: :paid
+    order_histories.create from: :pending, to: :paid, raw: raw
   end
 
-  def confirm_payment!(trade_no, method)
+  def confirm_payment!(trade_no, method, raw)
     return false unless can_confirm_payment?
 
     state = self.state
@@ -114,7 +114,7 @@ class Order
     self.trade_no = trade_no
     save!
 
-    order_histories.create from: state, to: :confirmed
+    order_histories.create from: state, to: :confirmed, raw: raw
   end
 
   def ship!
@@ -126,14 +126,14 @@ class Order
     order_histories.create from: :confirmed, to: :shipped
   end
 
-  def cancel!
+  def cancel!(raw = {})
     return false unless can_cancel?
 
     order_items.each &:revert_stock!
     self.state = :canceled
     save!
 
-    order_histories.create from: :pending, to: :canceled
+    order_histories.create from: :pending, to: :canceled, raw: raw
   end
 
   def close!
@@ -158,10 +158,6 @@ class Order
 
   def all_products_have_stock?
     order_items.map { |item| item.kind.stock >= item.quantity }.reduce &:&
-  end
-
-  def deliver_method_text
-    DELIVER_METHODS[self.deliver_by][:name]
   end
 
   def calculate_deliver_price

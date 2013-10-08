@@ -94,5 +94,6 @@ class Ability
 
   def pay_callback
     can :tenpay_notify, Order
+    can :alipay_notify, Order
   end
 end

@@ -48,4 +48,8 @@ module OrdersHelper
   def contact_text(order)
     order.address.name
   end
+
+  def deliver_method_text(order)
+    Order::DELIVER_METHODS[order.deliver_by][:name]
+  end
 end

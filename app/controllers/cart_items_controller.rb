@@ -7,7 +7,7 @@ class CartItemsController < ApplicationController
 
   def create
     kind = Thing.find(params[:cart_item][:thing]).find_kind(params[:cart_item][:kind_id])
-    result = kind.put_in_cart(current_user, params[:cart_item][:quantity])
+    result = kind.put_in_cart(current_user, params[:cart_item][:quantity].to_i)
 
     respond_to do |format|
       format.json { render :json => {:result => result, :cart_items_count => cart_item_count} }
@@ -16,7 +16,7 @@ class CartItemsController < ApplicationController
     end
   end
 
-  def update_multiple
+  def update_batch
     params[:cart_items].map do |item|
       cart_item = user_cart.find(item.delete(:id))
       cart_item.update_attributes item
@@ -33,9 +33,7 @@ class CartItemsController < ApplicationController
     current_cart_item.save
 
     respond_to do |format|
-      format.json { render :json => {quantity: cart_item.quantity,
-                                     price: cart_item.price,
-                                     total_price: total_price} }
+      format.json { render :json => {quantity: cart_item.quantity} }
       format.html { redirect_to cart_items_path }
     end
   end
@@ -44,8 +42,7 @@ class CartItemsController < ApplicationController
     user_cart.delete current_cart_item
 
     respond_to do |format|
-      format.json { render :json => {total_price: total_price,
-                                     cart_items_count: cart_item_count} }
+      format.json { head :no_content }
       format.html { redirect_to cart_items_path }
     end
   end
@@ -58,10 +55,6 @@ class CartItemsController < ApplicationController
 
   def cart_item_count
     user_cart.count
-  end
-
-  def total_price
-    user_cart.map(&:price).reduce(&:+) || 0
   end
 
   def current_cart_item
