@@ -10,32 +10,10 @@
       p.pull-right
         | 总计（不包含运费）
         span.total_price
-          | ￥
-          = @cart_items.map(&:price).reduce(&:+) || 0
     .cart_footer
       .pull-right
         = place_order_link
 
 - content_for :script do
   javascript:
-    $('.item_quantity').blur(function() {
-       var $this = $(this);
-       var quantity = $this.val();
-       var id = $this.parent().find('.item_id').val();
-       $.ajax({
-         url: '/cart_items/' + id,
-         type: 'PUT',
-         data: { quantity: quantity },
-         success: function(data) {
-           $this.val(data.quantity);
-           $this.parent().parent().find('.price').text('￥' + data.price);
-           $('.total_price').text('￥' + data.total_price);
-         },
-       });
-    });
-
-    $('.increment').on("ajax:success", function(xhr, data, status) {
-                                            $(this).parent().find('.item_quantity').val(data.quantity);
-                                            $(this).parent().parent().find('.price').text('￥ ' + data.price);
-                                            $('.total_price').text('￥' + data.total_price);
-                                          });
+    window.CartItemPage.InitIndex();

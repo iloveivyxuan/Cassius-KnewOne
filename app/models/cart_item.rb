@@ -31,7 +31,11 @@ class CartItem
 
   def quantity_increment(quantity)
     self.quantity += quantity
-    self.quantity = kind.stock unless has_enough_stock?
+    if self.quantity <= 0
+      self.quantity = 1
+    elsif !has_enough_stock?
+      self.quantity = kind.stock
+    end
   end
 
   def self.find_by_thing_and_kind(thing_id, kind_id)

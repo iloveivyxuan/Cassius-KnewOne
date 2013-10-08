@@ -17,13 +17,6 @@ class AddressesController < ApplicationController
     end
   end
 
-  def edit
-    @address = current_user.addresses.find params[:id]
-    respond_to do |format|
-      format.html { render 'new' }
-    end
-  end
-
   def create
     @address = current_user.addresses.build params[:address]
     respond_to do |format|

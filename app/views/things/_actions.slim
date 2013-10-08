@@ -40,13 +40,4 @@
 
 - content_for :script do
   javascript:
-    $('.kind-select').click(function() {
-      $this = $(this);
-      $('.cart_item_kind_id').val($this.attr('data-kind-id'));
-      $('.kind > .kind-select').removeClass('selected');
-      $('.cart_item_quantity').prop('max', $this.attr('data-stock'));
-      $('.buy .price small').text('￥ '+$this.attr('data-price'));
-      $('.buy span.kind-stock').text('库存'+$this.attr('data-stock')+'件');
-      $('.buy .estimate-info').html($this.children('.estimates_at').html());
-      $this.addClass('selected');
-    }).first().trigger('click');
+    window.CartItemPage.InitKindSelect();

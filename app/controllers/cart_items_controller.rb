@@ -35,6 +35,7 @@ class CartItemsController < ApplicationController
     respond_to do |format|
       format.json { render :json => {quantity: cart_item.quantity} }
       format.html { redirect_to cart_items_path }
+      format.js
     end
   end
 

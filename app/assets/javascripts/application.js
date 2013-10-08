@@ -19,6 +19,8 @@
 //= require jquery.tagsinput
 //= require_tree ../templates
 //= require making
+//= require orders
+//= require cart_items
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ./views

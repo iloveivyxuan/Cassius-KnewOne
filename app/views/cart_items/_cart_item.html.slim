@@ -10,17 +10,15 @@
     .item_opt
       .input-append
         = hidden_field_tag "cart_items[][id]", cart_item.id, class: 'item_id'
-        = link_to increment_cart_item_path(cart_item.id, step: -1),
+        = link_to increment_cart_item_path(cart_item.id, step: -1), \
                   class: 'increment btn', method: :put, remote: true do
           i.icon-minus
-        = number_field_tag "cart_items[][quantity]", cart_item.quantity,
+        = number_field_tag "cart_items[][quantity]", cart_item.quantity, id: "quantity_#{cart_item.id}", \
                            required: true, class: 'item_quantity span1', min: 1
         = link_to increment_cart_item_path(cart_item.id, step: 1),
                   class: 'increment btn', method: :put, remote: true do
           i.icon-plus
-      span.price[data-price="#{cart_item.price}"]
-        | ￥
-        = cart_item.price
+      span.price[data-price="#{cart_item.kind.price}"]
       .item_note
         = cart_item.kind.note
   - else

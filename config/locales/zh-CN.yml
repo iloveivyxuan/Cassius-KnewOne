@@ -11,6 +11,7 @@ zh-CN:
       group: '小组'
       order: '订单'
       address: '收货地址'
+      kind: '型号'
     attributes:
       post:
         title: '标题'
@@ -23,6 +24,14 @@ zh-CN:
         description: '简介'
         recommended: '优先排序'
         lock_priority: '锁定优先级'
+      kind:
+        title: '名称'
+        price: '价格'
+        stock: '库存'
+        stage: '状态'
+        estimates_at: '预计日期'
+        photo: '图片'
+        note: '备注'
       order:
         deliver_by: '物流'
         note: '备注'

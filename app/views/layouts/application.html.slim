@@ -20,7 +20,6 @@ doctype html
     section.container-fluid= content_for?(:content) ? yield(:content) : yield
     = render 'shared/go_top'
     = render 'shared/login'
-    = yield :modals
     = javascript_include_tag "application"
     = yield :script
     = render 'layouts/olark'

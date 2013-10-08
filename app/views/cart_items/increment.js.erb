@@ -1,0 +1,3 @@
+$("#quantity_<%= @cart_item.id %>").val(<%= @cart_item.quantity %>);
+window.CartItemPage.RefreshSingleItemPrice($("#quantity_<%= @cart_item.id %>").closest('.cart_item'));
+window.CartItemPage.RefreshTotalItemPrice();
