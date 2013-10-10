@@ -4,17 +4,9 @@ header
 
       = link_to root_path, class: "brand" do
         = logo
-        = brand
+        span= brand
 
       ul.nav.pull-left
-        li.nav_groups.dropdown
-          = link_to '#', class: "dropdown-toggle", data: {toggle: "dropdown"} do
-            i.icon-group
-            span 小组
-            i.icon-caret-down
-          ul.dropdown-menu
-            - Group.all.each do |group|
-              li= link_to group.name, group
         li.nav_things.dropdown
           = link_to '#', class: "dropdown-toggle", data: {toggle: "dropdown"} do
             i.icon-th
@@ -24,6 +16,14 @@ header
             li= link_to_with_icon "最新", "icon-rocket", things_path
             li= link_to_with_icon "热门", "icon-bullseye", things_path(sort: "fancy")
             li= link_to_with_icon "自营", "icon-trophy", things_path(sort: "self_run")
+        li.nav_groups.dropdown
+          = link_to '#', class: "dropdown-toggle", data: {toggle: "dropdown"} do
+            i.icon-group
+            span 小组
+            i.icon-caret-down
+          ul.dropdown-menu
+            - Group.all.each do |group|
+              li= link_to group.name, group
         li.nav_help.dropdown
           = link_to '#', class: "dropdown-toggle", data: {toggle: "dropdown"} do
             i.icon-tint
@@ -39,80 +39,39 @@ header
           - else
             = link_to_with_icon "分享产品", "icon-magic", "#", data: {toggle: "modal", target: "#login-modal"}
         li.nav_olark
-          = link_to '#olark_chat' do
-            i.icon-user-md
-            span 在线帮助
+          = link_to_with_icon content_tag(:span, "在线帮助"), "icon-user-md", '#olark_chat'
         li.nav_lotteries
           = link_to_with_icon "天天有礼", "icon-gift", lotteries_path
       ul.nav.pull-right
         - if user_signed_in?
-          - if unread_messages_count > 0
-            li.messages_count
-              = link_to unread_messages_count, messages_path,
-                title: "#{unread_messages_count}个未读消息"
-          li.nav_test.dropdown
-            = link_to '#', class: "dropdown-toggle", data: {toggle: "dropdown"} do
-              i.icon-road
-              span 测试功能
-              i.icon-caret-down
-            ul.dropdown-menu
-              li= link_to_with_icon "购物车", "icon-shopping-cart", cart_items_path
-              li= link_to_with_icon "收货地址", "icon-shopping-cart", addresses_path
-              li= link_to_with_icon "订单", "icon-shopping-cart", orders_path
-              li= link_to_with_icon "订单后台", "icon-shopping-cart", haven_orders_path
           li.nav_cart
-            = link_to cart_items_path do
-              span.cart_items_count.badge.badge-info = cart_items_count
-              | 购物车
-          li.nav_user
-            = link_to '#', class: "dropdown", data: {toggle: "dropdown"} do
+            = link_to cart_items_path, title: "购物车" do
+              i.icon-shopping-cart
+              - if cart_items_count > 0
+                span= cart_items_count
+          li.nav_messages
+            = link_to messages_path, title: "#{unread_messages_count}个未读消息" do
+              i.icon-inbox
+              - if unread_messages_count > 0
+                span= unread_messages_count
+          li.nav_user.dropdown
+            = link_to '#', class: "dropdown-toggle", data: {toggle: "dropdown"} do
               = image_tag current_user.avatar.url(:tiny), class: "user_avatar img-circle"
-              span= current_user.name
-              i.icon-caret-down
             ul.dropdown-menu
-              - if can? :manage, :all
-                li= link_to groups_path do
-                  i.icon-group
-                  | 管理小组
-                li= link_to admin_things_path do
-                  i.icon-dashboard
-                  | 管理产品
-                li= link_to reviews_admin_path do
-                  i.icon-pencil
-                  | 管理评测
-                li= link_to users_path do
-                  i.icon-group
-                  | 用户列表
+              li= link_to_with_icon "个人主页", "icon-user icon-fixed-width", current_user
+              li= link_to_with_icon "我的订单", "icon-file-text-alt icon-fixed-width", orders_path
+              li= link_to_with_icon "收货地址", "icon-truck icon-fixed-width", addresses_path
+              li= link_to_with_icon "登出", "icon-signout icon-fixed-width", destroy_user_session_path, method: :delete
               - if can? :manage, Supplier
-                li= link_to suppliers_path do
-                  i.icon-truck
-                  | 供货信息
-              li= link_to current_user do
-                i.icon-user
-                | 个人主页
-              li= link_to messages_path do
-                i.icon-bell-alt
-                | 我的消息
-              li= link_to things_path do
-                i.icon-time
-                | 最新产品
-              li= link_to destroy_user_session_path, method: :delete do
-                i.icon-signout
-                | 登出
+                li= link_to_with_icon "供货信息", "icon-stethoscope icon-fixed-width", suppliers_path
+              - if can? :manage, :all
+                li= link_to_with_icon "管理小组", "icon-stethoscope icon-fixed-width", groups_path
+                li= link_to_with_icon "管理产品", "icon-stethoscope icon-fixed-width", admin_things_path
+                li= link_to_with_icon "用户列表", "icon-stethoscope icon-fixed-width", users_path
+                li= link_to_with_icon "管理订单", "icon-stethoscope icon-fixed-width", haven_orders_path
         - else
-          li.signin_tip 登录:
-          li.signup
-            = link_to_with_icon "邮箱注册", "icon-envelope", new_user_registration_path
           li.signin
-            = link_to_with_icon "邮箱登录", "icon-envelope", new_user_session_path
-          li.signin
-            = link_to user_omniauth_authorize_path(:twitter), class: "twitter_sign_in" do
-              i.icon-twitter
-          li.signin
-            = link_to user_omniauth_authorize_path(:weibo), class: "weibo_sign_in" do
-              i.icon-weibo
-          li.signin_mobile
-            = link_to_with_icon "", "icon-signin", '#',  data: {toggle: "modal", target: "#login-modal"}
+            = link_to_with_icon "登入", "icon-signin", '#',  data: {toggle: "modal", target: "#login-modal"}
 
       = form_tag(search_path, method: 'get', id: "nav_search", class: "navbar-search pull-right") do
         input.search-query.span2 type="search" name="q"

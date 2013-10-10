@@ -24,11 +24,14 @@ body > header {
     .navbar-inner {
       padding: 0 2%;
 
+      .icon-caret-down {margin: 0 0 0 .2em;}
+      .nav.pull-left > li {margin-top: 1px;}
+      .nav.pull-right > li {margin-top: 2px;}
+
       .brand {
+        position: relative;
         margin-left: 40px;
         color: $blue;
-        position: relative;
-        @include transition(all 0.5s ease-in-out);
 
         img {
           position: absolute;
@@ -52,110 +55,73 @@ body > header {
           left: 11px;
           color: $navbarText;
         }
-
-        @media screen and (max-width: 767px) {
-          display: none;
-        }
-      }
-
-      .nav_new_thing, .nav_things, .nav_olark, .nav_lotteries, .nav_help, .nav_groups {
-        margin-top: 1px;
-        i.icon-caret-down {margin-left: .2em;}
-      }
-
-      .nav_new_thing, .nav_lotteries, .nav_help {
-        @media screen and (max-width: 1151px) {
-          display: none;
-        }
-      }
-
-      .nav_things, .nav_groups {
-        @media screen and (max-width: 767px) {
-          i.icon-caret-down {display: none;}
-          span {display: none;}
-          a {padding-right: 0;}
-        }
-      }
-
-      .nav_olark {
-        @media screen and (max-width: 767px) {
-          display: none;
-        }
       }
 
       .nav_lotteries {
         i {color: $red;}
       }
 
-      .messages_count {
-        margin-top: 9px;
-        margin-right: 1em;
-        a {
-          display: inline-block;
-          width: 20px;
-          line-height: 20px;
-          padding: 0;
-          background: $blue;
-          font-size: 10px;
-          text-align: center;
-          color: white;
-          @include border-radius(10px);
-          &:hover {
-            background: $blue;
-            color: white;
-          }
+      .nav_messages, .nav_cart {
+        a > span {color: $red;}
+      }
+
+      .nav_cart {
+        a > span {
+          font-weight: bold;
         }
+      }
+
+      .nav_messages {
+        a {padding-left: 0;}
       }
 
       .nav_user {
-        margin-top: 10px;
+        position: relative;
+        width: 70px;
 
-        > a.dropdown {
-          padding: 0;
+        > a {
+          position: absolute;
+          z-index: 100;
           img {
-            margin-right: 1em;
-            width: 20px;
-            height: 20px;
-            margin-bottom: 3px;
-          }
-          .icon-caret-down {padding-left: .5em;}
-        }
-
-        > .dropdown-menu {
-          margin-top: 5px;
-          li {
-            a i {margin-right: 1em;}
+            width: 40px;
+            height: 40px;
           }
         }
 
-        @media screen and (max-width: 767px) {
-          span, i {display: none;}
+        > ul {
+          margin-top: 60px;
+          margin-right: 10px;
         }
       }
 
-      .signin_tip {
-        color: $fontLightColor;
-        padding-top: 10px;
-        margin-right: 1em;
-        @media screen and (max-width: 767px) {
-          display: none;
+      @media screen and (max-width: 1279px) {
+        .nav_help {display: none;}
+      }
+      @media screen and (max-width: 1151px) {
+        .nav_lotteries {display: none;}
+      }
+      @media screen and (max-width: 1024px) {
+        .nav_new_thing {display: none;}
+      }
+      @media screen and (max-width: 863px) {
+        .nav.pull-left > li a {
+          span, i.icon-caret-down {display: none;}
         }
       }
+      @media screen and (max-width: 767px) {
+        form.navbar-search {display: none;}
 
-      .signin {
-        i {margin-right: 0;}
-        .weibo_sign_in {
-          img {vertical-align: -2px;}
+        .brand {
+          margin-left: 0;
+          img {display: none;}
+          width: 100%;
         }
-        @media screen and (max-width: 767px) {
-          display: none;
-        }
-      }
 
-      .signin_mobile {
-        display: none;
-        @media screen and (max-width: 767px) {
-          display: block;
+        .nav.pull-left {padding-left: 6px;}
+        .nav > li > a {padding: 5px;}
+        .nav_user {
+          width: 50px;
+          > a {top: -23px;}
         }
       }
     }
