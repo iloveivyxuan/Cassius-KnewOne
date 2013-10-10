@@ -22,16 +22,13 @@ class Kind
   validates :stage, inclusion: { in: STAGES.keys }
 
   scope :selling, -> { ne stage: :hidden }
-  scope :has_stock, -> { gt stock: 0 }
-
-  mount_uploader :photo, ImageUploader
 
   def prompt_good?
-    self.stage == :ship && thing.stage != :presell
+    stage == :ship && thing.stage != :presell
   end
 
   def has_stock?
-    self.stock > 0
+    stock > 0
   end
 
   def put_in_cart(user, quantity)

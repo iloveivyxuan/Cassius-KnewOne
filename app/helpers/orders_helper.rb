@@ -43,7 +43,7 @@ module OrdersHelper
   end
 
   def address_text(order)
-    order.address.full_with_contact
+    content_for_address(order.address)
   end
 
   def contact_text(order)

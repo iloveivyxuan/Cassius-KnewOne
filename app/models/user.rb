@@ -37,11 +37,6 @@ class User
   ## Omniauthable
   embeds_many :auths
 
-  # Payment
-  embeds_many :addresses
-  embeds_many :cart_items
-  has_many :orders
-
   class << self
     def find_by_omniauth(data)
       where("auths.provider" => data[:provider])
@@ -128,6 +123,22 @@ class User
   ## Groups
   has_many :found_groups, class_name: "Group", inverse_of: :founder
 
+  # Payment
+  embeds_many :addresses
+  embeds_many :cart_items
+  has_many :orders
+
+  def add_to_cart(param)
+    item = self.cart_items.where(thing: param[:thing], kind_id: param[:kind_id]).first
+    if item.nil?
+      item = self.cart_items.build thing: param[:thing],
+      kind_id: param[:kind_id], quantity: param[:quantity]
+    else
+      item.quantity_increment(param[:quantity].to_i)
+    end
+    item.save
+  end
+
   ## Karma & Rank
   def rank
     return 0 if karma < 0
@@ -143,6 +154,7 @@ class User
   paginates_per 50
 
   private
+
   def email_required?
     current_auth.nil?
   end

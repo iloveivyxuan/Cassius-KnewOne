@@ -6,12 +6,9 @@ class CartItemsController < ApplicationController
   end
 
   def create
-    kind = Thing.find(params[:cart_item][:thing]).find_kind(params[:cart_item][:kind_id])
-    result = kind.put_in_cart(current_user, params[:cart_item][:quantity].to_i)
-
+    cart_item = current_user.add_to_cart params[:cart_item]
     respond_to do |format|
-      format.json { render :json => {:result => result, :cart_items_count => cart_item_count} }
-      format.html { redirect_to cart_items_path }
+      format.html {redirect_to cart_items_path}
       format.js
     end
   end
@@ -23,7 +20,6 @@ class CartItemsController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render :json => {:result => result} }
       format.html { redirect_to new_order_path }
     end
   end
@@ -33,7 +29,6 @@ class CartItemsController < ApplicationController
     current_cart_item.save
 
     respond_to do |format|
-      format.json { render :json => {quantity: cart_item.quantity} }
       format.html { redirect_to cart_items_path }
       format.js
     end

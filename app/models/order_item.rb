@@ -27,7 +27,7 @@ class OrderItem
   end
 
   def kind
-    thing.find_kind self.kind_id
+    thing.kinds.find kind_id
   end
 
   class<< self

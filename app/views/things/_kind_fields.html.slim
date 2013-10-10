@@ -6,7 +6,5 @@ fieldset.kind_fields
   = f.input :stage, collection: Kind::STAGES, \
             include_blank: false, label_method: :last, value_method: :first
   = f.input :estimates_at, as: :datetime
-  = f.input :photo, as: :file
-  = f.input :photo_cache, as: :hidden
   = f.input :note
   = f.link_to_remove "删除", class: "remove_kind pull-right"

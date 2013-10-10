@@ -63,10 +63,6 @@ class Ability
     can :readall, Message
     can :read, Message
 
-    can :put_in_cart, Thing do |thing|
-      thing.self_run? && !thing.kinds.empty?
-    end
-
     can :manage, CartItem do |cart_item|
       cart_item.user == user
     end

@@ -2,7 +2,7 @@
   = radio_button_tag 'order[address_id]', address.id, false, \
                      id: "order_address_id_#{address.id}", \
                      class: 'order_address_radio'
-  = address.full_with_contact
+  = content_for_address address
   | &nbsp;&nbsp;
   = link_to '[编辑]', no_link_href, class: 'edit_address_btn', \
                                  data: {toggle: 'modal', role: 'button', target: "#address-#{address.id}-modal"}

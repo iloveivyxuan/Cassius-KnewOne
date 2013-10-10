@@ -51,10 +51,6 @@ class Thing < Post
   embeds_many :kinds
   accepts_nested_attributes_for :kinds, allow_destroy: true
 
-  def find_selling_kind(thing_id, kind_id)
-    find(thing_id).kinds.selling.find(kind_id)
-  end
-
   after_update :inc_karma
 
   def photos
@@ -114,10 +110,6 @@ class Thing < Post
 
   def self_run?
     (STAGES.keys.index(stage) || 0) > 2
-  end
-
-  def find_kind(id)
-    kinds.find id
   end
 
   class << self
