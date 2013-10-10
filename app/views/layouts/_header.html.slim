@@ -39,7 +39,7 @@ header
           - else
             = link_to_with_icon "分享产品", "icon-magic", "#", data: {toggle: "modal", target: "#login-modal"}
         li.nav_olark
-          = link_to 'javascript:void(0)', class: 'olark_chat' do
+          = link_to '#olark_chat' do
             i.icon-user-md
             span 在线帮助
         li.nav_lotteries
@@ -83,6 +83,7 @@ header
                 li= link_to users_path do
                   i.icon-group
                   | 用户列表
+              - if can? :manage, Supplier
                 li= link_to suppliers_path do
                   i.icon-truck
                   | 供货信息

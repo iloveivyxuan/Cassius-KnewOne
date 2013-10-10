@@ -120,7 +120,7 @@ class Thing < Post
     kinds.find id
   end
 
-  class<< self
+  class << self
     def resort!
       ordered_things = []
 

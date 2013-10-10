@@ -17,7 +17,7 @@ window.Making =
       $(".post_content").fitVids()
       $(".track_event").click ->
         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
-      $('.olark_chat').click ->
+      $('a[href="#olark_chat"]').click ->
         olark('api.box.expand')
       Making.GoTop()
 
