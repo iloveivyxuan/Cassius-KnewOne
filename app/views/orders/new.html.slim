@@ -1,8 +1,6 @@
 .orders_wrapper
   .order_header
     h1.title.pull-left 提交订单
-    .opts.pull-right
-      = link_to '提交订单', no_link_href, class: 'btn btn-large btn-success make-order'
   .cart_items
     = render partial: 'orders/order_item', collection: @order.order_items
   .order_form
@@ -29,7 +27,7 @@
   .order_footer
     .pull-right
       ul
-        li = link_to '返回到购物车', cart_items_path, class: 'btn btn-large'
+        li = link_to '返回到购物车', cart_items_path, class: 'btn btn-large btn_back'
         li = link_to '提交订单', no_link_href, class: 'btn btn-large btn-success make-order'
 
 - content_for :script do

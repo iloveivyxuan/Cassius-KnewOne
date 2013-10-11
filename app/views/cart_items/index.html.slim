@@ -2,8 +2,6 @@
   = form_tag batch_cart_items_path, method: :put
     .cart_header
       h1.title.pull-left 我的购物车
-      .opts.pull-right
-        = place_order_link
     .cart_items
       = render @cart_items
     .cart_items_price

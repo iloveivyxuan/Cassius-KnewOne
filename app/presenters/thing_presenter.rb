@@ -185,7 +185,7 @@ class ThingPresenter < PostPresenter
       if thing.kinds.size == 0
         :concept
       else
-        Kind::STAGES.each do |s|
+        Kind::STAGES.keys.each do |s|
           return s if thing.kinds.map(&:stage).include?(s)
         end
       end

@@ -1,6 +1,11 @@
+= link_to_with_icon "购买", "icon-shopping-cart icon-large", "#",
+class: "btn btn-success mobile_cart_trigger"
+
 = simple_form_for cart_item, remote: true, method: :post do |f|
   .cart_prompt
-  .cart_success.hide 已加入购物车
+  .cart_success.hide
+    i.icon-ok.icon-large
+    | 已加入购物车
   = f.input :thing, as: :hidden, input_html: {value: cart_item.thing.id}
   = f.input :kind_id, as: :hidden
   ul= render cart_item.valid_kinds

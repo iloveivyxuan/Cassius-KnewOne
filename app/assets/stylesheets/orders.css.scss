@@ -21,7 +21,7 @@
 
       .item_info {
         float: left;
-        width: 70%;
+        width: 65%;
         .thing_cover {
           float: left;
           width: 180px;
@@ -54,11 +54,47 @@
 
       .item_opt {
         float: right;
-        width: 20%;
+        width: 25%;
         text-align: right;
 
         .item_note {
           margin-top: (120px - 32px - 11px - 22px);
+        }
+      }
+
+      @media screen and (max-width: 767px) {
+        .item_info {
+          .thing_cover {
+            display: none;
+          }
+        }
+      }
+
+      @media screen and (max-width: 512px) {
+        .item_info {
+          @include clearfix;
+          float: none;
+          display: block;
+          width: 100%;
+          .thing_cover {
+            display: none;
+          }
+          .info {
+            width: auto;
+            .kind {
+              margin-top: 1em;
+              margin-bottom: 1em;
+              line-height: 1em;
+            }
+            .title {
+              height: auto;
+            }
+          }
+        }
+        .item_opt {
+          .item_note {
+            margin: 0;
+          }
         }
       }
     }
@@ -89,6 +125,12 @@
         float: left;
       }
     }
+
+    @media screen and (max-width: 767px) {
+      .btn_back {
+        display: none;
+      }
+    }
   }
 
   .order_items_price, .order_info {
@@ -103,6 +145,7 @@
     .order_info {
       @include clearfix;
       margin-bottom: 2em;
+
       .left {
         float: left;
         width: 50%;
@@ -178,9 +221,11 @@
     }
   }
 
-  .district_select {
-    select {
-      margin-right: 1em;
+  @media screen and (max-width: 767px) {
+    .control-label {
+      text-align: left;
+      float: none;
+      width: auto;
     }
   }
 }

@@ -60,6 +60,10 @@
 
           .kind {
             line-height: (120px - 32px - 22px);
+
+            .opts {
+              line-height: 1em;
+            }
           }
         }
       }
@@ -82,6 +86,39 @@
 
         .item_note {
           margin-top: (120px - 32px - 11px - 22px);
+        }
+      }
+
+      @media screen and (max-width: 767px) {
+        .item_info {
+          @include clearfix;
+          float: none;
+          .thing_cover {
+            display: none;
+          }
+          .info {
+            .kind {
+              margin-top: 1em;
+              margin-bottom: 1em;
+              line-height: 1em;
+            }
+            .opts {
+              float: right;
+              display: inline;
+            }
+          }
+        }
+        .item_opt {
+          float: none;
+          display: block;
+          text-align: right;
+
+          .price {
+            margin-left: 1em;
+          }
+          .item_note {
+            margin-top: 0;
+          }
         }
       }
     }

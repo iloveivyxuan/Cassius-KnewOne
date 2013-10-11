@@ -5,7 +5,9 @@
       .title = link_to order_item.thing.title, order_item.thing
       .kind = order_item.kind.title
   .item_quantity
-    .quantity = order_item.quantity
+    .quantity
+      | x
+      = order_item.quantity
   .item_opt
     .price
       | ￥

@@ -3,9 +3,9 @@
     .thing_cover = image_tag cart_item.thing.cover.url(:middle)
     .info
       .title = link_to cart_item.thing.title, cart_item.thing
-      .kind = cart_item.kind.title
-      div = link_to '删除', cart_item_path(id: cart_item.id),
-                           method: :delete
+      .kind
+        = cart_item.kind.title
+        .opts = link_to '删除', cart_item_path(id: cart_item.id), method: :delete
   - if cart_item.has_enough_stock?
     .item_opt
       .input-append
@@ -14,7 +14,7 @@
                   class: 'increment btn', method: :put, remote: true do
           i.icon-minus
         = number_field_tag "cart_items[][quantity]", cart_item.quantity, id: "quantity_#{cart_item.id}", \
-                           required: true, class: 'item_quantity span1', min: 1
+                           required: true, class: 'item_quantity span2', min: 1
         = link_to increment_cart_item_path(cart_item.id, step: 1),
                   class: 'increment btn', method: :put, remote: true do
           i.icon-plus
