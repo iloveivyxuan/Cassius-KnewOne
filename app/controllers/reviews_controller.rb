@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 class ReviewsController < PostsController
-  load_and_authorize_resource :thing, except: [:admin]
-  layout 'thing', except: [:admin]
+  load_and_authorize_resource :thing, except: [:all]
+  layout 'thing', except: [:all]
 
-  def admin
+  def all
     @reviews = Review.unscoped.desc(:created_at).page params[:page]
-    render 'admin_index'
+    render 'all'
   end
 
   def index

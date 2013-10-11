@@ -38,7 +38,7 @@ Making::Application.routes.draw do
     end
   end
 
-  get '/reviews_admin', to: "reviews#admin", as: :reviews_admin
+  get '/reviews', to: "reviews#all", as: :reviews_all
 
   resources :posts, only: [] do
     resources :comments
