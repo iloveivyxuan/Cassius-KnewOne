@@ -74,4 +74,8 @@ module ApplicationHelper
   def no_link_href
     '#'
   end
+
+  def alpha_pay?
+    params[:alpha] == "pay"
+  end
 end

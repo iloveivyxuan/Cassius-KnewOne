@@ -28,9 +28,11 @@ class ThingPresenter < PostPresenter
              thing.price
            end
 
-    content_tag :small,
-                number_to_currency(@p, precision: 2,
-                                   unit: thing.price_unit)
+    if @p.to_i > 0
+      content_tag :small,
+      number_to_currency(@p, precision: 2,
+                         unit: thing.price_unit)
+    end
   end
 
   def concept
@@ -63,17 +65,59 @@ class ThingPresenter < PostPresenter
                       }
   end
 
-  def selfrun
-    if thing.kinds.any?
+  def presell
+    link_to_with_icon "预购", "icon-phone icon-large", buy_thing_path(thing),
+    title: title, class: "btn btn-warning track_event", target: "_blank",
+    data: {
+      action: "buy",
+      category: "presell",
+      label: title
+    }
+  end
+
+  def ship
+    link_to_with_icon "即将到货", "icon-anchor icon-large", "#",
+    title: "断货产品", class: "btn btn-success disabled popover-toggle",
+    data: {
+      toggle: "popover",
+      placement: "bottom",
+      content: "十分抱歉，我们当前没有此产品的库存，不过，一旦新一批产品到货，我们将会通知每位喜欢此产品的用户"
+    }
+  end
+
+  def stock
+    link_to_with_icon "购买", "icon-shopping-cart icon-large", buy_thing_path(thing),
+    title: title, class: "btn btn-success track_event", target: "_blank",
+    data: {
+      action: "buy",
+      category: "stock",
+      label: title
+    }
+  end
+
+  def exclusive
+    link_to_with_icon "限量", "icon-credit-card icon-large", "#",
+    title: "限量产品", class: "btn btn-inverse disabled popover-toggle",
+    data: {
+      toggle: "popover",
+      placement: "bottom",
+      content: "此产品数量非常有限，因此我们只提供给少数最狂热的爱好者，敬请谅解"
+    }
+  end
+
+  def dsell
+    if !alpha_pay?
+      stock
+    elsif !thing.kinds.any?
+      stock
+    else
       render partial: 'things/cart_form', locals: {thing: thing, tp: self}
     end
   end
 
-  alias_method :presell, :selfrun
-
   def buy
-    if thing.shop.present? || thing.self_run?
-      send thing.stage if respond_to? thing.stage
+    if respond_to? thing.stage
+      send thing.stage
     else
       concept
     end
@@ -147,7 +191,7 @@ class ThingPresenter < PostPresenter
   end
 
   def stage
-    if thing.stage == :selfrun
+    if thing.stage == :dsell
       if thing.kinds.size == 0
         :concept
       else
@@ -159,7 +203,7 @@ class ThingPresenter < PostPresenter
   end
 
   def stage_text
-    if thing.stage == :selfrun
+    if thing.stage == :dsell
       if thing.kinds.size == 0
         :concept
       else
