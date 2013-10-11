@@ -17,6 +17,7 @@ class Ability
       can :update, Feature
       can :pro_edit, Thing
       can :pro_update, Thing
+      can :all, Review
       can :update, Lottery
       can :manage, Supplier
     else
