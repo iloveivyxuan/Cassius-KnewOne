@@ -1,16 +1,16 @@
 Making.CartItemNew = ->
   $ ->
     $form = $('#new_cart_item')
+    $prompt = $form.find('.cart_prompt')
 
     $form.find('.kind a').click ->
       $this = $(@)
       $('.shop .price small').text "￥ #{$this.data('price')}"
       $form.find('.selected').removeClass('selected')
-      $prompt = $form.find('.cart_prompt')
       prompt = (selector) ->
         $this.parent().find(selector).clone()
-        .appendTo($prompt)
-        .hide().removeClass('hidden').fadeIn()
+          .appendTo($prompt)
+          .fadeIn()
       $prompt.empty()
       prompt '.estimates_at'
       prompt '.stock'
@@ -25,6 +25,17 @@ Making.CartItemNew = ->
       $(@).addClass('selected')
       $form.find('button[type="submit"]').removeAttr('disabled')
     ).first().trigger('click')
+
+    $form.siblings('.mobile_cart_trigger').click ->
+      $form.hide().appendTo('#thing_actions').slideDown()
+
+Making.CartItemCreate = (cart_items_count) ->
+  $form = $('#new_cart_item')
+  $prompt = $form.find('.cart_prompt')
+
+  $prompt.empty()
+  $form.find('.cart_success').clone().appendTo($prompt).fadeIn()
+  $('.nav_cart .cart_items_count').text(cart_items_count)
 
 window.CartItemPage =
   InitIndex: ->
