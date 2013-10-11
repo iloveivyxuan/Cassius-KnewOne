@@ -26,23 +26,23 @@ Making.CartItemNew = ->
       $form.find('button[type="submit"]').removeAttr('disabled')
     ).first().trigger('click')
 
-window.CartItemPage =
+Making.CartItemPage =
   InitIndex: ->
     $('.item_quantity').blur(
       ->
-        CartItemPage.RefreshSingleItemPrice($(@).closest('.cart_item'))
-        CartItemPage.RefreshTotalItemPrice()
+        Making.CartItemPage.RefreshSingleItemPrice($(@).closest('.cart_item'))
+        Making.CartItemPage.RefreshTotalItemPrice()
     )
     $('.cart_item').each(
       ->
-        CartItemPage.RefreshSingleItemPrice($(@))
+        Making.CartItemPage.RefreshSingleItemPrice($(@))
     )
-    CartItemPage.RefreshTotalItemPrice()
+    Making.CartItemPage.RefreshTotalItemPrice()
 
   RefreshSingleItemPrice: ($item) ->
-    total_price = CartItemPage.CalculateSingleItemPrice($item.find('.item_quantity').val(),
+    total_price = Making.CartItemPage.CalculateSingleItemPrice($item.find('.item_quantity').val(),
       $item.find('.price').attr('data-price'))
-    $item.find('.price').text(CartItemPage.WrapPrice(total_price)).attr('data-total', total_price)
+    $item.find('.price').text(Making.CartItemPage.WrapPrice(total_price)).attr('data-total', total_price)
 
   RefreshTotalItemPrice: ->
     total_price = 0.00
@@ -50,7 +50,7 @@ window.CartItemPage =
       ->
         total_price += parseFloat($(@).attr('data-total'))
     )
-    $('.total_price').text(CartItemPage.WrapPrice(total_price))
+    $('.total_price').text(Making.CartItemPage.WrapPrice(total_price))
 
   CalculateSingleItemPrice: (quantity, price) ->
     parseFloat(quantity) * parseFloat(price)

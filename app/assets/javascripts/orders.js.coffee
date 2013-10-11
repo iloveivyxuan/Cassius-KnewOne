@@ -1,4 +1,4 @@
-window.OrderPage =
+Making.OrderPage =
   InitNew: ->
     $ ->
       $('.deliver_method').on('change',
