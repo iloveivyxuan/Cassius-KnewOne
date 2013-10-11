@@ -42,6 +42,8 @@ zh-CN:
         priority: "排序"
       category:
         name: '分类名称'
+      cart_item:
+        quantity: '数量'
       comment:
         content: '内容'
       group:

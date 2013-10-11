@@ -111,7 +111,8 @@ class ThingPresenter < PostPresenter
     elsif !thing.kinds.any?
       stock
     else
-      render partial: 'things/cart_form', locals: {thing: thing, tp: self}
+      item = CartItem.new thing: thing
+      render partial: 'cart_items/new', locals: {cart_item: item}
     end
   end
 
@@ -120,17 +121,6 @@ class ThingPresenter < PostPresenter
       send thing.stage
     else
       concept
-    end
-  end
-
-  def buy_modal_trigger_btn
-    if user_signed_in?
-      link_to_with_icon "购买", "icon-shopping-cart icon-large", '#buy-modal',
-                        title: title, class: "btn btn-success track_event", target: "_blank",
-                        data: {toggle: 'modal', target: '#buy-modal'}, role: 'btn'
-    else
-      link_to_with_icon "购买", "icon-shopping-cart icon-large", "#", role: 'btn',
-                        class: "btn btn-success track_event", data: {toggle: "modal", target: "#login-modal"}
     end
   end
 

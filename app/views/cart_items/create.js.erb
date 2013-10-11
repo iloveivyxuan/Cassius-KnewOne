@@ -1,3 +1,4 @@
-$('.cart-info').fadeIn();
-$('.cart_items_count').text(<%= cart_items_count %>);
-$('.cart_item_quantity').val(1);
+$('#new_cart_item')
+  .find('.cart_prompt').empty().end()
+  .find('.cart_success').fadeIn();
+$('.nav_cart .cart_items_count').text(<%= cart_items_count %>);

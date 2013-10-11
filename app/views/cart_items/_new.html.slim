@@ -1,0 +1,15 @@
+= simple_form_for cart_item, remote: true, method: :post do |f|
+  .cart_prompt
+  .cart_success.hide 已加入购物车
+  = f.input :thing, as: :hidden, input_html: {value: cart_item.thing.id}
+  = f.input :kind_id, as: :hidden
+  ul= render cart_item.valid_kinds
+  = f.input :quantity, as: :integer, required: true,
+  input_html: {min: 1, max: 100, class: "input-small"}
+  - if user_signed_in?
+    = button_tag type: "submit", class: "btn btn-success", disabled: true do
+      i.icon-shopping-cart
+      | 加入购物车
+  - else
+    = link_to_with_icon "登录后开始购物", "icon-signin", "#", class: "btn",
+    data: {toggle: "modal", target: "#login-modal"}

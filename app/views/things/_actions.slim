@@ -33,8 +33,3 @@
   = render 'shared/share', id: 'thing_share', content: tp.share_content, pic: tp.photo_url(:huge)
   = render 'things/wechat', tp: tp
   = render 'things/supplier', tp: tp
-  = render 'things/buy', tp: tp
-
-- content_for :script do
-  javascript:
-    window.CartItemPage.InitKindSelect();

@@ -10,6 +10,7 @@
 
 - content_for :script do
   javascript:
+    Making.CartItemNew()
     Making.Comments("#thing_comments")
     if ("#{flash[:provider_sync]}" == "true")
       $(function(){$('#thing_share').modal('show')})

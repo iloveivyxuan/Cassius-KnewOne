@@ -30,6 +30,10 @@ class CartItem
     thing.kinds.find kind_id
   end
 
+  def valid_kinds
+    thing.kinds.selling
+  end
+
   def quantity_increment(quantity)
     self.quantity += quantity
     if self.quantity <= 0

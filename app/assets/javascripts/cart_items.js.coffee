@@ -1,18 +1,32 @@
-window.CartItemPage =
-  InitKindSelect: ->
-    $ ->
-      $('.kind-select').click(
-        ->
-          $this = $(@)
-          $('.cart_item_kind_id').val($this.attr('data-kind-id'))
-          $('.kind > .kind-select').removeClass('selected')
-          $('.cart_item_quantity').prop('max', $this.attr('data-stock'))
-          $('.buy .price small').text('￥ ' + $this.attr('data-price'))
-          $('.buy span.kind-stock').text('库存' + $this.attr('data-stock') + '件')
-          $('.buy .estimate-info').html($this.children('.estimates_at').html())
-          $this.addClass('selected')
-      ).first().trigger('click')
+Making.CartItemNew = ->
+  $ ->
+    $form = $('#new_cart_item')
 
+    $form.find('.kind a').click ->
+      $this = $(@)
+      $('.shop .price small').text "￥ #{$this.data('price')}"
+      $form.find('.selected').removeClass('selected')
+      $prompt = $form.find('.cart_prompt')
+      prompt = (selector) ->
+        $this.parent().find(selector).clone()
+        .appendTo($prompt)
+        .hide().removeClass('hidden').fadeIn()
+      $prompt.empty()
+      prompt '.estimates_at'
+      prompt '.stock'
+      false
+
+    $form.find('.kind a.select_disabled').click ->
+      $form.find('button[type="submit"]').attr('disabled', 'disabled')
+
+    $form.find('.kind a.select_enabled').click(->
+      $form.find('#cart_item_kind_id').val $(@).data('id')
+      $form.find('#cart_item_quantity').prop 'max', $(@).data('stock')
+      $(@).addClass('selected')
+      $form.find('button[type="submit"]').removeAttr('disabled')
+    ).first().trigger('click')
+
+window.CartItemPage =
   InitIndex: ->
     $('.item_quantity').blur(
       ->
