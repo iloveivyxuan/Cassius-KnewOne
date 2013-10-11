@@ -4,8 +4,8 @@ class ReviewsController < PostsController
   layout 'thing', except: [:admin]
 
   def admin
-    @reviews = Review.page params[:page]
-    render 'index'
+    @reviews = Review.unscoped.desc(:created_at).page params[:page]
+    render 'admin_index'
   end
 
   def index
