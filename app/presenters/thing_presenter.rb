@@ -195,7 +195,9 @@ class ThingPresenter < PostPresenter
       if thing.kinds.size == 0
         :concept
       else
-        thing.kinds.map { |kind| [kind.stage, Kind::STAGES.keys.index(kind.stage)] }.sort_by { |i| i[1] }.first[0]
+        Kind::STAGES.each do |s|
+          return s if things.kinds.map(&:stage).include?(s)
+        end
       end
     else
       thing.stage
@@ -203,15 +205,6 @@ class ThingPresenter < PostPresenter
   end
 
   def stage_text
-    if thing.stage == :dsell
-      if thing.kinds.size == 0
-        :concept
-      else
-        thing.kinds.map { |kind| [kind.stage, Kind::STAGES.keys.index(kind.stage)] }.sort_by { |i| i[1] }.first[0]
-      end
-    else
-      thing.stage
-    end
     (Thing::STAGES.merge Kind::STAGES)[stage]
   end
 end
