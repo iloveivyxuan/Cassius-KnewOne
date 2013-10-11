@@ -68,7 +68,8 @@ header
               - if can? :manage, :all
                 li= link_to_with_icon "管理小组", "icon-stethoscope icon-fixed-width", groups_path
                 li= link_to_with_icon "管理产品", "icon-stethoscope icon-fixed-width", admin_things_path
-                li= link_to_with_icon "用户列表", "icon-stethoscope icon-fixed-width", users_path
+                li= link_to_with_icon "管理评测", "icon-stethoscope icon-fixed-width", reviews_all_path
+                li= link_to_with_icon "管理用户", "icon-stethoscope icon-fixed-width", users_path
                 li= link_to_with_icon "管理订单", "icon-stethoscope icon-fixed-width", haven_orders_path
         - else
           li.signin
