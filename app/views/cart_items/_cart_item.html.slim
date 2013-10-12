@@ -1,26 +1,21 @@
-.cart_item
-  .item_info
-    .thing_cover = image_tag cart_item.thing.cover.url(:middle)
-    .info
-      .title = link_to cart_item.thing.title, cart_item.thing
-      .kind
-        = cart_item.kind.title
-        .opts = link_to '删除', cart_item_path(id: cart_item.id), method: :delete
-  - if cart_item.has_enough_stock?
-    .item_opt
-      .input-append
-        = hidden_field_tag "cart_items[][id]", cart_item.id, class: 'item_id'
-        = link_to increment_cart_item_path(cart_item.id, step: -1), \
-                  class: 'increment btn', method: :put, remote: true do
-          i.icon-minus
-        = number_field_tag "cart_items[][quantity]", cart_item.quantity, id: "quantity_#{cart_item.id}", \
-                           required: true, class: 'item_quantity span2', min: 1
-        = link_to increment_cart_item_path(cart_item.id, step: 1),
-                  class: 'increment btn', method: :put, remote: true do
-          i.icon-plus
-      span.price[data-price="#{cart_item.kind.price}"]
-      .item_note
-        = cart_item.kind.note
-  - else
-    .item_opt
-      p 该产品已无库存
+li.cart_item id="cart_item_#{cart_item.id}"
+  .thing
+    - present cart_item.thing do |tp|
+      .cover= link_to tp.photo(:small), tp.thing
+      .info
+        .title= link_to tp.title, tp.thing
+        .kind= cart_item.kind.title
+  .item_opts
+    - if cart_item.has_enough_stock?
+      .price
+        i.icon-yen
+        = cart_item.price
+      .destroy= link_to_with_icon "", "icon-trash", cart_item_path(id: cart_item.id), method: :delete
+      .quantity
+        = link_to_with_icon "", "icon-minus", increment_cart_item_path(cart_item.id, step: -1),
+          class: 'increment', method: :put, remote: true
+        span= cart_item.quantity
+        = link_to_with_icon "", "icon-plus", increment_cart_item_path(cart_item.id, step: 1),
+          class: 'increment', method: :put, remote: true
+    - else
+      p 抱歉，该产品已无库存

@@ -1,17 +1,15 @@
 .carts_wrapper
-  = form_tag batch_cart_items_path, method: :put
-    .cart_header
-      h1.title.pull-left 我的购物车
-    .cart_items
-      = render @cart_items
-    .cart_items_price
-      p.pull-right
+  = form_tag new_order_path, method: :get
+    fieldset
+      legend
+        i.icon-shopping-cart
+        | 购物车
+      ul= render @cart_items
+      p.total_price
         | 总计（不包含运费）
-        span.total_price
-    .cart_footer
-      .pull-right
-        = place_order_link
-
-- content_for :script do
-  javascript:
-    Making.CartItemPage.InitIndex();
+        strong
+          i.icon-yen
+          span= @total_price
+      = button_tag type: "submit", class: "btn btn-success", disabled: @cart_items.empty? do
+        i.icon-credit-card
+        | 结算

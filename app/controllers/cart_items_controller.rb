@@ -1,32 +1,24 @@
 class CartItemsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :current_cart_item, only: [:destroy, :increment]
 
   def index
-    @cart_items = user_cart
+    @cart_items = current_user.cart_items
+    @total_price = CartItem.total_price @cart_items
   end
 
   def create
-    cart_item = current_user.add_to_cart params[:cart_item]
+    current_user.add_to_cart params[:cart_item]
     respond_to do |format|
       format.html {redirect_to cart_items_path}
       format.js
     end
   end
 
-  def update_batch
-    params[:cart_items].map do |item|
-      cart_item = user_cart.find(item.delete(:id))
-      cart_item.update_attributes item
-    end
-
-    respond_to do |format|
-      format.html { redirect_to new_order_path }
-    end
-  end
-
   def increment
-    current_cart_item.quantity_increment((params[:step].to_i || 1))
-    current_cart_item.save
+    @cart_item.quantity_increment (params[:step].to_i || 1)
+    @cart_item.save
+    @total_price = CartItem.total_price current_user.cart_items
 
     respond_to do |format|
       format.html { redirect_to cart_items_path }
@@ -35,25 +27,15 @@ class CartItemsController < ApplicationController
   end
 
   def destroy
-    user_cart.delete current_cart_item
-
+    current_user.cart_items.delete @cart_item
     respond_to do |format|
-      format.json { head :no_content }
       format.html { redirect_to cart_items_path }
     end
   end
 
   private
 
-  def user_cart
-    current_user.cart_items
-  end
-
-  def cart_item_count
-    user_cart.count
-  end
-
   def current_cart_item
-    @cart_item ||= user_cart.find(params[:id])
+    @cart_item ||= current_user.cart_items.find(params[:id])
   end
 end

@@ -1,3 +1,2 @@
-$("#quantity_<%= @cart_item.id %>").val(<%= @cart_item.quantity %>);
-Making.CartItemPage.RefreshSingleItemPrice($("#quantity_<%= @cart_item.id %>").closest('.cart_item'));
-Making.CartItemPage.RefreshTotalItemPrice();
+$("#cart_item_<%= @cart_item.id %>").replaceWith('<%= render "cart_item", cart_item: @cart_item %>');
+$(".total_price strong span").text('<%= @total_price %>')

@@ -25,10 +25,7 @@ Making::Application.routes.draw do
       get 'alipay_callback'
     end
   end
-  resources :cart_items, :only => [:index, :create, :destroy] do
-    collection do
-      put 'batch', :to => 'cart_items#update_batch'
-    end
+  resources :cart_items, only: [:index, :create, :destroy] do
     member do
       put 'increment'
     end

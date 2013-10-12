@@ -42,4 +42,8 @@ class CartItem
       self.quantity = kind.stock
     end
   end
+
+  def self.total_price(cart_items)
+    cart_items.select(&:has_enough_stock?).map(&:price).reduce(&:+) || 0
+  end
 end

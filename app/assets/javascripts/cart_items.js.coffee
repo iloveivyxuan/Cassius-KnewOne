@@ -37,7 +37,6 @@ Making.CartItemNew = ->
       $mobile_cart_down.show()
       $mobile_cart_up.hide()
 
-
 Making.CartItemCreate = (cart_items_count) ->
   $form = $('#new_cart_item')
   $prompt = $form.find('.cart_prompt')
@@ -45,35 +44,3 @@ Making.CartItemCreate = (cart_items_count) ->
   $prompt.empty()
   $form.find('.cart_success').clone().appendTo($prompt).fadeIn()
   $('.nav_cart .cart_items_count').text(cart_items_count)
-
-Making.CartItemPage =
-  InitIndex: ->
-    $('.item_quantity').blur(
-      ->
-        Making.CartItemPage.RefreshSingleItemPrice($(@).closest('.cart_item'))
-        Making.CartItemPage.RefreshTotalItemPrice()
-    )
-    $('.cart_item').each(
-      ->
-        Making.CartItemPage.RefreshSingleItemPrice($(@))
-    )
-    Making.CartItemPage.RefreshTotalItemPrice()
-
-  RefreshSingleItemPrice: ($item) ->
-    total_price = Making.CartItemPage.CalculateSingleItemPrice($item.find('.item_quantity').val(),
-      $item.find('.price').attr('data-price'))
-    $item.find('.price').text(Making.CartItemPage.WrapPrice(total_price)).attr('data-total', total_price)
-
-  RefreshTotalItemPrice: ->
-    total_price = 0.00
-    $('.cart_item .price').each(
-      ->
-        total_price += parseFloat($(@).attr('data-total'))
-    )
-    $('.total_price').text(Making.CartItemPage.WrapPrice(total_price))
-
-  CalculateSingleItemPrice: (quantity, price) ->
-    parseFloat(quantity) * parseFloat(price)
-
-  WrapPrice: (price) ->
-    "￥ #{price.toFixed(2)}"
