@@ -4,7 +4,4 @@
   .addresses
     ul
       = render @addresses
-    = link_to '新地址', no_link_href, class: 'new_address_btn',
-                       data: {toggle: 'modal', role: 'button', target: '#new-address-modal'}
-    = render partial: 'addresses/address_modal', \
-             locals: {address: Address.new, modal_name: 'new-address-modal', modal_title: '添加收货地址'}
+    = link_to '新地址', new_address_path

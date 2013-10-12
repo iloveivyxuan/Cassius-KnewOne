@@ -4,8 +4,4 @@
                      class: 'order_address_radio'
   = content_for_address address
   | &nbsp;&nbsp;
-  = link_to '[编辑]', no_link_href, class: 'edit_address_btn', \
-                                 data: {toggle: 'modal', role: 'button', target: "#address-#{address.id}-modal"}
-
-= render partial: 'addresses/address_modal', \
-         locals: {address: address, modal_name: "address-#{address.id}-modal", modal_title: '修改收货地址', remote: true}
+  = link_to '[编辑]', edit_address_path(address)

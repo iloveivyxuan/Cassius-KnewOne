@@ -23,6 +23,15 @@ class ApplicationController < ActionController::Base
     redirect_to '/403' unless current_user and current_user.role?(:admin)
   end
 
+  def redirect_back_or(path, flash = {})
+    flash.each_pair do |k,v|
+      flash[k] = v
+    end
+    redirect_to(session.delete(:previous_url) || path)
+  end
+
+  helper_method :redirect_back_or
+
   private
 
   def trim_param_id
