@@ -10,7 +10,7 @@
     border-bottom: 5px solid #eee;
     i.icon-double-angle-right {float: right;}
   }
-  ul {margin: 1em 0;}  
+  ul {margin: 1em 0;}
 }
 
 #thing_header {
@@ -50,6 +50,8 @@
           color: $blue;
         }
       }
+
+      li {border-bottom: 1px solid #fff;}
 
       .active {
         border-bottom: 1px solid $red;
@@ -171,6 +173,8 @@
         color: $red;
       }
     }
+
+    .mobile_cart_slideup, .mobile_cart_slidedown {display: none;}
   }
 
   .actions {
@@ -202,8 +206,6 @@
           width: 60%;
           i {margin-right: 1em;}
         }
-
-        .mobile_cart_trigger {display: none;}
       }
     }
 
@@ -255,7 +257,13 @@
 
       .buy {
         #new_cart_item {display: none;}
-        .mobile_cart_trigger {display: inline;}
+        .mobile_cart_slidedown {
+          display: inline;
+          i.icon-chevron-down {
+            margin-left: .5em;
+            margin-right: 0;
+          }
+        }
       }
     }
 
@@ -368,7 +376,7 @@
 .post_show {
   > header {
     h3 {
-      word-wrap: break-word;          
+      word-wrap: break-word;
       margin: 0;
     }
   }
@@ -501,7 +509,7 @@
   button[type="submit"] {
     width: 61%;
   }
-  
+
   .kind {
     margin: 1em 0;
   }
@@ -525,4 +533,48 @@
     color: #dbdbdb;
   }
 
+  @media screen and (max-width: 1023px) {
+    @include clearfix();
+    margin-top: -1em;
+    border-bottom: 1px solid #eee;
+
+    .cart_prompt {
+      > * {
+        display: inline;
+        margin-right: 2em;
+      }
+    }
+
+    ul {
+      @include clearfix();
+      li.kind {
+        float: left;
+        margin-right: 1em;
+        > a {display: inline;}
+      }
+    }
+
+    .cart_item_quantity {
+      float: left;
+    }
+
+    button[type="submit"], .cart_login {
+      float: right;
+      width: 30%;
+    }
+  }
+
+  @media screen and (max-width: 767px) { 
+    text-align: center;
+
+    .cart_item_quantity {
+      float: none;
+    }
+
+    button[type="submit"], .cart_login {
+      float: none;
+      width: 50%;
+      margin-bottom: 2em;
+    }
+  }
 }

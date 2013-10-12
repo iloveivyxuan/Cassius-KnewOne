@@ -1,5 +1,10 @@
-= link_to_with_icon "购买", "icon-shopping-cart icon-large", "#",
-class: "btn btn-success mobile_cart_trigger"
+= link_to "#", class: "mobile_cart_slidedown btn btn-success" do
+  i.icon-shopping-cart
+  | 购买
+  i.icon-chevron-down
+= link_to "#", class: "mobile_cart_slideup" do
+  | 收起购买信息
+  i.icon-chevron-up
 
 = simple_form_for cart_item, remote: true, method: :post do |f|
   .cart_prompt
@@ -16,5 +21,5 @@ class: "btn btn-success mobile_cart_trigger"
       i.icon-shopping-cart
       | 加入购物车
   - else
-    = link_to_with_icon "登录后开始购物", "icon-signin", "#", class: "btn",
+    = link_to_with_icon "登录后开始购物", "icon-signin", "#", class: "btn cart_login",
     data: {toggle: "modal", target: "#login-modal"}

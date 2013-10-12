@@ -26,8 +26,17 @@ Making.CartItemNew = ->
       $form.find('button[type="submit"]').removeAttr('disabled')
     ).first().trigger('click')
 
-    $form.siblings('.mobile_cart_trigger').click ->
-      $form.hide().appendTo('#thing_actions').slideDown()
+    $mobile_cart_down = $form.siblings('.mobile_cart_slidedown')
+    $mobile_cart_up = $form.siblings('.mobile_cart_slideup')
+    $mobile_cart_down.click ->
+      $form.hide().insertAfter('#thing_actions').slideDown()
+      $mobile_cart_down.hide()
+      $mobile_cart_up.show()
+    $mobile_cart_up.click ->
+      $form.slideUp()
+      $mobile_cart_down.show()
+      $mobile_cart_up.hide()
+
 
 Making.CartItemCreate = (cart_items_count) ->
   $form = $('#new_cart_item')
