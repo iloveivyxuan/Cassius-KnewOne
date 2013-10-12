@@ -23,7 +23,6 @@ class AddressesController < ApplicationController
       if @address.save
         format.html { redirect_back_or(addresses_path) }
         format.json { render json: @address, status: :created, location: @address }
-        format.js { render 'show' }
       else
         format.html { render action: "new" }
         format.json { render json: @address.errors, status: :unprocessable_entity }
@@ -41,7 +40,6 @@ class AddressesController < ApplicationController
       if @address.update_attributes(params[:address])
         format.html { redirect_back_or(addresses_path) }
         format.json { head :no_content }
-        format.js { render 'show' }
       else
         format.html { render action: "edit" }
         format.json { render json: @address.errors, status: :unprocessable_entity }

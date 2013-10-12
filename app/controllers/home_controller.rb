@@ -22,4 +22,14 @@ class HomeController < ApplicationController
   def search
     redirect_to "https://www.google.com.hk/#hl=zh-CN&q=site:#{Settings.host}+#{params[:q]}"
   end
+
+  def join_alpha
+    cookies[:alpha] = "pay"
+    redirect_to root_path
+  end
+
+  def leave_alpha
+    cookies.delete :alpha
+    redirect_to root_path
+  end
 end

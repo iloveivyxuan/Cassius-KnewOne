@@ -69,6 +69,6 @@ module ApplicationHelper
   end
 
   def alpha_pay?
-    params[:alpha] == "pay"
+    cookies[:alpha] == "pay" || params[:alpha] == "pay"
   end
 end

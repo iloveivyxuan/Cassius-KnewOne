@@ -4,6 +4,9 @@ Making::Application.routes.draw do
   get '/page/:page', to: "home#index"
   get 'qr_entry', to: "home#qr_entry"
 
+  get 'join_alpha', to: 'home#join_alpha'
+  get 'leave_alpha', to: 'home#leave_alpha'
+
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks", :registrations => "registrations"} do
     put 'profile', :to => 'profiles#update'
   end
