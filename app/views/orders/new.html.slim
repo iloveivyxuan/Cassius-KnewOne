@@ -8,10 +8,7 @@
       label.control-label * 收货地址
       .controls
         .addresses = render partial: 'addresses/address_radio', collection: current_user.addresses, as: :address
-        = link_to '新地址', no_link_href, class: 'new_address_btn',
-                           data: {toggle: 'modal', role: 'button', target: '#new-address-modal'}
-        = render partial: 'addresses/address_modal', \
-                 locals: {address: Address.new, modal_name: 'new-address-modal', modal_title: '添加收货地址', remote: true}
+        = link_to '+ 新地址', new_address_path
     = simple_form_for @order do |f|
       = f.input :address_id, as: :hidden
       = f.input :deliver_by, as: :radio_buttons do

@@ -25,4 +25,4 @@ Making.OrderPage =
         $('.make-order').attr("disabled", "disabled")
         $('.new_address_btn').click()
       else
-        $('.order_address_radio').first().click()
+        $('.order_address_radio').last().click()
