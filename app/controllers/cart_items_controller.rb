@@ -1,6 +1,6 @@
 class CartItemsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :current_cart_item, only: [:destroy, :increment]
+  before_filter :current_cart_item, only: [:destroy, :update]
 
   def index
     @cart_items = current_user.cart_items
@@ -15,7 +15,7 @@ class CartItemsController < ApplicationController
     end
   end
 
-  def increment
+  def update
     @cart_item.quantity_increment (params[:step].to_i || 1)
     @cart_item.save
     @total_price = CartItem.total_price current_user.cart_items
@@ -30,6 +30,7 @@ class CartItemsController < ApplicationController
     current_user.cart_items.delete @cart_item
     respond_to do |format|
       format.html { redirect_to cart_items_path }
+      format.js
     end
   end
 

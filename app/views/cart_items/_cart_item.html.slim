@@ -10,12 +10,14 @@ li.cart_item id="cart_item_#{cart_item.id}"
       .price
         i.icon-yen
         = cart_item.price
-      .destroy= link_to_with_icon "", "icon-trash", cart_item_path(id: cart_item.id), method: :delete
+      .destroy
+        = link_to_with_icon "", "icon-trash", cart_item_path(id: cart_item.id),
+          method: :delete, remote: true
       .quantity
-        = link_to_with_icon "", "icon-minus", increment_cart_item_path(cart_item.id, step: -1),
+        = link_to_with_icon "", "icon-minus", cart_item_path(cart_item.id, step: -1),
           class: 'increment', method: :put, remote: true
         span= cart_item.quantity
-        = link_to_with_icon "", "icon-plus", increment_cart_item_path(cart_item.id, step: 1),
+        = link_to_with_icon "", "icon-plus", cart_item_path(cart_item.id, step: 1),
           class: 'increment', method: :put, remote: true
     - else
       p 抱歉，该产品已无库存

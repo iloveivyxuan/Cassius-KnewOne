@@ -16,6 +16,8 @@ Making::Application.routes.draw do
       get 'bind'
     end
   end
+
+  resources :cart_items, only: [:index, :create, :update, :destroy]
   resources :addresses, except: [:show]
   resources :orders, only: [:index, :show, :create, :new] do
     member do
@@ -26,11 +28,6 @@ Making::Application.routes.draw do
       get 'alipay'
       post 'alipay_notify'
       get 'alipay_callback'
-    end
-  end
-  resources :cart_items, only: [:index, :create, :destroy] do
-    member do
-      put 'increment'
     end
   end
 
