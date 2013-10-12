@@ -1,101 +1,93 @@
 .orders_wrapper {
   @include responsive-wrapper;
 
-  padding: 2em;
+  button[type="submit"] {
+    float: right;
+    margin-right: 1em;
+    width: 8em;
 
-  .btn {
-    padding-left: 2em;
-    padding-right: 2em;
-    margin-left: 1em;
+    @media screen and (max-width: 767px) {
+      margin-right: 0;
+    }
   }
 
-  .price {
-    color: #cc3300;
-    font-size: 1.25em;
+  .total_price {
+    text-align: right;
+    margin-right: 1em;
+    color: $fontLightColor;
+    border-top: 1px solid #e5e5e5;
+    padding-top: 1em;
+    strong {
+      margin-left: 1em;
+      font-size: 1.25em;
+      color: $red;
+    }
+
+    @media screen and (max-width: 767px) {
+      margin-right: 0;
+    }
   }
 
-  .order_items, .cart_items {
-    .order_item {
-      @include clearfix;
-      margin-bottom: 1em;
+  .make_order {
+    float: right;
+  }
 
-      .item_info {
-        float: left;
-        width: 65%;
-        .thing_cover {
-          float: left;
-          width: 180px;
-          margin-right: 1em;
-          img {
-            height: 120px;
-          }
-        }
+  .order_items {
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 1em;
+  }
 
-        .info {
-          float: left;
-          width: 280px;
-          .title {
-            height: 48px;
-            a {
-              color: #374a75;
-              font-size: 1.25em;
-            }
-          }
-          .kind {
-            line-height: (120px - 48px - 22px);
-          }
-        }
+  .order_item {
+    @include clearfix;
+    margin: 1em 0;
+
+    .thing {
+      float: left;
+      > * {float: left;}
+      .cover {margin-right: 3em;}
+      .info {
+        .title {font-size: 1.25em;}
+        .kind {margin-top: 1em;}
       }
 
-      .item_quantity {
-        float: left;
-        width: 10%;
+      @media screen and (max-width: 767px) {
+        //.info {width: 8em;}
+        .cover {display: none}
       }
+    }
 
-      .item_opt {
+    .item_opts {
+      float: right;
+      > * {
+        display: inline-block;
         float: right;
-        width: 25%;
+      }
+      .price {
         text-align: right;
-
-        .item_note {
-          margin-top: (120px - 32px - 11px - 22px);
-        }
+        width: 6em;
+        margin-right: 1em;
+        font-size: 1.25em;
       }
 
-      @media screen and (max-width: 800px) {
-        .item_info {
-          .thing_cover {
-            display: none;
-          }
+      .quantity {
+        margin-right: 1em;
+        span {
+          display: inline-block;
+          text-align: center;
+          width: 3em;
         }
+        .tip {display: none}
       }
 
-      @media screen and (max-width: 512px) {
-        .item_info {
-          @include clearfix;
-          float: none;
-          display: block;
-          width: 100%;
-          .thing_cover {
-            display: none;
-          }
-          .info {
-            width: auto;
-            .kind {
-              margin-top: 1em;
-              margin-bottom: 1em;
-              line-height: 1em;
-            }
-            .title {
-              height: auto;
-            }
-          }
+      @media screen and (max-width: 767px) {
+        float: left;
+        margin-top: 1em;
+        width: 100%;
+        .quantity {
+          span {width: 2em;}
+          .tip {display: inline;}
         }
-        .item_opt {
-          .item_note {
-            margin: 0;
-          }
-        }
+        .price {margin-right: 0;}
       }
     }
   }
@@ -110,30 +102,12 @@
     }
   }
 
-  .order_header, .cart_items, .order_form, .order_items_price, .order, .order_info {
+  .order_header, .order, .order_info {
     padding: 1em 0 1em 0;
-    border-bottom: 1px solid darkgray;
+    border-bottom: 1px solid #e5e5e5;
   }
 
-  .order_items_price {
-    margin-bottom: 1em;
-  }
-
-  .order_footer {
-    ul {
-      li {
-        float: left;
-      }
-    }
-
-    @media screen and (max-width: 767px) {
-      .btn_back {
-        display: none;
-      }
-    }
-  }
-
-  .order_items_price, .order_info {
+  .order_info {
     @include clearfix;
     p {
       margin: 0;
@@ -213,8 +187,6 @@
   }
 
   .deliver_by_list {
-    @include clearfix;
-
     li {
       float: left;
       margin-right: 1em;
@@ -228,8 +200,4 @@
       width: auto;
     }
   }
-}
-
-.hidden_submit_btn {
-  display: none;
 }

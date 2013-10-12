@@ -15,6 +15,9 @@
             strong = deliver_method_text order
             | 。
     .middle
+      strong
+        i.icon-yen
+        span= @total_price
       .price
         | ￥
         = order.total_price

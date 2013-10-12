@@ -1,16 +1,14 @@
-.order_item
-  .item_info
-    .thing_cover = image_tag order_item.thing.cover.url(:middle)
-    .info
-      .title = link_to order_item.thing.title, order_item.thing
-      .kind = order_item.kind.title
-  .item_quantity
-    .quantity
-      | x
-      = order_item.quantity
-  .item_opt
+li.order_item
+  .thing
+    - present order_item.thing do |tp|
+      .cover= link_to tp.photo(:small), tp.thing
+      .info
+        .title= link_to tp.title, tp.thing
+        .kind= order_item.kind.title
+  .item_opts
     .price
-      | ￥
+      i.icon-yen
       = order_item.price
-    .item_note
-      = order_item.kind.note
+    .quantity
+      .tip 数量:
+      span= order_item.quantity

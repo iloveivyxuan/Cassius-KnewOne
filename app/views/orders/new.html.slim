@@ -1,31 +1,27 @@
 .orders_wrapper
-  .order_header
-    h1.title.pull-left 提交订单
-  .cart_items
-    = render partial: 'orders/order_item', collection: @order.order_items
-  .order_form
-    .control-group.order_address
-      label.control-label * 收货地址
-      .controls
-        .addresses = render partial: 'addresses/address_radio', collection: current_user.addresses, as: :address
-        = link_to '+ 新地址', new_address_path
-    = simple_form_for @order do |f|
-      = f.input :address_id, as: :hidden
+  = simple_form_for @order do |f|
+    fieldset
+      legend
+        i.icon-shopping-cart
+        | 提交订单
+      ul.order_items = render partial: 'orders/order_item', collection: @order.order_items
+      .control-group
+        label.control-label * 收货地址
+        .controls
+          .addresses = render partial: 'addresses/address_radio', collection: current_user.addresses, as: :address
+          = link_to '+ 新地址', new_address_path
       = f.input :deliver_by, as: :radio_buttons do
         ul.deliver_by_list
           = render partial: 'deliver_methods', locals: {f: f}
       = f.input :note
-  .order_items_price
-    p.pull-right
-      | 总计
-      span.price.total_price[data-things-price="#{@order.items_price}"]
-        | ￥
-        = @order.total_price
-  .order_footer
-    .pull-right
-      ul
-        li = link_to '返回到购物车', cart_items_path, class: 'btn btn-large btn_back'
-        li = link_to '提交订单', no_link_href, class: 'btn btn-large btn-success make-order'
+      p.total_price[data-things-price="#{@order.items_price}"]
+        | 总计
+        strong
+          i.icon-yen
+          span= @order.total_price
+      = button_tag type: "submit", class: "btn btn-success make_order" do
+        i.icon-credit-card
+        | 提交
 
 - content_for :script do
   javascript:
