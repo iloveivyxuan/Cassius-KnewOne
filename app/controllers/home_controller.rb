@@ -24,7 +24,7 @@ class HomeController < ApplicationController
   end
 
   def join_alpha
-    cookies[:alpha] = "pay"
+    cookies[:alpha] = { value: "pay", expires: 1.month.from_now }
     redirect_to root_path
   end
 
