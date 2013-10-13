@@ -3,7 +3,6 @@
 
   button[type="submit"] {
     float: right;
-    margin-right: 1em;
     width: 8em;
 
     @media screen and (max-width: 767px) {
@@ -83,7 +82,6 @@
           margin-top: 1em;
         }
       }
-
       @media screen and (max-width: 767px) {
         //.info {width: 8em;}
         .cover {
@@ -94,11 +92,11 @@
 
     .item_opts {
       float: right;
+
       > * {
         display: inline-block;
         float: right;
       }
-
       .quantity {
         margin-right: 1em;
         span {
@@ -110,7 +108,6 @@
           display: none
         }
       }
-
       @media screen and (max-width: 767px) {
         float: left;
         margin-top: 1em;
@@ -136,6 +133,18 @@
       color: #999999;
       border: 0;
       border-bottom: 1px solid #e5e5e5;
+    }
+  }
+
+  .order_tips {
+    margin-bottom: 1em;
+  }
+
+  footer {
+    text-align: right;
+
+    > *:not(:first-child) {
+      margin-left: 0.5em;
     }
   }
 
@@ -168,7 +177,7 @@
           width: 90%;
           float: left;
         }
-        @media screen and (max-width: 574px) {
+        @media screen and (max-width: 439px) {
           .tip {
             display: inline;
           }

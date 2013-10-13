@@ -1,13 +1,13 @@
 # encoding: utf-8
 module OrdersHelper
-  def pay_link(order, css = 'btn btn-large btn-success')
+  def pay_link(order, css = 'btn btn-success')
     if order.can_pay?
       #link_to '立即支付', '#pay-modal', class: css, data: {toggle: 'modal'}, role: 'button'
       link_to '立即支付', alipay_order_path(order), class: css, data: {toggle: 'modal'}, role: 'button'
     end
   end
 
-  def cancel_link(order, css = 'btn btn-large')
+  def cancel_link(order, css = 'btn')
     if order.can_cancel?
       link_to '取消订单', cancel_order_path(order),
               data: {confirm: '真的要取消这个订单么？'},
