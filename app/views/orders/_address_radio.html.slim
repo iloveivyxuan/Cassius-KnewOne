@@ -1,0 +1,5 @@
+li.radio
+  = f.radio_button :address_id, address.id, class: 'order_address_radio', required: "required"
+  = content_for_address address
+  | &nbsp;&nbsp;
+  = link_to '[编辑]', edit_address_path(address)

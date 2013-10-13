@@ -1,27 +1,28 @@
 .orders_wrapper
-  = simple_form_for @order do |f|
+  = simple_form_for @order, html: {class: 'form-horizontal'} do |f|
     fieldset
       legend
         i.icon-shopping-cart
         | 提交订单
       ul.order_items = render partial: 'orders/order_item', collection: @order.order_items
       .control-group
-        label.control-label * 收货地址
+        label.control-label for="order_address_id" * 收货地址
         .controls
-          .addresses = render partial: 'addresses/address_radio', collection: current_user.addresses, as: :address
-          = link_to '+ 新地址', new_address_path
+          ul.addresses
+            = render partial: 'address_radio', collection: current_user.addresses, as: :address, locals: {f: f}
+            li = link_to '+ 新地址', new_address_path
       = f.input :deliver_by, as: :radio_buttons do
-        ul.deliver_by_list
-          = render partial: 'deliver_methods', locals: {f: f}
+        ul.deliver_by_list = render partial: 'deliver_methods', locals: {f: f}
       = f.input :note
-      p.total_price[data-things-price="#{@order.items_price}"]
-        | 总计
-        strong
-          i.icon-yen
-          span= @order.total_price
-      = button_tag type: "submit", class: "btn btn-success make_order" do
-        i.icon-credit-card
-        | 提交
+      .form-actions
+        p.total_price[data-things-price="#{@order.items_price}"]
+          | 总计
+          strong
+            i.icon-yen
+            span= @order.total_price
+        = button_tag type: "submit", class: "btn btn-success make_order" do
+          i.icon-credit-card
+          | 提交
 
 - content_for :script do
   javascript:

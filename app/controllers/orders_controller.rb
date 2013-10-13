@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :have_items_in_cart, only: [:new, :create]
   before_filter :store_location, only: [:new]
   load_and_authorize_resource except: :index

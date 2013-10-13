@@ -13,10 +13,7 @@
 
   .total_price {
     text-align: right;
-    margin-right: 1em;
     color: $fontLightColor;
-    border-top: 1px solid #e5e5e5;
-    padding-top: 1em;
     strong {
       margin-left: 1em;
       font-size: 1.25em;
@@ -28,6 +25,29 @@
     }
   }
 
+  .controls {
+    li {
+      margin-top: 4px;
+    }
+    .deliver_by_list {
+      li {
+        display: inline-block;
+        margin-right: 1em;
+      }
+    }
+  }
+
+  .form-actions {
+    border-top: 1px solid #e5e5e5;
+    padding-top: 1em;
+    background-color: transparent;
+    padding-right: 0;
+  }
+
+  abbr[title] {
+    border-bottom: none;
+  }
+
   .make_order {
     float: right;
   }
@@ -37,22 +57,38 @@
     margin-bottom: 1em;
   }
 
+  .price {
+    text-align: right;
+    width: 6em;
+    font-size: 1.25em;
+  }
+
   .order_item {
     @include clearfix;
     margin: 1em 0;
 
     .thing {
       float: left;
-      > * {float: left;}
-      .cover {margin-right: 3em;}
+      > * {
+        float: left;
+      }
+      .cover {
+        margin-right: 3em;
+      }
       .info {
-        .title {font-size: 1.25em;}
-        .kind {margin-top: 1em;}
+        .title {
+          font-size: 1.25em;
+        }
+        .kind {
+          margin-top: 1em;
+        }
       }
 
       @media screen and (max-width: 767px) {
         //.info {width: 8em;}
-        .cover {display: none}
+        .cover {
+          display: none
+        }
       }
     }
 
@@ -62,12 +98,6 @@
         display: inline-block;
         float: right;
       }
-      .price {
-        text-align: right;
-        width: 6em;
-        margin-right: 1em;
-        font-size: 1.25em;
-      }
 
       .quantity {
         margin-right: 1em;
@@ -76,7 +106,9 @@
           text-align: center;
           width: 3em;
         }
-        .tip {display: none}
+        .tip {
+          display: none
+        }
       }
 
       @media screen and (max-width: 767px) {
@@ -84,120 +116,92 @@
         margin-top: 1em;
         width: 100%;
         .quantity {
-          span {width: 2em;}
-          .tip {display: inline;}
+          span {
+            width: 2em;
+          }
+          .tip {
+            display: inline;
+          }
         }
-        .price {margin-right: 0;}
       }
     }
   }
 
-  .order_header {
-    @include clearfix;
-
-    margin-bottom: 1em;
-
-    .title {
-      margin: 0;
+  header {
+    h1 {
+      padding: 0;
+      margin-bottom: 22px;
+      font-size: 21px;
+      line-height: 44px;
+      color: #999999;
+      border: 0;
+      border-bottom: 1px solid #e5e5e5;
     }
   }
 
-  .order_header, .order, .order_info {
-    padding: 1em 0 1em 0;
-    border-bottom: 1px solid #e5e5e5;
-  }
-
-  .order_info {
-    @include clearfix;
-    p {
-      margin: 0;
-    }
-  }
-
-  .order {
-    @include clearfix;
-    .order_info {
+  .orders {
+    .order {
       @include clearfix;
-      margin-bottom: 2em;
+      border-bottom: 1px solid #e5e5e5;
+      margin: 1em 0;
 
-      .left {
-        float: left;
-        width: 50%;
-      }
-
-      .middle {
-        float: left;
-        width: 20%;
-        text-align: right;
-      }
-
-      .right {
-        float: left;
-        width: 30%;
-        text-align: right;
-      }
-
-      li {
-        margin-bottom: 1em;
-        .field {
-          width: 5em;
-          text-align: right;
-          display: inline-block;
-        }
-
-        span strong {
-          padding-left: 0.1em;
-          padding-right: 0.5em;
-        }
-      }
-    }
-
-    .order_items {
-      float: left;
-      width: 70%;
-    }
-
-    .order_opts {
-      float: left;
-      width: 30%;
-      text-align: right;
-      .btn {
+      header {
+        @include clearfix;
         margin-bottom: 0.5em;
+
+        .summary {
+          float: left;
+        }
+        .info {
+          float: right;
+          > * {
+            float: right;
+          }
+        }
+        .tip {
+          display: none;
+        }
+        .total_price {
+          font-size: 1em;
+        }
+        @media screen and (min-width: 900px) {
+          width: 90%;
+          float: left;
+        }
+        @media screen and (max-width: 574px) {
+          .tip {
+            display: inline;
+          }
+        }
       }
-    }
-  }
-}
 
-.control-group {
-  @include clearfix;
+      section {
+        width: 90%;
+        margin: 1em 0;
+        @media screen and (max-width: 899px) {
+          width: 100%;
+        }
+      }
 
-  .control-label {
-    float: left;
-    margin-right: 1em;
-    width: 6em;
-    text-align: right;
+      aside {
+        float: right;
 
-    abbr[title] {
-      border-bottom: none;
-    }
-  }
-
-  .controls {
-    float: left;
-  }
-
-  .deliver_by_list {
-    li {
-      float: left;
-      margin-right: 1em;
-    }
-  }
-
-  @media screen and (max-width: 767px) {
-    .control-label {
-      text-align: left;
-      float: none;
-      width: auto;
+        @media screen and (min-width: 900px) {
+          > * {
+            display: block;
+          }
+          > *:not(:first-child) {
+            margin-top: 0.5em;
+          }
+        }
+        @media screen and (max-width: 899px) {
+          float: none;
+          text-align: right;
+          > *:not(:first-child) {
+            margin-left: 0.5em;
+          }
+        }
+      }
     }
   }
 }

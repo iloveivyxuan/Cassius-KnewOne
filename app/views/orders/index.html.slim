@@ -1,5 +1,6 @@
 .orders_wrapper
-  .order_header
-    h1.title.pull-left 我的订单
-  .orders
-    = render @orders
+  header
+    h1
+      i.icon-shopping-cart
+      | 我的订单
+  ul.orders = render @orders

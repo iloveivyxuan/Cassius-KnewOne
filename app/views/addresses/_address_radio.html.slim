@@ -1,7 +1,0 @@
-= label_tag "order_address_id_#{address.id}", class: 'radio'
-  = radio_button_tag 'order[address_id]', address.id, false, \
-                     id: "order_address_id_#{address.id}", \
-                     class: 'order_address_radio', required: "required"
-  = content_for_address address
-  | &nbsp;&nbsp;
-  = link_to '[编辑]', edit_address_path(address)
