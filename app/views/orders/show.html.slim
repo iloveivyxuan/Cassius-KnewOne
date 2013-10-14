@@ -34,5 +34,6 @@
         li * 请您在24小时之内支付，否则订单将自动取消。
   footer
     = order_operations(@order)
+    = return_link(@order)
 
   /= render partial: 'pay_modal', locals: {order: @order}

@@ -3,7 +3,7 @@ module OrdersHelper
   def pay_link(order, css = 'btn btn-success')
     if order.can_pay?
       #link_to '立即支付', '#pay-modal', class: css, data: {toggle: 'modal'}, role: 'button'
-      link_to '立即支付', alipay_order_path(order), class: css, data: {toggle: 'modal'}, role: 'button'
+      link_to '立即支付', alipay_order_path(order), class: css
     end
   end
 
@@ -28,6 +28,12 @@ module OrdersHelper
       link_to '关闭', close_haven_order_path(order),
               data: {confirm: '确认关闭？'},
               method: 'put', class: css
+    end
+  end
+
+  def return_link(order, css = 'btn btn-success')
+    unless order.pending?
+      link_to '返回首页', root_path, class: css
     end
   end
 
