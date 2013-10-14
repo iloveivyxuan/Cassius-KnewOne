@@ -1,14 +1,15 @@
 .carts_wrapper
-  fieldset
-    legend
-      i.icon-shopping-cart
-      | 购物车
-    ul= render @cart_items
-    p.total_price
-      | 总计（不包含运费）
-      strong
-        i.icon-yen
-        span= @total_price
-    = link_to new_order_path, class: 'btn btn-success make_order', disabled: @cart_items.empty? do
-      i.icon-credit-card
-      | 结算
+  = form_tag new_order_path, method: :get
+    fieldset
+      legend
+        i.icon-shopping-cart
+        | 购物车
+      ul= render @cart_items
+      p.total_price
+        | 总计（不包含运费）
+        strong
+          i.icon-yen
+          span= @total_price
+      = button_tag type: "submit", class: "btn btn-success", disabled: @cart_items.empty? do
+        i.icon-credit-card
+        | 结算
