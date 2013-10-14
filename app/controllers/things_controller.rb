@@ -105,7 +105,6 @@ class ThingsController < PostsController
       format.html { redirect_to @thing.shop }
       format.json { render json: {type: 'taobao', id: '25312892353'} } #fake
     end
-
   end
 
   def comments
