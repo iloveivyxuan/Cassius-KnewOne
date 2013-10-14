@@ -46,6 +46,8 @@ class ThingPresenter < PostPresenter
   end
 
   def domestic
+    return concept unless thing.shop.present?
+
     link_to_with_icon "网购", "icon-location-arrow icon-large", buy_thing_path(thing),
                       title: title, class: "btn btn-info track_event", target: "_blank",
                       data: {
@@ -56,6 +58,8 @@ class ThingPresenter < PostPresenter
   end
 
   def abroad
+    return concept unless thing.shop.present?
+
     link_to_with_icon "海淘", "icon-plane icon-large", buy_thing_path(thing),
                       title: title, class: "btn btn-info track_event", target: "_blank",
                       data: {
@@ -66,6 +70,8 @@ class ThingPresenter < PostPresenter
   end
 
   def presell
+    return concept unless thing.shop.present?
+
     link_to_with_icon "预购", "icon-phone icon-large", buy_thing_path(thing),
     title: title, class: "btn btn-warning track_event", target: "_blank",
     data: {
@@ -76,6 +82,8 @@ class ThingPresenter < PostPresenter
   end
 
   def ship
+    return concept unless thing.shop.present?
+
     link_to_with_icon "即将到货", "icon-anchor icon-large", "#",
     title: "断货产品", class: "btn btn-success disabled popover-toggle",
     data: {
@@ -86,6 +94,8 @@ class ThingPresenter < PostPresenter
   end
 
   def stock
+    return concept unless thing.shop.present?
+
     link_to_with_icon "购买", "icon-shopping-cart icon-large", buy_thing_path(thing),
     title: title, class: "btn btn-success track_event", target: "_blank",
     data: {
@@ -96,6 +106,8 @@ class ThingPresenter < PostPresenter
   end
 
   def exclusive
+    return concept unless thing.shop.present?
+
     link_to_with_icon "限量", "icon-credit-card icon-large", "#",
     title: "限量产品", class: "btn btn-inverse disabled popover-toggle",
     data: {
