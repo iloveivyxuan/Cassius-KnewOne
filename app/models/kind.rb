@@ -8,6 +8,7 @@ class Kind
   field :stock, type: Integer, default: 0
   field :title, type: String, default: ''
   field :note, type: String, default: ''
+  field :photo_number, type: Integer, default: 0
   field :price, type: BigDecimal, default: 0.0
 
   field :stage, type: Symbol, default: :stock

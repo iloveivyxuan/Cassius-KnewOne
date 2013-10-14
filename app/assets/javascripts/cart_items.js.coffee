@@ -14,17 +14,17 @@ Making.CartItemNew = ->
       $prompt.empty()
       prompt '.estimates_at'
       prompt '.stock'
+      $("#photo_main.carousel").carousel $this.data('photo')
       false
 
     $form.find('.kind a.select_disabled').click ->
       $form.find('button[type="submit"]').attr('disabled', 'disabled')
 
-    $form.find('.kind a.select_enabled').click(->
+    $form.find('.kind a.select_enabled').click ->
       $form.find('#cart_item_kind_id').val $(@).data('id')
       $form.find('#cart_item_quantity').prop 'max', $(@).data('stock')
       $(@).addClass('selected')
       $form.find('button[type="submit"]').removeAttr('disabled')
-    ).first().trigger('click')
 
     $mobile_cart_down = $form.siblings('.mobile_cart_slidedown')
     $mobile_cart_up = $form.siblings('.mobile_cart_slideup')

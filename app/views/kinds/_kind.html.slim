@@ -1,6 +1,6 @@
 li.kind
   = link_to "#", class: (kind.stock > 0) ? 'select_enabled' : 'select_disabled',
-  data: { stock: kind.stock, price: kind.price, id: kind.id.to_s } do
+  data: { stock: kind.stock, price: kind.price, photo: kind.photo_number, id: kind.id.to_s } do
     = kind.title
   .estimates_at.hide
     - if kind.stage == :ship and kind.estimates_at.present? and kind.estimates_at > Time.now

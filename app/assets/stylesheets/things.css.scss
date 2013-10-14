@@ -481,8 +481,6 @@
 }
 
 #new_cart_item {
-  $buy_color: #f1785b;
-
   .cart_item_quantity {
     label {
       color: $fontLightColor;
@@ -494,7 +492,7 @@
 
   .cart_prompt {
     color: $fontLightColor;
-    i {color: $buy_color;}
+    i {color: $red;}
     time {
       font-size: 1.2em;
       margin: 0 .5em;
@@ -512,25 +510,24 @@
 
   .kind {
     margin: 1em 0;
-  }
 
-  .select_enabled, .select_disabled {
-    @include border-radius(1px);
-    width: 90%;
-    display: block;
-    padding: 0.5em;
-    border: 1px solid #dbdbdb;
-    background-color: #ffffff;
-  }
-
-  .select_enabled {
-    &:hover, &.selected {
-      border-color: $buy_color;
+    .select_enabled, .select_disabled {
+      @include border-radius(5px);
+      display: inline-block;
+      padding: 0.5em;
+      min-width: 60%;
+      background-color: #eee;
+      color: $fontLightColor;
     }
-  }
 
-  .select_disabled {
-    color: #dbdbdb;
+    .select_enabled {
+      &:hover, &.selected {
+        background-color: #ccc;
+      }
+    }
+
+    .select_disabled {
+    }
   }
 
   @media screen and (max-width: 1023px) {
@@ -564,7 +561,7 @@
     }
   }
 
-  @media screen and (max-width: 767px) { 
+  @media screen and (max-width: 767px) {
     text-align: center;
 
     .cart_item_quantity {

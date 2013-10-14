@@ -30,7 +30,7 @@ zh-CN:
         stock: '库存'
         stage: '状态'
         estimates_at: '预计日期'
-        photo: '图片'
+        photo_number: '图片序号'
         note: '备注'
       order:
         deliver_by: '物流'
