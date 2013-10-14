@@ -71,7 +71,7 @@ class Ability
     can :manage, Address
 
     can :create, Order
-    can [:read, :tenpay, :cancel], Order do |order|
+    can [:read, :tenpay, :alipay, :cancel], Order do |order|
       order.user == user
     end
   end
