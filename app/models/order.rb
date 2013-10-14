@@ -47,7 +47,7 @@ class Order
                   :as => :admin
 
   before_create do
-    self.order_no = SecureRandom.uuid.split('-')[-1]
+    self.order_no = rand.to_s[2..11]
     self.deliver_price = calculate_deliver_price
     # mongoid may not rollback when error occurred
     order_items.each &:claim_stock!
