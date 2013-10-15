@@ -33,6 +33,10 @@ class Thing < Post
   }
   validates :stage, inclusion: { in: STAGES.keys }
 
+  def safe_destroy?
+    !Order.each.map {|o| o.order_items.where(:thing => self).exists?}.reduce(&:&)
+  end
+
   include Fancyable
   has_and_belongs_to_many :fanciers, class_name: "User", inverse_of: :fancies
 

@@ -27,7 +27,11 @@ class OrderItem
   end
 
   def kind
-    thing.kinds.find kind_id
+    if k = thing.kinds.where(kind_id: kind_id).first
+      k
+    else
+      thing.kinds.new title: '*型号记录异常*'
+    end
   end
 
   class<< self

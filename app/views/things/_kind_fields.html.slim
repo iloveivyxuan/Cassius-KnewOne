@@ -8,4 +8,4 @@ fieldset.kind_fields
   = f.input :photo_number, as: :integer
   = f.input :estimates_at, as: :datetime
   = f.input :note
-  = f.link_to_remove "删除", class: "remove_kind pull-right"
+  = f.link_to_remove "删除", class: "remove_kind pull-right" if f.object.safe_destroy?

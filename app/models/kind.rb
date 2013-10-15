@@ -23,4 +23,8 @@ class Kind
   validates :stage, inclusion: { in: STAGES.keys }
 
   scope :selling, -> { ne stage: :hidden }
+
+  def safe_destroy?
+    !Order.each.map {|o| o.order_items.where(:kind_id => self.id).exists?}.reduce(&:&)
+  end
 end
