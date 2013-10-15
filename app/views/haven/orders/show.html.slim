@@ -1,21 +1,44 @@
+- provide :title, '订单详情'
+
 .orders_wrapper
-  table
-    tr
-      th Thing
-      th Kind
-      th Quantity
-      th
-    - @order.order_items.each do |item|
-      tr
-        td = item.thing.title
-        td = item.kind.title
-        td = item.quantity
-  br
-  p = @order.note
-  br
-  = simple_form_for @order, url: haven_order_path(@order) do |f|
-    = f.input :admin_note, as: :text
-    = f.submit
-  br
-  = ship_link(@order)
-  = close_link(@order)
+  header
+    h1
+      i.icon-shopping-cart
+      | 订单信息
+  .summary
+    ul
+      li
+        strong.field 订单编号：
+        span = @order.order_no
+      li
+        strong.field 收货地址：
+        span = address_text @order
+      li
+        strong.field 物流方式：
+        span = deliver_method_text @order
+      li
+        strong.field 订单状态：
+        span = state_text @order
+      li
+        strong.field 创建时间：
+        span = date_time_text @order.created_at
+      - if @order.note.present?
+        li
+          strong.field 备注:
+          span = @order.note
+    .info
+      .total_price
+        span.tip 总计
+        strong
+          i.icon-yen
+          span= @order.total_price
+  section
+    ul = render partial: 'orders/order_item', collection: @order.order_items
+  section.order_tips
+    ul
+      - if @order.pending?
+        li * 请您在24小时之内支付，否则订单将自动取消。
+  footer
+    = link_to '返回', haven_orders_path, class: 'btn'
+    = ship_link(@order)
+    = close_link(@order)

@@ -15,7 +15,7 @@ module OrdersHelper
     end
   end
 
-  def ship_link(order, css = 'btn')
+  def ship_link(order, css = 'btn btn-warning')
     if order.can_ship?
       link_to '发货', ship_haven_order_path(order),
               data: {confirm: '确认发货？'},
@@ -23,9 +23,9 @@ module OrdersHelper
     end
   end
 
-  def close_link(order, css = 'btn')
+  def close_link(order, css = 'btn btn-danger')
     if order.can_close?
-      link_to '关闭', close_haven_order_path(order),
+      link_to '关闭订单', close_haven_order_path(order),
               data: {confirm: '确认关闭？'},
               method: 'put', class: css
     end

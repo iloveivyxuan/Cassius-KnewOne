@@ -22,6 +22,10 @@
       li
         strong.field 创建时间：
         span = date_time_text @order.created_at
+      - if @order.note.present?
+        li
+          strong.field 备注:
+          span = @order.note
     .info
       .total_price
         span.tip 总计
