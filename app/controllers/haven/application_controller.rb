@@ -7,7 +7,7 @@ module Haven
     private
 
     def authenticate_admin!
-      raise ActionController::RoutingError.new('Not Found') unless current_user.role? :admin
+      raise ActionController::RoutingError.new('Not Found') unless user_signed_in? && current_user.role?(:admin)
     end
   end
 end
