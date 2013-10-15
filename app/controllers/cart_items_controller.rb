@@ -1,5 +1,6 @@
 class CartItemsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :clear_illegal_cart_item, only: [:index]
   before_filter :current_cart_item, only: [:destroy, :update]
 
   def index
@@ -38,5 +39,9 @@ class CartItemsController < ApplicationController
 
   def current_cart_item
     @cart_item ||= current_user.cart_items.find(params[:id])
+  end
+
+  def clear_illegal_cart_item
+    current_user.cart_items.delete_if {|item| !item.legal?}
   end
 end

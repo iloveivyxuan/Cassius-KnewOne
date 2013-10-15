@@ -1,7 +1,7 @@
 <div class="login_wrapper">
   <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-  <%= simple_form_for(current_user, :url => profile_path, :html => { :method => :put }) do |f| %>
+  <%= simple_form_for(current_user, :url => edit_user_registration_path, :html => { :method => :put }) do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs">

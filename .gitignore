@@ -39,3 +39,6 @@ capybara-*.html
 
 # RubyMine
 .idea
+
+# powder
+.powder

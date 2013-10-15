@@ -35,6 +35,7 @@
       - if @order.pending?
         li * 请您在24小时之内支付，否则订单将自动取消。
   footer
+    = link_to '需要帮助?', '#olark_chat', title: '需要帮助?', class: 'help_btn'
     = order_operations(@order)
     = return_link(@order)
 

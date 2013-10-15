@@ -181,7 +181,7 @@ class Order
       address_id = params.delete :address_id
       order = user.orders.build params
       order.address = user.addresses.find(address_id) if address_id
-      user.cart_items.each { |item| OrderItem.build_by_cart_item(order, item) if item.has_enough_stock? }
+      user.cart_items.each { |item| OrderItem.build_by_cart_item(order, item)}
       order
     end
 

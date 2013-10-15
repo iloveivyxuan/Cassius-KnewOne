@@ -39,8 +39,13 @@ Making.CartItemNew = ->
 
 Making.CartItemCreate = (cart_items_count) ->
   $form = $('#new_cart_item')
-  $prompt = $form.find('.cart_prompt')
 
-  $prompt.empty()
-  $form.find('.cart_success').clone().appendTo($prompt).fadeIn()
+  $('.cart_link').popover(
+    content: $form.find('.cart_success').html()
+  ).popover('show')
+  setTimeout(
+    ->
+      $('.cart_link').popover('hide')
+    , 2000
+  )
   $('.nav_cart .cart_items_count').text(cart_items_count)

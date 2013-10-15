@@ -46,4 +46,8 @@ class CartItem
   def self.total_price(cart_items)
     cart_items.select(&:has_enough_stock?).map(&:price).reduce(&:+) || 0
   end
+
+  def legal?
+    thing.kinds.where(_id: self.kind_id).exists?
+  end
 end

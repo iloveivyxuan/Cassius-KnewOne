@@ -27,15 +27,17 @@ class OrderItem
   end
 
   def kind
-    if k = thing.kinds.where(kind_id: kind_id).first
+    if k = thing.kinds.where(_id: self.kind_id).first
       k
     else
-      thing.kinds.new title: '*型号记录异常*'
+      thing.kinds.new title: '*型号已被删除*'
     end
   end
 
   class<< self
     def build_by_cart_item(order, item)
+      return unless item.legal? && item.has_enough_stock?
+
       order.order_items.build({
         quantity: item.quantity,
         thing: item.thing.id,

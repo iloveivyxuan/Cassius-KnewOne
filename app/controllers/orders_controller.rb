@@ -88,7 +88,7 @@ class OrdersController < ApplicationController
   private
 
   def have_items_in_cart
-    redirect_to root_path if current_user.cart_items.empty?
+    redirect_to root_path if current_user.cart_items.select(&:legal?).empty?
   end
 
   def generate_tenpay_url(order, options = {})
