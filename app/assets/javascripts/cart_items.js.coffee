@@ -22,7 +22,7 @@ Making.CartItemNew = ->
 
     $form.find('.kind a.select_enabled').click ->
       $form.find('#cart_item_kind_id').val $(@).data('id')
-      $form.find('#cart_item_quantity').prop 'max', $(@).data('stock')
+      $form.find('#cart_item_quantity').prop 'max', $(@).data('max')
       $(@).addClass('selected')
       $form.find('button[type="submit"]').removeAttr('disabled')
 
