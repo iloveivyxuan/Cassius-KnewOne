@@ -23,6 +23,11 @@ class Kind
   }
   validates :stage, inclusion: { in: STAGES.keys }
 
+  validates :stock, numericality: {
+      only_integer: true,
+      greater_than: -1
+  }
+
   scope :selling, -> { ne stage: :hidden }
 
   def safe_destroy?
