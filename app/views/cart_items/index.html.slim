@@ -11,6 +11,6 @@
         strong
           i.icon-yen
           span= @total_price
-      = button_tag type: "submit", class: "btn btn-success", disabled: @cart_items.empty? do
+      = button_tag type: "submit", class: "btn btn-success", disabled: @cart_items.select(&:has_enough_stock?).empty? do
         i.icon-credit-card
         | 结算
