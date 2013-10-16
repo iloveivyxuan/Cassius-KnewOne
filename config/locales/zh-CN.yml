@@ -31,6 +31,7 @@ zh-CN:
         stage: '状态'
         estimates_at: '预计日期'
         photo_number: '图片序号'
+        max_per_buy: '单次最大购买数量'
         note: '备注'
       order:
         deliver_by: '物流'

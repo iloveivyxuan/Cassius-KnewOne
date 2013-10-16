@@ -10,6 +10,7 @@ class Kind
   field :note, type: String, default: ''
   field :photo_number, type: Integer, default: 0
   field :price, type: BigDecimal, default: 0.0
+  field :max_per_buy, type: Integer, default: 0
 
   field :stage, type: Symbol, default: :stock
   field :estimates_at, type: DateTime
