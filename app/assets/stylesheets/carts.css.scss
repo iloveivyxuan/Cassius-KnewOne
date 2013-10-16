@@ -6,10 +6,17 @@
 #new_cart_item {
   .cart_item_quantity {
     label {
+      display: inline-block;
+      margin-right: 1em;
       color: $fontLightColor;
       padding-top: .4em;
       width: 2em;
       abbr {display: none;}
+    }
+
+    .controls {
+      display: inline-block;
+      input {width: 3em;}
     }
   }
 
@@ -72,7 +79,6 @@
 
     .cart_item_quantity {
       float: left;
-      label {display: none;}
     }
 
     button[type="submit"], .cart_login {
