@@ -11,7 +11,7 @@ nav
     = link_to_with_icon "", "icon-rss", thing_url(tp.thing, format: "atom")
     - if can? :update, tp.thing
       = link_to_with_icon "", "icon-edit", edit_thing_path(tp.thing), title: "编辑"
-    - if can?(:destroy, tp.thing) && tp.thing.safe_destroy?
+    - if can?(:destroy, tp.thing)
       = link_to_with_icon "", "icon-trash", tp.thing, method: :delete,
       data: {confirm: "您确认要删除吗?"}, title: "删除"
     - if can? :pro_edit, tp.thing

@@ -25,6 +25,6 @@ class Kind
   scope :selling, -> { ne stage: :hidden }
 
   def safe_destroy?
-    !Order.each.map {|o| o.order_items.where(:kind_id => self.id).exists?}.reduce(&:&)
+    !Order.where('order_items.kind_id' => self.id.to_s).exists?
   end
 end

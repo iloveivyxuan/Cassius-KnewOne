@@ -70,8 +70,12 @@ class ThingsController < PostsController
   end
 
   def destroy
-    @thing.destroy
-    redirect_to root_path
+    if @thing.safe_destroy?
+      @thing.destroy
+      redirect_to root_path
+    else
+      redirect_to @thing
+    end
   end
 
   def fancy

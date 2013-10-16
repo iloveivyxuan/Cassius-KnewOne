@@ -34,7 +34,7 @@ class Thing < Post
   validates :stage, inclusion: { in: STAGES.keys }
 
   def safe_destroy?
-    !Order.each.map {|o| o.order_items.where(:thing => self).exists?}.reduce(&:&)
+    !Order.where('order_items.thing_id' => self.id).exists?
   end
 
   include Fancyable
