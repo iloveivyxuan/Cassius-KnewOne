@@ -11,6 +11,10 @@
         strong
           i.icon-yen
           span= @total_price
-      = button_tag type: "submit", class: "btn btn-success", disabled: @cart_items.empty? do
+      = button_tag type: "submit", class: "btn btn-success" do
         i.icon-credit-card
         | 结算
+
+- content_for :script do
+  javascript:
+    $(function(){Making.CartCheck();});

@@ -22,6 +22,10 @@ class CartItem
     kind.price * quantity
   end
 
+  def legal?
+    thing.kinds.where(_id: self.kind_id).exists?
+  end
+
   def has_enough_stock?
     kind.stock >= quantity
   end
@@ -36,18 +40,11 @@ class CartItem
 
   def quantity_increment(quantity)
     self.quantity += quantity
-    if self.quantity <= 0
-      self.quantity = 1
-    elsif !has_enough_stock?
-      self.quantity = kind.stock
-    end
+    # self.quantity = kind.stock if !has_enough_stock?
+    # self.quantity = 1 if self.quantity <= 0
   end
 
   def self.total_price(cart_items)
     cart_items.select(&:has_enough_stock?).map(&:price).reduce(&:+) || 0
-  end
-
-  def legal?
-    thing.kinds.where(_id: self.kind_id).exists?
   end
 end

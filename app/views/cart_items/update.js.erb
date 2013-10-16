@@ -1,2 +1,3 @@
 $("#cart_item_<%= @cart_item.id %>").replaceWith('<%= render "cart_item", cart_item: @cart_item %>');
-$(".total_price strong span").text('<%= @total_price %>')
+$(".total_price strong span").text('<%= @total_price %>');
+Making.CartCheck();

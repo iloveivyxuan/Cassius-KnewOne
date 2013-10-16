@@ -59,3 +59,9 @@ Making.CartItemCreate = (cart_items_count) ->
   , 2000
 
   $('.nav_cart .cart_items_count').text(cart_items_count)
+
+Making.CartCheck = ->
+  if $('.cart_item:not([disabled])').length == 0
+    $('button[type="submit"]').attr('disabled', 'disabled')
+  else
+    $('button[type="submit"]').removeAttr('disabled')

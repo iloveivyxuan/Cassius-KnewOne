@@ -112,7 +112,13 @@
 
   .cart_item {
     @include clearfix;
+    position: relative;
     margin: 1em 0;
+    
+    &[disabled] {
+      opacity: 0.5;
+      .stock_hint {display: inline;}
+    }
 
     .thing {
       float: left;
@@ -121,6 +127,11 @@
       .info {
         .title {font-size: 1.25em;}
         .kind {margin-top: 1em;}
+      }
+
+      .stock_hint {
+        margin-left: 1em;
+        color: $red;
       }
 
       @media screen and (max-width: 767px) {
