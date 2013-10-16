@@ -47,8 +47,7 @@ header
         - if user_signed_in?
           - if alpha_pay?
             li.nav_cart
-              = link_to cart_items_path, title: "购物车", class: 'cart_link', \
-                        data: {trigger: 'manual', placement: 'bottom', title: '购物车', html: true} do
+              = link_to cart_items_path, title: "购物车" do
                 i.icon-shopping-cart
                 span.cart_items_count
                   - if cart_items_count > 0

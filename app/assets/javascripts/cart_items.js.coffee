@@ -26,6 +26,10 @@ Making.CartItemNew = ->
       $(@).addClass('selected')
       $form.find('button[type="submit"]').removeAttr('disabled')
 
+    $select_enabled = $form.find('.kind a.select_enabled')
+    if $select_enabled.length == 1
+      $select_enabled.first().trigger('click')
+
     $mobile_cart_down = $form.siblings('.mobile_cart_slidedown')
     $mobile_cart_up = $form.siblings('.mobile_cart_slideup')
     $mobile_cart_down.click ->
@@ -43,12 +47,15 @@ Making.CartItemCreate = (cart_items_count) ->
 
   $prompt.empty()
   $form.find('.cart_success').clone().appendTo($prompt).fadeIn()
-  $('.cart_link').popover(
+
+  $('.nav_cart > a').popover(
     content: $form.find('.cart_success').html()
+    trigger: 'manual'
+    html: true
+    placement: 'bottom'
   ).popover('show')
-  setTimeout(
-    ->
-      $('.cart_link').popover('hide')
-    , 2000
-  )
+  setTimeout ->
+    $('.nav_cart > a').popover('hide')
+  , 2000
+
   $('.nav_cart .cart_items_count').text(cart_items_count)

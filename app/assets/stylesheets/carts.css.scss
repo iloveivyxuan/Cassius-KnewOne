@@ -1,3 +1,101 @@
+.cart_success {
+  color: $green;
+  i {color: $green;}
+}
+
+#new_cart_item {
+  .cart_item_quantity {
+    label {
+      color: $fontLightColor;
+      padding-top: .4em;
+      width: 2em;
+      abbr {display: none;}
+    }
+  }
+
+  .cart_prompt {
+    color: $fontLightColor;
+    i {color: $red;}
+    time {
+      font-size: 1.2em;
+      margin: 0 .5em;
+    }
+
+    .cart_success {
+      i {color: $green;}
+    }
+  }
+
+  button[type="submit"] {
+    width: 61%;
+  }
+
+  .kind {
+    margin: 1em 0;
+
+    .select_enabled, .select_disabled {
+      @include border-radius(5px);
+      display: inline-block;
+      padding: 0.5em;
+      min-width: 60%;
+      background-color: #eee;
+      color: $fontLightColor;
+    }
+
+    .select_enabled {
+      &:hover, &.selected {
+        background-color: #ddd;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1023px) {
+    @include clearfix();
+    margin-top: -1em;
+    border-bottom: 1px solid #eee;
+
+    .cart_prompt {
+      > * {
+        display: inline;
+        margin-right: 2em;
+      }
+    }
+
+    ul {
+      @include clearfix();
+      li.kind {
+        float: left;
+        margin-right: 1em;
+        > a {display: inline;}
+      }
+    }
+
+    .cart_item_quantity {
+      float: left;
+      label {display: none;}
+    }
+
+    button[type="submit"], .cart_login {
+      float: right;
+      width: 30%;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    text-align: center;
+
+    .cart_item_quantity {
+      float: none;
+    }
+
+    button[type="submit"], .cart_login {
+      float: none;
+      width: 50%;
+      margin-bottom: 2em;
+    }
+  }
+}
+
 .carts_wrapper {
   @include responsive-wrapper;
 
@@ -76,7 +174,7 @@
       font-size: 1.25em;
       color: $red;
     }
-    
+
     @media screen and (max-width: 767px) {
       margin-right: 0;
     }

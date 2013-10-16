@@ -17,12 +17,9 @@
   = f.input :quantity, as: :integer, required: true,
   input_html: {min: 1, max: 100, class: "input-small"}
   - if user_signed_in?
-    .cart_opts
-      = button_tag type: "submit", class: "btn btn-success", disabled: true do
-        i.icon-shopping-cart
-        | 加入购物车
-      br
-      = link_to '需要帮助?', '#olark_chat', title: '需要帮助?', class: 'help_btn'
+    = button_tag type: "submit", class: "btn btn-success", disabled: true do
+      i.icon-shopping-cart
+      | 加入购物车
   - else
     = link_to_with_icon "登录后开始购物", "icon-signin", "#", class: "btn cart_login",
     data: {toggle: "modal", target: "#login-modal"}
