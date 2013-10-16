@@ -66,9 +66,9 @@ body > header {
       }
 
       .nav_cart {
-        a > span {
-          font-weight: bold;
-        }
+        a > span {font-weight: bold;}
+        .popover-title {display: none;}
+        .popover-content {color: $green;}
       }
 
       .nav_messages {
