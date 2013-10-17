@@ -160,8 +160,8 @@ class Order
     order_items.map { |item| item.kind.stock >= item.quantity }.reduce &:&
   end
 
-  def has_presell?
-    order_items.select {|item| item.kind.stage == :ship }.any?
+  def has_stock?
+    order_items.select {|item| item.kind.stage == :stock}.any?
   end
 
   def calculate_deliver_price
