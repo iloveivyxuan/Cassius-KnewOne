@@ -1,4 +1,3 @@
-# encoding: utf-8
 class CartItem
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -11,7 +10,7 @@ class CartItem
 
   validates :quantity, :user, :thing, :kind_id, presence: true
   validate do
-    errors.add :quantity, "#{kind.title} 超过库存。" if kind.stock < self.quantity
+    errors.add :quantity, "Beyond limits" if kind.max < self.quantity
   end
   validates :quantity, numericality: {
       only_integer: true,
@@ -31,7 +30,7 @@ class CartItem
   end
 
   def kind
-    thing.kinds.find kind_id
+    @kind ||= thing.kinds.find kind_id
   end
 
   def valid_kinds

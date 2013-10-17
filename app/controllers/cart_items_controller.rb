@@ -9,7 +9,7 @@ class CartItemsController < ApplicationController
   end
 
   def create
-    current_user.add_to_cart params[:cart_item]
+    @result = current_user.add_to_cart params[:cart_item]
     respond_to do |format|
       format.html {redirect_to cart_items_path}
       format.js

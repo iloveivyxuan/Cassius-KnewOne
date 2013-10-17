@@ -1,6 +1,6 @@
 li.kind
   = link_to "#", class: (kind.stock > 0) ? 'select_enabled' : 'select_disabled',
-  data: { stock: kind.stock, max: cart_item_max(kind), price: kind.price, photo: kind.photo_number, id: kind.id.to_s } do
+  data: { stock: kind.stock, max: kind.max, price: kind.price, photo: kind.photo_number, id: kind.id.to_s } do
     = kind.title
   .estimates_at.hide
     - if kind.stage == :ship and kind.estimates_at.present? and kind.estimates_at > Time.now
@@ -11,7 +11,7 @@ li.kind
   .stock.hide
     - if kind.stock > 0
       i.icon-smile
-      | 您最多可以购买#{cart_item_max(kind)}件
+      | 您最多可以购买#{kind.max}件
     - else
       i.icon-frown
       | 对不起，此产品已没有库存

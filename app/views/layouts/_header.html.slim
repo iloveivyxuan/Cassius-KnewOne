@@ -49,9 +49,7 @@ header
             li.nav_cart
               = link_to cart_items_path, title: "购物车" do
                 i.icon-shopping-cart
-                span.cart_items_count
-                  - if cart_items_count > 0
-                    = cart_items_count
+                span.cart_items_count= cart_items_count
           li.nav_messages
             = link_to messages_path, title: "#{unread_messages_count}个未读消息" do
               i.icon-inbox
