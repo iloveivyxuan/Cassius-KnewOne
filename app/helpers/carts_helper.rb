@@ -5,7 +5,7 @@ module CartsHelper
   end
 
   def cart_item_max(kind)
-    if kind.max_per_buy > 0
+    if kind.max_per_buy.present? and kind.max_per_buy > 0
       [kind.stock, kind.max_per_buy].min
     else
       kind.stock
