@@ -31,6 +31,7 @@ class CartItemsController < ApplicationController
 
   def destroy
     current_user.cart_items.delete @cart_item
+    @total_price = CartItem.total_price current_user.cart_items
     respond_to do |format|
       format.html { redirect_to cart_items_path }
       format.js
