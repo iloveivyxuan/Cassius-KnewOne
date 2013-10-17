@@ -28,8 +28,6 @@ class Kind
       greater_than_or_equal_to: 0
   }
 
-  scope :selling, -> { ne stage: :hidden }
-
   def safe_destroy?
     !Order.where('order_items.kind_id' => self.id.to_s).exists?
   end

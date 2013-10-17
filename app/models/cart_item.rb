@@ -35,7 +35,7 @@ class CartItem
   end
 
   def valid_kinds
-    thing.kinds.selling
+    thing.kinds.ne(stage: :hidden)
   end
 
   def quantity_increment(quantity)
