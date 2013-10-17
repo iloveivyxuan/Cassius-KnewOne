@@ -40,8 +40,6 @@ class CartItem
 
   def quantity_increment(quantity)
     self.quantity += quantity
-    # self.quantity = kind.stock if !has_enough_stock?
-    # self.quantity = 1 if self.quantity <= 0
   end
 
   def self.total_price(cart_items)

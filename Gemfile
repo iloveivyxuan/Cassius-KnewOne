@@ -37,6 +37,7 @@ gem 'settingslogic'
 # monitoring
 gem 'newrelic_rpm'
 gem 'airbrake'
+gem 'intercom-rails', '~> 0.2.21'
 # crontab
 gem 'whenever', require: false
 gem 'jasl_tenpay', github: 'jasl/tenpay'
