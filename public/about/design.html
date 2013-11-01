@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>Artisan and Artist - The bridge between design and programming</title>
+		<meta name="description" content="The bridge between design and programming">
+		<meta name="author" content="lilu.life@gmail.com">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/serif.css" id="theme">
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+        <style>
+          .reveal section {min-height: 600px !important;}
+          .reveal section h2 {margin-bottom: .8em;}
+          .reveal section h3 {margin-bottom: .62em;}
+          .reveal section  {border: none;}
+          .reveal section img {border: none;}
+          .reveal section pre {margin-top: 2em;}
+          .reveal section code {padding: 1em;}
+          .reveal section blockquote {box-shadow: none; text-align: left;}
+          .reveal .prelude h2 {margin-top: 2em;}
+          .reveal .me li {text-align: center;margin: .5em 0;list-style: none;}
+          .reveal .index li {margin: 1em 0;font-size: 1.5em;}
+          .reveal .fact code {font-size: 1.5em;line-height: 1.3em;}
+          .reveal .design .matters img {margin-top: 3.6em;}
+          .reveal .design .what-is-design p {margin: 2em;}
+          .reveal .design .communication ul {float: right;}
+          .reveal .design .communication li {margin: 1em;}
+          .reveal .hacker h2 {margin-bottom: .2em;}
+          .reveal .hacker p {text-align: right;}
+          .reveal .hacker li {margin: .62em 1em;}
+          .reveal .hacker li.em {font-size: 1.6em; color: red;}
+          .reveal .write img {border-radius: 50px;}
+          .reveal .programming p {text-align: right;}
+          .reveal .programming pre {margin-top: 1em;}
+          .reveal .programming blockquote {margin-left: 46px; font-size: 1.5em; line-height: 1.3em;}
+          .reveal .grouping div {background: white;}
+          .reveal .grouping div img {box-shadow: none;}
+          .reveal .grouping code {font-size: 1.5em; line-height: 1.3em;}
+          .reveal .rhythm code {font-size: 1.5em; line-height: 1.3em;}
+          .reveal .convention code {font-size: 1.5em; line-height: 1.3em;}
+        </style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+
+				<section class="prelude">
+					<h2>Artisan and Artist</h2>
+                    <h3>Programming => Design</h3>
+				</section>
+
+                <section class="me">
+                  <section>
+                    <h3>About me</h3>
+                    <img src="images/knewone.png">
+                    <ul>
+                      <li>Entrepreneur</li>
+                      <li>Full stack programmer</li>
+                      <li>@_李路 | RubyChina & Github: lilu </li>
+                    </ul>
+                  </section>
+                  <section class="knewone">
+                    <img src="images/knewone-site2.png">
+                  </section>
+                  <section class="knewone">
+                    <img src="images/knewone-site.png">
+                  </section>
+                </section>
+
+                <section class="index">
+                  <ol>
+                    <li>Why design matters?</li>
+                    <li>Programmers can be designers</li>
+                    <li>Design in programmer's way</li>
+                  </ol>
+                </section>
+                
+                <section class="design">
+                  <section class="matters">
+                    <img src="images/design-matters.jpg">
+                  </section>
+                  <section>
+                    <h3>I want to learn some programming...</h3>
+                    <img src="images/soccer_girl.jpg">
+                  </section>
+                  <section>
+                    <p>Ruby</p>
+                    <a href="http://tryruby.org/" target="_blank"><img src="images/tryruby.png"></a>
+                  </section>
+                  <section>
+                    <p>Or... Python?</p>
+                    <a href="http://www.learnpython.org/" target="_blank"><img src="images/learnpython.png"></a>
+                  </section>
+                </section>
+
+                <section class="design">
+                  <section>
+                    <h3>Presentation</h3>
+                    <div class="write">
+                      <img src="images/write.jpg">
+                    </div>
+                  </section>
+                  <section class="communication">
+                    <h3>Communication</h3>
+                    <img src="images/communication.png">
+                    <ul>
+                      <li>Affect emotions</li>
+                      <li>Make things easier to use</li>
+                      <li>Earn trust</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <img src="images/unity.jpg">
+                  </section>
+                </section>
+
+                <section class="programming">
+                  <section>
+                    <h3>Programmers can be designers</h3>
+                    <img src="images/langs.png">
+                  </section>
+                  <section class="hacker">
+                    <h3>The Hacker Attitude</h3>
+                    <p>by <em>Eric Steven Raymond</em></p>
+                    <ol>
+                      <li>The world is full of fascinating problems waiting to be solved.</li>
+                      <li>No problem should ever have to be solved twice.</li>
+                      <li class="em">Boredom and drudgery are evil.</li>
+                      <li>Freedom is good.</li>
+                      <li>Attitude is no substitute for competence.</li>
+                    </ol> 
+                  </section>
+                  <section class="fact">
+                    <h3>Programming Evolution</h3>
+                    <pre><code data-trim>
+/* C */
+int fact( int n ) {
+    if (n <= 1) 
+        return 1;
+    else
+        return n * fact(n - 1);    
+}
+                    </code></pre>
+                    <pre><code data-trim>
+;;Lisp
+(define (fact n)
+  (if (= n 0)
+      1
+    (* n (fact (- n 1)))))
+                    </code></pre>
+                  </section>
+                  <section class="fact">
+                    <pre><code data-trim>
+#Python
+def fact(n):
+    return reduce(lambda x, y: 
+                      x * y, 
+                      range(1, n + 1))
+                    </code></pre>
+                    <pre><code data-trim>
+#Ruby
+def fact(n)
+  (1..n).reduce(:*)
+end
+                    </code></pre>
+                  </section>
+                  <section>
+                    <blockquote>
+                      Programming is a process of designing DSL for your own application
+                    </blockquote>  
+                    <p>by <em>Dave Thomas</em></p>
+                  </section>
+                  <section>
+                      <pre><code data-trim>
+#Rails ActiveSupport
+1.month.from_now                  
+#Sinatra
+get '/hi' do
+  "Hello World!"
+end
+#Rake
+task :test do
+  ruby "unittest.rb"
+end
+#RSpec
+describe Programmer do
+  it "should say hello to world" do
+    ...
+  end
+end
+#Kaminari
+User.page(7).per(50).padding(3)
+                    </code></pre>
+                  </section>
+                  <section>
+                    <h4>Programming Abstraction</h4>
+                    <img src="images/mvc.jpg">
+                  </section>
+                  <section>
+                    <h4>Design Abstraction </h4>
+                    <img src="images/sketch.png">
+                  </section>
+                </section>
+
+                <section class="principles">
+                  <section>
+                    <h3>Design in programmer's way</h3>
+                    <div>
+                      <img src="images/design-principles.jpg">
+                    </div>
+                  </section>
+                  <section>
+                    <div>
+                      <img src="images/design-principles2.jpg">
+                    </div>
+                  </section>
+                  <section>
+                    <h3>Let's play with <strike>Photoshop</strike> Code</h3>
+                    <img src="images/frontend.jpg">
+                  </section>
+                </section>
+
+                <section class="grouping">
+                  <section>
+                    <h3>Group</h3>
+                    <div>
+                      <img src="images/group.jpg">
+                    </div>
+                  </section>
+                  <section>
+                    <pre><code data-trim>
+module ActiveModel
+  ...
+  autoload :AttributeMethods
+  autoload :Callbacks
+  autoload :Conversion
+  autoload :Model
+  autoload :Naming
+  autoload :SecurePassword
+  autoload :Translation
+  autoload :Validations
+  ...
+end
+                    </code></pre>
+                  </section>
+                  <section>
+                    <h3>Grouping Methods</h3>
+                    <img src="images/grouping.png">
+                  </section>
+                  <section>
+                    <h3>Grouping through Html5 Structure</h3>
+                    <img src="images/knewone-grouping.png">
+                  </section>
+                  <section>
+                    <h3>Use layouts and partials</h3>
+                    <pre><code>
+.thing_wrapper
+  header#thing_header= render "things/header"
+  section#thing_actions= render "things/actions"
+  section#thing_content= yield
+                    </code></pre>
+                    <pre><code>
+.photos= render "carousel"
+= tp.content
+                    </code></pre>
+                  </section>
+                  <section>
+                    <a href="http://rubyonrails.org/" target="_blank"><img src="images/rails-site.png"></a>
+                  </section>
+                  <section>
+                    <a href="http://rubyonrails.org/" target="_blank"><img src="images/rails-site2.png"></a>
+                  </section>
+                  <section>
+                    <p>Not So Good</p>
+                    <a href="https://www.djangoproject.com/" target="_blank"><img src="images/django-site.png"></a>
+                  </section>
+                </section>
+
+                <section class="dominance">
+                  <section>
+                    <h3>Dominance</h3>
+                    <img src="images/dominance.jpg">
+                  </section>
+                  <section>
+                    <img src="images/jquery.jpg">
+                  </section>
+                  <section>
+                    <img src="images/contrast1.jpg">
+                  </section>
+                  <section>
+                    <img src="images/contrast2.jpg">
+                  </section>
+                  <section>
+                    <h3>Use White space</h3>
+                    <img src="images/knewone-dominance.png">
+                  </section>
+                  <section>
+                    <a href="http://sidekiq.org/" target="_blank"><img src="images/sidekiq.png"></a>
+                  </section>
+                  <section>
+                    <a href="http://sidekiq.org/" target="_blank"><img src="images/sidekiq2.png"></a>
+                  </section>
+                  <section>
+                    <p>Not So Good</p>
+                    <a href="http://python-rq.org/" target="_blank"><img src="images/rq.png"></a>
+                  </section>
+                </section>
+
+                <section class="rhythm">
+                  <section>
+                    <h3>Rhythm</h3>
+                    <img src="images/rhythm.jpg">
+                  </section>
+                  <section>
+                    <pre><code data-trim>
+(1..10).detect { |i| i % 3 == 0 }
+(1..10).select { |i| i % 3 == 0 }
+(1..10).reject { |i| i % 3 == 0 }
+(1..10).collect { |i| i*i }
+(1..10).inject { |fac, i| fac*i }
+(1..10).each { |i| puts i } 
+(1..10).group_by { |i| i % 3 == 0 }
+(1..10).sort_by { |i| -i }
+                    </code></pre>
+                  </section>
+                  <section>
+                    <h3>Similarity and Contrast</h3>
+                    <img src="images/knewone-rhythm.png">
+                  </section>
+                  <section>
+                    <h3>Use Sass or Less Mixins</h3>
+                    <pre><code data-trim>
+@mixin section-decorate {
+  background: white;
+  @include border-radius(8px);
+  @include box-shadow(rgba(0, 0, 0, 0.1) 1px 1px 10px);
+}
+
+@mixin icon-fixed-width {
+  display: inline-block;
+  width: 1.1428571428571428em;
+  padding-right: 0.2857142857142857em;
+}
+                    </code></pre>
+                  </section>
+                  <section>
+                    <a href="http://sass-lang.com/" target="_blank"><img src="images/sass1.png"></a>
+                  </section>
+                  <section>
+                    <a href="http://sass-lang.com/" target="_blank"><img src="images/sass2.png"></a>
+                  </section>
+                  <section>
+                    <a href="http://sass-lang.com/" target="_blank"><img src="images/sass3.png"></a>
+                  </section>
+                  <section>
+                    <a href="http://sass-lang.com/" target="_blank"><img src="images/sass4.png"></a>
+                  </section>
+                  <section>
+                    <p>Not So Good</p>
+                    <a href="http://lesscss.org/" target="_blank"><img src="images/less1.png"></a>
+                  </section>
+                  <section>
+                    <a href="http://lesscss.org/" target="_blank"><img src="images/less2.png"></a>
+                  </section>
+                </section>
+
+                <section class="flow">
+                  <section>
+                    <h3>Flow</h3>
+                    <img src="images/direction.jpg">
+                  </section>
+                  <section>
+                    <img src="images/reading.jpg">
+                  </section>
+                  <section>
+                    <h3>Use Alignment</h3>
+                    <img src="images/knewone-flow.png">
+                  </section>
+                  <section>
+                    <p>Grid System</p>
+                    <img src="images/alignment.jpg">
+                  </section>
+                  <section>
+                    <a href="http://www.sinatrarb.com/" target="_blank"><img src="images/sinatra.png"></a>
+                  </section>
+                  <section>
+                    <a href="http://www.sinatrarb.com/" target="_blank"><img src="images/sinatra2.png"></a>
+                  </section>
+                  <section>
+                    <p>Not So Good</p>
+                    <a href="http://expressjs.com/" target="_blank"><img src="images/express.png"></a>
+                  </section>
+                </section>
+
+                <section class="convention">
+                  <section>
+                    <h3>Convention</h3>
+                    <img src="images/convention.jpg">
+                  </section>
+                  <section>
+                    <pre><code data-trim>
+# Use snake_case for symbols, methods and variables.
+:some_symbol
+def some_method
+  ...
+end
+# Use SCREAMING_SNAKE_CASE for other constants.
+SOME_CONST = 5
+# Use CamelCase for classes and modules.
+class SomeClass
+  ...
+end
+                    </code></pre>
+                  </section>
+                  <section>
+                    <h3>Use Icon and Color Conventions</h3>
+                    <img src="images/knewone-convention.png">
+                  </section>
+                  <section>
+                    <img src="images/convention-1.png">
+                    <img src="images/convention-2.png">
+                  </section>
+                  <section>
+                    <h3>Define global styles</h3>
+                    <pre><code data-trim>
+$linkColor: #588cc7;
+$headingsFontWeight: normal;
+$btnPrimaryBackground: #049cdb;                        
+                    </code></pre>
+                  </section>
+                  <section>
+                    <a href="http://git-scm.com/" target="_blank"><img src="images/git2.png"></a>
+                  </section>
+                  <section>
+                    <a href="http://git-scm.com/" target="_blank"><img src="images/git3.png"></a>
+                  </section>
+                  <section>
+                    <p>Not So Good</p>
+                    <a href="http://subversion.apache.org/" target="_blank"><img src="images/svn.png"></a>
+                  </section>
+                </section>  
+
+                <section class="More">
+                  <section>
+                    <h3>More</h3>
+                    <img src="images/design-more.jpg">
+                  </section>
+                  <section>
+                    <h3>Typography</h3>
+                    <img src="images/typography.png">
+                  </section>
+                  <section>
+                    <a href="http://pow.cx/" target="_blank"><img src="images/pow.png"></a>
+                  </section>
+                  <section>
+                    <img src="images/colors.jpg">
+                  </section>
+                  <section>
+                    <a href="http://emberjs.com/" target="_blank"><img src="images/ember.png"></a>
+                  </section>
+                  <section>
+                    <a href="http://bundler.io/" target="_blank"><img src="images/bundler.png"></a>
+                  </section>
+                  <section>
+                    <a href="https://www.heroku.com/" target="_blank"><img src="images/heroku.png"></a>
+                  </section>
+                  <section>
+                    <p>Be Careful</p>
+                    <a href="http://getbootstrap.com/" target="_blank"><img src="images/bootstrap.png"></a>
+                  </section>
+                </section>
+
+                <section>
+                  <h3>THE END</h3>
+                  <div>
+                    <a href="http://knewone.com" target="_blank"><img src="images/knewone.png"></a>
+                  </div>
+                  <p><a href="mailto:lilu.life@gmail.com">李路</a> | <a href="http://weibo.com/coocooba">@_李路</a></p>
+                </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+                theme: 'serif',
+                transition: 'linear',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
