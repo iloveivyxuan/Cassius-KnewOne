@@ -169,6 +169,13 @@
 
         .summary {
           float: left;
+
+          .success {
+            color: green;
+          }
+          .failure {
+            color: red;
+          }
         }
         .info {
           float: right;
