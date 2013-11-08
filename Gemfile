@@ -9,6 +9,7 @@ gem 'rails-i18n'
 gem 'mongoid'
 gem 'mongoid_slug'
 gem 'mongoid_taggable'
+gem 'mongoid_rails_migrations'
 # components
 gem 'simple_form'
 gem 'nested_form'
