@@ -53,7 +53,7 @@ class OrdersController < ApplicationController
       @order.pay!(callback_params[:transaction_id], :tenpay, callback_params)
     end
 
-    redirect_to @order
+    redirect_to @order, flash: {success: (@order.has_stock? ? '付款成功，我们将尽快为您发货' : '付款成功')}
   end
 
   def alipay
@@ -82,7 +82,7 @@ class OrdersController < ApplicationController
       @order.pay!(callback_params[:trade_no], :alipay, callback_params)
     end
 
-    redirect_to @order
+    redirect_to @order, flash: {success: (@order.has_stock? ? '付款成功，我们将尽快为您发货' : '付款成功')}
   end
 
   private

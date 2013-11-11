@@ -48,6 +48,17 @@ module OrdersHelper
     Order::STATES[order.state]
   end
 
+  def render_summary_state(order)
+    css = case order.state
+            when :confirmed, :shipped, :refunded then 'success'
+            when :canceled, :closed then 'failure'
+            else ''
+          end
+    content_tag :span, class: css do
+      state_text order
+    end
+  end
+
   def address_text(order)
     content_for_address(order.address)
   end
