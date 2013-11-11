@@ -118,9 +118,7 @@ class ThingPresenter < PostPresenter
   end
 
   def dsell
-    if !alpha_pay?
-      stock
-    elsif !thing.kinds.any?
+    if !thing.kinds.any?
       stock
     else
       item = CartItem.new thing: thing
