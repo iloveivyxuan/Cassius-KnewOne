@@ -15,11 +15,9 @@ module OrdersHelper
     end
   end
 
-  def ship_link(order, css = 'btn btn-warning')
+  def ship_link(order)
     if order.can_ship?
-      link_to '发货', ship_haven_order_path(order),
-              data: {confirm: '确认发货？'},
-              method: 'put', class: css
+      render 'haven/orders/form', order: order
     end
   end
 

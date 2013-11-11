@@ -15,7 +15,7 @@ module Haven
     end
 
     def ship
-      @order.ship!
+      @order.ship!(params[:order][:deliver_no], params[:order][:admin_note])
       redirect_to haven_orders_path
     end
 
