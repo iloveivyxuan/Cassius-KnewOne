@@ -117,10 +117,12 @@ class Order
     order_histories.create from: state, to: :confirmed, raw: raw
   end
 
-  def ship!
+  def ship!(deliver_no, admin_note = '')
     return false unless can_ship?
 
     self.state = :shipped
+    self.deliver_no = deliver_no
+    self.admin_note = admin_note if admin_note.present?
     save!
 
     order_histories.create from: :confirmed, to: :shipped
