@@ -4,4 +4,6 @@
     h1
       i.icon-shopping-cart
       | 订单管理
+  = render 'filter'
   ul.orders = render @orders
+  = paginate @orders
