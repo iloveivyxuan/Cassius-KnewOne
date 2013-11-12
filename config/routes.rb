@@ -7,9 +7,18 @@ Making::Application.routes.draw do
   get 'join_alpha', to: 'home#join_alpha'
   get 'leave_alpha', to: 'home#leave_alpha'
 
-  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks", :registrations => "registrations"} do
-    put 'profile', :to => 'profiles#update'
+  devise_for :users, controllers: {
+    omniauth_callbacks: "omniauth_callbacks",
+    registrations: "registrations"
+  }
+
+  namespace :settings do
+    root to: 'profiles#edit'
+    scope path_names: { edit: '' }, only: [:edit, :update] do
+      resource :profile
+    end
   end
+
   resources :users, only: [:show, :index] do
     collection do
       post 'share'
