@@ -33,6 +33,10 @@
         li
           strong.field 备注：
           span = @order.note
+      - if @order.system_note.present?
+        li
+          strong.field 系统备注：
+          span = @order.system_note
       - if @order.admin_note.present?
         li
           strong.field 管理员备注：
