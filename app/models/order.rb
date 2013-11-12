@@ -33,6 +33,7 @@ class Order
   field :deliver_no, type: String
   field :note, type: String
   field :admin_note, type: String
+  field :system_note, type: String
   field :trade_no, type: String
   field :trade_state, type: String
   field :deliver_price, type: BigDecimal#, default: DELIVER_METHODS.first[1][:price]
@@ -75,7 +76,9 @@ class Order
   end
 
   def can_confirm_payment?
-    paid? || pending?
+    # There is a situation is user closed or canceled order, but still paid at third party
+    # IMPORTANT: stock
+    paid? || pending? || canceled? || closed?
   end
 
   def can_ship?
@@ -109,6 +112,9 @@ class Order
     return false unless can_confirm_payment?
 
     state = self.state
+    if canceled? || closed?
+      self.system_note += '*用户取消了订单或订单已关闭，但仍然进行了支付，注意库存！'
+    end
     self.state = :confirmed
     self.payment_method = method
     self.trade_no = trade_no
@@ -117,10 +123,12 @@ class Order
     order_histories.create from: state, to: :confirmed, raw: raw
   end
 
-  def ship!
+  def ship!(deliver_no, admin_note = '')
     return false unless can_ship?
 
     self.state = :shipped
+    self.deliver_no = deliver_no
+    self.admin_note = admin_note if admin_note.present?
     save!
 
     order_histories.create from: :confirmed, to: :shipped

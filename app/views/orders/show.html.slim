@@ -17,6 +17,10 @@
       li
         strong.field 物流方式：
         span = deliver_method_text @order
+      - if @order.deliver_no.present?
+        li
+          strong.field 运单号：
+          span = @order.deliver_no
       li
         strong.field 订单状态：
         = render_summary_state @order
@@ -25,8 +29,9 @@
         span = date_time_text @order.created_at
       - if @order.note.present?
         li
-          strong.field 备注:
+          strong.field 备注：
           span = @order.note
+
     .info
       .total_price
         span.tip 总计
