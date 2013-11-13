@@ -6,7 +6,7 @@ class ThingsController < PostsController
 
     scope = case params[:sort]
             when "self_run"
-              Thing.self_run
+              Thing.self_run.prior
             when "fancy"
               Thing.unscoped.published.desc(:fanciers_count)
             when "random"
@@ -18,7 +18,7 @@ class ThingsController < PostsController
     if params[:sort] == "random"
       @things = Kaminari.paginate_array(scope).page(params[:page])
     else
-      @things = scope.prior.page(params[:page]).per(per)
+      @things = scope.page(params[:page]).per(per)
     end
 
     respond_to do |format|
