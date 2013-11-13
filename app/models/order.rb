@@ -10,6 +10,8 @@ class Order
   embeds_many :order_items
   embeds_many :order_histories
 
+  embeds_many :coupons
+
   STATES = {:pending => '等待付款',
             :paid => '已付款，等待确认',
             :confirmed => '已付款',
@@ -35,6 +37,7 @@ class Order
   field :admin_note, type: String
   field :system_note, type: String
   field :trade_no, type: String
+  field :trade_price, type: BigDecimal
   field :trade_state, type: String
   field :deliver_price, type: BigDecimal#, default: DELIVER_METHODS.first[1][:price]
 
@@ -44,14 +47,20 @@ class Order
   validates_associated :address
   validates :user, presence: true
   attr_accessible :note, :deliver_by, :address_id
-  attr_accessible :state, :admin_note, :deliver_no, :trade_no,
+  attr_accessible :state, :admin_note, :deliver_no, :trade_no, :coupons_attributes,
                   :as => :admin
+
+  accepts_nested_attributes_for :coupons, allow_destroy: true, reject_if: :all_blank
 
   before_create do
     self.order_no = rand.to_s[2..11]
     self.deliver_price = calculate_deliver_price
     # mongoid may not rollback when error occurred
     order_items.each &:claim_stock!
+  end
+
+  validate do
+    errors.add :price, "总价必须大于1元" if total_price < 1
   end
 
   after_create do
@@ -97,18 +106,19 @@ class Order
     confirmed? || shipped?
   end
 
-  def pay!(trade_no, method, raw)
+  def pay!(trade_no, price, method, raw)
     return false unless can_pay?
 
     self.state = :paid
     self.payment_method = method
     self.trade_no = trade_no
+    self.trade_price = price
     save!
 
     order_histories.create from: :pending, to: :paid, raw: raw
   end
 
-  def confirm_payment!(trade_no, method, raw)
+  def confirm_payment!(trade_no, price, method, raw)
     return false unless can_confirm_payment?
 
     state = self.state
@@ -118,6 +128,7 @@ class Order
     self.state = :confirmed
     self.payment_method = method
     self.trade_no = trade_no
+    self.trade_price = price
     save!
 
     order_histories.create from: state, to: :confirmed, raw: raw
@@ -180,8 +191,12 @@ class Order
     order_items.map(&:price).reduce(&:+) || 0
   end
 
+  def coupons_price
+    coupons.map(&:price).reduce(&:+) || 0
+  end
+
   def total_price
-    items_price + (self.deliver_price || calculate_deliver_price)
+    items_price + (self.deliver_price || calculate_deliver_price) + coupons_price
   end
 
   def total_cents

@@ -49,10 +49,20 @@
           span= @order.total_price
   section
     ul = render partial: 'orders/order_item', collection: @order.order_items
-  section.order_tips
-    ul
-      - if @order.pending?
-        li * 请您在24小时之内支付，否则订单将自动取消。
+
+  section
+    - if @order.pending?
+      = simple_nested_form_for @order, url: haven_order_path(@order), html: {class: "form-horizontal"} do |f|
+        fieldset
+          legend 调价
+          = f.simple_fields_for :coupons
+          = f.link_to_add "新增调价", :coupons, class: "btn"
+        .submit
+          = f.button :submit, class: "btn-primary btn-large"
+    - else
+      ul.coupons
+        - @order.coupons.each do |c|
+          li = "#{c.name}: #{c.price}"
   footer
     = link_to '返回', haven_orders_path, class: 'btn'
     = ship_link(@order)

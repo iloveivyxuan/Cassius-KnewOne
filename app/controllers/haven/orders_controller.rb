@@ -3,6 +3,7 @@ module Haven
     load_and_authorize_resource :order, class: ::Order
 
     def index
+      @orders ||= ::Order
       @orders = @orders.send(params[:state].to_sym) if params[:state] && ::Order::STATES.include?(params[:state].to_sym)
       @orders = @orders.page params[:page]
     end

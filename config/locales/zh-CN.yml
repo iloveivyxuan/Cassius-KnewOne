@@ -12,6 +12,7 @@ zh-CN:
       order: '订单'
       address: '收货地址'
       kind: '型号'
+      coupon: '优惠'
     attributes:
       post:
         title: '标题'
@@ -45,6 +46,10 @@ zh-CN:
         name: '联系人'
         phone: '电话'
         zip_code: '邮编'
+      coupon:
+        name: '明目'
+        price: '价格'
+        note: '备注'
   errors:
     messages:
       extension_white_list_error: '上传文件格式不正确'
