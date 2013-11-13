@@ -86,8 +86,8 @@ class User
     ROLES.index(base_role.to_s) <= (ROLES.index(role) || -1)
   end
 
-  def knewone_staff?
-    ROLES.index(self.role).to_i > 1
+  def staff?
+    %w(editor sale admin).include? self.role
   end
 
   ## Photos
