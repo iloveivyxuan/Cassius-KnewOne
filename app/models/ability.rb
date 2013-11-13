@@ -4,25 +4,20 @@ class Ability
 
   def initialize(user)
     cannot :manage, :all
+    basic
 
     if user.blank?
-      basic
       pay_callback
     elsif user.role? :admin
       can :manage, :all
-    elsif user.role? :editor
-      basic
+    elsif user.role? :sale
       signed user
-      can :update, Post
-      can :update, Story
-      can :update, Feature
-      can :pro_edit, Thing
-      can :pro_update, Thing
-      can :all, Review
-      can :update, Lottery
-      can :manage, Supplier
+      editor
+      can :manage, Order
+    elsif user.role? :editor
+      signed user
+      editor
     else
-      basic
       signed user
     end
   end
@@ -88,6 +83,17 @@ class Ability
     can :comments, Thing
     can :wechat_qr, Thing
     can :create, Supplier
+  end
+
+  def editor
+    can :update, Post
+    can :update, Story
+    can :update, Feature
+    can :pro_edit, Thing
+    can :pro_update, Thing
+    can :all, Review
+    can :update, Lottery
+    can :manage, Supplier
   end
 
   def pay_callback

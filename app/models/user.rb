@@ -80,10 +80,14 @@ class User
 
   ## Roles
   field :role, type: String, default: ""
-  ROLES = %w[vip editor admin]
+  ROLES = %w[vip editor sale admin]
 
   def role?(base_role)
     ROLES.index(base_role.to_s) <= (ROLES.index(role) || -1)
+  end
+
+  def knewone_staff?
+    ROLES.index(self.role).to_i > 1
   end
 
   ## Photos
