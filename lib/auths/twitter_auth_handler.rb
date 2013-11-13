@@ -3,8 +3,8 @@ class TwitterAuthHandler
   attr_reader :client
 
   def initialize(info)
-    @client = Twitter::Client.new oauth_token: info[:access_token],
-                                  oauth_token_secret: info[:access_secret]
+    @client = Twitter::Client.new access_token: info[:access_token],
+                                  access_token_secret: info[:access_secret]
   end
 
   def follow
