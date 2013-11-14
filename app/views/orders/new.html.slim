@@ -15,6 +15,7 @@
       = f.input :deliver_by, as: :radio_buttons do
         ul.deliver_by_list = render partial: 'deliver_methods', locals: {f: f}
       = f.input :note
+      = provider_sync
       .form-actions
         p.total_price[data-things-price="#{@order.items_price}"]
           | 总计

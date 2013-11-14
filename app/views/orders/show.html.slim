@@ -40,6 +40,9 @@
           span= @order.total_price
   section
     ul = render partial: 'orders/order_item', collection: @order.order_items
+    .pull-right
+      = link_to '#order_share', class: 'btn', data: {toggle: 'modal'}  do
+        = provider_share
   section.order_tips
     ul
       - if @order.pending?
@@ -49,4 +52,11 @@
     = order_operations(@order)
     = return_link(@order)
 
-  /= render partial: 'pay_modal', locals: {order: @order}
+/= render partial: 'pay_modal', locals: {order: @order}
+= render_share_modal(@order)
+
+- content_for :script do
+  javascript:
+    if ("#{flash[:provider_sync]}" == "on") {
+      $(function(){$('#order_share').modal('show')});
+    }

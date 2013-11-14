@@ -30,7 +30,7 @@ module UsersHelper
       weibo: "分享到微博",
       twitter: "分享到Twitter"
     }[current_user.current_auth.provider.to_sym]
-    raw "<label id='check_provider_sync' class='checkbox inline'><input type='checkbox' checked>#{provider_text}</label>"
+    raw "<label id='check_provider_sync' class='checkbox inline'><input type='checkbox' name='provider_sync' checked>#{provider_text}</label>"
   end
 
   def user_links(user)

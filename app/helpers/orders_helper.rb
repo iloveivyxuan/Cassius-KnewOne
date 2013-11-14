@@ -29,6 +29,14 @@ module OrdersHelper
     end
   end
 
+  def refund_link(order, css = 'btn btn-danger')
+    if order.can_refund?
+      link_to '已退款', refund_haven_order_path(order),
+              data: {confirm: '确认退款？'},
+              method: 'put', class: css
+    end
+  end
+
   def return_link(order, css = 'btn btn-success')
     unless order.pending?
       link_to '返回首页', root_path, class: css
@@ -67,5 +75,19 @@ module OrdersHelper
 
   def deliver_method_text(order)
     Order::DELIVER_METHODS[order.deliver_by][:name]
+  end
+
+  def render_share_modal(order)
+    items = order.order_items.sort {|i| i.single_price}
+    item = items.first
+
+    multi_items_str = ""
+    if items.size > 1
+     multi_items_str = "等#{items.size}种产品 "
+    end
+
+    str = "我刚刚在Knewone买了#{item.quantity}个#{item.thing.title}( #{thing_url item.thing} ) #{multi_items_str}！ @KnewOne "
+
+    render 'shared/share', id: 'order_share', content: str, pic: item.thing.cover.url(:small)
   end
 end

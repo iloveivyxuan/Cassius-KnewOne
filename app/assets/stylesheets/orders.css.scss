@@ -157,6 +157,10 @@
     }
   }
 
+  section {
+    @include clearfix;
+  }
+
   .orders {
     .order {
       @include clearfix;
