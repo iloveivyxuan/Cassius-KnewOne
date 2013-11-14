@@ -78,7 +78,7 @@ module OrdersHelper
   end
 
   def render_share_modal(order)
-    items = order.order_items.sort {|i| i.single_price}
+    items = order.order_items.sort {|i| i.single_price}.reverse
     item = items.first
 
     multi_items_str = ""
