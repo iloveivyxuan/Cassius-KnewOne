@@ -6,4 +6,8 @@
       section#thing_actions= render "things/actions", tp: tp
       section#thing_content= yield
 
+- content_for :script do
+  javascript:
+    Making.CartItemNew();
+
 = render template: 'layouts/application'
