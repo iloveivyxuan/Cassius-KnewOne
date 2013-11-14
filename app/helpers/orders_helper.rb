@@ -29,6 +29,14 @@ module OrdersHelper
     end
   end
 
+  def refund_link(order, css = 'btn btn-danger')
+    if order.can_refund?
+      link_to '已退款', refund_haven_order_path(order),
+              data: {confirm: '确认退款？'},
+              method: 'put', class: css
+    end
+  end
+
   def return_link(order, css = 'btn btn-success')
     unless order.pending?
       link_to '返回首页', root_path, class: css
