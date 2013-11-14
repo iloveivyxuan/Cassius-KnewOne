@@ -51,6 +51,14 @@
     ul = render partial: 'orders/order_item', collection: @order.order_items
 
   section
+    = simple_nested_form_for @order, url: haven_order_path(@order), html: {class: "form-horizontal"} do |f|
+      fieldset
+        legend 管理员备注
+        = f.text_area :admin_note, rows: 3
+      .submit
+        = f.button :submit, class: "btn-primary"
+
+  section
     - if @order.pending?
       = simple_nested_form_for @order, url: haven_order_path(@order), html: {class: "form-horizontal"} do |f|
         fieldset
@@ -58,11 +66,12 @@
           = f.simple_fields_for :coupons
           = f.link_to_add "新增调价", :coupons, class: "btn"
         .submit
-          = f.button :submit, class: "btn-primary btn-large"
+          = f.button :submit, class: "btn-primary"
     - else
       ul.coupons
         - @order.coupons.each do |c|
           li = "#{c.name}: #{c.price}"
+
   footer
     = link_to '返回', haven_orders_path, class: 'btn'
     = ship_link(@order)

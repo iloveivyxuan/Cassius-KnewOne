@@ -2,6 +2,8 @@ class OrderItem
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  field :thing_title, type: String
+  field :kind_title, type: String
   field :quantity, type: Integer
   field :single_price, type: BigDecimal
 
@@ -30,8 +32,16 @@ class OrderItem
     if k = thing.kinds.where(_id: self.kind_id).first
       k
     else
-      thing.kinds.new title: '*型号已被删除*'
+      thing.kinds.new title: "*已下架*#{self.kind_title}"
     end
+  end
+
+  def thing_name
+    self.thing_title || thing.title
+  end
+
+  def kind_name
+    self.kind_title || kind.title
   end
 
   class<< self
@@ -39,6 +49,8 @@ class OrderItem
       return unless item.legal? && item.has_enough_stock?
 
       order.order_items.build({
+        thing_title: item.thing.title,
+        kind_title: item.kind.title,
         quantity: item.quantity,
         thing: item.thing.id,
         kind_id: item.kind.id,

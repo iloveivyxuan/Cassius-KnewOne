@@ -39,5 +39,4 @@ class Kind
       stock
     end
   end
-
 end
