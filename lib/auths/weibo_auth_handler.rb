@@ -18,14 +18,7 @@ class WeiboAuthHandler
   def share(content, photo_url)
     begin
       if photo_url
-        #Open-URI has a 10KB limit on StringIO objects, anything above that and it stores it as a temp file.
-        if OpenURI::Buffer.const_defined?('StringMax')
-          OpenURI::Buffer.send :remove_const, 'StringMax'
-        end
-        OpenURI::Buffer.const_set 'StringMax', 0
-        tmpfile = open photo_url
-        photo = File.open(tmpfile)
-        client.statuses.upload content, photo
+        client.statuses.upload_url_text "status" => content, "url" => photo_url
       else
         client.statuses.update content
       end
