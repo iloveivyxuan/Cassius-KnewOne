@@ -86,7 +86,7 @@ module OrdersHelper
      multi_items_str = "等#{items.size}种产品 "
     end
 
-    str = "我刚刚在Knewone买了#{item.quantity}个#{item.thing.title}( #{thing_url item.thing} ) #{multi_items_str}！ @KnewOne "
+    str = "#KnewOne晒订单# 我在剁手网站 @KnewOne 买了“#{item.thing.title} - #{item.kind.title}”（价格￥#{item.single_price}）#{multi_items_str} 瞬间变身土豪，高端大气上档次的感觉你们是不会知道的！小伙伴们要不要来围观一下？围观地址： #{thing_url item.thing}"
 
     render 'shared/share', id: 'order_share', content: str, pic: item.thing.cover.url(:review)
   end
