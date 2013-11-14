@@ -88,6 +88,6 @@ module OrdersHelper
 
     str = "我刚刚在Knewone买了#{item.quantity}个#{item.thing.title}( #{thing_url item.thing} ) #{multi_items_str}！ @KnewOne "
 
-    render 'shared/share', id: 'order_share', content: str, pic: item.thing.cover.url(:small)
+    render 'shared/share', id: 'order_share', content: str, pic: item.thing.cover.url(:review)
   end
 end
