@@ -15,8 +15,8 @@ ul.delivery_details data-method=@order.deliver_by data-no=@order.deliver_no
         method = "zto";
       }
 
-      var query_url = 'http://v.juhe.cn/exp/index?key=8da44efaeb11afe8a8023918e016e696&dtype=json&com=' + method + '&no=' + no;
-      $.get(query_url, function(data) {
+      var query_url = 'http://v.juhe.cn/exp/index?key=8da44efaeb11afe8a8023918e016e696&dtype=jsonp&com=' + method + '&no=' + no;
+      $.getJSON(query_url + '&callback=?', function(data) {
         var result = data.result.list;
         for(var i in result) {
           var p = result[i];

@@ -41,6 +41,10 @@
         li
           strong.field 管理员备注：
           span = @order.admin_note
+      - if @order.shipped?
+        li
+          strong.field 物流信息：
+          = render 'orders/delivery'
     .info
       .total_price
         span.tip 总计
@@ -49,9 +53,6 @@
           span= @order.total_price
   section
     ul = render partial: 'orders/order_item', collection: @order.order_items
-
-  section
-    = render 'delivery'
 
   section
     = simple_nested_form_for @order, url: haven_order_path(@order), html: {class: "form-horizontal"} do |f|

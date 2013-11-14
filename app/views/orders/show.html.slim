@@ -31,6 +31,10 @@
         li
           strong.field 备注：
           span = @order.note
+      - if @order.shipped?
+        li
+          strong.field 物流信息：
+          = render 'delivery'
 
     .info
       .total_price
