@@ -3,8 +3,8 @@ li.order_item
     - present order_item.thing do |tp|
       .cover= link_to tp.photo(:small), tp.thing
       .info
-        .title= link_to tp.title, tp.thing
-        .kind= order_item.kind.title
+        .title= link_to order_item.thing_name, tp.thing
+        .kind= order_item.kind_name
   .item_opts
     .price
       i.icon-yen
