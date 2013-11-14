@@ -51,6 +51,9 @@
     ul = render partial: 'orders/order_item', collection: @order.order_items
 
   section
+    = render 'delivery'
+
+  section
     = simple_nested_form_for @order, url: haven_order_path(@order), html: {class: "form-horizontal"} do |f|
       fieldset
         legend 管理员备注

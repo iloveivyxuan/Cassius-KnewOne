@@ -1,0 +1,26 @@
+ul.delivery_details data-method=@order.deliver_by data-no=@order.deliver_no
+
+- content_for :script do
+  javascript:
+    $(function() {
+      var $tar = $('.delivery_details')
+      var method = $tar.attr('data-method');
+      var no = $tar.attr('data-no');
+
+      if(method === undefined || no === undefined) {
+        return;
+      }
+
+      if(method == "zt") {
+        method = "zto";
+      }
+
+      var query_url = 'http://v.juhe.cn/exp/index?key=8da44efaeb11afe8a8023918e016e696&dtype=json&com=' + method + '&no=' + no;
+      $.get(query_url, function(data) {
+        var result = data.result.list;
+        for(var i in result) {
+          var p = result[i];
+          $tar.append('<li>[' + p.datetime + '][' + p.zone + '] ' + p.remark + '</li>');
+        }
+      });
+    });
