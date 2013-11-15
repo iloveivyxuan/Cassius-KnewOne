@@ -1,5 +1,5 @@
 class ThingGroup < Group
-  has_one :thing
+  belongs_to :thing
 
   has_many :reviews
 end

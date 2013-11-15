@@ -43,7 +43,7 @@ class Thing < Post
   field :scores, type: Array, default: []
   # TODO: will remove in future
   has_many :reviews, dependent: :delete
-  belongs_to :thing_group
+  has_one :thing_group
   before_create do
     create_thing_group(founder: self.author, name: self.title) unless self.thing_group
   end
