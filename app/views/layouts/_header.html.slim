@@ -22,7 +22,7 @@ header
             span 小组
             i.icon-caret-down
           ul.dropdown-menu
-            - Group.all.each do |group|
+            - Group.classic.each do |group|
               li= link_to group.name, group
         li.nav_help.dropdown
           = link_to '#', class: "dropdown-toggle", data: {toggle: "dropdown"} do

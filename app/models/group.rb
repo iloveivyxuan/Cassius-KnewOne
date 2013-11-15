@@ -14,4 +14,6 @@ class Group
 
   validates :name, presence: true
   validates :founder, presence: true
+
+  scope :classic, -> { where(:'_type'.exists => false) }
 end

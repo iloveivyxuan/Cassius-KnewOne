@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
 
   def index
     can? :manage, :all or not_found
-    @groups = Group.all
+    @groups = Group.classic
   end
 
   def show
