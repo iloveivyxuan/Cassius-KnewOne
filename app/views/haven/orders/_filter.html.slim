@@ -1,14 +1,14 @@
 ul.nav.nav-pills
   - if params[:state].blank?
     li.active
-      = link_to '全部', haven_orders_path
+      = link_to '全部', params.reject! {|k, v| k == :state}
   - else
     li
-      = link_to '全部', haven_orders_path
+      = link_to '全部', params.reject! {|k, v| k == :state}
   - Order::STATES.each do |k, v|
     - if params[:state] == k.to_s
       li.active
-        = link_to v, haven_orders_path(state: k)
+        = link_to v, params.merge(state: k)
     - else
       li
-        = link_to v, haven_orders_path(state: k)
+        = link_to v, params.merge(state: k)

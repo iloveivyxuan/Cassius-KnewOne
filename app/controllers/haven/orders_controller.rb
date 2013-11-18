@@ -1,6 +1,9 @@
+#encoding: utf-8
+
 module Haven
   class OrdersController < ApplicationController
     load_and_authorize_resource :order, class: ::Order
+    include ::AddressesHelper
 
     def index
       @orders ||= ::Order
@@ -15,9 +18,41 @@ module Haven
       @orders = @orders.where(:created_at.lte => params[:end_date]) if params[:end_date].present?
       @orders = @orders.where(:created_at.gte => params[:start_date]) if params[:start_date].present?
 
-      return redirect_to haven_order_path(@orders.first) if @orders.count == 1
+      respond_to do |format|
+        format.html do
+          return redirect_to haven_order_path(@orders.first) if @orders.count == 1
 
-      @orders = @orders.page params[:page]
+          @orders = @orders.page params[:page]
+        end
+
+        format.csv do
+          lines = [%w(订单编号 创建时间 订单状态 商品 总价 物流方式 配送地址 用户备注 管理员备注 系统备注 用户ID 用户名)]
+
+          @orders.each do |order|
+            cols = [
+                order.order_no,
+                order.created_at.strftime('%Y-%m-%d'),
+                ::Order::STATES[order.state],
+                (order.order_items.map { |i| "#{i.name} x #{i.quantity}; " }.reduce &:+),
+                "￥#{order.total_price}",
+                ::Order::DELIVER_METHODS[order.deliver_by][:name],
+                content_for_address(order.address),
+                order.note,
+                order.admin_note,
+                order.system_note,
+                order.user_id,
+                order.user.name
+            ]
+            lines<< cols
+          end
+
+          csv = CSV.generate :col_sep => ';' do |csv|
+            lines.each { |l| csv<< l }
+          end
+
+          send_data csv.encode 'gb2312', :replace => ''
+        end
+      end
     end
 
     def show
