@@ -387,7 +387,7 @@ DEPENDENCIES
   airbrake
   alipay
   backbone-on-rails
-  bootstrap-sass (< 3.0.0)
+  bootstrap-sass (~> 2.3.2)
   cancan
   capistrano (~> 2.15.0)
   capistrano-unicorn
@@ -400,7 +400,7 @@ DEPENDENCIES
   devise
   fabrication
   ffaker
-  font-awesome-rails (< 4.0.0)
+  font-awesome-rails (~> 3.2.1)
   growl
   guard-jasmine
   guard-livereload
@@ -417,7 +417,7 @@ DEPENDENCIES
   letter_opener
   libnotify
   modernizr-rails
-  mongoid
+  mongoid (~> 3.1.5)
   mongoid-rspec
   mongoid_rails_migrations
   mongoid_slug

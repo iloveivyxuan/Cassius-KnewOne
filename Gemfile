@@ -6,7 +6,7 @@ ruby '2.0.0'
 gem 'rails', '~> 3.2.13'
 gem 'rails-i18n'
 # database
-gem 'mongoid'
+gem 'mongoid', '~> 3.1.5'
 gem 'mongoid_slug'
 gem 'mongoid_taggable'
 gem 'mongoid_rails_migrations'
@@ -20,7 +20,6 @@ gem 'slim-rails'
 gem 'jbuilder'
 # javascripts
 gem 'jquery-rails'
-gem 'modernizr-rails'
 gem 'backbone-on-rails'
 # file uploads
 gem 'carrierwave'
@@ -47,6 +46,7 @@ gem 'alipay'
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
+  gem 'modernizr-rails'
   gem 'uglifier'
   # gem 'turbo-sprockets-rails3' # seems bug with ruby 2.0
   gem 'therubyracer'
@@ -57,8 +57,8 @@ group :assets do
 
   # stylesheets library
   gem 'compass-rails'
-  gem 'bootstrap-sass', '< 3.0.0'
-  gem 'font-awesome-rails', '< 4.0.0'
+  gem 'bootstrap-sass', '~> 2.3.2'
+  gem 'font-awesome-rails', '~> 3.2.1'
 end
 
 group :production do
