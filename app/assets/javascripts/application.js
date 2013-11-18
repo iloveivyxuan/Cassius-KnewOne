@@ -17,6 +17,7 @@
 //= require bootstrap-wysiwyg
 //= require sisyphus
 //= require jquery.tagsinput
+//= require bootstrap-datepicker
 //= require_tree ../templates
 //= require making
 //= require orders
