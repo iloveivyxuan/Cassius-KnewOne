@@ -14,6 +14,18 @@ li.order
         li
           strong.field 订单状态：
           span = state_text order
+        - if order.note.present?
+          li
+            strong.field 用户备注：
+            span = order.note
+        - if order.system_note.present?
+          li
+            strong.field 系统备注：
+            span = order.system_note
+        - if order.admin_note.present?
+          li
+            strong.field 管理员备注：
+            span = order.admin_note
     .info
       .total_price
         span.tip 总计

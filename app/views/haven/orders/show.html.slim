@@ -26,12 +26,16 @@
         li
           strong.field 运单号：
           span = @order.deliver_no
+      - if @order.trade_no.present?
+        li
+          strong.field 交易号：
+          span = @order.trade_no
       li
         strong.field 创建时间：
         span = date_time_text @order.created_at
       - if @order.note.present?
         li
-          strong.field 备注：
+          strong.field 用户备注：
           span = @order.note
       - if @order.system_note.present?
         li

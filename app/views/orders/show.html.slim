@@ -21,6 +21,10 @@
         li
           strong.field 运单号：
           span = @order.deliver_no
+      - if @order.trade_no.present?
+        li
+          strong.field 交易号：
+          span = @order.trade_no
       li
         strong.field 订单状态：
         = render_summary_state @order

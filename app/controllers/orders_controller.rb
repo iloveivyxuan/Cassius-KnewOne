@@ -93,7 +93,7 @@ class OrdersController < ApplicationController
 
   def generate_tenpay_url(order, options = {})
     options = {
-        :subject => 'KnewOne购物',
+        :subject => subject_text(order),
         :body => "KnewOne购物订单号: #{order.order_no}",
         :total_fee => order.total_cents,
         :out_trade_no => order.order_no,
@@ -107,7 +107,7 @@ class OrdersController < ApplicationController
   def generate_alipay_url(order, options = {})
     options = {
         :out_trade_no => order.order_no,
-        :subject => 'KnewOne购物',
+        :subject => subject_text(order),
         :body => "KnewOne购物订单号: #{order.order_no}",
         :payment_type => '1',
         :total_fee => order.total_price,
@@ -117,5 +117,9 @@ class OrdersController < ApplicationController
     }.merge(options)
 
     Alipay::Service.create_direct_pay_by_user_url(options)
+  end
+
+  def subject_text(order)
+    'Knewone购物:'+(order.order_items.map { |i| "#{i.name}x#{i.quantity};" }.reduce &:+)[0..250]
   end
 end

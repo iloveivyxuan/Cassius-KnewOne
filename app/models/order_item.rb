@@ -44,6 +44,10 @@ class OrderItem
     self.kind_title || kind.title
   end
 
+  def name
+    "#{thing_name}-#{kind_name}"
+  end
+
   class<< self
     def build_by_cart_item(order, item)
       return unless item.legal? && item.has_enough_stock?
