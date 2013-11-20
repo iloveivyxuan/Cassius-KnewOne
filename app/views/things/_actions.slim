@@ -12,19 +12,26 @@
       i.icon-user-md
       span 在线帮助
   .share
-    = link_to user_signed_in? ? "#thing_share" : "#login-modal", title: "分享",
-              data: {toggle: 'modal', keyboard: false} do
-                = provider_share
+    - if user_signed_in?
+      = link_to  "#thing_share", title: "分享",  \
+                                 data: {toggle: 'modal', keyboard: false} do
+        = provider_share
+    - else
+      = link_to "#login-modal", title: "分享",
+                data: {toggle: 'modal', keyboard: false} do
+        i.icon-share
+        span 分享
+
   .wechat
     = link_to "#thing_share_wechat", title: "微信朋友圈分享",
               data: {toggle: 'modal'} do
-                i.icon-qrcode
-                span 分享到微信
+      i.icon-qrcode
+      span 分享到微信
   .supplier
     = link_to "#thing_supplier", title: "提供产品",
               data: {toggle: "modal", keyboard: false} do
-                i.icon-beer
-                span 我想提供此产品
+      i.icon-beer
+      span 我想提供此产品
 
 .author_info
   = tp.author_tag
