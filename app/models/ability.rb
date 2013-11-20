@@ -25,6 +25,9 @@ class Ability
   private
 
   def signed(user)
+    can :binding, User
+    can :bind, User
+
     can :create, Post
     can [:update, :destroy], Post do |post|
       post.author == user

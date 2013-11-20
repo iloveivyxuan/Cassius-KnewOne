@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class UsersController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource only: [:show, :index]
 
   after_filter :store_location, only: [:show]
 
@@ -21,7 +21,15 @@ class UsersController < ApplicationController
   end
 
   def bind
-    session[:previous_url] = params[:refer]
-    redirect_to user_omniauth_authorize_path(params[:auth_by])
+    if current_user.update_attributes params[:user]
+      current_user.resend_confirmation_instructions
+      redirect_to root_path, :notice => '已向您发送验证邮件！'
+    else
+      render 'binding'
+    end
+  end
+
+  def binding
+
   end
 end

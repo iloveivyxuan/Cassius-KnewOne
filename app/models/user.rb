@@ -3,7 +3,8 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, :trackable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, :trackable,
+         :confirmable
 
   field :name, type: String, :default => ''
   field :nickname, type: String, :default => ''
@@ -28,6 +29,12 @@ class User
   field :last_sign_in_at,    :type => Time
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
+
+  ## Confirmable
+  field :confirmation_token,   :type => String
+  field :confirmed_at,         :type => Time
+  field :confirmation_sent_at, :type => Time
+  field :unconfirmed_email,    :type => String # Only if using reconfirmable
 
   mount_uploader :avatar, AvatarUploader
 
@@ -156,6 +163,11 @@ class User
 
   ## Pagination
   paginates_per 50
+
+  protected
+  def confirmation_required?
+    false
+  end
 
   private
 

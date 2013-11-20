@@ -22,7 +22,8 @@ Making::Application.routes.draw do
   resources :users, only: [:show, :index] do
     collection do
       post 'share'
-      get 'bind'
+      put 'bind'
+      get 'binding'
     end
   end
 
