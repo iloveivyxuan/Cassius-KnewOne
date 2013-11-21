@@ -22,16 +22,18 @@ class ThingPresenter < PostPresenter
   end
 
   def price
-    @p ||= if thing.kinds.size > 0
-             thing.kinds.map(&:price).min
-           elsif thing.price.present?
-             thing.price
-           end
+    if thing.kinds.size > 1
+      p = thing.kinds.map(&:price).min
+    elsif thing.kinds.size == 1
+      p = thing.kinds.first.price
+    elsif thing.price.present?
+      p = thing.price
+    end
 
-    if @p.to_i > 0
+    if p.to_i > 0
       content_tag :small,
-      number_to_currency(@p, precision: 2,
-                         unit: thing.price_unit)
+      "#{number_to_currency(p, precision: 2,
+                         unit: thing.price_unit)}#{' 起' if thing.kinds.size > 1}"
     end
   end
 
