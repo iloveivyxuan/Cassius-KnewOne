@@ -16,6 +16,7 @@ Making::Application.routes.draw do
     root to: 'profiles#edit'
     scope path_names: { edit: '' }, only: [:edit, :update] do
       resource :profile
+      resource :account
     end
   end
 

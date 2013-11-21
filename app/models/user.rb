@@ -40,6 +40,7 @@ class User
 
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :avatar, :avatar_cache, :name, :nickname, :description, :location
+  attr_accessor :current_password
 
   ## Omniauthable
   embeds_many :auths

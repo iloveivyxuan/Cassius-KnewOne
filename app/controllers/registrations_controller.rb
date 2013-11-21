@@ -2,7 +2,6 @@
 class RegistrationsController < Devise::RegistrationsController
   def update
     @user = User.find(current_user.id)
-    logger.info params
     successfully_updated = if needs_password?(@user, params)
                              @user.update_with_password(params[:user])
                            else
