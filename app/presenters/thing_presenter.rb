@@ -22,18 +22,19 @@ class ThingPresenter < PostPresenter
   end
 
   def price
-    if thing.kinds.size > 1
-      p = thing.kinds.map(&:price).min
-    elsif thing.kinds.size == 1
-      p = thing.kinds.first.price
-    elsif thing.price.present?
-      p = thing.price
-    end
+    kinds_price = thing.kinds.map(&:price).uniq
+    p = if kinds_price.size > 1
+          kinds_price.min
+        elsif kinds_price.size == 1
+          kinds_price.first
+        elsif thing.price.present?
+          thing.price
+        end
 
     if p.to_i > 0
       content_tag :small,
-      "#{number_to_currency(p, precision: 2,
-                         unit: thing.price_unit)}#{' 起' if thing.kinds.size > 1}"
+                  "#{number_to_currency(p, precision: 2,
+                                        unit: thing.price_unit)}#{' 起' if kinds_price.size > 1}"
     end
   end
 
@@ -75,48 +76,48 @@ class ThingPresenter < PostPresenter
     return concept unless thing.shop.present?
 
     link_to_with_icon "预购", "icon-phone icon-large", buy_thing_path(thing),
-    title: title, class: "btn btn-warning track_event", target: "_blank",
-    data: {
-      action: "buy",
-      category: "presell",
-      label: title
-    }
+                      title: title, class: "btn btn-warning track_event", target: "_blank",
+                      data: {
+                          action: "buy",
+                          category: "presell",
+                          label: title
+                      }
   end
 
   def ship
     return concept unless thing.shop.present?
 
     link_to_with_icon "即将到货", "icon-anchor icon-large", "#",
-    title: "断货产品", class: "btn btn-success disabled popover-toggle",
-    data: {
-      toggle: "popover",
-      placement: "bottom",
-      content: "十分抱歉，我们当前没有此产品的库存，不过，一旦新一批产品到货，我们将会通知每位喜欢此产品的用户"
-    }
+                      title: "断货产品", class: "btn btn-success disabled popover-toggle",
+                      data: {
+                          toggle: "popover",
+                          placement: "bottom",
+                          content: "十分抱歉，我们当前没有此产品的库存，不过，一旦新一批产品到货，我们将会通知每位喜欢此产品的用户"
+                      }
   end
 
   def stock
     return concept unless thing.shop.present?
 
     link_to_with_icon "购买", "icon-shopping-cart icon-large", buy_thing_path(thing),
-    title: title, class: "btn btn-success track_event", target: "_blank",
-    data: {
-      action: "buy",
-      category: "stock",
-      label: title
-    }
+                      title: title, class: "btn btn-success track_event", target: "_blank",
+                      data: {
+                          action: "buy",
+                          category: "stock",
+                          label: title
+                      }
   end
 
   def exclusive
     return concept unless thing.shop.present?
 
     link_to_with_icon "限量", "icon-credit-card icon-large", "#",
-    title: "限量产品", class: "btn btn-inverse disabled popover-toggle",
-    data: {
-      toggle: "popover",
-      placement: "bottom",
-      content: "此产品数量非常有限，因此我们只提供给少数最狂热的爱好者，敬请谅解"
-    }
+                      title: "限量产品", class: "btn btn-inverse disabled popover-toggle",
+                      data: {
+                          toggle: "popover",
+                          placement: "bottom",
+                          content: "此产品数量非常有限，因此我们只提供给少数最狂热的爱好者，敬请谅解"
+                      }
   end
 
   def dsell
