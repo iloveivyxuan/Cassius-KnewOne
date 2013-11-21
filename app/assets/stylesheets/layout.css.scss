@@ -57,6 +57,14 @@ body > header {
         }
       }
 
+      .confirmation_tip {
+        background-color: #fff;
+        padding: 0.5em;
+        position: absolute;
+        top: 4em;
+        right: 1em;
+      }
+
       .nav_lotteries {
         i {color: $red;}
       }
