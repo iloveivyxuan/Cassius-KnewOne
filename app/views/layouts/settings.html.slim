@@ -8,6 +8,8 @@
               = link_to '个人资料', edit_settings_profile_path
             = nav_tab :account do
               = link_to '账号、绑定', edit_settings_account_path
+            = nav_tab :address do
+              = link_to '收货地址', settings_addresses_path
         .span10
           = yield
 

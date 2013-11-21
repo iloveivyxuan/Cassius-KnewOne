@@ -17,6 +17,7 @@ Making::Application.routes.draw do
     scope path_names: { edit: '' }, only: [:edit, :update] do
       resource :profile
       resource :account
+      resources :addresses, except: [:show]
     end
   end
 
@@ -29,7 +30,6 @@ Making::Application.routes.draw do
   end
 
   resources :cart_items, only: [:index, :create, :update, :destroy]
-  resources :addresses, except: [:show]
   resources :orders, only: [:index, :show, :create, :new] do
     member do
       get 'cancel'

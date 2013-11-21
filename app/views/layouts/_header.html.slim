@@ -61,7 +61,7 @@ header
               li= link_to_with_icon "个人主页", "icon-user icon-fixed-width", current_user
               li= link_to_with_icon "Dashboard", "icon-user icon-fixed-width", settings_root_path
               li= link_to_with_icon "我的订单", "icon-file-text-alt icon-fixed-width", orders_path
-              li= link_to_with_icon "收货地址", "icon-truck icon-fixed-width", addresses_path
+              li= link_to_with_icon "收货地址", "icon-truck icon-fixed-width", settings_addresses_path
               li= link_to_with_icon "登出", "icon-signout icon-fixed-width", destroy_user_session_path, method: :delete
               - if can? :manage, Supplier
                 li= link_to_with_icon "供货信息", "icon-stethoscope icon-fixed-width", suppliers_path

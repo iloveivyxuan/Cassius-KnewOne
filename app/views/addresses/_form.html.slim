@@ -1,4 +1,4 @@
-= simple_form_for @address do |f|
+= simple_form_for @address, url: [:settings, @address] do |f|
   = f.input :province, collection: Settings.province, prompt: '省市', required: true
   = f.input :district, required: true
   = f.input :street, required: true

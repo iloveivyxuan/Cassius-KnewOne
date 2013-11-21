@@ -1,17 +1,13 @@
-.addresses_wrapper {
-  @include responsive-wrapper;
+.addresses_header {
+  @include clearfix;
 
-  .addresses_header {
-    @include clearfix;
-
-    margin-bottom: 1em;
-    .title {
-      margin: 0;
-    }
+  margin-bottom: 1em;
+  .title {
+    margin: 0;
   }
+}
 
-  .addresses_header {
-    padding: 1em 0 1em 0;
-    border-bottom: 1px solid darkgray;
-  }
+.addresses_header {
+  padding: 1em 0 1em 0;
+  border-bottom: 1px solid darkgray;
 }
