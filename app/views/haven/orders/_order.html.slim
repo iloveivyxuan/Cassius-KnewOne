@@ -4,7 +4,10 @@ li.order
       ul
         li
           strong.field 用户：
-          span = link_to order.user.nickname, order.user, target: '_blank'
+          span
+            = link_to order.user.nickname, order.user, target: '_blank'
+            | &nbsp;&nbsp;
+            = link_to '[订单记录]', haven_orders_path(find_by: :user_id, find_cond: order.user.id)
         li
           strong.field 订单编号：
           span = link_to order.order_no, haven_order_path(order)
