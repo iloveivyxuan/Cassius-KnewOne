@@ -63,6 +63,10 @@ class Order
     errors.add :price, "总价必须大于1元" if total_price < 1
   end
 
+  validate do
+    errors.add :address_id, "必须选择收货地址" unless self.address
+  end
+
   after_create do
     user.cart_items.destroy_all(:thing.in => order_items.map(&:thing), :kind_id.in => order_items.map(&:kind).map(&:id))
   end
