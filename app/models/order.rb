@@ -45,6 +45,7 @@ class Order
   validates :deliver_by, presence: true, inclusion: {in: DELIVER_METHODS.keys}
   validates :payment_method, inclusion: {in: PAYMENT_METHOD.keys, allow_blank: true}
   validates_associated :address
+  validates :address_id, presence: true
   validates :user, presence: true
   attr_accessible :note, :deliver_by, :address_id
   attr_accessible :state, :admin_note, :deliver_no, :trade_no, :coupons_attributes,
