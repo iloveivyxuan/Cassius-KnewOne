@@ -21,6 +21,7 @@ Making::Application.routes.draw do
       end
       resources :addresses, except: [:show]
     end
+    resources :authentications, only: [:destroy]
   end
 
   resources :users, only: [:show, :index] do

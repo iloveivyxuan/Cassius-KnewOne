@@ -1,0 +1,6 @@
+i.icon-twitter
+- if auth
+  = link_to auth.name, auth.urls['Twitter']
+  = link_to '解绑', settings_authentication_path(auth.id), method: :delete, data: {confirm: '真的要解除绑定么？'}
+- else
+  = link_to '绑定', user_omniauth_authorize_path(:twitter)
