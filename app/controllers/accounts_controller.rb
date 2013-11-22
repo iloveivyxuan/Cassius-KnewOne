@@ -7,13 +7,14 @@ class AccountsController < Devise::RegistrationsController
     successfully_updated = if needs_password?(current_user, params)
                              current_user.update_with_password(params[:user])
                            else
+                             current_user.assign_attributes(params[:user])
                              if params[:user][:password].blank?
-                               current_user.assign_attributes(params[:user])
                                current_user.valid?
                                current_user.errors.add(:password, current_user.password.blank? ? :blank : :invalid)
                                false
                              else
-                               current_user.update_attributes params[:user]
+                               current_user.normalize
+                               current_user.save
                              end
                            end
 
@@ -28,7 +29,15 @@ class AccountsController < Devise::RegistrationsController
   end
 
   def edit
+  end
 
+  def email
+    current_user.email = params[:user][:email]
+    if current_user.save
+      redirect_to edit_settings_account_path, :notice => {:email => 'updated'}
+    else
+      render 'accounts/edit'
+    end
   end
 
   private
@@ -36,7 +45,7 @@ class AccountsController < Devise::RegistrationsController
   # ie if password or email was changed
   # extend this as needed
   def needs_password?(user, params)
-    user.email.present? && user.encrypted_password.present?
+    user.normal?
   end
 
   def resource_name

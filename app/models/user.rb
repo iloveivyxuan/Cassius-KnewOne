@@ -12,29 +12,43 @@ class User
   field :location, type: String, :default => ''
   field :karma, type: Integer, default: 0
 
+  field :status, type: Symbol, default: :normal
+  STATUS = {blocked: '锁定', initial: '账号资料不完善', normal: '正常'}
+  validates :status, inclusion: {in: STATUS.keys, allow_blank: false}
+  STATUS.keys.each do |k|
+    class_eval <<-EVAL
+      def #{k}?
+        self.status == :#{k}
+      end
+    EVAL
+  end
+  def normalize
+    self.status = :normal if STATUS.keys.index(self.status) < STATUS.keys.index(:normal)
+  end
+
   ## Database authenticatable
-  field :email,              :type => String
+  field :email, :type => String
   field :encrypted_password, :type => String
 
   ## Recoverable
-  field :reset_password_token,   :type => String
+  field :reset_password_token, :type => String
   field :reset_password_sent_at, :type => Time
 
   ## Rememberable
   field :remember_created_at, :type => Time
 
   ## Trackable
-  field :sign_in_count,      :type => Integer
+  field :sign_in_count, :type => Integer
   field :current_sign_in_at, :type => Time
-  field :last_sign_in_at,    :type => Time
+  field :last_sign_in_at, :type => Time
   field :current_sign_in_ip, :type => String
-  field :last_sign_in_ip,    :type => String
+  field :last_sign_in_ip, :type => String
 
   ## Confirmable
-  field :confirmation_token,   :type => String
-  field :confirmed_at,         :type => Time
+  field :confirmation_token, :type => String
+  field :confirmed_at, :type => Time
   field :confirmation_sent_at, :type => Time
-  field :unconfirmed_email,    :type => String # Only if using reconfirmable
+  field :unconfirmed_email, :type => String # Only if using reconfirmable
 
   mount_uploader :avatar, AvatarUploader
 
@@ -48,7 +62,7 @@ class User
   class << self
     def find_by_omniauth(data)
       where("auths.provider" => data[:provider])
-        .and("auths.uid" => data[:uid].to_i).first
+      .and("auths.uid" => data[:uid].to_i).first
     end
 
     def create_from_omniauth(data)
@@ -61,6 +75,7 @@ class User
         user.description = auth.description
         user.remote_avatar_url = auth.parse_image(data)
         user.password = Digest::MD5.hexdigest auth.access_token
+        user.status = :initial
       end
     end
   end
@@ -144,7 +159,7 @@ class User
     item = self.cart_items.where(thing: param[:thing], kind_id: param[:kind_id]).first
     if item.nil?
       item = self.cart_items.build thing: param[:thing],
-      kind_id: param[:kind_id], quantity: param[:quantity]
+                                   kind_id: param[:kind_id], quantity: param[:quantity]
     else
       item.quantity_increment(param[:quantity].to_i)
     end
