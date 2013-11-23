@@ -196,12 +196,12 @@ class Order
     order_items.map(&:price).reduce(&:+) || 0
   end
 
-  def coupons_price
-    coupons.map(&:price).reduce(&:+) || 0
+  def rebates_price
+    rebates.map(&:price).reduce(&:+) || 0
   end
 
   def total_price
-    items_price + (self.deliver_price || calculate_deliver_price) + coupons_price
+    items_price + (self.deliver_price || calculate_deliver_price) + rebates_price
   end
 
   def total_cents
