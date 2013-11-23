@@ -71,13 +71,13 @@
       = simple_nested_form_for @order, url: haven_order_path(@order), html: {class: "form-horizontal"} do |f|
         fieldset
           legend 调价
-          = f.simple_fields_for :coupons
-          = f.link_to_add "新增调价", :coupons, class: "btn"
+          = f.simple_fields_for :rebates
+          = f.link_to_add "新增调价", :rebates, class: "btn"
         .submit
           = f.button :submit, class: "btn-primary"
     - else
       ul.coupons
-        - @order.coupons.each do |c|
+        - @order.rebates.each do |c|
           li = "#{c.name}: #{c.price}"
 
   footer

@@ -11,6 +11,7 @@ class Order
   embeds_many :order_histories
 
   embeds_many :coupons
+  embeds_many :rebates
 
   STATES = {:pending => '等待付款',
             :paid => '已付款，等待确认',
@@ -47,10 +48,10 @@ class Order
   validates_associated :address
   validates :user, presence: true
   attr_accessible :note, :deliver_by, :address_id
-  attr_accessible :state, :admin_note, :deliver_no, :trade_no, :coupons_attributes,
+  attr_accessible :state, :admin_note, :deliver_no, :trade_no, :rebates_attributes,
                   :as => :admin
 
-  accepts_nested_attributes_for :coupons, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :rebates, allow_destroy: true, reject_if: :all_blank
 
   before_create do
     self.order_no = rand.to_s[2..11]
