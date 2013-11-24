@@ -39,6 +39,7 @@ zh-CN:
         note: '备注'
         admin_note: '管理员备注'
         address: '收货地址'
+        coupon: '优惠券'
       address:
         province: '省'
         district: '地区'

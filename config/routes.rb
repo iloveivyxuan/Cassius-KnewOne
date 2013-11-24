@@ -48,6 +48,12 @@ Making::Application.routes.draw do
         put 'refund'
       end
     end
+
+    resources :abatement_coupons, only: [:show, :index, :new, :create] do
+      member do
+        put 'disable'
+      end
+    end
   end
 
   resources :things do

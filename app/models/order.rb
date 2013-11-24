@@ -10,8 +10,10 @@ class Order
   embeds_many :order_items
   embeds_many :order_histories
 
-  embeds_many :coupons
   embeds_many :rebates
+
+  has_and_belongs_to_many :coupons
+  attr_accessor :coupon
 
   STATES = {:pending => '等待付款',
             :paid => '已付款，等待确认',
@@ -47,7 +49,7 @@ class Order
   validates :payment_method, inclusion: {in: PAYMENT_METHOD.keys, allow_blank: true}
   validates_associated :address
   validates :user, presence: true
-  attr_accessible :note, :deliver_by, :address_id
+  attr_accessible :note, :deliver_by, :address_id, :coupon
   attr_accessible :state, :admin_note, :deliver_no, :trade_no, :rebates_attributes,
                   :as => :admin
 
@@ -200,12 +202,23 @@ class Order
     rebates.map(&:price).reduce(&:+) || 0
   end
 
+  def receivable
+    items_price + (self.deliver_price || calculate_deliver_price)
+  end
+
   def total_price
-    items_price + (self.deliver_price || calculate_deliver_price) + rebates_price
+    receivable + rebates_price
   end
 
   def total_cents
     (total_price * 100).to_i
+  end
+
+  def use_coupon!(code)
+    coupon = Coupon.find_available_by_code(code)
+    return false unless coupon and coupon.usable?(self)
+
+    coupon.use! self
   end
 
   class<< self
