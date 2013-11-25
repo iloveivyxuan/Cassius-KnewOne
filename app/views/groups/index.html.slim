@@ -1,7 +1,7 @@
 .group_wrapper
 
   - if can? :create, Group
-    .new_group= link_to "建立小组", new_group_path, class: 'btn'
+    .new_group= link_to "建立小组", new_group_path, class: 'btn btn-default'
 
   table.table
     thead
@@ -18,8 +18,6 @@
           td= group.created_at
           - if can? :update, group
             td
-              = link_to_with_icon "", "icon-edit", edit_group_path(group) 
+              = link_to_with_icon "", "icon-edit", edit_group_path(group)
               - if group.topics.count <= 0
                 = link_to_with_icon "", "icon-trash", group, method: :delete, data: {confirm: "您确认要删除此小组吗?"}
-
-

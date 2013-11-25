@@ -8,7 +8,7 @@
     label {
       display: inline-block;
       margin-right: 1em;
-      color: $fontLightColor;
+      color: $text-muted;
       padding-top: .4em;
       width: 2em;
       abbr {display: none;}
@@ -21,7 +21,7 @@
   }
 
   .cart_prompt {
-    color: $fontLightColor;
+    color: $text-muted;
     i {color: $red;}
     time {
       font-size: 1.2em;
@@ -46,7 +46,7 @@
       padding: 0.5em;
       min-width: 60%;
       background-color: #eee;
-      color: $fontLightColor;
+      color: $text-muted;
     }
 
     .select_enabled {
@@ -154,7 +154,7 @@
       .destroy {
         text-align: center;
         margin: 0 2em;
-        a {color: $fontLightColor;}
+        a {color: $text-muted;}
       }
       .quantity {
         margin-right: 1em;
@@ -185,7 +185,7 @@
   .total_price {
     text-align: right;
     margin-right: 1em;
-    color: $fontLightColor;
+    color: $text-muted;
     strong {
       margin-left: 1em;
       font-size: 1.25em;

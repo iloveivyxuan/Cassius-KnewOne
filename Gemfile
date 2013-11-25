@@ -57,8 +57,8 @@ group :assets do
 
   # stylesheets library
   gem 'compass-rails'
-  gem 'bootstrap-sass', '~> 2.3.2'
-  gem 'font-awesome-rails', '~> 3.2.1'
+  gem 'bootstrap-sass', '~> 3.0.2.0'
+  gem 'font-awesome-rails'
 end
 
 group :production do

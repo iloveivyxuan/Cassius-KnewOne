@@ -8,8 +8,8 @@
 
   h1 {
     a {
-      color: $textColor;
-      &:hover {color: $linkColor;}
+      color: $text-color;
+      &:hover {color: $link-color;}
 
       i {
         vertical-align: 2px;
@@ -21,7 +21,7 @@
     }
   }
 
-  p {color: $fontLightColor;}
+  p {color: $text-muted;}
 
   .new_topic {
     float: right;
@@ -66,12 +66,12 @@
       margin-top: 20px;
 
       a {
-        color: $fontLightColor;
-        &:hover {color: $textColor;}
+        color: $text-muted;
+        &:hover {color: $text-color;}
       }
 
       .commented_at {
-        color: $fontLightColor;
+        color: $text-muted;
         margin-left: 2em;
         
         time {

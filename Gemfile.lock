@@ -47,7 +47,7 @@ GEM
       jquery-rails
       rails (>= 3.1)
     bcrypt-ruby (3.1.2)
-    bootstrap-sass (2.3.2.2)
+    bootstrap-sass (3.0.2.0)
       sass (~> 3.2)
     builder (3.0.4)
     cancan (1.6.10)
@@ -387,7 +387,7 @@ DEPENDENCIES
   airbrake
   alipay
   backbone-on-rails
-  bootstrap-sass (~> 2.3.2)
+  bootstrap-sass (~> 3.0.2.0)
   cancan
   capistrano (~> 2.15.0)
   capistrano-unicorn
@@ -400,7 +400,7 @@ DEPENDENCIES
   devise
   fabrication
   ffaker
-  font-awesome-rails (~> 3.2.1)
+  font-awesome-rails
   growl
   guard-jasmine
   guard-livereload

@@ -6,7 +6,7 @@
         i.icon-shopping-cart
         | 提交订单
       ul.order_items = render partial: 'orders/order_item', collection: @order.order_items
-      .control-group
+      .form-group
         label.control-label for="order_address_id" * 收货地址
         .controls
           ul.addresses

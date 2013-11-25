@@ -7,7 +7,7 @@ module OrdersHelper
     end
   end
 
-  def cancel_link(order, css = 'btn')
+  def cancel_link(order, css = 'btn btn-default')
     if order.can_cancel?
       link_to '取消订单', cancel_order_path(order),
               data: {confirm: '真的要取消这个订单么？'},

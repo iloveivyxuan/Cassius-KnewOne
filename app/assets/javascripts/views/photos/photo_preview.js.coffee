@@ -4,12 +4,12 @@ class Making.Views.PhotoPreview extends Backbone.View
   className: 'uploading'
   template: HandlebarsTemplates['photos/preview']
 
-  events: 
+  events:
       "click .fail a": "remove"
 
   initialize: ->
     @model.readable_size = @_formatSize(@model.size)
-  
+
   render: =>
     @$el.html @template(@model)
     loadImage @model, (img) =>
@@ -18,7 +18,7 @@ class Making.Views.PhotoPreview extends Backbone.View
       canvas: true
       maxWidth: @$('.photo').data('preview-width')
       maxHeight: @$('.photo').data('preview-height')
-    } 
+    }
     this
 
   validate: =>
@@ -32,7 +32,7 @@ class Making.Views.PhotoPreview extends Backbone.View
 
   progress: (data) ->
     progress = parseInt(data.loaded / data.total * 100, 10)
-    @$('.progress .bar').css('width', progress + '%')
+    @$('.progress .progress-bar').css('width', progress + '%')
 
   fail: (error) ->
     @$('.progress').replaceWith "<p class=\"fail\">#{error}, 请<a href='#'>重新上传</a></p>"
@@ -43,7 +43,4 @@ class Making.Views.PhotoPreview extends Backbone.View
     if bytes >= 1000000
       (bytes / 1000000).toFixed(2) + ' MB'
     else
-      (bytes / 1000).toFixed(2) + ' KB';      
-
-
-
+      (bytes / 1000).toFixed(2) + ' KB';

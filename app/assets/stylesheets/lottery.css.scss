@@ -15,7 +15,7 @@
     }
 
     p {
-      color: $fontLightColor;
+      color: $text-muted;
       i {
         color: $red;
       }
@@ -23,7 +23,7 @@
 
     ol {
       list-style: decimal;
-      color: $fontLightColor;
+      color: $text-muted;
       margin-left: 1.5em;
       margin-bottom: 1em;
     }
@@ -53,7 +53,7 @@
 
         p {
           margin: 5px 0;
-          color: $fontLightColor;
+          color: $text-muted;
         }
       }
     }
@@ -61,7 +61,7 @@
     .lottery {
 
       .placeholder {
-        color: $fontLightColor;
+        color: $text-muted;
         font-size: 50px;
         line-height: 80px;
       }

@@ -17,9 +17,9 @@
       = f.input :stage_end_at, as: :datetime
     .kinds
       = f.simple_fields_for :kinds
-      = f.link_to_add "新增型号", :kinds, class: "btn"
+      = f.link_to_add "新增型号", :kinds, class: "btn btn-default"
     .submit
-      = f.button :submit, class: "btn-primary btn-large"
+      = f.button :submit, class: "btn btn-primary btn-lg"
 
 - content_for :script do
   javascript:

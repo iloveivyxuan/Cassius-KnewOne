@@ -3,23 +3,26 @@
 */
 
 /* bootstrap variables */
+$font-family-base: "Hiragino Sans GB", "Microsoft YaHei", Helvetica, sans-serif;
+$headings-font-weight: normal;
 
-$baseFontFamily: "Hiragino Sans GB", "Microsoft YaHei", Helvetica, sans-serif;
-$baseFontSize: 14px;
-$baseLineHeight: 22px;
-$linkColor: #588cc7;
-$headingsFontWeight: normal;
-$btnPrimaryBackground: #049cdb;
+$link-color: #588cc7;
+$btn-primary-bg: #049cdb;
+
+$blue: #049cdb;
+$green: #46a546;
+$red: #9d261d;
+$yellow: #ffc40d;
+$orange: #f89406;
+$pink: #c3325f;
+$purple: #7a43b6;
 
 @import "bootstrap";
-@import "bootstrap-responsive";
 @import "font-awesome";
 @import "compass/css3";
 
 @import "jquery.tagsinput";
 @import "datepicker";
-
-$fontLightColor: $grayLight;
 
 @import "base";
 @import "layout";
@@ -33,4 +36,3 @@ $fontLightColor: $grayLight;
 @import "carts";
 @import "addresses";
 @import "orders";
-

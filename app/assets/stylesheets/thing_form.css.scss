@@ -7,7 +7,7 @@
     margin: 0;
   }
   p {
-    color: $fontLightColor;
+    color: $text-muted;
     b {color: $blue;}
   }
 }
@@ -58,8 +58,8 @@ form#new_photo {
     p {
       padding-top: 1em;
       margin-left: 2em;
-      font-size: $fontSizeSmall;
-      color: $fontLightColor;
+      font-size: $font-size-small;
+      color: $text-muted;
     }
 
     ul {
@@ -78,10 +78,10 @@ form#new_photo {
         }
 
         .file_info {
-          color: $fontLightColor;
+          color: $text-muted;
           span:first-child {
             margin-right: 2em;
-            border-right: 1px solid $fontLightColor;
+            border-right: 1px solid $text-muted;
             padding-right: 2em;
           }
 

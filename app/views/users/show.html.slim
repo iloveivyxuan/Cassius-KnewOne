@@ -9,7 +9,7 @@
       .karma
         .rank Lv.#{@user.rank}
         .progress title="#{@user.progress}%"
-          .bar style="width: #{@user.progress}%;"
+          .progress-bar style="width: #{@user.progress}%;"
       .urls
         = user_links(@user)
       address = user_location(@user)
@@ -43,4 +43,3 @@
           = render @reviews
         ul#things.tab-pane
           = render @things, size: :normal
-

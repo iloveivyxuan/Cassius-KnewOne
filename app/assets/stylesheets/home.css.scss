@@ -31,7 +31,7 @@
   h2 {
     text-align: center;
     margin-top: 0;
-    color: $fontLightColor;
+    color: $text-muted;
     font-size: 2em;
   }
 }
@@ -68,7 +68,7 @@
     a {
       display: inline-block;
       float: right;
-      font-size: $baseFontSize;
+      font-size: $font-size-base;
     }
   }
 
@@ -85,7 +85,7 @@
   li.thing {
     h4 {
       font-size: 1em;
-      color: $fontLightColor;
+      color: $text-muted;
     }
     p {display: none;}
     margin: 1em 0;
@@ -116,5 +116,5 @@
 #site_filling {
   margin: 1em 0;
   text-align: center;
-  color: $fontLightColor;
+  color: $text-muted;
 }

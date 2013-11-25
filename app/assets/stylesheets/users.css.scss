@@ -55,7 +55,7 @@
     .progress {
       float: left;
       width: 60%;
-      .bar {
+      .progrss-bar {
         @include transition(width 1s, opacity 0.22s ease-out);
       }
     }
@@ -63,7 +63,7 @@
 
   address, blockquote {
     margin-top: 1em;
-    color: $fontLightColor;
+    color: $text-muted;
     i {margin-right: 1em;}
   }
 

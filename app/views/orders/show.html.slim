@@ -49,7 +49,7 @@
   section
     ul = render partial: 'orders/order_item', collection: @order.order_items
     .pull-right
-      = link_to '#order_share', class: 'btn', data: {toggle: 'modal'}  do
+      = link_to '#order_share', class: 'btn btn-default', data: {toggle: 'modal'}  do
         = provider_share
   section.order_tips
     ul

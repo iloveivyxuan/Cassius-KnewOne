@@ -72,7 +72,7 @@
         fieldset
           legend 调价
           = f.simple_fields_for :rebates
-          = f.link_to_add "新增调价", :rebates, class: "btn"
+          = f.link_to_add "新增调价", :rebates, class: "btn btn-default"
         .submit
           = f.button :submit, class: "btn-primary"
     - else
@@ -81,7 +81,7 @@
           li = "#{c.name}: #{c.price}"
 
   footer
-    = link_to '返回', haven_orders_path, class: 'btn'
+    = link_to '返回', haven_orders_path, class: 'btn btn-default'
     = ship_link(@order)
     = refund_link(@order)
     = close_link(@order)

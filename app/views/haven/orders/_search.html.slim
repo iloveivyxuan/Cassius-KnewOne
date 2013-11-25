@@ -1,10 +1,10 @@
 = form_tag params, method: :get, class: 'form-inline' do
-  = text_field_tag :find_cond, params[:find_cond], class: 'input-small'
-  = select_tag :find_by, options_for_select(types.to_a.collect(&:reverse), params[:find_by]), include_blank: false, class: 'input-small'
-  = text_field_tag :start_date, params[:start_date], class: 'input-small datepicker', placeholder: '起始日期'
-  = text_field_tag :end_date, params[:end_date], class: 'input-small datepicker', placeholder: '截止日期'
-  = submit_tag '搜索', class: 'btn'
-  = link_to '清空条件', haven_orders_path, class: 'btn'
+  = text_field_tag :find_cond, params[:find_cond], class: 'input-sm'
+  = select_tag :find_by, options_for_select(types.to_a.collect(&:reverse), params[:find_by]), include_blank: false, class: 'input-sm'
+  = text_field_tag :start_date, params[:start_date], class: 'input-sm datepicker', placeholder: '起始日期'
+  = text_field_tag :end_date, params[:end_date], class: 'input-sm datepicker', placeholder: '截止日期'
+  = submit_tag '搜索', class: 'btn btn-default'
+  = link_to '清空条件', haven_orders_path, class: 'btn btn-default'
 
 - content_for :script do
   javascript:

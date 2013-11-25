@@ -4,7 +4,7 @@
 
 .thing_module {
   h4 {
-    color: $fontLightColor;
+    color: $text-muted;
     .btn {margin-left: 2em;}
     padding-bottom: .5em;
     border-bottom: 5px solid #eee;
@@ -29,7 +29,7 @@
       margin: 0;
       line-height: 24px;
       font-size: 18px;
-      color: $fontLightColor;
+      color: $text-muted;
     }
   }
 
@@ -38,7 +38,7 @@
 
     i {@extend .icon-large;}
 
-    a {color: $fontLightColor;}
+    a {color: $text-muted;}
 
     .nav {
       margin: 0;
@@ -56,9 +56,9 @@
       .active {
         border-bottom: 1px solid $red;
         a {
-          color: $textColor;
+          color: $text-color;
           background: transparent;
-          small {color: $textColor;}
+          small {color: $text-color;}
         }
       }
 
@@ -82,7 +82,7 @@
 
       i {margin-right: 1em;}
       a:hover {
-        color: $textColor;
+        color: $text-color;
       }
     }
   }
@@ -179,7 +179,7 @@
 
   .actions {
     .support, .share, .wechat, .supplier {
-      i {color: $fontLightColor;}
+      i {color: $text-muted;}
     }
   }
 
@@ -226,7 +226,7 @@
           @include icon-fixed-width;
         }
 
-        span:last-child {color: $fontLightColor;}
+        span:last-child {color: $text-muted;}
       }
 
       .fanciers, .owners {
@@ -370,7 +370,7 @@
 }
 
 .lovers {
-  color: $fontLightColor;
+  color: $text-muted;
 }
 
 .post_show {
@@ -397,7 +397,7 @@
     .voting {
       display: inline-block;
       form {
-        small {color: $fontLightColor;}
+        small {color: $text-muted;}
         button {margin-left: 1em;}
       }
     }
@@ -455,7 +455,7 @@
       position: absolute;
       margin: 0;
       background: white;
-      color: $fontLightColor;
+      color: $text-muted;
       left: -.5em;
       font-size: 1.6em;
       padding-bottom: .625em;

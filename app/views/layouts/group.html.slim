@@ -6,10 +6,10 @@
     header#group_header
       - unless content_for(:new_topic) == "no"
         .new_topic
-          - if user_signed_in? 
-            = link_to_with_icon "发帖", "icon-pencil", new_group_topic_path(@group), class: 'btn btn-primary' 
+          - if user_signed_in?
+            = link_to_with_icon "发帖", "icon-pencil", new_group_topic_path(@group), class: 'btn btn-primary'
           - else
-            = link_to_with_icon "发帖", "icon-pencil", '#', class: 'btn disabled', data: {toggle: "modal", target: "#login-modal"}
+            = link_to_with_icon "发帖", "icon-pencil", '#', class: 'btn btn-default disabled', data: {toggle: "modal", target: "#login-modal"}
       h1= link_to_with_icon @group.name, "icon-group", @group
       p= @group.description
 

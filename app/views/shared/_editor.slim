@@ -3,50 +3,50 @@
   #editor-toolbar.btn-toolbar data-role="editor-toolbar" data-target="#editor"
 
     .btn-group
-      a.btn data-edit="formatBlock h4" title="小标题"
+      a.btn.btn-default data-edit="formatBlock h4" title="小标题"
         i.icon-h-sign
-      a.btn data-edit="bold" title="粗体"
+      a.btn.btn-default data-edit="bold" title="粗体"
         i.icon-bold
-      a.btn data-edit="italic" title="斜体"
+      a.btn.btn-default data-edit="italic" title="斜体"
         i.icon-italic
-      a.btn data-edit="strikethrough" title="删除线"
+      a.btn.btn-default data-edit="strikethrough" title="删除线"
         i.icon-strikethrough
-      a.btn data-edit="underline" title="下划线"
+      a.btn.btn-default data-edit="underline" title="下划线"
         i.icon-underline
 
     .btn-group
-      a.btn.link.dropdown-toggle data-toggle="dropdown" title="链接"
+      a.btn.btn-default.link.dropdown-toggle data-toggle="dropdown" title="链接"
         i.icon-link
       .dropdown-menu
         input placeholder="http://" type="text" data-edit="createLink"
-        button.btn type="button" 提交
-      a.btn data-edit="unlink" title="移除链接"
+        button.btn.btn-default type="button" 提交
+      a.btn.btn-default data-edit="unlink" title="移除链接"
         i.icon-unlink
 
     .btn-group
-      a.btn#pictureBtn title="插入图像(可以拖拽)"
+      a.btn.btn-default#pictureBtn title="插入图像(可以拖拽)"
         i.icon-picture
       = attachment_tag target: "#pictureBtn", edit: "insertImage"
-      a.btn.video.dropdown-toggle data-toggle="dropdown" title="插入视频"
+      a.btn.btn-default.video.dropdown-toggle data-toggle="dropdown" title="插入视频"
         i.icon-film
       .dropdown-menu
         input placeholder="插入视频代码(建议非flash)" type="text" data-edit="insertHtml"
-        button.btn type="button" 提交
+        button.btn.btn-default type="button" 提交
 
     .btn-group
-      a.btn data-edit="insertunorderedlist" title="无序列表"
+      a.btn.btn-default data-edit="insertunorderedlist" title="无序列表"
         i.icon-list-ul
-      a.btn data-edit="insertorderedlist" title="有序列表"
+      a.btn.btn-default data-edit="insertorderedlist" title="有序列表"
         i.icon-list-ol
-      a.btn data-edit="indent" title="缩进"
+      a.btn.btn-default data-edit="indent" title="缩进"
         i.icon-indent-right
-      a.btn data-edit="outdent" title="减少缩进"
+      a.btn.btn-default data-edit="outdent" title="减少缩进"
         i.icon-indent-left
 
     .btn-group
-      a.btn data-edit="undo" title="撤销(Ctrl/⌘+z)"
+      a.btn.btn-default data-edit="undo" title="撤销(Ctrl/⌘+z)"
         i.icon-undo
-      a.btn data-edit="redo" title="重复(Ctrl/⌘+y)"
+      a.btn.btn-default data-edit="redo" title="重复(Ctrl/⌘+y)"
         i.icon-repeat
 
   /For sisyphus

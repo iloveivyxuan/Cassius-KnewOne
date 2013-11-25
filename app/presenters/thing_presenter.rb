@@ -40,7 +40,7 @@ class ThingPresenter < PostPresenter
 
   def concept
     link_to_with_icon "研发中", "icon-wrench icon-large", "#",
-                      title: "概念产品", class: "btn disabled popover-toggle",
+                      title: "概念产品", class: "btn btn-default disabled popover-toggle",
                       data: {
                           toggle: "popover",
                           placement: "bottom",

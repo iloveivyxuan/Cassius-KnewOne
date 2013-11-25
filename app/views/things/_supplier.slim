@@ -12,5 +12,5 @@
       = f.input :description, as: :text, input_html: {rows: 5}
       = f.input :thing_title, as: :hidden, input_html: {value: tp.title}
     .modal-footer
-      = button_tag "取消", type: 'button', class: "btn", data: {dismiss: "modal"}
+      = button_tag "取消", type: 'button', class: "btn btn-default", data: {dismiss: "modal"}
       = f.submit "发布", class: "btn btn-primary"
