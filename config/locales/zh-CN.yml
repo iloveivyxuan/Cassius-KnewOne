@@ -13,6 +13,8 @@ zh-CN:
       address: '收货地址'
       kind: '型号'
       rebate: '优惠'
+      coupon: '优惠券'
+      abatement_coupon: '足价即减优惠券'
     attributes:
       post:
         title: '标题'
@@ -51,6 +53,13 @@ zh-CN:
         name: '明目'
         price: '价格'
         note: '备注'
+      coupon:
+        name: '名称'
+        note: '说明'
+        code: '兑换码'
+      abatement_coupon:
+        threshold_price: '阀值金额'
+        price: '降低金额'
   errors:
     messages:
       extension_white_list_error: '上传文件格式不正确'

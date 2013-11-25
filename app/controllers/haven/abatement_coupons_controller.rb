@@ -16,12 +16,14 @@ module Haven
 
     def create
       @coupon = AbatementCoupon.generate! params[:abatement_coupon]
-      redirect_to haven_abatement_coupon_path(@coupon)
+      # redirect_to haven_abatement_coupon_path(@coupon)
+      redirect_to haven_abatement_coupons_path
     end
 
     def disable
       @coupon.disable!
-      redirect_to haven_abatement_coupon_path(@coupon)
+
+      redirect_to haven_abatement_coupons_path
     end
   end
 end
