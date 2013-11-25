@@ -4,31 +4,17 @@
                      "orbitron-bold.svg", svg),
                    "orbitron-bold.eot");
 
-.user_avatar {
-  width: 30px;
-  height: 30px;
-}
-
-body {
-  background: #eee;
-}
-
 body > header {
-  margin-bottom: 3em;
+  margin-bottom: $navbar-height;
 
-  /* @media screen and (max-width: 979px) { */
-  /*   margin-bottom: -2em; */
-  /* } */
-
-  >nav.navbar {
+  > nav.navbar {
 
     .icon-caret-down {margin: 0 0 0 .2em;}
 
     .navbar-brand {
       position: relative;
       margin-left: 40px;
-      margin-right: 2em;
-      color: $blue;
+      margin-right: 1em;
       font-family: "orbitron-bold";
       position: relative;
 
@@ -63,13 +49,13 @@ body > header {
       input.search-query, input.search-query:focus {
         padding-left: 29px; 
         margin-top: 4px;
-        border: 1px solid #ccc;
+        border: 1px solid $input-border;
         @include border-radius(4px);
       }
 
       .icon-search {
         position: absolute; 
-        top: 8px; 
+        top: 9px; 
         left: 21px;
         color: $text-muted; 
       }
