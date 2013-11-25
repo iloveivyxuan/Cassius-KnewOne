@@ -44,6 +44,7 @@ class Coupon
 
     order.coupon = self
     take_effect order
+    order.sync_price
     order.save
 
     self.status = :used

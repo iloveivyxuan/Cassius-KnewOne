@@ -42,7 +42,9 @@ class Order
   field :trade_price, type: BigDecimal
   field :trade_state, type: String
   field :deliver_price, type: BigDecimal#, default: DELIVER_METHODS.first[1][:price]
+  field :price, type: BigDecimal
 
+  validates_numericality_of :price, :greater_than_or_equal_to => 1, :unless => Proc.new { |order| !order.persisted? }
   validates :state, presence: true, inclusion: {in: STATES.keys}
   validates :deliver_by, presence: true, inclusion: {in: DELIVER_METHODS.keys}
   validates :payment_method, inclusion: {in: PAYMENT_METHOD.keys, allow_blank: true}
@@ -59,6 +61,7 @@ class Order
     self.deliver_price = calculate_deliver_price
     # mongoid may not rollback when error occurred
     order_items.each &:claim_stock!
+    sync_price
   end
 
   validate do
@@ -77,6 +80,10 @@ class Order
 
   def state
     super.to_sym
+  end
+
+  def sync_price
+    self.price = calculate_price
   end
 
   STATES.keys.each do |s|
@@ -205,17 +212,21 @@ class Order
     items_price + (self.deliver_price || calculate_deliver_price)
   end
 
-  def total_price
+  def calculate_price
     receivable + rebates_price
   end
 
+  def total_price
+    self.price || calculate_price
+  end
+
   def total_cents
-    (total_price * 100).to_i
+    ((self.price || calculate_price) * 100).to_i
   end
 
   def use_coupon!(code)
     coupon = Coupon.find_available_by_code(code)
-    return false unless coupon and coupon.usable?(self)
+    return false unless coupon
 
     coupon.use! self
   end
