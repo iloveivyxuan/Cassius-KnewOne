@@ -1,0 +1,11 @@
+.control-group
+  label.control-label for="order_address_id" * 收货地址
+  .controls
+    ul.addresses
+      = render partial: 'address_radio', collection: current_user.addresses, as: :address, locals: {f: f}
+      - if current_user.addresses.empty?
+        li
+          span.alert
+            = link_to '您必须添加一个收货地址才能够提交订单，点此添加。', new_address_path
+      - else
+        li = link_to '+ 新地址', new_address_path

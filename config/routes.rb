@@ -28,6 +28,11 @@ Making::Application.routes.draw do
 
   resources :cart_items, only: [:index, :create, :update, :destroy]
   resources :addresses, except: [:show]
+  resources :coupons, only: [:index] do
+    collection do
+      post 'bind'
+    end
+  end
   resources :orders, only: [:index, :show, :create, :new] do
     member do
       get 'cancel'

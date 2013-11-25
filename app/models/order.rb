@@ -12,8 +12,7 @@ class Order
 
   embeds_many :rebates
 
-  has_and_belongs_to_many :coupons
-  attr_accessor :coupon
+  has_one :coupon
 
   STATES = {:pending => '等待付款',
             :paid => '已付款，等待确认',
@@ -49,7 +48,7 @@ class Order
   validates :payment_method, inclusion: {in: PAYMENT_METHOD.keys, allow_blank: true}
   validates_associated :address
   validates :user, presence: true
-  attr_accessible :note, :deliver_by, :address_id, :coupon
+  attr_accessible :note, :deliver_by, :address_id
   attr_accessible :state, :admin_note, :deliver_no, :trade_no, :rebates_attributes,
                   :as => :admin
 

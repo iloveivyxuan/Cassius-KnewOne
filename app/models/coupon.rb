@@ -2,13 +2,14 @@ class Coupon
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  has_and_belongs_to_many :orders
+  belongs_to :order
+  belongs_to :user
 
   field :name, type: String
   field :note, type: String
   field :code, type: String
-  field :available, type: Boolean, default: true
 
+  field :available, type: Boolean, default: true
   scope :available, -> { where available: true }
 
   validates :name, :code, presence: true
@@ -23,16 +24,27 @@ class Coupon
   end
 
   def use!(order)
-    return false if orders.include?(order) || !usable?(order)
+    return false unless self.user.nil? || self.user == order.user
+    bind_user! order.user
 
-    order.coupons<< self
+    return false unless self.available? && usable?(order)
+
+    order.coupon = self
     take_effect order
     order.save
+
+    disable!
   end
 
   def disable!
     self.available = false
     self.save
+  end
+
+  def bind_user!(user)
+    return false unless self.user.nil?
+    self.user = user
+    save
   end
 
   def self.generate(params = {})
