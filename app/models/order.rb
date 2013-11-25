@@ -51,7 +51,7 @@ class Order
   validates_associated :address
   validates :user, presence: true
   attr_accessible :note, :deliver_by, :address_id
-  attr_accessible :state, :admin_note, :deliver_no, :trade_no, :rebates_attributes,
+  attr_accessible :state, :admin_note, :deliver_no, :trade_no, :rebates_attributes, :price,
                   :as => :admin
 
   accepts_nested_attributes_for :rebates, allow_destroy: true, reject_if: :all_blank
