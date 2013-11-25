@@ -59,6 +59,10 @@ class User
   ## Omniauthable
   embeds_many :auths
 
+  def has_fulfill_email?
+    self.unconfirmed_email.present? || self.email.present?
+  end
+
   class << self
     def find_by_omniauth(data)
       where("auths.provider" => data[:provider])

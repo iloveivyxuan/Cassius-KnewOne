@@ -1,0 +1,14 @@
+- if user_signed_in? && !current_user.has_fulfill_email?
+  #binding_email_modal.modal.hide.fade
+    = simple_form_for current_user, url: bind_users_path, html: {class: 'form-horizontal'} do |f|
+      .modal-header
+        button.close data-dismiss="modal" aria-hidden="true" &times;
+        h3 绑定邮箱
+      .modal-body
+        = f.input :email, required: true, autofocus: true
+      .modal-footer
+        = f.button :submit, "Sign up"
+
+  - content_for :script do
+    javascript:
+      $('#binding_email_modal').modal('show');
