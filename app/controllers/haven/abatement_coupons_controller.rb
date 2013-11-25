@@ -21,7 +21,8 @@ module Haven
     end
 
     def disable
-      @coupon.disable!
+      @coupon.status = :disabled
+      @coupon.save
 
       redirect_to haven_abatement_coupons_path
     end

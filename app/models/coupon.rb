@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Coupon
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -9,8 +10,16 @@ class Coupon
   field :note, type: String
   field :code, type: String
 
-  field :available, type: Boolean, default: true
-  scope :available, -> { where available: true }
+  field :status, type: Symbol, default: :available
+  STATUS = {
+    disabled: '已禁用',
+    available: '可使用',
+    used: '已使用',
+    expired: '已过期'
+  }
+  validates :status, presence: true, inclusion: {in: STATUS.keys}
+
+  scope :available, -> { where status: :available }
 
   validates :name, :code, presence: true
   validates_uniqueness_of :code
@@ -23,6 +32,10 @@ class Coupon
     # abstract stub
   end
 
+  def available?
+    self.status == :available
+  end
+
   def use!(order)
     return false unless self.user.nil? || self.user == order.user
     bind_user! order.user
@@ -33,11 +46,7 @@ class Coupon
     take_effect order
     order.save
 
-    disable!
-  end
-
-  def disable!
-    self.available = false
+    self.status = :used
     self.save
   end
 
@@ -59,6 +68,6 @@ class Coupon
   end
 
   def self.find_available_by_code(code)
-    where(code: code, available: true).first
+    where(code: code, status: :available).first
   end
 end
