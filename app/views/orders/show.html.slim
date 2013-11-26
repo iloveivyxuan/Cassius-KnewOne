@@ -49,8 +49,7 @@
   section
     ul = render partial: 'orders/order_item', collection: @order.order_items
     .pull-right
-      = link_to '#order_share', class: 'btn', data: {toggle: 'modal'}  do
-        = provider_share
+      = link_to '分享', '#order_share', class: 'btn', data: {toggle: 'modal'}
   section.order_tips
     ul
       - if @order.pending?

@@ -173,7 +173,7 @@ class ThingPresenter < PostPresenter
 
   def share_content
     user_signed_in? or return
-    topic = present(current_user).topic_wrapper(brand)
+    topic = ' @KnewOne '
     if current_user == thing.author
       "我在#{topic}上分享了一个酷产品, #{title}: #{thing_url(thing, :refer => 'weibo')}"
     else

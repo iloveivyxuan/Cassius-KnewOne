@@ -1,0 +1,10 @@
+.modal.hide.fade id="#{id}"
+  .modal-header
+    button.close type="button" data-dismiss="modal"
+      | &times;
+    h4 绑定第三方账号
+  .modal-body
+    = link_to user_omniauth_authorize_path(:twitter), class: "twitter_sign_in" do
+      i.icon-twitter.icon-4x
+    = link_to user_omniauth_authorize_path(:weibo), class: "weibo_sign_in" do
+      i.icon-weibo.icon-4x

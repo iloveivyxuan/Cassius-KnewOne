@@ -16,7 +16,10 @@ class UsersController < ApplicationController
   end
 
   def share
-    current_user.current_auth.share params[:share][:content], params[:share][:pic]
+    current_user.auths.select {|a| params[:providers].include? a.provider}.each do |auth|
+      auth.share params[:share][:content], params[:share][:pic]
+    end
+
     render nothing: true
   end
 

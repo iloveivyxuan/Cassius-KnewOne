@@ -88,6 +88,10 @@ class User
     auths.first
   end
 
+  def has_auth?(provider)
+    auths.select {|a| a.provider == provider}.any?
+  end
+
   def equal_auth_provider?(another_user)
     another_user.current_auth && current_auth.provider == another_user.current_auth.provider
   end
