@@ -25,8 +25,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in user
 
       # redirect_back_or edit_user_registration_path(:new => true)
-      redirect_back_or root_path, :notice => t('devise.omniauth_callbacks.success', kind: omniauth.provider)
-      # redirect_to binding_users_path, :notice => t('devise.omniauth_callbacks.success', kind: omniauth.provider)
+      # redirect_back_or root_path, :notice => t('devise.omniauth_callbacks.success', kind: omniauth.provider)
+      redirect_to binding_users_path, :notice => t('devise.omniauth_callbacks.success', kind: omniauth.provider)
     end
   end
 

@@ -16,8 +16,6 @@
 
   = paginate @things
 
-  = render 'shared/binding'
-
 - content_for :script do
   javascript:
     Making.InfiniteScroll("#home_things", "#home_things li.thing")
