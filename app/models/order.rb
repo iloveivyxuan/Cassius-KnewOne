@@ -41,13 +41,14 @@ class Order
   field :trade_price, type: BigDecimal
   field :trade_state, type: String
   field :deliver_price, type: BigDecimal#, default: DELIVER_METHODS.first[1][:price]
+  field :auto_owning, type: Boolean, default: true
 
   validates :state, presence: true, inclusion: {in: STATES.keys}
   validates :deliver_by, presence: true, inclusion: {in: DELIVER_METHODS.keys}
   validates :payment_method, inclusion: {in: PAYMENT_METHOD.keys, allow_blank: true}
   validates_associated :address
   validates :user, presence: true
-  attr_accessible :note, :deliver_by, :address_id
+  attr_accessible :note, :deliver_by, :address_id, :auto_owning
   attr_accessible :state, :admin_note, :deliver_no, :trade_no, :rebates_attributes,
                   :as => :admin
 
@@ -144,8 +145,15 @@ class Order
 
     self.state = :shipped
     self.deliver_no = deliver_no
-    self.admin_note = admin_note if admin_note.present?
+
+    if admin_note.present?
+      admin_note = " | #{admin_note}" if self.admin_note.present?
+      self.admin_note += admin_note
+    end
+
     save!
+
+    own_things if auto_owning?
 
     order_histories.create from: :confirmed, to: :shipped
   end
@@ -177,6 +185,8 @@ class Order
     self.state = :refunded
     save!
 
+    # unown_things if auto_owning?
+
     order_histories.create from: state, to: :closed
   end
 
@@ -206,6 +216,18 @@ class Order
 
   def total_cents
     (total_price * 100).to_i
+  end
+
+  def own_things
+    order_items.each do |item|
+      item.thing.own self.user
+    end
+  end
+
+  def unown_things
+    order_items.each do |item|
+      item.thing.unown self.user
+    end
   end
 
   class<< self
