@@ -80,6 +80,6 @@ header
           li.signin
             = link_to_with_icon "登入", "icon-signin", '#',  data: {toggle: "modal", target: "#login-modal"}
 
-      = form_tag(search_path, method: 'get', id: "navbar_search", class: "navbar-form navbar-right row") do
+      = form_tag(search_path, method: 'get', id: "navbar_search", class: "navbar-form navbar-right", role: "search") do
         i.icon-search
         input.search-query type="search" name="q"

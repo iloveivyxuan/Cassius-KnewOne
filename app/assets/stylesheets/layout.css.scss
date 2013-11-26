@@ -21,6 +21,7 @@ body > header {
       img {
         position: absolute;
         left: -40px;
+        z-index: 100;
       }
     }
 
@@ -44,7 +45,13 @@ body > header {
 
     #navbar_search {
       position: relative;
-      margin-right: 1em;
+
+      @media screen and (max-width: 768px) {
+        margin-bottom: 0;
+        margin-right: -15px;
+        padding-bottom: 4px;
+        padding-top: 0;
+      }
 
       input.search-query, input.search-query:focus {
         padding-left: 29px; 
