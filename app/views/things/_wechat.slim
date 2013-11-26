@@ -1,13 +1,15 @@
-#thing_share_wechat.modal.hide.fade
-  .modal-header
-    = button_tag type: 'button', class: 'close', data: {dismiss: "modal"} do
-      raw &times;
-    h5
-      |请在微信中扫描以下二维码，然后您可以轻触屏幕右上角的
-      i.icon-share<
-      |分享给朋友们
-  .modal-body
-    .qr-field
+#thing_share_wechat.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        = button_tag type: 'button', class: 'close', data: {dismiss: "modal"} do
+          raw &times;
+        h5
+          |请在微信中扫描以下二维码，然后您可以轻触屏幕右上角的
+          i.icon-share<
+          |分享给朋友们
+      .modal-body
+        .qr-field
 
 - content_for :script do
   javascript:
