@@ -1,8 +1,17 @@
 # -*- coding: utf-8 -*-
 class ApplicationController < ActionController::Base
   before_filter :trim_param_id
-
   protect_from_forgery
+
+  # some bots using some *strange* format to request urls
+  # that would trigger missing template exception,
+  # so this will reject those request, but you can adjust to your logic
+  if Rails.env.production?
+    rescue_from ActionView::MissingTemplate do
+      head :not_acceptable
+    end
+  end
+
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to '/403', alert: exception.message
   end
