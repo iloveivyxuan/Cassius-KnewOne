@@ -169,11 +169,11 @@ class Order
   def cancel!(raw = {})
     return false unless can_cancel?
 
+    undo_coupon!
+
     order_items.each &:revert_stock!
     self.state = :canceled
     save!
-
-    undo_coupon!
 
     order_histories.create from: :pending, to: :canceled, raw: raw
   end
@@ -181,11 +181,11 @@ class Order
   def close!
     return false unless can_close?
 
+    undo_coupon!
+
     order_items.each &:revert_stock!
     self.state = :closed
     save!
-
-    undo_coupon!
 
     order_histories.create from: :pending, to: :closed
   end
