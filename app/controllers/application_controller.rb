@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
     rescue_from ActionView::MissingTemplate do
       head :not_acceptable
     end
+
+    rescue_from ArgumentError do
+      head :bad_request
+    end
   end
 
   rescue_from CanCan::AccessDenied do |exception|
