@@ -165,6 +165,8 @@ class Order
     self.state = :canceled
     save!
 
+    undo_coupon!
+
     order_histories.create from: :pending, to: :canceled, raw: raw
   end
 
@@ -174,6 +176,8 @@ class Order
     order_items.each &:revert_stock!
     self.state = :closed
     save!
+
+    undo_coupon!
 
     order_histories.create from: :pending, to: :closed
   end
