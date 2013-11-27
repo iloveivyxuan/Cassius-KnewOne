@@ -29,10 +29,17 @@ zh-CN:
         created_at: '创建时间'
         stage: '阶段'
         stage_end_at: '阶段结束时间'
-      coupon:
+      rebate:
         name: '明目'
         price: '价格'
         note: '备注'
+      coupon:
+        name: '名称'
+        note: '说明'
+        code: '兑换码'
+      abatement_coupon:
+        threshold_price: '阀值金额'
+        price: '降低金额'
       review:
         title: "标题"
         content: "内容"

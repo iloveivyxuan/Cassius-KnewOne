@@ -10,8 +10,9 @@ class Order
   embeds_many :order_items
   embeds_many :order_histories
 
-  embeds_many :coupons
   embeds_many :rebates
+
+  has_one :coupon
 
   STATES = {:pending => '等待付款',
             :paid => '已付款，等待确认',
@@ -42,14 +43,16 @@ class Order
   field :trade_state, type: String
   field :deliver_price, type: BigDecimal#, default: DELIVER_METHODS.first[1][:price]
   field :auto_owning, type: Boolean, default: true
+  field :price, type: BigDecimal
 
+  validates_numericality_of :price, :greater_than_or_equal_to => 1, :unless => Proc.new { |order| !order.persisted? }
   validates :state, presence: true, inclusion: {in: STATES.keys}
   validates :deliver_by, presence: true, inclusion: {in: DELIVER_METHODS.keys}
   validates :payment_method, inclusion: {in: PAYMENT_METHOD.keys, allow_blank: true}
   validates_associated :address
   validates :user, presence: true
   attr_accessible :note, :deliver_by, :address_id, :auto_owning
-  attr_accessible :state, :admin_note, :deliver_no, :trade_no, :rebates_attributes,
+  attr_accessible :state, :admin_note, :deliver_no, :trade_no, :rebates_attributes, :price,
                   :as => :admin
 
   accepts_nested_attributes_for :rebates, allow_destroy: true, reject_if: :all_blank
@@ -59,6 +62,7 @@ class Order
     self.deliver_price = calculate_deliver_price
     # mongoid may not rollback when error occurred
     order_items.each &:claim_stock!
+    sync_price
   end
 
   validate do
@@ -77,6 +81,10 @@ class Order
 
   def state
     super.to_sym
+  end
+
+  def sync_price
+    self.price = calculate_price
   end
 
   STATES.keys.each do |s|
@@ -210,12 +218,27 @@ class Order
     rebates.map(&:price).reduce(&:+) || 0
   end
 
+  def receivable
+    items_price + (self.deliver_price || calculate_deliver_price)
+  end
+
+  def calculate_price
+    receivable + rebates_price
+  end
+
   def total_price
-    items_price + (self.deliver_price || calculate_deliver_price) + rebates_price
+    self.price || calculate_price
   end
 
   def total_cents
-    (total_price * 100).to_i
+    ((self.price || calculate_price) * 100).to_i
+  end
+
+  def use_coupon!(code)
+    coupon = Coupon.find_available_by_code(code)
+    return false unless coupon
+
+    coupon.use! self
   end
 
   def own_things

@@ -1,0 +1,21 @@
+.coupons_wrapper
+  = link_to '新建', new_haven_abatement_coupon_path, class: 'btn'
+  table.table
+    tr
+      th 名称
+      th 说明
+      th 代码
+      th 阀值价格
+      th 减价
+      th 可用?
+      th
+    - @coupons.each do |coupon|
+      tr
+        td = coupon.name
+        td = coupon.note
+        td = coupon.code
+        td = coupon.threshold_price
+        td = coupon.price
+        td = coupon.available?
+        td
+          = link_to '详情', haven_abatement_coupon_path(coupon)

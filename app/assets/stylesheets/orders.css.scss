@@ -77,6 +77,23 @@
     font-size: 1.25em;
   }
 
+  .rebate {
+    @include clearfix;
+    margin: 1em 0;
+    .info {
+      float: left;
+      .name {
+        font-size: 1.25em;
+      }
+      .note {
+        margin-top: 1em;
+      }
+    }
+    .price {
+      float: right;
+    }
+  }
+
   .order_item {
     @include clearfix;
     margin: 1em 0;
