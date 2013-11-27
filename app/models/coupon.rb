@@ -101,7 +101,7 @@ class Coupon
   end
 
   def self.find_available_by_code(code)
-    where(code: code, status: :available).first
+    where(code: code, status: :available).or({:expires_at => nil}, {:expires_at.gt => Date.today}).first
   end
 
   def self.cleanup_expired
