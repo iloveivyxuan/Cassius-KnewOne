@@ -2,6 +2,7 @@
 class Coupon
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::MultiParameterAttributes
 
   belongs_to :order
   belongs_to :user
@@ -9,6 +10,7 @@ class Coupon
   field :name, type: String
   field :note, type: String
   field :code, type: String
+  field :expires_at, type: Date
 
   field :status, type: Symbol, default: :available
   STATUS = {
@@ -19,10 +21,15 @@ class Coupon
   }
   validates :status, presence: true, inclusion: {in: STATUS.keys}
 
-  scope :available, -> { where status: :available }
-
   validates :name, :code, presence: true
   validates_uniqueness_of :code
+
+  STATUS.keys.each do |s|
+    scope s, -> { where status: s }
+    define_method :"#{s}?" do
+      status == s
+    end
+  end
 
   def usable?(order)
     true # abstract stub
@@ -32,8 +39,8 @@ class Coupon
     # abstract stub
   end
 
-  def available?
-    self.status == :available
+  def undo_effect(order)
+    # abstract stub
   end
 
   def use!(order)
@@ -48,7 +55,32 @@ class Coupon
     order.save
 
     self.status = :used
-    self.save
+    save
+  end
+
+  def undo!(order)
+    return false unless used?
+    return false unless order.coupon == self and order.pending?
+
+    undo_effect order
+    order.sync_price
+    order.coupon = nil
+    order.save
+
+    if self.expires_at && self.expires_at <= Date.today
+      self.status = :expired
+    else
+      self.status = :available
+    end
+
+    save
+  end
+
+  def expire!
+    return false if available? && self.expires_at && self.expires_at <= Date.today
+
+    self.status = :expired
+    save
   end
 
   def bind_user!(user)
@@ -70,5 +102,9 @@ class Coupon
 
   def self.find_available_by_code(code)
     where(code: code, status: :available).first
+  end
+
+  def self.cleanup_expired
+    all.each &:expire!
   end
 end

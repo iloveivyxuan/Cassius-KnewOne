@@ -231,6 +231,12 @@ class Order
     coupon.use! self
   end
 
+  def undo_coupon!
+    return false unless self.coupon and pending?
+
+    self.coupon.undo! self
+  end
+
   class<< self
     def build_order(user, params = {})
       address_id = params.delete :address_id

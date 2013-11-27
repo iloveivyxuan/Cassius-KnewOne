@@ -15,4 +15,9 @@ class AbatementCoupon < Coupon
   def take_effect(order)
     order.rebates.build name: "#{self.name}", note: "优惠代码：#{self.code}", price: -self.price
   end
+
+  def undo_effect(order)
+    r = order.rebates.select {|rebate| rebate.name == "#{self.name}" && rebate.price == -self.price }.first
+    order.rebates.delete r
+  end
 end
