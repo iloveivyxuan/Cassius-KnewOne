@@ -20,7 +20,6 @@ class Thing < Post
   field :lock_priority, type: Boolean, default: false
 
   field :stage, type: Symbol, default: :concept
-  field :stage_end_at, type: DateTime
   STAGES = {
     concept: "研发中",
     domestic: "国内导购",

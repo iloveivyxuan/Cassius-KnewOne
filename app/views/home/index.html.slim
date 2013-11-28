@@ -1,18 +1,21 @@
 .home_wrapper
 
-  header#home_welcome
-
   section#home_things
     ul= render @things, size: :normal
 
-  aside#home_news
-    .wrapper= render 'news'
-    #site_filling
-      small 粤ICP备13057487号
-      script#ebsgovicon src="https://cert.ebs.gov.cn/govicon.js?id=0a9f8f12-2255-447a-9f72-4c4ad637c3c8&width=14&height=20" type="text/javascript"
+  aside#home_reviews.visible-lg
+
+  / aside#home_news
+  /   ul#home_new_reviews
+  /     - @reviews.each do |review|
+  /       li= link_to review.title, thing_review_path(review.thing, review)
+
+    / #site_filling
+    /   small 粤ICP备13057487号
+    /   script#ebsgovicon src="https://cert.ebs.gov.cn/govicon.js?id=0a9f8f12-2255-447a-9f72-4c4ad637c3c8&width=14&height=20" type="text/javascript"
 
   = paginate @things
 
 - content_for :script do
   javascript:
-    Making.InfiniteScroll("#home_things", "#home_things li.thing")
+    Making.InfiniteScroll("#home_things", "#home_things > ul > li")

@@ -13,6 +13,9 @@ $btn-primary-bg: #049cdb;
 $navbar-height: 40px;
 $navbar-default-brand-color: #049cdb;
 
+$screen-lg-min: 1440px;
+$screen-xl-min: 1920px;
+
 $blue: #049cdb;
 $green: #46a546;
 $red: #9d261d;
@@ -24,6 +27,7 @@ $purple: #7a43b6;
 @import "bootstrap";
 @import "font-awesome";
 @import "compass/css3";
+@import "compass/layout/stretching";
 
 @import "jquery.tagsinput";
 @import "datepicker";

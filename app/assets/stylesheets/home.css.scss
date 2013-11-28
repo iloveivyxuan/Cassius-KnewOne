@@ -1,106 +1,27 @@
-.home_wrapper {
-  margin: 0 auto;
-
-  width: 284px;
-
-  @media screen and (min-width: 768px) {
-    width: 652px;
-  }
-
-  @media screen and (min-width: 1024px) {
-    width: 980px;
-    #home_things {
-      li.thing {@include thing-in-list(270px);}
-    }
-  }
-
-  @media screen and (min-width: 1520px) {
-    width: 1400px;
-    #home_things {
-      li.thing {@include thing-in-list(400px);}
-    }
-  }
-
-  .pagination {
-    float: left;
-    margin-left: 1em;
-  }
-}
-
-#home_welcome {
-  h2 {
-    text-align: center;
-    margin-top: 0;
-    color: $text-muted;
-    font-size: 2em;
-  }
-}
-
 #home_things {
-  @include clearfix;
-  @include left-layout(false);
-  
-  li.thing {@include thing-in-list(270px);}
-}
+  ul {
+    @include make-row;
+    margin: 0 5%;
 
-#home_news {
-  @include section-decorate;
-  @include right-layout;
-  display: none;
-  margin-top: 1em;
-
-  .wrapper {
-    padding: 1em 2em;
-  }
-
-  .activate_success {
-    background: #eee;
-    font-weight: bold;
-    color: $red;
-    padding: 1em;
-    @include border-radius(10px);
-  }
-
-  h4 {
-    margin: 1em 0;
-    color: $blue;
-
-    a {
-      display: inline-block;
-      float: right;
-      font-size: $font-size-base;
+    li {
+      @include make-sm-column(6);
+      @include make-md-column(4);
+      @include make-lg-column(3);
+      @include make-xl-column(2);
+      margin-bottom: 2em;
     }
   }
-
-  .thing {
-    .pre_ribbon {display: none;}
-  }
-
-  @media screen and (min-width: 1024px) {
-    display: block;
-  }
 }
 
-#home_new_things {
-  li.thing {
-    h4 {
-      font-size: 1em;
-      color: $text-muted;
-    }
-    p {display: none;}
-    margin: 1em 0;
-    text-align: center;
-  }
-
-  padding-bottom: 2em;
-  border-bottom: 1px dashed #ccc;
-  margin-bottom: 2em;
+#home_reviews {
+  height: 200px;
+  background: white;
 }
 
-#home_new_reviews {
-  li {
-    margin: 1em 0;
-  }
+#site_filling {
+  margin: 1em 0;
+  text-align: center;
+  color: $text-muted;
 }
 
 #qr_entry {
@@ -111,10 +32,4 @@
     margin: 1em 0;
   }
   .icon-comments {color: $green;}
-}
-
-#site_filling {
-  margin: 1em 0;
-  text-align: center;
-  color: $text-muted;
 }

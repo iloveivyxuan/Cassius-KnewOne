@@ -84,34 +84,9 @@ body > header {
 
   }
 
-/* > nav { */
-/*   .navbar-inner { */
-/*     @media screen and (max-width: 863px) { */
-/*       .nav.pull-left > li a { */
-/*         span, i.icon-caret-down {display: none;} */
-/*       } */
-/*     } */
-/*     @media screen and (max-width: 767px) { */
-/*       form.navbar-search {display: none;} */
-
-/*       .navbar-brand { */
-/*         margin-left: 0; */
-/*         img {display: none;} */
-/*         width: 90%; */
-/*       } */
-
-/*       .nav.pull-left {padding-left: 6px;} */
-/*       .nav > li > a {padding: 5px;} */
-/*       .nav_user { */
-/*         width: 50px; */
-/*         > a {top: -23px;} */
-/*       } */
-/*     } */
-/*   } */
-/* } */
 }
 
-body > section.container {
+body > section {
   padding: 2em 0;
 }
 
