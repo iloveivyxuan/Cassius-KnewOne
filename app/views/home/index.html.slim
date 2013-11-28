@@ -3,12 +3,14 @@
   section#home_things
     ul= render @things, size: :normal
 
-  aside#home_reviews.visible-lg
-
-  / aside#home_news
-  /   ul#home_new_reviews
-  /     - @reviews.each do |review|
-  /       li= link_to review.title, thing_review_path(review.thing, review)
+  aside#home_reviews
+    ul
+      - @reviews.each do |review|
+        li
+          = link_to review.author do
+            = present(review.author).avatar :tiny
+          = link_to review.title, thing_review_path(review.thing, review),
+            target: "_blank"
 
     / #site_filling
     /   small 粤ICP备13057487号
@@ -16,6 +18,6 @@
 
   = paginate @things
 
-- content_for :script do
-  javascript:
-    Making.InfiniteScroll("#home_things", "#home_things > ul > li")
+  - content_for :script do
+    javascript:
+     Making.InfiniteScroll("#home_things", "#home_things > ul > li")

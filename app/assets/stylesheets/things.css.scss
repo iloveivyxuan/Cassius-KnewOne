@@ -66,19 +66,19 @@
     &.ship {
       letter-spacing: .25em;
       span {
-        @include background($orange);
+        @include background($brand-warning);
         @include opacity(0.8);
       }
     }
     &.stock {
       span {
-        @include background($green);
+        @include background($brand-success);
         @include opacity(0.8);
       }
     }
     &.exclusive {
       span {
-        @include background($purple);
+        @include background($brand-primary);
         @include opacity(0.8);
       }
     }

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 class HomeController < ApplicationController
   def index
-    @things = Thing.prior.page(params[:page]).per(20)
-    @reviews = Review.unscoped.desc(:created_at).limit(20)
+    @things = Thing.prior.page(params[:page]).per(24)
+    @reviews = Review.unscoped.desc(:created_at).limit(50)
   end
 
   def qr_entry
