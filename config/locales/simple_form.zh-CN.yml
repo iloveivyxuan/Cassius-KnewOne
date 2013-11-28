@@ -29,6 +29,7 @@ zh-CN:
         created_at: '创建时间'
         stage: '阶段'
         stage_end_at: '阶段结束时间'
+        sharing_text: '分享文案'
       rebate:
         name: '明目'
         price: '价格'

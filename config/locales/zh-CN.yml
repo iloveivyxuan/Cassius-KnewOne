@@ -27,6 +27,7 @@ zh-CN:
         description: '简介'
         recommended: '优先排序'
         lock_priority: '锁定优先级'
+        sharing_text: '分享文案'
       kind:
         title: '名称'
         price: '价格'
