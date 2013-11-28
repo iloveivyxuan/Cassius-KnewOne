@@ -42,6 +42,8 @@ gem 'intercom-rails', '~> 0.2.21'
 gem 'whenever', require: false
 gem 'jasl_tenpay', github: 'jasl/tenpay'
 gem 'alipay'
+# print waybill
+gem 'mini_magick'
 
 group :assets do
   gem 'sass-rails'
