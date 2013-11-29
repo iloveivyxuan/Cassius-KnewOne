@@ -1,6 +1,0 @@
-- if tp.stage == :presell and tp.stage_end_at.present? and tp.stage_end_at > Time.now
-  p.pre_over_at
-    i.icon-time
-    | 预购将在
-    = time_tag tp.stage_end_at, distance_of_time_in_words_to_now(tp.stage_end_at)
-    | 后结束

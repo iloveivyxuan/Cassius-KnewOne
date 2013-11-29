@@ -1,23 +1,25 @@
 - present thing do |tp|
-  li.thing
-    - if tp.self_run?
-      .pre_ribbon class="#{tp.stage}"
-        span= tp.stage_text
-    = link_to tp.photo(size), tp.thing, target: "_blank"
-    h4 data-toggle="tooltip" data-placement="bottom" title=tp.full_title 
-      = tp.full_title
-    p
-      - if tp.thing.fanciers.count > 0
-        span.fanciers
-          i.icon-heart
-          = tp.fanciers_count
-      - if tp.thing.owners.count > 0
-        span.owners
-          i.icon-check
-          = tp.owners_count
-      - if tp.thing.reviews.count > 0
-        span.reviews_count
-          i.icon-book
-          = tp.reviews_count
-      = tp.price
-    = render "things/stage_end_at", tp: tp
+  li
+    .thing
+      - if tp.self_run?
+        .pre_ribbon class="#{tp.stage}"
+          span= tp.stage_text
+      figure
+        = link_to tp.photo(size), tp.thing, target: "_blank"
+      figcaption
+        h5 data-toggle="tooltip" data-placement="bottom" title=tp.full_title
+          = tp.full_title
+        p
+          - if tp.thing.fanciers.count > 0
+            span.fanciers
+              i.icon-heart
+              = tp.fanciers_count
+          - if tp.thing.owners.count > 0
+            span.owners
+              i.icon-check
+              = tp.owners_count
+          - if tp.thing.reviews.count > 0
+            span.reviews_count
+              i.icon-book
+              = tp.reviews_count
+          = tp.price

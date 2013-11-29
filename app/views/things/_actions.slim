@@ -1,7 +1,6 @@
 .shop
   .price = tp.price
   .buy= tp.buy
-  = render "things/stage_end_at", tp: tp
 .actions
   .fanciers
     = render "shared/fancy", p: tp
@@ -21,7 +20,6 @@
                 data: {toggle: 'modal', keyboard: false} do
         i.icon-share
         span 分享
-
   .wechat
     = link_to "#thing_share_wechat", title: "微信朋友圈分享",
               data: {toggle: 'modal'} do
