@@ -48,14 +48,14 @@ Making.CartItemCreate = (cart_items_count) ->
   $prompt.empty()
   $form.find('.cart_success').clone().appendTo($prompt).fadeIn()
 
-  $('.nav_cart > a').popover(
+  $('.nav_cart').popover(
     content: $form.find('.cart_success').html()
     trigger: 'manual'
     html: true
     placement: 'bottom'
   ).popover('show')
   setTimeout ->
-    $('.nav_cart > a').popover('hide')
+    $('.nav_cart').popover('hide')
   , 2000
 
   $('.nav_cart .cart_items_count').text(cart_items_count)

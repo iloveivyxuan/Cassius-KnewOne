@@ -4,9 +4,7 @@
                      "orbitron-bold.svg", svg),
                    "orbitron-bold.eot");
 
-body > header {
-  margin-bottom: $navbar-height;
-}
+body {padding-top: $navbar-height*2;}
 
 .navbar {
 
@@ -80,7 +78,7 @@ body > header {
 
       .nav_user_action {
         float: left;
-        margin: 10px;
+        margin: 10px 8px;
 
         @media screen and (min-width: $screen-sm-min) {
           float: right;
@@ -92,15 +90,21 @@ body > header {
         }
       }
 
-      // @todo
-      // .nav_cart {
-      //   .popover-title {display: none;}
-      //   .popover-content {color: $green;}
-      // }
+      .nav_cart {
 
-      // .nav_messages {
-      //   a {padding-left: 0;}
-      // }
+        .badge {
+          background-color: $brand-success;
+          color: #fff;
+        }
+      }
+
+      .nav_messages {
+
+        .badge {
+          background-color: $brand-primary;
+          color: #fff;
+        }
+      }
 
       &.open {
 
@@ -148,6 +152,7 @@ body > header {
 
     .nav_user_avatar {
       float: left;
+      z-index: 100;
 
       @media screen and (min-width: $screen-sm-min) {
         float: right;
