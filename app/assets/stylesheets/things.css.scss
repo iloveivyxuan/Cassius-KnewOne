@@ -58,6 +58,7 @@
       left: 20px;
       top: -30px;
       text-align: center;
+      font-size: 14px;
 
       @include transform-origin(0, 0);
       @include rotate(45deg);

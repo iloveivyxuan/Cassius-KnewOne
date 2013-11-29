@@ -1,57 +1,50 @@
-.home_wrapper {
+#home_index {
   @include make-row;
   margin: 0 5%;
+
+  > section {@include make-md-column(8);}
+
+  > aside {
+    display: none;
+    @media (min-width: $screen-md-min) {display: block;}
+    @include make-md-column(4);
+  }
 }
 
 #home_things {
-  @include make-md-column(8);
-  
-  ul {
-    @include make-row;
-
-    li {
-      @include make-sm-column(6);
-      @include make-lg-column(4);
-      @include make-xl-column(3);
-      margin-bottom: 2em;
-    }
+  @include make-row;
+  li {
+    @include make-sm-column(6);
+    @include make-lg-column(4);
+    @include make-xl-column(3);
+    margin-bottom: 2em;
   }
 }
 
 #home_reviews {
-  display: none;
-  @media (min-width: $screen-md-min) {display: block;}
-  @include make-md-column(4);
+  background: white;
+  padding: 1em;
+  @include border-radius(8px);
 
-  ul {
-    background: white;
-    padding: 1em;
-    @include border-radius(8px);
+  li {
+    padding: 1em 0;
+    color: $text-muted;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
-    li {
-      padding: 1em 0;
-      color: $text-muted;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-
-      a {
-        color: $text-muted;
-      }
-
-      &:not(:last-child) {border-bottom: 1px dashed $gray-light;}
-
-      img {
-        margin-right: 1em;
-        @extend .img-circle;
-        vertical-align: -10px;
-      }
+    a {color: $text-muted;}
+    img {
+      margin-right: 1em;
+      @extend .img-circle;
+      vertical-align: -10px;
     }
+    &:not(:last-child) {border-bottom: 1px dashed $gray-light;}
   }
 }
 
-#site_filling {
-  margin: 1em 0;
+#home_filling {
+  margin: 2em 0;
   text-align: center;
   color: $text-muted;
 }

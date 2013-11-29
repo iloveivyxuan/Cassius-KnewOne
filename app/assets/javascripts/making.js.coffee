@@ -157,17 +157,18 @@ window.Making =
 
   InfiniteScroll: (container, item) ->
     $('.pagination').hide()
-    $(container)
-    .infinitescroll
-        navSelector: '.pagination'
-        nextSelector: '.pagination a[rel="next"]'
-        contentSelector: container + ' ul'
-        itemSelector: item
-        pixelsFromNavToBottom: 150
-        loading:
-          msg: $("<div class='loading-things'><i class='icon-spinner icon-spin icon-4x'></i></div>")
-        errorCallback: ->
-          $(container).find('.loading-things').html("<em>没有更多了......</em>")
+    $(container).infinitescroll
+      navSelector: '.pagination'
+      nextSelector: '.pagination a[rel="next"]'
+      contentSelector: container + ' ul'
+      itemSelector: item
+      pixelsFromNavToBottom: 150
+      loading:
+        msg: $("<div class='loading-things'><i class='icon-spinner icon-spin icon-4x'></i></div>")
+        finished: ->
+          $('.loading-things').fadeOut 200
+      errorCallback: ->
+        $(container).find('.loading-things').html("<em>没有更多了......</em>")
 
   CalculatePrice: ($el) ->
     price = parseFloat($el.children('.price').attr('data-price'))
