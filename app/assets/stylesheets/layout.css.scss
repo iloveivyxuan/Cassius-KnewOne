@@ -91,10 +91,13 @@ body {padding-top: $navbar-height*2;}
       }
 
       .nav_cart {
-
         .badge {
           background-color: $brand-success;
           color: #fff;
+        }
+        
+        &+.popover {
+          .popover-title {display: none;}
         }
       }
 

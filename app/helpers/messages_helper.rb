@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 module MessagesHelper
   def unread_messages_count
-    current_user.messages.unread.count
+    count = current_user.messages.unread.count
+    (count > 0) ? count : ""
   end
 
   def message_type(message)
