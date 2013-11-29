@@ -6,109 +6,167 @@
 
 body > header {
   margin-bottom: $navbar-height;
+}
 
-  > nav.navbar {
+.navbar {
 
-    .icon-caret-down {margin: 0 0 0 .2em;}
+  .navbar-brand {
+    position: relative;
+    margin-left: 40px;
+    margin-right: 8px;
+    font-family: "orbitron-bold";
 
-    .navbar-brand {
-      position: relative;
-      margin-left: 40px;
-      margin-right: 1em;
-      font-family: "orbitron-bold";
-      position: relative;
+    img {
+      position: absolute;
+      left: -40px;
+      z-index: 100;
+    }
+  }
 
-      img {
-        position: absolute;
-        left: -40px;
-        z-index: 100;
-      }
+  .navbar-collapse {
+    padding-top: $padding-large-vertical;
+
+    @media screen and (max-width: $screen-sm-min) {
+      max-height: none;
     }
 
-    .nav_user {
-      position: relative;
-      width: 70px;
+    @media screen and (min-width: $screen-sm-min) {
+      padding-top: 0;
+    }
 
-      > a {
-        position: absolute;
-        z-index: 100;
-        img {
-          width: 40px;
-          height: 40px;
+    .navbar-form {
+      @media screen and (max-width: $screen-sm-min) {
+        border-bottom-width: 0;
+        margin-bottom: 0;
+      }
+
+      @media screen and (min-width: $screen-sm-min) {
+        margin-bottom: 7px;
+        margin-top: 7px;
+        width: 20%;
+      }
+
+      @media screen and (min-width: $screen-md-min) {
+        width: 17%;
+      }
+
+      .form-group {
+        margin-bottom: 0;
+        position: relative;
+        width: 100%;
+        @include search-input;
+
+        input[type="search"] {
+          font-size: 12px;
+          height: 26px;
+          line-height: 14px;
+          padding: 5px 10px 5px 30px;
+
+          & + .icon-search {
+            top: 6px;
+          }
+        }
+      }
+    }
+  }
+
+  .nav_user {
+
+    &.is_login {
+      border-top: 1px solid darken($navbar-default-bg, 6.5%);
+      padding: $padding-small-vertical $padding-large-horizontal;
+      padding-bottom: 0;
+      @include clearfix;
+
+      .nav_user_action {
+        float: left;
+        margin: 10px;
+
+        @media screen and (min-width: $screen-sm-min) {
+          float: right;
+        }
+
+        .badge {
+          font-family: $font-family-sans-serif;
+          padding: 1px 6px;
         }
       }
 
-      > ul {
-        margin-top: 60px;
+      // @todo
+      // .nav_cart {
+      //   .popover-title {display: none;}
+      //   .popover-content {color: $green;}
+      // }
+
+      // .nav_messages {
+      //   a {padding-left: 0;}
+      // }
+
+      &.open {
+
+        .nav_user_action {
+          background-color: $navbar-default-link-hover-bg;
+          color: $navbar-default-link-color;
+
+          &:hover {
+            background-color: $navbar-default-link-hover-bg;
+            color: $navbar-default-link-hover-color;
+          }
+        }
+
+        .nav_user_avatar {
+
+          img {
+            box-shadow: 0 0 10px $brand-primary;
+          }
+        }
+      }
+
+      @media screen and (max-width: $screen-sm-min) {
+        & > .dropdown-menu > li > a {
+          padding: $padding-base-vertical $padding-large-horizontal;
+        }
+      }
+
+      @media screen and (min-width: $screen-sm-min) {
+        border-top: none;
+        padding: 0;
+
+        & > .dropdown-menu {
+          margin-top: 15px;
+        }
       }
     }
 
-    #navbar_search {
-      position: relative;
+    &.is_not_login {
 
-      @media screen and (max-width: 768px) {
-        margin-bottom: 0;
-        margin-right: -15px;
-        padding-bottom: 4px;
-        padding-top: 0;
-      }
-
-      input.search-query, input.search-query:focus {
-        padding-left: 29px; 
-        margin-top: 4px;
-        border: 1px solid $input-border;
-        @include border-radius(4px);
-      }
-
-      .icon-search {
-        position: absolute; 
-        top: 9px; 
-        left: 21px;
-        color: $text-muted; 
+      .nav_user_action {
+        display: block;
+        padding: $nav-link-padding;
       }
     }
 
-    .nav_messages, .nav_cart {
-      a > span {color: $red;}
+    .nav_user_avatar {
+      float: left;
+
+      @media screen and (min-width: $screen-sm-min) {
+        float: right;
+        margin-left: 5px;
+        position: relative;
+        top: 10px;
+      }
     }
 
-    .nav_cart {
-      a > span {font-weight: bold;}
-      .popover-title {display: none;}
-      .popover-content {color: $green;}
-    }
+    .nav_user_action {
+      color: $navbar-default-link-color;
 
-    .nav_messages {
-      a {padding-left: 0;}
+      &:hover,
+      &:focus {
+        background-color: $navbar-default-link-hover-bg;
+        color: $navbar-default-link-hover-color;
+      }
     }
-
   }
-
-/* > nav { */
-/*   .navbar-inner { */
-/*     @media screen and (max-width: 863px) { */
-/*       .nav.pull-left > li a { */
-/*         span, i.icon-caret-down {display: none;} */
-/*       } */
-/*     } */
-/*     @media screen and (max-width: 767px) { */
-/*       form.navbar-search {display: none;} */
-
-/*       .navbar-brand { */
-/*         margin-left: 0; */
-/*         img {display: none;} */
-/*         width: 90%; */
-/*       } */
-
-/*       .nav.pull-left {padding-left: 6px;} */
-/*       .nav > li > a {padding: 5px;} */
-/*       .nav_user { */
-/*         width: 50px; */
-/*         > a {top: -23px;} */
-/*       } */
-/*     } */
-/*   } */
-/* } */
 }
 
 body > section.container {

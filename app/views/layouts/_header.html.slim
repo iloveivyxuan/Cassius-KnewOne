@@ -11,21 +11,21 @@ header
         span= brand
 
     #navbar_main.collapse.navbar-collapse
-      ul.nav.navbar-nav.navbar-left
+      ul.nav.navbar-nav
         li.nav_things.dropdown
-          = link_to '#', class: "dropdown-toggle", data: {toggle: "dropdown"} do
+          = link_to "#", class: "dropdown-toggle", data: {toggle: "dropdown"} do
             i.icon-th
             span 产品
-            i.icon-caret-down
+            b.caret
           ul.dropdown-menu
             li= link_to_with_icon "最新", "icon-rocket", things_path
             li= link_to_with_icon "热门", "icon-bullseye", things_path(sort: "fancy")
             li= link_to_with_icon "自营", "icon-trophy", things_path(sort: "self_run")
         li.nav_groups.dropdown
-          = link_to '#', class: "dropdown-toggle", data: {toggle: "dropdown"} do
+          = link_to "#", class: "dropdown-toggle", data: {toggle: "dropdown"} do
             i.icon-group
             span 小组
-            i.icon-caret-down
+            b.caret
           ul.dropdown-menu
             - Group.classic.each do |group|
               li= link_to group.name, group
@@ -37,31 +37,29 @@ header
         li.nav_lotteries.visible-md.visible-lg
           = link_to_with_icon "天天有礼", "icon-gift", lotteries_path
         li.nav_help.dropdown.visible-lg
-          = link_to '#', class: "dropdown-toggle", data: {toggle: "dropdown"} do
+          = link_to "#", class: "dropdown-toggle", data: {toggle: "dropdown"} do
             i.icon-tint
             span 关于我们
-            i.icon-caret-down
+            b.caret
           ul.dropdown-menu
             li= link_to_with_icon "微博", "icon-weibo", "http://weibo.com/knewone"
             li= link_to_with_icon "吐槽", "icon-leaf", "/things/knewone"
             li= link_to_with_icon "邮件", "icon-envelope", "mailto:hello@knewone.com"
         li.nav_olark
-          = link_to_with_icon content_tag(:span, "在线帮助"), "icon-user-md", '#olark_chat'
+          = link_to_with_icon content_tag(:span, "在线帮助"), "icon-user-md", "#olark_chat"
 
-      ul.nav.navbar-nav.navbar-right
+      .nav.navbar-nav.navbar-right
         - if user_signed_in?
-          li.nav_cart
-            = link_to cart_items_path, title: "购物车" do
-              i.icon-shopping-cart
-              span.cart_items_count= cart_items_count
-          li.nav_messages
-            = link_to messages_path, title: "#{unread_messages_count}个未读消息" do
+          .nav_user.is_login.dropdown
+            = link_to "#", class: "nav_user_avatar dropdown-toggle", data: {toggle: "dropdown"} do
+              = image_tag current_user.avatar.url(:tiny), class: "img-circle", height: "40", width: "40"
+            = link_to messages_path, class: "nav_user_action nav_messages", title: "#{unread_messages_count}个未读消息" do
               i.icon-inbox
               - if unread_messages_count > 0
-                span= unread_messages_count
-          li.nav_user.dropdown
-            = link_to '#', class: "dropdown-toggle", data: {toggle: "dropdown"} do
-              = image_tag current_user.avatar.url(:tiny), class: "img-circle"
+                span.badge= unread_messages_count
+            = link_to cart_items_path, class: "nav_user_action nav_cart", title: "购物车" do
+              i.icon-shopping-cart
+              span.badge= cart_items_count
             ul.dropdown-menu
               li= link_to_with_icon "个人主页", "icon-user icon-fixed-width", current_user
               li= link_to_with_icon "我的订单", "icon-file-text-alt icon-fixed-width", orders_path
@@ -77,9 +75,10 @@ header
               - if can? :manage, Order
                 li= link_to_with_icon "管理订单", "icon-stethoscope icon-fixed-width", haven_orders_path
         - else
-          li.signin
-            = link_to_with_icon "登入", "icon-signin", '#',  data: {toggle: "modal", target: "#login-modal"}
+          .nav_user.is_not_login
+            = link_to_with_icon "登入", "icon-signin", "#", class: "nav_user_action", data: {toggle: "modal", target: "#login-modal"}
 
-      = form_tag(search_path, method: 'get', id: "navbar_search", class: "navbar-form navbar-right", role: "search") do
-        i.icon-search
-        input.search-query type="search" name="q"
+      = form_tag(search_path, method: "get", id: "navbar_search", class: "navbar-form navbar-right", role: "search") do
+        .form-group
+          input.form-control type="search" name="q"
+          i.icon-search
