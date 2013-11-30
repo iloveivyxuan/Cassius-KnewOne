@@ -31,4 +31,5 @@ end
 
 every 1.day, :at => '3:00 am' do
   runner 'Order.cleanup_expired_orders'
+  runner 'Coupon.cleanup_expired'
 end

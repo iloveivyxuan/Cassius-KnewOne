@@ -1,0 +1,22 @@
+- provide :title, '我的优惠券'
+.coupons_wrapper
+  header
+    h1
+      i.icon-ticket
+      | 收货地址
+  section
+    = form_tag bind_coupons_path, class: 'form-inline'
+      = text_field_tag :code, '', class: 'input-small', placeholder: '优惠券代码'
+      = submit_tag '添加', class: 'btn'
+      - if flash[:error]
+        span.alert.alert-error = flash[:error]
+      - elsif flash[:success]
+        span.alert.alert-success = flash[:success]
+  section.coupons
+    table.table
+      - @coupons.each do |c|
+        tr
+          td = c.code
+          td = c.name
+          td = c.note
+          td = c.available? ? '可用' : '已使用'

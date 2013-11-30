@@ -1,0 +1,10 @@
+.coupons_wrapper
+  = simple_form_for @coupon, url: [:haven, @coupon] do |f|
+    = f.input :name
+    = f.input :note
+    = f.input :threshold_price, as: :decimal
+    = f.input :price, as: :decimal
+    = f.input :code
+    = f.input :expires_at, as: :date
+    = f.button :submit
+

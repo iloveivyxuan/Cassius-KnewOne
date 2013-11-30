@@ -6,20 +6,14 @@
         i.icon-shopping-cart
         | 提交订单
       ul.order_items = render partial: 'orders/order_item', collection: @order.order_items
-      .form-group
-        label.control-label for="order_address_id" * 收货地址
-        .controls
-          ul.addresses
-            = render partial: 'address_radio', collection: current_user.addresses, as: :address, locals: {f: f}
-            - if current_user.addresses.empty?
-              li
-                span.alert
-                  = link_to '您必须添加一个收货地址才能够提交订单，点此添加。', new_address_path
-            - else
-              li = link_to '+ 新地址', new_address_path
+      = render partial: 'address_select', locals: {f: f}
       = f.input :deliver_by, as: :radio_buttons do
         ul.deliver_by_list = render partial: 'deliver_methods', locals: {f: f}
       = f.input :note
+      = render partial: 'coupon_select', locals: {f: f}
+      label.checkbox.inline.misc_option
+        = f.check_box :auto_owning
+        | 帮我标记产品为拥有
       = provider_sync
       .form-actions
         p.total_price[data-things-price="#{@order.items_price}"]

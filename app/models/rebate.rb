@@ -1,5 +1,6 @@
 class Rebate
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   embedded_in :order
 
@@ -7,5 +8,5 @@ class Rebate
   field :price, type: BigDecimal, default: 0
   field :note, type: String
 
-  validates :name, :price, presence: false
+  validates :name, :price, presence: true
 end

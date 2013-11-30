@@ -1,0 +1,11 @@
+.control-group
+  label.control-label for="coupon" 优惠券
+  .controls
+    ul.coupons
+      li.radio
+        = f.radio_button :coupon, '', class: 'order_coupon_radio'
+        | 不使用
+      - current_user.coupons.available.select {|c| c.usable?(@order)}.each do |c|
+        li.radio
+          = f.radio_button :coupon, c.code, class: 'order_coupon_radio'
+          = "#{c.name}：#{c.note}"

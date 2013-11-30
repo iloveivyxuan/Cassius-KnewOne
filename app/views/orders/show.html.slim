@@ -48,6 +48,7 @@
           span= @order.total_price
   section
     ul = render partial: 'orders/order_item', collection: @order.order_items
+    ul = render partial: 'orders/rebate', collection: @order.rebates if @order.rebates.any?
     .pull-right
       = link_to '#order_share', class: 'btn btn-default', data: {toggle: 'modal'}  do
         = provider_share

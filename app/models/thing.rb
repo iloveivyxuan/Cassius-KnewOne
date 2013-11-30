@@ -19,6 +19,8 @@ class Thing < Post
   field :recommended, type: Boolean, default: false
   field :lock_priority, type: Boolean, default: false
 
+  field :sharing_text, type: String
+
   field :stage, type: Symbol, default: :concept
   STAGES = {
     concept: "研发中",
