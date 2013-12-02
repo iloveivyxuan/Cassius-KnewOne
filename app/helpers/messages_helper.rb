@@ -13,7 +13,7 @@ module MessagesHelper
     content = ""
     if post.class == Thing
       content += "产品"
-      content += link_to thing_title(post), thing_path(post)
+      content += link_to present(post).full_title, thing_path(post)
     elsif post.class == Review
       content += "评测"
       content += link_to post.title, thing_review_path(post.thing, post)

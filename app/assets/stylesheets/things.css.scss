@@ -406,28 +406,14 @@
 }
 
 #things_index {
-  @include clearfix();
-  margin: 0 auto;
-
-  @media screen and (min-width: 768px) {
-    width: 440px;
-  }
-
-  @media screen and (min-width: 1024px) {
-    width: 880px;
-  }
-
-  @media screen and (min-width: 1680px) {
-    width: 1360px;
-  }
-
-  li.thing { @include thing-in-list(384px); }
-
-  .btn-group {
-    padding-left: 15px;
-    margin-bottom: 15px;
-    a {
-      color: #777;
+  @include site_margin;
+  > nav {margin-bottom: 1em;}
+  ul#things {
+    @include make-row;
+    li {
+      @include make-sm-column(4);
+      @include make-lg-column(2);
+      margin-bottom: 2em;
     }
   }
 }

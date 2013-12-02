@@ -1,6 +1,6 @@
 #home_index {
   @include make-row;
-  margin: 0 5%;
+  @include site_margin;
 
   > section {@include make-md-column(8);}
 

@@ -2,7 +2,7 @@ class ThingsController < PostsController
   after_filter :store_location, only: [:show]
 
   def index
-    per = (params[:per] || 12).to_i
+    per = (params[:per] || 24).to_i
 
     scope = case params[:sort]
             when "self_run"
