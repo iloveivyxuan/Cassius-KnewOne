@@ -23,7 +23,7 @@ module Making
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    config.autoload_paths += %W(#{config.root}/lib #{config.root}/lib/auths)
+    config.autoload_paths += %W(#{config.root}/lib #{config.root}/lib/auths #{config.root}/lib/waybill)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.

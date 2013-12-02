@@ -77,5 +77,10 @@ module Haven
       @order.refund!
       redirect_to haven_orders_path
     end
+
+    def generate_waybill
+      @order.generate_waybill!
+      redirect_to haven_order_path(@order)
+    end
   end
 end

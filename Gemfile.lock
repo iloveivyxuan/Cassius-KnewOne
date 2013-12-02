@@ -90,6 +90,7 @@ GEM
       sass (~> 3.1)
     compass-rails (1.0.3)
       compass (>= 0.12.2, < 0.14)
+    connection_pool (1.2.0)
     daemons (1.1.9)
     database_cleaner (1.2.0)
     devise (3.2.1)
@@ -195,6 +196,8 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.2)
     mime-types (1.25)
+    mini_magick (3.7.0)
+      subexec (~> 0.2.1)
     modernizr-rails (2.6.3)
     mongoid (3.1.5)
       activemodel (~> 3.2)
@@ -294,6 +297,9 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    redis (3.0.6)
+    redis-namespace (1.3.2)
+      redis (~> 3.0.4)
     ref (1.0.5)
     rest-client (1.6.7)
       mime-types (>= 1.16)
@@ -321,6 +327,12 @@ GEM
       sass (>= 3.1.10)
       tilt (~> 1.3)
     settingslogic (2.0.9)
+    sidekiq (2.17.0)
+      celluloid (>= 0.15.2)
+      connection_pool (>= 1.0.0)
+      json
+      redis (>= 3.0.4)
+      redis-namespace (>= 1.3.1)
     simple_form (2.1.0)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
@@ -341,6 +353,7 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     stringex (2.1.1)
+    subexec (0.2.3)
     temple (0.6.7)
     therubyracer (0.12.0)
       libv8 (~> 3.16.14.0)
@@ -416,6 +429,7 @@ DEPENDENCIES
   kaminari
   letter_opener
   libnotify
+  mini_magick
   modernizr-rails
   mongoid (~> 3.1.5)
   mongoid-rspec
@@ -436,6 +450,7 @@ DEPENDENCIES
   rvm-capistrano
   sass-rails
   settingslogic
+  sidekiq
   simple_form
   slim-rails
   therubyracer
