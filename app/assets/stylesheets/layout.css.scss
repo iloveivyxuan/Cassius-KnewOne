@@ -4,7 +4,10 @@
                      "orbitron-bold.svg", svg),
                    "orbitron-bold.eot");
 
-body {padding-top: $navbar-height*2;}
+body {
+  padding-bottom: $navbar-margin-bottom + $font-size-base;
+  padding-top: $navbar-height + $navbar-margin-bottom + $font-size-base;
+}
 
 .navbar {
 
@@ -95,8 +98,8 @@ body {padding-top: $navbar-height*2;}
           background-color: $brand-success;
           color: #fff;
         }
-        
-        &+.popover {
+
+        & + .popover {
           .popover-title {display: none;}
         }
       }
