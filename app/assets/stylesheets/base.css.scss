@@ -89,6 +89,8 @@
   }
 }
 
+@mixin site_margin {margin: 0 5%;}
+
 @mixin icon-fixed-width {
   display: inline-block;
   width: 1.1428571428571428em;

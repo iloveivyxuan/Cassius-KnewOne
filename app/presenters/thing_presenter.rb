@@ -6,7 +6,6 @@ class ThingPresenter < PostPresenter
   def full_title
     [title, subtitle].reject(&:blank?).join(' - ')
   end
-
   def photo_url(size)
     thing.cover.url(size)
   end

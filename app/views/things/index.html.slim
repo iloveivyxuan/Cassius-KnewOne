@@ -1,20 +1,20 @@
-- provide :title, things_sort(params[:sort])
+- sort_names = {new: "最新", fancy: "热门", self_run: "自营"}
+- params[:sort] ||= "new"
+- provide :title, sort_names[params[:sort].to_sym]
 
-.things_wrapper
+nav#things_nav
+  ul.nav.nav-pills
+    = nav_tab :new, nav: params[:sort] do
+      = link_to_with_icon "最新", "icon-rocket", things_path
+    = nav_tab :fancy, nav: params[:sort] do
+      = link_to_with_icon "热门", "icon-bullseye", things_path(sort: "fancy")
+    = nav_tab :self_run, nav: params[:sort] do
+      = link_to_with_icon "自营", "icon-trophy", things_path(sort: "self_run")
 
-  section#things_index
-    nav.btn-group
-      = link_to_with_icon "最新", "icon-rocket", things_path,
-      class: "btn btn-default #{'active' unless params[:sort]}"
-      = link_to_with_icon "热门", "icon-bullseye", things_path(sort: "fancy"),
-      class: "btn btn-default #{'active' if params[:sort] == 'fancy'}"
-      = link_to_with_icon "自营", "icon-trophy", things_path(sort: "self_run"),
-      class: "btn btn-default #{'active' if params[:sort] == 'self_run'}"
-
-    ul= render @things, size: :normal
-
+section#things_index
+  ul#things= render @things, size: :normal
   = paginate @things
 
 - content_for :script do
   javascript:
-    Making.InfiniteScroll("#things_index", "li.thing")
+    Making.InfiniteScroll("#things_index", "ul#things > li");

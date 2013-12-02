@@ -44,7 +44,9 @@ module ApplicationHelper
 
   def nav_tab(tab, options = {})
     options[:class] ||= ''
-    options[:class] += ' active' if content_for(:nav) == tab.to_s
+    if content_for(:nav) == tab.to_s || options[:nav] == tab.to_s
+      options[:class] += ' active'
+    end
     content_tag(:li, options) {yield}
   end
 
