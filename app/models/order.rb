@@ -39,6 +39,7 @@ class Order
   field :note, type: String
   field :admin_note, type: String
   field :system_note, type: String
+  field :alteration, type: String
   field :trade_no, type: String
   field :trade_price, type: BigDecimal
   field :trade_state, type: String
@@ -55,7 +56,7 @@ class Order
   validates_associated :address
   validates :user, presence: true
   attr_accessible :note, :deliver_by, :address_id, :auto_owning
-  attr_accessible :state, :admin_note, :deliver_no, :trade_no, :rebates_attributes, :price,
+  attr_accessible :state, :admin_note, :deliver_no, :trade_no, :rebates_attributes, :price, :alteration,
                   :as => :admin
 
   accepts_nested_attributes_for :rebates, allow_destroy: true, reject_if: :all_blank

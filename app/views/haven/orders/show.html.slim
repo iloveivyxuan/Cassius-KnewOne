@@ -67,6 +67,7 @@
       fieldset
         legend 订单调整
         = f.input :admin_note, as: :text, input_html: {rows: 3}
+        = f.input :alteration, as: :text, input_html: {rows: 3}
         = f.input :price, as: :decimal, required: true if @order.pending?
         = f.button :submit, class: "btn-primary"
 
