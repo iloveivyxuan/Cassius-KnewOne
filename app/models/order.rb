@@ -45,6 +45,8 @@ class Order
   field :auto_owning, type: Boolean, default: true
   field :price, type: BigDecimal
 
+  mount_uploader :waybill, WaybillUploader
+
   validates_numericality_of :price, :greater_than_or_equal_to => 1, :unless => Proc.new { |order| !order.persisted? }
   validates :state, presence: true, inclusion: {in: STATES.keys}
   validates :deliver_by, presence: true, inclusion: {in: DELIVER_METHODS.keys}
@@ -75,6 +77,10 @@ class Order
 
   after_create do
     user.cart_items.destroy_all(:thing.in => order_items.map(&:thing), :kind_id.in => order_items.map(&:kind).map(&:id))
+  end
+
+  after_save do
+    generate_waybill! if confirmed? || paid?
   end
 
   default_scope -> { order_by(:created_at => :desc) }
@@ -130,8 +136,6 @@ class Order
     save!
 
     order_histories.create from: :pending, to: :paid, raw: raw
-
-    WayBillWorker.perform_async(self.id.to_s)
   end
 
   def confirm_payment!(trade_no, price, method, raw)
@@ -148,8 +152,6 @@ class Order
     save!
 
     order_histories.create from: state, to: :confirmed, raw: raw
-
-    WayBillWorker.perform_async(self.id.to_s)
   end
 
   def ship!(deliver_no, admin_note = '')
@@ -240,6 +242,11 @@ class Order
 
   def total_cents
     ((self.price || calculate_price) * 100).to_i
+  end
+
+  def generate_waybill!
+    return unless waybill.url.nil?
+    WayBillWorker.perform_async(self.id.to_s)
   end
 
   def use_coupon!(code)
