@@ -2,18 +2,20 @@
 - params[:sort] ||= "new"
 - provide :title, sort_names[params[:sort].to_sym]
 
-nav#things_nav
-  ul.nav.nav-pills
-    = nav_tab :new, nav: params[:sort] do
-      = link_to_with_icon "最新", "icon-rocket", things_path
-    = nav_tab :fancy, nav: params[:sort] do
-      = link_to_with_icon "热门", "icon-bullseye", things_path(sort: "fancy")
-    = nav_tab :self_run, nav: params[:sort] do
-      = link_to_with_icon "自营", "icon-trophy", things_path(sort: "self_run")
-
 section#things_index
-  ul#things= render @things, size: :normal
-  = paginate @things
+
+  nav
+    ul.nav.nav-pills
+      = nav_tab :new, nav: params[:sort] do
+        = link_to_with_icon "最新", "icon-rocket", things_path
+      = nav_tab :fancy, nav: params[:sort] do
+        = link_to_with_icon "热门", "icon-bullseye", things_path(sort: "fancy")
+      = nav_tab :self_run, nav: params[:sort] do
+        = link_to_with_icon "自营", "icon-trophy", things_path(sort: "self_run")
+
+  section
+    ul#things= render @things, size: :normal
+    = paginate @things
 
 - content_for :script do
   javascript:

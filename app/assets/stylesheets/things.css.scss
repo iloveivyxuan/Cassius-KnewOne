@@ -405,18 +405,9 @@
   }
 }
 
-#things_nav {
-  @include site_margin;
-  margin-bottom: 1em;
-
-  ul.nav {
-    li a {padding: 5px 10px;}
-  }  
-}
-
 #things_index {
   @include site_margin;
-
+  > nav {margin-bottom: 1em;}
   ul#things {
     @include make-row;
     li {
