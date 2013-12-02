@@ -43,6 +43,7 @@ zh-CN:
         address: '收货地址'
         coupon: '优惠券'
         price: '应付价格'
+        alteration: '变更信息'
       address:
         province: '省'
         district: '地区'
