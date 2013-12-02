@@ -583,3 +583,9 @@ label#check_provider_sync {
   color: $text-muted;
   margin-left: 2em;
 }
+
+.widget {
+  margin-bottom: 1em;
+  padding: 2em;
+  @include section-decorate;
+}

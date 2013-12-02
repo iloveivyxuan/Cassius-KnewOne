@@ -1,23 +1,26 @@
 - provide :title, @user.name
 
-.user_wrapper
+section.user_wrapper
 
-  header#user_summary
-    .summary_wrapper
-      .avatar= user_avatar(@user, :small)
-      h2.name= @user.name
-      .karma
-        .rank Lv.#{@user.rank}
+  main role="main"
+    dl.vcard.widget itemscope="" itemtype="http://data-vocabulary.org/Person"
+      dd.avatar itemprop="photo"= user_avatar(@user, :small)
+      dt.name itemprop="name"
+        h2= @user.name
+      dd.clearfix itemprop="rating" itemscope="" itemtype="http://data-vocabulary.org/Rating"
+        .level Lv.#{@user.rank}
         .progress title="#{@user.progress}%"
           .progress-bar style="width: #{@user.progress}%;"
-      .urls
+      dd.url itemprop="url"
         = user_links(@user)
-      address = user_location(@user)
-      blockquote= user_desciption(@user)
+      dd itemprop="address"
+        address = user_location(@user)
+      dd
+        blockquote= user_desciption(@user)
 
-  section#user_content
-    .tabbable.content_wrapper
-      ul.nav.nav-tabs
+  aside role="complementary"
+    .widget
+      ul.nav.nav-pills
         li.active
           = link_to "#fancies", data: {toggle: "tab"} do
             | 喜欢
