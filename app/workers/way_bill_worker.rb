@@ -13,6 +13,8 @@ class WayBillWorker
                     ::SfWayBill.new
                   when :zt then
                     ::ZtoWayBill.new
+                  when :sf_hongkong then
+                    ::SfWayBill.new
                 end
     tmp = Tempfile.new ["waybill_#{order.id.to_s}", '.gif'], [tmpdir = Dir.tmpdir], :encoding => 'ascii-8bit'
     tmp.write generator.draw_body_from_order(order).to_io_stream
