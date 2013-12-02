@@ -82,6 +82,6 @@ module Making
     end
 
     config.action_view.sanitized_allowed_tags = ['embed', 'iframe', 'strike', 'u']
-    config.action_view.sanitized_allowed_attributes = ['src', 'height', 'width']
+    config.action_view.sanitized_allowed_attributes = ['src', 'height', 'width', 'target']
   end
 end
