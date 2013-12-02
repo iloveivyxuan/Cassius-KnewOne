@@ -77,5 +77,9 @@ module Haven
       @order.refund!
       redirect_to haven_orders_path
     end
+
+    def way_bill
+      send_file Rails.root.join("tmp/waybill_#{@order.id.to_s}.gif"), :type => 'image/gif', :disposition => 'attachment'
+    end
   end
 end

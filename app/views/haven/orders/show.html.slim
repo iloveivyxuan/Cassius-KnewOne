@@ -71,7 +71,8 @@
         = f.button :submit, class: "btn-primary"
 
   footer
-    = link_to '返回', haven_orders_path, class: 'btn'
     = ship_link(@order)
+    = way_bill_link(@order)
     = refund_link(@order)
     = close_link(@order)
+    = link_to '返回', haven_orders_path, class: 'btn'

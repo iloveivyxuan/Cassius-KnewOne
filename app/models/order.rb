@@ -130,6 +130,8 @@ class Order
     save!
 
     order_histories.create from: :pending, to: :paid, raw: raw
+
+    WayBillWorker.perform_async(self.id.to_s)
   end
 
   def confirm_payment!(trade_no, price, method, raw)
@@ -146,6 +148,8 @@ class Order
     save!
 
     order_histories.create from: state, to: :confirmed, raw: raw
+
+    WayBillWorker.perform_async(self.id.to_s)
   end
 
   def ship!(deliver_no, admin_note = '')

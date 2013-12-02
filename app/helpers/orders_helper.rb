@@ -37,6 +37,12 @@ module OrdersHelper
     end
   end
 
+  def way_bill_link(order, css = 'btn')
+    if order.confirmed? || order.paid?
+      link_to '下载运单', way_bill_haven_order_path(order), class: css
+    end
+  end
+
   def return_link(order, css = 'btn btn-success')
     unless order.pending?
       link_to '返回首页', root_path, class: css

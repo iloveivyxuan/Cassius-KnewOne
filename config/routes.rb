@@ -51,6 +51,7 @@ Making::Application.routes.draw do
         put 'ship'
         put 'close'
         put 'refund'
+        get 'way_bill'
       end
     end
 

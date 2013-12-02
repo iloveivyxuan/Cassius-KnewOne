@@ -40,6 +40,7 @@ gem 'airbrake'
 gem 'intercom-rails', '~> 0.2.21'
 # crontab
 gem 'whenever', require: false
+gem 'sidekiq'
 gem 'jasl_tenpay', github: 'jasl/tenpay'
 gem 'alipay'
 # print waybill
