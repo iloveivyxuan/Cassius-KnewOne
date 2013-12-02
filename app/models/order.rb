@@ -23,7 +23,8 @@ class Order
             :refunded => '已协商退款'}
   DELIVER_METHODS = {
       :sf => {name: '顺丰', price: 18.0},
-      :zt => {name: '中通', price: 8.0}
+      :zt => {name: '中通', price: 8.0},
+      :sf_hongkong => {name: '顺丰（港澳）', price: 28.0}
   }
   PAYMENT_METHOD = {
       :tenpay => '财付通',
