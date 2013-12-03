@@ -2,7 +2,7 @@
 
 section.user_wrapper
 
-  aside role="complementary"
+  section.user_info
     dl.vcard.widget itemscope="" itemtype="http://data-vocabulary.org/Person"
       dd.avatar itemprop="photo"= user_avatar(@user, :small)
       dt.name itemprop="name"
@@ -18,7 +18,7 @@ section.user_wrapper
       dd
         blockquote= user_desciption(@user)
 
-  main role="main"
+  section.user_content
     .widget
       ul.nav.nav-pills
         li.active

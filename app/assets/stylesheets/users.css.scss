@@ -6,13 +6,13 @@
     @include site_margin;
   }
 
-  aside[role="complementary"] {
+  .user_info {
     @include make-md-column(4);
     @include make-lg-column(3);
     @include make-xl-column(2);
   }
 
-  main[role="main"] {
+  .user_content {
     @include make-md-column(8);
     @include make-lg-column(9);
     @include make-xl-column(10);
