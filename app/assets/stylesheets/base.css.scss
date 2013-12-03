@@ -44,27 +44,6 @@
   @include border-radius(8px);
 }
 
-@mixin left-layout($with_border: true) {
-  @media screen and (min-width: 1024px) {
-    float: left;
-    width: 68%;
-    @if $with_border {
-      width: 64%;
-      padding-right: 1.9%;
-      border-right: 1px solid #eee;
-      margin-right: 1.9%;
-    }
-    min-height: 800px;
-  }
-}
-
-@mixin right-layout {
-  @media screen and (min-width: 1024px) {
-    float: right;
-    width: 32%;
-  }
-}
-
 @mixin fixed-wrapper {
   @include section-decorate;
   @include clearfix;
@@ -253,7 +232,18 @@ input {
 }
 
 ul.nav-pills {
-  > li > a {padding: 5px 10px;}
+
+  > li {
+
+    > a {
+      padding: 5px 10px;
+
+      > .badge {
+        border-radius: $nav-pills-border-radius;
+        margin-left: .5em;
+      }
+    }
+  }
 }
 
 .input-group-addon {

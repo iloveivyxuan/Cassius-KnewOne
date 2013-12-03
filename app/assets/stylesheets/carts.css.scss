@@ -103,107 +103,138 @@
 }
 
 .carts_wrapper {
-  @include responsive-wrapper;
+  @include site_margin;
 
-  ul {
+  @media screen and (min-width: $screen-md-min) {
+    margin-left: auto;
+    margin-right: auto;
+    width: $screen-md-min;
+  }
+
+  .carts {
     border-bottom: 1px solid #e5e5e5;
     margin-bottom: 1em;
+
+    @media screen and (min-width: $screen-sm-min) {
+      padding-left: 1em;
+      padding-right: 1em;
+    }
   }
 
   .cart_item {
     @include clearfix;
     position: relative;
-    margin: 1em 0;
-    
+    margin-bottom: 1em;
+
+    &:not(:last-child) {
+      border-bottom: 1px dashed #e5e5e5;
+      padding-bottom: .5em;
+    }
+
     &[disabled] {
       opacity: 0.5;
+
       .stock_hint {display: inline;}
     }
 
     .thing {
-      float: left;
-      > * {float: left;}
-      .cover {margin-right: 3em;}
+      margin-bottom: 1em;
+      padding: 0;
+
+      .cover {
+        @include inline-block;
+      }
+
       .info {
-        .title {font-size: 1.25em;}
-        .kind {margin-top: 1em;}
+        @include inline-block;
+        max-width: 53%;
+        margin-left: 2em;
+
+        @media screen and (min-width: $screen-sm-min) {
+          max-width: none;
+        }
+
+        .title {
+          font-size: 1.25em;
+          margin-bottom: 1em;
+        }
       }
 
       .stock_hint {
-        margin-left: 1em;
         color: $red;
-      }
+        display: block;
+        font-weight: normal;
 
-      @media screen and (max-width: 767px) {
-        .info {width: 8em;}
+        @media screen and (min-width: $screen-sm-min) {
+          display: inline;
+          margin-left: 2em;
+        }
       }
     }
 
     .item_opts {
-      float: right;
-      > * {
-        display: inline-block;
+      @include clearfix;
+
+      @media screen and (min-width: $screen-sm-min) {
         float: right;
       }
+
       .price {
-        text-align: right;
-        width: 6em;
-        margin-right: 1em;
+        float: right;
         font-size: 1.25em;
+        max-width: 7em;
+        text-align: right;
       }
+
       .destroy {
         text-align: center;
-        margin: 0 2em;
+        margin: 0 1.5em;
+        float: right;
+
         a {color: $text-muted;}
       }
+
       .quantity {
-        margin-right: 1em;
+        float: left;
+
+        @media screen and (min-width: $screen-sm-min) {
+          float: right;
+        }
+
         span {
-          display: inline-block;
+          @include inline-block;
           text-align: center;
           width: 3em;
         }
-        .icon-plus {margin-left: .5em;}
-      }
 
-      @media screen and (max-width: 767px) {
-        float: left;
-        margin-top: 1em;
-        width: 100%;
-        .quantity {
-          float: left;
-          span {width: 2em;}
-        }
-        .destroy {
-          margin: 0;
-        }
-        .price {margin-right: 0;}
+        .icon-plus {margin-left: .5em;}
       }
     }
   }
 
   .total_price {
     text-align: right;
-    margin-right: 1em;
     color: $text-muted;
+
     strong {
-      margin-left: 1em;
+      @include inline-block;
+      margin-left: .5em;
       font-size: 1.25em;
       color: $red;
+      width: auto;
     }
 
-    @media screen and (max-width: 767px) {
-      margin-right: 0;
+    @media screen and (min-width: $screen-sm-min) {
+      margin-right: 1em;
     }
   }
 
   button[type="submit"] {
     float: right;
-    margin-right: 1em;
     width: 8em;
 
-    @media screen and (max-width: 767px) {
-      margin-right: 0;
+    @media screen and (min-width: $screen-sm-min) {
+      margin-right: 1em;
     }
   }
 }
