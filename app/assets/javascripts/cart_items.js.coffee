@@ -8,7 +8,7 @@ Making.CartItemNew = ->
       $('.shop .price small').text "￥ #{$this.data('price')}"
       $form.find('.selected').removeClass('selected')
       prompt = (selector) ->
-        $this.parent().find(selector).clone()
+        $this.siblings(selector).clone()
           .appendTo($prompt)
           .fadeIn()
       $prompt.empty()

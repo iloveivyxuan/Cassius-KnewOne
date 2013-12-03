@@ -56,6 +56,8 @@
     }
   }
 
+  .estimates_at, .stock {display: none;}
+
   @media screen and (max-width: 1023px) {
     @include clearfix();
     margin-top: -1em;

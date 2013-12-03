@@ -271,6 +271,17 @@ ul.nav-pills {
   color: $text-muted;
 }
 
+.form-group.date {
+  select {
+    display: inline-block;
+    width: 25%;
+  }
+}
+
+input[type="number"] {
+  max-width: 100px;
+}
+
 .icon-twitter {
   color: $blue;
 }
