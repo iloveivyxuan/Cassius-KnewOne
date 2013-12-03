@@ -13,14 +13,14 @@
 }
 
 form.thing_form, #thing_form_content, #thing_form_submit {
-  margin: 0 15% 0 10%;
+  margin: 0 10%;
 }
 
 form.thing_form {
   .form-group {
     margin: 0 0 2em;
     label {@include make-sm-column(2);}
-    .controls {@include make-sm-column(9)};
+    .controls {@include make-sm-column(8)};
   }
 }
 
@@ -32,6 +32,7 @@ form#new_photo {
     overflow: hidden;
     margin-bottom: 1em;
     width: 20%;
+    min-width: 150px;
 
     i {margin-right: 1em;}
 
