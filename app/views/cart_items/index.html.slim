@@ -1,10 +1,12 @@
 - provide :title, '购物车'
 .carts_wrapper.widget
+  header.page-header
+    h2
+      i.icon-shopping-cart
+      | 购物车
+
   = form_tag new_order_path, method: :get
     fieldset
-      legend
-        i.icon-shopping-cart
-        | 购物车
       ul.carts= render @cart_items
       p.total_price
         | 总计（不包含运费）

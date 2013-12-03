@@ -103,13 +103,7 @@
 }
 
 .carts_wrapper {
-  @include site_margin;
-
-  @media screen and (min-width: $screen-md-min) {
-    margin-left: auto;
-    margin-right: auto;
-    width: $screen-md-min;
-  }
+  @include simple_page_wrapper;
 
   .carts {
     border-bottom: 1px solid #e5e5e5;

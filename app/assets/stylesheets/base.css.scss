@@ -193,6 +193,23 @@
   }
 }
 
+@mixin simple_page_wrapper {
+  @include site_margin;
+
+  @media screen and (min-width: $screen-md-min + 100) {
+    margin-left: auto;
+    margin-right: auto;
+    width: $screen-md-min;
+  }
+
+  .page-header {
+    h2 {
+      color: $gray-light;
+      font-size: $font-size-h3;
+    }
+  }
+}
+
 ul, ol {
   list-style: none;
   margin: 0;
@@ -585,4 +602,8 @@ label#check_provider_sync {
   margin-bottom: 1em;
   padding: 2em;
   @include section-decorate;
+}
+
+.simple_page_wrapper {
+  @include simple_page_wrapper;
 }
