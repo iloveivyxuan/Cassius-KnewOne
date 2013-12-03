@@ -252,6 +252,10 @@ input {
   text-shadow: none;
 }
 
+ul.nav-pills {
+  > li > a {padding: 5px 10px;}
+}
+
 .input-group-addon {
   margin-right: -1px;
 }
