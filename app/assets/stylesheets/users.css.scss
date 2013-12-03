@@ -1,29 +1,32 @@
 .user_wrapper {
-  margin: 0 5%;
+  @include site_margin;
 
   @media screen and (min-width: $screen-md-min) {
     @include make-row;
     @include site_margin;
   }
 
-  main {
+  aside[role="complementary"] {
     @include make-md-column(4);
     @include make-lg-column(3);
     @include make-xl-column(2);
   }
 
-  aside {
+  main[role="main"] {
     @include make-md-column(8);
     @include make-lg-column(9);
     @include make-xl-column(10);
 
-    ul.tab-pane {
-      @include make-row;
+    .tab-pane {
 
-      li {
-        @include make-sm-column(6);
-        @include make-lg-column(4);
-        @include make-xl-column(3);
+      ul.grids {
+        @include make-row;
+
+        > li {
+          @include make-sm-column(6);
+          @include make-lg-column(4);
+          @include make-xl-column(3);
+        }
       }
     }
   }

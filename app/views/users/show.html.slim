@@ -2,7 +2,7 @@
 
 section.user_wrapper
 
-  main role="main"
+  aside role="complementary"
     dl.vcard.widget itemscope="" itemtype="http://data-vocabulary.org/Person"
       dd.avatar itemprop="photo"= user_avatar(@user, :small)
       dt.name itemprop="name"
@@ -18,31 +18,31 @@ section.user_wrapper
       dd
         blockquote= user_desciption(@user)
 
-  aside role="complementary"
+  main role="main"
     .widget
       ul.nav.nav-pills
         li.active
           = link_to "#fancies", data: {toggle: "tab"} do
             | 喜欢
-            b #{@fancies.count}
+            span.badge #{@fancies.count}
         li
           = link_to "#owns", data: {toggle: "tab"} do
             | 拥有
-            b #{@owns.count}
+            span.badge #{@owns.count}
         li
           = link_to "#reviews", data: {toggle: "tab"} do
             | 评测
-            b #{@reviews.count}
+            span.badge #{@reviews.count}
         li
           = link_to "#things", data: {toggle: "tab"} do
             | 分享
-            b #{@things.count}
+            span.badge #{@things.count}
       .tab-content
-        ul#fancies.tab-pane.active
-          = render @fancies, size: :normal
-        ul#owns.tab-pane
-          = render @owns, size: :normal
-        ul#reviews.tab-pane
-          = render @reviews
-        ul#things.tab-pane
-          = render @things, size: :normal
+        #fancies.tab-pane.active
+          ul.grids= render @fancies, size: :normal
+        #owns.tab-pane
+          ul.grids= render @owns, size: :normal
+        #reviews.tab-pane
+          ul= render @reviews
+        #things.tab-pane
+          ul.grids= render @things, size: :normal
