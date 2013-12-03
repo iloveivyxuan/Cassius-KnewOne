@@ -6,7 +6,7 @@
     h1 分享产品
     p 感谢您分享您喜欢的新/奇/酷产品，一旦产品经过我们的编辑审核通过，将来有可能获得很大的优惠喔！
 
-  = simple_form_for @thing, html: {class: "thing_form form-horizontal pull-left"} do |f|
+  = simple_form_for @thing, html: {class: "thing_form form-horizontal"}, wrapper: :horizontal do |f|
     = f.input :title, placeholder: "真实准确的品牌型号，40字以内", input_html: {maxlength: 40}
     = f.input :subtitle, placeholder: "您对产品的一句话介绍，40字以内", input_html: {maxlength: 40}
     = f.input :official_site, as: :url, placeholder: "品牌官方网站的该产品链接地址"

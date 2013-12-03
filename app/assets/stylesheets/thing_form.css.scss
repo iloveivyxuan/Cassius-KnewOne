@@ -12,18 +12,16 @@
   }
 }
 
-form.thing_form {
-  margin: 0;
-
-  .controls {
-    input[type="text"], input[type="url"], p.help-block {
-      width: 60%;
-    }
-  }
+form.thing_form, #thing_form_content, #thing_form_submit {
+  margin: 0 10%;
 }
 
-#thing_form_content, #thing_form_submit {
-  margin: 0 15% 0 10%;
+form.thing_form {
+  .form-group {
+    margin: 0 0 2em;
+    label {@include make-sm-column(2);}
+    .controls {@include make-sm-column(8)};
+  }
 }
 
 form#new_photo {
@@ -34,6 +32,7 @@ form#new_photo {
     overflow: hidden;
     margin-bottom: 1em;
     width: 20%;
+    min-width: 150px;
 
     i {margin-right: 1em;}
 

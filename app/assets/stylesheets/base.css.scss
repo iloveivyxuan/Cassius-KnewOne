@@ -438,6 +438,7 @@ time {
 }
 
 .post_content {
+  img {@extend .img-responsive;}
   iframe {
     border: none;
     margin: .5em 0;
