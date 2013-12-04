@@ -216,9 +216,6 @@ GEM
     mongoid_slug (3.2.0)
       mongoid (> 3.0)
       stringex (~> 2.0)
-    mongoid_taggable (1.1.1)
-      mongoid (>= 3)
-      rake
     moped (1.5.1)
     multi_json (1.8.2)
     multipart-post (1.2.0)
@@ -421,7 +418,6 @@ DEPENDENCIES
   mongoid-rspec
   mongoid_rails_migrations
   mongoid_slug
-  mongoid_taggable
   nested_form
   newrelic_rpm
   omniauth-twitter

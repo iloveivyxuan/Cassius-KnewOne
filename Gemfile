@@ -8,7 +8,6 @@ gem 'rails-i18n'
 # database
 gem 'mongoid', '~> 3.1.5'
 gem 'mongoid_slug'
-gem 'mongoid_taggable'
 gem 'mongoid_rails_migrations'
 # components
 gem 'simple_form'
