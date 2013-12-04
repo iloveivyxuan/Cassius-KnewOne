@@ -1,8 +1,8 @@
 - provide :title, '订单详情'
 
-.orders_wrapper
-  header
-    h1
+section.simple_page_wrapper.widget.orders_wrapper
+  header.page-header
+    h2
       i.icon-shopping-cart
       | 订单信息
   .summary
@@ -63,7 +63,7 @@
     ul = render partial: 'orders/rebate', collection: @order.rebates if @order.rebates.any?
 
   section
-    = simple_nested_form_for @order, url: haven_order_path(@order), html: {class: "form-horizontal"} do |f|
+    = simple_nested_form_for @order, url: haven_order_path(@order), html: {class: "form"} do |f|
       fieldset
         legend 订单调整
         = f.input :admin_note, as: :text, input_html: {rows: 3}
@@ -71,9 +71,10 @@
         = f.input :price, as: :decimal, required: true if @order.pending?
         = f.button :submit, class: "btn-primary"
 
-  footer
-    = ship_link(@order)
-    = way_bill_link(@order)
-    = refund_link(@order)
-    = close_link(@order)
-    = link_to '返回', haven_orders_path, class: 'btn'
+  footer.clearfix
+    .pull-right
+      = link_to '返回', haven_orders_path, class: 'btn btn-link'
+      = ship_link(@order)
+      = way_bill_link(@order)
+      = refund_link(@order)
+      = close_link(@order)

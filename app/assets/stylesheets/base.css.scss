@@ -618,3 +618,7 @@ label#check_provider_sync {
 .simple_page_wrapper {
   @include simple_page_wrapper;
 }
+
+.inline-block {
+  @include inline-block;
+}
