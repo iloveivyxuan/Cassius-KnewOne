@@ -12,7 +12,7 @@ class Order
 
   embeds_many :rebates
 
-  has_one :coupon_code
+  has_one :coupon_code, autosave: true
   attr_accessor :coupon_code_id
   def coupon_code_id=(id)
     self.coupon_code = CouponCode.where(id: id).first
@@ -66,9 +66,9 @@ class Order
 
   accepts_nested_attributes_for :rebates, allow_destroy: true, reject_if: :all_blank
 
-  before_create do
-    self.coupon_code.use unless self.coupon_code.nil?
-  end
+  #before_create do
+  #  self.coupon_code.use unless self.coupon_code.nil?
+  #end
 
   before_create do
     self.order_no = rand.to_s[2..11]
@@ -280,10 +280,13 @@ class Order
 
   class<< self
     def build_order(user, params = {})
+      params ||= {}
       address_id = params.delete :address_id
       order = user.orders.build params
+      order.deliver_by ||= :sf
       order.address = user.addresses.find(address_id) if address_id
       user.cart_items.each { |item| OrderItem.build_by_cart_item(order, item)}
+      order.coupon_code.use unless order.coupon_code.nil?
       order
     end
 

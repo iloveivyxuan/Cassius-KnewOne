@@ -17,4 +17,4 @@ section.simple_page_wrapper.widget
         td = code.expires_at.strftime('%Y-%m-%d')
         td = code.used? ? '已使用' : '未使用'
         td = link_to code.user.name, code.user, target: '_blank' unless code.user.nil?
-        td = link_to code.order.order_no, haven_order_path(code.order), target: '_blank' unless code.order.nil?
+        td = link_to code.order.order_no, haven_order_path(code.order), target: '_blank' if code.used?

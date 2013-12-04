@@ -15,3 +15,8 @@ Making.OrderPage =
         $('.make_order').attr("disabled", "disabled")
       else
         $('.order_address_radio').last().click()
+
+      $('.coupon_radio').click(
+        ->
+          window.location.search = "order[coupon_code_id]=#{$(@).find('input').val()}"
+      )

@@ -7,6 +7,7 @@ section.simple_page_wrapper.widget.orders_wrapper
   = simple_form_for @order, html: {class: 'form'} do |f|
     fieldset
       ul.order_items = render partial: 'orders/order_item', collection: @order.order_items
+      ul = render partial: 'orders/rebate', collection: @order.rebates if @order.rebates.any?
       = render partial: 'address_select', locals: {f: f}
       = f.input :deliver_by, as: :radio_buttons do
         ul.deliver_by_list = render partial: 'deliver_methods', locals: {f: f}

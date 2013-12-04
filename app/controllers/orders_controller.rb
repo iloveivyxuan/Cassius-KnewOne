@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.build_order(current_user)
+    @order = Order.build_order(current_user, params[:order])
     @order.address = current_user.addresses.first
     @order.deliver_by = :sf
   end

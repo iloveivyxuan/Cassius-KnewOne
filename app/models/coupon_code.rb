@@ -29,27 +29,17 @@ class CouponCode
     self.coupon.undo_effect(self.order)
     self.order.sync_price
 
-    self.order = nil
+    # self.order = nil
     self.used = false
-
-    save
   end
-
 
   def use
     return false if self.order.nil? && !usable?
 
-    self.coupon.take_effect(self.order, self)
     self.used = true
+
+    self.coupon.take_effect(self.order, self)
     self.order.sync_price
-
-    save
-  end
-
-  def bind_and_use_to_order!(order)
-    return false if bind_user!(order.user)
-    order.coupon_code = self
-    use!
   end
 
   def usable?
@@ -57,7 +47,7 @@ class CouponCode
   end
 
   def test?(order)
-    !self.used? && self.user == order.user && self.coupon.usable?(order)
+    (!used_was || !self.used?) && self.user == order.user && self.coupon.usable?(order)
   end
 
   def self.find_by_code(code)
