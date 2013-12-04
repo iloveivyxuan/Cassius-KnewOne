@@ -84,6 +84,6 @@ module Making
     config.action_view.sanitized_allowed_tags = ['embed', 'iframe', 'strike', 'u']
     config.action_view.sanitized_allowed_attributes = ['src', 'height', 'width', 'target']
 
-    I18n.enforce_available_locales = :"zh-CN"
+    I18n.enforce_available_locales = false
   end
 end
