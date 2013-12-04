@@ -31,6 +31,10 @@
       li
         strong.field 创建时间：
         span = date_time_text @order.created_at
+      - if @order.alteration.present?
+        li
+          strong.field 变更信息：
+          span = @order.alteration
       - if @order.note.present?
         li
           strong.field 备注：

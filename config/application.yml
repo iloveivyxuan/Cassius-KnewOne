@@ -53,6 +53,8 @@ defaults: &defaults
     - 云南省
     - 浙江省
     - 重庆市
+    - 香港
+    - 澳门
 
 staging:
   <<: *defaults

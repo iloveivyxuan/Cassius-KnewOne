@@ -23,7 +23,8 @@ class Order
             :refunded => '已协商退款'}
   DELIVER_METHODS = {
       :sf => {name: '顺丰', price: 18.0},
-      :zt => {name: '中通', price: 8.0}
+      :zt => {name: '中通', price: 8.0},
+      :sf_hongkong => {name: '顺丰（港澳）', price: 28.0}
   }
   PAYMENT_METHOD = {
       :tenpay => '财付通',
@@ -38,12 +39,15 @@ class Order
   field :note, type: String
   field :admin_note, type: String
   field :system_note, type: String
+  field :alteration, type: String
   field :trade_no, type: String
   field :trade_price, type: BigDecimal
   field :trade_state, type: String
   field :deliver_price, type: BigDecimal#, default: DELIVER_METHODS.first[1][:price]
   field :auto_owning, type: Boolean, default: true
   field :price, type: BigDecimal
+
+  mount_uploader :waybill, WaybillUploader
 
   validates_numericality_of :price, :greater_than_or_equal_to => 1, :unless => Proc.new { |order| !order.persisted? }
   validates :state, presence: true, inclusion: {in: STATES.keys}
@@ -52,7 +56,7 @@ class Order
   validates_associated :address
   validates :user, presence: true
   attr_accessible :note, :deliver_by, :address_id, :auto_owning
-  attr_accessible :state, :admin_note, :deliver_no, :trade_no, :rebates_attributes, :price,
+  attr_accessible :state, :admin_note, :deliver_no, :trade_no, :rebates_attributes, :price, :alteration,
                   :as => :admin
 
   accepts_nested_attributes_for :rebates, allow_destroy: true, reject_if: :all_blank
@@ -75,6 +79,10 @@ class Order
 
   after_create do
     user.cart_items.destroy_all(:thing.in => order_items.map(&:thing), :kind_id.in => order_items.map(&:kind).map(&:id))
+  end
+
+  after_save do
+    generate_waybill! if confirmed? || paid?
   end
 
   default_scope -> { order_by(:created_at => :desc) }
@@ -236,6 +244,11 @@ class Order
 
   def total_cents
     ((self.price || calculate_price) * 100).to_i
+  end
+
+  def generate_waybill!
+    return unless waybill.url.nil?
+    WayBillWorker.perform_async(self.id.to_s)
   end
 
   def use_coupon!(code)
