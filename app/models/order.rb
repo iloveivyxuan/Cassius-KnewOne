@@ -15,7 +15,7 @@ class Order
   has_one :coupon_code
   attr_accessor :coupon_code_id
   def coupon_code_id=(id)
-    self.coupon_code = CouponCode.find(id)
+    self.coupon_code = CouponCode.where(id: id).first
     @coupon_code_id = id
   end
 
