@@ -1,65 +1,67 @@
 - provide :title, '订单详情'
 
-.orders_wrapper
-  header
-    h1
+section.orders_wrapper.simple_page_wrapper.widget
+  header.page-header
+    h2
       i.icon-shopping-cart
       | 订单信息
   = notification
-  .summary
-    ul
-      li
-        strong.field 订单编号：
-        span = @order.order_no
-      li
-        strong.field 收货地址：
-        span = address_text @order
-      li
-        strong.field 物流方式：
-        span = deliver_method_text @order
+  table.table.table-bordered.order_detail
+    tbody
+      tr
+        th 订单编号：
+        td= @order.order_no
+      tr
+        th 收货地址：
+        td= address_text @order
+      tr
+        th 物流方式：
+        td= deliver_method_text @order
       - if @order.deliver_no.present?
-        li
-          strong.field 运单号：
-          span = @order.deliver_no
+        tr
+          th 运单号：
+          td= @order.deliver_no
       - if @order.trade_no.present?
-        li
-          strong.field 交易号：
-          span = @order.trade_no
-      li
-        strong.field 订单状态：
-        = render_summary_state @order
-      li
-        strong.field 创建时间：
-        span = date_time_text @order.created_at
+        tr
+          th 交易号：
+          td= @order.trade_no
+      tr
+        th 订单状态：
+        td= render_summary_state @order
+      tr
+        th 创建时间：
+        td= date_time_text @order.created_at
       - if @order.note.present?
-        li
-          strong.field 备注：
-          span = @order.note
+        tr
+          th 备注：
+          td= @order.note
       - if @order.shipped?
-        li
-          strong.field 物流信息：
-          = render 'delivery'
+        tr
+          th 物流信息：
+          td= render 'delivery'
+    tfoot
+      tr
+        td.total_price colspan="2"
+          span.text-muted 总计
+          strong
+            i.icon-yen
+            span= @order.total_price
 
-    .info
-      .total_price
-        span.tip 总计
-        strong
-          i.icon-yen
-          span= @order.total_price
-  section
+  .order_item
     ul = render partial: 'orders/order_item', collection: @order.order_items
     ul = render partial: 'orders/rebate', collection: @order.rebates if @order.rebates.any?
     .pull-right
       = link_to '#order_share', class: 'btn btn-default', data: {toggle: 'modal'}  do
         = provider_share
-  section.order_tips
-    ul
-      - if @order.pending?
-        li * 请您在24小时之内支付，否则订单将自动取消。
-  footer
-    = link_to '需要帮助?', '#olark_chat', title: '需要帮助?', class: 'help_btn'
+
+  - if @order.pending?
+    p.well.text-info * 请您在24小时之内支付，否则订单将自动取消。
+
+  .order_actions.text-right
     = order_operations(@order)
     = return_link(@order)
+    br
+    = link_to '需要帮助?', '#olark_chat', title: '需要帮助?', class: 'btn btn-link'
 
 /= render partial: 'pay_modal', locals: {order: @order}
 = render_share_modal(@order)

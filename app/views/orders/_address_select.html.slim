@@ -1,11 +1,12 @@
-.control-group
-  label.control-label for="order_address_id" * 收货地址
-  .controls
-    ul.addresses
+.form-group
+  label for="order_address_id" * 收货地址
+  table.table.table-striped
+    tbody
       = render partial: 'address_radio', collection: current_user.addresses, as: :address, locals: {f: f}
       - if current_user.addresses.empty?
-        li
-          span.alert
-            = link_to '您必须添加一个收货地址才能够提交订单，点此添加。', new_address_path
+        tr
+          td
+            = link_to '您必须添加一个收货地址才能够提交订单，点此添加。', new_address_path, class: 'text-warning'
       - else
-        li = link_to '+ 新地址', new_address_path
+        tr
+          td= link_to '+ 新增地址', new_address_path, class: "btn btn-link"

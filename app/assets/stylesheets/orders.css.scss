@@ -1,5 +1,19 @@
 .orders_wrapper {
-  @include responsive-wrapper;
+
+  table.order_detail {
+    > tbody {
+      th {
+        width: 6.3em;
+      }
+    }
+  }
+
+  .order_actions {
+    .btn {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+  }
 
   button[type="submit"] {
     float: right;
@@ -43,13 +57,9 @@
 
   .form-actions {
     border-top: 1px solid #e5e5e5;
+    margin-top: 1em;
     padding-top: 1em;
-    background-color: transparent;
-    padding-right: 0;
-
-    .help_btn {
-      float: right;
-    }
+    text-align: right;
   }
 
   abbr[title] {
@@ -59,11 +69,7 @@
   label.misc_option {
     color: $text-muted;
     margin-left: 2em;
-  }
-
-
-  .make_order {
-    float: right;
+    font-weight: normal;
   }
 
   .order_items {
@@ -96,7 +102,7 @@
 
   .order_item {
     @include clearfix;
-    margin: 1em 0;
+    margin-bottom: 1em;
 
     .thing {
       float: left;
@@ -153,30 +159,6 @@
           }
         }
       }
-    }
-  }
-
-  header {
-    h1 {
-      padding: 0;
-      margin-bottom: 22px;
-      font-size: 21px;
-      line-height: 44px;
-      color: #999999;
-      border: 0;
-      border-bottom: 1px solid #e5e5e5;
-    }
-  }
-
-  .order_tips {
-    margin-bottom: 1em;
-  }
-
-  footer {
-    text-align: right;
-
-    > *:not(:first-child) {
-      margin-left: 4px;
     }
   }
 
