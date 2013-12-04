@@ -12,8 +12,8 @@ class AbatementCoupon < Coupon
     order.receivable >= self.threshold_price
   end
 
-  def take_effect(order)
-    order.rebates.build name: "#{self.name}", note: "优惠代码：#{self.code}", price: -self.price
+  def take_effect(order, code)
+    order.rebates.build name: "#{self.name}", note: "优惠代码：#{code.code}", price: -self.price
   end
 
   def undo_effect(order)

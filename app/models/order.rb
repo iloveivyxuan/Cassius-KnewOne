@@ -13,6 +13,11 @@ class Order
   embeds_many :rebates
 
   has_one :coupon_code
+  attr_accessor :coupon_code_id
+  def coupon_code_id=(id)
+    self.coupon_code = CouponCode.find(id)
+    @coupon_code_id = id
+  end
 
   STATES = {:pending => '等待付款',
             :paid => '已付款，等待确认',
@@ -55,11 +60,15 @@ class Order
   validates :payment_method, inclusion: {in: PAYMENT_METHOD.keys, allow_blank: true}
   validates_associated :address
   validates :user, presence: true
-  attr_accessible :note, :deliver_by, :address_id, :auto_owning
+  attr_accessible :note, :deliver_by, :address_id, :auto_owning, :coupon_code_id
   attr_accessible :state, :admin_note, :deliver_no, :trade_no, :rebates_attributes, :price, :alteration,
                   :as => :admin
 
   accepts_nested_attributes_for :rebates, allow_destroy: true, reject_if: :all_blank
+
+  before_create do
+    self.coupon_code.use unless self.coupon_code.nil?
+  end
 
   before_create do
     self.order_no = rand.to_s[2..11]
@@ -77,12 +86,14 @@ class Order
     errors.add :address_id, "必须选择收货地址" unless self.address
   end
 
-  after_create do
-    user.cart_items.destroy_all(:thing.in => order_items.map(&:thing), :kind_id.in => order_items.map(&:kind).map(&:id))
+  validate on: :create do
+    unless self.coupon_code.nil?
+      errors.add :coupon_code, '不能使用这个优惠券' unless self.coupon_code.usable?
+    end
   end
 
   after_create do
-
+    user.cart_items.destroy_all(:thing.in => order_items.map(&:thing), :kind_id.in => order_items.map(&:kind).map(&:id))
   end
 
   after_save do
@@ -181,7 +192,7 @@ class Order
   def cancel!(raw = {})
     return false unless can_cancel?
 
-    undo_coupon!
+    self.coupon_code.undo unless self.coupon_code.nil?
 
     order_items.each &:revert_stock!
     self.state = :canceled
@@ -193,7 +204,7 @@ class Order
   def close!
     return false unless can_close?
 
-    undo_coupon!
+    self.coupon_code.undo unless self.coupon_code.nil?
 
     order_items.each &:revert_stock!
     self.state = :closed
@@ -254,19 +265,6 @@ class Order
     return unless waybill.url.nil?
     WayBillWorker.perform_async(self.id.to_s)
   end
-
-  #def use_coupon!(code)
-  #  coupon = Coupon.find_by_code(code)
-  #  return false unless coupon
-  #
-  #  coupon.use! self
-  #end
-
-  #def undo_coupon!
-  #  return false unless self.coupon and pending?
-  #
-  #  self.coupon.undo! self
-  #end
 
   def own_things
     order_items.each do |item|

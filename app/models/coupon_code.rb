@@ -22,26 +22,26 @@ class CouponCode
     save
   end
 
-  def use!
-    return false if used?
-    return false if self.order.nil? || self.user != self.order.user
-    return false unless self.coupon.usable?(order)
-
-    self.coupon.take_effect(self.order)
-    self.used = true
-
-    save && order.save
-  end
-
-  def undo!
+  def undo
     return false unless used?
     return false if self.order.nil?
 
     self.coupon.undo_effect(self.order)
-    return false unless order.save
+    self.order.sync_price
 
     self.order = nil
     self.used = false
+
+    save
+  end
+
+
+  def use
+    return false if self.order.nil? && !usable?
+
+    self.coupon.take_effect(self.order, self)
+    self.used = true
+    self.order.sync_price
 
     save
   end
@@ -52,11 +52,19 @@ class CouponCode
     use!
   end
 
-  def usable?(order)
-    self.coupon.usable?(order)
+  def usable?
+    test?(self.order)
+  end
+
+  def test?(order)
+    !self.used? && self.user == order.user && self.coupon.usable?(order)
   end
 
   def self.find_by_code(code)
     where(code: code).first
+  end
+
+  def self.find_unused_by_code(code)
+    where(code: code, used: false).first
   end
 end

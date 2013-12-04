@@ -27,7 +27,7 @@ class Coupon
     true # abstract stub
   end
 
-  def take_effect(order)
+  def take_effect(order, code)
     # abstract stub
   end
 

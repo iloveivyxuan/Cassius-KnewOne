@@ -11,20 +11,21 @@ module Haven
     end
 
     def new
-      @coupon = AbatementCoupon.generate
+      @coupon = AbatementCoupon.new
     end
 
     def create
-      @coupon = AbatementCoupon.generate! params[:abatement_coupon]
+      @coupon = AbatementCoupon.create params[:abatement_coupon]
       # redirect_to haven_abatement_coupon_path(@coupon)
       redirect_to haven_abatement_coupons_path
     end
 
-    def disable
-      @coupon.status = :disabled
-      @coupon.save
-
-      redirect_to haven_abatement_coupons_path
+    def generate_code
+      amount = params[:amount].present? ? params[:amount].to_i : 1
+      amount.times do
+        @coupon.generate_code!
+      end
+      redirect_to haven_abatement_coupon_path(@coupon)
     end
   end
 end

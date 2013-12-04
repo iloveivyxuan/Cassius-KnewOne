@@ -57,7 +57,7 @@ Making::Application.routes.draw do
 
     resources :abatement_coupons, only: [:show, :index, :new, :create] do
       member do
-        put 'disable'
+        post 'generate_code'
       end
     end
   end

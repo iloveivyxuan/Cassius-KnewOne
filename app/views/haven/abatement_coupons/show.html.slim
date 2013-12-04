@@ -1,1 +1,20 @@
-.coupons_wrapper
+section.simple_page_wrapper.widget
+  = form_tag generate_code_haven_abatement_coupon_path(@coupon), class: "form-inline", role: "form"
+    = label_tag :amount, '数量'
+    = number_field_tag :amount, 1, min: 1, class: 'form-control'
+    = submit_tag '生成', class: 'btn btn-primary'
+
+  table.table
+    tr
+      th 代码
+      th 到期日期
+      th 使用情况
+      th 绑定的用户
+      th 绑定的订单
+    - @coupon.coupon_codes.each do |code|
+      tr
+        td = code.code
+        td = code.expires_at.strftime('%Y-%m-%d')
+        td = code.used? ? '已使用' : '未使用'
+        td = link_to code.user.name, code.user, target: '_blank' unless code.user.nil?
+        td = link_to code.order.order_no, haven_order_path(code.order), target: '_blank' unless code.order.nil?
