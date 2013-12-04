@@ -1,9 +1,10 @@
 .thing_wrapper
-  = simple_nested_form_for @thing, url: pro_update_thing_path(@thing), html: {multipart: true, class: "editor_thing_form form-horizontal"} do |f|
+  header.page-header
+    h2 购买信息编辑
+  = simple_nested_form_for @thing, url: pro_update_thing_path(@thing), wrapper: :horizontal,
+  html: {multipart: true, class: "pro_edit_thing_form form-horizontal"} do |f|
     fieldset
-      legend 购买信息
       = hidden_field_tag :admin, true
-      = f.input :tags
       = f.input :shop, as: :url
       = f.input :price do
         = f.input_field :price_unit, collection: Thing.const_get(:CURRENCY_LIST)
@@ -20,9 +21,3 @@
       = f.link_to_add "新增型号", :kinds, class: "btn btn-default"
     .submit
       = f.button :submit, class: "btn btn-primary btn-lg"
-
-- content_for :script do
-  javascript:
-    $(document).ready(function() {
-            $("#thing_tags").tagsInput();
-        });

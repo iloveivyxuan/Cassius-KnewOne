@@ -271,7 +271,7 @@ ul.nav-pills {
   color: $text-muted;
 }
 
-.form-group.date {
+.form-group.date, .form-group.datetime {
   select {
     display: inline-block;
     width: 25%;

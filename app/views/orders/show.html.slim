@@ -31,6 +31,10 @@ section.orders_wrapper.simple_page_wrapper.widget
       tr
         th 创建时间：
         td= date_time_text @order.created_at
+      - if @order.alteration.present?
+        tr
+          th 变更信息：
+          td= @order.alteration
       - if @order.note.present?
         tr
           th 备注：

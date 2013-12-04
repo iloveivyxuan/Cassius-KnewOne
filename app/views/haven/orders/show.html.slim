@@ -67,11 +67,13 @@
       fieldset
         legend 订单调整
         = f.input :admin_note, as: :text, input_html: {rows: 3}
+        = f.input :alteration, as: :text, input_html: {rows: 3}
         = f.input :price, as: :decimal, required: true if @order.pending?
         = f.button :submit, class: "btn-primary"
 
   footer
-    = link_to '返回', haven_orders_path, class: 'btn btn-default'
     = ship_link(@order)
+    = way_bill_link(@order)
     = refund_link(@order)
     = close_link(@order)
+    = link_to '返回', haven_orders_path, class: 'btn'

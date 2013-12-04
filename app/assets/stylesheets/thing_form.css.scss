@@ -114,16 +114,23 @@ form#new_photo {
   button {width: 30%;}
 }
 
-form.editor_thing_form {
-  .controls {
-    input[type="text"], input[type="url"] {
-      width: 60%;
-    }
+form.pro_edit_thing_form {
+  .form-group {
+    margin: 1em 0;
+    label {@include make-sm-column(2);}
+    .controls {@include make-sm-column(8);}
   }
 
-  #thing_price_unit {width: 60px;}
-  #thing_price {width: 100px;}
-  select.datetime {width: 100px;}
+  select, select.datetime {width: 100px;}
+
+  #thing_price_unit {
+    display: inline-block;
+    width: 60px;
+  }
+  #thing_price {
+    display: inline-block;
+    width: 100px;
+  }
 
   .kinds {
     margin-left: 4em;
@@ -134,3 +141,4 @@ form.editor_thing_form {
     text-align: center;
   }
 }
+

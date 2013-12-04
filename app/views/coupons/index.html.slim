@@ -4,7 +4,7 @@ section.simple_page_wrapper.widget
     h2
       i.icon-ticket
       | 我的优惠卷
-  = form_tag bind_coupons_path, role: "form"
+  = form_tag bind_coupons_path, class: "form", role: "form"
     .form-group
       .col-xs-9.col-sm-4
         = text_field_tag :code, '', class: 'form-control', placeholder: '优惠券代码'
