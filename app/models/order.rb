@@ -12,7 +12,7 @@ class Order
 
   embeds_many :rebates
 
-  has_one :coupon
+  has_one :coupon_code
 
   STATES = {:pending => '等待付款',
             :paid => '已付款，等待确认',
@@ -79,6 +79,10 @@ class Order
 
   after_create do
     user.cart_items.destroy_all(:thing.in => order_items.map(&:thing), :kind_id.in => order_items.map(&:kind).map(&:id))
+  end
+
+  after_create do
+
   end
 
   after_save do
@@ -251,12 +255,18 @@ class Order
     WayBillWorker.perform_async(self.id.to_s)
   end
 
-  def use_coupon!(code)
-    coupon = Coupon.find_available_by_code(code)
-    return false unless coupon
+  #def use_coupon!(code)
+  #  coupon = Coupon.find_by_code(code)
+  #  return false unless coupon
+  #
+  #  coupon.use! self
+  #end
 
-    coupon.use! self
-  end
+  #def undo_coupon!
+  #  return false unless self.coupon and pending?
+  #
+  #  self.coupon.undo! self
+  #end
 
   def own_things
     order_items.each do |item|
@@ -268,12 +278,6 @@ class Order
     order_items.each do |item|
       item.thing.unown self.user
     end
-  end
-
-  def undo_coupon!
-    return false unless self.coupon and pending?
-
-    self.coupon.undo! self
   end
 
   class<< self

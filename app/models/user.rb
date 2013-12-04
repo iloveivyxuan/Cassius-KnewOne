@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 class User
   include Mongoid::Document
-  include Mongoid::Timestamps
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, :trackable
 
@@ -33,8 +32,6 @@ class User
 
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :avatar, :avatar_cache, :name, :nickname, :description, :location
-
-  has_many :coupons
 
   ## Omniauthable
   embeds_many :auths
@@ -144,6 +141,9 @@ class User
     end
     item.save
   end
+
+  # Coupon
+  has_many :coupon_codes
 
   ## Karma & Rank
   def rank

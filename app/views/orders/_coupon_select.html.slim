@@ -3,10 +3,9 @@
   ul.coupons
     li.radio
       label
-        = f.radio_button :coupon, '', class: 'order_coupon_radio'
+        = f.radio_button :coupon_code, '', class: 'order_coupon_radio'
         | 不使用
-    - current_user.coupons.available.select {|c| c.usable?(@order)}.each do |c|
-      li.radio
-        label
-          = f.radio_button :coupon, c.code, class: 'order_coupon_radio'
+      - current_user.coupon_codes.select {|c| c.usable?(@order)}.each do |c|
+        li.radio
+          = f.radio_button :coupon_code, c.id.to_s, class: 'order_coupon_radio'
           = "#{c.name}：#{c.note}"
