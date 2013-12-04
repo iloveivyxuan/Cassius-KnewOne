@@ -31,7 +31,7 @@ class ThingsController < PostsController
   def admin
     @things = case params[:filter]
               when "can_buy" then Thing.ne(shop: "")
-              when "locked" then Thing.where(lock_priority: true).desc(:priority)
+              when "locked" then Thing.unscoped.where(lock_priority: true).desc(:priority)
               else Thing.all
               end.page params[:page]
   end
