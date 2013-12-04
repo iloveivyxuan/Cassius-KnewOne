@@ -9,9 +9,8 @@ class Coupon
   field :note, type: String
   field :status, type: Symbol, default: :available
   STATUS = {
-    disabled: '已禁用',
-    available: '可使用',
-    expired: '已过期'
+    disabled: '禁用',
+    available: '可用'
   }
   validates :status, presence: true, inclusion: {in: STATUS.keys}
   validates :name, presence: true
@@ -23,7 +22,7 @@ class Coupon
     end
   end
 
-  def usable?(order)
+  def use_condition(order)
     true # abstract stub
   end
 
@@ -33,6 +32,10 @@ class Coupon
 
   def undo_effect(order)
     # abstract stub
+  end
+
+  def usable?(order)
+    available? && use_condition(order)
   end
 
   def generate_code!(params = {})

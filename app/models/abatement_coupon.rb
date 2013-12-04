@@ -8,7 +8,7 @@ class AbatementCoupon < Coupon
     errors.add :threshold_price, '降价金额应比阀值金额小。' if self.threshold_price <= self.price
   end
 
-  def usable?(order)
+  def use_condition(order)
     order.receivable >= self.threshold_price
   end
 
