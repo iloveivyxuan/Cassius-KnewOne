@@ -29,11 +29,11 @@ class ThingsController < PostsController
   end
 
   def admin
-    if params[:can_buy]
-      @things = Thing.ne(shop: "").page params[:page]
-    else
-      @things = Thing.page params[:page]
-    end
+    @things = case params[:filter]
+              when "can_buy" then Thing.ne(shop: "")
+              when "locked" then Thing.where(lock_priority: true).desc(:priority)
+              else Thing.all
+              end.page params[:page]
   end
 
   def new

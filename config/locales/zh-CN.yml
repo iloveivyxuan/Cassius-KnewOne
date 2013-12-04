@@ -25,7 +25,7 @@ zh-CN:
         shop: '购买'
         price: '价格'
         description: '简介'
-        recommended: '优先排序'
+        recommended: '首页推荐'
         lock_priority: '锁定优先级'
         sharing_text: '分享文案'
       kind:

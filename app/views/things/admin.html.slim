@@ -4,7 +4,8 @@
     h1 产品列表
     p
       = link_to "自动更新显示权重", resort_things_path, class: 'btn btn-default'
-      = link_to "可购产品列表", admin_things_path(can_buy: true), class: 'btn btn-default'
+      = link_to "可购产品列表", admin_things_path(filter: "can_buy"), class: 'btn btn-default'
+      = link_to "锁定产品列表", admin_things_path(filter: "locked"), class: 'btn btn-default'
 
   table.table.table-striped.table-hover.table-bordered
     tr
