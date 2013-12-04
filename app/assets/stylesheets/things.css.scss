@@ -214,12 +214,20 @@
 
       .carousel-control {
         font-size: 28px;
+        width: 40px;
+        height: 40px;
         top: 265px;
+        background: rgba(0, 0, 0, 0.4);
+        display: none;
+        @include border-radius(40px);
         i {
           position: relative;
-          top: 3px;
           margin: 0;
+          top: -1px;
         }
+
+        &.left i {right: 1px;}
+        &.right i {left: 1px;}
       }
 
       @media screen and (min-width: 1024px) {

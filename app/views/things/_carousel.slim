@@ -5,9 +5,9 @@
         = image_tag photo.url(:review), alt: photo.name
   - if tp.photos.count > 1
     = link_to_with_icon "", "icon-angle-left", "#photo_main", data: {slide: "prev"},
-    class: "carousel-control left hide"
+    class: "carousel-control left"
     = link_to_with_icon "", "icon-angle-right", "#photo_main", data: {slide: "next"},
-    class: "carousel-control right hide"
+    class: "carousel-control right"
   - if tp.photos.count > 1
     ul.photo_indicators
       - tp.photos.each_with_index do |photo, index|
