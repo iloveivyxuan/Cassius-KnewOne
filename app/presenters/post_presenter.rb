@@ -30,11 +30,8 @@ class PostPresenter < ApplicationPresenter
     sanitize(@object.content)
   end
 
-  def summary
-    truncate(strip_tags(@object.content), length: 512,
-             omission: (link_to_with_icon nil,
-                        "icon-ellipsis-horizontal", path, class: "details")
-    ).html_safe
+  def summary(length = 512)
+    strip_tags(@object.content).truncate(length).html_safe
   end
 
   def thing_photo_url(size)

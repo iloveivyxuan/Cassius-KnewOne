@@ -29,16 +29,29 @@
   li {
     padding: 1em 0;
     color: $text-muted;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 
-    a {color: $text-muted;}
-    img {
-      margin-right: 1em;
-      @extend .img-circle;
-      vertical-align: -10px;
+    article {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      img {
+        @extend .img-circle;
+        vertical-align: -20px;
+      }
+
+      small {margin: 0 .5em;}
     }
+
+    .media {
+      @include clearfix;
+      .media-heading {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
     &:not(:last-child) {border-bottom: 1px dashed $gray-light;}
   }
 }

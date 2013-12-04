@@ -8,10 +8,19 @@ section#home_index
     ul#home_reviews
       - @reviews.each do |review|
         li
-          = link_to review.author do
-            = present(review.author).avatar :tiny
-          = link_to review.title, thing_review_path(review.thing, review),
-            target: "_blank"
+          article
+            = link_to review.author do
+              = present(review.author).avatar :tiny
+            small 评测了
+            = link_to review.thing.title, review.thing, target: "_blank"
+          .media
+            - present review do |rp|
+              = link_to thing_review_path(review.thing, review), target: "_blank", class: "pull-right" do
+                = present(review.thing).photo(:smallo)
+              .media-body
+                h5.media-heading
+                  = link_to rp.title, rp.path, target: "_blank"
+                p= rp.summary(50)
 
     #home_filling
       script#ebsgovicon src="https://cert.ebs.gov.cn/govicon.js?id=0a9f8f12-2255-447a-9f72-4c4ad637c3c8&width=14&height=20" type="text/javascript"
