@@ -5,7 +5,6 @@ ruby '2.0.0'
 # rails and friends
 gem 'rails', '~> 4.0.0'
 gem 'rails-i18n'
-gem 'protected_attributes'
 
 # database
 gem 'mongoid', '>= 4.0.0.alpha1', github: 'mongoid/mongoid'
@@ -108,6 +107,4 @@ group :development, :test do
 
   # fake email sending
   gem 'letter_opener'
-
-  gem 'rails4_upgrade'
 end
