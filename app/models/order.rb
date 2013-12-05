@@ -16,7 +16,7 @@ class Order
   attr_accessor :coupon_code_id
   def coupon_code_id=(id)
     self.coupon_code = CouponCode.where(id: id).first
-    @coupon_code_id = id
+    @coupon_code_id = self.coupon_code.nil? ? '' : id
   end
 
   STATES = {:pending => '等待付款',
@@ -65,10 +65,6 @@ class Order
                   :as => :admin
 
   accepts_nested_attributes_for :rebates, allow_destroy: true, reject_if: :all_blank
-
-  #before_create do
-  #  self.coupon_code.use unless self.coupon_code.nil?
-  #end
 
   after_build do
     # set default
