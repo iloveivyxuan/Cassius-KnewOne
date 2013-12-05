@@ -12,7 +12,7 @@ class RegistrationsController < Devise::RegistrationsController
                                @user.errors.add(:password, @user.password.blank? ? :blank : :invalid)
                                false
                              else
-                               @user.update_attributes params[:user]
+                               @user.update params[:user]
                              end
                            end
 

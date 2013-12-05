@@ -29,7 +29,7 @@ class StoriesController < PostsController
   end
 
   def update
-    if @story.update_attributes(params[:story])
+    if @story.update(params[:story])
       redirect_to thing_stories_path(@thing)
     else
       render 'new'

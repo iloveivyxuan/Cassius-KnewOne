@@ -29,7 +29,7 @@ class FeaturesController < PostsController
   end
 
   def update
-    if @feature.update_attributes(params[:feature])
+    if @feature.update(params[:feature])
       redirect_to thing_features_path(@thing)
     else
       render 'new'

@@ -21,7 +21,7 @@ class Message
   after_create :rotate
 
   def read!
-    update_attributes read: true
+    update read: true
   end
 
   private

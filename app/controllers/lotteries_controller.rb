@@ -59,7 +59,7 @@ class LotteriesController < ApplicationController
   end
 
   def update
-    if @lottery.update_attributes(params[:lottery])
+    if @lottery.update(params[:lottery])
       redirect_to lotteries_path
     else
       render 'new'

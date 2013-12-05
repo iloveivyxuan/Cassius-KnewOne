@@ -37,7 +37,7 @@ class AddressesController < ApplicationController
   def update
     @address = current_user.addresses.find params[:id]
     respond_to do |format|
-      if @address.update_attributes(params[:address])
+      if @address.update(params[:address])
         format.html { redirect_back_or(addresses_path) }
         format.json { head :no_content }
       else
