@@ -14,12 +14,18 @@ class CouponCode
 
   delegate :name, :note, to: :coupon
 
+  scope :unused, -> { where(:used => false) }
+
   def bind_user!(user)
     return false unless self.user.nil?
 
     self.user = user
 
     save
+  end
+
+  def bound_user?
+    !self.user.nil?
   end
 
   def undo
@@ -40,6 +46,14 @@ class CouponCode
 
     self.coupon.take_effect(self.order, self)
     self.order.sync_price
+  end
+
+  def bind_order_user_and_use
+    return false unless self.user.nil?
+
+    self.user = self.order.user
+
+    use
   end
 
   def usable?

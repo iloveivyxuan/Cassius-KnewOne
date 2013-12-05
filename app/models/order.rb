@@ -70,6 +70,12 @@ class Order
   #  self.coupon_code.use unless self.coupon_code.nil?
   #end
 
+  after_build do
+    # set default
+    self.deliver_by ||= :sf
+    self.coupon_code_id ||= self.user.coupon_codes.unused.last.id.to_s if self.user
+  end
+
   before_create do
     self.order_no = rand.to_s[2..11]
     self.deliver_price = calculate_deliver_price
@@ -283,10 +289,19 @@ class Order
       params ||= {}
       address_id = params.delete :address_id
       order = user.orders.build params
-      order.deliver_by ||= :sf
+
       order.address = user.addresses.find(address_id) if address_id
+
       user.cart_items.each { |item| OrderItem.build_by_cart_item(order, item)}
-      order.coupon_code.use unless order.coupon_code.nil?
+
+      unless order.coupon_code.nil?
+        if order.coupon_code.bound_user?
+          order.coupon_code.use
+        else
+          order.coupon_code.bind_order_user_and_use
+        end
+      end
+
       order
     end
 
