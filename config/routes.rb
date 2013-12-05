@@ -118,4 +118,5 @@ Making::Application.routes.draw do
 
   get "/404", :to => "home#not_found"
   get "/403", :to => "home#forbidden"
+  get "/500", :to => "home#error"
 end

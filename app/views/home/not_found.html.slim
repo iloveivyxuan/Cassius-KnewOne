@@ -1,2 +1,9 @@
+- provide :title, '404未找到页面'
 .jumbotron style="text-align: center"
-  h1 404 Not Found
+  h1 落入了无尽虚空！
+  p 受诅咒的传送门将你传送进无尽虚空！好在你手握的装置似乎可以助你摆脱眼前的困境。
+  p 你可以：
+  .btn-group
+    = link_to_with_icon '传送到入口', "icon-home", root_path, class: 'btn btn-lg btn-default'
+    = link_to_with_icon '时光倒流', "icon-reply", 'javascript:history.go(-1)', class: 'btn btn-lg btn-primary'
+    = link_to_with_icon '寻求帮助', "icon-phone", '#olark_chat', class: 'btn btn-lg btn-default'
