@@ -12,5 +12,5 @@ class Address
 
   validates :province, :district, :street, :name, :phone, presence: true
 
-  default_scope desc(:created_at)
+  default_scope { desc(:created_at) }
 end

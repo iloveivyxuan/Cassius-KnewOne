@@ -4,5 +4,5 @@ class Topic < Post
 
   belongs_to :group
 
-  default_scope desc(:is_top, :commented_at)
+  default_scope { desc(:is_top, :commented_at) }
 end

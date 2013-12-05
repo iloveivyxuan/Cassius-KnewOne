@@ -27,7 +27,7 @@ class Review < Post
     end
   end
 
-  default_scope desc(:is_top, :lovers_count)
+  default_scope { desc(:is_top, :lovers_count) }
 
   after_create :add_score
   after_update :update_score
