@@ -9,9 +9,9 @@ class Message
   embedded_in :user
   has_and_belongs_to_many :senders, class_name: "User", inverse_of: nil
 
-  default_scope desc(:created_at)
+  default_scope { desc(:created_at) }
 
-  scope :unread, where(read: false)
+  scope :unread, -> { where(read: false) }
 
   scope :by_type, ->(type) do
     type ? where(_type: type.to_s.camelize) : scoped

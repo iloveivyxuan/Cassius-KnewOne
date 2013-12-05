@@ -105,7 +105,7 @@ class Order
     generate_waybill! if confirmed? || paid?
   end
 
-  default_scope -> { order_by(:created_at => :desc) }
+  default_scope { order_by(created_at: :desc) }
 
   def state
     super.to_sym

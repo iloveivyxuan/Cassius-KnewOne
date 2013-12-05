@@ -21,7 +21,7 @@ class Lottery
   validate  :check_contribution
   validate  :check_winner
 
-  default_scope desc(:date)
+  default_scope { desc(:date) }
 
   def thing_link
     link_to_thing thing
