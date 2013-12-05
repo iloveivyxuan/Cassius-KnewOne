@@ -60,9 +60,6 @@ class Order
   validates :payment_method, inclusion: {in: PAYMENT_METHOD.keys, allow_blank: true}
   validates_associated :address
   validates :user, presence: true
-  attr_accessible :note, :deliver_by, :address_id, :auto_owning, :coupon_code_id
-  attr_accessible :state, :admin_note, :deliver_no, :trade_no, :rebates_attributes, :price, :alteration,
-                  :as => :admin
 
   accepts_nested_attributes_for :rebates, allow_destroy: true, reject_if: :all_blank
 

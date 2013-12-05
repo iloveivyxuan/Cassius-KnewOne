@@ -30,9 +30,6 @@ class User
 
   mount_uploader :avatar, AvatarUploader
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :avatar, :avatar_cache, :name, :nickname, :description, :location
-
   ## Omniauthable
   embeds_many :auths
 

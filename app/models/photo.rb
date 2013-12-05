@@ -9,8 +9,6 @@ class Photo
 
   belongs_to :user
 
-  attr_accessible :name, :image, :user
-
   validates :image,
   presence: true,
   file_size: {maximum: 8.megabytes.to_i}

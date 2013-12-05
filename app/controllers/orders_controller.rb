@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class OrdersController < ApplicationController
   before_filter :authenticate_user!, only: [:index, :show, :new, :create, :cancel, :tenpay, :alipay]
   before_filter :have_items_in_cart, only: [:new, :create]
@@ -12,14 +13,14 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.build_order(current_user, params[:order])
+    @order = Order.build_order(current_user, order_params)
     @order.address = current_user.addresses.first
     @order.deliver_by = :sf
   end
 
   def create
     # coupon = params[:order].delete :coupon
-    @order = Order.build_order(current_user, params[:order])
+    @order = Order.build_order(current_user, order_params)
     if @order.save
       # @order.use_coupon!(coupon) if coupon.present?
       redirect_to @order, flash: {provider_sync: params[:provider_sync]}
@@ -123,5 +124,9 @@ class OrdersController < ApplicationController
 
   def subject_text(order)
     'Knewone购物:'+(order.order_items.map { |i| "#{i.name}x#{i.quantity};" }.reduce &:+)[0..250]
+  end
+
+  def order_params
+    params.require(:order).permit(:note, :deliver_by, :address_id, :auto_owning, :coupon_code_id)
   end
 end
