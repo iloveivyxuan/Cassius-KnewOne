@@ -73,7 +73,10 @@ class Order
   after_build do
     # set default
     self.deliver_by ||= :sf
-    self.coupon_code_id ||= self.user.coupon_codes.unused.last.id.to_s if self.user
+    unless self.user.nil?
+      coupon = self.user.coupon_codes.unused.last
+      self.coupon_code_id ||= coupon.id.to_s unless coupon.nil?
+    end
   end
 
   before_create do
