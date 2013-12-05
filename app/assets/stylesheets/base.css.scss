@@ -622,3 +622,7 @@ label#check_provider_sync {
 .inline-block {
   @include inline-block;
 }
+
+img.lazy {
+  display: none;
+}
