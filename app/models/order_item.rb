@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class OrderItem
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -17,11 +18,11 @@ class OrderItem
 
   def claim_stock!
     # protect race condition, over selling should throw nil error
-    thing.kinds.where(:id => self.kind_id, :stock.gte => self.quantity).first.inc :stock, -self.quantity # always positive
+    thing.kinds.where(id: kind_id, :stock.gte => quantity).first.inc stock: -self.quantity
   end
 
   def revert_stock!
-    kind.inc :stock, self.quantity
+    kind.inc stock: self.quantity
   end
 
   def price

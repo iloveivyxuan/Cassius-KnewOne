@@ -81,13 +81,13 @@ class Thing < Post
   def own(user)
     return if owned?(user)
     owners << user
-    user.inc :karma, Settings.karma.own
+    user.inc karma: Settings.karma.own
   end
 
   def unown(user)
     return unless owned?(user)
     owners.delete user
-    user.inc :karma, -Settings.karma.own
+    user.inc karma: -Settings.karma.own
   end
 
   def owned?(user)
@@ -111,9 +111,9 @@ class Thing < Post
     old_priority = changed_attributes["priority"]
     old_priority ||= 0
     if old_priority <= 0 and priority > 0
-      author.inc :karma, Settings.karma.thing
+      author.inc karma: Settings.karma.thing
     elsif old_priority > 0 and priority <= 0
-      author.inc :karma, -Settings.karma.thing
+      author.inc karma: -Settings.karma.thing
     end
   end
 

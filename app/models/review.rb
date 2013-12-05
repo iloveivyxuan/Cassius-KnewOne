@@ -37,10 +37,10 @@ class Review < Post
     return if voted?(user)
     if love
       lovers << user
-      author.inc :karma, Settings.karma.review
+      author.inc karma: Settings.karma.review
     else
       foes << user
-      author.inc :karma, -Settings.karma.review
+      author.inc karma: -Settings.karma.review
     end
   end
 
