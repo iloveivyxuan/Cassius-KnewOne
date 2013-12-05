@@ -79,7 +79,7 @@ group :development do
   gem 'thin'
 
   # deploy
-  gem 'capistrano'
+  gem 'capistrano', '~> 2.15.0'
   gem 'rvm-capistrano'
   gem 'capistrano-unicorn'
 end
