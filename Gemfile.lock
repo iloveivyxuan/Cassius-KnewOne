@@ -402,7 +402,7 @@ DEPENDENCIES
   backbone-on-rails
   bootstrap-sass
   cancan
-  capistrano
+  capistrano (~> 2.15.0)
   capistrano-unicorn
   carrierwave
   carrierwave-mongoid
