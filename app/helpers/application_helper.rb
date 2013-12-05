@@ -13,6 +13,10 @@ module ApplicationHelper
     end
   end
 
+  def back_btn
+    link_to '后退', 'javascript: history.go(-1)', class: 'btn'
+  end
+
   def brand
     "knewone"
   end
