@@ -59,7 +59,7 @@ module Haven
     end
 
     def update
-      @order.update params[:order], as: :admin
+      @order.update params[:order]
       redirect_to haven_order_path(@order)
     end
 
