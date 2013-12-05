@@ -15,7 +15,7 @@ class SuppliersController < ApplicationController
   end
 
   def update
-    @supplier.update_attributes(params[:supplier])
+    @supplier.update(params[:supplier])
   end
 
   def destroy

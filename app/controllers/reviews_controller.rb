@@ -36,7 +36,7 @@ class ReviewsController < PostsController
   end
 
   def update
-    if @review.update_attributes(params[:review])
+    if @review.update(params[:review])
       redirect_to thing_review_path(@thing, @review)
     else
       flash.now[:error] = @review.errors.full_messages.first

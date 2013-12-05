@@ -51,6 +51,6 @@ class Auth
   end
 
   def update_from_omniauth(data)
-    update_attributes Auth.omniauth_to_auth(data)
+    update Auth.omniauth_to_auth(data)
   end
 end

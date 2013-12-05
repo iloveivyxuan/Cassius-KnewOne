@@ -62,7 +62,7 @@ class ThingsController < PostsController
   end
 
   def update
-    if @thing.update_attributes(params[:thing])
+    if @thing.update(params[:thing])
       redirect_to @thing
     else
       render 'new'
@@ -120,7 +120,7 @@ class ThingsController < PostsController
   end
 
   def pro_update
-    if @thing.update_attributes(params[:thing])
+    if @thing.update(params[:thing])
       redirect_to @thing
     else
       render 'pro_edit'

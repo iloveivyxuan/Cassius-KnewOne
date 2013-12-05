@@ -3,7 +3,7 @@ class ProfilesController < ApplicationController
 
   def update
     respond_to do |format|
-      if current_user.update_attributes(params[:user])
+      if current_user.update(params[:user])
         format.html { redirect_to root_path, notice: t('devise.registrations.updated') }
         format.json { head :no_content }
       else

@@ -26,7 +26,7 @@ class TopicsController < PostsController
   end
 
   def update
-    if @topic.update_attributes(params[:topic])
+    if @topic.update(params[:topic])
       redirect_to group_topic_path(@group, @topic)
     else
       render 'new'
