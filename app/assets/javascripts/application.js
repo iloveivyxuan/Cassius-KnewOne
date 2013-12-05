@@ -7,6 +7,7 @@
 //= require jquery_nested_form
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/load-image
+//= require jquery.lazyload
 //= require jquery.sortable
 //= require jquery.raty
 //= require jquery.infinitescroll

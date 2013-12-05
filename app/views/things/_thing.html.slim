@@ -5,7 +5,7 @@
         .pre_ribbon class="#{tp.stage}"
           span= tp.stage_text
       figure
-        = link_to tp.photo(size), tp.thing, target: "_blank"
+        = link_to tp.photo_lazy(size), tp.thing, target: "_blank"
       figcaption
         h5 data-toggle="tooltip" data-placement="bottom" title=tp.full_title
           = tp.full_title

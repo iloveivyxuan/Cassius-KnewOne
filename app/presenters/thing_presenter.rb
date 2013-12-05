@@ -14,6 +14,10 @@ class ThingPresenter < PostPresenter
     image_tag photo_url(size), options.merge(alt: title)
   end
 
+  def photo_lazy(size, options={})
+    tag "img", options.merge(class: 'lazy', alt: title, data:{original: photo_url(size)})
+  end
+
   def content
     content_tag :div, class: "post_content" do
       sanitize(raw thing.content)
