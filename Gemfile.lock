@@ -259,8 +259,6 @@ GEM
     origin (1.1.0)
     orm_adapter (0.5.0)
     polyglot (0.3.3)
-    protected_attributes (1.0.5)
-      activemodel (>= 4.0.1, < 5.0)
     pry (0.9.12.4)
       coderay (~> 1.0)
       method_source (~> 0.8)
@@ -281,9 +279,6 @@ GEM
     rails-i18n (4.0.0)
       i18n (~> 0.6)
       rails (~> 4.0.0)
-    rails4_upgrade (0.5.0)
-      bundler (>= 1.2.2)
-      terminal-table (>= 1.4.5)
     railties (4.0.2)
       actionpack (= 4.0.2)
       activesupport (= 4.0.2)
@@ -356,7 +351,6 @@ GEM
     stringex (2.1.2)
     subexec (0.2.3)
     temple (0.6.7)
-    terminal-table (1.4.5)
     therubyracer (0.12.0)
       libv8 (~> 3.16.14.0)
       ref
@@ -441,11 +435,9 @@ DEPENDENCIES
   newrelic_rpm
   omniauth-twitter
   omniauth-weibo-oauth2
-  protected_attributes
   quiet_assets
   rails (~> 4.0.0)
   rails-i18n
-  rails4_upgrade
   rb-fsevent
   rb-inotify
   rinku
