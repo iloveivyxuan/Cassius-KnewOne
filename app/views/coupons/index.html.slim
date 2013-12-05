@@ -13,6 +13,7 @@ section.simple_page_wrapper.widget
         - elsif flash[:success]
           strong.help-block = flash[:success]
       = submit_tag '添加', class: 'btn btn-primary'
+      = back_btn
   section.coupons
     table.table
       - @coupons.each do |c|
