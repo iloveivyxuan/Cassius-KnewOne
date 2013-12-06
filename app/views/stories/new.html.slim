@@ -1,10 +1,10 @@
 - provide :nav, :stories
 
 = simple_form_for [@thing, @story], html: {class: "edit_post"} do |f|
- = f.input :title, label: false, placeholder: "标题"
- = f.input :occured_at, label: false, as: :date
- = f.input :content, as: :hidden
- = render 'shared/editor'
+  = f.input :title, label: false, placeholder: "标题"
+  = f.input :occured_at, label: false, as: :date
+  = f.input :content, as: :hidden
+  = render 'shared/editor'
 
 .post_submit
   = button_tag "提交", class: "btn btn-lg btn-primary"
