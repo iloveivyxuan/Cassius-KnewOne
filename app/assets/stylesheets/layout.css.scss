@@ -79,6 +79,10 @@ body {
       padding-bottom: 0;
       @include clearfix;
 
+      .nav_user_avatar {
+        padding-right: 1em;
+      }
+
       .nav_user_action {
         float: left;
         margin: 10px 8px;
@@ -105,7 +109,6 @@ body {
       }
 
       .nav_messages {
-
         .badge {
           background-color: $brand-primary;
           color: #fff;
@@ -125,7 +128,6 @@ body {
         }
 
         .nav_user_avatar {
-
           img {
             box-shadow: 0 0 10px $brand-primary;
           }
