@@ -63,15 +63,6 @@ class Order
 
   accepts_nested_attributes_for :rebates, allow_destroy: true, reject_if: :all_blank
 
-  after_build do
-    # set default
-    self.deliver_by ||= :sf
-    unless self.user.nil?
-      coupon = self.user.coupon_codes.unused.last
-      self.coupon_code_id ||= coupon.id.to_s unless coupon.nil?
-    end
-  end
-
   before_create do
     self.order_no = rand.to_s[2..11]
     self.deliver_price = calculate_deliver_price
@@ -236,6 +227,7 @@ class Order
   end
 
   def calculate_deliver_price
+    return 0 if self.deliver_by.nil?
     Order.calculate_deliver_price_by_method_and_price(self.deliver_by, items_price)
   end
 
