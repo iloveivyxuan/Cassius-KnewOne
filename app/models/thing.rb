@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 class Thing < Post
   include Mongoid::Slug
-  include Mongoid::MultiParameterAttributes
 
   slug :title, history: true
   field :subtitle, type: String, default: ""
@@ -55,7 +54,7 @@ class Thing < Post
   scope :published, -> { lt(created_at: Time.now) }
   scope :prior, -> { unscoped.published.gt(priority: 0).desc(:priority, :created_at) }
   scope :self_run, -> { published.in(stage: STAGES.keys.from(3)) }
-  default_scope { desc(:created_at) }
+  default_scope desc(:created_at)
 
   embeds_many :kinds
   accepts_nested_attributes_for :kinds, allow_destroy: true

@@ -87,10 +87,8 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'mongoid-rspec'
-  gem 'jasminerice'
   gem 'guard-spork'
   gem 'guard-rspec'
-  gem 'guard-jasmine'
   gem 'guard-livereload'
   gem 'fabrication'
   gem 'ffaker'

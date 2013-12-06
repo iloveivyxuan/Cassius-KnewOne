@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 class Kind
   include Mongoid::Document
-  include Mongoid::MultiParameterAttributes
 
   embedded_in :thing
 

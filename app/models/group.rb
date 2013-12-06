@@ -10,7 +10,7 @@ class Group
 
   has_many :topics
 
-  default_scope { desc(:created_at) }
+  default_scope desc(:created_at)
 
   validates :name, presence: true
   validates :founder, presence: true
