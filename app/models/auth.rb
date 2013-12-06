@@ -40,7 +40,7 @@ class Auth
           uid: data[:uid],
           name: data[:info][:name],
           access_token: data[:credentials][:token],
-          access_secret: data[:credentials][:secret],
+          access_token_secret: data[:credentials][:secret],
           expires_at: data[:credentials][:expires_at],
           nickname: data[:info][:nickname],
           description: data[:info][:description],
