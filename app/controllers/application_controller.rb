@@ -3,6 +3,13 @@ class ApplicationController < ActionController::Base
   before_filter :trim_param_id
   protect_from_forgery
 
+  # hack, from http://stackoverflow.com/questions/19273182/activemodelforbiddenattributeserror-cancan-rails-4-model-with-scoped-con/19504322#19504322
+  before_action do
+    resource = controller_path.singularize.gsub('/', '_').to_sym # => 'blog/posts' => 'blog/post' => 'blog_post' => :blog_post
+    method = "#{resource}_params" # => 'blog_post_params'
+    params[resource] &&= send(method) if respond_to?(method, true) # => params[:blog_post]
+  end
+
   # some bots using some *strange* format to request urls
   # that would trigger missing template exception,
   # so this will reject those request, but you can adjust to your logic
@@ -37,7 +44,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_back_or(path, flash = {})
-    flash.each_pair do |k,v|
+    flash.each_pair do |k, v|
       flash[k] = v
     end
     redirect_to(session.delete(:previous_url) || path)
