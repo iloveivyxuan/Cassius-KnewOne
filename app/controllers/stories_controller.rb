@@ -15,7 +15,7 @@ class StoriesController < PostsController
 
   def create
     authorize! :update, @thing
-    @story = Story.new params[:story]
+    @story = Story.new story_params
       .merge(author: current_user, thing: @thing)
     if @story.save
       redirect_to thing_stories_path(@thing)
@@ -29,7 +29,7 @@ class StoriesController < PostsController
   end
 
   def update
-    if @story.update(params[:story])
+    if @story.update(story_params)
       redirect_to thing_stories_path(@thing)
     else
       render 'new'
@@ -39,5 +39,11 @@ class StoriesController < PostsController
   def destroy
     @story.destroy
     redirect_to thing_stories_path(@thing)
+  end
+
+  private
+
+  def story_params
+    params.require(:story).permit(:title, :content, :occured_at)
   end
 end
