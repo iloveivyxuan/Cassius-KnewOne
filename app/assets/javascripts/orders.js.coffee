@@ -3,7 +3,9 @@ Making.OrderPage =
     $ ->
       $('.deliver_method').on('change',
       ->
-        price = parseFloat($(this).attr('data-price')) + parseFloat($('.total_price').attr('data-things-price'))
+        price = parseFloat($(this).attr('data-price')) + \
+                parseFloat($('.total_price').attr('data-things-price')) + \
+                parseFloat($('.total_price').attr('data-rebates-price'))
         $('.total_price strong span').text(price.toFixed(2))
       )
 
