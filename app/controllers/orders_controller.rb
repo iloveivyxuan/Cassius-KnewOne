@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_filter :authenticate_user!, only: [:index, :show, :new, :create, :cancel, :tenpay, :alipay]
   before_filter :have_items_in_cart, only: [:new, :create]
   before_filter :store_location, only: [:new]
-  load_and_authorize_resource except: :index
+  load_and_authorize_resource except: :index, params: :order_params
 
   def index
     @orders = current_user.orders
@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.build_order(current_user, order_params)
+    @order = Order.build_order(current_user, (params.has_key?(:order) ? order_params : nil))
     @order.address = current_user.addresses.first
     @order.deliver_by = :sf
   end
@@ -123,7 +123,7 @@ class OrdersController < ApplicationController
   end
 
   def subject_text(order)
-    'Knewone购物:'+(order.order_items.map { |i| "#{i.name}x#{i.quantity};" }.reduce &:+)[0..250]
+    'Knewone购物:'+(order.order_items.map { |i| "#{i.name}x#{i.quantity};" }.reduce &:+)[0..200]
   end
 
   def order_params
