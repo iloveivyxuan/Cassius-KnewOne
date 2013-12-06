@@ -13,7 +13,7 @@ gem 'mongoid_rails_migrations'
 
 # files
 gem 'carrierwave'
-gem 'carrierwave-mongoid'
+gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
 gem 'carrierwave-upyun'
 
 # configurations

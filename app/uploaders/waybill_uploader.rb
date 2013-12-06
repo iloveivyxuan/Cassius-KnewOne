@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 class WaybillUploader < CarrierWave::Uploader::Base
-  include Sprockets::Helpers::RailsHelper
-  include Sprockets::Helpers::IsolatedHelper
-
   def store_dir
     "#{model.class.to_s.underscore.pluralize}"
   end
