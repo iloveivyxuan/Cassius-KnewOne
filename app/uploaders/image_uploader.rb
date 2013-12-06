@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 class ImageUploader < CarrierWave::Uploader::Base
+  include Sprockets::Rails::Helper
+
   def store_dir
     "#{model.class.to_s.underscore.pluralize}"
   end

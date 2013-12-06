@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 class Lottery
   include Mongoid::Document
-  include Mongoid::MultiParameterAttributes
   include Rails.application.routes.url_helpers
 
   field :date, type: Date
@@ -21,7 +20,7 @@ class Lottery
   validate  :check_contribution
   validate  :check_winner
 
-  default_scope { desc(:date) }
+  default_scope desc(:date)
 
   def thing_link
     link_to_thing thing

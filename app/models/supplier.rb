@@ -14,5 +14,5 @@ class Supplier
   validates :contact, presence: true
   validates :description, presence: true
 
-  default_scope { desc(:created_at) }
+  default_scope desc(:created_at)
 end
