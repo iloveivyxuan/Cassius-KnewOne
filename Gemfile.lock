@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/3months/cancan.git
+  revision: b9aa14fd51b773340e5901a6bd02ca07c765c73b
+  branch: strong_parameters
+  specs:
+    cancan (1.6.10)
+
+GIT
   remote: git://github.com/ahoward/mongoid-grid_fs.git
   revision: 059012a2c2a9e0a5d6e67137752c3e918689c88a
   specs:
@@ -14,7 +21,7 @@ GIT
 
 GIT
   remote: git://github.com/mongoid/mongoid.git
-  revision: f8b439dd9a59b769389aff81a42502cd857cf7fa
+  revision: bbc0df51f9c1fec19dd15e4c5d478d6474adefdc
   specs:
     mongoid (4.0.0.alpha1)
       activemodel (~> 4.0.0)
@@ -66,7 +73,6 @@ GEM
       sass (~> 3.2)
     bson (2.0.0)
     builder (3.1.4)
-    cancan (1.6.10)
     capistrano (2.15.5)
       highline
       net-scp (>= 1.0.0)
@@ -155,8 +161,9 @@ GEM
       childprocess (>= 0.2.3)
       guard (>= 1.1)
       spork (>= 0.8.4)
-    handlebars_assets (0.14.1)
+    handlebars_assets (0.15)
       execjs (>= 1.2.9)
+      multi_json
       sprockets (>= 2.0.3)
       tilt
     hashie (1.2.0)
@@ -190,7 +197,7 @@ GEM
     libnotify (0.8.2)
       ffi (>= 1.0.11)
     libv8 (3.16.14.3)
-    listen (2.3.1)
+    listen (2.4.0)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -204,7 +211,7 @@ GEM
       subexec (~> 0.2.1)
     minitest (4.7.5)
     modernizr-rails (2.7.0)
-    mongoid-rspec (1.9.0)
+    mongoid-rspec (1.10.0)
       mongoid (>= 3.0.1)
       rake
       rspec (>= 2.14)
@@ -395,7 +402,7 @@ DEPENDENCIES
   alipay
   backbone-on-rails
   bootstrap-sass
-  cancan
+  cancan!
   capistrano (~> 2.15.0)
   capistrano-unicorn
   carrierwave

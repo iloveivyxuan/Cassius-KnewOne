@@ -59,7 +59,7 @@ module Haven
     end
 
     def update
-      @order.update params[:order]
+      @order.update order_params
       redirect_to haven_order_path(@order)
     end
 
@@ -81,6 +81,11 @@ module Haven
     def generate_waybill
       @order.generate_waybill!
       redirect_to haven_order_path(@order)
+    end
+
+    private
+    def order_params
+      params.require(:order).permit!
     end
   end
 end
