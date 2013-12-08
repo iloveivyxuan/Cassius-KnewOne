@@ -1,6 +1,6 @@
 module Haven
   class AbatementCouponsController < ApplicationController
-    load_and_authorize_resource instance_name: :coupon, class: ::AbatementCoupon
+    load_and_authorize_resource instance_name: :coupon, class: ::AbatementCoupon, params: :abatement_coupon_params
 
     def index
 
@@ -15,9 +15,8 @@ module Haven
     end
 
     def create
-      @coupon = AbatementCoupon.create params[:abatement_coupon]
-      # redirect_to haven_abatement_coupon_path(@coupon)
-      redirect_to haven_abatement_coupons_path
+      @coupon = AbatementCoupon.create abatement_coupon_params
+      redirect_to haven_abatement_coupon_path(@coupon)
     end
 
     def generate_code
@@ -26,6 +25,11 @@ module Haven
         @coupon.generate_code!
       end
       redirect_to haven_abatement_coupon_path(@coupon)
+    end
+
+    private
+    def abatement_coupon_params
+      params.require(:abatement_coupon).permit!
     end
   end
 end

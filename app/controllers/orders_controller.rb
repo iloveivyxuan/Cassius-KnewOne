@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_filter :authenticate_user!, only: [:index, :show, :new, :create, :cancel, :tenpay, :alipay]
   before_filter :have_items_in_cart, only: [:new, :create]
   before_filter :store_location, only: [:new]
-  load_and_authorize_resource except: :index, params: :order_params
+  load_and_authorize_resource except: [:index, :new, :create], params: :order_params
 
   def index
     @orders = current_user.orders

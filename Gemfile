@@ -26,7 +26,7 @@ gem 'omniauth-weibo-oauth2'
 gem 'omniauth-twitter'
 gem 'weibo_2'
 gem 'twitter'
-gem 'cancan'
+gem 'cancan', github: '3months/cancan', branch: 'strong_parameters'
 
 # payment
 gem 'jasl_tenpay', github: 'jasl/tenpay'
