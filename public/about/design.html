@@ -28,7 +28,7 @@
           .reveal section  {border: none;}
           .reveal section img {border: none;}
           .reveal section pre {margin-top: 2em;}
-          .reveal section code {padding: 1em;}
+          .reveal section code {padding: 1em; max-height: 500px;}
           .reveal section blockquote {box-shadow: none; text-align: left;}
           .reveal .prelude h2 {margin-top: 2em;}
           .reveal .me li {text-align: center;margin: .5em 0;list-style: none;}
@@ -75,7 +75,7 @@
                     </ul>
                   </section>
                   <section class="knewone">
-                    <img src="images/knewone-site2.png">
+                    <img src="images/knewone-site2.jpg">
                   </section>
                   <section class="knewone">
                     <img src="images/knewone-site.png">
@@ -105,6 +105,12 @@
                   <section>
                     <p>Or... Python?</p>
                     <a href="http://www.learnpython.org/" target="_blank"><img src="images/learnpython.png"></a>
+                  </section>
+                  <section>
+                    <a href="http://ruby-lang.org/" target="_blank"><img src="images/ruby-lang.png"></a>
+                  </section>
+                  <section>
+                    <a href="http://python.org/" target="_blank"><img src="images/python-lang.png"></a>
                   </section>
                 </section>
 
@@ -156,6 +162,8 @@ int fact( int n ) {
         return n * fact(n - 1);    
 }
                     </code></pre>
+                  </section>
+                  <section class="fact">
                     <pre><code data-trim>
 ;;Lisp
 (define (fact n)
@@ -172,6 +180,8 @@ def fact(n):
                       x * y, 
                       range(1, n + 1))
                     </code></pre>
+                  </section>
+                  <section class="fact">
                     <pre><code data-trim>
 #Ruby
 def fact(n)
@@ -269,10 +279,10 @@ end
                   <section>
                     <h3>Use layouts and partials</h3>
                     <pre><code>
-.thing_wrapper
-  header#thing_header= render "things/header"
-  section#thing_actions= render "things/actions"
-  section#thing_content= yield
+#thing_show
+  header= render "things/header"
+  section= render "things/actions"
+  section= yield
                     </code></pre>
                     <pre><code>
 .photos= render "carousel"

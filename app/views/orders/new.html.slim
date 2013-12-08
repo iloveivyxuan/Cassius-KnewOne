@@ -19,7 +19,7 @@ section.simple_page_wrapper.widget.orders_wrapper
           | 帮我标记产品为拥有
       = provider_sync
       .form-group.form-actions
-        p.total_price[data-things-price="#{@order.items_price}"]
+        p.total_price[data-things-price="#{@order.items_price}" data-rebates-price="#{@order.rebates_price}"]
           | 总计
           strong
             i.icon-yen
