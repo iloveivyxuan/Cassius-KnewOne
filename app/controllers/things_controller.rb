@@ -41,7 +41,7 @@ class ThingsController < PostsController
   end
 
   def create
-    @thing = Thing.new params[:thing].merge(author: current_user)
+    @thing = Thing.new thing_params.merge(author: current_user)
     if @thing.save
       @thing.fancy current_user
       redirect_to @thing, flash: {provider_sync: params[:provider_sync]}
@@ -62,7 +62,7 @@ class ThingsController < PostsController
   end
 
   def update
-    if @thing.update(params[:thing])
+    if @thing.update thing_params
       redirect_to @thing
     else
       render 'new'
@@ -120,7 +120,7 @@ class ThingsController < PostsController
   end
 
   def pro_update
-    if @thing.update(params[:thing])
+    if @thing.update(params.require(:thing).permit!)
       redirect_to @thing
     else
       render 'pro_edit'
@@ -131,5 +131,13 @@ class ThingsController < PostsController
     Thing.resort!
 
     redirect_to admin_things_path
+  end
+
+  private
+
+  def thing_params
+    params.require(:thing)
+      .permit(:title, :subtitle, :official_site,
+              :content, :description, photo_ids: [])
   end
 end

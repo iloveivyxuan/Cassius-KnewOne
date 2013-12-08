@@ -18,7 +18,7 @@ class AddressesController < ApplicationController
   end
 
   def create
-    @address = current_user.addresses.build params[:address]
+    @address = current_user.addresses.build address_params
     respond_to do |format|
       if @address.save
         format.html { redirect_back_or(addresses_path) }
@@ -37,7 +37,7 @@ class AddressesController < ApplicationController
   def update
     @address = current_user.addresses.find params[:id]
     respond_to do |format|
-      if @address.update(params[:address])
+      if @address.update(address_params)
         format.html { redirect_back_or(addresses_path) }
         format.json { head :no_content }
       else
@@ -54,5 +54,12 @@ class AddressesController < ApplicationController
       format.html { redirect_to addresses_path }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def address_params
+    params.require(:address)
+      .permit(:province, :district, :street, :name, :phone, :zip_code)
   end
 end

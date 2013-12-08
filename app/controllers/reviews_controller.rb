@@ -21,7 +21,7 @@ class ReviewsController < PostsController
   end
 
   def create
-    @review = Review.new params[:review]
+    @review = Review.new review_params
       .merge(author: current_user, thing: @thing)
     if @review.save
       flash[:provider_sync] = params[:provider_sync]
@@ -36,7 +36,7 @@ class ReviewsController < PostsController
   end
 
   def update
-    if @review.update(params[:review])
+    if @review.update(review_params)
       redirect_to thing_review_path(@thing, @review)
     else
       flash.now[:error] = @review.errors.full_messages.first
@@ -52,5 +52,13 @@ class ReviewsController < PostsController
   def vote
     @review.vote current_user, params[:vote] == "true"
     render :partial => 'voting', locals: {review: @review}, layout: false
+  end
+
+  private
+
+  def review_params
+    permit_attrs = [:title, :content, :score]
+    permit_attrs << :is_top if current_user.role? :editor
+    params.require(:review).permit permit_attrs
   end
 end
