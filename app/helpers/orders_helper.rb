@@ -11,7 +11,7 @@ module OrdersHelper
     if order.can_cancel?
       link_to '取消订单', cancel_order_path(order),
               data: {confirm: '真的要取消这个订单么？'},
-              class: css
+              method: :patch, class: css
     end
   end
 
@@ -25,7 +25,7 @@ module OrdersHelper
     if order.can_close?
       link_to '关闭订单', close_haven_order_path(order),
               data: {confirm: '确认关闭？'},
-              method: 'put', class: css
+              method: :patch, class: css
     end
   end
 
@@ -33,7 +33,7 @@ module OrdersHelper
     if order.can_refund?
       link_to '已退款', refund_haven_order_path(order),
               data: {confirm: '确认退款？'},
-              method: 'put', class: css
+              method: :patch, class: css
     end
   end
 

@@ -35,7 +35,7 @@ Making::Application.routes.draw do
   end
   resources :orders, only: [:index, :show, :create, :new] do
     member do
-      get 'cancel'
+      patch 'cancel'
       get 'tenpay'
       get 'tenpay_notify'
       get 'tenpay_callback'
@@ -48,9 +48,9 @@ Making::Application.routes.draw do
   namespace :haven do
     resources :orders, only: [:index, :show, :update] do
       member do
-        put 'ship'
-        put 'close'
-        put 'refund'
+        patch 'ship'
+        patch 'close'
+        patch 'refund'
         get 'generate_waybill'
       end
     end
