@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class Lottery
   include Mongoid::Document
+  include Mongoid::MultiParameterAttributes
   include Rails.application.routes.url_helpers
 
   field :date, type: Date

@@ -74,7 +74,7 @@ Making::Application.routes.draw do
       get 'buy'
       get 'comments'
       get 'pro_edit'
-      put 'pro_update'
+      patch 'pro_update'
     end
 
     resources :reviews do

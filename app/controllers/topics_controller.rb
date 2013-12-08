@@ -12,7 +12,7 @@ class TopicsController < PostsController
   end
 
   def create
-    @topic = Topic.new params[:topic]
+    @topic = Topic.new topic_params
       .merge(author: current_user, group: @group)
     if @topic.save
       redirect_to group_topic_path(@group, @topic)
@@ -26,7 +26,7 @@ class TopicsController < PostsController
   end
 
   def update
-    if @topic.update(params[:topic])
+    if @topic.update topic_params
       redirect_to group_topic_path(@group, @topic)
     else
       render 'new'
@@ -36,5 +36,13 @@ class TopicsController < PostsController
   def destroy
     @topic.destroy
     redirect_to group_path(@group)
+  end
+
+  private
+
+  def topic_params
+    permit_attrs = [:title, :content]
+    permit_attrs << :is_top if current_user.role? :editor
+    params.require(:topic).permit permit_attrs
   end
 end
