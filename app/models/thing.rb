@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class Thing < Post
   include Mongoid::Slug
+  include Mongoid::MultiParameterAttributes
 
   slug :title, history: true
   field :subtitle, type: String, default: ""
