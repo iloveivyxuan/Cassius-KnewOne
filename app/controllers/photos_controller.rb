@@ -8,7 +8,7 @@ class PhotosController < ApplicationController
   end
 
   def create
-    photo = Photo.new params[:photo]
+    photo = Photo.new photo_params
     photo.user = current_user
     if photo.save
       respond_to do |format|
@@ -29,5 +29,11 @@ class PhotosController < ApplicationController
   def destroy
     photo = Photo.find(params[:id])
     respond_with photo && photo.destroy
+  end
+
+  private
+
+  def photo_params
+    params.require(:photo).permit(:name, :size, :image)
   end
 end

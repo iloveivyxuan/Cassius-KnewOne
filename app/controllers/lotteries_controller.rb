@@ -46,7 +46,7 @@ class LotteriesController < ApplicationController
   end
 
   def create
-    @lottery = Lottery.new params[:lottery]
+    @lottery = Lottery.new lottery_params
     if @lottery.save
       redirect_to lotteries_path
     else
@@ -59,7 +59,7 @@ class LotteriesController < ApplicationController
   end
 
   def update
-    if @lottery.update(params[:lottery])
+    if @lottery.update(lottery_params)
       redirect_to lotteries_path
     else
       render 'new'
@@ -69,5 +69,11 @@ class LotteriesController < ApplicationController
   def destroy
     @lottery.destroy
     redirect_to lotteries_path
+  end
+
+  private
+
+  def lottery_params
+    params.require(:lottery).permit!
   end
 end

@@ -18,7 +18,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(params[:group])
+    @group = Group.new(group_params)
     @group.founder = current_user
     if @group.save
       redirect_to groups_path
@@ -32,7 +32,7 @@ class GroupsController < ApplicationController
   end
 
   def update
-    if @group.update(params[:group])
+    if @group.update(group_params)
       redirect_to group_path(@group)
     else
       render 'new'
@@ -42,5 +42,11 @@ class GroupsController < ApplicationController
   def destroy
     @group.destroy
     redirect_to groups_path
+  end
+
+  private
+
+  def group_params
+    params.require(:group).permit(:name, :description)
   end
 end

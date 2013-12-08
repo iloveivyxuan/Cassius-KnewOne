@@ -9,13 +9,19 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = @post.comments.create(params[:comment].merge(author: current_user))
+    @comment = @post.comments.create(comment_params.merge(author: current_user))
     respond_with @comment
   end
 
   def destroy
     @comment = @post.comments.find params[:id]
     respond_with @comment.destroy
+  end
+
+  private
+
+  def comment_params
+    params.require(:comment).permit(:content)
   end
 
 end
