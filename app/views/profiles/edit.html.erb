@@ -1,0 +1,17 @@
+<%- provide :nav, :profiles %>
+
+<%= simple_form_for(current_user, :url => profile_path, :html => { :method => :patch }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :nickname, :required => true %>
+    <%= f.input :location %>
+    <%= f.input :description %>
+    <%= f.input :avatar, :as => :file %>
+    <%= f.input :avatar_cache, :as => :hidden %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Update" %>
+  </div>
+<% end %>

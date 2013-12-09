@@ -1,6 +1,7 @@
 GIT
   remote: git://github.com/3months/cancan.git
   revision: b9aa14fd51b773340e5901a6bd02ca07c765c73b
+  ref: b9aa14f
   branch: strong_parameters
   specs:
     cancan (1.6.10)

@@ -12,27 +12,33 @@ Making::Application.routes.draw do
     registrations: "registrations"
   }
 
-  namespace :settings do
-    root to: 'profiles#edit'
+  scope 'settings' do
     scope path_names: { edit: '' }, only: [:edit, :update] do
-      resource :profile
+      resource :profile, path_prefix: 'admin'
+      resource :account do
+        patch 'email'
+      end
+      resources :addresses, except: [:show]
     end
+    resources :authentications, only: [:destroy]
   end
 
   resources :users, only: [:show, :index] do
     collection do
       post 'share'
-      get 'bind'
+      patch 'bind'
+      get 'binding'
     end
   end
 
   resources :cart_items, only: [:index, :create, :update, :destroy]
-  resources :addresses, except: [:show]
+
   resources :coupons, only: [:index] do
     collection do
       post 'bind'
     end
   end
+
   resources :orders, only: [:index, :show, :create, :new] do
     member do
       patch 'cancel'

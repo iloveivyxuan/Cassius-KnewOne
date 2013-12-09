@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   before_filter :trim_param_id
   protect_from_forgery
 
+  before_filter :configure_permitted_parameters, if: :devise_controller?
+
   # some bots using some *strange* format to request urls
   # that would trigger missing template exception,
   # so this will reject those request, but you can adjust to your logic
@@ -44,6 +46,13 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :redirect_back_or
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up).concat [:location, :name, :nickname, :description]
+    devise_parameter_sanitizer.for(:account_update).concat [:location, :name, :nickname, :description]
+  end
 
   private
 

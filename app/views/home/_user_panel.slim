@@ -1,0 +1,24 @@
+aside.user_panel
+  header 快速开始
+  section.third-party
+    = link_to user_omniauth_authorize_path(:twitter), class: "twitter_sign_in" do
+      i.icon-twitter.icon-4x
+    = link_to user_omniauth_authorize_path(:weibo), class: "weibo_sign_in" do
+      i.icon-weibo.icon-4x
+    = link_to '#', class: 'email_sign_in', id: 'show_classic_form' do
+      i.icon-envelope.icon-4x
+  section#classic_form
+    ul.nav.nav-tabs
+      li.active
+        = link_to '注册', '#email_sign_up_tab', data: {toggle: 'tab'}
+      li
+        = link_to '登录', '#email_sign_in_tab', data: {toggle: 'tab'}
+    .tab-content
+      #email_sign_up_tab.tab-pane.active
+        = render 'devise/registrations/sign_up'
+      #email_sign_in_tab.tab-pane
+        = render 'devise/sessions/sign_in'
+
+- content_for :script do
+  javascript:
+    Making.HomePage.Init();
