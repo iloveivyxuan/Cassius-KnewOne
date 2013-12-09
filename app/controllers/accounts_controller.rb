@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 class AccountsController < Devise::RegistrationsController
-  prepend_before_filter :authenticate_user!
-  before_filter :store_location
+  prepend_before_action :authenticate_user!
+  before_action :store_location
 
   layout 'settings'
 

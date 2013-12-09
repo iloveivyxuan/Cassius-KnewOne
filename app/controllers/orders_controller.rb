@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 class OrdersController < ApplicationController
-  before_filter :authenticate_user!, only: [:index, :show, :new, :create, :cancel, :tenpay, :alipay]
-  before_filter :have_items_in_cart, only: [:new, :create]
-  before_filter :store_location, only: [:new]
+  before_action :authenticate_user!, only: [:index, :show, :new, :create, :cancel, :tenpay, :alipay]
+  before_action :have_items_in_cart, only: [:new, :create]
+  before_action :store_location, only: [:new]
   load_and_authorize_resource except: [:index, :new, :create], params: :order_params
 
   def index
