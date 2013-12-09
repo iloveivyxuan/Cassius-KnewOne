@@ -60,8 +60,7 @@ section.orders_wrapper.simple_page_wrapper.widget
 
   .order_actions.text-right
     - if current_user.auths.any?
-      = link_to '#order_share', class: 'btn btn-default', data: {toggle: 'modal'}  do
-        = provider_share
+      = link_to '分享', '#order_share', class: 'btn btn-default', data: {toggle: 'modal'}
     = order_operations(@order)
     = return_link(@order)
     = link_to '需要帮助?', '#olark_chat', title: '需要帮助?', class: 'btn btn-link'
