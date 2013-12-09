@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 class ApplicationController < ActionController::Base
-  before_filter :trim_param_id
+  before_action :trim_param_id
   protect_from_forgery
 
-  before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   # some bots using some *strange* format to request urls
   # that would trigger missing template exception,

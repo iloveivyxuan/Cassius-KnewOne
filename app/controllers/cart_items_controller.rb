@@ -1,6 +1,6 @@
 class CartItemsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :current_cart_item, only: [:destroy, :update]
+  before_action :authenticate_user!
+  before_action :current_cart_item, only: [:destroy, :update]
 
   def index
     current_user.cart_items.delete_if {|item| !item.legal?}

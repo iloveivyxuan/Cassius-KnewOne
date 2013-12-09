@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  prepend_before_filter :authenticate_user!
+  prepend_before_action :authenticate_user!
   layout 'settings'
 
   def update

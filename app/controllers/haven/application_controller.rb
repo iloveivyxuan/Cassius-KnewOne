@@ -2,7 +2,7 @@
 module Haven
   class ApplicationController < ::ActionController::Base
     layout 'application'
-    prepend_before_filter :authenticate_admin!
+    prepend_before_action :authenticate_admin!
 
     protected
 
