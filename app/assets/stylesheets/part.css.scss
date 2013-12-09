@@ -1,0 +1,117 @@
+.page-header {
+  h2 {
+    font-size: $font-size-h3;
+    margin: 0;
+  }
+}
+
+.offcanvas_mix {
+  @include clearfix;
+  overflow: hidden;
+  position: relative;
+
+  @media screen and (min-width: $screen-md-min) {
+    @include make-row;
+    @include site_margin;
+  }
+
+  #main,
+  #aside {
+    @media screen and (max-width: $screen-md-min) {
+      transition: .2s all ease;
+      width: 100%;
+    }
+  }
+
+  #aside {
+    @media screen and (max-width: $screen-md-min) {
+      background-color: $brand-primary;
+      float: left;
+      height: 100%;
+      margin-left: -100%;
+      padding: 45px 4% 30px;
+    }
+
+    @media screen and (min-width: $screen-md-min) {
+      @include make-md-column(4);
+      @include make-lg-column(3);
+      @include make-xl-column(2);
+    }
+  }
+
+  #main {
+    background-color: #fff;
+
+    @media screen and (max-width: $screen-md-min) {
+      float: left;
+      margin-left: 0;
+      padding: 45px 5%;
+    }
+
+    @media screen and (min-width: $screen-md-min) {
+      @include make-md-column(8);
+      @include make-lg-column(9);
+      @include make-xl-column(10);
+
+      border: 1px solid $list-group-border;
+      border-radius: $list-group-border-radius;
+      padding-bottom: 20px;
+      padding-top: 20px;
+    }
+  }
+
+  #main_trigger,
+  #aside_trigger {
+    background-color: #333332;
+    color: #fff;
+    cursor: pointer;
+    font-size: 24px;
+    height: 38px;
+    line-height: 38px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 38px;
+
+    @media screen and (min-width: $screen-md-min) {
+      display: none !important;
+    }
+
+    [class^="icon-"] {
+      margin-right: 0;
+    }
+  }
+
+  #aside_trigger {
+    left: $padding-large-horizontal;
+  }
+
+  #main_trigger {
+    display: none;
+    right: $padding-large-horizontal;
+  }
+
+  &.is_aside_active {
+
+    #aside {
+      @media screen and (max-width: $screen-md-min) {
+        margin-left: 0;
+        width: 80%;
+      }
+    }
+
+    #main_trigger {
+      display: block;
+    }
+
+    #aside_trigger {
+      display: none;
+    }
+
+    #main {
+      @media screen and (max-width: $screen-md-min) {
+        margin-right: -100%;
+      }
+    }
+  }
+}

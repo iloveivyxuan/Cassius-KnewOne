@@ -54,6 +54,14 @@ module ApplicationHelper
     content_tag(:li, options) {yield}
   end
 
+  def nav_tab_wrapper(tab, options = {})
+    options[:class] ||= ''
+    if content_for(:nav) == tab.to_s || options[:nav] == tab.to_s
+      options[:class] += ' active'
+    end
+    yield
+  end
+
   def time_ago_tag(time)
     time_tag time, time_ago(time)
   end

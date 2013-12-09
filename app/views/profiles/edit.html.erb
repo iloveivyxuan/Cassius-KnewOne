@@ -1,5 +1,9 @@
 <%- provide :nav, :profiles %>
 
+<header class="page-header">
+  <h2><i class="icon-user"></i>个人信息<h2>
+</header>
+
 <%= simple_form_for(current_user, :url => profile_path, :html => { :method => :patch }) do |f| %>
   <%= f.error_notification %>
 
@@ -12,6 +16,6 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+    <%= f.button :submit, "保存" %>
   </div>
 <% end %>

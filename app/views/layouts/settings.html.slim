@@ -1,16 +1,29 @@
 - content_for :content do
-  .settings_wrapper
-    .container-fluid
-      .row-fluid
-        .span2
-          ul.nav.nav-pills.nav-stacked
-            = nav_tab :profiles do
-              = link_to '个人资料', edit_profile_path
-            = nav_tab :account do
-              = link_to '账号、绑定', edit_account_path
-            = nav_tab :address do
-              = link_to '收货地址', addresses_path
-        .span10
-          = yield
+  .offcanvas_mix
+    aside#aside role="complementary"
+      nav.list-group role="navigation"
+          - nav_tab_wrapper :profiles do
+            = link_to_with_icon '个人信息', 'icon-user', edit_profile_path, class: 'list-group-item'
+              i.icon-angle-right.pull-right
+          - nav_tab_wrapper :account do
+            = link_to_with_icon '账号信息', 'icon-book', edit_account_path, class: 'list-group-item'
+              i.icon-angle-right.pull-right
+          - nav_tab_wrapper :address do
+            = link_to_with_icon '我的订单', 'icon-file-text-alt', addresses_path, class: 'list-group-item'
+              i.icon-angle-right.pull-right
+          - nav_tab_wrapper :address do
+            = link_to_with_icon '收货地址', 'icon-truck', addresses_path, class: 'list-group-item'
+              i.icon-angle-right.pull-right
+          - nav_tab_wrapper :address do
+            = link_to_with_icon '我的优惠券', 'icon-ticket', addresses_path, class: 'list-group-item'
+              i.icon-angle-right.pull-right
+
+    main#main role="main"
+      = yield
+
+    a#aside_trigger
+      i.icon-chevron-sign-left
+    a#main_trigger
+      i.icon-chevron-sign-right
 
 = render template: 'layouts/application'
