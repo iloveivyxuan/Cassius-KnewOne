@@ -1,5 +1,5 @@
 tr
   td= content_for_address(address)
   td
-    = link_to '[编辑]', edit_address_path(address)
+    = link_to '[编辑]', address_path(address)
     = link_to '[删除]', address, :confirm => '确定要删除么？', :method => :delete

@@ -1,0 +1,14 @@
+.user_panel {
+  padding: 20px;
+  margin: 20px;
+  background-color: rgba(0, 0, 0, 0.3);
+  @include border-radius(10px);
+  width: 30%;
+  @media screen and (max-width: 512px) {
+    width: 100%;
+  }
+
+  #classic_form {
+    display: none;
+  }
+}

@@ -1,5 +1,6 @@
 class AddressesController < ApplicationController
   before_filter :authenticate_user!
+  layout 'settings'
 
   def index
     @addresses = current_user.addresses

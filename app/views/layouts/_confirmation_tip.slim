@@ -1,0 +1,8 @@
+- if user_signed_in? && !current_user.confirmed?
+  .confirmation_tip.pull-right
+    - if current_user.unconfirmed_email.present?
+      | 您的邮箱尚未验证
+      = link_to '重新发送验证邮件', user_confirmation_path(:'user[email]' => current_user.unconfirmed_email), method: :post
+    - else
+      | 尚未设置邮箱
+      = link_to '绑定邮箱', binding_users_path

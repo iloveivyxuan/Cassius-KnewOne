@@ -14,9 +14,10 @@
     - if user_signed_in?
       = link_to  "#thing_share", title: "分享",  \
                                  data: {toggle: 'modal', keyboard: false} do
-        = provider_share
+        i.icon-share
+        span 分享
     - else
-      = link_to "#login-modal", title: "分享",
+      = link_to "#login-modal", title: "分享", \
                 data: {toggle: 'modal', keyboard: false} do
         i.icon-share
         span 分享

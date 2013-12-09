@@ -1,0 +1,5 @@
+= simple_form_for(current_user, :url => email_account_path, :method => :patch) do |f|
+  .form-inputs
+    = f.input :email, :required => true, :autofocus => true
+  .form-actions
+    = f.button :submit, "Update"

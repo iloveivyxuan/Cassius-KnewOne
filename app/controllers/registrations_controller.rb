@@ -2,7 +2,7 @@
 class RegistrationsController < Devise::RegistrationsController
   def update
     @user = User.find(current_user.id)
-    successfully_updated = if needs_password?(@user, params)
+    successfully_updated = if needs_password?(@user, user_params)
                              @user.update_with_password(user_params)
                            else
                              if params[:user][:password].blank?
@@ -34,7 +34,6 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:location, :name, :nickname, :description, :email, :password, :password_confirmation)
   end
-
 end

@@ -16,7 +16,7 @@ class FeaturesController < PostsController
   def create
     authorize! :update, @thing
     @feature = Feature.new params[:feature]
-      .merge(author: current_user, thing: @thing)
+                           .merge(author: current_user, thing: @thing)
     if @feature.save
       redirect_to thing_features_path(@thing)
     else
