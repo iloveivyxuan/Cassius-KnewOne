@@ -22,6 +22,10 @@ window.Making =
       $('a[href="#olark_chat"]').click ->
         olark('api.box.expand')
       Making.GoTop()
+      $('#aside_trigger').on 'click', ->
+        $('.offcanvas_mix').addClass 'is_aside_active'
+      $('#main_trigger').on 'click', ->
+        $('.offcanvas_mix').removeClass 'is_aside_active'
 
   OlarkSetUser: (name, email, id) ->
     olark('api.visitor.updateFullName', {fullName: name}) if name
