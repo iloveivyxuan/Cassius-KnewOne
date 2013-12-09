@@ -1,4 +1,4 @@
-json.(comment, :id)
+json.id comment.id.to_s
 json.content comment_content(comment)
 json.created_at_words time_ago(comment.created_at)
 json.created_at comment.created_at
