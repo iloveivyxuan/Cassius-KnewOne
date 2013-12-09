@@ -2,21 +2,16 @@
   .offcanvas_mix
     aside#aside role="complementary"
       nav.list-group role="navigation"
-          - nav_tab_wrapper :profiles do
-            = link_to_with_icon '个人信息', 'icon-user', edit_profile_path, class: 'list-group-item'
-              i.icon-angle-right.pull-right
-          - nav_tab_wrapper :account do
-            = link_to_with_icon '账号信息', 'icon-book', edit_account_path, class: 'list-group-item'
-              i.icon-angle-right.pull-right
-          - nav_tab_wrapper :address do
-            = link_to_with_icon '我的订单', 'icon-file-text-alt', addresses_path, class: 'list-group-item'
-              i.icon-angle-right.pull-right
-          - nav_tab_wrapper :address do
-            = link_to_with_icon '收货地址', 'icon-truck', addresses_path, class: 'list-group-item'
-              i.icon-angle-right.pull-right
-          - nav_tab_wrapper :address do
-            = link_to_with_icon '我的优惠券', 'icon-ticket', addresses_path, class: 'list-group-item'
-              i.icon-angle-right.pull-right
+        = nav_tab_link_with_icon :profile, '个人信息', 'icon-user', edit_profile_path, class: 'list-group-item'
+          i.icon-angle-right.pull-right
+        = nav_tab_link_with_icon :account, '账号信息', 'icon-book', edit_account_path, class: 'list-group-item'
+          i.icon-angle-right.pull-right
+        = nav_tab_link_with_icon :order, '我的订单', 'icon-file-text-alt', orders_path, class: 'list-group-item'
+          i.icon-angle-right.pull-right
+        = nav_tab_link_with_icon :address, '收货地址', 'icon-truck', addresses_path, class: 'list-group-item'
+          i.icon-angle-right.pull-right
+        = nav_tab_link_with_icon :coupon, '我的优惠券', 'icon-ticket', coupons_path, class: 'list-group-item'
+          i.icon-angle-right.pull-right
 
     main#main role="main"
       = yield

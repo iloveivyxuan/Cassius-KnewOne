@@ -1,7 +1,7 @@
-<%- provide :nav, :profiles %>
+<%- provide :nav, :profile %>
 
 <header class="page-header">
-  <h2><i class="icon-user"></i>个人信息<h2>
+  <h2><i class="icon-user"></i>个人信息</h2>
 </header>
 
 <%= simple_form_for(current_user, :url => profile_path, :html => { :method => :patch }) do |f| %>

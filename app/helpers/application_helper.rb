@@ -13,6 +13,14 @@ module ApplicationHelper
     end
   end
 
+  def nav_tab_link_with_icon(tab, body, icon_class, options = {}, html_options = {})
+    html_options[:class] ||= ''
+    if content_for(:nav) == tab.to_s
+      html_options[:class] += ' active'
+    end
+    link_to_with_icon(body, icon_class, options, html_options)
+  end
+
   def back_btn
     link_to '后退', 'javascript: history.go(-1)', class: 'btn'
   end
@@ -52,14 +60,6 @@ module ApplicationHelper
       options[:class] += ' active'
     end
     content_tag(:li, options) {yield}
-  end
-
-  def nav_tab_wrapper(tab, options = {})
-    options[:class] ||= ''
-    if content_for(:nav) == tab.to_s || options[:nav] == tab.to_s
-      options[:class] += ' active'
-    end
-    yield
   end
 
   def time_ago_tag(time)

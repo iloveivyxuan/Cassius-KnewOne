@@ -19,6 +19,11 @@ Making::Application.routes.draw do
         patch 'email'
       end
       resources :addresses, except: [:show]
+      resources :coupons, only: [:index] do
+        collection do
+          post 'bind'
+        end
+      end
     end
     resources :authentications, only: [:destroy]
   end
@@ -32,12 +37,6 @@ Making::Application.routes.draw do
   end
 
   resources :cart_items, only: [:index, :create, :update, :destroy]
-
-  resources :coupons, only: [:index] do
-    collection do
-      post 'bind'
-    end
-  end
 
   resources :orders, only: [:index, :show, :create, :new] do
     member do

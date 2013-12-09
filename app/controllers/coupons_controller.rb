@@ -1,6 +1,7 @@
 # encoding: utf-8
 class CouponsController < ApplicationController
   prepend_before_action :authenticate_user!
+  layout 'settings', only: [:index]
 
   def index
     @coupons = current_user.coupon_codes
