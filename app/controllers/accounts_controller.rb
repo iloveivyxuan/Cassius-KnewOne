@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 class AccountsController < Devise::RegistrationsController
   prepend_before_action :authenticate_user!
-  before_action :store_location
-
   layout 'settings'
 
   def update

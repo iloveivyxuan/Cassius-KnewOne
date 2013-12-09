@@ -1,4 +1,5 @@
 = simple_form_for @address, html: {class: 'form'} do |f|
+  = hidden_field_tag :redirect_from, params[:redirect_from]
   = f.input :province, collection: Settings.province, prompt: '省市', required: true
   = f.input :district, required: true
   = f.input :street, required: true

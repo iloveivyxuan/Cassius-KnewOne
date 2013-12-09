@@ -7,6 +7,7 @@ section.simple_page_wrapper.widget
   = form_tag bind_coupons_path, class: "form", role: "form"
     .form-group
       .col-xs-9.col-sm-4
+        = hidden_field_tag :redirect_from, params[:redirect_from]
         = text_field_tag :code, '', class: 'form-control', placeholder: '优惠券代码'
         - if flash[:error]
           strong.help-block = flash[:error]

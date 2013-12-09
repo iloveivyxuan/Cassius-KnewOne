@@ -22,6 +22,30 @@ class ApplicationController < ActionController::Base
     redirect_to '/403', alert: exception.message
   end
 
+  def redirect_stored_or(path, flash = {})
+    flash.each_pair do |k, v|
+      flash[k] = v
+    end
+    redirect_to(session.delete(:previous_url) || path, flash)
+  end
+
+  def redirect_back_or(path, flash = {})
+    flash.each_pair do |k, v|
+      flash[k] = v
+    end
+    url = params[:redirect_from].present? ? params[:redirect_from] : path # Avoiding querystring like redirect_from=&
+    redirect_to(url, flash)
+  end
+
+  helper_method :redirect_stored_or, :redirect_back_or
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up).concat [:location, :name, :nickname, :description]
+    devise_parameter_sanitizer.for(:account_update).concat [:location, :name, :nickname, :description]
+  end
+
   def not_found
     raise ActionController::RoutingError.new('Not Found')
   end
@@ -36,22 +60,6 @@ class ApplicationController < ActionController::Base
 
   def require_admin
     redirect_to '/403' unless current_user and current_user.role?(:admin)
-  end
-
-  def redirect_back_or(path, flash = {})
-    flash.each_pair do |k, v|
-      flash[k] = v
-    end
-    redirect_to(session.delete(:previous_url) || path)
-  end
-
-  helper_method :redirect_back_or
-
-  protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up).concat [:location, :name, :nickname, :description]
-    devise_parameter_sanitizer.for(:account_update).concat [:location, :name, :nickname, :description]
   end
 
   private

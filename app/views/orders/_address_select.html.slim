@@ -6,8 +6,8 @@
       - if current_user.addresses.empty?
         tr
           td colspan="2"
-            = link_to '您必须添加一个收货地址才能够提交订单，点此添加。', new_address_path, class: 'text-warning'
+            = link_to '您必须添加一个收货地址才能够提交订单，点此添加。', new_address_path(redirect_from: request.url), class: 'text-warning'
       - else
         tr
           td colspan="2"
-            = link_to '+ 新增地址', new_address_path, class: "btn btn-link"
+            = link_to '+ 新增地址', new_address_path(redirect_from: request.url), class: "btn btn-link"

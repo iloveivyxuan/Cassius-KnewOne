@@ -8,9 +8,14 @@ class CouponsController < ApplicationController
 
   def bind
     coupon = CouponCode.find_unused_by_code params[:code]
-    return redirect_back_or coupons_path, flash: {error: '无效的验证码'} unless coupon
 
-    return redirect_back_or coupons_path, flash: {error: '这个优惠券已经被绑定'} unless coupon.bind_user! current_user
+    unless coupon
+      return redirect_to coupons_path(redirect_from: params[:redirect_from]), flash: {error: '无效的验证码'}
+    end
+
+    unless coupon.bind_user! current_user
+      return redirect_to coupons_path(redirect_from: params[:redirect_from]), flash: {error: '这个优惠券已经被绑定'}
+    end
 
     redirect_back_or coupons_path, flash: {success: '添加成功!'}
   end

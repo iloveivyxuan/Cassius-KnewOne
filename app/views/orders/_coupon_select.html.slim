@@ -10,4 +10,4 @@
           label.coupon_radio
             = f.radio_button :coupon_code_id, c.id.to_s, class: 'order_coupon_radio'
             = "#{c.name}：#{c.note}"
-  = link_to '+ 添加优惠券', coupons_path, class: "btn btn-link"
+  = link_to '+ 添加优惠券', coupons_path(redirect_from: request.url), class: "btn btn-link"
