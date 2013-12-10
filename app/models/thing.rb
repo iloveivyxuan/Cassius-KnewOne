@@ -54,7 +54,7 @@ class Thing < Post
 
   scope :published, -> { lt(created_at: Time.now) }
   scope :prior, -> { unscoped.published.gt(priority: 0).desc(:priority, :created_at) }
-  scope :self_run, -> { published.in(stage: STAGES.keys.from(3)) }
+  scope :self_run, -> { where(stage: :dsell).desc(:priority, :created_at) }
   default_scope desc(:created_at)
 
   embeds_many :kinds

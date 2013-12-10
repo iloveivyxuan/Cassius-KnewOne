@@ -7,7 +7,7 @@ gem 'rails', '~> 4.0.0'
 gem 'rails-i18n'
 
 # database
-gem 'mongoid', '>= 4.0.0.alpha1', github: 'jasl/mongoid', branch: 'push-one-sided-n2n-in-embedded-doc'
+gem 'mongoid', '>= 4.0.0.alpha1'
 gem 'mongoid_slug'
 gem 'mongoid_rails_migrations'
 

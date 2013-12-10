@@ -15,17 +15,6 @@ GIT
       mongoid (>= 3.0, < 5.0)
 
 GIT
-  remote: git://github.com/jasl/mongoid.git
-  revision: 1b6a96ace7bdc75596ac260c49f1e1b66b6e3cde
-  branch: push-one-sided-n2n-in-embedded-doc
-  specs:
-    mongoid (4.0.0.alpha1)
-      activemodel (~> 4.0.0)
-      moped (~> 2.0.beta4)
-      origin (~> 1.0)
-      tzinfo (~> 0.3.37)
-
-GIT
   remote: git://github.com/jasl/tenpay.git
   revision: 2e536b8541f6b75d4b037642aca20f4a60d4f635
   specs:
@@ -213,6 +202,11 @@ GEM
       subexec (~> 0.2.1)
     minitest (4.7.5)
     modernizr-rails (2.7.0)
+    mongoid (4.0.0.alpha1)
+      activemodel (~> 4.0.0)
+      moped (~> 2.0.beta4)
+      origin (~> 1.0)
+      tzinfo (~> 0.3.37)
     mongoid-rspec (1.10.0)
       mongoid (>= 3.0.1)
       rake
@@ -432,7 +426,7 @@ DEPENDENCIES
   libnotify
   mini_magick
   modernizr-rails
-  mongoid (>= 4.0.0.alpha1)!
+  mongoid (>= 4.0.0.alpha1)
   mongoid-grid_fs!
   mongoid-rspec
   mongoid_rails_migrations

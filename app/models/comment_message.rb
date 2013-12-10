@@ -15,8 +15,6 @@ class CommentMessage < Message
   private
 
   def find_similar
-    # In before_create callback, the embedded documents do exist, but not persisted.
-    # So here reject that new embedded document, otherwise it'll be find as similar message
     self.class.find_by_post(user, post)
       .reject {|m| m == self}
       .first

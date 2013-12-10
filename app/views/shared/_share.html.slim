@@ -1,4 +1,4 @@
-- if current_user.auths.any?
+- if user_signed_in? and current_user.auths.any?
   .share_modal.modal.fade id="#{id}"
     .modal-dialog
       .modal-content
