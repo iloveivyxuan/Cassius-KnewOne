@@ -1,24 +1,34 @@
 - content_for :content do
-  .offcanvas_mix
+  #settings_wrapper.offcanvas_mix
+
     aside#aside role="complementary"
-      nav.list-group role="navigation"
-        = nav_tab_link_with_icon :profile, '个人信息', 'icon-user', edit_profile_path, class: 'list-group-item'
-          i.icon-angle-right.pull-right
-        = nav_tab_link_with_icon :account, '账号信息', 'icon-book', edit_account_path, class: 'list-group-item'
-          i.icon-angle-right.pull-right
-        = nav_tab_link_with_icon :order, '我的订单', 'icon-file-text-alt', orders_path, class: 'list-group-item'
-          i.icon-angle-right.pull-right
-        = nav_tab_link_with_icon :address, '收货地址', 'icon-truck', addresses_path, class: 'list-group-item'
-          i.icon-angle-right.pull-right
-        = nav_tab_link_with_icon :coupon, '我的优惠券', 'icon-ticket', coupons_path, class: 'list-group-item'
-          i.icon-angle-right.pull-right
+
+      nav role="navigation"
+        .list-group
+          = nav_tab_link_with_icon :profile, '个人信息', 'icon-user', edit_profile_path, class: 'list-group-item'
+          = nav_tab_link_with_icon :account, '账号信息', 'icon-book', edit_account_path, class: 'list-group-item'
+          = nav_tab_link_with_icon :order, '我的订单', 'icon-file-text-alt', orders_path, class: 'list-group-item'
+          = nav_tab_link_with_icon :address, '收货地址', 'icon-truck', addresses_path, class: 'list-group-item'
+          = nav_tab_link_with_icon :coupon, '我的优惠券', 'icon-ticket', coupons_path, class: 'list-group-item'
+            i.icon-angle-right.pull-right
+        .list-group
+          - if can? :manage, Supplier
+            =nav_tab_link_with_icon :supplier, '供货信息', 'icon-stethoscope', suppliers_path, class: 'list-group-item'
+          - if can? :manage, :all
+            =nav_tab_link_with_icon :supplier, '管理小组', 'icon-stethoscope', groups_path, class: 'list-group-item'
+            =nav_tab_link_with_icon :supplier, '管理产品', 'icon-stethoscope', admin_things_path, class: 'list-group-item'
+            =nav_tab_link_with_icon :supplier, '管理评测', 'icon-stethoscope', reviews_all_path, class: 'list-group-item'
+            =nav_tab_link_with_icon :supplier, '管理用户', 'icon-stethoscope', users_path, class: 'list-group-item'
+            =nav_tab_link_with_icon :supplier, '管理优惠券', 'icon-stethoscope', haven_abatement_coupons_path, class: 'list-group-item'
+          - if can? :manage, Order
+            =nav_tab_link_with_icon :supplier, '管理订单', 'icon-stethoscope', haven_orders_path, class: 'list-group-item'
 
     main#main role="main"
       = yield
 
-    a#aside_trigger
+    a#switch_aside
       i.icon-chevron-sign-left
-    a#main_trigger
+    a#switch_main
       i.icon-chevron-sign-right
 
 = render template: 'layouts/application'

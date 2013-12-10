@@ -1,0 +1,53 @@
+#settings_wrapper {
+  @media screen and (min-width: $screen-lg-min + 100) {
+    margin-left: auto;
+    margin-right: auto;
+    width: $screen-lg-min;
+  }
+
+  #main {
+
+    .form-horizontal {
+
+      .form-group {
+        margin-left: 0;
+        margin-right: 0;
+
+        @media screen and (min-width: $screen-sm-min) {
+
+          .control-label {
+            @include make-sm-column(3);
+          }
+
+          .controls {
+            @include make-sm-column(5);
+          }
+
+          .help-block {
+            @include make-sm-column(4);
+          }
+        }
+      }
+    }
+  }
+
+  #aside {
+
+    nav {
+
+      .list-group-item {
+        color: $text-muted;
+
+        &:hover {
+          color: $list-group-active-color;
+          background-color: $list-group-active-bg;
+          border-color: $list-group-active-border;
+        }
+
+        &.active {
+          color: $list-group-active-color;
+        }
+      }
+    }
+  }
+}

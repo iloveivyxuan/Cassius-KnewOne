@@ -18,24 +18,23 @@
   #main,
   #aside {
     @media screen and (max-width: $screen-md-min) {
-      transition: .2s all ease;
+      @include transition-property(all);
+      @include transition-duration(.2s);
+      @include transition-timing-function(ease-in);
       width: 100%;
     }
   }
 
   #aside {
     @media screen and (max-width: $screen-md-min) {
-      background-color: $brand-primary;
       float: left;
-      height: 100%;
       margin-left: -100%;
-      padding: 45px 4% 30px;
+      padding-left: 5%;
+      padding-right: 5%;
     }
 
     @media screen and (min-width: $screen-md-min) {
-      @include make-md-column(4);
-      @include make-lg-column(3);
-      @include make-xl-column(2);
+      @include make-md-column(3);
     }
   }
 
@@ -49,9 +48,7 @@
     }
 
     @media screen and (min-width: $screen-md-min) {
-      @include make-md-column(8);
-      @include make-lg-column(9);
-      @include make-xl-column(10);
+      @include make-md-column(9);
 
       border: 1px solid $list-group-border;
       border-radius: $list-group-border-radius;
@@ -60,8 +57,8 @@
     }
   }
 
-  #main_trigger,
-  #aside_trigger {
+  #switch_main,
+  #switch_aside {
     background-color: #333332;
     color: #fff;
     cursor: pointer;
@@ -82,13 +79,13 @@
     }
   }
 
-  #aside_trigger {
-    left: $padding-large-horizontal;
+  #switch_aside {
+    left: 0;
   }
 
-  #main_trigger {
+  #switch_main {
     display: none;
-    right: $padding-large-horizontal;
+    right: 0;
   }
 
   &.is_aside_active {
@@ -96,15 +93,15 @@
     #aside {
       @media screen and (max-width: $screen-md-min) {
         margin-left: 0;
-        width: 80%;
+        width: 85%;
       }
     }
 
-    #main_trigger {
+    #switch_main {
       display: block;
     }
 
-    #aside_trigger {
+    #switch_aside {
       display: none;
     }
 

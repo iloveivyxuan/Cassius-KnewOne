@@ -27,6 +27,7 @@ $orange: #f89406;
 $pink: #c3325f;
 $purple: #7a43b6;
 
+// Global
 @import "bootstrap";
 @import "font-awesome";
 @import "compass/css3";
@@ -46,5 +47,15 @@ $purple: #7a43b6;
 @import "carts";
 @import "orders";
 @import "new_home";
-@import "settings";
+
+// Helper
+
+// UI Component
+
+// Application Module
+
+// Application Part
 @import "part";
+
+// Page
+@import "pages/settings";

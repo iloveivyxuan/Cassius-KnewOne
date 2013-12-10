@@ -18,7 +18,12 @@ module ApplicationHelper
     if content_for(:nav) == tab.to_s
       html_options[:class] += ' active'
     end
-    link_to_with_icon(body, icon_class, options, html_options)
+
+    link_to options, html_options do
+      content_tag(:i, "", class: icon_class) +
+        body.to_s +
+        content_tag(:i, "", class: 'icon-angle-right pull-right')
+    end
   end
 
   def back_btn

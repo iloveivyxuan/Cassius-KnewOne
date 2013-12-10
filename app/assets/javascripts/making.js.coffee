@@ -22,9 +22,9 @@ window.Making =
       $('a[href="#olark_chat"]').click ->
         olark('api.box.expand')
       Making.GoTop()
-      $('#aside_trigger').on 'click', ->
+      $('#switch_aside').on 'click', ->
         $('.offcanvas_mix').addClass 'is_aside_active'
-      $('#main_trigger').on 'click', ->
+      $('#switch_main').on 'click', ->
         $('.offcanvas_mix').removeClass 'is_aside_active'
 
   OlarkSetUser: (name, email, id) ->
