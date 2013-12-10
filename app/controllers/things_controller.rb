@@ -6,7 +6,7 @@ class ThingsController < PostsController
 
     scope = case params[:sort]
             when "self_run"
-              Thing.self_run.prior
+              Thing.self_run
             when "fancy"
               Thing.unscoped.published.desc(:fanciers_count)
             when "random"
