@@ -141,7 +141,7 @@ SimpleForm.setup do |config|
   # config.cache_discovery = !Rails.env.development?
 
   # Default class for inputs, simple form > 3.0
-  # config.input_class = "form-control"
+  config.input_class = "form-control"
 
   # Defines if the default input wrapper class should be included in radio
   # collection wrappers.
