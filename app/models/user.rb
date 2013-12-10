@@ -143,13 +143,6 @@ class User
   ## Messageable
   embeds_many :messages
 
-  def send_message(receivers, message)
-    message.senders << self
-    receivers.each do |receiver|
-      receiver.messages << message
-    end
-  end
-
   ## Groups
   has_many :found_groups, class_name: "Group", inverse_of: :founder
 

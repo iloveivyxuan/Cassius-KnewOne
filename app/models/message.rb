@@ -17,16 +17,21 @@ class Message
     type ? where(_type: type.to_s.camelize) : scoped
   end
 
-  before_create :merge_similar
   after_create :rotate
 
   def read!
     update read: true
   end
 
+  def add_to_senders(user)
+    self.senders << user
+    merge_similar
+  end
+
   private
 
   def find_similar
+    #abstract method, need to be overwrited
   end
 
   def merge_similar

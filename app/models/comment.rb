@@ -30,7 +30,11 @@ class Comment
   end
 
   def notify_related_users
-    author.send_message related_users, CommentMessage.new(post: post)
+    message = CommentMessage.new post: post
+    related_users.each do |receiver|
+      receiver.messages << message
+      message.add_to_senders author
+    end
   end
 
   def update_commented_at
