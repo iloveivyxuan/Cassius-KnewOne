@@ -6,6 +6,7 @@ class User
          :confirmable
 
   field :name, type: String, :default => ''
+  field :site, type: String, :default => ''
   field :nickname, type: String, :default => ''
   field :description, type: String, :default => ''
   field :location, type: String, :default => ''

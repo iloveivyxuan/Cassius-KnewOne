@@ -1,15 +1,16 @@
 - provide :nav, :address
 - provide :title, '收货地址'
-section.simple_page_wrapper.widget
-  header.page-header
-    h2
-      i.icon-shopping-cart
-      | 收货地址
-  table.table.table-striped
-    thead
-      tr
-        th 收货地址
-        th 管理
-    tbody
-      = render @addresses
-    = link_to '新地址', new_address_path, class: "btn btn-primary"
+
+header.page-header
+  h2
+    i.icon-shopping-cart
+    | 收货地址
+
+table.table.table-striped
+  thead
+    tr
+      th 收货地址
+      th 管理
+  tbody
+    = render @addresses
+  = link_to '新增地址', new_address_path, class: "btn btn-primary"

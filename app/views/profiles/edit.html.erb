@@ -4,18 +4,19 @@
   <h2><i class="icon-user"></i>个人信息</h2>
 </header>
 
-<%= simple_form_for(current_user, :url => profile_path, :html => { :method => :patch }) do |f| %>
+<%= simple_form_for(current_user, url: profile_path, wrapper: :horizontal, html: { method: :patch, class: 'form-horizontal' }) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :nickname, :required => true %>
-    <%= f.input :location %>
-    <%= f.input :description %>
-    <%= f.input :avatar, :as => :file %>
-    <%= f.input :avatar_cache, :as => :hidden %>
-  </div>
+  <%= f.input :nickname, required: true %>
+  <%= f.input :avatar, as: :file %>
+  <%= f.input :avatar_cache, as: :hidden %>
+  <%= f.input :location %>
+  <%= f.input :site %>
+  <%= f.input :description, as: :text %>
 
-  <div class="form-actions">
-    <%= f.button :submit, "保存" %>
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-9">
+      <%= f.button :submit, '保存', class: 'btn btn-primary' %>
+    </div>
   </div>
 <% end %>
