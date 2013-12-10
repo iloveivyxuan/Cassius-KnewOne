@@ -6,5 +6,4 @@ class ReviewPhotosController < ApplicationController
     photo = ReviewPhoto.create(image: params[:file])
     render json: photo.to_json
   end
-
 end

@@ -3,11 +3,12 @@ class TopicPresenter < PostPresenter
   presents :topic
 
   def path
-    group_topic_path(topic.group, topic)
+    [topic.group, topic]
+
   end
 
   def edit_path
-    edit_group_topic_path(topic.group, topic)
+    [:edit, topic.group, topic]
   end
 
   def last_commented_at

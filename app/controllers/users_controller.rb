@@ -2,8 +2,6 @@
 class UsersController < ApplicationController
   load_and_authorize_resource only: [:show, :index]
 
-  after_filter :store_location, only: [:show]
-
   def show
     @things = @user.things
     @reviews = @user.reviews

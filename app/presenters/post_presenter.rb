@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 class PostPresenter < ApplicationPresenter
   presents :post
-  delegate :title, :id, to: :post
+  delegate :title, :id, :author, to: :post
 
   def path
     #abstract
@@ -57,5 +57,4 @@ class PostPresenter < ApplicationPresenter
   def fanciers_count
     content_tag :span, @object.fanciers_count, class: "fanciers_count"
   end
-
 end

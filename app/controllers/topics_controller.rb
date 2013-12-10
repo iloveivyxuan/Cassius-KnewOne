@@ -1,21 +1,25 @@
 # -*- coding: utf-8 -*-
-class TopicsController < PostsController
-  load_and_authorize_resource :group
+class TopicsController < ApplicationController
+  include Commentable
+  load_and_authorize_resource :topic, through: :group
   layout 'group'
+
+  def index
+    @topics = @topics.page params[:page]
+  end
 
   def show
     read_comments @topic
   end
 
   def new
-    @topic = Topic.new
   end
 
   def create
-    @topic = Topic.new topic_params
-      .merge(author: current_user, group: @group)
+    @topic.author = current_user
     if @topic.save
-      redirect_to group_topic_path(@group, @topic)
+      flash[:provider_sync] = params[:provider_sync]
+      redirect_to group_topic_path(@topic.group, @topic)
     else
       render 'new'
     end
@@ -27,7 +31,7 @@ class TopicsController < PostsController
 
   def update
     if @topic.update topic_params
-      redirect_to group_topic_path(@group, @topic)
+      redirect_to group_topic_path(@topic.group, @topic)
     else
       render 'new'
     end
@@ -35,7 +39,7 @@ class TopicsController < PostsController
 
   def destroy
     @topic.destroy
-    redirect_to group_path(@group)
+    redirect_to group_topics_path(@group)
   end
 
   private

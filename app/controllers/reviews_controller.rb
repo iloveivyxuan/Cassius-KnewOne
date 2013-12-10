@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
-class ReviewsController < PostsController
-  load_and_authorize_resource :thing, except: [:all]
+class ReviewsController < ApplicationController
+  include Commentable
+  load_and_authorize_resource :thing, except: [:all], singleton: true
+  load_and_authorize_resource :thing_group, through: :thing, except: [:all], singleton: true
+  load_and_authorize_resource :review, through: :thing_group
   layout 'thing', except: [:all]
 
-  def all
-    @reviews = Review.unscoped.desc(:created_at).page params[:page]
-    render 'all'
-  end
-
   def index
-    @reviews = @thing.reviews.page(params[:page])
+    @reviews = @reviews.page params[:page]
   end
 
   def show
@@ -17,16 +15,15 @@ class ReviewsController < PostsController
   end
 
   def new
-    @review = Review.new
   end
 
   def create
-    @review = Review.new review_params
-      .merge(author: current_user, thing: @thing)
+    @review.author = current_user
     if @review.save
       flash[:provider_sync] = params[:provider_sync]
       redirect_to thing_review_path(@thing, @review)
     else
+      flash.now[:error] = @review.errors.full_messages.first
       render 'new'
     end
   end
@@ -46,12 +43,17 @@ class ReviewsController < PostsController
 
   def destroy
     @review.destroy
-    redirect_to @thing
+    redirect_to thing_reviews_path(@thing)
   end
 
   def vote
     @review.vote current_user, params[:vote] == "true"
     render :partial => 'voting', locals: {review: @review}, layout: false
+  end
+
+  def all
+    @reviews = Review.unscoped.desc(:created_at).page params[:page]
+    render 'all'
   end
 
   private
