@@ -1,6 +1,11 @@
-i.icon-weibo
-- if auth
-  = link_to auth.name, auth.urls['Weibo']
-  = link_to '解绑', authentication_path(auth.id), method: :delete, data: {confirm: '真的要解除绑定么？'}
-- else
-  = link_to '绑定', user_omniauth_authorize_path(:weibo, redirect_from: request.url)
+tr
+  - if auth
+    td= link_to_with_icon '新浪微博', 'icon-weibo', auth.urls['Weibo'], target: '_blank'
+    td.text-success 已绑定
+    td= link_to '解绑', authentication_path(auth.id), method: :delete, class: 'btn btn-danger', data: {confirm: '真的要解除绑定么？'}
+  - else
+    td
+      i.icon-weibo
+      | 新浪微博
+    td.text-danger 未绑定
+    td= link_to '绑定', user_omniauth_authorize_path(:weibo, redirect_from: request.url), class: 'btn btn-primary'

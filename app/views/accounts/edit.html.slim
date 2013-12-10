@@ -1,13 +1,34 @@
 - provide :nav, :account
 
-section
-  header 设置邮箱
+header.page-header
+  h2
+    i.icon-book
+    | 帐号信息
+
+section.fieldset
+  h3.h4
+    i.icon-envelope
+    | 设置邮箱
   = render 'accounts/email'
 
-section
-  header 修改密码
+hr.rule.rule-dashed
+
+section.fieldset
+  h3.h4
+    i.icon-key
+    | 修改密码
   = render 'accounts/password'
 
-section
-  header 第三方登录
+hr.rule.rule-dashed
+
+section.fieldset
+  h3.h4
+    i.icon-group
+    | 第三方登录
   = render 'accounts/oauth'
+
+#alerts
+  .alert.alert-warning.alert-dismissable
+    button.close data-dismiss="alert" aria-hidden="true"
+      | &times;
+    | 请登录邮箱进行验证。

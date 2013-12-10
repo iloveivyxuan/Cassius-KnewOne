@@ -1,5 +1,6 @@
-= simple_form_for(current_user, :url => email_account_path, :method => :patch) do |f|
-  .form-inputs
-    = f.input :email, :required => true, :autofocus => true
-  .form-actions
-    = f.button :submit, "Update"
+= simple_form_for(current_user, url: email_account_path, wrapper: :horizontal, html: { method: :patch, class: 'form-horizontal' }) do |f|
+  = f.input :email, required: true, autofocus: true
+
+  .form-group
+    .form-action
+      = f.button :submit, '发送验证邮件', class: 'btn btn-primary'

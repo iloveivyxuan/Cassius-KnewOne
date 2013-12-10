@@ -16,7 +16,7 @@
         @media screen and (min-width: $screen-sm-min) {
 
           .control-label {
-            @include make-sm-column(3);
+            @include make-sm-column(2);
           }
 
           .controls {
@@ -25,6 +25,44 @@
 
           .help-block {
             @include make-sm-column(4);
+          }
+
+          .form-action {
+            @include make-sm-column(9);
+            @include make-sm-column-offset(2);
+          }
+        }
+      }
+    }
+
+    #table_oauth {
+      text-align: center;
+      width: 100%;
+
+      @include make-sm-column(6);
+      @include make-sm-column-offset(2);
+      @include make-md-column(4);
+      @include make-md-column-offset(2);
+
+      thead {
+
+        th {
+          text-align: center;
+
+          &:first-child {
+            text-align: left;
+          }
+        }
+      }
+
+      tbody {
+
+        td {
+          padding-bottom: .5em;
+          padding-top: .5em;
+
+          &:first-child {
+            text-align: left;
           }
         }
       }

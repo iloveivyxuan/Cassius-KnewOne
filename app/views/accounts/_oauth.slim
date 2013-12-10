@@ -1,5 +1,11 @@
 - oauths = {'twitter' => nil, 'weibo' => nil}.merge(current_user.auths.map {|a| {a.provider => a}}.reduce(&:merge) || {})
 = render "authentications/#{flash[:oauth]}" if flash[:oauth]
-- oauths.each do |k, v|
-  .third_party
-    = render partial: "authentications/#{k}", locals: {auth: v}
+table#table_oauth
+  thead
+    tr
+      th 应用
+      th 状态
+      th 操作
+  tbody
+    - oauths.each do |k, v|
+      = render partial: "authentications/#{k}", locals: {auth: v}
