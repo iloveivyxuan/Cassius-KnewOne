@@ -38,11 +38,12 @@ class Thing < Post
   has_and_belongs_to_many :fanciers, class_name: "User", inverse_of: :fancies
 
   field :scores, type: Array, default: []
+
   # TODO: will remove in future
   has_many :reviews, dependent: :delete
   has_one :thing_group
-  before_create do
-    create_thing_group(founder: self.author, name: self.title) unless self.thing_group
+  after_create do
+    create_thing_group(name: self.title, founder: self.author) unless self.thing_group
   end
 
   has_and_belongs_to_many :owners, class_name: "User", inverse_of: :owns

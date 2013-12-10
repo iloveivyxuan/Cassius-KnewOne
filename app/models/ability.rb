@@ -83,6 +83,7 @@ class Ability
     can :read, Topic
     can :read, Lottery
     can :buy,  Thing
+    can :read, ThingGroup
     can :comments, Thing
     can :wechat_qr, Thing
     can :create, Supplier

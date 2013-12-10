@@ -1,5 +1,4 @@
 - present review do |rp|
-
   .voting
     - if can? :vote, rp.review and !rp.review.voted?(current_user)
       = form_tag vote_thing_review_path(rp.review.thing, rp.review), remote: true,

@@ -1,4 +1,4 @@
-class FeaturesController < PostsController
+class FeaturesController < ApplicationController
   load_and_authorize_resource :thing
   layout 'thing'
 

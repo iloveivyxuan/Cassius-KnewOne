@@ -1,5 +1,6 @@
-class ThingsController < PostsController
-  after_filter :store_location, only: [:show]
+class ThingsController < ApplicationController
+  include Commentable
+  load_and_authorize_resource
 
   def index
     per = (params[:per] || 24).to_i

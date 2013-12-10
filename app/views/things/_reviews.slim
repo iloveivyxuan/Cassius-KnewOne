@@ -4,8 +4,8 @@
     h4
       i.icon-book
       | 评测
-      = render 'reviews/link_to_new', thing: tp.thing
+      = render 'reviews/link_to_new'
       = link_to_with_icon "", "icon-double-angle-right icon-large",
-        thing_reviews_path(tp.thing)
+      thing_reviews_path(@thing)
     ul#reviews
       = render reviews

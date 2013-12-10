@@ -12,8 +12,8 @@ class Group
 
   default_scope desc(:created_at)
 
+  scope :classic, -> { where(:'_type'.exists => false) }
+
   validates :name, presence: true
   validates :founder, presence: true
-
-  scope :classic, -> { where(:'_type'.exists => false) }
 end

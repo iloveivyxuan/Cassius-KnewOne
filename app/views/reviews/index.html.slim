@@ -2,11 +2,11 @@
 
 - if @reviews.present?
   #new_review_link
-    = render 'link_to_new', thing: @thing
+    = render 'link_to_new'
   ul#reviews= render @reviews
   = paginate @reviews
 - else
   .jumbotron
     p 还没有人为 #{@thing.title} 撰写评测，=_="
     #new_review_link
-      = render 'link_to_new', thing: @thing
+      = render 'link_to_new'

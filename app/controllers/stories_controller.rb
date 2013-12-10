@@ -1,4 +1,4 @@
-class StoriesController < PostsController
+class StoriesController < ApplicationController
   load_and_authorize_resource :thing
   layout 'thing'
 
