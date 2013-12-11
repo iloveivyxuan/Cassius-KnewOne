@@ -142,6 +142,9 @@ class ThingPresenter < PostPresenter
 
   def official_site
     if thing.official_site.present?
+      if thing.official_site !~ /^https?:\/\//
+        thing.official_site = "http://#{thing.official_site}"
+      end
       link_to_with_icon "", "icon-globe", thing.official_site, target: "_blank", title: "官方信息"
     end
   end
