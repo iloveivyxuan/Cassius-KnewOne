@@ -104,5 +104,5 @@ group :development, :test do
   gem 'libnotify', require: false
 
   # fake email sending
-  gem 'letter_opener'
+  gem 'letter_opener', github: 'ryanb/letter_opener', branch: 'master'
 end
