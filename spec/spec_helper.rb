@@ -21,9 +21,6 @@ Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../config/environment", __FILE__)
 
-  # Load all railties files
-  Rails.application.railties.all { |r| r.eager_load! }
-
   require 'rspec/rails'
   require 'rspec/autorun'
 

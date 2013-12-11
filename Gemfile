@@ -88,17 +88,13 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'mongoid-rspec'
+  gem 'spork-rails'
   gem 'guard-spork'
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'fabrication'
   gem 'ffaker'
   gem 'database_cleaner'
-
-  # file system handling
-  # please don't develop at windows
-  gem 'rb-fsevent', require: false
-  gem 'rb-inotify', require: false
 
   # system notifications
   gem 'growl', require: false
