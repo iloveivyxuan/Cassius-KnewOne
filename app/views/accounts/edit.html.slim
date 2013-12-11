@@ -26,17 +26,3 @@ section
     i.icon-group
     | 第三方登录
   = render 'accounts/oauth'
-
-#alerts
-  .alert.alert-warning.alert-dismissable
-    button.close data-dismiss="alert" aria-hidden="true"
-      | &times;
-    i.icon-frown
-    | 您的邮箱还未绑定。
-    = link_to '填写邮箱'
-  .alert.alert-warning.alert-dismissable
-    button.close data-dismiss="alert" aria-hidden="true"
-      | &times;
-    i.icon-frown
-    | 您的邮箱还未验证。
-    = link_to '重发邮件'
