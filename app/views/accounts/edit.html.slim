@@ -5,24 +5,24 @@ header.page-header
     i.icon-book
     | 帐号信息
 
-section.fieldset
-  h3.h4
+section
+  h3.section_title
     i.icon-envelope
     | 设置邮箱
   = render 'accounts/email'
 
 hr.rule.rule-dashed
 
-section.fieldset
-  h3.h4
+section
+  h3.section_title
     i.icon-key
     | 修改密码
   = render 'accounts/password'
 
 hr.rule.rule-dashed
 
-section.fieldset
-  h3.h4
+section
+  h3.section_title
     i.icon-group
     | 第三方登录
   = render 'accounts/oauth'
@@ -31,4 +31,12 @@ section.fieldset
   .alert.alert-warning.alert-dismissable
     button.close data-dismiss="alert" aria-hidden="true"
       | &times;
-    | 请登录邮箱进行验证。
+    i.icon-frown
+    | 您的邮箱还未绑定。
+    = link_to '填写邮箱'
+  .alert.alert-warning.alert-dismissable
+    button.close data-dismiss="alert" aria-hidden="true"
+      | &times;
+    i.icon-frown
+    | 您的邮箱还未验证。
+    = link_to '重发邮件'
