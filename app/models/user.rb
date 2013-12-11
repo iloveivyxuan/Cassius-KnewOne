@@ -59,6 +59,10 @@ class User
     self.unconfirmed_email.present? || self.email.present?
   end
 
+  def has_confirmed_email?
+    self.unconfirmed_email.blank? && confirmed?
+  end
+
   class << self
     def find_by_omniauth(data)
       where("auths.provider" => data[:provider])
