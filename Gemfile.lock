@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: git://github.com/jasl/doorkeeper.git
-  revision: def0bde3293559a1f17a8878fe22bddc5109b615
+  revision: a8d74467906fc1518fa46c2e5191e2df50d4c66c
   branch: mongoid4
   specs:
     doorkeeper (1.0.0)
