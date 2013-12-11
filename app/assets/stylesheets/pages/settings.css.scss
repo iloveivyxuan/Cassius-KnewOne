@@ -35,6 +35,12 @@
       }
     }
 
+    .section_title {
+      font-size: $font-size-h4;
+      margin-bottom: 1em;
+      padding-left: 1em;
+    }
+
     #table_oauth {
       text-align: center;
       width: 100%;
@@ -63,6 +69,11 @@
 
           &:first-child {
             text-align: left;
+
+            [class^="icon-"] {
+              font-size: 1.4em;
+              vertical-align: middle;
+            }
           }
         }
       }
