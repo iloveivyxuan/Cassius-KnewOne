@@ -28,8 +28,9 @@ doctype html
       = render 'layouts/vglnk'
     - if user_signed_in?
       = render 'layouts/alerts'
-      - if !current_user.has_fulfill_email? || !current_user.confirmed?
+      - if !current_user.has_fulfill_email? || !current_user.has_confirmed_email?
         = render 'layouts/setting_email_modal'
-      - if !current_user.confirmed?
+        = render 'layouts/setting_email_success_modal'
+      - if flash[:show_confirmation_modal]
         = render 'layouts/setting_password_modal'
 </html>

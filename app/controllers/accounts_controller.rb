@@ -33,10 +33,21 @@ class AccountsController < Devise::RegistrationsController
 
   def email
     current_user.email = params[:user][:email]
-    if current_user.save
-      redirect_to edit_account_path, :notice => {:email => 'updated'}
-    else
-      render 'accounts/edit'
+
+    respond_to do |format|
+      if current_user.save
+        # devise will send confirmation email when user created, but sign up by oauth, it will not trigger
+        # and there isn't satisfied with devise's reconfirmation condition,
+        # so need invoke send send_confirmation_instructions here
+        if current_user.email.blank? && current_user.unconfirmed_email.present?
+          current_user.send_confirmation_instructions
+        end
+
+        format.html { redirect_to edit_account_path, :notice => {:email => 'updated'} }
+        format.js { render 'email' }
+      else
+        format.html { render 'accounts/edit' }
+      end
     end
   end
 

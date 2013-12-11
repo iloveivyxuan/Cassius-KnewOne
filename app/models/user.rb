@@ -78,7 +78,7 @@ class User
         user.location = auth.location
         user.description = auth.description
         user.remote_avatar_url = auth.parse_image(data)
-        user.password = Digest::MD5.hexdigest auth.access_token
+        # user.password = Digest::MD5.hexdigest auth.access_token
         user.status = :initial
       end
     end
@@ -191,6 +191,10 @@ class User
   protected
   def confirmation_required?
     false
+  end
+
+  def send_confirmation_notification?
+    self.unconfirmed_email.present?
   end
 
   private
