@@ -22,6 +22,7 @@ gem 'settingslogic'
 
 # authentications
 gem 'devise'
+gem 'devise-async'
 gem 'omniauth-weibo-oauth2'
 gem 'omniauth-twitter'
 gem 'weibo_2'

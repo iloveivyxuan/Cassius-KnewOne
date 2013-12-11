@@ -3,7 +3,7 @@ class User
   include Mongoid::Document
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, :trackable,
-         :confirmable
+         :confirmable, :async
 
   field :name, type: String, :default => ''
   field :site, type: String, :default => ''
