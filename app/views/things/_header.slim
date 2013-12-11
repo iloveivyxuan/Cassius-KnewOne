@@ -1,23 +1,22 @@
 - provide :feed, thing_url(tp.thing, format: "atom")
 
 hgroup
-  h1
-    = content_for(:nav) != "thing" ? link_to(tp.title, tp.thing) : tp.title
+  h1= content_for(:nav) != "thing" ? link_to(tp.title, tp.thing) : tp.title
   h2= tp.subtitle
 
 nav
-  .operations
-    = tp.official_site
-    = link_to_with_icon "", "icon-rss", thing_url(tp.thing, format: "atom")
-    - if can? :update, tp.thing
-      = link_to_with_icon "", "icon-edit", edit_thing_path(tp.thing), title: "编辑"
-    - if can?(:destroy, tp.thing)
-      = link_to_with_icon "", "icon-trash", tp.thing, method: :delete,
-      data: {confirm: "您确认要删除吗?"}, title: "删除"
-    - if can? :pro_edit, tp.thing
-      = link_to_with_icon "", "icon-cogs", pro_edit_thing_path(tp.thing), title: "管理"
-    - if can? :manage, :all
-      = link_to_with_icon "", "icon-gift", new_lottery_path(thing: tp.thing), title: "发奖"
+  / .operations
+  /   = tp.official_site
+  /   = link_to_with_icon "", "icon-rss", thing_url(tp.thing, format: "atom")
+  /   - if can? :update, tp.thing
+  /     = link_to_with_icon "", "icon-edit", edit_thing_path(tp.thing), title: "编辑"
+  /   - if can?(:destroy, tp.thing)
+  /     = link_to_with_icon "", "icon-trash", tp.thing, method: :delete,
+  /     data: {confirm: "您确认要删除吗?"}, title: "删除"
+  /   - if can? :pro_edit, tp.thing
+  /     = link_to_with_icon "", "icon-cogs", pro_edit_thing_path(tp.thing), title: "管理"
+  /   - if can? :manage, :all
+  /     = link_to_with_icon "", "icon-gift", new_lottery_path(thing: tp.thing), title: "发奖"
   ul.nav.nav-pills
     = nav_tab :thing do
       = link_to tp.thing do

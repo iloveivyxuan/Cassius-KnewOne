@@ -1,5 +1,6 @@
 Making::Application.routes.draw do
 
+  use_doorkeeper
   root to: 'home#index'
   get '/page/:page', to: "home#index"
   get 'qr_entry', to: "home#qr_entry"
@@ -9,7 +10,8 @@ Making::Application.routes.draw do
 
   devise_for :users, controllers: {
     omniauth_callbacks: "omniauth_callbacks",
-    registrations: "registrations"
+    registrations: "registrations",
+    sessions: "sessions"
   }
 
   scope 'settings' do

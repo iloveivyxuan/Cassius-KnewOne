@@ -22,6 +22,7 @@ gem 'settingslogic'
 
 # authentications
 gem 'devise'
+gem 'devise-async'
 gem 'omniauth-weibo-oauth2'
 gem 'omniauth-twitter'
 gem 'weibo_2'
@@ -65,6 +66,9 @@ gem 'whenever', require: false
 gem 'sidekiq'
 gem 'mini_magick'
 
+# API
+gem 'doorkeeper', github: 'jasl/doorkeeper', branch: 'mongoid4'
+
 # monitoring
 gem 'newrelic_rpm'
 gem 'airbrake'
@@ -88,6 +92,7 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'mongoid-rspec'
+  gem 'spork-rails'
   gem 'guard-spork'
   gem 'guard-rspec'
   gem 'guard-livereload'
@@ -95,15 +100,10 @@ group :development, :test do
   gem 'ffaker'
   gem 'database_cleaner'
 
-  # file system handling
-  # please don't develop at windows
-  gem 'rb-fsevent', require: false
-  gem 'rb-inotify', require: false
-
   # system notifications
   gem 'growl', require: false
   gem 'libnotify', require: false
 
   # fake email sending
-  gem 'letter_opener'
+  gem 'letter_opener', github: 'ryanb/letter_opener', branch: 'master'
 end
