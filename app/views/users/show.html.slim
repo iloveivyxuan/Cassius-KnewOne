@@ -39,10 +39,10 @@ section.user_wrapper
             span.badge #{@things.count}
       .tab-content
         #fancies.tab-pane.active
-          ul.grids= render @fancies, size: :normal
+          ul.grids= render @fancies, size: :normal, img_lazy: true
         #owns.tab-pane
-          ul.grids= render @owns, size: :normal
+          ul.grids= render @owns, size: :normal, img_lazy: false
         #reviews.tab-pane
           ul= render @reviews
         #things.tab-pane
-          ul.grids= render @things, size: :normal
+          ul.grids= render @things, size: :normal, img_lazy: false

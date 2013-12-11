@@ -1,7 +1,7 @@
 section#home_index
 
   section
-    ul#home_things= render @things, size: :normal
+    ul#home_things= render @things, size: :normal, img_lazy: true
     = paginate @things
 
   aside
