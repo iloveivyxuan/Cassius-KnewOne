@@ -65,6 +65,9 @@ gem 'whenever', require: false
 gem 'sidekiq'
 gem 'mini_magick'
 
+# API
+gem 'doorkeeper', github: 'jasl/doorkeeper', branch: 'mongoid4'
+
 # monitoring
 gem 'newrelic_rpm'
 gem 'airbrake'
