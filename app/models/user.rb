@@ -184,6 +184,10 @@ class User
   ## Pagination
   paginates_per 50
 
+  def password_required?
+    self.encrypted_password.present?
+  end
+
   protected
   def confirmation_required?
     false
@@ -192,6 +196,6 @@ class User
   private
 
   def email_required?
-    current_auth.nil?
+    auths.empty?
   end
 end

@@ -45,7 +45,7 @@ class AccountsController < Devise::RegistrationsController
   # ie if password or email was changed
   # extend this as needed
   def needs_password?(user, params)
-    user.normal?
+    user.password_required?
   end
 
   def resource_name
