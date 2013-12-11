@@ -1,0 +1,24 @@
+#alerts
+  - if !current_user.has_fulfill_email?
+    .alert.alert-warning.alert-dismissable
+      button.close data-dismiss="alert" aria-hidden="true"
+        | &times;
+      i.icon-frown
+      | 您的邮箱还未绑定。
+      a data-toggle="modal" href="#setting-email"
+        | 填写邮箱
+  - else !current_user.confirmed?
+    .alert.alert-warning.alert-dismissable
+      button.close data-dismiss="alert" aria-hidden="true"
+        | &times;
+      i.icon-frown
+      | 您的邮箱还未验证。
+      = link_to '重发邮件', '#', id: 'send-setting-email'
+
+javascript:
+  $(function() {
+    $('#send-setting-email').on('click', function() {
+      $(this).parents('.alert').hide();
+      $('#setting-email').modal('show');
+    });
+  });

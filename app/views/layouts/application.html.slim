@@ -26,48 +26,10 @@ doctype html
     - if Rails.env.production? || Rails.env.staging?
       = render 'layouts/analystics'
       = render 'layouts/vglnk'
-
-    #alerts
-      .alert.alert-warning.alert-dismissable
-        button.close data-dismiss="alert" aria-hidden="true"
-          | &times;
-        i.icon-frown
-        | 您的邮箱还未绑定。
-        a data-toggle="modal" href="#setting-email"
-          | 填写邮箱
-      .alert.alert-warning.alert-dismissable
-        button.close data-dismiss="alert" aria-hidden="true"
-          | &times;
-        i.icon-frown
-        | 您的邮箱还未验证。
-        = link_to '重发邮件'
-
-    #setting-email.modal.fade tabindex="-1" role="dialog" aria-labelledby="setting-email-title" aria-hidden="true"
-      .modal-dialog
-        .modal-content
-          header.modal-header
-            button.close data-dismiss="modal" aria-hidden="true"
-              | &times;
-            h4#setting-email-title.modal-title
-              | 完善帐号信息
-          main.modal-body
-            = simple_form_for(current_user, url: email_account_path, wrapper: :horizontal, html: { method: :patch, class: 'form-horizontal' }) do |f|
-              = f.input :email, required: true, autofocus: true
-            p.text-center
-              | 已经向您的邮箱发送验证邮件，请登录邮箱查收并继续下一步操作。
-            p.text-center
-              i.icon-smile
-              | 恭喜，您的邮箱已经验证。继续设置密码以便邮箱登录。
-            = simple_form_for(current_user, url: edit_account_path, wrapper: :horizontal, html: { method: :patch, class: 'form-horizontal' }) do |f|
-              = f.input :password, autocomplete: 'off', required: true, autofocus: true
-              = f.input :password_confirmation, required: true
-          footer.modal-footer
-            button.btn.btn-primary
-              | 发送验证邮件
-            button.btn.btn-primary
-              | 设置密码
-            button.btn.btn-primary
-              | 完成
-            button.btn.btn-default data-dismiss="modal"
-              | 关闭
+    - if user_signed_in?
+      = render 'layouts/alerts'
+      - if !current_user.has_fulfill_email? || !current_user.confirmed?
+        = render 'layouts/setting_email_modal'
+      - if !current_user.confirmed?
+        = render 'layouts/setting_password_modal'
 </html>
