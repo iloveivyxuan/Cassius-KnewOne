@@ -6,12 +6,11 @@ window.Making =
 
   initialize: ->
     $ ->
+      Making.ImageLazyLoading()
       $(document).ajaxComplete ->
         $(".spinning").remove()
-        $("img.lazy").css("visibility", "visible").lazyload()
       Making.Score()
       Making.Share()
-      $("img.lazy").css("visibility", "visible").lazyload()
       $(".popover-toggle").popover()
       $("a.disabled").click ->
         false
@@ -180,6 +179,11 @@ window.Making =
     price = parseFloat($el.children('.price').attr('data-price'))
     quantity = parseFloat($el.children('.item_quantity').val())
     $el.children('.price').text("￥ #{price * quantity}")
+
+  ImageLazyLoading: () ->
+    $(document).ajaxComplete ->
+      $("img.lazy").css("visibility", "visible").lazyload()
+    $("img.lazy").css("visibility", "visible").lazyload()
 
 $ ->
   Making.initialize()

@@ -18,6 +18,7 @@
     @include make-xl-column(10);
 
     .tab-pane {
+      padding-top: 1em;
 
       ul.grids {
         @include make-row;
