@@ -194,7 +194,7 @@ class User
   end
 
   def send_confirmation_notification?
-    self.unconfirmed_email.present?
+    self.unconfirmed_email.present? || (self.email.present? && !confirmed?)
   end
 
   private
