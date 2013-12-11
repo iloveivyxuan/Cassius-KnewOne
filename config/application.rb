@@ -78,5 +78,19 @@ module Making
     config.action_view.sanitized_allowed_attributes = ['src', 'height', 'width', 'target']
 
     I18n.enforce_available_locales = false
+
+    config.to_prepare do
+      # Base layout. Uses app/views/layouts/my_layout.html.erb
+      # Doorkeeper::ApplicationController.layout "my_layout"
+
+      # Only Applications list
+      # Doorkeeper::ApplicationsController.layout "my_layout"
+
+      # Only Authorization endpoint
+      Doorkeeper::AuthorizationsController.layout "doorkeeper"
+
+      # Only Authorized Applications
+      Doorkeeper::AuthorizedApplicationsController.layout "doorkeeper"
+    end
   end
 end

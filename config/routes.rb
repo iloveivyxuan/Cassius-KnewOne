@@ -1,5 +1,6 @@
 Making::Application.routes.draw do
 
+  use_doorkeeper
   root to: 'home#index'
   get '/page/:page', to: "home#index"
   get 'qr_entry', to: "home#qr_entry"
