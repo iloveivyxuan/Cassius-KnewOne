@@ -8,10 +8,10 @@ window.Making =
     $ ->
       $(document).ajaxComplete ->
         $(".spinning").remove()
-        $("img.lazy").show().lazyload()
+        $("img.lazy").css("visibility", "visible").lazyload()
       Making.Score()
       Making.Share()
-      $("img.lazy").show().lazyload()
+      $("img.lazy").css("visibility", "visible").lazyload()
       $(".popover-toggle").popover()
       $("a.disabled").click ->
         false
