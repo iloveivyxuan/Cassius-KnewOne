@@ -56,7 +56,9 @@ $purple: #7a43b6;
 // Application Module
 
 // Application Part
-@import "part";
+@import "parts/body";
+@import "parts/alerts";
+@import "parts/modals";
 
 // Page
 @import "pages/settings";
