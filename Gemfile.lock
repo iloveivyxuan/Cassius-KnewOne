@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: git://github.com/jasl/doorkeeper.git
-  revision: def0bde3293559a1f17a8878fe22bddc5109b615
+  revision: a8d74467906fc1518fa46c2e5191e2df50d4c66c
   branch: mongoid4
   specs:
     doorkeeper (1.0.0)
@@ -27,6 +27,14 @@ GIT
   revision: 2e536b8541f6b75d4b037642aca20f4a60d4f635
   specs:
     jasl_tenpay (1.0.1)
+
+GIT
+  remote: git://github.com/ryanb/letter_opener.git
+  revision: d6ecb46496787f8c5f74ec7631c9c4e60f4d1fec
+  branch: master
+  specs:
+    letter_opener (1.1.2)
+      launchy (~> 2.2)
 
 GEM
   remote: http://ruby.taobao.org/
@@ -191,8 +199,6 @@ GEM
     kgio (2.8.1)
     launchy (2.4.2)
       addressable (~> 2.3)
-    letter_opener (1.1.2)
-      launchy (~> 2.2)
     libnotify (0.8.2)
       ffi (>= 1.0.11)
     libv8 (3.16.14.3)
@@ -431,7 +437,7 @@ DEPENDENCIES
   jquery-fileupload-rails
   jquery-rails
   kaminari
-  letter_opener
+  letter_opener!
   libnotify
   mini_magick
   modernizr-rails

@@ -87,10 +87,10 @@ module Making
       # Doorkeeper::ApplicationsController.layout "my_layout"
 
       # Only Authorization endpoint
-      Doorkeeper::AuthorizationsController.layout "doorkeeper"
+      Doorkeeper::AuthorizationsController.layout "oauth"
 
       # Only Authorized Applications
-      Doorkeeper::AuthorizedApplicationsController.layout "doorkeeper"
+      # Doorkeeper::AuthorizedApplicationsController.layout "doorkeeper"
     end
   end
 end
