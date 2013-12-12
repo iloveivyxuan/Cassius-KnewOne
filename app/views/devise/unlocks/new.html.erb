@@ -1,17 +1,12 @@
-<div class="login_wrapper">
-  <h2>Resend unlock instructions</h2>
+<div class="simple_page_wrapper widget">
+  <header class="page-header">
+    <h2>Resend unlock instructions</h2>
+  </header>
 
-  <%= simple_form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f| %>
-    <%= f.error_notification %>
-
-    <div class="form-inputs">
+  <main role="main">
+    <%= simple_form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f| %>
       <%= f.input :email, :required => true %>
-    </div>
-
-    <div class="form-actions">
-      <%= f.button :submit, "Resend unlock instructions" %>
-    </div>
-  <% end %>
-
-  <%= render "devise/shared/links" %>
+      <%= f.button :submit, "Resend unlock instructions", class: "btn btn-primary" %>
+    <% end %>
+  </main>
 </div>
