@@ -447,23 +447,6 @@
   }
 }
 
-#features {
-  .feature {
-    @include clearfix;
-
-    &:not(:last-child) {
-      padding-bottom: 2em;
-      border-bottom: 1px dashed #ccc;
-      margin-bottom: 2em;
-    }
-
-    .fanciers {
-      float: right;
-      i {margin-right: 2em;}
-    }
-  }
-}
-
 .thing_module {
   h4 {
     color: $text-muted;

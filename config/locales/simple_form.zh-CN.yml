@@ -52,8 +52,6 @@ zh-CN:
         title: "标题"
         content: "内容"
         occured_at: "日期"
-      feature:
-        priority: "排序"
       category:
         name: '分类名称'
       cart_item:
