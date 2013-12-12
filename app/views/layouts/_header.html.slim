@@ -59,7 +59,7 @@ header role="banner"
             = link_to cart_items_path, class: "nav_user_action nav_cart", title: "购物车" do
               i.fa.fa-shopping-cart
               span.badge.cart_items_count= cart_items_count
-            = link_to edit_profile_path, class: "nav_user_action", title: "控制面板" do
+            = link_to setting_root_path, class: "nav_user_action", title: "控制面板" do
               i.fa.fa-dashboard
             ul.dropdown-menu
               li= link_to_with_icon "个人主页", "fa fa-user fa-fw", current_user

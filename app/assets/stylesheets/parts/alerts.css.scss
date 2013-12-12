@@ -1,5 +1,4 @@
 #alerts {
-  max-width: 20em;
   position: fixed;
   right: 1em;
   top: $navbar-height + $line-height-computed;
@@ -7,5 +6,7 @@
 
   .alert {
     margin-bottom: $line-height-computed / 2;
+    min-width: 15em;
+    max-width: 24em;
   }
 }

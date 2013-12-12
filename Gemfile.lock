@@ -485,7 +485,7 @@ DEPENDENCIES
   omniauth-weibo-oauth2
   quiet_assets
   rails (~> 4.0.0)
-  rails-i18n
+  rails-i18n (~> 4.0.0)
   rinku
   rspec-rails
   rvm-capistrano

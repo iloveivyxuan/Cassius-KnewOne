@@ -6,4 +6,4 @@
       = f.button :submit, '更新', class: 'btn btn-primary'
   .form-group
     .form-result
-      .alert.alert-success 成功。
+      = render partial: 'accounts/result', locals: {type: :email}

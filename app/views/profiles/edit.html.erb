@@ -6,8 +6,6 @@
 </header>
 
 <%= simple_form_for(current_user, url: profile_path, wrapper: :horizontal, html: { method: :patch, class: 'form-horizontal' }) do |f| %>
-  <%= f.error_notification %>
-
   <%= f.input :nickname, required: true %>
   <%= f.input :avatar, as: :file %>
   <%= f.input :avatar_cache, as: :hidden %>
@@ -18,6 +16,15 @@
   <div class="form-group">
     <div class="form-action">
       <%= f.button :submit, '保存', class: 'btn btn-primary' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-result">
+      <%- if r = flash[:profile] %>
+        <%= content_tag :div, class: "alert alert-#{r[:status]}" do %>
+          <%= r[:text] %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 <% end %>

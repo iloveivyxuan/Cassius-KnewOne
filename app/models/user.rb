@@ -63,6 +63,10 @@ class User
     self.unconfirmed_email.blank? && confirmed?
   end
 
+  def can_sign_in_by_password?
+    has_fulfilled_email? && self.encrypted_password.present?
+  end
+
   class << self
     def find_by_omniauth(data)
       where("auths.provider" => data[:provider])
@@ -181,11 +185,11 @@ class User
   ## Pagination
   paginates_per 50
 
+  protected
   def password_required?
-    self.encrypted_password.present?
+    self.encrypted_password.present? && (!password.nil? || !password_confirmation.nil?)
   end
 
-  protected
   def confirmation_required?
     false
   end

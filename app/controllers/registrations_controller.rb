@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class RegistrationsController < Devise::RegistrationsController
-  layout 'oauth', only: [:new]
+  layout 'oauth', only: [:new, :create]
 
   def update
     @user = User.find(current_user.id)
@@ -21,7 +21,7 @@ class RegistrationsController < Devise::RegistrationsController
       set_flash_message :notice, :updated
       # Sign in the user bypassing validation in case his password changed
       sign_in @user, :bypass => true
-      redirect_to after_update_path_for(@user)
+      redirect_to after_update_path_for(@user), flash: {account: { status: 'success', text: '修改成功。' }}
     else
       render "edit"
     end
@@ -32,10 +32,10 @@ class RegistrationsController < Devise::RegistrationsController
   # ie if password or email was changed
   # extend this as needed
   def needs_password?(user, params)
-    user.password_required?
+    user.encrypted_password.present?
   end
 
   def user_params
-    params.require(:user).permit(:location, :name, :nickname, :description, :email, :password, :password_confirmation)
+    params.require(:user).permit(:location, :name, :site, :nickname, :description, :email, :password, :password_confirmation)
   end
 end

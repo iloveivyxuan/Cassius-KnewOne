@@ -4,7 +4,7 @@ ruby '2.0.0'
 
 # rails and friends
 gem 'rails', '~> 4.0.0'
-gem 'rails-i18n'
+gem 'rails-i18n', '~> 4.0.0'
 
 # database
 gem 'mongoid', '>= 4.0.0.alpha1'

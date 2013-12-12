@@ -1,34 +1,39 @@
-<h2>Authorize <%= @pre_auth.client.name %> to use your account?</h2>
-
-<% if @pre_auth.scopes %>
-  <p>
-    This application will be able to:
+<header class="page-header" role="banner">
+  <h1>应用授权</h1>
+</header>
+<main role="main">
+  <p class="h4">
+    授权 <strong class="text-info"><%= @pre_auth.client.name %></strong> 使用您的账号?
   </p>
-  <ul>
-    <% @pre_auth.scopes.each do |scope| %>
-      <li><%= t scope, :scope => [:doorkeeper, :scopes] %></li>
+
+  <% if @pre_auth.scopes %>
+  <div id="oauth-permissions">
+    <p>将允许<%= @pre_auth.client.name %>进行以下操作:</p>
+
+    <ul class="text-info">
+      <% @pre_auth.scopes.each do |scope| %>
+        <li><%= t scope, :scope => [:doorkeeper, :scopes] %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form_tag oauth_authorization_path, :method => :post do %>
+      <%= hidden_field_tag :client_id, @pre_auth.client.uid %>
+      <%= hidden_field_tag :redirect_uri, @pre_auth.redirect_uri %>
+      <%= hidden_field_tag :state, @pre_auth.state %>
+      <%= hidden_field_tag :response_type, @pre_auth.response_type %>
+      <%= hidden_field_tag :scope, @pre_auth.scope %>
+      <%= submit_tag "授权", :class => "btn btn-success btn-lg btn-block" %>
     <% end %>
-  </ul>
-<% end %>
-
-<div class="inline_block">
-  <%= form_tag oauth_authorization_path, :method => :post do %>
-    <%= hidden_field_tag :client_id, @pre_auth.client.uid %>
-    <%= hidden_field_tag :redirect_uri, @pre_auth.redirect_uri %>
-    <%= hidden_field_tag :state, @pre_auth.state %>
-    <%= hidden_field_tag :response_type, @pre_auth.response_type %>
-    <%= hidden_field_tag :scope, @pre_auth.scope %>
-    <%= submit_tag "Authorize", :class => "btn btn-success" %> or
-  <% end %>
-</div>
-
-<div class="inline_block">
-  <%= form_tag oauth_authorization_path, :method => :delete do %>
-    <%= hidden_field_tag :client_id, @pre_auth.client.uid %>
-    <%= hidden_field_tag :redirect_uri, @pre_auth.redirect_uri %>
-    <%= hidden_field_tag :state, @pre_auth.state %>
-    <%= hidden_field_tag :response_type, @pre_auth.response_type %>
-    <%= hidden_field_tag :scope, @pre_auth.scope %>
-    <%= submit_tag "Deny", :class => "btn btn-danger" %>
-  <% end %>
-</div>
+    <%= form_tag oauth_authorization_path, :method => :delete do %>
+      <%= hidden_field_tag :client_id, @pre_auth.client.uid %>
+      <%= hidden_field_tag :redirect_uri, @pre_auth.redirect_uri %>
+      <%= hidden_field_tag :state, @pre_auth.state %>
+      <%= hidden_field_tag :response_type, @pre_auth.response_type %>
+      <%= hidden_field_tag :scope, @pre_auth.scope %>
+      <%= submit_tag "取消", :class => "btn btn-danger btn-lg btn-block" %>
+    <% end %>
+  </div>
+</main>
