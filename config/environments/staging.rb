@@ -71,7 +71,7 @@ Making::Application.configure do
   config.action_mailer.smtp_settings = {
       address: 'smtp.exmail.qq.com',
       port: 25,
-      domain: 'knewone.com',
+      domain: 'staging.knewone.com',
       user_name: 'no-reply@knewone.com',
       password: '109d52B6',
       authentication: 'plain',
