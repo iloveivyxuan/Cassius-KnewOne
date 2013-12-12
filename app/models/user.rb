@@ -3,7 +3,7 @@ class User
   include Mongoid::Document
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, :trackable,
-         :confirmable
+         :confirmable, :async
 
   field :name, type: String, :default => ''
   field :site, type: String, :default => ''
@@ -57,6 +57,10 @@ class User
 
   def has_fulfill_email?
     self.unconfirmed_email.present? || self.email.present?
+  end
+
+  def has_confirmed_email?
+    self.unconfirmed_email.blank? && confirmed?
   end
 
   class << self
@@ -180,6 +184,10 @@ class User
   ## Pagination
   paginates_per 50
 
+  def password_required?
+    self.encrypted_password.present?
+  end
+
   protected
   def confirmation_required?
     false
@@ -188,6 +196,6 @@ class User
   private
 
   def email_required?
-    current_auth.nil?
+    auths.empty?
   end
 end

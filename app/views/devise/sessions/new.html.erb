@@ -1,7 +1,13 @@
 <div class="login_wrapper">
   <h2>Sign in</h2>
 
-  <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <div>
+    <%= link_to 'Twitter', user_omniauth_authorize_path(:twitter), class: "twitter_sign_in" %>
+
+    <%= link_to '新浪微博', user_omniauth_authorize_path(:weibo), class: "weibo_sign_in" %>
+  </div>
+
+  <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name, redirect_from: params[:redirect_from])) do |f| %>
     <div class="form-inputs">
       <%= f.input :email, :required => true, :autofocus => true %>
       <%= f.input :password, :required => true %>
