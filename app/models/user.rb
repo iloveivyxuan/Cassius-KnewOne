@@ -55,7 +55,7 @@ class User
   ## Omniauthable
   embeds_many :auths
 
-  def has_fulfill_email?
+  def has_fulfilled_email?
     self.unconfirmed_email.present? || self.email.present?
   end
 

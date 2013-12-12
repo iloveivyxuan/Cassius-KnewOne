@@ -31,6 +31,11 @@
             @include make-sm-column(9);
             @include make-sm-column-offset(2);
           }
+
+          .form-result {
+            @include make-sm-column(5);
+            @include make-sm-column-offset(2);
+          }
         }
       }
     }
@@ -76,6 +81,11 @@
             }
           }
         }
+      }
+
+      & + .form-result {
+        @include make-sm-column(5);
+        @include make-sm-column-offset(2);
       }
     }
   }

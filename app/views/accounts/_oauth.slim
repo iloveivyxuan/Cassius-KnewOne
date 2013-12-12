@@ -9,3 +9,6 @@ table#table_oauth
   tbody
     - oauths.each do |k, v|
       = render partial: "authentications/#{k}", locals: {auth: v}
+
+.form-result
+  .alert.alert-success 成功。

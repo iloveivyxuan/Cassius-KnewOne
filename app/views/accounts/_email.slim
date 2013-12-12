@@ -1,6 +1,9 @@
 = simple_form_for(current_user, url: email_account_path, wrapper: :horizontal, html: { method: :patch, class: 'form-horizontal' }) do |f|
-  = f.input :email, hint: '已经向您的邮箱发送验证邮件', required: true
+  = f.input :email, required: true
 
   .form-group
     .form-action
       = f.button :submit, '更新', class: 'btn btn-primary'
+  .form-group
+    .form-result
+      .alert.alert-success 成功。

@@ -1,25 +1,30 @@
 #alerts
-  - if !current_user.has_fulfill_email?
+  - if !current_user.has_fulfilled_email? && !flash[:show_set_email_modal]
     .alert.alert-warning.alert-dismissable
       button.close data-dismiss="alert" aria-hidden="true"
         | &times;
       | 您的邮箱还未绑定。
       a data-toggle="modal" href="#setting-email"
         | 填写邮箱
-  - elsif !current_user.has_confirmed_email?
+  - elsif current_user.has_fulfilled_email? && !current_user.has_confirmed_email?
     .alert.alert-warning.alert-dismissable
       button.close data-dismiss="alert" aria-hidden="true"
         | &times;
       | 您的邮箱还未验证。
       br
-      = link_to '重发邮件', user_confirmation_path(:'user[email]' => current_user.unconfirmed_email), method: :post, remote: true
-      | |
-      = link_to '修改邮箱', '#', id: 'send-setting-email'
+      = link_to '重发邮件', user_confirmation_path(:'user[email]' => current_user.unconfirmed_email), method: :post, remote: true, id: 'resend-setting-email'
+      | &nbsp;|&nbsp;
+      = link_to '修改邮箱', '#', id: 'edit-setting-email'
 
-javascript:
-  $(function() {
-    $('#send-setting-email').on('click', function() {
-      $(this).parents('.alert').hide();
-      $('#setting-email').modal('show');
-    });
-  });
+    - content_for :script do
+      javascript:
+        $(function() {
+          $('#resend-setting-email').on('click', function() {
+            $(this).parents('.alert').hide();
+          });
+
+          $('#edit-setting-email').on('click', function() {
+            $(this).parents('.alert').hide();
+            $('#setting-email').modal('show');
+          });
+        });
