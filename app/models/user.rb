@@ -13,7 +13,7 @@ class User
   field :karma, type: Integer, default: 0
 
   field :status, type: Symbol, default: :normal
-  STATUS = {blocked: '锁定', initial: '账号资料不完善', normal: '正常'}
+  STATUS = {blocked: '锁定', normal: '正常'}
   validates :status, inclusion: {in: STATUS.keys, allow_blank: false}
   STATUS.keys.each do |k|
     class_eval <<-EVAL
@@ -21,9 +21,6 @@ class User
         self.status == :#{k}
       end
     EVAL
-  end
-  def normalize
-    self.status = :normal if STATUS.keys.index(self.status) < STATUS.keys.index(:normal)
   end
 
   ## Database authenticatable
@@ -83,7 +80,6 @@ class User
         user.description = auth.description
         user.remote_avatar_url = auth.parse_image(data)
         # user.password = Digest::MD5.hexdigest auth.access_token
-        user.status = :initial
       end
     end
   end
@@ -197,8 +193,6 @@ class User
   def send_confirmation_notification?
     self.unconfirmed_email.present? || (self.email.present? && !confirmed?)
   end
-
-  private
 
   def email_required?
     auths.empty?

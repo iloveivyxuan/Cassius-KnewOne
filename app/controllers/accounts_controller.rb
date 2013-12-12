@@ -13,7 +13,6 @@ class AccountsController < Devise::RegistrationsController
                                current_user.errors.add(:password, current_user.password.blank? ? :blank : :invalid)
                                false
                              else
-                               current_user.normalize
                                current_user.save
                              end
                            end
