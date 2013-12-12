@@ -19,21 +19,21 @@ nav
   /     = link_to_with_icon "", "icon-gift", new_lottery_path(thing: tp.thing), title: "发奖"
   ul.nav.nav-pills
     = nav_tab :thing do
-      = link_to tp.thing do
-        i.icon-magic
-        span 产品
-    - if tp.thing.stories.present? or can? :update, tp.thing
-      = nav_tab :stories do
-        = link_to thing_stories_path(tp.thing) do
-          i.icon-road
-          span 时间线
-    = nav_tab :reviews do
-      = link_to thing_reviews_path(tp.thing) do
+      = link_to_with_icon "产品", "icon-magic", tp.thing
+    = nav_tab :info do
+      = link_to_with_icon "详情", "icon-info", "#"
+    = nav_tab :group do
+      = link_to '#' do
         i.icon-book
-        span 评测
-        small= tp.reviews_count
+        | 社区
+        span.badge= tp.reviews_count
     = nav_tab :comments do
       = link_to comments_thing_path(tp.thing) do
         i.icon-comments
-        span 留言
-        small= tp.comments_count
+        | 留言
+        span.badge= tp.comments_count
+    = nav_tab :stories do
+      = link_to thing_stories_path(tp.thing) do
+        i.icon-road
+        | 时间线
+        span.badge 10
