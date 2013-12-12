@@ -63,10 +63,10 @@ header role="banner"
               i.fa.fa-dashboard
             ul.dropdown-menu
               li= link_to_with_icon "个人主页", "fa fa-user fa-fw", current_user
-              li= link_to_with_icon "我的订单", "fa fa-file-text-alt fa-fw", orders_path
+              li= link_to_with_icon "我的订单", "fa fa-file-text-o fa-fw", orders_path
               li= link_to_with_icon "我的优惠券", "fa fa-ticket fa-fw", coupons_path
               li= link_to_with_icon "收货地址", "fa fa-truck fa-fw", addresses_path
-              li= link_to_with_icon "登出", "fa fa-signout fa-fw", destroy_user_session_path, method: :delete
+              li= link_to_with_icon "登出", "fa fa-sign-out fa-fw", destroy_user_session_path, method: :delete
               - if can? :manage, Supplier
                 li= link_to_with_icon "供货信息", "fa fa-stethoscope fa-fw", suppliers_path
               - if can? :manage, :all
@@ -79,7 +79,7 @@ header role="banner"
                 li= link_to_with_icon "管理订单", "fa fa-stethoscope fa-fw", haven_orders_path
         - else
           .nav_user.is_not_login
-            = link_to_with_icon "登入", "fa fa-signin", "#", class: "nav_user_action", data: {toggle: "modal", target: "#login-modal"}
+            = link_to_with_icon "登入", "fa fa-sign-in", "#", class: "nav_user_action", data: {toggle: "modal", target: "#login-modal"}
 
       = form_tag(search_path, method: "get", id: "navbar_search", class: "navbar-form navbar-right", role: "search") do
         .form-group
