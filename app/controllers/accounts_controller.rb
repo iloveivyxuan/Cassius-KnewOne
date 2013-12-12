@@ -22,7 +22,7 @@ class AccountsController < Devise::RegistrationsController
       set_flash_message :notice, :updated
       # Sign in the user bypassing validation in case his password changed
       sign_in current_user, :bypass => true
-      redirect_to edit_account_path
+      redirect_to edit_account_path, flash: {account: { status: 'success', text: '修改成功。' }}
     else
       render "accounts/edit"
     end
@@ -43,7 +43,7 @@ class AccountsController < Devise::RegistrationsController
           current_user.send_confirmation_instructions
         end
 
-        format.html { redirect_to edit_account_path, :notice => {:email => 'updated'} }
+        format.html { redirect_to edit_account_path, flash: {email: { status: 'success', text: '修改成功，验证邮件已发送，请检查邮箱。' }} }
         format.js { render 'email' }
       else
         format.html { render 'accounts/edit' }
@@ -56,7 +56,7 @@ class AccountsController < Devise::RegistrationsController
   # ie if password or email was changed
   # extend this as needed
   def needs_password?(user, params)
-    user.password_required?
+    user.encrypted_password.present?
   end
 
   def resource_name

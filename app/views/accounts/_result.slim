@@ -1,0 +1,3 @@
+- if r = flash[type]
+  = content_tag :div, class: "alert alert-#{r[:status]}" do
+    = r[:text]
