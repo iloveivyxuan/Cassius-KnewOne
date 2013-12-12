@@ -18,7 +18,7 @@ class ReviewPresenter < PostPresenter
     lc, fc = review.lovers.count, review.foes.count
     lc <= 0 and return
     content_tag :span, class: "lovers" do
-      i = content_tag :i, "", class: "icon-thumbs-up"
+      i = content_tag :i, "", class: "fa fa-thumbs-up"
       count = content_tag :small, "#{lc}/#{lc+fc}"
       i.concat count
     end

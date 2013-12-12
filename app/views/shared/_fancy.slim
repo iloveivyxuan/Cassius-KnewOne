@@ -4,7 +4,7 @@
 - fancy_class = p.fancied? ? "fancied" : "unfancied"
 
 = link_to path, remote: true, method: :post, class: fancy_class, title: title, data: data do
-  i.icon-heart
-  i.icon-heart-empty
+  i.fa.fa-heart
+  i.fa.fa-heart-o
   = p.fanciers_count
   span 喜欢

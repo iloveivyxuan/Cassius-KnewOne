@@ -2,12 +2,12 @@
 
 header.page-header
   h2
-    i.icon-book
+    i.fa.fa-book
     | 帐号信息
 
 section
   h3.section_title
-    i.icon-envelope
+    i.fa.fa-envelope
     | 设置邮箱
   = render 'accounts/email'
 
@@ -15,7 +15,7 @@ hr.rule.rule-dashed
 
 section
   h3.section_title
-    i.icon-key
+    i.fa.fa-key
     | 修改密码
   = render 'accounts/password'
 
@@ -23,6 +23,6 @@ hr.rule.rule-dashed
 
 section
   h3.section_title
-    i.icon-group
+    i.fa.fa-group
     | 第三方登录
   = render 'accounts/oauth'

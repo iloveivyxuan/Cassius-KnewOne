@@ -13,14 +13,14 @@
         p
           - if tp.thing.fanciers.count > 0
             span.fanciers
-              i.icon-heart
+              i.fa.fa-heart
               = tp.fanciers_count
           - if tp.thing.owners.count > 0
             span.owners
-              i.icon-check
+              i.fa.fa-check
               = tp.owners_count
           - if tp.thing.reviews.count > 0
             span.reviews_count
-              i.icon-book
+              i.fa.fa-book
               = tp.reviews_count
           = tp.price

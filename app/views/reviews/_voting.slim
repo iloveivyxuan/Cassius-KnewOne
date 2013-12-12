@@ -5,10 +5,10 @@
       class: "not_voted", data: {type: 'html'} do
         small 您认为这篇评测
         = button_tag title: "有用", class: "btn btn-default btn-xs", data: {vote: true} do
-          i.icon-thumbs-up
+          i.fa.fa-thumbs-up
           | 有用
         = button_tag title: "没用", class: "btn btn-default btn-xs btn-inverse", data: {vote: false} do
-          i.icon-thumbs-down
+          i.fa.fa-thumbs-down
           | 没用
     - else
       = rp.lovers_count

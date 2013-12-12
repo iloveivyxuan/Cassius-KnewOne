@@ -3,9 +3,9 @@ header role="banner"
     .navbar-header
       = button_tag data: {toggle: "collapse", target: "#navbar_main"}, class: "navbar-toggle" do
         span.sr-only "导航"
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
+        span.fa.fa-bar
+        span.fa.fa-bar
+        span.fa.fa-bar
       = link_to root_path, class: "navbar-brand" do
         = logo
         span= brand
@@ -14,16 +14,16 @@ header role="banner"
       ul.nav.navbar-nav
         li.nav_things.dropdown
           = link_to "#", class: "dropdown-toggle", data: {toggle: "dropdown"} do
-            i.icon-th
+            i.fa.fa-th
             span 产品
             b.caret
           ul.dropdown-menu
-            li= link_to_with_icon "最新", "icon-rocket", things_path
-            li= link_to_with_icon "热门", "icon-bullseye", things_path(sort: "fancy")
-            li= link_to_with_icon "自营", "icon-trophy", things_path(sort: "self_run")
+            li= link_to_with_icon "最新", "fa fa-rocket", things_path
+            li= link_to_with_icon "热门", "fa fa-bullseye", things_path(sort: "fancy")
+            li= link_to_with_icon "自营", "fa fa-trophy", things_path(sort: "self_run")
         li.nav_groups.dropdown
           = link_to "#", class: "dropdown-toggle", data: {toggle: "dropdown"} do
-            i.icon-group
+            i.fa.fa-group
             span 小组
             b.caret
           ul.dropdown-menu
@@ -31,22 +31,22 @@ header role="banner"
               li= link_to group.name, group
         li.nav_new_thing.visible-md.visible-lg
           - if user_signed_in?
-            = link_to_with_icon "分享产品", "icon-magic", new_thing_path
+            = link_to_with_icon "分享产品", "fa fa-magic", new_thing_path
           - else
-            = link_to_with_icon "分享产品", "icon-magic", "#", data: {toggle: "modal", target: "#login-modal"}
+            = link_to_with_icon "分享产品", "fa fa-magic", "#", data: {toggle: "modal", target: "#login-modal"}
         li.nav_lotteries.visible-md.visible-lg
-          = link_to_with_icon "天天有礼", "icon-gift", lotteries_path
+          = link_to_with_icon "天天有礼", "fa fa-gift", lotteries_path
         li.nav_help.dropdown.visible-lg
           = link_to "#", class: "dropdown-toggle", data: {toggle: "dropdown"} do
-            i.icon-tint
+            i.fa.fa-tint
             span 关于我们
             b.caret
           ul.dropdown-menu
-            li= link_to_with_icon "微博", "icon-weibo", "http://weibo.com/knewone"
-            li= link_to_with_icon "吐槽", "icon-leaf", "/things/knewone"
-            li= link_to_with_icon "邮件", "icon-envelope", "mailto:hello@knewone.com"
+            li= link_to_with_icon "微博", "fa fa-weibo", "http://weibo.com/knewone"
+            li= link_to_with_icon "吐槽", "fa fa-leaf", "/things/knewone"
+            li= link_to_with_icon "邮件", "fa fa-envelope", "mailto:hello@knewone.com"
         li.nav_olark
-          = link_to_with_icon content_tag(:span, "在线帮助"), "icon-user-md", "#olark_chat"
+          = link_to_with_icon content_tag(:span, "在线帮助"), "fa fa-user-md", "#olark_chat"
 
       .nav.navbar-nav.navbar-right
         - if user_signed_in?
@@ -54,34 +54,34 @@ header role="banner"
             = link_to "#", class: "nav_user_avatar dropdown-toggle", data: {toggle: "dropdown"} do
               = image_tag current_user.avatar.url(:tiny), class: "img-circle", height: "40", width: "40"
             = link_to messages_path, class: "nav_user_action nav_messages", title: "#{unread_messages_count}个未读消息" do
-              i.icon-inbox
+              i.fa.fa-inbox
               span.badge= unread_messages_count
             = link_to cart_items_path, class: "nav_user_action nav_cart", title: "购物车" do
-              i.icon-shopping-cart
+              i.fa.fa-shopping-cart
               span.badge.cart_items_count= cart_items_count
             = link_to edit_profile_path, class: "nav_user_action", title: "控制面板" do
-              i.icon-dashboard
+              i.fa.fa-dashboard
             ul.dropdown-menu
-              li= link_to_with_icon "个人主页", "icon-user icon-fixed-width", current_user
-              li= link_to_with_icon "我的订单", "icon-file-text-alt icon-fixed-width", orders_path
-              li= link_to_with_icon "我的优惠券", "icon-ticket icon-fixed-width", coupons_path
-              li= link_to_with_icon "收货地址", "icon-truck icon-fixed-width", addresses_path
-              li= link_to_with_icon "登出", "icon-signout icon-fixed-width", destroy_user_session_path, method: :delete
+              li= link_to_with_icon "个人主页", "fa fa-user fa-fw", current_user
+              li= link_to_with_icon "我的订单", "fa fa-file-text-alt fa-fw", orders_path
+              li= link_to_with_icon "我的优惠券", "fa fa-ticket fa-fw", coupons_path
+              li= link_to_with_icon "收货地址", "fa fa-truck fa-fw", addresses_path
+              li= link_to_with_icon "登出", "fa fa-signout fa-fw", destroy_user_session_path, method: :delete
               - if can? :manage, Supplier
-                li= link_to_with_icon "供货信息", "icon-stethoscope icon-fixed-width", suppliers_path
+                li= link_to_with_icon "供货信息", "fa fa-stethoscope fa-fw", suppliers_path
               - if can? :manage, :all
-                li= link_to_with_icon "管理小组", "icon-stethoscope icon-fixed-width", groups_path
-                li= link_to_with_icon "管理产品", "icon-stethoscope icon-fixed-width", admin_things_path
-                li= link_to_with_icon "管理评测", "icon-stethoscope icon-fixed-width", reviews_all_path
-                li= link_to_with_icon "管理用户", "icon-stethoscope icon-fixed-width", users_path
-                li= link_to_with_icon "管理优惠券", "icon-stethoscope icon-fixed-width", haven_abatement_coupons_path
+                li= link_to_with_icon "管理小组", "fa fa-stethoscope fa-fw", groups_path
+                li= link_to_with_icon "管理产品", "fa fa-stethoscope fa-fw", admin_things_path
+                li= link_to_with_icon "管理评测", "fa fa-stethoscope fa-fw", reviews_all_path
+                li= link_to_with_icon "管理用户", "fa fa-stethoscope fa-fw", users_path
+                li= link_to_with_icon "管理优惠券", "fa fa-stethoscope fa-fw", haven_abatement_coupons_path
               - if can? :manage, Order
-                li= link_to_with_icon "管理订单", "icon-stethoscope icon-fixed-width", haven_orders_path
+                li= link_to_with_icon "管理订单", "fa fa-stethoscope fa-fw", haven_orders_path
         - else
           .nav_user.is_not_login
-            = link_to_with_icon "登入", "icon-signin", "#", class: "nav_user_action", data: {toggle: "modal", target: "#login-modal"}
+            = link_to_with_icon "登入", "fa fa-signin", "#", class: "nav_user_action", data: {toggle: "modal", target: "#login-modal"}
 
       = form_tag(search_path, method: "get", id: "navbar_search", class: "navbar-form navbar-right", role: "search") do
         .form-group
           input.form-control type="search" name="q"
-          i.icon-search
+          i.fa.fa-search

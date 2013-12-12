@@ -2,11 +2,11 @@ aside.user_panel
   header 快速开始
   section.third-party
     = link_to user_omniauth_authorize_path(:twitter), class: "twitter_sign_in" do
-      i.icon-twitter.icon-4x
+      i.fa.fa-twitter.fa-4x
     = link_to user_omniauth_authorize_path(:weibo), class: "weibo_sign_in" do
-      i.icon-weibo.icon-4x
+      i.fa.fa-weibo.fa-4x
     = link_to '#', class: 'email_sign_in', id: 'show_classic_form' do
-      i.icon-envelope.icon-4x
+      i.fa.fa-envelope.fa-4x
   section#classic_form
     ul.nav.nav-tabs
       li.active

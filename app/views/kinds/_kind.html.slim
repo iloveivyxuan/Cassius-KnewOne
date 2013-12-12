@@ -4,14 +4,14 @@ li.kind
     = kind.title
   .estimates_at
     - if kind.stage == :ship and kind.estimates_at.present? and kind.estimates_at > Time.now
-      i.icon-time
+      i.fa.fa-clock-o
       | 此产品将在
       = time_tag kind.estimates_at, distance_of_time_in_words_to_now(kind.estimates_at)
       | 后到货
   .stock
     - if kind.stock > 0
-      i.icon-smile
+      i.fa.fa-smile
       | 您最多可以购买#{kind.max}件
     - else
-      i.icon-frown
+      i.fa.fa-frown
       | 对不起，此产品已没有库存

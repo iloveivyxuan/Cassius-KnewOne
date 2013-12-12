@@ -26,7 +26,7 @@ class TopicPresenter < PostPresenter
 
   def top
     if topic.is_top
-      content_tag(:i, "", class: "icon-arrow-up", title: "置顶")
+      content_tag(:i, "", class: "fa fa-arrow-circle-up", title: "置顶")
     end
   end
 

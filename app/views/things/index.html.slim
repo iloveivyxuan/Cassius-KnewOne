@@ -7,11 +7,11 @@ section#things_index
   nav
     ul.nav.nav-pills
       = nav_tab :new, nav: params[:sort] do
-        = link_to_with_icon "最新", "icon-rocket", things_path
+        = link_to_with_icon "最新", "fa fa-rocket", things_path
       = nav_tab :fancy, nav: params[:sort] do
-        = link_to_with_icon "热门", "icon-bullseye", things_path(sort: "fancy")
+        = link_to_with_icon "热门", "fa fa-bullseye", things_path(sort: "fancy")
       = nav_tab :self_run, nav: params[:sort] do
-        = link_to_with_icon "自营", "icon-trophy", things_path(sort: "self_run")
+        = link_to_with_icon "自营", "fa fa-trophy", things_path(sort: "self_run")
 
   section
     ul#things= render @things, size: :normal, img_lazy: true

@@ -1,15 +1,15 @@
 = link_to "#", class: "mobile_cart_slidedown btn btn-success" do
-  i.icon-shopping-cart
+  i.fa.fa-shopping-cart
   | 购买
-  i.icon-chevron-down
+  i.fa.fa-chevron-down
 = link_to "#", class: "mobile_cart_slideup" do
   | 收起购买信息
-  i.icon-chevron-up
+  i.fa.fa-chevron-up
 
 = simple_form_for cart_item, remote: true, method: :post do |f|
   .cart_prompt
   .cart_success.hide
-    i.icon-ok.icon-large
+    i.fa.fa-ok.fa-lg
     | 已加入购物车
   = f.input :thing, as: :hidden, input_html: {value: cart_item.thing.id}
   = f.input :kind_id, as: :hidden
@@ -17,8 +17,8 @@
   = f.input :quantity, as: :integer, required: true, input_html: {min: 1, max: 100}
   - if user_signed_in?
     = button_tag type: "submit", class: "btn btn-success", disabled: true do
-      i.icon-shopping-cart
+      i.fa.fa-shopping-cart
       | 加入购物车
   - else
-    = link_to_with_icon "登录后开始购物", "icon-signin", "#", class: "btn btn-default cart_login",
+    = link_to_with_icon "登录后开始购物", "fa fa-signin", "#", class: "btn btn-default cart_login",
     data: {toggle: "modal", target: "#login-modal"}

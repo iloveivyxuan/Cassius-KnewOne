@@ -2,10 +2,10 @@
 - if reviews.present?
   #thing_reviews.thing_module
     h4
-      i.icon-book
+      i.fa.fa-book
       | 评测
       = render 'reviews/link_to_new'
-      = link_to_with_icon "", "icon-double-angle-right icon-large",
+      = link_to_with_icon "", "fa fa-double-angle-right fa-lg",
       thing_reviews_path(@thing)
     ul#reviews
       = render reviews

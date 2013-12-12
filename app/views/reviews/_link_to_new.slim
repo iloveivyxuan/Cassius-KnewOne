@@ -1,4 +1,4 @@
 - if user_signed_in?
-  = link_to_with_icon "我想写评测", "icon-pencil", new_thing_review_path(@thing), class: 'btn btn-default'
+  = link_to_with_icon "我想写评测", "fa fa-pencil", new_thing_review_path(@thing), class: 'btn btn-default'
 - else
-  = link_to_with_icon "我想写评测", "icon-pencil", '#', class: 'btn btn-default disabled', data: {toggle: "modal", target: "#login-modal"}
+  = link_to_with_icon "我想写评测", "fa fa-pencil", '#', class: 'btn btn-default disabled', data: {toggle: "modal", target: "#login-modal"}

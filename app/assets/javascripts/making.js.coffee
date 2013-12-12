@@ -169,7 +169,7 @@ window.Making =
       itemSelector: item
       pixelsFromNavToBottom: 150
       loading:
-        msg: $("<div class='loading-things'><i class='icon-spinner icon-spin icon-4x'></i></div>")
+        msg: $("<div class='loading-things'><i class='fa fa-spinner fa-spin fa-2x'></i></div>")
         finished: ->
           $('.loading-things').fadeOut 200
       errorCallback: ->
