@@ -4,6 +4,7 @@ zh-CN:
       expired: "您已过期，请重新申请"
       not_found: "没有找到"
       already_confirmed: "已经激活，请重新登录."
+      confirmation_period_expired: "请在%{period}内确认注册, 请重新注册。"
       not_locked: "未锁定"
       not_saved:
         one: "因为 1 个错误导致此 %{resource}保存失败:"
