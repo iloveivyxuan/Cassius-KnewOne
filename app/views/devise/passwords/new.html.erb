@@ -1,12 +1,12 @@
 <div class="simple_page_wrapper widget">
   <header class="page-header">
-    <h2>Forgot your password?</h2>
+    <h2>忘记密码？</h2>
   </header>
 
   <main role="main">
     <%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
       <%= f.input :email, :required => true %>
-      <%= f.button :submit, "Send me reset password instructions", class: "btn btn-primary" %>
+      <%= f.button :submit, "发送密码找回邮件", class: "btn btn-primary" %>
     <% end %>
   </main>
 </div>

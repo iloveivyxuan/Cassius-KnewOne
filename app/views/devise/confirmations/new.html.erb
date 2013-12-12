@@ -1,12 +1,12 @@
 <div class="simple_page_wrapper widget">
   <header class="page-header">
-    <h2>Resend confirmation instructions</h2>
+    <h2>重新发送确认邮件</h2>
   </header>
 
   <main role="main">
     <%= simple_form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
       <%= f.input :email, :required => true %>
-      <%= f.button :submit, "Resend confirmation instructions", class: "btn btn-primary" %>
+      <%= f.button :submit, "发送", class: "btn btn-primary" %>
     <% end %>
   </main>
 </div>
