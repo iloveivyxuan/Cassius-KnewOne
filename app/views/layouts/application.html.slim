@@ -20,17 +20,11 @@ doctype html
     = content_for?(:content) ? yield(:content) : yield
     = render 'shared/go_top'
     = render 'shared/login'
+    = render 'layouts/fulfill_info'
     = javascript_include_tag "application"
     = yield :script
     = render 'layouts/olark'
     - if Rails.env.production? || Rails.env.staging?
       = render 'layouts/analystics'
       = render 'layouts/vglnk'
-    - if user_signed_in?
-      = render 'layouts/alerts'
-      - if !current_user.has_fulfilled_email? || !current_user.has_confirmed_email?
-        = render 'layouts/setting_email_modal'
-        = render 'layouts/setting_email_success_modal'
-      - if flash[:show_confirmation_modal]
-        = render 'layouts/setting_password_modal'
 </html>

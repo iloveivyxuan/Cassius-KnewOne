@@ -7,7 +7,7 @@
         h4#setting-email-title.modal-title
           | 完善帐号信息
       main.modal-body
-        = form_for(current_user, url: email_account_path, remote: true, html: { method: :patch, class: 'form-horizontal' }) do |f|
+        = simple_form_for(current_user, url: email_account_path, remote: true, html: { method: :patch, class: 'form-horizontal', href: 'remote.html' }) do |f|
           .form-group.email.required.user_email
             label.control-label.email.required for="user_email"
               abbr title="required" *
@@ -15,10 +15,12 @@
             .controls
               input#user_email.form-control.string.email.required name="user[email]" aria-required="true" autofocus="autofocus" placeholder="请输入您的邮箱地址" required="required" type="email"
             .control-action
-              = f.submit '发送验证邮件', class: 'btn btn-primary'
+              button.btn.btn-primary name="commit" type="submit"
+                | 发送验证邮件
 
 - if flash[:show_set_email_modal]
-  javascript:
-    $(function() {
-      $('#setting-email').modal('show');
-    });
+  - content_for :script do
+    javascript:
+      $(function() {
+        $('#setting-email').modal('show');
+      });
