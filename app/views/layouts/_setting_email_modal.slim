@@ -17,7 +17,7 @@
             .control-action
               = f.submit '发送验证邮件', class: 'btn btn-primary'
 
-- if !current_user.has_fulfill_email?
+- if flash[:show_set_email_modal]
   javascript:
     $(function() {
       $('#setting-email').modal('show');

@@ -8,8 +8,8 @@ GIT
 
 GIT
   remote: git://github.com/ahoward/mongoid-grid_fs.git
-  revision: 059012a2c2a9e0a5gd6e67137752c3e918689c88a
-  specs:g
+  revision: 059012a2c2a9e0a5d6e67137752c3e918689c88a
+  specs:
     mongoid-grid_fs (1.9.0)
       mime-types (~> 1.19)
       mongoid (>= 3.0, < 5.0)

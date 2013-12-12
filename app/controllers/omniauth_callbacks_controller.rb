@@ -14,7 +14,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user.update_from_omniauth(omniauth)
       sign_in user
 
-      redirect_to after_sign_in_path_for(user), :notice => t('devise.omniauth_callbacks.success', kind: omniauth.provider)
+      redirect_to after_sign_in_path_for(user),
+                  :notice => t('devise.omniauth_callbacks.success', kind: omniauth.provider),
+                  :flash => {:show_set_email_modal => !user.has_fulfilled_email?,
+                             :show_confirmation_modal => !user.has_confirmed_email? && user.has_fulfilled_email?}
     elsif user_signed_in?
       # must be
       current_user.auths<< Auth.from_omniauth(omniauth)
@@ -26,9 +29,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user.update_from_omniauth(omniauth)
       sign_in user
 
-      # redirect_back_or edit_user_registration_path(:new => true)
-      # redirect_back_or root_path, :notice => t('devise.omniauth_callbacks.success', kind: omniauth.provider)
-      redirect_stored_or binding_users_path, :notice => t('devise.omniauth_callbacks.success', kind: omniauth.provider)
+      redirect_to after_sign_in_path_for(user),
+                  :notice => t('devise.omniauth_callbacks.success', kind: omniauth.provider),
+                  flash: {:show_set_email_modal => true}
     end
   end
 
