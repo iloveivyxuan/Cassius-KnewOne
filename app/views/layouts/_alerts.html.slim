@@ -1,30 +1,16 @@
 #alerts
   - if !current_user.has_fulfilled_email? && !flash[:show_set_email_modal]
-    .alert.alert-warning.alert-dismissable
+    #setting-email-alert.alert.alert-warning.alert-dismissable
       button.close data-dismiss="alert" aria-hidden="true"
         | &times;
       | 您的邮箱还未绑定。
-      a data-toggle="modal" href="#setting-email"
-        | 填写邮箱
+      = link_to '填写邮箱', '#setting-email', data: {toggle: 'modal'}
   - elsif current_user.has_fulfilled_email? && !current_user.has_confirmed_email?
-    .alert.alert-warning.alert-dismissable
+    #resend-email-alert.alert.alert-warning.alert-dismissable
       button.close data-dismiss="alert" aria-hidden="true"
         | &times;
       | 您的邮箱还未验证。
       br
       = link_to '重发邮件', user_confirmation_path(:'user[email]' => current_user.unconfirmed_email), method: :post, remote: true, id: 'resend-setting-email'
       | &nbsp;|&nbsp;
-      = link_to '修改邮箱', '#', id: 'edit-setting-email'
-
-    - content_for :script do
-      javascript:
-        $(function() {
-          $('#resend-setting-email').on('click', function() {
-            $(this).parents('.alert').hide();
-          });
-
-          $('#edit-setting-email').on('click', function() {
-            $(this).parents('.alert').hide();
-            $('#setting-email').modal('show');
-          });
-        });
+      = link_to '修改邮箱', '#setting-email', data: {toggle: 'modal'}
