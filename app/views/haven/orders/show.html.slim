@@ -3,7 +3,7 @@
 section.simple_page_wrapper.widget.orders_wrapper
   header.page-header
     h2
-      i.icon-shopping-cart
+      i.fa.fa-shopping-cart
       | 订单信息
   .summary
     ul
@@ -56,7 +56,7 @@ section.simple_page_wrapper.widget.orders_wrapper
       .total_price
         span.tip 总计
         strong
-          i.icon-yen
+          i.fa.fa-yen
           span= @order.total_price
   section
     ul = render partial: 'orders/order_item', collection: @order.order_items

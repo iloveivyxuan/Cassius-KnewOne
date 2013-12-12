@@ -8,42 +8,42 @@
     = render "things/own", tp: tp
   .support
     = link_to '#olark_chat' do
-      i.icon-user-md
+      i.fa.fa-user-md
       span 在线帮助
   .share
     - if user_signed_in?
       = link_to  "#thing_share", title: "分享",  \
                                  data: {toggle: 'modal', keyboard: false} do
-        i.icon-share
+        i.fa.fa-share
         span 分享
     - else
       = link_to "#login-modal", title: "分享", \
                 data: {toggle: 'modal', keyboard: false} do
-        i.icon-share
+        i.fa.fa-share
         span 分享
   .wechat
     = link_to "#thing_share_wechat", title: "微信朋友圈分享",
               data: {toggle: 'modal'} do
-      i.icon-qrcode
+      i.fa.fa-qrcode
       span 分享到微信
   .supplier
     = link_to "#thing_supplier", title: "提供产品",
               data: {toggle: "modal", keyboard: false} do
-      i.icon-beer
+      i.fa.fa-beer
       span 我想提供此产品
 
   / .operations
   /   = tp.official_site
-  /   = link_to_with_icon "", "icon-rss", thing_url(tp.thing, format: "atom")
+  /   = link_to_with_icon "", "fa fa-rss", thing_url(tp.thing, format: "atom")
   /   - if can? :update, tp.thing
-  /     = link_to_with_icon "", "icon-edit", edit_thing_path(tp.thing), title: "编辑"
+  /     = link_to_with_icon "", "fa fa-edit", edit_thing_path(tp.thing), title: "编辑"
   /   - if can?(:destroy, tp.thing)
-  /     = link_to_with_icon "", "icon-trash", tp.thing, method: :delete,
+  /     = link_to_with_icon "", "fa fa-trash", tp.thing, method: :delete,
   /     data: {confirm: "您确认要删除吗?"}, title: "删除"
   /   - if can? :pro_edit, tp.thing
-  /     = link_to_with_icon "", "icon-cogs", pro_edit_thing_path(tp.thing), title: "管理"
+  /     = link_to_with_icon "", "fa fa-cogs", pro_edit_thing_path(tp.thing), title: "管理"
   /   - if can? :manage, :all
-  /     = link_to_with_icon "", "icon-gift", new_lottery_path(thing: tp.thing), title: "发奖"
+  /     = link_to_with_icon "", "fa fa-gift", new_lottery_path(thing: tp.thing), title: "发奖"
 
 .author_info
   = tp.author_tag

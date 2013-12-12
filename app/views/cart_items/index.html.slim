@@ -2,7 +2,7 @@
 section.carts_wrapper.simple_page_wrapper.widget
   header.page-header
     h2
-      i.icon-shopping-cart
+      i.fa.fa-shopping-cart
       | 购物车
 
   = form_tag new_order_path, method: :get
@@ -11,10 +11,10 @@ section.carts_wrapper.simple_page_wrapper.widget
       p.total_price
         | 总计（不包含运费）
         strong
-          i.icon-yen
+          i.fa.fa-yen
           span= @total_price
       = button_tag type: "submit", class: "btn btn-success" do
-        i.icon-credit-card
+        i.fa.fa-credit-card
         | 结算
 
 - content_for :script do

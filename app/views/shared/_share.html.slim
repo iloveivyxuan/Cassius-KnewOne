@@ -14,12 +14,12 @@
             - if current_user.has_auth? 'weibo'
               label.checkbox.inline
                 = check_box_tag 'providers[]', 'weibo', true
-                i.icon-weibo
+                i.fa.fa-weibo
                 | 新浪微博
             - if current_user.has_auth? 'twitter'
               label.checkbox.inline
                 = check_box_tag 'providers[]', 'twitter', true
-                i.icon-twitter
+                i.fa.fa-twitter
                 | Twitter
             = f.input :pic, as: :hidden, input_html: {value: pic}
           .modal-footer

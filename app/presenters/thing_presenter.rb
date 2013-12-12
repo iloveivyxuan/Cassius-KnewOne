@@ -42,7 +42,7 @@ class ThingPresenter < PostPresenter
   end
 
   def concept
-    link_to_with_icon "研发中", "icon-wrench icon-large", "#",
+    link_to_with_icon "研发中", "fa fa-wrench fa-lg", "#",
                       title: "概念产品", class: "btn btn-default disabled popover-toggle",
                       data: {
                           toggle: "popover",
@@ -54,7 +54,7 @@ class ThingPresenter < PostPresenter
   def domestic
     return concept unless thing.shop.present?
 
-    link_to_with_icon "网购", "icon-location-arrow icon-large", buy_thing_path(thing),
+    link_to_with_icon "网购", "fa fa-location-arrow fa-lg", buy_thing_path(thing),
                       title: title, class: "btn btn-info track_event", target: "_blank",
                       data: {
                           action: "buy",
@@ -66,7 +66,7 @@ class ThingPresenter < PostPresenter
   def abroad
     return concept unless thing.shop.present?
 
-    link_to_with_icon "海淘", "icon-plane icon-large", buy_thing_path(thing),
+    link_to_with_icon "海淘", "fa fa-plane fa-lg", buy_thing_path(thing),
                       title: title, class: "btn btn-info track_event", target: "_blank",
                       data: {
                           action: "buy",
@@ -78,7 +78,7 @@ class ThingPresenter < PostPresenter
   def presell
     return concept unless thing.shop.present?
 
-    link_to_with_icon "预购", "icon-phone icon-large", buy_thing_path(thing),
+    link_to_with_icon "预购", "fa fa-phone fa-lg", buy_thing_path(thing),
                       title: title, class: "btn btn-warning track_event", target: "_blank",
                       data: {
                           action: "buy",
@@ -90,7 +90,7 @@ class ThingPresenter < PostPresenter
   def ship
     return concept unless thing.shop.present?
 
-    link_to_with_icon "即将到货", "icon-anchor icon-large", "#",
+    link_to_with_icon "即将到货", "fa fa-anchor fa-lg", "#",
                       title: "断货产品", class: "btn btn-success disabled popover-toggle",
                       data: {
                           toggle: "popover",
@@ -102,7 +102,7 @@ class ThingPresenter < PostPresenter
   def stock
     return concept unless thing.shop.present?
 
-    link_to_with_icon "购买", "icon-shopping-cart icon-large", buy_thing_path(thing),
+    link_to_with_icon "购买", "fa fa-shopping-cart fa-lg", buy_thing_path(thing),
                       title: title, class: "btn btn-success track_event", target: "_blank",
                       data: {
                           action: "buy",
@@ -114,7 +114,7 @@ class ThingPresenter < PostPresenter
   def exclusive
     return concept unless thing.shop.present?
 
-    link_to_with_icon "限量", "icon-credit-card icon-large", "#",
+    link_to_with_icon "限量", "fa fa-credit-card fa-lg", "#",
                       title: "限量产品", class: "btn btn-inverse disabled popover-toggle",
                       data: {
                           toggle: "popover",
@@ -145,7 +145,7 @@ class ThingPresenter < PostPresenter
       if thing.official_site !~ /^https?:\/\//
         thing.official_site = "http://#{thing.official_site}"
       end
-      link_to_with_icon "", "icon-globe", thing.official_site, target: "_blank", title: "官方信息"
+      link_to_with_icon "", "fa fa-globe", thing.official_site, target: "_blank", title: "官方信息"
     end
   end
 

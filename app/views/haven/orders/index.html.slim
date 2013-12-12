@@ -2,7 +2,7 @@
 section.simple_page_wrapper.widget.orders_wrapper
   header.page-header
     h2
-      i.icon-shopping-cart
+      i.fa.fa-shopping-cart
       | 订单管理
   .pull-right
     = link_to '导出CSV', "#{haven_orders_path(format: :csv)}?#{request.query_string}", class: 'btn btn-success'

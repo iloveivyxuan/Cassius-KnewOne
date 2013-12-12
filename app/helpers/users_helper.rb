@@ -8,7 +8,7 @@ module UsersHelper
     return nil unless user.current_auth
     location = user.current_auth.location
     return nil if location.blank?
-    content_tag(:i, "", class: "icon-map-marker") + location
+    fa_icon("map-marker") + location
   end
 
   def user_desciption(user)
@@ -29,13 +29,13 @@ module UsersHelper
     sites.each_pair do |k, v|
       case k
         when 'Website'
-          html<< link_to_with_icon(nil, 'icon-globe icon-large', v, title: "个人网站", target: "_blank", class: 'website')
+          html<< link_to_with_icon(nil, 'fa fa-globe fa-lg', v, title: "个人网站", target: "_blank", class: 'website')
         when 'Twitter'
-          html<< link_to_with_icon(nil, 'icon-twitter icon-large', v, title: "Twitter 主页", target: "_blank", class: 'provider')
+          html<< link_to_with_icon(nil, 'fa fa-twitter fa-lg', v, title: "Twitter 主页", target: "_blank", class: 'provider')
         when 'Weibo'
-          html<< link_to_with_icon(nil, 'icon-weibo icon-large', v, title: "微博页面", target: "_blank", class: 'provider')
+          html<< link_to_with_icon(nil, 'fa fa-weibo fa-lg', v, title: "微博页面", target: "_blank", class: 'provider')
         when 'Blog'
-          html<< link_to_with_icon(nil, 'icon-globe icon-large', v, title: "个人博客", target: "_blank", class: 'website')
+          html<< link_to_with_icon(nil, 'fa fa-globe fa-lg', v, title: "个人博客", target: "_blank", class: 'website')
       end
     end
     html.join.html_safe

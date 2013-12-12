@@ -40,7 +40,7 @@ class PostPresenter < ApplicationPresenter
 
   def comments_count
     if @object.comments.present?
-      link_to_with_icon @object.comments.count, "icon-comments-alt",
+      link_to_with_icon @object.comments.count, "fa fa-comments-o",
       path, class: "comments_count"
     end
   end

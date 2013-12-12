@@ -60,7 +60,7 @@ gem 'handlebars_assets'
 gem 'sass-rails'
 gem 'compass-rails'
 gem 'bootstrap-sass'
-gem 'font-awesome-rails', '~> 3.2.1'
+gem 'font-awesome-rails'
 
 # services
 gem 'whenever', require: false

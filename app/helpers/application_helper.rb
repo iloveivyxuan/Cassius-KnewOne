@@ -20,9 +20,9 @@ module ApplicationHelper
     end
 
     link_to options, html_options do
-      content_tag(:i, "", class: icon_class) +
+      content_tag(:i, "", class: "fa fa-angle-double-right") +
         body.to_s +
-        content_tag(:i, "", class: 'icon-angle-right pull-right')
+        content_tag(:i, "", class: 'fa fa-angle-right pull-right')
     end
   end
 

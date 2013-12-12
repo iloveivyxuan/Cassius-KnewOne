@@ -16,14 +16,14 @@
     = simple_form_for Photo.new do |f|
       .form-group
         span.btn.btn-info.fileinput-button title="请为产品上传图片" data-placement="right"
-          i.icon-cloud-upload
+          i.fa.fa-cloud-upload
           span 上传产品照片
           = f.file_field :image, multiple: true, name: "photo[image]"
         span.help-block
           | 产品至少需要上传一张照片（多张会更好），我们建议您的照片宽度至少大于1152像素，光线充足并适当留白
       = content_tag :div, id: "photos", data: {photos: @photos} do
         p
-          i.icon-reply-all.icon-2x
+          i.fa.fa-reply-all.fa-2x
           | 可以将照片文件直接从桌面拖拽进来
 
     .form-group

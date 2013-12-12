@@ -184,7 +184,7 @@
     position: relative;
     @include border-radius($border-radius-base);
 
-    & + .icon-search {
+    & + i {
       color: $text-muted;
       left: 10px;
       position: absolute;
@@ -282,11 +282,11 @@ input[type="number"] {
   max-width: 100px;
 }
 
-.icon-twitter {
+.fa-twitter {
   color: $blue;
 }
 
-.icon-weibo {
+.fa-weibo {
   color: $red;
 }
 
@@ -389,11 +389,11 @@ time {
   a {color: $red;}
 
   .fancied {
-    .icon-heart-empty {display: none !important;}
+    .fa-heart-o {display: none !important;}
   }
 
   .unfancied {
-    .icon-heart {display: none !important;}
+    .fa-heart {display: none !important;}
     &:hover {
       span:last-child {color: $red;}
     }
@@ -405,11 +405,11 @@ time {
   a {color: $green;}
 
   .owned {
-    .icon-check-empty {display: none !important;}
+    .fa-square-o {display: none !important;}
   }
 
   .unowned {
-    .icon-check {display: none !important;}
+    .fa-check-square-o {display: none !important;}
     &:hover {
       span:last-child {color: $green;}
     }

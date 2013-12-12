@@ -3,9 +3,9 @@
 - title = tp.owned? ? "取消拥有此产品" : "拥有此产品"
 - own_class = tp.owned? ? "owned" : "unowned"
 
-= link_to link_path, remote: true, method: :post, class: own_class, 
+= link_to link_path, remote: true, method: :post, class: own_class,
 title: title, data: data do
-  i.icon-check
-  i.icon-check-empty
+  i.fa.fa-check-square-o
+  i.fa.fa-square-o
   = tp.owners_count
   span 拥有
