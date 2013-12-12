@@ -30,7 +30,7 @@ class RegistrationsController < Devise::RegistrationsController
   # ie if password or email was changed
   # extend this as needed
   def needs_password?(user, params)
-    !user.email.blank?
+    user.password_required?
   end
 
   def user_params
