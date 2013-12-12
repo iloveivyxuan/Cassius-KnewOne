@@ -1,19 +1,23 @@
-<h2>Change your password</h2>
+<%- provide :title, '重置密码' %>
 
-<%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :patch }) do |f| %>
-  <%= f.error_notification %>
+<header class="page-header">
+  <h2>重置密码</h2>
+</header>
 
-  <%= f.input :reset_password_token, :as => :hidden %>
-  <%= f.full_error :reset_password_token %>
+<main role="main">
+  <%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :patch }) do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :password, :label => "New password", :required => true %>
-    <%= f.input :password_confirmation, :label => "Confirm your new password", :required => true %>
-  </div>
+    <%= f.input :reset_password_token, :as => :hidden %>
+    <%= f.full_error :reset_password_token %>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Change my password" %>
-  </div>
-<% end %>
+    <div class="form-inputs">
+      <%= f.input :password, :label => "新密码", :required => true %>
+      <%= f.input :password_confirmation, :label => "重复输入新密码", :required => true %>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <div class="form-actions">
+      <%= f.button :submit, "修改我的密码", class: "btn btn-primary btn-lg btn-block" %>
+    </div>
+  <% end %>
+</main>

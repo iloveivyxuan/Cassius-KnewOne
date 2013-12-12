@@ -402,7 +402,7 @@ zh-CN:
             configuration option Mongoid.scope_overwrite_exception to false,
             which is its default. In this case a warning will be logged."
         taken:
-          "is already taken"
+          "已被占用"
         too_many_nested_attribute_records:
           message: "Accepting nested attributes for %{association} is limited
             to %{limit} records."

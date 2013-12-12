@@ -80,6 +80,7 @@ module Making
     I18n.enforce_available_locales = false
 
     config.to_prepare do
+      Doorkeeper::ApplicationController.send :include, ApplicationHelper
       # Base layout. Uses app/views/layouts/my_layout.html.erb
       # Doorkeeper::ApplicationController.layout "my_layout"
 

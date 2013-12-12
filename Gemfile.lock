@@ -15,20 +15,19 @@ GIT
       mongoid (>= 3.0, < 5.0)
 
 GIT
+  remote: git://github.com/applicake/doorkeeper.git
+  revision: a99c3afe64e8cb6375f3fa4a21e96b4d01167bed
+  specs:
+    doorkeeper (1.0.0.rc1)
+      railties (>= 3.1)
+
+GIT
   remote: git://github.com/intridea/omniauth-oauth2.git
   revision: a88f9c86dff747f77813f09848e65b61aa1af3e3
   specs:
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.9.0)
       omniauth (~> 1.0)
-
-GIT
-  remote: git://github.com/jasl/doorkeeper.git
-  revision: a8d74467906fc1518fa46c2e5191e2df50d4c66c
-  branch: mongoid4
-  specs:
-    doorkeeper (1.0.0)
-      railties (>= 3.1)
 
 GIT
   remote: git://github.com/jasl/tenpay.git

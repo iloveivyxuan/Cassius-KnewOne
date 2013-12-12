@@ -68,7 +68,7 @@ gem 'sidekiq'
 gem 'mini_magick'
 
 # API
-gem 'doorkeeper', github: 'jasl/doorkeeper', branch: 'mongoid4'
+gem 'doorkeeper', github: 'applicake/doorkeeper'
 
 # monitoring
 gem 'newrelic_rpm'

@@ -1,3 +1,5 @@
+- provide :title, '注册'
+
 header.page-header
   h1 注册
 
@@ -7,4 +9,5 @@ main role="main"
     = f.input :nickname, required: true
     = f.input :password, required: true
     = f.input :password_confirmation, required: true
-    = f.button :submit, "注册", class: "btn btn-primary btn-lg btn-block"
+    = f.button :submit, "注册", class: "btn btn-success btn-lg btn-block"
+    = link_to '登录', new_user_session_path, class: "btn btn-primary btn-lg btn-block"

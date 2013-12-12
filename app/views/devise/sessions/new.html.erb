@@ -1,6 +1,9 @@
+<%- provide :title, '登录' %>
+
 <header class="page-header" role="banner">
   <h1>登录</h1>
 </header>
+
 <main role="main">
   <div id="oauth">
     <%= link_to_with_icon ' Twitter', 'icon-twitter', user_omniauth_authorize_path(:twitter), class: "btn btn-primary twitter_sign_in" %>
@@ -9,6 +12,9 @@
   </div>
 
   <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name, redirect_from: params[:redirect_from])) do |f| %>
+    <%- if flash[:error] %>
+      <div class="alert alert-danger">错误的用户名或密码。<%= link_to '忘记密码？', new_user_password_path %></div>
+    <% end %>
     <%= f.input :email, :required => true, :autofocus => true %>
     <%= f.input :password, :required => true %>
 
@@ -21,6 +27,4 @@
     <%= f.button :submit, "登录", class: "btn btn-primary btn-lg btn-block" %>
     <%= link_to '注册', new_user_registration_path, class: 'btn btn-success btn-lg btn-block' %>
   <% end %>
-
-  <%= render "devise/shared/links" %>
 </main>

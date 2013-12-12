@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class RegistrationsController < Devise::RegistrationsController
-  layout 'oauth', only: [:new, :create]
+  layout 'oauth'
 
   def update
     @user = User.find(current_user.id)

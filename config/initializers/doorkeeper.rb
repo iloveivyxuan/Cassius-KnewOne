@@ -1,3 +1,21 @@
+# hack to support mongoid4
+module Doorkeeper
+  def self.enable_orm
+    require 'doorkeeper/models/mongoid4/access_grant'
+    require 'doorkeeper/models/mongoid4/access_token'
+    require 'doorkeeper/models/mongoid4/application'
+    require 'doorkeeper/models/access_grant'
+    require 'doorkeeper/models/access_token'
+    require 'doorkeeper/models/application'
+  end
+
+  module Option
+    def orm_name
+      :mongoid
+    end
+  end
+end
+
 Doorkeeper.configure do
   # Change the ORM that doorkeeper will use.
   # Currently supported options are :active_record, :mongoid2, :mongoid3, :mongoid4, :mongo_mapper

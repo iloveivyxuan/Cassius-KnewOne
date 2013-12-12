@@ -12,7 +12,8 @@ Making::Application.routes.draw do
     omniauth_callbacks: "omniauth_callbacks",
     registrations: "registrations",
     confirmations: "confirmations",
-    sessions: "sessions"
+    sessions: "sessions",
+    passwords: "passwords"
   }
 
   scope 'settings' do
