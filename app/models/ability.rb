@@ -37,10 +37,6 @@ class Ability
       story.thing.author == user or story.author == user
     end
 
-    can [:update, :destroy], Feature do |feature|
-      feature.thing.author == user or feature.author == user
-    end
-
     can :create, Photo
     can :destroy, Photo do |photo|
       photo.user == user
@@ -92,7 +88,6 @@ class Ability
   def editor
     can :update, Post
     can :update, Story
-    can :update, Feature
     can :pro_edit, Thing
     can :pro_update, Thing
     can :all, Review

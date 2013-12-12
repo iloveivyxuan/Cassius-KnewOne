@@ -89,9 +89,6 @@ Making::Application.routes.draw do
       member { post 'vote' }
     end
     resources :stories
-    resources :features do
-      member {post 'fancy'}
-    end
   end
 
   get '/reviews', to: "reviews#all", as: :reviews_all

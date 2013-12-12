@@ -27,11 +27,6 @@ nav
         = link_to thing_stories_path(tp.thing) do
           i.icon-road
           span 时间线
-    - if tp.thing.features.present? or can? :update, tp.thing
-      = nav_tab :features do
-        = link_to thing_features_path(tp.thing) do
-          i.icon-tasks
-          span 特性
     = nav_tab :reviews do
       = link_to thing_reviews_path(tp.thing) do
         i.icon-book
