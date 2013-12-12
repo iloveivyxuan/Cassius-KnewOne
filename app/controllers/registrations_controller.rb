@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 class RegistrationsController < Devise::RegistrationsController
+  layout 'oauth', only: [:new]
+
   def update
     @user = User.find(current_user.id)
     successfully_updated = if needs_password?(@user, user_params)
