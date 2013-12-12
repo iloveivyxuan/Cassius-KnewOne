@@ -1,8 +1,5 @@
-/*
- *= require bootstrap
- *= require font-awesome
- *= require_self
-*/
+@import "bootstrap";
+@import "font-awesome";
 
 body {
   background-color: #eee;
@@ -28,7 +25,6 @@ body {
 }
 
 #oauth-permissions {
-  margin: 0 auto;
   width: 260px;
 }
 
@@ -53,7 +49,6 @@ body {
 
 #oauth {
   margin-bottom: 1em;
-  text-align: center;
 }
 
 #oauth > .btn {

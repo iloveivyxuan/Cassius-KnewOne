@@ -1,14 +1,14 @@
 <header class="page-header" role="banner">
-  <h1>Authorize</h1>
+  <h1>应用授权</h1>
 </header>
 <main role="main">
-  <p class="h4 text-center">
-    Authorize <strong class="text-info"><%= @pre_auth.client.name %></strong> to use your account?
+  <p class="h4">
+    授权 <strong class="text-info"><%= @pre_auth.client.name %></strong> 使用您的账号?
   </p>
 
   <% if @pre_auth.scopes %>
   <div id="oauth-permissions">
-    <p>This application will be able to:</p>
+    <p>将允许<%= @pre_auth.client.name %>进行以下操作:</p>
 
     <ul class="text-info">
       <% @pre_auth.scopes.each do |scope| %>
@@ -25,7 +25,7 @@
       <%= hidden_field_tag :state, @pre_auth.state %>
       <%= hidden_field_tag :response_type, @pre_auth.response_type %>
       <%= hidden_field_tag :scope, @pre_auth.scope %>
-      <%= submit_tag "Authorize", :class => "btn btn-success btn-lg btn-block" %>
+      <%= submit_tag "授权", :class => "btn btn-success btn-lg btn-block" %>
     <% end %>
     <%= form_tag oauth_authorization_path, :method => :delete do %>
       <%= hidden_field_tag :client_id, @pre_auth.client.uid %>
@@ -33,7 +33,7 @@
       <%= hidden_field_tag :state, @pre_auth.state %>
       <%= hidden_field_tag :response_type, @pre_auth.response_type %>
       <%= hidden_field_tag :scope, @pre_auth.scope %>
-      <%= submit_tag "Deny", :class => "btn btn-danger btn-lg btn-block" %>
+      <%= submit_tag "取消", :class => "btn btn-danger btn-lg btn-block" %>
     <% end %>
   </div>
 </main>

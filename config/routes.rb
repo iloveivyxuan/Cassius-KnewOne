@@ -16,6 +16,7 @@ Making::Application.routes.draw do
   }
 
   scope 'settings' do
+    root to: 'profiles#edit', as: 'setting_root'
     scope path_names: { edit: '' }, only: [:edit, :update] do
       resource :profile, path_prefix: 'admin'
       resource :account do
