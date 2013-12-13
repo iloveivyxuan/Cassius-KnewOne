@@ -1,3 +1,4 @@
+# encoding: utf-8
 class ConfirmationsController < Devise::ConfirmationsController
   # POST /resource/confirmation
   def create
@@ -24,7 +25,7 @@ class ConfirmationsController < Devise::ConfirmationsController
       respond_with_navigational(resource) { redirect_to after_confirmation_path_for(resource_name, resource),
                                                         flash: {show_confirmation_modal: true} }
     else
-      respond_with_navigational(resource.errors, :status => :unprocessable_entity) { render :new }
+      redirect_to root_path, alert: '认证码过期或无效'
     end
   end
 end

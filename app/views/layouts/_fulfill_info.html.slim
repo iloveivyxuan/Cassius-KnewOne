@@ -3,5 +3,5 @@
   - if !current_user.has_fulfilled_email? || !current_user.has_confirmed_email?
     = render 'layouts/setting_email_modal'
     = render 'layouts/setting_email_success_modal'
-  - if flash[:show_confirmation_modal]
+  - if flash[:show_confirmation_modal] && !current_user.can_sign_in_by_password?
     = render 'layouts/setting_password_modal'
