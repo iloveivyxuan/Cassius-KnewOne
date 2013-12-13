@@ -24,7 +24,8 @@
 // Helper
 
 // UI Component
-@import "components/rules";
+@import "components/navbar";
+@import "components/separators";
 
 // Application Module
 @import "modules/things_in_list";
@@ -36,3 +37,5 @@
 
 // Page
 @import "pages/settings";
+
+// Vendor

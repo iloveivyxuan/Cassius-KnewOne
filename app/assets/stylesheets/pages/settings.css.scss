@@ -40,6 +40,10 @@
       }
     }
 
+    .section:not(:last-child) {
+      border-bottom: $border-default;
+    }
+
     .section_title {
       font-size: $font-size-h4;
       margin-bottom: 1em;
