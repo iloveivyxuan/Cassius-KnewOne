@@ -6,7 +6,15 @@
 
 <%= simple_form_for(current_user, url: profile_path, wrapper: :horizontal, html: { method: :patch, class: 'form-horizontal' }) do |f| %>
   <%= f.input :nickname, required: true %>
-  <%= f.input :avatar, as: :file %>
+  <div class="form-group file optional user_avatar">
+    <label class="file optional control-label" for="user_avatar">头像</label>
+    <div class="controls">
+      <p>
+        <img src="http://making-photos.b0.upaiyun.com/users/19cf521a92762490d6e73c6ae1bd8274.jpg!tiny" alt="" height="80" width="80" class="img-circle">
+      </p>
+      <input class="file optional form-control" id="user_avatar" name="user[avatar]" type="file">
+    </div>
+  </div>
   <%= f.input :avatar_cache, as: :hidden %>
   <%= f.input :location %>
   <%= f.input :site %>
