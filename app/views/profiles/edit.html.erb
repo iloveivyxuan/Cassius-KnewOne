@@ -10,7 +10,7 @@
     <label class="file optional control-label" for="user_avatar">头像</label>
     <div class="controls">
       <p>
-        <%= image_tag current_user.avatar.url(:tiny), size: '80x80', class: 'img-circle' %>
+        <%= image_tag current_user.avatar.url(:small), size: '80x80', class: 'img-circle' %>
       </p>
       <%= f.file_field :avatar, class: 'file optional form-control', id: 'user_avatar' %>
       <%= f.input :avatar_cache, as: :hidden %>
