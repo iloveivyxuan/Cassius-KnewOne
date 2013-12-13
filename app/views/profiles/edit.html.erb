@@ -10,12 +10,12 @@
     <label class="file optional control-label" for="user_avatar">头像</label>
     <div class="controls">
       <p>
-        <img src="http://making-photos.b0.upaiyun.com/users/19cf521a92762490d6e73c6ae1bd8274.jpg!tiny" alt="" height="80" width="80" class="img-circle">
+        <%= image_tag current_user.avatar.url(:tiny), size: '80x80', class: 'img-circle' %>
       </p>
-      <input class="file optional form-control" id="user_avatar" name="user[avatar]" type="file">
+      <%= f.file_field :avatar, class: 'file optional form-control', id: 'user_avatar' %>
+      <%= f.input :avatar_cache, as: :hidden %>
     </div>
   </div>
-  <%= f.input :avatar_cache, as: :hidden %>
   <%= f.input :location %>
   <%= f.input :site %>
   <%= f.input :description, as: :text, input_html: {rows: 5} %>
