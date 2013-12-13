@@ -23,6 +23,10 @@ class AccountsController < Devise::RegistrationsController
       sign_in current_user, :bypass => true
       redirect_to edit_account_path, flash: {account: { status: 'success', text: '修改成功。' }}
     else
+      current_user.clean_up_passwords
+      # set password will change this field
+      current_user.encrypted_password = nil if current_user.encrypted_password_was.nil?
+
       render "accounts/edit"
     end
   end
