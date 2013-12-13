@@ -5,23 +5,20 @@ header.page-header
     i.fa.fa-book
     | 帐号信息
 
-section
+section.section
   h3.section_title
     i.fa.fa-envelope
     | 设置邮箱
   = render 'accounts/email'
 
-hr.rule.rule-dashed
+- if current_user.has_fulfilled_email? && current_user.has_confirmed_email?
+  section.section
+    h3.section_title
+      i.fa.fa-key
+      | 修改密码
+    = render 'accounts/password'
 
-section
-  h3.section_title
-    i.fa.fa-key
-    | 修改密码
-  = render 'accounts/password'
-
-hr.rule.rule-dashed
-
-section
+section.section
   h3.section_title
     i.fa.fa-group
     | 第三方登录

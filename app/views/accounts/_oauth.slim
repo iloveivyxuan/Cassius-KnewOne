@@ -1,13 +1,14 @@
-- oauths = {'twitter' => nil, 'weibo' => nil}.merge(current_user.auths.map {|a| {a.provider => a}}.reduce(&:merge) || {})
-table#table_oauth
-  thead
-    tr
-      th 应用
-      th 状态
-      th 操作
-  tbody
-    - oauths.each do |k, v|
-      = render partial: "authentications/#{k}", locals: {auth: v}
+.row
+  - oauths = {'twitter' => nil, 'weibo' => nil}.merge(current_user.auths.map {|a| {a.provider => a}}.reduce(&:merge) || {})
+  table#table_oauth
+    thead
+      tr
+        th 应用
+        th 状态
+        th 操作
+    tbody
+      - oauths.each do |k, v|
+        = render partial: "authentications/#{k}", locals: {auth: v}
 
-.form-result
-  = render partial: 'accounts/result', locals: {type: :oauth}
+  .form-result
+    = render partial: 'accounts/result', locals: {type: :oauth}

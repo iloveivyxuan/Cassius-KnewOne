@@ -10,7 +10,6 @@
       button.close data-dismiss="alert" aria-hidden="true"
         | &times;
       | 您的邮箱还未验证。
-      br
       = link_to '重发邮件', user_confirmation_path(:'user[email]' => current_user.unconfirmed_email), method: :post, remote: true, id: 'resend-setting-email'
-      | &nbsp;|&nbsp;
+      span.separator |
       = link_to '修改邮箱', '#setting-email', data: {toggle: 'modal'}
