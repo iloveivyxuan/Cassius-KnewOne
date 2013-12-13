@@ -46,6 +46,7 @@ class AccountsController < Devise::RegistrationsController
         format.js { render 'email' }
       else
         format.html { render 'accounts/edit' }
+        format.js { render 'accounts/email_fail' }
       end
     end
   end
