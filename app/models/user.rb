@@ -12,6 +12,7 @@ class User
   field :location, type: String, :default => ''
   field :karma, type: Integer, default: 0
 
+  field :auto_update_from_oauth, type: Boolean, default: true
   field :status, type: Symbol, default: :normal
   STATUS = {blocked: '锁定', normal: '正常'}
   validates :status, inclusion: {in: STATUS.keys, allow_blank: false}
@@ -100,11 +101,13 @@ class User
     auth = auths.where(provider: data[:provider]).first
     if auth
       auth.update_from_omniauth(data)
-      self.name = auth.name
-      self.nickname = auth.nickname
-      self.location = auth.location
-      self.description = auth.description
-      self.remote_avatar_url = auth.parse_image(data)
+      if self.auto_update_from_oauth?
+        self.name = auth.name
+        self.nickname = auth.nickname
+        self.location = auth.location
+        self.description = auth.description
+        self.remote_avatar_url = auth.parse_image(data)
+      end
       save
     end
   end

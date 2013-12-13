@@ -3,6 +3,8 @@ class ProfilesController < ApplicationController
   layout 'settings'
 
   def update
+    params[:user][:auto_update_from_oauth] = false
+
     respond_to do |format|
       if current_user.update_without_password(user_params)
         format.html { redirect_to edit_profile_path, flash: {profile: { status: 'success', text: '修改成功。' }} }
@@ -20,6 +22,7 @@ class ProfilesController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit :avatar, :avatar_cache, :name, :nickname, :description, :location, :site
+    params.require(:user).
+        permit :avatar, :avatar_cache, :name, :nickname, :description, :location, :site, :auto_update_from_oauth
   end
 end
