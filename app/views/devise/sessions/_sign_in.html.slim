@@ -1,22 +1,22 @@
-= simple_form_for(:user, url: user_registration_path) do |f|
-  .form-group
-    .input-group
-      span.input-group-addon
-        i.fa.fa-user
-      input.form-control required="" placeholder="请输入您的昵称"
+= simple_form_for(:user, url: user_session_path) do |f|
   .form-group
     .input-group
       span.input-group-addon
         i.fa.fa-envelope
-      input.form-control type="email" required="" placeholder="请输入您的邮箱地址"
+      input.form-control type="email" required="" autofocus="" placeholder="请输入您的邮箱地址"
   .form-group
     .input-group
       span.input-group-addon
         i.fa.fa-key
       input.form-control type="password" required="" placeholder="请输入您的密码"
+  .checkbox
+    label
+      = f.check_box :remember_me
+      | 记住我
   .form-group
     .form-action
-      = f.button :submit, "注册", class: "btn btn-primary"
+      = f.button :submit, "登录", class: "btn btn-primary"
+      = link_to "忘记密码？", '/', class: "btn btn-link"
   .form-group
     .form-result
       .alert.alert-dismissable.alert-danger

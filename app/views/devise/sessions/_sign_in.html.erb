@@ -1,7 +1,0 @@
-<%= simple_form_for(:user, :url => user_session_path) do |f| %>
-  <%= f.input :email, :required => true, :autofocus => true %>
-  <%= f.input :password, :required => true %>
-  <%= f.input :remember_me, :as => :boolean %>
-
-  <%= f.button :submit, "Sign in" %>
-<% end %>

@@ -1,23 +1,22 @@
-aside.user_panel
-  header 快速开始
-  section.third-party
-    = link_to user_omniauth_authorize_path(:twitter), class: "twitter_sign_in" do
-      i.fa.fa-twitter.fa-4x
-    = link_to user_omniauth_authorize_path(:weibo), class: "weibo_sign_in" do
-      i.fa.fa-weibo.fa-4x
-    = link_to '#', class: 'email_sign_in', id: 'show_classic_form' do
-      i.fa.fa-envelope.fa-4x
-  section#classic_form
-    ul.nav.nav-tabs
+section.entry
+  .oauth
+    = link_to user_omniauth_authorize_path(:twitter) do
+      i.fa.fa-twitter.fa-3x
+    = link_to user_omniauth_authorize_path(:weibo) do
+      i.fa.fa-weibo.fa-3x
+    = link_to 'javascript:;', id: 'show_classic_form' do
+      i.fa.fa-envelope.fa-3x
+  #classic_form
+    ul.nav.nav-tabs.nav-justified
       li.active
-        = link_to '注册', '#email_sign_up_tab', data: {toggle: 'tab'}
-      li
         = link_to '登录', '#email_sign_in_tab', data: {toggle: 'tab'}
+      li
+        = link_to '注册', '#email_sign_up_tab', data: {toggle: 'tab'}
     .tab-content
-      #email_sign_up_tab.tab-pane.active
-        = render 'devise/registrations/sign_up'
-      #email_sign_in_tab.tab-pane
+      #email_sign_in_tab.tab-pane.active
         = render 'devise/sessions/sign_in'
+      #email_sign_up_tab.tab-pane
+        = render 'devise/registrations/sign_up'
 
 - content_for :script do
   javascript:

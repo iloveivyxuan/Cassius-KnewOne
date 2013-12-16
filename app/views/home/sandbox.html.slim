@@ -1,4 +1,10 @@
-section style="background: white;padding: 3em;"
-  h1.brand= brand
-
-= render 'home/user_panel'
+#feature.theme_light
+  h1
+    = link_to brand
+  = render 'home/user_panel'
+  = image_tag 'Registration.png', class: 'feature_thumb'
+  = link_to 'Anki Drive', '/', class: 'feature_name'
+  .feature_comment
+    = link_to
+      = image_tag 'http://making-photos.b0.upaiyun.com/users/adfa75fe739224e1bb0f60e62ba30e47.jpg!small', size: '80x80', class: 'img-circle'
+    p 人工智能和机器人进入了我们每个人的生活！
