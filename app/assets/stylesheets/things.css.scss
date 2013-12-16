@@ -1,18 +1,41 @@
 #thing_layout {
+  @include section-decorate;
+  @include make-row;
   padding: 1em 1.5em;
   margin: 0 $site-margin;
-  @include section-decorate;
-  @include clearfix;
+
   @media screen and (min-width: $screen-lg-min+100) {
-      margin: 0 auto;
-      max-width: $screen-lg-min;
+    margin: 0 auto;
+    max-width: $screen-lg-min;
+  }
+
+  #thing_header {
+    margin-bottom: 2em;
+    border-bottom: $border-default;
+  }
+
+  #thing_content {
+    @include make-md-column(8, $gutter: 4em);
+    @include make-md-column-pull(4);
+    border-right: $border-default;
+    min-height: 800px;
+  }
+
+  #thing_actions {
+    @include make-md-column(4, $gutter: 4em);
+    @include make-md-column-push(8);
+  }
+
+  #thing_content, #thing_actions {
+    > *:not(:last-child) {
+      padding-bottom: 2em;
+      border-bottom: $border-default;
+      margin-bottom: 2em;
+    }
   }
 }
 
 #thing_header {
-  margin-bottom: 2em;
-  border-bottom: $border-default;
-
   hgroup {
     text-align: center;
     margin-bottom: 1em;
@@ -29,10 +52,8 @@
     a {color: $text-muted;}
 
     .nav {
-      li {
-        border-bottom: 1px solid #fff;
-      }
-      
+      li {border-bottom: 1px solid #fff;}
+
       .active {
         border-bottom: $border-default-active;
         a {
@@ -44,84 +65,48 @@
   }
 }
 
-#thing_content {
-  @media screen and (min-width: 1024px) {
-    float: left;
-    width: 74%;
-    padding-right: 1.9%;
-    border-right: 1px solid #eee;
-    margin-right: 1.9%;
-    min-height: 800px;
-  }
-
-  > * {
-    padding-bottom: 2em;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 2em;
-  }
-
-  .photos {
-    #photo_main {
-      $height: 576px;
-      margin: 0;
-
-      .item {
-        @media screen and (min-width: 1024px) {
-          height: $height;
-          line-height: $height;
-        }
-
-        text-align: center;
-
-        img {
-          display: inline;
-          max-height: $height;
-          vertical-align: middle;
-        }
-      }
-
-      .carousel-control {
-        font-size: 28px;
-        width: 40px;
-        height: 40px;
-        top: 265px;
-        background: rgba(0, 0, 0, 0.4);
-        display: none;
-        @include border-radius(40px);
-        i {
-          position: relative;
-          margin: 0;
-          top: -1px;
-        }
-
-        &.left i {right: 1px;}
-        &.right i {left: 1px;}
-      }
-
-      @media screen and (min-width: 1024px) {
-        &:hover {
-          .carousel-control {display: block;}
-        }
+#thing_photos {
+  .carousel {
+    .item {
+      text-align: center;
+      img {
+        margin: 0 auto;
+        max-height: 480px;
       }
     }
 
-    .photo_indicators {
-      @include clearfix;
-      li {
-        float: left;
-        margin: 1em 1em 0 0;
-        cursor: pointer;
+    .carousel-control {
+      font-size: 28px;
+      width: 1.5em;
+      background: rgba(0, 0, 0, 0.3);
+      display: none;
 
-        img {
-          @media screen and (max-width: 767px) {
-            width: 56px;
-            height: 56px;
-          }
-        }
+      i {
+        position: absolute;
+        margin: -.5em 0 0 -8px;
+        top: 50%;
+      }
+    }
+
+    @media screen and (min-width: $screen-md-min) {
+      &:hover {
+        .carousel-control {display: block;}
       }
     }
   }
+
+  .indicators {
+    margin-top: 1em;
+    position: relative;
+    li {
+      display: inline-block;
+      margin: 1em .5em 0;
+      cursor: pointer;
+    }
+  }
+
 }
+
 
 #thing_actions {
   .shop {
@@ -148,14 +133,6 @@
   }
 
   @media screen and (min-width: 1024px) {
-    float: right;
-    width: 22%;
-
-    > *:not(:last-child) {
-      padding-bottom: 2em;
-      border-bottom: 1px solid #eee;
-      margin-bottom: 2em;
-    }
 
     .shop {
       > *:not(:last-child) {margin-bottom: 1em;}

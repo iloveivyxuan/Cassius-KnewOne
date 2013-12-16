@@ -6,14 +6,14 @@
   | 收起购买信息
   i.fa.fa-chevron-up
 
-= simple_form_for cart_item, remote: true, method: :post do |f|
+= simple_form_for CartItem.new(thing: thing), remote: true, method: :post do |f|
   .cart_prompt
   .cart_success.hide
     i.fa.fa-ok.fa-lg
     | 已加入购物车
-  = f.input :thing, as: :hidden, input_html: {value: cart_item.thing.id}
+  = f.input :thing, as: :hidden, input_html: {value: thing.id}
   = f.input :kind_id, as: :hidden
-  ul= render cart_item.valid_kinds
+  ul= render thing.valid_kinds
   = f.input :quantity, as: :integer, required: true, input_html: {min: 1, max: 100}
   - if user_signed_in?
     = button_tag type: "submit", class: "btn btn-success", disabled: true do
