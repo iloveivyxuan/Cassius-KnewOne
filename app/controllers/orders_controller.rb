@@ -14,14 +14,14 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.build_order(current_user, (params.has_key?(:order) ? order_params : nil))
-    @order.address = current_user.addresses.first
-    @order.deliver_by = :sf
+    @order.address ||= current_user.addresses.first
+    @order.deliver_by ||= :sf
   end
 
   def create
     # coupon = params[:order].delete :coupon
     @order = Order.build_order(current_user, order_params)
-    if @order.save
+    if @order.save!
       # @order.use_coupon!(coupon) if coupon.present?
       redirect_to @order, flash: {provider_sync: params[:provider_sync]}
     else

@@ -82,7 +82,7 @@ module OrdersHelper
   end
 
   def deliver_method_text(order)
-    Order::DELIVER_METHODS[order.deliver_by][:name]
+    Order::DELIVER_METHODS[order.deliver_by]
   end
 
   def render_share_modal(order)
@@ -106,7 +106,13 @@ module OrdersHelper
           gsub('{{url}}', thing_url(item.thing))
     end
 
-
     render 'shared/share', id: 'order_share', content: str, pic: item.thing.cover.url(:review)
+  end
+
+  def new_order_path_with_params(order, options = {})
+    new_order_path(order: {
+        coupon_code_id: (options.has_key?(:coupon_code_id) ? options[:coupon_code_id] : order.coupon_code.try(:id)),
+        address_id: (options.has_key?(:address_id) ? options[:address_id] : order.address.try(:id))
+    })
   end
 end

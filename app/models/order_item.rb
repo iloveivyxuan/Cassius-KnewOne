@@ -48,19 +48,4 @@ class OrderItem
   def name
     "#{thing_name}-#{kind_name}"
   end
-
-  class<< self
-    def build_by_cart_item(order, item)
-      return unless item.legal? && item.has_enough_stock?
-
-      order.order_items.build({
-        thing_title: item.thing.title,
-        kind_title: item.kind.title,
-        quantity: item.quantity,
-        thing: item.thing.id,
-        kind_id: item.kind.id,
-        single_price: item.kind.price
-      })
-    end
-  end
 end

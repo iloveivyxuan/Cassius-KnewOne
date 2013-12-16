@@ -15,10 +15,13 @@ Making.OrderPage =
           $('.make_order').removeAttr("disabled")
         )
         $('.make_order').attr("disabled", "disabled")
-      else
-        $('.order_address_radio').last().click()
 
-      $('.coupon_radio').click(
+      $('.order_coupon_radio').click(
         ->
-          window.location.search = "order[coupon_code_id]=#{$(@).find('input').val()}"
+          window.location.href = $(@).attr("data-href")
+      )
+
+      $('.order_address_radio').click(
+        ->
+          window.location.href = $(@).attr("data-href")
       )
