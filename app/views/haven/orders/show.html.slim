@@ -16,6 +16,10 @@ section.simple_page_wrapper.widget.orders_wrapper
       li
         strong.field 收货地址：
         span = address_text @order
+      - if @order.invoice
+        tr
+          strong.field 发票信息：
+          span = content_for_invoice @order.invoice
       li
         strong.field 物流方式：
         span = deliver_method_text @order

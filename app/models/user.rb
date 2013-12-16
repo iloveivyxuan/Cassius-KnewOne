@@ -153,6 +153,7 @@ class User
 
   # Payment
   embeds_many :addresses
+  embeds_many :invoices
   embeds_many :cart_items
   has_many :orders
 

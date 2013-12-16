@@ -1,0 +1,5 @@
+li.radio
+  label
+    = f.radio_button :invoice_id, invoice.id, class: 'order_invoice_radio', required: "required"
+    = content_for_invoice invoice
+  = link_to '[编辑]', edit_invoice_path(invoice, redirect_from: request.url)
