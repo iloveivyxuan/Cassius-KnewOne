@@ -8,6 +8,6 @@ main role="main"
     = f.input :email, required: true, autofocus: true
     = f.input :nickname, required: true
     = f.input :password, required: true
-    = f.input :password_confirmation, required: true
+    /= f.input :password_confirmation, required: true
     = f.button :submit, "注册", class: "btn btn-success btn-lg btn-block"
     = link_to '登录', new_user_session_path, class: "btn btn-primary btn-lg btn-block"
