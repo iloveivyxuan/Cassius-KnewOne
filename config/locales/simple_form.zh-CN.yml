@@ -57,6 +57,7 @@ zh-CN:
         name: '分类名称'
       cart_item:
         quantity: '数量'
+        kind_id: '型号'
       comment:
         content: '内容'
       group:

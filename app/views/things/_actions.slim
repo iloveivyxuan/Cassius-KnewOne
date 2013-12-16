@@ -1,36 +1,36 @@
 .shop
   .price = tp.price
   .buy= tp.buy
-.actions
-  .fanciers
-    = render "shared/fancy", p: tp
-  .owners
-    = render "things/own", tp: tp
-  .support
-    = link_to '#olark_chat' do
-      i.fa.fa-user-md
-      span 在线帮助
-  .share
-    - if user_signed_in?
-      = link_to  "#thing_share", title: "分享",  \
-                                 data: {toggle: 'modal', keyboard: false} do
-        i.fa.fa-share
-        span 分享
-    - else
-      = link_to "#login-modal", title: "分享", \
-                data: {toggle: 'modal', keyboard: false} do
-        i.fa.fa-share
-        span 分享
-  .wechat
-    = link_to "#thing_share_wechat", title: "微信朋友圈分享",
-              data: {toggle: 'modal'} do
-      i.fa.fa-qrcode
-      span 分享到微信
-  .supplier
-    = link_to "#thing_supplier", title: "提供产品",
-              data: {toggle: "modal", keyboard: false} do
-      i.fa.fa-beer
-      span 我想提供此产品
+/ .actions
+/   .fanciers
+/     = render "shared/fancy", p: tp
+/   .owners
+/     = render "things/own", tp: tp
+/   .support
+/     = link_to '#olark_chat' do
+/       i.fa.fa-user-md
+/       span 在线帮助
+/   .share
+/     - if user_signed_in?
+/       = link_to  "#thing_share", title: "分享",  \
+/                                  data: {toggle: 'modal', keyboard: false} do
+/         i.fa.fa-share
+/         span 分享
+/     - else
+/       = link_to "#login-modal", title: "分享", \
+/                 data: {toggle: 'modal', keyboard: false} do
+/         i.fa.fa-share
+/         span 分享
+/   .wechat
+/     = link_to "#thing_share_wechat", title: "微信朋友圈分享",
+/               data: {toggle: 'modal'} do
+/       i.fa.fa-qrcode
+/       span 分享到微信
+/   .supplier
+/     = link_to "#thing_supplier", title: "提供产品",
+/               data: {toggle: "modal", keyboard: false} do
+/       i.fa.fa-beer
+/       span 我想提供此产品
 
   / .operations
   /   = tp.official_site
@@ -45,10 +45,10 @@
   /   - if can? :manage, :all
   /     = link_to_with_icon "", "fa fa-gift", new_lottery_path(thing: tp.thing), title: "发奖"
 
-.author_info
-  = tp.author_tag
+/ .author_info
+/   = tp.author_tag
 
-.action_modals
-  = render 'shared/share', id: 'thing_share', content: tp.share_content, pic: tp.photo_url(:huge)
-  = render 'things/wechat', tp: tp
-  = render 'things/supplier', tp: tp
+/ .action_modals
+/   = render 'shared/share', id: 'thing_share', content: tp.share_content, pic: tp.photo_url(:huge)
+/   = render 'things/wechat', tp: tp
+/   = render 'things/supplier', tp: tp

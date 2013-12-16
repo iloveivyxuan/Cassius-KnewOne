@@ -14,7 +14,7 @@ Making.CartItemNew = ->
       $prompt.empty()
       prompt '.estimates_at'
       prompt '.stock'
-      $("#photo_main.carousel").carousel $this.data('photo')
+      $("#thing_photos.carousel").carousel $this.data('photo')
       false
 
     $form.find('.kind a.select_disabled').click ->

@@ -26,10 +26,8 @@ class ThingPresenter < PostPresenter
 
   def price
     kinds_price = thing.kinds.map(&:price).uniq
-    p = if kinds_price.size > 1
+    p = if kinds_price.size >= 1
           kinds_price.min
-        elsif kinds_price.size == 1
-          kinds_price.first
         elsif thing.price.present?
           thing.price
         end
@@ -124,11 +122,10 @@ class ThingPresenter < PostPresenter
   end
 
   def dsell
-    if !thing.kinds.any?
+    if thing.kinds.blank?
       stock
     else
-      item = CartItem.new thing: thing
-      render partial: 'cart_items/new', locals: {cart_item: item}
+      render partial: 'cart_items/new', locals: {thing: thing}
     end
   end
 
