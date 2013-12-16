@@ -15,6 +15,10 @@ section.orders_wrapper.simple_page_wrapper.widget
       tr
         th 收货地址：
         td= address_text @order
+      - if @order.invoice
+        tr
+          th 发票信息：
+          td= content_for_invoice @order.invoice
       tr
         th 物流方式：
         td= deliver_method_text @order

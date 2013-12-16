@@ -94,6 +94,10 @@ class Thing < Post
     owners.include? user
   end
 
+  def valid_kinds
+    kinds.ne(stage: :hidden).sort_by {|k| k.photo_number}
+  end
+
   def add_score(score)
     scores[score] ||= 0
     scores[score] += 1

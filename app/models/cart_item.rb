@@ -33,10 +33,6 @@ class CartItem
     @kind ||= thing.kinds.find kind_id
   end
 
-  def valid_kinds
-    thing.kinds.ne(stage: :hidden).sort_by {|i| i.photo_number}
-  end
-
   def quantity_increment(quantity)
     self.quantity += quantity
   end

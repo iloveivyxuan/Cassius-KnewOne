@@ -1,11 +1,11 @@
 - provide :nav, :thing
 
 - present @thing do |tp|
-  .photos= render "carousel", tp: tp
-  = tp.content
-  = render 'stories/timeline', tp: tp
-  = render 'reviews', tp: tp
-  = render 'shared/comments', post: @thing, id: "thing_comments"
+  = render "carousel", tp: tp
+  / = tp.content
+  / = render 'stories/timeline', tp: tp
+  / = render 'reviews', tp: tp
+  / = render 'shared/comments', post: @thing, id: "thing_comments"
 
 - content_for :script do
   javascript:

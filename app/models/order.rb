@@ -4,8 +4,26 @@ class Order
   include Mongoid::Timestamps
 
   belongs_to :user
+
   embeds_one :address
   attr_accessor :address_id
+  alias_method :_address=, :address=
+  def address=(val)
+    return nil unless val
+
+    self.address_id = val.id.to_s
+    self._address = val
+  end
+
+  embeds_one :invoice
+  attr_accessor :invoice_id
+  alias_method :_invoice=, :invoice=
+  def invoice=(val)
+    return nil unless val
+
+    self.invoice_id = val.id.to_s
+    self._invoice = val
+  end
 
   embeds_many :order_items
   embeds_many :order_histories
@@ -14,10 +32,6 @@ class Order
 
   has_one :coupon_code, autosave: true
   attr_accessor :coupon_code_id
-  def coupon_code_id=(id)
-    self.coupon_code = CouponCode.where(id: id).first
-    @coupon_code_id = self.coupon_code.nil? ? '' : id
-  end
 
   STATES = {:pending => '等待付款',
             :paid => '已付款，等待确认',
@@ -27,9 +41,8 @@ class Order
             :closed => '订单关闭',
             :refunded => '已协商退款'}
   DELIVER_METHODS = {
-      :sf => {name: '顺丰', price: 18.0},
-      :zt => {name: '中通', price: 8.0},
-      :sf_hongkong => {name: '顺丰（港澳）', price: 28.0}
+      :sf => '顺丰',
+      :zt => '中通'
   }
   PAYMENT_METHOD = {
       :tenpay => '财付通',
@@ -48,7 +61,7 @@ class Order
   field :trade_no, type: String
   field :trade_price, type: BigDecimal
   field :trade_state, type: String
-  field :deliver_price, type: BigDecimal#, default: DELIVER_METHODS.first[1][:price]
+  field :deliver_price, type: BigDecimal
   field :auto_owning, type: Boolean, default: true
   field :price, type: BigDecimal
 
@@ -62,6 +75,20 @@ class Order
   validates :user, presence: true
 
   accepts_nested_attributes_for :rebates, allow_destroy: true, reject_if: :all_blank
+
+  after_build do
+    self.address = self.user.addresses.where(id: self.address_id).first if self.address_id
+    self.invoice = self.user.invoices.where(id: self.invoice_id).first if self.invoice_id
+    self.coupon_code = CouponCode.where(id: self.coupon_code_id).first if self.coupon_code_id
+
+    unless self.coupon_code.nil?
+      if self.coupon_code.bound_user?
+        self.coupon_code.use
+      else
+        self.coupon_code.bind_order_user_and_use
+      end
+    end
+  end
 
   before_create do
     self.order_no = rand.to_s[2..11]
@@ -223,12 +250,21 @@ class Order
   end
 
   def has_stock?
-    order_items.select {|item| item.kind.stage == :stock}.any?
+    order_items.select { |item| item.kind.stage == :stock }.any?
   end
 
   def calculate_deliver_price
-    return 0 if self.deliver_by.nil?
-    Order.calculate_deliver_price_by_method_and_price(self.deliver_by, items_price)
+    return 0 if self.deliver_by.nil? || self.address.nil?
+    price = Province[self.address.province][self.deliver_by.to_s]
+    case items_price
+      when 0..499
+      when 500..1000
+        price -= 10
+      else
+        price -= 20
+    end
+
+    price > 0 ? price : 0
   end
 
   def items_price
@@ -240,7 +276,7 @@ class Order
   end
 
   def receivable
-    items_price + (self.deliver_price || calculate_deliver_price)
+    items_price + (persisted? ? self.deliver_price : calculate_deliver_price)
   end
 
   def calculate_price
@@ -248,11 +284,11 @@ class Order
   end
 
   def total_price
-    self.price || calculate_price
+    persisted? ? self.price : calculate_price
   end
 
   def total_cents
-    ((self.price || calculate_price) * 100).to_i
+    (total_price * 100).to_i
   end
 
   def generate_waybill!
@@ -272,36 +308,44 @@ class Order
     end
   end
 
+  def add_item_by_cart_item(cart_item)
+    return false unless cart_item.legal? && cart_item.has_enough_stock?
+
+    self.order_items.build({
+                               thing_title: cart_item.thing.title,
+                               kind_title: cart_item.kind.title,
+                               quantity: cart_item.quantity,
+                               thing: cart_item.thing.id,
+                               kind_id: cart_item.kind.id,
+                               single_price: cart_item.kind.price
+                           })
+
+    true
+  end
+
+  def add_items_from_cart(cart_items)
+    cart_items.map { |item| add_item_by_cart_item item }.reduce &:|
+  end
+
   class<< self
     def build_order(user, params = {})
       params ||= {}
-      address_id = params.delete :address_id
       order = user.orders.build params
-
-      order.address = user.addresses.find(address_id) if address_id
-
-      user.cart_items.each { |item| OrderItem.build_by_cart_item(order, item)}
-
-      unless order.coupon_code.nil?
-        if order.coupon_code.bound_user?
-          order.coupon_code.use
-        else
-          order.coupon_code.bind_order_user_and_use
-        end
-      end
+      order.add_items_from_cart user.cart_items
 
       order
     end
 
-    def calculate_deliver_price_by_method_and_price(method, items_price)
-      price = case items_price
-                when 0..500
-                  DELIVER_METHODS[method][:price]
-                when 500..1000
-                  DELIVER_METHODS[method][:price] - 10
-                else
-                  DELIVER_METHODS[method][:price] - 20
-              end
+    def calculate_deliver_price_by_method_and_price(method, province, items_price)
+      price = Province[province][method.to_s]
+      case items_price
+        when 0..499
+        when 500..1000
+          price -= 10
+        else
+          price -= 20
+      end
+
       price > 0 ? price : 0
     end
 

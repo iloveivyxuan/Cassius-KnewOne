@@ -96,7 +96,7 @@ group :development, :test do
   gem 'spork-rails'
   gem 'guard-spork'
   gem 'guard-rspec'
-  gem 'guard-livereload'
+  gem 'guard-livereload', github: 'guard/guard-livereload'
   gem 'fabrication'
   gem 'ffaker'
   gem 'database_cleaner'

@@ -1,0 +1,16 @@
+- provide :nav, :invoice
+- provide :title, '发票信息'
+
+header.page-header
+  h2
+    i.fa.fa-money
+    | 发票信息
+
+table.table.table-striped
+  thead
+    tr
+      th 发票信息
+      th 管理
+  tbody
+    = render @invoices
+  = link_to '添加发票信息', new_invoice_path, class: "btn btn-primary"
