@@ -64,6 +64,7 @@ header role="banner"
               li= link_to_with_icon "我的订单", "fa fa-file-text-o fa-fw", orders_path
               li= link_to_with_icon "我的优惠券", "fa fa-ticket fa-fw", coupons_path
               li= link_to_with_icon "收货地址", "fa fa-truck fa-fw", addresses_path
+              li= link_to_with_icon "发票信息", "fa fa-money fa-fw", invoices_path
               li= link_to_with_icon "登出", "fa fa-sign-out fa-fw", destroy_user_session_path, method: :delete
               - if can? :manage, Supplier
                 li= link_to_with_icon "供货信息", "fa fa-stethoscope fa-fw", suppliers_path

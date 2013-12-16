@@ -127,6 +127,6 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:note, :deliver_by, :address_id, :auto_owning, :coupon_code_id)
+    params.require(:order).permit(:note, :deliver_by, :address_id, :invoice_id, :auto_owning, :coupon_code_id)
   end
 end

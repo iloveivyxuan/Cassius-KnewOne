@@ -24,6 +24,7 @@ Making::Application.routes.draw do
         patch 'email'
       end
       resources :addresses, except: [:show]
+      resources :invoices, except: [:show]
       resources :coupons, only: [:index] do
         collection do
           post 'bind'

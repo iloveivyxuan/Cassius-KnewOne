@@ -1,0 +1,6 @@
+= simple_form_for @invoice, html: {class: 'form'} do |f|
+  = hidden_field_tag :redirect_from, params[:redirect_from]
+  = f.input :kind, collection: Invoice::KINDS, required: true, prompt: false
+  = f.input :title, required: true
+  = f.button :submit, class: 'btn btn-primary'
+  = back_btn

@@ -5,7 +5,9 @@ class Order
 
   belongs_to :user
   embeds_one :address
+  embeds_one :invoice
   attr_accessor :address_id
+  attr_accessor :invoice_id
 
   embeds_many :order_items
   embeds_many :order_histories
@@ -276,9 +278,11 @@ class Order
     def build_order(user, params = {})
       params ||= {}
       address_id = params.delete :address_id
+      invoice_id = params.delete :invoice_id
       order = user.orders.build params
 
       order.address = user.addresses.find(address_id) if address_id
+      order.invoice = user.invoices.where(id: invoice_id).first if invoice_id
 
       user.cart_items.each { |item| OrderItem.build_by_cart_item(order, item)}
 
