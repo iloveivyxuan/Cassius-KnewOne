@@ -14,6 +14,14 @@ module Haven
       @coupon = AbatementCoupon.new
     end
 
+    def update
+      if @coupon.update abatement_coupon_params
+        redirect_to haven_abatement_coupon_path(@coupon)
+      else
+        render 'show'
+      end
+    end
+
     def create
       @coupon = AbatementCoupon.create abatement_coupon_params
       redirect_to haven_abatement_coupon_path(@coupon)
