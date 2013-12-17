@@ -1,10 +1,16 @@
-#feature.theme_light
+#home_wrapper.feature.theme_light
   h1
     = logo
     = link_to brand
-  = image_tag 'Registration.png', id: 'feature_image'
-  = link_to 'Anki Drive', '/', id: 'feature_name'
-  #feature_comment
+  span.feature_image data-picture="" data-alt="A giant stone face at The Bayon temple in Angkor Thom, Cambodia"
+    span data-src="http://fakeimg.pl/500x260/282828/"
+    span data-src="http://fakeimg.pl/780x500/282828/" data-media="(min-width: 481px) and (max-width: 767px)"
+    span data-src="http://fakeimg.pl/1000x800/282828/" data-media="(min-width: 768px) and (max-width: 991px)"
+    span data-src="http://fakeimg.pl/1480x950/282828/" data-media="(min-width: 992px) and (max-width: 1439px)"
+    span data-src="http://fakeimg.pl/1950x1100/282828/" data-media="(min-width: 1440px) and (max-width: 1919px)"
+
+  = link_to 'Anki Drive', '/', class: 'feature_name'
+  .feature_comment
     = link_to
       = image_tag 'http://making-photos.b0.upaiyun.com/users/adfa75fe739224e1bb0f60e62ba30e47.jpg!small', class: 'img-circle'
     p 人工智能和机器人进入了我们每个人的生活！

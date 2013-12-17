@@ -1,6 +1,12 @@
-#feature {
-  @media screen and (min-width: $screen-sm-min) {
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+.feature {
+  @media screen and (min-width: $screen-sm-min + 1) {
     height: 100%;
+    overflow: hidden;
     position: relative;
     width: 100%;
   }
@@ -10,7 +16,7 @@
     font-size: 2.8em;
     margin: .25em 0 .3em 20px;
 
-    @media screen and (min-width: $screen-sm-min) {
+    @media screen and (min-width: $screen-sm-min + 1) {
       left: 30px;
       margin: 0;
       position: absolute;
@@ -26,13 +32,13 @@
     }
   }
 
-  #feature_name {
+  .feature_name {
     color: $brand-info;
     font-family: "orbitron-bold";
     font-size: 2em;
     margin-left: 20px;
 
-    @media screen and (min-width: $screen-sm-min) {
+    @media screen and (min-width: $screen-sm-min + 1) {
       margin: 0;
       position: absolute;
       right: 50px;
@@ -40,15 +46,32 @@
     }
   }
 
-  #feature_image {
-    height: 100%;
-    width: 100%;
+  .feature_image {
+
+    @media screen and (max-width: $screen-sm-min) {
+      display: block;
+      height: 500px;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    @media screen and (max-width: $screen-xs-min) {
+      height: 260px;
+    }
+
+    img {
+      @include stretch(-1000%, -1000%, -1000%, -1000%);
+      margin: auto;
+      max-height: none;
+      z-index: -1;
+    }
   }
 
-  #feature_comment {
+  .feature_comment {
     margin: 1em 20px;
 
-    @media screen and (min-width: $screen-sm-min) {
+    @media screen and (min-width: $screen-sm-min + 1) {
       bottom: 70px;
       position: absolute;
       right: 50px;
@@ -59,7 +82,7 @@
       vertical-align: top;
       width: 48px;
 
-      @media screen and (min-width: $screen-sm-min) {
+      @media screen and (min-width: $screen-sm-min + 1) {
         height: 80px;
         vertical-align: middle;
         width: 80px;
@@ -88,7 +111,7 @@
         top: 16px;
       }
 
-      @media screen and (min-width: $screen-sm-min) {
+      @media screen and (min-width: $screen-sm-min + 1) {
         margin-left: 1.5em;
         max-width: 20em;
       }
@@ -101,14 +124,15 @@
     border: $border-default;
     margin: 0 auto 1em;
     padding: 1.5em;
-    width: 280px;
+    width: 85%;
 
-    @media screen and (min-width: $screen-sm-min) {
+    @media screen and (min-width: $screen-sm-min + 1) {
       border: none;
       left: 55px;
       margin: 0;
       position: absolute;
       top: 200px;
+      width: 280px;
     }
 
     .oauth {
@@ -146,7 +170,7 @@
             margin-bottom: 0;
           }
 
-          @media screen and (min-width: $screen-sm-min) {
+          @media screen and (min-width: $screen-sm-min + 1) {
             margin-bottom: 0;
             width: auto;
           }
@@ -159,14 +183,14 @@
     }
   }
 
-  @media screen and (min-width: $screen-sm-min) {
+  @media screen and (min-width: $screen-sm-min + 1) {
     &.theme_light {
 
-      #feature_name {
+      .feature_name {
         color: #ddd;
       }
 
-      #feature_comment {
+      .feature_comment {
 
         p {
           background-color: rgba(#ebeced, 0.9);
@@ -184,11 +208,11 @@
 
     &.theme_dark {
 
-      #feature_name {
+      .feature_name {
         color: #333;
       }
 
-      #feature_comment {
+      .feature_comment {
 
         p {
           background-color: rgba(#feffff, 0.6);
