@@ -1,34 +1,38 @@
 Making.CartItemNew = ->
   $ ->
     $form = $('#new_cart_item')
-    $prompt = $form.find('.cart_prompt')
+    $price = $('.price small')
+    thing_price = $price.text()
 
-    $form.find('.kind a').click ->
-      $this = $(@)
-      $('.shop .price small').text "￥ #{$this.data('price')}"
-      $form.find('.selected').removeClass('selected')
-      prompt = (selector) ->
-        $this.siblings(selector).clone()
-          .appendTo($prompt)
-          .fadeIn()
-      $prompt.empty()
-      prompt '.estimates_at'
-      prompt '.stock'
-      $("#thing_photos.carousel").carousel $this.data('photo')
-      false
+    set_price = (price) ->
+      $price.text (price or thing_price)
 
-    $form.find('.kind a.select_disabled').click ->
-      $form.find('button[type="submit"]').attr('disabled', 'disabled')
+    set_estimated = (estimated) ->
+      $prompt = $('.cart_estimated_prompt').hide()
+      if estimated
+        $prompt.find('time').replaceWith(estimated).end().fadeIn()
 
-    $form.find('.kind a.select_enabled').click ->
-      $form.find('#cart_item_kind_id').val $(@).data('id')
-      $form.find('#cart_item_quantity').prop 'max', $(@).data('max')
-      $(@).addClass('selected')
-      $form.find('button[type="submit"]').removeAttr('disabled')
+    set_stock = (max) ->
+      $stock_prompt = $('.cart_stock_prompt').hide()
+      $quantity = $('#cart_item_quantity').attr('max', 100)
+      if max > 0
+        $stock_prompt.find('strong').text(max).end().fadeIn()
+        $quantity.prop('max', max)
 
-    $select_enabled = $form.find('.kind a.select_enabled')
-    if $select_enabled.length == 1
-      $select_enabled.first().trigger('click')
+    set_photo = (photo) ->
+      $("#thing_photos .carousel").carousel photo
+
+    $form.find('select#cart_item_kind_id').change ->
+      $option = $(this).find("option:selected")
+      $submit = $form.find('button[type="submit"]')
+      set_price $option.data('price')
+      set_estimated $option.data('estimated')
+      set_stock $option.data('stock'), $option.data('max')
+      set_photo $option.data('photo')
+      if $option.val()
+        $submit.removeAttr('disabled')
+      else
+        $submit.attr('disabled', true)
 
     $mobile_cart_down = $form.siblings('.mobile_cart_slidedown')
     $mobile_cart_up = $form.siblings('.mobile_cart_slideup')

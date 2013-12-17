@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 class ThingPresenter < PostPresenter
   presents :thing
-  delegate :title, :subtitle, :photos, :self_run?, to: :thing
+  delegate :title, :subtitle, :photos, :self_run?, :kinds, to: :thing
 
   def full_title
     [title, subtitle].reject(&:blank?).join(' - ')
@@ -24,18 +24,22 @@ class ThingPresenter < PostPresenter
     end if thing.content.present?
   end
 
+  def price_format(price, unit="￥")
+    number_to_currency(price, precision: 2, unit: unit)
+  end
+
   def price
     kinds_price = thing.kinds.map(&:price).uniq
-    p = if kinds_price.size >= 1
+    p = if kinds_price.present?
           kinds_price.min
         elsif thing.price.present?
           thing.price
         end
 
     if p.to_i > 0
-      content_tag :small,
-                  "#{number_to_currency(p, precision: 2,
-                                        unit: thing.price_unit)}#{' 起' if kinds_price.size > 1}"
+      p_text = price_format p, thing.price_unit
+      p_text << " 起" if kinds_price.size > 1
+      content_tag :small, p_text
     end
   end
 
@@ -125,7 +129,7 @@ class ThingPresenter < PostPresenter
     if thing.kinds.blank?
       stock
     else
-      render partial: 'cart_items/new', locals: {thing: thing}
+      render partial: 'cart_items/new', locals: {tp: self}
     end
   end
 
@@ -212,5 +216,23 @@ class ThingPresenter < PostPresenter
 
   def stage_text
     (Thing::STAGES.merge Kind::STAGES)[stage]
+  end
+
+  def kind_estimated_at(kind)
+    if kind.stage == :ship and kind.estimates_at.present? and kind.estimates_at > Time.now
+      time_tag kind.estimates_at, distance_of_time_in_words_to_now(kind.estimates_at)
+    end
+  end
+
+  def options_for_kinds
+    options_for_select(thing.kinds.map do |k|
+      [k.title, k.id, data: {
+         stock: k.stock,
+         max: k.max,
+         price: price_format(k.price),
+         photo: k.photo_number,
+         estimated: kind_estimated_at(k).try(:gsub, "\"", "'")
+       }, disabled: !(k.stock > 0)]
+    end)
   end
 end
