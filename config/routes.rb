@@ -48,6 +48,7 @@ Making::Application.routes.draw do
     member do
       patch 'cancel'
       get 'tenpay'
+      get 'tenpay_wechat'
       get 'tenpay_notify'
       get 'tenpay_callback'
       get 'alipay'
