@@ -1,25 +1,36 @@
 class Making.Views.CommentsIndex extends Backbone.View
-  
+
   template: HandlebarsTemplates['comments/index']
 
   events:
     'submit #create_comment': 'create'
-    'click .all': 'all'
+    'click .comments_more': 'fetch'
 
   initialize: ->
-    @collection.on
-      add: @append
+    @page = 1
     @render()
+    @collection.on
+      add: @prepend
+      reset: (comments) =>
+        comments.each @append
+    @fetch()
+
+  fetch: =>
     @collection.fetch
+      reset: true
+      data: {page: @page++}
       beforeSend: =>
-        @$('ul').html(HandlebarsTemplates['shared/loading'])
+        @$('ul').append(HandlebarsTemplates['shared/loading'])
+      success: =>
+        console.log @collection
 
   render: =>
-    @$el.html @template(title: @$el.data('title'), count: @$el.data('count'))
-    if @$el.data("signin")
-      $('#create_comment p.login_tip').hide()
-    else
-      @disableForm()
+    @$el.html @template(
+      title: @$el.data('title'),
+      signin: @$el.data('signin'),
+      more: @$el.data('count') > @$el.data('per')
+    )
+    @disableForm() unless @$el.data("signin")
     this
 
   disableForm: =>
@@ -38,3 +49,9 @@ class Making.Views.CommentsIndex extends Backbone.View
   append: (comment) =>
     view = new Making.Views.Comment(model: comment)
     view.render().$el.hide().appendTo(@$('ul')).fadeIn()
+    if @$('ul li').length >= @$el.data('count')
+      @$('.comments_more').hide()
+
+  prepend: (comment) =>
+    view = new Making.Views.Comment(model: comment)
+    view.render().$el.hide().prependTo(@$('ul')).fadeIn()

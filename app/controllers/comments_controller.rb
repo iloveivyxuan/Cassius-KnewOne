@@ -2,9 +2,9 @@
 class CommentsController < ApplicationController
   respond_to :json
   load_and_authorize_resource :post
-  load_and_authorize_resource through: :post
 
   def index
+    @comments = @post.comments.page(params[:page]).per(Settings.comments.per_page)
     respond_with @comments
   end
 
