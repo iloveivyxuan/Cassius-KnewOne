@@ -1,24 +1,14 @@
 // Base
 @import "variables";
+@import "mixins";
 @import "bootstrap";
 @import "font-awesome";
-@import "compass/css3";
-@import "compass/layout/stretching";
+@import "reset";
+@import "typography";
 
-@import "datepicker";
-
-@import "base";
-@import "layout";
-@import "things";
-
-@import "thing_form";
-@import "users";
-@import "messages";
-@import "groups";
-@import "lottery";
-@import "home";
-@import "carts";
-@import "orders";
+// @todo
+@import "todo";
+// @todo end
 
 // Helper
 
@@ -29,14 +19,25 @@
 
 // Application Module
 @import "modules/things_in_list";
+// @todo
+@import "things";
+@import "thing_form";
+@import "messages";
+@import "groups";
+@import "lottery";
+@import "carts";
+@import "orders";
+// @todo end
 
 // Application Part
-@import "parts/body";
+@import "parts/layout";
 @import "parts/alerts";
 @import "parts/modals";
 
 // Page
 @import "pages/home";
+@import "pages/users";
 @import "pages/settings";
 
 // Vendor
+@import "datepicker";

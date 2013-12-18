@@ -288,14 +288,6 @@
   @include opacity(0.5);
 }
 
-#thing_comments {
-  .comments {
-    .comment_form {
-      textarea {width: 95%;}
-    }
-  }
-}
-
 .lovers {
   color: $text-muted;
 }
