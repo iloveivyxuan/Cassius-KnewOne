@@ -1,10 +1,11 @@
-# -*- coding: utf-8 -*-
 class TwitterAuthHandler
   attr_reader :client
 
   def initialize(info)
-    @client = Twitter::Client.new access_token: info[:access_token],
-                                  access_token_secret: info[:access_secret]
+    @client = Twitter::REST::Client.new access_token: info[:access_token],
+    access_token_secret: info[:access_secret],
+    consumer_key: Settings.twitter.consumer_key,
+    consumer_secret: Settings.twitter.consumer_secret
   end
 
   def follow

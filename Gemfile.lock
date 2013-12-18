@@ -1,8 +1,26 @@
 GIT
+  remote: git://github.com/intridea/omniauth-oauth2.git
+  revision: a88f9c86dff747f77813f09848e65b61aa1af3e3
+  specs:
+    omniauth-oauth2 (1.1.1)
+      oauth2 (~> 0.9.0)
+      omniauth (~> 1.0)
+
+GIT
   remote: git://github.com/jasl/tenpay.git
   revision: 2e536b8541f6b75d4b037642aca20f4a60d4f635
   specs:
     jasl_tenpay (1.0.1)
+
+GIT
+  remote: git://github.com/simsicon/weibo_2.git
+  revision: 1332243b84e131cdf6882eb5ef421d1c326f8c36
+  specs:
+    weibo_2 (0.1.5)
+      hashie (~> 2.0.4)
+      multi_json (~> 1)
+      oauth2 (~> 0.9.1)
+      rest-client (~> 1.6.7)
 
 GEM
   remote: http://ruby.taobao.org/
@@ -49,6 +67,7 @@ GEM
     bcrypt-ruby (3.1.2)
     bootstrap-sass (3.0.2.1)
       sass (~> 3.2)
+    buftok (0.2.0)
     builder (3.0.4)
     cancan (1.6.10)
     capistrano (2.15.5)
@@ -88,11 +107,12 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
-    compass-rails (1.0.3)
-      compass (>= 0.12.2, < 0.14)
+    compass-rails (1.1.2)
+      compass (>= 0.12.2)
     connection_pool (1.2.0)
     daemons (1.1.9)
     database_cleaner (1.2.0)
+    descendants_tracker (0.0.3)
     devise (3.2.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -106,9 +126,10 @@ GEM
       execjs
     eco-source (1.1.0.rc.1)
     ejs (1.1.1)
-    em-websocket (0.5.0)
+    em-websocket (0.3.8)
+      addressable (>= 2.1.1)
       eventmachine (>= 0.12.9)
-      http_parser.rb (~> 0.5.3)
+    equalizer (0.0.7)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.0.2)
@@ -122,7 +143,7 @@ GEM
     formatador (0.2.4)
     fssm (0.2.10)
     growl (1.0.3)
-    guard (2.2.4)
+    guard (2.2.5)
       formatador (>= 0.2.4)
       listen (~> 2.1)
       lumberjack (~> 1.0)
@@ -134,27 +155,30 @@ GEM
       multi_json
       thor
       tilt
-    guard-livereload (2.1.0)
-      em-websocket (~> 0.5)
-      guard (~> 2.0)
-      multi_json (~> 1.8)
-    guard-rspec (4.1.1)
+    guard-livereload (1.3.0)
+      em-websocket (>= 0.2.0)
+      guard (>= 1.5.0)
+      multi_json (~> 1.0)
+    guard-rspec (4.2.0)
       guard (>= 2.1.1)
-      rspec (~> 2.14)
+      rspec (>= 2.14, < 4.0)
     guard-spork (1.5.1)
       childprocess (>= 0.2.3)
       guard (>= 1.1)
       spork (>= 0.8.4)
     haml (4.0.4)
       tilt
-    handlebars_assets (0.14.1)
+    handlebars_assets (0.15)
       execjs (>= 1.2.9)
+      multi_json
       sprockets (>= 2.0.3)
       tilt
-    hashie (1.2.0)
+    hashie (2.0.5)
     highline (1.6.20)
     hike (1.2.3)
-    http_parser.rb (0.5.3)
+    http (0.5.0)
+      http_parser.rb
+    http_parser.rb (0.6.0)
     httpauth (0.2.0)
     i18n (0.6.9)
     intercom-rails (0.2.24)
@@ -172,7 +196,7 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    json (1.7.7)
+    json (1.8.1)
     jwt (0.1.8)
       multi_json (>= 1.5)
     kaminari (0.15.0)
@@ -181,12 +205,12 @@ GEM
     kgio (2.8.1)
     launchy (2.4.2)
       addressable (~> 2.3)
-    letter_opener (1.1.2)
+    letter_opener (1.2.0)
       launchy (~> 2.2)
     libnotify (0.8.2)
       ffi (>= 1.0.11)
     libv8 (3.16.14.3)
-    listen (2.3.1)
+    listen (2.4.0)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -194,6 +218,8 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    memoizable (0.3.1)
+      thread_safe (~> 0.1.3)
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_magick (3.7.0)
@@ -207,7 +233,7 @@ GEM
     mongoid-grid_fs (1.9.0)
       mime-types (~> 1.19)
       mongoid (~> 3.0)
-    mongoid-rspec (1.9.0)
+    mongoid-rspec (1.10.0)
       mongoid (>= 3.0.1)
       rake
       rspec (>= 2.14)
@@ -221,6 +247,7 @@ GEM
       stringex (~> 2.0)
     moped (1.5.1)
     multi_json (1.8.2)
+    multi_xml (0.5.5)
     multipart-post (1.2.0)
     nested_form (0.3.2)
     net-scp (1.1.2)
@@ -230,22 +257,20 @@ GEM
     net-ssh (2.7.0)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
-    newrelic_rpm (3.6.9.171)
+    newrelic_rpm (3.7.0.177)
     oauth (0.4.7)
-    oauth2 (0.8.1)
+    oauth2 (0.9.2)
       faraday (~> 0.8)
-      httpauth (~> 0.1)
+      httpauth (~> 0.2)
       jwt (~> 0.1.4)
       multi_json (~> 1.0)
+      multi_xml (~> 0.5)
       rack (~> 1.2)
     omniauth (1.1.4)
       hashie (>= 1.2, < 3)
       rack
     omniauth-oauth (1.0.1)
       oauth
-      omniauth (~> 1.0)
-    omniauth-oauth2 (1.1.1)
-      oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
     omniauth-twitter (1.0.1)
       multi_json (~> 1.3)
@@ -290,7 +315,7 @@ GEM
     raindrops (0.12.0)
     rake (10.1.0)
     rb-fsevent (0.9.3)
-    rb-inotify (0.9.2)
+    rb-inotify (0.9.3)
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
@@ -324,11 +349,11 @@ GEM
       sass (>= 3.1.10)
       tilt (~> 1.3)
     settingslogic (2.0.9)
-    sidekiq (2.17.0)
+    sidekiq (2.17.1)
       celluloid (>= 0.15.2)
       connection_pool (>= 1.0.0)
       json
-      redis (>= 3.0.4)
+      redis (>= 3.0.6)
       redis-namespace (>= 1.3.1)
     simple_form (2.1.1)
       actionpack (~> 3.0)
@@ -337,7 +362,7 @@ GEM
     slim (2.0.2)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
-    slim-rails (2.0.3)
+    slim-rails (2.0.4)
       actionpack (>= 3.0, < 4.1)
       activesupport (>= 3.0, < 4.1)
       railties (>= 3.0, < 4.1)
@@ -367,26 +392,28 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    twitter (4.8.1)
-      faraday (~> 0.8, < 0.10)
-      multi_json (~> 1.0)
-      simple_oauth (~> 0.2)
+    twitter (5.3.0)
+      addressable (~> 2.3)
+      buftok (~> 0.2.0)
+      descendants_tracker (~> 0.0.1)
+      equalizer (~> 0.0.7, != 0.0.8)
+      faraday (>= 0.8, < 0.10)
+      http (~> 0.5.0)
+      http_parser.rb (~> 0.6.0)
+      json (~> 1.8)
+      memoizable (~> 0.3.1)
+      simple_oauth (~> 0.2.0)
     tzinfo (0.3.38)
-    uglifier (2.2.1)
+    uglifier (2.3.3)
       execjs (>= 0.3.0)
-      multi_json (~> 1.0, >= 1.0.2)
+      json (>= 1.8.0)
     unicorn (4.7.0)
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
     warden (1.2.3)
       rack (>= 1.0)
-    weibo_2 (0.1.1)
-      hashie (~> 1.2.0)
-      json (~> 1.7.3)
-      oauth2 (~> 0.8.0)
-      rest-client (~> 1.6.7)
-    whenever (0.8.4)
+    whenever (0.9.0)
       activesupport (>= 2.3.4)
       chronic (>= 0.6.3)
 
@@ -434,6 +461,7 @@ DEPENDENCIES
   mongoid_slug
   nested_form
   newrelic_rpm
+  omniauth-oauth2!
   omniauth-twitter
   omniauth-weibo-oauth2
   quiet_assets
@@ -454,5 +482,5 @@ DEPENDENCIES
   twitter
   uglifier
   unicorn
-  weibo_2
+  weibo_2!
   whenever
