@@ -4,7 +4,7 @@ html, body {
 }
 
 .feature {
-  @media screen and (min-width: $screen-sm-min + 1) {
+  @media screen and (min-width: $screen-md-min + 1) {
     height: 100%;
     overflow: hidden;
     position: relative;
@@ -13,10 +13,10 @@ html, body {
 
   > h1 {
     font-family: "orbitron-bold";
-    font-size: 2.8em;
-    margin: .25em 0 .3em 20px;
+    font-size: 2em;
+    margin: .25em 0 .25em 46px;
 
-    @media screen and (min-width: $screen-sm-min + 1) {
+    @media screen and (min-width: $screen-md-min + 1) {
       left: 30px;
       margin: 0;
       position: absolute;
@@ -34,11 +34,13 @@ html, body {
 
   .feature_name {
     color: $brand-info;
+    display: block;
     font-family: "orbitron-bold";
-    font-size: 2em;
+    font-size: 1.2em;
     margin-left: 20px;
+    margin-top: 5px;
 
-    @media screen and (min-width: $screen-sm-min + 1) {
+    @media screen and (min-width: $screen-md-min + 1) {
       margin: 0;
       position: absolute;
       right: 50px;
@@ -48,16 +50,17 @@ html, body {
 
   .feature_image {
 
-    @media screen and (max-width: $screen-sm-min) {
+    @media screen and (max-width: $screen-md-min) {
       display: block;
       height: 500px;
+      max-width: 100%;
       position: relative;
       overflow: hidden;
       width: 100%;
     }
 
     @media screen and (max-width: $screen-xs-min) {
-      height: 260px;
+      height: 200px;
     }
 
     img {
@@ -69,9 +72,9 @@ html, body {
   }
 
   .feature_comment {
-    margin: 1em 20px;
+    margin: 5px 20px 1em 20px;
 
-    @media screen and (min-width: $screen-sm-min + 1) {
+    @media screen and (min-width: $screen-md-min + 1) {
       bottom: 70px;
       position: absolute;
       right: 50px;
@@ -82,7 +85,7 @@ html, body {
       vertical-align: top;
       width: 48px;
 
-      @media screen and (min-width: $screen-sm-min + 1) {
+      @media screen and (min-width: $screen-md-min + 1) {
         height: 80px;
         vertical-align: middle;
         width: 80px;
@@ -111,9 +114,10 @@ html, body {
         top: 16px;
       }
 
-      @media screen and (min-width: $screen-sm-min + 1) {
+      @media screen and (min-width: $screen-md-min + 1) {
         margin-left: 1.5em;
         max-width: 20em;
+        padding: 1em;
       }
     }
   }
@@ -123,10 +127,14 @@ html, body {
     background-color: #fff;
     border: $border-default;
     margin: 0 auto 1em;
-    padding: 1.5em;
-    width: 85%;
+    padding: 15px;
 
-    @media screen and (min-width: $screen-sm-min + 1) {
+    @media screen and (max-width: $screen-md-min) {
+      margin-left: 9%;
+      margin-right: 9%;
+    }
+
+    @media screen and (min-width: $screen-md-min + 1) {
       border: none;
       left: 55px;
       margin: 0;
@@ -170,7 +178,7 @@ html, body {
             margin-bottom: 0;
           }
 
-          @media screen and (min-width: $screen-sm-min + 1) {
+          @media screen and (min-width: $screen-md-min + 1) {
             margin-bottom: 0;
             width: auto;
           }
@@ -183,7 +191,7 @@ html, body {
     }
   }
 
-  @media screen and (min-width: $screen-sm-min + 1) {
+  @media screen and (min-width: $screen-md-min + 1) {
     &.theme_light {
 
       .feature_name {
@@ -230,4 +238,82 @@ html, body {
       }
     }
   }
+}
+
+#home_index {
+  @include make-row;
+  @include site_margin;
+
+  @media screen and (min-width: $screen-md-min + 1) {
+    padding-top: 60px;
+  }
+
+  > section {@include make-md-column(8);}
+
+  > aside {
+    display: none;
+    @media (min-width: $screen-md-min) {display: block;}
+    @include make-md-column(4);
+  }
+}
+
+#home_things {
+  @include make-row;
+  li {
+    @include make-sm-column(6);
+    @include make-lg-column(4);
+    @include make-xl-column(3);
+    margin-bottom: 2em;
+  }
+}
+
+#home_reviews {
+  background: white;
+  padding: 1em;
+  @include border-radius(8px);
+
+  li {
+    padding: 1em 0;
+    color: $text-muted;
+
+    article {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      img {
+        @extend .img-circle;
+        vertical-align: -20px;
+      }
+
+      small {margin: 0 .5em;}
+    }
+
+    .media {
+      @include clearfix;
+      .media-heading {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
+    &:not(:last-child) {border-bottom: 1px dashed $gray-light;}
+  }
+}
+
+#home_filling {
+  margin: 2em 0;
+  text-align: center;
+  color: $text-muted;
+}
+
+#qr_entry {
+  @include responsive-wrapper;
+  text-align: center;
+  > a {
+    display: block;
+    margin: 1em 0;
+  }
+  .fa-comments {color: $green;}
 }
