@@ -304,8 +304,13 @@ ul.nav-pills {
 }
 
 .comments {
-  h4 {
-    color: $text-muted;
+  @include clearfix;
+
+  h4 {color: $text-muted;}
+  
+  .comment_form {
+    @include clearfix;
+    textarea {margin: 1em 0;}
   }
 
   ul {

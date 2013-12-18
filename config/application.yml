@@ -21,6 +21,8 @@ defaults: &defaults
     own: 1
   messages:
     length: 100
+  comments:
+    per_page: 25  
 
 staging:
   <<: *defaults
