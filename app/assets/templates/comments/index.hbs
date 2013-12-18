@@ -3,20 +3,26 @@
     <i class="fa fa-comments-o"></i>
     {{title}}
   </h4>
-  <ul></ul>
   <form id="create_comment" class="comment_form">
+    {{#unless signin}}
     <p class="login_tip">
       需要您
       <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#login-modal">登录</a>
       之后才可以进行回复
     </p>
+    {{/unless}}
     <div class="controls">
-      <textarea class="form-control" name="comment_content" rows="5" maxlength="300" required></textarea>
-      <p class="help-block">不超过300字</p>
+      <textarea class="form-control" name="comment_content" rows="5" maxlength="300" placeholder="不超过300字" required></textarea>
     </div>
-    <button type="submit" class="btn btn-default">
-      <i class="fa fa-comments-o"></i>
+    <button type="submit" class="btn btn-default pull-right">
+      <i class="icon-comment-alt"></i>
       发布
     </button>
   </form>
+  <ul></ul>
+  {{#if more}}
+  <button type="button" class="btn btn-info comments_more pull-right">
+    更早的{{title}}...
+  </button>
+  {{/if}}
 </div>
