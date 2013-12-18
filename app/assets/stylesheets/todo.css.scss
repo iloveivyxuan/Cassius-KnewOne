@@ -1,3 +1,12 @@
+@import "compass/css3";
+@import "compass/layout/stretching";
+
+@include font-face("orbitron-bold", font-files(
+                     "orbitron-bold.woff", woff,
+                     "orbitron-bold.ttf", truetype,
+                     "orbitron-bold.svg", svg),
+                   "orbitron-bold.eot");
+
 // Generate the extra large columns
 @mixin make-xl-column($columns, $gutter: $grid-gutter-width) {
   position: relative;
@@ -210,40 +219,6 @@
   }
 }
 
-ul, ol {
-  list-style: none;
-  margin: 0;
-  padding-left: 0;
-}
-
-video {
-  width: 100%    !important;
-  height: auto   !important;
-}
-
-a {
-  &:focus {outline: none;}
-  &:hover {text-decoration: none;}
-}
-
-a.btn-link {
-  &:hover {text-decoration: none;}
-}
-
-i {
-  margin-right: .5em;
-}
-
-legend {
-  color: $text-muted;
-  margin-bottom: 0 !important;
-  & + *:before { content: "."; display: block; height: 0; visibility: hidden; margin-bottom: 1em; }
-}
-
-input {
-  &:focus {outline: none !important;}
-}
-
 .btn-xs {
   text-shadow: none;
 }
@@ -278,10 +253,6 @@ ul.nav-pills {
   }
 }
 
-input[type="number"] {
-  max-width: 100px;
-}
-
 .fa-twitter {
   color: $blue;
 }
@@ -292,11 +263,6 @@ input[type="number"] {
 
 .spinning {
   text-align: center;
-}
-
-time {
-  color: $text-muted;
-  font-size: .8em;
 }
 
 .page-header {
@@ -625,4 +591,9 @@ label#check_provider_sync {
 
 img.lazy {
   visibility: hidden;
+}
+
+/* fucking baidu analystics */
+a[href^='http://tongji.baidu.com'] {
+  display: none;
 }
