@@ -1,6 +1,6 @@
 doctype html
-<!--[if IE 8]>    <html class="no-js ie8" lang="zh-CN"> <![endif] -->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN"> <!--<![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 class="<%= page_class %>"" lang="zh-CN"> <![endif] -->
+<!--[if gt IE 8]><!--> <html class="no-js class="<%= page_class %>"" lang="zh-CN"> <!--<![endif]-->
   head
     meta charset="utf-8"
     meta http-equiv="X-UA-Compatible" content="IE=edge"
@@ -15,7 +15,7 @@ doctype html
     = yield :stylesheet
     = javascript_include_tag "modernizr"
     = csrf_meta_tags
-  body
+  body class="#{page_class}"
     = render 'layouts/header'
     = content_for?(:content) ? yield(:content) : yield
     = render 'shared/go_top'
@@ -24,7 +24,7 @@ doctype html
     = javascript_include_tag "application"
     = yield :script
     = render 'layouts/olark'
-    - if Rails.env.production? || Rails.env.staging?
+    - if Rails.env.production?
       = render 'layouts/analystics'
       = render 'layouts/vglnk'
 </html>

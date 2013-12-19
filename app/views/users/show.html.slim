@@ -16,7 +16,7 @@ section.user_wrapper
       dd itemprop="address"
         address = user_location(@user)
       dd
-        blockquote= user_desciption(@user)
+        blockquote= @user.description
 
   section.user_content
     .widget

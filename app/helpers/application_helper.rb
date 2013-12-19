@@ -43,6 +43,10 @@ module ApplicationHelper
     raw [brand, content_for(:title)].reject(&:blank?).join('-')
   end
 
+  def page_class
+    [controller_name, "#{controller_name}_#{action_name}", content_for(:page_class)].reject(&:blank?).join(' ')
+  end
+
   def feed_link_tag
     feed_url = content_for?(:feed) ? content_for(:feed) : things_url(format: "atom")
     auto_discovery_link_tag :atom, feed_url

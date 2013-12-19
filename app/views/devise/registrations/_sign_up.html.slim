@@ -3,22 +3,22 @@
     .input-group
       span.input-group-addon
         i.fa.fa-user
-      input.form-control required="" placeholder="请输入您的昵称"
+      = f.text_field :name, placeholder: '请输入您的昵称', required: true, class: 'form-control'
   .form-group
     .input-group
       span.input-group-addon
         i.fa.fa-envelope
-      input.form-control type="email" required="" placeholder="请输入您的邮箱地址"
+      = f.email_field :email, placeholder: '请输入您的邮箱地址', required: true, class: 'form-control'
   .form-group
     .input-group
       span.input-group-addon
         i.fa.fa-key
-      input.form-control type="password" required="" placeholder="请输入您的密码"
+      = f.password_field :password, placeholder: '请输入您的密码', required: true, class: 'form-control'
   .form-group
     .form-action
       = f.button :submit, "注册", class: "btn btn-primary"
   .form-group
     .form-result
-      .alert.alert-dismissable.alert-danger
+      #alert_field.alert.alert-dismissable.alert-danger
         button.close data-dismiss="alert" aria-hidden="true" &times;
         | 用户名或密码错误，请重新输入。
