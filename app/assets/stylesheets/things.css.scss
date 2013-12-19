@@ -127,7 +127,7 @@
   }
 
   .actions {
-    .support, .share, .wechat, .supplier {
+    .share, .wechat, .supplier {
       i {color: $text-muted;}
     }
   }
@@ -393,56 +393,71 @@
   ul {margin: 1em 0;}
 }
 
+.cart_success {
+  color: $green;
+  i {color: $green;}
+}
+
 #new_cart_item {
-  .cart_success {
-    display: none;
-    color: $green;
-    i {color: $green;}
+  abbr {display: none;}
+
+  label {
+    display: inline-block;
+    color: $text-muted;
+    width: 10%;
+    margin-right: 5%;
+  }
+
+  select, input, .help-block {
+    display: inline-block;
+  }
+
+  .cart_item_kind_id {
+    select {width: 75%;}
   }
 
   .cart_item_quantity {
-    label {
-      display: inline-block;
-      margin-right: 1em;
-      color: $text-muted;
-      padding-top: .4em;
-      width: 2em;
-      abbr {display: none;}
+    input {
+      width: 20%;
     }
-
-    .controls {
-      display: inline-block;
-      input {width: 4em;}
+    .help-block {
+      display: none;
+      width: 55%;
+      text-align: right;
+      strong {color: $green;}
     }
   }
 
-  .cart_stock_prompt, .cart_estimated_prompt {
+  .cart_estimated_prompt, .cart_success {
     display: none;
+    margin-bottom: 1em;
+  }
+
+  .cart_estimated_prompt {
     color: $text-muted;
-    i {color: $red;}
-    time {font-size: 1em;}
-  }
-
-  button[type="submit"] {
-    width: 61%;
-  }
-
-  .kind {
-    margin: 1em 0;
-
-    .select_enabled, .select_disabled {
-      @include border-radius(5px);
-      display: inline-block;
-      padding: 0.5em;
-      min-width: 60%;
-      background-color: #eee;
-      color: $text-muted;
+    i {margin-left: .5em;}
+    time {
+      color: $green;
+      font-size: 1em;
+      margin-right: .5em;
     }
+  }
 
-    .select_enabled {
-      &:hover, &.selected {
-        background-color: #ddd;
+  .submit {
+    button[type="submit"] {
+      width: 55%;
+      i {
+        margin-right: 10%;
+        vertical-align: -1px;
       }
+    }
+    .support {
+      display: inline-block;
+      text-align: right;
+      color: $text-muted;
+      width: 35%;
+      vertical-align: -.2em;
+      i {font-size: 1.2em;}
     }
   }
 

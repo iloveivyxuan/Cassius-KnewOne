@@ -6,25 +6,27 @@
   | 收起购买信息
   i.fa.fa-chevron-up
 
-= simple_form_for CartItem.new(thing: tp.thing), remote: true, method: :post, wrapper: :horizontal do |f|
-  .cart_stock_prompt
-    i.fa.fa-smile-o
-    | 您最多可以购买<strong></strong>件
-  .cart_estimated_prompt
-     i.fa.fa-clock-o
-     | 此产品将在<time></time>后到货
-  .cart_success.hide
-    i.fa.fa-ok.fa-lg
-    | 已加入购物车
+= simple_form_for CartItem.new(thing: tp.thing), remote: true, method: :post do |f|
   = f.input :thing, as: :hidden, input_html: {value: tp.id}
-  = f.input :kind_id, as: :select, required: false do
+  = f.input :kind_id, as: :select, required: true do
     = select_tag "cart_item[kind_id]", tp.options_for_kinds,
     class: "select required form-control", prompt: "请选择型号"
-  = f.input :quantity, as: :integer, required: true, input_html: {min: 1, max: 100}
-  - if user_signed_in?
-    = button_tag type: "submit", class: "btn btn-success", disabled: true do
-      i.fa.fa-shopping-cart
-      | 加入购物车
-  - else
-    = link_to_with_icon "登录后开始购物", "fa fa-sign-in", "#", class: "btn btn-default cart_login",
-    data: {toggle: "modal", target: "#login-modal"}
+  = f.input :quantity, as: :integer, required: true,
+    input_html: {min: 1, max: 100}, hint: "您最多可以购买<strong></strong>件".html_safe
+  .cart_estimated_prompt
+     | 此产品将在
+     i.fa.fa-calendar.fa-lg
+     time
+     |后到货
+  .cart_success
+    i.fa.fa-check.fa-lg
+    | 已加入购物车
+  .submit
+    - if user_signed_in?
+      = button_tag type: "submit", class: "btn btn-success", disabled: true do
+        i.fa.fa-shopping-cart.fa-lg
+        | 加入购物车
+    - else
+      = link_to_with_icon "登录后开始购物", "fa fa-sign-in", "#", class: "btn btn-default cart_login",
+      data: {toggle: "modal", target: "#login-modal"}
+    = link_to_with_icon "在线帮助", "fa fa-question", '#olark_chat', class: "support"
