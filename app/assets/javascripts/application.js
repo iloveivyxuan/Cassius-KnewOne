@@ -8,6 +8,7 @@
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/load-image
 //= require picturefill
+//= require jquery.adaptive-backgrounds
 //= require jquery.lazyload
 //= require jquery.sortable
 //= require jquery.raty
