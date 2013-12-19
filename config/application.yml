@@ -22,7 +22,10 @@ defaults: &defaults
   messages:
     length: 100
   comments:
-    per_page: 25  
+    per_page: 25
+  tenpay:
+    pid: '1900000109'
+    key: '8934e7d15453e97507ef794cf7b0519d'
 
 staging:
   <<: *defaults
@@ -66,3 +69,6 @@ production:
     enable: true
     proxy: 'http://127.0.0.1:8087'
     cert_file: '/usr/local/goagent/local/CA.crt'
+  tenpay:
+    pid: '1217836601'
+    key: '7130fa61604c9926418dbe140ccaaf19'

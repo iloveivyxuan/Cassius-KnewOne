@@ -39,12 +39,6 @@ GIT
       omniauth (~> 1.0)
 
 GIT
-  remote: git://github.com/jasl/tenpay.git
-  revision: 2e536b8541f6b75d4b037642aca20f4a60d4f635
-  specs:
-    jasl_tenpay (1.0.1)
-
-GIT
   remote: git://github.com/ryanb/letter_opener.git
   revision: ce66e957ab9ee664e9fb1b310e6ce51c97697a2a
   branch: master
@@ -210,6 +204,7 @@ GEM
     i18n (0.6.9)
     intercom-rails (0.2.24)
       activesupport (> 3.0)
+    jasl_tenpay (1.0.2)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
@@ -468,7 +463,7 @@ DEPENDENCIES
   guard-spork
   handlebars_assets
   intercom-rails
-  jasl_tenpay!
+  jasl_tenpay
   jbuilder
   jquery-fileupload-rails
   jquery-rails

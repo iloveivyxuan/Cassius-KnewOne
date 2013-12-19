@@ -10,6 +10,9 @@ class HomeController < ApplicationController
   end
 
   def sandbox
+    @things = Thing.prior.page(params[:page]).per(24)
+    @reviews = Review.unscoped.desc(:created_at).limit(25)
+    render 'home/sandbox', layout: 'home'
   end
 
   def not_found

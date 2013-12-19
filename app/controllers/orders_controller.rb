@@ -38,9 +38,13 @@ class OrdersController < ApplicationController
     redirect_to generate_tenpay_url(@order)
   end
 
+  def tenpay_wechat
+    redirect_to generate_tenpay_url(@order, bank_type: 'WX')
+  end
+
   def tenpay_notify
     callback_params = params.except(*request.path_parameters.keys)
-    if JaslTenpay::Notify.verify?(callback_params)
+    if JaslTenpay::Notify.verify?(callback_params, verify_trade_state: true)
       @order.confirm_payment!(callback_params[:transaction_id], callback_params[:total_fee], :tenpay, callback_params)
       render text: 'success'
     else
@@ -52,7 +56,7 @@ class OrdersController < ApplicationController
   def tenpay_callback
     callback_params = params.except(*request.path_parameters.keys)
     # notify may reach earlier than callback
-    if JaslTenpay::Sign.verify?(callback_params)
+    if JaslTenpay::Sign.verify?(callback_params, verify_trade_state: true)
       @order.pay!(callback_params[:transaction_id], callback_params[:total_fee], :tenpay, callback_params)
     end
 
@@ -65,7 +69,7 @@ class OrdersController < ApplicationController
 
   def alipay_notify
     callback_params = params.except(*request.path_parameters.keys)
-    if Alipay::Sign.verify?(callback_params) && Alipay::Notify.verify?(callback_params)
+    if Alipay::Notify.verify?(callback_params)
       if %w(TRADE_SUCCESS TRADE_FINISHED).include?(callback_params[:trade_status])
         @order.confirm_payment!(callback_params[:trade_no], callback_params[:total_fee], :alipay, callback_params)
       elsif callback_params[:trade_status] == 'TRADE_CLOSED'
@@ -96,8 +100,8 @@ class OrdersController < ApplicationController
 
   def generate_tenpay_url(order, options = {})
     options = {
-        :subject => subject_text(order),
-        :body => "KnewOne购物订单号: #{order.order_no}",
+        :subject => "KnewOne购物订单: #{order.order_no}",
+        :body => body_text(order, 16),
         :total_fee => order.total_cents,
         :out_trade_no => order.order_no,
         :return_url => tenpay_callback_order_url(order),
@@ -110,8 +114,8 @@ class OrdersController < ApplicationController
   def generate_alipay_url(order, options = {})
     options = {
         :out_trade_no => order.order_no,
-        :subject => subject_text(order),
-        :body => "KnewOne购物订单号: #{order.order_no}",
+        :subject => "KnewOne购物订单: #{order.order_no}",
+        :body => body_text(order, 500),
         :payment_type => '1',
         :total_fee => order.total_price,
         :logistics_payment => 'SELLER_PAY',
@@ -122,8 +126,8 @@ class OrdersController < ApplicationController
     Alipay::Service.create_direct_pay_by_user_url(options)
   end
 
-  def subject_text(order)
-    'Knewone购物:'+(order.order_items.map { |i| "#{i.name}x#{i.quantity};" }.reduce &:+)[0..200]
+  def body_text(order, length = 16)
+    order.order_items.map { |i| "#{i.name}x#{i.quantity}, " }.reduce(&:+)[0..(length-1)]
   end
 
   def order_params

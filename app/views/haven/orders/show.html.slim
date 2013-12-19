@@ -12,7 +12,7 @@ section.simple_page_wrapper.widget.orders_wrapper
         span = @order.order_no
       li
         strong.field 用户：
-        span = link_to @order.user.nickname, @order.user, target: '_blank'
+        span = link_to @order.user.name, @order.user, target: '_blank'
       li
         strong.field 收货地址：
         span = address_text @order

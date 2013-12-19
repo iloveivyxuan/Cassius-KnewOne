@@ -5,15 +5,9 @@ module UsersHelper
   end
 
   def user_location(user)
-    return nil unless user.current_auth
-    location = user.current_auth.location
+    location = user.location
     return nil if location.blank?
     fa_icon("map-marker") + location
-  end
-
-  def user_desciption(user)
-    return nil unless user.current_auth
-    user.current_auth.description
   end
 
   def provider_sync
