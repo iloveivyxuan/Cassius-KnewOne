@@ -99,8 +99,7 @@ class User
     if auth
       auth.update_from_omniauth(data)
       if self.auto_update_from_oauth?
-        self.name = auth.name
-        self.nickname = auth.nickname
+        self.name = auth.name || auth.nickname
         self.location = auth.location
         self.description = auth.description
         self.remote_avatar_url = auth.parse_image(data)

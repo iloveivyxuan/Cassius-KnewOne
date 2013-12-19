@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
 class HomeController < ApplicationController
-  layout 'home', only: [:sandbox]
+  layout 'application'
 
   def index
     @things = Thing.prior.page(params[:page]).per(24)
     @reviews = Review.unscoped.desc(:created_at).limit(25)
+
+    if user_signed_in?
+      render 'home/index'
+    else
+      render file: 'home/landing', layout: 'home'
+    end
   end
 
   def qr_entry

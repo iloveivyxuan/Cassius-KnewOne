@@ -15,7 +15,7 @@ doctype html
     = yield :stylesheet
     = javascript_include_tag "modernizr"
     = csrf_meta_tags
-  body class="#{page_class}"
+  body
     = render 'layouts/header'
     = content_for?(:content) ? yield(:content) : yield
     = render 'shared/go_top'
