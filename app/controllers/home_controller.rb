@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 class HomeController < ApplicationController
+  layout 'home', only: [:sandbox]
+
   def index
     @things = Thing.prior.page(params[:page]).per(24)
     @reviews = Review.unscoped.desc(:created_at).limit(25)
@@ -12,7 +14,6 @@ class HomeController < ApplicationController
   def sandbox
     @things = Thing.prior.page(params[:page]).per(24)
     @reviews = Review.unscoped.desc(:created_at).limit(25)
-    render 'home/sandbox', layout: 'home'
   end
 
   def not_found
