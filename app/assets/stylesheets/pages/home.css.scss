@@ -243,17 +243,18 @@ html.home_landing {
       }
     }
   }
-}
 
-html.home_landing {
   #home_index {
+
     @media screen and (min-width: $screen-md-min + 1) {
       padding-top: 40px;
     }
   }
 }
 
-html.home_landing, html.home_index {
+html.home_landing,
+html.home_index {
+
   #home_index {
     @include make-row;
     @include site_margin;
