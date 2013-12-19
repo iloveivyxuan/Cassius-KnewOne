@@ -10,13 +10,14 @@ Making.CartItemNew = ->
     set_estimated = (estimated) ->
       $prompt = $('.cart_estimated_prompt').hide()
       if estimated
-        $prompt.find('time').replaceWith(estimated).end().fadeIn()
+        $prompt.find('time').replaceWith(estimated).end().show()
 
     set_stock = (max) ->
-      $stock_prompt = $('.cart_stock_prompt').hide()
+      $stock_prompt = $('.cart_item_quantity .help-block').hide()
       $quantity = $('#cart_item_quantity').attr('max', 100)
       if max > 0
-        $stock_prompt.find('strong').text(max).end().fadeIn()
+        $stock_prompt.find('strong').text(max).end()
+          .css('display', 'inline-block')
         $quantity.prop('max', max)
 
     set_photo = (photo) ->
@@ -27,7 +28,7 @@ Making.CartItemNew = ->
       $submit = $form.find('button[type="submit"]')
       set_price $option.data('price')
       set_estimated $option.data('estimated')
-      set_stock $option.data('stock'), $option.data('max')
+      set_stock $option.data('max')
       set_photo $option.data('photo')
       if $option.val()
         $submit.removeAttr('disabled')
@@ -46,18 +47,15 @@ Making.CartItemNew = ->
       $mobile_cart_up.hide()
 
 Making.CartItemCreate = (cart_items_count) ->
-  $form = $('#new_cart_item')
-  $prompt = $form.find('.cart_prompt')
-
-  $prompt.empty()
-  $form.find('.cart_success').clone().appendTo($prompt).fadeIn()
+  $success = $('#new_cart_item .cart_success').show()
 
   $('.nav_cart').popover(
-    content: $form.find('.cart_success').html()
+    content: $success[0].outerHTML
     trigger: 'manual'
     html: true
     placement: 'bottom'
   ).popover('show')
+
   setTimeout ->
     $('.nav_cart').popover('hide')
   , 2000
