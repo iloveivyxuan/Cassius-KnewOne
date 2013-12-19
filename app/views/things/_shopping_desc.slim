@@ -1,0 +1,11 @@
+.shopping_desc
+  = summary
+  = link_to "详情", "#", data: {toggle: "modal", target: "#shopping_modal"}
+  #shopping_modal.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close type="button" data-dismiss="modal"
+            | &times;
+          h4= title
+        .modal-body= details
