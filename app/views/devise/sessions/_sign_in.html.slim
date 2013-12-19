@@ -1,4 +1,4 @@
-= simple_form_for(:user, url: user_session_path) do |f|
+= simple_form_for(:user, url: user_session_path, remote: true) do |f|
   .form-group
     .input-group
       span.input-group-addon
@@ -19,6 +19,5 @@
       = link_to "忘记密码？", new_user_password_path, class: "btn btn-link"
   .form-group
     .form-result
-      #alert_field.alert.alert-dismissable.alert-danger
-        button.close data-dismiss="alert" aria-hidden="true" &times;
+      #sign_in_alert_field.alert_field.alert.alert-danger
         | 用户名或密码错误，请重新输入。

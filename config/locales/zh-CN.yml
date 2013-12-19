@@ -17,6 +17,10 @@ zh-CN:
       coupon: '优惠券'
       abatement_coupon: '足价即减优惠券'
     attributes:
+      user:
+        email: '邮箱'
+        password: '密码'
+        name: '昵称'
       post:
         title: '标题'
         author: '作者'

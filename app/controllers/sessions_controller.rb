@@ -10,12 +10,21 @@ class SessionsController < Devise::SessionsController
   def create
     self.resource = warden.authenticate(auth_options)
 
-    return redirect_to new_user_session_path, flash: {error: true} if self.resource.nil?
+    respond_to do |format|
+      if @error = self.resource.nil?
+        format.html { redirect_to new_user_session_path, flash: {error: true} }
+        format.js
+      else
+        set_flash_message(:notice, :signed_in) if is_flashing_format?
+        sign_in(resource_name, resource)
+        yield resource if block_given?
 
-    set_flash_message(:notice, :signed_in) if is_flashing_format?
-    sign_in(resource_name, resource)
-    yield resource if block_given?
-    respond_with resource, :location => after_sign_in_path_for(resource)
+        format.html { redirect_to after_sign_in_path_for(resource) }
+        format.js do
+          @location = after_sign_in_path_for(resource)
+        end
+      end
+    end
   end
 
   private
