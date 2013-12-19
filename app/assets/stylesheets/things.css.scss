@@ -126,6 +126,8 @@
     .mobile_cart_slideup, .mobile_cart_slidedown {display: none;}
   }
 
+  .shopping_desc {color: $text-muted;}
+
   .actions {
     .share, .wechat, .supplier {
       i {color: $text-muted;}
@@ -133,7 +135,6 @@
   }
 
   @media screen and (min-width: 1024px) {
-
     .shop {
       > *:not(:last-child) {margin-bottom: 1em;}
 

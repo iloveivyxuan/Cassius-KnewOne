@@ -43,6 +43,13 @@ class ThingPresenter < PostPresenter
     end
   end
 
+  def shopping_desc
+    return if thing.shopping_desc.blank?
+    summary = strip_tags(thing.shopping_desc).truncate(48).html_safe
+    render partial: 'things/shopping_desc',
+    locals: {title: title, summary: summary, details: thing.shopping_desc.html_safe}
+  end
+
   def concept
     link_to_with_icon "研发中", "fa fa-wrench fa-lg", "#",
                       title: "概念产品", class: "btn btn-default disabled popover-toggle",

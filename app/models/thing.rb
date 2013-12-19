@@ -6,13 +6,12 @@ class Thing < Post
   slug :title, history: true
   field :subtitle, type: String, default: ""
   field :official_site, type: String, default: ""
-  field :description, type: String, default: ""
   field :photo_ids, type: Array, default: []
-  validates :description, length: { maximum: 2048 }
 
   field :shop, type: String, default: ""
   field :price, type: Float
   field :price_unit, type: String, default: "¥"
+  field :shopping_desc, type: String, default: ""
   CURRENCY_LIST = %w{¥ $ € £}
 
   field :priority, type: Integer, default: 0
