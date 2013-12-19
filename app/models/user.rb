@@ -7,11 +7,9 @@ class User
 
   field :name, type: String, :default => ''
   field :site, type: String, :default => ''
-  field :nickname, type: String, :default => ''
   field :description, type: String, :default => ''
   field :location, type: String, :default => ''
   field :karma, type: Integer, default: 0
-
   field :auto_update_from_oauth, type: Boolean, default: true
   field :status, type: Symbol, default: :normal
   STATUS = {blocked: '锁定', normal: '正常'}
@@ -75,8 +73,7 @@ class User
       create do |user|
         auth = Auth.from_omniauth(data)
         user.auths << auth
-        user.name = auth.name
-        user.nickname = auth.nickname
+        user.name = auth.name || auth.nickname
         user.location = auth.location
         user.description = auth.description
         user.remote_avatar_url = auth.parse_image(data)

@@ -20,6 +20,6 @@ olark.identify('8519-382-10-4320');/*]]>*/</script><noscript><a href="https://ww
 <!-- end olark code -->
 <%- if user_signed_in? %>
   <script>
-    window.Making.OlarkSetUser('<%= current_user.nickname %>', '<%= current_user.email %>', '<%= current_user.id%>');
+    window.Making.OlarkSetUser('<%= current_user.name %>', '<%= current_user.email %>', '<%= current_user.id%>');
   </script>
 <% end -%>

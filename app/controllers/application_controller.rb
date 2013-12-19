@@ -43,8 +43,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up).concat [:location, :name, :nickname, :description]
-    devise_parameter_sanitizer.for(:account_update).concat [:location, :name, :nickname, :description]
+    devise_parameter_sanitizer.for(:sign_up).concat [:location, :name, :description]
+    devise_parameter_sanitizer.for(:account_update).concat [:location, :name, :description]
   end
 
   def not_found
