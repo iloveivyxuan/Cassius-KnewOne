@@ -1,5 +1,4 @@
 body {
-  padding-bottom: $navbar-margin-bottom + $font-size-base;
 
   > header {
     margin-bottom: $navbar-height + $navbar-margin-bottom + $font-size-base;
@@ -31,6 +30,29 @@ body {
         }
       }
     }
+  }
+
+
+  &:after {
+    display: none;
+
+    @media screen and (max-width: $screen-xs-max) {
+      content: 'screen-xs';
+    }
+
+    @media screen and (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+      content: 'screen-sm';
+    }
+    @media screen and (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+      content: 'screen-md';
+    }
+    @media screen and (min-width: $screen-lg-min) and (max-width: $screen-lg-max) {
+      content: 'screen-lg';
+    }
+    @media screen and (min-width: $screen-xl-min) {
+      content: 'screen-xl';
+    }
+
   }
 }
 
