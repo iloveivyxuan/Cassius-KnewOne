@@ -39,7 +39,7 @@ class ThingPresenter < PostPresenter
     if p.to_i > 0
       p_text = price_format p, thing.price_unit
       p_text << " 起" if kinds_price.size > 1
-      content_tag :small, p_text
+      content_tag :span, p_text
     end
   end
 

@@ -1,0 +1,74 @@
+/*
+Syntax error: Undefined variable: "$text-muted".
+        on line 33 of /Users/lilu/making/app/assets/stylesheets/orders.css.scss
+
+28:     line-height: 32px;
+29:   }
+30: 
+31:   .total_price {
+32:     text-align: right;
+33:     color: $text-muted;
+34:     strong {
+35:       margin-left: 1em;
+36:       font-size: 1.25em;
+37:       color: $red;
+38:     }
+
+Backtrace:
+/Users/lilu/making/app/assets/stylesheets/orders.css.scss:33
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/script/variable.rb:49:in `_perform'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/script/node.rb:40:in `perform'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/perform.rb:298:in `visit_prop'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/base.rb:53:in `map'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/perform.rb:121:in `with_environment'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/perform.rb:108:in `visit_children'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/perform.rb:320:in `visit_rule'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/base.rb:53:in `map'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/perform.rb:121:in `with_environment'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/perform.rb:108:in `visit_children'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/perform.rb:320:in `visit_rule'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/base.rb:53:in `map'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/perform.rb:121:in `with_environment'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/perform.rb:108:in `visit_children'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/perform.rb:128:in `visit_root'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/visitors/perform.rb:7:in `visit'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/tree/root_node.rb:20:in `render'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/engine.rb:315:in `_render'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/engine.rb:262:in `render'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/plugin/compiler.rb:362:in `update_stylesheet'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/plugin/compiler.rb:203:in `block in update_stylesheets'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/plugin/compiler.rb:201:in `each'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/plugin/compiler.rb:201:in `update_stylesheets'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/plugin.rb:81:in `update_stylesheets'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/exec.rb:443:in `watch_or_update'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/exec.rb:326:in `process_result'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/exec.rb:41:in `parse'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/lib/sass/exec.rb:21:in `parse!'
+/Users/lilu/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.2.12/bin/sass:9:in `<top (required)>'
+/Users/lilu/.rbenv/versions/2.0.0-p353/bin/sass:23:in `load'
+/Users/lilu/.rbenv/versions/2.0.0-p353/bin/sass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Undefined variable: \"$text-muted\".\A         on line 33 of /Users/lilu/making/app/assets/stylesheets/orders.css.scss\A \A 28:     line-height: 32px;\A 29:   }\A 30: \A 31:   .total_price {\A 32:     text-align: right;\A 33:     color: $text-muted;\A 34:     strong {\A 35:       margin-left: 1em;\A 36:       font-size: 1.25em;\A 37:       color: $red;\A 38:     }"; }

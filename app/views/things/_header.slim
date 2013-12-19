@@ -5,35 +5,27 @@ hgroup
   h2= tp.subtitle
 
 nav
-  / .operations
-  /   = tp.official_site
-  /   = link_to_with_icon "", "fa fa-rss", thing_url(tp.thing, format: "atom")
-  /   - if can? :update, tp.thing
-  /     = link_to_with_icon "", "fa fa-edit", edit_thing_path(tp.thing), title: "编辑"
-  /   - if can?(:destroy, tp.thing)
-  /     = link_to_with_icon "", "fa fa-trash", tp.thing, method: :delete,
-  /     data: {confirm: "您确认要删除吗?"}, title: "删除"
-  /   - if can? :pro_edit, tp.thing
-  /     = link_to_with_icon "", "fa fa-cogs", pro_edit_thing_path(tp.thing), title: "管理"
-  /   - if can? :manage, :all
-  /     = link_to_with_icon "", "fa fa-gift", new_lottery_path(thing: tp.thing), title: "发奖"
   ul.nav.nav-pills
     = nav_tab :thing do
-      = link_to_with_icon "产品", "fa fa-magic", tp.thing
+      = link_to "#" do
+        i.fa.fa-magic
+        span.sub 产品
     = nav_tab :info do
-      = link_to_with_icon "详情", "fa fa-book", "#"
+      = link_to "#" do
+        i.fa.fa-book
+        span.sub 介绍
     = nav_tab :group do
       = link_to '#' do
         i.fa.fa-group
-        | 社区
+        span.sub 社区
         span.badge= tp.reviews_count
     = nav_tab :comments do
       = link_to comments_thing_path(tp.thing) do
         i.fa.fa-comments
-        | 留言
+        span.sub 留言
         span.badge= tp.comments_count
     = nav_tab :stories do
       = link_to thing_stories_path(tp.thing) do
         i.fa.fa-clock-o
-        | 时间线
+        span.sub 时间线
         span.badge 10
