@@ -17,6 +17,6 @@
   .form-group
     .form-action
       = f.button :submit, "注册", class: "btn btn-primary"
-  .form-group
+  .form-group.hidden#sign_up_alert_field
     .form-result
-      #sign_up_alert_field.alert_field.alert.alert-danger
+      .alert.alert-danger

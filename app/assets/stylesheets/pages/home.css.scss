@@ -80,7 +80,8 @@ html.home_landing {
       margin: 5px 20px 1em 20px;
 
       @media screen and (min-width: $screen-md-min + 1) {
-        bottom: 70px;
+        bottom: 50px;
+        margin: 0;
         position: absolute;
         right: 50px;
       }
@@ -99,7 +100,6 @@ html.home_landing {
 
       p {
         @include border-radius(5px);
-        background-color: #fff;
         display: inline-block;
         margin-bottom: 0;
         margin-left: 20px;
@@ -110,7 +110,6 @@ html.home_landing {
 
         &:before {
           border-color: transparent;
-          border-right-color: #fff;
           border-style: solid;
           border-width: 8px;
           content: '';
@@ -129,8 +128,8 @@ html.home_landing {
 
     .entry {
       @include border-radius(8px);
-      background-color: #fff;
-      border: $border-default;
+      border-style: solid;
+      border-width: 1px;
       margin: 0 auto 1em;
       padding: 15px;
 
@@ -140,8 +139,7 @@ html.home_landing {
       }
 
       @media screen and (min-width: $screen-md-min + 1) {
-        border: none;
-        left: 55px;
+        left: 50px;
         margin: 0;
         position: absolute;
         top: 200px;
@@ -153,6 +151,10 @@ html.home_landing {
 
         .fa {
           margin-right: .85em;
+
+          &:hover {
+            color: #049cdb !important;
+          }
         }
 
         .fa-envelope {
@@ -167,8 +169,16 @@ html.home_landing {
         .tab-content {
           padding-top: 1em;
 
-          .form-group:last-child {
-            margin-bottom: 0;
+          .form-group {
+
+            &:nth-last-child(2) {
+              margin-bottom: 0;
+            }
+
+            &:last-child {
+              margin-bottom: 0;
+              margin-top: 15px;
+            }
           }
 
           .fa {
@@ -197,7 +207,7 @@ html.home_landing {
     }
 
     @media screen and (min-width: $screen-md-min + 1) {
-      &.theme_light {
+      &.theme_dark {
 
         .feature_name {
           color: #ddd;
@@ -206,20 +216,78 @@ html.home_landing {
         .feature_comment {
 
           p {
-            background-color: rgba(#ebeced, 0.9);
+            background-color: rgba(#1e1e1e, 0.7);
+            border-color: #181818;
+            box-shadow: 0 0 30px #191919;
+            color: #bbb;
 
             &:before {
-              border-right-color: rgba(#ebeced, 0.9);
+              border-right-color: rgba(#1e1e1e, 0.7);
             }
           }
         }
 
         .entry {
-          background-color: rgba(#ebeced, 0.9);
+          background-color: rgba(#1e1e1e, 0.7);
+          border-color: #181818;
+          box-shadow: 0 0 30px #191919;
+
+          .oauth {
+
+            .fa {
+              color: #404b53;
+            }
+          }
+
+          .nav-pills-list {
+
+            > li {
+
+              > a {
+                color: darken(#ddd, 50%);
+                word-spacing: 1em;
+
+                &:hover,
+                &:focus {
+                  background-color: transparent;
+                  color: #ddd;
+                }
+              }
+
+              &.active {
+                border-bottom-color: #049cdb;
+
+                > a {
+                  color: #ddd;
+
+                  &:hover,
+                  &:focus {
+                    background-color: transparent;
+                  }
+                }
+              }
+            }
+          }
+
+          .input-group-addon {
+            background-color: #333;
+            border-color: #333;
+            color: #ddd;
+          }
+
+          .alert {
+            background-color: #404b53;
+            border-color: #181818;
+            color: #ddd;
+          }
+
+          #classic_form {
+            color: #bbb;
+          }
         }
       }
 
-      &.theme_dark {
+      &.theme_light {
 
         .feature_name {
           color: #333;
@@ -228,18 +296,59 @@ html.home_landing {
         .feature_comment {
 
           p {
-            background-color: rgba(#feffff, 0.6);
+            background-color: rgba(#feffff, 0.5);
             box-shadow: 8px 8px 30px #ddd;
 
             &:before {
-              border-right-color: rgba(#feffff, 0.6);
+              border-right-color: rgba(#feffff, 0.5);
             }
           }
         }
 
         .entry {
-          background-color: rgba(#feffff, 0.6);
+          background-color: rgba(#feffff, 0.5);
+          border-color: #ddd;
           box-shadow: 0 0 30px #ddd;
+
+          .oauth {
+
+            .fa {
+              color: darken(#ddd, 50%);
+            }
+          }
+
+          .nav-pills-list {
+
+            > li {
+
+              > a {
+                word-spacing: 1em;
+
+                &:hover,
+                &:focus {
+                  background-color: transparent;
+                  color: #333;
+                }
+              }
+
+              &.active {
+
+                > a {
+
+                  &:hover,
+                  &:focus {
+                    background-color: transparent;
+                  }
+                }
+              }
+            }
+          }
+
+          .alert {
+            background-color: #fff;
+            border-color: #ccc;
+            color: #555;
+          }
         }
       }
     }
@@ -250,10 +359,6 @@ html.home_landing {
     @media screen and (min-width: $screen-md-min + 1) {
       padding-top: 40px;
     }
-  }
-
-  .alert_field {
-    display: none;
   }
 }
 

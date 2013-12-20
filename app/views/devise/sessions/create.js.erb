@@ -1,5 +1,5 @@
 <%- if @error %>
-  $('#sign_in_alert_field').fadeIn();
+  $('#sign_in_alert_field').removeClass('hidden');
 <% else %>
   window.location.href = '<%= @location %>';
 <% end -%>

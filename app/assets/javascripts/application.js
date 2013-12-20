@@ -17,6 +17,7 @@
 //= require jquery.cookie
 //= require jquery.fitvids
 //= require jquery.qrcode
+//= require jquery.autocomplete
 //= require bootstrap-wysiwyg
 //= require sisyphus
 //= require bootstrap-datepicker

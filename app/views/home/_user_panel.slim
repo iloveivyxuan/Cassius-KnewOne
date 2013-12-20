@@ -7,11 +7,11 @@ section.entry
     = link_to 'javascript:;', id: 'show_classic_form' do
       i.fa.fa-envelope.fa-3x
   #classic_form
-    ul.nav.nav-tabs.nav-justified
+    ul.nav.nav-pills.nav-pills-list.nav-justified
       li.active
-        = link_to '登录', '#email_sign_in_tab', data: {toggle: 'tab'}
+        = link_to '登 录', '#email_sign_in_tab', data: {toggle: 'tab'}
       li
-        = link_to '注册', '#email_sign_up_tab', data: {toggle: 'tab'}
+        = link_to '注 册', '#email_sign_up_tab', data: {toggle: 'tab'}
     .tab-content
       #email_sign_in_tab.tab-pane.active
         = render 'devise/sessions/sign_in'

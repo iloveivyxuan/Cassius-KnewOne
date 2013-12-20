@@ -39,6 +39,7 @@ Making::Application.routes.draw do
       post 'share'
       patch 'bind'
       get 'binding'
+      get 'fuzzy'
     end
   end
 
@@ -75,6 +76,7 @@ Making::Application.routes.draw do
   end
 
   resources :things do
+    resources :thing_fans, path: 'fans', only: [:index, :create, :destroy]
     collection do
       get 'admin'
       get 'resort'

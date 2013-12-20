@@ -1,0 +1,40 @@
+.general_wrapper
+  h2
+    i.fa.fa-money
+    | 粉（tu）丝（hao）列表
+
+  = form_tag thing_thing_fans_path(@thing), role: "form"
+    .form-group
+        .col-xs-9.col-sm-4
+          = hidden_field_tag :user_id
+          input#user_autocomplete.form-control placeholder="用户昵称"
+          #user_autocomplete_tip.strong.help-block
+        = submit_tag '添加', class: 'btn btn-primary'
+
+  table.table
+    tr
+      th 用户
+      th ID
+      th 操作
+    - @fans.each do |f|
+      tr
+        td = link_to f.name, f, target: '_blank'
+        td = f.id.to_s
+        td = link_to '删除', thing_thing_fan_path(@thing, f.id.to_s), method: :delete
+
+  - content_for :script do
+    javascript:
+      $('#user_autocomplete').autocomplete({
+          serviceUrl: '/users/fuzzy.json',
+          paramName: 'keyword',
+          lookupFilter: function(suggestion, originalQuery, queryLowerCase) {
+            var re = new RegExp('\\b' + $.Autocomplete.utils.escapeRegExChars(queryLowerCase), 'gi');
+            return re.test(suggestion.value);
+          },
+          onSelect: function(suggestion) {
+            $('#user_id').val(suggestion.data);
+          },
+          onInvalidateSelection: function() {
+            $('#user_autocomplete_tip').html('无此用户');
+          }
+      });
