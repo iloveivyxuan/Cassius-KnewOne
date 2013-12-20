@@ -1,0 +1,8 @@
+= content_tag :div, class: "btn-group#{dropup ? ' dropup' : ''}"
+  = link_to '支付宝支付', alipay_order_path(order), class: css
+  = button_tag class: "#{css} dropdown-toggle", data: {toggle: 'dropdown'} do
+    span.caret
+    span.sr-only 更多支付方式
+  ul.dropdown-menu role="menu"
+    li = link_to '微信支付', tenpay_wechat_order_path(order)
+    li = link_to '财付通支付', tenpay_order_path(order)
