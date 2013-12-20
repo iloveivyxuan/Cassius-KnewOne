@@ -123,7 +123,7 @@
 
   @media screen and (min-width: $screen-sm-min) {
     .indicators {
-      li {margin: 1em .5em 0;}
+      li {margin: 1em .49em 0;}
     }
   }
 
@@ -141,6 +141,10 @@
         }
       }
       &:hover .carousel-control {display: block;}
+    }
+
+    .indicators {
+      li {margin: 1em .92em 0;}
     }
   }
 }
@@ -207,7 +211,10 @@
   }
 
   .cart_item_quantity {
-    input {width: 4em;}
+    input {
+      min-width: 4em;
+      width: 4em;
+    }
     .help-block {
       display: none;
       strong {color: $green;}
