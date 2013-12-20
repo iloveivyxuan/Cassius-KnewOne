@@ -1,17 +1,18 @@
 # encoding: utf-8
 module OrdersHelper
-  def pay_link(order, css = 'btn btn-success')
+  def pay_link(order, drop_up = true, css = 'btn btn-success')
     if order.can_pay?
-      #link_to '立即支付', '#pay-modal', class: css, data: {toggle: 'modal'}, role: 'button'
-      link_to '立即支付', alipay_order_path(order), class: css
+      render partial: 'orders/pay', locals: {order: order, css: css, dropup: drop_up}
     end
   end
 
   def cancel_link(order, css = 'btn btn-default')
     if order.can_cancel?
-      link_to '取消订单', cancel_order_path(order),
-              data: {confirm: '真的要取消这个订单么？'},
-              method: :patch, class: css
+      content_tag :div, class: 'btn-group' do
+        link_to '取消订单', cancel_order_path(order),
+                data: {confirm: '真的要取消这个订单么？'},
+                method: :patch, class: css
+      end
     end
   end
 
@@ -23,31 +24,39 @@ module OrdersHelper
 
   def close_link(order, css = 'btn btn-danger')
     if order.can_close?
-      link_to '关闭订单', close_haven_order_path(order),
-              data: {confirm: '确认关闭？'},
-              method: :patch, class: css
+      content_tag :div, class: 'btn-group' do
+        link_to '关闭订单', close_haven_order_path(order),
+                data: {confirm: '确认关闭？'},
+                method: :patch, class: css
+      end
     end
   end
 
   def refund_link(order, css = 'btn btn-danger')
     if order.can_refund?
-      link_to '已退款', refund_haven_order_path(order),
-              data: {confirm: '确认退款？'},
-              method: :patch, class: css
+      content_tag :div, class: 'btn-group' do
+        link_to '已退款', refund_haven_order_path(order),
+                data: {confirm: '确认退款？'},
+                method: :patch, class: css
+      end
     end
   end
 
   def way_bill_link(order, css = 'btn')
-    if order.waybill.url.nil?
-      link_to '生成运单', generate_waybill_haven_order_path(order), class: css
-    else
-      link_to '下载运单', order.waybill.url, class: css, target: '_blank'
+    content_tag :div, class: 'btn-group' do
+      if order.waybill.url.nil?
+        link_to '生成运单', generate_waybill_haven_order_path(order), class: css
+      else
+        link_to '下载运单', order.waybill.url, class: css, target: '_blank'
+      end
     end
   end
 
   def return_link(order, css = 'btn btn-success')
     unless order.pending?
-      link_to '返回首页', root_path, class: css
+      content_tag :div, class: 'btn-group' do
+        link_to '返回首页', root_path, class: css
+      end
     end
   end
 

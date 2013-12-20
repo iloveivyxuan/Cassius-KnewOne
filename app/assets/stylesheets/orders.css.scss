@@ -8,9 +8,16 @@
     }
   }
 
+  .dropdown-menu {
+    li {
+      text-align: left;
+    }
+    min-width: 120px !important;
+  }
+
   .order_actions {
-    .btn {
-      margin: 5px;
+    .btn-group {
+      margin-right: 10px;
     }
   }
 
@@ -217,6 +224,10 @@
 
       aside {
         float: right;
+
+        .btn-group {
+          @include clearfix;
+        }
 
         @media screen and (min-width: 900px) {
           > * {
