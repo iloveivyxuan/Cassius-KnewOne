@@ -2,13 +2,25 @@
   @include section-decorate;
   @include make-row;
   padding: 1em 1.5em;
-  margin: 0 $site-margin;
+  margin: 0 $site-margin 2em;
 
   #thing_header {
     margin-bottom: 1em;
     border-bottom: $border-default;
+  }
 
-    @media screen and (min-width: $screen-sm-min) {
+  #thing_content, #thing_actions {
+    > * {
+      padding-bottom: 2em;
+      border-bottom: $border-default;
+      margin-bottom: 2em;
+    }
+
+    > *:last-child {border: none;}
+  }
+
+  @media screen and (min-width: $screen-sm-min) {
+    #thing_header {
       margin-bottom: 2em;
     }
   }
@@ -24,14 +36,6 @@
     #thing_actions {
       @include make-md-column(4, $gutter: 4em);
       @include make-md-column-push(8);
-    }
-
-    #thing_content, #thing_actions {
-      > *:not(:last-child) {
-        padding-bottom: 2em;
-        border-bottom: $border-default;
-        margin-bottom: 2em;
-      }
     }
   }
 
@@ -71,12 +75,11 @@
       li {border-bottom: 1px solid #fff;}
       i {margin: 0;}
       .sub {display: none;}
-      .badge {display: none;}
 
       .active {
         border-bottom: $border-default-active;
         a {
-          color: $text-color;
+          color: $text-color; 
           background: transparent;
         }
       }
@@ -86,7 +89,6 @@
       .nav {
         i {margin-right: .5em;}
         .sub {display: inline;}
-        .badge {display: inline;}
       }
     }
   }
@@ -113,7 +115,7 @@
       cursor: pointer;
     }
   }
-  
+
   @media screen and (max-width: $screen-xs-max) {
     .indicators {
       li {margin: 1em 4px 0;}
@@ -168,7 +170,7 @@
         margin-top: -.5em;
       }
     }
-    
+
     @media screen and (min-width: $screen-sm-min) {
       .price {span {font-size: 1.2em;}}
     }
@@ -444,7 +446,7 @@
     }
 
     article {
-      @media screen and (min-width: 768px) {
+      @media screen and (min-width: $screen-sm-min) {
         .author, .score {display: inline;}
       }
 

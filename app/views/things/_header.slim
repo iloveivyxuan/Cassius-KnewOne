@@ -17,15 +17,16 @@ nav
     = nav_tab :group do
       = link_to '#' do
         i.fa.fa-group
-        span.sub 社区
+        span.sub 评测
         span.badge= tp.reviews_count
     = nav_tab :comments do
       = link_to comments_thing_path(tp.thing) do
         i.fa.fa-comments
         span.sub 留言
         span.badge= tp.comments_count
-    = nav_tab :stories do
-      = link_to thing_stories_path(tp.thing) do
-        i.fa.fa-clock-o
-        span.sub 时间线
-        span.badge 10
+    - if tp.thing.stories.present?
+      = nav_tab :stories do
+        = link_to thing_stories_path(tp.thing) do
+          i.fa.fa-clock-o
+          span.sub 时间线
+          span.badge= tp.thing.stories.count
