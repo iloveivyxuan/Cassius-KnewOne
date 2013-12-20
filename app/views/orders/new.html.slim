@@ -9,8 +9,9 @@ section.simple_page_wrapper.widget.orders_wrapper
       ul.order_items = render partial: 'orders/order_item', collection: @order.order_items
       ul = render partial: 'orders/rebate', collection: @order.rebates if @order.rebates.any?
       = render partial: 'address_select', locals: {f: f}
-      = f.input :deliver_by, as: :radio_buttons do
-        ul.deliver_by_list.option_list = render partial: 'deliver_methods', locals: {f: f}
+      - if @order.address
+        = f.input :deliver_by, as: :radio_buttons do
+          ul.deliver_by_list.option_list = render partial: 'deliver_methods', locals: {f: f}
       = f.input :note
       = render partial: 'coupon_select', locals: {f: f}
       = render partial: 'invoice_select', locals: {f: f}

@@ -19,10 +19,8 @@ class OrdersController < ApplicationController
   end
 
   def create
-    # coupon = params[:order].delete :coupon
     @order = Order.build_order(current_user, order_params)
     if @order.save!
-      # @order.use_coupon!(coupon) if coupon.present?
       redirect_to @order, flash: {provider_sync: params[:provider_sync]}
     else
       render 'new'
