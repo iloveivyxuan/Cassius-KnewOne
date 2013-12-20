@@ -33,4 +33,17 @@ class UsersController < ApplicationController
   def binding
 
   end
+
+  def fuzzy
+    @users = User.find_by_name(params[:keyword])
+    respond_to do |format|
+      format.html do
+        @users = @users.page(params[:page])
+        render 'index'
+      end
+      format.json do
+        @users = @users.limit(10)
+      end
+    end
+  end
 end

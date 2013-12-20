@@ -3,6 +3,8 @@ class Thing < Post
   include Mongoid::Slug
   include Mongoid::MultiParameterAttributes
 
+  has_and_belongs_to_many :local_tyrants, class_name: 'User'
+
   slug :title, history: true
   field :subtitle, type: String, default: ""
   field :official_site, type: String, default: ""
