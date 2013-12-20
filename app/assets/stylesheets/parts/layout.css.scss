@@ -1,4 +1,5 @@
 body {
+    padding-bottom: $navbar-margin-bottom + $font-size-base;
 
   > header {
     margin-bottom: $navbar-height + $navbar-margin-bottom + $font-size-base;
@@ -93,11 +94,11 @@ body {
       @media screen and (min-width: $screen-sm-min) {
         margin-bottom: 7px;
         margin-top: 7px;
-        width: 20%;
+        width: 16%;
       }
 
       @media screen and (min-width: $screen-md-min) {
-        width: 17%;
+        width: 13%;
       }
 
       .form-group {
@@ -129,12 +130,12 @@ body {
       @include clearfix;
 
       .nav_user_avatar {
-        margin-right: 1em;
+        margin-right: 10px;
       }
 
       .nav_user_action {
         float: left;
-        margin: 10px 8px;
+        margin: 10px 5px;
 
         @media screen and (min-width: $screen-sm-min) {
           float: right;

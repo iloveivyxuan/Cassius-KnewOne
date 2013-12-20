@@ -4,7 +4,7 @@ defaults: &defaults
     username: "leslielilu"
     password: "g4l4pg2sh13sm"
     photo_bucket: "making-photos"
-    photo_bucket_domain: "making-photos.b0.upaiyun.com"
+    photo_bucket_domain: "image.knewone.com"
     form_secret: "ogvh4ldum4Qklv6h0DZufU31uMs="
   weibo:
     consumer_key: ""

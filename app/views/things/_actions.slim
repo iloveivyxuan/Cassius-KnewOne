@@ -1,6 +1,7 @@
 .shop
   .price = tp.price
-  = tp.shopping_desc
+  - if user_signed_in?
+    = tp.shopping_desc
   .buy= tp.buy
 / .actions
 /   .fanciers
