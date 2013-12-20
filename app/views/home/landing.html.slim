@@ -14,7 +14,9 @@
   .feature_comment
     = link_to
       = image_tag 'http://making-photos.b0.upaiyun.com/users/adfa75fe739224e1bb0f60e62ba30e47.jpg!small', class: 'img-circle'
-    p 人工智能和机器人进入了我们每个人的生活！
+    blockquote.text-right
+      p 人工智能和机器人进入了我们每个人的生活！
+      small SynZhang
   = render 'home/user_panel'
 
 section#home_index
@@ -49,7 +51,7 @@ section#home_index
   javascript:
     Making.InfiniteScroll("#home_index > section", "#home_things > li");
     $(window).on('load', function() {
-      if (Making.screenLevel[Making.screen] >= 3) {
+      if (Making.ScreenLevel[Making.Screen] >= 3) {
         $.adaptiveBackground.run({
           selector: 'html.home_landing .feature_image img',
           parent: 'html.home_landing .feature'

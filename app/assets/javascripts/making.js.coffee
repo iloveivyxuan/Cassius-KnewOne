@@ -4,8 +4,8 @@ window.Making =
   Views: {}
   Routers: {}
 
-  screen: ''
-  screenLevel: {
+  Screen: ''
+  ScreenLevel: {
     'screen-xs': 1
     'screen-sm': 2
     'screen-md': 3
@@ -34,9 +34,8 @@ window.Making =
         $('.offcanvas_mix').addClass 'is_aside_active'
       $('#switch_main').on 'click', ->
         $('.offcanvas_mix').removeClass 'is_aside_active'
-      Making.screen = window.getComputedStyle(document.body, ':after').getPropertyValue('content')
-      $(window).on 'resize', -> Making.screen = window.getComputedStyle(document.body, ':after').getPropertyValue('content')
-
+      Making.Screen = window.getComputedStyle(document.body, ':after').getPropertyValue('content')
+      $(window).on 'resize', -> Making.Screen = window.getComputedStyle(document.body, ':after').getPropertyValue('content')
 
   OlarkSetUser: (name, email, id) ->
     olark('api.visitor.updateFullName', {fullName: name}) if name

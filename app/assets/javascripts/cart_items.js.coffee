@@ -1,6 +1,7 @@
 Making.CartItemNew = ->
   $ ->
     $form = $('#new_cart_item')
+    $submit = $form.find('button[type="submit"]')
     $price = $('.price small')
     thing_price = $price.text()
 
@@ -25,7 +26,6 @@ Making.CartItemNew = ->
 
     $form.find('select#cart_item_kind_id').change ->
       $option = $(this).find("option:selected")
-      $submit = $form.find('button[type="submit"]')
       set_price $option.data('price')
       set_estimated $option.data('estimated')
       set_stock $option.data('max')
@@ -35,10 +35,22 @@ Making.CartItemNew = ->
       else
         $submit.attr('disabled', true)
 
+    $('#mobile_buy_modal').on 'show.bs.modal', (e) ->
+      $form = $form.find('button[type="submit"]').remove().end()
+      $modal = $('#mobile_buy_modal .modal-body').empty()
+      $form.appendTo($modal).show()
+      $('#mobile_buy_modal .modal-footer .buy_button').click ->
+        $form.trigger('submit')
+        $('#mobile_buy_modal').modal('hide')
+
 Making.CartItemCreate = (cart_items_count) ->
   $success = $('#new_cart_item .cart_success').show()
+  if $('.navbar-toggle').is(':visible')
+    $cart = $('.navbar-toggle')
+  else
+    $cart = $('.nav_cart')
 
-  $('.nav_cart').popover(
+  $cart.popover(
     content: $success[0].outerHTML
     trigger: 'manual'
     html: true
@@ -46,8 +58,8 @@ Making.CartItemCreate = (cart_items_count) ->
   ).popover('show')
 
   setTimeout ->
-    $('.nav_cart').popover('hide')
-  , 2000
+    $cart.popover('hide')
+  , 5000
 
   $('.nav_cart .cart_items_count').text(cart_items_count)
 
