@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 
   def index
     @things = Thing.prior.page(params[:page]).per(24)
-    @reviews = Review.unscoped.desc(:created_at).limit(25)
+    @reviews = Review.unscoped.desc(:created_at).limit(15)
 
     if user_signed_in?
       render 'home/index'
