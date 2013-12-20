@@ -1,0 +1,27 @@
+.nav-pills {
+
+  &.nav-pills-list {
+
+    > li {
+
+      > a {
+        color: $text-muted;
+      }
+
+      &.active {
+        border-bottom-color: $red;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+
+        > a {
+          &,
+          &:hover,
+          &:focus {
+            background-color: transparent;
+            color: $text-color;
+          }
+        }
+      }
+    }
+  }
+}
