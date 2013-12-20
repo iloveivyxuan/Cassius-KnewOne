@@ -17,7 +17,7 @@
     .form-action
       = f.button :submit, "登录", class: "btn btn-primary"
       = link_to "忘记密码？", new_user_password_path, class: "btn btn-link"
-  .form-group
+  .form-group.hidden#sign_in_alert_field
     .form-result
-      #sign_in_alert_field.alert_field.alert.alert-danger
+      .alert.alert-danger
         | 用户名或密码错误，请重新输入。
