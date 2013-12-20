@@ -49,7 +49,7 @@ section#home_index
   javascript:
     Making.InfiniteScroll("#home_index > section", "#home_things > li");
     $(window).on('load', function() {
-      if (Making.screenLevel[Making.screen] >= 3) {
+      if (Making.ScreenLevel[Making.Screen] >= 3) {
         $.adaptiveBackground.run({
           selector: 'html.home_landing .feature_image img',
           parent: 'html.home_landing .feature'

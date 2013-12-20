@@ -5,8 +5,12 @@
   margin: 0 $site-margin;
 
   #thing_header {
-    margin-bottom: 2em;
+    margin-bottom: 1em;
     border-bottom: $border-default;
+
+    @media screen and (min-width: $screen-sm-min) {
+      margin-bottom: 2em;
+    }
   }
 
   @media screen and (min-width: $screen-md-min) {
@@ -46,6 +50,16 @@
     h2 {
       font-size: $font-size-h4;
       color: $text-muted;
+    }
+
+    @media screen and (max-width: $screen-xs-max) {
+      h1, h2 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      h1 {font-size: $font-size-h4;}
+      h2 {font-size: $font-size-base;}
     }
   }
 
@@ -96,8 +110,20 @@
     position: relative;
     li {
       display: inline-block;
-      margin: 1em .5em 0;
       cursor: pointer;
+    }
+  }
+  
+  @media screen and (max-width: $screen-xs-max) {
+    .indicators {
+      li {margin: 1em 4px 0;}
+      img {width: 40px; height: 40px;}
+    }
+  }
+
+  @media screen and (min-width: $screen-sm-min) {
+    .indicators {
+      li {margin: 1em .5em 0;}
     }
   }
 
@@ -124,18 +150,29 @@
 
   .shop {
     .shopping_desc {
-      span {display: none;}
       color: $text-muted;
+      a {margin-left: .5em;}
     }
 
+    @media screen and (max-width: $screen-sm-max) {
+      #new_cart_item {display: none;}
+      .shopping_desc span {display: none;}
+      .price, .shopping_desc, .buy, .mobile_buy {display: inline-block;}
+
+      .buy {
+        float: right;
+        margin-top: -.5em;
+      }
+    }
+    
     @media screen and (min-width: $screen-sm-min) {
       .price {span {font-size: 1.2em;}}
     }
 
     @media screen and (min-width: $screen-md-min) {
       > *:not(:last-child) {margin-bottom: 1em;}
-      .shopping_desc {span {display: inline;}}
-      .price {display: block;}
+      .mobile_buy {display: none;}
+
       .buy_button {
         width: 60%;
         i {
@@ -158,6 +195,7 @@
   label {
     display: inline-block;
     color: $text-muted;
+    margin-right: .5em;
   }
 
   select, input, .help-block {
@@ -169,14 +207,15 @@
   }
 
   .cart_item_quantity {
+    input {width: 4em;}
     .help-block {
-      //display: none;
+      display: none;
       strong {color: $green;}
     }
   }
 
   .cart_estimated_prompt, .cart_success {
-    //display: none;
+    display: none;
   }
 
   .cart_estimated_prompt {
