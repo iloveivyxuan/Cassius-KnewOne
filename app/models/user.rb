@@ -80,6 +80,11 @@ class User
         # user.password = Digest::MD5.hexdigest auth.access_token
       end
     end
+
+    def find_by_name(name)
+      return all if name.blank?
+      where(name: /^#{name}/i)
+    end
   end
 
   def current_auth
