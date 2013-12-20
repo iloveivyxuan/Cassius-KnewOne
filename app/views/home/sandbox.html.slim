@@ -1,5 +1,5 @@
-- provide :page_class, 'home_sandbox'
-#home_wrapper.feature.theme_light
+- provide :page_class, 'home_landing'
+#home_wrapper.feature.theme_dark
   h1
     = logo
     = link_to brand
@@ -8,13 +8,15 @@
     span data-src="http://fakeimg.pl/992x620/282828/" data-media="(min-width: 481px) and (max-width: 768px)"
     span data-src="http://fakeimg.pl/992x620/282828/" data-media="(min-width: 769px) and (max-width: 992px)"
     span data-src="http://fakeimg.pl/1640x1024/282828/" data-media="(min-width: 993px) and (max-width: 1440px)"
-    span data-src="http://fakeimg.pl/1920x1200/282828/" data-media="(min-width: 1441px) and (max-width: 1920px)"
+    span data-src="http://fakeimg.pl/1920x1200/282828/" data-media="(min-width: 1441px)"
 
   = link_to 'Anki Drive', '/', class: 'feature_name'
   .feature_comment
     = link_to
       = image_tag 'http://making-photos.b0.upaiyun.com/users/adfa75fe739224e1bb0f60e62ba30e47.jpg!small', class: 'img-circle'
-    p 人工智能和机器人进入了我们每个人的生活！
+    blockquote.text-right
+      p 人工智能和机器人进入了我们每个人的生活！
+      small SynZhang
   = render 'home/user_panel'
 
 section#home_index

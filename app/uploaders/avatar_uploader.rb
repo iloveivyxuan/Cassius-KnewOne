@@ -7,5 +7,4 @@ class AvatarUploader < ImageUploader
     "http://#{upyun_bucket_domain}/logos/" +
         ["#{i}.png", version_name].compact.join('!')
   end
-
 end

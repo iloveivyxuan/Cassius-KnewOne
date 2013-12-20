@@ -1,0 +1,19 @@
+h1 Listing landing_pages
+
+table
+  tr
+    th Theme
+    th
+    th
+    th
+
+  - @landing_pages.each do |landing_page|
+    tr
+      td = landing_page.theme
+      td = link_to 'Show', haven_landing_page_path(landing_page)
+      td = link_to 'Edit', edit_haven_landing_page_path(landing_page)
+      td = link_to 'Destroy', haven_landing_page_path(landing_page), data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Landing page', new_haven_landing_page_path

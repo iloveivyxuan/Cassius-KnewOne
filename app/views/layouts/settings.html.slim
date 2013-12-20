@@ -23,6 +23,8 @@
             =nav_tab_link_with_icon :supplier, '管理优惠券', 'fa fa-stethoscope', haven_abatement_coupons_path, class: 'list-group-item'
           - if can? :manage, Order
             =nav_tab_link_with_icon :supplier, '管理订单', 'fa fa-stethoscope', haven_orders_path, class: 'list-group-item'
+          - if can? :manage, LandingPage
+            =nav_tab_link_with_icon :supplier, '管理首页封面', 'fa fa-stethoscope', haven_landing_pages_path, class: 'list-group-item'
 
     main#main role="main"
       = yield

@@ -6,13 +6,6 @@ class ImageUploader < CarrierWave::Uploader::Base
     "#{model.class.to_s.underscore.pluralize}"
   end
 
-  # Provide a default URL as a default if there hasn't been a file uploaded
-  def default_url
-    i = 1.upto(22).to_a.shuffle.first
-    "http://#{upyun_bucket_domain}/logos/" +
-        ["#{i}.png", version_name].compact.join('!')
-  end
-
   # Override url method to implement with "Image Space"
   def url(version_name = nil)
     @url ||= super({})

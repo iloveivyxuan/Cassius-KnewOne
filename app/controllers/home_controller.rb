@@ -6,7 +6,9 @@ class HomeController < ApplicationController
     @things = Thing.prior.page(params[:page]).per(24)
     @reviews = Review.unscoped.desc(:created_at).limit(15)
 
-    if user_signed_in?
+    @landing_page = LandingPage.find_for_home
+
+    if user_signed_in? || @landing_page.nil?
       render 'home/index'
     else
       render file: 'home/landing', layout: 'home'
@@ -20,6 +22,7 @@ class HomeController < ApplicationController
   def sandbox
     @things = Thing.prior.page(params[:page]).per(24)
     @reviews = Review.unscoped.desc(:created_at).limit(25)
+    render layout: 'home'
   end
 
   def not_found

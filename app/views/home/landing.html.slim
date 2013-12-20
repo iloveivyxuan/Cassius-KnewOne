@@ -1,23 +1,4 @@
-- provide :page_class, 'home_landing'
-#home_wrapper.feature.theme_dark
-  h1
-    = logo
-    = link_to brand
-  span.feature_image data-picture="" data-alt="A giant stone face at The Bayon temple in Angkor Thom, Cambodia"
-    span data-src="http://fakeimg.pl/480x300/282828/"
-    span data-src="http://fakeimg.pl/992x620/282828/" data-media="(min-width: 481px) and (max-width: 768px)"
-    span data-src="http://fakeimg.pl/992x620/282828/" data-media="(min-width: 769px) and (max-width: 992px)"
-    span data-src="http://image.knewone.com/photos/7e70d5efeaafe5585e1f828841397bff.jpg" data-media="(min-width: 993px) and (max-width: 1440px)"
-    span data-src="http://image.knewone.com/photos/0da6da8fd5458d2bdeca2d1fc82df63f.jpg" data-media="(min-width: 1441px)"
-
-  = link_to 'Anki Drive', '/', class: 'feature_name'
-  .feature_comment
-    = link_to
-      = image_tag 'http://making-photos.b0.upaiyun.com/users/adfa75fe739224e1bb0f60e62ba30e47.jpg!small', class: 'img-circle'
-    blockquote.text-right
-      p 人工智能和机器人进入了我们每个人的生活！
-      small SynZhang
-  = render 'home/user_panel'
+= render @landing_page
 
 section#home_index
 

@@ -1,5 +1,4 @@
 Making::Application.routes.draw do
-
   use_doorkeeper
   root to: 'home#index'
   get '/page/:page', to: "home#index"
@@ -73,6 +72,8 @@ Making::Application.routes.draw do
         post 'generate_code'
       end
     end
+
+    resources :landing_pages
   end
 
   resources :things do
