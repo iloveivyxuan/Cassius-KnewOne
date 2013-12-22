@@ -173,22 +173,39 @@ class User
   has_many :coupon_codes
 
   # Balance
-  has_many :balance_changes
+  # use cents store money because BigDecimal stored as string in MongoDB,
+  # and when BigDecimal is a integer(e.g: 0), it can't be use for query.
+  field :balance_cents, type: Integer, default: 0
+  validates :balance_cents, :presence => true, numericality: {greater_than_or_equal_to: 0}
+  embeds_many :balance_logs, cascade_callbacks: true
 
   def balance
-    balance_changes.map(&:amount).reduce(&:+) || BigDecimal(0)
+    self.balance_cents / 100
   end
 
   def recharge_balance!(value, note)
-    DepositBalanceChange.create!(user: self, value: value, note: note)
+    cents = value * 100
+    inc :balance_cents, cents
+    balance_logs<< DepositBalanceLog.new(value_cents: cents, note: note)
+
+    reload
+    true
   end
 
   def expense_balance!(value, note)
-    ExpenseBalanceChange.create!(user: self, value: value, note: note)
+    cents = value * 100
+    return false if self.balance_cents < cents
+
+    # prevent overselling
+    User.where(id: self.id.to_s, balance_cents: self.balance_cents).update(balance_cents: self.balance_cents - cents)
+    balance_logs<< ExpenseBalanceLog.new(value_cents: cents, note: note)
+
+    reload
+    true
   end
 
-  def expense_balance(value, note)
-    ExpenseBalanceChange.build(user: self, value: value, note: note)
+  def has_balance?
+    self.balance_cents > 0
   end
 
   ## Karma & Rank
