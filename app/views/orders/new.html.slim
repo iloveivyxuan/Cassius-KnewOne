@@ -8,6 +8,9 @@ section.simple_page_wrapper.widget.orders_wrapper
     fieldset
       ul.order_items = render partial: 'orders/order_item', collection: @order.order_items
       ul = render partial: 'orders/rebate', collection: @order.rebates if @order.rebates.any?
+
+      = render partial: 'orders/error_field', locals: {messages: @order.errors.full_messages} unless Rails.env.production?
+
       = render partial: 'address_select', locals: {f: f}
       - if @order.address
         = f.input :deliver_by, as: :radio_buttons do

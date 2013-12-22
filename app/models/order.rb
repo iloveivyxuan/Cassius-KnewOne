@@ -34,8 +34,9 @@ class Order
   attr_accessor :coupon_code_id
 
   STATES = {:pending => '等待付款',
-            :paid => '已付款，等待确认',
-            :confirmed => '已付款',
+            :paid => '已付款，等待客服受理',
+            :confirmed => '已付款，等待客服受理',
+            :freed => '无需支付，等待客服受理',
             :shipped => '已发货',
             :canceled => '订单取消',
             :closed => '订单关闭',
@@ -67,7 +68,7 @@ class Order
 
   mount_uploader :waybill, WaybillUploader
 
-  validates_numericality_of :price, :greater_than_or_equal_to => 1, :unless => Proc.new { |order| !order.persisted? }
+  validates_numericality_of :price, :greater_than_or_equal_to => 0, :unless => Proc.new { |order| !order.persisted? }
   validates :state, presence: true, inclusion: {in: STATES.keys}
   validates :deliver_by, presence: true, inclusion: {in: DELIVER_METHODS.keys}
   validates :payment_method, inclusion: {in: PAYMENT_METHOD.keys, allow_blank: true}
@@ -98,8 +99,12 @@ class Order
     sync_price
   end
 
+  before_create do
+    self.state = :freed if free?
+  end
+
   validate do
-    errors.add :price, "总价必须大于1元" if total_price < 1
+    errors.add :price, "总价必须大于等于0元" if total_price < 0
   end
 
   validate do
@@ -130,6 +135,10 @@ class Order
     self.price = calculate_price
   end
 
+  def free?
+    total_price == 0
+  end
+
   STATES.keys.each do |s|
     scope s, -> { where state: s }
     define_method :"#{s}?" do
@@ -148,7 +157,7 @@ class Order
   end
 
   def can_ship?
-    confirmed?
+    confirmed? || freed?
   end
 
   def can_cancel?
@@ -198,7 +207,12 @@ class Order
     self.deliver_no = deliver_no
 
     if admin_note.present?
-      admin_note = " | #{admin_note}" if self.admin_note.present?
+      if self.admin_note.present?
+        admin_note = " | #{admin_note}"
+      else
+        self.admin_note = ''
+      end
+
       self.admin_note += admin_note
     end
 
@@ -280,7 +294,8 @@ class Order
   end
 
   def calculate_price
-    receivable + rebates_price
+    price = receivable + rebates_price
+    price >= 0 ? price : 0
   end
 
   def total_price

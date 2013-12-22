@@ -6,6 +6,8 @@ Making.OrderPage =
         price = parseFloat($(this).attr('data-price')) + \
                 parseFloat($('.total_price').attr('data-things-price')) + \
                 parseFloat($('.total_price').attr('data-rebates-price'))
+        price = 0 if price < 0
+
         $('.total_price strong span').text(price.toFixed(2))
       )
 

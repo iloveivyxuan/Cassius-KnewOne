@@ -187,6 +187,10 @@ class User
     ExpenseBalanceChange.create!(user: self, value: value, note: note)
   end
 
+  def expense_balance(value, note)
+    ExpenseBalanceChange.build(user: self, value: value, note: note)
+  end
+
   ## Karma & Rank
   def rank
     return 0 if karma < 0
