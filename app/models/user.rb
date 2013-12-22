@@ -172,6 +172,21 @@ class User
   # Coupon
   has_many :coupon_codes
 
+  # Balance
+  has_many :balance_changes
+
+  def balance
+    balance_changes.map(&:amount).reduce(&:+) || BigDecimal(0)
+  end
+
+  def recharge_balance!(value, note)
+    DepositBalanceChange.create!(user: self, value: value, note: note)
+  end
+
+  def expense_balance!(value, note)
+    ExpenseBalanceChange.create!(user: self, value: value, note: note)
+  end
+
   ## Karma & Rank
   def rank
     return 0 if karma < 0
