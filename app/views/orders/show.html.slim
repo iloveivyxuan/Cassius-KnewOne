@@ -64,10 +64,9 @@ section.orders_wrapper
     p.well.text-info * 请您在24小时之内支付，否则订单将自动取消。
 
   .order_actions.text-right
-    - if current_user.auths.any?
-      = link_to '分享', '#order_share', class: 'btn btn-default', data: {toggle: 'modal'}
+    = share_link
     = order_operations(@order)
-    = return_link(@order)
+    = return_link(@order, (@order.confirmed? ? 'btn btn-success' : 'btn btn-default'))
     = link_to '需要帮助?', '#olark_chat', title: '需要帮助?', class: 'btn btn-link'
 
 /= render partial: 'pay_modal', locals: {order: @order}

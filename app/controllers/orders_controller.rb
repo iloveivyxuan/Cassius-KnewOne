@@ -32,6 +32,11 @@ class OrdersController < ApplicationController
     redirect_to @order
   end
 
+  def confirm_free
+    @order.confirm_free!
+    redirect_to @order
+  end
+
   def tenpay
     redirect_to generate_tenpay_url(@order)
   end
@@ -55,7 +60,7 @@ class OrdersController < ApplicationController
     callback_params = params.except(*request.path_parameters.keys)
     # notify may reach earlier than callback
     if JaslTenpay::Sign.verify?(callback_params, verify_trade_state: true)
-      @order.pay!(callback_params[:transaction_id], callback_params[:total_fee], :tenpay, callback_params)
+      @order.confirm_payment!(callback_params[:transaction_id], callback_params[:total_fee], :tenpay, callback_params)
     end
 
     redirect_to @order, flash: {success: (@order.has_stock? ? '付款成功，我们将尽快为您发货' : '付款成功')}
@@ -84,7 +89,7 @@ class OrdersController < ApplicationController
     callback_params = params.except(*request.path_parameters.keys)
     # notify may reach earlier than callback
     if Alipay::Sign.verify?(callback_params) && params[:trade_status] == 'TRADE_SUCCESS'
-      @order.pay!(callback_params[:trade_no], callback_params[:total_fee], :alipay, callback_params)
+      @order.confirm_payment!(callback_params[:trade_no], callback_params[:total_fee], :alipay, callback_params)
     end
 
     redirect_to @order, flash: {success: (@order.has_stock? ? '付款成功，我们将尽快为您发货' : '付款成功')}
@@ -93,7 +98,7 @@ class OrdersController < ApplicationController
   private
 
   def have_items_in_cart
-    redirect_to root_path if current_user.cart_items.select {|item| item.legal? && item.has_enough_stock?}.empty?
+    redirect_to root_path if current_user.cart_items.select { |item| item.legal? && item.has_enough_stock? }.empty?
   end
 
   def generate_tenpay_url(order, options = {})

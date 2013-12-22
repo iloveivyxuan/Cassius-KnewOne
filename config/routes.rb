@@ -46,6 +46,7 @@ Making::Application.routes.draw do
 
   resources :orders, only: [:index, :show, :create, :new] do
     member do
+      patch 'confirm_free'
       patch 'cancel'
       get 'tenpay'
       get 'tenpay_wechat'

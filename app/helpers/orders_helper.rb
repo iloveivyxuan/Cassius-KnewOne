@@ -6,6 +6,15 @@ module OrdersHelper
     end
   end
 
+  def confirm_pay_link(order, css = 'btn btn-success')
+    if order.can_confirm_free?
+      content_tag :div, class: 'btn-group' do
+        link_to '确认订单', confirm_free_order_path(order),
+                method: :patch, class: css
+      end
+    end
+  end
+
   def cancel_link(order, css = 'btn btn-default')
     if order.can_cancel?
       content_tag :div, class: 'btn-group' do
@@ -52,7 +61,7 @@ module OrdersHelper
     end
   end
 
-  def return_link(order, css = 'btn btn-success')
+  def return_link(order, css = 'btn btn-default')
     unless order.pending?
       content_tag :div, class: 'btn-group' do
         link_to '返回首页', root_path, class: css
@@ -60,10 +69,19 @@ module OrdersHelper
     end
   end
 
+  def share_link(css = 'btn btn-default')
+    if current_user.auths.any?
+      content_tag :div, class: 'btn-group' do
+        link_to '分享', '#order_share', class: css, data: {toggle: 'modal'}
+      end
+    end
+  end
+
   def order_operations(order)
     [
         cancel_link(order),
-        pay_link(order)
+        pay_link(order),
+        confirm_pay_link(order)
     ].compact.join('').html_safe
   end
 
@@ -73,9 +91,12 @@ module OrdersHelper
 
   def render_summary_state(order)
     css = case order.state
-            when :confirmed, :shipped, :refunded then 'success'
-            when :canceled, :closed then 'failure'
-            else ''
+            when :confirmed, :shipped, :refunded then
+              'success'
+            when :canceled, :closed then
+              'failure'
+            else
+              ''
           end
     content_tag :span, class: css do
       state_text order
@@ -95,8 +116,8 @@ module OrdersHelper
   end
 
   def render_share_modal(order)
-    items = order.order_items.sort {|i| i.single_price }.reverse
-    popularize_items = items.select {|i| i.thing.sharing_text.present? }
+    items = order.order_items.sort { |i| i.single_price }.reverse
+    popularize_items = items.select { |i| i.thing.sharing_text.present? }
 
     if popularize_items.empty?
       item = items.first

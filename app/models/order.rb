@@ -33,10 +33,14 @@ class Order
   has_one :coupon_code, autosave: true
   attr_accessor :coupon_code_id
 
+  def coupon_code_id=(id)
+    self.coupon_code = CouponCode.where(id: id).first
+    @coupon_code_id = self.coupon_code.nil? ? '' : id
+  end
+
   STATES = {:pending => '等待付款',
-            :paid => '已付款，等待客服受理',
-            :confirmed => '已付款，等待客服受理',
-            :freed => '无需支付，等待客服受理',
+            :freed => '无需支付，等待用户确认',
+            :confirmed => '支付成功，等待客服受理',
             :shipped => '已发货',
             :canceled => '订单取消',
             :closed => '订单关闭',
@@ -122,7 +126,7 @@ class Order
   end
 
   after_save do
-    generate_waybill! if confirmed? || paid?
+    generate_waybill! if confirmed?
   end
 
   default_scope order_by(created_at: :desc)
@@ -146,22 +150,26 @@ class Order
     end
   end
 
+  # There is a situation is user closed or canceled order, but still paid at third party
+  # IMPORTANT: stock
+  def can_confirm_payment?
+    pending? || canceled? || closed?
+  end
+
   def can_pay?
     pending?
   end
 
-  def can_confirm_payment?
-    # There is a situation is user closed or canceled order, but still paid at third party
-    # IMPORTANT: stock
-    paid? || pending? || canceled? || closed?
+  def can_confirm_free?
+    freed?
   end
 
   def can_ship?
-    confirmed? || freed?
+    confirmed?
   end
 
   def can_cancel?
-    pending?
+    pending? || freed?
   end
 
   def can_close?
@@ -170,18 +178,6 @@ class Order
 
   def can_refund?
     confirmed? || shipped?
-  end
-
-  def pay!(trade_no, price, method, raw)
-    return false unless can_pay?
-
-    self.state = :paid
-    self.payment_method = method
-    self.trade_no = trade_no
-    self.trade_price = price
-    save!
-
-    order_histories.create from: :pending, to: :paid, raw: raw
   end
 
   def confirm_payment!(trade_no, price, method, raw)
@@ -198,6 +194,15 @@ class Order
     save!
 
     order_histories.create from: state, to: :confirmed, raw: raw
+  end
+
+  def confirm_free!
+    return false unless can_confirm_free?
+
+    self.state = :confirmed
+    save!
+
+    order_histories.create from: :freed, to: :confirmed
   end
 
   def ship!(deliver_no, admin_note = '')
