@@ -51,6 +51,16 @@ module OrdersHelper
     end
   end
 
+  def refund_to_balance_link(order, css = 'btn btn-danger')
+    if order.can_refund?
+      content_tag :div, class: 'btn-group' do
+        link_to '退款到余额', refund_to_balance_haven_order_path(order),
+                data: {confirm: '确认退款？'},
+                method: :patch, class: css
+      end
+    end
+  end
+
   def way_bill_link(order, css = 'btn')
     content_tag :div, class: 'btn-group' do
       if order.waybill.url.nil?

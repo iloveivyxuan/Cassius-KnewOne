@@ -74,6 +74,11 @@ module Haven
     end
 
     def refund
+      @order.refund!(false)
+      redirect_to haven_orders_path
+    end
+
+    def refund_to_balance
       @order.refund!
       redirect_to haven_orders_path
     end
