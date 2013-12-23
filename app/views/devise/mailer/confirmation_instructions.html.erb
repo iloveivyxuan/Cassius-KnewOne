@@ -1,5 +1,13 @@
-<p>Welcome <%= @resource.email %>!</p>
+<p>Hi, <%= @resource.email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>欢迎加入KnewOne！从这一刻起，和我们一起创造分享新奇酷，感受未来生活吧！</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @token) %></p>
+<p>请点击下面的链接完成激活注册：</p>
+
+<p><%= link_to confirmation_url(@resource, :confirmation_token => @token),
+               confirmation_url(@resource, :confirmation_token => @token) %></p>
+
+<p>——————</p>
+<p>如果以上链接无法点击，请将上面的地址复制到你的浏览器(如IE)的地址栏进入KnewOne。</p>
+<p><%= link_to 'knewone.com', 'http://knewone.com' %></p>
+<p>(这是一封自动产生的email，请不要回复。)</p>

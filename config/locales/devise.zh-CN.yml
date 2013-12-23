@@ -50,9 +50,9 @@ zh-CN:
       bounded: '%{kind}已被其他用户绑定，您可以联系我们来解决。'
     mailer:
       confirmation_instructions:
-        subject: '激活信息'
+        subject: '请激活你的KnewOne账号，完成注册'
       reset_password_instructions:
-        subject: '重置密码信息'
+        subject: 'KnewOne重置密码'
       unlock_instructions:
         subject: '解锁信息'
     views:
