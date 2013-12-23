@@ -105,12 +105,13 @@ class OrdersController < ApplicationController
     options = {
         :subject => "KnewOne购物订单: #{order.order_no}",
         :body => body_text(order, 16),
-        :total_fee => order.total_cents,
+        :total_fee => (order.should_pay_price * 100).to_i,
         :out_trade_no => order.order_no,
         :return_url => tenpay_callback_order_url(order),
         :notify_url => tenpay_notify_order_url(order),
         :spbill_create_ip => request.ip,
     }.merge(options)
+
     JaslTenpay::Service.create_interactive_mode_url(options)
   end
 
@@ -120,7 +121,7 @@ class OrdersController < ApplicationController
         :subject => "KnewOne购物订单: #{order.order_no}",
         :body => body_text(order, 500),
         :payment_type => '1',
-        :total_fee => order.total_price,
+        :total_fee => order.should_pay_price,
         :logistics_payment => 'SELLER_PAY',
         :return_url => alipay_callback_order_url(order),
         :notify_url => alipay_notify_order_url(order)
@@ -134,6 +135,7 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:note, :deliver_by, :address_id, :invoice_id, :auto_owning, :coupon_code_id)
+    params.require(:order).
+        permit(:note, :deliver_by, :address_id, :invoice_id, :auto_owning, :coupon_code_id, :use_balance)
   end
 end

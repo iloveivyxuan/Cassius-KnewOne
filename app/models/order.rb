@@ -39,12 +39,13 @@ class Order
   end
 
   STATES = {:pending => '等待付款',
-            :freed => '无需支付，等待用户确认',
-            :confirmed => '支付成功，等待客服受理',
+            :freed => '无需支付，请用户确认',
+            :confirmed => '支付成功，客服正在受理',
             :shipped => '已发货',
             :canceled => '订单取消',
             :closed => '订单关闭',
-            :refunded => '已协商退款'}
+            :refunded => '已协商退款',
+            :unexpected => '订单异常，请联系客服'}
   DELIVER_METHODS = {
       :sf => '顺丰',
       :zt => '中通'
@@ -68,6 +69,8 @@ class Order
   field :trade_state, type: String
   field :deliver_price, type: BigDecimal
   field :auto_owning, type: Boolean, default: true
+  field :use_balance, type: Boolean, default: true
+  field :expense_balance, type: BigDecimal, default: 0
   field :price, type: BigDecimal
 
   mount_uploader :waybill, WaybillUploader
@@ -101,10 +104,21 @@ class Order
     # mongoid may not rollback when error occurred
     order_items.each &:claim_stock!
     sync_price
-  end
 
-  before_create do
     self.state = :freed if free?
+
+    if use_balance?
+      available_balance = self.user.balance
+
+      if available_balance - total_price >= 0 && self.user.expense_balance!(total_price, "支付订单#{self.order_no}")
+        self.expense_balance = total_price
+        self.state = :freed
+      elsif self.user.expense_balance!(available_balance, "支付订单#{self.order_no}")
+        self.expense_balance = available_balance
+      else
+        self.state = :unexpected
+      end
+    end
   end
 
   validate do
@@ -161,7 +175,7 @@ class Order
   end
 
   def can_confirm_free?
-    freed?
+    (freed? || self.expense_balance == total_price) && !confirmed?
   end
 
   def can_ship?
@@ -237,6 +251,12 @@ class Order
     self.state = :canceled
     save!
 
+    if self.expense_balance > 0
+      self.user.recharge_balance!(self.expense_balance, "订单#{self.order_no}因取消的退款")
+      self.expense_balance = 0
+      save!
+    end
+
     order_histories.create from: :pending, to: :canceled, raw: raw
   end
 
@@ -249,6 +269,13 @@ class Order
     self.state = :closed
     save!
 
+    if self.expense_balance > 0
+      self.user.recharge_balance!(self.expense_balance, "订单#{self.order_no}因关闭的退款")
+
+      self.expense_balance = 0
+      save!
+    end
+
     order_histories.create from: :pending, to: :closed
   end
 
@@ -260,12 +287,35 @@ class Order
     save!
 
     if back_to_balance
-      self.user.recharge_balance!(self.trade_price, "订单#{self.order_no}的退款")
+      should_return_balance = self.trade_price + self.expense_balance
+      self.user.recharge_balance!(should_return_balance, "订单#{self.order_no}的退款")
+
+      self.expense_balance = 0
+      save!
     end
 
     # unown_things if auto_owning?
 
     order_histories.create from: state, to: :closed
+  end
+
+  def unexpect!(system_note = '')
+    state = self.state
+    self.state = :unexpected
+
+    if system_note.present?
+      if self.system_note.present?
+        system_note = " | #{system_note}"
+      else
+        self.asystem_note = ''
+      end
+
+      self.system_note += system_note
+    end
+
+    save!
+
+    order_histories.create from: state, to: :unexpected
   end
 
   def all_products_have_stock?
@@ -311,8 +361,8 @@ class Order
     persisted? ? self.price : calculate_price
   end
 
-  def total_cents
-    (total_price * 100).to_i
+  def should_pay_price
+    total_price - self.expense_balance
   end
 
   def generate_waybill!

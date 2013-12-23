@@ -180,28 +180,41 @@ class User
   embeds_many :balance_logs, cascade_callbacks: true
 
   def balance
-    self.balance_cents / 100
+    BigDecimal.new(self.balance_cents) / 100
   end
 
   def recharge_balance!(value, note)
-    cents = value * 100
-    inc :balance_cents, cents
-    balance_logs<< DepositBalanceLog.new(value_cents: cents, note: note)
+    cents = (value * 100).to_i
 
-    reload
-    true
+    # prevent overselling
+    u = User.where(id: self.id.to_s, balance_cents: self.balance_cents).
+        find_and_modify :$set => {balance_cents: (self.balance_cents + cents).to_i}
+    if u
+      u.balance_logs<< ExpenseBalanceLog.new(value_cents: cents, note: note)
+      reload
+      true
+    else
+      false
+    end
   end
 
   def expense_balance!(value, note)
-    cents = value * 100
-    return false if self.balance_cents < cents
+    cents = (value * 100).to_i
+    balance_cents = self.balance_cents
+
+    return false if balance_cents < cents
 
     # prevent overselling
-    User.where(id: self.id.to_s, balance_cents: self.balance_cents).update(balance_cents: self.balance_cents - cents)
-    balance_logs<< ExpenseBalanceLog.new(value_cents: cents, note: note)
-
+    u = User.where(id: self.id.to_s, balance_cents: balance_cents).
+        find_and_modify :$set => {balance_cents: (balance_cents - cents)}
     reload
-    true
+    if u && u.balance > 0
+      u.balance_logs<< ExpenseBalanceLog.new(value_cents: cents, note: note)
+      true
+    else
+      # TODO: rollback
+      false
+    end
   end
 
   def has_balance?

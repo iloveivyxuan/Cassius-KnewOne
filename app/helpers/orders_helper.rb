@@ -6,7 +6,7 @@ module OrdersHelper
     end
   end
 
-  def confirm_pay_link(order, css = 'btn btn-success')
+  def confirm_free_link(order, css = 'btn btn-success')
     if order.can_confirm_free?
       content_tag :div, class: 'btn-group' do
         link_to '确认订单', confirm_free_order_path(order),
@@ -91,7 +91,7 @@ module OrdersHelper
     [
         cancel_link(order),
         pay_link(order),
-        confirm_pay_link(order)
+        confirm_free_link(order)
     ].compact.join('').html_safe
   end
 

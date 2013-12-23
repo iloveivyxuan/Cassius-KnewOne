@@ -10,11 +10,11 @@ class BalanceLog
   field :note, type: String
 
   def value
-    self.value / 100
+    BigDecimal.new(self.value) / 100
   end
 
   def value=(val)
-    self.value = val * 100
+    self.value = (val * 100).to_i
   end
 
   def amount

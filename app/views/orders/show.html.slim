@@ -49,16 +49,33 @@ section.orders_wrapper
           th 物流信息：
           td= render 'delivery'
     tfoot
+      - if @order.expense_balance > 0
+        tr
+          td.partial_price colspan="2"
+            span.text-muted 余额已支付
+            strong
+              i.fa.fa-yen
+              span= @order.expense_balance
       tr
         td.total_price colspan="2"
-          span.text-muted 总计
+          span.text-muted 您需支付
           strong
             i.fa.fa-yen
-            span= @order.total_price
+            span= @order.should_pay_price
 
   .order_item
     ul = render partial: 'orders/order_item', collection: @order.order_items
     ul = render partial: 'orders/rebate', collection: @order.rebates if @order.rebates.any?
+    footer.partial_price
+      span.text-muted 运费
+      strong
+        i.fa.fa-yen
+        span= @order.deliver_price
+    footer.total_price
+      span.text-muted 总计
+      strong
+        i.fa.fa-yen
+        span= @order.total_price
 
   - if @order.pending?
     p.well.text-info * 请您在24小时之内支付，否则订单将自动取消。

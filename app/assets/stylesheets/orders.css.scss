@@ -35,18 +35,21 @@
     line-height: 32px;
   }
 
-  .total_price {
+  .total_price, .partial_price {
     text-align: right;
     color: $text-muted;
     strong {
       margin-left: 1em;
-      font-size: 1.25em;
-      color: $red;
     }
 
     @media screen and (max-width: 767px) {
       margin-right: 0;
     }
+  }
+
+  .total_price strong {
+    color: $red;
+    font-size: 1.25em;
   }
 
   .controls {

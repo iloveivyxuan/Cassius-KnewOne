@@ -18,6 +18,12 @@ section.simple_page_wrapper.widget.orders_wrapper
       = f.input :note
       = render partial: 'coupon_select', locals: {f: f}
       = render partial: 'invoice_select', locals: {f: f}
+
+      - if current_user.has_balance?
+        div
+          label.checkbox.misc_option
+            = f.check_box :use_balance
+            | 使用余额支付(现有￥#{current_user.balance})
       div
         label.checkbox.misc_option
           = f.check_box :auto_owning
