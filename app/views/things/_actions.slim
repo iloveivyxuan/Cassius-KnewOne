@@ -1,65 +1,31 @@
 .shop
-  .price = tp.price
+  = tp.content_for_price
   - if user_signed_in?
     = tp.shopping_desc
-  .buy= tp.buy
-/ .actions
-/   .fanciers
-/     = render "shared/fancy", p: tp
-/   .owners
-/     = render "things/own", tp: tp
+  = tp.content_for_buy
 
-/   .share
-/     - if user_signed_in?
-/       = link_to  "#thing_share", title: "分享",  \
-/                                  data: {toggle: 'modal', keyboard: false} do
-/         i.fa.fa-share
-/         span 分享
-/     - else
-/       = link_to "#login-modal", title: "分享", \
-/                 data: {toggle: 'modal', keyboard: false} do
-/         i.fa.fa-share
-/         span 分享
-/   .wechat
-/     = link_to "#thing_share_wechat", title: "微信朋友圈分享",
-/               data: {toggle: 'modal'} do
-/       i.fa.fa-qrcode
-/       span 分享到微信
-/   .supplier
-/     = link_to "#thing_supplier", title: "提供产品",
-/               data: {toggle: "modal", keyboard: false} do
-/       i.fa.fa-beer
-/       span 我想提供此产品
+.actions
+  .fanciers= render "shared/fancy", p: tp
+  .owners= render "things/own", tp: tp
+  .share= render "things/share"
+  .new_review= render 'reviews/link_to_new'
 
-  / .operations
-  /   = tp.official_site
-  /   = link_to_with_icon "", "fa fa-rss", thing_url(tp.thing, format: "atom")
-  /   - if can? :update, tp.thing
-  /     = link_to_with_icon "", "fa fa-edit", edit_thing_path(tp.thing), title: "编辑"
-  /   - if can?(:destroy, tp.thing)
-  /     = link_to_with_icon "", "fa fa-trash", tp.thing, method: :delete,
-  /     data: {confirm: "您确认要删除吗?"}, title: "删除"
-  /   - if can? :pro_edit, tp.thing
-  /     = link_to_with_icon "", "fa fa-cogs", pro_edit_thing_path(tp.thing), title: "管理"
-  /   - if can? :manage, :all
-  /     = link_to_with_icon "", "fa fa-gift", new_lottery_path(thing: tp.thing), title: "发奖"
-  / .operations
-  /   = tp.official_site
-  /   = link_to_with_icon "", "fa fa-rss", thing_url(tp.thing, format: "atom")
-  /   - if can? :update, tp.thing
-  /     = link_to_with_icon "", "fa fa-edit", edit_thing_path(tp.thing), title: "编辑"
-  /   - if can?(:destroy, tp.thing)
-  /     = link_to_with_icon "", "fa fa-trash", tp.thing, method: :delete,
-  /     data: {confirm: "您确认要删除吗?"}, title: "删除"
-  /   - if can? :pro_edit, tp.thing
-  /     = link_to_with_icon "", "fa fa-cogs", pro_edit_thing_path(tp.thing), title: "管理"
-  /   - if can? :manage, :all
-  /     = link_to_with_icon "", "fa fa-gift", new_lottery_path(thing: tp.thing), title: "发奖"
+ul.operations.fa-ul
+  li= link_to_with_icon "分享到微信", "fa-li fa fa-qrcode", "#thing_share_wechat", title: "微信朋友圈分享",
+    data: {toggle: 'modal'}
+  li= link_to_with_icon "RSS", "fa-li fa fa-rss", thing_url(tp.thing, format: "atom")
+  - if tp.thing.official_site.present?
+    li= tp.official_site
+  li= link_to_with_icon "供应此产品", "fa-li fa fa-beer", "#thing_supplier", title: "提供产品",
+  data: {toggle: "modal", keyboard: false}
+  - if can? :update, tp.thing
+    li= link_to_with_icon "编辑", "fa-li fa fa-edit", edit_thing_path(tp.thing), title: "编辑"
+  - if can? :pro_edit, tp.thing
+    li= link_to_with_icon "管理", "fa-li fa fa-cogs", pro_edit_thing_path(tp.thing), title: "管理"
+  - if can? :pro_edit, tp.thing
+    li= link_to_with_icon "发奖", "fa-li fa fa-gift", new_lottery_path(thing: tp.thing), title: "发奖"
 
-/ .author_info
-/   = tp.author_tag
-
-/ .action_modals
-/   = render 'shared/share', id: 'thing_share', content: tp.share_content, pic: tp.photo_url(:huge)
-/   = render 'things/wechat', tp: tp
-/   = render 'things/supplier', tp: tp
+.modals
+  = render 'shared/share', id: 'thing_share', content: tp.share_content, pic: tp.photo_url(:huge)
+  = render 'things/wechat', tp: tp
+  = render 'things/supplier', tp: tp

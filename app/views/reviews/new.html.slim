@@ -5,7 +5,7 @@
   = f.input :content, as: :hidden
   = f.input :score, as: :range, label: false, input_html: {max: 5, min: 1}
   - if current_user.role? :editor
-    = f.input :is_top, as: :boolean, label: false, inline_label: "置顶"
+    = f.input :is_top, as: :boolean
 
 = render 'shared/editor'
 

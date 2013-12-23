@@ -1,8 +1,6 @@
 - provide :nav, :reviews
 
 - if @reviews.present?
-  #new_review_link
-    = render 'link_to_new'
   ul#reviews= render @reviews
   = paginate @reviews
 - else
