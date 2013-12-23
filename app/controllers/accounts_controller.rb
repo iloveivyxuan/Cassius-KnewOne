@@ -2,6 +2,7 @@
 class AccountsController < Devise::RegistrationsController
   prepend_before_action :authenticate_user!
   layout 'settings'
+  after_action :store_location, only: [:edit]
 
   def update
     successfully_updated = if needs_password?(current_user, params)

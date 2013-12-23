@@ -2,6 +2,7 @@
 class PhotosController < ApplicationController
   respond_to :json
   load_and_authorize_resource
+  skip_action :store_location
 
   def show
     respond_with Photo.find(params[:id]).to_jq_upload
