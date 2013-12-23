@@ -76,9 +76,11 @@ section.simple_page_wrapper.widget.orders_wrapper
         = f.button :submit, class: "btn-primary"
 
   footer.clearfix
-    .pull-right
-      = link_to '返回', haven_orders_path, class: 'btn btn-link'
+    .text-right
       = ship_link(@order)
+    hr
+    .order_actions.text-right
+      .btn-group = link_to '返回', haven_orders_path, class: 'btn btn-default'
       = way_bill_link(@order)
       = refund_link(@order)
       = refund_to_balance_link(@order)

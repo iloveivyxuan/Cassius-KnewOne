@@ -61,7 +61,7 @@ module OrdersHelper
     end
   end
 
-  def way_bill_link(order, css = 'btn')
+  def way_bill_link(order, css = 'btn btn-default')
     content_tag :div, class: 'btn-group' do
       if order.waybill.url.nil?
         link_to '生成运单', generate_waybill_haven_order_path(order), class: css
