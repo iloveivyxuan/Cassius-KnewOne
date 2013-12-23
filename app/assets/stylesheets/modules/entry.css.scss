@@ -1,0 +1,89 @@
+.entry {
+  @include border-radius(8px);
+  background-color: #fff;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 1px;
+  margin: 0 auto 1em;
+  padding: 15px;
+
+  @media screen and (min-width: $screen-md-min + 1) {
+    margin: 0;
+  }
+
+  .oauth {
+    text-align: center;
+
+    .fa {
+      color: darken(#ddd, 50%);
+      margin-right: .85em;
+
+      &:hover {
+        color: #049cdb !important;
+      }
+    }
+
+    .fa-envelope {
+      margin-right: 0;
+    }
+  }
+
+  .nav-pills-list {
+
+    > li {
+
+      > a {
+        word-spacing: 1em;
+
+        &:hover,
+        &:focus {
+          background-color: transparent;
+          color: #333;
+        }
+      }
+    }
+  }
+
+  .entry_email {
+    display: none;
+    margin-top: 1em;
+
+    .tab-content {
+      padding-top: 1em;
+
+      .form-group {
+
+        &:nth-last-child(2) {
+          margin-bottom: 0;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+          margin-top: 15px;
+        }
+      }
+
+      .fa {
+        width: 14px;
+      }
+
+      .btn {
+        font-size: 14px;
+        margin-bottom: 15px;
+        width: 100%;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        @media screen and (min-width: $screen-md-min + 1) {
+          margin-bottom: 0;
+        }
+      }
+
+      .alert {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

@@ -307,7 +307,7 @@ ul.nav-pills {
   @include clearfix;
 
   h4 {color: $text-muted;}
-  
+
   .comment_form {
     @include clearfix;
     textarea {margin: 1em 0;}
@@ -411,14 +411,6 @@ ul.nav-pills {
     margin-right: 5px;
   }
 }
-
-#login-modal {
-  .modal-body {
-    text-align: center;
-    .weibo_sign_in img {vertical-align: -5px;}
-  }
-}
-
 
 .general_wrapper {
   @include fixed-wrapper;

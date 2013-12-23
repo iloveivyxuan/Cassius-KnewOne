@@ -25,7 +25,6 @@
 //= require making
 //= require orders
 //= require cart_items
-//= require new_home
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ./views
