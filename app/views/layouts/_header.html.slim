@@ -49,8 +49,8 @@ header role="banner"
       .nav.navbar-nav.navbar-right
         - if user_signed_in?
           .nav_user.is_login.dropdown
-            = link_to "#", class: "nav_user_avatar dropdown-toggle", data: {toggle: "dropdown"} do
-              = image_tag current_user.avatar.url(:tiny), class: "img-circle", height: "40", width: "40"
+            = link_to current_user, class: "nav_user_avatar" do
+              = image_tag current_user.avatar.url(:tiny), class: "img-circle"
             = link_to setting_root_path, class: "nav_user_action", title: "控制面板" do
               i.fa.fa-dashboard
             = link_to messages_path, class: "nav_user_action nav_messages", title: "#{unread_messages_count}个未读消息" do
@@ -59,23 +59,6 @@ header role="banner"
             = link_to cart_items_path, class: "nav_user_action nav_cart", title: "购物车" do
               i.fa.fa-shopping-cart
               span.badge.cart_items_count= cart_items_count
-            ul.dropdown-menu
-              li= link_to_with_icon "个人主页", "fa fa-user fa-fw", current_user
-              li= link_to_with_icon "我的订单", "fa fa-file-text-o fa-fw", orders_path
-              li= link_to_with_icon "我的优惠券", "fa fa-ticket fa-fw", coupons_path
-              li= link_to_with_icon "收货地址", "fa fa-truck fa-fw", addresses_path
-              li= link_to_with_icon "发票信息", "fa fa-money fa-fw", invoices_path
-              li= link_to_with_icon "登出", "fa fa-sign-out fa-fw", destroy_user_session_path, method: :delete
-              - if can? :manage, Supplier
-                li= link_to_with_icon "供货信息", "fa fa-stethoscope fa-fw", suppliers_path
-              - if can? :manage, :all
-                li= link_to_with_icon "管理小组", "fa fa-stethoscope fa-fw", groups_path
-                li= link_to_with_icon "管理产品", "fa fa-stethoscope fa-fw", admin_things_path
-                li= link_to_with_icon "管理评测", "fa fa-stethoscope fa-fw", reviews_all_path
-                li= link_to_with_icon "管理用户", "fa fa-stethoscope fa-fw", users_path
-                li= link_to_with_icon "管理优惠券", "fa fa-stethoscope fa-fw", haven_abatement_coupons_path
-              - if can? :manage, Order
-                li= link_to_with_icon "管理订单", "fa fa-stethoscope fa-fw", haven_orders_path
         - else
           .nav_user.is_not_login
             = link_to_with_icon "登入", "fa fa-sign-in", "#", class: "nav_user_action", data: {toggle: "modal", target: "#login-modal"}

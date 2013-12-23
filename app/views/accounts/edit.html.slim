@@ -4,6 +4,9 @@ header.page-header
   h2
     i.fa.fa-book
     | 帐号信息
+    .pull-right
+      = link_to_with_icon "登出", "fa fa-sign-out fa-fw", destroy_user_session_path,
+      method: :delete, class: "btn btn-default"
 
 section.section
   h3.section_title
