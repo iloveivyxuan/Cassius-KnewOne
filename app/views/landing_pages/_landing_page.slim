@@ -14,11 +14,12 @@
 
   = link_to landing_page.focus, landing_page.focus_link, class: 'feature_name'
 
-  - landing_page.landing_page_comments.each do |c|
-    .feature_comment
-      = link_to c.user do
-        = image_tag c.user.avatar.url(:small), class: 'img-circle'
-      blockquote
-        p = c.body
-        small.text-right = c.user.name
+  .feature_comments
+    - landing_page.landing_page_comments.each do |c|
+      .feature_comment
+        = link_to c.user do
+          = image_tag c.user.avatar.url(:small), class: 'img-circle'
+        blockquote
+          p = c.body
+          small.text-right = c.user.name
   = render 'shared/entry'

@@ -23,27 +23,44 @@ html.home_landing {
       margin: .2em 0 .2em 46px;
 
       > img {
-        height: 64px;
-        margin-top: 5px;
+        height: 48px;
         margin-right: 12px;
-        width: 64px;
-        float: left;
+        width: 48px;
+
+        @media screen and (min-width: $screen-md-min + 1) {
+          height: 64px;
+          margin-top: 5px;
+          width: 64px;
+          float: left;
+        }
       }
 
       > h1 {
+        color: #049cdb;
+        display: inline-block;
         font-family: "orbitron-bold";
         font-size: $font-size-h2;
+        line-height: 48px;
         margin: 0;
-        color: #049cdb;
+        vertical-align: middle;
+
+        @media screen and (min-width: $screen-md-min + 1) {
+          display: block;
+          line-height: $headings-line-height;
+        }
       }
 
       > p {
-        font-family:'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
-        color: $gray-light;
-        font-size: $font-size-h4;
-        margin-top: 0;
-        overflow: hidden;
+        display: none;
 
+        @media screen and (min-width: $screen-md-min + 1) {
+          color: $gray-light;
+          display: block;
+          font-family:'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
+          font-size: $font-size-h4;
+          margin-top: 0;
+          overflow: hidden;
+        }
       }
 
       @media screen and (min-width: $screen-md-min + 1) {
@@ -98,9 +115,9 @@ html.home_landing {
       }
     }
 
-    .feature_comment {
-      display: none;
+    .feature_comments {
       margin: 5px 20px 10px 20px;
+      position: relative;
 
       @media screen and (min-width: $screen-md-min + 1) {
         top: 85%;
@@ -109,50 +126,61 @@ html.home_landing {
         right: $feature_position_right;
       }
 
-      img {
-        height: 48px;
-        vertical-align: top;
-        width: 48px;
+      .feature_comment {
+        display: none;
+        position: absolute;
+        top: 0;
 
-        @media screen and (min-width: $screen-md-min + 1) {
-          height: 60px;
+        &:first-child {
+          display: block;
+          position: static;
+        }
+
+        img {
+          height: 48px;
+          vertical-align: top;
+          width: 48px;
+
+          @media screen and (min-width: $screen-md-min + 1) {
+            height: 60px;
+            vertical-align: middle;
+            width: 60px;
+          }
+        }
+
+        blockquote {
+          @include border-radius(5px);
+          background-color: #feffff;
+          border-left: none;
+          box-shadow: 0 0 1px #ddd;
+          display: inline-block;
+          margin-bottom: 0;
+          margin-left: 20px;
+          max-width: 75%;
+          padding: .75em;
+          position: relative;
           vertical-align: middle;
-          width: 60px;
-        }
-      }
 
-      blockquote {
-        @include border-radius(5px);
-        background-color: #feffff;
-        border-left: none;
-        box-shadow: 0 0 1px #ddd;
-        display: inline-block;
-        margin-bottom: 0;
-        margin-left: 20px;
-        max-width: 75%;
-        padding: .75em;
-        position: relative;
-        vertical-align: middle;
+          @media screen and (min-width: $screen-md-min + 1) {
+            margin-left: 1.5em;
+            max-width: 25em;
+            padding: 1em;
+          }
 
-        @media screen and (min-width: $screen-md-min + 1) {
-          margin-left: 1.5em;
-          max-width: 25em;
-          padding: 1em;
-        }
+          &:before {
+            border-color: transparent;
+            border-style: solid;
+            border-width: 8px;
+            border-right-color: #feffff;
+            content: '';
+            left: -16px;
+            position: absolute;
+            top: 16px;
+          }
 
-        &:before {
-          border-color: transparent;
-          border-style: solid;
-          border-width: 8px;
-          border-right-color: #feffff;
-          content: '';
-          left: -16px;
-          position: absolute;
-          top: 16px;
-        }
-
-        p {
-          font-size: 14px;
+          p {
+            font-size: 14px;
+          }
         }
       }
     }
