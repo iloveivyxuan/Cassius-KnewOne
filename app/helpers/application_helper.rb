@@ -34,6 +34,10 @@ module ApplicationHelper
     "knewone"
   end
 
+  def slogan
+    "Creativity, From Prople, By People, For People"
+  end
+
   def logo
     i = 1.upto(21).to_a.shuffle.first
     image_tag "logos/#{i}.png", alt: brand

@@ -2,6 +2,9 @@ html.home_landing {
   height: 100%;
   width: 100%;
 
+  $feature_position_right: 50px;
+  $feature_position_left: 50px;
+
   body {
     height: 100%;
     padding-bottom: 0;
@@ -16,32 +19,45 @@ html.home_landing {
       width: 100%;
     }
 
-    > h1 {
-      font-family: "orbitron-bold";
-      font-size: 2em;
+    header {
       margin: .2em 0 .2em 46px;
 
+      > img {
+        height: 64px;
+        margin-top: 5px;
+        margin-right: 12px;
+        width: 64px;
+        float: left;
+      }
+
+      > h1 {
+        font-family: "orbitron-bold";
+        font-size: $font-size-h2;
+        margin: 0;
+        color: #049cdb;
+      }
+
+      > p {
+        font-family:'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
+        color: $gray-light;
+        font-size: $font-size-h4;
+        margin-top: 0;
+        overflow: hidden;
+
+      }
+
       @media screen and (min-width: $screen-md-min + 1) {
-        left: 30px;
+        min-width: 500px;
+        left: $feature_position_left - 13px;
         margin: 0;
         position: absolute;
         top: 30px;
         z-index: 2;
       }
-
-      img {
-        height: 48px;
-        margin-right: 12px;
-        width: 48px;
-      }
-
-      a {
-        color: #049cdb;
-      }
     }
 
     .feature_name {
-      color: $brand-info;
+      color: $text-color;
       display: block;
       font-family: "orbitron-bold";
       font-size: 1.2em;
@@ -49,10 +65,11 @@ html.home_landing {
       margin-top: 5px;
 
       @media screen and (min-width: $screen-md-min + 1) {
+        font-size: $font-size-h3;
         margin: 0;
         position: absolute;
-        right: 50px;
-        top: 150px;
+        right: $feature_position_right;
+        bottom: 38.2%;
       }
     }
 
@@ -77,7 +94,7 @@ html.home_landing {
         margin: auto;
         max-height: none;
 
-        @media screen and (min-width: $screen-xl-min) {
+        @media screen and (min-width: $screen-xl-min+1) {
           height: 100%;
           width: 100%;
         }
@@ -88,10 +105,10 @@ html.home_landing {
       margin: 5px 20px 10px 20px;
 
       @media screen and (min-width: $screen-md-min + 1) {
-        bottom: 50px;
+        top: 85%;
         margin: 0;
         position: absolute;
-        right: 50px;
+        right: $feature_position_right;
       }
 
       img {
@@ -152,9 +169,9 @@ html.home_landing {
       }
 
       @media screen and (min-width: $screen-md-min + 1) {
-        left: 50px;
+        left: $feature_position_left;
         position: absolute;
-        top: 200px;
+        top: 24%;
         width: 280px;
       }
     }
