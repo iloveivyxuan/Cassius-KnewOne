@@ -28,7 +28,7 @@
           - if can? :manage, LandingPage
             =nav_tab_link_with_icon :supplier, '管理首页封面', 'fa fa-stethoscope', haven_landing_pages_path, class: 'list-group-item'
 
-        = link_to_with_icon '安全登出', 'fa fa-sign-out', destroy_user_session_path, class: 'btn btn-danger btn-lg btn-block'
+        = link_to_with_icon '安全登出', 'fa fa-sign-out', destroy_user_session_path, method: :delete, class: 'btn btn-danger btn-lg btn-block'
 
     main#main role="main"
       = yield
