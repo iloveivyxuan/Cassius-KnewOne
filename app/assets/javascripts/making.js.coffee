@@ -36,6 +36,9 @@ window.Making =
         $('.offcanvas_mix').removeClass 'is_aside_active'
       Making.Screen = window.getComputedStyle(document.body, ':after').getPropertyValue('content')
       $(window).on 'resize', -> Making.Screen = window.getComputedStyle(document.body, ':after').getPropertyValue('content')
+      $('.entry').on 'click', '.entry_email_toggle', ->
+        $form = $(@).parents('.entry').find('.entry_email')
+        $form.stop()[if $form.is(':hidden') then 'fadeIn' else 'fadeOut'](160)
 
   OlarkSetUser: (name, email, id) ->
     olark('api.visitor.updateFullName', {fullName: name}) if name

@@ -222,6 +222,8 @@
       border-right: $border-default;
       text-align: center;
       a {
+        display: block;
+        width: 100%;
         i {
           display: block;
           margin: 0 auto .2em;
@@ -246,9 +248,9 @@
       > * {
         border: none;
         width: 50%;
-        padding: 1em;
 
-        a  {
+        a {
+          padding: 1em;
           i {font-size: 2em;}
           small {margin-left: .5em;}
         }
@@ -256,7 +258,7 @@
 
       > *:nth-child(2n+1) {border-right: $border-default;}
       > *:nth-child(-n+2) {border-bottom: $border-default;}
-      > *:nth-child(n+3)  {padding-top: 1.5em;}
+      > *:nth-child(n+3)  {a {padding-top: 1.5em;}}
     }
   }
 

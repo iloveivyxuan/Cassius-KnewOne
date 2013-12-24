@@ -2,9 +2,10 @@
 - comment = landing_page.landing_page_comments.sample
 
 = content_tag :div, class: "feature theme_#{landing_page.theme}" do
-  h1
+  header
     = logo
-    = link_to brand
+    h1= brand
+    p= slogan
   span.feature_image data-picture="" data-alt="#{landing_page.background_alt}"
     span data-src="#{landing_page.xs_background.url}"
     span data-src="#{landing_page.sm_background.url}" data-media="(min-width: 481px) and (max-width: 768px)"
@@ -14,9 +15,9 @@
 
   = link_to landing_page.focus, landing_page.focus_link, class: 'feature_name'
   .feature_comment
-    = link_to comment.user
+    = link_to comment.user do
       = image_tag comment.user.avatar.url(:small), class: 'img-circle'
-    blockquote.text-right
+    blockquote
       p = comment.body
-      small = comment.user.name
+      small.text-right = comment.user.name
   = render 'shared/entry'
