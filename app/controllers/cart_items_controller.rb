@@ -20,11 +20,11 @@ class CartItemsController < ApplicationController
     @cart_item.quantity_increment (params[:step].to_i || 1)
     respond_to do |format|
       if @cart_item.save
-        @total_price = CartItem.total_price current_user.cart_items
         format.html { redirect_to cart_items_path }
-        format.js
+        format.js { @total_price = CartItem.total_price current_user.cart_items }
       else
-        render nothing: true
+        format.html { redirect_to cart_items_path }
+        format.js { render nothing: true }
       end
     end
   end
