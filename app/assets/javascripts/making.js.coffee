@@ -41,6 +41,23 @@ window.Making =
         $form = $(@).parents('.entry').find('.entry_email')
         $form.stop()[if $form.is(':hidden') then 'fadeIn' else 'fadeOut'](160)
         $(@).toggleClass 'active'
+      if $('html').hasClass 'home_landing'
+        $comments = $('.feature_comment')
+        length = $comments.length
+        $comments.first().show()
+        if length > 1
+          times = length - 1
+          i = 1
+          setInterval ->
+            $comments
+              .filter(':visible')
+              .fadeOut()
+            .end()
+              .eq(i)
+              .fadeIn()
+            i = if i < times then ++i else 0
+            console.log i
+          , 5000
 
   OlarkSetUser: (name, email, id) ->
     olark('api.visitor.updateFullName', {fullName: name}) if name
