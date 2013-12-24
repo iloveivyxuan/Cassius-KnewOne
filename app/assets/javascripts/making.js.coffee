@@ -44,19 +44,19 @@ window.Making =
       if $('html').hasClass 'home_landing'
         $comments = $('.feature_comment')
         length = $comments.length
-        $comments.first().show()
         if length > 1
           times = length - 1
           i = 1
           setInterval ->
             $comments
               .filter(':visible')
-              .fadeOut()
+              .css('position', 'absolute')
+              .hide()
             .end()
               .eq(i)
+              .css('position', 'static')
               .fadeIn()
             i = if i < times then ++i else 0
-            console.log i
           , 5000
 
   OlarkSetUser: (name, email, id) ->
