@@ -44,6 +44,8 @@ class RegistrationsController < Devise::RegistrationsController
           expire_data_after_sign_in!
         end
 
+        flash[:show_sign_up_modal] = true
+
         format.html { redirect_to after_sign_in_path_for(resource) }
         format.js { @location = after_sign_in_path_for(resource) }
       else

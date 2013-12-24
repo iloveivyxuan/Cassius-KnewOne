@@ -1,0 +1,18 @@
+#sign-up-successful.modal.fade tabindex="-1" role="dialog" aria-labelledby="setting-password-title" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      header.modal-header
+        button.close data-dismiss="modal" aria-hidden="true"
+          | &times;
+        h4#sign-up-successful-title.modal-title
+          | 完善帐号信息
+      main.modal-body
+        p.text-center
+          i.fa.fa-smile
+          | 欢迎您加入knewone，请进入您填写的注册邮箱收取验证邮件以激活账户。
+
+- content_for :script do
+  javascript:
+    $(function() {
+      $('#sign-up-successful').modal('show');
+    });
