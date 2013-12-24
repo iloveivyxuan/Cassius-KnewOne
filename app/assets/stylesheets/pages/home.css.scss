@@ -76,6 +76,11 @@ html.home_landing {
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
         margin: auto;
         max-height: none;
+
+        @media screen and (min-width: $screen-xl-min) {
+          height: 100%;
+          width: 100%;
+        }
       }
     }
 
