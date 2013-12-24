@@ -21,8 +21,6 @@ class Making.Views.CommentsIndex extends Backbone.View
       data: {page: @page++}
       beforeSend: =>
         @$('ul').append(HandlebarsTemplates['shared/loading'])
-      success: =>
-        console.log @collection
 
   render: =>
     @$el.html @template(
