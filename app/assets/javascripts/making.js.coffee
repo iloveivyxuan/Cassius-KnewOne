@@ -41,6 +41,13 @@ window.Making =
         $form = $(@).parents('.entry').find('.entry_email')
         $form.stop()[if $form.is(':hidden') then 'fadeIn' else 'fadeOut'](160)
         $(@).toggleClass 'active'
+      $('html.home_landing .feature_pager').on 'click', (e) ->
+        e.preventDefault()
+        scrollTop = $('#home_index').offset().top;
+        $('html, body').animate {
+          scrollTop: scrollTop
+        }, 'normal'
+        return
       if $('html').hasClass 'home_landing'
         $comments = $('.feature_comment')
         length = $comments.length
