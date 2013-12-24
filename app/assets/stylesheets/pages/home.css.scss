@@ -162,15 +162,9 @@ html.home_landing {
       margin-bottom: 1em;
       padding: 15px;
 
-      .reg_hint {
-        margin: .5em 0 .5em 2em;
-      }
-
       @media screen and (max-width: $screen-md-min) {
         margin-left: 9%;
         margin-right: 9%;
-
-        .reg_hint {display: none;}
       }
 
       @media screen and (min-width: $screen-md-min + 1) {
@@ -283,8 +277,6 @@ html.home_landing {
           background-color: $background_light;
           border-color: #ddd;
           box-shadow: 0 0 1px #ddd;
-
-          .reg_hint {color: $text-muted;}
 
           .oauth {
             .fa {color: darken(#ddd, 50%);}
