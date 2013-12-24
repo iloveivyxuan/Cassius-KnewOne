@@ -35,7 +35,7 @@ module ApplicationHelper
   end
 
   def slogan
-    "Creativity, From Prople, By People, For People"
+    "Creativity, From People, By People, For People"
   end
 
   def logo
