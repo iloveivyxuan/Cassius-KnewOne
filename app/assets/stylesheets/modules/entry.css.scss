@@ -14,6 +14,13 @@
   .oauth {
     text-align: center;
 
+    .entry_email_toggle.active {
+
+      .fa {
+        color: #049cdb !important;
+      }
+    }
+
     .fa {
       color: darken(#ddd, 50%);
       margin-right: .85em;
@@ -45,7 +52,6 @@
   }
 
   .entry_email {
-    display: none;
     margin-top: 1em;
 
     .tab-content {

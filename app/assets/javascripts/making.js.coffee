@@ -39,6 +39,7 @@ window.Making =
       $('.entry').on 'click', '.entry_email_toggle', ->
         $form = $(@).parents('.entry').find('.entry_email')
         $form.stop()[if $form.is(':hidden') then 'fadeIn' else 'fadeOut'](160)
+        $(@).toggleClass 'active'
 
   OlarkSetUser: (name, email, id) ->
     olark('api.visitor.updateFullName', {fullName: name}) if name
