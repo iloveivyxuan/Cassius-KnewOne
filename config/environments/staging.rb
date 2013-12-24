@@ -72,8 +72,8 @@ Making::Application.configure do
       address: 'smtp.exmail.qq.com',
       port: 25,
       domain: 'staging.knewone.com',
-      user_name: 'no-reply@knewone.com',
-      password: '109d52B6',
+      user_name: 'lilu@knewone.com',
+      password: 'knewone123',
       authentication: 'plain',
       enable_starttls_auto: true
   }

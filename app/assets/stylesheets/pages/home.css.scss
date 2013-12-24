@@ -230,10 +230,7 @@ html.home_landing {
           box-shadow: 0 0 30px #191919;
 
           .oauth {
-
-            .fa {
-              color: #404b53;
-            }
+            .fa {color: #404b53;}
           }
 
           .nav-pills-list {
@@ -285,6 +282,8 @@ html.home_landing {
 
       &.theme_light {
 
+        $background_light: rgba(#feffff, 0.45);
+
         .feature_name {
           color: $text-muted;
           &:hover {color: $text-color;}
@@ -293,25 +292,22 @@ html.home_landing {
         .feature_comment {
 
           blockquote {
-            background-color: rgba(#feffff, 0.5);
+            background-color: $background_light;
             box-shadow: 0 0 1px #ddd;
 
             &:before {
-              border-right-color: rgba(#feffff, 0.5);
+              border-right-color: $background_light;
             }
           }
         }
 
         .entry {
-          background-color: rgba(#feffff, 0.5);
+          background-color: $background_light;
           border-color: #ddd;
           box-shadow: 0 0 1px #ddd;
 
           .oauth {
-
-            .fa {
-              color: darken(#ddd, 50%);
-            }
+            .fa {color: darken(#ddd, 50%);}
           }
 
           .nav-pills-list {
