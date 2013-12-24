@@ -1,9 +1,10 @@
 - provide :page_class, 'home_landing'
 
 = content_tag :div, class: "feature theme_#{landing_page.theme}" do
-  h1
+  header
     = logo
-    = link_to brand
+    h1= brand
+    p= slogan
   span.feature_image data-picture="" data-alt="#{landing_page.background_alt}"
     span data-src="#{landing_page.xs_background.url}"
     span data-src="#{landing_page.sm_background.url}" data-media="(min-width: 481px) and (max-width: 768px)"
@@ -13,7 +14,7 @@
 
   = link_to landing_page.focus, landing_page.focus_link, class: 'feature_name'
   .feature_comment
-    = link_to
+    = link_to "#" do
       = image_tag landing_page.commentator_avatar.url(:small), class: 'img-circle'
     blockquote.text-right
       p = landing_page.comment
