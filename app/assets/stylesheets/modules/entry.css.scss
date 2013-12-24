@@ -61,6 +61,20 @@
           margin-bottom: 0;
           margin-top: 15px;
         }
+
+        &.addon {
+          @include clearfix;
+          line-height: 20px;
+
+          >.checkbox {
+            float: left;
+            margin: 0;
+          }
+
+          > a {
+            float: right;
+          }
+        }
       }
 
       .fa {
@@ -70,7 +84,6 @@
       .btn {
         font-size: 14px;
         margin-bottom: 15px;
-        width: 100%;
 
         &:last-child {
           margin-bottom: 0;
