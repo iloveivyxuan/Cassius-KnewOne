@@ -11,11 +11,19 @@
     margin: 0;
   }
 
+  .reg_hint {
+    margin: .5em 0 .5em 2em;
+    color: $text-muted;
+
+    @media screen and (max-width: $screen-md-min) {
+      display: none;
+    }
+  }
+
   .oauth {
     text-align: center;
 
     .entry_email_toggle.active {
-
       .fa {
         color: #049cdb !important;
       }
