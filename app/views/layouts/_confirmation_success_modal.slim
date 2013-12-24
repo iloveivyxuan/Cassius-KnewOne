@@ -9,9 +9,11 @@
       main.modal-body
         p.text-center
           i.fa.fa-smile
-          | 您的账号已经绑定邮箱，我们将在今后为您发送knewone的最新产品信息，现在您可以
-          = link_to '设置密码', edit_account_path
-          | 以方便用邮箱登录。
+          | 您的账号已经激活，感谢您对knewone的兴趣，现在可以&nbsp;
+          a data-dismiss="modal" aria-hidden="true" href="#" 随便看看
+          | &nbsp;或者&nbsp;
+          = link_to '完善资料', edit_profile_path
+          | &nbsp;。
 
 - content_for :script do
   javascript:

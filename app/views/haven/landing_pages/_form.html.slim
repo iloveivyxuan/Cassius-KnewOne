@@ -1,15 +1,12 @@
-= simple_form_for @landing_page, html: {class: 'form'}, url: [:haven, @landing_page] do |f|
+= simple_nested_form_for @landing_page, html: {class: 'form'}, url: [:haven, @landing_page] do |f|
   = f.collection_radio_buttons :theme, LandingPage::THEMES.to_a, :first, :last
   - LandingPage::BACKGROUND_SPECIFICATIONS.each do |s|
-    = f.input s
+    = f.input s, class: 'user_id'
     = f.input :"#{s}_cache", as: :hidden
   = f.input :background_alt
-  = f.input :commentator
-  = f.input :commentator_avatar
-  = f.input :commentator_avatar_cache, as: :hidden
-  = f.input :comment
   = f.input :focus
   = f.input :focus_link
+  = f.simple_fields_for :landing_page_comments
+  = f.link_to_add "新增评论", :landing_page_comments, class: "btn btn-default"
   = f.input :published, as: :radio_buttons
   = f.button :submit
-
