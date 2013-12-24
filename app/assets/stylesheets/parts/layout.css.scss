@@ -40,7 +40,6 @@ body {
     @media screen and (max-width: $screen-xs-max) {
       content: 'screen-xs';
     }
-
     @media screen and (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
       content: 'screen-sm';
     }
