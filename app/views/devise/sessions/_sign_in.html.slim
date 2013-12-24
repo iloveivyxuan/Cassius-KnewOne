@@ -3,12 +3,12 @@
     .input-group
       span.input-group-addon
         i.fa.fa-envelope
-      = f.email_field :email, required: true, autofocus: true, placeholder: '请输入您的邮箱地址', class: 'form-control'
+      = f.email_field :email, required: true, autofocus: true, placeholder: '邮箱地址', class: 'form-control'
   .form-group
     .input-group
       span.input-group-addon
         i.fa.fa-key
-      = f.password_field :password, required: true, placeholder: '请输入您的密码', class: 'form-control'
+      = f.password_field :password, required: true, placeholder: '密码', class: 'form-control'
   .checkbox
     label
       = f.check_box :remember_me
