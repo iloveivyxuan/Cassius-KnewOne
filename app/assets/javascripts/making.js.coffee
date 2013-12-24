@@ -4,13 +4,16 @@ window.Making =
   Views: {}
   Routers: {}
 
-  Screen: ''
-  ScreenLevel: {
-    'screen-xs': 1
-    'screen-sm': 2
-    'screen-md': 3
-    'screen-lg': 4
-    'screen-xl': 5
+  Breakpoint: {
+    "screenXSMin": "480px"
+    "screenSMMin": "768px"
+    "screenMDMin": "992px"
+    "screenLGMin": "1440px"
+    "screenXLMin": "1920px"
+    "screenXSMax": "767px"
+    "screenSMMax": "991px"
+    "screenMDMax": "1439px"
+    "screenLGMax": "1919px"
   }
 
   initialize: ->
@@ -34,8 +37,6 @@ window.Making =
         $('.offcanvas_mix').addClass 'is_aside_active'
       $('#switch_main').on 'click', ->
         $('.offcanvas_mix').removeClass 'is_aside_active'
-      Making.Screen = window.getComputedStyle(document.body, ':after').getPropertyValue('content')
-      $(window).on 'resize', -> Making.Screen = window.getComputedStyle(document.body, ':after').getPropertyValue('content')
       $('.entry').on 'click', '.entry_email_toggle', ->
         $form = $(@).parents('.entry').find('.entry_email')
         $form.stop()[if $form.is(':hidden') then 'fadeIn' else 'fadeOut'](160)
