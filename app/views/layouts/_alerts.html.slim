@@ -7,7 +7,7 @@
       = link_to ' 绑定您的邮箱 ', '#setting-email', data: {toggle: 'modal'}
       | 以方便获得我们的更新
 
-  - elsif current_user.has_fulfilled_email? && !current_user.has_confirmed_email?
+  - elsif current_user.has_fulfilled_email? && !current_user.has_confirmed_email? && !flash[:show_sign_up_modal]
     #resend-email-alert.alert.alert-warning.alert-dismissable
       button.close data-dismiss="alert" aria-hidden="true"
         | &times;
