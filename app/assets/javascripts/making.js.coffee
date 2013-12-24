@@ -16,15 +16,6 @@ window.Making =
     "screenLGMax": "1919px"
   }
 
-  Screen: ''
-  ScreenLevel: {
-    'screen-xs': 1
-    'screen-sm': 2
-    'screen-md': 3
-    'screen-lg': 4
-    'screen-xl': 5
-  }
-
   initialize: ->
     $ ->
       Making.ImageLazyLoading()
@@ -46,8 +37,6 @@ window.Making =
         $('.offcanvas_mix').addClass 'is_aside_active'
       $('#switch_main').on 'click', ->
         $('.offcanvas_mix').removeClass 'is_aside_active'
-      Making.Screen = window.getComputedStyle(document.body, ':after').getPropertyValue('content')
-      $(window).on 'resize', -> Making.Screen = window.getComputedStyle(document.body, ':after').getPropertyValue('content')
       $('.entry').on 'click', '.entry_email_toggle', ->
         $form = $(@).parents('.entry').find('.entry_email')
         $form.stop()[if $form.is(':hidden') then 'fadeIn' else 'fadeOut'](160)

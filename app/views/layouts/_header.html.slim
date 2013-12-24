@@ -49,10 +49,8 @@ header role="banner"
       .nav.navbar-nav.navbar-right
         - if user_signed_in?
           .nav_user.is_login.dropdown
-            = link_to current_user, class: "nav_user_avatar" do
+            = link_to setting_root_path, class: "nav_user_avatar", title: "控制面板" do
               = image_tag current_user.avatar.url(:tiny), class: "img-circle"
-            = link_to setting_root_path, class: "nav_user_action", title: "控制面板" do
-              i.fa.fa-dashboard
             = link_to messages_path, class: "nav_user_action nav_messages", title: "#{unread_messages_count}个未读消息" do
               i.fa.fa-inbox
               span.badge= unread_messages_count
