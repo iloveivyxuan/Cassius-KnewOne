@@ -16,7 +16,7 @@
   .feature_comment
     = link_to "#" do
       = image_tag landing_page.commentator_avatar.url(:small), class: 'img-circle'
-    blockquote.text-right
+    blockquote
       p = landing_page.comment
-      small = landing_page.commentator
+      small.text-right = landing_page.commentator
   = render 'shared/entry'
