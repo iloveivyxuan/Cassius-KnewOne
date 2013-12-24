@@ -1,5 +1,4 @@
 - provide :page_class, 'home_landing'
-- comment = landing_page.landing_page_comments.sample
 
 = content_tag :div, class: "feature theme_#{landing_page.theme}" do
   header
@@ -14,10 +13,12 @@
     span data-src="#{landing_page.xl_background.url}" data-media="(min-width: 1441px)"
 
   = link_to landing_page.focus, landing_page.focus_link, class: 'feature_name'
-  .feature_comment
-    = link_to comment.user do
-      = image_tag comment.user.avatar.url(:small), class: 'img-circle'
-    blockquote
-      p = comment.body
-      small.text-right = comment.user.name
+
+  - landing_page.landing_page_comments.each do |c|
+    .feature_comment
+      = link_to c.user do
+        = image_tag c.user.avatar.url(:small), class: 'img-circle'
+      blockquote
+        p = c.body
+        small.text-right = c.user.name
   = render 'shared/entry'

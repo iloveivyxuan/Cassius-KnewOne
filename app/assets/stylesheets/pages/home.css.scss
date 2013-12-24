@@ -73,7 +73,6 @@ html.home_landing {
     }
 
     .feature_image {
-
       @media screen and (max-width: $screen-md-min) {
         display: block;
         height: 500px;
@@ -101,6 +100,7 @@ html.home_landing {
     }
 
     .feature_comment {
+      display: none;
       margin: 5px 20px 10px 20px;
 
       @media screen and (min-width: $screen-md-min + 1) {
