@@ -196,6 +196,7 @@ html.home_landing {
 
       @media screen and (min-width: $screen-md-min + 1) {
         left: $feature_position_left;
+        margin: 0;
         position: absolute;
         top: 26%;
         width: 280px;
