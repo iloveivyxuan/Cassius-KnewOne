@@ -69,7 +69,7 @@ class Order
   field :trade_state, type: String
   field :deliver_price, type: BigDecimal
   field :auto_owning, type: Boolean, default: true
-  field :use_balance, type: Boolean, default: true
+  field :use_balance, type: Boolean, default: false
   field :expense_balance, type: BigDecimal, default: 0
   field :price, type: BigDecimal
 
