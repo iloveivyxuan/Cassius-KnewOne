@@ -127,6 +127,11 @@ Making::Application.routes.draw do
 
   resources :suppliers
 
+  require 'sidekiq/web'
+  authenticate :user, lambda { |u| u.role?(:admin) } do
+    mount Sidekiq::Web => '/haven/sidekiq'
+  end
+
   get '/search', to: 'home#search', as: :search
   get '/sandbox', to: 'home#sandbox'
 
