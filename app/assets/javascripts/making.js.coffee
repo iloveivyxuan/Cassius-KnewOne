@@ -4,6 +4,18 @@ window.Making =
   Views: {}
   Routers: {}
 
+  Breakpoint: {
+    "screenXSMin": "480px"
+    "screenSMMin": "768px"
+    "screenMDMin": "992px"
+    "screenLGMin": "1440px"
+    "screenXLMin": "1920px"
+    "screenXSMax": "767px"
+    "screenSMMax": "991px"
+    "screenMDMax": "1439px"
+    "screenLGMax": "1919px"
+  }
+
   Screen: ''
   ScreenLevel: {
     'screen-xs': 1
@@ -39,6 +51,7 @@ window.Making =
       $('.entry').on 'click', '.entry_email_toggle', ->
         $form = $(@).parents('.entry').find('.entry_email')
         $form.stop()[if $form.is(':hidden') then 'fadeIn' else 'fadeOut'](160)
+        $(@).toggleClass 'active'
 
   OlarkSetUser: (name, email, id) ->
     olark('api.visitor.updateFullName', {fullName: name}) if name

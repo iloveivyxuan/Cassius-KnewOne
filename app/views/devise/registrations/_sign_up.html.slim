@@ -3,17 +3,17 @@
     .input-group
       span.input-group-addon
         i.fa.fa-user
-      = f.text_field :name, placeholder: '请输入您的昵称', required: true, class: 'form-control'
+      = f.text_field :name, placeholder: '昵称', required: true, class: 'form-control'
   .form-group.email_group
     .input-group
       span.input-group-addon
         i.fa.fa-envelope
-      = f.email_field :email, placeholder: '请输入您的邮箱地址', required: true, class: 'form-control'
+      = f.email_field :email, placeholder: '邮箱地址', required: true, class: 'form-control'
   .form-group.password_group
     .input-group
       span.input-group-addon
         i.fa.fa-key
-      = f.password_field :password, placeholder: '请输入您的密码', required: true, class: 'form-control'
+      = f.password_field :password, placeholder: '密码', required: true, class: 'form-control'
   .form-group
     .form-action
       = f.button :submit, "用邮箱注册", class: "btn btn-primary btn-lg btn-block"

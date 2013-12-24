@@ -32,7 +32,7 @@ section#home_index
   javascript:
     Making.InfiniteScroll("#home_index > section", "#home_things > li");
     $(window).on('load', function() {
-      if (Making.ScreenLevel[Making.Screen] >= 3) {
+      if (Modernizr.mq('(min-width: ' + Making.Breakpoint.screenMDMin + ')')) {
         $.adaptiveBackground.run({
           selector: 'html.home_landing .feature_image img',
           parent: 'html.home_landing .feature'

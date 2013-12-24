@@ -3,20 +3,21 @@
     .input-group
       span.input-group-addon
         i.fa.fa-envelope
-      = f.email_field :email, required: true, autofocus: true, placeholder: '请输入您的邮箱地址', class: 'form-control'
+      = f.email_field :email, required: true, autofocus: true, placeholder: '邮箱地址', class: 'form-control'
   .form-group
     .input-group
       span.input-group-addon
         i.fa.fa-key
       = f.password_field :password, required: true, placeholder: '请输入您的密码', class: 'form-control'
-  .checkbox
-    label
-      = f.check_box :remember_me
-      | 记住我
+  .form-group.addon
+    .checkbox
+      label
+        = f.check_box :remember_me
+        | 记住我
+    = link_to "忘记密码？", new_user_password_path
   .form-group
     .form-action
       = f.button :submit, "登录", class: "btn btn-primary btn-lg btn-block"
-      = link_to "忘记密码？", new_user_password_path, class: "btn btn-link btn-lg btn-block"
   .form-group.hidden#sign_in_alert_field
     .form-result
       .alert.alert-danger
