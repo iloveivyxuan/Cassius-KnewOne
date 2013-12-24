@@ -98,6 +98,11 @@
 
     nav {
 
+      .btn-block {
+        font-size: $font-size-base;
+        margin-bottom: 1em;
+      }
+
       .list-group-item {
         color: $text-muted;
 
