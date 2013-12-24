@@ -8,15 +8,26 @@ class LandingPage
   validates :theme, presence: true, inclusion: {in: THEMES.keys}
 
   BACKGROUND_SPECIFICATIONS = [:xs_background, :sm_background, :md_background, :lg_background, :xl_background]
+  VERSIONS = [:xs, :sm, :md, :lg, :xl]
   BACKGROUND_SPECIFICATIONS.each do |type|
     mount_uploader type, ImageUploader
     # validates type, presence: true
   end
+  validates :xs_background, presence: true, if: -> {persisted?}
+
+  def background_url(spec, version = :full)
+    bg = send sepc
+    if bg.present?
+      return bg.url if spec == :full
+      return bg.url(version)
+    end
+    # TODO: if bg is blank then recursive bigger
+  end
+
   field :background_alt, type: String
 
-  field :comment, type: String
-  field :commentator, type: String
-  mount_uploader :commentator_avatar, AvatarUploader
+  embeds_many :landing_page_comments
+  accepts_nested_attributes_for :landing_page_comments, allow_destroy: true, reject_if: :all_blank
 
   field :focus, type: String
   field :focus_link, type: String
