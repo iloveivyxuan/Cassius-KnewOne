@@ -1,5 +1,6 @@
 class StoriesController < ApplicationController
-  load_and_authorize_resource :thing
+  load_and_authorize_resource :thing, singleton: true
+  load_and_authorize_resource :story, through: :thing
   layout 'thing'
 
   def index
