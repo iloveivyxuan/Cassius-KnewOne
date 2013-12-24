@@ -31,11 +31,11 @@ section#home_index
 - content_for :script do
   javascript:
     Making.InfiniteScroll("#home_index > section", "#home_things > li");
-    $(window).on('load', function() {
-      if (Modernizr.mq('(min-width: ' + Making.Breakpoint.screenMDMin + ')')) {
-        $.adaptiveBackground.run({
-          selector: 'html.home_landing .feature_image img',
-          parent: 'html.home_landing .feature'
-        });
-      }
-    });
+    / $(window).on('load', function() {
+    /   if (Modernizr.mq('(min-width: ' + Making.Breakpoint.screenMDMin + ')')) {
+    /     $.adaptiveBackground.run({
+    /       selector: 'html.home_landing .feature_image img',
+    /       parent: 'html.home_landing .feature'
+    /     });
+    /   }
+    / });

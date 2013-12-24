@@ -88,7 +88,6 @@ html.home_landing {
 
       img {
         @include stretch(-1000%, -1000%, -1000%, -1000%);
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
         margin: auto;
         max-height: none;
 
