@@ -8,6 +8,7 @@ class Order
   embeds_one :address
   attr_accessor :address_id
   alias_method :_address=, :address=
+
   def address=(val)
     return nil unless val
 
@@ -18,6 +19,7 @@ class Order
   embeds_one :invoice
   attr_accessor :invoice_id
   alias_method :_invoice=, :invoice=
+
   def invoice=(val)
     return nil unless val
 
@@ -105,9 +107,9 @@ class Order
     order_items.each &:claim_stock!
     sync_price
 
-    self.state = :freed if free?
-
-    if use_balance? && self.user.has_balance?
+    if free?
+      self.state = :freed
+    elsif use_balance? && self.user.has_balance?
       available_balance = self.user.balance
 
       if available_balance - total_price >= 0 && self.user.expense_balance!(total_price, "支付订单#{self.order_no}")
