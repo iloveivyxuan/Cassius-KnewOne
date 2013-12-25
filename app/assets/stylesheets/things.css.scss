@@ -214,6 +214,19 @@
     }
   }
 
+  .investors {
+    margin-bottom: 1em;
+
+    h4 {
+      margin: 0;
+      color: $text-muted;
+      a {
+        margin-left: 1em;
+        font-size: .85em;
+      }
+    }
+  }
+
   .actions {
     margin: 1em 0;
     > * {
@@ -391,6 +404,20 @@
       @include make-sm-column(4);
       @include make-lg-column(2);
       margin-bottom: 2em;
+    }
+  }
+}
+
+#thing_investors {
+  img {@extend .img-circle;}
+  ul {@include clearfix;}
+  li {
+    float: left;
+    margin: 2em;
+    text-align: center;
+    > * {
+      display: block;
+      color: $text-muted;
     }
   }
 }

@@ -58,18 +58,10 @@ class ThingPresenter < PostPresenter
   end
 
   def concept
-    # link_to_with_icon "研发中", "fa fa-wrench fa-lg", "#",
-    #                   title: "概念产品", class: "btn btn-default disabled popover-toggle",
-    #                   data: {
-    #                       toggle: "popover",
-    #                       placement: "bottom",
-    #                       content: "由于产品还在研发之中，目前还没有合适的渠道让您购买到此商品，不过，我们会一直追踪此商品的最新动向，一旦您所在的地区可以购买，我们会第一时间提供最靠谱的购买渠道，敬请期待"
-    #                   }
   end
 
   def domestic
     return concept unless thing.shop.present?
-
     link_to_with_icon "网购", "fa fa-location-arrow fa-lg", buy_thing_path(thing),
                       title: title, class: "btn btn-info buy_button track_event", target: "_blank",
                       data: {
@@ -81,7 +73,6 @@ class ThingPresenter < PostPresenter
 
   def abroad
     return concept unless thing.shop.present?
-
     link_to_with_icon "海淘", "fa fa-plane fa-lg", buy_thing_path(thing),
                       title: title, class: "btn btn-info buy_button track_event", target: "_blank",
                       data: {
@@ -91,9 +82,13 @@ class ThingPresenter < PostPresenter
                       }
   end
 
+  def invest
+    dsell
+  end
+
   def dsell
     if thing.kinds.blank?
-      stock
+      concept
     else
       render partial: 'cart_items/new', locals: {tp: self}
     end
