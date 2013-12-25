@@ -4,8 +4,6 @@
     aside#aside role="complementary"
 
       nav role="navigation"
-        = link_to_with_icon '我的主页', 'fa fa-user', current_user, class: 'btn btn-primary btn-lg btn-block'
-
         ul.nav.nav-pills.nav-pills-list.vertical
           li.nav-group-title 账户
           = nav_tab :profile do
@@ -45,8 +43,6 @@
             - if can? :manage, LandingPage
               = nav_tab :supplier do
                 = link_to_with_icon '管理首页封面', 'fa fa-fw fa-wrench', haven_landing_pages_path
-
-        = link_to_with_icon '安全登出', 'fa fa-sign-out', destroy_user_session_path, method: :delete, class: 'btn btn-danger btn-lg btn-block'
 
     main#main role="main"
       = yield
