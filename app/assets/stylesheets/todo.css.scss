@@ -223,21 +223,6 @@
   text-shadow: none;
 }
 
-ul.nav-pills {
-
-  > li {
-
-    > a {
-      padding: 5px 10px;
-
-      > .badge {
-        border-radius: $nav-pills-border-radius;
-        margin-left: .5em;
-      }
-    }
-  }
-}
-
 .input-group-addon {
   margin-right: -1px;
 }

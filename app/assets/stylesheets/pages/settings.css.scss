@@ -93,29 +93,4 @@
       }
     }
   }
-
-  #aside {
-
-    nav {
-
-      .btn-block {
-        font-size: $font-size-base;
-        margin-bottom: 1em;
-      }
-
-      .list-group-item {
-        color: $text-muted;
-
-        &:hover {
-          color: $list-group-active-color;
-          background-color: $list-group-active-bg;
-          border-color: $list-group-active-border;
-        }
-
-        &.active {
-          color: $list-group-active-color;
-        }
-      }
-    }
-  }
 }
