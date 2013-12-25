@@ -2,16 +2,10 @@ class Review < Post
   field :score, type: Integer, default: 0
   field :is_top, type: Boolean, default: false
 
-  # TODO: remove in future
-  belongs_to :thing
-
   belongs_to :thing_group
-  before_create do
-    unless self.thing.thing_group
-      self.thing.build_thing_group(founder: self.thing.author, name: self.thing.title).save
-    end
 
-    self.thing_group = self.thing.thing_group
+  def thing
+    thing_group.thing
   end
 
 
@@ -64,5 +58,4 @@ class Review < Post
   def destroy_score
     thing.del_score score
   end
-
 end
