@@ -11,12 +11,14 @@
     margin: 0;
   }
 
-  .reg_hint {
-    margin: .5em 0 .5em 2em;
-    color: $text-muted;
+  .entry_title {
+    display: none;
 
-    @media screen and (max-width: $screen-md-min) {
-      display: none;
+    @media screen and (min-width: $screen-md-min + 1) {
+      color: $text-muted;
+      display: block;
+      font-size: 14px;
+      margin: .5em 0 .5em 2em;
     }
   }
 

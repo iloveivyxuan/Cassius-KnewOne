@@ -59,7 +59,7 @@ header role="banner"
               span.badge.cart_items_count= cart_items_count
         - else
           .nav_user.is_not_login
-            = link_to_with_icon "登入", "fa fa-sign-in", "#", class: "nav_user_action", data: {toggle: "modal", target: "#login-modal"}
+            = link_to_with_icon "登录", "fa fa-sign-in", "#", class: "nav_user_action", data: {toggle: "modal", target: "#login-modal"}
 
       = form_tag(search_path, method: "get", id: "navbar_search", class: "navbar-form navbar-right", role: "search") do
         .form-group
