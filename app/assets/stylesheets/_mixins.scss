@@ -1,0 +1,8 @@
+@import "compass/css3";
+
+@mixin wrapper($padding: 0) {
+  @include border-radius($border-radius-base);
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: $padding;
+}
