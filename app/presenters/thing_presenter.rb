@@ -62,7 +62,6 @@ class ThingPresenter < PostPresenter
 
   def domestic
     return concept unless thing.shop.present?
-
     link_to_with_icon "网购", "fa fa-location-arrow fa-lg", buy_thing_path(thing),
                       title: title, class: "btn btn-info buy_button track_event", target: "_blank",
                       data: {
@@ -74,7 +73,6 @@ class ThingPresenter < PostPresenter
 
   def abroad
     return concept unless thing.shop.present?
-
     link_to_with_icon "海淘", "fa fa-plane fa-lg", buy_thing_path(thing),
                       title: title, class: "btn btn-info buy_button track_event", target: "_blank",
                       data: {

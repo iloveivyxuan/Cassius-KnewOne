@@ -1,3 +1,10 @@
+- if tp.thing.stage == :invest
+  .investors
+    h4
+      | 众筹中
+      = link_to_with_icon "支持者(#{tp.thing.investors.count})", "fa fa-coffee", "#thing_investors", data: {toggle: 'modal'}
+    = render "things/investors", tp: tp
+
 .shop
   = tp.content_for_price
   - if user_signed_in?
@@ -22,6 +29,8 @@ ul.operations.fa-ul
     li= link_to_with_icon "编辑", "fa-li fa fa-edit", edit_thing_path(tp.thing), title: "编辑"
   - if can? :pro_edit, tp.thing
     li= link_to_with_icon "管理", "fa-li fa fa-cogs", pro_edit_thing_path(tp.thing), title: "管理"
+  - if can? :pro_edit, tp.thing and tp.thing.stage == :invest
+    li= link_to_with_icon "众筹", "fa-li fa fa-money", thing_investors_path(tp.thing), title: "众筹"
   - if can? :pro_edit, tp.thing
     li= link_to_with_icon "发奖", "fa-li fa fa-gift", new_lottery_path(thing: tp.thing), title: "发奖"
 

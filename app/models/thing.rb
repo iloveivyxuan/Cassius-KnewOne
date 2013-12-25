@@ -60,7 +60,7 @@ class Thing < Post
   embeds_many :kinds
   accepts_nested_attributes_for :kinds, allow_destroy: true
 
-  has_and_belongs_to_many :local_tyrants, class_name: 'User', inverse_of: nil
+  embeds_many :investors
 
   after_update :inc_karma
 

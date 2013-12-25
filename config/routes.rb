@@ -97,7 +97,7 @@ Making::Application.routes.draw do
       member { post 'vote' }
     end
     resources :stories
-    resources :thing_fans, path: 'fans', only: [:index, :create, :destroy]
+    resources :investors, only: [:index, :create, :destroy]
   end
 
   get '/reviews', to: "reviews#all", as: :reviews_all
