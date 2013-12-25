@@ -200,7 +200,7 @@ class ThingPresenter < PostPresenter
          price: price_format(k.price),
          photo: k.photo_number,
          estimated: kind_estimated_at(k).try(:gsub, "\"", "'")
-       }, disabled: !(k.stock > 0)]
+       }, class: "kind_option", disabled: !(k.stock > 0)]
     end)
   end
 end

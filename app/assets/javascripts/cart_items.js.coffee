@@ -43,6 +43,10 @@ Making.CartItemNew = ->
         $form.trigger('submit')
         $('#mobile_buy_modal').modal('hide')
 
+    $kind_options = $form.find('option.kind_option')
+    if $kind_options.length <= 1
+      $kind_options.first().prop('selected', true).parent().trigger('change')
+
 Making.CartItemCreate = (cart_items_count) ->
   $success = $('#new_cart_item .cart_success').show()
   if $('.navbar-toggle').is(':visible')
