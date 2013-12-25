@@ -299,7 +299,7 @@ class Order
     save!
 
     if back_to_balance
-      should_return_balance = self.trade_price + self.expense_balance
+      should_return_balance = (self.trade_price || 0) + self.expense_balance
       self.user.recharge_balance!(should_return_balance, "订单#{self.order_no}的退款")
 
       self.expense_balance = 0
