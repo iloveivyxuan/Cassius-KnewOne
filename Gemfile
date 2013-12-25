@@ -22,7 +22,7 @@ gem 'settingslogic'
 
 # authentications
 gem 'devise'
-gem 'devise-async'
+# gem 'devise-async'
 gem 'omniauth-oauth2', github: 'intridea/omniauth-oauth2'
 gem 'omniauth-weibo-oauth2'
 gem 'omniauth-twitter'

@@ -18,14 +18,10 @@ class Auth
   validates :uid, presence: true
   validates :name, presence: true
 
-  attr_reader :handler
-
   delegate :share, :follow, :topic_wrapper, :parse_image, :to => :handler, :allow_nil => true
 
-  after_initialize :initialize_auth_handler
-
-  def initialize_auth_handler
-    @handler = "#{provider}_auth_handler".classify.constantize.
+  def handler
+    @handler ||= "#{provider}_auth_handler".classify.constantize.
         new access_token: self.access_token, expires_at: self.expires_at, access_secret: self.access_token_secret
   end
 
