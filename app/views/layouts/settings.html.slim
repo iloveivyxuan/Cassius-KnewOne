@@ -6,28 +6,45 @@
       nav role="navigation"
         = link_to_with_icon '我的主页', 'fa fa-user', current_user, class: 'btn btn-primary btn-lg btn-block'
 
-        .list-group
-          = nav_tab_link_with_icon :profile, '个人信息', 'fa fa-dashboard', edit_profile_path
-          = nav_tab_link_with_icon :account, '账号信息', 'fa fa-envelope', edit_account_path
-          = nav_tab_link_with_icon :order, '订单列表', 'fa fa-files-o', orders_path
-          = nav_tab_link_with_icon :address, '收货地址', 'fa fa-truck', addresses_path
-          = nav_tab_link_with_icon :invoice, '发票信息', 'fa fa-money', invoices_path
-          = nav_tab_link_with_icon :coupon, '优惠券', 'fa fa-ticket', coupons_path
-          = nav_tab_link_with_icon :balance, '我的余额', 'fa fa-money', balances_path
-
-        .list-group
-          - if can? :manage, Supplier
-            = nav_tab_link_with_icon :supplier, '供货信息', 'fa fa-stethoscope', suppliers_path
-          - if can? :manage, :all
-            = nav_tab_link_with_icon :supplier, '管理小组', 'fa fa-stethoscope', groups_path
-            = nav_tab_link_with_icon :supplier, '管理产品', 'fa fa-stethoscope', admin_things_path
-            = nav_tab_link_with_icon :supplier, '管理评测', 'fa fa-stethoscope', reviews_admin_path
-            = nav_tab_link_with_icon :supplier, '管理用户', 'fa fa-stethoscope', users_path
-            = nav_tab_link_with_icon :supplier, '管理优惠券', 'fa fa-stethoscope', haven_abatement_coupons_path
-          - if can? :manage, Order
-            = nav_tab_link_with_icon :supplier, '管理订单', 'fa fa-stethoscope', haven_orders_path
-          - if can? :manage, LandingPage
-            = nav_tab_link_with_icon :supplier, '管理首页封面', 'fa fa-stethoscope', haven_landing_pages_path
+        ul.nav.nav-pills.nav-pills-list.vertical
+          li.nav-group-title 账户
+          = nav_tab :profile do
+            = link_to_with_icon '个人信息', 'fa fa-fw fa-user', edit_profile_path
+          = nav_tab :account do
+            = link_to_with_icon '账户信息', 'fa fa-fw fa-cogs', edit_account_path
+          li.nav-group-title 购买
+          = nav_tab :order do
+            = link_to_with_icon '我的订单', 'fa fa-fw fa-file-text', orders_path
+          = nav_tab :balance do
+            = link_to_with_icon '我的余额', 'fa fa-fw fa-money', balances_path
+          = nav_tab :address do
+            = link_to_with_icon '收货地址', 'fa fa-fw fa-truck', addresses_path
+          = nav_tab :invoice do
+            = link_to_with_icon '发票信息', 'fa fa-fw fa-list-alt', invoices_path
+          = nav_tab :coupon do
+            = link_to_with_icon '优惠券', 'fa fa-fw fa-ticket', coupons_path
+          - if current_user.role? :editor
+            li.nav-group-title 管理
+            - if can? :manage, Supplier
+              = nav_tab :supplier do
+                = link_to_with_icon '供货信息', 'fa fa-fw fa-wrench', suppliers_path
+            - if can? :manage, :all
+              = nav_tab :supplier do
+                = link_to_with_icon '管理小组', 'fa fa-fw fa-wrench', groups_path
+              = nav_tab :supplier do
+                = link_to_with_icon '管理产品', 'fa fa-fw fa-wrench', admin_things_path
+              = nav_tab :supplier do
+                = link_to_with_icon '管理评测', 'fa fa-fw fa-wrench', reviews_admin_path
+              = nav_tab :supplier do
+                = link_to_with_icon '管理用户', 'fa fa-fw fa-wrench', users_path
+              = nav_tab :supplier do
+                = link_to_with_icon '管理优惠券', 'fa fa-fw fa-wrench', haven_abatement_coupons_path
+            - if can? :manage, Order
+              = nav_tab :supplier do
+                = link_to_with_icon '管理订单', 'fa fa-fw fa-wrench', haven_orders_path
+            - if can? :manage, LandingPage
+              = nav_tab :supplier do
+                = link_to_with_icon '管理首页封面', 'fa fa-fw fa-wrench', haven_landing_pages_path
 
         = link_to_with_icon '安全登出', 'fa fa-sign-out', destroy_user_session_path, method: :delete, class: 'btn btn-danger btn-lg btn-block'
 
