@@ -3,7 +3,7 @@ class SuppliersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @suppliers = Supplier.page supplier_params
+    @suppliers = Supplier.page params[:page]
   end
 
   def create
