@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class SuppliersController < ApplicationController
   load_and_authorize_resource
+  respond_to :js, except: [:index]
 
   def index
     @suppliers = Supplier.page params[:page]
@@ -8,7 +9,6 @@ class SuppliersController < ApplicationController
 
   def create
     Supplier.create supplier_params
-    respond_to { |format| format.js }
   end
 
   def edit
