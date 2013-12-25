@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 class ReviewsController < ApplicationController
   include Commentable
-  load_and_authorize_resource :thing, except: [:all], singleton: true
-  load_and_authorize_resource :thing_group, through: :thing, except: [:all], singleton: true
-  load_and_authorize_resource :review, through: :thing_group
-  layout 'thing', except: [:all]
+  load_and_authorize_resource :thing, except: [:admin], singleton: true
+  load_and_authorize_resource :thing_group, through: :thing, except: [:admin], singleton: true
+  load_and_authorize_resource :review, through: :thing_group, except: [:admin]
+  layout 'thing', except: [:admin]
 
   def index
     @reviews = @reviews.page params[:page]
@@ -51,9 +51,8 @@ class ReviewsController < ApplicationController
     render :partial => 'voting', locals: {review: @review}, layout: false
   end
 
-  def all
+  def admin
     @reviews = Review.unscoped.desc(:created_at).page params[:page]
-    render 'all'
   end
 
   private
