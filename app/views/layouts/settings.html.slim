@@ -7,26 +7,26 @@
         = link_to_with_icon '我的主页', 'fa fa-user', current_user, class: 'btn btn-primary btn-lg btn-block'
 
         .list-group
-          = nav_tab_link_with_icon :profile, '个人信息', 'fa fa-dashboard', edit_profile_path, class: 'list-group-item'
-          = nav_tab_link_with_icon :account, '账号信息', 'fa fa-book', edit_account_path, class: 'list-group-item'
-          = nav_tab_link_with_icon :order, '订单列表', 'fa fa-file-text-alt', orders_path, class: 'list-group-item'
-          = nav_tab_link_with_icon :address, '收货地址', 'fa fa-truck', addresses_path, class: 'list-group-item'
-          = nav_tab_link_with_icon :invoice, '发票信息', 'fa fa-money', invoices_path, class: 'list-group-item'
-          = nav_tab_link_with_icon :coupon, '优惠券', 'fa fa-ticket', coupons_path, class: 'list-group-item'
+          = nav_tab_link_with_icon :profile, '个人信息', 'fa fa-dashboard', edit_profile_path
+          = nav_tab_link_with_icon :account, '账号信息', 'fa fa-envelope', edit_account_path
+          = nav_tab_link_with_icon :order, '订单列表', 'fa fa-files-o', orders_path
+          = nav_tab_link_with_icon :address, '收货地址', 'fa fa-truck', addresses_path
+          = nav_tab_link_with_icon :invoice, '发票信息', 'fa fa-money', invoices_path
+          = nav_tab_link_with_icon :coupon, '优惠券', 'fa fa-ticket', coupons_path
 
         .list-group
           - if can? :manage, Supplier
-            =nav_tab_link_with_icon :supplier, '供货信息', 'fa fa-stethoscope', suppliers_path, class: 'list-group-item'
+            = nav_tab_link_with_icon :supplier, '供货信息', 'fa fa-stethoscope', suppliers_path
           - if can? :manage, :all
-            =nav_tab_link_with_icon :supplier, '管理小组', 'fa fa-stethoscope', groups_path, class: 'list-group-item'
-            =nav_tab_link_with_icon :supplier, '管理产品', 'fa fa-stethoscope', admin_things_path, class: 'list-group-item'
-            =nav_tab_link_with_icon :supplier, '管理评测', 'fa fa-stethoscope', reviews_all_path, class: 'list-group-item'
-            =nav_tab_link_with_icon :supplier, '管理用户', 'fa fa-stethoscope', users_path, class: 'list-group-item'
-            =nav_tab_link_with_icon :supplier, '管理优惠券', 'fa fa-stethoscope', haven_abatement_coupons_path, class: 'list-group-item'
+            = nav_tab_link_with_icon :supplier, '管理小组', 'fa fa-stethoscope', groups_path
+            = nav_tab_link_with_icon :supplier, '管理产品', 'fa fa-stethoscope', admin_things_path
+            = nav_tab_link_with_icon :supplier, '管理评测', 'fa fa-stethoscope', reviews_all_path
+            = nav_tab_link_with_icon :supplier, '管理用户', 'fa fa-stethoscope', users_path
+            = nav_tab_link_with_icon :supplier, '管理优惠券', 'fa fa-stethoscope', haven_abatement_coupons_path
           - if can? :manage, Order
-            =nav_tab_link_with_icon :supplier, '管理订单', 'fa fa-stethoscope', haven_orders_path, class: 'list-group-item'
+            = nav_tab_link_with_icon :supplier, '管理订单', 'fa fa-stethoscope', haven_orders_path
           - if can? :manage, LandingPage
-            =nav_tab_link_with_icon :supplier, '管理首页封面', 'fa fa-stethoscope', haven_landing_pages_path, class: 'list-group-item'
+            = nav_tab_link_with_icon :supplier, '管理首页封面', 'fa fa-stethoscope', haven_landing_pages_path
 
         = link_to_with_icon '安全登出', 'fa fa-sign-out', destroy_user_session_path, method: :delete, class: 'btn btn-danger btn-lg btn-block'
 

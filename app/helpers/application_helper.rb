@@ -14,16 +14,12 @@ module ApplicationHelper
   end
 
   def nav_tab_link_with_icon(tab, body, icon_class, options = {}, html_options = {})
-    html_options[:class] ||= ''
+    html_options[:class] ||= 'list-group-item'
     if content_for(:nav) == tab.to_s
       html_options[:class] += ' active'
     end
 
-    link_to options, html_options do
-      content_tag(:i, "", class: "fa fa-angle-double-right") +
-        body.to_s +
-        content_tag(:i, "", class: 'fa fa-angle-right pull-right')
-    end
+    link_to_with_icon body, icon_class, options, html_options
   end
 
   def back_btn
