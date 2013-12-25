@@ -19,6 +19,7 @@ defaults: &defaults
     review: 5
     fancy: 1
     own: 1
+    order: 10
   messages:
     length: 100
   comments:

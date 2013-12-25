@@ -218,6 +218,8 @@ class Order
     save!
 
     order_histories.create from: state, to: :confirmed, raw: raw
+
+    self.user.inc karma: Settings.karma.order
   end
 
   def confirm_free!
