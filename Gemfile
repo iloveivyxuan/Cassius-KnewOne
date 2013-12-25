@@ -65,6 +65,7 @@ gem 'font-awesome-rails'
 # services
 gem 'whenever', require: false
 gem 'sidekiq'
+gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'mini_magick'
 
 # API

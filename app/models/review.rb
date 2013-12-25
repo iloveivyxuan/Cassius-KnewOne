@@ -7,7 +7,7 @@ class Review < Post
 
   belongs_to :thing_group
   before_create do
-    unless self.thing_group
+    unless self.thing.thing_group
       self.thing.build_thing_group(founder: self.thing.author, name: self.thing.title).save
     end
 
@@ -27,7 +27,7 @@ class Review < Post
     end
   end
 
-  default_scope desc(:is_top, :lovers_count)
+  default_scope desc(:is_top, :lovers_count, :created_at)
 
   after_create :add_score
   after_update :update_score

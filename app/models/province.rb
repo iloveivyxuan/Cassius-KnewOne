@@ -1,3 +1,3 @@
 class Province < Settingslogic
-  source "#{Rails.root}/config/province.yml"
+  source "#{Rails.root}/config/provinces.yml"
 end

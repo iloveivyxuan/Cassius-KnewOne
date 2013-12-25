@@ -69,7 +69,7 @@ class Order
   field :trade_state, type: String
   field :deliver_price, type: BigDecimal
   field :auto_owning, type: Boolean, default: true
-  field :use_balance, type: Boolean, default: true
+  field :use_balance, type: Boolean, default: false
   field :expense_balance, type: BigDecimal, default: 0
   field :price, type: BigDecimal
 
@@ -198,9 +198,17 @@ class Order
     return false unless can_confirm_payment?
 
     state = self.state
+
     if canceled? || closed?
+      if self.admin_note.blank?
+        self.system_note = ''
+      else
+        self.system_note += ' | '
+      end
+
       self.system_note += '*用户取消了订单或订单已关闭，但仍然进行了支付，注意库存！'
     end
+
     self.state = :confirmed
     self.payment_method = method
     self.trade_no = trade_no
