@@ -3,8 +3,6 @@ class Thing < Post
   include Mongoid::Slug
   include Mongoid::MultiParameterAttributes
 
-  has_and_belongs_to_many :local_tyrants, class_name: 'User'
-
   slug :title, history: true
   field :subtitle, type: String, default: ""
   field :official_site, type: String, default: ""
@@ -27,7 +25,8 @@ class Thing < Post
     concept: "研发中",
     domestic: "国内导购",
     abroad: "国外海淘",
-    dsell: "自销",
+    invest: "众筹",
+    dsell: "自销"
   }
   validates :stage, inclusion: { in: STAGES.keys }
 
@@ -55,11 +54,13 @@ class Thing < Post
 
   scope :published, -> { lt(created_at: Time.now) }
   scope :prior, -> { unscoped.published.gt(priority: 0).desc(:priority, :created_at) }
-  scope :self_run, -> { unscoped.where(stage: :dsell).desc(:priority, :created_at) }
+  scope :self_run, -> { unscoped.in(stage: [:dsell, :invest]).desc(:priority, :created_at) }
   default_scope desc(:created_at)
 
   embeds_many :kinds
   accepts_nested_attributes_for :kinds, allow_destroy: true
+
+  has_and_belongs_to_many :local_tyrants, class_name: 'User', inverse_of: nil
 
   after_update :inc_karma
 
@@ -123,7 +124,7 @@ class Thing < Post
   end
 
   def self_run?
-    (STAGES.keys.index(stage) || 0) > 2
+    [:invest, :dsell].include? stage
   end
 
   class << self

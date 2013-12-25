@@ -62,26 +62,18 @@
 
       @include transform-origin(0, 0);
       @include rotate(45deg);
+      @include opacity(0.8);
     }
 
+    &.invest {
+      span {@include background($brand-primary);}
+    }
     &.ship {
       letter-spacing: .25em;
-      span {
-        @include background($brand-warning);
-        @include opacity(0.8);
-      }
+      span {@include background($brand-warning);}
     }
     &.stock {
-      span {
-        @include background($brand-success);
-        @include opacity(0.8);
-      }
-    }
-    &.exclusive {
-      span {
-        @include background($brand-primary);
-        @include opacity(0.8);
-      }
+      span {@include background($brand-success);}
     }
   }
 }
