@@ -35,7 +35,7 @@ module Haven
                 ::Order::STATES[order.state],
                 (order.order_items.map { |i| "#{i.name} x #{i.quantity}; " }.reduce &:+),
                 "￥#{order.total_price}",
-                ::Order::DELIVER_METHODS[order.deliver_by][:name],
+                ::Order::DELIVER_METHODS[order.deliver_by],
                 content_for_address(order.address),
                 order.note,
                 order.admin_note,
