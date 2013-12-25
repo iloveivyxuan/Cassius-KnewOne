@@ -29,6 +29,11 @@ class Auth
         new access_token: self.access_token, expires_at: self.expires_at, access_secret: self.access_token_secret
   end
 
+  PROVIDERS = {
+      'weibo' => '新浪微博',
+      'twitter' => 'Twitter'
+  }
+
   class << self
     def from_omniauth(data)
       new omniauth_to_auth(data)

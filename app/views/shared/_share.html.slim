@@ -11,16 +11,13 @@
           .modal-body
             = f.input :content, as: :text, label: false, input_html: {rows: 5, value: content}
             = f.input :pic, as: :hidden, input_html: {value: pic}
-            - if current_user.has_auth? 'weibo'
-              label.checkbox.inline
-                = check_box_tag 'providers[]', 'weibo', true
-                i.fa.fa-weibo
-                | 新浪微博
-            - if current_user.has_auth? 'twitter'
-              label.checkbox.inline
-                = check_box_tag 'providers[]', 'twitter', true
-                i.fa.fa-twitter
-                | Twitter
+            = content_tag :div, class: "#{'hidden' if current_user.auths.size == 1}" do
+              - Auth::PROVIDERS.each do |k, v|
+                - if current_user.has_auth? k
+                  label.checkbox.inline
+                    = check_box_tag 'providers[]', k, true
+                    = content_tag :i, '', class: "fa fa-#{k}"
+                    = v
             = f.input :pic, as: :hidden, input_html: {value: pic}
           .modal-footer
             span class="words-check"
