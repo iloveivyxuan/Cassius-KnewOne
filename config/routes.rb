@@ -101,7 +101,7 @@ Making::Application.routes.draw do
     resources :investors, only: [:index, :create, :destroy]
   end
 
-  get '/reviews', to: "reviews#all", as: :reviews_all
+  get '/reviews', to: "reviews#admin", as: :reviews_admin
 
   resources :posts, only: [] do
     resources :comments
