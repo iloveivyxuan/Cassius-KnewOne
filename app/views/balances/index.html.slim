@@ -1,0 +1,25 @@
+- provide :nav, :balance
+- provide :title, '我的余额'
+
+header.page-header
+  h2
+    i.fa.fa-truck
+    | 我的余额
+
+.jumbotron
+  p 我的余额
+  h1
+    i.fa.fa-yen
+    = current_user.balance
+
+
+table.table.table-striped
+  thead
+    tr
+      th 说明
+      th 金额
+  tbody
+    - current_user.balance_logs.each do |b|
+      tr
+        td = b.note
+        td = b.amount / 100.0

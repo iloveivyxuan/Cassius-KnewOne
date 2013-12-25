@@ -13,6 +13,7 @@
           = nav_tab_link_with_icon :address, '收货地址', 'fa fa-truck', addresses_path
           = nav_tab_link_with_icon :invoice, '发票信息', 'fa fa-money', invoices_path
           = nav_tab_link_with_icon :coupon, '优惠券', 'fa fa-ticket', coupons_path
+          = nav_tab_link_with_icon :balance, '我的余额', 'fa fa-money', balances_path
 
         .list-group
           - if can? :manage, Supplier

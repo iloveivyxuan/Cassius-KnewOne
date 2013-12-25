@@ -190,7 +190,7 @@ class User
     u = User.where(id: self.id.to_s, balance_cents: self.balance_cents).
         find_and_modify :$set => {balance_cents: (self.balance_cents + cents).to_i}
     if u
-      u.balance_logs<< ExpenseBalanceLog.new(value_cents: cents, note: note)
+      u.balance_logs<< DepositBalanceLog.new(value_cents: cents, note: note)
       reload
       true
     else
