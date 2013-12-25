@@ -61,8 +61,8 @@ class Order
   field :deliver_by, type: Symbol
   field :deliver_no, type: String
   field :note, type: String
-  field :admin_note, type: String
-  field :system_note, type: String
+  field :admin_note, type: String, default: ''
+  field :system_note, type: String, default: ''
   field :alteration, type: String
   field :trade_no, type: String
   field :trade_price, type: BigDecimal
@@ -107,7 +107,7 @@ class Order
 
     self.state = :freed if free?
 
-    if use_balance?
+    if use_balance? && self.user.has_balance?
       available_balance = self.user.balance
 
       if available_balance - total_price >= 0 && self.user.expense_balance!(total_price, "支付订单#{self.order_no}")

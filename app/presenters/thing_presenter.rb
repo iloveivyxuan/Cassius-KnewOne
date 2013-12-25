@@ -140,7 +140,7 @@ class ThingPresenter < PostPresenter
   end
 
   def reviews_count
-    show_count thing.reviews.count
+    show_count thing.thing_group.reviews.count
   end
 
   def updates_count
