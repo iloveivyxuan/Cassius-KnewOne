@@ -80,7 +80,6 @@ Making::Application.routes.draw do
   end
 
   resources :things do
-    resources :thing_fans, path: 'fans', only: [:index, :create, :destroy]
     collection do
       get 'admin'
       get 'resort'
@@ -99,6 +98,7 @@ Making::Application.routes.draw do
       member { post 'vote' }
     end
     resources :stories
+    resources :investors, only: [:index, :create, :destroy]
   end
 
   get '/reviews', to: "reviews#all", as: :reviews_all

@@ -16,8 +16,8 @@ class UserPresenter < ApplicationPresenter
     user.current_auth.topic_wrapper topic
   end
 
-  def link_to_with_avatar(size)
-    link_to avatar(size), user
+  def link_to_with_avatar(size, html_options={})
+    link_to avatar(size), user, html_options
   end
 
   def link_to_with_name
