@@ -49,7 +49,7 @@ header role="banner"
       .nav.navbar-nav.navbar-right
         - if user_signed_in?
           .nav_user.is_login.dropdown
-            = link_to setting_root_path, class: "nav_user_avatar", title: "控制面板" do
+            = link_to "#", class: "nav_user_avatar dropdown-toggle", data: {toggle: "dropdown"} do
               = image_tag current_user.avatar.url(:tiny), class: "img-circle"
             = link_to messages_path, class: "nav_user_action nav_messages", title: "#{unread_messages_count}个未读消息" do
               i.fa.fa-inbox
@@ -57,6 +57,10 @@ header role="banner"
             = link_to cart_items_path, class: "nav_user_action nav_cart", title: "购物车" do
               i.fa.fa-shopping-cart
               span.badge.cart_items_count= cart_items_count
+            ul.dropdown-menu
+              li= link_to_with_icon "我的主页", "fa fa-user fa-fw", current_user
+              li= link_to_with_icon "控制面板", "fa fa-tachometer fa-fw", setting_root_path
+              li= link_to_with_icon "安全登出", "fa fa-sign-out fa-fw", destroy_user_session_path, method: :delete
         - else
           .nav_user.is_not_login
             = link_to_with_icon "登录", "fa fa-sign-in", "#", class: "nav_user_action", data: {toggle: "modal", target: "#login-modal"}
