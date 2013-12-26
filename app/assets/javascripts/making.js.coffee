@@ -180,7 +180,7 @@ window.Making =
     $ ->
       post_id = $(el).data('postid')
       collection = new Making.Collections.Comments
-      collection.url = "/posts/#{post_id}/comments.json"
+      collection.url = "/posts/#{post_id}/comments"
       view = new Making.Views.CommentsIndex
         collection: collection
         el: el
