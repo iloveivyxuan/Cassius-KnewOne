@@ -29,6 +29,9 @@ defaults: &defaults
     key: '8934e7d15453e97507ef794cf7b0519d'
   keywords: 'Knewone, 剁手网, 新奇酷'
   description: 'knewone, 探索分享新奇酷'
+  deliver_price:
+    half: 397
+    full: 398
 
 staging:
   <<: *defaults

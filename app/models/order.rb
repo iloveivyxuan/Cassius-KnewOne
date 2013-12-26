@@ -350,16 +350,7 @@ class Order
 
   def calculate_deliver_price
     return 0 if self.deliver_by.nil? || self.address.nil?
-    price = Province[self.address.province][self.deliver_by.to_s]
-    case items_price
-      when 0..499
-      when 500..1000
-        price -= 10
-      else
-        price -= 20
-    end
-
-    price > 0 ? price : 0
+    self.class.calculate_deliver_price_by_method_and_price(self.deliver_by, self.address.province, items_price)
   end
 
   def items_price
@@ -435,8 +426,8 @@ class Order
     def calculate_deliver_price_by_method_and_price(method, province, items_price)
       price = Province[province][method.to_s]
       case items_price
-        when 0..499
-        when 500..1000
+        when 0..Settings.deliver_price.half
+        when Settings.deliver_price.half..Settings.deliver_price.full
           price -= 10
         else
           price -= 20
