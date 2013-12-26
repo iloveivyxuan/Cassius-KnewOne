@@ -1,0 +1,5 @@
+= form_tag refund_to_balance_haven_order_path(order), method: :patch, class: 'form-inline', role: 'form' do
+  .form-group
+    = number_field_tag :price, order.total_price, class: 'form-control', max: order.total_price, min: 0
+  = submit_tag '退款到余额', class: 'btn btn-warning', data: {confirm: '确定退款到余额？'}
+

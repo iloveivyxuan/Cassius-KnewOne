@@ -291,20 +291,30 @@ class Order
     order_histories.create from: :pending, to: :closed
   end
 
-  def refund!(back_to_balance = true)
+  def refund!
     return false unless can_refund?
 
     state = self.state
     self.state = :refunded
     save!
 
-    if back_to_balance
-      should_return_balance = (self.trade_price || 0) + self.expense_balance
-      self.user.recharge_balance!(should_return_balance, "订单#{self.order_no}的退款")
+    # unown_things if auto_owning?
 
-      self.expense_balance = 0
-      save!
-    end
+    order_histories.create from: state, to: :closed
+  end
+
+  def refund_to_balance!(price = 0)
+    return false unless can_refund? || price > total_price
+
+    state = self.state
+    self.state = :refunded
+    save!
+
+    should_return_balance = (price == 0 ? (self.trade_price || 0) + self.expense_balance : price)
+    self.user.refund_to_balance!(self, should_return_balance, "订单#{self.order_no}的退款")
+
+    self.expense_balance = 0
+    save!
 
     # unown_things if auto_owning?
 
