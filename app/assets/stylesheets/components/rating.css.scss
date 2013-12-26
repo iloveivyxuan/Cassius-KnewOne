@@ -25,8 +25,17 @@
     &:hover ~ .star:before,
     &.selected:before,
     &.selected ~ .star:before {
-      color: #e3cf7a;
       content: "\f005";
+    }
+
+    &.selected:before,
+    &.selected ~ .star:before {
+      color: $red;
+    }
+
+    &:hover:before,
+    &:hover ~ .star:before {
+      color: lighten($red, 20%) !important;
     }
   }
 }
@@ -48,7 +57,7 @@
     }
 
     &.active:before {
-      color: #e3cf7a;
+      color: $red;
       content: "\f005";
     }
   }
