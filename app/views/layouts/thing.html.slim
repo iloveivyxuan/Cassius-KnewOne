@@ -1,5 +1,4 @@
-- provide :keywords, @thing.keywords
-- provide :description, @thing.description
+- provide :keywords, "#{@thing.title}, #{@thing.subtitle}"
 
 - content_for :content do
   - present @thing do |tp|
