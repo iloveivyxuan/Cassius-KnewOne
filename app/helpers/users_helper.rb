@@ -23,13 +23,17 @@ module UsersHelper
     sites.each_pair do |k, v|
       case k
         when 'Website'
-          html<< link_to_with_icon(nil, 'fa fa-globe fa-lg', v, title: "个人网站", target: "_blank", class: 'website')
+          html<< link_to_with_icon(nil, 'fa fa-globe fa-lg', v,
+                                   title: "个人网站", target: "_blank", class: 'website', rel: '_nofollow')
         when 'Twitter'
-          html<< link_to_with_icon(nil, 'fa fa-twitter fa-lg', v, title: "Twitter 主页", target: "_blank", class: 'provider')
+          html<< link_to_with_icon(nil, 'fa fa-twitter fa-lg', v,
+                                   title: "Twitter 主页", target: "_blank", class: 'provider', rel: '_nofollow')
         when 'Weibo'
-          html<< link_to_with_icon(nil, 'fa fa-weibo fa-lg', v, title: "微博页面", target: "_blank", class: 'provider')
+          html<< link_to_with_icon(nil, 'fa fa-weibo fa-lg', v,
+                                   title: "微博页面", target: "_blank", class: 'provider', rel: '_nofollow')
         when 'Blog'
-          html<< link_to_with_icon(nil, 'fa fa-globe fa-lg', v, title: "个人博客", target: "_blank", class: 'website')
+          html<< link_to_with_icon(nil, 'fa fa-globe fa-lg', v,
+                                   title: "个人博客", target: "_blank", class: 'website', rel: '_nofollow')
       end
     end
     html.join.html_safe

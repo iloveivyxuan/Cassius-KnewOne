@@ -20,6 +20,9 @@ class Thing < Post
 
   field :sharing_text, type: String
 
+  field :keywords, type: String, default: ''
+  field :description, type: String, default: ''
+
   field :stage, type: Symbol, default: :concept
   STAGES = {
     concept: "研发中",

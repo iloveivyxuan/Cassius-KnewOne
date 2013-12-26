@@ -63,7 +63,7 @@ class ThingPresenter < PostPresenter
   def domestic
     return concept unless thing.shop.present?
     link_to_with_icon "网购", "fa fa-location-arrow fa-lg", buy_thing_path(thing),
-                      title: title, class: "btn btn-info buy_button track_event", target: "_blank",
+                      title: title, class: "btn btn-info buy_button track_event", target: "_blank", rel: '_nofollow',
                       data: {
                           action: "buy",
                           category: "domestic",
@@ -74,7 +74,7 @@ class ThingPresenter < PostPresenter
   def abroad
     return concept unless thing.shop.present?
     link_to_with_icon "海淘", "fa fa-plane fa-lg", buy_thing_path(thing),
-                      title: title, class: "btn btn-info buy_button track_event", target: "_blank",
+                      title: title, class: "btn btn-info buy_button track_event", target: "_blank", rel: '_nofollow',
                       data: {
                           action: "buy",
                           category: "abroad",
@@ -114,7 +114,8 @@ class ThingPresenter < PostPresenter
       if thing.official_site !~ /^https?:\/\//
         thing.official_site = "http://#{thing.official_site}"
       end
-      link_to_with_icon "官方网站", "fa-li fa fa-globe", thing.official_site, target: "_blank", title: "官方信息"
+      link_to_with_icon "官方网站", "fa-li fa fa-globe", thing.official_site,
+                        target: "_blank", title: "官方信息", rel: '_nofollow'
     end
   end
 
