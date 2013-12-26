@@ -2,7 +2,7 @@ Making.CartItemNew = ->
   $ ->
     $form = $('#new_cart_item')
     $submit = $form.find('button[type="submit"]')
-    $price = $('.price small')
+    $price = $('.price span')
     thing_price = $price.text()
 
     set_price = (price) ->
