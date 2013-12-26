@@ -77,14 +77,17 @@ html.home_landing {
       display: block;
       font-family: "orbitron-bold";
       font-size: 1.2em;
+      margin-bottom: 5px;
       margin-left: 20px;
       margin-top: 5px;
+      text-align: center;
 
       @media screen and (min-width: $screen-md-min + 1) {
         font-size: $font-size-h3;
         margin: 0;
         position: absolute;
         right: $feature_position_right;
+        text-align: center;
         bottom: 38.2%;
       }
     }
@@ -116,10 +119,12 @@ html.home_landing {
     }
 
     .feature_comments {
+      display: none;
       margin: 5px 20px 10px 20px;
       position: relative;
 
       @media screen and (min-width: $screen-md-min + 1) {
+        display: block;
         top: 85%;
         margin: 0;
         position: absolute;
