@@ -74,12 +74,12 @@ module Haven
     end
 
     def refund
-      @order.refund!(false)
+      @order.refund!
       redirect_to haven_orders_path
     end
 
     def refund_to_balance
-      @order.refund!
+      @order.refund_to_balance!(BigDecimal.new(params[:price]))
       redirect_to haven_orders_path
     end
 
