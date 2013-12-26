@@ -43,6 +43,14 @@ module ApplicationHelper
     raw [brand, content_for(:title)].reject(&:blank?).join('-')
   end
 
+  def page_keywords
+    [Settings.keywords, content_for(:keywords)].reject(&:blank?).join(',')
+  end
+
+  def page_description
+    [Settings.description, content_for(:description)].reject(&:blank?).join('; ')
+  end
+
   def page_class
     [controller_name, "#{controller_name}_#{action_name}", content_for(:page_class)].reject(&:blank?).join(' ')
   end
