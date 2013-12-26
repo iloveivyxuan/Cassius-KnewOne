@@ -11,7 +11,6 @@
 //= require jquery.adaptive-backgrounds
 //= require jquery.lazyload
 //= require jquery.sortable
-//= require jquery.raty
 //= require jquery.infinitescroll
 //= require jquery.hotkeys
 //= require jquery.cookie

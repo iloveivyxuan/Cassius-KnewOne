@@ -1,0 +1,55 @@
+[type="range"].range_rating {
+  visibility: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.rating {
+  direction: rtl;
+  display: inline-block;
+  padding-bottom: 6px;
+  padding-top: 6px;
+  unicode-bidi: bidi-override;
+
+  .star {
+    @include fontawesome("\f006");
+    cursor: pointer;
+    font-size: 1em;
+
+    &:before {
+      color: #999;
+      padding-right: 5px;
+    }
+
+    &:hover:before,
+    &:hover ~ .star:before,
+    &.selected:before,
+    &.selected ~ .star:before {
+      color: #e3cf7a;
+      content: "\f005";
+    }
+  }
+}
+
+.rate {
+  direction: rtl;
+  display: inline-block;
+  padding-bottom: 6px;
+  padding-top: 6px;
+  unicode-bidi: bidi-override;
+
+  .star {
+    @include fontawesome("\f006");
+    font-size: 1em;
+
+    &:before {
+      color: #999;
+      padding-right: 5px;
+    }
+
+    &.active:before {
+      color: #e3cf7a;
+      content: "\f005";
+    }
+  }
+}

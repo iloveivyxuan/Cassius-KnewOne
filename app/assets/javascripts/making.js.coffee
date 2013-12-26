@@ -21,7 +21,6 @@ window.Making =
       Making.ImageLazyLoading()
       $(document).ajaxComplete ->
         $(".spinning").remove()
-      Making.Score()
       Making.Share()
       $(".popover-toggle").popover()
       $("a.disabled").click ->
@@ -65,6 +64,8 @@ window.Making =
               .fadeIn()
             i = if i < times then ++i else 0
           , 5000
+      $('[type="range"].range_rating').length && Making.Rating()
+      $('.score').length && Making.Score()
 
   OlarkSetUser: (name, email, id) ->
     olark('api.visitor.updateFullName', {fullName: name}) if name
@@ -143,22 +144,6 @@ window.Making =
           $(textarea).val resque.replace(/<!--.*?-->/g, '')
           $sisyphus.manuallyReleaseData()
 
-  Rating: (form) ->
-    $ ->
-      $el = $(form).find('input[type="range"]')
-      $el.replaceWith('<div class="rating"></div>')
-      $('.rating').raty
-        scoreName: $el.attr('name')
-        score: $el.val()
-        path: '/assets/'
-
-  Score: ->
-    $('.score').each (i, el) ->
-      $(el).raty
-        score: $(el).data('score')
-        readOnly: true
-        path: '/assets'
-
   Voting: () ->
     $form = $('form.not_voted')
     $form.show().find('button').click (e) ->
@@ -224,6 +209,41 @@ window.Making =
     $(document).ajaxComplete ->
       $("img.lazy").css("visibility", "visible").lazyload()
     $("img.lazy").css("visibility", "visible").lazyload()
+
+  Rating: ->
+    $('[type="range"].range_rating').each ->
+      $range = $(@)
+      $stars = $()
+      for val in [parseInt($range.attr('max'))..1]
+        $stars = $stars.add($('<span />').addClass('star').data('val', val))
+      $rating = $('<div />')
+                  .addClass('rating')
+                  .append($stars)
+                  .insertAfter($range)
+                  .data('score', $range.val())
+                  .on 'click', '.star', ->
+                    $star = $(@)
+                    $star.addClass('selected')
+                      .siblings().removeClass('selected')
+                    $range.val($star.data('val'))
+                    $star.parents('.rating').data('score', $range.val())
+      $rating.find('.star').eq(-parseInt($range.val())).addClass('selected')
+
+  Score: ->
+    $('.score').each (i, el) ->
+      $self = $(el)
+      score = $self.data('score')
+      $stars = $()
+      for val in [5..1]
+        $star = $('<span />').addClass('star').data('val', val)
+        $star.addClass('active') if $star.data('val') <= parseInt(score)
+        $stars = $stars.add($star)
+
+      $rating = $('<div />')
+                  .addClass('rate')
+                  .data('score', score)
+                  .append($stars)
+                  .appendTo($self)
 
 $ ->
   Making.initialize()

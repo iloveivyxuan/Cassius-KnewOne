@@ -6,3 +6,14 @@
   border: 1px solid #ddd;
   padding: $padding;
 }
+
+@mixin fontawesome($content) {
+  display: inline-block;
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+
+  &:before {
+    content: $content;
+  }
+}
