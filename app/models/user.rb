@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class User
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, :trackable,
          :confirmable
@@ -191,6 +192,21 @@ class User
         find_and_modify :$set => {balance_cents: (self.balance_cents + cents).to_i}
     if u
       u.balance_logs<< DepositBalanceLog.new(value_cents: cents, note: note)
+      reload
+      true
+    else
+      false
+    end
+  end
+
+  def refund_to_balance!(order, value, note)
+    cents = (value * 100).to_i
+
+    # prevent overselling
+    u = User.where(id: self.id.to_s, balance_cents: self.balance_cents).
+        find_and_modify :$set => {balance_cents: (self.balance_cents + cents).to_i}
+    if u
+      u.balance_logs<< RefundBalanceLog.new(order: order, value_cents: cents, note: note)
       reload
       true
     else

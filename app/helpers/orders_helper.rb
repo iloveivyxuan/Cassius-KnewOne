@@ -27,7 +27,7 @@ module OrdersHelper
 
   def ship_link(order)
     if order.can_ship?
-      render 'haven/orders/form', order: order
+      render 'haven/orders/ship', order: order
     end
   end
 
@@ -51,13 +51,9 @@ module OrdersHelper
     end
   end
 
-  def refund_to_balance_link(order, css = 'btn btn-danger')
+  def refund_to_balance_link(order)
     if order.can_refund?
-      content_tag :div, class: 'btn-group' do
-        link_to '退款到余额', refund_to_balance_haven_order_path(order),
-                data: {confirm: '确认退款？'},
-                method: :patch, class: css
-      end
+      render 'haven/orders/refund_to_balance', order: order
     end
   end
 
