@@ -14,3 +14,22 @@
       - tp.photos.each_with_index do |photo, index|
         = content_tag :li, data: {target: "#thing_photos .carousel", "slide-to" => index} do
           = image_tag photo.url(:small), alt: photo.name, class: "img-rounded"
+
+- content_for :script do
+  javascript:
+    $(function() {
+      var photoHeightArray = [],
+          defaultHeight = 480,
+          height = 0;
+
+      $('#thing_photos .carousel-inner img').each(function() {
+        photoHeightArray[photoHeightArray.length] = this.height;
+      });
+
+      height = _.max(photoHeightArray) > defaultHeight ? defaultHeight : _.max(photoHeightArray);
+
+      $('#thing_photos .carousel-inner .item').css({
+        'height': height + 'px',
+        'line-height': height + 'px'
+      });
+    });
