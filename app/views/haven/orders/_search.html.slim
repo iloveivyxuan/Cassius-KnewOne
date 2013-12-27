@@ -4,12 +4,8 @@
   .form-group
     = text_field_tag :find_cond, params[:find_cond], class: 'form-control'
   .form-group
-    = text_field_tag :start_date, params[:start_date], class: 'form-control datepicker', placeholder: '起始日期', size: '15'
+    = date_field_tag :start_date, params[:start_date], class: 'form-control', placeholder: '起始日期', size: '15'
   .form-group
-    = text_field_tag :end_date, params[:end_date], class: 'form-control datepicker', placeholder: '截止日期', size: '15'
-  = submit_tag '搜索', class: 'btn btn-default'
+    = date_field_tag :end_date, params[:end_date], class: 'form-control', placeholder: '截止日期', size: '15'
   = link_to '清空条件', haven_orders_path, class: 'btn btn-default'
-
-- content_for :script do
-  javascript:
-    $('.datepicker').datepicker({format: 'yyyy-mm-dd'});
+  = submit_tag '搜索', class: 'btn btn-primary'
