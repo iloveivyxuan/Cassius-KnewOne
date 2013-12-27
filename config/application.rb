@@ -77,10 +77,6 @@ module Making
     config.action_view.sanitized_allowed_tags = ['embed', 'iframe', 'strike', 'u']
     config.action_view.sanitized_allowed_attributes = ['src', 'height', 'width', 'target']
 
-    config.action_dispatch.default_headers = {
-      'X-Frame-Options' => 'ALLOWALL'
-    }
-
     I18n.enforce_available_locales = false
 
     config.to_prepare do
