@@ -63,6 +63,10 @@ class ApplicationController < ActionController::Base
     redirect_to '/403' unless current_user and current_user.role?(:admin)
   end
 
+  def allow_iframe_load
+    response.headers['X-XSS-Protection'] = '0'
+  end
+
   private
 
   def trim_param_id
