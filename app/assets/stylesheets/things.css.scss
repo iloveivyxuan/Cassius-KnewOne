@@ -110,7 +110,6 @@
     .item {
       text-align: center;
       img {
-        display: inline-block;
         margin: 0 auto;
         max-height: 480px;
       }
@@ -130,6 +129,7 @@
 
   @media screen and (max-width: $screen-xs-max) {
     .indicators {
+      display: none;
       li {margin: 1em 4px 0;}
       img {width: 40px; height: 40px;}
     }

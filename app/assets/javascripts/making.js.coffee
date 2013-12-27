@@ -64,6 +64,9 @@ window.Making =
               .fadeIn()
             i = if i < times then ++i else 0
           , 5000
+      if $('.carousel').length
+        Making.ExtendCarousel()
+        $(window).on 'resize.bs.carousel.data-api', -> Making.ExtendCarousel()
       $('[type="range"].range_rating').length && Making.Rating()
       $('.score').length && Making.Score()
 
@@ -244,6 +247,29 @@ window.Making =
                   .data('score', score)
                   .append($stars)
                   .appendTo($self)
+
+  ExtendCarousel: ->
+    if Modernizr.mq('(min-width: ' + Making.Breakpoint.screenSMMin + ')')
+      $('.carousel').each ->
+        $item = $(@).children('.carousel-inner').children('.item')
+        $image = $item.children('img')
+        defaultHeight = parseInt($image.css('max-height'))
+        imageHeightArray = []
+
+        for image in $image
+          imageHeightArray[imageHeightArray.length] = image.height
+
+        height = if _.max(imageHeightArray) > defaultHeight then defaultHeight else _.max(imageHeightArray)
+
+        $item.css({
+          height: height + 'px'
+          lineHeight: height + 'px'
+        })
+    else
+      $('.carousel-inner').children('.item').css({
+        height: 'auto'
+        lineHeight: -> $('body').css('lineHeight')
+      })
 
 $ ->
   Making.initialize()
