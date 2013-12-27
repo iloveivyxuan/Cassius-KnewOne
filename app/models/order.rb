@@ -42,7 +42,7 @@ class Order
 
   STATES = {:pending => '等待付款',
             :freed => '无需支付，请用户确认',
-            :confirmed => '支付成功，客服正在受理',
+            :confirmed => '支付成功，系统正在受理',
             :shipped => '已发货',
             :canceled => '订单取消',
             :closed => '订单关闭',
@@ -219,7 +219,9 @@ class Order
 
     order_histories.create from: state, to: :confirmed, raw: raw
 
-    self.user.inc karma: Settings.karma.order
+    after_confirm
+
+    true
   end
 
   def confirm_free!
@@ -229,6 +231,10 @@ class Order
     save!
 
     order_histories.create from: :freed, to: :confirmed
+
+    after_confirm
+
+    true
   end
 
   def ship!(deliver_no, admin_note = '')
@@ -412,6 +418,20 @@ class Order
 
   def add_items_from_cart(cart_items)
     cart_items.map { |item| add_item_by_cart_item item }.reduce &:|
+  end
+
+  private
+  def after_confirm
+    self.user.inc karma: Settings.karma.order
+
+    order_items.each do |item|
+      thing = item.thing
+      if thing.stage == :invest
+        investor = thing.investors.find_or_initialize_by(user: self.user)
+        investor.amount += item.price
+        investor.save
+      end
+    end
   end
 
   class<< self
