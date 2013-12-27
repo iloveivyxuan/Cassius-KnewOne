@@ -118,26 +118,18 @@
     .carousel-control {display: none;}
   }
 
-  .indicators {
-    margin-top: 1em;
-    position: relative;
+  .carousel-thumb {
+    height: 80px;
+    overflow: hidden;
+
     li {
-      display: inline-block;
-      cursor: pointer;
+      width: 80px;
     }
   }
 
   @media screen and (max-width: $screen-xs-max) {
-    .indicators {
+    .carousel-thumb {
       display: none;
-      li {margin: 1em 4px 0;}
-      img {width: 40px; height: 40px;}
-    }
-  }
-
-  @media screen and (min-width: $screen-sm-min) {
-    .indicators {
-      li {margin: 1em .49em 0;}
     }
   }
 
@@ -155,10 +147,6 @@
         }
       }
       &:hover .carousel-control {display: block;}
-    }
-
-    .indicators {
-      li {margin: 1em .92em 0;}
     }
   }
 }

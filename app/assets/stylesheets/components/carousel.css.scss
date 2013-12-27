@@ -7,3 +7,45 @@
     }
   }
 }
+
+.carousel-overview {
+  margin-top: 1em;
+  overflow: hidden;
+  position: relative;
+
+  .carousel-thumb {
+    @include clearfix;
+
+    > li {
+      cursor: pointer;
+      float: left;
+      margin: 0 2px;
+    }
+  }
+
+  .carousel-overview-control {
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-size: 20px;
+    height: 100%;
+    opacity: .5;
+    position: absolute;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+    top: 0;
+    width: 25px;
+
+    &:hover {opacity: .9;}
+    &.prev-page {left: 0;}
+    &.next-page {right: 0;}
+    &.disabled {display: none;}
+
+    .fa {
+      margin: -.5em 0 0 -7px;
+      position: absolute;
+      top: 50%;
+    }
+  }
+}

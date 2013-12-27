@@ -5,6 +5,7 @@
 //= require backbone
 //= require handlebars.runtime
 //= require jquery_nested_form
+//= require sly
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/load-image
 //= require picturefill

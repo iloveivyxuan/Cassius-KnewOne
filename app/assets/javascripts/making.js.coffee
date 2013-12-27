@@ -251,8 +251,10 @@ window.Making =
   ExtendCarousel: ->
     if Modernizr.mq('(min-width: ' + Making.Breakpoint.screenSMMin + ')')
       $('.carousel').each ->
-        $item = $(@).children('.carousel-inner').children('.item')
+        $carousel = $(@)
+        $item = $carousel.children('.carousel-inner').children('.item')
         $image = $item.children('img')
+        $overview = $carousel.next('.carousel-overview')
         defaultHeight = parseInt($image.css('max-height'))
         imageHeightArray = []
 
@@ -265,6 +267,26 @@ window.Making =
           height: height + 'px'
           lineHeight: height + 'px'
         })
+
+        if $overview.length and $overview.is(':visible')
+          $prevPage = $overview.find('.prev-page')
+          $nextPage = $overview.find('.next-page')
+          $overview.sly({
+            horizontal: 1
+            itemNav: 'centered'
+            smart: 1
+            activateOn: 'click'
+            mouseDragging: 1
+            touchDragging: 1
+            releaseSwing: 1
+            speed: 300
+            elasticBounds: 1
+            dragHandle: 1
+            dynamicHandle: 1
+            clickBar: 1
+            prevPage: $prevPage
+            nextPage: $nextPage
+          })
     else
       $('.carousel-inner').children('.item').css({
         height: 'auto'
