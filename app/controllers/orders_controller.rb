@@ -86,9 +86,13 @@ class OrdersController < ApplicationController
   end
 
   def alipay_callback
+    if @order.confirmed?
+      return redirect_to @order, flash: {success: (@order.has_stock? ? '付款成功，我们将尽快为您发货' : '付款成功')}
+    end
+
     callback_params = params.except(*request.path_parameters.keys)
     # notify may reach earlier than callback
-    if Alipay::Sign.verify?(callback_params) && params[:trade_status] == 'TRADE_SUCCESS'
+    if Alipay::Notify.verify?(callback_params) && params[:trade_status] == 'TRADE_SUCCESS'
       @order.confirm_payment!(callback_params[:trade_no], callback_params[:total_fee], :alipay, callback_params)
     end
 
