@@ -5,7 +5,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="/favicon.png">
+  <%= favicon_link_tag 'favicon.png', type: 'image/ico' %>
+  <%= favicon_link_tag 'apple-touch.png', rel: "apple-touch-icon", type: 'image/png' %>
 
   <%= stylesheet_link_tag "oauth/application" %>
   <%= csrf_meta_tags %>
