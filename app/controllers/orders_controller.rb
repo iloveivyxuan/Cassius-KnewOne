@@ -119,6 +119,7 @@ class OrdersController < ApplicationController
 
   def generate_tenpay_url(order, options = {})
     options = {
+        :bank_type => 'DEFAULT',
         :subject => "KnewOne购物订单: #{order.order_no}",
         :body => body_text(order, 16),
         :total_fee => (order.should_pay_price * 100).to_i,
