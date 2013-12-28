@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
   def tenpay_notify
     callback_params = params.except(*request.path_parameters.keys)
     if JaslTenpay::Notify.verify?(callback_params)
-      @order.confirm_payment!(callback_params[:transaction_id], callback_params[:total_fee], :tenpay, callback_params)
+      @order.confirm_payment!(callback_params[:transaction_id], (callback_params[:total_fee].to_i/100), :tenpay, callback_params)
     else
       @order.unexpect!("通过财付通交易异常,校验无效", callback_params)
     end
@@ -64,7 +64,7 @@ class OrdersController < ApplicationController
     callback_params = params.except(*request.path_parameters.keys)
     # notify may reach earlier than callback
     if JaslTenpay::Notify.verify?(callback_params)
-      @order.confirm_payment!(callback_params[:transaction_id], callback_params[:total_fee], :tenpay, callback_params)
+      @order.confirm_payment!(callback_params[:transaction_id], (callback_params[:total_fee].to_i/100), :tenpay, callback_params)
     else
       @order.unexpect!("财付通交易异常,交易号#{callback_params[:transaction_id]}", callback_params)
     end
