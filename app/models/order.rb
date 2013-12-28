@@ -327,7 +327,7 @@ class Order
     order_histories.create from: state, to: :closed
   end
 
-  def unexpect!(system_note = '')
+  def unexpect!(system_note = '', raw = {})
     state = self.state
     self.state = :unexpected
 
@@ -343,7 +343,7 @@ class Order
 
     save!
 
-    order_histories.create from: state, to: :unexpected
+    order_histories.create from: state, to: :unexpected, raw: raw
   end
 
   def all_products_have_stock?
