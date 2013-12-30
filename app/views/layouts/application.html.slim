@@ -16,6 +16,8 @@ doctype html
     = yield :stylesheet
     = javascript_include_tag "modernizr"
     = csrf_meta_tags
+    - if Rails.env.production?
+      = render 'layouts/analystics'
   body
     = render 'layouts/header'
     = content_for?(:content) ? yield(:content) : yield
@@ -25,7 +27,4 @@ doctype html
     = javascript_include_tag "application"
     = yield :script
     = render 'layouts/olark'
-    - if Rails.env.production?
-      = render 'layouts/analystics'
-      = render 'layouts/vglnk'
 </html>
