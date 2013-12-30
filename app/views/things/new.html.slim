@@ -1,9 +1,11 @@
 - provide :title, "分享产品"
 
-.thing_wrapper
+.simple_page_wrapper.widget
 
-  hgroup#thing_form_header
-    h1 分享产品
+  header.page-header
+    h2
+      i.fa.fa-magic
+      | 分享产品
     p 感谢您分享您喜欢的新/奇/酷产品，一旦产品经过我们的编辑审核通过，将来有可能获得很大的优惠喔！
 
   = simple_form_for @thing, html: {class: "thing_form form-horizontal"}, wrapper: :horizontal do |f|

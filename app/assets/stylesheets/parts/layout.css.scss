@@ -211,9 +211,17 @@ body {
 }
 
 .page-header {
-  h2 {
+
+  > h2 {
+    color: $text-color;
     font-size: $font-size-h3;
     margin: 0;
+  }
+
+  > p {
+    color: $text-muted;
+    margin-left: $font-size-h3 * 1.5;
+    margin-top: .5em;
   }
 }
 
