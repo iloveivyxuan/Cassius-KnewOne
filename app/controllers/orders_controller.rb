@@ -47,6 +47,9 @@ class OrdersController < ApplicationController
 
   def tenpay_notify
     callback_params = params.except(*request.path_parameters.keys)
+    logger.info '----'
+    logger.info JaslTenpay::Notify.fetch_raw_verify_notify(callback_params)
+    logger.info '----'
     if JaslTenpay::Notify.verify_trade_success?(callback_params)
       @order.confirm_payment!(callback_params[:transaction_id], (callback_params[:total_fee].to_i/100), :tenpay, callback_params)
     else
