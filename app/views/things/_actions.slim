@@ -3,7 +3,7 @@
     h4
       i.fa.fa-fire
       | 众筹中
-      small<= tp.period
+      small = tp.period
     p
       = tp.invest_amount
 
@@ -30,7 +30,7 @@ ul.operations.fa-ul
   - if can? :update, tp.thing
     li= link_to_with_icon "编辑", "fa-li fa fa-edit", edit_thing_path(tp.thing), title: "编辑"
   - if can? :pro_edit, tp.thing
-    li= link_to_with_icon "销售管理", "fa-li fa fa-cogs", pro_edit_thing_path(tp.thing), title: "销售管理"
+    li= link_to_with_icon "销售信息管理", "fa-li fa fa-cogs", edit_haven_thing_path(tp.thing), title: "销售管理"
   - if can? :pro_edit, tp.thing and tp.thing.stage == :invest
     li= link_to_with_icon "众筹管理", "fa-li fa fa-fire", admin_thing_investors_path(tp.thing), title: "众筹管理"
   - if can? :pro_edit, tp.thing

@@ -8,16 +8,16 @@ Making::Application.routes.draw do
   get 'leave_alpha', to: 'home#leave_alpha'
 
   devise_for :users, controllers: {
-    omniauth_callbacks: "omniauth_callbacks",
-    registrations: "registrations",
-    confirmations: "confirmations",
-    sessions: "sessions",
-    passwords: "passwords"
+      omniauth_callbacks: "omniauth_callbacks",
+      registrations: "registrations",
+      confirmations: "confirmations",
+      sessions: "sessions",
+      passwords: "passwords"
   }
 
   scope 'settings' do
     root to: 'profiles#edit', as: 'setting_root'
-    scope path_names: { edit: '' }, only: [:edit, :update] do
+    scope path_names: {edit: ''}, only: [:edit, :update] do
       resource :profile, path_prefix: 'admin'
       resource :account do
         patch 'email'
@@ -77,6 +77,11 @@ Making::Application.routes.draw do
     end
 
     resources :landing_pages
+    resources :things, only: [:index, :update, :edit] do
+      collection do
+        get 'resort'
+      end
+    end
 
     resources :users, only: [:index, :update]
   end
@@ -92,8 +97,6 @@ Making::Application.routes.draw do
       post 'own'
       get 'buy'
       get 'comments'
-      get 'pro_edit'
-      patch 'pro_update'
     end
 
     resources :reviews do

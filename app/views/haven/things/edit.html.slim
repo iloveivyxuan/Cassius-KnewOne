@@ -1,10 +1,13 @@
 section.simple_page_wrapper.widget
   header.page-header
     h2 购买信息编辑
-  = simple_nested_form_for @thing, url: pro_update_thing_path(@thing), wrapper: :horizontal,
+  = simple_nested_form_for @thing, url: haven_thing_path(@thing), wrapper: :horizontal,
   html: {multipart: true, class: "pro_edit_thing_form form-horizontal"} do |f|
     fieldset
-      = hidden_field_tag :admin, true
+      .form-group
+        = hidden_field_tag 'thing[author]', @thing.author.id.to_s, id: 'user_id'
+        input#user_autocomplete.form-control placeholder="用户昵称" value="#{@thing.author.name}"
+        #user_autocomplete_tip.strong.help-block
       = f.input :shop, as: :url
       = f.input :price do
         = f.input_field :price_unit, collection: Thing.const_get(:CURRENCY_LIST)
@@ -29,7 +32,22 @@ section.simple_page_wrapper.widget
       = f.link_to_add "新增型号", :kinds, class: "btn btn-default"
     .submit
       = f.button :submit, class: "btn btn-primary btn-lg"
+      = link_to '查看', @thing, class: "btn btn-default btn-lg"
 
 - content_for :script do
   javascript:
     Making.Editor('#thing_shopping_desc');
+    $('#user_autocomplete').autocomplete({
+        serviceUrl: '/users/fuzzy.json',
+        paramName: 'keyword',
+        lookupFilter: function(suggestion, originalQuery, queryLowerCase) {
+          var re = new RegExp('\\b' + $.Autocomplete.utils.escapeRegExChars(queryLowerCase), 'gi');
+          return re.test(suggestion.value);
+        },
+        onSelect: function(suggestion) {
+          $('#user_id').val(suggestion.data);
+        },
+        onInvalidateSelection: function() {
+          $('#user_autocomplete_tip').html('无此用户');
+        }
+    });

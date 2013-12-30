@@ -88,8 +88,9 @@ class Ability
   def editor
     can :update, Post
     can :update, Story
+    can :edit, Thing
+    can :update, Thing
     can :pro_edit, Thing
-    can :pro_update, Thing
     can :all, Review
     can :update, Lottery
     can :manage, Supplier

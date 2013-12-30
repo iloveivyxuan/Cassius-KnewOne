@@ -2,7 +2,6 @@ class ThingsController < ApplicationController
   include Commentable
   load_and_authorize_resource
   after_action :allow_iframe_load, only: [:show]
-  layout 'settings', only: [:admin]
 
   # see home controller
   after_action only: [:index] do
@@ -35,14 +34,6 @@ class ThingsController < ApplicationController
       format.atom
       format.json
     end
-  end
-
-  def admin
-    @things = case params[:filter]
-              when "can_buy" then Thing.ne(shop: "")
-              when "locked" then Thing.unscoped.where(lock_priority: true).desc(:priority)
-              else Thing.all
-              end.page params[:page]
   end
 
   def new
@@ -123,23 +114,6 @@ class ThingsController < ApplicationController
   def comments
     read_comments @thing
     render layout: 'thing'
-  end
-
-  def pro_edit
-  end
-
-  def pro_update
-    if @thing.update(params.require(:thing).permit!)
-      redirect_to @thing
-    else
-      render 'pro_edit'
-    end
-  end
-
-  def resort
-    Thing.resort!
-
-    redirect_to admin_things_path
   end
 
   private
