@@ -6,6 +6,7 @@ class Kind
   embedded_in :thing
 
   field :stock, type: Integer, default: 0
+  field :sold, type: Integer, default: 0
   field :title, type: String, default: ''
   field :note, type: String, default: ''
   field :photo_number, type: Integer, default: 0

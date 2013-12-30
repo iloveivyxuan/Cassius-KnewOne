@@ -18,11 +18,11 @@ class OrderItem
 
   def claim_stock!
     # protect race condition, over selling should throw nil error
-    thing.kinds.where(id: kind_id, :stock.gte => quantity).first.inc stock: -self.quantity
+    thing.kinds.where(id: kind_id, :stock.gte => quantity).first.inc stock: -self.quantity, sold: self.quantity
   end
 
   def revert_stock!
-    kind.inc stock: self.quantity
+    kind.inc stock: self.quantity, sold: -self.quantity
   end
 
   def price
