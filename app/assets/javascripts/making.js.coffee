@@ -256,12 +256,14 @@ window.Making =
         $image = $item.children('img')
         $overview = $carousel.next('.carousel-overview')
         defaultHeight = parseInt($image.css('max-height'))
-        imageHeightArray = []
 
-        for image in $image
-          imageHeightArray[imageHeightArray.length] = image.height
+        imageHeightArray = _.map $image, ($i) ->
+          console.log $i.height
+          $i.height
 
         height = if _.max(imageHeightArray) > defaultHeight then defaultHeight else _.max(imageHeightArray)
+        console.log height, defaultHeight, _.max(imageHeightArray)
+        height = 480 if height is 0
 
         $item.css({
           height: height + 'px'
