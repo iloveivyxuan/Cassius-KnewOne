@@ -77,6 +77,8 @@ Making::Application.routes.draw do
     end
 
     resources :landing_pages
+
+    resources :users, only: [:index, :update]
   end
 
   resources :things do

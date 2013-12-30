@@ -3,6 +3,8 @@ class Thing < Post
   include Mongoid::Slug
   include Mongoid::MultiParameterAttributes
 
+  include UserStatsable
+
   slug :title, history: true
   field :subtitle, type: String, default: ""
   field :official_site, type: String, default: ""

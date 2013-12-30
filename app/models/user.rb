@@ -23,6 +23,18 @@ class User
     EVAL
   end
 
+  # Stats
+  field :things_count, type: Integer, default: 0
+  field :reviews_count, type: Integer, default: 0
+  field :orders_count, type: Integer, default: 0
+  field :expenses_count, type: Integer, default: 0
+
+  field :admin_note, type: String, default: ''
+
+  def refresh_stats!
+    UserStatsWorker.perform_async(self.id.to_s)
+  end
+
   ## Database authenticatable
   field :email, :type => String
   field :encrypted_password, :type => String
