@@ -21,6 +21,8 @@ module UsersHelper
 
     html = []
     sites.each_pair do |k, v|
+      next if v.blank?
+
       case k
         when 'Website'
           html<< link_to_with_icon(nil, 'fa fa-globe fa-lg', v,

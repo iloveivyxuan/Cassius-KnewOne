@@ -3,7 +3,7 @@ module Haven
     layout 'settings'
 
     def index
-      @users ||= ::User.order_by([:expenses_count, :desc], [:things_count, :desc], [:reviews_count, :desc], [:us_count, :desc])
+      @users ||= ::User
 
       if params[:name].present?
         @users.where(name: /^#{name}/i)
@@ -11,17 +11,22 @@ module Haven
 
       if params[:filter]
         if params[:filter].include? 'thing'
-          @users = @users.where(:things_count.gt => 0)
+          @users = @users.where(:things_count.gt => 0).order_by([:things_count, :desc])
         end
         if params[:filter].include? 'review'
-          @users = @users.where(:reviews_count.gt => 0)
+          @users = @users.where(:reviews_count.gt => 0).order_by([:reviews_count, :desc])
         end
-        if params[:filter].include? 'u'
-          @users = @users.where(:us_count.gt => 0)
+        if params[:filter].include? 'order'
+          @users = @users.where(:orders_count.gt => 0).order_by([:orders_count, :desc])
         end
         if params[:filter].include? 'expense'
-          @users = @users.where(:expenses_count.gt => 0)
+          @users = @users.where(:expenses_count.gt => 0).order_by([:expenses_count, :desc])
         end
+      else
+        @users = @users.order_by([:expenses_count, :desc],
+                                 [:things_count, :desc],
+                                 [:reviews_count, :desc],
+                                 [:orders_count, :desc])
       end
 
       @users = @users.page params[:page]
