@@ -337,7 +337,7 @@ class Order
       if self.system_note.present?
         system_note = " | #{system_note}"
       else
-        self.asystem_note = ''
+        self.system_note = ''
       end
 
       self.system_note += system_note
