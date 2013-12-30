@@ -2,7 +2,6 @@
 class CommentsController < ApplicationController
   respond_to :json
   load_and_authorize_resource :post
-  skip_after_action :store_location
 
   def index
     @comments = @post.comments.page(params[:page]).per(Settings.comments.per_page)

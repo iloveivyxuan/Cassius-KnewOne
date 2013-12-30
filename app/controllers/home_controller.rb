@@ -2,6 +2,14 @@
 class HomeController < ApplicationController
   layout 'application'
 
+  # seems infinite scroll request page data as HTML, store_location will store it as previous_url
+  # sign in will redirect to like /page/9, it confused.
+  # the error should occur in things#index
+  after_action do
+    session[:previous_url] = root_url
+  end
+  skip_after_action :store_location
+
   def index
     @things = Thing.prior.page(params[:page]).per(28)
     @reviews = Review.unscoped.desc(:created_at).limit(15)

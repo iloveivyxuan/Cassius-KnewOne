@@ -4,6 +4,12 @@ class ThingsController < ApplicationController
   after_action :allow_iframe_load, only: [:show]
   layout 'settings', only: [:admin]
 
+  # see home controller
+  after_action only: [:index] do
+    session[:previous_url] = things_url(sort: params[:sort])
+  end
+  after_action :store_location, only: [:comments, :show]
+
   def index
     per = (params[:per] || 24).to_i
 

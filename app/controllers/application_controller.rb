@@ -52,7 +52,8 @@ class ApplicationController < ActionController::Base
   end
 
   def store_location(url=nil)
-    session[:previous_url] = request.fullpath unless request.fullpath =~ /\/users/
+    return unless request.format == Mime::HTML
+    session[:previous_url] = request.fullpath
   end
 
   def after_sign_in_path_for(resource)
