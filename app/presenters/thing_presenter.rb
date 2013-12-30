@@ -197,7 +197,7 @@ class ThingPresenter < PostPresenter
     options_for_select(thing.kinds.map do |k|
       [k.title, k.id, data: {
          stock: k.stock,
-         max: k.max,
+         max: max_buyable_quantity(k),
          price: price_format(k.price),
          photo: k.photo_number,
          estimated: kind_estimated_at(k).try(:gsub, "\"", "'")

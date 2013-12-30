@@ -20,4 +20,4 @@ li.cart_item id="cart_item_#{cart_item.id}" disabled=!cart_item.has_enough_stock
       span= cart_item.quantity
       = link_to_with_icon "", "fa fa-plus", cart_item_path(cart_item.id, step: 1),
         class: 'increment', method: :put, remote: true,
-        disabled: cart_item.kind.max <= cart_item.quantity
+        disabled: max_buyable_quantity(cart_item.kind) <= cart_item.quantity

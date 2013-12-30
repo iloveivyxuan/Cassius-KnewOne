@@ -9,9 +9,6 @@ class CartItem
   field :kind_id, type: String
 
   validates :quantity, :user, :thing, :kind_id, presence: true
-  validate do
-    errors.add :quantity, "Beyond limits" if kind.max < self.quantity
-  end
   validates :quantity, numericality: {
       only_integer: true,
       greater_than: 0
@@ -22,7 +19,7 @@ class CartItem
   end
 
   def legal?
-    thing.kinds.where(_id: self.kind_id).exists?
+    thing.kinds.where(_id: self.kind_id).exists? && kind.max_per_buy >= self.quantity
   end
 
   def has_enough_stock?
@@ -34,7 +31,11 @@ class CartItem
   end
 
   def quantity_increment(quantity)
-    self.quantity += quantity
+    q = self.quantity + quantity
+    if q <= [kind.stock, kind.max_per_buy].min && q > 0
+      self.quantity = q
+    end
+    self.quantity
   end
 
   def self.total_price(cart_items)
