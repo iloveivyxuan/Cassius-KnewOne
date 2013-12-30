@@ -66,7 +66,11 @@ window.Making =
           , 5000
       if $('.carousel').length
         Making.ExtendCarousel()
-        $(window).on 'resize.bs.carousel.data-api', -> Making.ExtendCarousel()
+        $(window).on 'resize.bs.carousel.data-api', ->
+          if !lock
+            lock = true
+            Making.ExtendCarousel()
+            lock = false
       $('[type="range"].range_rating').length && Making.Rating()
       $('.score').length && Making.Score()
 
