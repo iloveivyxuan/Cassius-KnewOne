@@ -17,6 +17,7 @@ section.user_wrapper
         address = user_location(@user)
       dd
         blockquote= @user.description
+      = render 'users/admin_note'
 
   section.user_content
     .widget
