@@ -287,6 +287,10 @@ window.Making =
             prevPage: $prevPage
             nextPage: $nextPage
           })
+
+          $carousel.on 'slid.bs.carousel', ->
+            index = $(@).find('.carousel-inner').children('.item').filter('.active').index()
+            $overview.find('.carousel-thumb').children('li').eq(index).addClass('active').siblings().removeClass('active')
     else
       $('.carousel-inner').children('.item').css({
         height: 'auto'
