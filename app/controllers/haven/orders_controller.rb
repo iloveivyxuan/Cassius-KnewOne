@@ -2,6 +2,7 @@
 
 module Haven
   class OrdersController < ApplicationController
+    layout 'settings'
     load_and_authorize_resource :order, class: ::Order
     include ::AddressesHelper
 

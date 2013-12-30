@@ -1,5 +1,7 @@
 module Haven
   class UsersController < ApplicationController
+    layout 'settings'
+
     def index
       @users ||= ::User.order_by([:expenses_count, :desc], [:things_count, :desc], [:reviews_count, :desc], [:us_count, :desc])
 

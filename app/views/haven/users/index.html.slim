@@ -3,12 +3,12 @@ section.simple_page_wrapper.widget.users_wrapper
   header.page-header
     h2
       i.fa.fa-users
-      | 用户管理
+      | 战斗力分析
   .pull-right
     = link_to '导出CSV', "#{haven_users_path(format: :csv)}?#{request.query_string}", class: 'btn btn-success'
   = render 'filter'
 
-  table.table
+  table.table.table-striped
     thead
       tr
         th 用户

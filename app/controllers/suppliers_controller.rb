@@ -2,6 +2,7 @@
 class SuppliersController < ApplicationController
   load_and_authorize_resource
   respond_to :js, except: [:index]
+  layout 'settings'
 
   def index
     @suppliers = Supplier.page params[:page]

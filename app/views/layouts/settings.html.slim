@@ -27,15 +27,13 @@
               = nav_tab :supplier do
                 = link_to_with_icon '供货信息', 'fa fa-fw fa-wrench', suppliers_path
             - if can? :manage, :all
-              = nav_tab :supplier do
+              = nav_tab :group do
                 = link_to_with_icon '管理小组', 'fa fa-fw fa-wrench', groups_path
-              = nav_tab :supplier do
+              = nav_tab :thing do
                 = link_to_with_icon '管理产品', 'fa fa-fw fa-wrench', admin_things_path
-              = nav_tab :supplier do
+              = nav_tab :review do
                 = link_to_with_icon '管理评测', 'fa fa-fw fa-wrench', reviews_admin_path
-              = nav_tab :supplier do
-                = link_to_with_icon '管理用户', 'fa fa-fw fa-wrench', users_path
-              = nav_tab :supplier do
+              = nav_tab :coupon do
                 = link_to_with_icon '管理优惠券', 'fa fa-fw fa-wrench', haven_abatement_coupons_path
               = nav_tab :user do
                 = link_to_with_icon '管理用户', 'fa fa-fw fa-wrench', haven_users_path

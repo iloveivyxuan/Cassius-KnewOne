@@ -1,6 +1,7 @@
 module Haven
   class AbatementCouponsController < ApplicationController
     load_and_authorize_resource instance_name: :coupon, class: ::AbatementCoupon, params: :abatement_coupon_params
+    layout 'settings'
 
     def index
 
