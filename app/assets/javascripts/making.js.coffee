@@ -252,28 +252,21 @@ window.Making =
     if Modernizr.mq('(min-width: ' + Making.Breakpoint.screenSMMin + ')')
       $('.carousel').each ->
         $carousel = $(@)
-        $item = $carousel.children('.carousel-inner').children('.item')
-        $image = $item.children('img')
+        $inner = $carousel.find('.carousel-inner')
+        $item = $inner.children('.item')
         $overview = $carousel.next('.carousel-overview')
-        defaultHeight = parseInt($image.css('max-height'))
+        default_height = parseInt($item.css('max-height'))
 
-        imageHeightArray = _.map $image, ($i) ->
-          console.log $i.height
-          $i.height
+        height = _.min([default_height, $inner.width()*0.75])
 
-        height = if _.max(imageHeightArray) > defaultHeight then defaultHeight else _.max(imageHeightArray)
-        console.log height, defaultHeight, _.max(imageHeightArray)
-        height = 480 if height is 0
-
-        $item.css({
+        $item.css
           height: height + 'px'
           lineHeight: height + 'px'
-        })
 
         if $overview.length and $overview.is(':visible')
           $prevPage = $overview.find('.prev-page')
           $nextPage = $overview.find('.next-page')
-          $overview.sly({
+          $overview.sly
             horizontal: 1
             itemNav: 'centered'
             smart: 1
@@ -288,7 +281,6 @@ window.Making =
             clickBar: 1
             prevPage: $prevPage
             nextPage: $nextPage
-          })
 
           $carousel.on 'slid.bs.carousel', ->
             index = $(@).find('.carousel-inner').children('.item').filter('.active').index()
