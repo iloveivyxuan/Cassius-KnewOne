@@ -1,4 +1,6 @@
 class Review < Post
+  include UserStatsable
+
   field :score, type: Integer, default: 0
   field :is_top, type: Boolean, default: false
 
