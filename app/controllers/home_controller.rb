@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   layout 'application'
 
   def index
-    @things = Thing.prior.page(params[:page]).per(24)
+    @things = Thing.prior.page(params[:page]).per(28)
     @reviews = Review.unscoped.desc(:created_at).limit(15)
 
     @landing_page = LandingPage.find_for_home
