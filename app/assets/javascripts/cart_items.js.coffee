@@ -3,6 +3,7 @@ Making.CartItemNew = ->
     $form = $('#new_cart_item')
     $submit = $form.find('button[type="submit"]')
     $price = $('.price span')
+    $quantity = $form.find('.cart_item_quantity').children('input[type="number"]')
     thing_price = $price.text()
 
     set_price = (price) ->
@@ -31,8 +32,10 @@ Making.CartItemNew = ->
       set_stock $option.data('max')
       set_photo $option.data('photo')
       if $option.val()
+        $quantity.removeAttr('disabled')
         $submit.removeAttr('disabled')
       else
+        $quantity.attr('disabled', true)
         $submit.attr('disabled', true)
 
     $('#mobile_buy_modal').on 'show.bs.modal', (e) ->
