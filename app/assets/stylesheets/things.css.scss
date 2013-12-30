@@ -136,15 +136,14 @@
   @media screen and (min-width: $screen-md-min) {
     .carousel {
       .carousel-control {
+        position: absolute;
+        top: 40%;
         font-size: 28px;
-        width: 1.5em;
-        background: rgba(0, 0, 0, 0.3);
-
-        i {
-          position: absolute;
-          margin: -.5em 0 0 -8px;
-          top: 50%;
-        }
+        width: 40px;
+        height: 40px;
+        background: rgba(0, 0, 0, 0.3); 
+        @include border-radius(100px);
+        i {margin-left: 12px;}
       }
       &:hover .carousel-control {display: block;}
     }
