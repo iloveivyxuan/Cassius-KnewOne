@@ -40,7 +40,7 @@ module ApplicationHelper
   end
 
   def page_title
-    raw [brand, content_for(:title)].reject(&:blank?).join('-')
+    raw [content_for(:title), brand].reject(&:blank?).join('-')
   end
 
   def page_keywords
