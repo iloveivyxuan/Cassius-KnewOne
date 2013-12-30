@@ -88,6 +88,12 @@
 
     @media screen and (max-width: $screen-xs-max) {
       .nav {
+        a {
+          padding: {
+            left: 7px;
+            right: 7px;
+          }
+        }
         .badge {
           background: transparent;
           color: $text-muted;
@@ -141,7 +147,7 @@
         font-size: 28px;
         width: 40px;
         height: 40px;
-        background: rgba(0, 0, 0, 0.3); 
+        background: rgba(0, 0, 0, 0.3);
         @include border-radius(100px);
         i {margin-left: 12px;}
       }
@@ -204,14 +210,53 @@
 
   .investors {
     margin-bottom: 1em;
+    color: $text-muted;
 
     h4 {
       margin: 0;
-      color: $text-muted;
-      a {
-        margin-left: 1em;
-        font-size: .85em;
+      > * {vertical-align: text-bottom;}
+      i {
+        color: $red;
       }
+      time {
+        font-size: 1em;
+        margin: 0 .2em;
+        color: $red;
+      }
+    }
+
+    p {
+      margin: 0;
+      em {
+        color: $green;
+        margin-right: .5em;
+      }
+      span:nth-child(2) {margin-left: 1em;}
+    }
+
+    @media screen and (min-width: $screen-sm-min) {
+      @include clearfix;
+      h4 {float: left;}
+      p {
+        float: right;
+        margin-top: .5em;
+        em {font-size: 1.2em;}
+      }
+    }
+
+    @media screen and (min-width: $screen-md-min) {
+      padding-bottom: 2em;
+      border-bottom: $border-default;
+      margin-bottom: 2em;
+      h4, p {float: none;}
+      h4 {i {
+            font-size: 2em;
+            vertical-align: 3px;
+          }}
+    }
+
+    @media screen and (min-width: $screen-lg-min) {
+      p {em {font-size: 1.5em;}}
     }
   }
 
@@ -397,14 +442,16 @@
 }
 
 #thing_investors {
-  img {@extend .img-circle;}
-  ul {@include clearfix;}
+  text-align: center;
+
   li {
-    float: left;
-    margin: 2em;
+    display: inline-block;
+    margin: 1.6em;
     text-align: center;
+    img {@extend .img-circle;}
     > * {
       display: block;
+      margin-bottom: .5em;
       color: $text-muted;
     }
   }

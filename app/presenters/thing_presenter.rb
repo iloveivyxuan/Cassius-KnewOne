@@ -187,6 +187,27 @@ class ThingPresenter < PostPresenter
     (Thing::STAGES.merge Kind::STAGES)[stage]
   end
 
+  def period
+    time = time_tag thing.period, distance_of_time_in_words_to_now(thing.period)
+    if thing.period > Time.now
+      "还有 #{time} 结束"
+    else
+      "已结束"
+    end.html_safe
+  end
+
+  def investors_count
+    show_count thing.investors.count
+  end
+
+  def invest_amount
+    return unless thing.investors.count > 0
+    investors_tag = content_tag :span, "<em>#{investors_count}</em>位支持者，".html_safe
+    amount = number_to_currency thing.investors.map(&:amount).reduce(&:+), precision: 0, unit: "￥"
+    amount_tag = content_tag :span, "总金额<em>#{amount}</em>".html_safe
+    investors_tag + amount_tag
+  end
+
   def kind_estimated_at(kind)
     if kind.stage == :ship and kind.estimates_at.present? and kind.estimates_at > Time.now
       time_tag kind.estimates_at, distance_of_time_in_words_to_now(kind.estimates_at)

@@ -3,7 +3,6 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    cannot :manage, :all
     basic
 
     if user.blank?
@@ -78,6 +77,7 @@ class Ability
     can :read, Group
     can :read, Topic
     can :read, Lottery
+    can :read, Investor
     can :buy,  Thing
     can :read, ThingGroup
     can :comments, Thing

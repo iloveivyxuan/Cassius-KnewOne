@@ -21,6 +21,7 @@ zh-CN:
         subtitle: '一句话介绍'
         shop: '购买链接'
         shopping_desc: '购买详情'
+        period: '到期时间'
         official_site: '官方链接'
         price: '价格'
         price_unit: '货币类型'

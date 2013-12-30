@@ -98,7 +98,11 @@ Making::Application.routes.draw do
       member { post 'vote' }
     end
     resources :stories
-    resources :investors, only: [:index, :create, :destroy]
+    resources :investors do
+      collection do
+        get 'admin'
+      end
+    end
   end
 
   get '/reviews', to: "reviews#admin", as: :reviews_admin

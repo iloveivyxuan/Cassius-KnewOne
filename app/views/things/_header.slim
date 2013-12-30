@@ -26,3 +26,9 @@ nav
           i.fa.fa-clock-o
           span.sub 时间线
           span.badge= tp.thing.stories.count
+    - if tp.thing.stage == :invest
+      = nav_tab :investors do
+        = link_to thing_investors_path(tp.thing) do
+          i.fa.fa-fire
+          span.sub 支持者
+          span.badge= tp.investors_count

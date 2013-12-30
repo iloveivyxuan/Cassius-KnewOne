@@ -1,23 +1,26 @@
 class InvestorsController < ApplicationController
-  before_action do
-    raise ActionController::RoutingError.new('Not Found') unless user_signed_in? && current_user.staff?
-    @thing = Thing.find(params[:thing_id])
-  end
+  load_and_authorize_resource :thing, singleton: true
+  load_and_authorize_resource
+  layout 'thing'
 
   def index
-    @investors = @thing.investors
+    @investors = @thing.investors.page params[:page]
+  end
+
+  def admin
+    @investors = @thing.investors.page params[:page]
   end
 
   def create
     investor = Investor.new(user: User.find(params[:user_id]), amount: params[:amount])
     @thing.investors << investor
 
-    redirect_to thing_investors_path(@thing)
+    redirect_to admin_thing_investors_path(@thing)
   end
 
   def destroy
     i = @thing.investors.find params[:id]
     @thing.investors.delete i
-    redirect_to thing_investors_path(@thing)
+    redirect_to admin_thing_investors_path(@thing)
   end
 end
