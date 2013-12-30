@@ -188,6 +188,7 @@ class ThingPresenter < PostPresenter
   end
 
   def period
+    return if thing.period.blank?
     time = time_tag thing.period, distance_of_time_in_words_to_now(thing.period)
     if thing.period > Time.now
       "还有 #{time} 结束"
