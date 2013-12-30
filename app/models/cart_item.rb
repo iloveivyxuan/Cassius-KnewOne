@@ -19,7 +19,7 @@ class CartItem
   end
 
   def legal?
-    thing.kinds.where(_id: self.kind_id).exists? && kind.max_per_buy >= self.quantity
+    thing.kinds.where(_id: self.kind_id).exists?
   end
 
   def has_enough_stock?
