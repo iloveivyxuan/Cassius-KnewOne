@@ -1,29 +1,34 @@
-// Base
-@import "variables";
-@import "mixins";
+// ==========================================================================
+// Library
+// ==========================================================================
+
+@import "customize/variables";
 @import "bootstrap";
 @import "font-awesome";
-@import "reset";
+@import "customize/bootstrap";
+
+
+// ==========================================================================
+// Application
+// ==========================================================================
+
+@import "variables";
+@import "mixins";
 
 // @todo
 @import "todo";
 // @todo end
 
-// Helper
-
 // UI Component
-@import "components/navs";
-@import "components/navbar";
-@import "components/carousel";
-@import "components/input-groups";
-@import "components/form";
-@import "components/separators";
 @import "components/autocomplete";
+@import "components/carousel";
+@import "components/navs";
 @import "components/rating";
+@import "components/separators";
 
-// Application Module
-@import "modules/entry";
-@import "modules/things_in_list";
+// Application Entity
+@import "entities/entry";
+@import "entities/things_in_list";
 // @todo
 @import "things";
 @import "thing_form";
@@ -32,16 +37,12 @@
 @import "lottery";
 @import "carts";
 @import "orders";
-// @todo end
-
-// Application Part
-@import "parts/layout";
 @import "parts/alerts";
 @import "parts/modals";
+// @todo end
 
-// Page
-@import "pages/home";
-@import "pages/users";
-@import "pages/settings";
-
-// Vendor
+// View
+@import "parts/layout";
+@import "views/home";
+@import "views/settings";
+@import "views/users";

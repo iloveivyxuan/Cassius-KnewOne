@@ -1,0 +1,119 @@
+// ==========================================================================
+// Reset
+// ==========================================================================
+
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+
+video {
+  width: 100%    !important;
+  height: auto   !important;
+}
+
+a {
+  &:focus {outline: none;}
+  &:hover {text-decoration: none;}
+}
+
+i {
+  margin-right: .5em;
+}
+
+time {
+  color: $text-muted;
+  font-size: .8em;
+}
+
+
+// ==========================================================================
+// Core CSS
+// ==========================================================================
+
+// Buttons
+// --------------------------------------------------------------------------
+
+.btn-link {
+  &:hover {text-decoration: none;}
+}
+
+// Forms
+// --------------------------------------------------------------------------
+
+legend {
+  color: $text-muted;
+  margin-bottom: 0 !important;
+  & + *:before { content: "."; display: block; height: 0; visibility: hidden; margin-bottom: 1em; }
+}
+
+input {
+  &:focus {outline: none !important;}
+}
+
+input[type="number"] {
+  max-width: 100px;
+}
+
+time {
+  color: $text-muted;
+  font-size: .8em;
+}
+
+form {
+  input[type="checkbox"],
+  input[type="radio"] {
+    width: 12px;
+    height: 12px;
+    margin-top: 2px;
+    padding: 0;
+    line-height: normal;
+  }
+}
+
+
+// ==========================================================================
+// Components
+// ==========================================================================
+
+// Carousel
+// --------------------------------------------------------------------------
+
+.carousel-inner {
+
+  > .item {
+
+    > img {
+      display: inline-block;
+    }
+  }
+}
+
+// Input Groups
+// --------------------------------------------------------------------------
+
+.input-group-addon {
+
+  .fa {
+    margin-right: 0;
+  }
+}
+
+// Navbar
+// --------------------------------------------------------------------------
+
+.navbar-toggle {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+
+// ==========================================================================
+// Components w/ JavaScript
+// ==========================================================================
+
+
+// ==========================================================================
+// Utility classes
+// ==========================================================================
