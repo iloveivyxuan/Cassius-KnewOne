@@ -1,0 +1,5 @@
+table
+  tr
+    td.order_no colspan="2" = "订单号：#{@order.order_no}"
+    td.delivered_at = "发货时间：#{@order.order_histroies.select {|h| h.to == :shipped}.first.created_at}"
+

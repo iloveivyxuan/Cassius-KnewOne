@@ -37,6 +37,10 @@ class OrdersController < ApplicationController
     redirect_to @order
   end
 
+  def deliver_bill
+    render layout: false
+  end
+
   def tenpay
     redirect_to generate_tenpay_url(@order)
   end

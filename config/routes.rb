@@ -56,6 +56,7 @@ Making::Application.routes.draw do
       get 'alipay'
       post 'alipay_notify'
       get 'alipay_callback'
+      get 'deliver_bill'
     end
   end
 
