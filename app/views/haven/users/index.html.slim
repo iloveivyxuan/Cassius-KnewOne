@@ -1,33 +1,32 @@
 - provide :title, '用户管理'
-section.simple_page_wrapper.widget.users_wrapper
-  header.page-header
-    h2
-      i.fa.fa-users
-      | 战斗力分析
-  .pull-right
-    = link_to '导出CSV', "#{haven_users_path(format: :csv)}?#{request.query_string}", class: 'btn btn-success'
-  = render 'filter'
+header.page-header
+  h2
+    i.fa.fa-users
+    | 战斗力分析
+.pull-right
+  = link_to '导出CSV', "#{haven_users_path(format: :csv)}?#{request.query_string}", class: 'btn btn-success'
+= render 'filter'
 
-  table.table.table-striped
-    thead
+table.table.table-striped
+  thead
+    tr
+      th 用户
+      th 分享产品
+      th 发表评测
+      th 成交订单
+      th 战斗力
+      th 爱
+  tbody
+    - @users.each do |u|
       tr
-        th 用户
-        th 分享产品
-        th 发表评测
-        th 成交订单
-        th 战斗力
-        th 爱
-    tbody
-      - @users.each do |u|
-        tr
-          td = link_to u.name, u, target: '_blank'
-          td = u.things_count
-          td = u.reviews_count
-          td
-            = link_to u.orders_count, haven_orders_path(find_by: 'user_id', find_cond: u.id.to_s), title: '他为何如此屌？'
-          td = link_to u.expenses_count, haven_orders_path(find_by: 'user_id', find_cond: u.id.to_s), title: '他为何如此屌？'
-          td
-            = user_links(u)
-            - if u.email || u.unconfirmed_email
-              = link_to_with_icon(nil, 'fa fa-envelope', "mailto:#{(u.email || u.unconfirmed_email)}")
-  = paginate @users
+        td = link_to u.name, u, target: '_blank'
+        td = u.things_count
+        td = u.reviews_count
+        td
+          = link_to u.orders_count, haven_orders_path(find_by: 'user_id', find_cond: u.id.to_s), title: '他为何如此屌？'
+        td = link_to u.expenses_count, haven_orders_path(find_by: 'user_id', find_cond: u.id.to_s), title: '他为何如此屌？'
+        td
+          = user_links(u)
+          - if u.email || u.unconfirmed_email
+            = link_to_with_icon(nil, 'fa fa-envelope', "mailto:#{(u.email || u.unconfirmed_email)}")
+= paginate @users
