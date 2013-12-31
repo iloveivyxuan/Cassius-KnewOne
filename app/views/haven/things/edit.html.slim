@@ -1,33 +1,32 @@
 header.page-header
   h2 购买信息编辑
-= simple_nested_form_for @thing, url: haven_thing_path(@thing), wrapper: :horizontal,
-html: {multipart: true, class: "pro_edit_thing_form form-horizontal"} do |f|
-  fieldset
-    .form-group
-      = hidden_field_tag 'thing[author]', @thing.author.id.to_s, id: 'user_id'
-      input#user_autocomplete.form-control placeholder="用户昵称" value="#{@thing.author.name}"
-      #user_autocomplete_tip.strong.help-block
-    = f.input :shop, as: :url
-    = f.input :price do
-      = f.input_field :price_unit, collection: Thing.const_get(:CURRENCY_LIST)
-      = f.input_field :price, as: :decimal
-    = f.input :priority, as: :integer
-    = f.input :recommended, as: :boolean
-    = f.input :lock_priority, as: :boolean
-    = f.input :sharing_text
-    | 可用标记:
-    | &nbsp;购买的商品&nbsp;
-    span = "{{item}}"
-    | &nbsp;产品URL&nbsp;
-    span = "{{url}}"
-    = f.input :created_at, as: :datetime
-    = f.input :stage, collection: Thing.const_get(:STAGES),
-    include_blank: false, label_method: :last, value_method: :first
-    = f.input :period, as: :datetime
-    = f.input :target, as: :decimal
-    = f.input :shopping_desc do
-      = render 'shared/editor'
-      = f.input_field :shopping_desc, as: :hidden
+= simple_nested_form_for @thing, url: haven_thing_path(@thing), html: {multipart: true, class: "pro_edit_thing_form"} do |f|
+  .form-group
+    label.control-label 分享者
+    = hidden_field_tag 'thing[author]', @thing.author.id.to_s, id: 'user_id'
+    input#user_autocomplete.form-control placeholder="用户昵称" value="#{@thing.author.name}"
+    #user_autocomplete_tip.strong.help-block
+  = f.input :shop, as: :url
+  = f.input :price do
+    = f.input_field :price_unit, collection: Thing.const_get(:CURRENCY_LIST)
+    = f.input_field :price, as: :decimal
+  = f.input :priority, as: :integer
+  = f.input :recommended, as: :boolean
+  = f.input :lock_priority, as: :boolean
+  = f.input :sharing_text
+  | 可用标记:
+  | &nbsp;购买的商品&nbsp;
+  span = "{{item}}"
+  | &nbsp;产品URL&nbsp;
+  span = "{{url}}"
+  = f.input :created_at, as: :datetime
+  = f.input :stage, collection: Thing.const_get(:STAGES),
+  include_blank: false, label_method: :last, value_method: :first
+  = f.input :period, as: :datetime
+  = f.input :target, as: :decimal
+  = f.input :shopping_desc do
+    = render 'shared/editor'
+    = f.input_field :shopping_desc, as: :hidden
   .kinds
     = f.simple_fields_for :kinds
     = f.link_to_add "新增型号", :kinds, class: "btn btn-default"
