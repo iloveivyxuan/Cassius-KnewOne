@@ -12,7 +12,7 @@ table.table
     th 使用情况
     th 绑定的用户
     th 绑定的订单
-  - @coupon.coupon_codes.each do |code|
+  - @coupon.coupon_codes.order_by([:created_at, :desc]).each do |code|
     tr
       td = code.code
       td = code.expires_at.strftime('%Y-%m-%d')
