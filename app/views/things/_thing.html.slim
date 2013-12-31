@@ -9,9 +9,9 @@
           tp.thing, target: "_blank"
       - if tp.stage == :invest
         .invest_progress
-          .progress data-progress=tp.invest_progress data-amount=tp.invest_amount.to_i
+          .progress data-progress=tp.invest_progress
             .progress-bar.progress-bar-success role="progressbar" style="width: #{tp.invest_percentage}" aria-valuenow=tp.invest_percentage aria-valuemin="0" aria-valuemax="100"
-          small.invest_amount= tp.invest_amount.to_i
+          small= tp.invest_currency
       figcaption
         h5 data-toggle="tooltip" data-placement="bottom" title=tp.full_title
           = tp.full_title

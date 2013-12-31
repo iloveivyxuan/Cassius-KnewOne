@@ -205,10 +205,13 @@ class ThingPresenter < PostPresenter
     thing.investors.map(&:amount).reduce(&:+)
   end
 
+  def invest_currency
+    number_to_currency invest_amount, precision: 0, unit: "￥"
+  end
+
   def content_for_invest_amount
     return unless thing.investors.count > 0
-    amount = number_to_currency invest_amount, precision: 0, unit: "￥"
-    "<em>#{amount}</em><span> / </span><em>#{target}</em>".html_safe
+    "<em>#{invest_currency}</em><span> / </span><em>#{target}</em>".html_safe
   end
 
   def invest_progress

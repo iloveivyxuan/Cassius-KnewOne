@@ -33,12 +33,11 @@
       margin-bottom: 0;
     }
 
-    .invest_amount {
-      color: #5cb85c;
-      color: #00c15e;
-      left: .5em;
+    small {
+      color: $green;
+      left: 1em;
       position: absolute;
-      top: -1.2em;
+      top: -1.5em;
     }
   }
 
