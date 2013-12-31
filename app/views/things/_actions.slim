@@ -5,7 +5,10 @@
       | 众筹中
       small = tp.period
     p
-      = tp.invest_amount
+      = tp.content_for_invest_amount
+    .progress
+      .progress-bar.progress-bar-success role="progressbar" style="width: #{tp.invest_percent}"
+        span.sr-only= tp.invest_percent
 
 .shop
   = tp.content_for_price

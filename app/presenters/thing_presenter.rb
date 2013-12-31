@@ -193,16 +193,26 @@ class ThingPresenter < PostPresenter
     end.html_safe
   end
 
+  def target
+    number_to_currency thing.target, precision: 0, unit: "￥"
+  end
+
   def investors_count
     show_count thing.investors.count
   end
 
   def invest_amount
+    thing.investors.map(&:amount).reduce(&:+)
+  end
+
+  def content_for_invest_amount
     return unless thing.investors.count > 0
-    investors_tag = content_tag :span, "<em>#{investors_count}</em>位支持者，".html_safe
-    amount = number_to_currency thing.investors.map(&:amount).reduce(&:+), precision: 0, unit: "￥"
-    amount_tag = content_tag :span, "总金额<em>#{amount}</em>".html_safe
-    investors_tag + amount_tag
+    amount = number_to_currency invest_amount, precision: 0, unit: "￥"
+    "<em>#{amount}</em><span> / </span><em>#{target}</em>".html_safe
+  end
+
+  def invest_percent
+    number_to_percentage (invest_amount*100/thing.target), precision: 2
   end
 
   def kinds

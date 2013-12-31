@@ -228,11 +228,15 @@
 
     p {
       margin: 0;
-      em {
+      em {font-style: normal;}
+      em:first-child {
         color: $green;
-        margin-right: .5em;
       }
-      span:nth-child(2) {margin-left: 1em;}
+    }
+
+    .progress {
+      display: none;
+      margin: 1em 0 0;
     }
 
     @media screen and (min-width: $screen-sm-min) {
@@ -254,10 +258,14 @@
             font-size: 2em;
             vertical-align: 3px;
           }}
+      .progress {display: block;}
     }
 
     @media screen and (min-width: $screen-lg-min) {
-      p {em {font-size: 1.5em;}}
+      p {
+        em {font-size: 1.5em;}
+        span {font-size: 1.4em;}
+      }
     }
   }
 
