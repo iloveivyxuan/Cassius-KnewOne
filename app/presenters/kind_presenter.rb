@@ -26,7 +26,7 @@ class KindPresenter < ApplicationPresenter
   end
 
   def limit
-    "<em>#{kind.stock-kind.sold}</em> 库存".html_safe
+    "<em>#{kind.stock}</em> 库存".html_safe
   end
 
   def build_option
