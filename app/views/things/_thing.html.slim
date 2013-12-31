@@ -5,7 +5,7 @@
         .pre_ribbon class="#{tp.stage}"
           span= tp.stage_text
       - if tp.stage == :invest
-        .invest_progress data-progress=tp.invest_progress data-amount=tp.content_for_invest_amount
+        .invest_progress data-progress=tp.invest_progress data-amount=tp.invest_amount.to_i
       figure
         = link_to (img_lazy ? tp.photo_lazy(size) : tp.photo(size)),
           tp.thing, target: "_blank"

@@ -212,9 +212,9 @@ class ThingPresenter < PostPresenter
   end
 
   def invest_progress
-    if thing.target.present? and thing.target > 0
-      invest_amount/thing.target
-    end
+    amount = invest_amount
+    return 0 if thing.target.blank? or thing.target <= 0 or amount.blank?
+    amount/thing.target
   end
 
   def invest_percentage
