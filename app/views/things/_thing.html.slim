@@ -4,11 +4,14 @@
       - if tp.self_run?
         .pre_ribbon class="#{tp.stage}"
           span= tp.stage_text
-      - if tp.stage == :invest
-        .invest_progress data-progress=tp.invest_progress data-amount=tp.invest_amount.to_i
       figure
         = link_to (img_lazy ? tp.photo_lazy(size) : tp.photo(size)),
           tp.thing, target: "_blank"
+      - if tp.stage == :invest
+        .invest_progress
+          .progress data-progress=tp.invest_progress data-amount=tp.invest_amount.to_i
+            .progress-bar.progress-bar-success role="progressbar" style="width: #{tp.invest_percentage}" aria-valuenow=tp.invest_percentage aria-valuemin="0" aria-valuemax="100"
+          small.invest_amount= tp.invest_amount.to_i
       figcaption
         h5 data-toggle="tooltip" data-placement="bottom" title=tp.full_title
           = tp.full_title
