@@ -1,4 +1,4 @@
-- if tp.thing.stage == :invest
+- if tp.stage == :invest
   .investors
     h4
       i.fa.fa-fire
@@ -7,8 +7,8 @@
     p
       = tp.content_for_invest_amount
     .progress
-      .progress-bar.progress-bar-success role="progressbar" style="width: #{tp.invest_percent}"
-        span.sr-only= tp.invest_percent
+      .progress-bar.progress-bar-success role="progressbar" style="width: #{tp.invest_percentage}"
+        span.sr-only= tp.invest_percentage
 
 .shop
   = tp.content_for_price

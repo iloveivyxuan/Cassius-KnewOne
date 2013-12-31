@@ -211,8 +211,14 @@ class ThingPresenter < PostPresenter
     "<em>#{amount}</em><span> / </span><em>#{target}</em>".html_safe
   end
 
-  def invest_percent
-    number_to_percentage (invest_amount*100/thing.target), precision: 2
+  def invest_progress
+    if thing.target.present? and thing.target > 0
+      invest_amount/thing.target
+    end
+  end
+
+  def invest_percentage
+    number_to_percentage invest_progress*100, precision: 2
   end
 
   def kinds
