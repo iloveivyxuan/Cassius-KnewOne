@@ -16,4 +16,8 @@ class ApplicationPresenter
   def show_count(count)
     (count > 0) ? count : ""
   end
+
+  def price_format(price, unit="￥")
+    number_to_currency(price, precision: 2, unit: unit)
+  end
 end

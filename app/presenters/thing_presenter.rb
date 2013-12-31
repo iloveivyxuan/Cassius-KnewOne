@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 class ThingPresenter < PostPresenter
   presents :thing
-  delegate :title, :subtitle, :photos, :self_run?, :kinds, to: :thing
+  delegate :title, :subtitle, :photos, :self_run?, to: :thing
 
   def full_title
     [title, subtitle].reject(&:blank?).join(' - ')
@@ -22,10 +22,6 @@ class ThingPresenter < PostPresenter
     content_tag :div, class: "post_content" do
       sanitize(raw thing.content)
     end if thing.content.present?
-  end
-
-  def price_format(price, unit="￥")
-    number_to_currency(price, precision: 2, unit: unit)
   end
 
   def price
@@ -209,21 +205,11 @@ class ThingPresenter < PostPresenter
     investors_tag + amount_tag
   end
 
-  def kind_estimated_at(kind)
-    if kind.stage == :ship and kind.estimates_at.present? and kind.estimates_at > Time.now
-      time_tag kind.estimates_at, distance_of_time_in_words_to_now(kind.estimates_at)
-    end
+  def kinds
+    thing.kinds.map {|k| present(k)}
   end
 
   def options_for_kinds
-    options_for_select(thing.kinds.map do |k|
-      [k.title, k.id, data: {
-         stock: k.stock,
-         max: max_buyable_quantity(k),
-         price: price_format(k.price),
-         photo: k.photo_number,
-         estimated: kind_estimated_at(k).try(:gsub, "\"", "'")
-       }, class: "kind_option", disabled: !(k.stock > 0)]
-    end)
+    options_for_select kinds.map(&:build_option)
   end
 end

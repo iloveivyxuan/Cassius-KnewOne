@@ -1,17 +1,8 @@
-li.kind
-  = link_to "#", class: (kind.stock > 0) ? 'select_enabled' : 'select_disabled',
-  data: { stock: kind.stock, max: max_buyable_quantity(kind), price: kind.price, photo: kind.photo_number, id: kind.id.to_s } do
-    = kind.title
-  .estimates_at
-    - if kind.stage == :ship and kind.estimates_at.present? and kind.estimates_at > Time.now
-      i.fa.fa-clock-o
-      | 此产品将在
-      = time_tag kind.estimates_at, distance_of_time_in_words_to_now(kind.estimates_at)
-      | 后到货
-  .stock
-    - if kind.stock > 0
-      i.fa.fa-smile
-      | 您最多可以购买#{max_buyable_quantity(kind)}件
-    - else
-      i.fa.fa-frown
-      | 对不起，此产品已没有库存
+li
+  h5= kind.title
+  .kind_price= kind.price
+  .sold= kind.sold
+  / p= kind.note
+  / p= kind.estimates_at
+  / p= kind.stock
+  / p= kind.stage

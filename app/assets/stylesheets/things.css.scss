@@ -323,6 +323,25 @@
       display: block;
     }
   }
+
+  .kinds {
+    display: none;
+    margin-top: 2em;
+    border-top: $border-default;
+    padding-top: 2em;
+
+    > li {
+      padding-bottom: 1em;
+      border-bottom: 1px dashed #eee;
+      margin-bottom: 1em;
+
+      h5 {font-weight: bold;}
+    }
+
+    @media screen and (min-width: $screen-md-min) {
+      display: block;
+    }
+  }
 }
 
 .cart_success {
