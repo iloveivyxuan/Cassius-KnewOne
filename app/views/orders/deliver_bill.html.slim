@@ -1,5 +1,17 @@
 table
   tr
     td.order_no colspan="2" = "订单号：#{@order.order_no}"
-    td.delivered_at = "发货时间：#{@order.order_histroies.select {|h| h.to == :shipped}.first.created_at}"
+    td.delivered_at colspan="3" = "发货时间：#{@order.delivered_at.strftime '%y-%m-%d %H:%M'}"
+  tr
+    td colspan="5" = "收货地址：#{address_text @order}"
+  tr
+    td colspan="2" 商品名称
+    td 数量
+    td 单价
+    td 总价
+  tr
+    td 总计
+    td colspan="4" = "￥#{@order.total_price}"
+
+
 

@@ -38,7 +38,8 @@ class OrdersController < ApplicationController
   end
 
   def deliver_bill
-    render layout: false
+    return redirect_to @order unless @order.shipped?
+    render layout: 'deliver_bill'
   end
 
   def tenpay

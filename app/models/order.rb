@@ -422,6 +422,12 @@ class Order
     cart_items.map { |item| add_item_by_cart_item item }.reduce &:|
   end
 
+  def delivered_at
+    h = order_histories.select {|h| h.to == :shipped}.first
+
+    h ? h.created_at : nil
+  end
+
   private
   def after_confirm
     self.user.inc karma: Settings.karma.order
