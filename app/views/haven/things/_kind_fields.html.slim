@@ -3,6 +3,7 @@ fieldset.kind_fields
   = f.input :title
   = f.input :price, as: :decimal
   = f.input :stock, as: :integer
+  = f.input :sold, as: :integer
   = f.input :max_per_buy, as: :integer
   = f.input :stage, collection: Kind::STAGES, \
             include_blank: false, label_method: :last, value_method: :first

@@ -336,6 +336,22 @@
       margin-bottom: 1em;
 
       h5 {font-weight: bold;}
+      .price {
+        em {
+          color: $green;
+          font-size: 1.5em;
+        }
+      }
+      .note {
+        margin: 1em 0;
+        color: $text-muted;
+      }
+      .estimated_at {
+        time {
+          font-size: 1em;
+          color: $green;
+        }
+      }
     }
 
     @media screen and (min-width: $screen-md-min) {

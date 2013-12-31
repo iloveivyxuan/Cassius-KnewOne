@@ -1,8 +1,9 @@
-li
-  h5= kind.title
-  .kind_price= kind.price
-  .sold= kind.sold
-  / p= kind.note
-  / p= kind.estimates_at
-  / p= kind.stock
-  / p= kind.stage
+- present kind do |kp|
+  li
+    h5
+      = kp.title
+    .price
+      span>= kp.price
+      small= kp.limit
+    .note= kind.note
+    .estimates_at= kp.content_for_estimated_at
