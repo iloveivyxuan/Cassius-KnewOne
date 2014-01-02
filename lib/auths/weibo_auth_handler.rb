@@ -14,14 +14,11 @@ class WeiboAuthHandler
     end
   end
 
-  def share(content, photo_url)
-    begin
-      if photo_url
-        client.statuses.upload_url_text "status" => preprocess_content(content), "url" => photo_url
-      else
-        client.statuses.update preprocess_content(content)
-      end
-    rescue OAuth2::Error
+  def share(content, photo_url = nil)
+    if photo_url
+      client.statuses.upload_url_text "status" => preprocess_content(content), "url" => photo_url
+    else
+      client.statuses.update preprocess_content(content)
     end
   end
 

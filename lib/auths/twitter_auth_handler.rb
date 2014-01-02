@@ -12,7 +12,7 @@ class TwitterAuthHandler
     client.follow Settings.twitter.official_uid
   end
 
-  def share(content, photo_url)
+  def share(content, photo_url = nil)
     client.update preprocess_content(content)
   end
 
