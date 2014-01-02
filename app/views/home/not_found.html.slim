@@ -1,9 +1,11 @@
 - provide :title, '404未找到页面'
-.simple_page_wrapper.widget style="text-align: center"
-  h1 你落入了无尽虚空！
-  p 受诅咒的传送门将你传送进无尽虚空！好在你手握的装置似乎可以助你摆脱眼前的困境。
-  p 你可以：
-  .btn-group
-    = link_to_with_icon '传送到入口', "fa fa-home", root_path, class: 'btn btn-lg btn-default'
-    = link_to_with_icon '时光倒流', "fa fa-reply", 'javascript:history.go(-1)', class: 'btn btn-lg btn-primary'
-    = link_to_with_icon '寻求帮助', "fa fa-phone", '#olark_chat', class: 'btn btn-lg btn-default'
+.simple_page_wrapper.widget
+  header.error_header
+    h1 你落入了无尽虚空！
+  main.error_content
+    .error_message
+      p.well.well-lg 受诅咒的传送门将你传送进无尽虚空！好在你手握的装置似乎可以助你摆脱眼前的困境。
+    .error_solution
+      = link_to_with_icon '传送到入口', "fa fa-home", root_path, class: 'btn btn-block btn-lg btn-default'
+      = link_to_with_icon '时光倒流', "fa fa-reply", 'javascript:history.go(-1)', class: 'btn btn-block btn-lg btn-primary'
+      = link_to_with_icon '寻求帮助', "fa fa-phone", '#olark_chat', class: 'btn btn-block btn-lg btn-default'
