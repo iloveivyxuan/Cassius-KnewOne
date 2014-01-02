@@ -13,7 +13,7 @@ class TwitterAuthHandler
   end
 
   def share(content, photo_url)
-    client.update content
+    client.update preprocess_content(content)
   end
 
   def topic_wrapper(topic)
@@ -22,5 +22,10 @@ class TwitterAuthHandler
 
   def parse_image(auth)
     auth[:info][:image].sub('_normal', '')
+  end
+
+  private
+  def preprocess_content(content)
+    content.gsub('@KnewOne', '@knewonecom')
   end
 end
