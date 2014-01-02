@@ -17,9 +17,9 @@ class WeiboAuthHandler
   def share(content, photo_url)
     begin
       if photo_url
-        client.statuses.upload_url_text "status" => content, "url" => photo_url
+        client.statuses.upload_url_text "status" => preprocess_content(content), "url" => photo_url
       else
-        client.statuses.update content
+        client.statuses.update preprocess_content(content)
       end
     rescue OAuth2::Error
     end
@@ -31,5 +31,10 @@ class WeiboAuthHandler
 
   def parse_image(auth)
     auth[:extra][:raw_info][:avatar_large] + ".jpg"
+  end
+
+  private
+  def preprocess_content(content)
+    content
   end
 end
