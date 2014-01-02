@@ -3,9 +3,13 @@ class TwitterAuthHandler
 
   def initialize(info)
     @client = Twitter::REST::Client.new access_token: info[:access_token],
-    access_token_secret: info[:access_secret],
-    consumer_key: Settings.twitter.consumer_key,
-    consumer_secret: Settings.twitter.consumer_secret
+                                        access_token_secret: info[:access_secret],
+                                        consumer_key: Settings.twitter.consumer_key,
+                                        consumer_secret: Settings.twitter.consumer_secret
+
+    if Settings.kexue.enable
+      @client.connection_options.merge! proxy: Settings.kexue.proxy
+    end
   end
 
   def follow
@@ -26,6 +30,6 @@ class TwitterAuthHandler
 
   private
   def preprocess_content(content)
-    content.gsub('@KnewOne', '@knewonecom')
+    content.gsub('@KnewOne', '@KnewOneCom')
   end
 end
