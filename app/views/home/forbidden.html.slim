@@ -1,9 +1,12 @@
-- provide :title, '403禁止访问'
+- provide :title, '需要登录'
 .simple_page_wrapper.widget
   header.error_header
-    h1 你误入了禁地
+    h1 你需要登录后才可继续
   main.error_content
     .error_message
-      p.well.well-lg 神秘的传送门将你传送入禁地，周遭的环境让你感到不安，你认为还是尽快离开比较好，手中的装置似乎可以助你摆脱眼前的困境。
+      blockquote
+        p
+          | “您需要先登录后才可以继续访问，右边的图标可以快速登录（即使您是第一次使用Knewone）。”
+        small Jasl <无面者>
     .error_solution
       = render 'shared/entry'

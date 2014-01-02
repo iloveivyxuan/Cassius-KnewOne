@@ -1,6 +1,6 @@
 # encoding: utf-8
 class CouponsController < ApplicationController
-  prepend_before_action :authenticate_user!
+  prepend_before_action :require_signed_in
   layout 'settings', only: [:index]
 
   def index

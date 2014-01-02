@@ -1,5 +1,5 @@
 class CartItemsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :require_signed_in
   before_action :current_cart_item, only: [:destroy, :update]
 
   def index

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :show, :new, :create, :cancel, :tenpay, :alipay]
+  before_action :require_signed_in, only: [:index, :show, :new, :create, :cancel, :tenpay, :alipay]
   before_action :have_items_in_cart, only: [:new, :create]
   load_and_authorize_resource except: [:index, :new, :create], params: :order_params
   layout 'settings', only: [:index, :show]

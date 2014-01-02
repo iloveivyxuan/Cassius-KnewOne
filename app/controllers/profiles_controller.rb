@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  prepend_before_action :authenticate_user!
+  prepend_before_action :require_signed_in
   layout 'settings'
 
   def update

@@ -20,6 +20,10 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
+    if request.format == Mime::HTML
+      session[:previous_url] = request.fullpath
+    end
+
     redirect_to '/403', alert: exception.message
   end
 
@@ -42,6 +46,18 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def require_signed_in
+    return if user_signed_in?
+
+    if request.format == Mime::HTML
+      session[:previous_url] = request.fullpath
+
+      redirect_to '/403'
+    else
+      authenticate_user!
+    end
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up).concat [:location, :name, :description]
     devise_parameter_sanitizer.for(:account_update).concat [:location, :name, :description]
@@ -53,6 +69,7 @@ class ApplicationController < ActionController::Base
 
   def store_location(url=nil)
     return unless request.format == Mime::HTML
+
     session[:previous_url] = request.fullpath
   end
 

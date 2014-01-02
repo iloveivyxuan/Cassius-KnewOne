@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 module Haven
   class ApplicationController < ::ActionController::Base
-    prepend_before_action :authenticate_admin!
+    prepend_before_action :require_admin_signed_in
 
     protected
 
-    def authenticate_admin!
+    def require_admin_signed_in
       raise ActionController::RoutingError.new('Not Found') unless user_signed_in? && current_user.staff?
     end
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class AccountsController < Devise::RegistrationsController
-  prepend_before_action :authenticate_user!
+  prepend_before_action :require_signed_in
   layout 'settings'
   after_action :store_location, only: [:edit]
 
