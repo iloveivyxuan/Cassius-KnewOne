@@ -37,6 +37,11 @@ class HomeController < ApplicationController
   end
 
   def forbidden
+    if user_signed_in?
+      render 'home/forbidden_signed_in'
+    else
+      render 'home/forbidden'
+    end
   end
 
   def error
