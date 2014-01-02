@@ -13,7 +13,7 @@
 
     footer
       = render 'voting', review: rp.review
-      = link_to_with_icon "分享", "fa-share fa-lg",
+      = link_to_with_icon "分享", "fa fa-share",
         user_signed_in? ? "#review_share" : "#login-modal",
         title: "分享", data: {toggle: 'modal'}
       = render 'shared/post_actions', post: rp.review,
