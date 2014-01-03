@@ -28,7 +28,7 @@ module Haven
     def resort
       Thing.resort!
 
-      redirect_to admin_things_path
+      redirect_to haven_things_path
     end
 
     private

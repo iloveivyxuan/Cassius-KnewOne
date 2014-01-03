@@ -23,8 +23,8 @@ table.table.table-striped
         td = u.things_count
         td = u.reviews_count
         td
-          = link_to u.orders_count, haven_orders_path(find_by: 'user_id', find_cond: u.id.to_s), title: '他为何如此屌？'
-        td = link_to u.expenses_count, haven_orders_path(find_by: 'user_id', find_cond: u.id.to_s), title: '他为何如此屌？'
+          = link_to (u.orders_count || '0'), haven_orders_path(find_by: 'user_id', find_cond: u.id.to_s), title: '他为何如此屌？'
+        td = link_to (u.expenses_count || '0'), haven_orders_path(find_by: 'user_id', find_cond: u.id.to_s), title: '他为何如此屌？'
         td
           = user_links(u)
           - if u.email || u.unconfirmed_email
