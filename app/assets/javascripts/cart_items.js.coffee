@@ -26,7 +26,7 @@ Making.CartItemNew = ->
       $("#thing_photos .carousel").carousel photo
 
     $form.find('select#cart_item_kind_id').change ->
-      $option = $(this).find("option:selected")
+      $option = $(@).find('option:selected')
       set_price $option.data('price')
       set_estimated $option.data('estimated')
       set_stock $option.data('max')
@@ -34,6 +34,9 @@ Making.CartItemNew = ->
       if $option.val()
         $quantity.removeAttr('disabled')
         $submit.removeAttr('disabled')
+        $(@).find('option').filter (index) ->
+            return index is 0 and @.value is '' and !$(@).attr('disabled')
+          .attr('disabled', true)
       else
         $quantity.attr('disabled', true)
         $submit.attr('disabled', true)
