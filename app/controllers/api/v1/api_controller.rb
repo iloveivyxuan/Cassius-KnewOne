@@ -17,7 +17,7 @@ module Api
           # need this to build params
           ActionController::Instrumentation,
           # need this for wrap_parameters
-          ActionController::ParamsWrapper,
+          # ActionController::ParamsWrapper,
           Devise::Controllers::Helpers,
           Rails.application.routes.url_helpers,
       ]
