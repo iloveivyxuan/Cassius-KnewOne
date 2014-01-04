@@ -71,6 +71,9 @@ gem 'mini_magick'
 # API
 gem 'doorkeeper', github: 'applicake/doorkeeper'
 
+# pdf render
+gem 'pdfkit'
+
 # monitoring
 gem 'newrelic_rpm'
 gem 'airbrake'

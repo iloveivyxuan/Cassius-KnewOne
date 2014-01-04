@@ -1,6 +1,21 @@
 html
   head
-    = stylesheet_link_tag "deliver_bill/application"
+    meta http-equiv="Content-Type" content="text/html; charset=utf-8"
+    css:
+      .container {
+        margin: 0 auto;
+        width: 600px;
+      }
+
+      table {
+        border-collapse:collapse;
+        width: 100%;
+      }
+
+      table, tr, td {
+        border: #000 solid 1px;
+      }
+
   body
     .container
       = yield
