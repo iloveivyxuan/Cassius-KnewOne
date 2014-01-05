@@ -9,9 +9,15 @@ table
     td 数量
     td 单价
     td 总价
+  - @order.order_items.each do |i|
+    tr
+      td colspan="2" = "#{i.thing_title} - #{i.kind_title}"
+      td = i.quantity
+      td = "￥#{i.single_price}"
+      td = i.price
   tr
-    td 总计
-    td colspan="4" = "￥#{@order.total_price}"
+    td colspan="3"
+    td colspan="2" = "总计：￥#{@order.total_price}"
 
 p
   | 售后服务：
