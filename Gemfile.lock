@@ -16,14 +16,14 @@ GIT
 
 GIT
   remote: git://github.com/applicake/doorkeeper.git
-  revision: 4b7e0f637384ec646b294fa7b83b5413be542d4b
+  revision: ad9705e655afb3a521ee3181aa499b053b8982e2
   specs:
     doorkeeper (1.0.0.rc1)
       railties (>= 3.1)
 
 GIT
   remote: git://github.com/guard/guard-livereload.git
-  revision: 6709976495c86058abab1f3e5d40e12e47f92306
+  revision: 9f8a6a7c84fdcaab382c9a0c7997f3d10ab15a3e
   specs:
     guard-livereload (2.1.0)
       em-websocket (~> 0.5)
@@ -40,9 +40,9 @@ GIT
 
 GIT
   remote: git://github.com/jasl/tenpay.git
-  revision: 7db8d4aa396a837dcaed3c5092fc44a860512ff3
+  revision: c40fe891f747fc9f3dbc1ada7bf6c6b7f18cc66e
   specs:
-    jasl_tenpay (1.0.2)
+    jasl_tenpay (1.1.1)
 
 GIT
   remote: git://github.com/ryanb/letter_opener.git
@@ -90,9 +90,9 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
-    airbrake (3.1.14)
+    airbrake (3.1.15)
       builder
-      json
+      multi_json
     alipay (0.0.3)
     arel (4.0.1)
     atomic (1.1.14)
@@ -170,12 +170,12 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.0.2)
-    fabrication (2.9.3)
+    fabrication (2.9.4)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
     ffaker (1.22.1)
     ffi (1.9.3)
-    font-awesome-rails (4.0.3.0)
+    font-awesome-rails (4.0.3.1)
       railties (>= 3.2, < 5.0)
     formatador (0.2.4)
     fssm (0.2.10)
@@ -208,7 +208,7 @@ GEM
     i18n (0.6.9)
     intercom-rails (0.2.24)
       activesupport (> 3.0)
-    jbuilder (2.0.1)
+    jbuilder (2.0.2)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
     jquery-fileupload-rails (0.4.1)
@@ -277,7 +277,7 @@ GEM
     net-ssh (2.7.0)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
-    newrelic_rpm (3.7.1.180)
+    newrelic_rpm (3.7.1.182)
     oauth (0.4.7)
     oauth2 (0.9.2)
       faraday (~> 0.8)
@@ -365,7 +365,7 @@ GEM
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
     settingslogic (2.0.9)
-    sidekiq (2.17.1)
+    sidekiq (2.17.2)
       celluloid (>= 0.15.2)
       connection_pool (>= 1.0.0)
       json

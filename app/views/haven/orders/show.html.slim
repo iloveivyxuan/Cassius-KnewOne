@@ -82,5 +82,6 @@ footer.clearfix
   .order_actions.text-right
     .btn-group = link_to '返回', haven_orders_path, class: 'btn btn-default'
     = way_bill_link(@order)
+    = deliver_bill_link(@order)
     = refund_link(@order)
     = close_link(@order)

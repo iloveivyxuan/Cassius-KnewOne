@@ -67,6 +67,14 @@ module OrdersHelper
     end
   end
 
+  def deliver_bill_link(order, css = 'btn btn-default')
+    content_tag :div, class: 'btn-group' do
+      if order.shipped?
+        link_to '发货单', deliver_bill_order_path(order), class: css, target: '_blank'
+      end
+    end
+  end
+
   def return_link(order, css = 'btn btn-default')
     unless order.pending?
       content_tag :div, class: 'btn-group' do

@@ -1,0 +1,51 @@
+table.text-center
+  tbody
+    tr
+      td.text-left.order_no width="50%" colspan="3" = "订单号：#{@order.order_no}"
+      td.text-left.delivered_at width="50%" colspan="3" = "发货时间：#{@order.delivered_at.strftime '%y-%m-%d %H:%M'}"
+    tr
+      td.text-left colspan="6" = "买家信息：#{address_text @order}"
+    tr
+      td width="50%" colspan="3" 商品名称
+      td width="10%" 数量
+      td width="10%" 单价
+      td width="20%" 总价
+    - @order.order_items.each do |i|
+      tr
+        td.text-left width="50%" colspan="3" = "#{i.thing_title} - #{i.kind_title}"
+        td width="10%" = i.quantity
+        td width="10%" = "￥#{i.single_price}"
+        td width="20%" = "￥#{i.price}"
+  tfoot
+    tr
+      td 总计
+      td colspan="5" = "#{@order.order_items.size}件，￥#{@order.price}"
+
+section.well
+  span 售后服务：
+  ol style="padding-left: 20px;"
+    li 产品在不影响二次销售的情况下，七天内无条件退换（以快递面单签收时间为准），买家自理往返邮费，退换货请用快递寄回，Knewone不接收到付件和平邮件;
+    li 若您购买的产品在中国大陆无售后服务点，Knewone愿为您提供同等于国外质量的售后服务；
+    li 有任何疑问请先咨询Knewone官网“在线帮助”。
+
+hr.cutline
+
+section.card
+  p 此卡片请随退换货包裹寄回，并确定您已经与Knewone客服事先就退换货事宜达成共识。
+  p 若退货成功，退款会在收到商品后三个工作日内打入您的Knewone账户。
+
+  ul.nstyle
+    li 订单号：#{@order.order_no}
+    li
+      |
+      label style="float: left;" 买家信息：
+      div style="margin-left: 5em;" #{address_text @order}
+    li 操作：☐ 退货 ☐ 换货
+    li
+      | 原因：
+      br
+      br
+      br
+      br
+      br
+    li style="text-decoration: underline;" Knewone地址：广东省深圳市南山区香山西街8号香山里一期5栋3A，400-999-2512
