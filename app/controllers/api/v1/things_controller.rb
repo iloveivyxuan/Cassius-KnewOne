@@ -1,6 +1,8 @@
 module Api
   module V1
     class ThingsController < ApiController
+      helper 'api/v1/things'
+
       def index
         per = (params[:per] || 24).to_i
 
@@ -23,7 +25,7 @@ module Api
       end
 
       def show
-
+        @thing = Thing.find(params[:id])
       end
     end
   end

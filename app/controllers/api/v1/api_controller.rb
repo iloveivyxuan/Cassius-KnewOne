@@ -17,7 +17,9 @@ module Api
           # need this to build params
           ActionController::Instrumentation,
           # need this for wrap_parameters
-          # ActionController::ParamsWrapper,
+          ActionController::ParamsWrapper,
+          ActionController::StrongParameters,
+          ActionController::Rescue,
           Devise::Controllers::Helpers,
           Rails.application.routes.url_helpers,
       ]
@@ -39,6 +41,10 @@ module Api
       after_filter :respond_request
 
       protect_from_forgery
+
+      rescue_from Mongoid::Errors::DocumentNotFound do
+        head :not_found
+      end
 
       helper 'api/v1/api'
 
