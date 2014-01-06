@@ -16,10 +16,10 @@ table.text-center
         td width="10%" = i.quantity
         td width="10%" = "￥#{i.single_price}"
         td width="20%" = "￥#{i.price}"
-  tfoot
-    tr
-      td 总计
-      td colspan="5" = "#{@order.order_items.size}件，￥#{@order.price}"
+  /tfoot
+  /  tr
+  /    td 总计
+  /    td colspan="5" = "#{@order.order_items.size}件，￥#{@order.price}"
 
 section.well
   span 售后服务：
