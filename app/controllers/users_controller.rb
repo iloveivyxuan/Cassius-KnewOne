@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   end
 
   def fuzzy
-    @users = User.find_by_name(params[:keyword])
+    @users = User.find_by_fuzzy_name(params[:keyword])
     respond_to do |format|
       format.html do
         @users = @users.page(params[:page])

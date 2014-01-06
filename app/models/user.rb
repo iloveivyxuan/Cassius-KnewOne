@@ -94,7 +94,7 @@ class User
       end
     end
 
-    def find_by_name(name)
+    def find_by_fuzzy_name(name)
       return all if name.blank?
       where(name: /^#{name}/i)
     end
