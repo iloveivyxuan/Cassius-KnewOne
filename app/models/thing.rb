@@ -166,5 +166,10 @@ class Thing < Post
     def rand_records(per = 1)
       (0...Thing.count).to_a.shuffle.slice(0, per).map { |i| Thing.skip(i).first }
     end
+
+    def find_by_fuzzy_title(title)
+      return all if title.blank?
+      where(title: /^#{title}/i)
+    end
   end
 end

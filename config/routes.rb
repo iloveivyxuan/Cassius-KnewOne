@@ -91,6 +91,7 @@ Making::Application.routes.draw do
     collection do
       get 'admin'
       get 'resort'
+      get 'search'
     end
 
     member do

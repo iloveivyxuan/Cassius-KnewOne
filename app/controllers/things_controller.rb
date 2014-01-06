@@ -116,6 +116,15 @@ class ThingsController < ApplicationController
     render layout: 'thing'
   end
 
+  def search
+    @things = Thing.find_by_fuzzy_title(params[:q])
+
+    respond_to do |format|
+      format.html { @things = @things.page(params[:page]) }
+      format.json { @things = @things.limit(10) }
+    end
+  end
+
   private
 
   def thing_params
