@@ -19,7 +19,7 @@ class HomeController < ApplicationController
     if user_signed_in? || @landing_page.nil?
       render 'home/index'
     else
-      render file: 'home/landing', layout: 'home'
+      render file: 'home/landing'
     end
   end
 
