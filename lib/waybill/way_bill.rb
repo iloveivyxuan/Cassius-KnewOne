@@ -7,7 +7,7 @@ class WayBill
   COMPANY = 'knewone.com'
   SENDER = '琚展'
   ADDRESS = '广东省 深圳市 南山区 香山西街8号南门波托菲诺香山里一期5栋3A'
-  PHONE = '18129810593'
+  PHONE = '400-999-2512'
 
   def to_io_stream
     self.image.to_blob
