@@ -7,7 +7,7 @@ ul.nav.nav-pills
   - else
     li.active
       = link_to '全部', queries.reject! {|k, v| k == :filter}
-  - {'thing' => '产品', 'review' => '评测', 'order' => '订单', 'expense' => '消费'}.each do |k, v|
+  - {'thing' => '产品', 'review' => '评测', 'order' => '订单', 'expense' => '消费', 'unbind_email' => '未绑定邮箱'}.each do |k, v|
     - conds = queries.deep_dup
     - if conds[:filter].include?(k)
       li.active

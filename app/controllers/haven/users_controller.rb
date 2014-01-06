@@ -22,6 +22,9 @@ module Haven
         if params[:filter].include? 'expense'
           @users = @users.where(:expenses_count.gt => 0).order_by([:expenses_count, :desc])
         end
+        if params[:filter].include? 'unbind_email'
+          @users = @users.where(:email => nil, :unconfirmed_email => nil).order_by([:created_at, :asc])
+        end
       else
         @users = @users.order_by([:expenses_count, :desc],
                                  [:things_count, :desc],
