@@ -39,13 +39,8 @@ class OrdersController < ApplicationController
 
   def deliver_bill
     return redirect_to @order unless @order.shipped?
-    respond_to do |format|
-      format.html { render layout: 'deliver_bill' }
-      format.pdf do
-        send_data PDFKit.new(render_to_string(file: 'orders/deliver_bill.html.slim',layout: 'deliver_bill')).to_pdf,
-                  type: 'application/pdf', disposition: 'inline'
-      end
-    end
+
+    render layout: 'deliver_bill'
   end
 
   def tenpay
