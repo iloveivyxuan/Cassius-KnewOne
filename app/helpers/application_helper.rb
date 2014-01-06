@@ -44,11 +44,11 @@ module ApplicationHelper
   end
 
   def page_keywords
-    [Settings.keywords, content_for(:keywords)].reject(&:blank?).join(',')
+    [content_for(:keywords), Settings.keywords].reject(&:blank?).join(',')
   end
 
   def page_description
-    [Settings.description, content_for(:description)].reject(&:blank?).join('; ')
+    [content_for(:description), Settings.description].reject(&:blank?).join('; ')
   end
 
   def page_class
