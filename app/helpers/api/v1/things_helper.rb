@@ -15,6 +15,10 @@ module Api
           p_text
         end
       end
+
+      def invest_amount(thing)
+        thing.investors.map(&:amount).reduce(&:+)
+      end
     end
   end
 end

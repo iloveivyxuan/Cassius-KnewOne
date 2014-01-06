@@ -5,6 +5,12 @@ json.array!(@things) do |thing|
   json.url url_wrapper(thing)
   json.cover_url thing.cover.url
   json.stage thing.stage
+  if thing.stage == :invest
+    json.investors_count thing.investors.count
+    json.invest_amount invest_amount(thing)
+    json.invest_target thing.target
+    json.invest_unit '￥'
+  end
   json.stage_text ::Thing::STAGES[thing.stage]
   json.fanciers_count thing.fanciers.count
   json.owners_count thing.owners.count
