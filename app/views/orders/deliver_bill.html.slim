@@ -19,7 +19,7 @@ table.text-center
   tfoot
     tr
       td 总计
-      td colspan="5" = "￥#{@order.total_price}"
+      td colspan="5" = "#{@order.order_items.size}件，￥#{@order.price}"
 
 section.well
   span 售后服务：
@@ -49,21 +49,3 @@ section.card
       br
       br
     li style="text-decoration: underline;" Knewone地址：广东省深圳市南山区香山西街8号香山里一期5栋3A，400-999-2512
-
-  / table.noborder
-  /   tbody
-  /     tr
-  /       th width="110" 订单号：
-  /       td #{@order.order_no}
-  /     tr
-  /       th 买家信息：
-  /       td.text-left #{address_text @order}
-  /     tr
-  /       th 操作：
-  /       td.text-left ☐ 退货 ☐ 换货
-  /     tr
-  /       th 原因：
-  /       td height="60"
-  /     tr
-  /       th Knewone地址：
-  /       td.text-left 广东省深圳市南山区香山西街8号香山里一期5栋3A，400-999-2512
