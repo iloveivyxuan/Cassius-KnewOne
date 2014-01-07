@@ -1,0 +1,10 @@
+- provide :title, '搜索结果'
+
+section#things_index
+  section
+    ul#things= render @things, size: :normal, img_lazy: true
+    = paginate @things
+
+- content_for :script do
+  javascript:
+    Making.InfiniteScroll("#things_index > section", "ul#things > li");

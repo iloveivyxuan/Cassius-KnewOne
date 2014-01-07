@@ -48,7 +48,12 @@ class HomeController < ApplicationController
   end
 
   def search
-    redirect_to "https://www.google.com.hk/#hl=zh-CN&q=site:#{Settings.host}+#{params[:q]}"
+    @things = Thing.published.prior.where(title: /^#{params[:q]}/i).page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def join_alpha

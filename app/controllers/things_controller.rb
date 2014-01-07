@@ -23,9 +23,7 @@ class ThingsController < ApplicationController
               Thing.published
             end
 
-    if params[:q].present?
-      @things = @things.where(title: /^#{params[:q]}/i).page(params[:page])
-    elsif params[:sort] == "random"
+    if params[:sort] == "random"
       @things = Kaminari.paginate_array(scope).page(params[:page])
     else
       @things = scope.page(params[:page]).per(per)
@@ -35,7 +33,6 @@ class ThingsController < ApplicationController
       format.html
       format.atom
       format.json
-      format.js
     end
   end
 

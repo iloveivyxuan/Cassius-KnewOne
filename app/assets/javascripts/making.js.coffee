@@ -324,7 +324,7 @@ window.Making =
         $search_candidate = $('.search_candidate')
 
         $.ajax
-          url: 'http://making.dev/things.js'
+          url: 'http://making.dev/search.js'
           data: q: keyword
           dataType: 'html'
         .done (data)->
