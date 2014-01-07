@@ -2,6 +2,7 @@ class StoriesController < ApplicationController
   load_and_authorize_resource :thing, singleton: true
   load_and_authorize_resource :story, through: :thing
   layout 'thing'
+  after_action :allow_iframe_load, only: [:show, :index]
 
   def index
   end

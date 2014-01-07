@@ -5,6 +5,7 @@ class ReviewsController < ApplicationController
   load_and_authorize_resource :thing_group, through: :thing, except: [:admin], singleton: true
   load_and_authorize_resource :review, through: :thing_group, except: [:admin]
   layout 'thing', except: [:admin]
+  after_action :allow_iframe_load, only: [:show]
 
   def index
     @reviews = @reviews.page params[:page]

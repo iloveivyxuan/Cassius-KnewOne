@@ -4,6 +4,7 @@ class TopicsController < ApplicationController
   load_and_authorize_resource :group, singleton: true
   load_and_authorize_resource :topic, through: :group
   layout 'group'
+  after_action :allow_iframe_load, only: [:show]
 
   def index
     @topics = @topics.page params[:page]
