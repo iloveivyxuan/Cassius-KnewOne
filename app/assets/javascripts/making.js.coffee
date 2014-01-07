@@ -73,6 +73,7 @@ window.Making =
             lock = false
       $('[type="range"].range_rating').length && Making.Rating()
       $('.score').length && Making.Score()
+      Making.Search()
 
   OlarkSetUser: (name, email, id) ->
     olark('api.visitor.updateFullName', {fullName: name}) if name
@@ -294,6 +295,22 @@ window.Making =
         height: 'auto'
         lineHeight: -> $('body').css('lineHeight')
       })
+
+  Search: ->
+    $('.navbar').find('input[type="search"]').on 'keyup', (e)->
+      keyword = this.value
+
+      if keyword.length > 2
+        $search_candidate = $('.search_candidate')
+
+        $.ajax
+          url: 'http://making.dev/things.js'
+          data: q: keyword
+          dataType: 'html'
+        .done (data)->
+          $('.search_candidate').find('.slideshow_content').append(data)
+          if $search_candidate.is(':hidden') then $search_candidate.show()
+
 
 $ ->
   Making.initialize()

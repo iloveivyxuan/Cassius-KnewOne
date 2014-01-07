@@ -17,3 +17,19 @@
     content: $content;
   }
 }
+
+@mixin search-input() {
+  input[type="search"] {
+    border: 1px solid $input-border;
+    padding-left: 30px;
+    position: relative;
+    @include border-radius($border-radius-base);
+  }
+
+  .fa-search {
+    color: $text-muted;
+    left: 10px;
+    position: absolute;
+    top: 7px;
+  }
+}

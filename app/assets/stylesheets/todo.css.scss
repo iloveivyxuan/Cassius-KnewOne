@@ -186,22 +186,6 @@
   }
 }
 
-@mixin search-input() {
-  input[type="search"] {
-    border: 1px solid $input-border;
-    padding-left: 30px;
-    position: relative;
-    @include border-radius($border-radius-base);
-
-    & + i {
-      color: $text-muted;
-      left: 10px;
-      position: absolute;
-      top: 7px;
-    }
-  }
-}
-
 @mixin simple_page_wrapper {
   @include site_margin;
 
