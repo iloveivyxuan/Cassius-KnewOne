@@ -1,9 +1,6 @@
 - sort_names = {new: "最新", fancy: "热门", self_run: "自营"}
-- if params[:q].blank?
-  - params[:sort] ||= "new"
-  - provide :title, sort_names[params[:sort].to_sym]
-- else
-  - provide :title, '搜索'
+- params[:sort] ||= "new"
+- provide :title, sort_names[params[:sort].to_sym]
 
 section#things_index
 

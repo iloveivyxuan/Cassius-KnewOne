@@ -65,7 +65,7 @@ header role="banner"
           .nav_user.is_not_login
             = link_to_with_icon "登录", "fa fa-sign-in", "#", class: "nav_user_action", data: {toggle: "modal", target: "#login-modal"}
 
-      = form_tag(things_path, method: "get", id: "navbar_search", class: "navbar-form navbar-right", role: "search") do
+      = form_tag(search_path, method: "get", id: "navbar_search", class: "navbar-form navbar-right", role: "search") do
         .form-group
           input.form-control type="search" name="q" autocomplete="off" spellcheck="false"
           i.fa.fa-search
