@@ -4,24 +4,13 @@ module Api
       helper 'api/v1/things'
 
       def index
-        per = (params[:per] || 24).to_i
+        per_page = (params[:per_page] || 24).to_i
 
-        scope = case params[:sort]
-                  when "self_run"
-                    Thing.self_run
-                  when "fancy"
-                    Thing.unscoped.published.desc(:fanciers_count)
-                  when "random"
-                    Thing.rand_records per
-                  else
-                    Thing.published
-                end
+        scope = Thing
+        scope = scope.send params[:scope].to_sym if params[:scope].present?
+        scope = scope.where(title: /^#{params[:keyword]}/i) if params[:keyword].present?
 
-        if params[:sort] == "random"
-          @things = Kaminari.paginate_array(scope).page(params[:page])
-        else
-          @things = scope.page(params[:page]).per(per)
-        end
+        @things = scope.page(params[:page]).per(per_page)
       end
 
       def show

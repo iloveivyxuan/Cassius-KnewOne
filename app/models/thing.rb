@@ -65,6 +65,10 @@ class Thing < Post
   scope :self_run, -> { unscoped.published.in(stage: [:dsell, :invest]).desc(:priority, :created_at) }
   default_scope -> { desc(:created_at) }
 
+  STAGES.each do |k, v|
+    scope k, -> { unscoped.published.where(stage: k) }
+  end
+
   embeds_many :kinds
   accepts_nested_attributes_for :kinds, allow_destroy: true
 
