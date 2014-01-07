@@ -38,6 +38,9 @@ ul.operations.fa-ul
     li= link_to_with_icon "众筹管理", "fa-li fa fa-fire", admin_thing_investors_path(tp.thing), title: "众筹管理"
   - if can? :pro_edit, tp.thing
     li= link_to_with_icon "发奖", "fa-li fa fa-gift", new_lottery_path(thing: tp.thing), title: "发奖"
+  - if can? :destroy, tp.thing
+    li= link_to_with_icon "删除", "fa-li fa fa-trash-o", thing_path(tp.thing), title: "删除",
+      method: :delete, data: {confirm: "您确定要删除吗?"}
 
 ul.kinds= render tp.thing.kinds
 
