@@ -23,7 +23,9 @@ class ThingsController < ApplicationController
               Thing.published
             end
 
-    if params[:sort] == "random"
+    if params[:q].present?
+      @things = @things.where(title: /^#{params[:q]}/i).page(params[:page])
+    elsif params[:sort] == "random"
       @things = Kaminari.paginate_array(scope).page(params[:page])
     else
       @things = scope.page(params[:page]).per(per)
@@ -33,6 +35,7 @@ class ThingsController < ApplicationController
       format.html
       format.atom
       format.json
+      format.js
     end
   end
 
@@ -114,15 +117,6 @@ class ThingsController < ApplicationController
   def comments
     read_comments @thing
     render layout: 'thing'
-  end
-
-  def search
-    @things = Thing.find_by_fuzzy_title(params[:q])
-
-    respond_to do |format|
-      format.html { @things = @things.page(params[:page]) }
-      format.json { @things = @things.limit(10) }
-    end
   end
 
   private
