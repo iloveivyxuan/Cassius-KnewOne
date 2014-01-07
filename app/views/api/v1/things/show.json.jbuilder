@@ -9,6 +9,10 @@ if @thing.stage == :invest
   json.invest_target @thing.target
   json.invest_unit '￥'
 end
+if price = price(@thing)
+  json.min_price price
+  json.price_unit '￥'
+end
 if @thing.self_run?
   json.kinds @thing.kinds do |kind|
     json.title kind.title
@@ -29,7 +33,6 @@ json.photo_urls @thing.photos.map {|p| p.image.url}
 json.fanciers_count @thing.fanciers.count
 json.owners_count @thing.owners.count
 json.reviews_count @thing.reviews.count
-json.price price(@thing)
 json.content @thing.content
 json.created_at @thing.created_at
 json.updated_at @thing.updated_at

@@ -7,6 +7,8 @@ module Api
           kinds_price.min
         elsif thing.price.present?
           thing.price
+        else
+          nil
         end
       end
 

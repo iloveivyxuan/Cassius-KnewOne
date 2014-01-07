@@ -15,8 +15,10 @@ json.array!(@things) do |thing|
   json.fanciers_count thing.fanciers.count
   json.owners_count thing.owners.count
   json.reviews_count thing.reviews.count
-  json.min_price price(thing)
-  json.price_unit '￥'
+  if price = price(thing)
+    json.min_price price
+    json.price_unit '￥'
+  end
   json.created_at thing.created_at
   json.updated_at thing.updated_at
   if user_signed_in?
