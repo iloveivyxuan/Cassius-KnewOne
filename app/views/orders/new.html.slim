@@ -17,7 +17,7 @@ section.simple_page_wrapper.widget.orders_wrapper
           ul.deliver_by_list.option_list = render partial: 'deliver_methods', locals: {f: f}
       = f.input :note
       = render partial: 'coupon_select', locals: {f: f}
-      = render partial: 'invoice_select', locals: {f: f}
+      = render partial: 'invoice_select', locals: {f: f} if @order.total_price > 100
 
       - if current_user.has_balance?
         div
