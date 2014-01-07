@@ -317,20 +317,20 @@ window.Making =
       nextPage: $nextPage
 
     $('.navbar').find('input[type="search"]').on 'keyup', (e)->
-      keyword = encodeURI(this.value)
+      keyword = this.value # wrong encode e.g 幻腾
       console.log keyword
 
-      if keyword.length > 2
-        $search_candidate = $('.search_candidate')
-
+      $search_candidate = $('.search_candidate')
+      if keyword.length >= 2
         $.ajax
           url: 'http://making.dev/search.js'
           data: q: keyword
           dataType: 'html'
         .done (data)->
           $('.search_candidate').find('.slideshow_inner').html(data)
-          if $search_candidate.is(':hidden') then $search_candidate.show()
-
+          $search_candidate.show()
+      else
+        $search_candidate.hide()
 
 $ ->
   Making.initialize()
