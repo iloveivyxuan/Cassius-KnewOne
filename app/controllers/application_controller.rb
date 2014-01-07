@@ -14,6 +14,11 @@ class ApplicationController < ActionController::Base
       head :not_acceptable
     end
 
+    # rails 4 will raise this exception when action can not respond request format
+    rescue_from ActionController::UnknownFormat do
+      head :not_acceptable
+    end
+
     rescue_from ArgumentError do
       head :bad_request
     end
