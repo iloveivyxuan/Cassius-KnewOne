@@ -2,7 +2,7 @@
   overflow: hidden;
   position: relative;
 
-  .slideshow_content {
+  .slideshow_inner {
     @include clearfix;
 
     > li {

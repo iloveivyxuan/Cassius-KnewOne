@@ -297,8 +297,28 @@ window.Making =
       })
 
   Search: ->
+    $slideshow = $('.slideshow')
+    $prevPage = $slideshow.find('.left')
+    $nextPage = $slideshow.find('.right')
+    $slideshow.sly
+      horizontal: 1
+      itemNav: 'centered'
+      smart: 1
+      activateOn: 'click'
+      mouseDragging: 1
+      touchDragging: 1
+      releaseSwing: 1
+      speed: 300
+      elasticBounds: 1
+      dragHandle: 1
+      dynamicHandle: 1
+      clickBar: 1
+      prevPage: $prevPage
+      nextPage: $nextPage
+
     $('.navbar').find('input[type="search"]').on 'keyup', (e)->
-      keyword = this.value
+      keyword = encodeURI(this.value)
+      console.log keyword
 
       if keyword.length > 2
         $search_candidate = $('.search_candidate')
@@ -308,7 +328,7 @@ window.Making =
           data: q: keyword
           dataType: 'html'
         .done (data)->
-          $('.search_candidate').find('.slideshow_content').append(data)
+          $('.search_candidate').find('.slideshow_inner').html(data)
           if $search_candidate.is(':hidden') then $search_candidate.show()
 
 
