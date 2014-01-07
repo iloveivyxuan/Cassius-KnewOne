@@ -32,7 +32,7 @@ class CartItem
 
   def quantity_increment(quantity)
     q = self.quantity + quantity
-    if q <= [kind.stock, kind.max_per_buy].min && q > 0
+    if q <= kind.max_buyable && q > 0
       self.quantity = q
     end
     self.quantity

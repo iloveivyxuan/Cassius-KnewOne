@@ -32,4 +32,13 @@ class Kind
   def safe_destroy?
     !Order.where('order_items.kind_id' => self.id.to_s).exists?
   end
+
+  def max_buyable
+    max = if max_per_buy.nil? || max_per_buy == 0
+            stock
+          else
+            [stock, max_per_buy].compact.min
+          end
+    max < 0 ? 0 : max
+  end
 end

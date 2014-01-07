@@ -16,9 +16,7 @@ class KindPresenter < ApplicationPresenter
   end
 
   def max
-    [stock, max_per_buy].select do |i|
-      i.present? and i > 0
-    end.min
+    kind.max_buyable
   end
 
   def price
@@ -31,11 +29,11 @@ class KindPresenter < ApplicationPresenter
 
   def build_option
     [title, id, data: {
-         stock: stock,
-         max: max,
-         price: price,
-         photo: photo_number,
-         estimated: estimated_at
-     }, class: "kind_option", disabled: (stock <= 0)]
+        stock: stock,
+        max: max,
+        price: price,
+        photo: photo_number,
+        estimated: estimated_at
+    }, class: "kind_option", disabled: (stock <= 0)]
   end
 end
