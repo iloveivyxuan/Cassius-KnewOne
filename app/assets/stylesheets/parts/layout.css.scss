@@ -89,10 +89,14 @@ body {
           height: 26px;
           line-height: 14px;
           padding: 5px 10px 5px 30px;
+        }
 
-          & + i {
-            top: 6px;
-          }
+        .fa-search {
+          top: 6px;
+        }
+
+        input.tt-hint {
+          width: 100%;
         }
       }
     }
@@ -206,6 +210,24 @@ body {
         background-color: $navbar-default-link-hover-bg;
         color: $navbar-default-link-hover-color;
       }
+    }
+  }
+}
+
+.search_candidate {
+  background-color: #fff;
+  display: none;
+  position: absolute;
+  width: 100%;
+  z-index: 1041;
+
+  .slideshow_content {
+    @include make-row;
+
+    li {
+      @include make-md-column(2);
+
+      margin-bottom: 2em;
     }
   }
 }

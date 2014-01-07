@@ -67,5 +67,13 @@ header role="banner"
 
       = form_tag(things_path, method: "get", id: "navbar_search", class: "navbar-form navbar-right", role: "search") do
         .form-group
-          input.form-control type="search" name="q"
+          input.form-control type="search" name="q" autocomplete="off" spellcheck="false"
           i.fa.fa-search
+
+.search_candidate.slideshow
+  ul.slideshow_content
+  a.slideshow_control.left href="javascript:;"
+    i.fa.fa-chevron-left
+  a.slideshow_control.right href="javascript:;"
+    i.fa.fa-chevron-right
+
