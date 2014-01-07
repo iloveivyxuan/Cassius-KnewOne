@@ -1,7 +1,7 @@
 - if can? :update, post
   small.post_actions
     = link_to_with_icon "", "fa fa-edit", edit_post_path, title: "编辑"
-    = link_to_with_icon "", "fa fa-trash", post_path,
+    = link_to_with_icon "", "fa fa-trash-o", post_path,
     method: :delete, title: "删除", data: {confirm: "您确定要删除吗?"}
     - if can? :manage, :all and post.instance_of? Review
       = link_to_with_icon "", "fa fa-gift",
