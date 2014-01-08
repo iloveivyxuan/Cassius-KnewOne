@@ -297,40 +297,79 @@ window.Making =
       })
 
   Search: ->
-    $slideshow = $('.slideshow')
-    $prevPage = $slideshow.find('.left')
-    $nextPage = $slideshow.find('.right')
-    $slideshow.sly
-      horizontal: 1
-      itemNav: 'centered'
-      smart: 1
-      activateOn: 'click'
-      mouseDragging: 1
-      touchDragging: 1
-      releaseSwing: 1
-      speed: 300
-      elasticBounds: 1
-      dragHandle: 1
-      dynamicHandle: 1
-      clickBar: 1
-      prevPage: $prevPage
-      nextPage: $nextPage
+    timer = false
+    delay = 100
+    api = {}
+    url = 'http://making.dev/search.js'
+    $searchCandidate = $('.search_candidate')
+    $searchBackdrop = $('.search_backdrop')
+    $prevPage = $searchCandidate.find('.left')
+    $nextPage = $searchCandidate.find('.right')
+
+    $('.navbar, .search_backdrop').on 'click.search', (e)->
+      if $searchCandidate.is(':visible')
+        $searchCandidate.hide()
+        $searchBackdrop.fadeOut()
 
     $('.navbar').find('input[type="search"]').on 'keyup', (e)->
-      keyword = this.value # wrong encode e.g 幻腾
-      console.log keyword
+      keyword = this.value
 
-      $search_candidate = $('.search_candidate')
       if keyword.length >= 2
-        $.ajax
-          url: 'http://making.dev/search.js'
-          data: q: keyword
-          dataType: 'html'
-        .done (data)->
-          $('.search_candidate').find('.slideshow_inner').html(data)
-          $search_candidate.show()
+        if !timer
+          timer = setTimeout ->
+            link = url.slice(0, -3) + '?q=' + keyword
+
+            if !api[keyword]
+              api[keyword] = $.ajax
+                              url: url
+                              data: q: keyword
+                              dataType: 'html'
+                              contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+
+            api[keyword].done (data)->
+              if data.length > 0
+                $link = $('<li />').append($('<a />').attr('href', link).text('更多 ⋯'))
+
+                $searchBackdrop.fadeIn()
+                $searchCandidate.find('.slideshow_inner')
+                  .empty()
+                  .html(data)
+                  .append($link)
+                  .find('img.lazy')
+                  .removeClass('lazy')
+                  .each ->
+                    $(@).attr('src', $(@).data('original'))
+
+                $searchCandidate.sly
+                  horizontal: 1
+                  itemNav: 'centered'
+                  smart: 1
+                  activateOn: 'click'
+                  mouseDragging: 1
+                  touchDragging: 1
+                  releaseSwing: 1
+                  speed: 300
+                  elasticBounds: 1
+                  dragHandle: 1
+                  dynamicHandle: 1
+                  clickBar: 1
+                  prevPage: $prevPage
+                  nextPage: $nextPage
+                .show()
+              else
+                $searchCandidate.hide()
+                $searchBackdrop.fadeOut()
+
+            .fail ->
+              $searchCandidate.hide()
+              $searchBackdrop.fadeOut()
+
+            timer = false
+          , delay
+
       else
-        $search_candidate.hide()
+        $searchCandidate.hide()
+        $searchBackdrop.fadeOut()
 
 $ ->
   Making.initialize()
