@@ -2,11 +2,6 @@ class ThingsController < ApplicationController
   include Commentable
   load_and_authorize_resource
   after_action :allow_iframe_load, only: [:show]
-
-  # see home controller
-  after_action only: [:index] do
-    session[:previous_url] = things_url(sort: params[:sort])
-  end
   after_action :store_location, only: [:comments, :show]
 
   def index
