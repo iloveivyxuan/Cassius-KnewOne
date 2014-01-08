@@ -17,3 +17,9 @@
     content: $content;
   }
 }
+
+@mixin text-noflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

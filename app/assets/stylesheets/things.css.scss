@@ -58,11 +58,7 @@
     }
 
     @media screen and (max-width: $screen-xs-max) {
-      h1, h2 {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
+      h1, h2 {@include text-noflow;}
       h1 {font-size: $font-size-h4;}
       h2 {font-size: $font-size-base;}
     }
@@ -491,12 +487,14 @@
   li {
     display: inline-block;
     margin: 1.6em;
+    width: 80px;
     text-align: center;
     img {@extend .img-circle;}
     > * {
       display: block;
       margin-bottom: .5em;
       color: $text-muted;
+      @include text-noflow;
     }
   }
 }

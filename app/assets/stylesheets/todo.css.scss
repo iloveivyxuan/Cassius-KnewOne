@@ -115,8 +115,7 @@
     font-size: $font-size-base;
     overflow: hidden;
     color: $text-muted;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    @include text-noflow;
   }
 
   p {

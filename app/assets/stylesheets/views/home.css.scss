@@ -423,9 +423,7 @@ html.home_index {
       color: $text-muted;
 
       article {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        @include text-noflow;
 
         img {
           @extend .img-circle;
@@ -439,11 +437,7 @@ html.home_index {
 
       .media {
         @include clearfix;
-        .media-heading {
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
+        .media-heading {@include text-noflow;}
       }
 
       &:not(:last-child) {
