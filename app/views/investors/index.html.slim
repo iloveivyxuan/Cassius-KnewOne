@@ -4,4 +4,4 @@ ul#thing_investors
   - @thing.investors.each do |i|
     li
       = present(i.user).as_author
-      span= present(@thing).price_format i.amount
+      span= number_to_currency(i.amount, precision: 0, unit: "￥")
