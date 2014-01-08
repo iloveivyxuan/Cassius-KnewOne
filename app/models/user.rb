@@ -96,7 +96,9 @@ class User
 
     def find_by_fuzzy_name(name)
       return all if name.blank?
-      where(name: /^#{name}/i)
+      str = name.gsub /[^\u4e00-\u9fa5a-zA-Z0-9 -]+/, ''
+
+      where(name: /^#{str}/i)
     end
   end
 
