@@ -48,7 +48,8 @@ class HomeController < ApplicationController
   end
 
   def search
-    @things = Thing.published.prior.where(title: /^#{params[:q]}/i).page(params[:page])
+    str = params.gsub /[^\u4e00-\u9fa5a-zA-Z0-9 -]+/, ''
+    @things = Thing.published.prior.where(title: /#{str}/i).page(params[:page])
 
     respond_to do |format|
       format.html
