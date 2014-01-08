@@ -3,11 +3,11 @@
   position: relative;
 
   .slideshow_inner {
-    @include clearfix;
 
     > li {
       cursor: pointer;
-      float: left;
+      display: inline-block;
+      vertical-align: middle;
     }
   }
 

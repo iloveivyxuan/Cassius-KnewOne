@@ -35,6 +35,7 @@ body {
 }
 
 .navbar {
+  z-index: $zindex_navbar;
 
   .navbar-brand {
     position: relative;
@@ -215,21 +216,76 @@ body {
 }
 
 .search_candidate {
-  background-color: #fff;
+  background-color: $text-color;
   display: none;
   position: fixed;
+  top: 60px;
   width: 100%;
-  z-index: 1041;
+  z-index: $zindex_search_candidate;
+
+  &:before {
+    border-color: transparent transparent $text-color transparent;
+    border-style: solid;
+    border-width: 15px;
+    content: '';
+    position: fixed;
+    right: 15%;
+    top: 30px;
+  }
 
   .slideshow_inner {
-    @include make-row;
-    margin: 0;
-    width: 100% !important;
+    $gap: 15px;
 
-    li {
-      @include make-md-column(2);
+    @include make-row;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: $gap;
+    padding-right: $gap;
+
+    > li {
+      margin: $gap;
+      margin-left: 0;
+      width: 220px;
+
+      &:last-child {
+        background-color: darken($text-color, 10);
+        border-radius: 8px;
+        height: 100px;
+        padding: $gap;
+        width: 100px;
+
+        > a {
+          border: 1px dashed $text-muted;
+          border-radius: 6px;
+          color: $text-muted;
+          display: block;
+          font-weight: bold;
+          height: 100%;
+          line-height: (100px - $gap * 2);
+          text-align: center;
+
+          &:hover {
+            color: #fff;
+          }
+
+          .fa {
+            margin-right: 0;
+          }
+        }
+      }
     }
   }
+
+  .slideshow_control {
+    width: 50px;
+  }
+}
+
+.search_backdrop {
+  @extend .modal-backdrop;
+  display: none;
+  opacity: 0.5;
+  z-index: $zindex_backdrop;
 }
 
 .page-header {
