@@ -73,7 +73,7 @@ window.Making =
             lock = false
       $('[type="range"].range_rating').length && Making.Rating()
       $('.score').length && Making.Score()
-      Making.Search()
+      if Modernizr.mq('(min-width: ' + Making.Breakpoint.screenSMMin + ')') then Making.Search()
 
   OlarkSetUser: (name, email, id) ->
     olark('api.visitor.updateFullName', {fullName: name}) if name

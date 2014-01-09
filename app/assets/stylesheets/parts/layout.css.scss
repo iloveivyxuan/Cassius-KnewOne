@@ -223,6 +223,10 @@ body {
   width: 100%;
   z-index: $zindex_search_candidate;
 
+  @media screen and (max-width: $screen-sm-min - 1) {
+    display: none !important;
+  }
+
   &:before {
     border-color: transparent transparent $text-color transparent;
     border-style: solid;
