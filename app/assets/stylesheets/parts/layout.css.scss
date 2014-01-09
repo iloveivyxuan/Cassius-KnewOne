@@ -261,14 +261,10 @@ body {
     .slideshow_inner {
       $gap: 15px;
 
-      @include make-row;
-      margin-left: 0;
-      margin-right: 0;
       min-width: 100%;
 
       > li {
-        margin: 40px $gap $gap;
-        margin-left: 0;
+        margin: 40px $gap $gap 0;
         width: 220px;
 
         &.more {

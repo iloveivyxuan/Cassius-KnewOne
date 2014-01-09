@@ -18,6 +18,7 @@
 
   .slideshow_control {
     background: rgba(0, 0, 0, 0.3);
+    border: none;
     color: #fff;
     cursor: pointer;
     display: block;
@@ -31,6 +32,7 @@
     width: 25px;
 
     &:hover {opacity: .9;}
+    &:focus {outline: 0;}
     &.left {left: 0;}
     &.right {right: 0;}
     &.disabled {display: none;}

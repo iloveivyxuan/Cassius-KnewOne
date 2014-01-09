@@ -298,8 +298,6 @@ window.Making =
 
   Search: (url) ->
     url = $('form#navbar_search').attr('action') + '.js'
-    timer = false
-    delay = 80
     maxLength = 12
     api = {}
     $searchCandidate = $('.search_candidate')
@@ -319,7 +317,8 @@ window.Making =
 
     $slideshowBody.sly
       horizontal: 1
-      itemNav: 'basic'
+      itemNav: 'centered'
+      activateMiddle: 1
       smart: 1
       activateOn: 'click'
       mouseDragging: 1
@@ -337,48 +336,45 @@ window.Making =
       keyword = $.trim @.value
 
       if keyword.length >= 2
-        if !timer
-          timer = setTimeout ->
-            link = url.slice(0, -3) + '?q=' + keyword
+        link = url.slice(0, -3) + '?q=' + keyword
 
-            $status.removeClass('fa-search').addClass('fa-spinner fa-spin')
+        $status.removeClass('fa-search').addClass('fa-spinner fa-spin')
 
-            if !api[keyword]
-              api[keyword] = $.ajax
-                              url: url
-                              data: q: keyword
-                              dataType: 'html'
-                              contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+        if !api[keyword]
+          api[keyword] = $.ajax
+                          url: url
+                          data: q: keyword
+                          dataType: 'html'
+                          contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
 
-            api[keyword].done (data)->
-              if data.length > 0
-                $keyword.text(keyword)
-                $searchBackdrop.fadeIn()
-                $list.empty().html(data)
+        console.log('here')
+        api[keyword].done (data)->
+          if data.length > 0
+            $keyword.text(keyword)
+            $searchBackdrop.fadeIn()
+            $list.empty().html(data)
 
-                if $list.children('li').length == maxLength
-                  $more = $('<li />').addClass('more').append($('<a />').attr('href', link).text('更多 ⋯'))
-                  $list.append($more)
+            if $list.children('li').length >= maxLength
+              $more = $('<li />').addClass('more').append($('<a />').attr('href', link).text('更多 ⋯'))
+              $list.append($more)
 
-                $slideshowBody.sly('reload')
-                $searchCandidate.show()
+            $slideshowBody.sly('reload')
+            $searchCandidate.show()
 
-              else
-                $searchCandidate.hide()
-                $searchBackdrop.fadeOut()
+          else
+            $searchCandidate.hide()
+            $searchBackdrop.fadeOut()
 
-              $status.removeClass('fa-spinner fa-spin').addClass('fa-search')
-            .fail ->
-              $searchCandidate.hide()
-              $searchBackdrop.fadeOut()
-              $status.removeClass('fa-spinner fa-spin').addClass('fa-search')
-
-            timer = false
-          , delay
+          $status.removeClass('fa-spinner fa-spin').addClass('fa-search')
+        .fail ->
+          $searchCandidate.hide()
+          $searchBackdrop.fadeOut()
+          $status.removeClass('fa-spinner fa-spin').addClass('fa-search')
 
       else
-        $searchCandidate.hide()
-        $searchBackdrop.fadeOut()
+        if $searchCandidate.is(':visible') and $searchBackdrop.is(':visible')
+          $searchCandidate.hide()
+          $searchBackdrop.fadeOut()
 
 $ ->
   Making.initialize()
