@@ -21,6 +21,7 @@ window.Making =
       Making.ImageLazyLoading()
       $(document).ajaxComplete ->
         $(".spinning").remove()
+      if Modernizr.mq('(min-width: ' + Making.Breakpoint.screenSMMin + ')') then Making.Search()
       Making.Share()
       $(".popover-toggle").popover()
       $("a.disabled").click ->
@@ -73,7 +74,6 @@ window.Making =
             lock = false
       $('[type="range"].range_rating').length && Making.Rating()
       $('.score').length && Making.Score()
-      if Modernizr.mq('(min-width: ' + Making.Breakpoint.screenSMMin + ')') then Making.Search()
 
   OlarkSetUser: (name, email, id) ->
     olark('api.visitor.updateFullName', {fullName: name}) if name
@@ -297,22 +297,26 @@ window.Making =
       })
 
   Search: ->
+    url = 'http://making.dev/search.js' # @todo
     timer = false
-    delay = 100
+    delay = 80
+    maxLength = 12
     api = {}
-    url = 'http://making.dev/search.js'
     $searchCandidate = $('.search_candidate')
     $searchBackdrop = $('.search_backdrop')
+    $list = $searchCandidate.find('.slideshow_inner')
+    $keyword = $searchCandidate.find('.search_keyword')
     $prevPage = $searchCandidate.find('.left')
     $nextPage = $searchCandidate.find('.right')
+    $close = $searchCandidate.children('.close')
 
-    $('.navbar, .search_backdrop').on 'click.search', (e)->
+    $('.navbar').add($searchBackdrop).add($close).on 'click.search', (e)->
       if $searchCandidate.is(':visible')
         $searchCandidate.hide()
         $searchBackdrop.fadeOut()
 
     $('.navbar').find('input[type="search"]').on 'keyup', (e)->
-      keyword = this.value
+      keyword = $.trim @.value
 
       if keyword.length >= 2
         if !timer
@@ -328,17 +332,19 @@ window.Making =
 
             api[keyword].done (data)->
               if data.length > 0
-                $link = $('<li />').append($('<a />').attr('href', link).text('更多 ⋯'))
-
+                $keyword.text(keyword)
                 $searchBackdrop.fadeIn()
-                $searchCandidate.find('.slideshow_inner')
+                $list
                   .empty()
                   .html(data)
-                  .append($link)
                   .find('img.lazy')
                   .removeClass('lazy')
                   .each ->
                     $(@).attr('src', $(@).data('original'))
+
+                if $list.children('li').length == maxLength
+                  $more = $('<li />').addClass('more').append($('<a />').attr('href', link).text('更多 ⋯'))
+                  $list.append($more)
 
                 $searchCandidate.sly
                   horizontal: 1
@@ -356,6 +362,7 @@ window.Making =
                   prevPage: $prevPage
                   nextPage: $nextPage
                 .show()
+
               else
                 $searchCandidate.hide()
                 $searchBackdrop.fadeOut()

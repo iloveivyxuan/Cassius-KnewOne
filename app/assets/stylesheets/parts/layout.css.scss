@@ -216,6 +216,9 @@ body {
 }
 
 .search_candidate {
+  $slideshow_control_width: 40px;
+  $thing_height: 281px;
+
   background-color: $text-color;
   display: none;
   position: fixed;
@@ -233,8 +236,27 @@ body {
     border-width: 15px;
     content: '';
     position: fixed;
-    right: 15%;
+    right: 10%;
     top: 30px;
+  }
+
+  .search_title {
+    color: #fff;
+    left: 15px;
+    position: absolute;
+    top: 0;
+
+    .search_keyword {
+      color: $brand-success;
+      padding-right: .5em;
+    }
+  }
+
+  .close {
+    color: #fff;
+    position: absolute;
+    right: 8px;
+    top: 10px;
   }
 
   .slideshow_inner {
@@ -245,18 +267,19 @@ body {
     margin-right: 0;
     padding-left: $gap;
     padding-right: $gap;
+    min-width: 100%;
 
     > li {
-      margin: $gap;
+      margin: 40px $gap $gap;
       margin-left: 0;
       width: 220px;
 
-      &:last-child {
+      &.more {
         background-color: darken($text-color, 10);
         border-radius: 8px;
-        height: 100px;
+        height: $thing_height;
         padding: $gap;
-        width: 100px;
+        width: 220px;
 
         > a {
           border: 1px dashed $text-muted;
@@ -264,8 +287,9 @@ body {
           color: $text-muted;
           display: block;
           font-weight: bold;
+          font-size: 1.2em;
           height: 100%;
-          line-height: (100px - $gap * 2);
+          line-height: ($thing_height - $gap * 2);
           text-align: center;
 
           &:hover {
@@ -281,7 +305,9 @@ body {
   }
 
   .slideshow_control {
-    width: 50px;
+    height: $thing_height;
+    top: 40px;
+    width: $slideshow_control_width;
   }
 }
 
