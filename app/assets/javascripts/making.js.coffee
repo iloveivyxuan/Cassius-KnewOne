@@ -296,8 +296,8 @@ window.Making =
         lineHeight: -> $('body').css('lineHeight')
       })
 
-  Search: ->
-    url = 'http://making.dev/search.js' # @todo
+  Search: (url) ->
+    url = $('form#navbar_search').attr('action') + '.js'
     timer = false
     delay = 80
     maxLength = 12
