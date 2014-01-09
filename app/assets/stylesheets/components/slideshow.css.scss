@@ -1,13 +1,18 @@
 .slideshow {
   overflow: hidden;
+  padding-left: 25px;
+  padding-right: 25px;
   position: relative;
 
-  .slideshow_inner {
+  .slideshow_body {
 
-    > li {
-      cursor: pointer;
-      display: inline-block;
-      vertical-align: middle;
+    .slideshow_inner {
+
+      > li {
+        cursor: pointer;
+        display: inline-block;
+        vertical-align: middle;
+      }
     }
   }
 

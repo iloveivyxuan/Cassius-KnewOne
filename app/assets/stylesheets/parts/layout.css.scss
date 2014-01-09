@@ -90,14 +90,10 @@ body {
           height: 26px;
           line-height: 14px;
           padding: 5px 10px 5px 30px;
-        }
 
-        .fa-search {
-          top: 6px;
-        }
-
-        input.tt-hint {
-          width: 100%;
+          + .fa {
+            top: 6px;
+          }
         }
       }
     }
@@ -221,6 +217,7 @@ body {
 
   background-color: $text-color;
   display: none;
+  padding: 0 $slideshow_control_width;
   position: fixed;
   top: 60px;
   width: 100%;
@@ -259,45 +256,46 @@ body {
     top: 10px;
   }
 
-  .slideshow_inner {
-    $gap: 15px;
+  .slideshow_body {
 
-    @include make-row;
-    margin-left: 0;
-    margin-right: 0;
-    padding-left: $gap;
-    padding-right: $gap;
-    min-width: 100%;
+    .slideshow_inner {
+      $gap: 15px;
 
-    > li {
-      margin: 40px $gap $gap;
+      @include make-row;
       margin-left: 0;
-      width: 220px;
+      margin-right: 0;
+      min-width: 100%;
 
-      &.more {
-        background-color: darken($text-color, 10);
-        border-radius: 8px;
-        height: $thing_height;
-        padding: $gap;
+      > li {
+        margin: 40px $gap $gap;
+        margin-left: 0;
         width: 220px;
 
-        > a {
-          border: 1px dashed $text-muted;
-          border-radius: 6px;
-          color: $text-muted;
-          display: block;
-          font-weight: bold;
-          font-size: 1.2em;
-          height: 100%;
-          line-height: ($thing_height - $gap * 2);
-          text-align: center;
+        &.more {
+          background-color: darken($text-color, 10);
+          border-radius: 8px;
+          height: $thing_height;
+          padding: $gap;
+          width: 220px;
 
-          &:hover {
-            color: #fff;
-          }
+          > a {
+            border: 1px dashed $text-muted;
+            border-radius: 6px;
+            color: $text-muted;
+            display: block;
+            font-weight: bold;
+            font-size: 1.2em;
+            height: 100%;
+            line-height: ($thing_height - $gap * 2);
+            text-align: center;
 
-          .fa {
-            margin-right: 0;
+            &:hover {
+              color: #fff;
+            }
+
+            .fa {
+              margin-right: 0;
+            }
           }
         }
       }
@@ -305,6 +303,7 @@ body {
   }
 
   .slideshow_control {
+    background: transparent;
     height: $thing_height;
     top: 40px;
     width: $slideshow_control_width;

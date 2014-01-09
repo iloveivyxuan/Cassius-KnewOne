@@ -304,16 +304,34 @@ window.Making =
     api = {}
     $searchCandidate = $('.search_candidate')
     $searchBackdrop = $('.search_backdrop')
-    $list = $searchCandidate.find('.slideshow_inner')
+    $slideshowBody = $searchCandidate.children('.slideshow_body')
+    $list = $slideshowBody.find('.slideshow_inner')
     $keyword = $searchCandidate.find('.search_keyword')
-    $prevPage = $searchCandidate.find('.left')
-    $nextPage = $searchCandidate.find('.right')
+    $prevPage = $searchCandidate.find('.slideshow_control.left')
+    $nextPage = $searchCandidate.find('.slideshow_control.right')
     $close = $searchCandidate.children('.close')
+    $status = $('#navbar_search').find('[type="search"]').next('.fa')
 
     $('.navbar').add($searchBackdrop).add($close).on 'click.search', (e)->
       if $searchCandidate.is(':visible')
         $searchCandidate.hide()
         $searchBackdrop.fadeOut()
+
+    $slideshowBody.sly
+      horizontal: 1
+      itemNav: 'basic'
+      smart: 1
+      activateOn: 'click'
+      mouseDragging: 1
+      touchDragging: 1
+      releaseSwing: 1
+      speed: 300
+      elasticBounds: 1
+      dragHandle: 1
+      dynamicHandle: 1
+      clickBar: 1
+      prevPage: $prevPage
+      nextPage: $nextPage
 
     $('.navbar').find('input[type="search"]').on 'keyup', (e)->
       keyword = $.trim @.value
@@ -322,6 +340,8 @@ window.Making =
         if !timer
           timer = setTimeout ->
             link = url.slice(0, -3) + '?q=' + keyword
+
+            $status.removeClass('fa-search').addClass('fa-spinner fa-spin')
 
             if !api[keyword]
               api[keyword] = $.ajax
@@ -334,42 +354,24 @@ window.Making =
               if data.length > 0
                 $keyword.text(keyword)
                 $searchBackdrop.fadeIn()
-                $list
-                  .empty()
-                  .html(data)
-                  .find('img.lazy')
-                  .removeClass('lazy')
-                  .each ->
-                    $(@).attr('src', $(@).data('original'))
+                $list.empty().html(data)
 
                 if $list.children('li').length == maxLength
                   $more = $('<li />').addClass('more').append($('<a />').attr('href', link).text('更多 ⋯'))
                   $list.append($more)
 
-                $searchCandidate.sly
-                  horizontal: 1
-                  itemNav: 'centered'
-                  smart: 1
-                  activateOn: 'click'
-                  mouseDragging: 1
-                  touchDragging: 1
-                  releaseSwing: 1
-                  speed: 300
-                  elasticBounds: 1
-                  dragHandle: 1
-                  dynamicHandle: 1
-                  clickBar: 1
-                  prevPage: $prevPage
-                  nextPage: $nextPage
-                .show()
+                $slideshowBody.sly('reload')
+                $searchCandidate.show()
 
               else
                 $searchCandidate.hide()
                 $searchBackdrop.fadeOut()
 
+              $status.removeClass('fa-spinner fa-spin').addClass('fa-search')
             .fail ->
               $searchCandidate.hide()
               $searchBackdrop.fadeOut()
+              $status.removeClass('fa-spinner fa-spin').addClass('fa-search')
 
             timer = false
           , delay
