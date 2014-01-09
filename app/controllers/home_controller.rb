@@ -42,7 +42,7 @@ class HomeController < ApplicationController
 
   def search
     q = params[:q].gsub /[^\u4e00-\u9fa5a-zA-Z0-9\s-]+/, ''
-    @things = Thing.published.or({title: /#{q}/i}, {subtitle: /#{q}/i}).page(params[:page])
+    @things = Thing.published.or({title: /#{q}/i}, {subtitle: /#{q}/i}).page(params[:page]).per(12)
 
     respond_to do |format|
       format.html
