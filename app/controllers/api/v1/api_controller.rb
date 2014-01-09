@@ -46,7 +46,19 @@ module Api
         head :not_found
       end
 
+      rescue_from ApiRequestError do |ex|
+        raise "Unknown error symbol #{ex.code}" unless INVALID_CODES.keys.include? ex.code
+
+        @code, @message = INVALID_CODES[ex.code], ex.message
+        render 'api/v1/shared/error', status: ex.status
+      end
+
       helper 'api/v1/api'
+
+      INVALID_CODES = {
+          :missing_parameter => 501,
+          :nyi => 999
+      }
 
       protected
 
@@ -54,6 +66,10 @@ module Api
         respond_to do |format|
           format.json
         end
+      end
+
+      def render_error(err_sym, message, status = :bad_request)
+        raise ApiRequestError.new(err_sym, message, status)
       end
     end
   end
