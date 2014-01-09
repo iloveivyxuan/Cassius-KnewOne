@@ -334,13 +334,7 @@ window.Making =
               if data.length > 0
                 $keyword.text(keyword)
                 $searchBackdrop.fadeIn()
-                $list
-                  .empty()
-                  .html(data)
-                  .find('img.lazy')
-                  .removeClass('lazy')
-                  .each ->
-                    $(@).attr('src', $(@).data('original'))
+                $list.empty().html(data)
 
                 if $list.children('li').length == maxLength
                   $more = $('<li />').addClass('more').append($('<a />').attr('href', link).text('更多 ⋯'))
