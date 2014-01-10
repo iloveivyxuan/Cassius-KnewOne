@@ -300,6 +300,7 @@ window.Making =
     url = $('form#navbar_search').attr('action') + '.js'
     maxLength = 12
     api = {}
+    isSlideshowInitiated = false
     $searchCandidate = $('.search_candidate')
     $searchBackdrop = $('.search_backdrop')
     $slideshowBody = $searchCandidate.children('.slideshow_body')
@@ -315,29 +316,11 @@ window.Making =
         $searchCandidate.hide()
         $searchBackdrop.fadeOut()
 
-    $slideshowBody.sly
-      horizontal: 1
-      itemNav: 'centered'
-      activateMiddle: 1
-      smart: 1
-      activateOn: 'click'
-      mouseDragging: 1
-      touchDragging: 1
-      releaseSwing: 1
-      speed: 300
-      elasticBounds: 1
-      dragHandle: 1
-      dynamicHandle: 1
-      clickBar: 1
-      prevPage: $prevPage
-      nextPage: $nextPage
-
     $('.navbar').find('input[type="search"]').on 'keyup', (e)->
+      $self = $(@)
       keyword = $.trim @.value
 
       if keyword.length >= 2
-        link = url.slice(0, -3) + '?q=' + keyword
-
         $status.removeClass('fa-search').addClass('fa-spinner fa-spin')
 
         if !api[keyword]
@@ -347,18 +330,39 @@ window.Making =
                           dataType: 'html'
                           contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
 
-        console.log('here')
         api[keyword].done (data)->
           if data.length > 0
+            link = url.slice(0, -3) + '?q=' + keyword
             $keyword.text(keyword)
-            $searchBackdrop.fadeIn()
+            $slideshowBody.css 'width', ->
+              $searchCandidate.width()
             $list.empty().html(data)
-
             if $list.children('li').length >= maxLength
               $more = $('<li />').addClass('more').append($('<a />').attr('href', link).text('更多 ⋯'))
               $list.append($more)
 
-            $slideshowBody.sly('reload')
+            if !isSlideshowInitiated
+              slideshow = new Sly $slideshowBody,
+                horizontal: 1
+                itemNav: 'centered'
+                activateMiddle: 1
+                activateOn: 'click'
+                mouseDragging: 1
+                touchDragging: 1
+                releaseSwing: 1
+                speed: 300
+                elasticBounds: 1
+                dragHandle: 1
+                dynamicHandle: 1
+                clickBar: 1
+                prevPage: $prevPage
+                nextPage: $nextPage
+              .init()
+            else
+              slideshowBody.slideTo(0)
+              slideshow.reload()
+
+            $searchBackdrop.fadeIn()
             $searchCandidate.show()
 
           else
@@ -366,6 +370,7 @@ window.Making =
             $searchBackdrop.fadeOut()
 
           $status.removeClass('fa-spinner fa-spin').addClass('fa-search')
+
         .fail ->
           $searchCandidate.hide()
           $searchBackdrop.fadeOut()
