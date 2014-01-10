@@ -1,0 +1,266 @@
+<!Doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>Why Ruby</title>
+		<meta name="description" content="Code Ruby, Be Happy">
+		<meta name="author" content="lilu.life@gmail.com">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/serif.css" id="theme">
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+        <style>
+          .reveal section {min-height: 600px !important;}
+          .reveal section h2 {margin-bottom: .8em;}
+          .reveal section h3 {margin-bottom: .62em;}
+          .reveal section {border: none;}
+          .reveal section img {border: none;}
+          .reveal section pre {margin-top: 2em;}
+          .reveal section code {padding: 1em; max-height: 500px;}
+          .reveal section blockquote {box-shadow: none; text-align: left;}
+          .reveal .me li {text-align: center;margin: .5em 0;list-style: none;}
+          .reveal .index li {margin: 1em 0;font-size: 1.5em;}
+        </style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+
+				<section>
+                  <a href="http://ruby-lang.org/" target="_blank"><img src="images/ruby.png"></a>
+				</section>
+
+                <section class="me">
+                  <section>
+                    <h3>About me</h3>
+                    <img src="images/knewone.png">
+                    <ul>
+                      <li>Entrepreneur</li>
+                      <li>Full stack programmer</li>
+                      <li>@_李路</li>
+                    </ul>
+                  </section>
+                  <section class="knewone">
+                    <img src="images/knewone-site3.jpg">
+                  </section>
+                  <section class="knewone">
+                    <img src="images/knewone-site4.jpg">
+                  </section>
+                </section>
+
+                <section>
+                  <section>
+                    <h3>Why we love Ruby?</h3>
+                    <img src="images/loveruby.jpg">
+                  </section>
+                  <section>
+                    <h3>Ruby gems</h3>
+                    <img src="images/ruby-gems.jpg">
+                  </section>
+                  <section>
+                    <h3>Python eggs</h3>
+                    <img src="images/pythoneggs.jpg">
+                  </section>
+                </section>
+
+                <section class="index">
+                  <h2>Code Ruby, Be Happy!</h2>
+                  <img src="images/behappy.png">
+                </section>
+                
+                <section class="index">
+                  <h2>Why Happy?</h2>
+                  <ol>
+                    <li>Simplicity</li>
+                    <li>Productivity</li>
+                    <li>Community</li>
+                  </ol>
+                </section>
+
+                <section>
+                  <img src="images/simplicity.png">
+                </section>
+
+                <section>
+                  <section>
+                    <h3>Easy to Write</h3>
+                    <img src="images/write.png">
+                  </section>
+                  <section>
+                    <h3>Java Factorial</h3>
+                    <pre><code data-trim>
+Public class Fact
+{
+    public static long fact(int n) {
+        if(n <= 1)
+            return 1;
+        else
+            return n * fact(n - 1);
+    }
+
+    public static void main(String[] args) {
+        long result = Fact.fact(10);
+        System.out.println(result);
+    }
+}
+                    </code></pre>
+                  </section>
+                  <section>
+                    <h3>Ruby Factorial</h3>
+                    <pre><code data-trim>
+puts (1..10).reduce(:*)
+                    </code></pre>
+                  </section>
+                </section>
+
+
+                <section>
+                  <section>
+                    <h3>Natural to Read</h3>
+                    <img src="images/read.png">
+                  </section>
+                  <section>
+                    <h3>Active Record</h3>
+                    <pre><code data-trim>
+programmers = User.where(job: 'Programmers').order(created_at: :desc)
+                    </code></pre>
+                  </section>
+                  <section>
+                    <h3>RSpec</h3>
+                    <pre><code data-trim>
+describe Programmer do
+  it "should say hello to world" do
+    programmer = Programmer.new
+    programmer.say.should eq("hello, world")
+  end
+end
+                    </code></pre>
+                  </section>
+                </section>
+
+                <section>
+                  <section>
+                    <h3>Open to Learn</h3>
+                    <img src="images/learnruby.jpg">
+                  </section>
+                  <section>  
+                    <h3>try ruby</h3>
+                    <a href="http://tryruby.org/" target="_blank"><img src="images/tryruby.png"></a>
+                  </section>
+                  <section>
+                    <h3>rails for zombies</h3>
+                    <a href="http://railsforzombies.org/" target="_blank"><img src="images/zombies.jpg"></a>
+                  </section>
+                </section>
+
+                <section>
+                  <img src="images/productivity.jpg">
+                </section>
+
+                <section>
+                  <h3>Legacy</h3>
+                  <img src="images/legacy.jpg">
+                </section>
+
+                <section>
+                  <h3>Modern</h3>
+                  <img src="images/modern.jpg">
+                </section>
+
+                <section>
+                  <img src="images/future.jpg">
+                </section>
+
+                <section>
+                  <img src="images/community.png">
+                </section>
+
+                <section>
+                  <section>
+                    <h3>Matz</h3>
+                    <img src="images/matz.jpg">
+                  </section>
+                  <section>
+                    <h2>Matz's rules</h2>
+                    <ul>
+                      <li>Be nice to developers</li>
+                      <li>Be clear and readable</li>
+                      <li>Be flexible and agile</li>
+                      <li>Be open</li>
+                    </ul>
+                  </section>
+                </section>
+
+                <section>
+                  <section>
+                    <h3>DHH</h3>
+                    <a href="http://david.heinemeierhansson.com" target="_blank"><img src="images/dhh.jpg"></a>
+                  </section>
+                  <section>
+                    <img src="images/rework.jpg">
+                  </section>
+                </section>
+
+                <section>
+                  <h3>Github</h3>
+                  <a href="http://github.com/" target="_blank"><img src="images/github.jpg"></a>
+                </section>
+
+                <section>
+                  <h3>Ruby China</h3>
+                  <a href="http://ruby-china.org/" target="_blank"><img src="images/rubychina.jpg"></a>
+                </section>
+
+                <section>
+                  <h3>BeiJing Rubyist</h3>
+                  <img src="images/beijing.jpg">
+                </section>
+
+                <section>
+                  <h3>THE END</h3>
+                  <div>
+                    <a href="http://knewone.com" target="_blank"><img src="images/knewone.png"></a>
+                  </div>
+                  <p><a href="mailto:lilu.life@gmail.com">李路</a> | <a href="http://weibo.com/coocooba">@_李路</a></p>
+                </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+                theme: 'serif',
+                transition: 'linear',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
