@@ -21,6 +21,7 @@ window.Making =
       Making.ImageLazyLoading()
       $(document).ajaxComplete ->
         $(".spinning").remove()
+      if Modernizr.mq('(min-width: ' + Making.Breakpoint.screenSMMin + ')') then Making.Search()
       Making.Share()
       $(".popover-toggle").popover()
       $("a.disabled").click ->
@@ -294,6 +295,91 @@ window.Making =
         height: 'auto'
         lineHeight: -> $('body').css('lineHeight')
       })
+
+  Search: (url) ->
+    url = $('form#navbar_search').attr('action') + '.js'
+    maxLength = 12
+    api = {}
+    isSlideshowInitiated = false
+    $searchCandidate = $('.search_candidate')
+    $searchBackdrop = $('.search_backdrop')
+    $slideshowBody = $searchCandidate.children('.slideshow_body')
+    $list = $slideshowBody.find('.slideshow_inner')
+    $keyword = $searchCandidate.find('.search_keyword')
+    $prevPage = $searchCandidate.find('.slideshow_control.left')
+    $nextPage = $searchCandidate.find('.slideshow_control.right')
+    $close = $searchCandidate.children('.close')
+    $status = $('#navbar_search').find('[type="search"]').next('.fa')
+
+    $('.navbar').add($searchBackdrop).add($close).on 'click.search', (e)->
+      if $searchCandidate.is(':visible')
+        $searchCandidate.hide()
+        $searchBackdrop.fadeOut()
+
+    $('.navbar').find('input[type="search"]').on 'keyup', (e)->
+      $self = $(@)
+      keyword = $.trim @.value
+
+      if keyword.length >= 2
+        $status.removeClass('fa-search').addClass('fa-spinner fa-spin')
+
+        if !api[keyword]
+          api[keyword] = $.ajax
+                          url: url
+                          data: q: keyword
+                          dataType: 'html'
+                          contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+
+        api[keyword].done (data)->
+          if data.length > 0
+            link = url.slice(0, -3) + '?q=' + keyword
+            $keyword.text(keyword)
+            $slideshowBody.css 'width', ->
+              $searchCandidate.width()
+            $list.empty().html(data)
+            if $list.children('li').length >= maxLength
+              $more = $('<li />').addClass('more').append($('<a />').attr('href', link).text('更多 ⋯'))
+              $list.append($more)
+
+            if !isSlideshowInitiated
+              slideshow = new Sly $slideshowBody,
+                horizontal: 1
+                itemNav: 'centered'
+                activateMiddle: 1
+                activateOn: 'click'
+                mouseDragging: 1
+                touchDragging: 1
+                releaseSwing: 1
+                speed: 300
+                elasticBounds: 1
+                dragHandle: 1
+                dynamicHandle: 1
+                clickBar: 1
+                prevPage: $prevPage
+                nextPage: $nextPage
+              .init()
+            else
+              slideshowBody.slideTo(0)
+              slideshow.reload()
+
+            $searchBackdrop.fadeIn()
+            $searchCandidate.show()
+
+          else
+            $searchCandidate.hide()
+            $searchBackdrop.fadeOut()
+
+          $status.removeClass('fa-spinner fa-spin').addClass('fa-search')
+
+        .fail ->
+          $searchCandidate.hide()
+          $searchBackdrop.fadeOut()
+          $status.removeClass('fa-spinner fa-spin').addClass('fa-search')
+
+      else
+        if $searchCandidate.is(':visible') and $searchBackdrop.is(':visible')
+          $searchCandidate.hide()
+          $searchBackdrop.fadeOut()
 
 $ ->
   Making.initialize()

@@ -67,5 +67,18 @@ header role="banner"
 
       = form_tag(search_path, method: "get", id: "navbar_search", class: "navbar-form navbar-right", role: "search") do
         .form-group
-          input.form-control type="search" name="q"
+          input.form-control type="search" name="q" autocomplete="off" spellcheck="false"
           i.fa.fa-search
+
+.search_candidate.slideshow
+  h5.search_title
+    em.search_keyword
+    | 的搜索结果：
+  button.close aria-hidden="true" &times;
+  button.slideshow_control.left
+    i.fa.fa-chevron-left
+  button.slideshow_control.right
+    i.fa.fa-chevron-right
+  .slideshow_body
+    ul.slideshow_inner
+.search_backdrop

@@ -1,13 +1,6 @@
 # -*- coding: utf-8 -*-
 class HomeController < ApplicationController
   layout 'application'
-
-  # seems infinite scroll request page data as HTML, store_location will store it as previous_url
-  # sign in will redirect to like /page/9, it confused.
-  # the error should occur in things#index
-  after_action only: [:index] do
-    session[:previous_url] = root_url
-  end
   skip_after_action :store_location
 
   def index
@@ -48,7 +41,13 @@ class HomeController < ApplicationController
   end
 
   def search
-    redirect_to "https://www.google.com.hk/#hl=zh-CN&q=site:#{Settings.host}+#{params[:q]}"
+    q = params[:q].gsub /[^\u4e00-\u9fa5a-zA-Z0-9\s-]+/, ''
+    @things = Thing.published.or({title: /#{q}/i}, {subtitle: /#{q}/i}).page(params[:page]).per(12)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def join_alpha
@@ -60,4 +59,5 @@ class HomeController < ApplicationController
     cookies.delete :alpha
     redirect_to root_path
   end
+
 end
