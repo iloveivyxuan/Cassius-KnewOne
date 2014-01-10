@@ -6,6 +6,7 @@ class Comment
 
   embedded_in :post
   belongs_to :author, class_name: 'User'
+  validates :author, presence: true
 
   validates :content, presence: true, length: {maximum: 300}
 
