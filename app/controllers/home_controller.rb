@@ -41,12 +41,18 @@ class HomeController < ApplicationController
   end
 
   def search
-    q = params[:q].gsub /[^\u4e00-\u9fa5a-zA-Z0-9\s-]+/, ''
-    @things = Thing.published.or({title: /#{q}/i}, {subtitle: /#{q}/i}).page(params[:page]).per(12)
-
     respond_to do |format|
-      format.html
-      format.js
+      if params[:q].present?
+        q = params[:q].gsub /[^\u4e00-\u9fa5a-zA-Z0-9\s-]+/, ''
+        @things = Thing.published.or({title: /#{q}/i}, {subtitle: /#{q}/i}).page(params[:page]).per(12)
+
+        format.html
+        format.js
+      else
+        format.html { redirect_to things_path }
+        format.js { head :no_content }
+      end
+
     end
   end
 
