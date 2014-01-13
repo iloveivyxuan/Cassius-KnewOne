@@ -261,11 +261,9 @@ body {
     .slideshow_inner {
       $gap: 15px;
 
-      text-align: center;
-      min-width: 100%;
-
       > li {
         margin: 40px $gap $gap 0;
+        opacity: 1;
         width: 220px;
 
         &.more {
@@ -301,6 +299,7 @@ body {
 
   .slideshow_control {
     background: transparent;
+    color: #fff;
     height: $thing_height;
     top: 40px;
     width: $slideshow_control_width;

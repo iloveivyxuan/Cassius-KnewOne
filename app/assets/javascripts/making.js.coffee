@@ -259,19 +259,19 @@ window.Making =
         $carousel = $(@)
         $inner = $carousel.find('.carousel-inner')
         $item = $inner.children('.item')
-        $overview = $carousel.next('.carousel-overview')
+        $overview = $carousel.next('.carousel_overview')
+        $overview_body = $overview.children('.slideshow_body')
         default_height = parseInt($item.css('max-height'))
-
-        height = _.min([default_height, $inner.width()*0.75])
+        height = _.min([default_height, $inner.width() * 0.75])
 
         $item.css
           height: height + 'px'
           lineHeight: height + 'px'
 
-        if $overview.length and $overview.is(':visible')
-          $prevPage = $overview.find('.prev-page')
-          $nextPage = $overview.find('.next-page')
-          $overview.sly
+        if $overview_body.length and $overview_body.is(':visible')
+          $prevPage = $overview.find('.left')
+          $nextPage = $overview.find('.right')
+          $overview_body.sly
             horizontal: 1
             itemNav: 'centered'
             smart: 1
@@ -289,12 +289,12 @@ window.Making =
 
           $carousel.on 'slid.bs.carousel', ->
             index = $(@).find('.carousel-inner').children('.item').filter('.active').index()
-            $overview.find('.carousel-thumb').children('li').eq(index).addClass('active').siblings().removeClass('active')
+            $overview.find('.slideshow_inner').children('li').eq(index).addClass('active').siblings().removeClass('active')
+
     else
-      $('.carousel-inner').children('.item').css({
+      $('.carousel-inner').children('.item').css
         height: 'auto'
         lineHeight: -> $('body').css('lineHeight')
-      })
 
   Search: (url) ->
     url = $('form#navbar_search').attr('action') + '.js'
