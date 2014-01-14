@@ -55,6 +55,8 @@ class Order
             :canceled => '订单取消',
             :closed => '订单关闭',
             :refunded => '已协商退款',
+            :refunded_to_balance => '已退款到余额',
+            :refunded_to_platform => '已退款到第三方支付平台',
             :unexpected => '订单异常，请联系客服'}
   DELIVER_METHODS = {
       :sf => '顺丰',
@@ -210,6 +212,10 @@ class Order
     confirmed? || shipped?
   end
 
+  def can_refunded_balance_to_platform?
+    refunded_to_platform?
+  end
+
   def confirm_payment!(trade_no, price, method, raw)
     return false unless can_confirm_payment?
 
@@ -315,20 +321,19 @@ class Order
     return false unless can_refund?
 
     state = self.state
-    self.state = :refunded
+    self.state = :refunded_to_platform
     save!
 
     # unown_things if auto_owning?
 
-    order_histories.create from: state, to: :closed
+    order_histories.create from: state, to: :refunded_to_platform
   end
 
   def refund_to_balance!(price = 0)
     return false unless can_refund? || price > total_price
 
     state = self.state
-    self.state = :refunded
-    save!
+    self.state = :refunded_to_balance
 
     should_return_balance = (price == 0 ? (self.trade_price || 0) + self.expense_balance : price)
     self.user.refund_to_balance!(self, should_return_balance, "订单#{self.order_no}的退款")
@@ -338,7 +343,18 @@ class Order
 
     # unown_things if auto_owning?
 
-    order_histories.create from: state, to: :closed
+    order_histories.create from: state, to: :refunded_to_balance
+  end
+
+  def refunded_balance_to_platform!(price = 0)
+    return false unless can_refunded_balance_to_platform?
+
+
+
+    # TODO: 只退实际支付的部分，退款Log记录了Order可以直接利用
+
+
+    #self.user.revoke_refund_to_balance!(self, should_return_balance, "订单#{self.order_no}的退款改退第三方支付平台")
   end
 
   def unexpect!(system_note = '', raw = {})

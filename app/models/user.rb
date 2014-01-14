@@ -214,7 +214,7 @@ class User
 
     # prevent overselling
     u = User.where(id: self.id.to_s, balance_cents: self.balance_cents).
-        find_and_modify :$set => {balance_cents: (self.balance_cents + cents).to_i}
+        find_and_modify :$set => {balance_cents: (self.balance_cents + cents)}
     if u
       u.balance_logs<< DepositBalanceLog.new(value_cents: cents, note: note)
       reload
@@ -229,9 +229,24 @@ class User
 
     # prevent overselling
     u = User.where(id: self.id.to_s, balance_cents: self.balance_cents).
-        find_and_modify :$set => {balance_cents: (self.balance_cents + cents).to_i}
+        find_and_modify :$set => {balance_cents: (self.balance_cents + cents)}
     if u
       u.balance_logs<< RefundBalanceLog.new(order: order, value_cents: cents, note: note)
+      reload
+      true
+    else
+      false
+    end
+  end
+
+  def revoke_refund_to_balance!(order, value, note)
+    cents = (value * 100).to_i
+
+    # prevent overselling
+    u = User.where(id: self.id.to_s, balance_cents: self.balance_cents).
+        find_and_modify :$set => {balance_cents: (self.balance_cents - cents)}
+    if u
+      u.balance_logs<< RevokeRefundBalanceLog.new(order: order, value_cents: cents, note: note)
       reload
       true
     else
