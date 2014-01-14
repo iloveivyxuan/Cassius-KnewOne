@@ -88,7 +88,8 @@ window.Making =
       else
         $('#go_top').fadeOut() if $('#go_top').is(':visible')
 
-    $('#go_top').click ->
+    $('#go_top').click (e)->
+      e.preventDefault()
       $(@).fadeOut()
       $('html,body').animate {scrollTop: 0}, 'slow'
 

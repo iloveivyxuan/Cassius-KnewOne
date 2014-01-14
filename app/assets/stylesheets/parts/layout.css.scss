@@ -328,6 +328,25 @@ body {
   }
 }
 
+#go_top {
+  color: $text-muted;
+  display: none;
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+  cursor: pointer;
+  z-index: $zindex_go_top;
+  @include opacity(0.5);
+
+  &:hover {
+    color: $text-color;
+  }
+
+  .fa {
+    margin: 0;
+  }
+}
+
 .offcanvas_mix {
   @include clearfix;
   overflow: hidden;
