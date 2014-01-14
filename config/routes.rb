@@ -161,6 +161,7 @@ Making::Application.routes.draw do
     namespace :v1 do
       resources :things, only: [:index, :show] do
         resources :reviews, only: [:index, :show]
+        resources :comments, only: [:index]
       end
       resources :users, only: [:index, :show]
     end
