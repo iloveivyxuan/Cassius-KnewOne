@@ -6,14 +6,14 @@ class ReviewPhoto
   mount_uploader :image, ImageUploader
 
   validates :image,
-  presence: true,
-  file_size: {maximum: 8.megabytes.to_i}
+            presence: true,
+            file_size: {maximum: 8.megabytes.to_i}
 
   delegate :url, to: :image
 
   def to_json
     {
-      "filelink" => url(:review)
+        "filelink" => url(:review)
     }
   end
 

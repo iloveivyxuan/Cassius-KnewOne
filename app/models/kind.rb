@@ -22,7 +22,7 @@ class Kind
       exclusive: "限量",
       hidden: "下架"
   }
-  validates :stage, inclusion: { in: STAGES.keys }
+  validates :stage, inclusion: {in: STAGES.keys}
 
   validates :stock, numericality: {
       only_integer: true,

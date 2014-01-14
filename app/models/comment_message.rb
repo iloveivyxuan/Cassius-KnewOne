@@ -8,7 +8,7 @@ class CommentMessage < Message
     end
 
     def read_by_post(user, post)
-      find_by_post(user, post).each {|message| message.read!}
+      find_by_post(user, post).each { |message| message.read! }
     end
   end
 
@@ -16,7 +16,7 @@ class CommentMessage < Message
 
   def find_similar
     self.class.find_by_post(user, post)
-      .reject {|m| m == self}
-      .first
+    .reject { |m| m == self }
+    .first
   end
 end

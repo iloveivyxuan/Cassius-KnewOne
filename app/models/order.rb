@@ -147,7 +147,7 @@ class Order
     generate_waybill! if confirmed?
   end
 
-  default_scope order_by(created_at: :desc)
+  default_scope -> { order_by(created_at: :desc) }
 
   def state
     super.to_sym
@@ -423,7 +423,7 @@ class Order
   end
 
   def delivered_at
-    h = order_histories.select {|h| h.to == :shipped}.first
+    h = order_histories.select { |h| h.to == :shipped }.first
 
     h ? h.created_at : nil
   end

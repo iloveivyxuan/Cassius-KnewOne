@@ -17,12 +17,12 @@ class Review < Post
   validates :score, presence: true
   validate do |review|
     unless (0..5).include? review.score
-        errors.add(:score,
-                   "Score should be in [0..5]")
+      errors.add(:score,
+                 "Score should be in [0..5]")
     end
   end
 
-  default_scope desc(:is_top, :lovers_count, :created_at)
+  default_scope -> { desc(:is_top, :lovers_count, :created_at) }
 
   after_create :add_score
   after_update :update_score

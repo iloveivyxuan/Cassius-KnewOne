@@ -15,7 +15,7 @@ class Post
   validates :content, presence: true
 
   has_many :related_lotteries, class_name: "Lottery",
-  inverse_of: :contributions, dependent: :delete
+           inverse_of: :contributions, dependent: :delete
 
   after_create :update_commented_at
 

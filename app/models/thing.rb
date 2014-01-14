@@ -26,13 +26,13 @@ class Thing < Post
 
   field :stage, type: Symbol, default: :concept
   STAGES = {
-    concept: "研发中",
-    domestic: "国内导购",
-    abroad: "国外海淘",
-    invest: "众筹",
-    dsell: "自销"
+      concept: "研发中",
+      domestic: "国内导购",
+      abroad: "国外海淘",
+      invest: "众筹",
+      dsell: "自销"
   }
-  validates :stage, inclusion: { in: STAGES.keys }
+  validates :stage, inclusion: {in: STAGES.keys}
 
   def safe_destroy?
     !Order.where('order_items.thing_id' => self.id).exists?
@@ -59,7 +59,7 @@ class Thing < Post
   scope :published, -> { lt(created_at: Time.now) }
   scope :prior, -> { unscoped.published.gt(priority: 0).desc(:priority, :created_at) }
   scope :self_run, -> { unscoped.published.in(stage: [:dsell, :invest]).desc(:priority, :created_at) }
-  default_scope desc(:created_at)
+  default_scope -> { desc(:created_at) }
 
   embeds_many :kinds
   accepts_nested_attributes_for :kinds, allow_destroy: true
@@ -101,7 +101,7 @@ class Thing < Post
   end
 
   def valid_kinds
-    kinds.ne(stage: :hidden).sort_by {|k| k.photo_number}
+    kinds.ne(stage: :hidden).sort_by { |k| k.photo_number }
   end
 
   def add_score(score)
@@ -160,7 +160,7 @@ class Thing < Post
         ordered_things<< t
       end
 
-      ordered_things.each {|t| t.save(validate: false)}
+      ordered_things.each { |t| t.save(validate: false) }
     end
 
     def rand_records(per = 1)

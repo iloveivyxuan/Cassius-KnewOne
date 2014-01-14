@@ -107,7 +107,7 @@ class User
   end
 
   def has_auth?(provider)
-    auths.select {|a| a.provider == provider}.any?
+    auths.select { |a| a.provider == provider }.any?
   end
 
   def equal_auth_provider?(another_user)

@@ -9,8 +9,8 @@ class Coupon
   field :note, type: String
   field :status, type: Symbol, default: :available
   STATUS = {
-    disabled: '禁用',
-    available: '可用'
+      disabled: '禁用',
+      available: '可用'
   }
   validates :status, presence: true, inclusion: {in: STATUS.keys}
   validates :name, presence: true

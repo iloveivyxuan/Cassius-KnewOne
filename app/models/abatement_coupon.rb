@@ -14,7 +14,7 @@ class AbatementCoupon < Coupon
   end
 
   def undo_effect(order)
-    r = order.rebates.select {|rebate| rebate.name == "#{self.name}" && rebate.price == -self.price }.first
+    r = order.rebates.select { |rebate| rebate.name == "#{self.name}" && rebate.price == -self.price }.first
     order.rebates.delete r
   end
 end

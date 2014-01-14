@@ -14,7 +14,7 @@ class OrderItem
 
   embedded_in :order
 
-  validates :quantity, :numericality => { only_integer: true, greater_than: 0 }
+  validates :quantity, :numericality => {only_integer: true, greater_than: 0}
 
   validates :quantity, :single_price, presence: true
 

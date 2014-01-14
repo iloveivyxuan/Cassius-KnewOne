@@ -17,11 +17,11 @@ class Lottery
 
   attr_writer :winner_link
   validates :date, presence: true
-  validate  :check_thing
-  validate  :check_contribution
-  validate  :check_winner
+  validate :check_thing
+  validate :check_contribution
+  validate :check_winner
 
-  default_scope desc(:date)
+  default_scope -> { desc(:date) }
 
   def thing_link
     link_to_thing thing
@@ -33,10 +33,10 @@ class Lottery
 
   def contribution_link
     case contribution.class
-    when Thing
-      link_to_thing contribution
-    when Review
-      link_to_review contribution
+      when Thing
+        link_to_thing contribution
+      when Review
+        link_to_review contribution
     end
   end
 

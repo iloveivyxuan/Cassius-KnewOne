@@ -10,7 +10,7 @@ class Comment
 
   validates :content, presence: true, length: {maximum: 300}
 
-  default_scope desc(:created_at)
+  default_scope -> { desc(:created_at) }
 
   after_create :notify_related_users
   after_create :update_commented_at
@@ -25,9 +25,9 @@ class Comment
 
   def related_users
     content_users
-      .push(post.author)
-      .reject {|user| !user || user == author}
-      .uniq
+    .push(post.author)
+    .reject { |user| !user || user == author }
+    .uniq
   end
 
   def notify_related_users

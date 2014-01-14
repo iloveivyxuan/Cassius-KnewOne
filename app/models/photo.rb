@@ -10,8 +10,8 @@ class Photo
   belongs_to :user
 
   validates :image,
-  presence: true,
-  file_size: {maximum: 8.megabytes.to_i}
+            presence: true,
+            file_size: {maximum: 8.megabytes.to_i}
 
   delegate :url, to: :image
 
@@ -21,7 +21,7 @@ class Photo
     def find_with_order(ids)
       photos = Photo.find ids.uniq
       ids.map do |id|
-        photos.find {|p| p.id.to_s == id.to_s}
+        photos.find { |p| p.id.to_s == id.to_s }
       end.compact
     end
   end
@@ -35,12 +35,12 @@ class Photo
 
   def to_jq_upload
     {
-      "id" => id.to_s,
-      "name" => name,
-      "size" => size,
-      "small_url" => url(:small),
-      "url" => url,
-      "filelink" => url
+        "id" => id.to_s,
+        "name" => name,
+        "size" => size,
+        "small_url" => url(:small),
+        "url" => url,
+        "filelink" => url
     }
   end
 end

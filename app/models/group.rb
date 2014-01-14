@@ -10,7 +10,7 @@ class Group
 
   has_many :topics
 
-  default_scope desc(:created_at)
+  default_scope -> { desc(:created_at) }
 
   scope :classic, -> { where(:'_type'.exists => false) }
 

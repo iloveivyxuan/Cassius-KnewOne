@@ -13,7 +13,7 @@ class LandingPage
     mount_uploader type, ImageUploader
     # validates type, presence: true
   end
-  validates :xs_background, presence: true, if: -> {persisted?}
+  validates :xs_background, presence: true, if: -> { persisted? }
 
   def background_url(spec, version = :full)
     bg = send sepc
@@ -33,6 +33,7 @@ class LandingPage
   field :focus_link, type: String
 
   field :published, type: Boolean, default: false
+
   def published=(val)
     self[:published] = (val == 'true' || val == '1' || val == true)
   end
