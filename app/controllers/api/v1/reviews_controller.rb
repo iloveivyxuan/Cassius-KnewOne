@@ -3,13 +3,13 @@ module Api
     class ReviewsController < ApiController
       helper 'api/v1/reviews'
       before_action :set_resources
+      before_action :set_review, only: [:show]
 
       def index
         @reviews = @thing_group.reviews.page(params[:page]).per(params[:per_page] || 8)
       end
 
       def show
-        @review = current_review
       end
 
       private
@@ -19,8 +19,8 @@ module Api
         @thing_group = @thing.thing_group
       end
 
-      def current_review
-        @thing_group.reviews.find(params[:id])
+      def set_review
+        @review = @thing_group.reviews.find(params[:id])
       end
     end
   end

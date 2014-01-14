@@ -20,6 +20,8 @@ module Api
           ActionController::ParamsWrapper,
           ActionController::StrongParameters,
           ActionController::Rescue,
+          ActionController::Head,
+          Doorkeeper::Helpers::Filter,
           Devise::Controllers::Helpers,
           Rails.application.routes.url_helpers,
       ]

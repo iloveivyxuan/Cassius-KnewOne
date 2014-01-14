@@ -163,7 +163,14 @@ Making::Application.routes.draw do
         resources :reviews, only: [:index, :show]
         resources :comments, only: [:index]
       end
-      resources :users, only: [:index, :show]
+      resources :users, only: [:index, :show] do
+        member do
+          get 'fancies'
+          get 'owns'
+          get 'reviews'
+          get 'things'
+        end
+      end
     end
   end
 end
