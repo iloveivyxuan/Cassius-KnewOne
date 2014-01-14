@@ -61,6 +61,10 @@
 .carousel_overview {
   margin-top: 1em;
 
+  @media screen and (max-width: $screen-sm-min - 1) {
+    display: none;
+  }
+
   .slideshow_body {
 
     .slideshow_inner {
