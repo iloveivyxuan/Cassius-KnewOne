@@ -159,7 +159,9 @@ Making::Application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
-      resources :things, only: [:index, :show]
+      resources :things, only: [:index, :show] do
+        resources :reviews, only: [:index, :show]
+      end
       resources :users, only: [:index, :show]
     end
   end

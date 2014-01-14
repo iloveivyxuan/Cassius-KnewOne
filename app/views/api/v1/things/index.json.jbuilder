@@ -3,6 +3,7 @@ json.array!(@things) do |thing|
   json.title thing.title
   json.subtitle thing.subtitle
   json.url url_wrapper(thing)
+  json.reivew_url url_wrapper(thing, :reviews)
   json.cover_url thing.cover.url
   json.stage thing.stage
   json.stage_text ::Thing::STAGES[thing.stage]

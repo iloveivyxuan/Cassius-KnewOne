@@ -33,7 +33,7 @@ json.photo_urls @thing.photos.map {|p| p.image.url}
 json.fanciers_count @thing.fanciers.count
 json.owners_count @thing.owners.count
 json.reviews_count @thing.reviews.count
-json.content @thing.content
+json.content sanitize(@thing.content)
 json.created_at @thing.created_at
 json.updated_at @thing.updated_at
 if user_signed_in?
