@@ -22,6 +22,8 @@ class User
       end
     EVAL
   end
+  validates :name, allow_blank: true, uniqueness: true,
+            format: { with: /\A[^\s]+\z/, multiline: false, message: '昵称中不能包含空格。' }
 
   # Stats
   field :things_count, type: Integer, default: 0
@@ -86,7 +88,10 @@ class User
       create do |user|
         auth = Auth.from_omniauth(data)
         user.auths << auth
-        user.name = auth.name || auth.nickname
+        user.name = (auth.name || auth.nickname).gsub(' ', '-')
+        if self.class.where(name: user.name).exists?
+          user.name += rand(1000).to_s
+        end
         user.location = auth.location
         user.description = auth.description
         user.remote_avatar_url = auth.parse_image(data)
@@ -119,7 +124,10 @@ class User
     if auth
       auth.update_from_omniauth(data)
       if self.auto_update_from_oauth?
-        self.name = auth.name || auth.nickname
+        self.name = (auth.name || auth.nickname).gsub(' ', '-')
+        if self.class.where(name: self.name).exists?
+          self.name += rand(1000).to_s
+        end
         self.location = auth.location
         self.description = auth.description
         self.remote_avatar_url = auth.parse_image(data)
