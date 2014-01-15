@@ -9,6 +9,15 @@ html.home_landing {
     height: 100%;
     padding-bottom: 0;
     width: 100%;
+
+    > header {
+      margin-bottom: $navbar-height + 1px;
+
+      @media screen and (min-width: $screen-md-min + 1) {
+        display: none;
+        margin-bottom: 0;
+      }
+    }
   }
 
   .feature {
@@ -20,7 +29,12 @@ html.home_landing {
     }
 
     header {
-      margin: .2em 0 .2em 46px;
+      display: none;
+
+      @media screen and (min-width: $screen-md-min + 1) {
+        display: block;
+        margin: .2em 0 .2em 46px;
+      }
 
       > img {
         height: 48px;

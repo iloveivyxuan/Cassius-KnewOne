@@ -3,6 +3,7 @@ body {
 
   > header {
     margin-bottom: $navbar-height + $navbar-margin-bottom + $font-size-base;
+    z-index: $zindex_navbar;
   }
 
   > footer {

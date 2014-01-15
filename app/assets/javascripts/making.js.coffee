@@ -48,7 +48,18 @@ window.Making =
           scrollTop: scrollTop
         }, 'normal'
         return
+
       if $('html').hasClass 'home_landing'
+        $window = $(window)
+        $header = $('body > header')
+
+        if Modernizr.mq('(min-width: ' + (parseInt(Making.Breakpoint.screenMDMin) + 1) + 'px)')
+          $window.on 'scroll', ->
+            if $window.scrollTop() > $window.height() / 2
+              $header.slideDown()
+            else
+              $header.fadeOut()
+
         $comments = $('.feature_comment')
         length = $comments.length
         if length > 1
