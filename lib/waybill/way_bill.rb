@@ -5,7 +5,7 @@ class WayBill
   attr_reader :image
 
   COMPANY = 'knewone.com'
-  SENDER = '琚展'
+  SENDER = '超熊'
   ADDRESS = '广东省 深圳市 南山区 香山西街8号南门波托菲诺香山里一期5栋3A'
   PHONE = '400-999-2512'
 
