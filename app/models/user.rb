@@ -89,7 +89,7 @@ class User
         auth = Auth.from_omniauth(data)
         user.auths << auth
         user.name = (auth.name || auth.nickname).gsub(' ', '-')
-        if self.class.where(name: user.name).size > 1
+        if self.class.where(name: user.name).size > 0
           user.name += rand(1000).to_s
         end
         user.location = auth.location
