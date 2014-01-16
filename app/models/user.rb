@@ -89,7 +89,7 @@ class User
         auth = Auth.from_omniauth(data)
         user.auths << auth
         user.name = (auth.name || auth.nickname).gsub(' ', '-')
-        if self.class.where(name: user.name).size > 0
+        if User.where(name: user.name).size > 0
           user.name += rand(1000).to_s
         end
         user.location = auth.location
@@ -125,7 +125,7 @@ class User
       auth.update_from_omniauth(data)
       if self.auto_update_from_oauth?
         self.name = (auth.name || auth.nickname).gsub(' ', '-')
-        if self.class.where(name: self.name).size > 1
+        if User.where(name: self.name).size > 1
           self.name += rand(1000).to_s
         end
         self.location = auth.location
