@@ -85,12 +85,12 @@ class User
     end
 
     def create_from_omniauth(data)
-      create do |user|
+      create! do |user|
         auth = Auth.from_omniauth(data)
         user.auths << auth
         user.name = (auth.name || auth.nickname).gsub(' ', '-')
         if User.where(name: user.name).size > 0
-          user.name += rand(1000).to_s
+          user.name += "x#{rand(1000).to_s}"
         end
         user.location = auth.location
         user.description = auth.description
@@ -125,9 +125,12 @@ class User
       auth.update_from_omniauth(data)
       if self.auto_update_from_oauth?
         self.name = (auth.name || auth.nickname).gsub(' ', '-')
-        if User.where(name: self.name).size > 1
-          self.name += rand(1000).to_s
+        if self.name_was.include?("#{self.name}x")
+          reset_name!
+        elsif User.where(name: self.name).size > 1
+          self.name += "x#{rand(1000).to_s}"
         end
+
         self.location = auth.location
         self.description = auth.description
         self.remote_avatar_url = auth.parse_image(data)
