@@ -22,7 +22,7 @@ class User
       end
     EVAL
   end
-  validates :name, allow_blank: true, uniqueness: true,
+  validates :name, presence: true, uniqueness: true,
             format: { with: /\A[^\s]+\z/, multiline: false, message: '昵称中不能包含空格。' }
 
   # Stats
@@ -89,8 +89,8 @@ class User
         auth = Auth.from_omniauth(data)
         user.auths << auth
         user.name = (auth.name || auth.nickname).gsub(' ', '-')
-        if User.where(name: user.name).size > 0
-          user.name += "x#{rand(1000).to_s}"
+        if User.where(name: user.name).size > 0 || user.name.blank?
+          user.name += "x#{SecureRandom.uuid[0..2]}"
         end
         user.location = auth.location
         user.description = auth.description
@@ -127,8 +127,8 @@ class User
         self.name = (auth.name || auth.nickname).gsub(' ', '-')
         if self.name_was.include?("#{self.name}x")
           reset_name!
-        elsif User.where(name: self.name).size > 1
-          self.name += "x#{rand(1000).to_s}"
+        elsif User.where(name: self.name).size > 1 || self.name.blank?
+          self.name += "x#{SecureRandom.uuid[0..2]}"
         end
 
         self.location = auth.location
