@@ -4,7 +4,6 @@ $border-default-active: 1px solid $red;
 $background-default-active: #f8f8fa;
 
 // z-index
-$zindex_search_candidate: $zindex-modal-background - 1;
-$zindex_navbar: $zindex_search_candidate;
-$zindex_backdrop: $zindex_navbar - 1;
+$zindex_search_candidate: $zindex-navbar-fixed;
+$zindex_backdrop: $zindex_search_candidate - 1;
 $zindex_go_top: 500;
