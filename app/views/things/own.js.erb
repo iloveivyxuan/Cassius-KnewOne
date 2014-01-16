@@ -1,3 +1,18 @@
 <% present @thing do |tp| %>
-   $(".owners").html("<%=j render('own', tp: tp) %>")
+  var $own = $(".owners"),
+      $review = $("div.new_review"),
+      $review_trigger = $review.children('.new_review')
+      $review_icon = $review.find('.fa-pencil');
+
+  $own.html("<%=j render('own', tp: tp) %>");
+
+  if ($own.children('a').hasClass('owned')) {
+    $review_icon.addClass('pulse');
+    $review_trigger.tooltip('show');
+    setTimeout(function() {
+      $review_trigger.tooltip('destroy');
+    }, 5000);
+  } else {
+    $review_icon.removeClass('pulse');
+  }
 <% end %>

@@ -293,6 +293,21 @@
 
     > *:last-child {border: none;}
 
+    .tooltip {
+
+      &.bottom {
+
+        @media screen and (min-width: $screen-md-min) {
+          margin-top: -10px;
+        }
+      }
+
+      .tooltip-inner {
+        padding-bottom: 6px;
+        padding-top: 6px;
+      }
+    }
+
     @media screen and (min-width: $screen-md-min) {
       margin-bottom: 2em;
 
