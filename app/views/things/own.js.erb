@@ -7,12 +7,12 @@
   $own.html("<%=j render('own', tp: tp) %>");
 
   if ($own.children('a').hasClass('owned')) {
-    $review_icon.addClass('pulse');
+    $review_icon.addClass('rotate');
     $review_trigger.tooltip('show');
     setTimeout(function() {
       $review_trigger.tooltip('destroy');
     }, 5000);
   } else {
-    $review_icon.removeClass('pulse');
+    $review_icon.removeClass('rotate');
   }
 <% end %>

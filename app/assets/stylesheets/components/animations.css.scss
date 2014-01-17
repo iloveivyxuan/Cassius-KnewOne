@@ -1,38 +1,15 @@
 
-// Pulse
+// Rotate
 // --------------------------------------------------------------------------
 
-.pulse {
-  animation-name: pulse;
-  -webkit-animation-name: pulse;
-
-  animation-duration: 1.2s;
-  -webkit-animation-duration: 1.2s;
+.rotate {
+  animation-name: rotate;
+  -webkit-animation-name: rotate;
+  animation-duration: 1s;
+  -webkit-animation-duration: 1s;
 }
 
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.7;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0.7;
-  }
-}
-
-@-webkit-keyframes pulse {
-  0% {
-    -webkit-transform: scale(1);
-  }
-  50% {
-    -webkit-transform: scale(1.25);
-  }
-  100% {
-    -webkit-transform: scale(1);
-  }
+@include keyframes(rotate) {
+  0% {@include transform(rotate(0deg));}
+  100% {@include transform(rotate(360deg));}
 }
