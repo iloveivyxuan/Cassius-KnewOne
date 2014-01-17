@@ -216,7 +216,10 @@ window.Making =
       loading:
         msg: $("<div class='loading-things'><i class='fa fa-spinner fa-spin fa-2x'></i></div>")
         finished: ->
-          $('.loading-things').fadeOut 200
+          $('.loading-things').remove()
+          $("img.lazy").filter (index) ->
+            !$(@).attr('src') || $(@).attr('src').indexOf('http') isnt 0
+          .css("visibility", "visible").lazyload()
       errorCallback: ->
         $(container).find('.loading-things').html("<em>没有更多了......</em>")
 
@@ -226,8 +229,6 @@ window.Making =
     $el.children('.price').text("￥ #{price * quantity}")
 
   ImageLazyLoading: () ->
-    $(document).ajaxComplete ->
-      $("img.lazy").css("visibility", "visible").lazyload()
     $("img.lazy").css("visibility", "visible").lazyload()
 
   Rating: ->
