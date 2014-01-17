@@ -3,10 +3,7 @@
 // --------------------------------------------------------------------------
 
 .rotate {
-  animation-name: rotate;
-  -webkit-animation-name: rotate;
-  animation-duration: 1s;
-  -webkit-animation-duration: 1s;
+  @include animation(0, 1s, rotate)
 }
 
 @include keyframes(rotate) {
