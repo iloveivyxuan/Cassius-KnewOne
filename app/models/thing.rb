@@ -210,6 +210,11 @@ class Thing < Post
     Thing.in(id: ids).sort_by {|t| ids.index(t.id.to_s)}
   end
 
+  def has_stock?
+    return false unless self_run?
+    kinds.map(&:has_stock?).reduce(&:|)
+  end
+
   class << self
     def resort!
       ordered_things = []

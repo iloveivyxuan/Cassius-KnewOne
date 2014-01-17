@@ -1,8 +1,10 @@
+thing_stage = stage(@thing)
+
 json.id @thing.id.to_s
 json.title @thing.title
 json.subtitle @thing.subtitle
-json.stage @thing.stage
-json.stage_text ::Thing::STAGES[@thing.stage]
+json.stage thing_stage
+json.stage_text ::Thing::STAGES[thing_stage]
 if @thing.stage == :invest
   json.investors_count @thing.investors.count
   json.invest_amount invest_amount(@thing)
@@ -14,6 +16,7 @@ if price = price(@thing)
   json.price_unit '￥'
 end
 if @thing.self_run?
+  json.has_stock @thing.has_stock?
   json.kinds @thing.kinds do |kind|
     json.title kind.title
     json.photo_index kind.photo_number

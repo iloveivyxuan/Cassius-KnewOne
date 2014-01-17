@@ -15,6 +15,20 @@ module Api
       def invest_amount(thing)
         thing.investors.map(&:amount).reduce(&:+)
       end
+
+      def stage(thing)
+        if thing.stage == :dsell
+          if thing.kinds.size == 0
+            :concept
+          else
+            Kind::STAGES.keys.each do |s|
+              return s if thing.kinds.map(&:stage).include?(s)
+            end
+          end
+        else
+          thing.stage
+        end
+      end
     end
   end
 end
