@@ -171,6 +171,8 @@ Making::Application.routes.draw do
           get 'things'
         end
       end
+
+      get 'oauth/default_callback', to: 'oauth#default_callback'
     end
   end
 end

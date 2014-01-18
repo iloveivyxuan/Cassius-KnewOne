@@ -1,7 +1,7 @@
 class ApiRequestError < StandardError
-  attr_reader :code, :message, :status
+  attr_reader :code, :message, :status, :extra
 
-  def initialize(code, message, status)
-    @code, @message, @status = code, message, status
+  def initialize(code, message, status, extra = {})
+    @code, @message, @status, @extra = code, message, status, extra
   end
 end

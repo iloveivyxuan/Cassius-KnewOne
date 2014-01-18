@@ -22,7 +22,3 @@ if price = price(thing)
 end
 json.created_at thing.created_at
 json.updated_at thing.updated_at
-if user_signed_in?
-  json.fancied thing.fancied?(current_user)
-  json.owned thing.fancied?(current_user)
-end

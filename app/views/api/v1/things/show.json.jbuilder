@@ -41,7 +41,7 @@ json.created_at @thing.created_at
 json.updated_at @thing.updated_at
 if user_signed_in?
   json.fancied @thing.fancied?(current_user)
-  json.owned @thing.fancied?(current_user)
+  json.owned @thing.owned?(current_user)
 end
 json.author do
   json.id @thing.author.id.to_s

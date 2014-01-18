@@ -3,9 +3,10 @@ module Api
     class UsersController < ApiController
       helper 'api/v1/users'
       before_action :set_user, only: [:show, :reviews, :things, :owns, :fancies]
+      doorkeeper_for :all
 
       def index
-        render_error :nyi, 'NYI'
+        render_error :nyi, 'NYI', {user_id: current_user.id.to_s}
       end
 
       def show
