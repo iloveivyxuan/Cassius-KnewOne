@@ -1,6 +1,5 @@
 doctype html
-<!--[if IE 8]>    <html class="#{page_class} no-js ie8" lang="zh-CN"> <![endif] -->
-<!--[if gt IE 8]><!--> <html class="#{page_class} no-js" lang="zh-CN"> <!--<![endif]-->
+html class=page_class lang="zh-CN"
   head
     meta charset="utf-8"
     meta http-equiv="X-UA-Compatible" content="IE=edge"
@@ -27,4 +26,3 @@ doctype html
     = javascript_include_tag "application"
     = yield :script
     = render 'layouts/olark'
-</html>
