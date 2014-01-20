@@ -8,6 +8,7 @@
 //= require sly
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/load-image
+//= require matchmedia
 //= require picturefill
 //= require jquery.lazyload
 //= require jquery.sortable
