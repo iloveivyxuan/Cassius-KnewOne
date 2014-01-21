@@ -9,6 +9,8 @@ class Thing < Post
   field :subtitle, type: String, default: ""
   field :official_site, type: String, default: ""
   field :photo_ids, type: Array, default: []
+  field :categories, type: Array, default: []
+  after_save :update_categories
 
   field :shop, type: String, default: ""
   field :price, type: Float
@@ -78,6 +80,22 @@ class Thing < Post
     rescue Mongoid::Errors::DocumentNotFound
       Photo.new
     end
+  end
+
+  def categories_text
+    (categories || []).join ','
+  end
+
+  def categories_text=(text)
+    self.categories = text.split(',').map(&:strip).reject(&:blank?).uniq
+  end
+
+  def update_categories
+    return unless categories_changed?
+    old = categories_change.first || []
+    new = categories_change.last || []
+    (old - new).each { |c| Category.find_and_minus c }
+    (new - old).each { |c| Category.find_and_plus c }
   end
 
   def top_review

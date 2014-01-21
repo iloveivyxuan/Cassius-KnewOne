@@ -6,6 +6,7 @@ header.page-header
     = hidden_field_tag 'thing[author]', @thing.author.id.to_s, id: 'user_id'
     input#user_autocomplete.form-control placeholder="用户昵称" value="#{@thing.author.name}"
     #user_autocomplete_tip.strong.help-block
+  = f.input :categories_text, hint: "用,分隔"
   = f.input :shop, as: :url
   = f.input :price do
     = f.input_field :price_unit, collection: Thing.const_get(:CURRENCY_LIST)
