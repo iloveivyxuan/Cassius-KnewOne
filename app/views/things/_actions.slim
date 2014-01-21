@@ -42,7 +42,7 @@ ul.operations.fa-ul
     li= link_to_with_icon "删除", "fa-li fa fa-trash-o", thing_path(tp.thing), title: "删除",
       method: :delete, data: {confirm: "您确定要删除吗?"}
 
-ul.kinds= render tp.thing.kinds
+ul.kinds= render tp.thing.valid_kinds
 
 .modals
   = render 'shared/share', id: 'thing_share', content: tp.share_content, pic: tp.photo_url(:huge)

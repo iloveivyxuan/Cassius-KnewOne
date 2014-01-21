@@ -25,7 +25,7 @@ class ThingPresenter < PostPresenter
   end
 
   def price
-    kinds_price = thing.kinds.map(&:price).uniq
+    kinds_price = thing.valid_kinds.map(&:price).uniq
     p = if kinds_price.present?
           kinds_price.min
         elsif thing.price.present?
@@ -83,7 +83,7 @@ class ThingPresenter < PostPresenter
   end
 
   def dsell
-    if thing.kinds.blank?
+    if thing.valid_kinds.blank?
       concept
     else
       render partial: 'cart_items/new', locals: {tp: self}
@@ -167,11 +167,11 @@ class ThingPresenter < PostPresenter
 
   def stage
     if thing.stage == :dsell
-      if thing.kinds.size == 0
+      if thing.valid_kinds.size == 0
         :concept
       else
         Kind::STAGES.keys.each do |s|
-          return s if thing.kinds.map(&:stage).include?(s)
+          return s if thing.valid_kinds.map(&:stage).include?(s)
         end
       end
     else
@@ -225,7 +225,7 @@ class ThingPresenter < PostPresenter
   end
 
   def kinds
-    thing.kinds.map {|k| present(k)}
+    thing.valid_kinds.map {|k| present(k)}
   end
 
   def options_for_kinds
