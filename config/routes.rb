@@ -117,6 +117,8 @@ Making::Application.routes.draw do
     resources :comments
   end
 
+  resources :categories, only: [:show, :index]
+
   resources :groups do
     resources :topics
     get 'date/:date', action: :show, on: :member

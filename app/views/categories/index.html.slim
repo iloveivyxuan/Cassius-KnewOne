@@ -1,0 +1,11 @@
+section.simple_page_wrapper.widget
+  table.table
+    thead
+      tr
+        th 分类
+        th 产品数量
+    tbody
+      - @categories.each do |c|
+        tr
+          th= link_to c.name, category_path(c)
+          th= c.things_count

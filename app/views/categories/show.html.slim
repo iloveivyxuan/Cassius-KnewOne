@@ -1,0 +1,9 @@
+- provide :title, @category.name
+
+section#things_index
+  ul#things= render @things, size: :normal, img_lazy: true
+  = paginate @things
+
+- content_for :script do
+  javascript:
+    Making.InfiniteScroll("#things_index > section", "ul#things > li");

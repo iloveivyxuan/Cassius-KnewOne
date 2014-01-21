@@ -9,7 +9,7 @@ class Category
   validates :name, presence: true, uniqueness: true
 
   def things
-    Thing.any_in(categories: [name])
+    Thing.published.any_in(categories: [name])
   end
 
   class << self
