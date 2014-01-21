@@ -1,9 +1,9 @@
-- if tp.stage == :invest
+- if tp.stage == :invest || tp.thing.investors.present?
   .investors
     h4
       i.fa.fa-fire
-      | 众筹中
-      small = tp.period
+      | 众筹
+      small<= tp.period
     p
       = tp.content_for_invest_amount
     .progress
