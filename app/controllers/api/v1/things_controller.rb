@@ -2,6 +2,7 @@ module Api
   module V1
     class ThingsController < ApiController
       helper 'api/v1/things'
+      before_action :set_thing, except: [:index]
 
       def index
         per_page = (params[:per_page] || 8).to_i
@@ -17,6 +18,12 @@ module Api
       end
 
       def show
+
+      end
+
+      private
+
+      def set_thing
         @thing = Thing.find(params[:id])
       end
     end

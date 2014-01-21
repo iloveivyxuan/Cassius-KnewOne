@@ -39,10 +39,8 @@ json.reviews_count @thing.reviews.count
 json.content sanitize(@thing.content)
 json.created_at @thing.created_at
 json.updated_at @thing.updated_at
-if user_signed_in?
-  json.fancied @thing.fancied?(current_user)
-  json.owned @thing.owned?(current_user)
-end
+json.fancier_ids thing.fanciers.map {|u| u.id.to_s}
+json.owner_ids thing.owners.map {|u| u.id.to_s}
 json.author do
   json.id @thing.author.id.to_s
   json.url url_wrapper(@thing.author)

@@ -172,6 +172,11 @@ Making::Application.routes.draw do
         end
       end
 
+      resource :account, only: [:show, :update] do
+        resources :fancies, only: [:index, :show, :create, :destroy]
+        resources :owns, only: [:index, :show, :create, :destroy]
+      end
+
       get 'oauth/default_callback', to: 'oauth#default_callback'
     end
   end

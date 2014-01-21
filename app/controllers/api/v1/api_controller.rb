@@ -64,6 +64,8 @@ module Api
 
       protected
       def respond_request
+        return unless self.response_body.nil?
+
         respond_to do |format|
           format.json
         end

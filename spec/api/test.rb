@@ -1,11 +1,25 @@
 #!/usr/bin/env ruby
 
+require 'pry'
 require 'oauth2'
 
-APP_ID = 'b72156195338939a8a0ccd6628d4d30584b2a2f7b0303555c988149319a5285a'
-SECRET = '8fdb306ac247952a8804ab8fe393eaf8c8c18328d42442bfee01c79ac1f07786'
+CONSOLE = Pry
+
+APP_ID = '0719b4c46134ef3cdb5033b2e3e15d81d5a10c5e2dc6c8dd6bcb9c5c9b1dd5be'
+SECRET = '0569fb770c1ec2c0488420f8278e76c765e300ea8d3c487ea06947e4c79a9bcf'
 URL = 'http://making.dev'
-CALLBACK_URL = 'http://making.dev/api/v1/oauth/default_callback'
+USERNAME = 'jasl@knewone.com'
+PASSWORD = 'aaaaaa'
 
 client = OAuth2::Client.new(APP_ID, SECRET, site: URL)
+@token = client.password.get_token(USERNAME, PASSWORD)
+def token
+  @token
+end
 
+puts 'KnewOne interactive API testing tool'
+puts '======================================='
+puts "Access token: '#{token.token}'."
+puts "Call 'token' to test APIs, see Oauth2 gem documents for help."
+
+CONSOLE.start
