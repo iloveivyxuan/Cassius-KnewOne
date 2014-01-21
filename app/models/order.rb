@@ -42,6 +42,11 @@ class Order
     @coupon_code_id = self.coupon_code.nil? ? '' : id
   end
 
+  attr_accessor :use_sf
+  def use_sf?
+    !['0', false].include?(self.use_sf)
+  end
+
   STATES = {:pending => '等待付款',
             :freed => '无需支付，请用户确认',
             :confirmed => '支付成功，系统正在受理',
@@ -92,6 +97,12 @@ class Order
     self.address = self.user.addresses.where(id: self.address_id).first if self.address_id
     self.invoice = self.user.invoices.where(id: self.invoice_id).first if self.invoice_id
     self.coupon_code = CouponCode.where(id: self.coupon_code_id).first if self.coupon_code_id
+
+    if use_sf?
+      self.deliver_by = :sf
+    else
+      self.deliver_by = :zt
+    end
 
     unless self.coupon_code.nil?
       if self.coupon_code.bound_user?
@@ -358,7 +369,7 @@ class Order
 
   def calculate_deliver_price
     return 0 if self.deliver_by.nil? || self.address.nil?
-    self.class.calculate_deliver_price_by_method_and_price(self.deliver_by, self.address.province, items_price)
+    (self.deliver_by == :zt || items_price > 500) ? 0 : 8.0
   end
 
   def items_price
@@ -449,19 +460,6 @@ class Order
       order.add_items_from_cart user.cart_items
 
       order
-    end
-
-    def calculate_deliver_price_by_method_and_price(method, province, items_price)
-      price = Province[province][method.to_s]
-      case items_price
-        when 0..Settings.deliver_price.half
-        when Settings.deliver_price.half..Settings.deliver_price.full
-          price -= 10
-        else
-          price -= 20
-      end
-
-      price > 0 ? price : 0
     end
 
     def cleanup_expired_orders
