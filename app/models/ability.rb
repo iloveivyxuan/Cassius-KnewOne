@@ -24,6 +24,8 @@ class Ability
   private
 
   def signed(user)
+    can :read, User
+
     can :binding, User
     can :bind, User
 
@@ -72,7 +74,6 @@ class Ability
   def basic
     can :read, Photo
     can :read, Post
-    can :read, User
     can :read, Comment
     can :read, Group
     can :read, Topic

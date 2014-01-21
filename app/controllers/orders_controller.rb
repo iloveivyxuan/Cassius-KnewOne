@@ -15,7 +15,6 @@ class OrdersController < ApplicationController
   def new
     @order = Order.build_order(current_user, (params.has_key?(:order) ? order_params : nil))
     @order.address ||= current_user.addresses.first
-    @order.deliver_by ||= :sf
   end
 
   def create
@@ -169,6 +168,6 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).
-        permit(:note, :deliver_by, :address_id, :invoice_id, :auto_owning, :coupon_code_id, :use_balance)
+        permit(:note, :address_id, :invoice_id, :auto_owning, :coupon_code_id, :use_balance, :use_sf)
   end
 end
