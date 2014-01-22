@@ -1,5 +1,6 @@
 html.home_landing {
   height: 100%;
+  overflow: hidden;
   width: 100%;
 
   $feature_position_right: 50px;
@@ -7,6 +8,7 @@ html.home_landing {
 
   body {
     height: 100%;
+    overflow: hidden;
     padding-bottom: 0;
     width: 100%;
 
