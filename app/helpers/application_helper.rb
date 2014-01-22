@@ -31,7 +31,7 @@ module ApplicationHelper
   end
 
   def slogan
-    "Creativity, From People, By People, For People"
+    "在这里，分享新奇酷产品和使用体验"
   end
 
   def logo
