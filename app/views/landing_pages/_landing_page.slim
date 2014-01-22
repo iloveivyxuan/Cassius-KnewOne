@@ -10,7 +10,8 @@
     span data-src="#{landing_page.lg_background.url}" data-media="(min-width: 993px) and (max-width: 1440px)"
     span data-src="#{landing_page.xl_background.url}" data-media="(min-width: 1441px)"
 
-  = link_to landing_page.focus, landing_page.focus_link, class: 'feature_name'
+  - if landing_page.focus.present? and landing_page.focus_link.present?
+    = link_to landing_page.focus, landing_page.focus_link, class: 'feature_name'
 
   .feature_comments
     - landing_page.landing_page_comments.each do |c|
