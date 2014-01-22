@@ -51,7 +51,7 @@ header role="banner"
           .nav_user.is_login.dropdown
             = link_to "#", class: "nav_user_avatar dropdown-toggle", data: {toggle: "dropdown"} do
               = image_tag current_user.avatar.url(:tiny), class: "img-circle"
-            = link_to messages_path, class: "nav_user_action nav_messages", title: "#{unread_messages_count}个未读消息" do
+            = link_to messages_path, class: "nav_user_action nav_messages", title: "#{unread_messages_count}未读消息" do
               i.fa.fa-inbox
               span.badge= unread_messages_count
             = link_to cart_items_path, class: "nav_user_action nav_cart", title: "购物车" do

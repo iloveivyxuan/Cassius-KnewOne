@@ -19,6 +19,10 @@
     .btn-group {
       margin-left: 10px;
     }
+
+    .btn_pay {
+      width: 8em;
+    }
   }
 
   button[type="submit"] {
@@ -230,6 +234,10 @@
 
         .btn-group {
           @include clearfix;
+        }
+
+        .btn {
+          min-width: 8em;
         }
 
         @media screen and (min-width: 900px) {

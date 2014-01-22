@@ -2,7 +2,7 @@
 module MessagesHelper
   def unread_messages_count
     count = current_user.messages.unread.count
-    (count > 0) ? count : ""
+    (count > 0) ? "#{count}个" : ""
   end
 
   def message_type(message)

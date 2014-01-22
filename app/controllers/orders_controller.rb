@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
   def new
     @order = Order.build_order(current_user, (params.has_key?(:order) ? order_params : nil))
     @order.address ||= current_user.addresses.first
+    @order.use_balance = true
   end
 
   def create

@@ -1,6 +1,6 @@
 # encoding: utf-8
 module OrdersHelper
-  def pay_link(order, drop_up = true, css = 'btn btn-success')
+  def pay_link(order, drop_up = true, css = 'btn btn-success btn_pay')
     if order.can_pay?
       render partial: 'orders/pay', locals: {order: order, css: css, dropup: drop_up}
     end

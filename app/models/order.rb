@@ -149,6 +149,10 @@ class Order
     self.user.cart_items.where(:thing.in => order_items.map(&:thing), :kind_id.in => order_items.map(&:kind).map(&:id)).destroy_all
   end
 
+  after_create do
+    confirm_free! if can_confirm_free?
+  end
+
   after_save do
     generate_waybill! if confirmed?
   end
