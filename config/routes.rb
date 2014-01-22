@@ -160,8 +160,10 @@ Making::Application.routes.draw do
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
       resources :things, only: [:index, :show] do
-        resources :reviews, only: [:index, :show]
-        resources :comments, only: [:index]
+        resources :reviews, only: [:index, :show] do
+          resources :comments, controller: :review_comments, only: [:index, :show, :create, :destroy]
+        end
+        resources :comments, controller: :thing_comments, only: [:index, :show, :create, :destroy]
       end
       resources :users, only: [:index, :show] do
         member do
@@ -173,8 +175,8 @@ Making::Application.routes.draw do
       end
 
       resource :account, only: [:show, :update] do
-        resources :fancies, only: [:index, :show, :create, :destroy]
-        resources :owns, only: [:index, :show, :create, :destroy]
+        resources :fancies, only: [:show, :update, :destroy]
+        resources :owns, only: [:show, :update, :destroy]
       end
 
       get 'oauth/default_callback', to: 'oauth#default_callback'

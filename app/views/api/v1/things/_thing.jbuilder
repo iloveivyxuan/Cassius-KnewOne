@@ -3,7 +3,7 @@ json.title thing.title
 json.subtitle thing.subtitle
 json.url url_wrapper(thing)
 json.reivews_url url_wrapper(thing, :reviews)
-json.comments_url url_wrapper(thing, :comments)
+json.comments_url url_wrapper(thing, :thing_comments)
 json.cover_url thing.cover.url
 json.stage thing.stage
 json.stage_text ::Thing::STAGES[thing.stage]

@@ -42,8 +42,6 @@ module Api
 
       after_filter :respond_request
 
-      protect_from_forgery
-
       rescue_from Mongoid::Errors::DocumentNotFound do
         head :not_found
       end

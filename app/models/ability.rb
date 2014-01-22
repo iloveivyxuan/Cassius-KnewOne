@@ -81,7 +81,7 @@ class Ability
     can :read, Investor
     can :buy, Thing
     can :read, ThingGroup
-    can :comments, Thing
+    can :thing_comments, Thing
     can :wechat_qr, Thing
     can :create, Supplier
   end

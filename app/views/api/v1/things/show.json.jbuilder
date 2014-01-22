@@ -32,6 +32,9 @@ if @thing.self_run?
   end
 end
 json.official_site_url @thing.official_site
+json.html_url thing_url(@thing)
+json.reivews_url url_wrapper(@thing, :reviews)
+json.comments_url url_wrapper(@thing, :comments)
 json.photo_urls @thing.photos.map {|p| p.image.url}
 json.fanciers_count @thing.fanciers.count
 json.owners_count @thing.owners.count
@@ -39,8 +42,6 @@ json.reviews_count @thing.reviews.count
 json.content sanitize(@thing.content)
 json.created_at @thing.created_at
 json.updated_at @thing.updated_at
-json.fancier_ids thing.fanciers.map {|u| u.id.to_s}
-json.owner_ids thing.owners.map {|u| u.id.to_s}
 json.author do
   json.id @thing.author.id.to_s
   json.url url_wrapper(@thing.author)

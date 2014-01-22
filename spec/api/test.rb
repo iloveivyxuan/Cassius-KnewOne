@@ -5,8 +5,8 @@ require 'oauth2'
 
 CONSOLE = Pry
 
-APP_ID = '0719b4c46134ef3cdb5033b2e3e15d81d5a10c5e2dc6c8dd6bcb9c5c9b1dd5be'
-SECRET = '0569fb770c1ec2c0488420f8278e76c765e300ea8d3c487ea06947e4c79a9bcf'
+APP_ID = '98aada7a9e5d027dc8f9077e9ffed1f3842b1c71072cf88c5232531b1688801c'
+SECRET = 'a972e416053f74f21b41d8960eb1a595a6c79fd84d6731744c09b634fb376cf3'
 URL = 'http://making.dev'
 USERNAME = 'jasl@knewone.com'
 PASSWORD = 'aaaaaa'
@@ -15,6 +15,26 @@ client = OAuth2::Client.new(APP_ID, SECRET, site: URL)
 @token = client.password.get_token(USERNAME, PASSWORD)
 def token
   @token
+end
+
+def get(*args)
+  @token.get(*args)
+end
+
+def post(*args)
+  @token.post(*args)
+end
+
+def patch(*args)
+  @token.patch(*args)
+end
+
+def put(*args)
+  @token.put(*args)
+end
+
+def delete(*args)
+  @token.delete(*args)
 end
 
 puts 'KnewOne interactive API testing tool'

@@ -15,7 +15,7 @@ nav
         i.fa.fa-book
         span.sub 评测
         span.badge= tp.reviews_count
-    = nav_tab :comments do
+    = nav_tab :thing_comments do
       = link_to comments_thing_path(tp.thing) do
         i.fa.fa-comments
         span.sub 留言
