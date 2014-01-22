@@ -1,14 +1,16 @@
 Making.OrderPage =
   InitNew: ->
     $ ->
-      $('.deliver_method').on('change',
+      $('.use_sf').on('change',
       ->
-        price = parseFloat($(this).attr('data-price')) + \
-                parseFloat($('.total_price').attr('data-things-price')) + \
+        price = parseFloat($('.total_price').attr('data-things-price')) + \
                 parseFloat($('.total_price').attr('data-rebates-price'))
-        price = 0 if price < 0
 
-        $('.total_price strong span').text(price.toFixed(2))
+        if $(@).prop('checked')
+          price += parseFloat($(this).attr('data-price'))
+
+        price = 0 if price < 0
+        $('.total_price strong span').text(price.toFixed(1))
       )
 
       if($('.order_address_radio').length == 0)

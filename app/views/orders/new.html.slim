@@ -19,8 +19,8 @@ section.simple_page_wrapper.widget.orders_wrapper
       - if @order.items_price <= 500
         div
           label.checkbox.misc_option
-            = f.check_box :use_sf
-            | 使用顺丰速运
+            = f.check_box :use_sf, :class => 'use_sf', :'data-price' => Order::SF_PRICE
+            | 使用顺丰速运（+10元）
       - if current_user.has_balance?
         div
           label.checkbox.misc_option

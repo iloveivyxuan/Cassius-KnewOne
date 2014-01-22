@@ -44,8 +44,9 @@ class Order
 
   attr_accessor :use_sf
   def use_sf?
-    !['0', false].include?(self.use_sf)
+    !['0', false, nil].include?(self.use_sf) || self.deliver_by == :sf
   end
+  SF_PRICE = 10.0
 
   STATES = {:pending => '等待付款',
             :freed => '无需支付，请用户确认',
@@ -97,12 +98,6 @@ class Order
     self.address = self.user.addresses.where(id: self.address_id).first if self.address_id
     self.invoice = self.user.invoices.where(id: self.invoice_id).first if self.invoice_id
     self.coupon_code = CouponCode.where(id: self.coupon_code_id).first if self.coupon_code_id
-
-    if use_sf?
-      self.deliver_by = :sf
-    else
-      self.deliver_by = :zt
-    end
 
     unless self.coupon_code.nil?
       if self.coupon_code.bound_user?
@@ -369,7 +364,7 @@ class Order
 
   def calculate_deliver_price
     return 0 if self.deliver_by.nil? || self.address.nil?
-    (self.deliver_by == :zt || items_price > 500) ? 0 : 8.0
+    (self.deliver_by == :zt || items_price > 500) ? 0 : SF_PRICE
   end
 
   def items_price
@@ -458,6 +453,12 @@ class Order
       params ||= {}
       order = user.orders.build params
       order.add_items_from_cart user.cart_items
+
+      if order.items_price > 500 || order.use_sf?
+        order.deliver_by = :sf
+      else
+        order.deliver_by = :zt
+      end
 
       order
     end
