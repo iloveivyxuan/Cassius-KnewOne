@@ -16,16 +16,10 @@ class OrdersController < ApplicationController
     @order = Order.build_order(current_user, (params.has_key?(:order) ? order_params : nil))
     @order.address ||= current_user.addresses.first
     @order.use_balance = true
-
-    @order.use_sf = true
-    @order.deliver_by = :sf
   end
 
   def create
     @order = Order.build_order(current_user, order_params)
-
-    @order.deliver_by = :sf
-
     if @order.save!
       redirect_to @order, flash: {provider_sync: params[:provider_sync]}
     else

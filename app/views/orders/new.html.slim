@@ -17,10 +17,9 @@ section.simple_page_wrapper.widget.orders_wrapper
       = render partial: 'invoice_select', locals: {f: f} if @order.total_price > 100
 
       - if @order.items_price <= 500
-        .alert.alert-warning 由于中通快递于1月22日开始停止发送快递，所以年前仅可选择顺丰快递，敬请谅解。
         div
           label.checkbox.misc_option
-            = f.check_box :use_sf, :disabled => true, :class => 'use_sf', :'data-price' => Order::SF_PRICE
+            = f.check_box :use_sf, :class => 'use_sf', :'data-price' => Order::SF_PRICE
             | 使用顺丰速运（+10元）
       - if current_user.has_balance?
         div
