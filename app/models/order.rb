@@ -367,7 +367,7 @@ class Order
   end
 
   def calculate_deliver_price
-    return 0 if self.deliver_by.nil? || self.address.nil?
+    return 0 if self.deliver_by.nil?
     (self.deliver_by == :zt || items_price > 500) ? 0 : SF_PRICE
   end
 
