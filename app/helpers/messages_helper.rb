@@ -10,7 +10,7 @@ module MessagesHelper
     if count.blank?
       '没有'
     else
-      "#{count}条"
+      "#{count} 条"
     end
   end
 
