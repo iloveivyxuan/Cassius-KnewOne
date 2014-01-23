@@ -1,5 +1,7 @@
 hgroup
-  h1 产品列表
+  h1
+    | 产品列表
+    small 全部 #{Thing.all.size} 自营 #{Thing.self_run.size}
   p
     = link_to "自动更新显示权重", resort_haven_things_path, class: 'btn btn-default'
     = link_to "可购产品列表", haven_things_path(filter: "can_buy"), class: 'btn btn-default'
