@@ -9,6 +9,7 @@ html.home_landing {
   body {
     height: 100%;
     overflow: hidden;
+    padding-bottom: 0;
     padding-top: $navbar-height + 1px;
     width: 100%;
 
@@ -33,9 +34,10 @@ html.home_landing {
 
       @media screen and (min-width: $screen-md-min + 1) {
         bottom: 1em;
+        left: calc(50% - 100px);
         padding: 0;
         position: absolute;
-        width: 100%;
+        width: 200px;
       }
 
       img {
