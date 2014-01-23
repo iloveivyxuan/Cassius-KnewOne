@@ -46,12 +46,13 @@ class HomeController < ApplicationController
     respond_to do |format|
       if q.present?
         @things = Thing.published.or({title: /#{q}/i}, {subtitle: /#{q}/i}).page(params[:page]).per(12)
-
         format.html
         format.js
+        format.json
       else
         format.html { redirect_to things_path }
         format.js { head :no_content }
+        format.json { head :no_content }
       end
     end
   end
