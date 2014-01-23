@@ -94,6 +94,8 @@ class Order
 
   accepts_nested_attributes_for :rebates, allow_destroy: true, reject_if: :all_blank
 
+  scope :deal, -> { unscoped.in(state: [:confirmed, :shipped, :freed]).desc(:created_at) }
+
   after_build do
     self.address = self.user.addresses.where(id: self.address_id).first if self.address_id
     self.invoice = self.user.invoices.where(id: self.invoice_id).first if self.invoice_id
