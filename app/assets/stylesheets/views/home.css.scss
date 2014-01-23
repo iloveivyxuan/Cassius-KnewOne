@@ -9,11 +9,15 @@ html.home_landing {
   body {
     height: 100%;
     overflow: hidden;
-    padding-bottom: 0;
+    padding-top: $navbar-height + 1px;
     width: 100%;
 
+    @media screen and (min-width: $screen-md-min + 1) {
+      padding-top: 0;
+    }
+
     > header {
-      margin-bottom: $navbar-height + 1px;
+      margin-bottom: 0;
 
       @media screen and (min-width: $screen-md-min + 1) {
         display: none;
@@ -23,13 +27,13 @@ html.home_landing {
     > footer {
       background: none;
       color: $text-muted;
-      margin: 1em 0;
-      padding: 0;
+      margin: 0;
+      padding: 0 0 1em;
       text-align: center;
 
       @media screen and (min-width: $screen-md-min + 1) {
         bottom: 1em;
-        margin: 0;
+        padding: 0;
         position: absolute;
         width: 100%;
       }
