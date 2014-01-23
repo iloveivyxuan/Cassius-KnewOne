@@ -1,6 +1,7 @@
 - provide :title, @category.name
 
 section#things_index
+  h1= @category.name
   ul#things= render @things, size: :normal, img_lazy: true
   = paginate @things
 

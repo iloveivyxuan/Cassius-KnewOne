@@ -265,6 +265,23 @@
     }
   }
 
+  .categories {
+    a {
+      display: inline-block;
+      margin-right: 1em;
+      background: #eee;
+      color: #666;
+      margin: 1em 1em 1em 0;
+      padding: .3em .5em;
+      @include border-radius(3px);
+      &:hover {color: $text-color;}
+
+      @media screen and (min-width: $screen-md-min) {
+        margin-top: 0;
+      }
+    }
+  }
+
   .actions {
     margin: 1em 0;
     > * {
@@ -486,6 +503,11 @@
 #things_index {
   @include site_margin;
   > nav {margin-bottom: 1em;}
+  h1 {
+    margin-bottom: 1em;
+    color: $text-muted;
+    font-size: 24px;
+  }
   ul#things {
     @include make-row;
     li {

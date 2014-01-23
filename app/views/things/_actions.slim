@@ -16,6 +16,9 @@
     = tp.shopping_desc
   = tp.content_for_buy
 
+.categories
+  = render partial: "things/category", collection: tp.categories
+
 .actions
   .fanciers= render "shared/fancy", p: tp
   .owners= render "things/own", tp: tp

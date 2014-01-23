@@ -231,4 +231,8 @@ class ThingPresenter < PostPresenter
   def options_for_kinds
     options_for_select kinds.map(&:build_option)
   end
+
+  def categories
+    Category.any_in(name: thing.categories)
+  end
 end

@@ -8,6 +8,8 @@ class Category
 
   validates :name, presence: true, uniqueness: true
 
+  default_scope -> { desc(:things_count) }
+
   def things
     Thing.published.any_in(categories: [name])
   end

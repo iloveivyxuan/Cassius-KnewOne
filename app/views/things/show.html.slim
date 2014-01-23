@@ -3,7 +3,6 @@
 - present @thing do |tp|
   = render "carousel", tp: tp
   = tp.content
-  = render 'stories/timeline', tp: tp
   = render 'reviews', tp: tp
   = render 'shared/comments', post: @thing, id: "thing_comments"
 
