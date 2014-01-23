@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   def index
-    @categories = Category.desc(:things_count)
+    @categories = Category.gt(things_count: 0)
   end
 
   def show
