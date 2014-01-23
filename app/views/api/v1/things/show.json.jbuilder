@@ -7,6 +7,13 @@ json.stage thing_stage
 json.stage_text ::Thing::STAGES[thing_stage]
 if @thing.stage == :invest
   json.investors_count @thing.investors.count
+  json.investor @thing.investors do |investor|
+    json.id investor.user.id.to_s
+    json.url url_wrapper(investor.user)
+    json.avatar_url investor.user.avatar.url
+    json.name investor.user.name
+    json.amount investor.amount
+  end
   json.invest_amount invest_amount(@thing)
   json.invest_target @thing.target
   json.invest_unit '￥'

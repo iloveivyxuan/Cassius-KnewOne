@@ -180,7 +180,16 @@ Making::Application.routes.draw do
         resource :cart, only: [:show] do
           resources :items, controller: :cart_items, only: [:index, :show, :create, :update, :destroy]
         end
-        resources :orders, only: [:index, :show, :create, :cancel, :tenpay_callback, :alipay_callback]
+        resources :orders, only: [:index, :show, :create] do
+          member do
+            patch 'cancel'
+            get 'tenpay_callback'
+            get 'alipay_callback'
+          end
+        end
+        resources :coupons, only: [:index, :update]
+        resources :addresses, except: [:new, :edit, :show]
+        resources :invoices, except: [:new, :edit, :show]
 
         member do
           patch 'profile'

@@ -8,7 +8,7 @@ module Api
       end
 
       def index
-        @items = current_user.cart_items
+        @items = current_user.cart_items.page(params[:page]).per(params[:per_page] || 8)
       end
 
       def create
