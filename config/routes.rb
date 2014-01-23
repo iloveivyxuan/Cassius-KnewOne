@@ -174,9 +174,19 @@ Making::Application.routes.draw do
         end
       end
 
-      resource :account, only: [:show, :update] do
+      resource :account, only: [:show] do
         resources :fancies, only: [:show, :update, :destroy]
         resources :owns, only: [:show, :update, :destroy]
+        resource :cart, only: [:show] do
+          resources :items, controller: :cart_items, only: [:index, :show, :update, :destroy]
+        end
+        resources :orders, only: [:index, :show, :create, :cancel, :tenpay_callback, :alipay_callback]
+
+        member do
+          patch 'profile'
+          patch 'email'
+          patch 'password'
+        end
       end
 
       get 'oauth/default_callback', to: 'oauth#default_callback'

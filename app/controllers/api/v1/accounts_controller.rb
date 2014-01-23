@@ -9,14 +9,16 @@ module Api
 
       end
 
-      def update
+      def profile
 
       end
 
-      private
+      def email
 
-      def set_user
-        @user = current_user
+      end
+
+      def password
+
       end
     end
   end

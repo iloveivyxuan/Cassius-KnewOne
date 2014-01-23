@@ -1,14 +1,14 @@
-json.id @user.id.to_s
-json.name @user.name
-json.rank @user.rank
-json.progress_to_next_rank @user.progress.to_i
-json.location @user.location
-json.description @user.description
-json.fancies_count @user.fancies.count
-json.fancies_url url_wrapper(@user, action: :fancies)
-json.things_count @user.things.count
-json.things_url url_wrapper(@user, action: :things)
-json.owns_count @user.owns.count
-json.owns_url url_wrapper(@user, action: :owns)
-json.reviews_count @user.reviews.count
-json.reviews_url url_wrapper(@user, action: :reviews)
+json.id current_user.id.to_s
+json.name current_user.name
+json.rank current_user.rank
+json.progress_to_next_rank current_user.progress.to_i
+json.location current_user.location
+json.description current_user.description
+json.fancies_count current_user.fancies.count
+json.fancies_url url_wrapper(current_user, action: :fancies)
+json.things_count current_user.things.count
+json.things_url url_wrapper(current_user, action: :things)
+json.owns_count current_user.owns.count
+json.owns_url url_wrapper(current_user, action: :owns)
+json.reviews_count current_user.reviews.count
+json.reviews_url url_wrapper(current_user, action: :reviews)
