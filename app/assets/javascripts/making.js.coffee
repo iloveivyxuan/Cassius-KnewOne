@@ -200,7 +200,7 @@ window.Making =
     $(container).infinitescroll
       navSelector: '.pagination'
       nextSelector: '.pagination a[rel="next"]'
-      contentSelector: container + ' ul'
+      contentSelector: container + ' ul:first-child'
       itemSelector: item
       pixelsFromNavToBottom: 150
       loading:
