@@ -4,7 +4,7 @@ module Api
       doorkeeper_for :all
 
       def show
-
+        @items = current_user.cart_items
       end
     end
   end

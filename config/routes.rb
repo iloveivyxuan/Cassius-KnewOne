@@ -178,7 +178,7 @@ Making::Application.routes.draw do
         resources :fancies, only: [:show, :update, :destroy]
         resources :owns, only: [:show, :update, :destroy]
         resource :cart, only: [:show] do
-          resources :items, controller: :cart_items, only: [:index, :show, :update, :destroy]
+          resources :items, controller: :cart_items, only: [:index, :show, :create, :update, :destroy]
         end
         resources :orders, only: [:index, :show, :create, :cancel, :tenpay_callback, :alipay_callback]
 
