@@ -1,19 +1,22 @@
 html.home_landing {
   height: 100%;
-  overflow: hidden;
   width: 100%;
+
+  @media screen and (min-width: $screen-md-min + 1) {
+    overflow: hidden;
+  }
 
   $feature_position_right: 50px;
   $feature_position_left: 50px;
 
   body {
     height: 100%;
-    overflow: hidden;
     padding-bottom: 0;
     padding-top: $navbar-height + 1px;
     width: 100%;
 
     @media screen and (min-width: $screen-md-min + 1) {
+      overflow: hidden;
       padding-top: 0;
     }
 
