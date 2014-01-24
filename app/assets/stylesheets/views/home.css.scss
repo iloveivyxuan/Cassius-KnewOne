@@ -252,6 +252,11 @@ html.home_landing {
     @media screen and (min-width: $screen-md-min + 1) {
       &.theme_dark {
 
+        > header {
+          left: 18%;
+          top: 200px;
+        }
+
         .feature_name {
           color: #ddd;
         }
@@ -271,12 +276,17 @@ html.home_landing {
         }
 
         .entry {
-          background-color: rgba(#1e1e1e, 0.7);
-          border-color: #181818;
-          box-shadow: 0 0 30px #191919;
+          left: auto;
+          right: 10%;
+          top: 39%;
+          width: 280px;
+
+          background-color: transparent;
+          border-color: #ccc;
+          @include border-radius(16px);
 
           .oauth {
-            .fa {color: #404b53;}
+            .fa {color: #ccc;}
           }
 
           .nav-pills-list {
@@ -284,7 +294,7 @@ html.home_landing {
             > li {
 
               > a {
-                color: darken(#ddd, 50%);
+                color: darken(#ddd, 25%);
 
                 &:hover,
                 &:focus {
@@ -305,6 +315,19 @@ html.home_landing {
                   }
                 }
               }
+            }
+          }
+
+          .tab-content  {
+            padding-top: 1.5em;
+            .form-group {
+              margin-bottom: 1.5em;
+            }
+            .form-group:nth-last-child(2) {
+              margin-bottom: .5em;
+            }
+            .form-group:last-child {
+              margin-top: 1em;
             }
           }
 
