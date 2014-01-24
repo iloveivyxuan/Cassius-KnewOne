@@ -253,8 +253,29 @@ html.home_landing {
       &.theme_dark {
 
         > header {
-          left: 18%;
-          top: 200px;
+          left: 20.5%;
+          top: 20%;
+
+          > h1 {
+            @media screen and (min-width: $screen-md-min + 1) {
+              font-size: 50px;
+              margin-bottom: 8px;
+            }
+          }
+
+          > img {
+            @media screen and (min-width: $screen-md-min + 1) {
+              margin-left: -18px;
+              margin-top: 0;
+            }
+          }
+
+          > p {
+            @media screen and (min-width: $screen-md-min + 1) {
+              color: #ccc;
+              font-size: 28px;
+            }
+          }
         }
 
         .feature_name {
