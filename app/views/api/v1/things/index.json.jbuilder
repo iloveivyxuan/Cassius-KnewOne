@@ -6,7 +6,7 @@ json.array!(@things) do |thing|
   json.subtitle thing.subtitle
   json.url url_wrapper(thing)
   json.html_url thing_url(thing)
-  json.reivews_url url_wrapper(thing, :reviews)
+  json.reviews_url url_wrapper(thing, :reviews)
   json.comments_url url_wrapper(thing, :comments)
   json.cover_url thing.cover.url
   json.stage thing_stage
