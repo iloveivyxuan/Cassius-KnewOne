@@ -1,87 +1,88 @@
 - provide :title, '订单详情'
 
-header.page-header
-  h2
-    i.fa.fa-shopping-cart
-    | 订单信息
-.summary
-  ul
-    li
-      strong.field 订单编号：
-      span = @order.order_no
-    li
-      strong.field 用户：
-      span = link_to @order.user.name, @order.user, target: '_blank'
-    li
-      strong.field 收货地址：
-      span = address_text @order
-    - if @order.invoice
-      tr
-        strong.field 发票信息：
-        span = content_for_invoice @order.invoice
-    li
-      strong.field 物流方式：
-      span = deliver_method_text @order
-    li
-      strong.field 订单状态：
-      = render_summary_state @order
-    - if @order.deliver_no.present?
+section.orders_wrapper
+  header.page-header
+    h2
+      i.fa.fa-shopping-cart
+      | 订单信息
+  .summary
+    ul
       li
-        strong.field 运单号：
-        span = @order.deliver_no
-    - if @order.trade_no.present?
+        strong.field 订单编号：
+        span = @order.order_no
       li
-        strong.field 交易号：
-        span = @order.trade_no
-    li
-      strong.field 创建时间：
-      span = date_time_text @order.created_at
-    - if @order.note.present?
+        strong.field 用户：
+        span = link_to @order.user.name, @order.user, target: '_blank'
       li
-        strong.field 用户备注：
-        span = @order.note
-    - if @order.system_note.present?
+        strong.field 收货地址：
+        span = address_text @order
+      - if @order.invoice
+        tr
+          strong.field 发票信息：
+          span = content_for_invoice @order.invoice
       li
-        strong.field 系统备注：
-        span = @order.system_note
-    - if @order.admin_note.present?
+        strong.field 物流方式：
+        span = deliver_method_text @order
       li
-        strong.field 管理员备注：
-        span = @order.admin_note
-    - if @order.shipped?
+        strong.field 订单状态：
+        = render_summary_state @order
+      - if @order.deliver_no.present?
+        li
+          strong.field 运单号：
+          span = @order.deliver_no
+      - if @order.trade_no.present?
+        li
+          strong.field 交易号：
+          span = @order.trade_no
       li
-        strong.field 物流信息：
-        = render 'orders/delivery'
-    li
-      strong.field 原始价格：
-      span = @order.calculate_price
-  .info
-    .total_price
-      span.tip 总计
-      strong
-        i.fa.fa-yen
-        span= @order.total_price
-section
-  ul = render partial: 'orders/order_item', collection: @order.order_items
-  ul = render partial: 'orders/rebate', collection: @order.rebates if @order.rebates.any?
+        strong.field 创建时间：
+        span = date_time_text @order.created_at
+      - if @order.note.present?
+        li
+          strong.field 用户备注：
+          span = @order.note
+      - if @order.system_note.present?
+        li
+          strong.field 系统备注：
+          span = @order.system_note
+      - if @order.admin_note.present?
+        li
+          strong.field 管理员备注：
+          span = @order.admin_note
+      - if @order.shipped?
+        li
+          strong.field 物流信息：
+          = render 'orders/delivery'
+      li
+        strong.field 原始价格：
+        span = @order.calculate_price
+    .info
+      .total_price
+        span.tip 总计
+        strong
+          i.fa.fa-yen
+          span= @order.total_price
+  .order_item
+    ul = render partial: 'orders/order_item', collection: @order.order_items
+    ul = render partial: 'orders/rebate', collection: @order.rebates if @order.rebates.any?
 
-section
-  = simple_nested_form_for @order, url: haven_order_path(@order), html: {class: "form"} do |f|
-    fieldset
-      legend 订单调整
-      = f.input :admin_note, as: :text, input_html: {rows: 3}
-      = f.input :alteration, as: :text, input_html: {rows: 3}
-      = f.input :price, as: :decimal, required: true if @order.pending?
-      = f.button :submit, class: "btn-primary"
+  section
+    = simple_nested_form_for @order, url: haven_order_path(@order), html: {class: "form"} do |f|
+      fieldset
+        legend 订单调整
+        = f.input :admin_note, as: :text, input_html: {rows: 3}
+        = f.input :alteration, as: :text, input_html: {rows: 3}
+        = f.input :price, as: :decimal, required: true if @order.pending?
+        = f.button :submit, class: "btn-primary"
 
-footer.clearfix
-  .text-right
-    = ship_link(@order)
-    = refund_to_balance_link(@order)
-  hr
-  .order_actions.text-right
-    .btn-group = link_to '返回', haven_orders_path, class: 'btn btn-default'
-    = way_bill_link(@order)
-    = deliver_bill_link(@order)
-    = refund_link(@order)
-    = close_link(@order)
+  footer.clearfix
+    .text-right
+      = ship_link(@order)
+      = refund_to_balance_link(@order)
+    hr
+    .order_actions.text-right
+      .btn-group = link_to '返回', haven_orders_path, class: 'btn btn-default'
+      = way_bill_link(@order)
+      = deliver_bill_link(@order)
+      = refund_link(@order)
+      = close_link(@order)
