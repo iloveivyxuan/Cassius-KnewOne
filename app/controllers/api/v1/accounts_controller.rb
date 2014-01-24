@@ -3,7 +3,6 @@ module Api
     class AccountsController < ApiController
       helper 'api/v1/users'
       doorkeeper_for :all
-      before_action :set_user
 
       def show
 
