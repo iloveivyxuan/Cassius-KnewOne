@@ -50,6 +50,9 @@ window.Making =
         return
 
       if $('html').hasClass 'home_landing'
+        if Modernizr.mq('(min-width: ' + Making.Breakpoint.screenSMMin + ')')
+          $('.entry_email_toggle').addClass('active')
+
         $comments = $('.feature_comment')
         length = $comments.length
         if length > 1
