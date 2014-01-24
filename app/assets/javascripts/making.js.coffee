@@ -53,6 +53,13 @@ window.Making =
         if Modernizr.mq('(min-width: ' + Making.Breakpoint.screenSMMin + ')')
           $('.entry_email_toggle').addClass('active')
 
+        $image = $('.feature_image')
+        $image.attr('data-picture', true)
+        window.picturefill()
+
+        $image.find('img').on 'load', ->
+          $(@).addClass('in')
+
         $comments = $('.feature_comment')
         length = $comments.length
         if length > 1

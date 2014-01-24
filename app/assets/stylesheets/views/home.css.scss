@@ -150,10 +150,17 @@ html.home_landing {
 
       img {
         @include stretch(-1000%, -1000%, -1000%, -1000%);
+        @include grayscale(100%);
+        @include transition-duration(5s);
+        @include transition-property(grayscale);
         margin: auto;
         max-height: none;
 
-        @media screen and (min-width: $screen-xl-min+1) {
+        &.in  {
+          @include grayscale(0%);
+        }
+
+        @media screen and (min-width: $screen-xl-min + 1) {
           height: 100%;
           width: 100%;
         }
