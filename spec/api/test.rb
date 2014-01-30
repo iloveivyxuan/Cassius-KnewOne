@@ -17,24 +17,10 @@ def token
   @token
 end
 
-def get(*args)
-  @token.get(*args)
-end
-
-def post(*args)
-  @token.post(*args)
-end
-
-def patch(*args)
-  @token.patch(*args)
-end
-
-def put(*args)
-  @token.put(*args)
-end
-
-def delete(*args)
-  @token.delete(*args)
+%i(get post patch put delete).each do |m|
+  define_method m do |*args|
+    @token.send m, *args
+  end
 end
 
 puts 'KnewOne interactive API testing tool'
