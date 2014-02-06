@@ -40,7 +40,6 @@ module Haven
       users = User.where(:email.in => params[:user_list].split("\r\n"))
       users.each do |u|
         @coupon.generate_code! user: u
-        logger.info 'do'
       end
 
       redirect_to haven_abatement_coupon_path(@coupon)
