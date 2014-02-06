@@ -74,6 +74,7 @@ Making::Application.routes.draw do
     resources :abatement_coupons, only: [:show, :index, :new, :create, :update] do
       member do
         post 'generate_code'
+        post 'batch_bind'
       end
     end
 

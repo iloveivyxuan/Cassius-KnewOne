@@ -5,6 +5,11 @@ hr
   = number_field_tag :amount, 1, min: 1, class: 'form-control'
   = submit_tag '生成', class: 'btn btn-primary'
 hr
+= form_tag batch_bind_haven_abatement_coupon_path(@coupon), role: "form"
+  | 一行输入一个用户的email
+  = text_area_tag :user_list, '', class: 'form-control'
+  = submit_tag '生成、绑定', class: 'btn btn-primary'
+hr
 table.table
   tr
     th 代码
@@ -17,5 +22,5 @@ table.table
       td = code.code
       td = code.expires_at.strftime('%Y-%m-%d')
       td = code.used? ? '已使用' : '未使用'
-      td = link_to code.user.name, code.user, target: '_blank' unless code.user.nil?
+      td = link_to ([code.user.name, code.user.email, code.user.id.to_s].reject(&:blank?).first), code.user, target: '_blank' unless code.user.nil?
       td = link_to code.order.order_no, haven_order_path(code.order), target: '_blank' if code.used?
