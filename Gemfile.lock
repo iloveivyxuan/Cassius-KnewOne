@@ -451,7 +451,7 @@ DEPENDENCIES
   airbrake
   alipay
   backbone-on-rails
-  bootstrap-sass (~> 3.1)
+  bootstrap-sass
   cancan!
   capistrano (~> 2.15.0)
   capistrano-unicorn
@@ -475,7 +475,7 @@ DEPENDENCIES
   jasl_tenpay!
   jbuilder
   jquery-fileupload-rails
-  jquery-rails (~> 3.1)
+  jquery-rails
   kaminari
   letter_opener!
   libnotify
@@ -502,7 +502,7 @@ DEPENDENCIES
   sidekiq
   simple_form
   sinatra (>= 1.3.0)
-  slim-rails (~> 2.1)
+  slim-rails
   spork-rails
   therubyracer
   thin
