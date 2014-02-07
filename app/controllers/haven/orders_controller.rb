@@ -84,6 +84,11 @@ module Haven
       redirect_to haven_orders_path
     end
 
+    def refunded_balance_to_platform
+      @order.refunded_balance_to_platform!
+      redirect_to haven_orders_path
+    end
+
     def generate_waybill
       @order.generate_waybill!
       redirect_to haven_order_path(@order)

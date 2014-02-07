@@ -213,7 +213,7 @@ class Order
   end
 
   def can_refunded_balance_to_platform?
-    refunded_to_platform?
+    refunded_to_balance?
   end
 
   def confirm_payment!(trade_no, price, method, raw)
@@ -346,15 +346,16 @@ class Order
     order_histories.create from: state, to: :refunded_to_balance
   end
 
-  def refunded_balance_to_platform!(price = 0)
+  def refunded_balance_to_platform!
     return false unless can_refunded_balance_to_platform?
 
+    refund_log = self.user.balance_logs.where(order_id: self.id, _type: 'RefundBalanceLog').first
+    self.user.revoke_refund_to_balance! self, refund_log.value, "订单#{self.order_no}的退款改退支付平台"
 
+    self.state = :refunded_to_platform
+    save!
 
-    # TODO: 只退实际支付的部分，退款Log记录了Order可以直接利用
-
-
-    #self.user.revoke_refund_to_balance!(self, should_return_balance, "订单#{self.order_no}的退款改退第三方支付平台")
+    order_histories.create from: :refunded_to_balance, to: :refunded_to_platform
   end
 
   def unexpect!(system_note = '', raw = {})

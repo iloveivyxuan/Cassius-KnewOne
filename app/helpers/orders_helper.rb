@@ -51,6 +51,16 @@ module OrdersHelper
     end
   end
 
+  def refunded_balance_to_platform_link(order, css = 'btn btn-danger')
+    if order.can_refunded_balance_to_platform?
+      content_tag :div, class: 'btn-group' do
+        link_to '改退款到第三方平台', refunded_balance_to_platform_haven_order_path(order),
+                data: {confirm: '确认退款？'},
+                method: :patch, class: css
+      end
+    end
+  end
+
   def refund_to_balance_link(order)
     if order.can_refund?
       render 'haven/orders/refund_to_balance', order: order

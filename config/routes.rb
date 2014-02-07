@@ -67,6 +67,7 @@ Making::Application.routes.draw do
         patch 'close'
         patch 'refund'
         patch 'refund_to_balance'
+        patch 'refunded_balance_to_platform'
         get 'generate_waybill'
       end
     end
