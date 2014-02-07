@@ -99,6 +99,7 @@ Making::Application.routes.draw do
       post 'own'
       get 'buy'
       get 'comments'
+      get 'related'
     end
 
     resources :reviews do

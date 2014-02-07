@@ -12,6 +12,8 @@ class Thing < Post
   field :categories, type: Array, default: []
   after_save :update_categories
 
+  field :related_thing_ids, type: Array, default: []
+
   field :shop, type: String, default: ""
   field :price, type: Float
   field :price_unit, type: String, default: "¥"
@@ -149,6 +151,61 @@ class Thing < Post
     [:invest, :dsell].include? stage
   end
 
+  def cal_related_thing_ids(limit = 10, cate_power = 50, own_power = 2, fancy_power = 1)
+    list = {}
+
+    Thing.any_in(categories: self.categories).each do |thing|
+      list[thing.id] = 0
+      self.categories.each do |c|
+        list[thing.id] += cate_power if thing.categories.include? c
+      end
+    end
+
+    self.fanciers.map(&:fancy_ids).each do |thing_ids|
+      thing_ids.each do |t|
+        if list[t]
+          list[t] += fancy_power
+        else
+          list[t] = fancy_power
+        end
+      end
+    end
+
+    self.owners.map(&:own_ids).each do |thing_ids|
+      thing_ids.each do |t|
+        if list[t]
+          list[t] += own_power
+        else
+          list[t] = own_power
+        end
+      end
+    end
+
+    list.delete self.id
+
+    powers = list.values
+    powers.uniq! && powers.sort! && powers.reverse! # O(n log n)
+    r = []
+    powers.each do |power|
+      r += list.select {|k, v| v == power}.keys # O(n)
+      break if r.size >= limit
+    end
+
+    r[0..(limit-1)].map {|i| i.to_s}
+  end
+
+  def update_related_thing_ids
+    self.related_thing_ids = cal_related_thing_ids
+  end
+
+  def related_things(lazy = Rails.env.development?)
+    ids = (lazy && self.related_thing_ids.blank?) ? cal_related_thing_ids : self.related_thing_ids
+    things = Thing.in(id: ids)
+    ids.map do |i|
+      things.select {|t| t.id.to_s == i}
+    end.reduce(&:+) || []
+  end
+
   class << self
     def resort!
       ordered_things = []
@@ -183,6 +240,10 @@ class Thing < Post
 
     def rand_records(per = 1)
       (0...Thing.count).to_a.shuffle.slice(0, per).map { |i| Thing.skip(i).first }
+    end
+
+    def recal_all_related_things
+      Thing.all.each {|t| t.update_related_thing_ids; t.save}
     end
   end
 end

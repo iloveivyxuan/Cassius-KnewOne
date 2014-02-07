@@ -111,6 +111,10 @@ class ThingsController < ApplicationController
     render layout: 'thing'
   end
 
+  def related
+    @things = @thing.related_things
+  end
+
   private
 
   def thing_params
