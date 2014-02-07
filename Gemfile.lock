@@ -16,27 +16,29 @@ GIT
 
 GIT
   remote: git://github.com/applicake/doorkeeper.git
-  revision: 16abb492d57a887adceace95d9dbb4d367bc6599
+  revision: 1be70d7de4f08bce7cc708dbb8aebc31c4e61113
   specs:
     doorkeeper (1.0.0)
       railties (>= 3.1)
 
 GIT
   remote: git://github.com/guard/guard-livereload.git
-  revision: 9f8a6a7c84fdcaab382c9a0c7997f3d10ab15a3e
+  revision: 49d3a28ab5c81766f1333c627aa7cd74339e5dd0
   specs:
-    guard-livereload (2.1.0)
+    guard-livereload (2.1.1)
       em-websocket (~> 0.5)
       guard (~> 2.0)
       multi_json (~> 1.8)
 
 GIT
   remote: git://github.com/intridea/omniauth-oauth2.git
-  revision: a88f9c86dff747f77813f09848e65b61aa1af3e3
+  revision: a9ea6f8f58b8ca2d935ef41bf9f85121c14fbc99
   specs:
-    omniauth-oauth2 (1.1.1)
-      oauth2 (~> 0.9.0)
-      omniauth (~> 1.0)
+    omniauth-oauth2 (1.1.2)
+      faraday (>= 0.8, < 0.10)
+      multi_json (~> 1.3)
+      oauth2 (~> 0.9.3)
+      omniauth (~> 1.2)
 
 GIT
   remote: git://github.com/jasl/tenpay.git
@@ -94,7 +96,7 @@ GEM
       builder
       multi_json
     alipay (0.0.3)
-    arel (4.0.1)
+    arel (4.0.2)
     atomic (1.1.14)
     backbone-on-rails (1.1.0.0)
       eco
@@ -102,9 +104,9 @@ GEM
       jquery-rails
       rails (>= 3.1)
     bcrypt-ruby (3.1.2)
-    bootstrap-sass (3.0.3.0)
+    bootstrap-sass (3.1.0.2)
       sass (~> 3.2)
-    bson (2.1.0)
+    bson (2.2.0)
     buftok (0.2.0)
     builder (3.1.4)
     capistrano (2.15.5)
@@ -128,7 +130,7 @@ GEM
       rest-client (>= 1.6.7)
     celluloid (0.15.2)
       timers (~> 1.1.0)
-    childprocess (0.3.9)
+    childprocess (0.4.0)
       ffi (~> 1.0, >= 1.0.11)
     chronic (0.10.2)
     chunky_png (1.2.9)
@@ -139,7 +141,7 @@ GEM
     coffee-script (2.2.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.6.3)
+    coffee-script-source (1.7.0)
     compass (0.12.2)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
@@ -170,23 +172,23 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.0.2)
-    fabrication (2.9.6)
-    faraday (0.8.9)
-      multipart-post (~> 1.2.0)
-    ffaker (1.22.1)
+    fabrication (2.9.7)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
+    ffaker (1.23.0)
     ffi (1.9.3)
     font-awesome-rails (4.0.3.1)
       railties (>= 3.2, < 5.0)
     formatador (0.2.4)
     fssm (0.2.10)
     growl (1.0.3)
-    guard (2.2.5)
+    guard (2.4.0)
       formatador (>= 0.2.4)
       listen (~> 2.1)
       lumberjack (~> 1.0)
       pry (>= 0.9.12)
       thor (>= 0.18.1)
-    guard-rspec (4.2.4)
+    guard-rspec (4.2.5)
       guard (~> 2.1)
       rspec (>= 2.14, < 4.0)
     guard-spork (1.5.1)
@@ -204,7 +206,6 @@ GEM
     http (0.5.0)
       http_parser.rb
     http_parser.rb (0.5.3)
-    httpauth (0.2.0)
     i18n (0.6.9)
     intercom-rails (0.2.24)
       activesupport (> 3.0)
@@ -214,16 +215,16 @@ GEM
     jquery-fileupload-rails (0.4.1)
       actionpack (>= 3.1)
       railties (>= 3.1)
-    jquery-rails (3.0.4)
+    jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.1)
-    jwt (0.1.10)
+    jwt (0.1.11)
       multi_json (>= 1.5)
-    kaminari (0.15.0)
+    kaminari (0.15.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    kgio (2.8.1)
+    kgio (2.9.1)
     launchy (2.4.2)
       addressable (~> 2.3)
     libnotify (0.8.2)
@@ -244,10 +245,10 @@ GEM
     mini_magick (3.7.0)
       subexec (~> 0.2.1)
     minitest (4.7.5)
-    modernizr-rails (2.7.0)
-    mongoid (4.0.0.alpha2)
+    modernizr-rails (2.7.1)
+    mongoid (4.0.0.beta1)
       activemodel (>= 4.0.0)
-      moped (~> 2.0.beta5)
+      moped (~> 2.0.beta6)
       origin (~> 2.1)
       tzinfo (>= 0.3.37)
     mongoid-rspec (1.10.0)
@@ -262,33 +263,32 @@ GEM
     mongoid_slug (3.2.0)
       mongoid (> 3.0)
       stringex (~> 2.0)
-    moped (2.0.0.beta5)
-      bson (~> 2.1)
+    moped (2.0.0.beta6)
+      bson (~> 2.2)
       connection_pool (~> 1.2)
       optionable (~> 0.2.0)
     multi_json (1.8.4)
     multi_xml (0.5.5)
-    multipart-post (1.2.0)
+    multipart-post (2.0.0)
     nested_form (0.3.2)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
       net-ssh (>= 2.6.5)
-    net-ssh (2.7.0)
+    net-ssh (2.8.0)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
-    newrelic_rpm (3.7.1.182)
+    newrelic_rpm (3.7.2.192)
     oauth (0.4.7)
-    oauth2 (0.9.2)
-      faraday (~> 0.8)
-      httpauth (~> 0.2)
-      jwt (~> 0.1.4)
-      multi_json (~> 1.0)
+    oauth2 (0.9.3)
+      faraday (>= 0.8, < 0.10)
+      jwt (~> 0.1.8)
+      multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (~> 1.2)
-    omniauth (1.1.4)
+    omniauth (1.2.1)
       hashie (>= 1.2, < 3)
-      rack
+      rack (~> 1.0)
     omniauth-oauth (1.0.1)
       oauth
       omniauth (~> 1.0)
@@ -302,14 +302,14 @@ GEM
     origin (2.1.0)
     orm_adapter (0.5.0)
     polyglot (0.3.3)
-    pry (0.9.12.4)
+    pry (0.9.12.6)
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
-    rack-protection (1.5.1)
+    rack-protection (1.5.2)
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -334,7 +334,7 @@ GEM
     rb-fsevent (0.9.4)
     rb-inotify (0.9.3)
       ffi (>= 0.5.0)
-    redis (3.0.6)
+    redis (3.0.7)
     redis-namespace (1.4.1)
       redis (~> 3.0.4)
     ref (1.0.5)
@@ -346,9 +346,9 @@ GEM
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
     rspec-core (2.14.7)
-    rspec-expectations (2.14.4)
+    rspec-expectations (2.14.5)
       diff-lcs (>= 1.1.3, < 2.0)
-    rspec-mocks (2.14.4)
+    rspec-mocks (2.14.5)
     rspec-rails (2.14.1)
       actionpack (>= 3.0)
       activemodel (>= 3.0)
@@ -359,13 +359,13 @@ GEM
       rspec-mocks (~> 2.14.0)
     rvm-capistrano (1.5.1)
       capistrano (~> 2.15.4)
-    sass (3.2.13)
+    sass (3.2.14)
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
     settingslogic (2.0.9)
-    sidekiq (2.17.2)
+    sidekiq (2.17.4)
       celluloid (>= 0.15.2)
       connection_pool (>= 1.0.0)
       json
@@ -382,7 +382,7 @@ GEM
     slim (2.0.2)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
-    slim-rails (2.0.4)
+    slim-rails (2.1.0)
       actionpack (>= 3.0, < 4.1)
       activesupport (>= 3.0, < 4.1)
       railties (>= 3.0, < 4.1)
@@ -401,10 +401,10 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    stringex (2.1.2)
+    stringex (2.2.0)
     subexec (0.2.3)
     temple (0.6.7)
-    therubyracer (0.12.0)
+    therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
       ref
     thin (1.6.1)
@@ -434,7 +434,7 @@ GEM
     uglifier (2.4.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    unicorn (4.8.0)
+    unicorn (4.8.2)
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
@@ -451,7 +451,7 @@ DEPENDENCIES
   airbrake
   alipay
   backbone-on-rails
-  bootstrap-sass
+  bootstrap-sass (~> 3.1)
   cancan!
   capistrano (~> 2.15.0)
   capistrano-unicorn
@@ -475,7 +475,7 @@ DEPENDENCIES
   jasl_tenpay!
   jbuilder
   jquery-fileupload-rails
-  jquery-rails
+  jquery-rails (~> 3.1)
   kaminari
   letter_opener!
   libnotify
@@ -502,7 +502,7 @@ DEPENDENCIES
   sidekiq
   simple_form
   sinatra (>= 1.3.0)
-  slim-rails
+  slim-rails (~> 2.1)
   spork-rails
   therubyracer
   thin

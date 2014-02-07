@@ -41,7 +41,7 @@ gem 'kaminari'
 gem 'rinku'
 
 # views
-gem 'slim-rails'
+gem 'slim-rails', '~> 2.1'
 gem 'jbuilder'
 
 # assets
@@ -49,7 +49,7 @@ gem 'uglifier'
 gem 'therubyracer'
 
 # javascripts
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 3.1'
 gem 'coffee-rails'
 gem 'backbone-on-rails'
 gem 'modernizr-rails'
@@ -59,7 +59,7 @@ gem 'handlebars_assets'
 # stylesheets
 gem 'sass-rails'
 gem 'compass-rails'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.1'
 gem 'font-awesome-rails'
 
 # services
