@@ -37,7 +37,8 @@ module Haven
     end
 
     def batch_bind
-      users = User.where(:email.in => params[:user_list].split("\r\n"))
+      list = params[:user_list].split("\r\n")
+      users = User.or({:email.in => list}, {:name.in => list}, {:id.in => list})
       users.each do |u|
         @coupon.generate_code! user: u
       end
