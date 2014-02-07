@@ -2,8 +2,14 @@
 
 section#things_index
   section
-    ul#things= render @things, size: :normal, img_lazy: true
-    = paginate @things
+    - if @things.length > 0
+      ul#things= render @things, size: :normal, img_lazy: true
+      = paginate @things
+    - else
+      p.h3.text-muted.text-center
+        | 没有关于&nbsp;
+        em.text-danger #{params[:q]}
+        | &nbsp;的搜索结果
 
 - content_for :script do
   javascript:
