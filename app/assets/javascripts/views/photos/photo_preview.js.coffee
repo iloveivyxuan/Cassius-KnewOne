@@ -26,7 +26,7 @@ class Making.Views.PhotoPreview extends Backbone.View
     size = 5000000
     unless types.test(@model.type) || types.test(@model.name)
       return @fail "需要图片格式文件"
-    unless @model.size < size
+    if _.isNumber(@model.size) and @model.size > size
       return @fail "图片大小限制为#{@_formatSize(size)}"
     true
 
