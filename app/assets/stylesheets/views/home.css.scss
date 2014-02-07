@@ -486,7 +486,7 @@ html.home_index {
       color: $text-muted;
 
       article {
-        @include text-noflow;
+        @include text-overflow;
 
         img {
           @extend .img-circle;
@@ -500,7 +500,7 @@ html.home_index {
 
       .media {
         @include clearfix;
-        .media-heading {@include text-noflow;}
+        .media-heading {@include text-overflow;}
       }
 
       &:not(:last-child) {

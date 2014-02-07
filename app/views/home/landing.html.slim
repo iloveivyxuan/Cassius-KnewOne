@@ -21,7 +21,7 @@
         = image_tag c.user.avatar.url(:small), class: 'img-circle'
         blockquote
           p = c.body
-          small.text-right = c.user.name
+          footer.text-right = c.user.name
 
   = render 'shared/entry'
 

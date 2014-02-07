@@ -58,7 +58,7 @@
     }
 
     @media screen and (max-width: $screen-xs-max) {
-      h1, h2 {@include text-noflow;}
+      h1, h2 {@include text-overflow;}
       h1 {font-size: $font-size-h4;}
       h2 {font-size: $font-size-base;}
     }
@@ -531,7 +531,7 @@
       display: block;
       margin-bottom: .5em;
       color: $text-muted;
-      @include text-noflow;
+      @include text-overflow;
     }
   }
 }
@@ -587,15 +587,6 @@
 
   aside#comments {
     margin-top: 2em;
-
-    .comments {
-      form#create_comment {
-        textarea {width: 50%;}
-        @media screen and (max-width: 979px) {
-          textarea {width: 95%;}
-        }
-      }
-    }
   }
 }
 

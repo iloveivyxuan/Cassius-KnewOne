@@ -50,7 +50,7 @@
       text-align: center;
       color: $text-muted;
       height: $font-size-base * $line-height-base;
-      @include text-noflow;
+      @include text-overflow;
     }
 
     h5 {margin: 1em 0 .5em;}

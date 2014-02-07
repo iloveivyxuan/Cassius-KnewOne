@@ -89,6 +89,7 @@ body {
           height: 26px;
           line-height: 14px;
           padding: 5px 10px 5px 30px;
+          width: 100%;
 
           + .fa {
             top: 6px;
@@ -111,8 +112,10 @@ body {
       }
 
       .nav_user_action {
+        @include navbar-vertical-align(20px);
         float: left;
-        margin: 10px 5px;
+        margin-left: 5px;
+        margin-right: 5px;
 
         @media screen and (min-width: $screen-sm-min) {
           float: right;

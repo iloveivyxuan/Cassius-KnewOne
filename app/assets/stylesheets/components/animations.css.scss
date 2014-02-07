@@ -3,7 +3,8 @@
 // --------------------------------------------------------------------------
 
 .rotate {
-  @include animation(0, 1s, rotate)
+  @include animation-name(rotate);
+  @include animation-duration(1s);
 }
 
 @include keyframes(rotate) {

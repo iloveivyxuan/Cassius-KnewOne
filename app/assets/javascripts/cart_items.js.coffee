@@ -35,8 +35,8 @@ Making.CartItemNew = ->
         $quantity.removeAttr('disabled')
         $submit.removeAttr('disabled')
         $(@).find('option').filter (index) ->
-            return index is 0 and @.value is '' and !$(@).attr('disabled')
-          .attr('disabled', true)
+          return index is 0 and @.value is '' and !$(@).attr('disabled')
+        .attr('disabled', true)
       else
         $quantity.attr('disabled', true)
         $submit.attr('disabled', true)
@@ -50,7 +50,7 @@ Making.CartItemNew = ->
         $('#mobile_buy_modal').modal('hide')
 
     $kind_options = $form.find('option.kind_option')
-    if $kind_options.length <= 1
+    if $kind_options.length
       $kind_options.first().prop('selected', true).parent().trigger('change')
 
 Making.CartItemCreate = (cart_items_count) ->
@@ -75,6 +75,6 @@ Making.CartItemCreate = (cart_items_count) ->
 
 Making.CartCheck = ->
   if $('.cart_item:not([disabled])').length == 0
-    $('button[type="submit"]').attr('disabled', 'disabled')
+    $('button[type="submit"]').attr('disabled', true)
   else
     $('button[type="submit"]').removeAttr('disabled')

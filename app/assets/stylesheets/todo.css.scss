@@ -115,7 +115,7 @@
     font-size: $font-size-base;
     overflow: hidden;
     color: $text-muted;
-    @include text-noflow;
+    @include text-overflow;
   }
 
   p {
@@ -191,7 +191,7 @@
   @media screen and (min-width: $screen-md-min + 100) {
     margin-left: auto;
     margin-right: auto;
-    width: $screen-md-min;
+    max-width: $screen-md-min;
   }
 }
 
