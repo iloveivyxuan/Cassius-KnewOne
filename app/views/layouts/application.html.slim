@@ -18,6 +18,7 @@ html class=page_class lang="zh-CN"
     - if Rails.env.production?
       = render 'layouts/analystics'
   body
+    = render 'layouts/browsehappy'
     = render 'layouts/header'
     = content_for?(:content) ? yield(:content) : yield
     = render 'shared/go_top'
