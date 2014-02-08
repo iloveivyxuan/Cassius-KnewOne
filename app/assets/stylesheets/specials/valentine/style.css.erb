@@ -1,0 +1,965 @@
+/* ==========================================================================
+   cover
+   ========================================================================== */
+
+.site-wrapper {
+  display: table;
+  background: url(<%= asset_path 'specials/valentine/coverBg_Mobile.jpg' %>) no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 450px;
+}
+.site-wrapper-inner {
+  display: table-cell;
+  vertical-align: top;
+}
+.cover-container {
+  position: relative;
+  z-index: 1;
+}
+.cover-container h1 {
+  color: #fff;
+  margin: 20px auto;
+  text-align: center;
+}
+.cover-container h1 span {
+  display: block;
+}
+.cover-container h1 span i {
+  margin-right: 10px;
+}
+.topAvatar img {
+  display: block;
+  position: relative;
+  width: 280px;
+  margin: 0 auto;
+  z-index: 0;
+}
+
+@media (min-width: 480px) {
+  .cover-container h1 span {
+    display: inline;
+    margin-right: 10px;
+  }
+  .topAvatar img {
+    position: relative;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .site-wrapper {
+    background: url(<%= asset_path 'specials/valentine/coverBg.jpg' %>) no-repeat;
+    height: 480px;
+  }
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }
+  .cover-container h1 {
+    float: right;
+  }
+  .topAvatar img {
+    position: absolute;
+    margin-top: -170px;
+  }
+}
+
+
+/* ==========================================================================
+   hover effect
+   ========================================================================== */
+
+.fuelBand:hover, .cup:hover, .forHimSub:hover, .forHerSub:hover, .confessionSub:hover {
+	-webkit-box-shadow: 0 0 10px rgba(0,0,0,0.1) inset;
+	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.1) inset;
+	box-shadow: 0 0 10px rgba(0,0,0,0.1) inset;
+	-webkit-transition: all 0.25s ease-out;
+	-moz-transition: all 0.25s ease-out;
+	-o-transition: all 0.25s ease-out;
+	-ms-transition: all 0.25s ease-out;
+	transition: all 0.25s ease-out;
+}
+
+
+/* ==========================================================================
+   for him
+   ========================================================================== */
+
+.forHim {
+}
+.forHim img {
+	display: none;
+}
+.forHim h2 {
+	display: block;
+	color: #fff;
+	text-align: center;
+	border-left: 10px solid #fff;
+	border-right: 10px solid #fff;
+}
+.forHim h2 span {
+	font-family: "Helvetica Neue", Arial, sans-serif;
+	font-weight: 100;
+	margin-left: 10px;
+}
+
+@media (min-width: 768px) {
+	.forHim {
+		float: right;
+		display: table;
+		width: 50%;
+		height: 340px;
+	}
+	.forHim > div {
+		display: table-cell;
+		vertical-align: middle;
+	}
+	.forHim img {
+		display: block;
+		width: 140px;
+		margin: 0 auto;
+	}
+	.forHim h2 {
+		display: inline-block;
+		font-size: 20px;
+		color: #fff;
+		padding: 0 20px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.forHim {
+		height: 160px;
+		margin-right: 0;
+		padding-right: 0;
+	}
+	.forHim > div {
+		display: block;
+	}
+	.forHim img {
+		float: left;
+		display: inline-block;
+		width: auto;
+		height: 115px;
+		margin-top: 20px;
+	}
+	.forHim h2 {
+		float: none;
+		display: block;
+		font-size: 30px;
+		line-height: 160px;
+		color: #fff;
+		margin: 0 auto;
+		padding: 0;
+		border-left: none;
+		border-right: none;
+		text-align: right;
+	}
+	.forHim h2 span {
+		display: inline;
+		font-family: "Helvetica Neue", Arial, sans-serif;
+		font-weight: 100;
+		margin-left: 10px;
+	}
+}
+
+
+/* ==========================================================================
+   fuel band
+   ========================================================================== */
+
+.fuelBand {
+	background: #fff;
+	padding: 40px 25px;
+	text-align: right;
+	border: 1px solid #ebeced;
+	border-top-left-radius: 40px;
+	border-top-right-radius: 40px;
+	overflow: hidden;
+}
+
+.fuelBand h2 {
+	font-size: 28px;
+	line-height: 1.2;
+	color: #049cdb;
+	margin: 0;
+	padding: 0;
+	font-weight: 400;
+}
+.fuelBand h2 span {
+	display: block;
+	font-family: "Helvetica Neue", Arial, sans-serif;
+	font-size: 40px;
+	font-weight: 100;
+}
+.fuelBand h3 {
+	font-size: 18px;
+	color: #5d5d5d;
+}
+.fuelBand h3 i {
+	margin-left: 10px;
+}
+.fuelBand img {
+	float: left;
+	width: 70%;
+}
+
+@media (min-width: 480px) {
+	.fuelBand {
+		padding: 40px;
+	}
+	.fuelBand h2 {
+		font-size: 30px;
+	}
+	.fuelBand h2 span {
+		font-size: 40px;
+	}
+	.fuelBand h3 {
+		font-size: 18px;
+	}
+	.fuelBand img {
+		width: 80%;
+		margin-top: -20px;
+	}
+}
+@media (min-width: 768px) {
+	.fuelBand {
+		width: 50%;
+		height: 360px;
+		padding: 40px;
+	}
+	.fuelBand img {
+		width: 70%;
+		margin-top: -60px;
+	}
+	.fuelBand h2 span {
+		font-size: 34px;
+	}
+}
+@media (min-width: 992px) {
+	.fuelBand img {
+		width: 50%;
+		margin-top: -100px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.fuelBand {
+		height: 500px;
+		padding: 50px;
+	}
+	.fuelBand img {
+		width: 60%;
+		margin-top: -60px;
+	}
+	.fuelBand h2 span {
+		font-size: 40px;
+	}
+}
+
+
+/* ==========================================================================
+   for him sub sections
+   ========================================================================== */
+
+.forHimSub {
+	height: 340px;
+}
+
+.forHimSub {
+	background: #fff;
+	text-align: right;
+	border: 1px solid #ebeced;
+	overflow: hidden;
+}
+.forHimSub .productPicWrapper {
+	display: table;
+	margin: 20px auto;
+	height: 150px;
+}
+
+.forHimSub .productPicWrapper img {
+	float: left;
+    display: table-cell;
+    vertical-align: middle;
+    margin: 0 auto;
+    margin-top: 20px;
+    height: 150px;
+}
+
+.forHimSub .productTitle {
+	padding: 5px 20px;
+}
+
+.productTitle h2 {
+	font-size: 18px;
+	line-height: 1;
+	color: #5d5d5d;
+	margin-top: 25px;
+	padding-right: 10px;
+	border-right: 5px solid #049cdb;
+	font-weight: 400;
+}
+.productTitle h2 span {
+	font-family: "Helvetica Neue", Arial, sans-serif;
+	font-size: 20px;
+	margin-right: 5px;
+	font-weight: 100;
+}
+.productTitle h3 {
+	font-size: 14px;
+	margin-top: 5px;
+	color: #aaa;
+}
+.productTitle h3 i {
+	margin-left: 10px;
+}
+
+
+.glassesSection {
+	background: url(<%= asset_path 'specials/valentine/pattern/geometry.png' %>);
+	height: 340px;
+	padding: 25px 50px;
+	border: 1px solid #ebeced;
+}
+
+.glassesSection h2 {
+	font-size: 28px;
+	line-height: 1.2;
+	color: #049cdb;
+	margin: 0;
+	padding: 0;
+	font-weight: 400;
+	text-align: left;
+}
+.glassesSection h2 span {
+	display: block;
+	font-family: "Helvetica Neue", Arial, sans-serif;
+	font-size: 40px;
+	font-weight: 100;
+}
+.glassesSection h3 {
+	font-size: 18px;
+	color: #5d5d5d;
+	text-align: left;
+}
+.glassesSection img {
+	position: absolute;
+	width: 80px;
+	margin-left: 10px;
+}
+.glassesLast {
+	border-bottom-left-radius: 40px;
+	border-bottom-right-radius: 40px;
+}
+
+@media (min-width: 480px) {
+	.productTitle h2 {
+		font-size: 23px;
+	}
+	.productTitle h2 span {
+		font-size: 25px;
+	}
+	.glassesSection {
+		height: 220px;
+		padding: 25px 50px;
+	}
+	.glassesSection h3 {
+		float: left;
+		width: 200px;
+	}
+	.glassesSection img {
+		float: left;
+		position: absolute;
+		width: 80px;
+		margin-left: 0;
+	}
+}
+
+@media (min-width: 768px) {
+	.forHimSub {
+		float: left;
+		width: 50%;
+		height: 340px;
+	}
+	.forHimSub {
+		background: #fff;
+		text-align: right;
+		border: 1px solid #ebeced;
+		overflow: hidden;
+	}
+	.forHimSub .productPicWrapper {
+		display: table;
+		margin: 20px auto;
+		height: 150px;
+	}
+	.forHimSub .productPicWrapper img {
+		float: left;
+	    display: table-cell;
+	    vertical-align: middle;
+	    margin: 0 auto;
+	    margin-top: 20px;
+	    height: 150px;
+	}
+	.forHimSub .productTitle {
+		padding: 5px 20px;
+	}
+	.socksWrapper {
+		border-top-right-radius: 40px;
+	}
+	.glassesSection {
+		height: 200px;
+		padding: 25px 40px;
+	}
+	.glassesSection h3 {
+		float: left;
+		width: auto;
+	}
+	.glassesSection img {
+		float: right;
+		position: relative;
+		width: 100px;
+		margin-top: -60px;
+	}
+	.glassesFirst {
+		border-bottom-left-radius: 40px;
+	}
+	.glassesLast {
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+}
+
+@media (min-width: 1200px) {
+	.forHimSub {
+		width: 25%;
+		height: 340px;
+	}
+	.forHimSub_2 {
+	    width: 33.33333333333333%;
+	}
+	.forHimSub {
+		background: #fff;
+		text-align: right;
+		border: 1px solid #ebeced;
+		overflow: hidden;
+	}
+	.forHimSub .productPicWrapper {
+		display: table;
+		margin: 20px auto;
+		height: 150px;
+	}
+	.forHimSub .productPicWrapper img {
+		float: left;
+	    display: table-cell;
+	    vertical-align: middle;
+	    margin: 0 auto;
+	    margin-top: 20px;
+	    height: 150px;
+	}
+	.forHimSub .productTitle {
+		padding: 5px 20px;
+	}
+	.productTitle h2 {
+		font-size: 18px;
+		line-height: 1;
+		color: #5d5d5d;
+		margin-top: 25px;
+		padding-right: 10px;
+		border-right: 5px solid #049cdb;
+		font-weight: 400;
+	}
+	.productTitle h2 span {
+		font-family: "Helvetica Neue", Arial, sans-serif;
+		font-size: 20px;
+		margin-right: 5px;
+		font-weight: 100;
+	}
+	.productTitle h3 {
+		font-size: 14px;
+		margin-top: 5px;
+		color: #aaa;
+	}
+	.productTitle h3 i {
+		margin-left: 10px;
+	}
+	.glassesSection {
+		height: 340px;
+		padding: 50px;
+		text-align: right;
+		border: 1px solid #ebeced;
+		border-bottom-left-radius: 40px;
+	}
+	.glassesSection h2 {
+		font-size: 34px;
+		line-height: 1.2;
+		color: #049cdb;
+		margin: 0;
+		padding: 0;
+		font-weight: 400;
+		text-align: left;
+	}
+	.glassesSection h2 span {
+		display: block;
+		font-family: "Helvetica Neue", Arial, sans-serif;
+		font-size: 40px;
+		font-weight: 100;
+	}
+	.glassesSection h3 {
+		font-size: 23px;
+		color: #5d5d5d;
+		text-align: left;
+	}
+	.glassesSection img {
+		position: absolute;
+		width: 100px;
+		bottom: -2px;
+		left: 50px;
+	}
+	.glassesFirst {
+		border-bottom-left-radius: 0;
+	}
+}
+
+
+/* ==========================================================================
+   for her
+   ========================================================================== */
+
+.forHer {
+	margin-top: 20px;
+}
+.forHer img {
+	display: none;
+}
+.forHer h2 {
+	display: block;
+	color: #fff;
+	text-align: center;
+	border-left: 10px solid #fff;
+	border-right: 10px solid #fff;
+}
+.forHer h2 span {
+	font-family: "Helvetica Neue", Arial, sans-serif;
+	font-weight: 100;
+	margin-left: 10px;
+}
+
+@media (min-width: 768px) {
+	.forHer {
+		float: left;
+		display: table;
+		width: 50%;
+		height: 340px;
+	}
+	.forHer > div {
+		display: table-cell;
+		vertical-align: middle;
+	}
+	.forHer h2 {
+		font-size: 20px;
+		display: inline-block;
+		margin: 100px 50px 0 50px;
+		padding: 0 20px;
+	}
+	.forHer img {
+		display: block;
+		width: 140px;
+		margin: 0 auto;
+		margin-top: -170px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.forHer {
+		width: 58.333333333333336%;
+		height: 160px;
+		margin: 0 auto;
+	}
+	.forHer h2 {
+		float: left;
+		display: inline;
+		font-size: 30px;
+		line-height: 160px;
+		margin: 0 auto;
+		padding: 0;
+		border: none;
+	}
+	.forHer h2 span {
+		display: inline;
+		margin-left: 10px;
+	}
+	.forHer img {
+		float: right;
+		display: inline-block;
+		width: auto;
+		height: 115px;
+		margin: 20px auto;
+	}
+}
+
+
+/* ==========================================================================
+   cup
+   ========================================================================== */
+
+.cup {
+	background: #fff;
+	padding: 25px 40px;
+	text-align: right;
+	border: 1px solid #ebeced;
+	overflow: hidden;
+	border-top-left-radius: 40px;
+	border-top-right-radius: 40px;
+}
+.cup h2 {
+	font-size: 28px;
+	line-height: 1.2;
+	color: #049cdb;
+	margin: 0;
+	padding: 0;
+	font-weight: 400;
+}
+.cup h2 span {
+	display: block;
+	font-family: "Helvetica Neue", Arial, sans-serif;
+	font-size: 36px;
+	font-weight: 100;
+}
+.cup h3 {
+	font-size: 19px;
+	color: #5d5d5d;
+}
+.cup h3 i {
+	margin-left: 10px;
+}
+.cup img {
+	float: left;
+	display: block;
+	width: 70%;
+	margin: 20px auto;
+}
+
+@media (min-width: 768px) {
+	.cup {
+		width: 50%;
+		border-radius: 0;
+	}
+	.cup img {
+		width: 60%;
+		margin: 0px auto;
+	}
+	.cup h3 {
+		float: right;
+		width: 90%;
+	}
+}
+
+@media (min-width: 1200px) {
+	.cup {
+		float: right;
+		background: #fff;
+		width: 41.66666666666667%;
+		height: 500px;
+		padding: 50px;
+		text-align: right;
+		border: 1px solid #ebeced;
+		overflow: hidden;
+	}
+	.cup h2 {
+		font-size: 34px;
+		line-height: 1.2;
+		color: #049cdb;
+		margin: 0;
+		padding: 0;
+		font-weight: 400;
+	}
+	.cup h2 span {
+		display: block;
+		font-family: "Helvetica Neue", Arial, sans-serif;
+		font-size: 40px;
+		font-weight: 100;
+	}
+	.cup h3 {
+		float: none;
+		font-size: 23px;
+		color: #5d5d5d;
+		width: 100%;
+	}
+	.cup h3 i {
+		margin-left: 10px;
+	}
+	.cup img {
+		float: right;
+		width: 70%;
+		margin-top: 20px;
+	}
+}
+
+
+/* ==========================================================================
+   for her sub
+   ========================================================================== */
+
+.forHerSub {
+	height: 340px;
+	overflow: hidden;
+}
+.forHerSub {
+	background: #fff;
+	text-align: right;
+	border: 1px solid #ebeced;
+	overflow: hidden;
+}
+.forHerSub .productPicWrapper {
+	display: table;
+	margin: 20px auto;
+	height: 200px;
+}
+.forHerSub .productPicWrapper img {
+    display: table-cell;
+    vertical-align: middle;
+    margin: 0 auto;
+    margin-top: 10px;
+    height: 200px;
+}
+.forHerSub_2 {
+	height: 400px;
+}
+.forHerSub_2 .productPicWrapper img {
+	margin-top: 20px;
+	height: 210px;
+	margin-left: -200px;
+}
+.forHerSub .productTitle {
+    margin-top: 20px;
+	padding: 5px 20px;
+}
+.lightCorner {
+	border-bottom-left-radius: 40px;
+	border-bottom-right-radius: 40px;
+}
+
+@media (min-width: 480px) {
+	.forHerSub {
+		height: 345px;
+	}
+	.forHerSub_2 .productPicWrapper img {
+		margin-left: -41px;
+	}
+	.forHerSub_2 {
+		height: 370px;
+	}
+	.forHerSub_2 .productPicWrapper img {
+		margin-top: 0px;
+	}
+}
+
+@media (min-width: 768px) {
+	.monkeyCorner {
+		float: left;
+		width: 50%;
+		border-top-left-radius: 40px;
+	}
+	.forHerSub_2 {
+		height: 400px;
+	}
+	.forHerSub_2 .productPicWrapper img {
+		margin-top: 0px;
+		height: 250px;
+		margin-left: 0px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.forHerSub {
+		height: 340px;
+	}
+	.forHerSub {
+		background: #fff;
+		text-align: right;
+		border: 1px solid #ebeced;
+		overflow: hidden;
+	}
+	.forHerSub .productPicWrapper {
+		display: table;
+		margin: 20px auto;
+		height: 200px;
+	}
+	.forHerSub .productPicWrapper img {
+	    display: table-cell;
+	    vertical-align: middle;
+	    margin: 0 auto;
+	    margin-top: 10px;
+	    height: 200px;
+	}
+	.forHerSub_2 {
+		height: 400px;
+	}
+	.forHerSub_2 .productPicWrapper img {
+		margin-top: 20px;
+		height: 210px;
+		margin-left: 0;
+	}
+	.forHerSub .productTitle {
+	    margin-top: 20px;
+		padding: 5px 20px;
+	}
+	.monkeyCorner {
+		width: 25%;
+	}
+	.plantCorner {
+		border-bottom-left-radius: 40px;
+	}
+	.lightCorner {
+		border-bottom-left-radius: 0px;
+		border-bottom-right-radius: 40px;
+	}
+}
+
+
+/* ==========================================================================
+   confession separater
+   ========================================================================== */
+
+section::before,
+section::after {
+	position: absolute;
+	content: '';
+	pointer-events: none;
+}
+section.hr {
+	background: #fff;
+	height: 70px;
+}
+.roundedsplit {
+	background: #b93e36;
+	background: url(<%= asset_path 'specials/valentine/pattern/geometryRed.png' %>);
+	color: #fff;
+	padding: 30px 40px;
+	border-radius: 0 0 80px 80px;
+}
+.roundedsplit::before,
+.roundedsplit::after {
+	top: -70px;
+	left: 0;
+	z-index: 10;
+	width: 50%;
+	height: 70px;
+	background: inherit;
+}
+.roundedsplit::before {
+	border-radius: 0 80px 0 0;
+}
+.roundedsplit::after {
+	left: 50%;
+	border-radius: 80px 0 0 0;
+}
+.roundedsplit img {
+	display: block;
+	margin: 0 auto;
+	width: 80px;
+}
+.roundedsplit h2 {
+	padding: 10px 0;
+}
+
+
+/* ==========================================================================
+   confession sub
+   ========================================================================== */
+
+.confessionSub {
+	background: #fff;
+	text-align: right;
+	border: 1px solid #ebeced;
+	overflow: hidden;
+}
+.confessionSub .productPicWrapper {
+	display: table;
+	margin: 20px auto;
+}
+.confessionSub .productPicWrapper img {
+    display: table-cell;
+    vertical-align: middle;
+    margin: 0 auto;
+    height: 280px;
+}
+.confessionSub .productTitle {
+	padding: 10px 20px;
+}
+
+.catCorner {
+	border-top-left-radius: 40px;
+	border-top-right-radius: 40px;
+}
+.lumioCorner {
+	border-bottom: none;
+}
+
+img.bottomTyper {
+	width: 100%;
+	margin: 0 auto;
+}
+
+@media (min-width: 480px) {
+	.confessionSub .productTitle {
+		padding: 20px;
+	}
+	.confessionSub .productTitle h2 {
+		font-size: 23px;
+		line-height: 1.1;
+	}
+	.confessionSub .productTitle h2 span {
+		font-size: 23px;
+	}
+}
+
+@media (min-width: 768px) {
+	.confessionSub {
+		float: left;
+		width: 50%;
+		height: 480px;
+		text-align: right;
+		border: 1px solid #ebeced;
+		border-left: none;
+		border-bottom: none;
+	}
+	.catCorner {
+		border-top-right-radius: 0;
+	}
+	.samoCorner {
+		border-top-right-radius: 40px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.confessionSub {
+		background: #fff;
+		width: 25%;
+		height: 450px;
+		text-align: right;
+		overflow: hidden;
+	}
+	.confessionSub .productPicWrapper {
+		display: table;
+		margin: 20px auto;
+		height: 200px;
+	}
+	.confessionSub .productPicWrapper img {
+	    display: table-cell;
+	    vertical-align: middle;
+	    margin: 0 auto;
+	    height: 280px;
+	}
+	.confessionSub .productTitle {
+		padding: 10px 40px;
+	}
+	.samoCorner {
+		border-top-right-radius: 0;
+	}
+	.lumioCorner {
+		border-top-right-radius: 40px;
+	}
+}
