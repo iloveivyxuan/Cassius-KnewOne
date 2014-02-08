@@ -30,6 +30,11 @@ class Auth
       'twitter' => 'Twitter'
   }
 
+  def expired?
+    return false unless self.expires_at
+    Time.now > self.expires_at
+  end
+
   class << self
     def from_omniauth(data)
       new omniauth_to_auth(data)

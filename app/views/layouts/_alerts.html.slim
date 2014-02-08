@@ -15,3 +15,11 @@
       = link_to '重发邮件', user_confirmation_path(:'user[email]' => current_user.unconfirmed_email), method: :post, remote: true, id: 'resend-setting-email'
       span.separator |
       = link_to '修改邮箱', '#setting-email', data: {toggle: 'modal'}
+
+  - current_user.auths.each do |auth|
+    - if auth.expired?
+      .alert.alert-warning.alert-dismissable id="#{auth.provider}-expired-alert"
+        button.close data-dismiss="alert" aria-hidden="true"
+          | &times;
+        | 您的 #{Auth::PROVIDERS[auth.provider]} 授权已过期，
+        = link_to '点此刷新', user_omniauth_authorize_path(auth.provider.to_sym)
