@@ -34,6 +34,8 @@ header role="banner"
             = link_to_with_icon "分享产品", "fa fa-magic", "#", data: {toggle: "modal", target: "#login-modal"}
         li.nav_lotteries.visible-md.visible-lg
           = link_to_with_icon "天天有礼", "fa fa-gift", lotteries_path
+        li.nav_specials.visible-md.visible-lg
+          = link_to_with_icon "情人节", "fa fa-heart", valentine_path, target: "_blank"
         li.nav_help.dropdown.visible-lg
           = link_to "#", class: "dropdown-toggle", data: {toggle: "dropdown"} do
             i.fa.fa-tint
