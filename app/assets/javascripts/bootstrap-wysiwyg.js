@@ -39,11 +39,15 @@
         execCommand = function (commandWithArgs, valueArg) {
             var commandArr = commandWithArgs.split(' '),
             command = commandArr.shift(),
-            args = commandArr.join(' ') + (valueArg || ''),
-            isFormated = $(window.getSelection().getRangeAt(0).startContainer.parentNode).parentsUntil(editor.selector, args).length > 0;
+            args = commandArr.join(' ') + (valueArg || '');
 
-            if (command == 'formatBlock' && isFormated) {
-                args = 'div';
+            if (command == 'formatBlock') {
+                var $sel = $(window.getSelection().getRangeAt(0).startContainer.parentNode);
+                var isFormated = $sel[0].tagName == args.toUpperCase() || $sel.parentsUntil(editor.selector, args).length > 0;
+
+                if (isFormated) {
+                    args = 'div';
+                }
             }
 
             document.execCommand(command, 0, args);
