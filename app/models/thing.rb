@@ -199,11 +199,9 @@ class Thing < Post
   end
 
   def related_things(lazy = Rails.env.development?)
-    ids = (lazy && self.related_thing_ids.blank?) ? cal_related_thing_ids : self.related_thing_ids
-    things = Thing.in(id: ids)
-    ids.map do |i|
-      things.select {|t| t.id.to_s == i}
-    end.reduce(&:+) || []
+    ids = self.related_thing_ids || []
+    ids = cal_related_thing_ids if lazy and ids.blank?
+    Thing.in(id: ids).sort_by {|t| ids.index(t.id.to_s)}
   end
 
   class << self

@@ -362,13 +362,11 @@
 
   .kinds {
     display: none;
-    margin-top: 2em;
+    margin-top: 1em;
     border-top: $border-default;
-    padding-top: 2em;
+    padding-top: 1em;
 
-    > li {
-      padding-bottom: 1em;
-      border-bottom: 1px dashed #eee;
+    > ul > li {
       margin-bottom: 1em;
 
       h5 {font-weight: bold;}
@@ -386,6 +384,33 @@
         time {
           font-size: 1em;
           color: $green;
+        }
+      }
+    }
+
+    @media screen and (min-width: $screen-md-min) {
+      display: block;
+    }
+  }
+
+  .related_things {
+    display: none;
+    margin-top: 1em;
+    border-top: $border-default;
+    padding-top: 1em;
+
+    h4 {color: $text-muted;}
+    
+    > ul > li {
+      float: left;
+      width: 46%;
+      margin: 1em 2%;
+      figure {@include stretch-img;}
+      figcaption {
+        h5 {
+          text-align: center;
+          color: $text-muted;
+          @include text-overflow;
         }
       }
     }

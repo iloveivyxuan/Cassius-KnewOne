@@ -235,4 +235,8 @@ class ThingPresenter < PostPresenter
   def categories
     Category.any_in(name: thing.categories)
   end
+
+  def related_things
+    thing.related_things.map {|t| present(t)}
+  end
 end

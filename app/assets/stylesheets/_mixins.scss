@@ -54,8 +54,23 @@
 
 @mixin grayscale($percentage) {
   -webkit-filter: grayscale($percentage);
-     -moz-filter: grayscale($percentage);
-      -ms-filter: grayscale($percentage);
-       -o-filter: grayscale($percentage);
-          filter: grayscale($percentage);
+  -moz-filter: grayscale($percentage);
+  -ms-filter: grayscale($percentage);
+  -o-filter: grayscale($percentage);
+  filter: grayscale($percentage);
+}
+
+@mixin stretch-img() {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  text-align: center;
+
+  img {
+    @include stretch;
+    margin: auto;
+    max-height: 100%;
+    max-width: 100%;
+  }
 }

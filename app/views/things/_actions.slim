@@ -45,7 +45,14 @@ ul.operations.fa-ul
     li= link_to_with_icon "删除", "fa-li fa fa-trash-o", thing_path(tp.thing), title: "删除",
       method: :delete, data: {confirm: "您确定要删除吗?"}
 
-ul.kinds= render tp.thing.valid_kinds
+- if tp.thing.valid_kinds.present?
+  .kinds
+    ul= render tp.thing.valid_kinds
+
+- if tp.related_things.present?
+  .related_things
+    h4 您可能也喜欢
+    ul= render partial: "related_thing", collection: tp.related_things, as: :tp
 
 .modals
   = render 'shared/share', id: 'thing_share', content: tp.share_content, pic: tp.photo_url(:huge)
