@@ -26,8 +26,9 @@
         updateToolbar = function () {
             if (options.activeToolbarClass) {
                 $(options.toolbarSelector).find(toolbarBtnSelector).each(function () {
-                    var command = $(this).data(options.commandRole);
-                    if (document.queryCommandState(command)) {
+                    var command = $(this).data(options.commandRole),
+                        format = command.match(/formatBlock (.+)/);
+                    if (document.queryCommandState(command) || (format && (format[1] == document.queryCommandValue("formatBlock")))) {
                         $(this).addClass(options.activeToolbarClass);
                     } else {
                         $(this).removeClass(options.activeToolbarClass);
@@ -38,7 +39,13 @@
         execCommand = function (commandWithArgs, valueArg) {
             var commandArr = commandWithArgs.split(' '),
             command = commandArr.shift(),
-            args = commandArr.join(' ') + (valueArg || '');
+            args = commandArr.join(' ') + (valueArg || ''),
+            isFormated = $(window.getSelection().getRangeAt(0).startContainer.parentNode).parentsUntil(editor.selector, args).length > 0;
+
+            if (command == 'formatBlock' && isFormated) {
+                args = 'div';
+            }
+
             document.execCommand(command, 0, args);
             updateToolbar();
         },
