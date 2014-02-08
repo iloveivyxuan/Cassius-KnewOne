@@ -309,11 +309,14 @@ window.Making =
         height: 'auto'
         lineHeight: -> $('body').css('lineHeight')
 
-  Search: (url) ->
+  Search: ->
     url = $('form#navbar_search').attr('action') + '.js'
     maxLength = 12
     api = {}
     isSlideshowInitiated = false
+    $container = $('#navbar_search')
+    $nav_first = $('#navbar_main').children('.navbar-nav').first()
+    $input = $('.navbar').find('input[type="search"]')
     $searchCandidate = $('.search_candidate')
     $searchBackdrop = $('.search_backdrop')
     $slideshowBody = $searchCandidate.children('.slideshow_body')
@@ -329,7 +332,7 @@ window.Making =
         $searchCandidate.hide()
         $searchBackdrop.fadeOut()
 
-    $('.navbar').find('input[type="search"]').on 'keyup', (e)->
+    $input.on 'keyup', (e)->
       $self = $(@)
       keyword = $.trim @.value
 
@@ -393,6 +396,26 @@ window.Making =
         if $searchCandidate.is(':visible') and $searchBackdrop.is(':visible')
           $searchCandidate.hide()
           $searchBackdrop.fadeOut()
+
+    if Modernizr.mq('(min-width: ' + Making.Breakpoint.screenSMMin + ')')
+      transition_time = parseFloat($container.css('transition-duration')) * 1000
+
+      $input
+        .on 'focusin', ->
+          if !$container.hasClass('focus')
+            if Modernizr.mq('(min-width: ' + Making.Breakpoint.screenSMMin + ') and (max-width: ' + Making.Breakpoint.screenLGMin + ')')
+              $nav_first.hide()
+            $container.addClass('focus')
+        .on 'focusout', ->
+          if !$('html').hasClass('csstransitions')
+            $nav_first.show()
+
+          $container
+            .removeClass('focus')
+            .one $.support.transition.end, ->
+              if Modernizr.mq '(max-width: ' + Making.Breakpoint.screenLGMin + ')'
+                $nav_first.fadeIn()
+            .emulateTransitionEnd(transition_time)
 
 $ ->
   Making.initialize()
