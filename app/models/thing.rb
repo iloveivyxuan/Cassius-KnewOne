@@ -155,33 +155,36 @@ class Thing < Post
     list = {}
 
     Thing.any_in(categories: self.categories).each do |thing|
-      list[thing.id] = 0
+      id = thing.id.to_s
+      list[id] = 0
       self.categories.each do |c|
-        list[thing.id] += cate_power if thing.categories.include? c
+        list[id] += cate_power if thing.categories.include? c
       end
     end
 
     self.fanciers.map(&:fancy_ids).each do |thing_ids|
       thing_ids.each do |t|
-        if list[t]
-          list[t] += fancy_power
+        id = t.to_s
+        if list[id]
+          list[id] += fancy_power
         else
-          list[t] = fancy_power
+          list[id] = fancy_power
         end
       end
     end
 
     self.owners.map(&:own_ids).each do |thing_ids|
       thing_ids.each do |t|
-        if list[t]
-          list[t] += own_power
+        id = t.to_s
+        if list[id]
+          list[id] += own_power
         else
-          list[t] = own_power
+          list[id] = own_power
         end
       end
     end
 
-    list.delete self.id
+    list.delete self.id.to_s
 
     powers = list.values
     powers.uniq! && powers.sort! && powers.reverse! # O(n log n)
@@ -191,7 +194,7 @@ class Thing < Post
       break if r.size >= limit
     end
 
-    r[0..(limit-1)].map {|i| i.to_s}
+    r[0..(limit-1)]
   end
 
   def update_related_thing_ids
@@ -199,8 +202,7 @@ class Thing < Post
   end
 
   def related_things(lazy = Rails.env.development?)
-    ids = self.related_thing_ids || []
-    ids = cal_related_thing_ids if lazy and ids.blank?
+    ids = lazy ? cal_related_thing_ids : (self.related_thing_ids || [])
     Thing.in(id: ids).sort_by {|t| ids.index(t.id.to_s)}
   end
 
