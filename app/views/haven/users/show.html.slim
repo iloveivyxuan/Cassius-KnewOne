@@ -1,0 +1,13 @@
+h2
+  | 余额
+  = @user.balance
+table.table.table-striped
+  thead
+    tr
+      th 说明
+      th 金额
+  tbody
+    - @user.balance_logs.each do |b|
+      tr
+        td = b.note
+        td = b.amount / 100.0

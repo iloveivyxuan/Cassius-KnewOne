@@ -86,7 +86,7 @@ Making::Application.routes.draw do
       end
     end
 
-    resources :users, only: [:index, :update]
+    resources :users, only: [:index, :update, :show]
   end
 
   resources :things do

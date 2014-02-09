@@ -20,7 +20,9 @@ table.table.table-striped
   tbody
     - @users.each do |u|
       tr
-        td = link_to u.name, u, target: '_blank'
+        td
+          = link_to u.name, u, target: '_blank'
+          = link_to '[内幕]', haven_user_path(u)
         td = u.things_count
         td = u.reviews_count
         td
