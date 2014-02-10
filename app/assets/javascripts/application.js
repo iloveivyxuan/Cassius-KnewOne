@@ -3,6 +3,7 @@
 //= require bootstrap
 //= require underscore
 //= require backbone
+//= require jquery_extend
 //= require handlebars.runtime
 //= require jquery_nested_form
 //= require sly

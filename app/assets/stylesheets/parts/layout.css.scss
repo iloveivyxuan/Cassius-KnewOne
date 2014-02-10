@@ -322,6 +322,15 @@ body {
             }
           }
         }
+
+        &.empty {
+          color: #fff;
+          cursor: default;
+          font-size: 18px;
+          height: $thing_height;
+          line-height: $thing_height;
+          text-align: center;
+        }
       }
     }
   }

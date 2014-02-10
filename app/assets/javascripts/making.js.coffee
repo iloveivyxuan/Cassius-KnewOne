@@ -312,8 +312,9 @@ window.Making =
   Search: ->
     url = $('form#navbar_search').attr('action') + '.js'
     maxLength = 12
-    api = {}
+    cache = {}
     isSlideshowInitiated = false
+    slideshow = null
     $container = $('#navbar_search')
     $nav_first = $('#navbar_main').children('.navbar-nav').first()
     $input = $('.navbar').find('input[type="search"]')
@@ -339,14 +340,14 @@ window.Making =
       if keyword.length >= 2
         $status.removeClass('fa-search').addClass('fa-spinner fa-spin')
 
-        if !api[keyword]
-          api[keyword] = $.ajax
+        if !cache[keyword]
+          cache[keyword] = $.ajax
                           url: url
                           data: q: keyword
                           dataType: 'html'
                           contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
 
-        api[keyword].done (data)->
+        cache[keyword].done (data)->
           if data.length > 0
             link = url.slice(0, -3) + '?q=' + keyword
             $keyword.text(keyword)
@@ -382,8 +383,21 @@ window.Making =
             $searchCandidate.show()
 
           else
-            $searchCandidate.hide()
-            $searchBackdrop.fadeOut()
+            $list.empty()
+            if slideshow then slideshow.reload()
+            $prevPage.disable()
+            $nextPage.disable()
+
+            $keyword.text(keyword)
+            $('<li />',
+              class: 'empty'
+              text: '无内容'
+            )
+            .css 'width', -> $slideshowBody.css 'width'
+            .appendTo $list
+
+            if $searchBackdrop.is(':hidden') then $searchBackdrop.fadeIn()
+            if $searchCandidate.is(':hidden') then $searchCandidate.show()
 
           $status.removeClass('fa-spinner fa-spin').addClass('fa-search')
 
