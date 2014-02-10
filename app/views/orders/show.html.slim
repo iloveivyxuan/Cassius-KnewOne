@@ -91,6 +91,8 @@ section.orders_wrapper
 /= render partial: 'pay_modal', locals: {order: @order}
 = render_share_modal(@order)
 
+= render 'orders/btc_pay_modal'
+
 - content_for :script do
   javascript:
     if ("#{flash[:provider_sync]}" == "on") {

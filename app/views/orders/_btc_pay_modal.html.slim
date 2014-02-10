@@ -1,0 +1,13 @@
+#btc_pay.modal.fade tabindex="-1" role="dialog" aria-labelledby="btc_pay_title" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      header.modal-header
+        button.close data-dismiss="modal" aria-hidden="true"
+          | &times;
+        h4#btc_pay_title.modal-title
+          | BTC支付
+      main.modal-body
+        p.text-center
+          | 我们接受BTC方式支付，具体方式
+          = link_to '请您与我们的客服联系', '#olark_chat'
+          | 。
