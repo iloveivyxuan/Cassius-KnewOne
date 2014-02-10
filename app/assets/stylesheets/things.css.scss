@@ -113,7 +113,10 @@
   .carousel {
     .item {
       text-align: center;
-      max-height: 480px;
+      max-height: 200px;
+      @media screen and (min-width: $screen-xs-min) {
+        max-height: 480px;
+      }
       img {
         margin: 0 auto;
         max-height: 100%;
@@ -402,7 +405,7 @@
     padding-top: 1em;
 
     h4 {color: $text-muted;}
-    
+
     > ul > li {
       float: left;
       width: 46%;
