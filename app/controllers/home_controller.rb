@@ -43,9 +43,14 @@ class HomeController < ApplicationController
   def search
     q = (params[:q] || '')
     q.gsub!(/[^\u4e00-\u9fa5a-zA-Z0-9\s-]+/, '')
+
+    if resultable = q.present?
+      @things = Thing.published.or({title: /#{q}/i}, {subtitle: /#{q}/i}).page(params[:page]).per(12)
+      resultable = @things.any?
+    end
+
     respond_to do |format|
-      if q.present?
-        @things = Thing.published.or({title: /#{q}/i}, {subtitle: /#{q}/i}).page(params[:page]).per(12)
+      if resultable
         format.html
         format.js
         format.json
