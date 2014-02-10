@@ -61,6 +61,7 @@ header role="banner"
               span.badge.cart_items_count= cart_items_count
             ul.dropdown-menu
               li= link_to_with_icon "我的主页", "fa fa-user fa-fw", current_user
+              li= link_to_with_icon "我的订单", "fa fa-file-text fa-fw", orders_path
               li= link_to_with_icon "控制面板", "fa fa-tachometer fa-fw", setting_root_path
               li= link_to_with_icon "安全登出", "fa fa-sign-out fa-fw", destroy_user_session_path, method: :delete
         - else

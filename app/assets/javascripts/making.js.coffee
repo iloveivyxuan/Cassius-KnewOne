@@ -267,23 +267,25 @@ window.Making =
                   .appendTo($self)
 
   ExtendCarousel: ->
-    if Modernizr.mq('(min-width: ' + Making.Breakpoint.screenSMMin + ')')
-      $('.carousel').each ->
-        $carousel = $(@)
-        $inner = $carousel.find('.carousel-inner')
-        $item = $inner.children('.item')
-        $overview = $carousel.next('.carousel_overview')
-        $overview_body = $overview.children('.slideshow_body')
-        default_height = parseInt($item.css('max-height'))
-        height = _.min([default_height, $inner.width() * 0.75])
+    $('.carousel').each ->
+      $carousel      = $(@)
+      $inner         = $carousel.find('.carousel-inner')
+      $item          = $inner.children('.item')
+      default_height = parseInt($item.css('max-height'))
+      height         = _.min([default_height, $inner.width() * 0.75]) + 'px'
 
-        $item.css
-          height: height + 'px'
-          lineHeight: height + 'px'
+      $item.css
+        height: height
+        lineHeight: height
+
+      if Modernizr.mq('(min-width: ' + Making.Breakpoint.screenSMMin + ')')
+        $overview      = $carousel.next('.carousel_overview')
+        $overview_body = $overview.children('.slideshow_body')
 
         if $overview_body.length and $overview_body.is(':visible')
           $prevPage = $overview.find('.left')
           $nextPage = $overview.find('.right')
+
           $overview_body.sly
             horizontal: 1
             itemNav: 'centered'
@@ -303,11 +305,6 @@ window.Making =
           $carousel.on 'slid.bs.carousel', ->
             index = $(@).find('.carousel-inner').children('.item').filter('.active').index()
             $overview.find('.slideshow_inner').children('li').eq(index).addClass('active').siblings().removeClass('active')
-
-    else
-      $('.carousel-inner').children('.item').css
-        height: 'auto'
-        lineHeight: -> $('body').css('lineHeight')
 
   Search: ->
     url = $('form#navbar_search').attr('action') + '.js'
