@@ -8,7 +8,11 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if user = User.find_by_omniauth(omniauth)
       # Auth already bound
       if user_signed_in? && user.id != current_user.id
-        return redirect_stored_or root_path, :error => t('devise.omniauth_callbacks.bounded', kind: omniauth.provider)
+        return redirect_stored_or root_path, flash: {
+            oauth: {
+                status: 'danger', text: t('devise.omniauth_callbacks.bounded', kind: Auth::PROVIDERS[omniauth.provider])
+            }
+        }
       end
 
       user.update_from_omniauth(omniauth)
@@ -21,7 +25,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # must be
       current_user.auths<< Auth.from_omniauth(omniauth)
       current_user.update_from_omniauth(omniauth)
-      redirect_stored_or edit_account_path, flash: {oauth: { status: 'success', text: '绑定成功。' }}
+      redirect_stored_or edit_account_path, flash: {oauth: {status: 'success', text: '绑定成功。'}}
     else
       user = User.create_from_omniauth(omniauth)
       sign_in user
