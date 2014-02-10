@@ -32,7 +32,6 @@
 @import "entities/things_in_list";
 // @todo
 @import "things";
-@import "thing_form";
 @import "messages";
 @import "groups";
 @import "lottery";
@@ -45,6 +44,7 @@
 // View
 @import "parts/layout";
 @import "views/home";
+@import "views/thing_form";
 @import "views/settings";
 @import "views/users";
 @import "views/errors";
