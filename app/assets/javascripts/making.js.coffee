@@ -347,8 +347,8 @@ window.Making =
                           dataType: 'html'
                           contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
 
-        cache[keyword].done (data)->
-          if data.length > 0
+        cache[keyword].done (data, status, xhr) ->
+          if xhr.status is 200
             link = url.slice(0, -3) + '?q=' + keyword
             $keyword.text(keyword)
             $slideshowBody.css 'width', ->
@@ -382,11 +382,12 @@ window.Making =
             $searchBackdrop.fadeIn()
             $searchCandidate.show()
 
-          else
+          else if xhr.status is 204
             $list.empty()
-            if slideshow then slideshow.reload()
-            $prevPage.disable()
-            $nextPage.disable()
+            if slideshow
+              slideshow.reload()
+              $prevPage.disable()
+              $nextPage.disable()
 
             $keyword.text(keyword)
             $('<li />',
