@@ -9,6 +9,8 @@ section.carts_wrapper.simple_page_wrapper.widget
   = form_tag new_order_path, method: :get
     fieldset
       ul.carts= render @cart_items
+      small.deliver_tip
+        | (已含运费，500元以上使用顺丰速运)
       p.total_price
         | 总计
         strong
