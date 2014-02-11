@@ -466,6 +466,20 @@ html.home_index {
     }
   }
 
+  #promotion {
+    display: block;
+    margin-bottom: 15px;
+    width: 100%;
+
+    > span { display: block; }
+
+    img {
+      @include border-radius(8px);
+
+      width: 100%;
+    }
+  }
+
   #home_things {
     @include make-row;
     li {
