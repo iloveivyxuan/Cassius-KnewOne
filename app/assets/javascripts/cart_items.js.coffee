@@ -49,7 +49,7 @@ Making.CartItemNew = ->
         $form.trigger('submit')
         $('#mobile_buy_modal').modal('hide')
 
-    $kind_options = $form.find('option.kind_option')
+    $kind_options = $form.find('option.kind_option:enabled')
     if $kind_options.length
       $kind_options.first().prop('selected', true).parent().trigger('change')
 
