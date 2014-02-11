@@ -118,6 +118,12 @@
     }
   }
 
+  .deliver_free_gap {
+    color: $red;
+    padding-left: 0.1em;
+    padding-right: 0.1em;
+  }
+
   button[type="submit"] {
     float: right;
     width: 8em;

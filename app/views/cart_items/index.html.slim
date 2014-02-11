@@ -6,11 +6,11 @@ section.carts_wrapper.simple_page_wrapper.widget
       i.fa.fa-shopping-cart
       | 购物车
 
-  = form_tag new_order_path, method: :get
+  = form_tag new_order_path, method: :get, authenticity_token: false
     fieldset
       ul.carts= render @cart_items
       small.deliver_tip
-        | (已含运费，500元以上使用顺丰速运)
+        = deliver_tip_text(@total_price)
       p.total_price
         | 总计
         strong
