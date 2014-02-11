@@ -40,7 +40,7 @@ class Coupon
 
   def generate_code!(params = {})
     params[:code] ||= SecureRandom.uuid[0..7]
-    if params[:expires_at].blank? || Date.parse(params[:expires_at]) <= Date.today
+    if params[:expires_at].blank?
       params[:expires_at] = 1.year.since.to_date
     end
 

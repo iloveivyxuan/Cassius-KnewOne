@@ -61,7 +61,12 @@ class CouponCode
   end
 
   def test?(order)
-    (!used_was || !self.used?) && self.user == order.user && self.coupon.usable?(order)
+    !expired? && (!used_was || !self.used?) && self.user == order.user && self.coupon.usable?(order)
+  end
+
+  def expired?
+    return false unless self.expires_at
+    Time.now > self.expires_at
   end
 
   def self.find_by_code(code)

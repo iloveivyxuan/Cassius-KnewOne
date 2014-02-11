@@ -7,21 +7,27 @@ header.page-header
     | 优惠券
 
 = form_tag bind_coupons_path, role: "form"
-  .form-group
+  .form-group class="#{"has-#{flash[:status]}" if flash[:status]}"
     .col-xs-9.col-sm-4
       = hidden_field_tag :redirect_from, params[:redirect_from]
       = text_field_tag :code, '', class: 'form-control', placeholder: '优惠券代码'
-      - if flash[:error]
-        strong.help-block = flash[:error]
-      - elsif flash[:success]
-        strong.help-block = flash[:success]
+      - if flash[:msg]
+        strong.help-block = flash[:msg]
     = submit_tag '添加', class: 'btn btn-primary'
+
 
 section.coupons
   table.table
-    - @coupons.each do |c|
-      tr
-        td = c.code
-        td = c.name
-        td = c.note
-        td = c.used? ?  '已使用' : '可用'
+    thead
+      th 代码
+      th 名称
+      th 作用
+      th 过期时间
+    tbody
+      - @coupons.each do |c|
+        - unless c.expired? || c.used?
+          tr
+            td = c.code
+            td = c.name
+            td = c.note
+            td = c.expires_at
