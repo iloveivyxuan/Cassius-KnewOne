@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   layout 'settings', only: [:index, :show]
 
   def index
-    @orders = current_user.orders
+    @orders = current_user.orders.page(params[:page]).per(3)
   end
 
   def show

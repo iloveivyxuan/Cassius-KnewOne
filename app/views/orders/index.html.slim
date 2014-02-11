@@ -8,5 +8,6 @@ section.orders_wrapper
       i.fa.fa-file-text
       | 我的订单
   ul.orders = render @orders
+  = paginate @orders
 
 = render 'orders/btc_pay_modal'

@@ -67,9 +67,9 @@ section.orders_wrapper
   .order_item
     ul = render partial: 'orders/order_item', collection: @order.order_items
     ul = render partial: 'orders/rebate', collection: @order.rebates if @order.rebates.any?
-    - if @order.use_sf? && @order.deliver_price > 0
+    - if @order.deliver_price > 0
       footer.partial_price
-        span.text-muted 顺丰运费
+        span.text-muted 运费
         strong
           i.fa.fa-yen
           span= @order.deliver_price
