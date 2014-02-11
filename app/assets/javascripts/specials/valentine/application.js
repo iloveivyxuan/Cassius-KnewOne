@@ -14,16 +14,15 @@ var Making = (function(module) {
 })(window.Making || {});
 
 (function() {
-  var feedback = document.getElementById('feedback');
+  var feedback = document.getElementById('feedback'),
+      display  = 'none';
 
   feedback.addEventListener('click', function(event) {
     event.preventDefault();
     olark('api.box.expand');
   }, false);
 
-  window.addEventListener('touchend', function() {
-    var display = 'none';
-
+  window.addEventListener('scroll', function() {
     if (document.body.scrollTop > 400) {
       display = 'block';
     } else {
