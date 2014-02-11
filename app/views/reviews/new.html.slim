@@ -3,7 +3,7 @@
 = simple_form_for [@thing, @review], html: {class: "edit_post"} do |f|
   = f.input :title, label: false, placeholder: "标题"
   = f.input :content, as: :hidden
-  = f.input :score, as: :range, label: false, input_html: {class:'range_rating', max: 5, min: 1}
+  = f.input :score, as: :range, label: false, input_html: {class:'range_rating', max: 5, min: 1, value: 5}
   - if current_user.role? :editor
     = f.input :is_top, as: :boolean
 
