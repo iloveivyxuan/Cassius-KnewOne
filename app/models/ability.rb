@@ -38,6 +38,8 @@ class Ability
       story.thing.author == user or story.author == user
     end
 
+    can :create, Supplier
+
     can :create, Photo
     can :destroy, Photo do |photo|
       photo.user == user
@@ -83,7 +85,6 @@ class Ability
     can :read, ThingGroup
     can :comments, Thing
     can :wechat_qr, Thing
-    can :create, Supplier
   end
 
   def editor

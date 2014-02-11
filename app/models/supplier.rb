@@ -9,6 +9,11 @@ class Supplier
   field :url, type: String, default: ""
   field :thing_title, type: String, default: ""
   field :note, type: String, default: ""
+  field :user_id, type: String
+
+  def user
+    @user ||= (self.user_id ? User.find(self.user_id) : nil)
+  end
 
   validates :name, presence: true
   validates :contact, presence: true

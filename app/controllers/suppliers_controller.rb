@@ -9,7 +9,7 @@ class SuppliersController < ApplicationController
   end
 
   def create
-    Supplier.create supplier_params
+    Supplier.create supplier_params.merge(user_id: current_user.id.to_s)
   end
 
   def edit

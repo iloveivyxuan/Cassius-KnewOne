@@ -31,8 +31,12 @@ ul.operations.fa-ul
   li= link_to_with_icon "RSS", "fa-li fa fa-rss", thing_url(tp.thing, format: "atom")
   - if tp.thing.official_site.present?
     li= tp.official_site
-  li= link_to_with_icon "供应此产品", "fa-li fa fa-beer", "#thing_supplier", title: "提供产品",
-  data: {toggle: "modal", keyboard: false}
+  - if can? :create, Supplier
+    li= link_to_with_icon "供应此产品", "fa-li fa fa-beer", "#thing_supplier", title: "提供产品", \
+                          data: {toggle: "modal", keyboard: false}
+  - else
+    li= link_to_with_icon "供应此产品", "fa-li fa fa-beer", "#login-modal", title: "提供产品", \
+                          data: {toggle: "modal", keyboard: false}
   - if can? :update, tp.thing
     li= link_to_with_icon "编辑", "fa-li fa fa-edit", edit_thing_path(tp.thing), title: "编辑"
   - if can? :pro_edit, tp.thing

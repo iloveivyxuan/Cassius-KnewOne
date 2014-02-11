@@ -13,7 +13,7 @@ class User
   field :karma, type: Integer, default: 0
   field :auto_update_from_oauth, type: Boolean, default: true
   field :status, type: Symbol, default: :normal
-  STATUS = {blocked: '锁定', normal: '正常'}
+  STATUS = {blocked: '锁定', watching: '特别观照(贬)', normal: '正常'}
   validates :status, inclusion: {in: STATUS.keys, allow_blank: false}
   STATUS.keys.each do |k|
     class_eval <<-EVAL
