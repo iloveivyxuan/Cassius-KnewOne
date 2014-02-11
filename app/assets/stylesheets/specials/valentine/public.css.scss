@@ -17,7 +17,7 @@
   width: 24px;
   z-index: 2000;
 
-  @media screen and (min-width: $screen-md-min) {
+  @media screen and (min-width: $screen-sm-min) {
     border: none;
     display: block;
     height: 80px;
@@ -33,7 +33,7 @@
 
   > .fa {
 
-    @media screen and (min-width: $screen-md-min) {
+    @media screen and (min-width: $screen-sm-min) {
       font-size: 3em;
     }
   }
