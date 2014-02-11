@@ -79,6 +79,13 @@ Making::Application.routes.draw do
       end
     end
 
+    resources :thing_rebate_coupons, only: [:show, :index, :new, :create, :update] do
+      member do
+        post 'generate_code'
+        post 'batch_bind'
+      end
+    end
+
     resources :landing_pages
     resources :things, only: [:index, :update, :edit] do
       collection do

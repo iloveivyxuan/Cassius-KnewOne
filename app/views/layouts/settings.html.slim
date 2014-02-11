@@ -38,7 +38,9 @@
               = nav_tab :review do
                 = link_to_with_icon '管理评测', 'fa fa-fw fa-wrench', reviews_admin_path
               = nav_tab :coupon do
-                = link_to_with_icon '管理优惠券', 'fa fa-fw fa-wrench', haven_abatement_coupons_path
+                = link_to_with_icon '管理足价减优惠券', 'fa fa-fw fa-wrench', haven_abatement_coupons_path
+              = nav_tab :coupon do
+                = link_to_with_icon '管理产品减优惠券', 'fa fa-fw fa-wrench', haven_thing_rebate_coupons_path
             - if can? :manage, Order
               = nav_tab :supplier do
                 = link_to_with_icon '管理订单', 'fa fa-fw fa-wrench', haven_orders_path

@@ -16,6 +16,7 @@ zh-CN:
       rebate: '优惠'
       coupon: '优惠券'
       abatement_coupon: '足价即减优惠券'
+      product_rebate_conpon: '指定商品减价优惠券'
     attributes:
       user:
         email: '邮箱'
@@ -70,6 +71,9 @@ zh-CN:
         code: '兑换码'
       abatement_coupon:
         threshold_price: '阀值金额'
+        price: '降低金额'
+      product_rebate_conpon:
+        thing_id: '产品id'
         price: '降低金额'
   errors:
     messages:

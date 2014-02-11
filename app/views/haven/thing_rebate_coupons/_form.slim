@@ -1,0 +1,6 @@
+= simple_form_for @coupon, html: {class: 'form'}, url: [:haven, @coupon] do |f|
+  = f.input :name
+  = f.input :note
+  = f.input :thing_id
+  = f.input :price, as: :decimal
+  = f.button :submit
