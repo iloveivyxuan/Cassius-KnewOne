@@ -1,0 +1,52 @@
+#feedback {
+  @include transition-property(background-color, border-color, box-shadow, color);
+  @include transition-duration(.25s);
+
+  background-color: #fff;
+  border: 1px solid #ebeced;
+  border-right: none;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  bottom: 5em;
+  color: #5d5d5d;
+  display: none;
+  padding: 5px;
+  position: fixed;
+  right: 0;
+  text-align: center;
+  width: 24px;
+  z-index: 2000;
+
+  @media screen and (min-width: $screen-md-min) {
+    border: none;
+    display: block;
+    height: 80px;
+    width: 80px;
+  }
+
+  &:hover {
+    background-color: #cb534c;
+    border-color: #cb534c;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .1);
+    color: #fff;
+  }
+
+  > .fa {
+
+    @media screen and (min-width: $screen-md-min) {
+      font-size: 3em;
+    }
+  }
+
+  > label {
+    cursor: pointer;
+    display: block;
+    font-weight: normal;
+    margin-top: 5px;
+  }
+}
+
+#habla_window_div {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
