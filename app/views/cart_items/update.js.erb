@@ -1,4 +1,4 @@
 $("#cart_item_<%= @cart_item.id %>").replaceWith('<%= render "cart_item", cart_item: @cart_item %>');
 $(".total_price strong span").text('<%= @total_price %>');
+$(".deliver_tip").html('<%= escape_javascript deliver_tip_text(@total_price) %>');
 Making.CartCheck();
-$(".deliver_tip").html('<%= escape_javascript deliver_tip_text(@total_price) %>')
