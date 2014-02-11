@@ -22,13 +22,15 @@ var Making = (function(module) {
     olark('api.box.expand');
   }, false);
 
-  window.addEventListener('scroll', function() {
-    if (document.body.scrollTop > 400) {
-      display = 'block';
-    } else {
-      display = 'none';
-    }
+  if (Modernizr.mq('(max-width: 768px)')) {
+    window.addEventListener('scroll', function() {
+      if (document.documentElement.scrollTop > 400) {
+        display = 'block';
+      } else {
+        display = 'none';
+      }
 
-    feedback.style.display = display;
-  }, false);
+      feedback.style.display = display;
+    }, false);
+  }
 })();
