@@ -330,6 +330,10 @@ window.Making =
         $searchCandidate.hide()
         $searchBackdrop.fadeOut()
 
+    $container.on 'submit', (e)->
+      if $.trim $input.val() is ''
+        return false
+
     $input.on 'keyup', (e)->
       $self = $(@)
       keyword = $.trim @.value
