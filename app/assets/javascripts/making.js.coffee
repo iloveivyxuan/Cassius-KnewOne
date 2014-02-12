@@ -211,7 +211,7 @@ window.Making =
       navSelector: '.pagination'
       nextSelector: '.pagination a[rel="next"]'
       contentSelector: container + ' ul.infinite'
-      itemSelector: item
+      itemSelector: 'ul.infinite > li'
       pixelsFromNavToBottom: 150
       loading:
         msg: $("<div class='loading-things'><i class='fa fa-spinner fa-spin fa-2x'></i></div>")
