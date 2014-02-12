@@ -6,7 +6,8 @@ section#home_index
     = link_to valentine_path, id: 'promotion', target: '_blank'
       span data-picture="" data-alt="情人节礼物清单，买完再剁手"
         span data-src="#{asset_path 'specials/valentine/promotion-xs.jpg'}"
-        span data-src="#{asset_path 'specials/valentine/promotion-sm-up.jpg'}" data-media="(min-width: 481px)"
+        span data-src="#{asset_path 'specials/valentine/promotion-sm-md.jpg'}" data-media="(min-width: 481px) and (max-width: 992px)"
+        span data-src="#{asset_path 'specials/valentine/promotion-md-up.jpg'}" data-media="(min-width: 993px)"
 
     ul#home_things= render @things, size: :normal, img_lazy: true
     = paginate @things
