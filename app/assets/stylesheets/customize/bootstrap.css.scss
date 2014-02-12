@@ -52,6 +52,13 @@ input {
   &:focus {outline: none !important;}
 }
 
+input[type="radio"],
+input[type="checkbox"] {
+  height: 14px;
+  margin-top: 4px \9;
+  width: 14px;
+}
+
 input[type="number"] {
   max-width: 100px;
 }
