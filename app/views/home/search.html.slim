@@ -2,7 +2,7 @@
 
 section#things_index
   section
-    - if @things.length > 0
+    - if @things && @things.length > 0
       ul#things= render @things, size: :normal, img_lazy: true
       = paginate @things
     - else
