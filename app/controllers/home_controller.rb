@@ -55,7 +55,7 @@ class HomeController < ApplicationController
         format.js
         format.json
       else
-        format.html { redirect_to things_path }
+        format.html
         format.js { head :no_content }
         format.json { head :no_content }
       end
