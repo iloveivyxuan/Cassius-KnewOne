@@ -5,7 +5,7 @@ section#things_index
     h1= @category.name
 
   section
-    ul#things= render @things, size: :normal, img_lazy: true
+    ul.infinite#things= render @things, size: :normal, img_lazy: true
     = paginate @things
 
 - content_for :script do

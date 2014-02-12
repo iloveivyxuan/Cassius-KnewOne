@@ -9,7 +9,7 @@ section#home_index
         span data-src="#{asset_path 'specials/valentine/promotion-sm-md.jpg'}" data-media="(min-width: 481px) and (max-width: 992px)"
         span data-src="#{asset_path 'specials/valentine/promotion-md-up.jpg'}" data-media="(min-width: 993px)"
 
-    ul#home_things= render @things, size: :normal, img_lazy: true
+    ul.infinite#home_things= render @things, size: :normal, img_lazy: true
     = paginate @things
 
   aside

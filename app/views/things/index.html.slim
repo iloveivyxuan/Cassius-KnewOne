@@ -14,7 +14,7 @@ section#things_index
         = link_to_with_icon "自营", "fa fa-trophy", things_path(sort: "self_run")
 
   section
-    ul#things= render @things, size: :normal, img_lazy: true
+    ul.infinite#things= render @things, size: :normal, img_lazy: true
     = paginate @things
 
 - content_for :script do

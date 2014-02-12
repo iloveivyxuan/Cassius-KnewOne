@@ -3,7 +3,7 @@
 section#things_index
   section
     - if @things && @things.length > 0
-      ul#things= render @things, size: :normal, img_lazy: true
+      ul.infinite#things= render @things, size: :normal, img_lazy: true
       = paginate @things
     - else
       p.h3.text-muted.text-center
