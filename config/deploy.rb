@@ -28,8 +28,6 @@ set :scm, :git
 set :repository,  "git@github.com:lilu/making.git"
 set :branch, target[:branch]
 
-set :keep_releases, 5
-
 set :rails_stage, target[:stage]
 
 default_run_options[:pty] = true
@@ -54,6 +52,7 @@ after 'deploy:start', 'unicorn:start'
 after 'deploy:stop', 'unicorn:stop'
 after 'deploy:restart', 'unicorn:restart'
 before 'deploy:start', 'deploy:cleanup'
+before 'deploy:restart', 'deploy:cleanup'
 
 require './config/boot'
 require 'airbrake/capistrano'
