@@ -1,11 +1,8 @@
-# -*- coding: utf-8 -*-
 class GroupsController < ApplicationController
   load_and_authorize_resource
-  layout 'settings', except: [:show]
 
   def index
-    can? :manage, :all or not_found
-    @groups = Group.classic
+    @groups = Group.limit(10)
   end
 
   def show

@@ -13,11 +13,11 @@
     tbody
       - @groups.each do |group|
         tr
-          td= link_to group.name, group
+          td= link_to group.name, group_path(group)
           td= link_to group.founder.name, group.founder
           td= group.created_at
           - if can? :update, group
             td
               = link_to_with_icon "", "fa fa-edit", edit_group_path(group)
               - if group.topics.count <= 0
-                = link_to_with_icon "", "fa fa-trash-o", group, method: :delete, data: {confirm: "您确认要删除此小组吗?"}
+                = link_to_with_icon "", "fa fa-trash-o", group_path(group), method: :delete, data: {confirm: "您确认要删除此小组吗?"}
