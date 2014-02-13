@@ -64,6 +64,15 @@ GIT
       oauth2 (~> 0.9.1)
       rest-client (~> 1.6.7)
 
+GIT
+  remote: git://github.com/victorgong/omniauth-wechat.git
+  revision: 8763cd86790225cbe427c75e2d5885a9008963e4
+  specs:
+    omniauth-wechat (0.1.24)
+      multi_json
+      oauth2
+      omniauth (~> 1.0)
+
 GEM
   remote: http://ruby.taobao.org/
   specs:
@@ -490,6 +499,7 @@ DEPENDENCIES
   newrelic_rpm
   omniauth-oauth2!
   omniauth-twitter
+  omniauth-wechat!
   omniauth-weibo-oauth2
   quiet_assets
   rails (~> 4.0.0)

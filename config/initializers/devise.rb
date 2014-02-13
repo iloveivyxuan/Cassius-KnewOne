@@ -213,6 +213,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   config.omniauth :weibo, Settings.weibo.consumer_key, Settings.weibo.consumer_secret
+  config.omniauth :wechat, Settings.wechat.consumer_key, Settings.wechat.consumer_secret
 
   kexue_opts = {}
   if Settings.kexue.enable
