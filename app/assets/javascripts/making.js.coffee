@@ -50,32 +50,34 @@ window.Making =
         return
 
       if $('html').hasClass 'home_landing'
-        if Modernizr.mq('(min-width: ' + Making.Breakpoint.screenSMMin + ')')
-          $('.entry_email_toggle').addClass('active')
+        $('.entry_email_toggle').addClass(if $('.entry_email').is(':visible') then 'active')
 
         $image = $('.feature_image')
-        $image.attr('data-picture', true)
-        window.picturefill()
+        if $image.is(':visible')
+          $image.attr('data-picture', true)
+          window.picturefill()
 
-        $image.find('img').on 'load', ->
-          $(@).addClass('in')
+          $image.find('img').on 'load', ->
+            $(@).addClass('in')
 
         $comments = $('.feature_comment')
-        length = $comments.length
-        if length > 1
-          times = length - 1
-          i = 1
-          setInterval ->
-            $comments
-              .filter(':visible')
-              .css('position', 'absolute')
-              .hide()
-            .end()
-              .eq(i)
-              .css('position', 'static')
-              .fadeIn()
-            i = if i < times then ++i else 0
-          , 5000
+        if $comments.is(':visible')
+          length = $comments.length
+          if length > 1
+            times = length - 1
+            i = 1
+            setInterval ->
+              $comments
+                .filter(':visible')
+                .css('position', 'absolute')
+                .hide()
+              .end()
+                .eq(i)
+                .css('position', 'static')
+                .fadeIn()
+              i = if i < times then ++i else 0
+            , 5000
+
       if $('.carousel').length
         Making.ExtendCarousel()
         $(window).on 'resize.bs.carousel.data-api', ->
