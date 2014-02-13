@@ -333,8 +333,9 @@ window.Making =
         $searchBackdrop.fadeOut()
 
     $container.on 'submit', (e)->
-      if $.trim $input.val() is ''
+      if $.trim($input.val()) is ''
         return false
+      return true
 
     $input.on 'keyup', (e)->
       $self = $(@)
