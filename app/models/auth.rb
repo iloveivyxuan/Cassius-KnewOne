@@ -2,7 +2,8 @@
 class Auth
   include Mongoid::Document
   field :provider, type: String
-  field :uid, type: String
+  field :uid, type: Integer
+  field :uid_str, type: String
   field :name, type: String
   field :access_token, type: String
   field :access_token_secret, type: String
@@ -38,6 +39,10 @@ class Auth
     Time.now > self.expires_at
   end
 
+  def uid
+    self[:uid] == 0 ? self[:uid_str] : self[:uid]
+  end
+
   class << self
     def from_omniauth(data)
       new omniauth_to_auth(data)
@@ -47,6 +52,7 @@ class Auth
       {
           provider: data[:provider],
           uid: data[:uid],
+          uid_str: data[:uid],
           name: data[:info][:name],
           access_token: data[:credentials][:token],
           access_token_secret: data[:credentials][:secret],
