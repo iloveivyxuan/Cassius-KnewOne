@@ -10,6 +10,9 @@ class Lottery
   field :address, type: String
   field :is_delivered, type: Boolean
   field :delivery, type: String
+  field :code, type: String
+
+  attr_accessor :coupon_id
 
   belongs_to :winner, class_name: "User"
   belongs_to :thing, class_name: "Thing", inverse_of: :lotteries
@@ -20,8 +23,27 @@ class Lottery
   validate :check_thing
   validate :check_contribution
   validate :check_winner
+  validate do
+    errors.add :coupon_id, '无效的优惠券ID' if self.coupon_id.present? && self.coupon.nil?
+  end
+
+  before_create do
+    return unless coupon_id
+
+    cc = coupon.generate_code! expires_at: 3.months.since, admin_note: "#{self.date} #{self.winner.name} 天天有礼"
+    self.code = cc.code
+  end
 
   default_scope -> { desc(:date) }
+
+  def coupon_code
+    return nil unless self.code
+    CouponCode.find_by_code(self.code)
+  end
+
+  def coupon
+    Coupon.where(id: self.coupon_id).first
+  end
 
   def thing_link
     link_to_thing thing
