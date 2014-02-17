@@ -82,7 +82,6 @@ class Ability
     can :read, Lottery
     can :read, Investor
     can :buy, Thing
-    can :read, ThingGroup
     can :comments, Thing
     can :wechat_qr, Thing
   end

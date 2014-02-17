@@ -4,16 +4,7 @@ class Review < Post
   field :score, type: Integer, default: 0
   field :is_top, type: Boolean, default: false
 
-  belongs_to :thing_group
   belongs_to :thing
-
-  def thing
-    thing_group.thing
-  end
-
-  before_create do
-    self.thing_id = thing_group.thing.id
-  end
 
   has_and_belongs_to_many :lovers, class_name: "User", inverse_of: nil
   has_and_belongs_to_many :foes, class_name: "User", inverse_of: nil
