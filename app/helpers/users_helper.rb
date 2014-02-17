@@ -38,6 +38,11 @@ module UsersHelper
                                    title: "个人博客", target: "_blank", class: 'website', rel: '_nofollow')
       end
     end
+
+    if user_signed_in? && current_user.staff? && user.email.present?
+      html<< link_to_with_icon(nil, 'fa fa-envelope fa-lg', "mailto:#{user.email}", title: '邮箱', class: 'provider')
+    end
+
     html.join.html_safe
   end
 
