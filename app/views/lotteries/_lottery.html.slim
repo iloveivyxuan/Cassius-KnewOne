@@ -37,12 +37,16 @@ tr.lottery
         i.fa.fa-edit
       = link_to lottery, method: :delete do
         i.fa.fa-trash-o
+      - if lottery.winner.email.present?
+        = mail_to lottery.winner.email, '发送邮件'
     td
       = lottery.name
       = lottery.phone
     td
       = lottery.address
     td
+      - if c = lottery.coupon_code
+        = "优惠码 #{c.code} #{'已绑定' if c.bound_user?} #{'已使用' if c.used?}"
       - if lottery.is_delivered
         = lottery.delivery
       - else
