@@ -28,7 +28,7 @@ class Lottery
   end
 
   before_create do
-    return unless coupon_id
+    return if self.coupon_id.blank?
 
     cc = coupon.generate_code! expires_at: 3.months.since, admin_note: "#{self.date} #{self.winner.name} 天天有礼"
     self.code = cc.code
