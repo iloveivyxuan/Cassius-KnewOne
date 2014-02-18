@@ -83,6 +83,7 @@ zh-CN:
         address: '地址'
         is_delivered: '是否递送'
         delivery: '递送信息'
+        coupon_id: '优惠券ID'
       supplier:
         name: "姓名"
         contact: "联系方式"

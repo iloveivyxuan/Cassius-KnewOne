@@ -8,6 +8,7 @@ class CouponCode
 
   field :code, type: String
   field :used, type: Boolean, default: false
+  field :admin_note, type: String
   field :expires_at, type: Date
 
   validates :code, presence: true, uniqueness: true

@@ -1,8 +1,8 @@
 class DeviseMailer < Devise::Mailer
   layout 'mailer'
-  default from: 'lilu@knewone.com',
+  default from: 'welcome@knewone.com',
           content_type: 'text/html',
-          reply_to: 'hello@knewone.com'
+          reply_to: 'welcome@knewone.com'
 
   def confirmation_instructions(record_id, token, opts={})
     record = User.find(record_id)
