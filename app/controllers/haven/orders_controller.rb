@@ -51,7 +51,11 @@ module Haven
             lines.each { |l| csv<< l }
           end
 
-          send_data csv.encode 'gb2312', :replace => ''
+          if params[:encoding] == 'gb2312'
+            send_data csv.encode 'gb2312', :replace => ''
+          else
+            send_data csv, :replace => ''
+          end
         end
       end
     end
