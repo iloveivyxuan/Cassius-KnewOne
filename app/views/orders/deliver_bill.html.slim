@@ -2,7 +2,7 @@ table.text-center
   tbody
     tr
       td.text-left.order_no width="50%" colspan="3" = "订单号：#{@order.order_no}"
-      td.text-left.delivered_at width="50%" colspan="3" = "发货时间：#{@order.delivered_at.strftime '%y-%m-%d %H:%M'}"
+      td.text-left.delivered_at width="50%" colspan="3" = "发货时间：#{@order.delivered_at.strftime '%y-%m-%d %H:%M' if @order.delivered_at }"
     tr
       td.text-left colspan="6" = "买家信息：#{address_text @order}"
     tr
