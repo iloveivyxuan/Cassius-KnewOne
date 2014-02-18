@@ -31,11 +31,11 @@
       padding: 0;
 
       .cover {
-        @include inline-block;
+        display: inline-block;
       }
 
       .info {
-        @include inline-block;
+        display: inline-block;
         max-width: 53%;
         margin-left: 2em;
 
@@ -91,7 +91,7 @@
         }
 
         span {
-          @include inline-block;
+          display: inline-block;
           text-align: center;
           width: 3em;
         }
@@ -106,7 +106,7 @@
     color: $text-muted;
 
     strong {
-      @include inline-block;
+      display: inline-block;
       margin-left: .5em;
       font-size: 1.25em;
       color: $red;

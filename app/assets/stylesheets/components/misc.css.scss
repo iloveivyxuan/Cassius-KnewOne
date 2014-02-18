@@ -1,0 +1,71 @@
+.separator {
+  color: #ddd;
+  padding: 0 .5em;
+}
+
+.score {
+  margin: .5em 0;
+}
+
+.fa-twitter {
+  color: $blue;
+}
+
+.fa-weibo {
+  color: $red;
+}
+
+.list_block {
+
+  > li {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+  }
+}
+
+.fanciers {
+  color: $red;
+  a {color: $red;}
+
+  .fancied {
+    .fa-heart-o {display: none !important;}
+  }
+
+  .unfancied {
+    .fa-heart {display: none !important;}
+    &:hover {
+      span:last-child {color: $red;}
+    }
+  }
+}
+
+.owners {
+  color: $green;
+  a {color: $green;}
+
+  .owned {
+    .fa-square-o {display: none !important;}
+  }
+
+  .unowned {
+    .fa-check-square-o {display: none !important;}
+    &:hover {
+      span:last-child {color: $green;}
+    }
+  }
+}
+
+img.lazy {
+  visibility: hidden;
+}
+
+#check_provider_sync {
+  color: $text-muted;
+  margin-left: 2em;
+}
+
+/* fucking baidu analystics */
+a[href^='http://tongji.baidu.com'] {
+  display: none;
+}

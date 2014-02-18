@@ -1,24 +1,26 @@
-- @suppliers.each do |s|
-  .dashed_divider id="supplier_#{s.id}"
-    h4
-      - thing = Thing.where(title: s.thing_title).first
-      - if thing
-        = link_to s.thing_title, thing
-      - else
-        = s.thing_title
+ul.list_block
+  - @suppliers.each do |s|
+    li id="supplier_#{s.id}"
+      h4
+        - thing = Thing.where(title: s.thing_title).first
+        - if thing
+          = link_to s.thing_title, thing
+        - else
+          = s.thing_title
 
-    p= s.created_at.to_date
-    p
-      span= s.name
-      span= s.contact
-    p= link_to s.url, s.url
-    p= s.description
-    .note style="color: red;"
-      p= s.note
-    = link_to s.user.name, s.user, target: '_blank' if s.user
-    |  |
-    = link_to_with_icon "备注", "fa fa-edit", edit_supplier_path(s), remote: true
-    |  |
-    = link_to_with_icon "删除", "fa fa-trash-o", s, remote: true, method: :delete,
-      data: {confirm: "您确认要删除吗?"}
+      p= s.created_at.to_date
+      p
+        span= s.name
+        span= s.contact
+      p= link_to s.url, s.url
+      p= s.description
+      .note style="color: red;"
+        p= s.note
+      = link_to s.user.name, s.user, target: '_blank' if s.user
+      |  |
+      = link_to_with_icon "备注", "fa fa-edit", edit_supplier_path(s), remote: true
+      |  |
+      = link_to_with_icon "删除", "fa fa-trash-o", s, remote: true, method: :delete,
+        data: {confirm: "您确认要删除吗?"}
+
 = paginate @suppliers
