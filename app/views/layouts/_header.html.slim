@@ -12,7 +12,7 @@ header role="banner"
       ul.nav.navbar-nav
         li.nav_things.dropdown
           = link_to "#", class: "dropdown-toggle", data: {toggle: "dropdown"} do
-            i.fa.fa-th
+            i.fa.fa-th.fa-fw
             span 产品
             b.caret
           ul.dropdown-menu
@@ -21,7 +21,7 @@ header role="banner"
             li= link_to_with_icon "自营", "fa fa-trophy", things_path(sort: "self_run")
         li.nav_groups.dropdown
           = link_to "#", class: "dropdown-toggle", data: {toggle: "dropdown"} do
-            i.fa.fa-group
+            i.fa.fa-group.fa-fw
             span 小组
             b.caret
           ul.dropdown-menu
@@ -29,14 +29,14 @@ header role="banner"
               li= link_to group.name, group
         li.nav_new_thing.visible-md.visible-lg
           - if user_signed_in?
-            = link_to_with_icon "分享产品", "fa fa-magic", new_thing_path
+            = link_to_with_icon "分享产品", "fa fa-magic fa-fw", new_thing_path
           - else
-            = link_to_with_icon "分享产品", "fa fa-magic", "#", data: {toggle: "modal", target: "#login-modal"}
+            = link_to_with_icon "分享产品", "fa fa-magic fa-fw", "#", data: {toggle: "modal", target: "#login-modal"}
         li.nav_lotteries.visible-md.visible-lg
-          = link_to_with_icon "天天有礼", "fa fa-gift", lotteries_path
+          = link_to_with_icon "天天有礼", "fa fa-gift fa-fw", lotteries_path
         li.nav_help.dropdown.visible-lg
           = link_to "#", class: "dropdown-toggle", data: {toggle: "dropdown"} do
-            i.fa.fa-tint
+            i.fa.fa-tint.fa-fw
             span 关于我们
             b.caret
           ul.dropdown-menu
@@ -44,12 +44,12 @@ header role="banner"
             li= link_to_with_icon "吐槽", "fa fa-leaf", "/things/knewone"
             li= link_to_with_icon "邮件", "fa fa-envelope", "mailto:hello@knewone.com"
         li.nav_olark
-          = link_to_with_icon content_tag(:span, "在线帮助"), "fa fa-user-md", "#olark_chat"
+          = link_to_with_icon "在线帮助", "fa fa-user-md fa-fw", "#olark_chat", data: {hint: "fa-user-md"}
 
       .nav.navbar-nav.navbar-right
         - if user_signed_in?
           .nav_user.is_login.dropdown
-            = link_to "#", class: "nav_user_avatar dropdown-toggle", data: {toggle: "dropdown"} do
+            = link_to "#", id: "user", class: "nav_user_avatar dropdown-toggle", data: {toggle: "dropdown", name: current_user.name, email: current_user.email, id: current_user.id} do
               = image_tag current_user.avatar.url(:tiny), class: "img-circle"
             = link_to messages_path, class: "nav_user_action nav_messages", title: "#{unread_messages_text}未读消息" do
               i.fa.fa-inbox
