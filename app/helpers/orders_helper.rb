@@ -52,7 +52,7 @@ module OrdersHelper
   end
 
   def refunded_balance_to_platform_link(order, css = 'btn btn-danger')
-    if order.can_refunded_balance_to_platform?
+    if order.can_refunded_balance_to_platform? && order.payment_method != :btc
       content_tag :div, class: 'btn-group' do
         link_to '改退款到第三方平台', refunded_balance_to_platform_haven_order_path(order),
                 data: {confirm: '确认退款？'},
@@ -62,7 +62,7 @@ module OrdersHelper
   end
 
   def refund_to_balance_link(order)
-    if order.can_refund?
+    if order.can_refund? && order.payment_method != :btc
       render 'haven/orders/refund_to_balance', order: order
     end
   end
@@ -137,6 +137,10 @@ module OrdersHelper
 
   def deliver_method_text(order)
     Order::DELIVER_METHODS[order.deliver_by]
+  end
+
+  def payment_method_text(order)
+    Order::PAYMENT_METHOD[order.payment_method]
   end
 
   def render_share_modal(order)
