@@ -11,4 +11,9 @@ class UserMailer < BaseMailer
     mail(to: @user.email,
          subject: 'Welcome to Knewone')
   end
+
+  def foo(email)
+    mail(to: email,
+         subject: 'Test mail sending')
+  end
 end
