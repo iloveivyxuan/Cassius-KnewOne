@@ -68,15 +68,6 @@ Making::Application.configure do
   config.active_support.deprecation = :notify
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-      address: 'smtp.exmail.qq.com',
-      port: 25,
-      domain: 'staging.knewone.com',
-      user_name: 'welcome@knewone.com',
-      password: 'knewone123',
-      authentication: 'plain',
-      enable_starttls_auto: true
-  }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { :host => 'staging.knewone.com' }
