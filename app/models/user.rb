@@ -142,6 +142,26 @@ class User
     end
   end
 
+  def update_from_oauth(data)
+    auth = auths.where(provider: data[:provider]).first
+    if auth
+      auth.update(data)
+      if self.auto_update_from_oauth?
+        self.name = (auth.name || auth.nickname).gsub(' ', '-')
+        if self.name_was.include?("#{self.name}x")
+          reset_name!
+        elsif User.where(name: self.name).size > 1 || self.name.blank?
+          self.name += "x#{SecureRandom.uuid[0..2]}"
+        end
+
+        self.location = auth.location
+        self.description = auth.description
+        self.remote_avatar_url = auth.parse_image(data)
+      end
+      save
+    end
+  end
+
   ## Roles
   field :role, type: String, default: ""
   ROLES = %w[vip editor sale admin]
