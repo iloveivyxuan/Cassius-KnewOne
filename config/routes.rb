@@ -37,8 +37,6 @@ Making::Application.routes.draw do
   resources :users, only: [:show, :index] do
     collection do
       post 'share'
-      patch 'bind'
-      get 'binding'
       get 'fuzzy'
     end
   end

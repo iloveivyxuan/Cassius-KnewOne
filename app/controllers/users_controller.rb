@@ -21,19 +21,6 @@ class UsersController < ApplicationController
     render nothing: true
   end
 
-  def bind
-    if current_user.update_attributes params[:user]
-      current_user.resend_confirmation_instructions
-      redirect_to root_path, :notice => '已向您发送验证邮件！'
-    else
-      render 'binding'
-    end
-  end
-
-  def binding
-
-  end
-
   def fuzzy
     @users = User.find_by_fuzzy_name(params[:keyword])
     respond_to do |format|
