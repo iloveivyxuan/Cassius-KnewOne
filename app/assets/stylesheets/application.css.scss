@@ -1,6 +1,6 @@
-// ==========================================================================
+// =============================================================================
 // Library
-// ==========================================================================
+// =============================================================================
 
 @import "customize/variables";
 @import "bootstrap";
@@ -8,43 +8,40 @@
 @import "customize/bootstrap";
 
 
-// ==========================================================================
+// =============================================================================
 // Application
-// ==========================================================================
+// =============================================================================
 
 @import "variables";
 @import "mixins";
 
-// @todo
-@import "todo";
-// @todo end
-
-// UI Component
+// Components
 @import "components/animations";
-@import "components/autocomplete";
+@import "components/wrappers";
 @import "components/navs";
-@import "components/rating";
-@import "components/separators";
-@import "components/slideshow";
+@import "components/slideshows";
+@import "components/ratings";
+@import "components/autocomplete";
+@import "components/entry";
+@import "components/things_in_list";
+@import "components/articles";
+@import "components/comments";
+@import "components/editors";
+@import "components/spinners";
+@import "components/alerts";
+@import "components/modals";
+@import "components/misc";
 
-// Application Entity
-@import "entities/entry";
-@import "entities/things_in_list";
-// @todo
-@import "things";
-@import "messages";
-@import "groups";
-@import "lottery";
-@import "carts";
-@import "orders";
-@import "parts/alerts";
-@import "parts/modals";
-// @todo end
-
-// View
-@import "parts/layout";
+// Views
+@import "views/layout";
 @import "views/home";
+@import "views/things";
 @import "views/thing_form";
+@import "views/groups";
+@import "views/carts";
+@import "views/lottery";
 @import "views/settings";
+@import "views/orders";
+@import "views/messages";
 @import "views/users";
 @import "views/errors";

@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
   end
 
   def deliver_bill
-    return redirect_to @order unless @order.shipped?
+    return redirect_to @order unless @order.shipped? or @order.confirmed?
 
     render layout: 'deliver_bill'
   end

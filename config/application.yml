@@ -9,6 +9,10 @@ defaults: &defaults
   weibo:
     consumer_key: ""
     consumer_secret: ""
+  wechat:
+    consumer_key: "wx26788de83c861cef"
+    consumer_secret: "45c496514b9159a7c70eb3a9239e483c"
+    token: "680c25abb672bd09513c01d280e01ad9"
   twitter:
     consumer_key: ""
     consumer_secret: ""

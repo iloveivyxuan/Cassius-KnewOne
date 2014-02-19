@@ -4,24 +4,26 @@ window.Making =
   Views: {}
   Routers: {}
 
-  Breakpoint: {
+  Urls:
+    olark: '<%= asset_path "olark.js" %>'
+
+  Breakpoints:
     "screenXSMin": "480px"
-    "screenSMMin": "768px"
-    "screenMDMin": "992px"
-    "screenLGMin": "1440px"
-    "screenXLMin": "1920px"
     "screenXSMax": "767px"
+    "screenSMMin": "768px"
     "screenSMMax": "991px"
+    "screenMDMin": "992px"
     "screenMDMax": "1439px"
+    "screenLGMin": "1440px"
     "screenLGMax": "1919px"
-  }
+    "screenXLMin": "1920px"
 
   initialize: ->
     $ ->
       Making.ImageLazyLoading()
       $(document).ajaxComplete ->
         $(".spinning").remove()
-      if Modernizr.mq('(min-width: ' + Making.Breakpoint.screenSMMin + ')') then Making.Search()
+      if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ')') then Making.Search()
       Making.Share()
       $(".popover-toggle").popover()
       $("a.disabled").click ->
@@ -30,8 +32,7 @@ window.Making =
       $(".post_content").fitVids()
       $(".track_event").click ->
         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
-      $('a[href="#olark_chat"]').click ->
-        olark('api.box.expand')
+      Making.SetupOlark('[href="#olark_chat"]')
       Making.GoTop()
       $('#switch_aside').on 'click', ->
         $('.offcanvas_mix').addClass 'is_aside_active'
@@ -50,32 +51,34 @@ window.Making =
         return
 
       if $('html').hasClass 'home_landing'
-        if Modernizr.mq('(min-width: ' + Making.Breakpoint.screenSMMin + ')')
-          $('.entry_email_toggle').addClass('active')
+        $('.entry_email_toggle').addClass(if $('.entry_email').is(':visible') then 'active')
 
         $image = $('.feature_image')
-        $image.attr('data-picture', true)
-        window.picturefill()
+        if $image.is(':visible')
+          $image.attr('data-picture', true)
+          window.picturefill()
 
-        $image.find('img').on 'load', ->
-          $(@).addClass('in')
+          $image.find('img').on 'load', ->
+            $(@).addClass('in')
 
         $comments = $('.feature_comment')
-        length = $comments.length
-        if length > 1
-          times = length - 1
-          i = 1
-          setInterval ->
-            $comments
-              .filter(':visible')
-              .css('position', 'absolute')
-              .hide()
-            .end()
-              .eq(i)
-              .css('position', 'static')
-              .fadeIn()
-            i = if i < times then ++i else 0
-          , 5000
+        if $comments.is(':visible')
+          length = $comments.length
+          if length > 1
+            times = length - 1
+            i = 1
+            setInterval ->
+              $comments
+                .filter(':visible')
+                .css('position', 'absolute')
+                .hide()
+              .end()
+                .eq(i)
+                .css('position', 'static')
+                .fadeIn()
+              i = if i < times then ++i else 0
+            , 5000
+
       if $('.carousel').length
         Making.ExtendCarousel()
         $(window).on 'resize.bs.carousel.data-api', ->
@@ -86,11 +89,38 @@ window.Making =
       $('[type="range"].range_rating').length && Making.Rating()
       $('.score').length && Making.Score()
 
-  OlarkSetUser: (name, email, id) ->
-    olark('api.visitor.updateFullName', {fullName: name}) if name
-    olark('api.chat.updateVisitorNickname', {snippet: name }) if name
-    olark('api.visitor.updateEmailAddress', {emailAddress: email}) if email
-    olark('api.visitor.updateCustomFields', {customerId: id}) if id
+  SetupOlark: (element) ->
+    $element    = $(element)
+    klass_hint  = $element.data('hint')
+    klass_spin  = 'fa-spinner fa-spin'
+    $hint       = $element.find('.' + klass_hint)
+    initialized = false
+
+    $element.click (e) ->
+      e.preventDefault()
+
+      if !initialized
+        if $hint.length > 0
+          $hint.removeClass(klass_hint).addClass(klass_spin)
+
+        $.getScript Making.Urls.olark, ->
+          $user = $('#user')
+          name  = $user.data('name')
+          email = $user.data('email')
+          id    = $user.data('id')
+
+          olark('api.visitor.updateFullName', {fullName: name}) if name
+          olark('api.chat.updateVisitorNickname', {snippet: name }) if name
+          olark('api.visitor.updateEmailAddress', {emailAddress: email}) if email
+          olark('api.visitor.updateCustomFields', {customerId: id}) if id
+          olark('api.box.expand')
+          if $hint.length > 0
+            olark 'api.box.onExpand', ->
+              $hint.removeClass(klass_spin).addClass(klass_hint)
+
+          initialized = true
+      else
+        olark('api.box.expand')
 
   GoTop: ->
     $(window).on 'scroll', ->
@@ -278,7 +308,7 @@ window.Making =
         height: height
         lineHeight: height
 
-      if Modernizr.mq('(min-width: ' + Making.Breakpoint.screenSMMin + ')')
+      if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ')')
         $overview      = $carousel.next('.carousel_overview')
         $overview_body = $overview.children('.slideshow_body')
 
@@ -331,8 +361,9 @@ window.Making =
         $searchBackdrop.fadeOut()
 
     $container.on 'submit', (e)->
-      if $.trim $input.val() is ''
+      if $.trim($input.val()) is ''
         return false
+      return true
 
     $input.on 'keyup', (e)->
       $self = $(@)
@@ -413,13 +444,13 @@ window.Making =
           $searchCandidate.hide()
           $searchBackdrop.fadeOut()
 
-    if Modernizr.mq('(min-width: ' + Making.Breakpoint.screenSMMin + ')')
+    if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ')')
       transition_time = parseFloat($container.css('transition-duration')) * 1000
 
       $input
         .on 'focusin', ->
           if !$container.hasClass('focus')
-            if Modernizr.mq('(min-width: ' + Making.Breakpoint.screenSMMin + ') and (max-width: ' + Making.Breakpoint.screenLGMin + ')')
+            if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ') and (max-width: ' + Making.Breakpoints.screenLGMin + ')')
               $nav_first.hide()
             $container.addClass('focus')
         .on 'focusout', ->
@@ -429,7 +460,7 @@ window.Making =
           $container
             .removeClass('focus')
             .one $.support.transition.end, ->
-              if Modernizr.mq '(max-width: ' + Making.Breakpoint.screenLGMin + ')'
+              if Modernizr.mq '(max-width: ' + Making.Breakpoints.screenLGMin + ')'
                 $nav_first.fadeIn()
             .emulateTransitionEnd(transition_time)
 

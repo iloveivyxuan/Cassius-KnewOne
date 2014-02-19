@@ -1,0 +1,94 @@
+article.post {
+  header {
+    margin-bottom: 2em;
+    word-wrap: break-word;
+  }
+
+  section {
+    p {word-wrap: break-word;}
+  }
+
+  footer {
+    > * {
+      display: inline-block;
+      margin-top: 1em;
+      margin-right: 2em;
+    }
+  }
+}
+
+.post_content {
+  img {@extend .img-responsive;}
+  iframe {
+    border: none;
+    margin: .5em 0;
+    max-width: 100%;
+  }
+  .fluid-width-video-wrapper {overflow: hidden;}
+  ol {list-style: decimal inside;}
+  ul {list-style: disc inside;}
+  blockquote { font-size: 1.1em; }
+  word-wrap: break-word;
+}
+
+.post_actions {
+  i {
+    color: $text-muted;
+    margin-right: 1em;
+  }
+}
+
+form.edit_post {
+  margin: 0;
+
+  input[type="text"], input[type="url"] {
+    width: 100%;
+    @media screen and (min-width: 768px) {
+      width: 70%;
+    }
+  }
+
+  .submit {
+    margin-bottom: 2em;
+
+    input[type="submit"] {
+      width: 100%;
+    }
+
+    @media screen and (min-width: 768px) {
+      float: right;
+      width: 20%;
+      text-align: right;
+    }
+  }
+
+  #thing_content > & {
+    padding-bottom: 1em;
+  }
+}
+
+.author {
+  margin-top: 1em;
+  > * {
+    margin-right: 1em;
+  }
+
+  a i {
+    color: $text-muted;
+  }
+
+  img {
+    vertical-align: -2px;
+    @extend .img-rounded;
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.reviews_count {
+  color: $blue;
+}
+
+.comments_count {
+  color: $text-muted;
+}

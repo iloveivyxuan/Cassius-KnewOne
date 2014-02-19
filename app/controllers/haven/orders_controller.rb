@@ -3,11 +3,11 @@
 module Haven
   class OrdersController < ApplicationController
     layout 'settings'
-    load_and_authorize_resource :order, class: ::Order
+    before_action :set_order, except: :index
     include ::AddressesHelper
 
     def index
-      @orders ||= ::Order
+      @orders = ::Order
 
       @orders = @orders.where(state: params[:state]) if params[:state]
       if params[:find_by] == 'order_no'
@@ -51,7 +51,11 @@ module Haven
             lines.each { |l| csv<< l }
           end
 
-          send_data csv.encode 'gb2312', :replace => ''
+          if params[:encoding] == 'gb2312'
+            send_data csv.encode 'gb2312', :replace => ''
+          else
+            send_data csv, :replace => ''
+          end
         end
       end
     end
@@ -95,6 +99,10 @@ module Haven
     end
 
     private
+    def set_order
+      @order = Order.find(params[:id])
+    end
+
     def order_params
       params.require(:order).permit!
     end

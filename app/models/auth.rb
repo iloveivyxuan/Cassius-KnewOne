@@ -3,14 +3,17 @@ class Auth
   include Mongoid::Document
   field :provider, type: String
   field :uid, type: Integer
+  field :uid_str, type: String
   field :name, type: String
   field :access_token, type: String
   field :access_token_secret, type: String
+  field :refresh_token, type: String
   field :expires_at, type: Time
   field :nickname, type: String, default: ""
   field :location, type: String, default: ""
   field :description, type: String, default: ""
   field :urls, type: Hash, default: {}
+  field :raw, type: Hash
 
   embedded_in :user
 
@@ -27,12 +30,17 @@ class Auth
 
   PROVIDERS = {
       'weibo' => '新浪微博',
-      'twitter' => 'Twitter'
+      'twitter' => 'Twitter',
+      'wechat' => '微信'
   }
 
   def expired?
     return false unless self.expires_at
     Time.now > self.expires_at
+  end
+
+  def uid
+    self[:uid] == 0 ? self[:uid_str] : self[:uid]
   end
 
   class << self
@@ -44,14 +52,17 @@ class Auth
       {
           provider: data[:provider],
           uid: data[:uid],
+          uid_str: data[:uid],
           name: data[:info][:name],
           access_token: data[:credentials][:token],
           access_token_secret: data[:credentials][:secret],
+          refresh_token: data[:credentials][:refresh_token],
           expires_at: data[:credentials][:expires_at],
           nickname: data[:info][:nickname],
           description: data[:info][:description],
           location: data[:info][:location],
-          urls: data[:info][:urls]
+          urls: data[:info][:urls],
+          raw: data[:extra][:raw_info].to_hash
       }
     end
   end

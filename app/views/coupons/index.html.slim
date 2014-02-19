@@ -10,7 +10,7 @@ header.page-header
   .form-group class="#{"has-#{flash[:status]}" if flash[:status]}"
     .col-xs-9.col-sm-4
       = hidden_field_tag :redirect_from, params[:redirect_from]
-      = text_field_tag :code, '', class: 'form-control', placeholder: '优惠券代码'
+      = text_field_tag :code, (params[:code] || ''), class: 'form-control', placeholder: '优惠券代码'
       - if flash[:msg]
         strong.help-block = flash[:msg]
     = submit_tag '添加', class: 'btn btn-primary'

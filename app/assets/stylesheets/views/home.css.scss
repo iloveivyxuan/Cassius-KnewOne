@@ -12,8 +12,11 @@ html.home_landing {
   body {
     height: 100%;
     padding-bottom: 0;
-    padding-top: $navbar-height + 1px;
     width: 100%;
+
+    @media screen and (min-width: $screen-xs-min + 1) {
+      padding-top: $navbar-height + 1;
+    }
 
     @media screen and (min-width: $screen-md-min + 1) {
       overflow: hidden;
@@ -21,7 +24,12 @@ html.home_landing {
     }
 
     > header {
+      display: none;
       margin-bottom: 0;
+
+      @media screen and (min-width: $screen-xs-min + 1) {
+        display: block;
+      }
 
       @media screen and (min-width: $screen-md-min + 1) {
         display: none;
@@ -58,11 +66,20 @@ html.home_landing {
     }
 
     header {
-      display: none;
+      @include clearfix;
+
+      padding-top: 5px;
+      text-align: center;
+
+      @media screen and (min-width: $screen-xs-min + 1) {
+        display: none;
+      }
 
       @media screen and (min-width: $screen-md-min + 1) {
         display: block;
         margin: .2em 0 .2em 46px;
+        padding-top: 0;
+        text-align: left;
       }
 
       > img {
@@ -94,11 +111,10 @@ html.home_landing {
       }
 
       > p {
-        display: none;
+        margin: 5px 0;
 
         @media screen and (min-width: $screen-md-min + 1) {
           color: $gray-light;
-          display: block;
           font-size: 24px;
           margin-top: 0;
           overflow: hidden;
@@ -116,13 +132,17 @@ html.home_landing {
     }
 
     .feature_name {
-      display: block;
+      display: none;
       font-family: "orbitron-bold";
       font-size: 1.2em;
       margin-bottom: 5px;
       margin-left: 20px;
       margin-top: 5px;
       text-align: center;
+
+      @media screen and (min-width: $screen-xs-min + 1) {
+        display: block;
+      }
 
       @media screen and (min-width: $screen-md-min + 1) {
         font-size: $font-size-h3;
@@ -135,17 +155,18 @@ html.home_landing {
     }
 
     .feature_image {
-      @media screen and (max-width: $screen-md-min) {
+      display: none;
+
+      @media screen and (min-width: $screen-xs-min + 1) {
         display: block;
+      }
+
+      @media screen and (max-width: $screen-md-min) {
         height: 500px;
         max-width: 100%;
         position: relative;
         overflow: hidden;
         width: 100%;
-      }
-
-      @media screen and (max-width: $screen-xs-min) {
-        height: 200px;
       }
 
       img {
@@ -168,8 +189,13 @@ html.home_landing {
     }
 
     .feature_comments {
+      display: none;
       margin: 5px 20px 10px 20px;
       position: relative;
+
+      @media screen and (min-width: $screen-xs-min + 1) {
+        display: block;
+      }
 
       @media screen and (min-width: $screen-md-min + 1) {
         top: 85%;
@@ -252,10 +278,10 @@ html.home_landing {
         position: absolute;
         top: 26%;
         width: 280px;
+      }
 
-        .entry_email {
-          display: block;
-        }
+      .entry_email {
+        display: block;
       }
     }
 

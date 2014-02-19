@@ -52,7 +52,7 @@ Making::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
-  config.assets.precompile += %w(modernizr.js)
+  config.assets.precompile += %w(modernizr.js olark.js)
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
@@ -72,7 +72,7 @@ Making::Application.configure do
       address: 'smtp.exmail.qq.com',
       port: 25,
       domain: 'knewone.com',
-      user_name: 'lilu@knewone.com',
+      user_name: 'welcome@knewone.com',
       password: 'knewone123',
       authentication: 'plain',
       enable_starttls_auto: true

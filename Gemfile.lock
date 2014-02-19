@@ -41,6 +41,15 @@ GIT
       omniauth (~> 1.2)
 
 GIT
+  remote: git://github.com/jasl/omniauth-wechat.git
+  revision: 81855406579eed68532d62033cf16679b6c9360c
+  specs:
+    omniauth-wechat (0.1.24)
+      multi_json
+      oauth2
+      omniauth (~> 1.0)
+
+GIT
   remote: git://github.com/jasl/tenpay.git
   revision: c40fe891f747fc9f3dbc1ada7bf6c6b7f18cc66e
   specs:
@@ -490,6 +499,7 @@ DEPENDENCIES
   newrelic_rpm
   omniauth-oauth2!
   omniauth-twitter
+  omniauth-wechat!
   omniauth-weibo-oauth2
   quiet_assets
   rails (~> 4.0.0)

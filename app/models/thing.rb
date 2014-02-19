@@ -47,12 +47,7 @@ class Thing < Post
 
   field :scores, type: Array, default: []
 
-  # TODO: will remove in future
   has_many :reviews, dependent: :delete
-  has_one :thing_group
-  after_create do
-    create_thing_group(name: self.title, founder: self.author) unless self.thing_group
-  end
 
   has_and_belongs_to_many :owners, class_name: "User", inverse_of: :owns
 

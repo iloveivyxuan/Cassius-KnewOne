@@ -64,6 +64,14 @@
     display: none;
     margin-top: 1em;
 
+    .nav-justified {
+
+      > li {
+        display: table-cell;
+        width: 1%;
+      }
+    }
+
     .tab-content {
       padding-top: 1em;
 

@@ -1,0 +1,51 @@
+.comments {
+  @include clearfix;
+
+  h4 {color: $text-muted;}
+
+  .comment_form {
+    @include clearfix;
+    textarea {margin: 1em 0;}
+  }
+
+  ul {
+    margin: 1em 0 2em;
+    border-top: 5px solid #eee;
+    padding-top: 2em;
+
+    li:not(:last-child) {
+      border-bottom: 1px dashed #ccc;
+      padding-bottom: 1em;
+      margin-bottom: 1em;
+    }
+  }
+
+  .comment {
+    @include clearfix();
+
+    .avatar {
+      float: left;
+      margin-right: 1em;
+      img {
+        @extend .img-rounded;
+        width: 60px;
+        height: 60px;
+      }
+    }
+
+    header {
+      margin: 0;
+      padding-left: 80px;
+
+      .reply {margin-right: 0;}
+    }
+
+    section {
+      padding-left: 80px;
+      p {
+        margin: .5em 0 0;
+        word-wrap: break-word;
+      }
+    }
+  }
+}
