@@ -20,7 +20,7 @@ class Auth
   validates :uid, presence: true
   validates :name, presence: true
 
-  delegate :share, :follow, :topic_wrapper, :parse_image, :to => :handler, :allow_nil => true
+  delegate :share, :follow, :topic_wrapper, :to => :handler, :allow_nil => true
 
   def handler
     @handler ||= "#{provider}_auth_handler".classify.constantize.
