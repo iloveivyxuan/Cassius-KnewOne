@@ -12,12 +12,12 @@
     {{/with}}
     <time datetime="{{created_at}}">{{created_at_words}}</time>
     {{#if can_reply}}
-      <a class="reply" title="回复">
+      <a class="reply" href="#" title="回复">
         <i class="fa fa-reply"></i>
       </a>
     {{/if}}
     {{#if can_destroy}}
-      <a class="destroy">
+      <a class="destroy" href="#" title="删除">
         <i class="fa fa-trash-o"></i>
       </a>
     {{/if}}
