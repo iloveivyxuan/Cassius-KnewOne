@@ -3,7 +3,11 @@ html.things_comments,
 html.reviews_index,
 html.reviews_new,
 html.reviews_edit,
-html.reviews_show {
+html.reviews_show,
+html.stories_index,
+html.stories_new,
+html.stories_edit,
+html.stories_show {
 
   #wrapper {
     @include wrapper(grid);
