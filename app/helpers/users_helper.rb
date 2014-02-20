@@ -16,7 +16,7 @@ module UsersHelper
   end
 
   def user_links(user)
-    sites = user.auths.collect(&:urls).reduce(&:merge) || {}
+    sites = user.auths.collect(&:urls).compact.reduce(&:merge) || {}
     sites.delete "Blog" if sites["Website"] == sites["Blog"]
 
     html = []

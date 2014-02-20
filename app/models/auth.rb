@@ -13,7 +13,6 @@ class Auth
   field :location, type: String, default: ""
   field :description, type: String, default: ""
   field :urls, type: Hash, default: {}
-  field :raw, type: Hash
 
   embedded_in :user
 
@@ -61,8 +60,7 @@ class Auth
           nickname: data[:info][:nickname],
           description: data[:info][:description],
           location: data[:info][:location],
-          urls: data[:info][:urls],
-          raw: data[:extra][:raw_info].to_hash
+          urls: data[:info][:urls]
       }
     end
   end

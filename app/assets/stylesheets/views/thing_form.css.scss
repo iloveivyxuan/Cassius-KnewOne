@@ -1,4 +1,5 @@
-html.things_new {
+html.things_new,
+html.things_edit {
 
   form.thing_form,
   #thing_form_content,
@@ -7,6 +8,7 @@ html.things_new {
   }
 
   form.thing_form {
+
     .form-group {
       margin: 0 0 2em;
       label {@include make-sm-column(2);}

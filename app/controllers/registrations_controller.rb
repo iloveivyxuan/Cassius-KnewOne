@@ -60,6 +60,16 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  # bind oauth
+  after_action only: :create do
+    if session[:omniauth].present? && @success
+      current_user.auths<< Auth.new(session[:omniauth])
+      current_user.update_from_oauth(session[:omniauth])
+
+      session.delete :omniauth
+    end
+  end
+
   private
 # check if we need password to update user data
 # ie if password or email was changed
@@ -71,5 +81,4 @@ class RegistrationsController < Devise::RegistrationsController
   def user_params
     params.require(:user).permit(:location, :name, :site, :description, :email, :password, :password_confirmation)
   end
-
 end

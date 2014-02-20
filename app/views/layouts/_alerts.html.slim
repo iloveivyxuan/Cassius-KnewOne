@@ -16,7 +16,7 @@
       span.separator |
       = link_to '修改邮箱', '#setting-email', data: {toggle: 'modal'}
 
-  - current_user.auths.each do |auth|
+  - current_user.auths.reject {|a| a.provider == 'wechat'}.each do |auth|
     - if auth.expired?
       .alert.alert-warning.alert-dismissable id="#{auth.provider}-expired-alert"
         button.close data-dismiss="alert" aria-hidden="true"

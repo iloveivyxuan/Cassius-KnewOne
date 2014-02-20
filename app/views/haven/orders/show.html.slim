@@ -26,6 +26,10 @@ section.orders_wrapper
       li
         strong.field 订单状态：
         = render_summary_state @order
+      - if @order.payment_method.present?
+        li
+          strong.field 支付方式：
+          = payment_method_text(@order)
       - if @order.deliver_no.present?
         li
           strong.field 运单号：

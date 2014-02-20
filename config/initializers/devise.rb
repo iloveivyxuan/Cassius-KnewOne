@@ -13,6 +13,7 @@ Devise.setup do |config|
   config.secret_key = '369f457fc1bfdcb00cf3307783816fbee1b113ef672efd0cc27b7f0f08a803993bb5b065752dff7ddbe06ce1660ebeacb9ee92468dc08033011b33596d23776c'
 
   # Configure the class responsible to send e-mails.
+  config.parent_mailer = "BaseMailer"
   config.mailer = "DeviseBackgrounder"
 
   # ==> ORM configuration

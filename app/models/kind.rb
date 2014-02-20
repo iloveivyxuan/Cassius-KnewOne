@@ -29,6 +29,10 @@ class Kind
       greater_than_or_equal_to: 0
   }
 
+  def has_stock?
+    stock > 0
+  end
+
   def safe_destroy?
     !Order.where('order_items.kind_id' => self.id.to_s).exists?
   end

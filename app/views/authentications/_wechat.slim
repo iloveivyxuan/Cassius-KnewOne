@@ -1,0 +1,28 @@
+tr
+  - if auth
+    td
+      i.fa.fa-comments
+      | 微信
+    td.text-success 已绑定
+    td= link_to '解绑', authentication_path(auth.id), method: :delete, class: 'btn btn-danger', data: {confirm: '真的要解除绑定么？'}
+  - else
+    td
+      i.fa.fa-comments
+      | 微信
+    td.text-danger 未绑定
+    td
+      = link_to '绑定', '#wechat_binding', data: {toggle: 'modal'}, class: 'btn btn-primary'
+      #wechat_binding.modal.fade
+        .modal-dialog
+          .modal-content
+            .modal-header
+              = button_tag type: 'button', class: 'close', data: {dismiss: "modal"} do
+                raw &times;
+              h5
+                |请在微信中扫描以下二维码
+            .modal-body
+              .qr-field
+
+      - content_for :script do
+        javascript:
+          $('.qr-field').qrcode({render: 'image', ecLevel: 'L', text: '#{user_omniauth_authorize_url(:wechat, redirect_from: request.url)}'});
