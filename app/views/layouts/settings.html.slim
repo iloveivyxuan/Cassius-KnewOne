@@ -1,7 +1,6 @@
 - provide :page_class, 'settings'
 - content_for :content do
   aside#aside role="complementary"
-
     nav role="navigation"
       ul.nav.nav-pills.nav-pills-list.vertical
         li.nav-group-title 账户
@@ -29,6 +28,12 @@
           - if can? :manage, Supplier
             = nav_tab :supplier do
               = link_to_with_icon '供货信息', 'fa fa-fw fa-wrench', suppliers_path
+          - if can? :manage, Order
+            = nav_tab :supplier do
+              = link_to_with_icon '管理订单', 'fa fa-fw fa-wrench', haven_orders_path
+          - if can? :manage, LandingPage
+            = nav_tab :supplier do
+              = link_to_with_icon '管理首页封面', 'fa fa-fw fa-wrench', haven_landing_pages_path
           - if can? :manage, :all
             = nav_tab :thing do
               = link_to_with_icon '管理产品', 'fa fa-fw fa-wrench', haven_things_path
@@ -40,12 +45,10 @@
               = link_to_with_icon '管理足价减优惠券', 'fa fa-fw fa-wrench', haven_abatement_coupons_path
             = nav_tab :coupon do
               = link_to_with_icon '管理产品减优惠券', 'fa fa-fw fa-wrench', haven_thing_rebate_coupons_path
-          - if can? :manage, Order
-            = nav_tab :supplier do
-              = link_to_with_icon '管理订单', 'fa fa-fw fa-wrench', haven_orders_path
-          - if can? :manage, LandingPage
-            = nav_tab :supplier do
-              = link_to_with_icon '管理首页封面', 'fa fa-fw fa-wrench', haven_landing_pages_path
+            = nav_tab :oauth do
+              = link_to_with_icon 'OAuth App', 'fa fa-fw fa-wrench', oauth_applications_path, target: '_blank'
+            = nav_tab :sidekiq do
+              = link_to_with_icon 'Sidekiq', 'fa fa-fw fa-wrench', '/haven/sidekiq', target: '_blank'
 
   main#main role="main"
     = yield
