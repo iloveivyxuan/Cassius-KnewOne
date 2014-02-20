@@ -1,5 +1,5 @@
 .row
-  - oauths = {'twitter' => nil, 'weibo' => nil, 'wechat' => nil}.merge(current_user.auths.map {|a| {a.provider => a}}.reduce(&:merge) || {})
+  - oauths = {'twitter' => nil, 'weibo' => nil}.merge(current_user.auths.map {|a| {a.provider => a}}.reduce(&:merge) || {})
   table#table_oauth
     thead
       tr
