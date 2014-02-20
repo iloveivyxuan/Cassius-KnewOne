@@ -23,7 +23,7 @@ class User
     EVAL
   end
   validates :name, presence: true, uniqueness: true,
-            format: { with: /\A[^\s]+\z/, multiline: false, message: '昵称中不能包含空格。' }
+            format: {with: /\A[^\s]+\z/, multiline: false, message: '昵称中不能包含空格。'}
 
   # Stats
   field :things_count, type: Integer, default: 0
@@ -208,9 +208,11 @@ class User
   has_many :orders
 
   def add_to_cart(param)
-    item = self.cart_items.where(thing: param[:thing], kind_id: param[:kind_id]).first
+    thing_id = (param[:thing]||param[:thing_id])
+
+    item = self.cart_items.where(thing: thing_id, kind_id: param[:kind_id]).first
     if item.nil?
-      item = self.cart_items.build thing: param[:thing],
+      item = self.cart_items.build thing: thing_id,
                                    kind_id: param[:kind_id], quantity: param[:quantity]
     else
       item.quantity_increment(param[:quantity].to_i)

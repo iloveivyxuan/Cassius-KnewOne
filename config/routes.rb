@@ -161,4 +161,49 @@ Making::Application.routes.draw do
   get "/500", :to => "home#error"
 
   get 'valentine', to: 'specials#valentine'
+
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :things, only: [:index, :show] do
+        resources :reviews, only: [:index, :show] do
+          resources :comments, controller: :review_comments, only: [:index, :show, :create, :destroy]
+        end
+        resources :comments, controller: :thing_comments, only: [:index, :show, :create, :destroy]
+      end
+      resources :users, only: [:index, :show] do
+        member do
+          get 'fancies'
+          get 'owns'
+          get 'reviews'
+          get 'things'
+        end
+      end
+
+      resource :account, only: [:show] do
+        resources :fancies, only: [:show, :update, :destroy]
+        resources :owns, only: [:show, :update, :destroy]
+        resource :cart, only: [:show] do
+          resources :items, controller: :cart_items, only: [:index, :show, :create, :update, :destroy]
+        end
+        resources :orders, only: [:index, :show, :create] do
+          member do
+            patch 'cancel'
+            get 'tenpay_callback'
+            get 'alipay_callback'
+          end
+        end
+        resources :coupons, only: [:index, :update]
+        resources :addresses, except: [:new, :edit, :show]
+        resources :invoices, except: [:new, :edit, :show]
+
+        member do
+          patch 'profile'
+          patch 'email'
+          patch 'password'
+        end
+      end
+
+      get 'oauth/default_callback', to: 'oauth#default_callback'
+    end
+  end
 end

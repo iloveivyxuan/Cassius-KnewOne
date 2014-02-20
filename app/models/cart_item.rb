@@ -26,6 +26,10 @@ class CartItem
     kind.stock >= quantity
   end
 
+  def buyable?
+    legal? && has_enough_stock?
+  end
+
   def kind
     @kind ||= thing.kinds.find kind_id
   end

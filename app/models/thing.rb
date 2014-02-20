@@ -60,6 +60,10 @@ class Thing < Post
   scope :self_run, -> { unscoped.published.in(stage: [:dsell, :invest]).desc(:priority, :created_at) }
   default_scope -> { desc(:created_at) }
 
+  STAGES.each do |k, v|
+    scope k, -> { unscoped.published.where(stage: k) }
+  end
+
   embeds_many :kinds
   accepts_nested_attributes_for :kinds, allow_destroy: true
 
@@ -199,6 +203,11 @@ class Thing < Post
   def related_things(lazy = Rails.env.development?)
     ids = lazy ? cal_related_thing_ids : (self.related_thing_ids || [])
     Thing.in(id: ids).sort_by {|t| ids.index(t.id.to_s)}
+  end
+
+  def has_stock?
+    return false unless self_run?
+    kinds.map(&:has_stock?).reduce(&:|)
   end
 
   class << self
