@@ -13,6 +13,7 @@ class Auth
   field :location, type: String, default: ""
   field :description, type: String, default: ""
   field :urls, type: Hash, default: {}
+  field :avatar_url, type: String
 
   embedded_in :user
 
@@ -60,7 +61,8 @@ class Auth
           nickname: data[:info][:nickname],
           description: data[:info][:description],
           location: data[:info][:location],
-          urls: data[:info][:urls]
+          urls: data[:info][:urls],
+          avatar_url: "#{data[:provider]}_auth_handler".classify.constantize.parse_image(data)
       }
     end
   end

@@ -14,6 +14,6 @@ class WechatAuthHandler
   def topic_wrapper(topic)
   end
 
-  def parse_image(auth)
+  def self.parse_image(auth)
   end
 end
