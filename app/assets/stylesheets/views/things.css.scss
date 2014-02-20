@@ -17,11 +17,13 @@
       margin-bottom: 2em;
     }
 
-    > .well {
-      padding-bottom: 19px;
-    }
-
     > *:last-child {border: none;}
+
+    .tip {
+      border-bottom: 0;
+      color: $text-muted;
+      padding-bottom: 0;
+    }
 
     .edit_post {padding-bottom: 0;}
   }
