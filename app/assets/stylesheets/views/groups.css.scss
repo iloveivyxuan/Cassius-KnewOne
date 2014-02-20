@@ -1,5 +1,11 @@
-.group_wrapper {
-  @include fixed-wrapper;
+html.groups_show,
+html.topics_new,
+html.topics_edit,
+html.topics_show {
+
+  #wrapper {
+    @include wrapper(simple);
+  }
 }
 
 #group_header {
@@ -73,7 +79,7 @@
       .commented_at {
         color: $text-muted;
         margin-left: 2em;
-        
+
         time {
           font-size: 1em;
           margin-left: .5em;
@@ -102,7 +108,5 @@
     p.login_tip {
       margin: 2em 0;
     }
-
-    textarea {width: 80%;}
   }
 }

@@ -1,11 +1,9 @@
-.messages_wrapper
+hgroup#messages_header
+  h1 我的消息
+  - if @unread_count > 0
+    small #{@unread_count}条未读
+    = form_tag readall_messages_path do
+      = button_tag "标明全部为已读", class: "btn btn-info btn-xs"
 
-  hgroup#messages_header
-    h1 我的消息
-    - if @unread_count > 0
-      small #{@unread_count}条未读
-      = form_tag readall_messages_path do
-        = button_tag "标明全部为已读", class: "btn btn-info btn-xs"
-
-  ul#messages= render partial: "message", collection: @messages
-  = paginate @messages
+ul#messages= render partial: "message", collection: @messages
+= paginate @messages

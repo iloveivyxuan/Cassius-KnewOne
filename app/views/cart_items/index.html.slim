@@ -1,24 +1,24 @@
 - provide :title, '购物车'
-section.carts_wrapper.simple_page_wrapper.widget
-  = render 'shared/sell_notice'
-  header.page-header
-    h2
-      i.fa.fa-shopping-cart
-      | 购物车
 
-  = form_tag new_order_path, method: :get, authenticity_token: false
-    fieldset
-      ul.carts= render @cart_items
-      small.deliver_tip
-        = deliver_tip_text(@total_price)
-      p.total_price
-        | 总计
-        strong
-          i.fa.fa-yen
-          span= @total_price
-      = button_tag type: "submit", class: "btn btn-success" do
-        i.fa.fa-credit-card
-        | 结算
+= render 'shared/sell_notice'
+header.page-header
+  h2
+    i.fa.fa-shopping-cart
+    | 购物车
+
+= form_tag new_order_path, method: :get, authenticity_token: false
+  fieldset
+    ul.carts= render @cart_items
+    small.deliver_tip
+      = deliver_tip_text(@total_price)
+    p.total_price
+      | 总计
+      strong
+        i.fa.fa-yen
+        span= @total_price
+    = button_tag type: "submit", class: "btn btn-success" do
+      i.fa.fa-credit-card
+      | 结算
 
 - content_for :script do
   javascript:

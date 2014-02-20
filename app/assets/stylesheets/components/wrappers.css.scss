@@ -1,64 +1,38 @@
-@mixin section-decorate {
-  background: white;
-  @include border-radius(8px);
-}
+// Page main section wrapper.
+//
+// @mixin wrapper(grid)   - Bootstrap grid system, none style.
+// @mixin wrapper(simple) - Single column, max-width: $screen-md-min.
+//
 
-@mixin fixed-wrapper {
-  @include section-decorate;
-  @include clearfix;
-  padding: 1em 20px;
-  margin: 0 auto;
+#wrapper {
+  margin: 0 $wrapper_margin;
 
-  @media screen and (min-width: 1024px) {
-    width: 980px;
+  > nav {
+    margin-bottom: 1em;
   }
 }
 
-@mixin responsive-wrapper {
-  @include section-decorate;
-  @include clearfix;
-  padding: 1em 20px;
-  margin: 0 auto;
+@mixin wrapper($layout) {
 
-  @media screen and (min-width: 1024px) {
-    min-width: 980px;
-    max-width: 1280px;
-    width: 62%;
-  }
-}
+  @if $layout == grid {
+    @include make-row;
+    // calc() isn't common support on mobile.
+    margin: 0 $wrapper_margin;
 
-@mixin site_margin {margin: 0 5%;}
+    @media screen and (min-width: $screen-md-min) {
+      margin: 0 calc(#{$wrapper_margin} - 15px);
+    }
 
-@mixin simple_page_wrapper {
-  @include site_margin;
+  } @else if $layout == simple {
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 1em;
+    padding: 2em;
 
-  @media screen and (min-width: $screen-md-min + 100) {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: $screen-md-min;
-  }
-}
-
-.general_wrapper {
-  @include fixed-wrapper;
-}
-
-.widget {
-  margin-bottom: 1em;
-  padding: 2em;
-  @include section-decorate;
-}
-
-.simple_page_wrapper {
-  @include simple_page_wrapper;
-}
-
-.wrapper {
-  margin: 0 $site-margin;
-
-  @media screen and (min-width: $screen-md-min + 100) {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: $screen-md-min;
+    @media screen and (min-width: $screen-md-min + 100) {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: $screen-md-min;
+    }
   }
 }

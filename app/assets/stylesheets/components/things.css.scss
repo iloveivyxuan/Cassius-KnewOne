@@ -1,3 +1,13 @@
+ul.things {
+  @include make-row;
+
+  > li {
+    @include make-sm-column(4);
+    @include make-lg-column(2);
+    margin-bottom: 2em;
+  }
+}
+
 .thing {
   overflow: hidden;
   position: relative;

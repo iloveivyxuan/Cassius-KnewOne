@@ -1,49 +1,47 @@
 - provide :title, @user.name
 
-section.user_wrapper
+section.user_info
+  dl.vcard itemscope="" itemtype="http://data-vocabulary.org/Person"
+    dd.avatar itemprop="photo"= user_avatar(@user, :small)
+    dt.name itemprop="name"
+      h2= @user.name
+    dd.clearfix itemprop="rating" itemscope="" itemtype="http://data-vocabulary.org/Rating"
+      .level Lv.#{@user.rank}
+      .progress title="#{@user.progress}%"
+        .progress-bar style="width: #{@user.progress}%;"
+    dd.url itemprop="url"
+      = user_links(@user)
+    dd itemprop="address"
+      address = user_location(@user)
+    dd
+      blockquote= @user.description
+    = render 'users/admin_note'
 
-  section.user_info
-    dl.vcard.widget itemscope="" itemtype="http://data-vocabulary.org/Person"
-      dd.avatar itemprop="photo"= user_avatar(@user, :small)
-      dt.name itemprop="name"
-        h2= @user.name
-      dd.clearfix itemprop="rating" itemscope="" itemtype="http://data-vocabulary.org/Rating"
-        .level Lv.#{@user.rank}
-        .progress title="#{@user.progress}%"
-          .progress-bar style="width: #{@user.progress}%;"
-      dd.url itemprop="url"
-        = user_links(@user)
-      dd itemprop="address"
-        address = user_location(@user)
-      dd
-        blockquote= @user.description
-      = render 'users/admin_note'
-
-  section.user_content
-    .widget
-      ul.nav.nav-pills
-        li.active
-          = link_to "#fancies", data: {toggle: "tab"} do
-            | 喜欢
-            span.badge #{@fancies.count}
-        li
-          = link_to "#owns", data: {toggle: "tab"} do
-            | 拥有
-            span.badge #{@owns.count}
-        li
-          = link_to "#reviews", data: {toggle: "tab"} do
-            | 评测
-            span.badge #{@reviews.count}
-        li
-          = link_to "#things", data: {toggle: "tab"} do
-            | 分享
-            span.badge #{@things.count}
-      .tab-content
-        #fancies.tab-pane.active
-          ul.grids= render @fancies, size: :normal, img_lazy: true
-        #owns.tab-pane
-          ul.grids= render @owns, size: :normal, img_lazy: false
-        #reviews.tab-pane
-          ul= render @reviews
-        #things.tab-pane
-          ul.grids= render @things, size: :normal, img_lazy: false
+section.user_content
+  .user_content_inner
+    ul.nav.nav-pills
+      li.active
+        = link_to "#fancies", data: {toggle: "tab"} do
+          | 喜欢
+          span.badge #{@fancies.count}
+      li
+        = link_to "#owns", data: {toggle: "tab"} do
+          | 拥有
+          span.badge #{@owns.count}
+      li
+        = link_to "#reviews", data: {toggle: "tab"} do
+          | 评测
+          span.badge #{@reviews.count}
+      li
+        = link_to "#things", data: {toggle: "tab"} do
+          | 分享
+          span.badge #{@things.count}
+    .tab-content
+      #fancies.tab-pane.active
+        ul.grids= render @fancies, size: :normal, img_lazy: true
+      #owns.tab-pane
+        ul.grids= render @owns, size: :normal, img_lazy: false
+      #reviews.tab-pane
+        ul= render @reviews
+      #things.tab-pane
+        ul.grids= render @things, size: :normal, img_lazy: false

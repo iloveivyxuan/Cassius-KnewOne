@@ -38,7 +38,10 @@
     }
 
     &.vertical {
-      @include wrapper;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: $border-radius-base;
+      padding: 0;
       margin-bottom: 1em;
 
       > li {
