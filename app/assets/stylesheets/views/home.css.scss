@@ -561,28 +561,4 @@ html.signed_in_homepage {
     text-align: center;
     color: $text-muted;
   }
-
-  #qr_entry {
-    @include clearfix;
-    background-color: #fff;
-    border-radius: 8px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 1em 20px;
-
-    @media screen and (min-width: 1024px) {
-      min-width: 980px;
-      max-width: 1280px;
-      width: 62%;
-    }
-
-    > a {
-      display: block;
-      margin: 1em 0;
-    }
-
-    .fa-comments {
-      color: $green;
-    }
-  }
 }
