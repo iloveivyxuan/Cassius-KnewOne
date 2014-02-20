@@ -4,6 +4,7 @@ class ReviewsController < ApplicationController
   load_and_authorize_resource :thing, except: [:admin], singleton: true
   load_and_authorize_resource :review, through: :thing, except: [:admin]
   layout 'thing', except: [:admin]
+  layout 'settings', only: [:admin]
   after_action :allow_iframe_load, only: [:show]
 
   def index
