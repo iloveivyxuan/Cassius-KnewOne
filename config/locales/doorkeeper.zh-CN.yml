@@ -66,3 +66,6 @@ zh-CN:
       authorized_applications:
         destroy:
           notice: 'Application revoked.'
+    scopes:
+      public: '访问您的信息'
+      official: '官方应用，可修改您的信息'
