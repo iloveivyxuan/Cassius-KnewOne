@@ -4,32 +4,6 @@ class BaseMailer < ActionMailer::Base
   default content_type: 'text/html',
           reply_to: 'welcome@knewone.com'
 
-  #SMTP_SERVERS = {
-  #    white: {
-  #        from: 'welcome@knewone.com',
-  #        delivery_settings: {
-  #            address: 'smtp.exmail.qq.com',
-  #            port: 25,
-  #            domain: 'knewone.com',
-  #            user_name: 'welcome@knewone.com',
-  #            password: 'knewone123',
-  #            authentication: 'plain',
-  #            enable_starttls_auto: true
-  #        }
-  #    },
-  #    default: {
-  #        from: 'welcome@service.knewone.com',
-  #        delivery_settings: {
-  #            address: 'smtpcloud.sohu.com',
-  #            port: 25,
-  #            user_name: 'postmaster@knewone-service.sendcloud.org',
-  #            password: 'q4yoSPmu',
-  #            authentication: 'login',
-  #            domain: 'sendcloud.org'
-  #        }
-  #    }
-  #}
-
   SMTP_SERVERS = {
       white: {
           from: 'welcome@knewone.com',
@@ -44,15 +18,14 @@ class BaseMailer < ActionMailer::Base
           }
       },
       default: {
-          from: 'welcome@knewone.com',
+          from: 'welcome@service.knewone.com',
           delivery_settings: {
-              address: 'smtp.exmail.qq.com',
+              address: 'smtpcloud.sohu.com',
               port: 25,
-              domain: 'knewone.com',
-              user_name: 'welcome@knewone.com',
-              password: 'knewone123',
-              authentication: 'plain',
-              enable_starttls_auto: true
+              user_name: 'postmaster@knewone-service.sendcloud.org',
+              password: 'q4yoSPmu',
+              authentication: 'login',
+              domain: 'sendcloud.org'
           }
       }
   }
