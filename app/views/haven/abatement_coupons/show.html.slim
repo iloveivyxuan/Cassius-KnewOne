@@ -3,15 +3,25 @@ hr
 = form_tag generate_code_haven_abatement_coupon_path(@coupon), class: "form-inline", role: "form"
   = label_tag :amount, '数量'
   = number_field_tag :amount, 1, min: 1, class: 'form-control'
+  br
   = label_tag :expires_at, '过期日期'
   = date_field_tag :expires_at, 1.years.from_now.to_date
+  br
+  = label_tag :admin_note, '管理员备注'
+  = text_field_tag :admin_note, '', class: 'form-control'
+  br
   = submit_tag '生成', class: 'btn btn-primary'
 hr
 = form_tag batch_bind_haven_abatement_coupon_path(@coupon), role: "form"
   | 一行输入一个用户的email或id或昵称
   = text_area_tag :user_list, '', class: 'form-control'
+  br
   = label_tag :expires_at, '过期日期'
   = date_field_tag :expires_at, 1.years.from_now.to_date
+  br
+  = label_tag :admin_note, '管理员备注'
+  = text_field_tag :admin_note, '', class: 'form-control'
+  br
   = submit_tag '生成、绑定', class: 'btn btn-primary'
 hr
 table.table

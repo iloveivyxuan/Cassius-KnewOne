@@ -31,7 +31,7 @@ module Haven
     def generate_code
       amount = params[:amount].present? ? params[:amount].to_i : 1
       amount.times do
-        @coupon.generate_code! expires_at: params[:expires_at]
+        @coupon.generate_code! expires_at: params[:expires_at], admin_note: params[:admin_note]
       end
       redirect_to haven_thing_rebate_coupon_path(@coupon)
     end
@@ -40,7 +40,7 @@ module Haven
       list = params[:user_list].split("\r\n")
       users = User.or({:email.in => list}, {:name.in => list}, {:id.in => list})
       users.each do |u|
-        @coupon.generate_code! user: u, expires_at: params[:expires_at]
+        @coupon.generate_code! user: u, expires_at: params[:expires_at], admin_note: params[:admin_note]
       end
 
       redirect_to haven_thing_rebate_coupon_path(@coupon)
