@@ -1,8 +1,6 @@
-.group_wrapper
-
-  = simple_form_for @group , html: {class: "edit_post"} do |f|
-    legend 建立小组
-    fieldset
-      = f.input :name
-      = f.input :description
-      = f.button :submit, class: "btn btn-primary"
+= simple_form_for @group , html: {class: "edit_post"} do |f|
+  legend 建立小组
+  fieldset
+    = f.input :name
+    = f.input :description
+    = f.button :submit, class: "btn btn-primary"

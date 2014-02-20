@@ -1,13 +1,14 @@
 - provide :title, @category.name
 
-section#things_index
-  header
-    h1= @category.name
+header.page-header
+  h1
+    i.fa.fa-tag
+    = @category.name
 
-  section
-    ul.infinite#things= render @things, size: :normal, img_lazy: true
-    = paginate @things
+section
+  ul.things.infinite#things= render @things, size: :normal, img_lazy: true
+  = paginate @things
 
 - content_for :script do
   javascript:
-    Making.InfiniteScroll("#things_index > section");
+    Making.InfiniteScroll("#wrapper > section");

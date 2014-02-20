@@ -2,9 +2,17 @@ html.home_forbidden,
 html.home_not_found,
 html.home_error {
 
-  .simple_page_wrapper {
+  // Layout
+  // ---------------------------------------------------------------------------
+
+  #wrapper {
+    @include wrapper(simple);
     min-height: 400px;
   }
+
+
+  // Section
+  // ---------------------------------------------------------------------------
 
   .error_header {
     text-align: center;

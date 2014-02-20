@@ -1,4 +1,4 @@
-html.home_landing {
+html.guest_homepage {
   height: 100%;
   width: 100%;
 
@@ -23,7 +23,7 @@ html.home_landing {
       padding-top: 0;
     }
 
-    > header {
+    #header {
       display: none;
       margin-bottom: 0;
 
@@ -36,7 +36,15 @@ html.home_landing {
       }
     }
 
-    > footer {
+    #wrapper {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+
+    #footer {
       background: none;
       color: $text-muted;
       margin: 0;
@@ -473,11 +481,10 @@ html.home_landing {
   }
 }
 
-html.home_index {
+html.signed_in_homepage {
 
-  #home_index {
-    @include make-row;
-    @include site_margin;
+  #wrapper {
+    @include wrapper(grid);
 
     > section {
       @include make-md-column(8);
@@ -556,12 +563,24 @@ html.home_index {
   }
 
   #qr_entry {
-    @include responsive-wrapper;
+    @include clearfix;
+    background-color: #fff;
+    border-radius: 8px;
+    margin: 0 auto;
     text-align: center;
+    padding: 1em 20px;
+
+    @media screen and (min-width: 1024px) {
+      min-width: 980px;
+      max-width: 1280px;
+      width: 62%;
+    }
+
     > a {
       display: block;
       margin: 1em 0;
     }
+
     .fa-comments {
       color: $green;
     }

@@ -1,4 +1,8 @@
-.carts_wrapper {
+html.cart_items_index {
+
+  #wrapper {
+    @include wrapper(simple);
+  }
 
   .carts {
     border-bottom: 1px solid #e5e5e5;

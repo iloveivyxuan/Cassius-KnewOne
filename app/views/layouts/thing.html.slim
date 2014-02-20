@@ -3,10 +3,9 @@
 - content_for :content do
   - present @thing do |tp|
     - provide :title, tp.full_title
-    #thing_layout
-      header#thing_header= render "things/header", tp: tp
-      section#thing_actions= render "things/actions", tp: tp
-      section#thing_content= yield
+    header#thing_header= render "things/header", tp: tp
+    section#thing_actions= render "things/actions", tp: tp
+    section#thing_content= yield
 
 - content_for :script do
   javascript:

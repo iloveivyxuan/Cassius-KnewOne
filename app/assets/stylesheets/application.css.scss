@@ -12,6 +12,7 @@
 // Application
 // =============================================================================
 
+// Base
 @import "variables";
 @import "mixins";
 
@@ -23,12 +24,12 @@
 @import "components/ratings";
 @import "components/autocomplete";
 @import "components/entry";
-@import "components/things_in_list";
+@import "components/things";
 @import "components/articles";
 @import "components/comments";
 @import "components/editors";
 @import "components/spinners";
-@import "components/alerts";
+@import "components/state";
 @import "components/modals";
 @import "components/misc";
 
@@ -44,4 +45,7 @@
 @import "views/orders";
 @import "views/messages";
 @import "views/users";
+@import "views/categories";
+@import "views/search";
 @import "views/errors";
+@import "views/other";

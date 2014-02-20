@@ -1,14 +1,12 @@
 <%- provide :title, '重新发送确认邮件' %>
 
-<div class="simple_page_wrapper widget">
-  <header class="page-header">
-    <h2>重新发送确认邮件</h2>
-  </header>
+<header class="page-header">
+  <h2>重新发送确认邮件</h2>
+</header>
 
-  <main role="main">
-    <%= simple_form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
-      <%= f.input :email, :required => true %>
-      <%= f.button :submit, "发送", class: "btn btn-primary" %>
-    <% end %>
-  </main>
-</div>
+<main role="main">
+  <%= simple_form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+    <%= f.input :email, :required => true %>
+    <%= f.button :submit, "发送", class: "btn btn-primary" %>
+  <% end %>
+</main>
