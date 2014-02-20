@@ -52,7 +52,7 @@ module ApplicationHelper
   end
 
   def page_class
-    [controller_name, "#{controller_name}_#{action_name}", content_for(:page_class)].reject(&:blank?).join(' ')
+    [controller_name, "#{controller_path.gsub('/', '_')}_#{action_name}", content_for(:page_class)].reject(&:blank?).join(' ')
   end
 
   def feed_link_tag

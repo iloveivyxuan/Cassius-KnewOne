@@ -1,6 +1,5 @@
 - provide :page_class, 'settings'
 - content_for :content do
-
   aside#aside role="complementary"
 
     nav role="navigation"
@@ -36,7 +35,7 @@
             = nav_tab :group do
               = link_to_with_icon '管理小组', 'fa fa-fw fa-wrench', groups_path
             = nav_tab :review do
-              = link_to_with_icon '管理评测', 'fa fa-fw fa-wrench', reviews_admin_path
+              = link_to_with_icon '管理评测', 'fa fa-fw fa-wrench', haven_reviews_path
             = nav_tab :coupon do
               = link_to_with_icon '管理足价减优惠券', 'fa fa-fw fa-wrench', haven_abatement_coupons_path
             = nav_tab :coupon do

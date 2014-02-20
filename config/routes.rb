@@ -91,6 +91,8 @@ Making::Application.routes.draw do
     end
 
     resources :users, only: [:index, :update, :show]
+
+    resources :reviews, only: [:index]
   end
 
   resources :things do
@@ -117,8 +119,6 @@ Making::Application.routes.draw do
       end
     end
   end
-
-  get '/reviews', to: "reviews#admin", as: :reviews_admin
 
   resources :posts, only: [] do
     resources :comments
