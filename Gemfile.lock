@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: git://github.com/applicake/doorkeeper.git
-  revision: 1be70d7de4f08bce7cc708dbb8aebc31c4e61113
+  revision: 16fa34353910fd860d0c9b7e39f0ee77f0d74f1c
   specs:
     doorkeeper (1.0.0)
       railties (>= 3.1)
