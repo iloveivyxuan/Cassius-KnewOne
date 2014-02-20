@@ -39,10 +39,6 @@ class Auth
     Time.now > self.expires_at
   end
 
-  def uid
-    self[:uid] == 0 ? self[:uid_str] : self[:uid]
-  end
-
   class << self
     def from_omniauth(data)
       new omniauth_to_auth(data)
@@ -51,8 +47,7 @@ class Auth
     def omniauth_to_auth(data)
       {
           provider: data[:provider],
-          uid: data[:uid],
-          uid_str: data[:uid],
+          uid: data[:uid].to_s,
           name: data[:info][:name],
           access_token: data[:credentials][:token],
           access_token_secret: data[:credentials][:secret],
