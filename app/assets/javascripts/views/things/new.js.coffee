@@ -10,7 +10,6 @@ class Making.Views.ThingsNew extends Backbone.View
 
   validate_unicity: (event) ->
     if $('html').hasClass('things_new')
-      console.log 'asdf'
       url     = $('#navbar_search').attr('action') + '.js' # todo
       keyword = $.trim event.target.value
       is_slideshow_initiated = false
