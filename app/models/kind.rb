@@ -29,6 +29,11 @@ class Kind
       greater_than_or_equal_to: 0
   }
 
+  validates :price, numericality: {
+      only_integer: true,
+      greater_than: 0
+  }
+
   def has_stock?
     stock > 0
   end

@@ -34,7 +34,7 @@ Making::Application.routes.draw do
     resources :authentications, only: [:destroy]
   end
 
-  resources :users, only: [:show, :index] do
+  resources :users, only: [:show] do
     collection do
       post 'share'
       get 'fuzzy'
