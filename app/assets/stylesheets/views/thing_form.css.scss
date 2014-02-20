@@ -8,6 +8,7 @@ html.things_edit {
   }
 
   form.thing_form {
+
     .form-group {
       margin: 0 0 2em;
       label {@include make-sm-column(2);}
