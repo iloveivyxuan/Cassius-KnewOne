@@ -2,7 +2,6 @@ Making::Application.routes.draw do
   use_doorkeeper
   root to: 'home#index'
   get '/page/:page', to: "home#index"
-  get 'qr_entry', to: "home#qr_entry"
 
   get 'join_alpha', to: 'home#join_alpha'
   get 'leave_alpha', to: 'home#leave_alpha'
@@ -34,7 +33,7 @@ Making::Application.routes.draw do
     resources :authentications, only: [:destroy]
   end
 
-  resources :users, only: [:show, :index] do
+  resources :users, only: [:show] do
     collection do
       post 'share'
       get 'fuzzy'
@@ -92,6 +91,8 @@ Making::Application.routes.draw do
     end
 
     resources :users, only: [:index, :update, :show]
+
+    resources :reviews, only: [:index]
   end
 
   resources :things do
@@ -118,8 +119,6 @@ Making::Application.routes.draw do
       end
     end
   end
-
-  get '/reviews', to: "reviews#admin", as: :reviews_admin
 
   resources :posts, only: [] do
     resources :comments

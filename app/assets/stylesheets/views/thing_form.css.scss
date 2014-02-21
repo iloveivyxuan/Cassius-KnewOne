@@ -1,6 +1,10 @@
 html.things_new,
 html.things_edit {
 
+  #wrapper {
+    @include wrapper(simple);
+  }
+
   form.thing_form,
   #thing_form_content,
   #thing_form_submit {

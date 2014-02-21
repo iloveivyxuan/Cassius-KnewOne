@@ -1,5 +1,8 @@
-.messages_wrapper {
-  margin: 0 7%;
+html.messages_index {
+
+  #wrapper {
+    @include wrapper(simple);
+  }
 }
 
 #messages_header {
@@ -21,14 +24,12 @@
 }
 
 #messages {
-  @include section-decorate;
-  padding: 1em;
 
-  li {
+  > li {
     border-bottom: 1px dashed $gray;
     &:last-child {border: none;}
     padding: 1em;
-    
+
     &.unread {background: lighten($blue, 53%);}
 
     p {

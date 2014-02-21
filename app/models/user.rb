@@ -79,25 +79,15 @@ class User
 
   class << self
     def find_by_omniauth(data)
-      if data[:uid].to_i == 0
-        where('auths.provider' => data[:provider], 'auths.uid_str' => data[:uid]).first
-      else
-        where('auths.provider' => data[:provider], 'auths.uid' => data[:uid].to_i).first
-      end
+      where('auths.provider' => data[:provider], 'auths.uid' => data[:uid].to_s).first
     end
 
     def create_from_omniauth(data)
       create! do |user|
         auth = Auth.from_omniauth(data)
         user.auths << auth
-        user.name = (auth.name || auth.nickname).gsub(' ', '-')
-        if User.where(name: user.name).size > 0 || user.name.blank?
-          user.name += "x#{SecureRandom.uuid[0..2]}"
-        end
-        user.location = auth.location
-        user.description = auth.description
-        user.remote_avatar_url = auth.parse_image(data)
-        # user.password = Digest::MD5.hexdigest auth.access_token
+
+        user.set_profiles_by_auth(auth)
       end
     end
 
@@ -122,43 +112,38 @@ class User
   end
 
   def update_from_omniauth(data)
-    auth = auths.where(provider: data[:provider]).first
-    if auth
+    if auth = auths.where(provider: data[:provider]).first
       auth.update_from_omniauth(data)
-      if self.auto_update_from_oauth?
-        self.name = (auth.name || auth.nickname).gsub(' ', '-')
-        if self.name_was.include?("#{self.name}x")
-          reset_name!
-        elsif User.where(name: self.name).size > 1 || self.name.blank?
-          self.name += "x#{SecureRandom.uuid[0..2]}"
-        end
 
-        self.location = auth.location
-        self.description = auth.description
-        self.remote_avatar_url = auth.parse_image(data)
+      if self.auto_update_from_oauth?
+        set_profiles_by_auth(auth)
+        save
       end
-      save
     end
   end
 
   def update_from_oauth(data)
-    auth = auths.where(provider: data[:provider]).first
-    if auth
+    if auth = auths.where(provider: data[:provider]).first
       auth.update(data)
-      if self.auto_update_from_oauth?
-        self.name = (auth.name || auth.nickname).gsub(' ', '-')
-        if self.name_was.include?("#{self.name}x")
-          reset_name!
-        elsif User.where(name: self.name).size > 1 || self.name.blank?
-          self.name += "x#{SecureRandom.uuid[0..2]}"
-        end
 
-        self.location = auth.location
-        self.description = auth.description
-        self.remote_avatar_url = auth.parse_image(data)
+      if self.auto_update_from_oauth?
+        set_profiles_by_auth(auth)
+        save
       end
-      save
     end
+  end
+
+  def set_profiles_by_auth(auth)
+    self.name = (auth.name || auth.nickname).gsub(' ', '-')
+    if self.name_was && self.name_was.include?("#{self.name}x")
+      reset_name!
+    elsif User.where(name: self.name).size > 1 || self.name.blank?
+      self.name += "x#{SecureRandom.uuid[0..2]}"
+    end
+
+    self.location = auth.location
+    self.description = auth.description
+    self.remote_avatar_url = auth.avatar_url
   end
 
   ## Roles

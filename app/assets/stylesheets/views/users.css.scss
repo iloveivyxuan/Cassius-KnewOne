@@ -1,37 +1,55 @@
-.user_wrapper {
-  @include site_margin;
+html.users_show {
 
-  @media screen and (min-width: $screen-md-min) {
-    @include make-row;
-    @include site_margin;
-  }
+  // Layout
+  // ---------------------------------------------------------------------------
 
-  .user_info {
-    @include make-md-column(4);
-    @include make-lg-column(3);
-    @include make-xl-column(2);
-  }
+  #wrapper {
+    @include wrapper(grid);
 
-  .user_content {
-    @include make-md-column(8);
-    @include make-lg-column(9);
-    @include make-xl-column(10);
+    .user_info {
+      @include make-md-column(4);
+      @include make-lg-column(3);
+      @include make-xl-column(2);
 
-    .tab-pane {
-      padding-top: 1em;
+      .vcard {
+        background-color: #fff;
+        border-radius: 8px;
+        margin-bottom: 1em;
+        padding: 2em;
+      }
+    }
 
-      ul.grids {
-        @include make-row;
+    .user_content {
+      @include make-md-column(8);
+      @include make-lg-column(9);
+      @include make-xl-column(10);
 
-        > li {
-          @include make-sm-column(6);
-          @include make-lg-column(4);
-          @include make-xl-column(3);
+      .user_content_inner {
+        background-color: #fff;
+        border-radius: 8px;
+        margin-bottom: 1em;
+        padding: 2em;
+      }
+
+      .tab-pane {
+        padding-top: 1em;
+
+        ul.grids {
+          @include make-row;
+
+          > li {
+            @include make-sm-column(6);
+            @include make-lg-column(4);
+            @include make-xl-column(3);
+          }
         }
       }
     }
   }
 }
+
+// Section
+// -----------------------------------------------------------------------------
 
 dl.vcard {
   margin-top: 0;
@@ -83,14 +101,14 @@ dl.vcard {
 #users_index {
   @include clearfix;
   li {
-    @include section-decorate;
+    background-color: #fff;
+    border-radius: 8px;
     float: left;
+    height: 97px;
     padding: 1em 1em 0;
     margin: 1em;
+    overflow: hidden;
+    width: 102px;
     a {display: block;}
   }
-}
-
-.login_wrapper {
-  @include responsive-wrapper;
 }

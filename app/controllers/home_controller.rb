@@ -16,10 +16,6 @@ class HomeController < ApplicationController
     end
   end
 
-  def qr_entry
-    redirect_to "sinaweibo://userinfo?uid=3160959662"
-  end
-
   def sandbox
     @things = Thing.prior.page(params[:page]).per(24)
     @reviews = Review.unscoped.desc(:created_at).limit(25)

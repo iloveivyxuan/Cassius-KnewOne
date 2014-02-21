@@ -1,16 +1,20 @@
 - provide :title, "#{params[:q]}的搜索结果"
 
-section#things_index
-  section
-    - if @things && @things.length > 0
-      ul.infinite#things= render @things, size: :normal, img_lazy: true
-      = paginate @things
-    - else
-      p.h3.text-muted.text-center
-        | 没有关于&nbsp;
-        em.text-danger #{params[:q]}
-        | &nbsp;的搜索结果
+header.page-header
+  h1
+    em.text-success #{params[:q]}
+    | &nbsp;的搜索结果
+
+section
+  - if @things && @things.length > 0
+    ul.things.infinite#things= render @things, size: :normal, img_lazy: true
+    = paginate @things
+  - else
+    p.h3.text-muted.text-center
+      | 没有关于&nbsp;
+      em.text-danger #{params[:q]}
+      | &nbsp;的搜索结果
 
 - content_for :script do
   javascript:
-    Making.InfiniteScroll("#things_index > section");
+    Making.InfiniteScroll("#wrapper > section");

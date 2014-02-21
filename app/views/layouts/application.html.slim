@@ -20,7 +20,8 @@ html class=page_class lang="zh-CN"
   body
     = render 'layouts/browsehappy'
     = render 'layouts/header'
-    = content_for?(:content) ? yield(:content) : yield
+    section#wrapper
+      = content_for?(:content) ? yield(:content) : yield
     = render 'shared/go_top'
     = render 'shared/login'
     = render 'layouts/fulfill_info'

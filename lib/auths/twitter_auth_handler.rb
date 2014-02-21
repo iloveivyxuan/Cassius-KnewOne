@@ -24,7 +24,7 @@ class TwitterAuthHandler
     "@#{topic} "
   end
 
-  def parse_image(auth)
+  def self.parse_image(auth)
     auth[:info][:image].sub('_normal', '')
   end
 

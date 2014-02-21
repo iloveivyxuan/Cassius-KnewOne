@@ -1,4 +1,9 @@
+html.orders_new,
 .orders_wrapper {
+
+  #wrapper {
+    @include wrapper(simple);
+  }
 
   table.order_detail {
     > tbody {

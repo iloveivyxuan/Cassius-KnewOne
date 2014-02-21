@@ -2,8 +2,7 @@
 class Auth
   include Mongoid::Document
   field :provider, type: String
-  field :uid, type: Integer
-  field :uid_str, type: String
+  field :uid, type: String
   field :name, type: String
   field :access_token, type: String
   field :access_token_secret, type: String
@@ -13,6 +12,7 @@ class Auth
   field :location, type: String, default: ""
   field :description, type: String, default: ""
   field :urls, type: Hash, default: {}
+  field :avatar_url, type: String
 
   embedded_in :user
 
@@ -20,7 +20,7 @@ class Auth
   validates :uid, presence: true
   validates :name, presence: true
 
-  delegate :share, :follow, :topic_wrapper, :parse_image, :to => :handler, :allow_nil => true
+  delegate :share, :follow, :topic_wrapper, :to => :handler, :allow_nil => true
 
   def handler
     @handler ||= "#{provider}_auth_handler".classify.constantize.
@@ -38,10 +38,6 @@ class Auth
     Time.now > self.expires_at
   end
 
-  def uid
-    self[:uid] == 0 ? self[:uid_str] : self[:uid]
-  end
-
   class << self
     def from_omniauth(data)
       new omniauth_to_auth(data)
@@ -50,8 +46,7 @@ class Auth
     def omniauth_to_auth(data)
       {
           provider: data[:provider],
-          uid: data[:uid],
-          uid_str: data[:uid],
+          uid: data[:uid].to_s,
           name: data[:info][:name],
           access_token: data[:credentials][:token],
           access_token_secret: data[:credentials][:secret],
@@ -60,7 +55,8 @@ class Auth
           nickname: data[:info][:nickname],
           description: data[:info][:description],
           location: data[:info][:location],
-          urls: data[:info][:urls]
+          urls: data[:info][:urls],
+          avatar_url: "#{data[:provider]}_auth_handler".classify.constantize.parse_image(data)
       }
     end
   end

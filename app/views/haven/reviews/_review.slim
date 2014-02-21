@@ -1,0 +1,13 @@
+- present review do |rp|
+  li.review
+    article.post
+      header
+        h3= link_to rp.title, rp.path
+        = rp.author_tag
+        = rp.score
+      section
+        .post_content
+          = rp.summary
+      footer
+        = rp.lovers_count
+        = rp.comments_count

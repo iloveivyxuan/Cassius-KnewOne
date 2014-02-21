@@ -26,7 +26,7 @@ class WeiboAuthHandler
     "@#{topic} "
   end
 
-  def parse_image(auth)
+  def self.parse_image(auth)
     auth[:extra][:raw_info][:avatar_large] + ".jpg"
   end
 

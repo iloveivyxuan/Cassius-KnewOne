@@ -9,10 +9,6 @@ class UsersController < ApplicationController
     @owns = @user.owns
   end
 
-  def index
-    @users = User.desc(:created_at).page params[:page]
-  end
-
   def share
     current_user.auths.select {|a| params[:providers].include? a.provider}.each do |auth|
       auth.share params[:share][:content], params[:share][:pic]
@@ -24,10 +20,6 @@ class UsersController < ApplicationController
   def fuzzy
     @users = User.find_by_fuzzy_name(params[:keyword])
     respond_to do |format|
-      format.html do
-        @users = @users.page(params[:page])
-        render 'index'
-      end
       format.json do
         @users = @users.limit(10)
       end

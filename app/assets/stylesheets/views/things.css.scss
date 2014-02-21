@@ -1,56 +1,62 @@
-#thing_layout {
-  @include section-decorate;
-  @include make-row;
-  padding: 1em 1.5em;
-  margin: 0 $site-margin 2em;
+html.things_show,
+html.things_comments,
+html.reviews_index,
+html.reviews_new,
+html.reviews_edit,
+html.reviews_show,
+html.stories_index,
+html.stories_new,
+html.stories_edit,
+html.stories_show {
 
-  #thing_header {
-    margin-bottom: 1em;
-    border-bottom: $border-default;
-  }
+  #wrapper {
+    @include wrapper(grid);
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1em 1.5em;
 
-  #thing_content {
-
-    > * {
-      padding-bottom: 2em;
-      border-bottom: $border-default;
-      margin-bottom: 2em;
-    }
-
-    > *:last-child {border: none;}
-
-    .tip {
-      border-bottom: 0;
-      color: $text-muted;
-      padding-bottom: 0;
-    }
-
-    .edit_post {padding-bottom: 0;}
-  }
-
-  @media screen and (min-width: $screen-sm-min) {
     #thing_header {
-      margin-bottom: 2em;
+      margin-bottom: 1em;
+      border-bottom: $border-default;
     }
-  }
 
-  @media screen and (min-width: $screen-md-min) {
     #thing_content {
-      @include make-md-column(8, $gutter: 4em);
-      @include make-md-column-pull(4);
-      border-right: $border-default;
-      min-height: 800px;
+
+      > * {
+        padding-bottom: 2em;
+        border-bottom: $border-default;
+        margin-bottom: 2em;
+      }
+
+      > *:last-child {border: none;}
+
+      .edit_post {padding-bottom: 0;}
     }
 
-    #thing_actions {
-      @include make-md-column(4, $gutter: 4em);
-      @include make-md-column-push(8);
+    @media screen and (min-width: $screen-sm-min) {
+      #thing_header {
+        margin-bottom: 2em;
+      }
     }
-  }
 
-  @media screen and (min-width: $screen-lg-min+100) {
-    margin: 0 auto;
-    max-width: $screen-lg-min;
+    @media screen and (min-width: $screen-md-min) {
+      #thing_content {
+        @include make-md-column(8, $gutter: 4em);
+        @include make-md-column-pull(4);
+        border-right: $border-default;
+        min-height: 800px;
+      }
+
+      #thing_actions {
+        @include make-md-column(4, $gutter: 4em);
+        @include make-md-column-push(8);
+      }
+    }
+
+    @media screen and (min-width: $screen-lg-min + 100) {
+      margin: 0 auto;
+      max-width: $screen-lg-min;
+    }
   }
 }
 
@@ -541,24 +547,6 @@
 .things_wrapper {
   @media screen and (min-width: 512px) {
     padding: 0 7%;
-  }
-}
-
-#things_index {
-  @include site_margin;
-  > nav {margin-bottom: 1em;}
-  h1 {
-    margin-bottom: 1em;
-    color: $text-muted;
-    font-size: 24px;
-  }
-  ul#things {
-    @include make-row;
-    li {
-      @include make-sm-column(4);
-      @include make-lg-column(2);
-      margin-bottom: 2em;
-    }
   }
 }
 

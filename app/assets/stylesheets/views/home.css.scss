@@ -1,4 +1,4 @@
-html.home_landing {
+html.guest_homepage {
   height: 100%;
   width: 100%;
 
@@ -23,7 +23,7 @@ html.home_landing {
       padding-top: 0;
     }
 
-    > header {
+    #header {
       display: none;
       margin-bottom: 0;
 
@@ -36,7 +36,15 @@ html.home_landing {
       }
     }
 
-    > footer {
+    #wrapper {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+
+    #footer {
       background: none;
       color: $text-muted;
       margin: 0;
@@ -473,11 +481,10 @@ html.home_landing {
   }
 }
 
-html.home_index {
+html.signed_in_homepage {
 
-  #home_index {
-    @include make-row;
-    @include site_margin;
+  #wrapper {
+    @include wrapper(grid);
 
     > section {
       @include make-md-column(8);
@@ -553,17 +560,5 @@ html.home_index {
     margin: 2em 0;
     text-align: center;
     color: $text-muted;
-  }
-
-  #qr_entry {
-    @include responsive-wrapper;
-    text-align: center;
-    > a {
-      display: block;
-      margin: 1em 0;
-    }
-    .fa-comments {
-      color: $green;
-    }
   }
 }
