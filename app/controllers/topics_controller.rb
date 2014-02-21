@@ -41,7 +41,7 @@ class TopicsController < ApplicationController
 
   def destroy
     @topic.destroy
-    redirect_to group_topics_path(@group)
+    redirect_to group_path(@group)
   end
 
   private
