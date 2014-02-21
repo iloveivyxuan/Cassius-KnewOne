@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @groups = Group.limit(10)
+    @groups = Group.all
   end
 
   def show
@@ -17,7 +17,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.members.add current_user, :admin
     if @group.save
-      redirect_to group
+      redirect_to group_path(@group)
     else
       render 'new'
     end

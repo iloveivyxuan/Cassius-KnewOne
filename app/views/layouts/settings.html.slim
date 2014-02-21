@@ -37,8 +37,6 @@
           - if can? :manage, :all
             = nav_tab :thing do
               = link_to_with_icon '管理产品', 'fa fa-fw fa-wrench', haven_things_path
-            = nav_tab :group do
-              = link_to_with_icon '管理小组', 'fa fa-fw fa-wrench', groups_path
             = nav_tab :review do
               = link_to_with_icon '管理评测', 'fa fa-fw fa-wrench', haven_reviews_path
             = nav_tab :coupon do
