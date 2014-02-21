@@ -6,14 +6,14 @@
           span= tp.stage_text
       figure
         = link_to (img_lazy ? tp.photo_lazy(size) : tp.photo(size)),
-          tp.thing, target: "_blank"
+          tp.thing
       - if tp.stage == :invest
         .invest_progress
           .progress data-progress=tp.invest_progress
             .progress-bar.progress-bar-success role="progressbar" style="width: #{tp.invest_percentage}" aria-valuenow=tp.invest_percentage aria-valuemin="0" aria-valuemax="100"
           small= tp.invest_currency
       figcaption
-        h5 data-toggle="tooltip" data-placement="bottom" title=tp.full_title
+        h5 data-toggle="tooltip" data-placement="top" title=tp.full_title
           = tp.full_title
         p
           - if tp.thing.fanciers.count > 0

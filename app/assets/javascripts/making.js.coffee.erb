@@ -21,14 +21,12 @@ window.Making =
   initialize: ->
     $ ->
       Making.ImageLazyLoading()
-      $(document).ajaxComplete ->
-        $(".spinning").remove()
+      Making.InitUIThings($('.thing'))
       if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ')') then Making.Search()
       Making.Share()
       $(".popover-toggle").popover()
       $("a.disabled").click ->
         false
-      $(".thing h4").tooltip()
       $(".post_content").fitVids()
       $(".track_event").click ->
         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
@@ -89,6 +87,22 @@ window.Making =
             lock = false
       $('[type="range"].range_rating').length && Making.Rating()
       $('.score').length && Making.Score()
+      Making.AjaxComplete()
+
+  AjaxComplete: ->
+    $(document).ajaxComplete ->
+      $(".spinning").remove()
+
+      $things_new = $('.thing').filter -> $(@).attr('target') isnt '_blank'
+      Making.InitUIThings($things_new)
+      return true
+
+  InitUIThings: ($things) ->
+    if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')')
+      $things.length and $things.each ->
+        $thing = $(@)
+        $thing.find('h5').tooltip()
+        $thing.find('figure').children('a').attr('target', '_blank')
 
   SetupOlark: (element) ->
     $element    = $(element)
