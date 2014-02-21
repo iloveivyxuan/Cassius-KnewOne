@@ -11,14 +11,13 @@ class GroupsController < ApplicationController
   end
 
   def new
-    @group = Group.new
   end
 
   def create
     @group = Group.new(group_params)
-    @group.founder = current_user
+    @group.members.add current_user, :admin
     if @group.save
-      redirect_to groups_path
+      redirect_to group
     else
       render 'new'
     end

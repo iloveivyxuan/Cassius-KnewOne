@@ -3,8 +3,7 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, :trackable,
-         :confirmable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, :trackable, :confirmable
 
   field :name, type: String, :default => ''
   field :site, type: String, :default => ''
@@ -199,6 +198,7 @@ class User
   embeds_many :messages
 
   ## Groups
+  # TODO remove found_groups
   has_many :found_groups, class_name: "Group", inverse_of: :founder
 
   # Payment

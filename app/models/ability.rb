@@ -71,6 +71,11 @@ class Ability
     can [:read, :deliver_bill, :tenpay, :alipay, :tenpay_wechat, :cancel, :alipay_callback, :tenpay_callback], Order do |order|
       order.user == user
     end
+
+    can :create, Group
+    can :update, Group do |group|
+      group.has_admin? user
+    end
   end
 
   def basic
