@@ -6,10 +6,6 @@ class Group
   field :name, type: String
   field :description, type: String
 
-  # TODO remove founder
-  # data migration: Group.all.each {|g| g.members << Member.new(user_id: g.founder.id, role: :admin) if g.founder.present? }
-  belongs_to :founder, class_name: "User", inverse_of: :found_group
-
   has_many :topics
   embeds_many :members do
     def add(user, role)

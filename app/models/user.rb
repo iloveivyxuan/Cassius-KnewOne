@@ -183,8 +183,6 @@ class User
   embeds_many :messages
 
   ## Groups
-  # TODO remove found_groups
-  has_many :found_groups, class_name: "Group", inverse_of: :founder
 
   # Payment
   embeds_many :addresses
