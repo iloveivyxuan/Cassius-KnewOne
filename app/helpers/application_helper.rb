@@ -27,7 +27,7 @@ module ApplicationHelper
   end
 
   def brand
-    "knewone"
+    "KnewOne"
   end
 
   def slogan
