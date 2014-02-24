@@ -1,7 +1,6 @@
 = link_to '新建', new_haven_thing_rebate_coupon_path, class: 'btn btn-primary'
 table.table
   thead
-    th 优惠券ID
     th 名称
     th 说明
     th 产品
@@ -10,7 +9,6 @@ table.table
   tbody
   - @coupons.each do |coupon|
     tr
-      td = coupon.id.to_s
       td = coupon.name
       td = coupon.note
       td = link_to coupon.thing.title, coupon.thing, target: '_blank'

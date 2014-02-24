@@ -93,7 +93,14 @@ Making::Application.routes.draw do
     resources :users, only: [:index, :update, :show]
 
     resources :reviews, only: [:index]
+
+    resources :rewards do
+      member do
+        patch 'award'
+      end
+    end
   end
+
 
   resources :things do
     collection do
@@ -144,6 +151,8 @@ Making::Application.routes.draw do
   resources :lotteries do
     get 'page/:page', action: :index, on: :collection
   end
+
+  resources :rewards, only: [:index, :show]
 
   resources :suppliers
 

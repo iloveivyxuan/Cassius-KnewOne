@@ -1,0 +1,39 @@
+- coupons = Coupon.where(name: /^天天有礼/)
+= simple_form_for @reward, url: haven_rewards_path, html: {class: "reward_form form-horizontal"}, wrapper: :horizontal do |f|
+  = f.input :user_id, as: :hidden
+  .form-group
+    label.control-label 获奖者
+    .controls
+      input#user_autocomplete.form-control placeholder="用户昵称" value="#{@reward.user.try :name}"
+    #user_autocomplete_tip.strong.help-block
+  = f.input :date, as: :date
+  - if @reward.coupon_code.nil?
+    = f.input :coupon_id, collection: coupons, label_method: :name, value_method: :id
+  - else
+    .form-group
+      label.control-label 优惠券(已发奖)
+      .controls
+        input.form-control value="#{@reward.coupon.name}" disabled="disabled"
+  = f.input :reason, as: :text
+  = f.input :body, as: :hidden
+  = render 'shared/editor'
+  = f.button :submit, class: "btn btn-primary btn-lg"
+
+- content_for :script do
+  javascript:
+    Making.Editor('#reward_body');
+
+    $('#user_autocomplete').autocomplete({
+           serviceUrl: '/users/fuzzy.json',
+           paramName: 'keyword',
+           lookupFilter: function(suggestion, originalQuery, queryLowerCase) {
+             var re = new RegExp('\\b' + $.Autocomplete.utils.escapeRegExChars(queryLowerCase), 'gi');
+             return re.test(suggestion.value);
+           },
+           onSelect: function(suggestion) {
+             $('#reward_user_id').val(suggestion.data);
+           },
+           onInvalidateSelection: function() {
+             $('#user_autocomplete_tip').html('无此用户');
+           }
+       });
