@@ -200,4 +200,39 @@
       display: block;
     }
   }
+
+#editor_compact_experimental {
+  border: 1px solid #ccc;
+  border-radius: $border-radius-base;
+  height: 200px;
+  padding-bottom: 0 !important;
+  width: 100%;
+}
+
+#editor_experimental {
+  background-color: #ebeced;
+  display: none;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  top: 0;
+  z-index: $zindex_editor;
+
+  .editor {
+    margin: 1em auto;
+    width: 55%;
+
+    p {
+      margin-bottom: 1.5em;
+    }
+  }
+}
+
+// @TODO
+#editor_experimental,
+#insert-video-modal {
+  padding-bottom: 0 !important;
+  border-bottom: none !important;
+  margin-bottom: 0 !important;
 }

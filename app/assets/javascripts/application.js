@@ -20,6 +20,11 @@
 //= require jquery.qrcode
 //= require jquery.deserialize
 //= require bootstrap-tagsinput
+//= require jquery.autocomplete
+//= require medium-editor/js/medium-editor
+//= require medium-editor/js/medium-editor-insert-plugin
+//= require medium-editor/js/medium-editor-insert-images
+//= require medium-editor/js/medium-editor-insert-videos
 //= require bootstrap-wysiwyg
 //= require bootstrap-select
 //= require bootstrap-touch-carousel
@@ -43,6 +48,7 @@
 //= require components/stream
 //= require components/message_on_top
 //= require_tree ./pages
+//= require editor
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ./views
