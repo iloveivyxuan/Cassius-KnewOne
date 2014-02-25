@@ -73,6 +73,11 @@ class Ability
     can :update, Group do |group|
       group.has_admin? user
     end
+
+    can :create, PrivateDialog
+    can [:read, :destroy], PrivateDialog do |dialog|
+      dialog.user == user or dialog.sender == user
+    end
   end
 
   def basic

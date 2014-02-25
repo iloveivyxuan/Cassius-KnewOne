@@ -1,0 +1,31 @@
+button.btn.btn-primary data-toggle="modal" data-target="#new-private-message"
+  | 写私信
+
+#private-dialogs
+
+#new-private-message.modal.fade role="dialog" aria-labelledby="写私信"
+  .modal-dialog
+    .modal-content
+      = form_tag private_dialogs_path, method: :post, remote: true,
+      class: "form-horizontal", role: "form"
+        .modal-header
+          button.close data-dismiss="modal" aria-hidden="true"
+            | &times;
+          h4.modal-title 写私信
+        .modal-body
+          .form-group
+            label.control-label.col-sm-2 for="private-message-user"
+              | 发给
+            .col-sm-6
+              input#private-message-user.form-control name="user_id" type="search"
+          .form-group
+            label.control-label.col-sm-2 for="private-message-content"
+              | 内容
+            .col-sm-10
+              textarea#private-message-content.form-control rows="5" name="content"
+          .form-group
+        .modal-footer
+          button.btn.btn-default data-dismiss="modal"
+            | 取消
+          button.btn.btn-primary type="submit"
+            | 发送

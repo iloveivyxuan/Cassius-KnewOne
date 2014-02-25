@@ -150,6 +150,8 @@ Making::Application.routes.draw do
     end
   end
 
+  resources :private_dialogs
+
   resources :lotteries do
     get 'page/:page', action: :index, on: :collection
   end

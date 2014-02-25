@@ -190,6 +190,9 @@ class User
   ## Messageable
   embeds_many :messages
 
+  ## Private Dialogs
+  include UserPrivateDialogs
+
   ## Groups
 
   # Payment
