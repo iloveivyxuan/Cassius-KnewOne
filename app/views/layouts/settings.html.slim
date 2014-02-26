@@ -15,8 +15,8 @@
           = link_to_with_icon '我的余额', 'fa fa-fw fa-money', balances_path
         = nav_tab :address do
           = link_to_with_icon '收货地址', 'fa fa-fw fa-truck', addresses_path
-        = nav_tab :invoice do
-          = link_to_with_icon '发票信息', 'fa fa-fw fa-list-alt', invoices_path
+        /= nav_tab :invoice do
+        /  = link_to_with_icon '发票信息', 'fa fa-fw fa-list-alt', invoices_path
         = nav_tab :coupon do
           = link_to_with_icon '优惠券', 'fa fa-fw fa-ticket', coupons_path
         - if current_user.role? :editor
