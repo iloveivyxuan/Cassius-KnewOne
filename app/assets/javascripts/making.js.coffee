@@ -4,9 +4,6 @@ window.Making =
   Views: {}
   Routers: {}
 
-  Urls:
-    olark: '<%= asset_path "olark.js" %>'
-
   Breakpoints:
     "screenXSMin": "480px"
     "screenXSMax": "767px"
@@ -118,7 +115,7 @@ window.Making =
         if $hint.length > 0
           $hint.removeClass(klass_hint).addClass(klass_spin)
 
-        $.getScript Making.Urls.olark, ->
+        $.getScript $element.data('url'), ->
           $user = $('#user')
           name  = $user.data('name')
           email = $user.data('email')

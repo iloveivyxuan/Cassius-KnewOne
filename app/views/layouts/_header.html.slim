@@ -44,7 +44,7 @@ header#header role="banner"
             li= link_to_with_icon "吐槽", "fa fa-leaf", "/things/knewone"
             li= link_to_with_icon "邮件", "fa fa-envelope", "mailto:hello@knewone.com"
         li.nav_olark
-          = link_to_with_icon "在线帮助", "fa fa-user-md fa-fw", "#olark_chat", data: {hint: "fa-user-md"}
+          = link_to_with_icon "在线帮助", "fa fa-user-md fa-fw", "#olark_chat", data: {hint: "fa-user-md", url: asset_path('olark.js')}
 
       .nav.navbar-nav.navbar-right
         - if user_signed_in?
