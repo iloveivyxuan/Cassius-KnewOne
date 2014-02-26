@@ -18,8 +18,10 @@
       a.btn.btn-default.link.dropdown-toggle data-toggle="dropdown" title="链接"
         i.fa.fa-link
       .dropdown-menu
-        input placeholder="http://" type="text" data-edit="createLink"
-        button.btn.btn-default type="button" 提交
+        .form-inline
+          .form-group
+            input.form-control placeholder="http://" type="text" data-edit="createLink"
+          button.btn.btn-primary type="button" 提交
       a.btn.btn-default data-edit="unlink" title="移除链接"
         i.fa.fa-unlink
 
@@ -30,8 +32,18 @@
       a.btn.btn-default.video.dropdown-toggle data-toggle="dropdown" title="插入视频"
         i.fa.fa-film
       .dropdown-menu
-        input placeholder="插入视频代码(建议非flash)" type="text" data-edit="insertHtml"
-        button.btn.btn-default type="button" 提交
+        .form-inline
+          .form-group
+            input.form-control type="text" data-edit="insertHtml"
+          button.btn.btn-primary type="button" 提交
+          .help-block
+            | 建议优先使用
+            strong “通用代码”
+            | （可在 iPhone, iPad 等 iOS 设备上播放），没有
+            strong “通用代码”
+            | 时也可用
+            strong “HTML 代码”
+            | 。
 
     .btn-group
       a.btn.btn-default data-edit="insertunorderedlist" title="无序列表"
