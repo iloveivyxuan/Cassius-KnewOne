@@ -91,6 +91,14 @@ class User
       end
     end
 
+      def create_from_mobile_app(provider, uid)
+      create! do |user|
+        user.auths << Auth.new(provider: provider, uid: uid)
+
+        user.name = "小伙伴#{SecureRandom.uuid[0..5]}"
+      end
+    end
+
     def find_by_fuzzy_name(name)
       return all if name.blank?
       str = name.gsub /[^\u4e00-\u9fa5a-zA-Z0-9 -]+/, ''

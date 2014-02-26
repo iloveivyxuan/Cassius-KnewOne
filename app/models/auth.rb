@@ -18,7 +18,6 @@ class Auth
 
   validates :provider, presence: true
   validates :uid, presence: true
-  validates :name, presence: true
 
   delegate :share, :follow, :topic_wrapper, :to => :handler, :allow_nil => true
 
@@ -34,7 +33,8 @@ class Auth
   }
 
   def expired?
-    return false unless self.expires_at
+    return true if self.access_token.blank?
+    return false if self.expires_at.blank?
     Time.now > self.expires_at
   end
 
