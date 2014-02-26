@@ -25,12 +25,20 @@
   }
 
   .dropdown-menu {
-    padding: 11px 1em 0;
+    padding: 10px 1em;
     a {cursor: pointer;}
-    input {width: 320px;}
-    button {
-      margin-left: 1em;
-      vertical-align: 5px;
+    .form-inline {
+      width: 350px;
+      input {width: 280px;}
+      button {
+        margin-left: 1em;
+      }
+      .help-block {
+        font-size: 12px;
+        strong {
+          color: $text-color;
+        }
+      }
     }
   }
 
