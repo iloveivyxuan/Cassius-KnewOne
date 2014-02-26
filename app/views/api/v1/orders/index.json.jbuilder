@@ -3,7 +3,9 @@ json.array! @orders do |order|
   json.url url_wrapper(:account, order)
   json.html_url order_path(order)
   json.order_no order.order_no
-  json.address address_text(order.address)
+  json.address do
+    json.partial! 'api/v1/addresses/address', address: order.address
+  end
   json.invoice invoice_text(order.invoice) if order.invoice
   json.deliver_no order.deliver_no if order.deliver_no.present?
   json.trade_no order.trade_no if order.trade_no.present?

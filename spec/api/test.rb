@@ -5,8 +5,8 @@ require 'oauth2'
 
 CONSOLE = Pry
 
-APP_ID = '98aada7a9e5d027dc8f9077e9ffed1f3842b1c71072cf88c5232531b1688801c'
-SECRET = 'a972e416053f74f21b41d8960eb1a595a6c79fd84d6731744c09b634fb376cf3'
+APP_ID = '9c414322e74aa71057e3523fe4af986dd87256157c730d86c0c08864bb98cf9b'
+SECRET = '5456e36028ddde788caba33cedfbf79ff77f5eb0a40135119765be2c119ccfae'
 URL = 'http://making.dev'
 USERNAME = 'jasl@knewone.com'
 PASSWORD = 'aaaaaa'
