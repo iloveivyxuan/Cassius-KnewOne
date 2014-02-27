@@ -210,7 +210,7 @@
 }
 
 #editor_experimental {
-  background-color: #ebeced;
+  background-color: #fff;
   display: none;
   bottom: 0;
   left: 0;
@@ -222,10 +222,81 @@
   .editor {
     margin: 1em auto;
     width: 55%;
+  }
 
-    p {
-      margin-bottom: 1.5em;
+  .mediumInsert {
+    height: 1.5em;
+    line-height: 1.5em;
+    margin: -1.5em 0 0 -80px;
+    min-height: 0;
+    z-index: -1;
+
+    &:hover {
+      z-index: 0;
     }
+
+    .mediumInsert-buttonsShow,
+    .mediumInsert-action {
+      cursor: pointer;
+      display: block;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .mediumInsert-buttons {
+      @include clearfix;
+
+      min-width: 80px;
+      width: auto;
+
+      .mediumInsert-buttonsShow {
+        @include fontawesome("\f055");
+        color: $text-muted;
+        font-size: 0;
+        float: left;
+        overflow: hidden;
+        padding-right: 80px;
+        position: relative;
+        width: 0;
+
+        &:before {
+          font-size: 20px;
+          right: 1em;
+          position: absolute;
+        }
+
+        &.active {
+          color: $text-color;
+          font-weight: normal;
+        }
+      }
+
+      .mediumInsert-buttonsOptions {
+        float: left;
+
+        > li {
+          float: left;
+
+          .mediumInsert-action {
+            border: 1px solid $text-muted;
+            border-radius: 1em;
+            color: $text-muted;
+            line-height: 1.2em;
+            margin: .15em 10px .15em 0;
+            width: 80px;
+
+            &:hover {
+              border-color: $text-color;
+              color: $text-color;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .medium-editor-placeholder:after {
+    color: $text-muted;
   }
 }
 

@@ -236,7 +236,6 @@
       if (insertBlock !== '') {
         insertBlock = '<div class="mediumInsert" contenteditable="false">'+
           '<div class="mediumInsert-buttons">'+
-            '<div class="mediumInsert-buttonsIcon">&rarr;</div>'+
             insertBlock +
           '</div>'+
           '<div class="mediumInsert-placeholder"></div>'+
