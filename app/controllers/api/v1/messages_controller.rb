@@ -2,9 +2,10 @@
 module Api
   module V1
     class MessagesController < ApiController
-      doorkeeper_for :all
+      # doorkeeper_for :all
 
       def index
+        current_user = User.first
         if params[:scope] == 'unread'
           @messages = current_user.messages.unread.page(params[:page]).per(params[:per_page] || 8)
         else
