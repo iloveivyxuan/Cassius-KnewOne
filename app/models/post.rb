@@ -9,8 +9,7 @@ class Post
 
   belongs_to :author, class_name: "User", inverse_of: :post
 
-  embeds_many :comments
-  has_many :replies
+  has_many :comments
 
   validates :title, presence: true
   validates :content, presence: true

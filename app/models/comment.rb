@@ -4,7 +4,7 @@ class Comment
   include Mongoid::Timestamps
   field :content, type: String
 
-  embedded_in :post
+  belongs_to :post
   belongs_to :author, class_name: 'User'
   validates :author, presence: true
 
@@ -15,14 +15,6 @@ class Comment
   after_create :notify_related_users
   after_create :update_commented_at
   after_destroy :update_commented_at
-
-  # migration
-  after_create do
-    Reply.create! author: self.author,
-                 post: self.post,
-                 content: self.content,
-                 created_at: self.created_at
-  end
 
   def content_users
     names = content.scan(/@(\S{2,20})/).flatten
