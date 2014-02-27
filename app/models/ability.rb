@@ -74,8 +74,8 @@ class Ability
       group.has_admin? user
     end
 
-    can :create, PrivateDialog
-    can [:read, :destroy], PrivateDialog do |dialog|
+    can :create, Dialog
+    can [:read, :destroy], Dialog do |dialog|
       dialog.user == user or dialog.sender == user
     end
   end

@@ -1,4 +1,4 @@
-class PrivateDialog
+class Dialog
   include Mongoid::Document
   include Mongoid::Timestamps::Updated
 

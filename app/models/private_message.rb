@@ -6,5 +6,5 @@ class PrivateMessage
   field :is_new, type: Boolean, default: false
   field :is_in, type: Boolean, default: false
 
-  embedded_in :private_dialog
+  embedded_in :dialog
 end

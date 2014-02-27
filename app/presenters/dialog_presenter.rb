@@ -1,0 +1,3 @@
+class DialogPresenter < ApplicationPresenter
+
+end

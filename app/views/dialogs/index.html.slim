@@ -1,12 +1,13 @@
 button.btn.btn-primary data-toggle="modal" data-target="#new-private-message"
   | 写私信
 
-#private-dialogs
+ul#dialogs
+  = render @dialogs
 
 #new-private-message.modal.fade role="dialog" aria-labelledby="写私信"
   .modal-dialog
     .modal-content
-      = form_tag private_dialogs_path, method: :post, remote: true,
+      = form_tag dialogs_path, method: :post, remote: true,
       class: "form-horizontal", role: "form"
         .modal-header
           button.close data-dismiss="modal" aria-hidden="true"

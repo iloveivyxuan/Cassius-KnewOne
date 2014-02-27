@@ -1,8 +1,8 @@
-class PrivateDialogsController < ApplicationController
+class DialogsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @dialogs = current_user.private_dialogs
+    @dialogs = current_user.dialogs
   end
 
   def create
