@@ -9,21 +9,41 @@ module Api
       SECRET = '62b5f1b6'
 
       def exchange_access_token
-        if params[:provider].blank? || params[:uid].blank? || params[:timestamp].blank? || params[:sign].blank?
+        if params[:provider].blank? || params[:access_token].blank? || params[:timestamp].blank? || params[:sign].blank?
           return render :status => :not_acceptable, :json => {:message => 'field missing'}
         end
 
         if params[:timestamp].to_i < Time.now.to_i - 300
-          return render :status => :not_acceptable, :json => {:message => 'expired'}
+          return render :status => :request_timeout, :json => {:message => 'expired'}
         end
 
-        if Digest::MD5.hexdigest(params[:provider] + params[:uid] + params[:timestamp] + SECRET) != params[:sign]
-          return render :status => :not_acceptable, :json => {:message => 'invalid sign'}
+        if Digest::MD5.hexdigest(params[:provider] + params[:access_token] + params[:timestamp] + SECRET) != params[:sign]
+          return render :status => :bad_request, :json => {:message => 'invalid sign'}
         end
 
-        user = User.find_by_omniauth(provider: params[:provider], uid: params[:uid])
+        case params[:provider]
+          when 'weibo'
+            client = WeiboOAuth2::Client.new(Settings.weibo.consumer_key, Settings.weibo.consumer_secret)
+            client.get_token_from_hash :access_token => params[:access_token]
+            uid = client.account.get_uid.uid.to_s
+          when 'twitter'
+            client = Twitter::REST::Client.new access_token: info[:access_token],
+                                               access_token_secret: info[:access_secret],
+                                               consumer_key: Settings.twitter.consumer_key,
+                                               consumer_secret: Settings.twitter.consumer_secret
+            result = client.users.verify_credentials
+            uid = result[:id_str]
+          else
+            return render :status => :bad_request, :json => {:message => 'invalid provider'}
+        end
+
+        if uid.blank?
+          return render :status => :bad_request, :json => {:message => 'invalid access_token'}
+        end
+
+        user = User.find_by_omniauth(provider: params[:provider], uid: uid)
         unless user
-          user = User.create_from_mobile_app(params[:provider], params[:uid])
+          user = User.create_from_mobile_app(params[:provider], uid)
         end
 
         app = Doorkeeper::Application.where(name: APP_NAME).first
