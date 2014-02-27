@@ -39,7 +39,6 @@ html.guest_homepage {
     #wrapper {
       height: 100%;
       margin: 0;
-      overflow: hidden;
       position: relative;
       width: 100%;
     }
@@ -53,9 +52,9 @@ html.guest_homepage {
 
       @media screen and (min-width: $screen-md-min + 1) {
         bottom: 1em;
-        left: calc(50% - 100px);
         padding: 0;
         position: absolute;
+        right: 1em;
         width: 200px;
       }
 
