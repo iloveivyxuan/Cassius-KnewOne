@@ -21,6 +21,8 @@
           = link_to_with_icon '优惠券', 'fa fa-fw fa-ticket', coupons_path
         - if current_user.role? :editor
           li.nav-group-title 管理
+          = nav_tab :comment do
+            = link_to_with_icon '评论', 'fa fa-fw fa-wrench', haven_comments_path
           = nav_tab :reward do
             = link_to_with_icon '天天有礼', 'fa fa-fw fa-wrench', haven_rewards_path
           = nav_tab :user do

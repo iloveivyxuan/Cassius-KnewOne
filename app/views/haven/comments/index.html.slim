@@ -1,0 +1,22 @@
+- provide :nav, :comment
+- provide :title, '管理评论'
+
+table.table.table-striped
+  thead
+    tr
+      th
+      th 用户
+      th 时间
+      th 操作
+  tbody
+    - @comments.each do |c|
+      tr
+        td
+          small = message_post(c.post)
+          br
+          = c.content
+        td = link_to c.author.name, c.author
+        td = c.created_at.strftime '%Y-%m-%d %H:%M:%S'
+        td = link_to '删除', haven_comment_path(c), method: :delete, data: {confirm: 'are you sure?'}
+
+= paginate @comments

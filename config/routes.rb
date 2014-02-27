@@ -94,6 +94,8 @@ Making::Application.routes.draw do
 
     resources :reviews, only: [:index]
 
+    resources :comments, only: [:index, :destroy]
+
     resources :rewards do
       member do
         patch 'award'
