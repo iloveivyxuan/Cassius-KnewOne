@@ -22,10 +22,6 @@ aside
                 = link_to rp.title, rp.path, target: "_blank"
               p= rp.summary(50)
 
-  #home_filling
-    script#ebsgovicon src="https://cert.ebs.gov.cn/govicon.js?id=0a9f8f12-2255-447a-9f72-4c4ad637c3c8&width=14&height=20" type="text/javascript"
-    small 粤ICP备13057487号
-
 - content_for :script do
   javascript:
     Making.InfiniteScroll("#wrapper > section");
