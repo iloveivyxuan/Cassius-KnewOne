@@ -5,15 +5,18 @@ window.Making = do (exports = window.Making || {}) ->
   _$editor_compact = $('#editor_compact_experimental')
   _$editor         = $('#editor_experimental')
   _$modal          = $('#insert-video-modal')
+  _$button         = $('#insert-video-button')
 
   _editor = new MediumEditor '.editor',
-    buttons: ['header1', 'header2', 'bold', 'italic', 'underline', 'quote', 'anchor', 'orderedlist', 'unorderedlist']
+    buttons: ['header1', 'header2', 'bold', 'italic', 'quote', 'anchor', 'orderedlist', 'unorderedlist']
     buttonLabels: 'fontawesome'
     firstHeader: 'h2'
     secondHeader: 'h3'
-    placeholder: '快来写点什么吧～'
+    placeholder: '在这里记下你的想法～'
 
-  $('.editor').mediumInsert
+  _$editor.on 'click', '.action-videos-add', ->
+    _$modal.data 'triggerMediumInsert', $(this)
+  .find('.editor').mediumInsert
     imagesUploadScript: ''
     editor: _editor
     images: true
@@ -23,10 +26,8 @@ window.Making = do (exports = window.Making || {}) ->
   .find('.action-videos-add').attr
     'data-toggle': 'modal'
     'data-target': '#insert-video-modal'
-  .on 'click', ->
-    _$modal.data 'triggerMediumInsert', $(this)
 
-  $('#insert-video-button').on 'click', ->
+  _$button.on 'click', ->
     _$modal.data('triggerMediumInsert').data('deferredMediumInsert').resolve()
     _$modal.modal('hide')
 

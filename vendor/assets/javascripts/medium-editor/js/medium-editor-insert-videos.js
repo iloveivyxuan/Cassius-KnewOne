@@ -48,8 +48,12 @@
 
       promptDeferred = new $.Deferred();
       promptDeferred.done(function() {
-        $video = $($(that.options.videosPlugin.input).val());
-        $placeholder.append($video);
+        video = $.trim($(that.options.videosPlugin.input).val());
+
+        if (video !== '') {
+          $video = $(video);
+          $placeholder.append($video);
+        }
       });
 
       $trigger.data('deferredMediumInsert', promptDeferred);
