@@ -1,7 +1,7 @@
 module Api
   module V1
     class CouponsController < ApiController
-      doorkeeper_for :all
+      doorkeeper_for :all, scopes: [:official]
 
       def index
         @coupons = current_user.coupon_codes

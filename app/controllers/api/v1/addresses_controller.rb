@@ -1,7 +1,7 @@
 module Api
   module V1
     class AddressesController < ApiController
-      doorkeeper_for :all
+      doorkeeper_for :all, scopes: [:official]
 
       def show
         @address = current_user.addresses.find params[:id]

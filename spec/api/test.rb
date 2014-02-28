@@ -10,8 +10,9 @@ SECRET = '5456e36028ddde788caba33cedfbf79ff77f5eb0a40135119765be2c119ccfae'
 URL = 'http://making.dev'
 USERNAME = 'jasl@knewone.com'
 PASSWORD = 'aaaaaa'
+SCOPES = %w(public official)
 
-client = OAuth2::Client.new(APP_ID, SECRET, site: URL)
+client = OAuth2::Client.new(APP_ID, SECRET, site: URL, scope: SCOPES)
 @token = client.password.get_token(USERNAME, PASSWORD)
 def token
   @token

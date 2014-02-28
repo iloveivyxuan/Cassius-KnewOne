@@ -1,7 +1,7 @@
 module Api
   module V1
     class OrdersController < ApiController
-      doorkeeper_for :all, except: [:tenpay_callback, :alipay_callback]
+      doorkeeper_for :all, except: [:tenpay_callback, :alipay_callback], scopes: [:official]
       helper 'api/v1/orders'
 
       def show
