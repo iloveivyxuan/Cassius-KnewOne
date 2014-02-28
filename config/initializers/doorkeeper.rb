@@ -37,8 +37,8 @@ Doorkeeper.configure do
 
   # Define access token scopes for your provider
   # For more information go to https://github.com/applicake/doorkeeper/wiki/Using-Scopes
-  default_scopes  :public, :official
-  # optional_scopes :advance, :official
+  default_scopes  :public
+  optional_scopes :advance, :official
 
   # Change the way client credentials are retrieved from the request object.
   # By default it retrieves first from the `HTTP_AUTHORIZATION` header, then
