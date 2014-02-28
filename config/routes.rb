@@ -204,7 +204,6 @@ Making::Application.routes.draw do
         end
         resources :coupons, only: [:index, :update]
         resources :addresses, except: [:new, :edit, :show]
-        resources :invoices, except: [:new, :edit, :show]
 
         member do
           patch 'profile'

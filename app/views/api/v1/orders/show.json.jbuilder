@@ -4,11 +4,6 @@ json.order_no @order.order_no
 json.address do
   json.partial! 'api/v1/addresses/address', address: @order.address
 end
-if @order.invoice
-  json.invoice do
-    json.partial! 'api/v1/invoices/invoice', address: @order.invoice
-  end
-end
 json.deliver_no @order.deliver_no if @order.deliver_no.present?
 json.trade_no @order.trade_no if @order.trade_no.present?
 json.deliver_by_text deliver_by_text(@order)
