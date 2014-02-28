@@ -41,7 +41,7 @@ module Api
 
       def order_params
         params.require(:order).
-            permit(:note, :address_id, :invoice_id, :auto_owning, :coupon_code_id, :use_balance, :use_sf)
+            permit(:note, :address_id, :auto_owning, :coupon_code_id, :use_balance, :use_sf)
       end
     end
   end

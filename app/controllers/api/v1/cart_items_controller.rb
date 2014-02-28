@@ -12,7 +12,7 @@ module Api
       end
 
       def create
-        current_user.add_to_cart params[:cart_item]
+        current_user.add_to_cart create_item_params
         head :no_content
       end
 

@@ -19,6 +19,7 @@ end
 
 %i(get post patch put delete).each do |m|
   define_method m do |*args|
+    args[0] = "api/v1/#{args[0]}"
     @token.send m, *args
   end
 end
