@@ -85,6 +85,27 @@ window.Making =
       $('[type="range"].range_rating').length && Making.Rating()
       $('.score').length && Making.Score()
       Making.AjaxComplete()
+      Making.ToggleFixedNavbar()
+
+  ToggleFixedNavbar: ->
+    $(window).on 'touchmove.device', ->
+      if Modernizr.mq('(max-width: ' + Making.Breakpoints.screenMDMax + ')')
+        $element  = $('.navbar-fixed-top')
+        $window   = $(window)
+        scrollTop = 0
+        top       = 0
+
+        $(':input')
+          .on 'focusin', ->
+            top = $element.css('top')
+            $element.css
+              'position': 'absolute'
+              'top': 0
+          .on 'focusout', ->
+            $element.css
+              'position': 'fixed'
+              'top': top
+      $(window).off 'touchmove.device'
 
   AjaxComplete: ->
     $(document).ajaxComplete ->
