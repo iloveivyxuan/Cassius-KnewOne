@@ -11,6 +11,7 @@ class Address
   embedded_in :order
 
   validates :province, :district, :street, :name, :phone, presence: true
+  validates_inclusion_of :province, in: Province.keys
 
   default_scope -> { desc(:created_at) }
 end

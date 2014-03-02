@@ -15,7 +15,6 @@ header.page-header
     = render partial: 'address_select', locals: {f: f}
     = f.input :note, as: :text, input_html: {placeholder: "在此可填写特殊要求、配送时间、发票信息等。",rows: 5}
     = render partial: 'coupon_select', locals: {f: f}
-    = render partial: 'invoice_select', locals: {f: f} if @order.total_price > 100
 
     - if @order.items_price <= 500
       div
@@ -33,6 +32,8 @@ header.page-header
         | 帮我标记产品为拥有
     = provider_sync
     .form-group.form-actions
+      p.pull-left
+        small * 四点之前支付订单将在当天发货，否则隔天发货，双休日支付的订单会在周一发货。
       p.total_price[data-things-price="#{@order.items_price}" data-rebates-price="#{@order.rebates_price}"]
         | 总计
         strong

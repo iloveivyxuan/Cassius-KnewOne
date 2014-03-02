@@ -1,6 +1,12 @@
 = simple_form_for @address, html: {class: 'form'} do |f|
   = hidden_field_tag :redirect_from, params[:redirect_from]
-  = f.input :province, collection: Province.keys, prompt: '省市', required: true
+  .form-group.select.required.address_province
+    label.select.required.control-label for="address_province"
+      abbr title="required" *
+      | 省/市
+    = f.select :province, Province.keys, { include_blank: false }, class: 'select required form-control'
+    p.help-block
+      small * 我们暂不能为港澳台用户提供服务。
   = f.input :district, required: true
   = f.input :street, required: true
   = f.input :name, required: true
