@@ -7,4 +7,6 @@ class PrivateMessage
   field :is_in, type: Boolean, default: false
 
   embedded_in :dialog
+
+  default_scope -> { desc(:created_at) }
 end

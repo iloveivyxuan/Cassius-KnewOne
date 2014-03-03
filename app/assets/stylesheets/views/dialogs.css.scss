@@ -1,0 +1,38 @@
+html.dialogs_index {
+  #wrapper {
+    @include wrapper(simple);
+
+    > header {
+      h1 {
+        span {
+          @extend .hidden-xs;
+        }
+      }
+      button {float: right;}
+    }
+  }
+}
+
+#dialogs {
+  .dialog {
+    @include clearfix;
+    padding: 1em 0;
+    border-bottom: 1px dashed #ccc;
+
+    .sender {
+      float: left;
+      margin-right: 1em;
+      img {
+        width: 52px;
+        height: 52px;
+      }
+    }
+
+    .messages_count {
+      float: right;
+      @extend .hidden-xs;
+      @extend .badge;
+      margin: 1em 1em 0 0;
+    }
+  }
+}

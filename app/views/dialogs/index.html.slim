@@ -1,5 +1,12 @@
-button.btn.btn-primary data-toggle="modal" data-target="#new-private-message"
-  | 写私信
+- provide :title, '我的私信'
+
+header.page-header
+  button.btn.btn-primary data-toggle="modal" data-target="#new-private-message"
+    i.fa.fa-pencil
+    | 写私信
+  h1
+    i.fa.fa-envelope-o
+    span 我的私信
 
 ul#dialogs
   = render @dialogs

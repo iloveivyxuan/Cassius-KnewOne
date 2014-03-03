@@ -1,9 +1,9 @@
-li
+li.dialog
   - present dialog do |dp|
-    .sender= present(dialog.sender).link_to_with_avatar(:small)
-    .messages_count= dialog.private_messages.count
+    .sender= dp.sender_avatar
+    .messages_count= dp.messages_count
     .content
-      p
-      .info
-        .sender_name
-        time
+      = dp.newest_message_content
+    .info
+      = dp.sender_name
+      = dp.newest_message_time
