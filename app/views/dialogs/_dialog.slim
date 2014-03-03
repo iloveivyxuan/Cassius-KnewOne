@@ -1,9 +1,10 @@
-li.dialog
+article.dialog
   - present dialog do |dp|
-    .sender= dp.sender_avatar
-    .messages_count= dp.messages_count
-    .content
+    header
+      .sender_avatar= dp.sender_avatar
+      .sender_name= dp.sender_name
+      .new_messages_count= dp.new_messages_count
+    section
       = dp.newest_message_content
-    .info
-      = dp.sender_name
+    footer
       = dp.newest_message_time

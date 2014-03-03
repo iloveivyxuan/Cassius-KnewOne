@@ -15,24 +15,37 @@ html.dialogs_index {
 
 #dialogs {
   .dialog {
-    @include clearfix;
     padding: 1em 0;
     border-bottom: 1px dashed #ccc;
 
-    .sender {
-      float: left;
-      margin-right: 1em;
-      img {
-        width: 52px;
-        height: 52px;
-      }
-    }
+    header {
+      @include clearfix;
+      margin-bottom: 1em;
 
-    .messages_count {
-      float: right;
-      @extend .hidden-xs;
-      @extend .badge;
-      margin: 1em 1em 0 0;
+      .sender_avatar {
+        float: left;
+        margin-right: 1em;
+        img {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      .sender_name, .new_messages_count {
+        margin-top: 15px;
+      }
+
+      .sender_name {
+        float: left;
+        color: $text-muted;
+      }
+
+      .new_messages_count {
+        float: right;
+        @extend .badge;
+        margin-right: 1em;
+        background: $blue;
+      }
     }
   }
 }
