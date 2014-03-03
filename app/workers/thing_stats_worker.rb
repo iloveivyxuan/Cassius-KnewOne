@@ -4,6 +4,6 @@ class ThingStatsWorker
   def perform(thing_id)
     thing = Thing.find(thing_id)
 
-    thing.inc reviews_count: thing.reviews.count
+    thing.set reviews_count: thing.reviews.count
   end
 end

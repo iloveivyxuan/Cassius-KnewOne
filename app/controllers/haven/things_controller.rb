@@ -21,9 +21,9 @@ module Haven
                   when "locked" then
                     Thing.unscoped.where(lock_priority: true).desc(:priority)
                   else
-                    Thing.all
+                    Thing.unscoped
                 end
-      @things = @things.desc :reviews_count
+      @things = @things.order_by [:reviews_count, :desc]
 
       @things = @things.page params[:page]
     end
