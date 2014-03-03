@@ -25,14 +25,18 @@ module MessagesHelper
       content += link_to present(post).full_title, thing_path(post)
     elsif post.class == Review
       if post.thing.nil?
-        content += '失效的评测'
+        content += '失效产品的评测'
       else
         content += "评测"
         content += link_to post.title, thing_review_path(post.thing, post)
       end
     elsif post.class == Topic
-      content += "帖子"
-      content += link_to post.title, group_topic_path(post.group, post)
+      if post.group.nil?
+        content += "失效小组的帖子"
+      else
+        content += "帖子"
+        content += link_to post.title, group_topic_path(post.group, post)
+      end
     end
     raw content
   end
