@@ -42,7 +42,7 @@ class ThingPresenter < PostPresenter
   def content_for_price
     price_text = price
     if price_text.present?
-      content_tag :div, price_text, class: "price"
+      content_tag :div, price_text, class: "price", id: "price"
     end
   end
 
