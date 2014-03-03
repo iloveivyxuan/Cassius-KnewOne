@@ -10,3 +10,7 @@ json.comments_url url_wrapper(review.thing, review, :comments)
 json.title review.title
 json.score review.score
 json.summary content_summary(review)
+
+json.author do
+  json.partial! 'api/v1/users/user', user: review.author
+end

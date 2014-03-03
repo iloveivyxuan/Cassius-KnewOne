@@ -21,5 +21,8 @@ if price = price(thing)
   json.min_price price
   json.price_unit '￥'
 end
+json.author do
+  json.partial! 'api/v1/users/user', user: thing.author
+end
 json.created_at thing.created_at
 json.updated_at thing.updated_at

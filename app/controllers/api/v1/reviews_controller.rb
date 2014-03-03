@@ -6,7 +6,7 @@ module Api
       before_action :set_review, only: [:show]
 
       def index
-        @reviews = @thing_group.reviews.page(params[:page]).per(params[:per_page] || 8)
+        @reviews = @thing.reviews.page(params[:page]).per(params[:per_page] || 8)
       end
 
       def show
@@ -16,11 +16,10 @@ module Api
 
       def set_resources
         @thing = Thing.find(params[:thing_id])
-        @thing_group = @thing.thing_group
       end
 
       def set_review
-        @review = @thing_group.reviews.find(params[:id])
+        @review = @thing.reviews.find(params[:id])
       end
     end
   end

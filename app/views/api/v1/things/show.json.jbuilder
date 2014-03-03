@@ -51,8 +51,5 @@ json.content sanitize(@thing.content)
 json.created_at @thing.created_at
 json.updated_at @thing.updated_at
 json.author do
-  json.id @thing.author.id.to_s
-  json.url url_wrapper(@thing.author)
-  json.avatar_url @thing.author.avatar.url
-  json.name @thing.author.name
+  json.partial! 'api/v1/users/user', user: @thing.author
 end

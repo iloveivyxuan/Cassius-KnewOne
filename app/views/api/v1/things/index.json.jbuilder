@@ -32,9 +32,6 @@ json.array!(@things) do |thing|
   json.fancier_ids thing.fanciers.map {|u| u.id.to_s}
   json.owner_ids thing.owners.map {|u| u.id.to_s}
   json.author do
-    json.id thing.author.id.to_s
-    json.url url_wrapper(thing.author)
-    json.avatar_url thing.author.avatar.url
-    json.name thing.author.name
+    json.partial! 'api/v1/users/user', user: thing.author
   end
 end

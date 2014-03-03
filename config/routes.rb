@@ -190,6 +190,12 @@ Making::Application.routes.draw do
         end
       end
 
+      resources :groups, only: [:index, :show] do
+        resources :topics, except: [:new, :edit] do
+          resources :comments, controller: :topic_comments, only: [:index, :show, :create, :destroy]
+        end
+      end
+
       resource :account, only: [:show] do
         resources :fancies, only: [:show, :update, :destroy]
         resources :owns, only: [:show, :update, :destroy]

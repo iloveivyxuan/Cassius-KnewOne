@@ -2,15 +2,16 @@ module Api
   module V1
     class ReviewCommentsController < ApiController
       before_action :set_resources
-      before_action :set_review, except: :index
+      before_action :set_comment, only: [:show, :destroy]
+      before_action :check_authorization, only: [:destroy]
       doorkeeper_for :all, except: [:index, :show]
 
       def index
-        @reviews = @review.comments.page(params[:page]).per(params[:per_page] || 8)
+        @comments = @review.comments.page(params[:page]).per(params[:per_page] || 8)
       end
 
       def show
-        @comment = @review.comments.find(params[:id])
+
       end
 
       def create
@@ -24,7 +25,7 @@ module Api
       end
 
       def destroy
-        @review.comments.find(params[:id]).destroy
+        @comment.destroy
         head :no_content
       end
 
@@ -36,11 +37,15 @@ module Api
 
       def set_resources
         @thing = Thing.find(params[:thing_id])
-        @thing_group = @thing.thing_group
+        @review = @thing.reviews.find(params[:review_id])
       end
 
-      def set_review
-        @review = @thing_group.reviews.find(params[:review_id])
+      def set_comment
+        @comment = @review.comments.find(params[:id])
+      end
+
+      def check_authorization
+        head :unauthorized unless @comment.author == current_user
       end
     end
   end

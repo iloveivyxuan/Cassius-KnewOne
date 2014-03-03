@@ -1,13 +1,13 @@
 module Api
   module V1
-    class ThingCommentsController < ApiController
+    class TopicCommentsController < ApiController
       before_action :set_resources
       before_action :set_comment, only: [:show, :destroy]
       before_action :check_authorization, only: [:destroy]
       doorkeeper_for :all, except: [:index, :show]
 
       def index
-        @comments = @thing.comments.page(params[:page]).per(params[:per_page] || 8)
+        @comments = @topic.comments.page(params[:page]).per(params[:per_page] || 8)
       end
 
       def show
@@ -15,17 +15,17 @@ module Api
       end
 
       def create
-        @comment = @thing.comments.build(comment_params.merge(author: current_user))
+        @comment = @topic.comments.build(comment_params.merge(author: current_user))
 
         if @comment.save
-          render action: 'show', status: :created, location: [:api, :v1, @thing, @comment]
+          render action: 'show', status: :created, location: [:api, :v1, @group, @topic, @comment]
         else
           render json: @comment.errors, status: :unprocessable_entity
         end
       end
 
       def destroy
-        @comment.destroy
+        @topic.destroy
         head :no_content
       end
 
@@ -36,11 +36,12 @@ module Api
       end
 
       def set_resources
-        @thing = Thing.find(params[:thing_id])
+        @group = Group.find(params[:group_id])
+        @topic = @group.topics.find(params[:topic_id])
       end
 
       def set_comment
-        @comment = @thing.comments.find(params[:id])
+        @comment = @topic.comments.find(params[:id])
       end
 
       def check_authorization

@@ -1,9 +1,6 @@
 json.array! @messages do |msg|
   json.senders msg.senders do |u|
-    json.id u.id.to_s
-    json.url url_wrapper(u)
-    json.avatar_url u.avatar.url
-    json.name u.name
+    json.partial! 'api/v1/users/user', user: u
   end
   if msg.post
     json.source do
