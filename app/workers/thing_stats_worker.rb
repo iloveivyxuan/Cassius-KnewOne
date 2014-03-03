@@ -4,8 +4,6 @@ class ThingStatsWorker
   def perform(thing_id)
     thing = Thing.find(thing_id)
 
-    thing.reviews_count = thing.reviews.count
-
-    thing.save!
+    thing.inc :reviews_count, thing.reviews.count
   end
 end
