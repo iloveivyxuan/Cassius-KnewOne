@@ -3,4 +3,7 @@ class SpecialsController < ApplicationController
 
   def valentine
   end
+
+  def womensday
+  end
 end

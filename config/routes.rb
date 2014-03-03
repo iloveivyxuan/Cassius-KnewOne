@@ -171,6 +171,7 @@ Making::Application.routes.draw do
   get "/500", :to => "home#error"
 
   get 'valentine', to: 'specials#valentine'
+  get 'womensday', to: 'specials#womensday'
 
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
