@@ -47,7 +47,8 @@ class Thing < Post
 
   field :scores, type: Array, default: []
 
-  has_many :reviews, dependent: :delete
+  has_many :reviews, dependent: :nullify
+  field :reviews_count, type: Integer, default: 0
 
   has_and_belongs_to_many :owners, class_name: "User", inverse_of: :owns
 
@@ -208,6 +209,10 @@ class Thing < Post
   def has_stock?
     return false unless self_run?
     kinds.map(&:has_stock?).reduce(&:|)
+  end
+
+  def refresh_stats!
+    ThingStatsWorker.perform_async(self.id.to_s)
   end
 
   class << self

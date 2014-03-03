@@ -17,6 +17,7 @@ table.table.table-striped.table-hover.table-bordered
     th 发奖
     th 喜欢
     th 优先
+    th 评测
   - @things.each do |t|
     tr
       td= link_to t.title, t
@@ -29,5 +30,6 @@ table.table.table-striped.table-hover.table-bordered
       td= link_to "发奖", new_lottery_path(thing: t), class: "btn btn-default"
       td= t.fanciers_count
       td= t.priority
+      td= t.reviews_count
 
 = paginate @things

@@ -22,7 +22,10 @@ module Haven
                     Thing.unscoped.where(lock_priority: true).desc(:priority)
                   else
                     Thing.all
-                end.page params[:page]
+                end
+      @things = @things.desc :reviews_count
+
+      @things = @things.page params[:page]
     end
 
     def resort
