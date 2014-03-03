@@ -2,7 +2,7 @@
 
 - content_for :content do
   - present @thing do |tp|
-    - provide :title, tp.full_title
+    - page_title tp.full_title
     - content_for :sharing_cover
       = image_tag tp.photo_url(:middle)
     header#thing_header= render "things/header", tp: tp

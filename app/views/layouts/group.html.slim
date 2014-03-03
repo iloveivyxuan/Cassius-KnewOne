@@ -1,5 +1,5 @@
 - content_for :content do
-  - provide :title, @group.name
+  - page_title @group.name
 
   header#group_header
     - unless content_for(:new_topic) == "no"

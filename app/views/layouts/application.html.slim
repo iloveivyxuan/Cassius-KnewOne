@@ -3,7 +3,9 @@ html class=page_class lang="zh-CN"
   head
     meta charset="utf-8"
     meta http-equiv="X-UA-Compatible" content="IE=edge"
-    title= page_title
+    title
+      = yield :title
+      = brand
     meta name="author" content="lilu.life@gmail.com"
     meta name="description" content="#{page_description}"
     meta name="keywords" content="#{page_keywords}"

@@ -1,6 +1,6 @@
 - sort_names = {new: "最新", fancy: "热门", self_run: "自营"}
 - params[:sort] ||= "new"
-- provide :title, sort_names[params[:sort].to_sym]
+- page_title sort_names[params[:sort].to_sym]
 
 nav
   ul.nav.nav-pills
