@@ -1,5 +1,5 @@
 json.id @topic.id.to_s
-json.html_url group_topic_url(@topic.group, topic)
+json.html_url group_topic_url(@topic.group, @topic)
 json.title @topic.title
 json.content @topic.content
 json.comments_count @topic.comments.count
