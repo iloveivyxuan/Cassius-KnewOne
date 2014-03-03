@@ -28,7 +28,7 @@ json.array! @messages do |msg|
           else
             json.type_text('帖子')
             json.url url_wrapper(msg.post.group, msg.post)
-            json.html_url group_topic_url(msg.post.thing, msg.post)
+            json.html_url group_topic_url(msg.post.group, msg.post)
           end
       end
       json.title msg.post.title
