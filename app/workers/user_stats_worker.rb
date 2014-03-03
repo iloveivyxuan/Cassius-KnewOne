@@ -8,6 +8,6 @@ class UserStatsWorker
     user.inc things_count: Thing.where(author: user).size,
              reviews_count: Review.where(author: user).size,
              order_count: orders.size,
-             expenses_count: orders.map(&:price).reduce(&:+)
+             expenses_count: (orders.map(&:price).reduce(&:+) || 0)
   end
 end
