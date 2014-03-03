@@ -21,7 +21,7 @@ table.table.table-striped.table-hover.table-bordered
   - @things.each do |t|
     tr
       td= link_to t.title, t
-      td= t.created_at.strftime '%m-%d'
+      td= t.created_at.strftime '%Y-%m-%d'
       td= t.author.name
       td= image_tag(t.cover.url(:small))
       td
