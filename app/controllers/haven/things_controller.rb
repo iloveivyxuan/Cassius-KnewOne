@@ -23,7 +23,12 @@ module Haven
                   else
                     Thing.unscoped
                 end
-      @things = @things.order_by [:reviews_count, :desc]
+
+      if params[:sort_by] == 'reviews_count'
+        @things = @things.order_by [:reviews_count, :desc]
+      else
+        @things = @things.order_by [:created_at, :desc]
+      end
 
       @things = @things.page params[:page]
     end
