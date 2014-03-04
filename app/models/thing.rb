@@ -52,7 +52,7 @@ class Thing < Post
 
   has_and_belongs_to_many :owners, class_name: "User", inverse_of: :owns
 
-  has_many :stories, dependent: :delete
+  has_many :stories, dependent: :nullify
 
   has_many :lotteries, dependent: :delete
 
