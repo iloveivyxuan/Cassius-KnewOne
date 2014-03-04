@@ -1,19 +1,20 @@
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes $animation-name {
+    @content;
+  }
 
-// Rotate
-// --------------------------------------------------------------------------
+  @-moz-keyframes $animation-name {
+    @content;
+  }
 
-.rotate {
-  @include animation-name(rotate);
-  @include animation-duration(1s);
+  @-o-keyframes $animation-name {
+    @content;
+  }
+
+  @keyframes $animation-name {
+    @content;
+  }
 }
-
-@include keyframes(rotate) {
-  0% {@include transform(rotate(0deg));}
-  100% {@include transform(rotate(360deg));}
-}
-
-// Shake
-// --------------------------------------------------------------------------
 
 .shake {
   @include transform-origin(center center 0);
