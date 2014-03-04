@@ -11,11 +11,11 @@ $(function() {
     content: $('<div />').qrcode({render: 'image', ecLevel: 'L', text: document.URL})
   });
 
-  $(window).on('touchmove touchstart', function() {
-    if (!$easteregg.hasClass('shaking')) {
-      $easteregg.addClass('shaking');
-    }
-  }).on('touchend', function() {
-    $easteregg.removeClass('shaking');
-  });
+  // $(window).on('touchmove touchstart', function() {
+  //   if (!$easteregg.hasClass('shaking')) {
+  //     $easteregg.addClass('shaking');
+  //   }
+  // }).on('touchend', function() {
+  //   $easteregg.removeClass('shaking');
+  // });
 });
