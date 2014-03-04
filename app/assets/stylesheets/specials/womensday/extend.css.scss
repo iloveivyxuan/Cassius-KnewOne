@@ -20,7 +20,8 @@
   @include transform-origin(center center 0);
 }
 
-.shake:hover {
+.shake:hover,
+.shake:active {
   @include animation-name(shake);
   @include animation-duration(100ms);
   @include animation-iteration-count(infinite);
