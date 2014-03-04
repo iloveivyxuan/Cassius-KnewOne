@@ -4,5 +4,8 @@
 //= require ../common
 
 $(function() {
-  $('.qr-field').qrcode({render: 'image', ecLevel: 'L', text: document.URL});
+  $('#social_share_wechat').popover({
+    html: true,
+    content: $('<div />').qrcode({render: 'image', ecLevel: 'L', text: document.URL})
+  });
 });
