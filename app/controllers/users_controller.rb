@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def show
     @things = @user.things
-    @reviews = @user.reviews
+    @reviews = @user.reviews.where(:thing.ne => nil)
     @fancies = @user.fancies
     @owns = @user.owns
   end
