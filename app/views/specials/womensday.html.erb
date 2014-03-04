@@ -37,6 +37,23 @@
       <div class="site-wrapper-inner">
         <div class="container pageTitle">
           <h1><a class="fontpro" href="/">KnewOne</a>妇女节专题</h1>
+          <ul class="socialShare">
+            <li>
+              <a href="javascript:(function(){window.open('http://v.t.sina.com.cn/share/share.php?title='+encodeURIComponent(document.title)+'%20@knewone&amp;url='+encodeURIComponent(location.href)+'&amp;source=bookmark','_blank','width=500,height=500');})()" title="新浪微博分享">
+                <i class="fa fa-weibo"></i>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:(function(){window.open('https://twitter.com/home?status='+encodeURIComponent(document.title)+'%20'+encodeURIComponent(location.href)+'%20@KnewOneCom&amp;source=bookmark','_blank');})()" title="Share on Twitter">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li class="share qrCode">
+              <a data-toggle="modal" href="#thing_share_wechat" title="微信朋友圈分享">
+                <i class="fa fa-qrcode"></i>
+              </a>
+            </li>
+          </ul>
         </div>
         <div class="cover-container">
           <img src="<%= asset_path 'specials/womensday/lady.png' %>" alt="women's day" class="lady" />
@@ -277,14 +294,46 @@
         <img src="<%= asset_path 'specials/womensday/bottomIcon.png' %>" alt="" />
       </footer>
 
+      <section>
+        <div class="modal fade" id="thing_share_wechat">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button class="close" data-dismiss="modal" type="button"><raw>&times;</raw></button><h5>请在微信中扫描以下二维码，然后您可以轻触屏幕右上角的 <i class="fa fa-share"></i>分享给朋友们</h5>
+              </div>
+              <div class="modal-body">
+                <div class="qr-field"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div><!-- end container -->
 
-    <a id="feedback" href="#">
-      <i class="fa fa-comment-o"></i>
-      <label>我想聊聊</label>
-    </a>
+    <%- if user_signed_in? %>
+      <a
+        id="feedback"
+        href="#"
+        data-name="<%= current_user.name %>"
+        data-email="<%= current_user.email %>"
+        data-id="<%= current_user.id %>"
+        data-hint="fa-comment-o"
+        data-url="<%= asset_path('olark.js') %>">
+        <i class="fa fa-comment-o"></i>
+        <label>我想聊聊</label>
+      </a>
+    <% else %>
+      <a
+        id="feedback"
+        href="#"
+        data-hint="fa-comment-o"
+        data-url="<%= asset_path('olark.js') %>">
+        <i class="fa fa-comment-o"></i>
+        <label>我想聊聊</label>
+      </a>
+    <% end -%>
 
     <%= javascript_include_tag "specials/womensday/application" %>
-    <%= render 'layouts/olark' %>
   </body>
 </html>

@@ -248,12 +248,29 @@
 
     </div><!-- end container -->
 
-    <a id="feedback" href="#">
-      <i class="fa fa-question"></i>
-      <label>选择困难</label>
-    </a>
+    <%- if user_signed_in? %>
+      <a
+        id="feedback"
+        href="#"
+        data-name="<%= current_user.name %>"
+        data-email="<%= current_user.email %>"
+        data-id="<%= current_user.id %>"
+        data-hint="fa-question"
+        data-url="<%= asset_path('olark.js') %>">
+        <i class="fa fa-question"></i>
+        <label>选择困难</label>
+      </a>
+    <% else %>
+      <a
+        id="feedback"
+        href="#"
+        data-hint="fa-question"
+        data-url="<%= asset_path('olark.js') %>">
+        <i class="fa fa-question"></i>
+        <label>选择困难</label>
+      </a>
+    <% end -%>
 
     <%= javascript_include_tag "specials/valentine/application" %>
-    <%= render 'layouts/olark' %>
   </body>
 </html>

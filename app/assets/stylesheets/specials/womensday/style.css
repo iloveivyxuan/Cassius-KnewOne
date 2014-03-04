@@ -14,12 +14,15 @@
 }
 
 .pageTitle {
-	margin-top: 155px;
+	margin: 0 auto;
+	margin-top: 145px;
 }
 .pageTitle h1 {
+	display: block;
 	font-size: 16px;
 	line-height: 34px;
 	color: #fff;
+	width: 100%;
 	text-align: center;
 }
 .pageTitle h1 a {
@@ -28,6 +31,43 @@
 	font-size: 30px;
 	margin-right: 8px;
 }
+
+
+.pageTitle ul.socialShare {
+	position: relative;
+	width: 40%;
+	margin: 0 auto;
+	padding: 0;
+	list-style: none;
+	z-index: 20;
+}
+ul.socialShare li {
+	float: left;
+	width: 50%;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+ul.socialShare li.qrCode {
+	display: none;
+}
+ul.socialShare li a {
+	display: inline-block;
+}
+ul.socialShare li a i {
+	font-size: 28px;
+	line-height: 1;
+	color: #fff;
+}
+ul.socialShare li a:hover i {
+	color: #e9ded0;
+}
+.modal-body .qr-field {
+	padding: 0 150px;
+}
+
+
+
 
 .cover-container {
 	position: absolute;
@@ -58,17 +98,27 @@
 		vertical-align: middle;
 	}
 	.pageTitle {
-		margin-top: -115px;
+		margin-top: -140px;
+		padding-left: 30px;
 	}
 	.pageTitle h1 {
 		font-size: 20px;
 		line-height: 34px;
-		color: #fff;
 		text-align: left;
 	}
 	.pageTitle h1 a {
 		font-size: 30px;
 		margin-right: 8px;
+	}
+	.pageTitle ul.socialShare {
+		width: auto;
+		margin-left: 0;
+	}
+	ul.socialShare li {
+		float: left;
+		width: 30px;
+		margin-right: 20px;
+		text-align: left;
 	}
 	.cover-container {
 		position: absolute;
@@ -98,16 +148,19 @@
 		height: 400px;
 	}
 	.pageTitle {
-		margin-top: -160px;
+		margin-top: -180px;
+		padding-left: 20px;
 	}
 	.pageTitle h1 {
 		font-size: 22px;
-		line-height: 48px;
-		color: #fff;
+		line-height: 28px;
 	}
 	.pageTitle h1 a {
 		font-size: 40px;
 		margin-right: 8px;
+	}
+	ul.socialShare li.qrCode {
+		display: inline-block;
 	}
 	.cover-container {
 		width: auto;
