@@ -2,7 +2,7 @@
 class OrdersController < ApplicationController
   before_action :require_signed_in, only: [:index, :show, :new, :create, :cancel, :tenpay, :alipay]
   before_action :have_items_in_cart, only: [:new, :create]
-  load_and_authorize_resource except: [:index, :new, :create], params: :order_params
+  load_and_authorize_resource except: [:index, :new, :create]
   layout 'settings', only: [:index, :show]
 
   def index
