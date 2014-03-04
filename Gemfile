@@ -62,7 +62,6 @@ gem 'sass-rails'
 gem 'compass-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
-gem 'animation'
 
 # services
 gem 'whenever', require: false

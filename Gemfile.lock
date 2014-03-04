@@ -105,9 +105,6 @@ GEM
       builder
       multi_json
     alipay (0.0.3)
-    animation (0.1.alpha.3)
-      compass (>= 0.12.0)
-      sass (>= 3.2.0.alpha.95)
     arel (4.0.2)
     atomic (1.1.14)
     backbone-on-rails (1.1.0.0)
@@ -462,7 +459,6 @@ PLATFORMS
 DEPENDENCIES
   airbrake
   alipay
-  animation
   backbone-on-rails
   bootstrap-sass
   cancan!
