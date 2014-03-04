@@ -11,7 +11,7 @@ $(function() {
     content: $('<div />').qrcode({render: 'image', ecLevel: 'L', text: document.URL})
   });
 
-  $(window).on('touchmove', function() {
+  $(window).on('touchmove touchstart', function() {
     if (!$easteregg.hasClass('shaking')) {
       $easteregg.addClass('shaking');
     }

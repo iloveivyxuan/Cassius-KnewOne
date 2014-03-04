@@ -21,6 +21,7 @@
 }
 
 .shake:hover,
+.shake:active,
 html.touch .shaking {
   @include animation-name(shake);
   @include animation-duration(100ms);
