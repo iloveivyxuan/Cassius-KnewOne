@@ -36,7 +36,7 @@ module ApplicationHelper
 
   def logo
     i = 1.upto(21).to_a.shuffle.first
-    image_tag "logos/#{i}.png", class: 'shake', alt: brand
+    image_tag "logos/#{i}.png", class: 'shake', alt: brand, title: "#{brand}，根本停不下来~"
   end
 
   def page_title(title, is_root = false)
