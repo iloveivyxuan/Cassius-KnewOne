@@ -1,17 +1,9 @@
 GIT
-  remote: git://github.com/3months/cancan.git
-  revision: b9aa14fd51b773340e5901a6bd02ca07c765c73b
-  ref: b9aa14f
-  branch: strong_parameters
-  specs:
-    cancan (1.6.10)
-
-GIT
   remote: git://github.com/ahoward/mongoid-grid_fs.git
-  revision: 059012a2c2a9e0a5d6e67137752c3e918689c88a
+  revision: be50ac3063d1c3926cee72ed0c3f6ebd71f388b8
   specs:
-    mongoid-grid_fs (1.9.0)
-      mime-types (~> 1.19)
+    mongoid-grid_fs (1.9.2)
+      mime-types (>= 1.19, < 3.0)
       mongoid (>= 3.0, < 5.0)
 
 GIT
@@ -32,7 +24,7 @@ GIT
 
 GIT
   remote: git://github.com/intridea/omniauth-oauth2.git
-  revision: a9ea6f8f58b8ca2d935ef41bf9f85121c14fbc99
+  revision: 48320bcd92cf6def8ea21a6bde67aabcfa0c09d6
   specs:
     omniauth-oauth2 (1.1.2)
       faraday (>= 0.8, < 0.10)
@@ -57,7 +49,7 @@ GIT
 
 GIT
   remote: git://github.com/ryanb/letter_opener.git
-  revision: e77ce2da6957a78ecd182932e2b56f571d2a844f
+  revision: 6c6e0c4f3f9edbb2113a294d820f2e31739dc478
   branch: master
   specs:
     letter_opener (1.2.0)
@@ -65,7 +57,7 @@ GIT
 
 GIT
   remote: git://github.com/simsicon/weibo_2.git
-  revision: 1332243b84e131cdf6882eb5ef421d1c326f8c36
+  revision: 1647c86dd26a871520496b3e85efc404513c4ec2
   specs:
     weibo_2 (0.1.5)
       hashie (~> 2.0.4)
@@ -76,25 +68,29 @@ GIT
 GEM
   remote: http://ruby.taobao.org/
   specs:
-    actionmailer (4.0.2)
-      actionpack (= 4.0.2)
+    actionmailer (4.0.3)
+      actionpack (= 4.0.3)
       mail (~> 2.5.4)
-    actionpack (4.0.2)
-      activesupport (= 4.0.2)
+    actionpack (4.0.3)
+      activesupport (= 4.0.3)
       builder (~> 3.1.0)
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
-    activemodel (4.0.2)
-      activesupport (= 4.0.2)
+    activemodel (4.0.3)
+      activesupport (= 4.0.3)
       builder (~> 3.1.0)
-    activerecord (4.0.2)
-      activemodel (= 4.0.2)
+    activerecord (4.0.3)
+      activemodel (= 4.0.3)
       activerecord-deprecated_finders (~> 1.0.2)
-      activesupport (= 4.0.2)
+      activesupport (= 4.0.3)
       arel (~> 4.0.0)
     activerecord-deprecated_finders (1.0.3)
-    activesupport (4.0.2)
+    activeresource (4.0.0)
+      activemodel (~> 4.0)
+      activesupport (~> 4.0)
+      rails-observers (~> 0.1.1)
+    activesupport (4.0.3)
       i18n (~> 0.6, >= 0.6.4)
       minitest (~> 4.2)
       multi_json (~> 1.3)
@@ -105,22 +101,26 @@ GEM
       builder
       multi_json
     alipay (0.0.3)
-    animation (0.1.alpha.3)
-      compass (>= 0.12.0)
-      sass (>= 3.2.0.alpha.95)
     arel (4.0.2)
-    atomic (1.1.14)
-    backbone-on-rails (1.1.0.0)
+    atomic (1.1.15)
+    backbone-on-rails (1.1.1.0)
+      actionmailer
+      actionpack
+      activemodel
+      activeresource
       eco
       ejs
       jquery-rails
-      rails (>= 3.1)
-    bcrypt-ruby (3.1.2)
-    bootstrap-sass (3.1.0.2)
+      railties
+    bcrypt (3.1.7)
+    bcrypt-ruby (3.1.5)
+      bcrypt (>= 3.1.3)
+    bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
-    bson (2.2.0)
+    bson (2.2.1)
     buftok (0.2.0)
     builder (3.1.4)
+    cancancan (1.7.0)
     capistrano (2.15.5)
       highline
       net-scp (>= 1.0.0)
@@ -142,10 +142,13 @@ GEM
       rest-client (>= 1.6.7)
     celluloid (0.15.2)
       timers (~> 1.1.0)
-    childprocess (0.4.0)
+    celluloid-io (0.15.0)
+      celluloid (>= 0.15.0)
+      nio4r (>= 0.5.0)
+    childprocess (0.5.1)
       ffi (~> 1.0, >= 1.0.11)
     chronic (0.10.2)
-    chunky_png (1.2.9)
+    chunky_png (1.3.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -164,7 +167,7 @@ GEM
     daemons (1.1.9)
     database_cleaner (1.2.0)
     descendants_tracker (0.0.3)
-    devise (3.2.2)
+    devise (3.2.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -184,7 +187,7 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.0.2)
-    fabrication (2.9.7)
+    fabrication (2.9.8)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     ffaker (1.23.0)
@@ -194,13 +197,13 @@ GEM
     formatador (0.2.4)
     fssm (0.2.10)
     growl (1.0.3)
-    guard (2.4.0)
+    guard (2.5.1)
       formatador (>= 0.2.4)
-      listen (~> 2.1)
+      listen (~> 2.6)
       lumberjack (~> 1.0)
       pry (>= 0.9.12)
       thor (>= 0.18.1)
-    guard-rspec (4.2.5)
+    guard-rspec (4.2.7)
       guard (~> 2.1)
       rspec (>= 2.14, < 4.0)
     guard-spork (1.5.1)
@@ -213,7 +216,7 @@ GEM
       sprockets (>= 2.0.3)
       tilt
     hashie (2.0.5)
-    highline (1.6.20)
+    highline (1.6.21)
     hike (1.2.3)
     http (0.5.0)
       http_parser.rb
@@ -221,7 +224,7 @@ GEM
     i18n (0.6.9)
     intercom-rails (0.2.24)
       activesupport (> 3.0)
-    jbuilder (2.0.2)
+    jbuilder (2.0.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
     jquery-fileupload-rails (0.4.1)
@@ -236,14 +239,15 @@ GEM
     kaminari (0.15.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    kgio (2.9.1)
+    kgio (2.9.2)
     launchy (2.4.2)
       addressable (~> 2.3)
     libnotify (0.8.2)
       ffi (>= 1.0.11)
     libv8 (3.16.14.3)
-    listen (2.4.0)
+    listen (2.6.2)
       celluloid (>= 0.15.2)
+      celluloid-io (>= 0.15.0)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
     lumberjack (1.0.4)
@@ -290,7 +294,8 @@ GEM
     net-ssh (2.8.0)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
-    newrelic_rpm (3.7.2.192)
+    newrelic_rpm (3.7.2.195)
+    nio4r (1.0.0)
     oauth (0.4.7)
     oauth2 (0.9.3)
       faraday (>= 0.8, < 0.10)
@@ -313,7 +318,7 @@ GEM
     optionable (0.2.0)
     origin (2.1.0)
     orm_adapter (0.5.0)
-    polyglot (0.3.3)
+    polyglot (0.3.4)
     pry (0.9.12.6)
       coderay (~> 1.0)
       method_source (~> 0.8)
@@ -325,23 +330,25 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (4.0.2)
-      actionmailer (= 4.0.2)
-      actionpack (= 4.0.2)
-      activerecord (= 4.0.2)
-      activesupport (= 4.0.2)
+    rails (4.0.3)
+      actionmailer (= 4.0.3)
+      actionpack (= 4.0.3)
+      activerecord (= 4.0.3)
+      activesupport (= 4.0.3)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 4.0.2)
+      railties (= 4.0.3)
       sprockets-rails (~> 2.0.0)
     rails-i18n (4.0.1)
       i18n (~> 0.6)
       rails (~> 4.0)
-    railties (4.0.2)
-      actionpack (= 4.0.2)
-      activesupport (= 4.0.2)
+    rails-observers (0.1.2)
+      activemodel (~> 4.0)
+    railties (4.0.3)
+      actionpack (= 4.0.3)
+      activesupport (= 4.0.3)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    raindrops (0.12.0)
+    raindrops (0.13.0)
     rake (10.1.1)
     rb-fsevent (0.9.4)
     rb-inotify (0.9.3)
@@ -357,10 +364,10 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
-    rspec-core (2.14.7)
+    rspec-core (2.14.8)
     rspec-expectations (2.14.5)
       diff-lcs (>= 1.1.3, < 2.0)
-    rspec-mocks (2.14.5)
+    rspec-mocks (2.14.6)
     rspec-rails (2.14.1)
       actionpack (>= 3.0)
       activemodel (>= 3.0)
@@ -377,7 +384,7 @@ GEM
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
     settingslogic (2.0.9)
-    sidekiq (2.17.4)
+    sidekiq (2.17.7)
       celluloid (>= 0.15.2)
       connection_pool (>= 1.0.0)
       json
@@ -404,7 +411,7 @@ GEM
     spork-rails (4.0.0)
       rails (>= 3.0.0, < 5)
       spork (>= 1.0rc0)
-    sprockets (2.10.1)
+    sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -413,7 +420,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    stringex (2.2.0)
+    stringex (2.2.1)
     subexec (0.2.3)
     temple (0.6.7)
     therubyracer (0.12.1)
@@ -452,7 +459,7 @@ GEM
       raindrops (~> 0.7)
     warden (1.2.3)
       rack (>= 1.0)
-    whenever (0.9.0)
+    whenever (0.9.1)
       activesupport (>= 2.3.4)
       chronic (>= 0.6.3)
 
@@ -462,14 +469,13 @@ PLATFORMS
 DEPENDENCIES
   airbrake
   alipay
-  animation
   backbone-on-rails
   bootstrap-sass
-  cancan!
+  cancancan
   capistrano (~> 2.15.0)
   capistrano-unicorn
-  carrierwave
-  carrierwave-mongoid
+  carrierwave (~> 0.9.0)
+  carrierwave-mongoid (~> 0.6.3)
   carrierwave-upyun
   coffee-rails
   compass-rails

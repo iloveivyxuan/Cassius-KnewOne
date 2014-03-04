@@ -12,8 +12,8 @@ gem 'mongoid_slug'
 gem 'mongoid_rails_migrations'
 
 # files
-gem 'carrierwave'
-gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
+gem 'carrierwave', '~> 0.9.0'
+gem 'carrierwave-mongoid', '~> 0.6.3', require: 'carrierwave/mongoid'
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 gem 'carrierwave-upyun'
 
@@ -29,7 +29,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-wechat', github: 'jasl/omniauth-wechat'
 gem 'weibo_2', github: 'simsicon/weibo_2'
 gem 'twitter'
-gem 'cancan', github: '3months/cancan', branch: 'strong_parameters', ref: 'b9aa14f'
+gem 'cancancan'
 
 # payment
 gem 'jasl_tenpay', github: 'jasl/tenpay'
@@ -62,7 +62,6 @@ gem 'sass-rails'
 gem 'compass-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
-gem 'animation'
 
 # services
 gem 'whenever', require: false
