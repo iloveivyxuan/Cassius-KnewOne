@@ -21,7 +21,7 @@ class Review < Post
 
   default_scope -> { desc(:is_top, :lovers_count, :created_at) }
 
-  scope :living, -> { where :thing.ne => nil }
+  scope :living, -> { where :thing_id.ne => nil }
 
   after_create :add_score
   after_update :update_score
