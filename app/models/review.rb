@@ -21,6 +21,8 @@ class Review < Post
 
   default_scope -> { desc(:is_top, :lovers_count, :created_at) }
 
+  scope :valid, -> { where :thing.ne => nil }
+
   after_create :add_score
   after_update :update_score
   after_destroy :destroy_score
