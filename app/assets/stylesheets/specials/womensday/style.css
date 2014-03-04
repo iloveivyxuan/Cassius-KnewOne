@@ -65,9 +65,6 @@ ul.socialShare li a:hover i {
 	padding: 0 150px;
 }
 
-
-
-
 .cover-container {
 	position: absolute;
 	top: 0px;
@@ -310,8 +307,8 @@ ul.socialShare li a:hover i {
 }
 .desireSub .productTitle h2 span {
 	display: block;
-	font-family: Helvetica, Arial, sans-serif;
-	font-size: 22px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 22px;
 	line-height: 1;
 	font-weight: 100;
 }
@@ -476,8 +473,8 @@ ul.socialShare li a:hover i {
 }
 .lifeSub .productTitle h2 span {
 	display: block;
-	font-family: Helvetica, Arial, sans-serif;
-	font-size: 22px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 22px;
 	line-height: 1;
 	font-weight: 100;
 }
