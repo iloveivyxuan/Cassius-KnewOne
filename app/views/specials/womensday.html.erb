@@ -49,7 +49,7 @@
               </a>
             </li>
             <li class="share qrCode">
-              <a data-toggle="modal" href="#thing_share_wechat" title="微信朋友圈分享">
+              <a id="social_share_wechat" data-toggle="popover" data-trigger="hover" data-container="body" data-placement="bottom" title="微信朋友圈分享">
                 <i class="fa fa-qrcode"></i>
               </a>
             </li>
@@ -293,21 +293,6 @@
       <footer>
         <img src="<%= asset_path 'specials/womensday/bottomIcon.png' %>" alt="" />
       </footer>
-
-      <section>
-        <div class="modal fade" id="thing_share_wechat">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button class="close" data-dismiss="modal" type="button"><raw>&times;</raw></button><h5>请在微信中扫描以下二维码，然后您可以轻触屏幕右上角的 <i class="fa fa-share"></i>分享给朋友们</h5>
-              </div>
-              <div class="modal-body">
-                <div class="qr-field"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
     </div><!-- end container -->
 
