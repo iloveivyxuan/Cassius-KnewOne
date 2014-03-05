@@ -68,4 +68,7 @@ class HomeController < ApplicationController
     redirect_to root_path
   end
 
+  def jobs
+  end
+
 end

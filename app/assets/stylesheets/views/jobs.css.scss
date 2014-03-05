@@ -1,0 +1,146 @@
+html.home_jobs {
+
+  // Layout
+
+  #wrapper {
+    @include wrapper(grid);
+
+    @media screen and (min-width: $screen-lg-min + 100) {
+      margin: 0 auto;
+      width: $screen-lg-min;
+    }
+
+    > main {
+      @include make-md-column(9);
+
+      background-color: #fff;
+      border-radius: $border-radius-large;
+      padding: 1em 1.5em 50px;
+    }
+
+    > aside {
+      display: none;
+
+      @media screen and (min-width: $screen-md-min) {
+        @include make-md-column(3);
+
+        display: block;
+        padding-left: 60px;
+      }
+    }
+  }
+
+  // Sections
+
+  .section {
+    border-bottom: 1px dashed #eee;
+    margin-bottom: 30px;
+
+    &:last-child {
+      border-bottom: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  .section_header {
+    margin-top: 0;
+    text-align: center;
+
+    @media screen and (min-width: $screen-sm-min) {
+      @include clearfix;
+
+      text-align: left;
+    }
+
+    .btn {
+      display: block;
+      margin: 10px auto 0;
+      padding-bottom: 7px;
+      padding-top: 7px;
+      width: 150px;
+
+      @media screen and (min-width: $screen-sm-min) {
+        display: inline-block;
+        float: right;
+        margin: 0;
+        width: auto;
+      }
+    }
+  }
+
+  .section_content {
+    @include clearfix;
+    padding: 15px;
+
+    > figure {
+      margin: 0 auto 1em;
+      text-align: center;
+
+      @media screen and (min-width: $screen-md-min) {
+        float: left;
+        margin-bottom: 0;
+        width: 40%;
+      }
+
+      img {
+        height: auto;
+        min-width: 200px;
+        width: 60%;
+      }
+    }
+
+    > .body {
+
+      @media screen and (min-width: $screen-md-min) {
+        overflow: hidden;
+        padding-left: 30px;
+        width: 60%;
+      }
+
+      p {
+        margin-bottom: 1em;
+        text-indent: 2em;
+      }
+
+      ol {
+        list-style-type: lower-greek;
+        margin-bottom: 1em;
+        padding-left: 1.5em;
+      }
+    }
+  }
+
+  #navigation {
+    margin-top: 80px;
+
+    &.affix {
+      margin-top: 0;
+    }
+
+    .nav {
+
+      > li {
+
+        > a {
+          color: $text-muted;
+          padding-bottom: 2px;
+          padding-top: 2px;
+
+          &:hover {
+            background-color: transparent;
+            color: $text-color;
+          }
+        }
+
+        &.active {
+
+          > a {
+            border-left: 2px solid #049cdb;
+            color: $text-color;
+            padding-left: 13px;
+          }
+        }
+      }
+    }
+  }
+}

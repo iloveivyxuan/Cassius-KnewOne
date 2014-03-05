@@ -170,6 +170,7 @@ Making::Application.routes.draw do
   get "/403", :to => "home#forbidden"
   get "/500", :to => "home#error"
 
+  get 'jobs', to: 'home#jobs'
   get 'valentine', to: 'specials#valentine'
   get 'womensday', to: 'specials#womensday'
 

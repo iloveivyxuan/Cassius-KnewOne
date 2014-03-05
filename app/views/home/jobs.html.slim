@@ -1,0 +1,78 @@
+main role="main"
+  header.page-header
+    h1
+      i.fa.fa-road
+      | 加入我们
+
+  section#position
+    section.section#front_end_developer
+      h3.section_header
+        | Web 前端工程师
+        = link_to "申请职位", "mailto:sxzz@knewone.com?subject=应聘 Web 前端工程师", class: "btn btn-primary"
+      .section_content
+        figure
+          img src="http://image.knewone.com/photos/6e869eceb3201e686d97db1f9467a53e.jpg!review"
+        .body
+          h4 职位描述
+          p 与设计师、产品工程师紧密工作在一起，实现产品前端ui和交互方面的开发需求，确保产品在不同平台、设备上兼具优质的用户使用体验。
+          h4 职位要求
+          ol
+            li 掌握专业的html/css/js方面的知识
+            li 能够写出高性能、高可维护性的“优美”的代码
+            li 注重利用合理的设计模式和模块化的组织方式对代码进行架构
+            li 具备html5/css3及手机浏览器上的开发经验
+            li 至少四年以上互联网产品前端开发经验
+            li 至少三个以上较复杂的前端开发案例
+            li 有团队协作精神。既善于学习，乐于探索，又不墨守陈规
+    section.section#content_strategist
+      h3.section_header
+        | 知名博主
+        = link_to "申请职位", "mailto:sxzz@knewone.com?subject=应聘网络编辑", class: "btn btn-primary"
+      .section_content
+        figure
+          img src="http://image.knewone.com/photos/6e869eceb3201e686d97db1f9467a53e.jpg!review"
+        .body
+          h4 职位描述
+          ol
+            li 负责网站内容的管理维护，清理各类垃圾信息
+            li 收集整理互联网行业和互联网法律法规等相关的资讯、以及来自用户的意见建议，并为网站内容、运营质量、产品功能的改进等方面，提供协助工作
+          h4 职位要求
+          ol
+            li 为人诚实正直，有优秀的个人品格
+            li 做事踏实、认真细心，工作效率高，执行力强，有良好的沟通能力和团队协作能力
+            li 对新闻或热点事件有敏锐的洞察力，了解国内外新闻事件及历史事件
+            li 能承受紧张的工作压力，能适应夜间、节假日工作的压力
+          h4 优先条件
+          ol
+            li 豆瓣用户，互联网深度用户，熟悉网络文化者
+            li 英语优秀者，或有法律专业背景者
+
+aside.hidden-print role="complementary"
+  nav#navigation data-spy="affix" data-offset-top="113" data-offset-bottom="200" role="navigation"
+    ul.nav
+      li
+        = link_to "Web 前端工程师", "#front_end_developer"
+      li
+        = link_to "知名博主", "#content_strategist"
+
+- content_for :script do
+  javascript:
+    $(function() {
+      var $window = $(window);
+
+      $('body').scrollspy({ target: '#navigation' });
+
+      $('#navigation').find('a').on('click', function(event) {
+        event.preventDefault();
+
+        var $this = $(this),
+            target = $this.attr('href');
+
+        if (target.indexOf('#') == 0) {
+          var offset = $('.navbar').height() + 10,
+              top = $(target).offset().top;
+
+          $window.scrollTop(top - offset);
+        }
+      });
+    });
