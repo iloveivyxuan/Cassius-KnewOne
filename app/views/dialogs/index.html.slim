@@ -25,7 +25,7 @@ header.page-header
             label.control-label.col-sm-2 for="private-message-user"
               | 发给
             .col-sm-6
-              input#private-message-user.form-control name="user_id" type="search"
+              input#private-message-user.form-control name="user_name" type="search"
           .form-group
             label.control-label.col-sm-2 for="private-message-content"
               | 内容
@@ -37,3 +37,8 @@ header.page-header
             | 取消
           button.btn.btn-primary type="submit"
             | 发送
+
+- content_for :script do
+  javascript:
+    Making.UserFuzzy('#private-message-user');
+    $('#new-private-message').modal('show');

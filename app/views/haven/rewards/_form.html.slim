@@ -22,18 +22,4 @@
 - content_for :script do
   javascript:
     Making.Editor('#reward_body');
-
-    $('#user_autocomplete').autocomplete({
-           serviceUrl: '/users/fuzzy.json',
-           paramName: 'keyword',
-           lookupFilter: function(suggestion, originalQuery, queryLowerCase) {
-             var re = new RegExp('\\b' + $.Autocomplete.utils.escapeRegExChars(queryLowerCase), 'gi');
-             return re.test(suggestion.value);
-           },
-           onSelect: function(suggestion) {
-             $('#reward_user_id').val(suggestion.data);
-           },
-           onInvalidateSelection: function() {
-             $('#user_autocomplete_tip').html('无此用户');
-           }
-       });
+    Making.HavenUserFuzzy('#user_autocomplete', '#reward_user_id', '#user_autocomplete_tip');

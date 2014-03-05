@@ -6,7 +6,7 @@ class DialogsController < ApplicationController
   end
 
   def create
-    receiver = User.find params[:user_id]
-    current_user.send_private_message_to receiver, params[:content]
+    receiver = User.where(name: params[:user_name]).first
+    receiver and current_user.send_private_message_to receiver, params[:content]
   end
 end

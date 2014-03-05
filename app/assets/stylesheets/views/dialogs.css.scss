@@ -31,20 +31,29 @@ html.dialogs_index {
         }
       }
 
-      .sender_name, .new_messages_count {
-        margin-top: 15px;
-      }
+      .sender_name, .unread_count {margin-top: 15px;}
 
       .sender_name {
         float: left;
         color: $text-muted;
       }
 
-      .new_messages_count {
+      .unread_count {
         float: right;
-        @extend .badge;
         margin-right: 1em;
-        background: $blue;
+        > a {
+          @extend .badge;
+          background: $blue;
+        }
+      }
+    }
+
+    footer {
+      > a {
+        color: $text-muted;
+        font-size: $font-size-small;
+        margin-left: 1em;
+        &:hover {color: $link-color;}
       }
     }
   }

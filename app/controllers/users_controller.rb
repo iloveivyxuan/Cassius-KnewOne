@@ -18,10 +18,10 @@ class UsersController < ApplicationController
   end
 
   def fuzzy
-    @users = User.find_by_fuzzy_name(params[:keyword])
+    @users = User.find_by_fuzzy_name(params[:query])
     respond_to do |format|
       format.json do
-        @users = @users.limit(10)
+        @users = @users.limit(20)
       end
     end
   end

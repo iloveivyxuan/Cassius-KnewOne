@@ -3,8 +3,11 @@ article.dialog
     header
       .sender_avatar= dp.sender_avatar
       .sender_name= dp.sender_name
-      .new_messages_count= dp.new_messages_count
+      .unread_count= dp.unread_count
     section
       = dp.newest_message_content
     footer
       = dp.newest_message_time
+      = dp.messages_count
+      = dp.reply
+      = dp.destroy
