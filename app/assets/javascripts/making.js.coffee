@@ -115,11 +115,9 @@ window.Making =
       return true
 
   InitUIThings: ($things) ->
-    if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')')
-      $things.length and $things.each ->
-        $thing = $(@)
-        $thing.find('h5').tooltip()
-        $thing.find('figure').children('a').attr('target', '_blank')
+    $things.length and $things.each ->
+      $thing = $(@)
+      $thing.find('h5').tooltip()
 
   SetupOlark: (element) ->
     $element    = $(element)
