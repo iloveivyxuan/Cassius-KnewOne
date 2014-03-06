@@ -155,6 +155,15 @@ time {
   padding-right: 15px;
 }
 
+// Breadcrumbs
+// -----------------------------------------------------------------------------
+
+.breadcrumb {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}
+
 
 // =============================================================================
 // Components w/ JavaScript
@@ -164,11 +173,7 @@ time {
 // -----------------------------------------------------------------------------
 
 .modal {
-
-  form {
-    margin: 0;
-    textarea {width: 90%;}
-  }
+  form {margin: 0;}
 }
 
 // Tooltip

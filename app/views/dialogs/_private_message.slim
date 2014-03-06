@@ -1,0 +1,11 @@
+article.private_message
+  - present message do |mp|
+    header
+      .sender_avatar= mp.avatar
+      .sender_name= mp.sender_name
+    section
+      = mp.content
+    footer
+      = mp.created_at
+      span.operations
+        = mp.destroy

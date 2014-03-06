@@ -1,4 +1,4 @@
-- provide :title, '我的私信'
+- page_title '我的私信'
 
 header.page-header
   button.btn.btn-primary data-toggle="modal" data-target="#new-private-message"
@@ -8,37 +8,34 @@ header.page-header
     i.fa.fa-envelope-o
     span 我的私信
 
-#dialogs
+section#dialogs
   = render @dialogs
+
+footer
+  = paginate @dialogs
 
 #new-private-message.modal.fade role="dialog" aria-labelledby="写私信"
   .modal-dialog
     .modal-content
       = form_tag dialogs_path, method: :post, remote: true,
-      class: "form-horizontal", role: "form"
+      class: "form-horizontal", role: "form" do
         .modal-header
-          button.close data-dismiss="modal" aria-hidden="true"
-            | &times;
+          button.close data-dismiss="modal" aria-hidden="true" &times;
           h4.modal-title 写私信
         .modal-body
           .form-group
-            label.control-label.col-sm-2 for="private-message-user"
-              | 发给
+            label.control-label.col-sm-2 for="private-message-user" 发给
             .col-sm-6
-              input#private-message-user.form-control name="user_name" type="search"
+              input#private-message-user.form-control name="user_name" type="search" required="true"
           .form-group
-            label.control-label.col-sm-2 for="private-message-content"
-              | 内容
+            label.control-label.col-sm-2 for="private-message-content" 内容
             .col-sm-10
-              textarea#private-message-content.form-control rows="5" name="content"
+              textarea#private-message-content.form-control rows="5" name="content" required="true"
           .form-group
         .modal-footer
-          button.btn.btn-default data-dismiss="modal"
-            | 取消
-          button.btn.btn-primary type="submit"
-            | 发送
+          button.btn.btn-default data-dismiss="modal" 取消
+          button.btn.btn-primary type="submit" 发送
 
 - content_for :script do
   javascript:
     Making.UserFuzzy('#private-message-user');
-    $('#new-private-message').modal('show');

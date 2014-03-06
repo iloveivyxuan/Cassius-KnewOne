@@ -6,6 +6,8 @@ module UserDialogs
   end
 
   def send_private_message_to(receiver, content)
+    return nil unless receiver and content
+
     dialog = Dialog.find_or_create_by sender: self, user: receiver
     dialog.private_messages << PrivateMessage.new(content: content, is_new: true, is_in: true)
 

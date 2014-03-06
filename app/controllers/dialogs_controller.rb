@@ -2,7 +2,11 @@ class DialogsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @dialogs = current_user.dialogs
+    @dialogs = current_user.dialogs.page(params[:page]).per(20)
+  end
+
+  def show
+    @messages = @dialog.private_messages.page(params[:page]).per(50)
   end
 
   def create

@@ -1,54 +1,49 @@
-html.dialogs_index {
+html.dialogs_index, html.dialogs_show {
   #wrapper {
     @include wrapper(simple);
 
     > header {
       h1 {
-        span {
-          @extend .hidden-xs;
-        }
+        span {@extend .hidden-xs;}
       }
-      button {float: right;}
+      button {@extend .pull-right;}
     }
   }
 }
 
-#dialogs {
-  .dialog {
-    padding: 1em 0;
-    border-bottom: 1px dashed #ccc;
+.private_message {
+  @include vertical-list-item;
 
-    header {
-      @include clearfix;
-      margin-bottom: 1em;
+  header {
+    @include clearfix;
+    margin-bottom: 1em;
 
-      .sender_avatar {
-        float: left;
-        margin-right: 1em;
-        img {
-          width: 40px;
-          height: 40px;
-        }
-      }
-
-      .sender_name, .unread_count {margin-top: 15px;}
-
-      .sender_name {
-        float: left;
-        color: $text-muted;
-      }
-
-      .unread_count {
-        float: right;
-        margin-right: 1em;
-        > a {
-          @extend .badge;
-          background: $blue;
-        }
-      }
+    .sender_avatar {
+      @extend .pull-left;
+      margin-right: 1em;
     }
 
-    footer {
+    .sender_name, .messages_count {margin-top: 15px;}
+
+    .sender_name {
+      @extend .pull-left;
+      color: $text-muted;
+    }
+
+    .messages_count {
+      @extend .pull-right;
+      margin-right: 1em;
+      > a {
+        @extend .badge;
+        &.unread {background: $blue;}
+      }
+    }
+  }
+
+  footer {
+    .operations {
+      @extend .pull-right;
+      margin-right: 1em;
       > a {
         color: $text-muted;
         font-size: $font-size-small;
@@ -56,5 +51,18 @@ html.dialogs_index {
         &:hover {color: $link-color;}
       }
     }
+  }
+}
+
+#private_messages form {
+  margin: 1em 0;
+  button {
+    margin-top: 1em;
+    width: 100%;
+  }
+
+  @media screen and (min-width: $screen-sm-min) {
+    textarea {width: 80%;}
+    button {width: 100px;}
   }
 }

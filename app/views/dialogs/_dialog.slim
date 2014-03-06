@@ -1,13 +1,13 @@
-article.dialog
+article.private_message
   - present dialog do |dp|
     header
       .sender_avatar= dp.sender_avatar
       .sender_name= dp.sender_name
-      .unread_count= dp.unread_count
+      .messages_count= dp.messages_count
     section
       = dp.newest_message_content
     footer
-      = dp.newest_message_time
-      = dp.messages_count
-      = dp.reply
-      = dp.destroy
+      = dp.updated_at
+      span.operations
+        = dp.reply
+        = dp.destroy
