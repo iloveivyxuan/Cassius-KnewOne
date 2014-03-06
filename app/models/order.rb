@@ -3,8 +3,6 @@ class Order
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  include UserStatsable
-
   belongs_to :user
 
   embeds_one :address

@@ -1,11 +1,8 @@
 class Review < Post
-  include UserStatsable
-  include ThingStatsable
-
   field :score, type: Integer, default: 0
   field :is_top, type: Boolean, default: false
 
-  belongs_to :thing
+  belongs_to :thing, counter_cache: true
 
   has_and_belongs_to_many :lovers, class_name: "User", inverse_of: nil
   has_and_belongs_to_many :foes, class_name: "User", inverse_of: nil
