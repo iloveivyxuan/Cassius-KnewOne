@@ -114,7 +114,10 @@ aside.hidden-print role="complementary"
     $(function() {
       var $window = $(window);
 
-      $('body').scrollspy({ target: '#navigation' });
+      $('body').scrollspy({
+        offset: 100,
+        target: '#navigation'
+      });
 
       $('#navigation').find('a').on('click', function(event) {
         event.preventDefault();
@@ -123,7 +126,7 @@ aside.hidden-print role="complementary"
             target = $this.attr('href');
 
         if (target.indexOf('#') == 0) {
-          var offset = $('.navbar').height() + 10,
+          var offset = $('.navbar').height() + 30,
               top = $(target).offset().top;
 
           $window.scrollTop(top - offset);
