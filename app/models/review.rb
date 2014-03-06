@@ -36,6 +36,7 @@ class Review < Post
       foes << user
       author.inc karma: -Settings.karma.review
     end
+    self.update_attribute :lovers_count, lovers.count
   end
 
   def voted?(user)
