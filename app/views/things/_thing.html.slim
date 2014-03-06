@@ -6,7 +6,7 @@
           span= tp.stage_text
       figure
         = link_to (img_lazy ? tp.photo_lazy(size) : tp.photo(size)),
-          tp.thing
+          tp.thing, target: '_blank'
       - if tp.stage == :invest
         .invest_progress
           .progress data-progress=tp.invest_progress
