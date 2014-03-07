@@ -29,7 +29,7 @@ class DialogPresenter < ApplicationPresenter
   end
 
   def reply
-    link_to_with_icon '回复', 'fa fa-reply', "#"
+    link_to_with_icon '回复', 'fa fa-reply', dialog
   end
 
   def destroy

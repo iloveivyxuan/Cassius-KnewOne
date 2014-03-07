@@ -76,7 +76,7 @@ class Ability
 
     can :create, Dialog
     can [:read, :destroy], Dialog do |dialog|
-      dialog.user == user or dialog.sender == user
+      dialog.user == user
     end
     can :destroy, PrivateMessage do |private_message|
       private_message.dialog.user == user
