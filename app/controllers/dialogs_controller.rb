@@ -7,6 +7,8 @@ class DialogsController < ApplicationController
 
   def show
     @messages = @dialog.private_messages.page(params[:page]).per(50)
+    @messages.where(is_new: true).each {|m| m.update_attribute :is_new, false}
+    @dialog.reset
   end
 
   def create

@@ -107,6 +107,10 @@ module ApplicationHelper
     '#'
   end
 
+  def badge(num)
+    num == 0 ? nil : num
+  end
+
   def alpha_pay?
     cookies[:alpha] == "pay" || params[:alpha] == "pay"
   end

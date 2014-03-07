@@ -17,4 +17,8 @@ module UserDialogs
 
     message
   end
+
+  def unread_private_messages_count
+    dialogs.map(&:unread_count).reduce(:+)
+  end
 end

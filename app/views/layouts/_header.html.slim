@@ -47,13 +47,17 @@ header#header role="banner"
             li= link_to_with_icon "邮件", "fa fa-envelope", "mailto:hello@knewone.com"
             li= link_to_with_icon "加入我们", "fa fa-road", jobs_path
         li.nav_olark
-          = link_to_with_icon "在线帮助", "fa fa-user-md fa-fw", "#olark_chat", data: {hint: "fa-user-md", url: asset_path('olark.js')}
+          = link_to_with_icon "帮助", "fa fa-user-md fa-fw", "#olark_chat", data: {hint: "fa-user-md", url: asset_path('olark.js')}
 
       .nav.navbar-nav.navbar-right
         - if user_signed_in?
           .nav_user.is_login.dropdown
             = link_to "#", id: "user", class: "nav_user_avatar dropdown-toggle", data: {toggle: "dropdown", name: current_user.name, email: current_user.email, id: current_user.id} do
               = image_tag current_user.avatar.url(:tiny), class: "img-circle"
+            - upmc = current_user.unread_private_messages_count
+            = link_to dialogs_path, class: "nav_user_action nav_dialogs", title: "#{upmc}封未读私信" do
+              i.fa.fa-envelope-o
+              span.badge.private_messages_count= badge upmc
             = link_to messages_path, class: "nav_user_action nav_messages", title: "#{unread_messages_text}未读消息" do
               i.fa.fa-inbox
               span.badge= unread_messages_count
@@ -63,6 +67,7 @@ header#header role="banner"
             ul.dropdown-menu
               li= link_to_with_icon "我的主页", "fa fa-user fa-fw", current_user
               li= link_to_with_icon "我的订单", "fa fa-file-text fa-fw", orders_path
+              li= link_to_with_icon "我的私信", "fa fa-envelope-o fa-fw", dialogs_path
               li= link_to_with_icon "控制面板", "fa fa-tachometer fa-fw", setting_root_path
               li= link_to_with_icon "安全登出", "fa fa-sign-out fa-fw", destroy_user_session_path, method: :delete
         - else

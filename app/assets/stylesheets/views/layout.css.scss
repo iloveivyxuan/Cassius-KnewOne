@@ -144,6 +144,12 @@ body {
         }
       }
 
+      .nav_dialogs {
+        .badge {
+          background-color: $red;
+        }
+      }
+
       &.open {
 
         .nav_user_action {
