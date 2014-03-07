@@ -10,7 +10,18 @@ class DialogsController < ApplicationController
   end
 
   def create
-    receiver = User.where(name: params[:user_name]).first
-    receiver and current_user.send_private_message_to receiver, params[:content]
+    receiver = if params[:dialog_user_id].present?
+                 User.find params[:dialog_user_id]
+               else
+                 User.where(name: params[:dialog_user_name]).first
+               end
+
+    if receiver
+      @message = current_user.send_private_message_to receiver, params[:dialog_content]
+    end
+  end
+
+  def destroy
+    @dialog.destroy
   end
 end

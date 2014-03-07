@@ -33,7 +33,7 @@ class DialogPresenter < ApplicationPresenter
   end
 
   def destroy
-    link_to_with_icon '删除', 'fa fa-trash-o', "#", title: "删除对话",
-    method: :delete, data: {confirm: "您确定要删除此对话吗?"}
+    link_to_with_icon '删除', 'fa fa-trash-o', dialog, title: "删除对话",
+    method: :delete, remote: true, data: {confirm: "您确定要删除此对话吗?"}
   end
 end

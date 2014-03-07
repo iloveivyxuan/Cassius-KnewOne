@@ -150,7 +150,9 @@ Making::Application.routes.draw do
     end
   end
 
-  resources :dialogs
+  resources :dialogs, except: [:new, :edit, :update] do
+    resources :private_messages, only: [:destroy]
+  end
 
   resources :lotteries do
     get 'page/:page', action: :index, on: :collection

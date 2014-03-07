@@ -6,7 +6,7 @@ html.dialogs_index, html.dialogs_show {
       h1 {
         span {@extend .hidden-xs;}
       }
-      button {@extend .pull-right;}
+      button {float: right;}
     }
   }
 }
@@ -19,19 +19,21 @@ html.dialogs_index, html.dialogs_show {
     margin-bottom: 1em;
 
     .sender_avatar {
-      @extend .pull-left;
+      float: left;
       margin-right: 1em;
     }
 
-    .sender_name, .messages_count {margin-top: 15px;}
+    .sender_name, .messages_count {
+      margin-top: 15px;
+    }
 
     .sender_name {
-      @extend .pull-left;
+      float: left;
       color: $text-muted;
     }
 
     .messages_count {
-      @extend .pull-right;
+      float: right;
       margin-right: 1em;
       > a {
         @extend .badge;
@@ -42,7 +44,7 @@ html.dialogs_index, html.dialogs_show {
 
   footer {
     .operations {
-      @extend .pull-right;
+      float: right;
       margin-right: 1em;
       > a {
         color: $text-muted;
@@ -56,13 +58,15 @@ html.dialogs_index, html.dialogs_show {
 
 #private_messages form {
   margin: 1em 0;
+  @include clearfix;
+
   button {
     margin-top: 1em;
+    float: right;
     width: 100%;
   }
 
   @media screen and (min-width: $screen-sm-min) {
-    textarea {width: 80%;}
-    button {width: 100px;}
+    button {width: 180px;}
   }
 }

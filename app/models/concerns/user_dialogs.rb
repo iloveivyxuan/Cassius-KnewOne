@@ -12,6 +12,9 @@ module UserDialogs
     dialog.private_messages << PrivateMessage.new(content: content, is_new: true, is_in: true)
 
     dialog = Dialog.find_or_create_by sender: receiver, user: self
-    dialog.private_messages << PrivateMessage.new(content: content)
+    message = PrivateMessage.new(content: content)
+    dialog.private_messages << message
+
+    message
   end
 end

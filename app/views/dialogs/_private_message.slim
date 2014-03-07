@@ -1,4 +1,4 @@
-article.private_message
+article.private_message id="private_message_#{message.id}"
   - present message do |mp|
     header
       .sender_avatar= mp.avatar
@@ -7,5 +7,5 @@ article.private_message
       = mp.content
     footer
       = mp.created_at
-      span.operations
+      .operations
         = mp.destroy

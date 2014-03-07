@@ -27,7 +27,8 @@ class PrivateMessagePresenter < ApplicationPresenter
   end
 
   def destroy
-    link_to_with_icon '删除', 'fa fa-trash-o', "#", title: "删除",
-    method: :delete, data: {confirm: "您确定要删除此私信吗?"}
+    link_to_with_icon '删除', 'fa fa-trash-o',
+    dialog_private_message_path(private_message.dialog, private_message),
+    title: "删除", method: :delete, remote: true, data: {confirm: "您确定要删除此私信吗?"}
   end
 end

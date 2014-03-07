@@ -1,1 +1,5 @@
-window.location.reload();
+<% if params[:dialog_from] == "dialog_show" %>
+  $('.private_message:first-of-type').before("<%=j render('private_message', message: @message) %>")
+<% else %>
+  window.location.reload();
+<% end %>

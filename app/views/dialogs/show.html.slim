@@ -7,8 +7,9 @@ header.page-header
 
 section#private_messages
   = form_tag dialogs_path, method: :post, remote: true, role: "form" do
-    input name="user_name" type="hidden" value="#{@dialog.sender.name}"
-    textarea.form-control rows="5" name="content" required="true"
+    = hidden_field_tag :dialog_user_id, @dialog.sender.id
+    = hidden_field_tag :dialog_from, "dialog_show"
+    = text_area_tag 'dialog_content', nil, rows: 5, class: 'form-control', required: true
     button.btn.btn-primary type="submit"
       i.fa.fa-reply
       | 回复
