@@ -4,7 +4,13 @@ section.user_info
   dl.vcard itemscope="" itemtype="http://data-vocabulary.org/Person"
     dd.avatar itemprop="photo"= user_avatar(@user, :small)
     dt.name itemprop="name"
-      h2= @user.name
+      h2
+        = @user.name
+        = button_tag class: "btn btn-default btn-xs",
+        data: {toggle: "modal", target: "#new_private_message"} do
+          i.fa.fa-envelope-o
+          | 私信
+        span.private_message_success.hide 发送成功
     dd.clearfix itemprop="rating" itemscope="" itemtype="http://data-vocabulary.org/Rating"
       .level Lv.#{@user.rank}
       .progress title="#{@user.progress}%"
@@ -45,3 +51,9 @@ section.user_content
         ul= render @reviews
       #things.tab-pane
         ul.grids= render @things, size: :normal, img_lazy: false
+
+= render 'shared/private_message', from: "user_show"
+
+- content_for :script do
+  javascript:
+    Making.UserFuzzy('#dialog_user_name', '#dialog_user_id');

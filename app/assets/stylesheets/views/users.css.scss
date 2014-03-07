@@ -66,6 +66,12 @@ dl.vcard {
 
   .name h2 {
     font-size: $font-size-h4;
+    button {margin-left: 2em;}
+    .private_message_success {
+      margin-left: 1em;
+      color: $green;
+      font-size: $font-size-small;
+    }
   }
 
   .level {

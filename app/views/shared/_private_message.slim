@@ -7,12 +7,12 @@
           button.close data-dismiss="modal" aria-hidden="true" &times;
           h4.modal-title 写私信
         .modal-body
-          = hidden_field_tag :dialog_user_id
+          = hidden_field_tag :dialog_user_id, (@user.present? ? @user.id : nil)
           = hidden_field_tag :dialog_from, from
           .form-group
             label.control-label.col-sm-2 for="private-message-user" 发给
             .col-sm-6
-              = text_field_tag 'dialog_user_name', nil, class: 'form-control', required: true
+              = text_field_tag 'dialog_user_name', (@user.present? ? @user.name : nil), class: 'form-control', required: true
           .form-group
             label.control-label.col-sm-2 for="private-message-content" 内容
             .col-sm-10
