@@ -286,8 +286,8 @@
             width: 80px;
 
             &:hover {
-              border-color: $text-color;
-              color: $text-color;
+              background-color: $text-color;
+              color: #fff;
             }
           }
         }
@@ -297,6 +297,7 @@
 
   .medium-editor-placeholder:after {
     color: $text-muted;
+    top: 0;
   }
 }
 
