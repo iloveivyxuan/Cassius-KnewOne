@@ -28,8 +28,6 @@ table.table.table-striped
         td
           = link_to '编辑', edit_haven_reward_path(reward)
           | |
-          = link_to '查看', reward, target: '_blank'
-          | |
           = link_to '删除', haven_reward_path(reward), data: {:confirm => 'Are you sure?'}, :method => :delete
           - unless reward.coupon_code
             | |

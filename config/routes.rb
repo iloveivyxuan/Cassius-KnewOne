@@ -158,7 +158,7 @@ Making::Application.routes.draw do
     get 'page/:page', action: :index, on: :collection
   end
 
-  resources :rewards, only: [:index, :show]
+  resources :rewards, only: [:index]
 
   resources :suppliers
 

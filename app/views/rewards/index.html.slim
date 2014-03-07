@@ -20,4 +20,26 @@ header
     i.fa.fa-thumbs-up.fa-lg
     | 我们每日在这里和官方微博公布获奖者，奖品是网站上的新奇酷产品喔！
 
-= render @rewards
+table.table
+  - @rewards.each do |reward|
+    tr.reward
+      td
+        .date_icon
+          p
+            = reward.date.day
+            span= reward.date.strftime '%^b'
+      td.entry
+        p.abstract
+          strong
+            | 幸运粉 #{link_to reward.user.name, reward.user} 获得
+            = case reward.coupon.class
+              - when AbatementCoupon then " #{reward.coupon.price}元代金券 一张"
+              - when ThingRebateCoupon then " #{link_to reward.coupon.thing.title, reward.coupon.thing} 兑换券 一张".html_safe
+        p.content
+          p
+            strong 中奖原因：
+          = reward.body.html_safe
+
+= paginate @rewards
+
+
