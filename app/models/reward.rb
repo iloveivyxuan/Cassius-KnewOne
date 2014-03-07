@@ -23,6 +23,7 @@ class Reward
   end
 
   default_scope -> { desc(:date) }
+  scope :awarded, -> { where :coupon_code_id.ne => nil }
 
   def user
     return nil if self.user_id.blank?
