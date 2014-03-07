@@ -309,6 +309,24 @@ class User
   ## Pagination
   paginates_per 50
 
+  # notification
+  has_many :notifications do
+    def mark_all_as_read
+      set read: true
+    end
+
+    def build(type, options = {})
+      n = super type: type
+
+      n.context = options.delete :context if options[:context]
+      options.each do |k, v|
+        n.data[k] = v
+      end
+
+      n
+    end
+  end
+
   protected
   def password_required?
     self.encrypted_password.present? && (!password.nil? || !password_confirmation.nil?)
