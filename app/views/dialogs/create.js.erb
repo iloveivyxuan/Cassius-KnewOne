@@ -1,4 +1,5 @@
 <% if params[:dialog_from] == "dialog_show" %>
+  $('#dialog_content').val("");
   $('.private_message:first-of-type').before("<%=j render('private_message', message: @message) %>");
 <% elsif params[:dialog_from] == "user_show" %>
   $('#new_private_message').modal('hide');

@@ -42,6 +42,12 @@ html.dialogs_index, html.dialogs_show {
     }
   }
 
+  section {
+    > a {
+      color: $text-color;
+    }
+  }
+
   footer {
     .operations {
       float: right;

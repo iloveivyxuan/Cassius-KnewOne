@@ -16,7 +16,9 @@ class DialogPresenter < ApplicationPresenter
   end
 
   def newest_message_content
-    present(newest_message).content
+    link_to dialog do
+      present(newest_message).content
+    end
   end
 
   def updated_at
