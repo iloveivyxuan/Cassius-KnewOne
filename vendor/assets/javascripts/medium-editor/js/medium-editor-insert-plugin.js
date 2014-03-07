@@ -251,7 +251,7 @@
       $el.keyup(function () {
         var i = 0;
 
-        $el.children('p').each(function () {
+        $el.children($el.mediumInsert.settings.editor.parentElements.join(',')).each(function () {
           if ($(this).next().hasClass('mediumInsert') === false) {
             $(this).after(insertBlock);
             $(this).next('.mediumInsert').attr('id', 'mediumInsert-'+ i);
