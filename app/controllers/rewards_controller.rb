@@ -1,7 +1,7 @@
 #encoding: utf-8
 class RewardsController < ApplicationController
   def index
-    @rewards = Reward.all
+    @rewards = Reward.all.page params[:page]
   end
 
   def show
