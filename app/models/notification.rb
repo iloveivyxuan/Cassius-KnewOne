@@ -53,7 +53,7 @@ class Notification
   end
 
   def read!
-    update read: true
+    set read: true
   end
 
   def method_missing(*args)
@@ -91,5 +91,9 @@ class Notification
     n.set_data options
 
     n
+  end
+
+  def self.mark_as_read_by_context(receiver, type, context)
+    receiver.notifications.unread.by_type(type).by_context(context).set read: true
   end
 end

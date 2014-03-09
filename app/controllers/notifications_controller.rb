@@ -4,11 +4,11 @@ class NotificationsController < ApplicationController
 
   def index
     @notifications = current_user.notifications.page params[:page]
-    @unread_count = current_user.messages.unread.count
+    @unread_count = current_user.notifications.unread.count
   end
 
   def mark
-    current_user.messages.unread.each {|message| message.read!}
-    redirect_to messages_path
+    current_user.notifications.mark_as_read
+    redirect_to notifications_path
   end
 end

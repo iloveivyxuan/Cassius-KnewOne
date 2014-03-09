@@ -150,6 +150,12 @@ Making::Application.routes.draw do
     end
   end
 
+  resources :notifications, only: [:index] do
+    collection do
+      post 'mark'
+    end
+  end
+
   resources :dialogs, except: [:new, :edit, :update] do
     resources :private_messages, only: [:destroy]
   end
