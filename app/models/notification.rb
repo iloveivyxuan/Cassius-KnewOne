@@ -1,12 +1,13 @@
 class Notification
   include Mongoid::Document
-  include Mongoid::Timestamps
+  include Mongoid::Timestamps::Created
 
   belongs_to :receiver, class_name: 'User'
   validates :receiver, presence: true
 
   field :read, type: Boolean, default: false
   field :data, type: Hash, default: {}
+  field :sender_ids, type: Array, default: []
 
   field :type, type: Symbol
   validates :type, presence: true
@@ -17,12 +18,16 @@ class Notification
   def context
     return if (self.context_type || self.context_id).blank?
 
-    @context ||= self.context_type.constantize.find(context_id)
+    @context ||= self.context_type.constantize.where(id: self.context_id).first
   end
 
   def context=(record)
     self.context_type = record.class.to_s
     self.context_id = record.id.to_s
+  end
+
+  def senders
+    @senders ||= User.where(:id.in => self.sender_ids)
   end
 
   scope :by_context, ->(record) { where context_type: record.class.to_s, context_id: record.id.to_s }
@@ -36,6 +41,17 @@ class Notification
   scope :unread, -> { where read: false }
   default_scope -> { order_by [:updated_at, :desc] }
 
+  # potential timing sequence issue
+  before_create do
+    if self.sender_ids.any? && @similar = find_unread_similar
+      self.sender_ids.concat(@similar.sender_ids).uniq!
+    end
+  end
+
+  after_create do
+    @similar.destroy if @similar
+  end
+
   def read!
     update read: true
   end
@@ -48,15 +64,31 @@ class Notification
     end
   end
 
+  def find_unread_similar
+    return nil unless self.context
+    Notification.unread.by_type(self.type).by_receiver(self.receiver).by_context(self.context).first
+  end
+
+  def set_data(options = {})
+    self.context = options.delete :context if options[:context]
+
+    if sender_id = options.delete(:sender_id)
+      self.sender_ids<< sender_id
+    end
+    if sender = options.delete(:sender)
+      self.sender_ids<< sender.id.to_s
+    end
+
+    options.each do |k, v|
+      self.data[k] = v
+    end
+  end
+
   def self.build(receiver, type, options = {})
     receiver_id = receiver.is_a?(String) ? receiver : receiver.id.to_s
 
-    n = Notification.new receiver_id: receiver_id, type: type
-
-    n.context = options.delete :context if options[:context]
-    options.each do |k, v|
-      n.data[k] = v
-    end
+    n = new receiver_id: receiver_id, type: type
+    n.set_data options
 
     n
   end

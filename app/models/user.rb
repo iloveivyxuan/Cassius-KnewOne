@@ -311,18 +311,13 @@ class User
 
   # notification
   has_many :notifications do
-    def mark_all_as_read
+    def mark_as_read
       set read: true
     end
 
     def build(type, options = {})
       n = super type: type
-
-      n.context = options.delete :context if options[:context]
-      options.each do |k, v|
-        n.data[k] = v
-      end
-
+      n.set_data options
       n
     end
   end
