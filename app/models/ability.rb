@@ -103,7 +103,7 @@ class Ability
     can :edit, Thing
     can :update, Thing
     can :pro_edit, Thing
-    can :all, Review
+    can :manage, Review
     can :manage, Lottery
     can :manage, Supplier
   end
