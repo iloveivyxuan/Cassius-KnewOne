@@ -209,6 +209,10 @@ class Thing < Post
     kinds.map(&:has_stock?).reduce(&:|)
   end
 
+  def notify_fanciers_stock(options = {})
+    ThingNotificationWorker.perform_async(self.id.to_s, :fanciers, :stock, options)
+  end
+
   class << self
     def resort!
       ordered_things = []

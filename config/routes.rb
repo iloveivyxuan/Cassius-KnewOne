@@ -88,6 +88,10 @@ Making::Application.routes.draw do
       collection do
         get 'resort'
       end
+
+      member do
+        get 'send_stock_notification'
+      end
     end
 
     resources :users, only: [:index, :update, :show]
