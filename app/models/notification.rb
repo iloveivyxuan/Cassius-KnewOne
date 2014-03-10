@@ -43,7 +43,8 @@ class Notification
 
   # potential timing sequence issue
   before_create do
-    if self.sender_ids.any? && @similar = find_unread_similar
+    @similar = find_unread_similar
+    if @similar && self.sender_ids.any?
       self.sender_ids.concat(@similar.sender_ids).uniq!
     end
   end
