@@ -38,7 +38,7 @@ class Comment
     end
 
     related_users.each do |receiver|
-      receiver.notifications.build(:comment, context: self.post, sender: self.author).save
+      receiver.notify :comment, context: self.post, sender: self.author
     end
   end
 
