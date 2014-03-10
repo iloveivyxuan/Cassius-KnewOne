@@ -1,0 +1,26 @@
+.tt-dropdown-menu {
+  background-color: #fff;
+  box-shadow: 0 0 1px #555;
+  border-radius: 4px;
+  margin-top: 2px;
+  overflow: hidden;
+
+  .tt-suggestion {
+    padding: 6px 10px;
+
+    &.tt-cursor {
+      background-color: $blue;
+    }
+
+    > strong {
+      color: $brand-info;
+      font-weight: normal;
+    }
+  }
+
+  .tt-no-suggestion {
+    display: block;
+    line-height: 20px;
+    padding: 6px 10px;
+  }
+}

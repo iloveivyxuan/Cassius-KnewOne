@@ -26,6 +26,7 @@
 //= require orders
 //= require cart_items
 //= require fuzzy
+//= require typeahead.js/typeahead.bundle.js
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ./views
