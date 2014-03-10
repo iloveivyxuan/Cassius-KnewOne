@@ -72,7 +72,6 @@ class Notification
 
   def set_data(options = {})
     self.context = options.delete :context if options[:context]
-
     if sender_id = options.delete(:sender_id)
       self.sender_ids<< sender_id
     end
@@ -86,6 +85,8 @@ class Notification
   end
 
   def self.build(receiver, type, options = {})
+    options.symbolize_keys!
+
     receiver_id = receiver.is_a?(String) ? receiver : receiver.id.to_s
 
     n = new receiver_id: receiver_id, type: type

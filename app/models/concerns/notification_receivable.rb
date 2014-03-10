@@ -16,6 +16,10 @@ module NotificationReceivable
   end
 
   def notify(type, options = {})
+    if (options[:sender] && options[:sender] == self) || (options[:sender_id] && options[:sender_id] == self.id.to_s)
+      return
+    end
+
     Notification.build(self, type, options).save
   end
 end
