@@ -70,27 +70,27 @@ module Haven
 
     def ship
       @order.ship!(params[:order][:deliver_no], params[:order][:admin_note])
-      redirect_to haven_orders_path
+      redirect_to haven_order_path(@order)
     end
 
     def close
       @order.close!
-      redirect_to haven_orders_path
+      redirect_to haven_order_path(@order)
     end
 
     def refund
       @order.refund!
-      redirect_to haven_orders_path
+      redirect_to haven_order_path(@order)
     end
 
     def refund_to_balance
       @order.refund_to_balance!(BigDecimal.new(params[:price]))
-      redirect_to haven_orders_path
+      redirect_to haven_order_path(@order)
     end
 
     def refunded_balance_to_platform
       @order.refunded_balance_to_platform!
-      redirect_to haven_orders_path
+      redirect_to haven_order_path(@order)
     end
 
     def generate_waybill
