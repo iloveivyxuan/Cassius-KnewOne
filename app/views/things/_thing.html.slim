@@ -25,7 +25,6 @@
               i.fa.fa-check
               = tp.owners_count
           - if tp.thing.reviews.count > 0
-            span.reviews_count
-              i.fa.fa-book
-              = tp.reviews_count
+            = link_to_with_icon tp.reviews_count, "fa fa-book", thing_reviews_path(tp.thing),
+            target: "_blank", class: "reviews_count"
           = tp.price
