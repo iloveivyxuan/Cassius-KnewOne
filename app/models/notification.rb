@@ -93,7 +93,7 @@ class Notification
     n
   end
 
-  def self.mark_as_read_by_context(receiver, type, context)
-    receiver.notifications.unread.by_type(type).by_context(context).set read: true
+  def self.mark_as_read_by_context(receiver, context)
+    receiver.notifications.unread.by_context(context).set read: true
   end
 end

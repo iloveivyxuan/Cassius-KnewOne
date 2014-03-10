@@ -1,5 +1,6 @@
 class ThingsController < ApplicationController
   include Commentable
+  include MarkReadable
   load_and_authorize_resource
   after_action :allow_iframe_load, only: [:show]
   after_action :store_location, only: [:comments, :show]
@@ -48,6 +49,7 @@ class ThingsController < ApplicationController
   def show
     @thing = Thing.find(params[:id]) || not_found
     read_comments @thing
+    mark_read @thing
     render layout: 'thing'
   end
 
@@ -108,6 +110,7 @@ class ThingsController < ApplicationController
 
   def comments
     read_comments @thing
+    mark_read @thing
     render layout: 'thing'
   end
 
