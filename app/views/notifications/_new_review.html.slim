@@ -1,0 +1,7 @@
+- if notification.context
+  = senders(notification)
+  - if notification.context.author == current_user
+    | 为我分享的产品发表了评测
+  - else
+    | 为我喜欢的产品发表了评测
+  = link_to notification.context.title, thing_review_path(notification.context.thing, notification.context)
