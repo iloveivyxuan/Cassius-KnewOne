@@ -19,5 +19,5 @@ Making.UserFuzzy = (source, target, help) ->
     templates:
       suggestion: HandlebarsTemplates['users/user']
       empty: '<em class="tt-no-suggestion">没有结果</em>'
-  .on 'typeahead:selected', (event, value, key) ->
-    $(target).val value
+  .on 'typeahead:selected', (event, suggestion, name) ->
+    $(target).val suggestion.data
