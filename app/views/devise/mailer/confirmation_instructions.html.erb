@@ -1,5 +1,7 @@
+<% provide :title, '完成注册' %>
+<% provide :title_text, '完成注册' %>
 <%- salutation = @resource.name || @resource.email %>
-<p>Hi<%= ", #{salutation}" if salutation.present? %>!</p>
+<% provide :username, salutation if salutation.present? %>
 
 <p>欢迎加入KnewOne！从这一刻起，和我们一起创造分享新奇酷，感受未来生活吧！</p>
 
@@ -8,7 +10,7 @@
 <p><%= link_to confirmation_url(@resource, :confirmation_token => @token),
                confirmation_url(@resource, :confirmation_token => @token) %></p>
 
-<p>————————————</p>
-<p>如果以上链接无法点击，请将上面的地址复制到你的浏览器(如IE)的地址栏进入KnewOne。</p>
-<p><%= link_to 'knewone.com', 'http://knewone.com' %></p>
+<hr>
+
+<p>如果以上链接无法点击，请将上面的地址复制到你的浏览器(如IE)的地址栏。</p>
 <p>(如果您有任何疑问，可以直接回复此封邮件。)</p>
