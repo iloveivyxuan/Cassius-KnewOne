@@ -1,20 +1,31 @@
 .tt-dropdown-menu {
   background-color: #fff;
-  box-shadow: 0 0 1px #555;
-  border-radius: 4px;
-  margin-top: 2px;
+  box-shadow: 0 0 1px #a2a2a2;
+  border-radius: 2px;
+  margin-top: 1px;
   overflow: hidden;
+  right: 0 !important;
 
   .tt-suggestion {
+    border-bottom: 1px dashed #f1f1f1;
     padding: 6px 10px;
 
+    &:last-child {
+      border-bottom: none;
+    }
+
     &.tt-cursor {
-      background-color: $blue;
+      background-color: #eff7fd;
     }
 
     > strong {
-      color: $brand-info;
+      color: #049cdb;
       font-weight: normal;
+    }
+
+    > img {
+      border-radius: 4px;
+      box-shadow: 0 1px 1px #ddd;
     }
   }
 
@@ -22,5 +33,6 @@
     display: block;
     line-height: 20px;
     padding: 6px 10px;
+    text-align: center;
   }
 }
