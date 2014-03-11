@@ -18,15 +18,14 @@
 //= require jquery.cookie
 //= require jquery.fitvids
 //= require jquery.qrcode
-//= require jquery.autocomplete
 //= require bootstrap-wysiwyg
 //= require sisyphus
 //= require_tree ../templates
 //= require making
 //= require orders
 //= require cart_items
+//= require typeahead.bundle
 //= require fuzzy
-//= require typeahead.js/typeahead.bundle.js
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ./views
