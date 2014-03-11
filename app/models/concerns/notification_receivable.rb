@@ -13,6 +13,8 @@ module NotificationReceivable
         n
       end
     end
+
+    embeds_one :notification_setting, autobuild: true
   end
 
   def notify(type, options = {})
