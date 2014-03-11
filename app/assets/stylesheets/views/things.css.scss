@@ -9,7 +9,9 @@ html.reviews_update,
 html.stories_index,
 html.stories_new,
 html.stories_edit,
-html.stories_show {
+html.stories_show,
+html.investors_index,
+html.investors_admin {
 
   #wrapper {
     @include wrapper(grid);
