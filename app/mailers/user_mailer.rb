@@ -9,7 +9,7 @@ class UserMailer < BaseMailer
     return false if user.blank? or user.email.blank?
     @user = user
     mail(to: @user.email,
-         subject: 'Welcome to Knewone')
+         subject: 'Welcome to KnewOne')
   end
 
   def award(reward_id)
