@@ -39,7 +39,7 @@ class Notification
   # avoiding naming conflict
   scope :marked_as_read, -> { where read: true }
   scope :unread, -> { where read: false }
-  default_scope -> { order_by [:updated_at, :desc] }
+  default_scope -> { order_by [:created_at, :desc] }
 
   # potential timing sequence issue
   before_create do

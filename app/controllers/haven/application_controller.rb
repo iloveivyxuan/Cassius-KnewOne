@@ -2,6 +2,7 @@
 module Haven
   class ApplicationController < ::ActionController::Base
     prepend_before_action :require_admin_signed_in
+    before_action :set_notification
 
     protected
 
@@ -15,6 +16,12 @@ module Haven
       end
       url = params[:redirect_from].present? ? params[:redirect_from] : path # Avoiding querystring like redirect_from=&
       redirect_to(url, flash)
+    end
+
+    def set_notification
+      if user_signed_in?
+        @header_notifications = current_user.notifications.unread
+      end
     end
   end
 end

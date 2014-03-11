@@ -71,8 +71,8 @@ header#header role="banner"
                   | 消息
               .dropdown_box_body
                 ul.dropdown_box_content
-                  - current_user.notifications.limit(5).each do |n|
-                    li.dropdown_box_item = send :"render_#{n.type}", n
+                  - @header_notifications.each do |n|
+                    li.dropdown_box_item = send :"render_#{n.type}_notification", n
               footer.dropdown_box_footer
                 = link_to_with_icon "设置", "fa fa-cog", setting_root_path, class: "pull-left"
                 = link_to_with_icon "更多", "fa fa-ellipsis-h", notifications_path, class: "pull-right"

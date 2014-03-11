@@ -22,6 +22,15 @@ module NotificationReceivable
       return
     end
 
-    Notification.build(self, type, options).save
+    case self.notification_setting.send type
+      when :followed
+        #TODO: NYI
+      when :all
+        Notification.build(self, type, options).save
+      when nil
+        Notification.build(self, type, options).save
+      else
+        nil
+    end
   end
 end

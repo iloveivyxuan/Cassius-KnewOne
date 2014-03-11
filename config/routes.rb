@@ -29,9 +29,9 @@ Making::Application.routes.draw do
           post 'bind'
         end
       end
+      resource :notification_settings
     end
     resources :authentications, only: [:destroy]
-    resources :notification_settings, only: [:edit, :update]
   end
 
   resources :users, only: [:show] do

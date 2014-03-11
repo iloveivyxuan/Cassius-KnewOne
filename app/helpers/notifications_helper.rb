@@ -44,7 +44,7 @@ module NotificationsHelper
     end
   end
 
-  def render_comment(notification)
+  def render_comment_notification(notification)
     html = ''
     html += senders(notification)
     if notification.context.nil?
@@ -57,7 +57,7 @@ module NotificationsHelper
     html.html_safe
   end
 
-  def render_new_review(notification)
+  def render_new_review_notification(notification)
     return '' unless notification.context
     html = ''
 
@@ -72,7 +72,7 @@ module NotificationsHelper
     html.html_safe
   end
 
-  def render_new_stock(notification)
+  def render_stock_notification(notification)
     html = ''
 
     html += link_to notification.context.title, notification.context

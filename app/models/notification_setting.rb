@@ -1,19 +1,26 @@
 #encoding: utf-8
 class NotificationSetting
   include Mongoid::Document
-  belongs_to :user
+  embedded_in :user
 
   SCOPE_OPTIONS = {
       :none => '禁止',
-      :followed => '仅我关注的',
+      # :followed => '仅我关注的',
       :all => '任何人'
   }
 
-  field :stock_notification, type: Boolean, default: true
-  field :new_review_notification, type: Symbol, default: :all
-  field :comment_notification, type: Symbol, default: :all
+  BOOL_OPTIONS = {
+      :none => '禁止',
+      :all => '允许'
+  }
 
-  validates :stock_notification, :new_review_notification, :comment_notification, presence: true
-  validates :new_review_notification, :comment_notification,
+  field :stock, type: Symbol, default: :all
+  field :new_review, type: Symbol, default: :all
+  field :comment, type: Symbol, default: :all
+
+  validates :stock, :new_review, :comment, presence: true
+  validates :new_review, :comment,
             inclusion: {in: SCOPE_OPTIONS.keys}
+  validates :stock,
+            inclusion: {in: BOOL_OPTIONS.keys}
 end
