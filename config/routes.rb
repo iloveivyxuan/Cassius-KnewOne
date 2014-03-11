@@ -31,6 +31,7 @@ Making::Application.routes.draw do
       end
     end
     resources :authentications, only: [:destroy]
+    resources :notification_settings, only: [:edit, :update]
   end
 
   resources :users, only: [:show] do
