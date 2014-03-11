@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
 module NotificationsHelper
-  def render_notification(n)
-    render "notifications/#{n.type}", notification: n
-  end
-
   def senders(message)
     links = message.senders.map do |sender|
       link_to sender.name, sender, class: "btn btn-link"
@@ -46,5 +42,42 @@ module NotificationsHelper
     else
       "#{count} 条"
     end
+  end
+
+  def render_comment(notification)
+    html = ''
+    html += senders(notification)
+    if notification.context.nil?
+      html += '回复了已经被删除的资源'
+    elsif notification.context.author == current_user
+      html += "回复了我发布的#{notification_post(notification.context)}"
+    else
+      html += "在对#{notification_post(notification.context)}的回复中提到了我"
+    end
+    html.html_safe
+  end
+
+  def render_new_review(notification)
+    return '' unless notification.context
+    html = ''
+
+    html += senders(notification)
+    if notification.context.author == current_user
+      html += '为我分享的产品发表了评测'
+    else
+      html += '为我喜欢的产品发表了评测'
+    end
+    html += link_to notification.context.title, thing_review_path(notification.context.thing, notification.context)
+
+    html.html_safe
+  end
+
+  def render_new_stock(notification)
+    html = ''
+
+    html += link_to notification.context.title, notification.context
+    html += '有现货'
+
+    html.html_safe
   end
 end

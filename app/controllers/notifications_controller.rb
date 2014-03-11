@@ -3,12 +3,31 @@ class NotificationsController < ApplicationController
   prepend_before_action :authenticate_user!
 
   def index
-    @notifications = current_user.notifications.page params[:page]
+    @notifications = current_user.notifications
+    if params[:scope] == 'unread'
+      @notifications
+    end
+    case params[:scope]
+      when 'unread'
+        @notifications = @notifications.unread
+      when 'read'
+        @notifications = @notifications.marked_as_read
+    end
+    @notifications = @notifications.page params[:page]
     @unread_count = current_user.notifications.unread.count
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def mark
     current_user.notifications.mark_as_read
-    redirect_to notifications_path
+
+    respond_to do |format|
+      format.html { redirect_to notifications_path }
+      format.json { head :no_content }
+    end
   end
 end
