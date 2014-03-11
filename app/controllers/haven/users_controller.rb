@@ -40,7 +40,7 @@ module Haven
           lines = [%w(用户名 用户ID 分享产品 发表评测 成交订单 战斗力 邮箱 微博 Twitter 博客 网站 备注)]
 
           @users.each do |u|
-            sites = u.auths.collect(&:urls).reduce(&:merge) || {}
+            sites = u.auths.collect(&:urls).compact.reduce(&:merge) || {}
             sites.delete "Blog" if sites["Website"] == sites["Blog"]
 
             cols = [
