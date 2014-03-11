@@ -5,7 +5,6 @@
     label.control-label 获奖者
     .controls
       input#user_autocomplete.form-control placeholder="用户昵称" value="#{@reward.user.try :name}"
-    #user_autocomplete_tip.strong.help-block
   = f.input :date, as: :date
   - if @reward.coupon_code.nil?
     = f.input :coupon_id, collection: coupons, label_method: :name, value_method: :id
@@ -22,4 +21,4 @@
 - content_for :script do
   javascript:
     Making.Editor('#reward_body');
-    Making.UserFuzzy('#user_autocomplete', '#reward_user_id', '#user_autocomplete_tip');
+    Making.UserFuzzy('#user_autocomplete', '#reward_user_id');

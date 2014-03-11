@@ -1,10 +1,10 @@
-Making.UserFuzzy = (source, target, help) ->
+Making.UserFuzzy = (source, target) ->
   users = new Bloodhound
     datumTokenizer: (datums) -> Bloodhound.tokenizers.whitespace(datums.value)
     queryTokenizer: Bloodhound.tokenizers.whitespace
     limit: 10
     remote:
-      url: 'http://making.dev/users/fuzzy.json?query=%QUERY'
+      url: '/users/fuzzy.json?query=%QUERY'
 
   users.initialize()
 

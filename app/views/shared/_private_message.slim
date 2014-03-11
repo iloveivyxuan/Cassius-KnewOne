@@ -12,7 +12,7 @@
           .form-group
             label.control-label.col-sm-2 for="private-message-user" 发给
             .col-sm-6
-              = text_field_tag 'dialog_user_name', (@user.present? ? @user.name : nil), class: 'form-control', required: true
+              = text_field_tag 'dialog_user_name', (@user.present? ? @user.name : nil), class: 'form-control', required: true, placeholder: '用户昵称'
           .form-group
             label.control-label.col-sm-2 for="private-message-content" 内容
             .col-sm-10

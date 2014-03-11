@@ -8,7 +8,6 @@
     .col-xs-9.col-sm-4
       = hidden_field_tag :user_id
       input#user_autocomplete.form-control placeholder="用户昵称"
-      #user_autocomplete_tip.strong.help-block
   = submit_tag '添加', class: 'btn btn-primary'
 
 table.table
@@ -26,4 +25,4 @@ table.table
 
 - content_for :script do
   javascript:
-    Making.UserFuzzy('#user_autocomplete', '#user_id', '#user_autocomplete_tip');
+    Making.UserFuzzy('#user_autocomplete', '#user_id');
