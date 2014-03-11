@@ -27,7 +27,7 @@ module Haven
         end
 
         format.csv do
-          lines = [%w(订单编号 创建时间 订单状态 商品 总价 物流方式 配送地址 用户备注 管理员备注 系统备注 用户ID 用户名)]
+          lines = [%w(订单编号 创建时间 订单状态 商品 总价 物流方式 配送地址 用户备注 管理员备注 系统备注 用户ID 用户名 用户邮箱)]
 
           @orders.each do |order|
             cols = [
@@ -42,16 +42,19 @@ module Haven
                 order.admin_note,
                 order.system_note,
                 order.user_id,
-                order.user.name
+                order.user.name,
+                order.user.email
             ]
             lines<< cols
           end
 
-          csv = CSV.generate :col_sep => ';' do |csv|
+          col_sep = (params[:platform] == 'numbers') ? ',' : ';'
+
+          csv = CSV.generate :col_sep => col_sep do |csv|
             lines.each { |l| csv<< l }
           end
 
-          if params[:encoding] == 'gb2312'
+          if params[:platform] != 'numbers'
             send_data csv.encode 'gb2312', :replace => ''
           else
             send_data csv, :replace => ''
