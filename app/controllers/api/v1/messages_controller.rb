@@ -6,14 +6,14 @@ module Api
 
       def index
         if params[:scope] == 'unread'
-          @messages = current_user.messages.unread.page(params[:page]).per(params[:per_page] || 8)
+          @messages = current_user.notifications.by_type(:comment).unread.page(params[:page]).per(params[:per_page] || 8)
         else
-          @messages = current_user.messages.page(params[:page]).per(params[:per_page] || 8)
+          @messages = current_user.notifications.by_type(:comment).page(params[:page]).per(params[:per_page] || 8)
         end
       end
 
       def mark
-        current_user.messages.unread.each &:read!
+        current_user.notifications.by_type(:comment).unread.set read: true
         head :no_content
       end
     end
