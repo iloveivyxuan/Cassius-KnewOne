@@ -4,8 +4,8 @@ class HomeController < ApplicationController
   skip_after_action :store_location
 
   def index
-    @things = Thing.prior.page(params[:page]).per(28)
-    @reviews = Review.unscoped.living.desc(:created_at).limit(15)
+    @things = Thing.prior.page(params[:page]).per(27)
+    @reviews = Review.unscoped.living.desc(:created_at).limit(30)
 
     @landing_page = LandingPage.find_for_home
 

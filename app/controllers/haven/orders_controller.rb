@@ -7,7 +7,7 @@ module Haven
     include ::AddressesHelper
 
     def index
-      @orders = ::Order
+      @orders = ::Order.unscoped
 
       @orders = @orders.where(state: params[:state]) if params[:state]
       if params[:find_by] == 'order_no'
