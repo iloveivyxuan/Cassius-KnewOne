@@ -454,7 +454,7 @@ window.Making =
             $keyword.text(keyword)
             $('<li />',
               class: 'empty'
-              text: '无内容'
+              html: '没有找到，<a href="/things/new">我来分享~</a>'
             )
             .css 'width', -> $slideshowBody.css 'width'
             .appendTo $list
