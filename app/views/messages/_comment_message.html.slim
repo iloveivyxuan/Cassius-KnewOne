@@ -1,7 +1,0 @@
-= senders(message)
-- if message.post.nil?
-  | 回复了已经被删除的资源
-- elsif message.post.author == current_user
-  | 回复了我发布的#{message_post(message.post)}
-- else
-  | 在对#{message_post(message.post)}的回复中提到了我

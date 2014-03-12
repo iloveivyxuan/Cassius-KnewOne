@@ -186,9 +186,6 @@ class User
   ## Lotteries
   has_many :lotteries, inverse_of: :winners
 
-  ## Messageable
-  embeds_many :messages
-
   ##Dialogs
   include UserDialogs
 

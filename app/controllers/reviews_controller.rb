@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 class ReviewsController < ApplicationController
-  include Commentable
   include MarkReadable
   load_and_authorize_resource :thing, except: [:admin], singleton: true
   load_and_authorize_resource :review, through: :thing, except: [:admin]
@@ -12,7 +11,6 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    read_comments @review
     mark_read @review
   end
 

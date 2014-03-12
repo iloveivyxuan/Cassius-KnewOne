@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 class TopicsController < ApplicationController
-  include Commentable
   include MarkReadable
   load_and_authorize_resource :group, singleton: true
   load_and_authorize_resource :topic, through: :group
@@ -12,7 +11,6 @@ class TopicsController < ApplicationController
   end
 
   def show
-    read_comments @topic
     mark_read @topic
   end
 

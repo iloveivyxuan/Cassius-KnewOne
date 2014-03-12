@@ -55,9 +55,6 @@ class Ability
     can :share, User
     can :bind, User
 
-    can :readall, Message
-    can :read, Message
-
     can :manage, CartItem do |cart_item|
       cart_item.user == user
     end

@@ -1,4 +1,0 @@
-li class=(message.read? ? "read" : "unread")
-  p
-    = render message_type(message), message: message
-    = time_ago_tag message.created_at
