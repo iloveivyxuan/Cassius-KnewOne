@@ -1,9 +1,11 @@
-hgroup#notifications_header
-  h1 我的消息
+header.page-header
+  h1
+    i.fa.fa-inbox
+    | 我的消息
+    - if @unread_count > 0
+      small #{@unread_count}条未读
   - if @unread_count > 0
-    small #{@unread_count}条未读
-    = form_tag mark_notifications_path do
-      = submit_tag "标明全部为已读", class: "btn btn-info btn-xs"
+    = link_to '标明全部为已读', mark_notifications_path, id: "markall", class: "btn btn-primary btn-sm", method: :post
 
 ul#notifications= render @notifications
 = paginate @notifications
