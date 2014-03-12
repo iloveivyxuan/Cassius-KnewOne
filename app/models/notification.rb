@@ -30,7 +30,8 @@ class Notification
     @senders ||= User.where(:id.in => self.sender_ids)
   end
 
-  scope :by_context, ->(record) { where context_type: record.class.to_s, context_id: record.id.to_s }
+  scope :by_context,
+        ->(record) { record ? where(context_type: record.class.to_s, context_id: record.id.to_s) : where(context_type: nil, context_id: nil) }
 
   scope :by_type, ->(type) { where type: type }
 
