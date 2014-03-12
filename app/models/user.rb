@@ -309,6 +309,9 @@ class User
   ## Pagination
   paginates_per 50
 
+  # notification
+  include NotificationReceivable
+
   protected
   def password_required?
     self.encrypted_password.present? && (!password.nil? || !password_confirmation.nil?)

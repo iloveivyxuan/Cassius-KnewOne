@@ -1,0 +1,41 @@
+html.notifications_index {
+  #wrapper {
+    @include wrapper(simple);
+  }
+}
+
+#notifications_header {
+  h1 {
+    display: inline-block;
+    font-size: 24px;
+    margin-right: 1em;
+  }
+
+  small {
+    margin-right: 2em;
+    color: $text-muted;
+  }
+
+  form {
+    float: right;
+    margin-top: 1.5em;
+  }
+}
+
+#notifications {
+
+  > li {
+    border-bottom: 1px dashed $gray;
+    &:last-child {border: none;}
+    padding: 1em;
+
+    &.unread {background: lighten($blue, 53%);}
+
+    p {
+      margin: 0;
+      a {margin: 0 1em;}
+      time {margin: 0 1em;}
+    }
+  }
+}
+

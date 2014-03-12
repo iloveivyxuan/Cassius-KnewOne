@@ -94,6 +94,10 @@ zh-CN:
         reason: "原因（用于邮件）"
         body: "正文"
         coupon_id: "优惠券"
+      notification_setting:
+        stock: '产品到货'
+        new_review: '产品有新评测'
+        comment: '提到我的评论'
 
     placeholders:
       user:

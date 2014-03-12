@@ -29,6 +29,7 @@ Making::Application.routes.draw do
           post 'bind'
         end
       end
+      resource :notification_settings
     end
     resources :authentications, only: [:destroy]
   end
@@ -87,6 +88,10 @@ Making::Application.routes.draw do
     resources :things, only: [:index, :update, :edit] do
       collection do
         get 'resort'
+      end
+
+      member do
+        get 'send_stock_notification'
       end
     end
 
@@ -147,6 +152,12 @@ Making::Application.routes.draw do
     get 'page/:page', action: :index, on: :collection
     collection do
       post 'readall'
+    end
+  end
+
+  resources :notifications, only: [:index] do
+    collection do
+      post 'mark'
     end
   end
 

@@ -1,0 +1,74 @@
+// Dropdown Boxes.
+//
+//
+
+.dropdown_box {
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.3);
+  display: none;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 12px);
+  width: 280px;
+  z-index: $zindex-dropdown;
+
+  &:before {
+    content: '';
+    position: absolute;
+    right: 5px;
+    top: -5px;
+  }
+
+  > header {
+    padding: 8px 10px;
+
+    > h5 {
+      color: $text-color;
+      font-size: 16px;
+      line-height: 16px;
+      margin: 0;
+    }
+  }
+
+  .dropdown_box_body {
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    color: $text-color;
+    height: 280px;
+    overflow: scroll;
+
+    .dropdown_box_content {
+
+      > li {
+        border-bottom: 1px dashed #eee;
+        padding: 10px;
+
+        &:last-child {
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+
+  > footer {
+    @include clearfix;
+
+    padding: 5px 10px;
+
+    a {
+      color: $text-color;
+    }
+  }
+}
+
+.open {
+
+  > .dropdown_box {
+    display: block;
+  }
+}
+
+body.dropdown_box_open {
+  overflow: hidden;
+}

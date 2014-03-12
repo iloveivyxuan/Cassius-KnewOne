@@ -36,6 +36,10 @@ class Comment
       receiver.messages << message
       message.add_to_senders author
     end
+
+    related_users.each do |receiver|
+      receiver.notify :comment, context: self.post, sender: self.author
+    end
   end
 
   def update_commented_at

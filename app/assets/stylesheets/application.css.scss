@@ -19,10 +19,12 @@
 // Components
 @import "components/animations";
 @import "components/wrappers";
+@import "components/badges";
 @import "components/navs";
 @import "components/slideshows";
 @import "components/ratings";
 @import "components/typeahead";
+@import "components/dropdown_boxes";
 @import "components/entry";
 @import "components/things";
 @import "components/articles";
@@ -30,6 +32,7 @@
 @import "components/editors";
 @import "components/spinners";
 @import "components/state";
+@import "components/notification_box";
 @import "components/modals";
 @import "components/misc";
 
@@ -44,6 +47,7 @@
 @import "views/settings";
 @import "views/orders";
 @import "views/messages";
+@import "views/notifications";
 @import "views/dialogs";
 @import "views/users";
 @import "views/categories";

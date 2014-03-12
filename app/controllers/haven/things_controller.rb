@@ -39,6 +39,12 @@ module Haven
       redirect_to haven_things_path
     end
 
+    def send_stock_notification
+      @thing.notify_fanciers_stock
+
+      redirect_to edit_haven_thing_path(@thing)
+    end
+
     private
 
     def thing_params

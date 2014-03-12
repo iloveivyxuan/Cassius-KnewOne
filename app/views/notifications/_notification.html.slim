@@ -1,0 +1,4 @@
+li class=(notification.read? ? "read" : "unread")
+  p
+    = send :"render_#{notification.type}_notification", notification
+    = time_ago_tag notification.created_at

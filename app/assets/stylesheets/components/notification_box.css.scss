@@ -1,0 +1,30 @@
+#notification_box {
+
+  header {
+    @include clearfix;
+
+    > h5 {
+      float: left;
+    }
+
+    > a {
+      color: $text-color;
+      float: right;
+    }
+  }
+
+  .dropdown_box_item {
+
+    &.readed {
+      color: $text-muted;
+
+      a {
+        color: $text-muted;
+      }
+    }
+  }
+
+  .dropdown_box {
+    right: -40px;
+  }
+}

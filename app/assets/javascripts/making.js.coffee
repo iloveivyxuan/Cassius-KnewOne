@@ -86,6 +86,8 @@ window.Making =
       $('.score').length && Making.Score()
       Making.AjaxComplete()
       Making.ToggleFixedNavbar()
+      Making.InitUIDropdownBox()
+      Making.InitUINotificationBox()
 
   ToggleFixedNavbar: ->
     if Modernizr.mq('(max-width: ' + Making.Breakpoints.screenMDMax + ')') and
@@ -118,6 +120,38 @@ window.Making =
     $things.length and $things.each ->
       $thing = $(@)
       $thing.find('h5').tooltip()
+
+  InitUIDropdownBox: ->
+    $dropdown_box = $('.dropdown_box')
+    if $dropdown_box.length
+      $body = $('body')
+      $dropdown_box
+        .on 'mouseenter', ->
+          if !$body.hasClass('dropdown_box_open')
+            $body.addClass('dropdown_box_open')
+        .on 'mouseleave', ->
+          if $body.hasClass('dropdown_box_open')
+            $body.removeClass('dropdown_box_open')
+
+  InitUINotificationBox: ->
+    if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ')')
+      $element = $('#notification_box')
+
+      $element.children('a').attr('data-toggle', 'dropdown')
+      $element
+        .on 'click', '.dropdown_box_item a', ->
+          $(@).parents('.dropdown_box_item').addClass('readed')
+        .on 'click', '#notification_markall', ->
+          url = $(@).data('url')
+
+          $.ajax
+            url: url
+            type: 'POST'
+            dataType: 'json'
+          .done (data, textStatus, jqXHR) ->
+            if jqXHR.status == 204
+              $element.find('.dropdown_box_content').empty()
+              $element.children('a').children('.badge').remove()
 
   SetupOlark: (element) ->
     $element    = $(element)
