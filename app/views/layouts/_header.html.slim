@@ -51,40 +51,42 @@ header#header role="banner"
 
       .nav.navbar-nav.navbar-right
         - if user_signed_in?
-          .nav_user.is_login.dropdown
-            = link_to "#", id: "user", class: "nav_user_avatar dropdown-toggle", data: {toggle: "dropdown", name: current_user.name, email: current_user.email, id: current_user.id} do
-              = image_tag current_user.avatar.url(:tiny), class: "img-circle"
+          .nav_user.is_login
+            .nav_user_account.dropdown
+              = link_to "#", id: "user", class: "dropdown-toggle", data: {toggle: "dropdown", name: current_user.name, email: current_user.email, id: current_user.id} do
+                = image_tag current_user.avatar.url(:tiny), class: "img-circle"
+              ul.dropdown-menu
+                li= link_to_with_icon "我的主页", "fa fa-user fa-fw", current_user
+                li= link_to_with_icon "我的订单", "fa fa-file-text fa-fw", orders_path
+                li= link_to_with_icon "我的私信", "fa fa-envelope-o fa-fw", dialogs_path
+                li= link_to_with_icon "控制面板", "fa fa-tachometer fa-fw", setting_root_path
+                li= link_to_with_icon "安全登出", "fa fa-sign-out fa-fw", destroy_user_session_path, method: :delete
             - upmc = current_user.unread_private_messages_count
-            = link_to dialogs_path, class: "nav_user_action nav_dialogs", title: "#{upmc}封未读私信" do
+            = link_to dialogs_path, class: "nav_user_action", title: "#{upmc}封未读私信" do
               i.fa.fa-envelope-o
-              span.badge.private_messages_count= badge upmc
-            = link_to messages_path, class: "nav_user_action nav_messages", title: "#{unread_messages_text}未读消息" do
+              span.badge.badge_danger.private_messages_count= badge upmc
+            = link_to messages_path, class: "nav_user_action", title: "#{unread_messages_text}未读消息" do
               i.fa.fa-inbox
-              span.badge= unread_messages_count
-            = link_to notifications_path, class: "nav_user_action nav_notifications", title: "#{unread_notifications_text}未读消息" do
-              i.fa.fa-inbox
-              span.badge= unread_notifications_count
-            #notifications_box.dropdown_box
-              header.dropdown_box_header
-                h5
-                  i.fa.fa-inbox
-                  | 消息
-              .dropdown_box_body
-                ul.dropdown_box_content
-                  - @header_notifications.each do |n|
-                    li.dropdown_box_item = send :"render_#{n.type}_notification", n
-              footer.dropdown_box_footer
-                = link_to_with_icon "设置", "fa fa-cog", setting_root_path, class: "pull-left"
-                = link_to_with_icon "更多", "fa fa-ellipsis-h", notifications_path, class: "pull-right"
+              span.badge.badge_primary= unread_messages_count
+            .nav_user_action.dropdown
+              = link_to "#", data: {toggle: "dropdown"}, title: "#{unread_notifications_text}未读消息" do
+                i.fa.fa-inbox
+                span.badge.badge_primary= unread_notifications_count
+              .dropdown_box
+                header
+                  h5
+                    i.fa.fa-inbox
+                    | 消息
+                .dropdown_box_body
+                  ul.dropdown_box_content
+                    - @header_notifications.each do |n|
+                      li.dropdown_box_item = send :"render_#{n.type}_notification", n
+                footer
+                  = link_to_with_icon "设置", "fa fa-cog", setting_root_path, class: "pull-left"
+                  = link_to_with_icon "更多", "fa fa-ellipsis-h", notifications_path, class: "pull-right"
             = link_to cart_items_path, class: "nav_user_action nav_cart", title: "购物车" do
               i.fa.fa-shopping-cart
-              span.badge.cart_items_count= cart_items_count
-            ul.dropdown-menu
-              li= link_to_with_icon "我的主页", "fa fa-user fa-fw", current_user
-              li= link_to_with_icon "我的订单", "fa fa-file-text fa-fw", orders_path
-              li= link_to_with_icon "我的私信", "fa fa-envelope-o fa-fw", dialogs_path
-              li= link_to_with_icon "控制面板", "fa fa-tachometer fa-fw", setting_root_path
-              li= link_to_with_icon "安全登出", "fa fa-sign-out fa-fw", destroy_user_session_path, method: :delete
+              span.badge.badge_success.cart_items_count= cart_items_count
         - else
           .nav_user.is_not_login
             = link_to_with_icon "登录", "fa fa-sign-in", "#", class: "nav_user_action", data: {toggle: "modal", target: "#login-modal"}

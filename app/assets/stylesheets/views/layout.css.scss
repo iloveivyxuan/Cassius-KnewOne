@@ -106,7 +106,7 @@ body {
       padding-bottom: 0;
       @include clearfix;
 
-      .nav_user_avatar {
+      .nav_user_account {
         margin-right: 10px;
       }
 
@@ -120,40 +120,23 @@ body {
           float: right;
         }
 
+        .fa {
+          &:hover {
+            color: $text-color;
+          }
+        }
+
         .badge {
+          color: #fff;
           font-family: $font-family-sans-serif;
           padding: 1px 6px;
         }
       }
 
       .nav_cart {
-        .badge {
-          background-color: $brand-success;
-          color: #fff;
-        }
 
         & + .popover {
           .popover-title {display: none;}
-        }
-      }
-
-      .nav_messages {
-        .badge {
-          background-color: $brand-primary;
-          color: #fff;
-        }
-      }
-
-      .nav_notifications {
-        .badge {
-          background-color: $brand-primary;
-          color: #fff;
-        }
-      }
-
-      .nav_dialogs {
-        .badge {
-          background-color: $red;
         }
       }
 
@@ -162,14 +145,9 @@ body {
         .nav_user_action {
           background-color: $navbar-default-link-hover-bg;
           color: $navbar-default-link-color;
-
-          &:hover {
-            background-color: $navbar-default-link-hover-bg;
-            color: $navbar-default-link-hover-color;
-          }
         }
 
-        .nav_user_avatar {
+        .nav_user_account {
           img {
             box-shadow: 0 0 10px $brand-primary;
           }
@@ -201,7 +179,7 @@ body {
       }
     }
 
-    .nav_user_avatar {
+    .nav_user_account {
       float: left;
       z-index: 100;
 
@@ -213,14 +191,9 @@ body {
       }
     }
 
-    .nav_user_action {
+    .nav_user_action,
+    .nav_user_action > a {
       color: $navbar-default-link-color;
-
-      &:hover,
-      &:focus {
-        background-color: $navbar-default-link-hover-bg;
-        color: $navbar-default-link-hover-color;
-      }
     }
   }
 }
