@@ -145,7 +145,7 @@ class User
     if self.name_was && self.name_was.include?("#{self.name}x")
       reset_name!
     elsif User.where(name: self.name).size > 1 || self.name.blank?
-      self.name += "x#{SecureRandom.uuid[0..2]}"
+      self.name += "x#{SecureRandom.uuid[0..4]}"
     end
 
     self.location = auth.location
