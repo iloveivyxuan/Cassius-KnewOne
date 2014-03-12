@@ -30,9 +30,8 @@ module NotificationsHelper
     raw content
   end
 
-  def unread_notifications_count
-    count = current_user.notifications.unread.reject { |n| n.orphan? }.count
-    (count > 0) ? count : ''
+  def unread_notifications_count(count)
+    count > 0 ? count : ''
   end
 
   def unread_notifications_text(count)

@@ -1,37 +1,41 @@
-// Dropdown Box.
+// Dropdown Boxes.
 //
-// .dropdown_box_hover
 //
 
 .dropdown_box {
   background-color: #fff;
   border-radius: 4px;
   box-shadow: 0 1px 4px rgba(0,0,0,.3);
-  // display: none;
-  min-width: 260px;
+  display: none;
   position: absolute;
-  right: 15px;
-  top: calc(100% + 15px);
+  right: 0;
+  top: calc(100% + 12px);
+  width: 280px;
   z-index: $zindex-dropdown;
 
-  .dropdown_box_header {
+  &:before {
+    content: '';
+    position: absolute;
+    right: 5px;
+    top: -5px;
+  }
+
+  > header {
     padding: 8px 10px;
 
     > h5 {
+      color: $text-color;
       font-size: 16px;
       line-height: 16px;
       margin: 0;
-
-      .badge {
-        vertical-align: middle;
-      }
     }
   }
 
   .dropdown_box_body {
     border-bottom: 1px solid #ddd;
     border-top: 1px solid #ddd;
-    min-height: 280px;
+    color: $text-color;
+    height: 280px;
     overflow: scroll;
 
     .dropdown_box_content {
@@ -47,17 +51,24 @@
     }
   }
 
-  .dropdown_box_footer {
+  > footer {
     @include clearfix;
 
     padding: 5px 10px;
 
     a {
-      color: $text-muted;
-
-      &:hover {
-        color: $text-color;
-      }
+      color: $text-color;
     }
   }
+}
+
+.open {
+
+  > .dropdown_box {
+    display: block;
+  }
+}
+
+body.dropdown_box_open {
+  overflow: hidden;
 }

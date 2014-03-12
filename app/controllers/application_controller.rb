@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   after_action :store_location, only: [:index, :show]
-  before_action :set_notification
 
   # some bots using some *strange* format to request urls
   # that would trigger missing template exception,
@@ -65,12 +64,6 @@ class ApplicationController < ActionController::Base
       redirect_to '/403'
     else
       authenticate_user!
-    end
-  end
-
-  def set_notification
-    if user_signed_in?
-      @header_notifications = current_user.notifications.unread.reject { |n| n.orphan? }
     end
   end
 
