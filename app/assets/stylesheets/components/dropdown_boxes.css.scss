@@ -6,11 +6,11 @@
   background-color: #fff;
   border-radius: 4px;
   box-shadow: 0 1px 4px rgba(0,0,0,.3);
-  // display: none;
+  display: none;
   position: absolute;
   right: 0;
-  top: calc(100% + 10px);
-  width: 260px;
+  top: calc(100% + 12px);
+  width: 280px;
   z-index: $zindex-dropdown;
 
   &:before {
@@ -34,6 +34,7 @@
   .dropdown_box_body {
     border-bottom: 1px solid #ddd;
     border-top: 1px solid #ddd;
+    color: $text-color;
     height: 280px;
     overflow: scroll;
 
@@ -56,15 +57,18 @@
     padding: 5px 10px;
 
     a {
-      color: $text-muted;
-
-      &:hover {
-        color: $text-color;
-      }
+      color: $text-color;
     }
   }
 }
 
-body.dropdown_box_hover {
+.open {
+
+  > .dropdown_box {
+    display: block;
+  }
+}
+
+body.dropdown_box_open {
   overflow: hidden;
 }
