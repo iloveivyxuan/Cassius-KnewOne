@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 module NotificationsHelper
-  def senders(message)
+  def senders(message, target = '_self')
     links = message.senders.map do |sender|
-      link_to sender.name, sender
+      link_to sender.name, sender, target: target
     end.take(5).join('，')
 
     if message.senders.count > 5
@@ -11,18 +11,18 @@ module NotificationsHelper
     raw links
   end
 
-  def notification_post(post)
+  def notification_post(post, target = '_blank')
     content = ""
     case post.class
       when Thing then
         content += "产品 "
-        content += link_to post.title, thing_path(post)
+        content += link_to post.title, thing_path(post), target: target
       when Review then
         content += "评测 "
-        content += link_to post.title, thing_review_path(post.thing, post)
+        content += link_to post.title, thing_review_path(post.thing, post), target: target
       when Topic then
         content += "帖子 "
-        content += link_to post.title, group_topic_path(post.group, post)
+        content += link_to post.title, group_topic_path(post.group, post), target: target
       else
         content += '失效的资源'
     end
@@ -31,33 +31,28 @@ module NotificationsHelper
   end
 
   def unread_notifications_count
-    count = current_user.notifications.unread.count
+    count = current_user.notifications.unread.reject { |n| n.orphan? }.count
     (count > 0) ? count : ''
   end
 
-  def unread_notifications_text
-    count = unread_notifications_count
-    if count.blank?
-      '没有'
-    else
-      "#{count} 条"
-    end
+  def unread_notifications_text(count)
+    count == 0 ? '没有' : "#{count} 条"
   end
 
-  def render_comment_notification(notification)
+  def render_comment_notification(notification, target = '_self')
     html = ''
     html += senders(notification)
     if notification.context.nil?
       html += ' 回复了已经被删除的资源'
     elsif notification.context.author == current_user
-      html += " 回复了我发布的#{notification_post(notification.context)}"
+      html += " 回复了我发布的#{notification_post(notification.context, target)}"
     else
-      html += " 在对#{notification_post(notification.context)} 的回复中提到了我"
+      html += " 在对#{notification_post(notification.context, target)} 的回复中提到了我"
     end
     html.html_safe
   end
 
-  def render_new_review_notification(notification)
+  def render_new_review_notification(notification, target = '_self')
     return '' unless notification.context
     html = ''
 
@@ -67,15 +62,15 @@ module NotificationsHelper
     else
       html += ' 为我喜欢的产品发表了评测 '
     end
-    html += link_to notification.context.title, thing_review_path(notification.context.thing, notification.context)
+    html += link_to notification.context.title, thing_review_path(notification.context.thing, notification.context), target: target
 
     html.html_safe
   end
 
-  def render_stock_notification(notification)
+  def render_stock_notification(notification, target = '_self')
     html = ''
 
-    html += link_to notification.context.title, notification.context
+    html += link_to notification.context.title, notification.context, target: target
     html += ' 有现货'
 
     html.html_safe

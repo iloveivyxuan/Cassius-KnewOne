@@ -70,7 +70,7 @@ class ApplicationController < ActionController::Base
 
   def set_notification
     if user_signed_in?
-      @header_notifications = current_user.notifications.unread
+      @header_notifications = current_user.notifications.unread.reject { |n| n.orphan? }
     end
   end
 

@@ -66,6 +66,10 @@ class Notification
     end
   end
 
+  def orphan?
+    self.context_id.present? && context.nil?
+  end
+
   def find_unread_similar
     return nil unless self.context
     Notification.unread.by_type(self.type).by_receiver(self.receiver).by_context(self.context).first
@@ -98,5 +102,9 @@ class Notification
 
   def self.mark_as_read_by_context(receiver, context)
     receiver.notifications.unread.by_context(context).set read: true
+  end
+
+  def self.batch_mark_as_read(ids)
+    Notification.where(:id.in => ids).set read: true
   end
 end

@@ -61,9 +61,9 @@ header#header role="banner"
             = link_to messages_path, class: "nav_user_action nav_messages", title: "#{unread_messages_text}未读消息" do
               i.fa.fa-inbox
               span.badge= unread_messages_count
-            = link_to notifications_path, class: "nav_user_action nav_notifications", title: "#{unread_notifications_text}未读消息" do
+            = link_to notifications_path, class: "nav_user_action nav_notifications", title: "#{unread_notifications_text(@header_notifications.count)}未读消息" do
               i.fa.fa-inbox
-              span.badge= unread_notifications_count
+              span.badge= @header_notifications.count
             #notifications_box.dropdown_box
               header.dropdown_box_header
                 h5
