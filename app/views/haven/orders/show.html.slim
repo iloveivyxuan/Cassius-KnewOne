@@ -62,6 +62,10 @@ section.orders_wrapper
       li
         strong.field 原始价格：
         span = @order.calculate_price
+      - if @order.trade_price
+        li
+          strong.field 实收金额：
+          span = @order.trade_price
     .info
       .total_price
         span.tip 总计
