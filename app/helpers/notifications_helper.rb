@@ -30,12 +30,14 @@ module NotificationsHelper
     raw content
   end
 
-  def unread_notifications_count(count)
-    count > 0 ? count : ''
+  def unread_notifications_count
+    @_unread_count ||= current_user.notifications.unread.count
+    @_unread_count > 0 ? count : ''
   end
 
-  def unread_notifications_text(count)
-    count == 0 ? '没有' : "#{count} 条"
+  def unread_notifications_text
+    @_unread_count ||= current_user.notifications.unread.count
+    @_unread_count > 0 ? "#{count} 条" : '没有'
   end
 
   def render_comment_notification(notification, target = '_self')

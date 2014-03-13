@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 class NotificationsController < ApplicationController
   prepend_before_action :authenticate_user!
-  after_action :mark_no_context_read, only: [:index]
-  after_action :cleanup_orphan, only: [:index]
+  after_action :mark_read, only: [:index]
 
   def index
     @notifications = current_user.notifications
@@ -18,9 +17,10 @@ class NotificationsController < ApplicationController
     @notifications = @notifications.page params[:page]
     @unread_count = current_user.notifications.unread.count
 
-    respond_to do |format|
-      format.html
-      format.json
+    if request.xhr?
+      render 'notifications/index_xhr', layout: false
+    else
+      render 'notifications/index'
     end
   end
 
@@ -35,11 +35,7 @@ class NotificationsController < ApplicationController
 
   private
 
-  def mark_no_context_read
-    Notification.mark_as_read_by_context(current_user, nil)
-  end
-
-  def cleanup_orphan
-    Notification.batch_mark_as_read @notifications.select(&:orphan?).map(&:id)
+  def mark_read
+    @notifications.set read: true
   end
 end

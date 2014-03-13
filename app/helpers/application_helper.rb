@@ -114,8 +114,4 @@ module ApplicationHelper
   def alpha_pay?
     cookies[:alpha] == "pay" || params[:alpha] == "pay"
   end
-
-  def current_user_notifications
-    @_header_notifications ||= current_user.notifications.unread.reject { |n| n.orphan? }
-  end
 end

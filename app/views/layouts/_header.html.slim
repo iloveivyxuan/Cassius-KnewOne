@@ -66,9 +66,9 @@ header#header role="banner"
               i.fa.fa-envelope-o
               span.badge.badge_danger.private_messages_count= badge upmc
             #notification_box.nav_user_action.dropdown
-              = link_to notifications_path, title: "#{unread_notifications_text(current_user_notifications.count)}未读消息" do
+              = link_to notifications_path, title: "#{unread_notifications_text}未读消息" do
                 i.fa.fa-inbox
-                span.badge.badge_primary= unread_notifications_count(current_user_notifications.count)
+                span.badge.badge_primary= unread_notifications_count
               .dropdown_box
                 header
                   h5
@@ -77,8 +77,6 @@ header#header role="banner"
                   = link_to_with_icon "全部已读", "fa fa-check-circle", "#", id: "notification_markall", data: {url: mark_notifications_path}
                 .dropdown_box_body
                   ul.dropdown_box_content
-                    - current_user_notifications.each do |n|
-                      li.dropdown_box_item = send :"render_#{n.type}_notification", n
                 footer
                   = link_to_with_icon "设置", "fa fa-cog", edit_notification_settings_path, class: "pull-left"
                   = link_to_with_icon "更多", "fa fa-ellipsis-h", notifications_path, class: "pull-right"
