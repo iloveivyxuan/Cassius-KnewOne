@@ -116,6 +116,15 @@ body {
         margin-left: 5px;
         margin-right: 5px;
 
+        &.open > a {
+          &,
+          &:hover,
+          &:focus {
+            background-color: transparent;
+            color: $text-color;
+          }
+        }
+
         @media screen and (min-width: $screen-sm-min) {
           float: right;
         }
