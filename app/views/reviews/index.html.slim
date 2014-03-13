@@ -1,6 +1,12 @@
 - provide :nav, :reviews
 
 - if @reviews.present?
+  #reviews_sort
+    .btn-group.btn-group-sm
+       = link_to_with_icon "最有用", "fa fa-thumbs-o-up", thing_reviews_path(@thing),
+       class: "#{params[:sort]=='created_at'?'':'active'} btn btn-default"
+       = link_to_with_icon "最新", "fa fa-clock-o", thing_reviews_path(@thing, sort: 'created_at'),
+       class: "#{params[:sort]=='created_at'?'active':''} btn btn-default"
   ul#reviews= render @reviews
   = paginate @reviews
 - else
