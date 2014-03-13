@@ -1,0 +1,56 @@
+- page_title @user.name
+- content_for :content do
+  .user_content
+    .user_content_inner
+      ul.nav.nav-pills
+        = li (action_name == 'show'), class: 'home_icon' do
+          = link_to_with_icon '', 'fa fa-home', user_path(@user)
+        = li (action_name == 'fancies') do
+          = link_to_with_icon "喜欢 #{@user.fancies_count}", 'fa fa-home', fancies_user_path(@user)
+        = li (action_name == 'owns'), class: 'home_icon' do
+          = link_to_with_icon "拥有 #{@user.owns_count}", 'fa fa-home', owns_user_path(@user)
+        = li (action_name == 'reviews'), class: 'home_icon' do
+          = link_to_with_icon "评测 #{@user.reviews_count}", 'fa fa-home', reviews_user_path(@user)
+        = li (action_name == 'topics'), class: 'home_icon' do
+          = link_to_with_icon '帖子', 'fa fa-home', topics_user_path(@user)
+        = li (action_name == 'things'), class: 'home_icon' do
+          = link_to_with_icon "分享 #{@user.things_count}", 'fa fa-home', things_user_path(@user)
+        = li (action_name == 'groups'), class: 'home_icon' do
+          = link_to_with_icon '小组', 'fa fa-home', groups_user_path(@user)
+        = li (action_name == 'timeline'), class: 'home_icon' do
+          = link_to_with_icon '动态', 'fa fa-home', timeline_user_path(@user)
+
+      - if @user.description.present?
+        blockquote.description = @user.description
+
+      = yield
+
+  aside.user_info
+    dl.vcard itemscope="" itemtype="http://data-vocabulary.org/Person"
+      dd.avatar itemprop="photo"= user_avatar(@user, :normal)
+      dt.name itemprop="name"
+        h2
+          = @user.name
+          = user_location(@user)
+      dd.clearfix itemprop="rating" itemscope="" itemtype="http://data-vocabulary.org/Rating"
+        .level Lv.#{@user.rank}
+        .progress title="#{@user.progress}%"
+          .progress-bar style="width: #{@user.progress}%;"
+      dd.url itemprop="url"
+        = user_links(@user)
+      dd
+        = button_tag class: "btn btn-default btn-xs",
+          data: {toggle: "modal", target: "#new_private_message"} do
+            i.fa.fa-envelope-o
+            | 私信
+        span.private_message_success.hide 发送成功
+
+      = render 'users/admin_note'
+
+  = render 'shared/private_message', from: "user_show"
+
+  - content_for :script do
+    javascript:
+      Making.UserFuzzy('#dialog_user_name', '#dialog_user_id');
+
+= render template: 'layouts/application'

@@ -87,6 +87,13 @@ module ApplicationHelper
     content_tag(:li, options) {yield}
   end
 
+  def li(set_active = false, options = {}, &block)
+    if set_active
+      options[:class] = "#{options[:class]} active"
+    end
+    content_tag :li, options, &block
+  end
+
   def time_ago_tag(time)
     time_tag time, time_ago(time)
   end
