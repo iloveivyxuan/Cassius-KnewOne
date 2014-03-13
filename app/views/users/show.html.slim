@@ -1,59 +1,17 @@
-- page_title @user.name
+section.owns
+  h2
+    | 拥有
+    .pull-right = link_to '>', owns_user_path(@user)
+  ul.grids= render @owns, size: :normal, img_lazy: true
 
-section.user_info
-  dl.vcard itemscope="" itemtype="http://data-vocabulary.org/Person"
-    dd.avatar itemprop="photo"= user_avatar(@user, :small)
-    dt.name itemprop="name"
-      h2
-        = @user.name
-        = button_tag class: "btn btn-default btn-xs",
-        data: {toggle: "modal", target: "#new_private_message"} do
-          i.fa.fa-envelope-o
-          | 私信
-        span.private_message_success.hide 发送成功
-    dd.clearfix itemprop="rating" itemscope="" itemtype="http://data-vocabulary.org/Rating"
-      .level Lv.#{@user.rank}
-      .progress title="#{@user.progress}%"
-        .progress-bar style="width: #{@user.progress}%;"
-    dd.url itemprop="url"
-      = user_links(@user)
-    dd itemprop="address"
-      address = user_location(@user)
-    dd
-      blockquote= @user.description
-    = render 'users/admin_note'
+section.owns
+  h2
+    | 喜欢
+    .pull-right = link_to '>', fancies_user_path(@user)
+  ul.grids= render @fancies, size: :normal, img_lazy: false
 
-section.user_content
-  .user_content_inner
-    ul.nav.nav-pills
-      li.active
-        = link_to "#fancies", data: {toggle: "tab"} do
-          | 喜欢
-          span.badge #{@fancies.count}
-      li
-        = link_to "#owns", data: {toggle: "tab"} do
-          | 拥有
-          span.badge #{@owns.count}
-      li
-        = link_to "#reviews", data: {toggle: "tab"} do
-          | 评测
-          span.badge #{@reviews.count}
-      li
-        = link_to "#things", data: {toggle: "tab"} do
-          | 分享
-          span.badge #{@things.count}
-    .tab-content
-      #fancies.tab-pane.active
-        ul.grids= render @fancies, size: :normal, img_lazy: true
-      #owns.tab-pane
-        ul.grids= render @owns, size: :normal, img_lazy: false
-      #reviews.tab-pane
-        ul= render @reviews
-      #things.tab-pane
-        ul.grids= render @things, size: :normal, img_lazy: false
-
-= render 'shared/private_message', from: "user_show"
-
-- content_for :script do
-  javascript:
-    Making.UserFuzzy('#dialog_user_name', '#dialog_user_id');
+section.topics
+  h2
+    | 帖子
+    .pull-right = link_to '>', topics_user_path(@user)
+  /= render @topics

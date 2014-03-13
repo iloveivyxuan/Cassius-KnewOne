@@ -39,6 +39,16 @@ Making::Application.routes.draw do
       post 'share'
       get 'fuzzy'
     end
+
+    member do
+      get 'fancies'
+      get 'owns'
+      get 'reviews'
+      get 'topics'
+      get 'things'
+      get 'groups'
+      get 'timeline'
+    end
   end
 
   resources :cart_items, only: [:index, :create, :update, :destroy]

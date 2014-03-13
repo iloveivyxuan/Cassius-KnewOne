@@ -26,6 +26,8 @@ class User
 
   # Stats
   field :things_count, type: Integer, default: 0
+  field :fancies_count, type: Integer, default: 0
+  field :owns_count, type: Integer, default: 0
   field :reviews_count, type: Integer, default: 0
   field :orders_count, type: Integer, default: 0
   field :expenses_count, type: Integer, default: 0

@@ -1,12 +1,40 @@
 # -*- coding: utf-8 -*-
 class UsersController < ApplicationController
-  load_and_authorize_resource only: [:show, :index]
+  load_and_authorize_resource except: [:fuzzy]
 
   def show
-    @things = @user.things
     @reviews = @user.reviews.where(:thing_id.ne => nil)
+    @fancies = @user.fancies.limit(3)
+    @owns = @user.owns.limit(3)
+    @topics = @user.reviews.where(:thing_id.ne => nil).limit(10)
+  end
+
+  def fancies
     @fancies = @user.fancies
+  end
+
+  def owns
     @owns = @user.owns
+  end
+
+  def reviews
+    @reviews = @user.reviews.where(:thing_id.ne => nil)
+  end
+
+  def topics
+    @topics = @user.reviews.where(:thing_id.ne => nil)
+  end
+
+  def things
+    @things = @user.things
+  end
+
+  def groups
+
+  end
+
+  def timeline
+    # TODO: NYI
   end
 
   def share
