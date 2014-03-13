@@ -1,5 +1,13 @@
 #notification_box {
 
+  #notification_trigger {
+    display: inline-block;
+
+    &:hover {
+      color: $text-color;
+    }
+  }
+
   header {
     @include clearfix;
 
@@ -18,10 +26,10 @@
   }
 
   .dropdown_box {
-    right: -40px;
+    right: -44px;
 
     &:before {
-      right: 72px;
+      right: 50px;
     }
 
     .dropdown_box_item {
