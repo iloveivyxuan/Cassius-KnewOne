@@ -1,14 +1,22 @@
 window.Making = do (exports = window.Making || {}) ->
   if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ')')
+    _$window = $(window)
     _$element = $('#notification_box')
     _$count   = $('#notification_count')
     _$trigger = $('#notification_trigger')
     _$box     = _$element.find('.dropdown_box')
-    _$content = _$element.find('.notifications')
-    _$spin    = _$element.find('.spinner')
+    _$body    = _$box.find('.dropdown_box_body')
+    _$content = _$body.find('.notifications')
+    _$spin    = _$body.find('.spinner')
     _url      = _$trigger.data('url')
+    _height   = _$window.height() * 0.4
 
     _$trigger.attr('data-toggle', 'dropdown')
+    _$body.height(_height)
+
+    _$window.on 'resize', ->
+      _height = _$window.height() * 0.4
+      _$body.height(_height)
 
     _$element
       .on 'click', '#notification_trigger', ->
