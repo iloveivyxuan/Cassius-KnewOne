@@ -1,3 +1,47 @@
+// Notifications.
+//
+//
+
+.notifications {
+
+  > li {
+    @include clearfix;
+
+    border-bottom: 1px dashed #eee;
+    padding: 10px;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &.unread {
+      background-color: #eff7fd;
+    }
+
+    &.read {
+      background-color: transparent;
+      color: $text-muted;
+
+      a {
+        color: $text-muted;
+
+        &:hover {
+          color: $link-hover-color;
+        }
+      }
+    }
+
+    a {
+      padding: 0 1em;
+    }
+
+    time {
+      float: right;
+      padding-left: 2em;
+    }
+  }
+}
+
 #notification_box {
 
   #notification_trigger {
@@ -32,15 +76,17 @@
       right: 50px;
     }
 
-    .dropdown_box_item {
-      background-color: #eff7fd;
+    .notifications {
 
-      &.readed {
-        background-color: transparent;
-        color: $text-muted;
+      > li {
 
         a {
-          color: $text-muted;
+          padding: 0 5px;
+        }
+
+        time {
+          float: none;
+          padding-left: 1em;
         }
       }
     }

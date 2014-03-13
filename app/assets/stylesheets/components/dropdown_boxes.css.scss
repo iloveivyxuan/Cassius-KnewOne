@@ -38,18 +38,6 @@
     color: $text-color;
     height: 280px;
     overflow: scroll;
-
-    .dropdown_box_content {
-
-      > li {
-        border-bottom: 1px dashed #eee;
-        padding: 10px;
-
-        &:last-child {
-          border-bottom: 0;
-        }
-      }
-    }
   }
 
   > footer {

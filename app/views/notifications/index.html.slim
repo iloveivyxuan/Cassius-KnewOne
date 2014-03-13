@@ -7,5 +7,5 @@ header.page-header
   - if @unread_count > 0
     = link_to '标明全部为已读', mark_notifications_path, id: "markall", class: "btn btn-primary btn-sm", method: :post
 
-ul#notifications= render @notifications
+ul.notifications= render @notifications
 = paginate @notifications
