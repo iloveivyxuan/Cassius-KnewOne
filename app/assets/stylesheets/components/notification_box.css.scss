@@ -8,23 +8,33 @@
     }
 
     > a {
-      color: $text-color;
-      float: right;
-    }
-  }
-
-  .dropdown_box_item {
-
-    &.readed {
       color: $text-muted;
+      float: right;
 
-      a {
-        color: $text-muted;
+      &:hover {
+        color: $text-color;
       }
     }
   }
 
   .dropdown_box {
     right: -40px;
+
+    &:before {
+      right: 72px;
+    }
+
+    .dropdown_box_item {
+      background-color: #eff7fd;
+
+      &.readed {
+        background-color: transparent;
+        color: $text-muted;
+
+        a {
+          color: $text-muted;
+        }
+      }
+    }
   }
 }

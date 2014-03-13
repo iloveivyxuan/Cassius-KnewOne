@@ -9,15 +9,18 @@
   display: none;
   position: absolute;
   right: 0;
-  top: calc(100% + 12px);
-  width: 280px;
+  top: calc(100% + 10px);
+  width: 300px;
   z-index: $zindex-dropdown;
 
   &:before {
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #fff;
     content: '';
+    display: inline-block;
     position: absolute;
-    right: 5px;
-    top: -5px;
+    top: -7px;
   }
 
   > header {
@@ -55,7 +58,11 @@
     padding: 5px 10px;
 
     a {
-      color: $text-color;
+      color: $text-muted;
+
+      &:hover {
+        color: $text-color;
+      }
     }
   }
 }
