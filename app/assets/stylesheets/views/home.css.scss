@@ -550,7 +550,7 @@ html.signed_in_homepage {
       }
 
       &:not(:last-child) {
-        border-bottom: 1px dashed $gray-light;
+        border-bottom: 1px dashed #eee;
       }
     }
   }
