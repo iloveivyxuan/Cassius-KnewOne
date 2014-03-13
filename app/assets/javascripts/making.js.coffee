@@ -87,7 +87,6 @@ window.Making =
       Making.AjaxComplete()
       Making.ToggleFixedNavbar()
       Making.InitUIDropdownBox()
-      Making.InitUINotificationBox()
 
   ToggleFixedNavbar: ->
     if Modernizr.mq('(max-width: ' + Making.Breakpoints.screenMDMax + ')') and
@@ -132,26 +131,6 @@ window.Making =
         .on 'mouseleave', ->
           if $body.hasClass('dropdown_box_open')
             $body.removeClass('dropdown_box_open')
-
-  InitUINotificationBox: ->
-    if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ')')
-      $element = $('#notification_box')
-
-      $element.children('a').attr('data-toggle', 'dropdown')
-      $element
-        .on 'click', '.dropdown_box_item a', ->
-          $(@).parents('.dropdown_box_item').addClass('readed')
-        .on 'click', '#notification_markall', ->
-          url = $(@).data('url')
-
-          $.ajax
-            url: url
-            type: 'POST'
-            dataType: 'json'
-          .done (data, textStatus, jqXHR) ->
-            if jqXHR.status == 204
-              $element.find('.dropdown_box_content').empty()
-              $element.children('a').children('.badge').remove()
 
   SetupOlark: (element) ->
     $element    = $(element)

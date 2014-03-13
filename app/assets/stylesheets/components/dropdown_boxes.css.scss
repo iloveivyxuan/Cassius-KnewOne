@@ -38,6 +38,19 @@
     color: $text-color;
     height: 280px;
     overflow: scroll;
+    position: relative;
+
+    > .spinner {
+      bottom: 0;
+      display: none;
+      height: 28px;
+      left: 0;
+      margin: auto;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 25px;
+    }
   }
 
   > footer {
