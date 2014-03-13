@@ -15,13 +15,13 @@ module NotificationsHelper
     content = ""
     case post.class
       when Thing then
-        content += "产品 "
+        content += "产品"
         content += link_to post.title, thing_path(post), target: target
       when Review then
-        content += "评测 "
+        content += "评测"
         content += link_to post.title, thing_review_path(post.thing, post), target: target
       when Topic then
-        content += "帖子 "
+        content += "帖子"
         content += link_to post.title, group_topic_path(post.group, post), target: target
       else
         content += '失效的资源'
@@ -44,11 +44,11 @@ module NotificationsHelper
     html = ''
     html += senders(notification)
     if notification.context.nil?
-      html += ' 回复了已经被删除的资源'
+      html += '回复了已经被删除的资源'
     elsif notification.context.author == current_user
-      html += " 回复了我发布的#{notification_post(notification.context, target)}"
+      html += "回复了我发布的#{notification_post(notification.context, target)}"
     else
-      html += " 在对#{notification_post(notification.context, target)} 的回复中提到了我"
+      html += "在对#{notification_post(notification.context, target)}的回复中提到了我"
     end
     html.html_safe
   end
@@ -59,9 +59,9 @@ module NotificationsHelper
 
     html += senders(notification)
     if notification.context.author == current_user
-      html += ' 为我分享的产品发表了评测 '
+      html += '为我分享的产品发表了评测'
     else
-      html += ' 为我喜欢的产品发表了评测 '
+      html += '为我喜欢的产品发表了评测'
     end
     html += link_to notification.context.title, thing_review_path(notification.context.thing, notification.context), target: target
 
@@ -72,7 +72,7 @@ module NotificationsHelper
     html = ''
 
     html += link_to notification.context.title, notification.context, target: target
-    html += ' 有现货'
+    html += '有现货'
 
     html.html_safe
   end
