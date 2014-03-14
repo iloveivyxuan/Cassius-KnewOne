@@ -17,6 +17,7 @@
       <%= f.input :avatar_cache, as: :hidden %>
     </div>
   </div>
+  <%= f.input :gender, as: :radio_buttons, collection: %w(男 女) %>
   <%= f.input :location %>
   <%= f.input :site %>
   <%= f.input :description, as: :text, input_html: {rows: 5} %>
