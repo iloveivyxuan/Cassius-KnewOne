@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class UsersController < ApplicationController
   load_and_authorize_resource except: [:fuzzy]
+  after_action :store_location, except: [:follow, :fuzzy]
 
   def show
     @reviews = @user.reviews.where(:thing_id.ne => nil)
@@ -43,6 +44,15 @@ class UsersController < ApplicationController
     end
 
     render nothing: true
+  end
+
+  def follow
+    current_user.hosts<< @user
+
+    respond_to do |format|
+      format.html { redirect_stored_or user_path(@user) }
+      format.json { head :no_content }
+    end
   end
 
   def fuzzy

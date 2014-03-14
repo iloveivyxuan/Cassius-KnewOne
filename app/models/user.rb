@@ -185,6 +185,14 @@ class User
   has_and_belongs_to_many :fancies, class_name: "Thing", inverse_of: :fanciers
   has_and_belongs_to_many :owns, class_name: "Thing", inverse_of: :owners
 
+  ## Followed
+  has_and_belongs_to_many :hosts, class_name: 'User', inverse_of: :followers
+  has_and_belongs_to_many :followers, class_name: 'User', inverse_of: :hosts
+
+  def followed?(user)
+    self.hosts.include? user
+  end
+
   ## Lotteries
   has_many :lotteries, inverse_of: :winners
 
