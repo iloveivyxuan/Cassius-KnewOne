@@ -21,14 +21,6 @@
     &.read {
       background-color: transparent;
       color: $text-muted;
-
-      a {
-        color: $text-muted;
-
-        &:hover {
-          color: $link-hover-color;
-        }
-      }
     }
 
     a {
