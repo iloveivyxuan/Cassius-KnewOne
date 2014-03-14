@@ -13,6 +13,7 @@ class Ability
       signed user
       editor
       can :manage, Order
+      can :send_stock_notification, Thing
     elsif user.role? :editor
       signed user
       editor
