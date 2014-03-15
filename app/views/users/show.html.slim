@@ -29,4 +29,4 @@ section.panel.panel-default.hidden-xs
       | 评测
     = link_to_with_icon '', 'fa fa-chevron-right fa_alone', topics_user_path(@user), class: 'more', title: '更多'
   .panel-body
-    /= render @topics
+    = render partial: 'users/review', collection: @reviews

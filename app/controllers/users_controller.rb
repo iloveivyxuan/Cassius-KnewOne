@@ -3,10 +3,9 @@ class UsersController < ApplicationController
   load_and_authorize_resource except: [:fuzzy]
 
   def show
-    @reviews = @user.reviews.where(:thing_id.ne => nil)
+    @reviews = @user.reviews.where(:thing_id.ne => nil).limit(4)
     @fancies = @user.fancies.limit(3)
     @owns = @user.owns.limit(3)
-    @topics = @user.reviews.where(:thing_id.ne => nil).limit(10)
   end
 
   def fancies
