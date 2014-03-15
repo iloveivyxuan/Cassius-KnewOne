@@ -45,6 +45,15 @@ class UsersController < ApplicationController
     render nothing: true
   end
 
+  def follow
+    current_user.hosts<< @user
+
+    respond_to do |format|
+      format.html { redirect_stored_or user_path(@user) }
+      format.json { head :no_content }
+    end
+  end
+
   def fuzzy
     @users = User.find_by_fuzzy_name(params[:query])
     respond_to do |format|

@@ -22,6 +22,7 @@
 //= require sisyphus
 //= require_tree ../templates
 //= require making
+//= require notificationbox
 //= require orders
 //= require cart_items
 //= require typeahead.bundle

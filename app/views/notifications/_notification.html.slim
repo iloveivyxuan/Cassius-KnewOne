@@ -1,5 +1,4 @@
 - unless notification.orphan?
   li class=(notification.read? ? "read" : "unread")
-    p
-      = send :"render_#{notification.type}_notification", notification
-      = time_ago_tag notification.created_at
+    = send :"render_#{notification.type}_notification", notification
+    = time_ago_tag notification.created_at

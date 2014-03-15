@@ -1,17 +1,32 @@
-section.owns
-  h2
-    | 拥有
-    .pull-right = link_to '>', owns_user_path(@user)
-  ul.grids= render @owns, size: :normal, img_lazy: true
+- if @user.description.present?
+  blockquote.description.hidden-xs
+    i.fa.fa-quote-left
+    = @user.description
+    i.fa.fa-quote-right
 
-section.owns
-  h2
-    | 喜欢
-    .pull-right = link_to '>', fancies_user_path(@user)
-  ul.grids= render @fancies, size: :normal, img_lazy: false
+section.panel.panel-default.hidden-xs
+  header.panel-heading
+    h3
+      i.fa.fa-check-square-o
+      | 拥有
+    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', owns_user_path(@user), class: 'more', title: '更多'
+  .panel-body
+    ul.things= render @owns, size: :normal, img_lazy: true
 
-section.topics
-  h2
-    | 帖子
-    .pull-right = link_to '>', topics_user_path(@user)
-  /= render @topics
+section.panel.panel-default.hidden-xs
+  header.panel-heading
+    h3
+      i.fa.fa-heart
+      | 喜欢
+    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', fancies_user_path(@user), class: 'more', title: '更多'
+  .panel-body
+    ul.things= render @fancies, size: :normal, img_lazy: false
+
+section.panel.panel-default.hidden-xs
+  header.panel-heading
+    h3
+      i.fa.fa-book
+      | 评测
+    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', topics_user_path(@user), class: 'more', title: '更多'
+  .panel-body
+    /= render @topics

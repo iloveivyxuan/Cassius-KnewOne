@@ -7,6 +7,9 @@ class ReviewsController < ApplicationController
   after_action :allow_iframe_load, only: [:show]
 
   def index
+    if params[:sort] == "created_at"
+      @reviews = @thing.reviews.unscoped.desc(:created_at)
+    end
     @reviews = @reviews.page params[:page]
   end
 

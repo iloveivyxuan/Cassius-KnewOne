@@ -63,25 +63,26 @@ header#header role="banner"
                 li= link_to_with_icon "安全登出", "fa fa-sign-out fa-fw", destroy_user_session_path, method: :delete
             - upmc = current_user.unread_private_messages_count
             = link_to dialogs_path, class: "nav_user_action", title: "#{upmc}封未读私信" do
-              i.fa.fa-envelope-o
+              i.fa.fa-envelope-o.fa_alone
               span.badge.badge_danger.private_messages_count= badge upmc
             #notification_box.nav_user_action.dropdown
-              = link_to notifications_path, title: "#{unread_notifications_text}未读消息" do
-                i.fa.fa-inbox
-                span.badge.badge_primary= unread_notifications_count
+              = link_to notifications_path, id: 'notification_trigger', data: {url: notifications_path}, title: "#{unread_notifications_text}未读消息" do
+                i.fa.fa-inbox.fa_alone
+                span#notification_count.badge.badge_primary= unread_notifications_count
               .dropdown_box
                 header
                   h5
                     i.fa.fa-inbox
                     | 消息
-                  = link_to_with_icon "全部已读", "fa fa-check-circle", "#", id: "notification_markall", data: {url: mark_notifications_path}
                 .dropdown_box_body
-                  ul.dropdown_box_content
+                  ul.notifications
+                  .spinner
+                    i.fa.fa-spinner.fa-spin.fa-2x
                 footer
                   = link_to_with_icon "设置", "fa fa-cog", edit_notification_settings_path, class: "pull-left"
                   = link_to_with_icon "更多", "fa fa-ellipsis-h", notifications_path, class: "pull-right"
             = link_to cart_items_path, class: "nav_user_action nav_cart", title: "购物车" do
-              i.fa.fa-shopping-cart
+              i.fa.fa-shopping-cart.fa_alone
               span.badge.badge_success.cart_items_count= cart_items_count
         - else
           .nav_user.is_not_login

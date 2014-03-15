@@ -7,7 +7,7 @@ module UsersHelper
   def user_location(user)
     location = user.location
     return nil if location.blank?
-    fa_icon("map-marker") + location
+    location
   end
 
   def provider_sync
@@ -25,22 +25,22 @@ module UsersHelper
 
       case k
         when 'Website'
-          html<< link_to_with_icon(nil, 'fa fa-globe fa-lg', v,
+          html<< link_to_with_icon(nil, 'fa fa-globe', v,
                                    title: "个人网站", target: "_blank", class: 'website', rel: '_nofollow')
         when 'Twitter'
-          html<< link_to_with_icon(nil, 'fa fa-twitter fa-lg', v,
-                                   title: "Twitter 主页", target: "_blank", class: 'provider', rel: '_nofollow')
+          html<< link_to_with_icon(nil, 'fa fa-twitter', v,
+                                   title: "Twitter", target: "_blank", class: 'provider', rel: '_nofollow')
         when 'Weibo'
-          html<< link_to_with_icon(nil, 'fa fa-weibo fa-lg', v,
-                                   title: "微博页面", target: "_blank", class: 'provider', rel: '_nofollow')
+          html<< link_to_with_icon(nil, 'fa fa-weibo', v,
+                                   title: "新浪微博", target: "_blank", class: 'provider', rel: '_nofollow')
         when 'Blog'
-          html<< link_to_with_icon(nil, 'fa fa-globe fa-lg', v,
-                                   title: "个人博客", target: "_blank", class: 'website', rel: '_nofollow')
+          html<< link_to_with_icon(nil, 'fa fa-rss', v,
+                                   title: "博客", target: "_blank", class: 'website', rel: '_nofollow')
       end
     end
 
     if user_signed_in? && current_user.staff? && user.email.present?
-      html<< link_to_with_icon(nil, 'fa fa-envelope fa-lg', "mailto:#{user.email}", title: '邮箱', class: 'provider')
+      html<< link_to_with_icon(nil, 'fa fa-envelope', "mailto:#{user.email}", title: '邮箱', class: 'provider')
     end
 
     html.join.html_safe

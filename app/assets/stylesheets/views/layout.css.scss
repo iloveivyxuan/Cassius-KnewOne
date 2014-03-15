@@ -7,6 +7,9 @@ body {
 }
 
 .navbar {
+  @include background-image(linear-gradient(top, #fbfbfb, #e7ebee));
+  border-bottom-color: #d3d9de;
+  box-shadow: 0 1px 2px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.2);
 
   .navbar-brand {
     position: relative;
@@ -41,6 +44,10 @@ body {
         > a {
           padding-left: 10px;
           padding-right: 10px;
+        }
+
+        &.open > a {
+          background-color: #e8ebf0;
         }
       }
     }
@@ -77,16 +84,28 @@ body {
         @include search-input;
 
         input[type="search"] {
+          background-color: #fcfcfc;
           font-size: 12px;
           height: 26px;
           line-height: 14px;
           padding: 5px 10px 5px 30px;
           width: 100%;
 
+          &:focus {
+            background-color: #fff;
+          }
+
           + .fa {
             top: 6px;
           }
         }
+      }
+    }
+
+    .dropdown-menu > li > a {
+      &:hover,
+      &:focus {
+        background-color: #f4f5f8;
       }
     }
   }
@@ -112,24 +131,33 @@ body {
 
       .nav_user_action {
         @include navbar-vertical-align(20px);
+
         float: left;
         margin-left: 5px;
         margin-right: 5px;
+        padding-right: 8px;
+        position: relative;
+
+        &.open > a {
+          &,
+          &:hover,
+          &:focus {
+            background-color: transparent;
+            color: $text-color;
+          }
+        }
 
         @media screen and (min-width: $screen-sm-min) {
           float: right;
         }
 
-        .fa {
-          &:hover {
-            color: $text-color;
-          }
-        }
-
         .badge {
           color: #fff;
           font-family: $font-family-sans-serif;
+          left: 8px;
           padding: 1px 6px;
+          position: absolute;
+          top: -5px;
         }
       }
 

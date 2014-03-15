@@ -23,6 +23,7 @@ zh-CN:
         email: '邮箱'
         password: '密码'
         name: '昵称'
+        gender: '性别'
       post:
         title: '标题'
         author: '作者'

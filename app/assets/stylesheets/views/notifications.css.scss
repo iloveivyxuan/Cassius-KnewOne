@@ -15,27 +15,4 @@ html.notifications_index {
       margin-left: 1em;
     }
   }
-
-  #markall {
-    float: right;
-    margin-top: 3px;
-  }
 }
-
-#notifications {
-
-  > li {
-    border-bottom: 1px dashed #eee;
-    &:last-child {border: none;}
-    padding: 1em;
-
-    &.unread {background: lighten($blue, 53%);}
-
-    p {
-      margin: 0;
-      a {margin: 0 1em;}
-      time {margin: 0 1em;}
-    }
-  }
-}
-

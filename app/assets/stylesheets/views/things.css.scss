@@ -34,6 +34,11 @@ html.investors_admin {
 
       > *:last-child {border: none;}
 
+      #reviews_sort {
+        border: none;
+        margin-bottom: 0;
+      }
+
       .edit_post {padding-bottom: 0;}
     }
 
@@ -675,3 +680,4 @@ html.investors_admin {
   }
   ul {margin: 1em 0;}
 }
+

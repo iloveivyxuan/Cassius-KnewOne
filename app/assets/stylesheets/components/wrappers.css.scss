@@ -5,7 +5,11 @@
 //
 
 #wrapper {
-  margin: 0 $wrapper_margin;
+  margin: 0 10px;
+
+  @media screen and (min-width: $screen-sm-min) {
+    margin: 0 $wrapper_margin;
+  }
 
   > nav {
     margin-bottom: 1em;
@@ -21,6 +25,24 @@
 
     @media screen and (min-width: $screen-md-min) {
       margin: 0 calc(#{$wrapper_margin} - 15px);
+    }
+
+  } @else if $layout == what {
+    @include make-row;
+    background-color: #fff;
+    border-radius: 8px;
+    // calc() isn't common support on mobile.
+    margin: 0 $wrapper_margin;
+    padding: 1em 1.5em;
+
+    @media screen and (min-width: $screen-md-min) {
+      margin: 0 calc(#{$wrapper_margin} - 15px);
+    }
+
+    @media screen and (min-width: $screen-lg-min + 100) {
+      margin-left: auto;
+      margin-right: auto;
+      width: $screen-lg-min;
     }
 
   } @else if $layout == simple {

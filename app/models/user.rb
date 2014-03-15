@@ -6,6 +6,7 @@ class User
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, :trackable, :confirmable
 
   field :name, type: String, :default => ''
+  field :gender, type: String
   field :site, type: String, :default => ''
   field :description, type: String, :default => ''
   field :location, type: String, :default => ''
@@ -14,6 +15,7 @@ class User
   field :status, type: Symbol, default: :normal
   STATUS = {blocked: '锁定', watching: '特别观照(贬)', normal: '正常'}
   validates :status, inclusion: {in: STATUS.keys, allow_blank: false}
+  validates :gender, inclusion: {in: %w(男 女), allow_blank: true}
   STATUS.keys.each do |k|
     class_eval <<-EVAL
       def #{k}?
@@ -184,6 +186,14 @@ class User
   ## Things
   has_and_belongs_to_many :fancies, class_name: "Thing", inverse_of: :fanciers
   has_and_belongs_to_many :owns, class_name: "Thing", inverse_of: :owners
+
+  ## Followed
+  has_and_belongs_to_many :hosts, class_name: 'User', inverse_of: :followers
+  has_and_belongs_to_many :followers, class_name: 'User', inverse_of: :hosts
+
+  def followed?(user)
+    self.hosts.include? user
+  end
 
   ## Lotteries
   has_many :lotteries, inverse_of: :winners

@@ -11,103 +11,370 @@ html.users_timeline {
   // ---------------------------------------------------------------------------
 
   #wrapper {
-    @include wrapper(grid);
+    @include wrapper(what);
+    padding-bottom: 20px;
+    padding-top: 20px;
+
+    @media screen and (min-width: $screen-sm-min) {
+      padding-bottom: 40px;
+      padding-top: 40px;
+    }
 
     .user_info {
-      @include make-md-column(4);
-      @include make-lg-column(3);
-      @include make-xl-column(2);
+      @include make-md-column(3, $gutter: 4em);
+      @include make-md-column-push(9);
 
-      .vcard {
-        background-color: #fff;
-        border-radius: 8px;
-        margin-bottom: 1em;
-        padding: 2em;
+      border-bottom: 1px solid #eee;
+      padding-left: 0;
+      padding-right: 0;
+
+      @media screen and (min-width: $screen-sm-min) {
+        border-bottom: 0;
+        padding-left: 2em;
+        padding-right: 2em;
       }
     }
 
     .user_content {
-      @include make-md-column(8);
-      @include make-lg-column(9);
-      @include make-xl-column(10);
+      @include make-md-column(9, $gutter: 4em);
+      @include make-md-column-pull(3);
 
-      .user_content_inner {
-        background-color: #fff;
-        border-radius: 8px;
-        margin-bottom: 1em;
-        padding: 2em;
+      padding-left: 0;
+      padding-right: 0;
+
+      @media screen and (min-width: $screen-sm-min) {
+        padding-left: 2em;
+        padding-right: 2em;
       }
 
-      .tab-pane {
-        padding-top: 1em;
+      @media screen and (min-width: $screen-md-min) {
+        border-right: $border-default;
+        min-height: 800px;
+      }
+    }
+  }
 
-        ul.grids {
-          @include make-row;
+  // Section
+  // ---------------------------------------------------------------------------
 
-          > li {
-            @include make-sm-column(6);
-            @include make-lg-column(4);
-            @include make-xl-column(3);
+  .user_content {
+
+    .description {
+      border-left: 0;
+      color: $text-muted;
+    }
+
+    .panel-default {
+      border-color: #eee;
+    }
+
+    .panel-heading {
+      @include clearfix;
+      border-color: #eee;
+
+      h3 {
+        float: left;
+        font-size: 16px;
+        margin: 0;
+      }
+
+      .more {
+        color: $text-muted;
+        display: block;
+        float: right;
+        font-size: 16px;
+        line-height: 24px;
+        text-align: center;
+        width: 24px;
+
+        &:hover {
+          color: $text-color;
+        }
+      }
+    }
+
+    ul.things {
+
+      > li {
+        margin-bottom: 0;
+
+        @media screen and (min-width: $screen-sm-min) {
+          width: percentage(4 / 12);
+        }
+      }
+    }
+  }
+
+  .nav-pills-list {
+
+    @media screen and (min-width: $screen-sm-min) {
+      border-bottom: $border-default;
+      margin-bottom: 30px;
+    }
+
+    > li {
+
+      &:first-child {
+        margin-left: 2px;
+
+        @media screen and (min-width: $screen-md-min) {
+          margin-left: 0;
+          width: .2%;
+        }
+
+        .fa {
+          margin: 0;
+        }
+      }
+
+      > a {
+        @include clearfix;
+        text-align: left;
+
+        @media screen and (min-width: $screen-sm-min) {
+          text-align: center;
+        }
+
+        > .badge {
+          float: right;
+
+          @media screen and (min-width: $screen-sm-min) {
+            float: none;
           }
         }
       }
     }
   }
-}
 
-// Section
-// -----------------------------------------------------------------------------
+  dl.vcard {
 
-dl.vcard {
-  margin-top: 0;
+    dt,
+    dd {
+      margin-bottom: 10px;
 
-  dt,
-  dd {
-    margin-bottom: 1em;
-  }
-
-  .avatar img {
-    height: 80px;
-    width: 80px;
-  }
-
-  .name h2 {
-    font-size: $font-size-h4;
-    button {margin-left: 2em;}
-    .private_message_success {
-      margin-left: 1em;
-      color: $green;
-      font-size: $font-size-small;
+      @media screen and (min-width: $screen-md-min) {
+        margin-bottom: 1.5em;
+      }
     }
-  }
 
-  .level {
-    color: $blue;
-    float: left;
-    font-family: "orbitron-bold";
-    margin-right: 1em;
-  }
+    dd {
+      @include clearfix;
 
-  .progress {
-    float: left;
-    margin-bottom: 0;
-    width: 70%;
+      > label {
+        float: left;
+        line-height: 32px;
+        margin-bottom: 0;
+        margin-right: 10px;
+        width: 1em;
+      }
 
-    .progress-bar {
-      @include transition(width 1s, opacity 0.22s ease-out);
+      .data {
+        line-height: 32px;
+        margin-bottom: 0;
+        overflow: hidden;
+      }
     }
-  }
 
-  .url {
-    .fa {
+    .avatar {
+
+      img {
+        border-radius: 6px;
+        height: 180px;
+        width: 180px;
+
+        @media screen and (max-width: $screen-sm-min) {
+          @include center-block;
+        }
+      }
+    }
+
+    .name {
+
+      h1 {
+        font-size: 18px;
+        margin: 0;
+        text-align: center;
+
+        @media screen and (min-width: $screen-sm-min) {
+          text-align: left;
+        }
+
+        .private_message_success {
+          margin-left: 1em;
+          color: $green;
+          font-size: $font-size-small;
+        }
+
+        small {
+          display: inline-block;
+        }
+      }
+    }
+
+    .level_num {
       color: $blue;
+      float: left;
+      font-family: "orbitron-bold";
       margin-right: 1em;
     }
-  }
 
-  address,
-  blockquote {
-    color: $text-muted;
+    .progress {
+      margin-bottom: 0;
+
+      @media screen and (min-width: $screen-xs-min) {
+
+        .progress-bar {
+          @include transition(width 1s, opacity 0.22s ease-out);
+        }
+      }
+
+      @media screen and (min-width: $screen-md-min) {
+        width: 70%;
+      }
+    }
+
+    .friendship {
+      color: $text-color;
+      text-align: center;
+
+      @media screen and (min-width: $screen-sm-min) {
+        text-align: left;
+      }
+
+      @media screen and (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+        display: inline-block;
+      }
+
+      > strong {
+        display: inline-block;
+        font-size: 18px;
+        font-weight: normal;
+        padding-right: 1em;
+
+        small {
+          color: $text-muted;
+          font-size: 14px;
+          padding-left: .5em;
+        }
+      }
+    }
+
+    .exchange {
+
+      @media screen and (min-width: $screen-md-min) {
+        border-bottom: $border-default;
+        margin-bottom: 2em;
+        padding-bottom: 2.5em;
+      }
+
+      .btn {
+        margin-right: 10px;
+
+        @media screen and (max-width: $screen-sm-min) {
+          display: block;
+          margin-bottom: 10px;
+          margin-right: 0;
+          padding-left: 0;
+          padding-right: 0;
+          width: 100%;
+        }
+
+        &.btn-primary {
+
+          @media screen and (min-width: $screen-sm-min) {
+            width: 100px;
+          }
+        }
+      }
+    }
+
+    .gender {
+      display: inline-block;
+      margin-right: 1em;
+    }
+
+    .location {
+      display: inline-block;
+    }
+
+    .url {
+
+      a {
+        background-color: #ededed;
+        border-radius: 100%;
+        color: $text-color;
+        display: inline-block;
+        height: 32px;
+        line-height: 32px;
+        margin-right: 10px;
+        text-align: center;
+        width: 32px;
+
+        &:hover {
+          @include rotate(-15deg);
+          background-color: $text-color;
+          color: #ededed;
+        }
+
+        .fa {
+          margin: 0;
+        }
+      }
+    }
+
+    .tag {
+
+      .label {
+        background-color: #ededed;
+        border-radius: 20px;
+        color: $text-color;
+        display: inline-block;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 14px;
+        margin: 0 10px 5px 0;
+        padding: 9px 1em;
+
+        &:hover {
+          background-color: $text-color;
+          color: #ededed;
+        }
+      }
+    }
+
+
+    @media screen and (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+
+      .avatar {
+        float: left;
+        margin-right: 20px;
+
+        img {
+          height: 110px;
+          width: 110px;
+        }
+      }
+
+      .name,
+      .level,
+      .friendship,
+      .exchange {
+        overflow: hidden;
+      }
+
+      .level {
+        display: inline-block;
+
+        .progress {
+          display: none;
+        }
+      }
+
+      .exchange {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+    }
   }
 }
 

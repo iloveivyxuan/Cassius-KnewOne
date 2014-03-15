@@ -1,51 +1,72 @@
 - page_title @user.name
 - content_for :content do
-  .user_content
-    .user_content_inner
-      ul.nav.nav-pills
-        = li (action_name == 'show'), class: 'home_icon' do
-          = link_to_with_icon '', 'fa fa-home', user_path(@user)
-        = li (action_name == 'fancies') do
-          = link_to_with_icon "喜欢 #{@user.fancies_count}", 'fa fa-home', fancies_user_path(@user)
-        = li (action_name == 'owns'), class: 'home_icon' do
-          = link_to_with_icon "拥有 #{@user.owns_count}", 'fa fa-home', owns_user_path(@user)
-        = li (action_name == 'reviews'), class: 'home_icon' do
-          = link_to_with_icon "评测 #{@user.reviews_count}", 'fa fa-home', reviews_user_path(@user)
-        = li (action_name == 'topics'), class: 'home_icon' do
-          = link_to_with_icon '帖子', 'fa fa-home', topics_user_path(@user)
-        = li (action_name == 'things'), class: 'home_icon' do
-          = link_to_with_icon "分享 #{@user.things_count}", 'fa fa-home', things_user_path(@user)
-        = li (action_name == 'groups'), class: 'home_icon' do
-          = link_to_with_icon '小组', 'fa fa-home', groups_user_path(@user)
-        = li (action_name == 'timeline'), class: 'home_icon' do
-          = link_to_with_icon '动态', 'fa fa-home', timeline_user_path(@user)
 
-      - if @user.description.present?
-        blockquote.description = @user.description
-
-      = yield
-
-  aside.user_info
+  .user_info
     dl.vcard itemscope="" itemtype="http://data-vocabulary.org/Person"
       dd.avatar itemprop="photo"= user_avatar(@user, :normal)
       dt.name itemprop="name"
-        h2
+        h1
           = @user.name
-          = user_location(@user)
-      dd.clearfix itemprop="rating" itemscope="" itemtype="http://data-vocabulary.org/Rating"
-        .level Lv.#{@user.rank}
+          small
+            |（
+            i.fa.fa-flask
+            | Hacker, Designer）
+      dd.level itemprop="rating" itemscope="" itemtype="http://data-vocabulary.org/Rating"
+        .level_num Lv.#{@user.rank}
         .progress title="#{@user.progress}%"
           .progress-bar style="width: #{@user.progress}%;"
-      dd.url itemprop="url"
-        = user_links(@user)
-      dd
-        = button_tag class: "btn btn-default btn-xs",
+      dd.friendship
+        strong
+          | 12345678
+          small 关注
+        strong
+          | 12345678
+          small 关注者
+      dd.exchange
+        button.btn.btn-primary
+          i.fa.fa-plus
+          | 关注
+        = button_tag class: "btn btn-default",
           data: {toggle: "modal", target: "#new_private_message"} do
-            i.fa.fa-envelope-o
-            | 私信
+            i.fa.fa-envelope-o.fa_alone
         span.private_message_success.hide 发送成功
+      dd.gender
+        .data
+          i.fa.fa-male title="男"
+      dd.location title="地区"
+        label
+          i.fa.fa-map-marker
+        address.data = user_location(@user)
+      dd.url itemprop="url" title="社交网络"
+        label
+          i.fa.fa-globe
+        .data = user_links(@user)
+      dd.tag title="标签"
+        label
+          i.fa.fa-tag
+        .data
+          a.label.label-default href="#" 编程
+          a.label.label-default href="#" 办公设备
+          a.label.label-default href="#" 编程
+          a.label.label-default href="#" 这是五个字
+          a.label.label-default href="#" 三个字
 
-      = render 'users/admin_note'
+  .user_content
+    ul.nav.nav-pills.nav-pills-list.nav-justified
+      = li (action_name == 'show') do
+        = link_to_with_icon '', 'fa fa-home', user_path(@user)
+      = li (action_name == 'fancies') do
+        = link_to_with_icon "喜欢 #{@user.fancies_count}", 'fa fa-heart', fancies_user_path(@user)
+      = li (action_name == 'owns') do
+        = link_to_with_icon "拥有 #{@user.owns_count}", 'fa fa-check-square-o', owns_user_path(@user)
+      = li (action_name == 'things') do
+        = link_to_with_icon "分享 #{@user.things_count}", 'fa fa-magic', things_user_path(@user)
+      = li (action_name == 'topics') do
+        = link_to_with_icon '评测', 'fa fa-book', topics_user_path(@user)
+      = li (action_name == 'timeline') do
+        = link_to_with_icon '动态', 'fa fa-bars', timeline_user_path(@user)
+
+    = yield
 
   = render 'shared/private_message', from: "user_show"
 

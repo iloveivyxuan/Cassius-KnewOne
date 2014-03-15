@@ -1,4 +1,48 @@
+// Notifications.
+//
+//
+
+.notifications {
+
+  > li {
+    @include clearfix;
+
+    border-bottom: 1px dashed #eee;
+    padding: 10px;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &.unread {
+      background-color: #eff7fd;
+    }
+
+    &.read {
+      background-color: transparent;
+      color: $text-muted;
+    }
+
+    a {
+      padding: 0 1em;
+    }
+
+    time {
+      float: right;
+      padding-left: 2em;
+    }
+  }
+}
+
 #notification_box {
+
+  #notification_trigger {
+    display: inline-block;
+
+    &:hover {
+      color: $text-color;
+    }
+  }
 
   header {
     @include clearfix;
@@ -8,23 +52,35 @@
     }
 
     > a {
-      color: $text-color;
-      float: right;
-    }
-  }
-
-  .dropdown_box_item {
-
-    &.readed {
       color: $text-muted;
+      float: right;
 
-      a {
-        color: $text-muted;
+      &:hover {
+        color: $text-color;
       }
     }
   }
 
   .dropdown_box {
-    right: -40px;
+    right: -44px;
+
+    &:before {
+      right: 50px;
+    }
+
+    .notifications {
+
+      > li {
+
+        a {
+          padding: 0 5px;
+        }
+
+        time {
+          float: none;
+          padding-left: 1em;
+        }
+      }
+    }
   }
 }
