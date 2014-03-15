@@ -166,6 +166,7 @@ html.users_timeline {
   }
 
   dl.vcard {
+    @include clearfix;
 
     dt,
     dd {
@@ -204,8 +205,13 @@ html.users_timeline {
 
       img {
         border-radius: 6px;
-        height: 80px;
-        width: 80px;
+        height: 60px;
+        width: 60px;
+
+        @media screen and (min-width: 500px) {
+          height: 110px;
+          width: 110px;
+        }
 
         @media screen and (min-width: $screen-sm-min) {
           height: 150px;
@@ -232,12 +238,20 @@ html.users_timeline {
           font-size: $font-size-small;
         }
 
-        small {
-          display: inline-block;
-          height: 18px;
-          line-height: 18px;
-          overflow: hidden;
-          padding-left: 1em;
+        .gender {
+          padding-left: 10px;
+        }
+
+        .note {
+          display: none;
+
+          @media screen and (min-width: $screen-sm-min) {
+            display: inline-block;
+            height: 18px;
+            line-height: 18px;
+            overflow: hidden;
+            padding-left: 10px;
+          }
         }
       }
     }
@@ -289,7 +303,7 @@ html.users_timeline {
         display: inline-block;
         font-size: 18px;
         font-weight: normal;
-        width: 120px;
+        width: 110px;
 
         small {
           color: $text-muted;
@@ -333,12 +347,6 @@ html.users_timeline {
           }
         }
       }
-    }
-
-    .gender,
-    .location {
-      display: inline-block;
-      margin-right: 1em;
     }
 
     .url {
@@ -392,6 +400,11 @@ html.users_timeline {
       .exchange {
         border-bottom: 0;
         padding-bottom: 0;
+      }
+
+      .location {
+        display: inline-block;
+        padding-right: 1em;
       }
 
       .url {
