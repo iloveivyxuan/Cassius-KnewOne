@@ -47,7 +47,9 @@ Making::Application.routes.draw do
       get 'topics'
       get 'things'
       get 'groups'
-      get 'timeline'
+      get 'activities'
+      post 'follow'
+      delete 'follow', to: :unfollow
     end
   end
 

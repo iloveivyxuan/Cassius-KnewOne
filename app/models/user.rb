@@ -12,6 +12,8 @@ class User
   field :location, type: String, :default => ''
   field :karma, type: Integer, default: 0
   field :auto_update_from_oauth, type: Boolean, default: true
+  field :categories, type: Array, default: []
+  field :identities, type: Array, default: []
   field :status, type: Symbol, default: :normal
   STATUS = {blocked: '锁定', watching: '特别观照(贬)', normal: '正常'}
   validates :status, inclusion: {in: STATUS.keys, allow_blank: false}
@@ -31,14 +33,12 @@ class User
   field :fancies_count, type: Integer, default: 0
   field :owns_count, type: Integer, default: 0
   field :reviews_count, type: Integer, default: 0
+  field :followers_count, type: Integer, default: 0
+  field :followings_count, type: Integer, default: 0
   field :orders_count, type: Integer, default: 0
   field :expenses_count, type: Integer, default: 0
 
   field :admin_note, type: String, default: ''
-
-  def refresh_stats!
-    UserStatsWorker.perform_async(self.id.to_s)
-  end
 
   ## Database authenticatable
   field :email, :type => String
@@ -188,11 +188,19 @@ class User
   has_and_belongs_to_many :owns, class_name: "Thing", inverse_of: :owners
 
   ## Followed
-  has_and_belongs_to_many :hosts, class_name: 'User', inverse_of: :followers
-  has_and_belongs_to_many :followers, class_name: 'User', inverse_of: :hosts
+  has_and_belongs_to_many :followings, class_name: 'User', inverse_of: :followers
+  has_and_belongs_to_many :followers, class_name: 'User', inverse_of: :followings
 
   def followed?(user)
-    self.hosts.include? user
+    self.followings.include? user
+  end
+
+  def follow(user)
+    self.followings<< user
+  end
+
+  def unfollow(user)
+    self.followings.delete user
   end
 
   ## Lotteries

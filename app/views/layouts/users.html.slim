@@ -1,38 +1,40 @@
 - page_title @user.name
 - content_for :content do
-
   .user_info
     dl.vcard itemscope="" itemtype="http://data-vocabulary.org/Person"
       dd.avatar itemprop="photo"= user_avatar(@user, :normal)
       dt.name itemprop="name"
         h1
           = @user.name
-          small
-            |（
-            i.fa.fa-flask
-            | Hacker, Designer）
+          - if @user.identities.any?
+            small
+              |（
+              i.fa.fa-flask
+              = @user.identities.join(', ')
+              | ）
       dd.level itemprop="rating" itemscope="" itemtype="http://data-vocabulary.org/Rating"
         .level_num Lv.#{@user.rank}
         .progress title="#{@user.progress}%"
           .progress-bar style="width: #{@user.progress}%;"
       dd.friendship
         strong
-          | 12345678
+          = @user.followings_count
           small 关注
         strong
-          | 12345678
+          = @user.followers_count
           small 关注者
       dd.exchange
-        button.btn.btn-primary
-          i.fa.fa-plus
-          | 关注
+        = render 'users/follow_btn'
         = button_tag class: "btn btn-default",
           data: {toggle: "modal", target: "#new_private_message"} do
             i.fa.fa-envelope-o.fa_alone
         span.private_message_success.hide 发送成功
-      dd.gender
-        .data
-          i.fa.fa-male title="男"
+      - if @user.gender.present?
+        dd.gender
+          label
+            i.fa.fa-male
+          .data
+            = @user.gender
       dd.location title="地区"
         label
           i.fa.fa-map-marker
@@ -41,15 +43,13 @@
         label
           i.fa.fa-globe
         .data = user_links(@user)
-      dd.tag title="标签"
-        label
-          i.fa.fa-tag
-        .data
-          a.label.label-default href="#" 编程
-          a.label.label-default href="#" 办公设备
-          a.label.label-default href="#" 编程
-          a.label.label-default href="#" 这是五个字
-          a.label.label-default href="#" 三个字
+      - if @user.categories.any?
+        dd.tag title="标签"
+          label
+            i.fa.fa-tag
+          .data
+            - @user.categories.each do |tag|
+              span.label.label-default = tag
 
   .user_content
     ul.nav.nav-pills.nav-pills-list.nav-justified
@@ -62,9 +62,9 @@
       = li (action_name == 'things') do
         = link_to_with_icon "分享 #{@user.things_count}", 'fa fa-magic', things_user_path(@user)
       = li (action_name == 'topics') do
-        = link_to_with_icon '评测', 'fa fa-book', topics_user_path(@user)
-      = li (action_name == 'timeline') do
-        = link_to_with_icon '动态', 'fa fa-bars', timeline_user_path(@user)
+        = link_to_with_icon "评测 #{@user.reviews_count}", 'fa fa-book', topics_user_path(@user)
+      = li (action_name == 'activities') do
+        = link_to_with_icon '动态', 'fa fa-bars', activities_user_path(@user)
 
     = yield
 
