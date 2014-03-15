@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
   end
 
-  def timeline
+  def activities
     # TODO: NYI
   end
 
@@ -45,11 +45,20 @@ class UsersController < ApplicationController
   end
 
   def follow
-    current_user.hosts<< @user
+    current_user.follow @user
 
     respond_to do |format|
       format.html { redirect_stored_or user_path(@user) }
-      format.json { head :no_content }
+      format.js
+    end
+  end
+
+  def unfollow
+    current_user.unfollow @user
+
+    respond_to do |format|
+      format.html { redirect_stored_or user_path(@user) }
+      format.js
     end
   end
 

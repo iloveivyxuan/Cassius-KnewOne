@@ -31,6 +31,8 @@ class User
   field :fancies_count, type: Integer, default: 0
   field :owns_count, type: Integer, default: 0
   field :reviews_count, type: Integer, default: 0
+  field :followers_count, type: Integer, default: 0
+  field :followings_count, type: Integer, default: 0
   field :orders_count, type: Integer, default: 0
   field :expenses_count, type: Integer, default: 0
 
@@ -188,11 +190,19 @@ class User
   has_and_belongs_to_many :owns, class_name: "Thing", inverse_of: :owners
 
   ## Followed
-  has_and_belongs_to_many :hosts, class_name: 'User', inverse_of: :followers
-  has_and_belongs_to_many :followers, class_name: 'User', inverse_of: :hosts
+  has_and_belongs_to_many :followings, class_name: 'User', inverse_of: :followers
+  has_and_belongs_to_many :followers, class_name: 'User', inverse_of: :followings
 
   def followed?(user)
-    self.hosts.include? user
+    self.followings.include? user
+  end
+
+  def follow(user)
+    self.followings<< user
+  end
+
+  def unfollow(user)
+    self.followings.delete user
   end
 
   ## Lotteries
