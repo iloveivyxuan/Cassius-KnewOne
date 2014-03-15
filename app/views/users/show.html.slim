@@ -14,4 +14,4 @@ section.topics
   h2
     | 帖子
     .pull-right = link_to '>', topics_user_path(@user)
-  /= render @topics
+  = render partial: 'users/review', collection: @reviews
