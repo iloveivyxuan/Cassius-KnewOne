@@ -176,28 +176,36 @@ html.users_timeline {
     }
 
     .avatar {
+      float: left;
+      margin-right: 10px;
+
+      @media screen and (min-width: $screen-md-min) {
+        float: none;
+      }
 
       img {
         border-radius: 6px;
-        height: 180px;
-        width: 180px;
+        height: 80px;
+        width: 80px;
 
-        @media screen and (max-width: $screen-sm-min) {
-          @include center-block;
+        @media screen and (min-width: $screen-sm-min) {
+          height: 150px;
+          width: 150px;
+        }
+
+        @media screen and (min-width: $screen-md-min) {
+          height: 180px;
+          width: 180px;
         }
       }
     }
 
     .name {
+      overflow: hidden;
 
       h1 {
         font-size: 18px;
         margin: 0;
-        text-align: center;
-
-        @media screen and (min-width: $screen-sm-min) {
-          text-align: left;
-        }
 
         .private_message_success {
           margin-left: 1em;
@@ -206,50 +214,66 @@ html.users_timeline {
         }
 
         small {
-          display: inline-block;
+          display: block;
+          height: 18px;
+          line-height: 18px;
+          overflow: hidden;
+
+          @media screen and (min-width: $screen-sm-min) {
+            display: inline-block;
+            padding-left: 1em;
+          }
         }
       }
     }
 
-    .level_num {
-      color: $blue;
-      float: left;
-      font-family: "orbitron-bold";
-      margin-right: 1em;
-    }
-
-    .progress {
-      margin-bottom: 0;
-
-      @media screen and (min-width: $screen-xs-min) {
-
-        .progress-bar {
-          @include transition(width 1s, opacity 0.22s ease-out);
-        }
-      }
+    .level {
+      display: inline-block;
+      overflow: hidden;
 
       @media screen and (min-width: $screen-md-min) {
-        width: 70%;
+        display: block;
+      }
+
+      .level_num {
+        color: $blue;
+        float: left;
+        font-family: "orbitron-bold";
+        margin-right: 1em;
+      }
+
+      .progress {
+        display: none;
+
+        @media screen and (min-width: $screen-xs-min) {
+          display: block;
+          margin-bottom: 0;
+
+          .progress-bar {
+            @include transition(width 1s, opacity 0.22s ease-out);
+          }
+        }
+
+        @media screen and (min-width: $screen-md-min) {
+          width: 70%;
+        }
       }
     }
 
     .friendship {
       color: $text-color;
-      text-align: center;
+      display: inline-block;
+      overflow: hidden;
 
-      @media screen and (min-width: $screen-sm-min) {
-        text-align: left;
-      }
-
-      @media screen and (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-        display: inline-block;
+      @media screen and (min-width: $screen-md-min) {
+        display: block;
       }
 
       > strong {
         display: inline-block;
         font-size: 18px;
         font-weight: normal;
-        padding-right: 1em;
+        width: 120px;
 
         small {
           color: $text-muted;
@@ -260,6 +284,7 @@ html.users_timeline {
     }
 
     .exchange {
+      overflow: hidden;
 
       @media screen and (min-width: $screen-md-min) {
         border-bottom: $border-default;
@@ -268,33 +293,36 @@ html.users_timeline {
       }
 
       .btn {
-        margin-right: 10px;
 
-        @media screen and (max-width: $screen-sm-min) {
-          display: block;
-          margin-bottom: 10px;
-          margin-right: 0;
-          padding-left: 0;
-          padding-right: 0;
-          width: 100%;
+        @media screen and (min-width: $screen-sm-min) {
+          float: none !important;
         }
 
         &.btn-primary {
+          float: left;
+          width: 70%;
 
           @media screen and (min-width: $screen-sm-min) {
+            margin-right: 10px;
             width: 100px;
+          }
+        }
+
+        &.btn-default {
+          float: right;
+          width: 20%;
+
+          @media screen and (min-width: $screen-sm-min) {
+            width: auto;
           }
         }
       }
     }
 
-    .gender {
-      display: inline-block;
-      margin-right: 1em;
-    }
-
+    .gender,
     .location {
       display: inline-block;
+      margin-right: 1em;
     }
 
     .url {
@@ -345,34 +373,17 @@ html.users_timeline {
 
     @media screen and (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
 
-      .avatar {
-        float: left;
-        margin-right: 20px;
-
-        img {
-          height: 110px;
-          width: 110px;
-        }
-      }
-
-      .name,
-      .level,
-      .friendship,
-      .exchange {
-        overflow: hidden;
-      }
-
-      .level {
-        display: inline-block;
-
-        .progress {
-          display: none;
-        }
-      }
-
       .exchange {
         border-bottom: 0;
         padding-bottom: 0;
+      }
+
+      .url {
+        display: inline-block;
+      }
+
+      .tag {
+        margin-top: 10px;
       }
     }
   }
