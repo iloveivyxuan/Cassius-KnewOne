@@ -6,12 +6,13 @@
       dt.name itemprop="name"
         h1
           = @user.name
+          - if @user.gender.present?
+            small.gender = @user.gender
           - if @user.identities.any?
-            small
-              |（
+            small.note
+              |
               i.fa.fa-flask
               = @user.identities.join(', ')
-              | ）
       dd.level itemprop="rating" itemscope="" itemtype="http://data-vocabulary.org/Rating"
         .level_num Lv.#{@user.rank}
         .progress title="#{@user.progress}%"
@@ -29,12 +30,6 @@
           data: {toggle: "modal", target: "#new_private_message"} do
             i.fa.fa-envelope-o.fa_alone
         span.private_message_success.hide 发送成功
-      - if @user.gender.present?
-        dd.gender
-          label
-            i.fa.fa-male
-          .data
-            = @user.gender
       dd.location title="地区"
         label
           i.fa.fa-map-marker
