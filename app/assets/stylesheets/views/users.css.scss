@@ -25,11 +25,13 @@ html.users_timeline {
       @include make-md-column-push(9);
 
       border-bottom: 1px solid #eee;
+      margin-bottom: 20px;
       padding-left: 0;
       padding-right: 0;
 
       @media screen and (min-width: $screen-sm-min) {
         border-bottom: 0;
+        margin-bottom: 0;
         padding-left: 2em;
         padding-right: 2em;
       }
@@ -127,6 +129,23 @@ html.users_timeline {
         }
       }
 
+      @media screen and (max-width: $screen-sm-min) {
+
+        &.active {
+          border-bottom: 0;
+
+          > a {
+            &,
+            &:hover,
+            &:focus {
+              border-radius: $nav-pills-border-radius;
+              background-color: $nav-pills-active-link-hover-bg;
+              color: $nav-pills-active-link-hover-color;
+            }
+          }
+        }
+      }
+
       > a {
         @include clearfix;
         text-align: left;
@@ -214,15 +233,11 @@ html.users_timeline {
         }
 
         small {
-          display: block;
+          display: inline-block;
           height: 18px;
           line-height: 18px;
           overflow: hidden;
-
-          @media screen and (min-width: $screen-sm-min) {
-            display: inline-block;
-            padding-left: 1em;
-          }
+          padding-left: 1em;
         }
       }
     }
@@ -270,6 +285,7 @@ html.users_timeline {
       }
 
       > strong {
+        color: $text-color;
         display: inline-block;
         font-size: 18px;
         font-weight: normal;
