@@ -46,23 +46,6 @@
             - @user.categories.each do |tag|
               span.label.label-default = tag
     /-- END .vcard --/
-    section.panel.panel_compact.activity
-      header.panel-heading
-        h3.panel-title
-          i.fa.fa-bars
-          | 动态
-        = link_to_with_icon '', 'fa fa-chevron-right fa_alone', activities_user_path(@user), class: 'more', title: '更多'
-      .panel-body
-        ul
-          li
-            | 关注了
-            = link_to 'SynZhang', '#'
-          li
-            | 为 bong 手环写了篇评测
-            = link_to 'SynZhang', '#'
-            | 是一篇很长的评测，真的很长
-    /-- END .activity --/
-
   /-- END .user_info --/
 
   .user_content
@@ -75,8 +58,8 @@
         = link_to_with_icon "拥有 #{@user.owns_count}", 'fa fa-check-square-o', owns_user_path(@user)
       = li (action_name == 'things') do
         = link_to_with_icon "分享 #{@user.things_count}", 'fa fa-magic', things_user_path(@user)
-      = li (action_name == 'topics') do
-        = link_to_with_icon "评测 #{@user.reviews_count}", 'fa fa-book', topics_user_path(@user)
+      = li (action_name == 'reviews') do
+        = link_to_with_icon "评测 #{@user.reviews_count}", 'fa fa-book', reviews_user_path(@user)
       = li (action_name == 'activities') do
         = link_to_with_icon '动态', 'fa fa-bars', activities_user_path(@user)
 
