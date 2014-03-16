@@ -41,11 +41,11 @@ i.fa_alone {
   a {color: $green;}
 
   .owned {
-    .fa-square-o {display: none !important;}
+    .fa-circle-o {display: none !important;}
   }
 
   .unowned {
-    .fa-check-square-o {display: none !important;}
+    .fa-check-circle-o {display: none !important;}
     &:hover {
       span:last-child {color: $green;}
     }

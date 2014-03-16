@@ -55,7 +55,7 @@
       = li (action_name == 'fancies') do
         = link_to_with_icon "喜欢 #{@user.fancies_count}", 'fa fa-heart', fancies_user_path(@user)
       = li (action_name == 'owns') do
-        = link_to_with_icon "拥有 #{@user.owns_count}", 'fa fa-check-square-o', owns_user_path(@user)
+        = link_to_with_icon "拥有 #{@user.owns_count}", 'fa fa-check-circle-o', owns_user_path(@user)
       = li (action_name == 'things') do
         = link_to_with_icon "分享 #{@user.things_count}", 'fa fa-magic', things_user_path(@user)
       = li (action_name == 'reviews') do

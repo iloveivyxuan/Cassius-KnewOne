@@ -3,17 +3,17 @@
     = @user.description
 
 - if @owns.any?
-  section.panel.panel-default.hidden-xs
+  section.panel.hidden-xs
     header.panel-heading
       h3.panel-title
-        i.fa.fa-check-square-o
+        i.fa.fa-check-circle-o
         | 拥有
       = link_to_with_icon '', 'fa fa-chevron-right fa_alone', owns_user_path(@user), class: 'more', title: '更多'
     .panel-body
       ul.things= render @owns, size: :normal, img_lazy: true
 
 - if @fancies.any?
-  section.panel.panel-default.hidden-xs
+  section.panel.hidden-xs
     header.panel-heading
       h3.panel-title
         i.fa.fa-heart
