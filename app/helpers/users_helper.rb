@@ -50,4 +50,15 @@ module UsersHelper
     return nil unless user.current_auth
     user.current_auth.topic_wrapper topic
   end
+
+  def render_user_gender(user)
+    if user.gender.present?
+      content_tag :small, class: 'gender' do
+        case user.gender
+          when '男' then '♂'
+          when '女' then '♀'
+        end
+      end
+    end
+  end
 end
