@@ -124,14 +124,17 @@ form.edit_post {
 
       figurecaption {
         @include text-overflow;
-        width: 80px;
+
+        color: $text-color;
         display: block;
         margin-top: 5px;
         text-align: center;
+        width: 80px;
       }
     }
 
     p {
+      color: $text-color;
       height: 60px;
       margin-bottom: 0;
       overflow: hidden;

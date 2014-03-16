@@ -13,6 +13,8 @@ html.users_activities {
 
   #wrapper {
     @include wrapper(what);
+
+    color: $gray;
     padding-bottom: 20px;
     padding-top: 20px;
 
@@ -26,6 +28,7 @@ html.users_activities {
       @include make-md-column-push(9);
 
       border-bottom: 1px solid #eee;
+      color: $text-muted;
       margin-bottom: 20px;
       padding-left: 0;
       padding-right: 0;
@@ -76,7 +79,7 @@ html.users_activities {
       border-color: #eee;
 
       .panel-title {
-        color: $gray;
+        color: $text-muted;
         float: left;
       }
 
@@ -254,6 +257,7 @@ html.users_activities {
       overflow: hidden;
 
       h1 {
+        color: $text-color;
         font-size: 18px;
         margin: 0;
 
@@ -323,7 +327,7 @@ html.users_activities {
         display: block;
       }
 
-      > strong {
+      > a {
         color: $text-color;
         display: inline-block;
         font-size: 18px;
@@ -331,7 +335,7 @@ html.users_activities {
         width: 110px;
 
         small {
-          color: $text-muted;
+          color: $gray;
           font-size: 14px;
           padding-left: .5em;
         }
@@ -379,7 +383,7 @@ html.users_activities {
       a {
         background-color: #ededed;
         border-radius: 100%;
-        color: $text-color;
+        color: $gray;
         display: inline-block;
         height: 32px;
         line-height: 32px;
@@ -389,7 +393,7 @@ html.users_activities {
 
         &:hover {
           @include rotate(-15deg);
-          background-color: $text-color;
+          background-color: $gray;
           color: #ededed;
         }
 
