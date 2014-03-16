@@ -10,19 +10,19 @@ class UsersController < ApplicationController
   end
 
   def fancies
-    @fancies = @user.fancies
+    @fancies = @user.fancies.page params[:page]
   end
 
   def owns
-    @owns = @user.owns
+    @owns = @user.owns.page params[:page]
   end
 
   def reviews
-    @reviews = @user.reviews.where(:thing_id.ne => nil)
+    @reviews = @user.reviews.where(:thing_id.ne => nil).page params[:page]
   end
 
   def things
-    @things = @user.things
+    @things = @user.things.page params[:page]
   end
 
   def groups
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def activities
-    # TODO: NYI
+    @activities = @user.activities.visible.page params[:page]
   end
 
   def followings

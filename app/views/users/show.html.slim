@@ -38,9 +38,9 @@ section.panel.hidden-xs
       i.fa.fa-bars
       | 动态
     = link_to_with_icon '', 'fa fa-chevron-right fa_alone', activities_user_path(@user), class: 'more', title: '更多'
-  .panel-body.activity
+  .panel-body
     - if @activities.any?
-      ul
+      ul.activities
         - @activities.each do |a|
           = render_user_activity(a)
     - else

@@ -108,31 +108,6 @@ html.users_activities {
         }
       }
     }
-
-    .activity {
-
-      li {
-        @include clearfix;
-
-        border-bottom: 1px dashed #eee;
-        padding: 10px;
-
-        &:last-child {
-          border-bottom: none;
-        }
-
-        a {
-          padding-left: .5em;
-          padding-right: .5em;
-        }
-
-        time {
-          line-height: 20px;
-          float: right;
-          padding-left: 2em;
-        }
-      }
-    }
   }
 
   .nav-pills-list {
@@ -464,7 +439,7 @@ html.users_activities {
   }
 }
 
-#user_list {
+.user_list {
   li {
     display: inline-block;
     margin: 1.6em;
@@ -478,6 +453,31 @@ html.users_activities {
       margin-bottom: .5em;
       color: $text-muted;
       @include text-overflow;
+    }
+  }
+}
+
+ul.activities {
+
+  li {
+    @include clearfix;
+
+    border-bottom: 1px dashed #eee;
+    padding: 10px;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    a {
+      padding-left: .5em;
+      padding-right: .5em;
+    }
+
+    time {
+      line-height: 20px;
+      float: right;
+      padding-left: 2em;
     }
   }
 }

@@ -1,0 +1,5 @@
+ul.activities
+  - @activities.each do |a|
+    = render_user_activity(a)
+
+= paginate @activities
