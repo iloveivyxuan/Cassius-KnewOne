@@ -20,10 +20,6 @@ class UsersController < ApplicationController
     @reviews = @user.reviews.where(:thing_id.ne => nil)
   end
 
-  def topics
-    @topics = @user.reviews.where(:thing_id.ne => nil)
-  end
-
   def things
     @things = @user.things
   end

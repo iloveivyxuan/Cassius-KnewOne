@@ -4,29 +4,59 @@
     = @user.description
     i.fa.fa-quote-right
 
-section.panel.panel-default.hidden-xs
-  header.panel-heading
-    h3.panel-title
-      i.fa.fa-check-square-o
-      | 拥有
-    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', owns_user_path(@user), class: 'more', title: '更多'
-  .panel-body
-    ul.things= render @owns, size: :normal, img_lazy: true
+- if @owns.any?
+  section.panel.panel-default.hidden-xs
+    header.panel-heading
+      h3.panel-title
+        i.fa.fa-check-square-o
+        | 拥有
+      = link_to_with_icon '', 'fa fa-chevron-right fa_alone', owns_user_path(@user), class: 'more', title: '更多'
+    .panel-body
+      ul.things= render @owns, size: :normal, img_lazy: true
 
-section.panel.panel-default.hidden-xs
-  header.panel-heading
-    h3.panel-title
-      i.fa.fa-heart
-      | 喜欢
-    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', fancies_user_path(@user), class: 'more', title: '更多'
-  .panel-body
-    ul.things= render @fancies, size: :normal, img_lazy: false
+- if @fancies.any?
+  section.panel.panel-default.hidden-xs
+    header.panel-heading
+      h3.panel-title
+        i.fa.fa-heart
+        | 喜欢
+      = link_to_with_icon '', 'fa fa-chevron-right fa_alone', fancies_user_path(@user), class: 'more', title: '更多'
+    .panel-body
+      ul.things= render @fancies, size: :normal, img_lazy: false
 
-section.panel.panel-default.hidden-xs
+- if @reviews.any?
+  section.panel.panel-default.hidden-xs
+    header.panel-heading
+      h3.panel-title
+        i.fa.fa-book
+        | 评测
+      = link_to_with_icon '', 'fa fa-chevron-right fa_alone', reviews_user_path(@user), class: 'more', title: '更多'
+    .panel-body
+      = render partial: 'users/review', collection: @reviews
+
+section.panel.panel_compact.activity
   header.panel-heading
     h3.panel-title
-      i.fa.fa-book
-      | 评测
-    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', topics_user_path(@user), class: 'more', title: '更多'
+      i.fa.fa-bars
+      | 动态
+    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', activities_user_path(@user), class: 'more', title: '更多'
   .panel-body
-    = render partial: 'users/review', collection: @reviews
+    .empty
+      i.fa.fa-meh.o
+      | 还没有动态
+
+section.panel.panel_compact.activity
+  header.panel-heading
+    h3.panel-title
+      i.fa.fa-bars
+      | 动态
+    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', activities_user_path(@user), class: 'more', title: '更多'
+  .panel-body
+    ul
+      li
+        | 关注了
+        = link_to 'SynZhang', '#'
+      li
+        | 为 bong 手环写了篇评测
+        = link_to 'SynZhang', '#'
+        | 是一篇很长的评测，真的很长

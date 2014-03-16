@@ -54,10 +54,6 @@ class ReviewsController < ApplicationController
     render :partial => 'voting', locals: {review: @review}, layout: false
   end
 
-  def admin
-    @reviews = Review.unscoped.desc(:created_at).page params[:page]
-  end
-
   private
 
   def review_params
