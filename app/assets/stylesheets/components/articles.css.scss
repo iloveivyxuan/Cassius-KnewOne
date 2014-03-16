@@ -92,3 +92,56 @@ form.edit_post {
 .comments_count {
   color: $text-muted;
 }
+
+.article_compact {
+  border-bottom: 1px dashed #eee;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  padding-left: 85px;
+  position: relative;
+
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .article_title {
+    font-size: 14px;
+    margin: 0 0 1em 0;
+  }
+
+  .article_body {
+    @include clearfix;
+
+    figure {
+      float: right;
+      margin: -35px 0 0 80px;
+
+      img {
+        height: 80px;
+        width: 80px;
+      }
+
+      figurecaption {
+        @include text-overflow;
+        width: 80px;
+        display: block;
+        margin-top: 5px;
+        text-align: center;
+      }
+    }
+
+    p {
+      height: 60px;
+      margin-bottom: 0;
+      overflow: hidden;
+    }
+  }
+
+  .article_meta {
+    left: 0;
+    padding: 0 10px;
+    position: absolute;
+    top: 0;
+  }
+}

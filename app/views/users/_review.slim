@@ -1,11 +1,13 @@
-article.topic
+article.article_compact
   - present review do |rp|
-    section.lovers_count
+    h4.article_title = link_to rp.title, rp.path
+    section.article_body
+      figure
+        = link_to thing_path(review.thing) do
+          = image_tag review.thing.cover.url(:small)
+        figurecaption title=review.thing.title
+          = review.thing.title
+      p = rp.summary
+    footer.article_meta
       i.fa.fa-plus
       = review.lovers_count
-    section.content
-      h3 = link_to rp.title, rp.path
-      p = rp.summary
-    section.author
-      = rp.author_avatar :small
-      = rp.author_name
