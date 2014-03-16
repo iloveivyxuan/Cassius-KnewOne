@@ -1,0 +1,11 @@
+dd
+  = form_for @user, url: haven_user_path(@user) do |f|
+    .form-group
+      label 管理员备注
+      = f.text_area :admin_note, class: 'form-control', size: '20x3'
+    .form-group
+      label 认证身份
+      = f.text_field :identities, :name => "#{f.object_name}[identities][]", class: 'form-control'
+      = f.text_field :identities, :name => "#{f.object_name}[identities][]", class: 'form-control'
+      = f.text_field :identities, :name => "#{f.object_name}[identities][]", class: 'form-control'
+    = f.submit '修改', class: 'btn btn-default'

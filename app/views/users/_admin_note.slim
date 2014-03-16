@@ -1,6 +1,0 @@
-- if user_signed_in? && current_user.staff?
-  dd
-    = form_for @user, url: haven_user_path(@user) do |f|
-      .form-group
-        = f.text_area :admin_note, class: 'form-control', size: '20x3'
-      = f.submit '修改备注', class: 'btn btn-default'
