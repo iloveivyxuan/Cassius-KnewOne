@@ -45,6 +45,25 @@
           .data
             - @user.categories.each do |tag|
               span.label.label-default = tag
+    /-- END .vcard --/
+    section.panel.panel_compact.activity
+      header.panel-heading
+        h3.panel-title
+          i.fa.fa-bars
+          | 动态
+        = link_to_with_icon '', 'fa fa-chevron-right fa_alone', activities_user_path(@user), class: 'more', title: '更多'
+      .panel-body
+        ul
+          li
+            | 关注了
+            = link_to 'SynZhang', '#'
+          li
+            | 为 bong 手环写了篇评测
+            = link_to 'SynZhang', '#'
+            | 是一篇很长的评测，真的很长
+    /-- END .activity --/
+
+  /-- END .user_info --/
 
   .user_content
     ul.nav.nav-pills.nav-pills-list.nav-justified
@@ -62,6 +81,7 @@
         = link_to_with_icon '动态', 'fa fa-bars', activities_user_path(@user)
 
     = yield
+  /-- END .user_content --/
 
   = render 'shared/private_message', from: "user_show"
 

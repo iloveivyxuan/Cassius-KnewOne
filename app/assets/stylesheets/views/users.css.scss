@@ -74,10 +74,8 @@ html.users_activities {
       @include clearfix;
       border-color: #eee;
 
-      h3 {
+      .panel-title {
         float: left;
-        font-size: 16px;
-        margin: 0;
       }
 
       .more {
@@ -102,6 +100,28 @@ html.users_activities {
 
         @media screen and (min-width: $screen-sm-min) {
           width: percentage(4 / 12);
+        }
+      }
+    }
+  }
+
+  .user_info {
+
+    .panel_compact {
+      border-top: $border-default;
+      padding-top: 2em;
+    }
+
+    .activity {
+
+      .panel-body {
+
+        li {
+          margin-bottom: 10px;
+          a {
+            padding-left: .5em;
+            padding-right: .5em;
+          }
         }
       }
     }

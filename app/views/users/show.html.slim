@@ -6,7 +6,7 @@
 
 section.panel.panel-default.hidden-xs
   header.panel-heading
-    h3
+    h3.panel-title
       i.fa.fa-check-square-o
       | 拥有
     = link_to_with_icon '', 'fa fa-chevron-right fa_alone', owns_user_path(@user), class: 'more', title: '更多'
@@ -15,7 +15,7 @@ section.panel.panel-default.hidden-xs
 
 section.panel.panel-default.hidden-xs
   header.panel-heading
-    h3
+    h3.panel-title
       i.fa.fa-heart
       | 喜欢
     = link_to_with_icon '', 'fa fa-chevron-right fa_alone', fancies_user_path(@user), class: 'more', title: '更多'
@@ -24,7 +24,7 @@ section.panel.panel-default.hidden-xs
 
 section.panel.panel-default.hidden-xs
   header.panel-heading
-    h3
+    h3.panel-title
       i.fa.fa-book
       | 评测
     = link_to_with_icon '', 'fa fa-chevron-right fa_alone', topics_user_path(@user), class: 'more', title: '更多'

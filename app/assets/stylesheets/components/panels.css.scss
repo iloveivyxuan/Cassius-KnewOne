@@ -1,0 +1,26 @@
+.panel {
+
+  &.panel_compact {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+
+    .panel-heading {
+      @include clearfix;
+    }
+
+    .panel-title {
+      float: left;
+      margin-right: -2em;
+    }
+
+    .more {
+      color: $text-muted;
+      float: right;
+
+      &:hover {
+        color: $text-color;
+      }
+    }
+  }
+}
