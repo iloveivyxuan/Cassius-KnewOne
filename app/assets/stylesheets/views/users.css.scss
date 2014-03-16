@@ -64,18 +64,19 @@ html.users_activities {
 
     .description {
       border-left: 0;
-      color: $text-muted;
     }
 
-    .panel-default {
-      border-color: #eee;
+    .panel {
+      box-shadow: none;
     }
 
     .panel-heading {
       @include clearfix;
+
       border-color: #eee;
 
       .panel-title {
+        color: $gray;
         float: left;
       }
 
@@ -106,36 +107,28 @@ html.users_activities {
     }
 
     .activity {
-      display: none;
 
-      @media screen and (min-width: $screen-sm-min) {
-        display: block;
-      }
+      li {
+        @include clearfix;
 
-      .panel-body {
+        border-bottom: 1px dashed #eee;
+        padding: 10px;
 
-        li {
-          margin-bottom: 10px;
+        &:last-child {
+          border-bottom: none;
+        }
 
-          a {
-            padding-left: .5em;
-            padding-right: .5em;
-          }
+        a {
+          padding-left: .5em;
+          padding-right: .5em;
+        }
 
-          time {
-            float: right;
-            padding-left: 2em;
-          }
+        time {
+          line-height: 20px;
+          float: right;
+          padding-left: 2em;
         }
       }
-    }
-  }
-
-  .user_info {
-
-    .panel_compact {
-      border-top: $border-default;
-      padding-top: 2em;
     }
   }
 

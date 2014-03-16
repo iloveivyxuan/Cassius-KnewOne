@@ -23,7 +23,7 @@
       ul.things= render @fancies, size: :normal, img_lazy: false
 
 - if @reviews.any?
-  section.panel.panel-default.hidden-xs
+  section.panel.hidden-xs
     header.panel-heading
       h3.panel-title
         i.fa.fa-book
@@ -32,13 +32,13 @@
     .panel-body
       = render partial: 'users/review', collection: @reviews
 
-section.activity.panel.panel-default.hidden-xs
+section.panel.hidden-xs
   header.panel-heading
     h3.panel-title
       i.fa.fa-bars
       | 动态
     = link_to_with_icon '', 'fa fa-chevron-right fa_alone', activities_user_path(@user), class: 'more', title: '更多'
-  .panel-body
+  .panel-body.activity
     ul
       li
         | 关注了
@@ -49,8 +49,4 @@ section.activity.panel.panel-default.hidden-xs
         = link_to 'SynZhang', '#'
         | 是一篇很长的评测，真的很长
         time datetime="这里是datetime" 1 分钟前
-
-    .nothing
-      i.fa.fa-meh-o
-      br
-      | 什么都没有
+    = render "shared/nothing"
