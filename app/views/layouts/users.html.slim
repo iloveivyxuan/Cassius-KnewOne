@@ -1,50 +1,50 @@
 - page_title @user.name
 - content_for :content do
   .user_info
-    dl.vcard itemscope="" itemtype="http://data-vocabulary.org/Person"
-      dd.avatar itemprop="photo"= user_avatar(@user, :normal)
-      dt.name itemprop="name"
-        h1
-          = @user.name
-          - if @user.gender.present?
-            small.gender = @user.gender
-          - if @user.identities.any?
-            small.note
-              |
-              i.fa.fa-flask
-              = @user.identities.join(', ')
-      dd.level itemprop="rating" itemscope="" itemtype="http://data-vocabulary.org/Rating"
-        .level_num Lv.#{@user.rank}
-        .progress title="#{@user.progress}%"
-          .progress-bar style="width: #{@user.progress}%;"
-      dd.friendship
-        = link_to followings_user_path(@user) do
-          = @user.followings_count
-          small 关注
-        = link_to followers_user_path(@user) do
-          = @user.followers_count
-          small 关注者
-      dd.exchange
-        = render "users/follow_btn"
-        = button_tag class: "btn btn-default", id: "private_message_btn", title: '私信',
-          data: {toggle: "modal", target: "#new_private_message"} do
-            i.fa.fa-envelope-o.fa_alone
-        span.private_message_success.hide 发送成功
-      dd.location title="地区"
-        label
-          i.fa.fa-map-marker
-        address.data = user_location(@user)
-      dd.url itemprop="url" title="社交网络"
-        label
-          i.fa.fa-globe
-        .data = user_links(@user)
-      - if @user.categories.any?
-        dd.tag title="标签"
+    .user_info_body data-spy="affix" data-offset-top="5" data-offset-bottom="200"
+      dl.vcard itemscope="" itemtype="http://data-vocabulary.org/Person"
+        dd.avatar itemprop="photo"= user_avatar(@user, :normal)
+        dt.name itemprop="name"
+          h1
+            = @user.name
+            - if @user.gender.present?
+              small.gender = @user.gender
+            - if @user.identities.any?
+              small.note
+                |
+                i.fa.fa-flask
+                = @user.identities.join(', ')
+        dd.level itemprop="rating" itemscope="" itemtype="http://data-vocabulary.org/Rating"
+          .level_num Lv.#{@user.rank}
+          .progress title="#{@user.progress}%"
+            .progress-bar style="width: #{@user.progress}%;"
+        dd.friendship
+          = link_to followings_user_path(@user) do
+            = @user.followings_count
+            small 关注
+          = link_to followers_user_path(@user) do
+            = @user.followers_count
+            small 关注者
+        dd.exchange
+          = render "users/follow_btn"
+          = button_tag class: "btn btn-default", id: "private_message_btn", title: '私信',
+            data: {toggle: "modal", target: "#new_private_message"} do
+              i.fa.fa-envelope-o.fa_alone.private_message_success  data-container="body" data-toggle="popover" data-trigger="manual" data-placement="bottom" data-content="发送成功"
+        dd.location title="地区"
           label
-            i.fa.fa-tag
-          .data
-            - @user.categories.each do |tag|
-              span.label.label-default = tag
+            i.fa.fa-map-marker
+          address.data = user_location(@user)
+        dd.url itemprop="url" title="社交网络"
+          label
+            i.fa.fa-globe
+          .data = user_links(@user)
+        - if @user.categories.any?
+          dd.tag title="标签"
+            label
+              i.fa.fa-tag
+            .data
+              - @user.categories.each do |tag|
+                span.label.label-default = tag
     /-- END .vcard --/
   /-- END .user_info --/
 

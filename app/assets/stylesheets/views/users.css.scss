@@ -364,7 +364,8 @@ html.users_activities {
 
         @media screen and (min-width: $screen-sm-min) {
           margin-right: 10px;
-          width: 100px;
+          min-width: 100px;
+          width: 55%;
         }
       }
 
