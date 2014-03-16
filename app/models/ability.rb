@@ -27,6 +27,7 @@ class Ability
   def signed(user)
     can :read, User
     can [:follow, :unfollow], User
+    can [:owns, :fancies, :things, :reviews, :activities, :followings, :followers], User
 
     can :create, Post
     can [:update, :destroy], Post do |post|

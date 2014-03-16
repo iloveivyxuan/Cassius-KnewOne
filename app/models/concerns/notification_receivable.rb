@@ -25,7 +25,7 @@ module NotificationReceivable
     case self.notification_setting.send type
       when :following
         sender = options[:sender] || User.find(options[:sender_id])
-        Notification.build(self, type, options).save if self.followings.include? sender
+        Notification.build(self, type, options).save if self.followers.include? sender
       when :all
         Notification.build(self, type, options).save
       when nil
