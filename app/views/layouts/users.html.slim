@@ -20,10 +20,10 @@
       dd.friendship
         strong
           = @user.followings_count
-          small 关注
+          small = link_to '关注', followings_user_path(@user)
         strong
           = @user.followers_count
-          small 关注者
+          small = link_to '关注者', followers_user_path(@user)
       dd.exchange
         = render "users/follow_btn"
         = button_tag class: "btn btn-default", id: "private_message_btn",

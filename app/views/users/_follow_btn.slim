@@ -1,8 +1,8 @@
 - if current_user.followed? @user
-  = link_to follow_user_path(@user), remote: true, method: :delete, class: 'btn btn-success', id: 'follow_btn' do
+  = link_to followings_user_path(@user), remote: true, method: :delete, class: 'btn btn-success', id: 'follow_btn' do
     i.fa.fa-check
     | 已关注
 - else
-  = link_to follow_user_path(@user), remote: true, method: :post, class: 'btn btn-primary', id: 'follow_btn' do
+  = link_to followings_user_path(@user), remote: true, method: :post, class: 'btn btn-primary', id: 'follow_btn' do
     i.fa.fa-plus
     | 关注
