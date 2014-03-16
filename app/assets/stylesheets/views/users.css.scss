@@ -113,11 +113,18 @@ html.users_activities {
     }
 
     .activity {
+      display: none;
+
+      @media screen and (min-width: $screen-sm-min) {
+        display: block;
+      }
 
       .panel-body {
+        color: $text-muted;
 
         li {
           margin-bottom: 10px;
+
           a {
             padding-left: .5em;
             padding-right: .5em;
