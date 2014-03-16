@@ -8,7 +8,7 @@ module Aftermath
         send :alias_method, :"_#{m}", m
         define_method m do |*args|
           if send :"_#{m}", *args
-            AftermathHandler.send :"#{self.model_name.param_key}_#{m.to_s}", self
+            AftermathHandler.send :"#{self.model_name.underscore}_#{m.to_s}", self
           end
         end
       end
