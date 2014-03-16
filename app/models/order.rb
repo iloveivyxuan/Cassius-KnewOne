@@ -2,6 +2,7 @@
 class Order
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Aftermath
 
   belongs_to :user
 
@@ -455,6 +456,8 @@ class Order
 
     h ? h.created_at : nil
   end
+
+  need_aftermath :confirm_payment!
 
   private
   def after_confirm

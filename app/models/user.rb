@@ -2,6 +2,7 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Aftermath
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, :trackable, :confirmable
 
@@ -328,6 +329,8 @@ class User
 
   # notification
   include NotificationReceivable
+
+  need_aftermath :follow, :unfollow
 
   protected
   def password_required?

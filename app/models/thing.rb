@@ -2,6 +2,7 @@
 class Thing < Post
   include Mongoid::Slug
   include Mongoid::MultiParameterAttributes
+  include Aftermath
 
   slug :title, history: true
   field :subtitle, type: String, default: ""
@@ -213,10 +214,10 @@ class Thing < Post
     ThingNotificationWorker.perform_async(self.id.to_s, :fanciers, :stock, options)
   end
 
+  need_aftermath :create, :destroy, :own, :unown, :fancy, :unfancy
+
   class << self
     def resort!
-      ordered_things = []
-
       things = self.where(lock_priority: false).gt(priority: 0).to_a.shuffle
 
       self_run = things.select(&:self_run?).group_by(&:recommended?).values.reduce(&:+).reverse
@@ -224,25 +225,20 @@ class Thing < Post
       count = things.count
 
       self_run.each do |s|
-        s.priority = count
+        s.set priority: count
         count -= 1
-        ordered_things<< s
 
         (Random.new(SecureRandom.uuid.gsub(/[-a-z]/, '').to_i).rand(87) % 4).times do
           t = ugc.pop
-          t.priority = count
+          t.set priority: count
           count -= 1
-          ordered_things<< t
         end
       end
 
       ugc.each do |t|
-        t.priority = count
+        t.set priority: count
         count -= 1
-        ordered_things<< t
       end
-
-      ordered_things.each { |t| t.save(validate: false) }
     end
 
     def rand_records(per = 1)

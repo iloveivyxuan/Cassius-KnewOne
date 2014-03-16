@@ -1,4 +1,6 @@
 class Review < Post
+  include Aftermath
+
   field :score, type: Integer, default: 0
   field :is_top, type: Boolean, default: false
 
@@ -45,6 +47,8 @@ class Review < Post
   def voted?(user)
     lovers.include?(user) || foes.include?(user)
   end
+
+  need_aftermath :create, :destroy
 
   private
 
