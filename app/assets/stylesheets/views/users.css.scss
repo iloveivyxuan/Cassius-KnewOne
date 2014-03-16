@@ -424,7 +424,6 @@ html.users_activities {
       }
     }
 
-
     @media screen and (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
 
       .exchange {
@@ -459,6 +458,26 @@ html.users_activities {
     margin: 1em;
     overflow: hidden;
     width: 102px;
-    a {display: block;}
+    a {
+      display: block;
+    }
+  }
+}
+
+#user_list {
+  li {
+    display: inline-block;
+    margin: 1.6em;
+    width: 80px;
+    text-align: center;
+    img {
+      @extend .img-circle;
+    }
+    > * {
+      display: block;
+      margin-bottom: .5em;
+      color: $text-muted;
+      @include text-overflow;
+    }
   }
 }
