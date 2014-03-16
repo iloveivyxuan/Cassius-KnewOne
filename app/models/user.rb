@@ -188,10 +188,6 @@ class User
   has_and_belongs_to_many :fancies, class_name: "Thing", inverse_of: :fanciers
   has_and_belongs_to_many :owns, class_name: "Thing", inverse_of: :owners
 
-  ## Followed
-  has_and_belongs_to_many :followings, class_name: 'User', inverse_of: :followers
-  has_and_belongs_to_many :followers, class_name: 'User', inverse_of: :followings
-
   def followed?(user)
     self.followings.include? user
   end
@@ -329,6 +325,9 @@ class User
 
   # notification
   include NotificationReceivable
+
+  # activity
+  include Feedable
 
   need_aftermath :follow, :unfollow
 

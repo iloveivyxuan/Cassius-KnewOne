@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @reviews = @user.reviews.where(:thing_id.ne => nil).limit(4)
     @fancies = @user.fancies.limit(3)
     @owns = @user.owns.limit(3)
+    @activities = @user.activities.visible.limit(10)
   end
 
   def fancies

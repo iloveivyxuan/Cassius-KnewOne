@@ -61,4 +61,13 @@ module UsersHelper
       end
     end
   end
+
+  def render_user_activity(activity)
+    html = render_activity_summary(activity, false)
+    return if html.blank?
+
+    content_tag :li do
+      html + content_tag(:time, time_ago_tag(activity.created_at), datetime: activity.created_at)
+    end
+  end
 end

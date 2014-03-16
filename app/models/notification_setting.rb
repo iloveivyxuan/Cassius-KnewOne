@@ -5,7 +5,7 @@ class NotificationSetting
 
   SCOPE_OPTIONS = {
       :none => '禁止',
-      # :followed => '仅我关注的',
+      :following => '仅我关注的',
       :all => '任何人'
   }
 

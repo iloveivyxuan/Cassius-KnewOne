@@ -39,14 +39,9 @@ section.panel.hidden-xs
       | 动态
     = link_to_with_icon '', 'fa fa-chevron-right fa_alone', activities_user_path(@user), class: 'more', title: '更多'
   .panel-body.activity
-    ul
-      li
-        | 关注了
-        = link_to 'SynZhang', '#'
-        time datetime="这里是datetime" 1 分钟前
-      li
-        | 为 bong 手环写了篇评测
-        = link_to 'SynZhang', '#'
-        | 是一篇很长的评测，真的很长
-        time datetime="这里是datetime" 1 分钟前
-    = render "shared/nothing"
+    - if @activities.any?
+      ul
+        - @activities.each do |a|
+          = render_user_activity(a)
+    - else
+      = render "shared/nothing"

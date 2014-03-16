@@ -5,12 +5,16 @@ class AftermathHandler
       comment.related_users.each do |receiver|
         receiver.notify :comment, context: comment.post, sender: comment.author
       end
+
+      comment.author.log_activity :comment, comment.post
     end
 
     def thing_create(thing)
       u = thing.author
 
       u.inc things_count: 1
+
+      u.log_activity :new_thing, thing
     end
 
     def thing_destroy(thing)
@@ -21,6 +25,8 @@ class AftermathHandler
 
     def thing_fancy(thing, user)
       user.inc fancies_count: 1
+
+      user.log_activity :fancy_thing, thing
     end
 
     def thing_unfancy(thing, user)
@@ -29,6 +35,8 @@ class AftermathHandler
 
     def thing_own(thing, user)
       user.inc owns_count: 1
+
+      user.log_activity :own_thing, thing
     end
 
     def thing_unown(thing, user)
@@ -39,6 +47,8 @@ class AftermathHandler
       u = review.author
 
       u.inc reviews_count: 1
+
+      u.log_activity :new_review, thing
     end
 
     def review_destroy(review)
@@ -50,6 +60,8 @@ class AftermathHandler
     def user_follow(record, user)
       record.inc followings_count: 1
       user.inc followers_count: 1
+
+      record.log_activity :follow_user, user
     end
 
     def user_unfollow(record, user)
