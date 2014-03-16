@@ -18,10 +18,10 @@
           .progress title="#{@user.progress}%"
             .progress-bar style="width: #{@user.progress}%;"
         dd.friendship
-          = link_to followings_user_path(@user) do
+          = link_to followings_user_path(@user), id: 'followings', data: {count: @user.followings_count} do
             = @user.followings_count
             small 关注
-          = link_to followers_user_path(@user) do
+          = link_to followers_user_path(@user), id: 'followers', data: {count: @user.followers_count} do
             = @user.followers_count
             small 关注者
         dd.exchange
