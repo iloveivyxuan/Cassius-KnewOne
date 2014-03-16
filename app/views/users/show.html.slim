@@ -1,8 +1,6 @@
 - if @user.description.present?
   blockquote.description.hidden-xs
-    i.fa.fa-quote-left
     = @user.description
-    i.fa.fa-quote-right
 
 - if @owns.any?
   section.panel.panel-default.hidden-xs
@@ -34,18 +32,7 @@
     .panel-body
       = render partial: 'users/review', collection: @reviews
 
-section.panel.panel_compact.activity
-  header.panel-heading
-    h3.panel-title
-      i.fa.fa-bars
-      | 动态
-    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', activities_user_path(@user), class: 'more', title: '更多'
-  .panel-body
-    .empty
-      i.fa.fa-meh-o
-      | 还没有动态
-
-section.panel.panel_compact.activity
+section.activity.panel.panel-default.hidden-xs
   header.panel-heading
     h3.panel-title
       i.fa.fa-bars
@@ -56,7 +43,14 @@ section.panel.panel_compact.activity
       li
         | 关注了
         = link_to 'SynZhang', '#'
+        time datetime="这里是datetime" 1 分钟前
       li
         | 为 bong 手环写了篇评测
         = link_to 'SynZhang', '#'
         | 是一篇很长的评测，真的很长
+        time datetime="这里是datetime" 1 分钟前
+
+    .nothing
+      i.fa.fa-meh-o
+      br
+      | 什么都没有

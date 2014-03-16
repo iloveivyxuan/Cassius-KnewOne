@@ -103,14 +103,6 @@ html.users_activities {
         }
       }
     }
-  }
-
-  .user_info {
-
-    .panel_compact {
-      border-top: $border-default;
-      padding-top: 2em;
-    }
 
     .activity {
       display: none;
@@ -120,7 +112,6 @@ html.users_activities {
       }
 
       .panel-body {
-        color: $text-muted;
 
         li {
           margin-bottom: 10px;
@@ -129,8 +120,21 @@ html.users_activities {
             padding-left: .5em;
             padding-right: .5em;
           }
+
+          time {
+            float: right;
+            padding-left: 2em;
+          }
         }
       }
+    }
+  }
+
+  .user_info {
+
+    .panel_compact {
+      border-top: $border-default;
+      padding-top: 2em;
     }
   }
 
