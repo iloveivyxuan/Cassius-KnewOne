@@ -6,7 +6,7 @@ class AftermathHandler
         receiver.notify :comment, context: comment.post, sender: comment.author
       end
 
-      comment.author.log_activity :comment, comment.post
+      comment.author.log_activity :comment, comment.post, check_recent: true
     end
 
     def thing_create(thing)
@@ -26,7 +26,7 @@ class AftermathHandler
     def thing_fancy(thing, user)
       user.inc fancies_count: 1
 
-      user.log_activity :fancy_thing, thing
+      user.log_activity :fancy_thing, thing, check_recent: true
     end
 
     def thing_unfancy(thing, user)
@@ -36,7 +36,7 @@ class AftermathHandler
     def thing_own(thing, user)
       user.inc owns_count: 1
 
-      user.log_activity :own_thing, thing
+      user.log_activity :own_thing, thing, check_recent: true
     end
 
     def thing_unown(thing, user)
@@ -61,7 +61,7 @@ class AftermathHandler
       record.inc followings_count: 1
       user.inc followers_count: 1
 
-      record.log_activity :follow_user, user
+      record.log_activity :follow_user, user, check_recent: true
     end
 
     def user_unfollow(record, user)

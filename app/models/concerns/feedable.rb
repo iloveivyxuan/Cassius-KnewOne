@@ -13,6 +13,11 @@ module Feedable
   end
 
   def log_activity(type, reference = nil, options = {})
+    if options.delete :check_recent
+      recent_activity = self.activities.first
+      return false if recent_activity.type == type && recent_activity.reference == reference
+    end
+
     activity = self.activities.build({type: type}.merge(options))
     activity.reference = reference
     activity.save
