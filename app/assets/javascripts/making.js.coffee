@@ -89,9 +89,16 @@ window.Making =
       Making.ToggleFixedNavbar()
       Making.InitUIDropdownBox()
 
-      if $('.user_info_body').length
-        $('.user_info_body').css 'width', ->
-          $(@).parents('.user_info').width()
+      if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')') and $('.user_info_body').length
+        $element = $('.user_info_body')
+
+        $element
+          .attr
+            "data-spy": "affix"
+            "data-offset-top": "5"
+            "data-offset-bottom": "200"
+          .css 'width', ->
+            $(@).parents('.user_info').width()
 
   ToggleFixedNavbar: ->
     if Modernizr.mq('(max-width: ' + Making.Breakpoints.screenMDMax + ')') and

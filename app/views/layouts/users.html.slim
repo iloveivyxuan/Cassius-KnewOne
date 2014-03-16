@@ -1,7 +1,7 @@
 - page_title @user.name
 - content_for :content do
   .user_info
-    .user_info_body data-spy="affix" data-offset-top="5" data-offset-bottom="200"
+    .user_info_body
       dl.vcard itemscope="" itemtype="http://data-vocabulary.org/Person"
         dd.avatar itemprop="photo"= user_avatar(@user, :normal)
         dt.name itemprop="name"
