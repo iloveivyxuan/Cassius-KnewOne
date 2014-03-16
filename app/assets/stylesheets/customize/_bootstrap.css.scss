@@ -60,6 +60,13 @@ time {
 // Buttons
 // -----------------------------------------------------------------------------
 
+.btn {
+  &:focus,
+  &.active:focus {
+    outline: none;
+  }
+}
+
 .btn-link {
   &:hover {text-decoration: none;}
 }
