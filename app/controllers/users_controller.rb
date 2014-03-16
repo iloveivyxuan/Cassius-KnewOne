@@ -32,6 +32,14 @@ class UsersController < ApplicationController
     # TODO: NYI
   end
 
+  def followings
+    @followings = @user.followings.page params[:page]
+  end
+
+  def followers
+    @followers = @user.followers.page params[:page]
+  end
+
   def share
     current_user.auths.select {|a| params[:providers].include? a.provider}.each do |auth|
       auth.share params[:share][:content], params[:share][:pic]

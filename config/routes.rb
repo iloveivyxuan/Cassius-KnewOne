@@ -47,8 +47,10 @@ Making::Application.routes.draw do
       get 'things'
       get 'groups'
       get 'activities'
-      post 'follow'
-      delete 'follow', to: :unfollow
+      get 'followings'
+      get 'followers'
+      post 'followings', to: :follow
+      delete 'followings', to: :unfollow
     end
   end
 
