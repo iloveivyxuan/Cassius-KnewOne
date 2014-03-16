@@ -26,10 +26,8 @@
             = @user.followers_count
             small 关注者
         dd.exchange
-          = render "users/follow_btn"
-          = button_tag class: "btn btn-default", id: "private_message_btn", title: '私信',
-            data: {toggle: "modal", target: "#new_private_message"} do
-              i.fa.fa-envelope-o.fa_alone.private_message_success  data-container="body" data-toggle="popover" data-trigger="manual" data-placement="bottom" data-content="发送成功"
+          = render 'users/follow_btn'
+          = render 'users/private_message_btn'
         dd.location title="地区"
           label
             i.fa.fa-map-marker

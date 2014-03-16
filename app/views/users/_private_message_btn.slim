@@ -1,0 +1,7 @@
+- if current_user != @user
+  = button_tag class: "btn btn-default", id: "private_message_btn", title: '私信',
+               data: {toggle: "modal", target: "#new_private_message"} do
+    i.fa.fa-envelope-o.fa_alone.private_message_success data-container="body" data-toggle="popover" data-trigger="manual" data-placement="bottom" data-content="发送成功"
+- else
+  = button_tag class: "btn btn-default", id: "private_message_btn", disabled: true do
+    i.fa.fa-envelope-o.fa_alone.private_message_success
