@@ -327,24 +327,24 @@ html.users_activities {
         @media screen and (min-width: $screen-sm-min) {
           float: none !important;
         }
+      }
 
-        &.btn-primary {
-          float: left;
-          width: 70%;
+      #follow_btn {
+        float: left;
+        width: 70%;
 
-          @media screen and (min-width: $screen-sm-min) {
-            margin-right: 10px;
-            width: 100px;
-          }
+        @media screen and (min-width: $screen-sm-min) {
+          margin-right: 10px;
+          width: 100px;
         }
+      }
 
-        &.btn-default {
-          float: right;
-          width: 20%;
+      #private_message_btn {
+        float: right;
+        width: 20%;
 
-          @media screen and (min-width: $screen-sm-min) {
-            width: auto;
-          }
+        @media screen and (min-width: $screen-sm-min) {
+          width: auto;
         }
       }
     }

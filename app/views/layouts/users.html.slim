@@ -25,8 +25,8 @@
           = @user.followers_count
           small 关注者
       dd.exchange
-        = render 'users/follow_btn'
-        = button_tag class: "btn btn-default",
+        = render "users/follow_btn"
+        = button_tag class: "btn btn-default", id: "private_message_btn",
           data: {toggle: "modal", target: "#new_private_message"} do
             i.fa.fa-envelope-o.fa_alone
         span.private_message_success.hide 发送成功
