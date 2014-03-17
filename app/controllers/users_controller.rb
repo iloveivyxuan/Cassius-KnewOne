@@ -51,6 +51,7 @@ class UsersController < ApplicationController
 
   def follow
     current_user.follow @user
+    current_user.log_activity :follow_user, @user, check_recent: true
 
     respond_to do |format|
       format.html { redirect_stored_or user_path(@user) }

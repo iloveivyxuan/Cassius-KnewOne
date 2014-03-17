@@ -24,6 +24,7 @@ class ReviewsController < ApplicationController
     @review.author = current_user
     if @review.save
       flash[:provider_sync] = params[:provider_sync]
+      current_user.log_activity :new_review, @review.thing
       redirect_to thing_review_path(@thing, @review)
     else
       flash.now[:error] = @review.errors.full_messages.first
