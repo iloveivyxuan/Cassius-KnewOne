@@ -94,11 +94,10 @@ window.Making =
 
         $element
           .attr
-            "data-spy": "affix"
-            "data-offset-top": "5"
-            "data-offset-bottom": "200"
-          .css 'width', ->
-            $(@).parents('.user_info').width()
+            'data-spy': 'affix'
+          .on 'affix.bs.affix', ->
+            $element.css 'width', ->
+              $element.parents('.user_info').width()
 
   ToggleFixedNavbar: ->
     if Modernizr.mq('(max-width: ' + Making.Breakpoints.screenMDMax + ')') and
