@@ -2,7 +2,7 @@
 - content_for :content do
   .user_info
     dl.vcard itemscope="" itemtype="http://data-vocabulary.org/Person"
-      dd.avatar itemprop="photo"= user_avatar(@user, :normal)
+      dd.avatar itemprop="photo"= user_avatar(@user, :square)
       dt.name itemprop="name"
         h1
           = @user.name
