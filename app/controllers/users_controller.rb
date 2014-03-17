@@ -10,19 +10,19 @@ class UsersController < ApplicationController
   end
 
   def fancies
-    @fancies = @user.fancies.page params[:page]
+    @fancies = @user.fancies.page(params[:page]).per(24)
   end
 
   def owns
-    @owns = @user.owns.page params[:page]
+    @owns = @user.owns.page(params[:page]).per(24)
   end
 
   def reviews
-    @reviews = @user.reviews.where(:thing_id.ne => nil).page params[:page]
+    @reviews = @user.reviews.where(:thing_id.ne => nil).page(params[:page]).per(24)
   end
 
   def things
-    @things = @user.things.page params[:page]
+    @things = @user.things.page(params[:page]).per(24)
   end
 
   def groups
@@ -30,15 +30,15 @@ class UsersController < ApplicationController
   end
 
   def activities
-    @activities = @user.activities.visible.page params[:page]
+    @activities = @user.activities.visible.page(params[:page]).per(24)
   end
 
   def followings
-    @followings = @user.followings.page params[:page]
+    @followings = @user.followings.page(params[:page]).per(24)
   end
 
   def followers
-    @followers = @user.followers.page params[:page]
+    @followers = @user.followers.page(params[:page]).per(24)
   end
 
   def share

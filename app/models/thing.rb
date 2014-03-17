@@ -69,8 +69,6 @@ class Thing < Post
 
   embeds_many :investors
 
-  after_update :inc_karma
-
   def photos
     Photo.find_with_order photo_ids
   end
@@ -133,17 +131,6 @@ class Thing < Post
     return if score.nil? || scores[score].nil? || scores[score] <= 0
     scores[score] -= 1
     save
-  end
-
-  def inc_karma
-    return unless priority_changed?
-    old_priority = changed_attributes["priority"]
-    old_priority ||= 0
-    if old_priority <= 0 and priority > 0
-      author.inc karma: Settings.karma.thing
-    elsif old_priority > 0 and priority <= 0
-      author.inc karma: -Settings.karma.thing
-    end
   end
 
   def self_run?

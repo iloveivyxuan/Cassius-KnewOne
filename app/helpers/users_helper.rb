@@ -27,9 +27,9 @@ module UsersHelper
         when 'Weibo'
           html<< link_to_with_icon(nil, 'fa fa-weibo', v,
                                    title: "新浪微博", target: "_blank", class: 'provider', rel: '_nofollow')
-        when 'Blog'
-          html<< link_to_with_icon(nil, 'fa fa-rss', v,
-                                   title: "博客", target: "_blank", class: 'website', rel: '_nofollow')
+        #when 'Blog'
+        #  html<< link_to_with_icon(nil, 'fa fa-rss', v,
+        #                           title: "博客", target: "_blank", class: 'website', rel: '_nofollow')
       end
     end
 
