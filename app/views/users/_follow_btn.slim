@@ -1,11 +1,10 @@
 - if current_user == @user
-  = link_to "#user_share", title: "我就是我~是颜色不一样的烟火~", class: 'btn btn-primary', id: 'follow_btn',
-                                      data: {toggle: 'modal', keyboard: false} do
+  = link_to "#", title: "我就是我~是颜色不一样的烟火~", class: 'btn btn-default disabled', id: 'follow_btn', disabled: "true" do
     i.fa.fa-plus
     | 关注
   = render 'shared/share', id: 'user_share', content: '我用KnewOne我自豪！ http://knewone.com', pic: @user.avatar.url(:normal)
 - elsif current_user.followed? @user
-  = link_to followings_user_path(@user), remote: true, method: :delete, class: 'btn btn-success', id: 'follow_btn' do
+  = link_to followings_user_path(@user), remote: true, method: :delete, class: 'btn btn-default', id: 'follow_btn' do
     i.fa.fa-check
     | 已关注
 - else
