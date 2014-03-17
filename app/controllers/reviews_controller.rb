@@ -24,6 +24,7 @@ class ReviewsController < ApplicationController
     @review.author = current_user
     if @review.save
       flash[:provider_sync] = params[:provider_sync]
+      current_user.log_activity :new_review, @review
       redirect_to thing_review_path(@thing, @review)
     else
       flash.now[:error] = @review.errors.full_messages.first
@@ -50,12 +51,13 @@ class ReviewsController < ApplicationController
   end
 
   def vote
-    @review.vote current_user, params[:vote] == "true"
+    if params[:vote] == "true"
+      @review.vote current_user, true
+      current_user.log_activity :love_review, @review
+    else
+      @review.vote current_user, false
+    end
     render :partial => 'voting', locals: {review: @review}, layout: false
-  end
-
-  def admin
-    @reviews = Review.unscoped.desc(:created_at).page params[:page]
   end
 
   private

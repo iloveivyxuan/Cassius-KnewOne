@@ -47,6 +47,12 @@
 // UI Component
 // -----------------------------------------------------------------------------
 
+@mixin decoration {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px #ccc;
+}
+
 @mixin fontawesome($content) {
   display: inline-block;
   font-family: FontAwesome;
@@ -137,5 +143,5 @@
 
 @mixin vertical-list-item {
   padding: 1em 0;
-  &:not(:last-child) {border-bottom: 1px dashed #ccc;}  
+  &:not(:last-child) {border-bottom: 1px dashed #ccc;}
 }

@@ -1,106 +1,429 @@
-html.users_show {
+html.users_show,
+html.users_fancies,
+html.users_owns,
+html.users_reviews,
+html.users_things,
+html.users_groups,
+html.users_followings,
+html.users_followers,
+html.users_activities {
 
   // Layout
   // ---------------------------------------------------------------------------
 
   #wrapper {
-    @include wrapper(grid);
+    @include wrapper(what);
+
+    color: $gray;
+    padding-bottom: 20px;
+    padding-top: 20px;
+
+    @media screen and (min-width: $screen-sm-min) {
+      padding-bottom: 40px;
+      padding-top: 40px;
+    }
 
     .user_info {
-      @include make-md-column(4);
-      @include make-lg-column(3);
-      @include make-xl-column(2);
+      @include make-md-column(3, $gutter: 4em);
+      @include make-md-column-push(9);
 
-      .vcard {
-        background-color: #fff;
-        border-radius: 8px;
-        margin-bottom: 1em;
-        padding: 2em;
+      border-bottom: 1px solid #eee;
+      color: $text-muted;
+      margin-bottom: 20px;
+      padding-left: 0;
+      padding-right: 0;
+
+      @media screen and (min-width: $screen-sm-min) {
+        border-bottom: 0;
+        margin-bottom: 0;
+        padding-left: 2em;
+        padding-right: 2em;
       }
     }
 
     .user_content {
-      @include make-md-column(8);
-      @include make-lg-column(9);
-      @include make-xl-column(10);
+      @include make-md-column(9, $gutter: 4em);
+      @include make-md-column-pull(3);
 
-      .user_content_inner {
-        background-color: #fff;
-        border-radius: 8px;
-        margin-bottom: 1em;
-        padding: 2em;
+      padding-left: 0;
+      padding-right: 0;
+
+      @media screen and (min-width: $screen-sm-min) {
+        padding-left: 2em;
+        padding-right: 2em;
       }
 
-      .tab-pane {
-        padding-top: 1em;
+      @media screen and (min-width: $screen-md-min) {
+        border-right: $border-default;
+        min-height: 800px;
+      }
+    }
+  }
 
-        ul.grids {
-          @include make-row;
+  // Section
+  // ---------------------------------------------------------------------------
 
-          > li {
-            @include make-sm-column(6);
-            @include make-lg-column(4);
-            @include make-xl-column(3);
+  .user_content {
+
+    .page-header {
+      border-bottom: 0;
+    }
+
+    .description {
+      border-left: 0;
+    }
+
+    .panel {
+      box-shadow: none;
+    }
+
+    .panel-heading {
+      @include clearfix;
+
+      border-color: #eee;
+
+      .panel-title {
+        color: $text-muted;
+        float: left;
+      }
+
+      .more {
+        color: $text-muted;
+        display: block;
+        float: right;
+        font-size: 16px;
+        line-height: 24px;
+        text-align: center;
+        width: 24px;
+
+        &:hover {
+          color: $text-color;
+        }
+      }
+    }
+
+    ul.things {
+
+      > li {
+        margin-bottom: 0;
+
+        @media screen and (min-width: $screen-sm-min) {
+          width: percentage(4 / 12);
+        }
+      }
+    }
+  }
+
+  .nav-pills-list {
+    border-bottom: $border-default;
+    margin-bottom: 20px;
+
+    @media screen and (min-width: $screen-sm-min) {
+      margin-bottom: 30px;
+    }
+
+    > li {
+
+      &:first-child {
+        margin-left: 2px;
+
+        @media screen and (min-width: $screen-md-min) {
+          margin-left: 0;
+          width: .2%;
+        }
+
+        .fa {
+          margin: 0;
+        }
+      }
+
+      @media screen and (max-width: $screen-sm-min) {
+
+        &.active {
+          border-bottom: 0;
+
+          > a {
+            &,
+            &:hover,
+            &:focus {
+              border-radius: $nav-pills-border-radius;
+              background-color: $nav-pills-active-link-hover-bg;
+              color: $nav-pills-active-link-hover-color;
+            }
+          }
+        }
+      }
+
+      > a {
+        @include clearfix;
+        text-align: left;
+
+        @media screen and (min-width: $screen-sm-min) {
+          text-align: center;
+        }
+
+        > .badge {
+          float: right;
+
+          @media screen and (min-width: $screen-sm-min) {
+            float: none;
           }
         }
       }
     }
   }
-}
 
-// Section
-// -----------------------------------------------------------------------------
+  dl.vcard {
+    @include clearfix;
 
-dl.vcard {
-  margin-top: 0;
+    dt,
+    dd {
+      margin-bottom: 10px;
 
-  dt,
-  dd {
-    margin-bottom: 1em;
-  }
-
-  .avatar img {
-    height: 80px;
-    width: 80px;
-  }
-
-  .name h2 {
-    font-size: $font-size-h4;
-    button {margin-left: 2em;}
-    .private_message_success {
-      margin-left: 1em;
-      color: $green;
-      font-size: $font-size-small;
+      @media screen and (min-width: $screen-md-min) {
+        margin-bottom: 1.5em;
+      }
     }
-  }
 
-  .level {
-    color: $blue;
-    float: left;
-    font-family: "orbitron-bold";
-    margin-right: 1em;
-  }
+    dd {
+      @include clearfix;
 
-  .progress {
-    float: left;
-    margin-bottom: 0;
-    width: 70%;
+      > label {
+        float: left;
+        line-height: 32px;
+        margin-bottom: 0;
+        margin-right: 10px;
+        width: 1em;
+      }
 
-    .progress-bar {
-      @include transition(width 1s, opacity 0.22s ease-out);
+      .data {
+        line-height: 32px;
+        margin-bottom: 0;
+        overflow: hidden;
+      }
     }
-  }
 
-  .url {
-    .fa {
-      color: $blue;
-      margin-right: 1em;
+    .avatar {
+      float: left;
+      margin-right: 10px;
+
+      @media screen and (min-width: $screen-md-min) {
+        float: none;
+      }
+
+      img {
+        border-radius: 6px;
+        height: 60px;
+        width: 60px;
+
+        @media screen and (min-width: 500px) {
+          height: 110px;
+          width: 110px;
+        }
+
+        @media screen and (min-width: $screen-sm-min) {
+          height: 150px;
+          width: 150px;
+        }
+
+        @media screen and (min-width: $screen-md-min) {
+          height: 180px;
+          width: 180px;
+        }
+      }
     }
-  }
 
-  address,
-  blockquote {
-    color: $text-muted;
+    .name {
+      overflow: hidden;
+
+      h1 {
+        color: $text-color;
+        font-size: 18px;
+        margin: 0;
+
+        .private_message_success {
+          margin-left: 1em;
+          color: $green;
+          font-size: $font-size-small;
+        }
+
+        .gender {
+          padding-left: 10px;
+        }
+
+        .note {
+          display: none;
+
+          @media screen and (min-width: $screen-sm-min) {
+            display: inline-block;
+            height: 18px;
+            line-height: 18px;
+            overflow: hidden;
+            padding-left: 10px;
+          }
+        }
+      }
+    }
+
+    .level {
+      display: inline-block;
+      overflow: hidden;
+
+      @media screen and (min-width: $screen-md-min) {
+        display: block;
+      }
+
+      .level_num {
+        color: $blue;
+        float: left;
+        font-family: "orbitron-bold";
+        margin-right: 1em;
+      }
+
+      .progress {
+        display: none;
+
+        @media screen and (min-width: $screen-xs-min) {
+          display: block;
+          margin-bottom: 0;
+
+          .progress-bar {
+            @include transition(width 1s, opacity 0.22s ease-out);
+          }
+        }
+
+        @media screen and (min-width: $screen-md-min) {
+          width: 70%;
+        }
+      }
+    }
+
+    .friendship {
+      color: $text-color;
+      display: inline-block;
+      overflow: hidden;
+
+      @media screen and (min-width: $screen-md-min) {
+        display: block;
+      }
+
+      > a {
+        color: $text-color;
+        display: inline-block;
+        font-size: 18px;
+        font-weight: normal;
+        width: 110px;
+
+        small {
+          color: $gray;
+          font-size: 14px;
+          padding-left: .5em;
+        }
+      }
+    }
+
+    .exchange {
+      overflow: hidden;
+
+      @media screen and (min-width: $screen-md-min) {
+        border-bottom: $border-default;
+        margin-bottom: 2em;
+        padding-bottom: 2.5em;
+      }
+
+      .btn {
+
+        @media screen and (min-width: $screen-sm-min) {
+          float: none !important;
+        }
+      }
+
+      #follow_btn {
+        float: left;
+        width: 70%;
+
+        @media screen and (min-width: $screen-sm-min) {
+          margin-right: 10px;
+          min-width: 100px;
+          width: 55%;
+        }
+      }
+
+      #private_message_btn {
+        float: right;
+        width: 20%;
+
+        @media screen and (min-width: $screen-sm-min) {
+          width: auto;
+        }
+      }
+    }
+
+    .url {
+
+      a {
+        background-color: #ededed;
+        border-radius: 100%;
+        color: $gray;
+        display: inline-block;
+        height: 32px;
+        line-height: 32px;
+        margin-right: 10px;
+        text-align: center;
+        width: 32px;
+
+        &:hover {
+          @include rotate(-15deg);
+          background-color: $gray;
+          color: #ededed;
+        }
+
+        .fa {
+          margin: 0;
+        }
+      }
+    }
+
+    .tag {
+
+      .label {
+        background-color: #ededed;
+        border-radius: 20px;
+        color: $text-color;
+        display: inline-block;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 14px;
+        margin: 0 10px 5px 0;
+        padding: 9px 1em;
+
+        &:hover {
+          background-color: $text-color;
+          color: #ededed;
+        }
+      }
+    }
+
+    @media screen and (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+
+      .exchange {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .location {
+        display: inline-block;
+        padding-right: 1em;
+      }
+
+      .url {
+        display: inline-block;
+      }
+
+      .tag {
+        margin-top: 10px;
+      }
+    }
   }
 }
 
@@ -115,6 +438,65 @@ dl.vcard {
     margin: 1em;
     overflow: hidden;
     width: 102px;
-    a {display: block;}
+    a {
+      display: block;
+    }
+  }
+}
+
+.user_list {
+  li {
+    display: inline-block;
+    margin: 1.6em;
+    width: 80px;
+    text-align: center;
+    img {
+      @extend .img-circle;
+    }
+    > * {
+      display: block;
+      margin-bottom: .5em;
+      color: $text-muted;
+      @include text-overflow;
+    }
+  }
+}
+
+ul.activities {
+
+  li {
+    @include clearfix;
+
+    border-bottom: 1px dashed #eee;
+    padding: 10px;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    a {
+      padding-left: .5em;
+      padding-right: .5em;
+    }
+
+    time {
+      line-height: 20px;
+      float: right;
+      padding-left: 2em;
+    }
+  }
+}
+
+html.users_show {
+
+  .user_content {
+
+    .nav-pills-list {
+      border-bottom-width: 0;
+
+      @media screen and (min-width: $screen-md-min) {
+        border-bottom-width: 1px;
+      }
+    }
   }
 }

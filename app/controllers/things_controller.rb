@@ -39,6 +39,8 @@ class ThingsController < ApplicationController
     @thing = Thing.new thing_params.merge(author: current_user)
     if @thing.save
       @thing.fancy current_user
+      current_user.log_activity :new_thing, @thing
+
       redirect_to @thing, flash: {provider_sync: params[:provider_sync]}
     else
       render 'new'
@@ -78,6 +80,7 @@ class ThingsController < ApplicationController
       @thing.unfancy current_user
     else
       @thing.fancy current_user
+      current_user.log_activity :fancy_thing, @thing, check_recent: true
     end
 
     respond_to do |format|
@@ -91,6 +94,7 @@ class ThingsController < ApplicationController
       @thing.unown current_user
     else
       @thing.own current_user
+      current_user.log_activity :own_thing, @thing, check_recent: true
     end
 
     respond_to do |format|

@@ -23,6 +23,6 @@ class ProfilesController < ApplicationController
 
   def user_params
     params.require(:user).
-        permit :avatar, :avatar_cache, :name, :description, :location, :site, :auto_update_from_oauth
+        permit :avatar, :avatar_cache, :name, :gender, :description, :location, :site, :auto_update_from_oauth
   end
 end

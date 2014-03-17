@@ -2,6 +2,8 @@
 class Comment
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Aftermath
+
   field :content, type: String
 
   belongs_to :post
@@ -12,7 +14,6 @@ class Comment
 
   default_scope -> { desc(:created_at) }
 
-  after_create :notify_related_users
   after_create :update_commented_at
   after_destroy :update_commented_at
 
@@ -21,8 +22,6 @@ class Comment
     User.in(name: names).to_a
   end
 
-  private
-
   def related_users
     content_users
     .push(post.author)
@@ -30,11 +29,9 @@ class Comment
     .uniq
   end
 
-  def notify_related_users
-    related_users.each do |receiver|
-      receiver.notify :comment, context: self.post, sender: self.author
-    end
-  end
+  need_aftermath :create
+
+  private
 
   def update_commented_at
     post.reload

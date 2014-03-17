@@ -1,0 +1,7 @@
+header.page-header
+  h1
+    | 关注
+    small = @user.followings_count
+
+section
+  ul.user_list = render @followings

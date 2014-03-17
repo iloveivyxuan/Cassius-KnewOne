@@ -2,18 +2,22 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Aftermath
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, :trackable, :confirmable
 
   field :name, type: String, :default => ''
+  field :gender, type: String
   field :site, type: String, :default => ''
   field :description, type: String, :default => ''
   field :location, type: String, :default => ''
   field :karma, type: Integer, default: 0
   field :auto_update_from_oauth, type: Boolean, default: true
+  field :identities, type: Array, default: []
   field :status, type: Symbol, default: :normal
   STATUS = {blocked: '锁定', watching: '特别观照(贬)', normal: '正常'}
   validates :status, inclusion: {in: STATUS.keys, allow_blank: false}
+  validates :gender, inclusion: {in: %w(男 女), allow_blank: true}
   STATUS.keys.each do |k|
     class_eval <<-EVAL
       def #{k}?
@@ -26,15 +30,15 @@ class User
 
   # Stats
   field :things_count, type: Integer, default: 0
+  field :fancies_count, type: Integer, default: 0
+  field :owns_count, type: Integer, default: 0
   field :reviews_count, type: Integer, default: 0
+  field :followers_count, type: Integer, default: 0
+  field :followings_count, type: Integer, default: 0
   field :orders_count, type: Integer, default: 0
   field :expenses_count, type: Integer, default: 0
 
   field :admin_note, type: String, default: ''
-
-  def refresh_stats!
-    UserStatsWorker.perform_async(self.id.to_s)
-  end
 
   ## Database authenticatable
   field :email, :type => String
@@ -183,6 +187,18 @@ class User
   has_and_belongs_to_many :fancies, class_name: "Thing", inverse_of: :fanciers
   has_and_belongs_to_many :owns, class_name: "Thing", inverse_of: :owners
 
+  def followed?(user)
+    self.followings.include? user
+  end
+
+  def follow(user)
+    self.followings<< user
+  end
+
+  def unfollow(user)
+    self.followings.delete user
+  end
+
   ## Lotteries
   has_many :lotteries, inverse_of: :winners
 
@@ -303,11 +319,16 @@ class User
     @progress ||= (karma - rank.abs2*10).to_f*100 / ((rank+1).abs2*10 - rank.abs2*10).to_f
   end
 
-  ## Pagination
-  paginates_per 50
-
   # notification
   include NotificationReceivable
+
+  # activity
+  include Feedable
+
+  # category
+  include CategoryReferable
+
+  need_aftermath :follow, :unfollow
 
   protected
   def password_required?

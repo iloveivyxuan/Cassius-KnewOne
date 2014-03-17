@@ -7,6 +7,7 @@ zh-CN:
         password_confirmation: '密码确认'
         current_password: '当前密码'
         name: '姓名'
+        gender: '性别'
         remember_me: '记住我'
         avatar: '头像'
         job: '职业'

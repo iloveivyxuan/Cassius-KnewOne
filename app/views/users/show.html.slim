@@ -1,59 +1,47 @@
-- page_title @user.name
+- if @user.description.present?
+  blockquote.description.hidden-xs
+    = @user.description
 
-section.user_info
-  dl.vcard itemscope="" itemtype="http://data-vocabulary.org/Person"
-    dd.avatar itemprop="photo"= user_avatar(@user, :small)
-    dt.name itemprop="name"
-      h2
-        = @user.name
-        = button_tag class: "btn btn-default btn-xs",
-        data: {toggle: "modal", target: "#new_private_message"} do
-          i.fa.fa-envelope-o
-          | 私信
-        span.private_message_success.hide 发送成功
-    dd.clearfix itemprop="rating" itemscope="" itemtype="http://data-vocabulary.org/Rating"
-      .level Lv.#{@user.rank}
-      .progress title="#{@user.progress}%"
-        .progress-bar style="width: #{@user.progress}%;"
-    dd.url itemprop="url"
-      = user_links(@user)
-    dd itemprop="address"
-      address = user_location(@user)
-    dd
-      blockquote= @user.description
-    = render 'users/admin_note'
+- if @owns.any?
+  section.panel.hidden-xs
+    header.panel-heading
+      h3.panel-title
+        i.fa.fa-check
+        | 拥有
+      = link_to_with_icon '', 'fa fa-chevron-right fa_alone', owns_user_path(@user), class: 'more', title: '更多'
+    .panel-body
+      ul.things= render @owns, size: :normal, img_lazy: true
 
-section.user_content
-  .user_content_inner
-    ul.nav.nav-pills
-      li.active
-        = link_to "#fancies", data: {toggle: "tab"} do
-          | 喜欢
-          span.badge #{@fancies.count}
-      li
-        = link_to "#owns", data: {toggle: "tab"} do
-          | 拥有
-          span.badge #{@owns.count}
-      li
-        = link_to "#reviews", data: {toggle: "tab"} do
-          | 评测
-          span.badge #{@reviews.count}
-      li
-        = link_to "#things", data: {toggle: "tab"} do
-          | 分享
-          span.badge #{@things.count}
-    .tab-content
-      #fancies.tab-pane.active
-        ul.grids= render @fancies, size: :normal, img_lazy: true
-      #owns.tab-pane
-        ul.grids= render @owns, size: :normal, img_lazy: false
-      #reviews.tab-pane
-        ul= render @reviews
-      #things.tab-pane
-        ul.grids= render @things, size: :normal, img_lazy: false
+- if @fancies.any?
+  section.panel.hidden-xs
+    header.panel-heading
+      h3.panel-title
+        i.fa.fa-heart
+        | 喜欢
+      = link_to_with_icon '', 'fa fa-chevron-right fa_alone', fancies_user_path(@user), class: 'more', title: '更多'
+    .panel-body
+      ul.things= render @fancies, size: :normal, img_lazy: false
 
-= render 'shared/private_message', from: "user_show"
+- if @reviews.any?
+  section.panel.hidden-xs
+    header.panel-heading
+      h3.panel-title
+        i.fa.fa-book
+        | 评测
+      = link_to_with_icon '', 'fa fa-chevron-right fa_alone', reviews_user_path(@user), class: 'more', title: '更多'
+    .panel-body
+      = render partial: 'users/review', collection: @reviews
 
-- content_for :script do
-  javascript:
-    Making.UserFuzzy('#dialog_user_name', '#dialog_user_id');
+section.panel.hidden-xs
+  header.panel-heading
+    h3.panel-title
+      i.fa.fa-bars
+      | 动态
+    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', activities_user_path(@user), class: 'more', title: '更多'
+  .panel-body
+    - if @activities.any?
+      ul.activities
+        - @activities.each do |a|
+          = render_user_activity(a)
+    - else
+      = render "shared/nothing"

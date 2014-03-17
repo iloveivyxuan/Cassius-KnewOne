@@ -17,6 +17,7 @@ window.Making =
 
   initialize: ->
     $ ->
+      $html = $('html')
       Making.ImageLazyLoading()
       Making.InitUIThings($('.thing'))
       if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ')') then Making.Search()
@@ -29,7 +30,7 @@ window.Making =
         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
       Making.SetupOlark('[href="#olark_chat"]')
       Making.GoTop()
-      if $('html').hasClass('settings')
+      if $html.hasClass('settings')
         $('#switch_aside').on 'click', ->
           $('#wrapper').addClass 'is_aside_active'
         $('#switch_main').on 'click', ->
@@ -46,7 +47,7 @@ window.Making =
         }, 'normal'
         return
 
-      if $('html').hasClass 'home_landing'
+      if $html.hasClass 'home_landing'
         $('.entry_email_toggle').addClass(if $('.entry_email').is(':visible') then 'active')
 
         $image = $('.feature_image')
@@ -87,6 +88,21 @@ window.Making =
       Making.AjaxComplete()
       Making.ToggleFixedNavbar()
       Making.InitUIDropdownBox()
+
+      if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')') and $('.user_info_body').length
+        $element = $('.user_info_body')
+        user_agent = window.navigator.userAgent
+
+        if user_agent.indexOf('Safari') > -1 and user_agent.indexOf('Chrome') is -1
+          $element.css 'left', ->
+            $(@).offset().left
+
+        $element
+          .attr
+            'data-spy': 'affix'
+          .on 'affix.bs.affix', ->
+            $element.css 'width', ->
+              $element.parents('.user_info').width()
 
   ToggleFixedNavbar: ->
     if Modernizr.mq('(max-width: ' + Making.Breakpoints.screenMDMax + ')') and

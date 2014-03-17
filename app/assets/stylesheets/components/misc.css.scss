@@ -11,14 +11,6 @@ i.fa_alone {
   margin: 0;
 }
 
-.fa-twitter {
-  color: $blue;
-}
-
-.fa-weibo {
-  color: $red;
-}
-
 .list_block {
 
   > li {
@@ -49,14 +41,26 @@ i.fa_alone {
   a {color: $green;}
 
   .owned {
-    .fa-square-o {display: none !important;}
+    .fa-circle-o {display: none !important;}
   }
 
   .unowned {
-    .fa-check-square-o {display: none !important;}
+    .fa-check-circle-o {display: none !important;}
     &:hover {
       span:last-child {color: $green;}
     }
+  }
+}
+
+.nothing {
+  color: $text-muted;
+  font-size: 18px;
+  padding: 50px 0;
+  text-align: center;
+
+  .fa {
+    font-size: 60px;
+    margin: 0;
   }
 }
 
