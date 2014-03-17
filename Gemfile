@@ -77,6 +77,9 @@ gem 'newrelic_rpm'
 gem 'airbrake'
 gem 'intercom-rails'
 
+# sitemap
+gem 'sitemap_generator'
+
 # servers
 group :production do
   gem 'unicorn'
