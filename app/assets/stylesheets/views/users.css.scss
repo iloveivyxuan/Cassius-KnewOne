@@ -115,9 +115,10 @@ html.users_activities {
   }
 
   .nav-pills-list {
+    border-bottom: $border-default;
+    margin-bottom: 20px;
 
     @media screen and (min-width: $screen-sm-min) {
-      border-bottom: $border-default;
       margin-bottom: 30px;
     }
 
