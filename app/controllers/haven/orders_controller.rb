@@ -36,8 +36,7 @@ module Haven
                 order.order_no,
                 order.created_at.strftime('%Y-%m-%d'),
                 ::Order::STATES[order.state],
-                (order.order_items.map { |i| "#{i.name} x
-                                ##{i.quantity} | " }.reduce &:+),
+                (order.order_items.map { |i| "{{ #{i.name} x #{i.quantity} }} " }.reduce &:+),
                 "￥#{order.total_price}",
                 ::Order::DELIVER_METHODS[order.deliver_by],
                 content_for_address(order.address),
