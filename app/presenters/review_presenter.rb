@@ -33,4 +33,10 @@ class ReviewPresenter < PostPresenter
 
     content += thing_review_url(review.thing, review, :refer => 'weibo')
   end
+
+  def cover(version = :small)
+    if src = review.official_cover(version)
+      image_tag src
+    end
+  end
 end

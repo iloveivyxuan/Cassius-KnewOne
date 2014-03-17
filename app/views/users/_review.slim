@@ -9,8 +9,8 @@ article.article_compact
         figurecaption title=review.thing.title
           = review.thing.title
       .article_content
-        img src="http://image.knewone.com/photos/413918054b2dacc4f02a3792756b01da.jpg!small"
-        p = rp.summary
+        = rp.cover
+        p = rp.summary(120)
       .atricle_meta
         = time_ago_tag(review.created_at)
         = rp.comments_count
