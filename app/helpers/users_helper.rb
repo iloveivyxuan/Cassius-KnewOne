@@ -50,7 +50,6 @@ module UsersHelper
     return if html.blank?
 
     content_tag :dd, nil, class: 'url', title: '社交网络', itemprop: 'url' do
-      content_tag(:label, nil) { content_tag(:i, nil, class: 'fa fa-globe') } +
           content_tag(:div, nil, class: 'data') { user_links(user) }
     end
   end
