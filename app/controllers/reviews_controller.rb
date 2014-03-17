@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 class ReviewsController < ApplicationController
   include MarkReadable
-  load_and_authorize_resource :thing, except: [:admin], singleton: true
-  load_and_authorize_resource :review, through: :thing, except: [:admin]
-  layout 'thing', except: [:admin]
+  load_and_authorize_resource :thing, singleton: true
+  load_and_authorize_resource :review, through: :thing
+  layout 'thing'
   after_action :allow_iframe_load, only: [:show]
 
   def index

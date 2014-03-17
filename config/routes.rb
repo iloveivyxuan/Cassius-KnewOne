@@ -121,7 +121,6 @@ Making::Application.routes.draw do
     end
   end
 
-
   resources :things do
     collection do
       get 'admin'
