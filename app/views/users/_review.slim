@@ -1,6 +1,7 @@
 article.article_compact
   - present review do |rp|
-    h4.article_title = link_to rp.title, rp.path
+    header.article_header
+      h4.article_title = link_to rp.title, rp.path
     section.article_body
       figure
         = link_to thing_path(review.thing) do
@@ -8,6 +9,9 @@ article.article_compact
         figurecaption title=review.thing.title
           = review.thing.title
       p = rp.summary
-    footer.article_meta
+    footer.atricle_footer
+      = time_ago_tag(review.created_at)
+      = rp.comments_count
+    .article_feature
       i.fa.fa-plus
       = review.lovers_count

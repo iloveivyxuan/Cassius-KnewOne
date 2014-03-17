@@ -27,9 +27,9 @@ module UsersHelper
         when 'Weibo'
           html<< link_to_with_icon(nil, 'fa fa-weibo', v,
                                    title: "新浪微博", target: "_blank", class: 'provider', rel: '_nofollow')
-        #when 'Blog'
-        #  html<< link_to_with_icon(nil, 'fa fa-rss', v,
-        #                           title: "博客", target: "_blank", class: 'website', rel: '_nofollow')
+        when 'Blog'
+          html<< link_to_with_icon(nil, 'fa fa-pagelines', v,
+                                   title: "博客", target: "_blank", class: 'website', rel: '_nofollow')
       end
     end
 
@@ -50,7 +50,6 @@ module UsersHelper
     return if html.blank?
 
     content_tag :dd, nil, class: 'url', title: '社交网络', itemprop: 'url' do
-      content_tag(:label, nil) { content_tag(:i, nil, class: 'fa fa-globe') } +
           content_tag(:div, nil, class: 'data') { user_links(user) }
     end
   end

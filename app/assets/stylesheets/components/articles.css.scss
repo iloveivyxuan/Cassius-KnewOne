@@ -105,17 +105,25 @@ form.edit_post {
     margin-bottom: 0;
   }
 
+  .article_header {
+    margin: 0 0 1em 0;
+  }
+
   .article_title {
     font-size: 14px;
-    margin: 0 0 1em 0;
   }
 
   .article_body {
     @include clearfix;
 
     figure {
-      float: right;
-      margin: -35px 0 0 80px;
+      display: none;
+
+      @media screen and (min-width: $screen-md-min) {
+        display: block;
+        float: right;
+        margin: -35px 0 0 80px;
+      }
 
       img {
         height: 80px;
@@ -135,13 +143,26 @@ form.edit_post {
 
     p {
       color: $text-color;
-      height: 60px;
+      max-height: 60px;
       margin-bottom: 0;
       overflow: hidden;
     }
   }
 
-  .article_meta {
+  .atricle_footer {
+
+    time,
+    .comments_count {
+      display: inline-block;
+      margin: 0 20px 0 0;
+    }
+
+    .comments_count {
+      line-height: 32px;
+    }
+  }
+
+  .article_feature {
     left: 0;
     padding: 0 10px;
     position: absolute;

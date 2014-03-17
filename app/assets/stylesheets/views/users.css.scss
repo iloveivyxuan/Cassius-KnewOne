@@ -65,6 +65,10 @@ html.users_activities {
 
   .user_content {
 
+    .page-header {
+      border-bottom: 0;
+    }
+
     .description {
       border-left: 0;
     }
@@ -111,9 +115,10 @@ html.users_activities {
   }
 
   .nav-pills-list {
+    border-bottom: $border-default;
+    margin-bottom: 20px;
 
     @media screen and (min-width: $screen-sm-min) {
-      border-bottom: $border-default;
       margin-bottom: 30px;
     }
 
@@ -478,6 +483,20 @@ ul.activities {
       line-height: 20px;
       float: right;
       padding-left: 2em;
+    }
+  }
+}
+
+html.users_show {
+
+  .user_content {
+
+    .nav-pills-list {
+      border-bottom-width: 0;
+
+      @media screen and (min-width: $screen-md-min) {
+        border-bottom-width: 1px;
+      }
     }
   }
 }
