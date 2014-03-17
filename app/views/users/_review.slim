@@ -11,9 +11,9 @@ article.article_compact
       .article_content
         img src="http://image.knewone.com/photos/413918054b2dacc4f02a3792756b01da.jpg!small"
         p = rp.summary
-    footer.atricle_footer
-      = time_ago_tag(review.created_at)
-      = rp.comments_count
+      .atricle_meta
+        = time_ago_tag(review.created_at)
+        = rp.comments_count
     .article_feature
       i.fa.fa-plus
       = review.lovers_count

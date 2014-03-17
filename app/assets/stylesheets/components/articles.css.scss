@@ -122,7 +122,9 @@ form.edit_post {
       @media screen and (min-width: $screen-md-min) {
         display: block;
         float: right;
-        margin: -35px 0 0 80px;
+        margin-left: 50px;
+        text-align: center;
+        width: 100px;
       }
 
       img {
@@ -131,13 +133,13 @@ form.edit_post {
       }
 
       figurecaption {
-        @include text-overflow;
-
         color: $gray;
         display: block;
+        height: 40px;
+        line-height: 20px;
         margin-top: 5px;
+        overflow: hidden;
         text-align: center;
-        width: 80px;
       }
     }
 
@@ -165,7 +167,8 @@ form.edit_post {
     }
   }
 
-  .atricle_footer {
+  .atricle_meta {
+    overflow: hidden;
 
     time,
     .comments_count {
