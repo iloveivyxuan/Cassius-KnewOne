@@ -16,7 +16,7 @@ class AftermathHandler
     def thing_destroy(thing)
       u = thing.author
 
-      u.inc things_count: -1 if user.things_count > 0
+      u.inc things_count: -1 if u.things_count > 0
     end
 
     def thing_fancy(thing, user)
@@ -52,7 +52,7 @@ class AftermathHandler
     def review_destroy(review)
       u = review.author
 
-      u.inc reviews_count: -1 if user.reviews_count > 0
+      u.inc reviews_count: -1 if u.reviews_count > 0
     end
 
     def user_follow(record, user)
@@ -63,7 +63,7 @@ class AftermathHandler
     end
 
     def user_unfollow(record, user)
-      record.inc followings_count: -1 if user.followings_count > 0
+      record.inc followings_count: -1 if record.followings_count > 0
       user.inc followers_count: -1 if user.followers_count > 0
     end
 
