@@ -45,6 +45,19 @@ module ActivitiesHelper
     html.html_safe
   end
 
+  def render_love_review_activity_summary(activity, show_user = true, target = '_self')
+    return unless activity.reference
+    thing = activity.reference.thing
+    return unless thing
+
+    html = ''
+    html += link_to activity.user.name, activity.user, target: target if show_user
+    html += "认为评测#{link_to activity.reference.title, thing_review_path(thing, activity.reference), target: target}"
+    html += "有用"
+
+    html.html_safe
+  end
+
   def render_fancy_thing_activity_summary(activity, show_user = true, target = '_self')
     return unless activity.reference
 

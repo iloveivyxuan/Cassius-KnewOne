@@ -51,7 +51,12 @@ class ReviewsController < ApplicationController
   end
 
   def vote
-    @review.vote current_user, params[:vote] == "true"
+    if params[:vote] == "true"
+      @review.vote current_user, true
+      current_user.log_activity :love_review, @review
+    else
+      @review.vote current_user, false
+    end
     render :partial => 'voting', locals: {review: @review}, layout: false
   end
 
