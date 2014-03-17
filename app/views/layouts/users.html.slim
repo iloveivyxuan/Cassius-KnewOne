@@ -1,39 +1,38 @@
 - page_title @user.name
 - content_for :content do
   .user_info
-    .user_info_body
-      dl.vcard itemscope="" itemtype="http://data-vocabulary.org/Person"
-        dd.avatar itemprop="photo"= user_avatar(@user, :normal)
-        dt.name itemprop="name"
-          h1
-            = @user.name
-            = render_user_gender(@user)
-            - if @user.identities.any?
-              small.note
-                |
-                i.fa.fa-flask
-                = @user.identities.join(', ')
-        dd.level itemprop="rating" itemscope="" itemtype="http://data-vocabulary.org/Rating"
-          .level_num Lv.#{@user.rank}
-          .progress title="#{@user.progress}%"
-            .progress-bar style="width: #{@user.progress}%;"
-        dd.friendship
-          = link_to followings_user_path(@user), id: 'followings', data: {count: @user.followings_count} do
-            = @user.followings_count
-            small 关注
-          = link_to followers_user_path(@user), id: 'followers', data: {count: @user.followers_count} do
-            = @user.followers_count
-            small 关注者
-        dd.exchange
-          = render 'users/follow_btn'
-          = render 'users/private_message_btn'
-        = render_user_location(@user)
-        = render_user_links(@user)
-        - if @user.categories.any?
-          dd.tag title="标签"
-            .data
-              - @user.categories[0..4].each do |tag|
-                = link_to tag.name, tag, class: 'label label-default'
+    dl.vcard itemscope="" itemtype="http://data-vocabulary.org/Person"
+      dd.avatar itemprop="photo"= user_avatar(@user, :normal)
+      dt.name itemprop="name"
+        h1
+          = @user.name
+          = render_user_gender(@user)
+          - if @user.identities.any?
+            small.note
+              |
+              i.fa.fa-flask
+              = @user.identities.join(', ')
+      dd.level itemprop="rating" itemscope="" itemtype="http://data-vocabulary.org/Rating"
+        .level_num Lv.#{@user.rank}
+        .progress title="#{@user.progress}%"
+          .progress-bar style="width: #{@user.progress}%;"
+      dd.friendship
+        = link_to followings_user_path(@user), id: 'followings', data: {count: @user.followings_count} do
+          = @user.followings_count
+          small 关注
+        = link_to followers_user_path(@user), id: 'followers', data: {count: @user.followers_count} do
+          = @user.followers_count
+          small 关注者
+      dd.exchange
+        = render 'users/follow_btn'
+        = render 'users/private_message_btn'
+      = render_user_location(@user)
+      = render_user_links(@user)
+      - if @user.categories.any?
+        dd.tag title="标签"
+          .data
+            - @user.categories[0..4].each do |tag|
+              = link_to tag.name, tag, class: 'label label-default'
 
   .user_content
     ul.nav.nav-pills.nav-pills-list.nav-justified
