@@ -91,6 +91,11 @@ window.Making =
 
       if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')') and $('.user_info_body').length
         $element = $('.user_info_body')
+        user_agent = window.navigator.userAgent
+
+        if user_agent.indexOf('Safari') > -1 and user_agent.indexOf('Chrome') is -1
+          $element.css 'left', ->
+            $(@).offset().left
 
         $element
           .attr
