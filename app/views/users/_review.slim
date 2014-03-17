@@ -8,7 +8,9 @@ article.article_compact
           = image_tag review.thing.cover.url(:small)
         figurecaption title=review.thing.title
           = review.thing.title
-      p = rp.summary
+      .article_content
+        img src="http://image.knewone.com/photos/413918054b2dacc4f02a3792756b01da.jpg!small"
+        p = rp.summary
     footer.atricle_footer
       = time_ago_tag(review.created_at)
       = rp.comments_count

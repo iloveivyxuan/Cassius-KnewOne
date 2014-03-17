@@ -133,7 +133,7 @@ form.edit_post {
       figurecaption {
         @include text-overflow;
 
-        color: $text-color;
+        color: $gray;
         display: block;
         margin-top: 5px;
         text-align: center;
@@ -141,11 +141,26 @@ form.edit_post {
       }
     }
 
-    p {
-      color: $text-color;
-      max-height: 60px;
-      margin-bottom: 0;
+    .article_content {
+      @include clearfix;
+
+      background-color: #eee;
       overflow: hidden;
+      padding: 10px;
+
+      img {
+        float: left;
+        margin-right: 10px;
+        height: 80px;
+        width: 80px;
+      }
+
+      p {
+        color: $text-muted;
+        height: 80px;
+        margin-bottom: 0;
+        overflow: hidden;
+      }
     }
   }
 
@@ -154,11 +169,8 @@ form.edit_post {
     time,
     .comments_count {
       display: inline-block;
-      margin: 0 20px 0 0;
-    }
-
-    .comments_count {
       line-height: 32px;
+      margin: 0 20px 0 0;
     }
   }
 
