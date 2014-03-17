@@ -22,7 +22,7 @@ module NotificationReceivable
       return
     end
 
-    case self.notification_setting.send type
+    case self.notification_setting.try type
       when :following
         sender = options[:sender] || User.find(options[:sender_id])
         Notification.build(self, type, options).save if self.followers.include? sender

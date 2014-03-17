@@ -58,6 +58,8 @@ class AftermathHandler
     def user_follow(record, user)
       record.inc followings_count: 1
       user.inc followers_count: 1
+
+      user.notify :following, sender: record
     end
 
     def user_unfollow(record, user)

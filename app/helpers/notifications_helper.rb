@@ -68,6 +68,15 @@ module NotificationsHelper
     html.html_safe
   end
 
+  def render_following_notification(notification, target = '_self')
+    html = ''
+
+    html += senders(notification)
+    html += '关注了你'
+
+    html.html_safe
+  end
+
   def render_stock_notification(notification, target = '_self')
     html = ''
 
