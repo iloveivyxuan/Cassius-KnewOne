@@ -486,3 +486,17 @@ ul.activities {
     }
   }
 }
+
+html.users_show {
+
+  .user_content {
+
+    .nav-pills-list {
+      border-bottom-width: 0;
+
+      @media screen and (min-width: $screen-md-min) {
+        border-bottom-width: 1px;
+      }
+    }
+  }
+}
