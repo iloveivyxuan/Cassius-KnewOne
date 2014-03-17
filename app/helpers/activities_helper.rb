@@ -52,8 +52,7 @@ module ActivitiesHelper
 
     html = ''
     html += link_to activity.user.name, activity.user, target: target if show_user
-    html += "认为评测#{link_to activity.reference.title, thing_review_path(thing, activity.reference), target: target}"
-    html += "有用"
+    html += "赞了评测#{link_to activity.reference.title, thing_review_path(thing, activity.reference), target: target}"
 
     html.html_safe
   end
