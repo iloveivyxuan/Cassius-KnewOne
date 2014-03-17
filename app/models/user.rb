@@ -13,7 +13,6 @@ class User
   field :location, type: String, :default => ''
   field :karma, type: Integer, default: 0
   field :auto_update_from_oauth, type: Boolean, default: true
-  field :categories, type: Array, default: []
   field :identities, type: Array, default: []
   field :status, type: Symbol, default: :normal
   STATUS = {blocked: '锁定', watching: '特别观照(贬)', normal: '正常'}
@@ -325,6 +324,9 @@ class User
 
   # activity
   include Feedable
+
+  # category
+  include CategoryReferable
 
   need_aftermath :follow, :unfollow
 

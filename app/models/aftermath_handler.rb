@@ -26,21 +26,29 @@ class AftermathHandler
     def thing_fancy(thing, user)
       user.inc fancies_count: 1
 
+      user.category_references<< thing.categories_text
+
       user.log_activity :fancy_thing, thing, check_recent: true
     end
 
     def thing_unfancy(thing, user)
       user.inc fancies_count: -1
+
+      user.category_references>> thing.categories_text
     end
 
     def thing_own(thing, user)
       user.inc owns_count: 1
+
+      user.category_references<< thing.categories_text
 
       user.log_activity :own_thing, thing, check_recent: true
     end
 
     def thing_unown(thing, user)
       user.inc owns_count: -1
+
+      user.category_references>> thing.categories_text
     end
 
     def review_create(review)
