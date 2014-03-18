@@ -12,9 +12,8 @@ html.home_jobs {
 
     > main {
       @include make-md-column(9);
+      @include decoration;
 
-      background-color: #fff;
-      border-radius: $border-radius-large;
       padding: 1em 1.5em 50px;
     }
 
