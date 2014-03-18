@@ -49,8 +49,11 @@
 
 @mixin decoration {
   background-color: #fff;
-  border-radius: 8px;
   box-shadow: 0 1px 2px #ccc;
+
+  @media screen and (min-width: $screen-sm-min) {
+    border-radius: 8px;
+  }
 }
 
 @mixin fontawesome($content) {

@@ -5,6 +5,13 @@ html.home_jobs {
   #wrapper {
     @include wrapper(grid);
 
+    @media screen and (max-width: $screen-md-min) {
+      margin: {
+        left: 0;
+        right: 0;
+      }
+    }
+
     @media screen and (min-width: $screen-lg-min + 100) {
       margin: 0 auto;
       width: $screen-lg-min;
@@ -15,6 +22,10 @@ html.home_jobs {
       @include decoration;
 
       padding: 1em 1.5em 50px;
+
+      @media screen and (max-width: $screen-md-min) {
+        border-radius: 0;
+      }
     }
 
     > aside {
