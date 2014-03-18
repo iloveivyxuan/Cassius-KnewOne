@@ -1,0 +1,33 @@
+- provide :page_class, 'signed_in_homepage'
+
+- content_for :content do
+  main role="main"
+    = yield
+
+  aside role="complemental"
+    = link_to_with_icon current_user.name, 'fa fa-home', current_user
+    section.actions
+      = link_to_with_icon '分享产品', 'fa fa-plus', new_thing_path, class: 'btn btn-default'
+    section.dashboard
+      ul
+        li = link_to_with_icon "我喜欢 #{current_user.fancies_count}", 'fa fa-heart', fancies_user_path(current_user)
+        li = link_to_with_icon "我拥有 #{current_user.owns_count}", 'fa fa-check', owns_user_path(current_user)
+        li = link_to_with_icon "我分享 #{current_user.things_count}", 'fa fa-magic', things_user_path(current_user)
+        li = link_to_with_icon '设置', 'fa fa-fw fa-wrench', edit_profile_path
+    section.tags
+      label
+        i.fa.fa-tags
+        | 我的标签
+      .data
+        - current_user.categories[0..3].each do |tag|
+          = link_to tag.name, tag, class: 'label label-default'
+    section.choice
+      label
+        | Editor's Choice
+        .pull-right
+          = link_to_with_icon '', 'fa fa-random', '#'
+      .data
+    section.copyright
+      | &copy; 2014 KnewOne
+
+= render template: 'layouts/application'
