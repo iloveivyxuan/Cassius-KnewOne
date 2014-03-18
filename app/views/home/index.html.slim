@@ -1,30 +1,75 @@
 - provide :page_class, 'signed_in_homepage'
 
 main role="main"
-  ul.infinite#home_things= render @things, size: :normal, img_lazy: true
-  = paginate @things
+  #promotion_xs
+
+  .row
+    .col-sm-12
+      .thing
+        .pre_ribbon.ship
+          span 即将到货
+        figure
+          a href="/things/gopro-hero3-plus-black-edition" target="_blank"
+            img.lazy src="http://image.knewone.com/photos/533b9afaa43e60b114ebf8b06cd8b905.jpg!normal" alt="GoPro HERO3+ Black Edition"
+        figcaption
+          h5 data-placement="top" data-toggle="tooltip" title="" data-original-title="GoPro HERO3+ Black Edition - 运动拍摄神器"
+            | GoPro HERO3+ Black Edition - 运动拍摄神器
+          p
+            span.fanciers
+              i.fa.fa-heart
+              span.fanciers_count 14
+            span.owners
+              i.fa.fa-check
+              span.owners_count 3
+            span ¥ 2,899.00
+          .foo
+            img src="http://image.knewone.com/users/a15bf850c289b729cf29b6353dcb0bf8.jpg!tiny" height="40" width="40"
+            i.fa.fa-heart
+            time datetime="2 小时前" 2 小时前
+  .row
+    .col-sm-6
+      .thing
+        .pre_ribbon.ship
+          span 即将到货
+        figure
+          a href="/things/gopro-hero3-plus-black-edition" target="_blank"
+            img.lazy src="http://image.knewone.com/photos/533b9afaa43e60b114ebf8b06cd8b905.jpg!normal" alt="GoPro HERO3+ Black Edition"
+        figcaption
+          h5 data-placement="top" data-toggle="tooltip" title="" data-original-title="GoPro HERO3+ Black Edition - 运动拍摄神器"
+            | GoPro HERO3+ Black Edition - 运动拍摄神器
+          p
+            span.fanciers
+              i.fa.fa-heart
+              span.fanciers_count 14
+            span.owners
+              i.fa.fa-check
+              span.owners_count 3
+            span ¥ 2,899.00
+          .foo
+            img src="http://image.knewone.com/users/a15bf850c289b729cf29b6353dcb0bf8.jpg!tiny" height="40" width="40"
+            i.fa.fa-heart
+            time datetime="2 小时前" 2 小时前
+    .col-sm-6
+      .thing
+        .pre_ribbon.ship
+          span 即将到货
+        figure
+          a href="/things/gopro-hero3-plus-black-edition" target="_blank"
+            img.lazy src="http://image.knewone.com/photos/533b9afaa43e60b114ebf8b06cd8b905.jpg!normal" alt="GoPro HERO3+ Black Edition"
+        figcaption
+          h5 data-placement="top" data-toggle="tooltip" title="" data-original-title="GoPro HERO3+ Black Edition - 运动拍摄神器"
+            | GoPro HERO3+ Black Edition - 运动拍摄神器
+          p
+            span.fanciers
+              i.fa.fa-heart
+              span.fanciers_count 14
+            span.owners
+              i.fa.fa-check
+              span.owners_count 3
+            span ¥ 2,899.00
+          .foo
+            img src="http://image.knewone.com/users/a15bf850c289b729cf29b6353dcb0bf8.jpg!tiny" height="40" width="40"
+            i.fa.fa-heart
+            time datetime="2 小时前" 2 小时前
 
 aside role="complemental"
-  ul#home_reviews
-    - @reviews.each do |review|
-      li
-        article
-          = link_to review.author do
-            = present(review.author).avatar :tiny
-          small 评测了
-          = link_to review.thing.title, review.thing, target: "_blank"
-        .media
-          - present review do |rp|
-            = link_to thing_review_path(review.thing, review), target: "_blank", class: "pull-right" do
-              = present(review.thing).photo(:smallo)
-            .media-body
-              h5.media-heading
-                = link_to rp.title, rp.path, target: "_blank"
-              p= rp.summary(50)
-
-  #home_filling
-    small 粤ICP备13057487号
-
-- content_for :script do
-  javascript:
-    Making.InfiniteScroll("#wrapper > section");
