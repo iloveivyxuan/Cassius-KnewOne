@@ -232,6 +232,10 @@ class Thing < Post
       (0...Thing.count).to_a.shuffle.slice(0, per).map { |i| Thing.skip(i).first }
     end
 
+    def rand_prior_records(per = 1)
+      (0...Thing.prior.count).to_a.shuffle.slice(0, per).map { |i| Thing.prior.skip(i).first }
+    end
+
     def recal_all_related_things
       Thing.all.each {|t| t.update_related_thing_ids; t.save}
     end
