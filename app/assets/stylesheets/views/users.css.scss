@@ -503,3 +503,14 @@ html.users_show {
     }
   }
 }
+
+html.users_followings,
+html.users_followers {
+
+  .user_list {
+
+    > li {
+      margin: 1.5em;
+    }
+  }
+}
