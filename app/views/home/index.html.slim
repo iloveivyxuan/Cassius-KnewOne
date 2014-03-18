@@ -1,10 +1,10 @@
 - provide :page_class, 'signed_in_homepage'
 
-section
+main role="main"
   ul.infinite#home_things= render @things, size: :normal, img_lazy: true
   = paginate @things
 
-aside
+aside role="complemental"
   ul#home_reviews
     - @reviews.each do |review|
       li
