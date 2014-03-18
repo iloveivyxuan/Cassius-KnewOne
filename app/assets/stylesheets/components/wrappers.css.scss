@@ -16,7 +16,7 @@
   }
 }
 
-@mixin wrapper($layout) {
+@mixin wrapper($layout, $columns: -1) {
 
   @if $layout == grid {
     @include make-row;
@@ -27,27 +27,37 @@
       margin: 0 calc(#{$wrapper_margin} - 15px);
     }
 
-  } @else if $layout == what {
-    @include make-row;
-    background-color: #fff;
-    border-radius: 8px;
-    // calc() isn't common support on mobile.
-    margin: 0 $wrapper_margin;
-    padding: 1em 1.5em;
+    @if $columns >= 0 {
+      @include decoration;
 
-    @media screen and (min-width: $screen-md-min) {
-      margin: 0 calc(#{$wrapper_margin} - 15px);
-    }
+      padding: 20px 1.5em;
 
-    @media screen and (min-width: $screen-lg-min + 100) {
-      margin-left: auto;
-      margin-right: auto;
-      width: $screen-lg-min;
+      @media screen and (min-width: $screen-sm-min) {
+        padding-bottom: 40px;
+        padding-top: 40px;
+      }
+
+      @media screen and (min-width: $screen-lg-min + 100) {
+        margin-left: auto;
+        margin-right: auto;
+        width: $screen-lg-min;
+      }
+
+      @if $columns == 2 {
+
+        > main {
+          @include make-md-column(9, $gutter: 4em);
+        }
+
+        > aside {
+          @include make-md-column(3, $gutter: 4em);
+        }
+      }
     }
 
   } @else if $layout == simple {
-    background-color: #fff;
-    border-radius: 8px;
+    @include decoration;
+
     margin-bottom: 1em;
     padding: 2em;
 

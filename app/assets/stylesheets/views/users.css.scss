@@ -12,16 +12,9 @@ html.users_activities {
   // ---------------------------------------------------------------------------
 
   #wrapper {
-    @include wrapper(what);
+    @include wrapper(grid, 0);
 
     color: $gray;
-    padding-bottom: 20px;
-    padding-top: 20px;
-
-    @media screen and (min-width: $screen-sm-min) {
-      padding-bottom: 40px;
-      padding-top: 40px;
-    }
 
     .user_info {
       @include make-md-column(3, $gutter: 4em);
