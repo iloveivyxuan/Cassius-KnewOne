@@ -483,19 +483,7 @@ html.guest_homepage {
 html.signed_in_homepage {
 
   #wrapper {
-    @include wrapper(grid);
-
-    > section {
-      @include make-md-column(8);
-    }
-
-    > aside {
-      display: none;
-      @media (min-width: $screen-md-min) {
-        display: block;
-      }
-      @include make-md-column(4);
-    }
+    @include wrapper(grid, 2);
   }
 
   #promotion {
