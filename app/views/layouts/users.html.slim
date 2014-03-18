@@ -32,7 +32,7 @@
       - if @user.categories.any?
         dd.tag title="标签"
           .data
-            - @user.categories[0..4].each do |tag|
+            - @user.categories[0..3].each do |tag|
               = link_to tag.name, tag, class: 'label label-default'
 
   .user_content
