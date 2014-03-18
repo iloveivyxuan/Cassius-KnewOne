@@ -8,24 +8,28 @@ class ThingsController < ApplicationController
     per = (params[:per] || 24).to_i
 
     scope = case params[:sort]
-            when "self_run"
-              Thing.self_run
-            when "fancy"
-              Thing.unscoped.published.desc(:fanciers_count)
-            when "random"
-              Thing.rand_records per
-            else
-              Thing.published
+              when "self_run"
+                Thing.self_run
+              when "fancy"
+                Thing.unscoped.published.desc(:fanciers_count)
+              when "random"
+                Thing.rand_records per
+              when "random_prior"
+                Thing.rand_prior_records per
+              else
+                Thing.published
             end
 
-    if params[:sort] == "random"
-      @things = Kaminari.paginate_array(scope).page(params[:page])
+    if params.try :include?, 'random'
+      @things = Kaminari.paginate_array(scope).page(params[:page]).per(per)
     else
       @things = scope.page(params[:page]).per(per)
     end
 
     respond_to do |format|
-      format.html
+      format.html do
+        render 'index_xhr', layout: false if request.xhr?
+      end
       format.atom
       format.json
     end
@@ -131,7 +135,7 @@ class ThingsController < ApplicationController
 
   def thing_params
     params.require(:thing)
-      .permit(:title, :subtitle, :official_site,
-              :content, :description, photo_ids: [])
+    .permit(:title, :subtitle, :official_site,
+            :content, :description, photo_ids: [])
   end
 end
