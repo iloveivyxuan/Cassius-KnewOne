@@ -4,15 +4,18 @@ class HomeController < ApplicationController
   skip_after_action :store_location
 
   def index
-    @things = Thing.prior.page(params[:page]).per(27)
-    @reviews = Review.unscoped.living.desc(:created_at).limit(15)
-
-    @landing_page = LandingPage.find_for_home
-
-    if user_signed_in? || @landing_page.nil?
-      render 'home/index'
+    if user_signed_in?
+      @activities = Activity.visible.by_users(current_user.followings).
+          by_types(:new_thing, :own_thing, :fancy_thing).limit(20)
+      render 'home/index', layout: 'home'
     else
-      render file: 'home/landing'
+      @landing_page = LandingPage.find_for_home
+
+      if @landing_page.nil?
+        redirect_to new_user_sessions_path
+      else
+        render 'home/landing'
+      end
     end
   end
 
