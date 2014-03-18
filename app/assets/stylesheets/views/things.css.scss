@@ -681,3 +681,19 @@ html.investors_admin {
   ul {margin: 1em 0;}
 }
 
+html.things_index {
+
+  #wrapper {
+    margin: {
+      left: 10px;
+      right: 10px;
+    }
+
+    @media screen and (min-width: $screen-sm-min) {
+      margin: {
+        left: 5%;
+        right: 5%;
+      }
+    }
+  }
+}
