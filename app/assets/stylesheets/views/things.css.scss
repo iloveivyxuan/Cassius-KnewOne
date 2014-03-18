@@ -15,8 +15,8 @@ html.investors_admin {
 
   #wrapper {
     @include wrapper(grid);
-    background-color: #fff;
-    border-radius: 8px;
+    @include decoration;
+
     padding: 1em 1.5em;
 
     #thing_header {
