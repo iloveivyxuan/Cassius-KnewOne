@@ -25,11 +25,15 @@ app_path = "#{Pathname.new(__FILE__).realpath.dirname}/../"
 
 set :output, "#{app_path}/log/cron_log.log"
 
-every 1.days do
+every 1.days, :at => '3:30 am' do
   command 'backup perform -t site_backup -r ~/Backup'
 end
 
 every 1.day, :at => '3:00 am' do
   runner 'Order.cleanup_expired_orders'
   runner 'Thing.recal_all_related_things'
+end
+
+every 1.day, :at => '4:00 am' do
+  rake '-s sitemap:refresh'
 end
