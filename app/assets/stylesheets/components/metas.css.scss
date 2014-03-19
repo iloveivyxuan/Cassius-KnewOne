@@ -1,0 +1,46 @@
+// Metas.
+//
+
+.metas {
+  color: $text-muted;
+  overflow: hidden;
+  text-align: center;
+
+  .metas_group {
+    border-right: $border-default;
+    display: inline-block;
+    font-size: 14px;
+    margin: {
+      bottom: 5px;
+      right: 1em;
+      top: 5px;
+    }
+    padding-right: 1em;
+
+    &:last-child {
+      border-right: none;
+      margin-right: 0;
+      padding-right: 0;
+    }
+  }
+
+  .meta {
+    display: inline-block;
+    line-height: 14px;
+    margin: 0;
+    margin-right: 1em;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  a.meta {
+    color: $text-muted;
+
+    &:hover {
+      color: $text-muted;
+      text-decoration: underline;
+    }
+  }
+}

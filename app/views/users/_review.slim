@@ -11,9 +11,10 @@ article.article_compact
       .article_content
         = rp.cover
         p = rp.summary(120)
-      .atricle_meta
-        = time_ago_tag(review.created_at)
-        = rp.comments_count
+      .metas
+        .metas_group
+          = time_ago_tag(review.created_at, 'meta')
+          = rp.comments_count(class: 'meta')
     .article_feature
       i.fa.fa-plus
       = review.lovers_count

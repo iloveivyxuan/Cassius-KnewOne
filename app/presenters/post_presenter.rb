@@ -38,10 +38,11 @@ class PostPresenter < ApplicationPresenter
     @object.thing.present? and present(@object.thing).photo_url(size)
   end
 
-  def comments_count
+  def comments_count(options = {})
+    css = "comments_count #{options.delete(:class)}"
     if @object.comments.present?
       link_to_with_icon @object.comments.count, "fa fa-comments-o",
-      path, class: "comments_count"
+      path, class: css
     end
   end
 
