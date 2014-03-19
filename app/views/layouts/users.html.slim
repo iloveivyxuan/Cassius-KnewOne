@@ -11,7 +11,7 @@
             small.note
               |
               i.fa.fa-flask
-              = @user.identities.join(', ')
+              = @user.identities.compact.join(', ')
       dd.level itemprop="rating" itemscope="" itemtype="http://data-vocabulary.org/Rating"
         .level_num Lv.#{@user.rank}
         .progress title="#{@user.progress}%"
