@@ -487,11 +487,45 @@ html.signed_in_homepage {
 
   #wrapper {
     @include wrapper(grid, 2);
+
+    > aside {
+      display: none;
+
+      @media screen and (min-width: $screen-md-min) {
+        display: block;
+      }
+    }
   }
 
 
   // Section
   // ---------------------------------------------------------------------------
+
+  .page-header {
+    display: none;
+
+    @media screen and (min-width: $screen-md-min) {
+      @include clearfix;
+
+      display: block;
+    }
+
+    h1 {
+      color: $gray;
+      float: left;
+      font-size: 18px;
+      line-height: 34px;
+
+      .fa {
+        margin-left: 10px;
+      }
+    }
+
+    .btn {
+      float: right;
+    }
+  }
+
 
   .row {
 
@@ -549,11 +583,101 @@ html.signed_in_homepage {
     border-top: $border-default;
   }
 
-  .promotion {
-    @include center-block;
+  aside {
 
-    @media screen and (min-width: $screen-md-min) {
-      display: none;
+    .nav {
+
+      a {
+        color: $gray;
+
+        &.home {
+          margin-bottom: 30px;
+        }
+
+        &:hover {
+          color: $text-color;
+        }
+      }
+
+      .divider {
+        border-bottom: $border-default;
+        margin: 30px 0;
+      }
+    }
+
+    .panel {
+      color: $gray;
+
+      .panel-heading {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+
+    footer {
+      color: $text-muted;
+      padding: {
+        left: 10px;
+        right: 10px;
+      }
+    }
+
+    .nav_bottom {
+      margin-bottom: 1em;
+
+      > a {
+        border-right: $border-default;
+        color: $text-muted;
+        display: inline-block;
+        margin-right: .5em;
+        padding-right: .5em;
+
+        &:last-child {
+          border-right: none;
+          margin-right: 0;
+          padding-right: 0;
+        }
+      }
+    }
+  }
+
+  #choiceness {
+
+    .panel-heading {
+      @include clearfix;
+      color: $text-muted;
+
+      .more {
+        color: $text-muted;
+        float: right;
+        line-height: 24px;
+      }
+    }
+
+    .panel-title {
+      float: left;
+    }
+
+    figure {
+
+      img {
+        max-width: 100%;
+      }
+
+      figcaption {
+        @include text-overflow;
+
+        display: block;
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .promotion {
+    display: block;
+    margin: {
+      left: 10px;
+      right: 10px;
     }
 
     img {
@@ -563,4 +687,14 @@ html.signed_in_homepage {
     }
   }
 
+  #wrapper {
+
+    > .promotion {
+      @include center-block;
+
+      @media screen and (min-width: $screen-md-min) {
+        display: none;
+      }
+    }
+  }
 }
