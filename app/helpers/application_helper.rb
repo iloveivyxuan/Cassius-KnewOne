@@ -94,8 +94,8 @@ module ApplicationHelper
     content_tag :li, options, &block
   end
 
-  def time_ago_tag(time)
-    time_tag time, time_ago(time)
+  def time_ago_tag(time, css = '')
+    time_tag time, time_ago(time), class: css
   end
 
   def time_ago(time)
