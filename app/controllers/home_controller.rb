@@ -6,7 +6,7 @@ class HomeController < ApplicationController
   def index
     if user_signed_in?
       @activities = Activity.visible.by_users(current_user.followings).
-          by_types(:new_thing, :own_thing, :fancy_thing).limit(20)
+          by_types(:new_thing, :own_thing, :fancy_thing, :new_review, :love_review).limit(20)
       render 'home/index', layout: 'home'
     else
       @landing_page = LandingPage.find_for_home
