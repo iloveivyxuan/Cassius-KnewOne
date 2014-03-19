@@ -17,9 +17,12 @@ module Feedable
       recent_activity = self.activities.first
       return false if !!recent_activity && recent_activity.type == type && recent_activity.reference == reference
     end
+    source = options.delete :source
 
     activity = self.activities.build({type: type}.merge(options))
     activity.reference = reference
+    activity.source = source || reference
+
     activity.save
   end
 end
