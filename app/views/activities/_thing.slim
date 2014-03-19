@@ -14,30 +14,16 @@
         .metas_group
           span.meta
             i.fa.fa-heart
-            | 8888
+            = thing.fanciers_count
           span.meta
             i.fa.fa-check
-            | 8888
-          a.meta href="/things/avatar/reviews" target="_blank"
+            = thing.owners.size
+          = link_to thing_reviews_path(thing), class: 'meta', target: '_blank' do
             i.fa.fa-book
-            | 8888
-          span.meta ¥ 2,899
+            = thing.reviews.size
+          - if thing.self_run?
+            span.meta = tp.price
         .metas_group
-          a.meta href="#" Syn
-          i.meta.fa.fa-heart
-          time.meta datetime="2 小时前" 2 小时前
-      /-- .metas 替换以下代码 --/
-      p
-        span.fanciers
-          i.fa.fa-heart
-          span.fanciers_count = thing.fanciers.size
-        span.owners
-          i.fa.fa-check
-          span.owners_count = thing.owners.size
-        - if tp.self_run?
-          span = tp.price
-      .foo
-        = link_to user_path(activity.user) do
-          = image_tag activity.user.avatar.url(:tiny), size: '40x40'
-        i.fa class="#{activity_type_icon_class(activity)}"
-        = time_ago_tag activity.created_at
+          = link_to activity.user.name, activity.user, class: 'meta'
+          i.meta.fa class="#{activity_type_icon_class(activity)}"
+          = time_ago_tag activity.created_at, 'meta'
