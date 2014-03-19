@@ -69,7 +69,7 @@ class Ability
 
     can :create, Group
     can :update, Group do |group|
-      group.has_admin? user
+      group.is_admin? user
     end
 
     can :create, Dialog

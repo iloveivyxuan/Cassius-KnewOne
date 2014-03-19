@@ -1,113 +1,127 @@
 html.groups_show,
+html.groups_new,
+html.groups_edit,
+html.groups_create,
 html.topics_new,
-html.topics_create,
 html.topics_edit,
+html.topics_create,
 html.topics_show {
-
   #wrapper {
-    @include wrapper(simple);
-  }
-}
-
-#group_header {
-  border-bottom: 1px solid #eee;
-  margin-bottom: 2em;
-
-  h1 {
-    a {
-      color: $text-color;
-      &:hover {color: $link-color;}
-
-      i {
-        vertical-align: 2px;
-      }
-    }
-
-    @media screen and (max-width: 767px) {
-      font-size: 2em;
-    }
+    @include wrapper(what);
   }
 
-  p {color: $text-muted;}
+} 
 
-  .new_topic {
-    float: right;
-    margin: {top: 3em; right: 2em;}
+/* html.groups_show, */
+/* html.topics_new, */
+/* html.topics_create, */
+/* html.topics_edit, */
+/* html.topics_show { */
 
-    @media screen and (max-width: 767px) {
-      margin: {top: .3em; right: 0;}
-    }
-  }
-}
+/*   #wrapper { */
+/*     @include wrapper(simple); */
+/*   } */
+/* } */
 
-#topics {
-  .topic {
-    @include clearfix;
-    padding: 1em 0;
-    border-bottom: 1px dashed #ccc;
+/* #group_header { */
+/*   border-bottom: 1px solid #eee; */
+/*   margin-bottom: 2em; */
 
-    > a:first-child {
-      float: left;
-      img { @extend .img-rounded; }
-      margin-right: 2em;
+/*   h1 { */
+/*     a { */
+/*       color: $text-color; */
+/*       &:hover {color: $link-color;} */
 
-      @media screen and (max-width: 767px) {
-        float: none;
-      }
-    }
+/*       i { */
+/*         vertical-align: 2px; */
+/*       } */
+/*     } */
 
-    aside {
-      float: right;
-      margin: {top: 25px;right: 2em;}
-    }
+/*     @media screen and (max-width: 767px) { */
+/*       font-size: 2em; */
+/*     } */
+/*   } */
 
-    h4 {
-      margin {right: 10%; top: 0;}
-      i {
-        margin: 0 0 0 1em;
-        color: $red;
-      }
-    }
+/*   p {color: $text-muted;} */
 
-    .summary {
-      margin-top: 20px;
+/*   .new_topic { */
+/*     float: right; */
+/*     margin: {top: 3em; right: 2em;} */
 
-      a {
-        color: $text-muted;
-        &:hover {color: $text-color;}
-      }
+/*     @media screen and (max-width: 767px) { */
+/*       margin: {top: .3em; right: 0;} */
+/*     } */
+/*   } */
+/* } */
 
-      .commented_at {
-        color: $text-muted;
-        margin-left: 2em;
+/* #topics { */
+/*   .topic { */
+/*     @include clearfix; */
+/*     padding: 1em 0; */
+/*     border-bottom: 1px dashed #ccc; */
 
-        time {
-          font-size: 1em;
-          margin-left: .5em;
-        }
-        a {margin: 0 .5em;}
-      }
-    }
-  }
-}
+/*     > a:first-child { */
+/*       float: left; */
+/*       img { @extend .img-rounded; } */
+/*       margin-right: 2em; */
 
-#topic_show {
-  > header {
-    margin-bottom: 2em;
-  }
+/*       @media screen and (max-width: 767px) { */
+/*         float: none; */
+/*       } */
+/*     } */
 
-  > section {
-    ol {list-style: decimal inside;}
-    ul {list-style: disc inside;}
-  }
+/*     aside { */
+/*       float: right; */
+/*       margin: {top: 25px;right: 2em;} */
+/*     } */
 
-  #topic_comments {
-    margin-top: 2em;
-    border-top: 1px solid #eee;
-    padding-top: 2em;
+/*     h4 { */
+/*       margin {right: 10%; top: 0;} */
+/*       i { */
+/*         margin: 0 0 0 1em; */
+/*         color: $red; */
+/*       } */
+/*     } */
 
-    p.login_tip {
-      margin: 2em 0;
-    }
-  }
-}
+/*     .summary { */
+/*       margin-top: 20px; */
+
+/*       a { */
+/*         color: $text-muted; */
+/*         &:hover {color: $text-color;} */
+/*       } */
+
+/*       .commented_at { */
+/*         color: $text-muted; */
+/*         margin-left: 2em; */
+
+/*         time { */
+/*           font-size: 1em; */
+/*           margin-left: .5em; */
+/*         } */
+/*         a {margin: 0 .5em;} */
+/*       } */
+/*     } */
+/*   } */
+/* } */
+
+/* #topic_show { */
+/*   > header { */
+/*     margin-bottom: 2em; */
+/*   } */
+
+/*   > section { */
+/*     ol {list-style: decimal inside;} */
+/*     ul {list-style: disc inside;} */
+/*   } */
+
+/*   #topic_comments { */
+/*     margin-top: 2em; */
+/*     border-top: 1px solid #eee; */
+/*     padding-top: 2em; */
+
+/*     p.login_tip { */
+/*       margin: 2em 0; */
+/*     } */
+/*   } */
+/* } */

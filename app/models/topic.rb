@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class Topic < Post
   field :is_top, type: Boolean, default: false
 
