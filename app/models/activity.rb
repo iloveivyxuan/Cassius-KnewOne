@@ -26,9 +26,9 @@ class Activity
   default_scope -> { desc(:created_at) }
 
   scope :visible, -> { where visible: true }
-  scope :by_users, ->(users) { where(:user.in => users) }
+  scope :by_users, ->(users) { where(:user_id.in => users.map(&:id)) }
   scope :by_reference,
         ->(record) { record ? where(reference_type: record.class.to_s, reference_id: record.id.to_s) : where(reference_type: nil, reference_id: nil) }
   scope :by_type, ->(type) { where type: type }
-  scope :by_types, ->(types) { where :type.in => types }
+  scope :by_types, ->(*types) { where :type.in => types }
 end
