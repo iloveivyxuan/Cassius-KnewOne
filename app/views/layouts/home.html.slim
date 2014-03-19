@@ -1,33 +1,65 @@
 - provide :page_class, 'signed_in_homepage'
 
 - content_for :content do
+  a.promotion href="#"
+    img src="http://image.knewone.com/photos/c5493a95e4697e1c1fccf5f771849b52.jpg!review"
+  /-- END .promotion --/
+
   main role="main"
+    header.page-header
+      h1
+        | 最新动态
+        i.fa.fa-caret-down
+      = link_to_with_icon "分享产品", "fa fa-plus", new_thing_path, class: 'btn btn-primary'
+
     = yield
+  /-- END main --/
 
   aside role="complemental"
-    = link_to_with_icon current_user.name, 'fa fa-home', current_user
-    section.actions
-      = link_to_with_icon '分享产品', 'fa fa-plus', new_thing_path, class: 'btn btn-default'
-    section.dashboard
-      ul
-        li = link_to_with_icon "我喜欢 #{current_user.fancies_count}", 'fa fa-heart', fancies_user_path(current_user)
-        li = link_to_with_icon "我拥有 #{current_user.owns_count}", 'fa fa-check', owns_user_path(current_user)
-        li = link_to_with_icon "我分享 #{current_user.things_count}", 'fa fa-magic', things_user_path(current_user)
+    nav
+      ul.nav.nav-pills.nav-stacked
+        li = link_to_with_icon current_user.name, 'fa fa-fw fa-home', current_user, class: 'home'
+        li = link_to_with_icon "我喜欢 #{current_user.fancies_count}", 'fa fa-fw fa-heart', fancies_user_path(current_user)
+        li = link_to_with_icon "我拥有 #{current_user.owns_count}", 'fa fa-fw fa-check', owns_user_path(current_user)
+        li = link_to_with_icon "我分享 #{current_user.things_count}", 'fa fa-fw fa-magic', things_user_path(current_user)
+        / li = link_to_with_icon '我的小组', 'fa fa-fw fa-wrench', edit_profile_path
+        / li = link_to_with_icon '我的话题', 'fa fa-fw fa-wrench', edit_profile_path
         li = link_to_with_icon '设置', 'fa fa-fw fa-wrench', edit_profile_path
-    section.tags
-      label
-        i.fa.fa-tags
+        li.divider
+        li = link_to_with_icon '天天有礼', 'fa fa-fw fa-gift', rewards_path
+    /-- END nav --/
+
+    section.tag.panel
+      header.panel-heading
+        i.fa.fa-tags.fa-fw
         | 我的标签
-      .data
+      .panel-body
         - current_user.categories[0..3].each do |tag|
           = link_to tag.name, tag, class: 'label label-default'
-    section.choice
-      label
-        | Editor's Choice
-        .pull-right
-          = link_to_with_icon '', 'fa fa-random', '#'
-      .data
-    section.copyright
-      | &copy; 2014 KnewOne
+    /-- END .tag --/
+
+    a.promotion href="#"
+      img src="http://image.knewone.com/photos/c5493a95e4697e1c1fccf5f771849b52.jpg!review"
+    /--END .promotion --/
+
+    section#choiceness.panel
+      header.panel-heading
+        h5.panel-title Editor's Choice
+        = link_to_with_icon '', 'fa fa-random', '#', class: 'more'
+      .panel-body
+        figure
+          = link_to '#'
+            img src="http://image.knewone.com/photos/34a2eddc7ffca50b8dbeb4c0817d75d5.jpg!normal" alt="Google Glass"
+          figcaption Google Glass － 做为一款时髦度爆表的产品，虽然还没上市，至少饱饱眼福吧
+    /-- END #choiceness --/
+
+    footer
+      nav.nav_bottom
+        = link_to "建议反馈", "/things/knewone"
+        = link_to "加入我们", "jobs_path"
+        = link_to "联系我们", "mailto:hello@knewone.com"
+      small &copy; 2014 KnewOne
+    /-- END footer --/
+  /--END aside --/
 
 = render template: 'layouts/application'
