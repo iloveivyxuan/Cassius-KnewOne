@@ -11,6 +11,8 @@ class Activity
 
   field :reference_type, type: String
   field :reference_id, type: String
+  field :reference_union, type: String
+  index({reference_union: 1})
 
   def reference
     return if (self.reference_type || self.reference_id).blank?
@@ -21,6 +23,7 @@ class Activity
   def reference=(record)
     self.reference_type = record.class.to_s
     self.reference_id = record.id.to_s
+    self.reference_union = "#{record.class.to_s}_#{record.id.to_s}"
   end
 
   default_scope -> { desc(:created_at) }
