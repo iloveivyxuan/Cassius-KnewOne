@@ -3,6 +3,10 @@ class ThingPresenter < PostPresenter
   presents :thing
   delegate :title, :subtitle, :photos, :self_run?, to: :thing
 
+  def path
+    thing_path(thing)
+  end
+
   def full_title
     [title, subtitle].reject(&:blank?).join(' - ')
   end
