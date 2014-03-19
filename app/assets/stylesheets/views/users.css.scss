@@ -375,26 +375,6 @@ html.users_activities {
       }
     }
 
-    .tag {
-
-      .label {
-        background-color: #ededed;
-        border-radius: 20px;
-        color: $text-color;
-        display: inline-block;
-        font-size: 14px;
-        font-weight: normal;
-        line-height: 14px;
-        margin: 0 10px 5px 0;
-        padding: 9px 1em;
-
-        &:hover {
-          background-color: $text-color;
-          color: #ededed;
-        }
-      }
-    }
-
     @media screen and (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
 
       .exchange {
