@@ -46,7 +46,7 @@ ul.things {
     > h5,
     > p {
       text-align: center;
-      color: $text-muted;
+      color: $gray;
       height: $font-size-base * $line-height-base;
       @include text-overflow;
     }
