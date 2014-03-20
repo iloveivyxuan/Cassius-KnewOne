@@ -1,0 +1,9 @@
+ul.nav.nav-pills.nav-pills-list.nav-justified
+  = nav_tab :group_show do
+    = link_to_with_icon "", "fa fa-home", gp.group
+  = nav_tab :group_hots do
+    = link_to_with_icon raw("<span>热门话题</span>"), "fa fa-fire", "#"
+  = nav_tab :members do
+    = link_to_with_icon raw("<span>小组成员</span>"), "fa fa-user", "#"
+  = nav_tab :collections do
+    = link_to_with_icon raw("<span>小组收藏</span>"), "fa fa-heart", "#"

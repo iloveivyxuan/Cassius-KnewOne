@@ -41,6 +41,25 @@ html.topics_show {
         min-height: 800px;
       }
     }
+
+    nav {
+      .nav li a span {display: none;}
+
+      @media screen and (max-width: $screen-xs-max) {
+        .nav li {
+          /* TODO: Apply bootstrap nav justified to xs screen, maybe it's general */
+          display: table-cell;
+          width: 1%;
+          float: none;
+          > a { margin-bottom: 0; }
+          i {margin-right: 0;}
+        }
+      }
+
+      @media screen and (min-width: $screen-sm-min) {
+        .nav li a span {display: inline;}
+      }
+    }
   }
 
   .group_info {
@@ -114,7 +133,7 @@ html.topics_show {
 
         .user_list {
           @include clearfix;
-          
+
           li {
             float: left;
             margin: .5em 0;
@@ -123,7 +142,6 @@ html.topics_show {
       }
     }
   }
-
 }
 
 /* html.groups_show, */

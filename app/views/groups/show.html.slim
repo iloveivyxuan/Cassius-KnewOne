@@ -1,2 +1,8 @@
+- provide :nav, :group_show
+
+- if user_signed_in? and @group.has_member?(current_user)
+  .new_topic
+    = link_to_with_icon "发布新话题", "fa fa-pencil", new_group_topic_path(@group), class: 'btn btn-default'
+
 ul#topics= render @topics
 = paginate @topics

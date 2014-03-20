@@ -20,7 +20,11 @@ class Group
   end
   field :members_count, type: Integer, default: 0
 
-  def is_admin?(user)
-    members.where(user_id: user.id).exists?
+  def has_admin?(user)
+    user and members.where(user_id: user.id, role: :admin).exists?
+  end
+
+  def has_member?(user)
+    user and members.where(user_id: user.id).exists?
   end
 end
