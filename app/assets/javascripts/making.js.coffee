@@ -302,8 +302,12 @@ window.Making =
     $el.children('.price').text("￥ #{price * quantity}")
 
   ImageLazyLoading: () ->
-    $("img.lazy").css("visibility", "visible").lazyload
-      threshold: 400
+    $("img.lazy")
+      .filter ->
+        $(@).css('visibility') is 'hidden'
+      .css('visibility', 'visible')
+      .lazyload
+        threshold: 0
 
   Rating: ->
     $('[type="range"].range_rating').each ->
