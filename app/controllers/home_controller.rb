@@ -7,7 +7,11 @@ class HomeController < ApplicationController
     if user_signed_in?
       @activities = current_user.relate_activities.visible.page params[:page]
 
-      render 'home/index', layout: 'home'
+      if request.xhr?
+        render 'home/index_xhr', layout: false
+      else
+        render 'home/index', layout: 'home'
+      end
     else
       @landing_page = LandingPage.find_for_home
 
