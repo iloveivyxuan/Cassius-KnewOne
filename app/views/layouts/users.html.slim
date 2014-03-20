@@ -23,9 +23,10 @@
         = link_to followers_user_path(@user), id: 'followers', data: {count: @user.followers_count} do
           = @user.followers_count
           small 关注者
-      dd.exchange
-        = render 'users/follow_btn'
-        = render 'users/private_message_btn'
+      - if user_signed_in?
+        dd.exchange
+          = render 'users/follow_btn'
+          = render 'users/private_message_btn'
       = render_user_location(@user)
       = render_user_links(@user)
       - if @user.categories.any?
