@@ -13,6 +13,8 @@
       = link_to_with_icon "分享产品", "fa fa-plus", new_thing_path, class: 'btn btn-primary'
 
     = yield
+    .spinner
+      i.fa.fa-spinner.fa-spin.fa-2x
   /-- END main --/
 
   aside role="complemental"
@@ -61,5 +63,9 @@
       small &copy; 2014 KnewOne
     /-- END footer --/
   /--END aside --/
+
+- content_for :script do
+  javascript:
+    Making.InitHome();
 
 = render template: 'layouts/application'
