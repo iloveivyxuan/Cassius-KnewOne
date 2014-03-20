@@ -688,6 +688,7 @@ html.signed_in_homepage {
 
       @media screen and (min-width: $screen-sm-min) {
         border-top: $border-default;
+        display: none;
       }
 
       &.single {

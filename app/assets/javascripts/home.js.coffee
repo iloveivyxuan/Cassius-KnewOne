@@ -1,9 +1,14 @@
 window.Making = do (exports = window.Making || {}) ->
+  _$window      = $(window)
+  _$document    = $(document)
   _$element     = null
   _$collection  = null
   _$spinner     = null
+  _lock         = false
+  _delay        = 300
   _page         = 1
-  _class_row    = 'row'
+  _rows         = []
+  _$row         = null
   _class_col_6  = 'col-sm-6'
   _class_col_12 = 'col-sm-12'
   _element_class_col_6  = ['thing']
@@ -11,57 +16,111 @@ window.Making = do (exports = window.Making || {}) ->
 
   exports.InitHome = ->
     $ ->
-      if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ')')
-        _$element = $('html.signed_in_homepage').find('#activities')
-        _$spinner = _$element.next('.spinner')
+      _$element = $('html.signed_in_homepage').find('#activities')
+      _$row     = $('<div />').addClass('row')
+      _$spinner = _$element.next('.spinner')
 
-        _$element
-          .on 'loading', ->
-            _$spinner.show()
+      _$element
+        .on 'load', ->
+          _$spinner.show()
 
+          setTimeout ->
             $.ajax
               url: '/?page=' + ++ _page
               dataType: 'html'
-              contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
             .done (data, status, xhr) ->
               if xhr.status is 200
-                _$element.append(data).trigger 'sort'
+                _$element.append(data).trigger 'pack'
+                _lock = false
+              else if xhr.status is 204
+                _$element.trigger 'loaded'
+                $('<div />')
+                  .addClass('nomore')
+                  .html('没有更多了。')
+                  .insertAfter(_$element)
+          , _delay
 
-          .on 'sort', ->
-            _$collection = _$element.children(':not(.row)')
-            _length      = _$collection.length
-            _inbox_6     = []
+        .on 'loaded', ->
+          _$spinner.hide()
 
-            _$collection.each (index) ->
-              _$item = $(@)
+        .on 'pack', ->
+          _$collection = _$element.children(':not(.row)')
+          _length      = _$collection.length
+          _inbox_6     = []
+          _inbox_12    = []
 
-              for klass in _element_class_col_12
-                if _$item.hasClass(klass)
-                  _$element.append($('<div />').addClass('row').append(_$item.addClass(_class_col_12)))
-                  false
+          _$collection.addClass('js-packing')
 
-              for klass in _element_class_col_6
-                if _$item.hasClass(klass)
-                  _inbox_6.push(_$item)
+          _$element_col_6 = _$collection.filter ->
+            _result = false
 
-                  if _inbox_6.length is 2
-                    $.each _inbox_6, -> @.addClass(_class_col_6)
-                    _$element.append($('<div />').addClass('row').append(_inbox_6))
-                    _inbox_6 = []
-                  else if index is _length - 1 and _inbox_6.length is 1
-                    $.each _inbox_6, -> @.addClass(_class_col_12)
-                    _$element.append($('<div />').addClass('row single').append(_inbox_6))
-                    _inbox_6 = []
+            for klass in _element_class_col_6
+              _result = $(@).hasClass(klass)
+              if _result then break
 
-                  true
+            return _result
 
-            _$element.trigger 'show'
+          if _$element_col_6.length % 2 isnt 0
+            _$element_col_6.first().addClass('js-first')
 
-          .on 'show', ->
-            _$spinner.hide()
-            _$collection.show()
+          _$collection.each (index) ->
+            _$item = $(@)
 
-          .trigger 'sort'
+            if _$item.hasClass('js-first')
+              _rows.push(
+                _$row.clone()
+                  .append(
+                    _$item
+                      .addClass(_class_col_12)
+                      .removeClass('js-first')
+                  )
+                )
+
+              return true
+
+            for klass in _element_class_col_6
+              if _$item.hasClass(klass)
+                _$item.addClass(_class_col_6)
+                _inbox_6.push(_$item)
+
+                if _inbox_6.length is 2
+                  _rows.push(_$row.clone().append(_inbox_6))
+                  _inbox_6 = []
+
+                return true
+
+            for klass in _element_class_col_12
+              if _$item.hasClass(klass)
+                _$item.addClass(_class_col_12)
+                _inbox_12.push(_$item)
+
+                if _inbox_12.length is 1
+                  _rows.push(_$row.clone().append(_inbox_12))
+
+                return true
+
+          _$element.append(_rows).trigger 'show'
+
+        .on 'show', ->
+          _$element
+            .trigger 'loaded'
+            .find('.js-packing')
+            .removeClass('js-packing')
+            .show()
+          .end()
+            .find('.row')
+            .filter(':hidden')
+            .show()
+
+          exports.ImageLazyLoading()
+
+      _$window.on 'scroll', ->
+        if _$document.height() - _$window.scrollTop() -
+            _$window.height() < 100 and !_lock
+          _lock = true
+          _$element.trigger 'load'
+
+      _$element.trigger 'pack'
 
   # exports
   exports
