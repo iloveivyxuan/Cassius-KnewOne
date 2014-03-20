@@ -9,6 +9,6 @@ module ActivitiesHelper
              activity.type
            end
 
-    render("activities/#{tmpl}", activity: activity)
+    render "activities/#{tmpl}", activity: activity
   end
 end
