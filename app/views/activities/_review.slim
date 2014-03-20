@@ -9,10 +9,10 @@
         figure
           - present review.thing do |tp|
             = link_to tp.path do
-              = tp.photo(:review)
+              = tp.photo(:small)
               figurecaption title="#{tp.title}" = tp.title
         .article_content
-          = rp.cover
+          = rp.cover(:normal)
           p = rp.summary(120)
         .metas
           .metas_group
