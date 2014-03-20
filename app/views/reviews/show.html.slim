@@ -26,7 +26,7 @@
 
 - content_for :script do
   javascript:
-    Making.Voting()
-    Making.Comments("#comments")
+    Making.Voting();
+    Making.Comments("#comments");
     if ("#{flash[:provider_sync]}" == "true")
-      $(function(){$('#review_share').modal('show')})
+      $(function(){$('#review_share').modal('show')});

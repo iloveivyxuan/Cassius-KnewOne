@@ -4,17 +4,14 @@ section.group_info
     h1= gp.name
   blockquote
     = gp.description
-    .founder= gp.founder
+    .author= gp.founder
   .membership
-    = link_to_with_icon "加入小组", "fa fa-plus", "#", class: 'btn btn-default btn-sm', id: "join_group"
-    = link_to "#", class: "members_count" do
-      = gp.members_count
-      small 成员
+    = link_to_with_icon "加入小组", "fa fa-plus", "#", class: 'btn btn-default btn-sm'
 
 section.members.panel
   .panel-heading
     h3.panel-title
-      i.fa.fa-user
+      i.fa.fa-group
       | 小组成员
     = link_to_with_icon '', 'fa fa-chevron-right fa_alone', "#", class: 'more', title: '更多'
   .panel-body

@@ -154,7 +154,9 @@ Making::Application.routes.draw do
   resources :categories, only: [:show, :index]
 
   resources :groups do
-    resources :topics
+    resources :topics do
+      member { post 'vote' }
+    end
     get 'date/:date', action: :show, on: :member
   end
 

@@ -17,6 +17,50 @@ article.post {
   }
 }
 
+article.post_show {
+  > header {
+    h3 {
+      word-wrap: break-word;
+      margin: 0;
+    }
+  }
+
+  > section {
+    margin-top: 1em;
+    padding: 1em 0;
+    border-top: 1px solid #eee;
+  }
+
+  > footer {
+    @include clearfix;
+    margin-bottom: 1em;
+    border-bottom: $border-default;
+    padding-bottom: 1em;
+
+    > * {
+      margin-right: 2em;
+    }
+
+    .voting {
+      display: inline-block;
+      form {
+        button {margin-right: 1em;}
+      }
+    }
+
+    .share {margin-top: -5px;}
+
+    .fanciers {
+      float: right;
+      i {margin-right: 2em;}
+    }
+  }
+
+  aside#comments {
+    margin-top: 2em;
+  }
+}
+
 .post_content {
   img {@extend .img-responsive;}
   iframe {

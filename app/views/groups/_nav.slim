@@ -1,9 +1,16 @@
 ul.nav.nav-pills.nav-pills-list.nav-justified
   = nav_tab :group_show do
-    = link_to_with_icon "", "fa fa-home", gp.group
-  = nav_tab :group_hots do
-    = link_to_with_icon raw("<span>热门话题</span>"), "fa fa-fire", "#"
+    = link_to gp.group do
+      i.fa.fa-home
+      span 话题
+      span= gp.topics_count
   = nav_tab :members do
-    = link_to_with_icon raw("<span>小组成员</span>"), "fa fa-user", "#"
+    = link_to "#" do
+      i.fa.fa-group
+      span 成员
+      span= gp.members_count
   = nav_tab :collections do
-    = link_to_with_icon raw("<span>小组收藏</span>"), "fa fa-heart", "#"
+    = link_to "#" do
+      i.fa.fa-heart
+      span 收藏
+      span 100

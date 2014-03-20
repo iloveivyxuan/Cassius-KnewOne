@@ -20,7 +20,7 @@ defaults: &defaults
     enable: false
   karma:
     thing: 10
-    review: 5
+    post: 5
     fancy: 1
     own: 1
     order: 10

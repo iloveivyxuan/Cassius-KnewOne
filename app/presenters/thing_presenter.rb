@@ -240,4 +240,12 @@ class ThingPresenter < PostPresenter
   def related_things
     thing.related_things.map {|t| present(t)}
   end
+
+  def fancied?
+    user_signed_in? and thing.fancied?(current_user)
+  end
+
+  def fanciers_count
+    content_tag :span, thing.fanciers_count, class: "fanciers_count"
+  end
 end

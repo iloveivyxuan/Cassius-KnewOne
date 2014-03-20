@@ -3,7 +3,6 @@
     - if can? :vote, rp.review and !rp.review.voted?(current_user)
       = form_tag vote_thing_review_path(rp.review.thing, rp.review), remote: true,
       class: "not_voted", data: {type: 'html'} do
-        small 您认为这篇评测
         = button_tag title: "有用", class: "btn btn-default btn-xs", data: {vote: true} do
           i.fa.fa-thumbs-up
           | 有用

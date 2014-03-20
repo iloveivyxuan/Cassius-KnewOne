@@ -72,6 +72,14 @@ class Ability
       group.has_admin? user
     end
 
+    can :vote, Topic
+    can :create, Topic do |topic|
+      topic.group.has_member? user
+    end
+    can [:update, :destroy], Topic do |topic|
+      topic.group.has_admin? user
+    end
+
     can :create, Dialog
     can [:read, :destroy], Dialog do |dialog|
       dialog.user == user

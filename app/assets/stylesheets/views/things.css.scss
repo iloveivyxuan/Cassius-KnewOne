@@ -589,48 +589,6 @@ html.investors_admin {
   color: $text-muted;
 }
 
-.post_show {
-  > header {
-    h3 {
-      word-wrap: break-word;
-      margin: 0;
-    }
-  }
-
-  > section {
-    margin-top: 1em;
-    padding: 1em 0;
-    border-top: 1px solid #eee;
-  }
-
-  > footer {
-    @include clearfix;
-
-    > * {
-      margin-right: 2em;
-    }
-
-    .voting {
-      display: inline-block;
-      form {
-        small {color: $text-muted;}
-        button {margin-left: 1em;}
-      }
-    }
-
-    .share {margin-top: -5px;}
-
-    .fanciers {
-      float: right;
-      i {margin-right: 2em;}
-    }
-  }
-
-  aside#comments {
-    margin-top: 2em;
-  }
-}
-
 #reviews {
   .review {
     &:not(:last-child) {

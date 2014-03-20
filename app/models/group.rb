@@ -11,6 +11,7 @@ class Group
   validates :qualification, inclusion: {in: [:private, :public]}
 
   has_many :topics
+  field :topics_count, type: Integer, default: 0
 
   embeds_many :members do
     def add(user, role = :member)
