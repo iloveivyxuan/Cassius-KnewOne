@@ -5,13 +5,13 @@ module CategoryReferable
     embeds_many :category_references do
       def <<(cates)
         cates = [cates] unless cates.is_a? Array
-        cates.map! { |cate| cate.is_a?(Category) ? cate.name : cate }
+        cates.map! { |cate| cate.is_a?(Category) ? cate: Category.where(name: cate).first }
 
         cates.each do |cate|
-          if exists = where(name: cate).first
+          if exists = where(name: cate.name).first
             exists.inc count: 1
           else
-            create name: cate
+            create name: cate.name, category_id: cate.id.to_s
           end
         end
       end
