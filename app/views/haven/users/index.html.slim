@@ -16,6 +16,8 @@ table.table.table-striped
       th 发表评测
       th 成交订单
       th 战斗力
+      th 关注
+      th 被关注
       th 爱
   tbody
     - @users.each do |u|
@@ -26,8 +28,10 @@ table.table.table-striped
         td = u.things_count
         td = u.reviews_count
         td
-          = link_to (u.orders_count || '0'), haven_orders_path(find_by: 'user_id', find_cond: u.id.to_s), title: '他为何如此屌？'
-        td = link_to (u.expenses_count || '0'), haven_orders_path(find_by: 'user_id', find_cond: u.id.to_s), title: '他为何如此屌？'
+          = link_to u.orders_count, haven_orders_path(find_by: 'user_id', find_cond: u.id.to_s), title: '他为何如此屌？', target: '_blank'
+        td = link_to u.expenses_count, haven_orders_path(find_by: 'user_id', find_cond: u.id.to_s), title: '他为何如此屌？', target: '_blank'
+        td = link_to u.followings_count, followings_user_path(u), target: '_blank'
+        td = link_to u.followers_count, followers_user_path(u), target: '_blank'
         td
           = user_links(u)
 = paginate @users

@@ -1,0 +1,7 @@
+.pagination_wrapper {
+  @include clearfix();
+
+  .pagination {
+    float: right;
+  }
+}

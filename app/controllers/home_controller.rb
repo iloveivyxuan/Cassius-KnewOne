@@ -5,9 +5,13 @@ class HomeController < ApplicationController
 
   def index
     if user_signed_in?
-      @activities = Activity.visible.by_users(current_user.followings).
-          by_types(:new_thing, :own_thing, :fancy_thing, :new_review, :love_review).limit(20)
-      render 'home/index', layout: 'home'
+      @activities = current_user.relate_activities.visible.page params[:page]
+
+      if request.xhr?
+        render 'home/index_xhr', layout: false
+      else
+        render 'home/index', layout: 'home'
+      end
     else
       @landing_page = LandingPage.find_for_home
 
@@ -44,7 +48,7 @@ class HomeController < ApplicationController
     q.gsub!(/[^\u4e00-\u9fa5a-zA-Z0-9[:blank:].-]+/, '')
 
     if resultable = q.present?
-      @things = Thing.published.or({title: /#{q}/i}, {subtitle: /#{q}/i}).page(params[:page]).per(12)
+      @things = Thing.unscoped.published.or({title: /#{q}/i}, {subtitle: /#{q}/i}).desc(:fanciers_count).page(params[:page]).per(12)
       resultable = @things.any?
     end
 

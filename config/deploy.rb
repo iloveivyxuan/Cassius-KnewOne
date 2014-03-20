@@ -48,6 +48,13 @@ namespace :deploy do
   before "deploy", "deploy:check_revision"
 end
 
+namespace :sitemap do
+  desc 'Generate new sitemap and ping to search engine'
+  task :refresh do
+    run "cd #{latest_release} && RAILS_ENV=#{rails_env} bundle exec rake sitemap:refresh"
+  end
+end
+
 after 'deploy:start', 'unicorn:start'
 after 'deploy:stop', 'unicorn:stop'
 after 'deploy:restart', 'unicorn:restart'
