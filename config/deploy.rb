@@ -53,8 +53,6 @@ namespace :sitemap do
   task :refresh do
     run "cd #{latest_release} && RAILS_ENV=#{rails_env} bundle exec rake sitemap:refresh"
   end
-
-  after 'deploy', 'sitemap:refresh'
 end
 
 after 'deploy:start', 'unicorn:start'
