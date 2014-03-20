@@ -77,7 +77,7 @@ module UsersHelper
   end
 
   def render_user_activity(activity)
-    html = render_activity_summary(activity, false)
+    html = render_activity activity
     return if html.blank?
 
     content_tag :li do

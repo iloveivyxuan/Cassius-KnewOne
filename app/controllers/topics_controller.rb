@@ -20,6 +20,7 @@ class TopicsController < ApplicationController
   def create
     @topic.author = current_user
     if @topic.save
+      current_user.log_activity :new_topic, @topic, source: @topic.group
       redirect_to group_topic_path(@topic.group, @topic)
     else
       render 'new'

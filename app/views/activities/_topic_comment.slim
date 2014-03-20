@@ -1,0 +1,4 @@
+- topic = activity.reference
+- if topic.group
+  | 回复了话题
+  = link_to topic.title, group_topic_path(topic.group, topic)
