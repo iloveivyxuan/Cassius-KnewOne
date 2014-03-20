@@ -23,6 +23,7 @@
 //= require_tree ../templates
 //= require making
 //= require notificationbox
+//= require home
 //= require orders
 //= require cart_items
 //= require typeahead.bundle
