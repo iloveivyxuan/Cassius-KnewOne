@@ -6,11 +6,125 @@ html.topics_new,
 html.topics_edit,
 html.topics_create,
 html.topics_show {
+
   #wrapper {
+    /* TODO: same with users#show styles, should be merged */
     @include wrapper(what);
+
+    > header {
+      @include make-md-column(3, $gutter: 4em);
+      @include make-md-column-push(9);
+
+      border-bottom: $border-default;
+      margin-bottom: 2em;
+      padding: {left: 0; right: 0;}
+
+      @media screen and (min-width: $screen-sm-min) {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding: {left: 2em; right: 2em;}
+      }
+    }
+
+    > section {
+      @include make-md-column(9, $gutter: 4em);
+      @include make-md-column-pull(3);
+
+      padding: {left: 0; right: 0;}
+
+      @media screen and (min-width: $screen-sm-min) {
+        padding: {left: 2em; right: 2em;}
+      }
+
+      @media screen and (min-width: $screen-md-min) {
+        border-right: $border-default;
+        min-height: 800px;
+      }
+    }
   }
 
-} 
+  .group_info {
+    @media screen and (min-width: $screen-sm-min) {
+      border-bottom: $border-default;
+      margin-bottom: 2em;
+    }
+
+    h1 {font-size: $font-size-large;}
+
+    blockquote {
+      font-size: $font-size-base;
+      color: $text-muted;
+    }
+
+    .membership {
+      @include clearfix;
+      margin-bottom: 1.5em;
+
+      #join_group {
+        float: left;
+        margin-right: 2em;
+      }
+
+      .members_count {
+        float: left;
+        margin-top: .5em;
+
+        /* TODO: same with user friendship */
+        color: $text-color;
+        font-size: $font-size-large;
+        small {
+          color: $gray;
+          font-size: $font-size-base;
+          padding-left: .5em;
+        }
+      }
+    }
+  }
+
+  .members {
+    display: none;
+
+
+    @media screen and (min-width: $screen-md-min) {
+      display: block;
+
+      /* TODO: same with user panel */
+      .panel-heading {
+        @include clearfix;
+        padding-left: 0;
+
+        .panel-title {
+          color: $text-muted;
+          float: left;
+        }
+
+        .more {
+          color: $text-muted;
+          display: block;
+          float: right;
+
+          &:hover {
+            color: $text-color;
+          }
+        }
+      }
+
+      .panel-body {
+        padding: {left: 0; right: 0;}
+
+        .user_list {
+          @include clearfix;
+          
+          li {
+            float: left;
+            margin: .5em 0;
+          }
+        }
+      }
+    }
+  }
+
+}
 
 /* html.groups_show, */
 /* html.topics_new, */

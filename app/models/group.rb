@@ -13,11 +13,12 @@ class Group
   has_many :topics
 
   embeds_many :members do
-    def add(user, role)
-      @base.members.delete_all user_id: user.id
+    def add(user, role = :member)
+      @base.members.destroy_all user_id: user.id
       @base.members << Member.new(user_id: user.id, role: role)
     end
   end
+  field :members_count, type: Integer, default: 0
 
   def is_admin?(user)
     members.where(user_id: user.id).exists?
