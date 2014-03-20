@@ -102,6 +102,8 @@ class Ability
     can :update, Story
     can :edit, Thing
     can :update, Thing
+    can :edit, Category
+    can :update, Category
     can :pro_edit, Thing
     can :manage, Review
     can :manage, Lottery

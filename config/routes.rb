@@ -119,6 +119,8 @@ Making::Application.routes.draw do
         patch 'award'
       end
     end
+
+    resources :categories, only: [:index, :edit, :update]
   end
 
   resources :things do

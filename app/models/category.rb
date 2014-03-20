@@ -6,6 +6,8 @@ class Category
   slug :name, history: true
   field :things_count, type: Integer, default: 0
 
+  mount_uploader :cover, ImageUploader
+
   validates :name, presence: true, uniqueness: true
 
   default_scope -> { desc(:things_count) }

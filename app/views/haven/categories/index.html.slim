@@ -1,0 +1,12 @@
+table.table
+  thead
+    tr
+      th 分类
+      th 产品数量
+      th
+  tbody
+    - @categories.each do |c|
+      tr
+        th= link_to c.name, category_path(c)
+        th= c.things_count
+        th= link_to '编辑', edit_haven_category_path(c)
