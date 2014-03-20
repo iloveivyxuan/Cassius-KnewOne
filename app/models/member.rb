@@ -7,7 +7,7 @@ class Member
   field :role, type: Symbol, default: :member
 
   validates :user_id, presence: true
-  validates :role, inclusion: {in: [:member, :admin]}
+  validates :role, inclusion: {in: [:member, :admin, :founder]}
 
   def user
     @user ||= User.find user_id

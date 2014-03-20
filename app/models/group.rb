@@ -21,10 +21,15 @@ class Group
   field :members_count, type: Integer, default: 0
 
   def has_admin?(user)
-    user and members.where(user_id: user.id, role: :admin).exists?
+    user and members.where(user_id: user.id).in(role: [:founder, :admin]).exists?
   end
 
   def has_member?(user)
     user and members.where(user_id: user.id).exists?
+  end
+
+  def founder
+    member = members.where(role: :founder).first
+    User.find member.user_id if member
   end
 end

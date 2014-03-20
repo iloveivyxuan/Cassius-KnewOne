@@ -1,9 +1,12 @@
 section.group_info
-  .avatar= gp.avatar :small
-  h1= gp.name
-  blockquote= gp.description
+  .name
+    = gp.avatar :small
+    h1= gp.name
+  blockquote
+    = gp.description
+    .founder= gp.founder
   .membership
-    = link_to_with_icon "加入小组", "fa fa-plus", "#", class: 'btn btn-primary', id: "join_group"
+    = link_to_with_icon "加入小组", "fa fa-plus", "#", class: 'btn btn-default btn-sm', id: "join_group"
     = link_to "#", class: "members_count" do
       = gp.members_count
       small 成员

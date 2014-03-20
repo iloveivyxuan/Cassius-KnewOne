@@ -15,4 +15,8 @@ class GroupPresenter < ApplicationPresenter
     # Lazy loading users into corresponded members
     group.members.page(page).per(per).map(&:user)
   end
+
+  def founder
+    present(group.founder).as_author(:tiny)
+  end
 end
