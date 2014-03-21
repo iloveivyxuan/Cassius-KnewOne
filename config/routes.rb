@@ -71,6 +71,13 @@ Making::Application.routes.draw do
     end
   end
 
+  resource :profile, only: [] do
+    get 'fancies'
+    get 'owns'
+    get 'things'
+    get 'reviews'
+  end
+
   namespace :haven do
     resources :orders, only: [:index, :show, :update] do
       member do
