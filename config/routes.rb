@@ -119,12 +119,13 @@ Making::Application.routes.draw do
         patch 'award'
       end
     end
+
+    resources :categories, only: [:index, :edit, :update]
   end
 
   resources :things do
     collection do
-      get 'admin'
-      get 'resort'
+      get 'random'
     end
 
     member do

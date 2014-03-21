@@ -1,0 +1,14 @@
+- page_title @category.name
+
+header.page-header
+  h1
+    i.fa.fa-tag
+    = @category.name
+
+section
+  = form_for @category, url: haven_category_path(@category) do |f|
+    - if @category.cover
+      = image_tag @category.cover.url
+    = f.file_field :cover
+    = f.hidden_field :cover_cache
+    = f.submit

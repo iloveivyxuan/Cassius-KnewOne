@@ -41,11 +41,11 @@ module NotificationsHelper
   end
 
   def render_comment_notification(notification, target = '_self')
+    return '' unless notification.context
+
     html = ''
     html += senders(notification)
-    if notification.context.nil?
-      html += '回复了已经被删除的资源'
-    elsif notification.context.author == current_user
+    if notification.context.author == current_user
       html += "回复了我发布的#{notification_post(notification.context, target)}"
     else
       html += "在对#{notification_post(notification.context, target)}的回复中提到了我"
@@ -55,10 +55,10 @@ module NotificationsHelper
 
   def render_new_review_notification(notification, target = '_self')
     return '' unless notification.context
-    html = ''
 
+    html = ''
     html += senders(notification)
-    if notification.context.author == current_user
+    if notification.context.thing.author == current_user
       html += '为我分享的产品发表了评测'
     else
       html += '为我喜欢的产品发表了评测'
@@ -78,6 +78,8 @@ module NotificationsHelper
   end
 
   def render_stock_notification(notification, target = '_self')
+    return '' unless notification.context
+
     html = ''
 
     html += link_to notification.context.title, notification.context, target: target
