@@ -26,9 +26,10 @@
 
   .meta {
     display: inline-block;
-    line-height: 14px;
+    line-height: 20px;
     margin: 0;
     margin-right: 1em;
+    vertical-align: middle;
 
     &:last-child {
       margin-right: 0;
