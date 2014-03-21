@@ -1,5 +1,5 @@
 - present thing do |tp|
   figure
-    = link_to tp.path
+    = link_to tp.path, target: '_blank'
       = tp.photo(:normal)
-    figcaption = link_to tp.full_title, tp.path
+    figcaption = link_to tp.full_title, tp.path, target: '_blank'
