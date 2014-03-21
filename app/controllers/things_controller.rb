@@ -31,6 +31,14 @@ class ThingsController < ApplicationController
     end
   end
 
+  def random
+    @things = Thing.rand_records (params[:per] || 24).to_i
+
+    respond_to do |format|
+      format.json { render 'things/index' }
+    end
+  end
+
   def new
     @thing = Thing.new
   end
