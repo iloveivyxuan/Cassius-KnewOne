@@ -33,7 +33,7 @@ header#header role="banner"
             - Group.each do |group|
               li= link_to group.name, group
         li.nav_olark
-          = link_to_with_icon "客服", "fa fa-comment fa-fw", "#olark_chat", data: {hint: "fa-user-md", url: asset_path('olark.js')}
+          = link_to_with_icon "客服", "fa fa-comment fa-fw", "#olark_chat", data: {hint: "fa-comment", url: asset_path('olark.js')}
 
       .nav.navbar-nav.navbar-right
         - if user_signed_in?
