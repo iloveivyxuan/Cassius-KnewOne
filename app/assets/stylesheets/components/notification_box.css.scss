@@ -39,8 +39,10 @@
   #notification_trigger {
     display: inline-block;
 
-    &:hover {
-      color: $text-color;
+    @media screen and (min-width: $screen-sm-min) {
+      font-size: 1.3333333333333333em;
+      line-height: 0.75em;
+      vertical-align: -15%;
     }
   }
 
@@ -62,7 +64,7 @@
   }
 
   .dropdown_box {
-    right: -44px;
+    right: -20px;
 
     &:before {
       right: 50px;

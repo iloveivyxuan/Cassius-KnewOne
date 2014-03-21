@@ -7,9 +7,7 @@ body {
 }
 
 .navbar {
-  @include background-image(linear-gradient(top, #fbfbfb, #e7ebee));
-  border-bottom-color: #d3d9de;
-  box-shadow: 0 1px 2px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.2);
+  border: 0;
 
   .navbar-brand {
     position: relative;
@@ -42,12 +40,26 @@ body {
       > li {
 
         > a {
-          padding-left: 10px;
-          padding-right: 10px;
+          line-height: 40px;
+          padding: 0 15px;
+
+          .fa {
+
+            @media screen and (min-width: $screen-sm-min) {
+              font-size: 1.3333333333333333em;
+              line-height: 0.75em;
+              vertical-align: -15%;
+            }
+          }
         }
 
-        &.open > a {
-          background-color: #e8ebf0;
+        &.nav_olark {
+
+          .fa {
+            @media screen and (min-width: $screen-sm-min) {
+              vertical-align: baseline;
+            }
+          }
         }
       }
     }
@@ -63,17 +75,13 @@ body {
         margin-top: 7px;
         transition-duration: .4s;
         transition-property: width;
-        width: 80px;
-      }
-
-      @media screen and (min-width: $screen-md-min + 100) {
-        width: 15%;
+        width: 16%;
       }
 
       &.focus {
 
         @media screen and (min-width: $screen-sm-min) {
-          width: 25%;
+          width: 30%;
         }
       }
 
@@ -101,63 +109,95 @@ body {
         }
       }
     }
-
-    .dropdown-menu > li > a {
-      &:hover,
-      &:focus {
-        background-color: #f4f5f8;
-      }
-    }
-  }
-
-  .nav_specials {
-
-    a {
-      color: #b93e36 !important;
-    }
   }
 
   .nav_user {
 
-    &.is_login {
-      border-top: 1px solid darken($navbar-default-bg, 6.5%);
-      padding: $padding-small-vertical $padding-large-horizontal;
-      padding-bottom: 0;
-      @include clearfix;
+    .nav_user_action,
+    .nav_user_action > a {
+      background-color: transparent;
+      color: $navbar-inverse-link-color;
 
-      .nav_user_account {
+      &:hover {
+        background-color: transparent;
+        color: $navbar-inverse-link-hover-color;
+      }
+    }
+
+    .nav_user_account {
+
+      @media screen and (max-width: $screen-sm-min) {
+        & > .dropdown-menu > li > a {
+          padding: $padding-base-vertical $padding-large-horizontal;
+        }
+      }
+
+      @media screen and (min-width: $screen-sm-min) {
+        float: right;
+        margin-left: 20px;
         margin-right: 10px;
       }
 
-      .nav_user_action {
-        @include navbar-vertical-align(20px);
-
-        float: left;
-        margin-left: 5px;
-        margin-right: 5px;
-        padding-right: 8px;
-        position: relative;
-
-        &.open > a {
-          &,
-          &:hover,
-          &:focus {
-            background-color: transparent;
-            color: $text-color;
-          }
-        }
+      #user {
+        background-color: transparent;
+        display: inline-block;
+        margin-right: 10px;
 
         @media screen and (min-width: $screen-sm-min) {
           float: right;
+          margin-right: 0;
+
+          img {
+            height: 40px;
+            width: 40px;
+          }
+        }
+      }
+    }
+
+    &.is_login {
+      @include clearfix;
+
+      border-top: 1px solid darken($navbar-inverse-bg, 7%);
+      padding: $padding-small-vertical $padding-large-horizontal;
+      padding-bottom: 0;
+
+      .nav_user_action {
+        display: inline-block;
+        line-height: 30px;
+        padding: {
+          bottom: 5px;
+          right: 30px;
+          top: 5px;
+        }
+        position: relative;
+
+        @media screen and (min-width: $screen-sm-min) {
+          height: 40px;
         }
 
-        .badge {
+        > .fa {
+
+          @media screen and (min-width: $screen-sm-min) {
+            font-size: 1.3333333333333333em;
+            line-height: 0.75em;
+            vertical-align: -15%;
+          }
+        }
+
+        > .badge {
           color: #fff;
-          font-family: $font-family-sans-serif;
-          left: 8px;
+          left: 14px;
+          margin-top: -12px;
           padding: 1px 6px;
           position: absolute;
-          top: -5px;
+          top: 50%;
+          z-index: 1;
+
+          @media screen and (min-width: $screen-sm-min) {
+            font-size: 14px;
+            left: 18px;
+          }
         }
       }
 
@@ -165,26 +205,6 @@ body {
 
         & + .popover {
           .popover-title {display: none;}
-        }
-      }
-
-      &.open {
-
-        .nav_user_action {
-          background-color: $navbar-default-link-hover-bg;
-          color: $navbar-default-link-color;
-        }
-
-        .nav_user_account {
-          img {
-            box-shadow: 0 0 10px $brand-primary;
-          }
-        }
-      }
-
-      @media screen and (max-width: $screen-sm-min) {
-        & > .dropdown-menu > li > a {
-          padding: $padding-base-vertical $padding-large-horizontal;
         }
       }
 
@@ -205,23 +225,6 @@ body {
         display: block;
         padding: $nav-link-padding;
       }
-    }
-
-    .nav_user_account {
-      float: left;
-      z-index: 100;
-
-      @media screen and (min-width: $screen-sm-min) {
-        float: right;
-        margin-left: 5px;
-        position: relative;
-        top: 10px;
-      }
-    }
-
-    .nav_user_action,
-    .nav_user_action > a {
-      color: $navbar-default-link-color;
     }
   }
 }

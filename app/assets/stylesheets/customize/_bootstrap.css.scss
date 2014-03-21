@@ -162,6 +162,19 @@ time {
   padding-right: 15px;
 }
 
+.navbar-inverse {
+  background-color: #363d48;
+  color: #ccc;
+
+  .navbar-brand {
+    color: $navbar-default-brand-color;
+    &:hover,
+    &:focus {
+      color: #fff;
+    }
+  }
+}
+
 // Breadcrumbs
 // -----------------------------------------------------------------------------
 
