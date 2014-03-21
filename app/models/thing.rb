@@ -61,7 +61,7 @@ class Thing < Post
   default_scope -> { desc(:created_at) }
 
   STAGES.each do |k, v|
-    scope k, -> { unscoped.published.where(stage: k) }
+    scope k, -> { where(stage: k) }
   end
 
   embeds_many :kinds
@@ -229,11 +229,11 @@ class Thing < Post
     end
 
     def rand_records(per = 1)
-      (0...Thing.count).to_a.shuffle.slice(0, per).map { |i| Thing.skip(i).first }
+      (0...Thing.published.count).to_a.shuffle.slice(0, per).map { |i| Thing.published.skip(i).first }
     end
 
     def rand_prior_records(per = 1)
-      (0...Thing.prior.count).to_a.shuffle.slice(0, per).map { |i| Thing.prior.skip(i).first }
+      (0...Thing.published.prior.count).to_a.shuffle.slice(0, per).map { |i| Thing.published.prior.skip(i).first }
     end
 
     def recal_all_related_things
