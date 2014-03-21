@@ -15,6 +15,17 @@ class ThingsController < ApplicationController
     @things = @things.self_run if params[:self_run]
     @things = @things.prior if params[:sort_by] != 'created_at'
 
+    case params[:price_range]
+      when '1-199'
+        @things = @things.price_between(1, 199)
+      when '200-499'
+        @things = @things.price_between(200, 499)
+      when '500-999'
+        @things = @things.price_between(500, 999)
+      when 'emperor'
+        @things = @things.or({:price.gt => 1000}, {:'kind.price'.gt => 1000})
+    end
+
     @things = @things.page(params[:page]).per((params[:per] || 24).to_i)
 
     respond_to do |format|
@@ -130,6 +141,6 @@ class ThingsController < ApplicationController
   end
 
   def set_categories
-    @categories = Category.all
+    @categories = Category.gt(things_count: 10)
   end
 end

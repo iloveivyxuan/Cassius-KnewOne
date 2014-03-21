@@ -6,6 +6,15 @@ nav
         i.fa.fa-tags
       = select_tag :category, options_from_collection_for_select(@categories, :slug, :name, params[:category]), class: 'form-control', id: 'category_select'
     .form-group
+      label.sr-only for="price_range"
+        i.fa.fa-dollar
+      = select_tag :price_range, options_for_select([%w(全部 0),
+                                                     %w(1-199元 1-199),
+                                                     %w(200-499元 200-499),
+                                                     %w(500-999元 500-999),
+                                                     %w(1000元及以上 emperor)], (params[:price_range] || '0')),
+                   include_blank: false, class: 'form-control', id: 'price_range'
+    .form-group
       label.sr-only for="sort_by"
         i.fa.fa-sort
       = select_tag :sort_by, options_for_select([%w(最新 created_at), %w(热门 priority)], (params[:sort_by] || 'created_at')),

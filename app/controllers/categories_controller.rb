@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
   end
 
   def all
-    @categories = Category.gt(things_count: 0)
+    @categories = Category.gt(things_count: 10)
   end
 
   private
