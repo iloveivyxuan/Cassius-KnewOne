@@ -290,7 +290,7 @@ window.Making =
       loading:
         msg: $("<div class='loading-things'><i class='fa fa-spinner fa-spin fa-2x'></i></div>")
       errorCallback: ->
-        $(container).find('.loading-things').html("<em>没有更多了......</em>")
+        $(container).find('.loading-things').html('<em class="nomore">没有更多了。</em>')
       , (data) ->
         $('.loading-things').remove()
         $(data).find(".lazy").css("visibility", "visible").lazyload

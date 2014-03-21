@@ -66,6 +66,7 @@ i.fa_alone {
 
 .nomore {
   color: $text-muted;
+  display: block;
   font-size: 16px;
   font-style: italic;
   padding: 20px 0;
@@ -79,6 +80,43 @@ img.lazy {
 #check_provider_sync {
   color: $text-muted;
   margin-left: 2em;
+}
+
+.form-group.search {
+  position: relative;
+
+  .form-control {
+    padding-left: 30px;
+  }
+
+  .fa {
+    color: $text-muted;
+    left: 10px;
+    margin: 0;
+    position: absolute;
+    top: 9px;
+  }
+}
+
+.breadcrumb {
+  display: inline-block;
+  padding-left: 1em;
+  position: relative;
+
+  &:before {
+    color: $text-muted;
+    content: '/';
+    position: absolute;
+    left: .3em;
+  }
+
+  &:first-child {
+    padding-left: 0;
+
+    &:before {
+      display: none;
+    }
+  }
 }
 
 /* fucking baidu analystics */

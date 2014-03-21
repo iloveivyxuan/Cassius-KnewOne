@@ -9,7 +9,6 @@
     header.page-header
       h1
         | 最新动态
-        i.fa.fa-caret-down
       = link_to_with_icon "分享产品", "fa fa-plus", new_thing_path, class: 'btn btn-primary'
 
     = yield
@@ -48,7 +47,7 @@
 
     section#choiceness.panel
       header.panel-heading
-        h5.panel-title Editor's Choice
+        h5.panel-title 编辑精选
         = link_to_with_icon '', 'fa fa-random', random_things_path(per: 1), class: 'more', remote: true
       .panel-body
         = @editor_choices.map { |t| render 'things/editor_choice', thing: t }.join.html_safe

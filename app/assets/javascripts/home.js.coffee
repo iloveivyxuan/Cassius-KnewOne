@@ -37,6 +37,8 @@ window.Making = do (exports = window.Making || {}) ->
       _$row     = $('<div />').addClass('row')
       _$spinner = _$element.next('.spinner')
 
+      if _$element.length is 0 then return
+
       _$element
         .on 'load', ->
           _$spinner.show()
