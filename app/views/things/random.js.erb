@@ -1,0 +1,1 @@
+$('#choiceness .panel-body').html('<%= escape_javascript(@things.map { |t| render 'things/editor_choice', thing: t }.join.html_safe) %>');

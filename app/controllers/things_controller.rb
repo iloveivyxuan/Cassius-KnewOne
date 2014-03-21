@@ -1,35 +1,24 @@
 class ThingsController < ApplicationController
   include MarkReadable
   load_and_authorize_resource
+  before_action :set_categories, only: [:index]
   after_action :allow_iframe_load, only: [:show]
   after_action :store_location, only: [:comments, :show]
 
   def index
-    per = (params[:per] || 24).to_i
-
-    scope = case params[:sort]
-              when "self_run"
-                Thing.self_run
-              when "fancy"
-                Thing.unscoped.published.desc(:fanciers_count)
-              when "random"
-                Thing.rand_records per
-              when "random_prior"
-                Thing.rand_prior_records per
-              else
-                Thing.published
-            end
-
-    if params.try :include?, 'random'
-      @things = Kaminari.paginate_array(scope).page(params[:page]).per(per)
+    if params[:category].present?
+      @things = Category.find(params[:category]).things
     else
-      @things = scope.page(params[:page]).per(per)
+      @things = Thing.published
     end
 
+    @things = @things.self_run if params[:self_run]
+    @things = @things.prior if params[:sort_by] != 'created_at'
+
+    @things = @things.page(params[:page]).per((params[:per] || 24).to_i)
+
     respond_to do |format|
-      format.html do
-        render 'index_xhr', layout: false if request.xhr?
-      end
+      format.html
       format.atom
       format.json
     end
@@ -39,6 +28,7 @@ class ThingsController < ApplicationController
     @things = Thing.rand_records (params[:per] || 24).to_i
 
     respond_to do |format|
+      format.js
       format.json { render 'things/index' }
     end
   end
@@ -137,5 +127,9 @@ class ThingsController < ApplicationController
     params.require(:thing)
     .permit(:title, :subtitle, :official_site,
             :content, :description, photo_ids: [])
+  end
+
+  def set_categories
+    @categories = Category.all
   end
 end

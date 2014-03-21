@@ -56,8 +56,8 @@ class Thing < Post
   has_many :lotteries, dependent: :delete
 
   scope :published, -> { lt(created_at: Time.now) }
-  scope :prior, -> { unscoped.published.gt(priority: 0).desc(:priority, :created_at) }
-  scope :self_run, -> { unscoped.published.in(stage: [:dsell, :invest]).desc(:priority, :created_at) }
+  scope :prior, -> { gt(priority: 0).desc(:priority, :created_at) }
+  scope :self_run, -> { send :in, stage: [:dsell, :invest] }
   default_scope -> { desc(:created_at) }
 
   STAGES.each do |k, v|

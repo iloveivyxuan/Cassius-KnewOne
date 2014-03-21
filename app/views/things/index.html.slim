@@ -1,15 +1,6 @@
-- sort_names = {new: "最新", fancy: "热门", self_run: "自营"}
-- params[:sort] ||= "new"
-- page_title sort_names[params[:sort].to_sym]
+- page_title (params[:category] || '最新产品')
 
-nav
-  ul.nav.nav-pills
-    = nav_tab :new, nav: params[:sort] do
-      = link_to_with_icon "最新", "fa fa-rocket", things_path
-    = nav_tab :fancy, nav: params[:sort] do
-      = link_to_with_icon "热门", "fa fa-bullseye", things_path(sort: "fancy")
-    = nav_tab :self_run, nav: params[:sort] do
-      = link_to_with_icon "自营", "fa fa-trophy", things_path(sort: "self_run")
+= render 'things/filter'
 
 section
   ul.things.infinite#things= render @things, size: :normal, img_lazy: true

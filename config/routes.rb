@@ -151,7 +151,11 @@ Making::Application.routes.draw do
     resources :comments
   end
 
-  resources :categories, only: [:show, :index]
+  resources :categories, only: [:index] do
+    collection do
+      get 'all'
+    end
+  end
 
   resources :groups do
     resources :topics

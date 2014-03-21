@@ -49,12 +49,9 @@
     section#choiceness.panel
       header.panel-heading
         h5.panel-title Editor's Choice
-        = link_to_with_icon '', 'fa fa-random', '#', class: 'more'
+        = link_to_with_icon '', 'fa fa-random', random_things_path(per: 1), class: 'more', remote: true
       .panel-body
-        figure
-          = link_to '#'
-            img src="http://image.knewone.com/photos/34a2eddc7ffca50b8dbeb4c0817d75d5.jpg!normal" alt="Google Glass"
-          figcaption Google Glass － 做为一款时髦度爆表的产品，虽然还没上市，至少饱饱眼福吧
+        = @editor_choices.map { |t| render 'things/editor_choice', thing: t }.join.html_safe
     /-- END #choiceness --/
 
     footer

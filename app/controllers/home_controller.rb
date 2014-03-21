@@ -2,6 +2,7 @@
 class HomeController < ApplicationController
   layout 'application'
   skip_after_action :store_location
+  before_action :set_editor_choices, only: [:index]
 
   def index
     if user_signed_in?
@@ -82,4 +83,9 @@ class HomeController < ApplicationController
   def jobs
   end
 
+  private
+
+  def set_editor_choices
+    @editor_choices = Thing.rand_prior_records 1
+  end
 end
