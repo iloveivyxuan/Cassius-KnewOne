@@ -95,6 +95,7 @@ class Ability
     can :buy, Thing
     can :comments, Thing
     can :wechat_qr, Thing
+    can :random. Thing
   end
 
   def editor
