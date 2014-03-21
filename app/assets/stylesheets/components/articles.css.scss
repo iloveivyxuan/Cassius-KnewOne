@@ -214,8 +214,21 @@ form.edit_post {
     .metas {
       text-align: left;
 
-      .meta.fa-pencil {
-        color: #134f5c;
+      .meta {
+
+        &.name {
+          @include text-overflow;
+
+          width: 45px;
+
+          @media screen and (min-width: $screen-sm-min) {
+            width: auto;
+          }
+        }
+
+        &.fa-pencil {
+          color: #134f5c;
+        }
       }
     }
   }
