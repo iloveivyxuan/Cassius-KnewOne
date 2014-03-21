@@ -27,9 +27,13 @@ header#header role="banner"
         li.nav_groups.dropdown
           = link_to "#", class: "dropdown-toggle", data: {toggle: "dropdown"} do
             i.fa.fa-tint.fa-fw
-            | 小组
+            span 小组
+            b.caret
+          ul.dropdown-menu
+            - Group.each do |group|
+              li= link_to group.name, group
         li.nav_olark
-          = link_to_with_icon "客服", "fa fa-comment fa-fw", "#olark_chat", data: {hint: "fa-user-md", url: asset_path('olark.js')}
+          = link_to_with_icon "客服", "fa fa-comment fa-fw", "#olark_chat", data: {hint: "fa-comment", url: asset_path('olark.js')}
 
       .nav.navbar-nav.navbar-right
         - if user_signed_in?
@@ -67,7 +71,6 @@ header#header role="banner"
               ul.dropdown-menu
                 li= link_to_with_icon "我的主页", "fa fa-user fa-fw", current_user
                 li= link_to_with_icon "我的订单", "fa fa-file-text fa-fw", orders_path
-                li= link_to_with_icon "我的私信", "fa fa-envelope-o fa-fw", dialogs_path
                 li= link_to_with_icon "控制面板", "fa fa-tachometer fa-fw", setting_root_path
                 li= link_to_with_icon "安全登出", "fa fa-sign-out fa-fw", destroy_user_session_path, method: :delete
         - else
