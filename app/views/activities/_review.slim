@@ -16,7 +16,7 @@
           p = rp.summary(120)
         .metas
           .metas_group
-            = link_to review.author.name, review.author, class: 'meta'
+            = link_to review.author.name, review.author, class: 'meta name'
             i.meta.fa class="#{activity_type_icon_class(activity)}"
             = time_ago_tag(review.created_at, 'meta')
           .metas_group

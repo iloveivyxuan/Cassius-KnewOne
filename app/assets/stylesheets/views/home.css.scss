@@ -554,9 +554,14 @@ html.signed_in_homepage {
 
   .article_compact {
     border-top: $border-default;
+    padding-bottom: 0;
 
     @media screen and (min-width: $screen-sm-min) {
       border-top: none;
+    }
+
+    .article_feature {
+      bottom: 0;
     }
   }
 
