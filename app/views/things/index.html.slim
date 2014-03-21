@@ -1,5 +1,10 @@
 - page_title (params[:category] || '最新产品')
 
+header.page-header
+  h1
+    a.breadcrumb href="#" 产品
+    a.breadcrumb href="#" 类别
+
 = render 'things/filter'
 
 section
