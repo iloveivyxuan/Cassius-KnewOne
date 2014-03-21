@@ -15,8 +15,12 @@ class Group
 
   embeds_many :members do
     def add(user, role = :member)
+      @base.members.remove user
+      @base.members.create user_id: user.id, role: role
+    end
+
+    def remove(user)
       @base.members.destroy_all user_id: user.id
-      @base.members << Member.new(user_id: user.id, role: role)
     end
   end
   field :members_count, type: Integer, default: 0
@@ -32,5 +36,13 @@ class Group
   def founder
     member = members.where(role: :founder).first
     User.find member.user_id if member
+  end
+
+  def public?
+    qualification == :public
+  end
+
+  def private?
+    qualification == :private
   end
 end

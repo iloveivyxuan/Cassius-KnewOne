@@ -82,6 +82,11 @@ html.topics_show {
       h1 {
         font-size: $font-size-large;
         margin: 0;
+        i {
+          font-size: $font-size-base;
+          margin-left: .5em;
+          color: $text-muted;
+        }
       }
     }
 
@@ -100,6 +105,24 @@ html.topics_show {
 
     .membership {
       margin-bottom: 1em;
+
+      .be_member {
+        color: $text-muted;
+        span {
+          display: none;
+          a {
+            color: $text-muted;
+            margin-right: 1em;
+          }
+        }
+
+        @media screen and (min-width: $screen-md-min) {
+          span {
+            display: block;
+            margin: .5em 0;
+          }
+        }
+      }
     }
 
     @media screen and (min-width: $screen-md-min) {
@@ -210,75 +233,3 @@ html.topics_show {
     }
   }
 }
-
-/* #topics { */
-/*   .topic { */
-/*     @include clearfix; */
-/*     padding: 1em 0; */
-/*     border-bottom: 1px dashed #ccc; */
-
-/*     > a:first-child { */
-/*       float: left; */
-/*       img { @extend .img-rounded; } */
-/*       margin-right: 2em; */
-
-/*       @media screen and (max-width: 767px) { */
-/*         float: none; */
-/*       } */
-/*     } */
-
-/*     aside { */
-/*       float: right; */
-/*       margin: {top: 25px;right: 2em;} */
-/*     } */
-
-/*     h4 { */
-/*       margin {right: 10%; top: 0;} */
-/*       i { */
-/*         margin: 0 0 0 1em; */
-/*         color: $red; */
-/*       } */
-/*     } */
-
-/*     .summary { */
-/*       margin-top: 20px; */
-
-/*       a { */
-/*         color: $text-muted; */
-/*         &:hover {color: $text-color;} */
-/*       } */
-
-/*       .commented_at { */
-/*         color: $text-muted; */
-/*         margin-left: 2em; */
-
-/*         time { */
-/*           font-size: 1em; */
-/*           margin-left: .5em; */
-/*         } */
-/*         a {margin: 0 .5em;} */
-/*       } */
-/*     } */
-/*   } */
-/* } */
-
-/* #topic_show { */
-/*   > header { */
-/*     margin-bottom: 2em; */
-/*   } */
-
-/*   > section { */
-/*     ol {list-style: decimal inside;} */
-/*     ul {list-style: disc inside;} */
-/*   } */
-
-/*   #topic_comments { */
-/*     margin-top: 2em; */
-/*     border-top: 1px solid #eee; */
-/*     padding-top: 2em; */
-
-/*     p.login_tip { */
-/*       margin: 2em 0; */
-/*     } */
-/*   } */
-/* } */

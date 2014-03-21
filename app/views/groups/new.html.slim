@@ -3,7 +3,7 @@
     legend 建立小组
     fieldset
       = f.input :name
-      = f.input :description, as: :text
+      = f.input :description, as: :text, input_html: {rows: 6}
       - unless @group.new_record?
         = image_tag @group.avatar.url(:small)
       = f.input :avatar, as: :file

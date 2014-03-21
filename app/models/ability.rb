@@ -75,6 +75,7 @@ class Ability
       group.has_admin? user
     end
     can :join, Group
+    can :leave, Group
 
     can :vote, Topic
     can :create, Topic do |topic|
