@@ -16,7 +16,7 @@ window.Making = do (exports = window.Making || {}) ->
 
   _sort = (list, list_1, list_2, is_list_1 = true) ->
     if list_1.length == 0 and list_2.length == 0
-      return []
+      return
 
     if is_list_1
       if list_1.length % 2 > 0

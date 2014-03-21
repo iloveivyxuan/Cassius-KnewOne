@@ -170,7 +170,7 @@ time {
     color: $navbar-default-brand-color;
     &:hover,
     &:focus {
-      color: #fff;
+      color: $navbar-default-brand-color;
     }
   }
 }
