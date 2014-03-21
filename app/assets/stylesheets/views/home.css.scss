@@ -532,7 +532,6 @@ html.signed_in_homepage {
 
   .thing {
     border-radius: 0;
-    padding-bottom: 0;
 
     figcaption {
 
@@ -549,14 +548,6 @@ html.signed_in_homepage {
           color: $red;
         }
       }
-    }
-  }
-
-  .article_compact {
-    padding-bottom: 0;
-
-    .article_feature {
-      bottom: 0;
     }
   }
 
@@ -638,16 +629,34 @@ html.signed_in_homepage {
     }
 
     figure {
+      overflow: hidden;
 
-      img {
-        max-width: 100%;
+      > a {
+        display: block;
+        height: 0;
+        padding-bottom: 100%;
+        position: relative;
+
+        img {
+          bottom: 0;
+          left: 0;
+          max-width: 100%;
+          margin: auto;
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
       }
 
       figcaption {
         @include text-overflow;
 
+        background-color: #fff;
         display: block;
         margin-top: 10px;
+        position: relative;
+        text-align: center;
+        z-index: 1;
       }
     }
   }
