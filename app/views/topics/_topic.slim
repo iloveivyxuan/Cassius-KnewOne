@@ -1,13 +1,15 @@
-li.topic
+article.article_compact
   - present topic do |tp|
-    = tp.author_avatar(:small)
-    aside= tp.comments_count
-    h4
-      = link_to tp.title, tp.path
+    header.article_header
+      h4.article_title= link_to tp.title, tp.path
       = tp.top
-    .summary
-      = tp.author_name
-      = tp.last_commented_at
-      
-  
-  
+    section.article_body
+      figure
+        = tp.author_avatar :small
+      .metas
+        .metas_group
+          .meta.topic_author= tp.author_name
+        .metas_group
+          .meta.topic_comments= tp.comments_count
+          .meta.topic_commented_at= tp.last_commented_at
+    .article_feature= tp.lovers_count

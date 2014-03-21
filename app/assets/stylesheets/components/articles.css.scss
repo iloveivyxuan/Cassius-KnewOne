@@ -117,6 +117,11 @@ form.edit_post {
     margin-right: 1em;
   }
 
+  a {
+    color: $gray;
+    &:hover {color: $text-color;}
+  }
+
   a i {
     color: $text-muted;
   }
@@ -139,10 +144,16 @@ form.edit_post {
 
 .article_compact {
   border-bottom: 1px dashed #eee;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  padding-left: 85px;
+  margin-bottom: 10px;
+  padding: {
+    bottom: 10px;
+    top: 10px;
+  }
   position: relative;
+
+  @media screen and (min-width: $screen-sm-min) {
+    padding-left: 85px;
+  }
 
   &:last-child {
     border-bottom: none;
@@ -155,35 +166,67 @@ form.edit_post {
 
   .article_title {
     font-size: 14px;
+    margin: 0;
+    text-align: center;
+
+    @media screen and (min-width: $screen-sm-min) {
+      text-align: left;
+    }
   }
 
   .article_body {
     @include clearfix;
 
     figure {
-      display: none;
+      text-align: right;
+      margin-bottom: 10px;
 
-      @media screen and (min-width: $screen-md-min) {
+      @media screen and (min-width: $screen-sm-min) {
         display: block;
         float: right;
+        margin-bottom: 0;
         margin-left: 50px;
         text-align: center;
         width: 100px;
       }
 
+      a {
+        color: $text-color;
+        display: block;
+      }
+
       img {
-        height: 80px;
-        width: 80px;
+        display: none;
+
+        @media screen and (min-width: $screen-sm-min) {
+          display: block;
+          height: 80px;
+          margin: {
+            left: auto;
+            right: auto;
+          }
+          width: 80px;
+        }
       }
 
       figurecaption {
-        color: $gray;
-        display: block;
-        height: 40px;
-        line-height: 20px;
-        margin-top: 5px;
-        overflow: hidden;
-        text-align: center;
+
+        &:before {
+          content: '—';
+        }
+
+        @media screen and (min-width: $screen-sm-min) {
+          display: block;
+          height: 40px;
+          line-height: 20px;
+          margin-top: 5px;
+          overflow: hidden;
+          text-align: center;
+
+          &:before {
+            content: '';
+          }
+        }
       }
     }
 
@@ -195,10 +238,17 @@ form.edit_post {
       padding: 15px;
 
       img {
-        float: left;
-        margin-right: 15px;
-        height: 80px;
-        width: 80px;
+        display: block;
+        height: auto;
+        margin-bottom: 10px;
+        width: 100%;
+
+        @media screen and (min-width: $screen-sm-min) {
+          float: left;
+          margin-right: 15px;
+          height: 80px;
+          width: 80px;
+        }
       }
 
       p {
@@ -209,23 +259,29 @@ form.edit_post {
         overflow: hidden;
       }
     }
-  }
 
-  .atricle_meta {
-    overflow: hidden;
+    .metas {
+      text-align: left;
 
-    time,
-    .comments_count {
-      display: inline-block;
-      line-height: 32px;
-      margin: 0 20px 0 0;
+      .meta.fa-pencil {
+        color: #134f5c;
+      }
     }
   }
 
   .article_feature {
-    left: 0;
+    bottom: 10px;
+    line-height: 30px;
     padding: 0 10px;
     position: absolute;
-    top: 0;
+    right: 0;
+
+    @media screen and (min-width: $screen-sm-min) {
+      bottom: auto;
+      left: 0;
+      line-height: 20px;
+      right: auto;
+      top: 10px;
+    }
   }
 }

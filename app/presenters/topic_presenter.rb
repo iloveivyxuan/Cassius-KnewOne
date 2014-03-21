@@ -4,7 +4,6 @@ class TopicPresenter < PostPresenter
 
   def path
     [topic.group, topic]
-
   end
 
   def edit_path
@@ -12,15 +11,14 @@ class TopicPresenter < PostPresenter
   end
 
   def last_commented_at
-    topic.comments.present? or return
-    content_tag :span, class: "commented_at" do
-      raw "最后由#{last_comment_author}于#{time_ago_tag(topic.commented_at)}回复"
+    if topic.comments.present?
+      raw "#{last_comment_author} 回复于 #{time_ago_tag(topic.commented_at)} "
     end
   end
 
   def comments_count
     if topic.comments.present?
-      link_to topic.comments.count, path, class: "badge"
+      link_to_with_icon topic.comments.count, "fa fa-comment-o", path
     end
   end
 

@@ -50,7 +50,7 @@ class PostPresenter < ApplicationPresenter
     present(current_user).topic_wrapper(brand)
   end
 
-  def lovers_count
+  def votings
     lc, fc = @object.lovers.count, @object.foes.count
     lc <= 0 and return
     content_tag :span, class: "lovers" do
@@ -58,5 +58,11 @@ class PostPresenter < ApplicationPresenter
       count = content_tag :small, "#{lc}/#{lc+fc}"
       i.concat count
     end
+  end
+
+  def lovers_count
+    i = content_tag :i, "", class: "fa fa-plus"
+    count = content_tag :span, @object.lovers_count
+    i.concat count
   end
 end
