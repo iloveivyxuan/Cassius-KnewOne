@@ -154,6 +154,8 @@ Making::Application.routes.draw do
   resources :categories, only: [:show, :index]
 
   resources :groups do
+    member { post 'join' }
+
     resources :topics do
       member { post 'vote' }
     end

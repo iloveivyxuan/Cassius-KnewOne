@@ -15,7 +15,7 @@
       = render 'shared/post_actions', post: tp.topic,
       edit_post_path: tp.edit_path, post_path: tp.path
 
-    = render 'shared/comments', post: tp.topic, id: "topic_comments"
+    = render 'shared/comments', post: tp.topic, id: "topic_comments", auth: can?(:create, @topic)
 
 - content_for :script do
   javascript:
