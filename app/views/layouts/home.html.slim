@@ -38,8 +38,7 @@
         i.fa.fa-tags.fa-fw
         | 我的标签
       .panel-body
-        - current_user.categories[0..3].each do |tag|
-          = link_to tag.name, tag, class: 'label label-default'
+        = render current_user.categories.limit(4)
     /-- END .tag --/
 
     a.promotion href="#"
