@@ -6,7 +6,7 @@ class Category
   slug :name, history: true
   field :things_count, type: Integer, default: 0
 
-  mount_uploader :cover, ImageUploader
+  mount_uploader :cover, CoverUploader
 
   validates :name, presence: true, uniqueness: true
 
