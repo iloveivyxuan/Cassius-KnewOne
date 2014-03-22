@@ -7,11 +7,11 @@ Making::Application.routes.draw do
   get 'leave_alpha', to: 'home#leave_alpha'
 
   devise_for :users, controllers: {
-      omniauth_callbacks: "omniauth_callbacks",
-      registrations: "registrations",
-      confirmations: "confirmations",
-      sessions: "sessions",
-      passwords: "passwords"
+    omniauth_callbacks: "omniauth_callbacks",
+    registrations: "registrations",
+    confirmations: "confirmations",
+    sessions: "sessions",
+    passwords: "passwords"
   }
 
   scope 'settings' do
@@ -134,6 +134,7 @@ Making::Application.routes.draw do
       get 'buy'
       get 'comments'
       get 'related'
+      post 'group_fancy'
     end
 
     resources :reviews do
@@ -154,16 +155,21 @@ Making::Application.routes.draw do
   resources :categories, only: [:show, :index]
 
   resources :groups do
-    member { get 'join' }
-    member { delete 'leave' }
-    member { post 'invite' }
-    member { get 'members' }
-    member { get 'fancies' }
+    collection do
+      get 'fuzzy'
+    end
+
+    member do
+      get 'join'
+      delete 'leave'
+      post 'invite'
+      get 'members'
+      get 'fancies'
+    end
 
     resources :topics do
       member { post 'vote' }
     end
-    get 'date/:date', action: :show, on: :member
   end
 
   resources :photos, only: [:create, :destroy, :show]

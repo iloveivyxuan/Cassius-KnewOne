@@ -58,7 +58,11 @@ class GroupsController < ApplicationController
   end
 
   def invite
-    @receiver = User.find params[:invite_user_id]
+    @receiver = if params[:invite_user_id].present?
+                 User.find params[:invite_user_id]
+               else
+                 User.where(name: params[:invite_user_name]).first
+               end
 
     if @receiver
       @link = if @group.public?
@@ -70,9 +74,7 @@ class GroupsController < ApplicationController
       current_user.send_private_message_to @receiver, content
     end
 
-    respond_to do |format|
-      format.js {}
-    end
+    respond_to { |format| format.js }
   end
 
   def members
@@ -83,6 +85,13 @@ class GroupsController < ApplicationController
   def fancies
     @things = @group.fancies.page(params[:page]).per(24)
     render layout: 'group'
+  end
+
+  def fuzzy
+    @groups = Group.find_by_fuzzy_name(params[:query])
+    respond_to do |format|
+      format.json { @groups = @groups.limit(20) }
+    end
   end
 
   private

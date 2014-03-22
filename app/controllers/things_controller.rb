@@ -127,6 +127,17 @@ class ThingsController < ApplicationController
     @things = @thing.related_things
   end
 
+  def group_fancy
+    @group = if params[:group_id].present?
+               Group.find params[:group_id]
+             else
+               Group.where(name: params[:group_name]).first
+             end
+
+    @group.has_member? current_user and @group.fancy @thing
+    respond_to { |format| format.js }
+  end
+
   private
 
   def thing_params

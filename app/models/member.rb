@@ -13,6 +13,6 @@ class Member
   default_scope -> { desc(:created_at) }
 
   def user
-    @user ||= User.find user_id
+    @user ||= User.find user_id.to_s
   end
 end

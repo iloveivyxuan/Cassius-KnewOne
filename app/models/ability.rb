@@ -56,6 +56,8 @@ class Ability
     end
     can :fancy, Thing
     can :own, Thing
+    can :group_fancy, Thing
+
     can :share, User
     can :bind, User
 
@@ -76,6 +78,7 @@ class Ability
     end
     can :join, Group
     can :leave, Group
+    can :fuzzy, Group
 
     can :vote, Topic
     can :create, Topic do |topic|

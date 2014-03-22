@@ -27,6 +27,18 @@ class Group
 
   has_and_belongs_to_many :fancies, class_name: "Thing", inverse_of: :fancy_groups
 
+  class << self
+    def find_by_user(user)
+      where('members.user_id' => user.id.to_s)
+    end
+
+    def find_by_fuzzy_name(name)
+      return all if name.blank?
+      str = name.gsub /[^\u4e00-\u9fa5a-zA-Z0-9_-]+/, ''
+      where(name: /^#{str}/i)
+    end
+  end
+
   def has_admin?(user)
     user and members.where(user_id: user.id).in(role: [:founder, :admin]).exists?
   end
@@ -46,5 +58,9 @@ class Group
 
   def private?
     qualification == :private
+  end
+
+  def fancy(thing)
+    fancies.include? thing or fancies << thing
   end
 end
