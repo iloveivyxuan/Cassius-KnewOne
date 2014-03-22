@@ -1,0 +1,71 @@
+section.group_info
+  .name
+    = link_to gp.avatar(:small), gp.group
+    h1
+      = link_to gp.name, gp.group
+      - if gp.private?
+        i.fa.fa-ticket title="此小组需要被邀请才能加入"
+  blockquote
+    = gp.description
+    .author= gp.founder
+  .membership
+    - if user_signed_in?
+      - if gp.member?
+        .be_member
+          span
+            - if can? :update, gp.group
+              = link_to_with_icon "管理", "fa fa-cog", edit_group_path(gp.group)
+            = link_to_with_icon "退出", "fa fa-chevron-right", leave_group_path(gp.group),
+            method: :delete, class: "leave_group", data: {confirm: "真的要退出吗?"}
+          = button_tag type: "button", class: "btn btn-default btn-sm",
+          data: {toggle: 'modal', target: '#group_invitation'} do
+            i.fa.fa-beer
+            | 邀请好友加入
+      - elsif gp.public?
+        = link_to_with_icon "加入小组", "fa fa-sign-in", join_group_path(gp.group),
+        method: :get, class: 'btn btn-default btn-sm'
+
+section.members.panel
+  .panel-heading
+    h3.panel-title
+      i.fa.fa-group
+      | 小组成员
+    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', members_group_path(gp.group),
+    class: 'more', title: '更多'
+  .panel-body
+    ul= render partial: "groups/member", collection: gp.members_aside, as: :up
+
+section.fancies.panel
+  .panel-heading
+    h3.panel-title
+      i.fa.fa-bookmark
+      | 小组收藏
+    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', fancies_group_path(gp.group),
+    class: 'more', title: '更多'
+  .panel-body
+    ul.fancies_list
+      = render partial: "things/related_thing", collection: gp.fancies_aside, as: :tp
+
+#group_invitation.modal.fade
+  .modal-dialog
+    .modal-content
+      = form_tag invite_group_path(gp.group, format: :js), method: :post, remote: true, class: "form-horizontal" do
+        .modal-header
+          button.close data-dismiss="modal" &times;
+          h4.modal-title 邀请加入小组
+        .modal-body
+          = hidden_field_tag :invite_user_id
+          .form-group
+            label.control-label.col-sm-2 for="invite_user_name" 邀请
+            .col-sm-6
+              = text_field_tag 'invite_user_name', nil, class: "form-control",
+              required: true, placeholder: '用户昵称'
+          .alert.alert-success.hide
+            | 您的邀请已发送，可以继续邀请其他用户
+        .modal-footer
+          button.btn.btn-default data-dismiss="modal" 取消
+          button.btn.btn-primary type="submit" 发送
+
+- content_for :script do
+  javascript:
+    Making.UserFuzzy('#invite_user_name', '#invite_user_id');

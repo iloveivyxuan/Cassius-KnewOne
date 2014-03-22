@@ -29,6 +29,9 @@ ul.operations.fa-ul
   li= link_to_with_icon "分享到微信", "fa-li fa fa-qrcode", "#thing_share_wechat", title: "微信朋友圈分享",
     data: {toggle: 'modal'}
   li= link_to_with_icon "RSS", "fa-li fa fa-rss", thing_url(tp.thing, format: "atom")
+  - if can? :fancy, Group
+    li= link_to_with_icon "收藏进小组", "fa-li fa fa-bookmark", "#group_fancy_thing", title: "收藏进小组",
+      data: {toggle: "modal"}
   - if tp.thing.official_site.present?
     li= tp.official_site
   - if can? :create, Supplier
@@ -62,3 +65,4 @@ ul.operations.fa-ul
   = render 'shared/share', id: 'thing_share', content: tp.share_content, pic: tp.photo_url(:huge)
   = render 'things/wechat', tp: tp
   = render 'things/supplier', tp: tp
+  = render 'things/group_fancy', tp: tp

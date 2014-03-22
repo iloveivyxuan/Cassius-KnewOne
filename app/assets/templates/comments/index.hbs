@@ -4,13 +4,17 @@
     {{title}}
   </h4>
   <form id="create_comment" class="comment_form">
-    {{#unless signin}}
-    <p class="login_tip">
-      需要您
-      <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#login-modal">登录</a>
-      之后才可以进行回复
-    </p>
-    {{/unless}}
+    {{#if signin}}
+      {{#unless auth}}
+        <p class="auth_tip">只有小组成员才能回复</p>
+      {{/unless}}  
+    {{else}}
+      <p class="auth_tip">
+        需要您
+        <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#login-modal">登录</a>
+        之后才可以进行回复
+      </p>
+    {{/if}}
     <div class="controls">
       <textarea class="form-control" name="comment_content" rows="5" maxlength="300" placeholder="不超过300字" required></textarea>
     </div>

@@ -1,0 +1,7 @@
+- review = activity.reference
+- thing = review.thing
+- if thing
+  | 赞了关于产品
+  = link_to thing.title, thing
+  | 评测
+  = link_to review.title, thing_review_path(thing, review)

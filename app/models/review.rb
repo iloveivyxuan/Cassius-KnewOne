@@ -6,10 +6,6 @@ class Review < Post
 
   belongs_to :thing, counter_cache: true
 
-  has_and_belongs_to_many :lovers, class_name: "User", inverse_of: nil
-  has_and_belongs_to_many :foes, class_name: "User", inverse_of: nil
-  field :lovers_count, type: Integer, default: 0
-
   validates :score, presence: true
   validate do |review|
     unless (0..5).include? review.score
@@ -30,22 +26,6 @@ class Review < Post
     ReviewNotificationWorker.perform_async(self.id.to_s, :fanciers, :new_review, sender_id: self.author.id.to_s)
     ReviewNotificationWorker.perform_async(self.id.to_s, :owners, :new_review, sender_id: self.author.id.to_s)
     self.thing.author.notify :new_review, context: self, sender: self.author
-  end
-
-  def vote(user, love)
-    return if voted?(user)
-    if love
-      lovers << user
-      author.inc karma: Settings.karma.review
-    else
-      foes << user
-      author.inc karma: -Settings.karma.review
-    end
-    self.update_attribute :lovers_count, lovers.count
-  end
-
-  def voted?(user)
-    lovers.include?(user) || foes.include?(user)
   end
 
   def official_cover(version = :small)

@@ -1,21 +1,23 @@
+- provide :nav, "group_show"
+
 - present @topic do |tp|
   - page_title tp.title
 
-  article#topic_show
+  article.post_show
     header
-      h3
-        = tp.title
+      h3= tp.title
       = tp.author_tag
 
-    section.post_content
-      = tp.content
+    section.post_content= tp.content
 
     footer
+      = render 'voting', topic: tp.topic
       = render 'shared/post_actions', post: tp.topic,
       edit_post_path: tp.edit_path, post_path: tp.path
 
-    = render 'shared/comments', post: tp.topic, id: "topic_comments"
+    = render 'shared/comments', post: tp.topic, id: "topic_comments", auth: can?(:create, @topic)
 
 - content_for :script do
   javascript:
-    Making.Comments("#topic_comments")
+    Making.Voting();
+    Making.Comments("#topic_comments");

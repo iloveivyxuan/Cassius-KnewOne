@@ -13,7 +13,6 @@ html.users_activities {
 
   #wrapper {
     @include wrapper(grid, 0);
-
     color: $gray;
 
     .user_info {
@@ -389,7 +388,7 @@ html.users_activities {
 .user_list {
   li {
     display: inline-block;
-    margin: 1.6em;
+    margin: 1.5em;
     width: 80px;
     text-align: center;
     img {
@@ -443,13 +442,3 @@ html.users_show {
   }
 }
 
-html.users_followings,
-html.users_followers {
-
-  .user_list {
-
-    > li {
-      margin: 1.5em;
-    }
-  }
-}

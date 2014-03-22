@@ -1,113 +1,277 @@
 html.groups_show,
+html.groups_new,
+html.groups_edit,
+html.groups_create,
+html.groups_members,
+html.groups_fancies,
 html.topics_new,
-html.topics_create,
 html.topics_edit,
+html.topics_create,
 html.topics_show {
-
   #wrapper {
-    @include wrapper(simple, $max-width: $screen-md-min);
-  }
-}
+    @include wrapper(grid, 2);
+    padding: 20px;
 
-#group_header {
-  border-bottom: 1px solid #eee;
-  margin-bottom: 2em;
+    > header {
+      @include make-md-column(3, $gutter: 4em);
+      @include make-md-column-push(9);
 
-  h1 {
-    a {
-      color: $text-color;
-      &:hover {color: $link-color;}
+      padding: {left: 0; right: 0;}
 
-      i {
-        vertical-align: 2px;
+      @media screen and (min-width: $screen-sm-min) {
+        border-left: $border-default;
+        padding: {left: 2em; right: 2em;}
       }
     }
 
-    @media screen and (max-width: 767px) {
-      font-size: 2em;
-    }
-  }
+    > section {
+      @include make-md-column(9, $gutter: 4em);
+      @include make-md-column-pull(3);
 
-  p {color: $text-muted;}
+      padding: {left: 0; right: 0;}
 
-  .new_topic {
-    float: right;
-    margin: {top: 3em; right: 2em;}
-
-    @media screen and (max-width: 767px) {
-      margin: {top: .3em; right: 0;}
-    }
-  }
-}
-
-#topics {
-  .topic {
-    @include clearfix;
-    padding: 1em 0;
-    border-bottom: 1px dashed #ccc;
-
-    > a:first-child {
-      float: left;
-      img { @extend .img-rounded; }
-      margin-right: 2em;
-
-      @media screen and (max-width: 767px) {
-        float: none;
+      @media screen and (min-width: $screen-sm-min) {
+        padding: {left: 2em; right: 2em;}
       }
     }
 
-    aside {
-      float: right;
-      margin: {top: 25px;right: 2em;}
-    }
+    nav {
+      margin-bottom: 2em;
 
-    h4 {
-      margin {right: 10%; top: 0;}
-      i {
-        margin: 0 0 0 1em;
-        color: $red;
-      }
-    }
-
-    .summary {
-      margin-top: 20px;
-
-      a {
-        color: $text-muted;
-        &:hover {color: $text-color;}
-      }
-
-      .commented_at {
-        color: $text-muted;
-        margin-left: 2em;
-
-        time {
-          font-size: 1em;
-          margin-left: .5em;
+      .nav li a {
+        span:first-of-type {
+          display: none;
+          margin-right: .5em;
         }
-        a {margin: 0 .5em;}
+      }
+
+      @media screen and (max-width: $screen-xs-max) {
+        .nav li {
+          /* TODO: Apply bootstrap nav justified to xs screen, maybe it's general */
+          display: table-cell;
+          width: 1%;
+          float: none;
+          > a { margin-bottom: 0; }
+        }
+      }
+
+      @media screen and (min-width: $screen-sm-min) {
+        .nav li a span:first-of-type {display: inline;}
+      }
+    }
+  }
+
+  .group_info {
+    .name {
+      margin-bottom: 1em;
+
+      > * {
+        display: inline-block;
+        vertical-align: bottom;
+      }
+
+      img {
+        @extend .img-rounded;
+        margin-right: 1em;
+        width: 40px;
+        height: 40px;
+      }
+
+      h1 {
+        font-size: $font-size-large;
+        margin: 0;
+        a {color: $text-color;}
+        i {
+          font-size: $font-size-base;
+          margin-left: .5em;
+          color: $text-muted;
+        }
+      }
+    }
+
+    blockquote {
+      display: none;
+      font-size: $font-size-base;
+      color: $text-muted;
+
+      .author {
+        img {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+
+    .membership {
+      margin-bottom: 1em;
+
+      .be_member {
+        color: $text-muted;
+        span {
+          display: none;
+          a {
+            color: $text-muted;
+            margin-right: 1em;
+          }
+        }
+
+        @media screen and (min-width: $screen-md-min) {
+          span {
+            display: block;
+            margin: .5em 0;
+          }
+        }
+      }
+    }
+
+    @media screen and (min-width: $screen-md-min) {
+      padding-bottom: 1em;
+      border-bottom: $border-default;
+      margin-bottom: 1em;
+
+      .name {
+        > * {display: block;}
+        img {
+          width: 80px;
+          height: 80px;
+          margin-bottom: 1em;
+        }
+      }
+      blockquote {display: block;}
+    }
+  }
+
+  .panel {
+    /* TODO: same with user panel */
+
+    &:last-of-type {
+      margin-bottom: 0;
+      box-shadow: none;
+    }
+
+    .panel-heading {
+      @include clearfix;
+      padding-left: 0;
+
+      .panel-title {
+        color: $text-muted;
+        float: left;
+      }
+
+      .more {
+        color: $text-muted;
+        display: block;
+        float: right;
+
+        &:hover {
+          color: $text-color;
+        }
+      }
+    }
+
+    .panel-body {
+      padding: {left: 0; right: 0;}
+    }
+  }
+
+  .members {
+    display: none;
+
+    .panel-body > ul {
+      @include clearfix;
+
+      li {
+        float: left;
+        margin: .5em 0;
+      }
+    }
+
+    @media screen and (min-width: $screen-md-min) {
+      display: block;
+    }
+  }
+
+  .fancies {
+    display: none;
+
+    .panel-body > ul li {
+      width: 100%;
+      @include vertical-list-item;
+
+      figure {
+        img {max-width: 100%;}
+      }
+      figcaption {
+        h5 {
+          margin-bottom: 0;
+          text-align: center;
+          color: $text-muted;
+          @include text-overflow;
+        }
+      }
+    }
+
+    @media screen and (min-width: $screen-md-min) {
+      display: block;
+    }
+  }
+
+
+  .group_content {
+    .new_topic {margin: 1em 0;}
+
+    .topics {
+      .article_compact {margin-bottom: .3em;}
+
+      .article_header {
+        .article_title {
+          text-align: left;
+          font-size: $font-size-h4;
+          i {
+            font-size: $font-size-base;
+            margin-left: 1em;
+            color: $red;
+          }
+        }
+
+        @media screen and (min-width: $screen-sm-min) {
+          margin-bottom: 0;
+        }
+      }
+
+      .article_body {
+        figure {
+          margin-top: 0 - $font-size-h4 * $line-height-base;
+          img {
+            width: 50px; height: 50px;
+            @extend .img-rounded;
+          }
+        }
+      }
+
+      .article_feature {
+        @media screen and (min-width: $screen-sm-min) {
+          top: 14px;
+        }
+      }
+
+      .metas {
+        text-align: left;
+        .meta {
+          a {
+            color: $gray;
+            &:hover {color: $text-color;}
+          }
+        }
+
+        .topic_commented_at {
+          @extend .hidden-xs;
+        }
       }
     }
   }
 }
 
-#topic_show {
-  > header {
-    margin-bottom: 2em;
-  }
-
-  > section {
-    ol {list-style: decimal inside;}
-    ul {list-style: disc inside;}
-  }
-
-  #topic_comments {
-    margin-top: 2em;
-    border-top: 1px solid #eee;
-    padding-top: 2em;
-
-    p.login_tip {
-      margin: 2em 0;
-    }
-  }
+html.groups_index {
+  
 }

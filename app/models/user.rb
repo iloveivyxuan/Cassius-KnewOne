@@ -205,8 +205,6 @@ class User
   ##Dialogs
   include UserDialogs
 
-  ## Groups
-
   # Payment
   embeds_many :addresses
   embeds_many :invoices
