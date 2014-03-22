@@ -61,35 +61,6 @@ html.users_activities {
       border-left: 0;
     }
 
-    .panel {
-      box-shadow: none;
-    }
-
-    .panel-heading {
-      @include clearfix;
-
-      border-color: #eee;
-
-      .panel-title {
-        color: $text-muted;
-        float: left;
-      }
-
-      .more {
-        color: $text-muted;
-        display: block;
-        float: right;
-        font-size: 16px;
-        line-height: 24px;
-        text-align: center;
-        width: 24px;
-
-        &:hover {
-          color: $text-color;
-        }
-      }
-    }
-
     ul.things {
 
       > li {

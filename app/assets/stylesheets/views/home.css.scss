@@ -555,6 +555,10 @@ html.signed_in_homepage {
 
     .nav {
 
+      > li.active > a {
+        color: #fff;
+      }
+
       a {
         color: $gray;
 
