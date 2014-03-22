@@ -13,6 +13,8 @@ class TopicPresenter < PostPresenter
   def last_commented_at
     if topic.comments.present?
       raw "#{last_comment_author} 回复于 #{time_ago_tag(topic.commented_at)} "
+    else
+      time_ago_tag topic.created_at
     end
   end
 
@@ -24,7 +26,7 @@ class TopicPresenter < PostPresenter
 
   def top
     if topic.is_top
-      content_tag(:i, "", class: "fa fa-arrow-circle-up", title: "置顶")
+      content_tag(:i, "", class: "fa fa-arrow-up", title: "置顶")
     end
   end
 

@@ -44,6 +44,8 @@ class Thing < Post
   include Fancyable
   has_and_belongs_to_many :fanciers, class_name: "User", inverse_of: :fancies
 
+  has_and_belongs_to_many :fancy_groups, class_name: "Group", inverse_of: :fancies
+
   field :scores, type: Array, default: []
 
   has_many :reviews

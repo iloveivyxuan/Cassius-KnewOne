@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class GroupsController < ApplicationController
   load_and_authorize_resource
 
@@ -7,7 +6,7 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @topics = @group.topics.page params[:page]
+    @topics = @group.topics.page(params[:page]).per(20)
     render layout: 'group'
   end
 

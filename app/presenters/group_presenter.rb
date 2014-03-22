@@ -11,9 +11,8 @@ class GroupPresenter < ApplicationPresenter
     simple_format group.description
   end
 
-  def members(page, per)
-    # Lazy loading users into corresponded members
-    group.members.page(page).per(per).map(&:user)
+  def members_aside
+    group.members.last(9).reverse.map { |m| present(m.user) }
   end
 
   def founder
@@ -22,5 +21,15 @@ class GroupPresenter < ApplicationPresenter
 
   def member?
     group.has_member? current_user
+  end
+
+  def fancies_count
+    @fancies_count ||= group.fancies.count
+  end
+
+  def fancies_aside
+    group.fancy_ids.last(3).reverse.map do |id|
+      present(Thing.where(id: id).first)
+    end.compact
   end
 end

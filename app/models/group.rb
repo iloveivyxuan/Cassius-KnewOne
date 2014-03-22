@@ -25,6 +25,8 @@ class Group
   end
   field :members_count, type: Integer, default: 0
 
+  has_and_belongs_to_many :fancies, class_name: "Thing", inverse_of: :fancy_groups
+
   def has_admin?(user)
     user and members.where(user_id: user.id).in(role: [:founder, :admin]).exists?
   end

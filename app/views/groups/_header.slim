@@ -32,9 +32,17 @@ section.members.panel
       | 小组成员
     = link_to_with_icon '', 'fa fa-chevron-right fa_alone', "#", class: 'more', title: '更多'
   .panel-body
-    ul.user_list
-      - gp.members(1, 9).each do |user|
-        li.author= link_to user_avatar(user, :small), user, title: user.name
+    ul= render partial: "groups/member", collection: gp.members_aside, as: :up
+
+section.fancies.panel
+  .panel-heading
+    h3.panel-title
+      i.fa.fa-heart
+      | 小组收藏
+    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', "#", class: 'more', title: '更多'
+  .panel-body
+    ul.fancies_list
+      = render partial: "things/related_thing", collection: gp.fancies_aside, as: :tp
 
 #group_invitation.modal.fade
   .modal-dialog

@@ -1,8 +1,9 @@
 article.article_compact
   - present topic do |tp|
     header.article_header
-      h4.article_title= link_to tp.title, tp.path
-      = tp.top
+      h4.article_title
+        = link_to tp.title, tp.path
+        = tp.top
     section.article_body
       figure
         = tp.author_avatar :small
@@ -10,6 +11,6 @@ article.article_compact
         .metas_group
           .meta.topic_author= tp.author_name
         .metas_group
-          .meta.topic_comments= tp.comments_count
           .meta.topic_commented_at= tp.last_commented_at
+          .meta.topic_comments= tp.comments_count
     .article_feature= tp.lovers_count
