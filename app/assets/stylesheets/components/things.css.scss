@@ -3,6 +3,7 @@ ul.things {
 
   > li {
     @include make-sm-column(4);
+    @include make-md-column(3);
     @include make-lg-column(2);
     margin-bottom: 2em;
   }
