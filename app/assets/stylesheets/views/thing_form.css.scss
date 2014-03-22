@@ -4,7 +4,7 @@ html.things_update,
 html.things_edit {
 
   #wrapper {
-    @include wrapper(simple);
+    @include wrapper(simple, $max-width: $screen-md-min);
   }
 
   form.thing_form,

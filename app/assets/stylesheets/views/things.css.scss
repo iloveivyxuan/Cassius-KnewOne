@@ -684,23 +684,7 @@ html.investors_admin {
 html.things_index {
 
   #wrapper {
-    @include wrapper(simple);
-
-    @media screen and (min-width: $screen-md-min + 100) {
-      margin: {
-        left: $wrapper_margin;
-        right: $wrapper_margin;
-      }
-      width: auto;
-    }
-
-    @media screen and (min-width: $screen-lg-min + 100) {
-      margin: {
-        left: auto;
-        right: auto;
-      }
-      width: $screen-lg-min;
-    }
+    @include wrapper(simple, $max-width: $screen-lg-min);
 
     .page-header {
 

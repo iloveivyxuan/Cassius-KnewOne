@@ -5,7 +5,7 @@ html.topics_edit,
 html.topics_show {
 
   #wrapper {
-    @include wrapper(simple);
+    @include wrapper(simple, $max-width: $screen-md-min);
   }
 }
 
