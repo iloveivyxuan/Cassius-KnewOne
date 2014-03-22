@@ -1,0 +1,7 @@
+header.page-header
+  h1
+    | 谁关注了我
+    small = current_user.followers_count
+
+ul.user_list = render @followers
+= paginate @followers

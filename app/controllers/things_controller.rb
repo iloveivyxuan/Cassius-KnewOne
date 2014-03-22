@@ -6,8 +6,9 @@ class ThingsController < ApplicationController
   after_action :store_location, only: [:comments, :show]
 
   def index
-    if params[:category].present?
-      @things = Category.find(params[:category]).things
+    if params[:category].present? and params[:category] != 'all'
+      @category = Category.find(params[:category])
+      @things = @category.things
     else
       @things = Thing.published
     end
