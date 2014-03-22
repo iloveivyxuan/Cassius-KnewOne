@@ -2,6 +2,6 @@ html.confirmations_new,
 html.confirmations_create {
 
   #wrapper {
-    @include wrapper(simple);
+    @include wrapper(simple, $max-width: $screen-md-min);
   }
 }

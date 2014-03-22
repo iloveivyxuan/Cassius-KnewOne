@@ -1,10 +1,12 @@
-table.table
-  thead
-    tr
-      th 分类
-      th 产品数量
-  tbody
+header.page-header
+  h1
+    i.fa.fa-tags
+    | 分类
+
+section
+  ul.categories
     - @categories.each do |c|
-      tr
-        th= link_to c.name, things_path(category: c)
-        th= c.things_count
+      li
+        a.card_compact.category href=things_path(category: c)
+          label.category_name #{c.name}
+          img src="http://fakeimg.pl/100x100"

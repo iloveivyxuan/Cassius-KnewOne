@@ -3,7 +3,7 @@
     = @user.description
 
 - if @owns.any?
-  section.panel.hidden-xs
+  section.panel.panel_compact.hidden-xs
     header.panel-heading
       h3.panel-title
         i.fa.fa-check
@@ -13,7 +13,7 @@
       ul.things= render @owns, size: :normal, img_lazy: true
 
 - if @fancies.any?
-  section.panel.hidden-xs
+  section.panel.panel_compact.hidden-xs
     header.panel-heading
       h3.panel-title
         i.fa.fa-heart
@@ -23,7 +23,7 @@
       ul.things= render @fancies, size: :normal, img_lazy: false
 
 - if @reviews.any?
-  section.panel.hidden-xs
+  section.panel.panel_compact.hidden-xs
     header.panel-heading
       h3.panel-title
         i.fa.fa-book
@@ -32,7 +32,7 @@
     .panel-body
       = render partial: 'users/review', collection: @reviews
 
-section.panel.hidden-xs
+section.panel.panel_compact.hidden-xs
   header.panel-heading
     h3.panel-title
       i.fa.fa-bars

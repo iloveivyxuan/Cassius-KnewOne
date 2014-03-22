@@ -1,12 +1,11 @@
 - present thing do |tp|
   li
-    .thing
+    figure.thing
       - if tp.self_run?
         .pre_ribbon class="#{tp.stage}"
           span= tp.stage_text
-      figure
-        = link_to (img_lazy ? tp.photo_lazy(size) : tp.photo(size)),
-          tp.thing, target: '_blank'
+      = link_to (img_lazy ? tp.photo_lazy(size) : tp.photo(size)),
+        tp.thing, target: '_blank'
       - if tp.stage == :invest
         .invest_progress
           .progress data-progress=tp.invest_progress
@@ -15,7 +14,7 @@
       figcaption
         h5 data-toggle="tooltip" data-placement="top" title=tp.full_title
           = tp.full_title
-        p
+        em.figure_detail
           - if tp.thing.fanciers.count > 0
             span.fanciers
               i.fa.fa-heart

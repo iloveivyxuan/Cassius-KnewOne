@@ -15,7 +15,7 @@
   }
 }
 
-@mixin wrapper($layout, $columns: -1) {
+@mixin wrapper($layout, $columns: -1, $max-width: none) {
 
   @if $layout == grid {
     @include make-row;
@@ -82,12 +82,14 @@
     margin-bottom: 1em;
     padding: 2em;
 
-    @media screen and (min-width: $screen-md-min + 100) {
-      margin: {
-        left: auto;
-        right: auto;
+    @if $max-width != none {
+      @media screen and (min-width: $max-width + 100) {
+        margin: {
+          left: auto;
+          right: auto;
+        }
+        width: $max-width;
       }
-      width: $screen-md-min;
     }
   }
 }

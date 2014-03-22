@@ -1,12 +1,11 @@
 - thing = activity.reference
 - present thing do |tp|
-  .thing
+  figure.thing
     - tp.self_run?
       .pre_ribbon class="#{tp.stage}"
         span = tp.stage_text
-    figure
-      = link_to thing, target: '_blank' do
-        = image_tag tp.photo_url(:normal), alt: thing.title, class: 'lazy'
+    = link_to thing, target: '_blank' do
+      = image_tag tp.photo_url(:normal), alt: thing.title, class: 'lazy'
     figcaption
       h5 data-placement="top" data-toggle="tooltip" title="" data-original-title="#{tp.full_title}"
         = tp.full_title

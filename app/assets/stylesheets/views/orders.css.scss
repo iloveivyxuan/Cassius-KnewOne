@@ -2,7 +2,7 @@ html.orders_new,
 .orders_wrapper {
 
   #wrapper {
-    @include wrapper(simple);
+    @include wrapper(simple, $max-width: $screen-md-min);
   }
 
   table.order_detail {
