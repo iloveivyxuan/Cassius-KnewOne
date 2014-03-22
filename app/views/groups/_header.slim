@@ -40,7 +40,8 @@ section.fancies.panel
     h3.panel-title
       i.fa.fa-heart
       | 小组收藏
-    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', "#", class: 'more', title: '更多'
+    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', fancies_group_path(gp.group),
+    class: 'more', title: '更多'
   .panel-body
     ul.fancies_list
       = render partial: "things/related_thing", collection: gp.fancies_aside, as: :tp

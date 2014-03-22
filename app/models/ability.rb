@@ -76,7 +76,6 @@ class Ability
     end
     can :join, Group
     can :leave, Group
-    can :members, Group
 
     can :vote, Topic
     can :create, Topic do |topic|
@@ -101,6 +100,8 @@ class Ability
     can :read, Post
     can :read, Comment
     can :read, Group
+    can :members, Group
+    can :fancies, Group
     can :read, Topic
     can :read, Lottery
     can :read, Investor

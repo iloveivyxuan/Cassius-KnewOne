@@ -80,6 +80,11 @@ class GroupsController < ApplicationController
     render layout: 'group'
   end
 
+  def fancies
+    @things = @group.fancies.page(params[:page]).per(24)
+    render layout: 'group'
+  end
+
   private
 
   def group_params
