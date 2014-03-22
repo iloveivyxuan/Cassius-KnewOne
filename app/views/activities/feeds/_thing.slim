@@ -24,5 +24,5 @@
             span.meta = tp.price
         .metas_group
           = link_to activity.user.name, activity.user, class: 'meta'
-          i.meta.fa class="#{activity_type_icon_class(activity)}"
+          i.meta.fa class="#{feed_type_icon_class(activity)}"
           = time_ago_tag activity.created_at, 'meta'

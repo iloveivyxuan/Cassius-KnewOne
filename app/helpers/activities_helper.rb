@@ -107,15 +107,15 @@ module ActivitiesHelper
       love_review: :review
   }
 
-  def render_activity(activity)
-    render "activities/#{TYPE_TEMPLATE_MAPPER[activity.type]}", activity: activity
-  end
-
-  def render_activities(activities)
-    activities.map {|a| render_activity(a)}.join.html_safe
-  end
-
-  def activity_type_icon_class(activity)
+  def feed_type_icon_class(activity)
     TYPE_ICON_CLASS_MAPPER[activity.type]
+  end
+
+  def render_feed(activity)
+    render "activities/feeds/#{TYPE_TEMPLATE_MAPPER[activity.type]}", activity: activity
+  end
+
+  def render_feeds(activities)
+    activities.map {|a| render_feed(a)}.join.html_safe
   end
 end

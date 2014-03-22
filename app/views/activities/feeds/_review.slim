@@ -17,7 +17,7 @@
         .metas
           .metas_group
             = link_to review.author.name, review.author, class: 'meta name'
-            i.meta.fa class="#{activity_type_icon_class(activity)}"
+            i.meta.fa class="#{feed_type_icon_class(activity)}"
             = time_ago_tag(review.created_at, 'meta')
           .metas_group
             = link_to rp.path, class: 'meta' do
