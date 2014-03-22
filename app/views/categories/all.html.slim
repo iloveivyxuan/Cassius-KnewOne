@@ -5,8 +5,4 @@ header.page-header
 
 section
   ul.categories
-    - @categories.each do |c|
-      li
-        a.card_compact.category href=things_path(category: c)
-          label.category_name #{c.name}
-          img src="http://fakeimg.pl/100x100"
+    = render partial: 'categories/category_big', collection: @categories, as: :category

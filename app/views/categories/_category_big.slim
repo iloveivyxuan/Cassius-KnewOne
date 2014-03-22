@@ -1,0 +1,4 @@
+li
+  = link_to things_path(category: category), class: 'card_compact category' do
+    label.category_name = category.name
+    = image_tag category.cover.url(:small)
