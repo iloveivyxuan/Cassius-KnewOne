@@ -9,14 +9,17 @@ ul.things {
   }
 }
 
-.thing {
+figure.thing {
   overflow: hidden;
   position: relative;
   background: white;
   padding: 1em;
   @include border-radius(8px);
 
-  figure {@include stretch-img};
+  > a {
+    @include stretch-img;
+    display: block;
+  }
 
   .invest_progress {
     left: 0;
@@ -44,8 +47,8 @@ ul.things {
     margin-right: -1em;
     padding: 0 1em;
 
-    > h5,
-    > p {
+    h5,
+    .figure_detail {
       text-align: center;
       color: $gray;
       height: $font-size-base * $line-height-base;
@@ -54,7 +57,9 @@ ul.things {
 
     h5 {margin: 1em 0 .5em;}
 
-    p {
+    .figure_detail {
+      display: block;
+      font-style: normal;
       margin: 0;
       > * {margin-right: .5em;}
     }
