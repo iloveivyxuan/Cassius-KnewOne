@@ -6,25 +6,21 @@
   /-- END .promotion --/
 
   main role="main"
-    header.page-header
-      h1
-        | 最新动态
-      = link_to_with_icon "分享产品", "fa fa-plus", new_thing_path, class: 'btn btn-primary'
-
     = yield
-
-    .spinner
-      i.fa.fa-spinner.fa-spin.fa-2x
-    /-- END .spinner --/
-  /-- END main --/
 
   aside role="complemental"
     nav
       ul.nav.nav-pills.nav-stacked
-        li = link_to_with_icon current_user.name, 'fa fa-fw fa-home', current_user, class: 'home'
-        li = link_to_with_icon "我喜欢 #{current_user.fancies_count}", 'fa fa-fw fa-heart', fancies_user_path(current_user)
-        li = link_to_with_icon "我拥有 #{current_user.owns_count}", 'fa fa-fw fa-check', owns_user_path(current_user)
-        li = link_to_with_icon "我分享 #{current_user.things_count}", 'fa fa-fw fa-magic', things_user_path(current_user)
+        = home_nav(:index) do
+          = link_to_with_icon current_user.name, 'fa fa-fw fa-home', root_path, class: 'home'
+        = home_nav(:fancies) do
+          = link_to_with_icon "我喜欢 #{current_user.fancies_count}", 'fa fa-fw fa-heart', fancies_profile_path
+        = home_nav(:owns) do
+          = link_to_with_icon "我拥有 #{current_user.owns_count}", 'fa fa-fw fa-check', owns_profile_path
+        = home_nav(:things)
+          = link_to_with_icon "我分享 #{current_user.things_count}", 'fa fa-fw fa-magic', things_profile_path
+        = home_nav(:reviews)
+          = link_to_with_icon "我评测 #{current_user.reviews_count}", 'fa fa-fw fa-book', reviews_profile_path
         / li = link_to_with_icon '我的小组', 'fa fa-fw fa-wrench', edit_profile_path
         / li = link_to_with_icon '我的话题', 'fa fa-fw fa-wrench', edit_profile_path
         li = link_to_with_icon '设置', 'fa fa-fw fa-wrench', edit_profile_path
@@ -63,9 +59,5 @@
         | &copy; 2014 KnewOne
     /-- END footer --/
   /--END aside --/
-
-- content_for :script do
-  javascript:
-    Making.InitHome();
 
 = render template: 'layouts/application'
