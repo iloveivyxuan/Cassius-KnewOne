@@ -4,12 +4,12 @@ ul.nav.nav-pills.nav-pills-list.nav-justified
       i.fa.fa-home
       span 话题
       span= gp.topics_count
-  = nav_tab :members do
-    = link_to "#" do
+  = nav_tab :group_members do
+    = link_to members_group_path(gp.group) do
       i.fa.fa-group
       span 成员
       span= gp.members_count
-  = nav_tab :collections do
+  = nav_tab :group_fancies do
     = link_to "#" do
       i.fa.fa-heart
       span 收藏

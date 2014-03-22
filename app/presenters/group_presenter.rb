@@ -12,7 +12,7 @@ class GroupPresenter < ApplicationPresenter
   end
 
   def members_aside
-    group.members.last(9).reverse.map { |m| present(m.user) }
+    group.members.limit(9).map { |m| present(m.user) }
   end
 
   def founder

@@ -1,8 +1,8 @@
 section.group_info
   .name
-    = gp.avatar :small
+    = link_to gp.avatar(:small), gp.group
     h1
-      = gp.name
+      = link_to gp.name, gp.group
       - if gp.private?
         i.fa.fa-ticket title="此小组需要被邀请才能加入"
   blockquote
@@ -30,7 +30,8 @@ section.members.panel
     h3.panel-title
       i.fa.fa-group
       | 小组成员
-    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', "#", class: 'more', title: '更多'
+    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', members_group_path(gp.group),
+    class: 'more', title: '更多'
   .panel-body
     ul= render partial: "groups/member", collection: gp.members_aside, as: :up
 

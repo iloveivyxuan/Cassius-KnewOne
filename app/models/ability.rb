@@ -76,6 +76,7 @@ class Ability
     end
     can :join, Group
     can :leave, Group
+    can :members, Group
 
     can :vote, Topic
     can :create, Topic do |topic|

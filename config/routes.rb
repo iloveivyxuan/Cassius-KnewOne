@@ -157,6 +157,7 @@ Making::Application.routes.draw do
     member { get 'join' }
     member { delete 'leave' }
     member { post 'invite' }
+    member { get 'members' }
 
     resources :topics do
       member { post 'vote' }

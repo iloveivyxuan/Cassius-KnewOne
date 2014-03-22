@@ -1,6 +1,8 @@
+- provide :nav, :group_show
+
 .group_wrapper
   = simple_form_for @group, html: {class: "edit_post"} do |f|
-    legend 建立小组
+    legend #{@group.new_record? ? "新建" : "编辑"}小组
     fieldset
       = f.input :name
       = f.input :description, as: :text, input_html: {rows: 6}

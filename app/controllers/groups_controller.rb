@@ -24,14 +24,14 @@ class GroupsController < ApplicationController
   end
 
   def edit
-    render 'new'
+    render 'new', layout: 'group'
   end
 
   def update
     if @group.update(group_params)
       redirect_to group_path(@group)
     else
-      render 'new'
+      render 'new', layout: 'group'
     end
   end
 
@@ -73,6 +73,11 @@ class GroupsController < ApplicationController
     respond_to do |format|
       format.js {}
     end
+  end
+
+  def members
+    @members = @group.members.page(params[:page]).per(96)
+    render layout: 'group'
   end
 
   private

@@ -2,6 +2,7 @@ html.groups_show,
 html.groups_new,
 html.groups_edit,
 html.groups_create,
+html.groups_members,
 html.topics_new,
 html.topics_edit,
 html.topics_create,
@@ -78,6 +79,7 @@ html.topics_show {
       h1 {
         font-size: $font-size-large;
         margin: 0;
+        a {color: $text-color;}
         i {
           font-size: $font-size-base;
           margin-left: .5em;
