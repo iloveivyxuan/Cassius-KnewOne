@@ -1,30 +1,96 @@
-- provide :page_class, 'guest_homepage home_landing'
+- provide :page_class, 'guest_homepage'
 
-.feature class="theme_#{@landing_page.theme}"
+.landing
   header
     = logo
     h1= brand
-    p= slogan
-  span.feature_image data-alt="#{@landing_page.background_alt}"
-    span data-src="#{@landing_page.xs_background.url}"
-    span data-src="#{@landing_page.sm_background.url}" data-media="(min-width: 481px) and (max-width: 768px)"
-    span data-src="#{@landing_page.md_background.url}" data-media="(min-width: 769px) and (max-width: 992px)"
-    span data-src="#{@landing_page.lg_background.url}" data-media="(min-width: 993px) and (max-width: 1440px)"
-    span data-src="#{@landing_page.xl_background.url}" data-media="(min-width: 1441px)"
-
-  - if @landing_page.focus.present? and @landing_page.focus_link.present?
-    = link_to @landing_page.focus, @landing_page.focus_link, class: 'feature_name'
-
-  .feature_comments
-    - @landing_page.landing_page_comments.each do |c|
-      .feature_comment
-        = image_tag c.user.avatar.url(:small), class: 'img-circle'
-        blockquote
-          p = c.body
-          footer.text-right = c.user.name
+    small= slogan
 
   = render 'shared/entry'
 
+  .landing_image_wrap
+    img src="http://fakeimg.pl/1920x480/000" alt="Landing"
+
+.explore
+  .explore_header
+    .explore_header_inner
+      = link_to_with_icon '探索发现', 'fa fa-compass', '#', class: 'btn btn-link'
+      form.form-inline role="form"
+        .form-group.search
+          label.sr-only 搜索 KnewOne
+          input.form-control placeholder="搜索 KnewOne"
+          .fa.fa-search
+
+  .explore_body
+    nav.explore_nav
+      ul
+        li.active
+          a href="#" 可穿戴设备
+        li
+          a href="#" 家居
+        li
+          a href="#" 四个字长
+        li
+          a href="#" 办公
+        li
+          a href="#" 这个分类名字很长
+    .explore_content
+      figure.thing
+        a href="#"
+          img.lazy src="http://image.knewone.com/photos/e3c2446e33e335f965d4abe2c5d6f395.jpg!normal"
+        figcaption
+          h5 Sega Homestar Spa 浴室星空投影仪 - 浪漫满屋
+          em.figure_detail
+            span.fanciers
+              i.fa.fa-heart
+              span.fanciers_count 16
+            span.owners
+              i.fa.fa-check
+              span.owners_count 1
+            span $ 157.30
+      .reviews
+        article.review
+          a.review_author href="#"
+            img src="http://image.knewone.com/users/5fa129a430fc5adfa2e59f7b90b95dd3.jpg!tiny" height="60" width="60" alt="Syn"
+            span.name Syn
+          section.review_wrap
+            header.review_header
+              h4.review_title
+                a href="#" 新鲜出炉的妹纸来了，哦不，是评测
+              em.like
+                i.fa.fa-plus
+                | 8888
+            section.review_body
+              p
+                | 地铁上听见一对情侣对话：“我给你发消息，为啥不马上回啊？人家多着急你造吗？” “可我马上回，你又马上回我，我再马上回你，这就没完啦。你得这么想：这就是网球比赛，你抽过来，我抽回去，你再回一记扣杀，没动静了，说明你得一分啊！” “哦…” 女孩若有心思点了点头，我和几个乘客也点了点头。
+        article.review
+          a.review_author href="#"
+            img src="http://image.knewone.com/users/5fa129a430fc5adfa2e59f7b90b95dd3.jpg!tiny" height="60" width="60" alt="Syn"
+            span.name Syn
+          section.review_wrap
+            header.review_header
+              h4.review_title
+                a href="#" 新鲜出炉的妹纸来了，哦不，是评测，真的是评测，而且标题很长，是的，很长
+              em.like
+                i.fa.fa-plus
+                | 8888
+            section.review_body
+              p
+                | 半夜12点，男子回家，老婆抱怨说：“你就不能提早点回家么？” 男子满口答应：“好，一定。” 于是第二天男子彻夜未归，直到天亮才回来，老婆守在门口，冲上去就是一巴掌，将男子手里提着的豆浆和包子打翻在地。
+        article.review
+          a.review_author href="#"
+            img src="http://image.knewone.com/users/5fa129a430fc5adfa2e59f7b90b95dd3.jpg!tiny" height="60" width="60" alt="Syn"
+            span.name Syn
+          section.review_wrap
+            header.review_header
+              h4.review_title
+                a href="#" 新鲜出炉的妹纸来了，哦不，是评测
+              em.like
+                i.fa.fa-plus
+                | 8888
+            section.review_body
+              p
+                | 今天上语文课一个男生趴桌上呼呼大睡，被老师发现了，老师很淡定指着他说：“同桌关心下。”于是，同桌脱下了自己的外套披在了睡觉男生的身上。
 
 footer#footer
   small 粤ICP备13057487号

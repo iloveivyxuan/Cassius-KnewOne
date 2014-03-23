@@ -1,100 +1,67 @@
 html.guest_homepage {
-  height: 100%;
-  width: 100%;
 
-  @media screen and (min-width: $screen-md-min + 1) {
-    overflow: hidden;
-  }
-
-  $feature_position_right: 50px;
-  $feature_position_left: 50px;
+  // Layout
+  // ---------------------------------------------------------------------------
 
   body {
-    height: 100%;
     padding-bottom: 0;
-    width: 100%;
+  }
 
-    @media screen and (min-width: $screen-xs-min + 1) {
-      padding-top: $navbar-height + 1;
-    }
+  #wrapper {
+    margin: 0;
+  }
 
-    @media screen and (min-width: $screen-md-min + 1) {
-      overflow: hidden;
-      padding-top: 0;
-    }
 
-    #header {
-      display: none;
-      margin-bottom: 0;
+  // Section
+  // ---------------------------------------------------------------------------
 
-      @media screen and (min-width: $screen-xs-min + 1) {
-        display: block;
-      }
+  #header {
+    display: none;
+  }
 
-      @media screen and (min-width: $screen-md-min + 1) {
-        display: none;
-      }
-    }
+  #footer {
+    color: $text-muted;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
 
-    #wrapper {
-      height: 100%;
-      margin: 0;
-      position: relative;
-      width: 100%;
-    }
-
-    #footer {
-      background: none;
-      color: $text-muted;
-      margin: 0;
-      padding: 0 0 1em;
-      text-align: center;
-
-      @media screen and (min-width: $screen-md-min + 1) {
-        bottom: 1em;
-        padding: 0;
-        position: absolute;
-        right: 1em;
-        width: 200px;
-      }
-
-      img {
-        margin-right: .5em;
-      }
+    @media (min-width: $screen-md-min) {
+      height: 50px;
+      line-height: 50px;
     }
   }
 
-  .feature {
-    @media screen and (min-width: $screen-md-min + 1) {
-      height: 100%;
+  .landing {
+
+    @media (min-width: $screen-md-min) {
+      min-height: 432px;
       overflow: hidden;
       position: relative;
-      width: 100%;
     }
 
-    header {
+    > header {
       @include clearfix;
 
       padding-top: 5px;
       text-align: center;
 
-      @media screen and (min-width: $screen-xs-min + 1) {
-        display: none;
-      }
-
-      @media screen and (min-width: $screen-md-min + 1) {
-        display: block;
-        margin: .2em 0 .2em 46px;
+      @media (min-width: $screen-md-min) {
+        left: 12%;
+        margin: 0;
+        min-width: 500px;
         padding-top: 0;
+        position: absolute;
         text-align: left;
+        top: 10%;
+        z-index: 1;
       }
 
-      > img {
+      img {
         height: 48px;
         margin-right: 12px;
         width: 48px;
 
-        @media screen and (min-width: $screen-md-min + 1) {
+        @media (min-width: $screen-md-min) {
           height: 72px;
           margin-top: 8px;
           width: 72px;
@@ -102,7 +69,7 @@ html.guest_homepage {
         }
       }
 
-      > h1 {
+      h1 {
         color: #049cdb;
         display: inline-block;
         font-family: "orbitron-bold";
@@ -111,370 +78,353 @@ html.guest_homepage {
         margin: 0;
         vertical-align: middle;
 
-        @media screen and (min-width: $screen-md-min + 1) {
+        @media (min-width: $screen-md-min) {
           display: block;
           line-height: $headings-line-height;
         }
       }
 
-      > p {
+      small {
+        display: block;
         margin: 5px 0;
 
-        @media screen and (min-width: $screen-md-min + 1) {
+        @media (min-width: $screen-md-min) {
           color: $gray-light;
           font-size: 24px;
           margin-top: 0;
           overflow: hidden;
         }
       }
-
-      @media screen and (min-width: $screen-md-min + 1) {
-        min-width: 500px;
-        left: $feature_position_left - 13px;
-        margin: 0;
-        position: absolute;
-        top: 30px;
-        z-index: 2;
-      }
-    }
-
-    .feature_name {
-      display: none;
-      font-family: "orbitron-bold";
-      font-size: 1.2em;
-      margin-bottom: 5px;
-      margin-left: 20px;
-      margin-top: 5px;
-      text-align: center;
-
-      @media screen and (min-width: $screen-xs-min + 1) {
-        display: block;
-      }
-
-      @media screen and (min-width: $screen-md-min + 1) {
-        font-size: $font-size-h3;
-        margin: 0;
-        position: absolute;
-        right: $feature_position_right;
-        text-align: center;
-        bottom: 38.2%;
-      }
-    }
-
-    .feature_image {
-      display: none;
-
-      @media screen and (min-width: $screen-xs-min + 1) {
-        display: block;
-      }
-
-      @media screen and (max-width: $screen-md-min) {
-        height: 500px;
-        max-width: 100%;
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-      }
-
-      img {
-        @include stretch(-1000%, -1000%, -1000%, -1000%);
-        @include grayscale(100%);
-        @include transition-duration(5s);
-        @include transition-property(grayscale);
-        margin: auto;
-        max-height: none;
-
-        &.in  {
-          @include grayscale(0%);
-        }
-
-        @media screen and (min-width: $screen-xl-min + 1) {
-          height: 100%;
-          width: 100%;
-        }
-      }
-    }
-
-    .feature_comments {
-      display: none;
-      margin: 5px 20px 10px 20px;
-      position: relative;
-
-      @media screen and (min-width: $screen-xs-min + 1) {
-        display: block;
-      }
-
-      @media screen and (min-width: $screen-md-min + 1) {
-        top: 85%;
-        margin: 0;
-        position: absolute;
-        right: $feature_position_right;
-      }
-
-      .feature_comment {
-        display: none;
-        position: absolute;
-        top: 0;
-
-        &:first-child {
-          display: block;
-          position: static;
-        }
-
-        img {
-          height: 48px;
-          vertical-align: top;
-          width: 48px;
-
-          @media screen and (min-width: $screen-md-min + 1) {
-            height: 60px;
-            vertical-align: middle;
-            width: 60px;
-          }
-        }
-
-        blockquote {
-          @include border-radius(5px);
-          background-color: #feffff;
-          border-left: none;
-          box-shadow: 0 0 1px #ddd;
-          display: inline-block;
-          margin-bottom: 0;
-          margin-left: 20px;
-          max-width: 75%;
-          padding: .75em;
-          position: relative;
-          vertical-align: middle;
-
-          @media screen and (min-width: $screen-md-min + 1) {
-            margin-left: 1.5em;
-            max-width: 25em;
-            padding: 1em;
-          }
-
-          &:before {
-            border-color: transparent;
-            border-style: solid;
-            border-width: 8px;
-            border-right-color: #feffff;
-            content: '';
-            left: -16px;
-            position: absolute;
-            top: 16px;
-          }
-
-          p {
-            font-size: 14px;
-          }
-        }
-      }
     }
 
     .entry {
-      margin-bottom: 1em;
+      margin-bottom: 0;
       padding: 15px;
 
-      @media screen and (max-width: $screen-md-min) {
-        margin-left: 9%;
-        margin-right: 9%;
+      @media (max-width: $screen-sm-max) {
+        @include decoration;
+
+        width: 262px;
       }
 
-      @media screen and (min-width: $screen-md-min + 1) {
-        left: $feature_position_left;
-        margin: 0;
+      @media (min-width: $screen-md-min) {
+        background-color: transparent;
+        border-color: #ccc;
+        margin-top: -190px;
         position: absolute;
-        top: 26%;
+        right: 10%;
+        top: 50%;
         width: 280px;
+        z-index: 1;
+
+        .oauth {
+
+          .fa {
+            color: #ccc;
+          }
+        }
+
+        .nav-pills-list {
+
+          > li {
+
+            > a {
+              color: darken(#ddd, 25%);
+
+              &:hover,
+              &:focus {
+                background-color: transparent;
+                color: #ddd;
+              }
+            }
+
+            &.active {
+              border-bottom-color: #049cdb;
+
+              > a {
+                color: #ddd;
+
+                &:hover,
+                &:focus {
+                  background-color: transparent;
+                }
+              }
+            }
+          }
+        }
+
+        .entry_email {
+          color: #bbb;
+        }
+
+        .alert {
+          background-color: #404b53;
+          border-color: #181818;
+          color: #ddd;
+        }
       }
 
       .entry_email {
         display: block;
       }
-    }
 
-    @media screen and (min-width: $screen-md-min + 1) {
-      &.theme_dark {
+      .nav-justified > li > a {
+        margin-bottom: 0;
+      }
 
-        > header {
-          left: 20.5%;
-          top: 20%;
+      .tab-content  {
+        padding-top: 1.5em;
 
-          > h1 {
-            @media screen and (min-width: $screen-md-min + 1) {
-              font-size: 50px;
-              margin-bottom: 8px;
-            }
+        .form-group {
+          margin-bottom: 1.5em;
+
+          &:nth-last-child(2) {
+            margin-bottom: .5em;
           }
 
-          > img {
-            @media screen and (min-width: $screen-md-min + 1) {
-              margin-left: -18px;
-              margin-top: 0;
-            }
-          }
-
-          > p {
-            @media screen and (min-width: $screen-md-min + 1) {
-              color: #eee;
-              font-size: 28px;
-            }
-          }
-        }
-
-        .feature_name {
-          color: #ddd;
-        }
-
-        .feature_comment {
-
-          blockquote {
-            background-color: rgba(#1e1e1e, 0.7);
-            border-color: #181818;
-            box-shadow: 0 0 30px #191919;
-            color: #bbb;
-
-            &:before {
-              border-right-color: rgba(#1e1e1e, 0.4);
-            }
-          }
-        }
-
-        .entry {
-          left: auto;
-          right: 10%;
-          top: 39%;
-          width: 280px;
-
-          background-color: transparent;
-          border-color: #ccc;
-          @include border-radius(16px);
-
-          .oauth {
-            .fa {color: #ccc;}
-          }
-
-          .nav-pills-list {
-
-            > li {
-
-              > a {
-                color: darken(#ddd, 25%);
-
-                &:hover,
-                &:focus {
-                  background-color: transparent;
-                  color: #ddd;
-                }
-              }
-
-              &.active {
-                border-bottom-color: #049cdb;
-
-                > a {
-                  color: #ddd;
-
-                  &:hover,
-                  &:focus {
-                    background-color: transparent;
-                  }
-                }
-              }
-            }
-          }
-
-          .tab-content  {
-            padding-top: 1.5em;
-            .form-group {
-              margin-bottom: 1.5em;
-            }
-            .form-group:nth-last-child(2) {
-              margin-bottom: .5em;
-            }
-            .form-group:last-child {
-              margin-top: 1em;
-            }
-          }
-
-          .input-group-addon {
-            background-color: #333;
-            border-color: #333;
-            color: #ddd;
-          }
-
-          .alert {
-            background-color: #404b53;
-            border-color: #181818;
-            color: #ddd;
-          }
-
-          .entry_email {
-            color: #bbb;
+          &:last-child {
+            margin-bottom: 0;
+            margin-top: 1em;
           }
         }
       }
 
-      &.theme_light {
+      .input-group-addon {
+        background-color: #333;
+        border-color: #333;
+        color: #ddd;
+      }
+    }
 
-        $background_light: rgba(#feffff, 0.45);
+    .landing_image_wrap {
+      display: none;
 
-        .feature_name {
+      @media (min-width: $screen-md-min) {
+        display: block;
+        height: 0;
+        padding-bottom: 25%;
+      }
+
+      img {
+        @media (min-width: $screen-md-min) {
+          bottom: -1000%;
+          left: -1000%;
+          margin: auto;
+          position: absolute;
+          right: -1000%;
+          top: -1000%;
+        }
+
+        @media (min-width: $screen-xl-min) {
+          position: static;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .explore {
+    display: none;
+
+    @media (min-width: $screen-md-min) {
+      display: block;
+    }
+  }
+
+  .explore_header {
+    display: none;
+
+    @media (min-width: $screen-md-min) {
+      background-color: #fff;
+      box-shadow: 0 1px 2px #ccc;
+      display: block;
+      margin-bottom: 50px;
+      padding: 13px 0;
+    }
+
+    .explore_header_inner {
+      @include clearfix;
+
+      height: 34px;
+      position: relative;
+
+      margin: {
+        left: auto;
+        right: auto;
+      }
+      max-width: 1440px;
+      width: 90%;
+    }
+
+    .btn {
+      color: $gray;
+      left: 150px;
+      position: absolute;
+
+      &:hover {
+        color: $text-color;
+      }
+    }
+
+    form {
+      display: inline-block;
+      left: percentage(10 / 12);
+      margin-left: -40px;
+      position: absolute;
+    }
+
+    .form-control {
+      border: none;
+      box-shadow: none;
+      padding-bottom: 0;
+      padding-top: 0;
+    }
+  }
+
+  .explore_body {
+
+    @media (min-width: $screen-md-min) {
+      @include make-row;
+
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: $screen-lg-min;
+      width: 90%;
+    }
+  }
+
+  .explore_nav {
+    @include make-md-column(2);
+    @include make-md-column-push(10);
+
+    ul {
+      border-left: 2px solid #fff;
+      margin-left: 20px;
+      padding: {
+        bottom: 1em;
+        left: 0;
+        top: 1em;
+        right: 0;
+      }
+
+      li {
+
+        a {
+          @include text-overflow;
+
           color: $text-muted;
-          &:hover {color: $text-color;}
-        }
+          display: block;
+          line-height: 14px;
+          padding: {
+            bottom: 9px;
+            left: 30px;
+            top: 9px;
+          }
 
-        .feature_comment {
-
-          blockquote {
-            background-color: $background_light;
-            box-shadow: 0 0 1px #ddd;
-
-            &:before {
-              border-right-color: $background_light;
-            }
+          &:hover {
+            color: $text-color;
           }
         }
 
-        .entry {
-          background-color: $background_light;
-          border-color: #ddd;
-          box-shadow: 0 0 1px #ddd;
+        &.active {
 
-          .oauth {
-            .fa {color: darken(#ddd, 50%);}
-          }
-
-          .nav-pills-list {
-
-            > li {
-
-              > a {
-
-                &:hover,
-                &:focus {
-                  background-color: transparent;
-                  color: #333;
-                }
-              }
-
-              &.active {
-
-                > a {
-
-                  &:hover,
-                  &:focus {
-                    background-color: transparent;
-                  }
-                }
-              }
-            }
-          }
-
-          .alert {
-            background-color: #fff;
-            border-color: #ccc;
-            color: #555;
+          a {
+            border-left: 2px solid #049cdb;
+            color: $text-color;
+            margin-left: -2px;
           }
         }
+      }
+    }
+  }
+
+  .explore_content {
+    @include make-md-column(10);
+    @include make-md-column-pull(2);
+    @include clearfix;
+    @include decoration;
+
+    height: 490px;
+    padding: 30px;
+
+    .thing {
+      float: left;
+      height: 430px;
+      width: 370px;
+    }
+
+    .reviews {
+      border-left: $border-default;
+      overflow: hidden;
+      padding-left: 30px;
+    }
+
+    .review {
+      @include clearfix;
+
+      margin-bottom: 50px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .review_author {
+      color: $gray;
+      display: block;
+      float: left;
+      margin-right: 10px;
+      text-align: center;
+      width: 60px;
+
+      .name {
+        display: inline-block;
+        margin-top: 5px;
+      }
+    }
+
+    .review_wrap {
+      overflow: hidden;
+    }
+
+    .review_header {
+      @include clearfix;
+
+      line-height: 18px;
+      margin-bottom: 10px;
+
+      .like {
+        font-style: normal;
+        float: right;
+        width: 50px;
+      }
+    }
+
+    .review_title {
+      float: left;
+      line-height: 18px;
+      margin: 0;
+      max-width: 75%;
+
+      a {
+        @include text-overflow;
+
+        display: block;
+        font-size: 16px;
+      }
+    }
+
+    .review_body {
+      background-color: $background-text;
+      padding: 15px;
+
+      p {
+        color: $text-muted;
+        height: 52px;
+        line-height: 26px;
+        margin-bottom: 0;
+        overflow: hidden;
       }
     }
   }
@@ -495,7 +445,7 @@ html.signed_in_homepage {
     > aside {
       display: none;
 
-      @media screen and (min-width: $screen-md-min) {
+      @media (min-width: $screen-md-min) {
         display: block;
       }
     }
@@ -508,7 +458,7 @@ html.signed_in_homepage {
   .page-header {
     display: none;
 
-    @media screen and (min-width: $screen-md-min) {
+    @media (min-width: $screen-md-min) {
       @include clearfix;
 
       display: block;
@@ -536,7 +486,7 @@ html.signed_in_homepage {
     figcaption {
 
       .metas_group {
-        @media screen and (max-width: $screen-lg-min) {
+        @media (max-width: $screen-lg-min) {
           border-right: none;
           display: block;
           margin-right: 0;
@@ -685,7 +635,7 @@ html.signed_in_homepage {
       @include center-block;
       display: none;
 
-      @media screen and (min-width: $screen-md-min) {
+      @media (min-width: $screen-md-min) {
         display: none;
       }
     }
@@ -701,7 +651,7 @@ html.signed_in_homepage {
 
       &:first-child {
 
-        @media screen and (min-width: $screen-sm-min) {
+        @media (min-width: $screen-sm-min) {
           border-top: none;
         }
 
@@ -710,7 +660,7 @@ html.signed_in_homepage {
         }
       }
 
-      @media screen and (min-width: $screen-sm-min) {
+      @media (min-width: $screen-sm-min) {
         border-top: $border-default;
         display: none;
       }
@@ -719,7 +669,7 @@ html.signed_in_homepage {
 
         .col-sm-12 {
 
-          @media screen and (min-width: $screen-sm-min) {
+          @media (min-width: $screen-sm-min) {
             float: none;
             margin-left: auto;
             margin-right: auto;
@@ -736,19 +686,19 @@ html.signed_in_homepage {
           right: auto;
         }
 
-        @media screen and (min-width: $screen-sm-min) {
+        @media (min-width: $screen-sm-min) {
           border-top: none;
           margin-top: 1em;
         }
 
-        @media screen and (min-width: $screen-md-min) {
+        @media (min-width: $screen-md-min) {
           margin-bottom: 1em;
           margin-top: 1em;
         }
 
         &:first-child {
 
-          @media screen and (min-width: $screen-sm-min) {
+          @media (min-width: $screen-sm-min) {
             border-right: $border-default;
           }
         }
@@ -757,13 +707,13 @@ html.signed_in_homepage {
       .col-sm-12 {
         border-top: $border-default;
 
-        @media screen and (min-width: $screen-sm-min) {
+        @media (min-width: $screen-sm-min) {
           border-top: none;
         }
       }
     }
 
-    @media screen and (min-width: $screen-sm-min) {
+    @media (min-width: $screen-sm-min) {
       .thing,
       .article_compact {
         display: none;

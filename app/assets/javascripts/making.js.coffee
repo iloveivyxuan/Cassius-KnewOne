@@ -39,42 +39,9 @@ window.Making =
         $form = $(@).parents('.entry').find('.entry_email')
         $form.stop()[if $form.is(':hidden') then 'fadeIn' else 'fadeOut'](160)
         $(@).toggleClass 'active'
-      $('html.home_landing .feature_pager').on 'click', (e) ->
-        e.preventDefault()
-        scrollTop = $('#home_index').offset().top;
-        $('html, body').animate {
-          scrollTop: scrollTop
-        }, 'normal'
-        return
 
-      if $html.hasClass 'home_landing'
+      if $html.hasClass 'guest_homepage'
         $('.entry_email_toggle').addClass(if $('.entry_email').is(':visible') then 'active')
-
-        $image = $('.feature_image')
-        if $image.is(':visible')
-          $image.attr('data-picture', true)
-          window.picturefill()
-
-          $image.find('img').on 'load', ->
-            $(@).addClass('in')
-
-        $comments = $('.feature_comment')
-        if $comments.is(':visible')
-          length = $comments.length
-          if length > 1
-            times = length - 1
-            i = 1
-            setInterval ->
-              $comments
-                .filter(':visible')
-                .css('position', 'absolute')
-                .hide()
-              .end()
-                .eq(i)
-                .css('position', 'static')
-                .fadeIn()
-              i = if i < times then ++i else 0
-            , 5000
 
       if $('.carousel').length
         Making.ExtendCarousel()
