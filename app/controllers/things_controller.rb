@@ -40,6 +40,7 @@ class ThingsController < ApplicationController
     @things = Thing.rand_records (params[:per] || 24).to_i
 
     respond_to do |format|
+      format.html {  }
       format.js
       format.json { render 'things/index' }
     end

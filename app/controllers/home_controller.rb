@@ -19,11 +19,12 @@ class HomeController < ApplicationController
         render 'home/index', layout: 'home'
       end
     else
-      @landing_page = LandingPage.find_for_home
+      @landing_cover = LandingCover.find_for_home
 
-      if @landing_page.nil?
-        redirect_to new_user_sessions_path
+      if @landing_cover.nil?
+        redirect_to random_things_path
       else
+         @categories = Category.gt(things_count: 10).limit(8)
         render 'home/landing'
       end
     end

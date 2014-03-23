@@ -33,6 +33,8 @@
             = link_to_with_icon '管理分类', 'fa fa-fw fa-wrench', haven_categories_path
           = nav_tab :promotion do
             = link_to_with_icon '分类顶部封面', 'fa fa-fw fa-wrench', haven_promotions_path
+          = nav_tab :landing_cover do
+            = link_to_with_icon '管理首页封面', 'fa fa-fw fa-wrench', haven_landing_covers_path
           - if can? :manage, Review
             = nav_tab :review do
               = link_to_with_icon '管理评测', 'fa fa-fw fa-wrench', haven_reviews_path
@@ -42,9 +44,6 @@
           - if can? :manage, Order
             = nav_tab :supplier do
               = link_to_with_icon '管理订单', 'fa fa-fw fa-wrench', haven_orders_path
-          - if can? :manage, LandingPage
-            = nav_tab :supplier do
-              = link_to_with_icon '管理首页封面', 'fa fa-fw fa-wrench', haven_landing_pages_path
           - if can? :manage, :all
             = nav_tab :thing do
               = link_to_with_icon '管理产品', 'fa fa-fw fa-wrench', haven_things_path

@@ -9,12 +9,12 @@
   = render 'shared/entry'
 
   span.landing_image_wrap data-picture="true" data-alt="Landing"
-    span data-src="http://fakeimg.pl/1920x480/000" data-media="(min-width: 992px)"
+    span data-src="#{@landing_cover.cover.url}" data-media="(min-width: 992px)"
 
 .explore
   .explore_header
     .explore_header_inner
-      = link_to_with_icon '探索发现', 'fa fa-compass', '#', class: 'btn btn-link'
+      = link_to_with_icon '探索发现', 'fa fa-compass', random_things_path, class: 'btn btn-link'
       form.form-inline role="form"
         .form-group.search
           label.sr-only 搜索 KnewOne
@@ -24,16 +24,13 @@
   .explore_body
     nav.explore_nav
       ul
-        li.active
-          a href="#" 可穿戴设备
-        li
-          a href="#" 家居
-        li
-          a href="#" 四个字长
-        li
-          a href="#" 办公
-        li
-          a href="#" 这个分类名字很长
+        - @categories.each_with_index do |c, i|
+          - if i == 0
+            li.active
+              = link_to c.name, "#category_#{c.slug}"
+          - else
+            li
+              = link_to c.name, "#category_#{c.slug}"
     .explore_content
       figure.thing
         a href="#"
