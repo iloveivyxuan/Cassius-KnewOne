@@ -2,6 +2,7 @@ class CategoriesController < ApplicationController
   before_action :set_categories
 
   def index
+    @promotion = Promotion.newest
     @categories = @categories.limit(12)
     @things = Thing.published.limit(12)
   end

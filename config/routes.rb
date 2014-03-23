@@ -107,6 +107,7 @@ Making::Application.routes.draw do
     end
 
     resources :landing_pages
+    resources :promotions, except: [:show]
     resources :things, only: [:index, :update, :edit] do
       collection do
         get 'resort'

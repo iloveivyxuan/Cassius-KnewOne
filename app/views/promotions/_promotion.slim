@@ -1,0 +1,14 @@
+section.feature
+  = link_to promotion.link, class: 'feature_image', target: '_blank' do
+    span data-picture="true" data-alt="alt"
+      span data-src="#{promotion.background_url(:small)}"
+      span data-src="#{promotion.background_url(:medium)}" data-media="(min-width: 481px) and (max-width: 992px)"
+      span data-src="#{promotion.background_url(:large)}" data-media="(min-width: 993px) and (max-width: 1440px)"
+      span data-src="#{promotion.background_url(:larger)}" data-media="(min-width: 1441px)"
+  - if promotion.user && promotion.note.present?
+    .feature_comment
+      = link_to promotion.user do
+        = image_tag promotion.user.avatar.url(:tiny), alt: promotion.user.name
+      p
+        i.fa.fa-heart
+        = promotion.note
