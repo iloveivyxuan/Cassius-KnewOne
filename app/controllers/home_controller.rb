@@ -6,7 +6,7 @@ class HomeController < ApplicationController
 
   def index
     if user_signed_in?
-      @activities = current_user.relate_activities.visible.page(params[:page]).per(10)
+      @activities = current_user.relate_activities.visible.page(params[:page]).per(20)
       @activities = uniq_similar_feeds_v2(@activities.to_a)
 
       if request.xhr?
