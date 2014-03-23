@@ -1,0 +1,22 @@
+#group_fancy_thing.modal.fade
+  .modal-dialog
+    .modal-content
+      = form_tag group_fancy_thing_path(@thing), method: :post, remote: true do
+        .modal-header
+          button.close data-dismiss="modal" aria-hidden="true" &times;
+          h4.modal-title 小组收藏
+        .modal-body
+          = hidden_field_tag :group_id
+          .form-group.row
+            .col-sm-6
+              = text_field_tag 'group_name', nil,
+              class: 'form-control', required: true, placeholder: '小组名称'
+          .alert.alert-success.hide
+            | 已收藏成功
+        .modal-footer
+          button.btn.btn-default data-dismiss="modal" 取消
+          button.btn.btn-primary type="submit" 提交
+
+- content_for :script do
+  javascript:
+    Making.GroupFuzzy('#group_name', '#group_id');

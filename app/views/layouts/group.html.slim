@@ -1,16 +1,12 @@
-- content_for :content do
-  - page_title @group.name
+- present @group do |gp|
 
-  header#group_header
-    - unless content_for(:new_topic) == "no"
-      .new_topic
-        - if user_signed_in?
-          = link_to_with_icon "发帖", "fa fa-pencil", new_group_topic_path(@group), class: 'btn btn-primary'
-        - else
-          = link_to_with_icon "发帖", "fa fa-pencil", '#', class: 'btn btn-default disabled', data: {toggle: "modal", target: "#login-modal"}
-    h1= link_to_with_icon @group.name, "fa fa-group", @group
-    p= @group.description
+  - provide :keywords, gp.name
+  - page_title gp.name
 
-  section#group_content= yield
+  - content_for :content do
+    header= render "groups/header", gp: gp
+    section
+      nav= render "groups/nav", gp: gp
+      .group_content= yield
 
 = render template: 'layouts/application'

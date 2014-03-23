@@ -20,7 +20,7 @@ class TopicsController < ApplicationController
   def create
     @topic.author = current_user
     if @topic.save
-      flash[:provider_sync] = params[:provider_sync]
+      current_user.log_activity :new_topic, @topic, source: @topic.group
       redirect_to group_topic_path(@topic.group, @topic)
     else
       render 'new'
@@ -42,6 +42,17 @@ class TopicsController < ApplicationController
   def destroy
     @topic.destroy
     redirect_to group_path(@group)
+  end
+
+  def vote
+    # TODO: same with reviews#vote, should be DRY
+    if params[:vote] == "true"
+      @topic.vote current_user, true
+      current_user.log_activity :love_topic, @topic, source: @topic.group
+    else
+      @topic.vote current_user, false
+    end
+    render partial: 'voting', locals: {topic: @topic}, layout: false
   end
 
   private

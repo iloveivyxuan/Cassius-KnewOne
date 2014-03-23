@@ -14,16 +14,6 @@ class ReviewPresenter < PostPresenter
     content_tag :div, "", data: {score: review.score}, class: "score"
   end
 
-  def lovers_count
-    lc, fc = review.lovers.count, review.foes.count
-    lc <= 0 and return
-    content_tag :span, class: "lovers" do
-      i = content_tag :i, "", class: "fa fa-thumbs-up"
-      count = content_tag :small, "#{lc}/#{lc+fc}"
-      i.concat count
-    end
-  end
-
   def share_content
     if review.author == current_user
       content = "我在#{share_topic}为#{review.thing.title}写了一篇新评测: "

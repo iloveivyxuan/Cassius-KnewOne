@@ -1,0 +1,7 @@
+- topic = activity.reference
+- group = topic.group
+- if group
+  | 在小组
+  = link_to group.name, group
+  | 发布了话题:
+  = link_to topic.title, group_topic_path(group, topic)

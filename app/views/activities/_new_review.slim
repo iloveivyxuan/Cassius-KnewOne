@@ -1,0 +1,7 @@
+- review = activity.reference
+- thing = review.thing
+- if thing
+  | 为产品
+  = link_to thing.title, thing
+  | 编写了评测:
+  = link_to review.title, thing_review_path(thing, review)

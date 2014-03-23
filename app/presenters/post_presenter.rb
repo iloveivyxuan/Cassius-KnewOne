@@ -51,11 +51,19 @@ class PostPresenter < ApplicationPresenter
     present(current_user).topic_wrapper(brand)
   end
 
-  def fancied?
-    user_signed_in? and @object.fancied?(current_user)
+  def votings
+    lc, fc = @object.lovers.count, @object.foes.count
+    lc <= 0 and return
+    content_tag :span, class: "lovers" do
+      i = content_tag :i, "", class: "fa fa-plus"
+      count = content_tag :small, "#{lc}/#{lc+fc}"
+      i.concat count
+    end
   end
 
-  def fanciers_count
-    content_tag :span, @object.fanciers_count, class: "fanciers_count"
+  def lovers_count
+    i = content_tag :i, "", class: "fa fa-plus"
+    count = content_tag :span, @object.lovers_count
+    i.concat count
   end
 end

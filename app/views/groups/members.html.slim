@@ -1,0 +1,4 @@
+- provide :nav, :group_members
+
+ul.user_list= render @members.map(&:user)
+= paginate @members
