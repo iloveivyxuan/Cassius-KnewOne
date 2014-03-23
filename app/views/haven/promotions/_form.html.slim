@@ -1,0 +1,9 @@
+= simple_form_for @promotion, html: {class: 'form'}, url: [:haven, @promotion] do |f|
+  - Promotion::BACKGROUND_SPECIFICATIONS.each do |s|
+    = f.input s, class: 'user_id'
+    = f.input :"#{s}_cache", as: :hidden
+  = f.input :link
+  = f.input :user_id
+  = f.input :note
+  = f.input :published, as: :radio_buttons
+  = f.button :submit

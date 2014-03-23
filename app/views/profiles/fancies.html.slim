@@ -1,3 +1,8 @@
+header.page-header
+  h1
+    | 我喜欢的
+  = link_to_with_icon "分享产品", "fa fa-plus", new_thing_path, class: 'btn btn-primary'
+
 ul.things= render @fancies, size: :normal, img_lazy: false
 
 = paginate @fancies

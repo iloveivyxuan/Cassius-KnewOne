@@ -6,6 +6,7 @@
   .comment_form {
     @include clearfix;
     textarea {margin: 1em 0;}
+    .auth_tip {color: $text-muted;}
   }
 
   ul {

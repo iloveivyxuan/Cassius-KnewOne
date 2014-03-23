@@ -40,8 +40,6 @@ section.panel.panel_compact.hidden-xs
     = link_to_with_icon '', 'fa fa-chevron-right fa_alone', activities_user_path(@user), class: 'more', title: '更多'
   .panel-body
     - if @activities.any?
-      ul.activities
-        - @activities.each do |a|
-          = render_user_activity(a)
+      ul.activities= render @activities
     - else
       = render "shared/nothing"

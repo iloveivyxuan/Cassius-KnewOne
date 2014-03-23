@@ -3,7 +3,9 @@
   .form-group
     label.hidden-xs for="category_select"
       i.fa.fa-tags
-    = select_tag :category, options_from_collection_for_select(@categories, :slug, :name, params[:category]), class: 'form-control', id: 'category_select'
+    = select_tag :category,
+                 options_for_select([%w(全部 all)]+@categories.map {|c| [c.name, c.slug]}, (params[:category] || 'all')),
+                 class: 'form-control', id: 'category_select'
   .form-group
     label.hidden-xs for="price_range"
       i.fa.fa-dollar

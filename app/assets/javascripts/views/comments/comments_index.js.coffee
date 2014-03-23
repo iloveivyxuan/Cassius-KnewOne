@@ -23,12 +23,13 @@ class Making.Views.CommentsIndex extends Backbone.View
         @$('ul').append(HandlebarsTemplates['shared/loading'])
 
   render: =>
-    @$el.html @template(
+    @$el.html @template
       title: @$el.data('title'),
       signin: @$el.data('signin'),
+      auth: @$el.data('auth'),
       more: @$el.data('count') > @$el.data('per')
-    )
-    @disableForm() unless @$el.data("signin")
+
+    @disableForm() unless @$el.data("signin") and @$el.data("auth")
     this
 
   disableForm: =>

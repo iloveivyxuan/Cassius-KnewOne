@@ -20,7 +20,7 @@ defaults: &defaults
     enable: false
   karma:
     thing: 10
-    review: 5
+    post: 5
     fancy: 1
     own: 1
     order: 10
@@ -31,6 +31,8 @@ defaults: &defaults
   tenpay:
     pid: '1900000109'
     key: '8934e7d15453e97507ef794cf7b0519d'
+  invitation:
+    secret: "Not so secret, Baby"
   keywords: 'KnewOne, 剁手网, 新奇酷'
   description: 'KnewOne, 探索分享新奇酷'
 

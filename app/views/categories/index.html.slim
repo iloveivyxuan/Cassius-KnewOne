@@ -1,16 +1,5 @@
-section.feature
-  a.feature_image href="#"
-    span data-picture="true" data-alt="alt"
-      span data-src="http://fakeimg.pl/400x160/"
-      span data-src="http://fakeimg.pl/900x360/" data-media="(min-width: 481px) and (max-width: 992px)"
-      span data-src="http://fakeimg.pl/1400x560/" data-media="(min-width: 993px) and (max-width: 1440px)"
-      span data-src="http://fakeimg.pl/1920x768/" data-media="(min-width: 1441px)"
-  .feature_comment
-    a href="#"
-      img src="http://image.knewone.com/users/93821f45b2c379ea443d065f44eee7fa.jpg!tiny" alt="Syn"
-    p
-      i.fa.fa-heart
-      | 合上后像一本书一样，张开后发出幽幽亮光。
+- if @promotion
+  = render @promotion
 
 section.panel.panel_compact
   header.panel-heading
@@ -20,11 +9,7 @@ section.panel.panel_compact
     = link_to_with_icon '', 'fa fa-chevron-right fa_alone', all_categories_path, class: 'more', title: '更多'
   .panel-body
     ul.categories
-      - @categories.each do |c|
-        li
-          a.card_compact.category href=things_path(category: c)
-            label.category_name #{c.name}
-            img src="http://fakeimg.pl/100x100"
+      = render partial: 'categories/category_big', collection: @categories, as: :category
 
 section.panel.panel_compact
   header.panel-heading

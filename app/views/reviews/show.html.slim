@@ -22,11 +22,11 @@
     = render 'shared/share', id: 'review_share',
     content: rp.share_content, pic: rp.thing_photo_url(:huge)
 
-    = render 'shared/comments', post: rp.review, id: "comments"
+    = render 'shared/comments', post: rp.review, id: "comments", auth: true
 
 - content_for :script do
   javascript:
-    Making.Voting()
-    Making.Comments("#comments")
+    Making.Voting();
+    Making.Comments("#comments");
     if ("#{flash[:provider_sync]}" == "true")
-      $(function(){$('#review_share').modal('show')})
+      $(function(){$('#review_share').modal('show')});

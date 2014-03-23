@@ -3,3 +3,4 @@ li.author
     = user_avatar(user, :small)
   = link_to user do
     = user.name
+  = render 'users/follow_btn', user: user

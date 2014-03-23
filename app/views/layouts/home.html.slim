@@ -21,6 +21,8 @@
           = link_to_with_icon "我分享 #{current_user.things_count}", 'fa fa-fw fa-magic', things_profile_path
         = home_nav(:reviews)
           = link_to_with_icon "我评测 #{current_user.reviews_count}", 'fa fa-fw fa-book', reviews_profile_path
+        = home_nav(:followings)
+          = link_to_with_icon "我关注 #{current_user.followings_count}", 'fa fa-fw fa-users', followings_profile_path
         / li = link_to_with_icon '我的小组', 'fa fa-fw fa-wrench', edit_profile_path
         / li = link_to_with_icon '我的话题', 'fa fa-fw fa-wrench', edit_profile_path
         li = link_to_with_icon '设置', 'fa fa-fw fa-wrench', edit_profile_path

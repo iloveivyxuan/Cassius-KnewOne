@@ -6,8 +6,9 @@ class ThingsController < ApplicationController
   after_action :store_location, only: [:comments, :show]
 
   def index
-    if params[:category].present?
-      @things = Category.find(params[:category]).things
+    if params[:category].present? and params[:category] != 'all'
+      @category = Category.find(params[:category])
+      @things = @category.things
     else
       @things = Thing.published
     end
@@ -130,6 +131,17 @@ class ThingsController < ApplicationController
 
   def related
     @things = @thing.related_things
+  end
+
+  def group_fancy
+    @group = if params[:group_id].present?
+               Group.find params[:group_id]
+             else
+               Group.where(name: params[:group_name]).first
+             end
+
+    @group.has_member? current_user and @group.fancy @thing
+    respond_to { |format| format.js }
   end
 
   private

@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
   prepend_before_action :require_signed_in
-  before_action :set_editor_choices, only: [:fancies, :owns, :reviews, :things]
-  layout 'home', only: [:fancies, :owns, :reviews, :things]
+  before_action :set_editor_choices, only: [:fancies, :owns, :reviews, :things, :followings, :followers]
+  layout 'home', only: [:fancies, :owns, :reviews, :things, :followers, :followings]
 
   def update
     params[:user][:auto_update_from_oauth] = false
@@ -35,6 +35,14 @@ class ProfilesController < ApplicationController
 
   def things
     @things = current_user.things.page(params[:page]).per(24)
+  end
+
+  def followings
+    @followings = current_user.followings.page(params[:page]).per(48)
+  end
+
+  def followers
+    @followers = current_user.followers.page(params[:page]).per(48)
   end
 
   private

@@ -7,8 +7,8 @@ class UserPresenter < ApplicationPresenter
     image_tag user.avatar.url(size), options.merge(alt: user.name)
   end
 
-  def as_author
-    link_to(avatar(:small), user).concat link_to(name, user)
+  def as_author(size=:small)
+    link_to(avatar(size), user, class: "author_avatar").concat link_to(name, user, class: "author_name")
   end
 
   def topic_wrapper(topic)
@@ -16,8 +16,8 @@ class UserPresenter < ApplicationPresenter
     user.current_auth.topic_wrapper topic
   end
 
-  def link_to_with_avatar(size, html_options={})
-    link_to avatar(size), user, html_options
+  def link_to_with_avatar(size, options={})
+    link_to avatar(size), user, options.merge(title: user.name)
   end
 
   def link_to_with_name

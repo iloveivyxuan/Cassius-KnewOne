@@ -21,3 +21,28 @@ Making.UserFuzzy = (source, target) ->
       empty: '<em class="tt-no-suggestion">没有结果</em>'
   .on 'typeahead:selected', (event, suggestion, name) ->
     $(target).val suggestion.data
+
+
+Making.GroupFuzzy = (source, target, current_user=true) ->
+  groups = new Bloodhound
+    datumTokenizer: (datums) -> Bloodhound.tokenizers.whitespace(datums.value)
+    queryTokenizer: Bloodhound.tokenizers.whitespace
+    limit: 10
+    remote:
+      url: '/groups/fuzzy.json?query=%QUERY&current_user=' + current_user
+
+  groups.initialize()
+
+  $(source).typeahead
+    autoselect: true
+    highlight: true
+    minLength: 1
+  ,
+    name: 'groups'
+    displayKey: 'value',
+    source: groups.ttAdapter()
+    templates:
+      suggestion: HandlebarsTemplates['groups/group']
+      empty: '<em class="tt-no-suggestion">没有结果</em>'
+  .on 'typeahead:selected', (event, suggestion, name) ->
+    $(target).val suggestion.data

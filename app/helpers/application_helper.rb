@@ -1,5 +1,15 @@
 # -*- coding: utf-8 -*-
 module ApplicationHelper
+
+  # TODO: should be monky patching into ActiveSupport
+  def obj_to_s(obj)
+    obj.class.to_s.demodulize.underscore
+  end
+
+  def calc_skip(size, num)
+    (size > num) ? (size - num) : 0
+  end
+
   def present(object, klass = nil)
     klass ||= "#{object.class}Presenter".constantize
     presenter = klass.new(object, self)

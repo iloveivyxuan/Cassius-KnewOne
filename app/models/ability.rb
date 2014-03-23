@@ -27,12 +27,7 @@ class Ability
   def signed(user)
     can [:follow, :unfollow], User
 
-    can :create, Post
-    can [:update, :destroy], Post do |post|
-      post.author == user
-    end
-
-    can [:update, :destroy], Story do |story|
+    can [:create, :update, :destroy], Story do |story|
       story.thing.author == user or story.author == user
     end
 
@@ -44,6 +39,10 @@ class Ability
     end
 
     can :create, ReviewPhoto
+    can :create, Review
+    can [:update, :destroy], Review do |review|
+      review.author == user
+    end
     can :vote, Review
 
     can :create, Comment
@@ -51,8 +50,14 @@ class Ability
       comment.author == user
     end
 
+    can :create, Thing
+    can [:update, :destroy], Thing do |thing|
+      thing.author == user
+    end
     can :fancy, Thing
     can :own, Thing
+    can :group_fancy, Thing
+
     can :share, User
     can :bind, User
 
@@ -71,6 +76,17 @@ class Ability
     can :update, Group do |group|
       group.has_admin? user
     end
+    can :join, Group
+    can :leave, Group
+    can :fuzzy, Group
+
+    can :vote, Topic
+    can :create, Topic do |topic|
+      topic.group.has_member? user
+    end
+    can [:update, :destroy], Topic do |topic|
+      topic.group.has_admin? user
+    end
 
     can :create, Dialog
     can [:read, :destroy], Dialog do |dialog|
@@ -87,6 +103,8 @@ class Ability
     can :read, Post
     can :read, Comment
     can :read, Group
+    can :members, Group
+    can :fancies, Group
     can :read, Topic
     can :read, Lottery
     can :read, Investor

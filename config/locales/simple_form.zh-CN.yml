@@ -71,7 +71,9 @@ zh-CN:
         content: '内容'
       group:
         name: '名称'
-        description: '一句话描述'
+        description: '描述'
+        avatar: '头像'
+        qualification: '加入方式'
       topic:
         content: '内容'
       lottery:

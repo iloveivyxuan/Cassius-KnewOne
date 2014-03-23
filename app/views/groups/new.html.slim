@@ -1,7 +1,16 @@
+- provide :nav, :group_show
+
 .group_wrapper
-  = simple_form_for @group , html: {class: "edit_post"} do |f|
-    legend 建立小组
+  = simple_form_for @group, html: {class: "edit_post"} do |f|
+    legend #{@group.new_record? ? "新建" : "编辑"}小组
     fieldset
       = f.input :name
-      = f.input :description, as: :text
+      = f.input :description, as: :text, input_html: {rows: 6}
+      - unless @group.new_record?
+        = image_tag @group.avatar.url(:small)
+      = f.input :avatar, as: :file
+      = f.input :avatar_cache, as: :hidden
+      = f.input :qualification, as: :radio_buttons,
+      collection: [[:private, "需要被邀请才能加入"], [:public, "任何人都可以加入"]],
+        label_method: :last, value_method: :first
       = f.button :submit, class: "btn btn-primary"

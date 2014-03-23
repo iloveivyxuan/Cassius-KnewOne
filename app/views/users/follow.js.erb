@@ -1,2 +1,2 @@
-$('#follow_btn').replaceWith("<%= escape_javascript render('users/follow_btn') %>");
-$('#followers').html('<%= @user.followers_count %><small>关注者</small>');
+$('#follow_btn_<%= @user.id.to_s %>').replaceWith("<%= escape_javascript render('users/follow_btn', user: @user) %>");
+$('#<%= @user.id.to_s %>_followers').html('<%= @user.followers_count %><small>关注者</small>');
