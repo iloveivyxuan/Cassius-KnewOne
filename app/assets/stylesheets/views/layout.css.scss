@@ -75,13 +75,13 @@ body {
         margin-top: 7px;
         transition-duration: .4s;
         transition-property: width;
-        width: 16%;
+        width: 15%;
       }
 
       &.focus {
 
         @media screen and (min-width: $screen-sm-min) {
-          width: 30%;
+          width: 25%;
         }
       }
 
