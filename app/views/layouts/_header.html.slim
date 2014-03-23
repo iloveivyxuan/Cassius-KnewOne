@@ -10,15 +10,14 @@ header#header role="banner"
 
     #navbar_main.collapse.navbar-collapse
       ul.nav.navbar-nav
-        li.nav_things.dropdown
-          = link_to "#", class: "dropdown-toggle", data: {toggle: "dropdown"} do
+        li.nav_things
+          = link_to things_path do
             i.fa.fa-magic.fa-fw
-            span 产品
-            b.caret
-          ul.dropdown-menu
-            li= link_to_with_icon "最新", "fa fa-rocket", things_path
-            li= link_to_with_icon "热门", "fa fa-bullseye", things_path(sort: "fancy")
-            li= link_to_with_icon "自营", "fa fa-trophy", things_path(sort: "self_run")
+            | 产品
+        li.nav_categories
+          = link_to categories_path do
+            i.fa.fa-tags.fa-fw
+            | 分类
         li.nav_new_thing.visible-md.visible-lg
           - if user_signed_in?
             = link_to_with_icon "分享", "fa fa-plus fa-fw", new_thing_path

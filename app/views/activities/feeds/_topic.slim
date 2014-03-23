@@ -1,0 +1,28 @@
+- topic = activity.reference
+- if topic && topic.group
+  - present topic do |tp|
+    article.article_compact
+      header.article_header
+        h4.article_title
+          = link_to tp.title, tp.path
+      section.article_body
+        figure
+          - present topic.group do |tp|
+            = link_to tp.path do
+              = tp.avatar
+              figurecaption title="#{tp.title}" = tp.title
+        .article_content
+          = tp.cover(:normal)
+          p = tp.summary(120)
+        .metas
+          .metas_group
+            = link_to topic.author.name, topic.author, class: 'meta name'
+            i.meta.fa class="#{feed_type_icon_class(activity)}"
+            = time_ago_tag(topic.created_at, 'meta')
+          .metas_group
+            = link_to tp.path, class: 'meta' do
+              i.fa.fa-comments-o
+              = topic.comments.size
+      .article_feature
+        i.fa.fa-plus
+        = topic.lovers_count
