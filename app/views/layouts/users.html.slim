@@ -46,6 +46,10 @@
         = link_to_with_icon "分享 #{@user.things_count}", 'fa fa-magic', things_user_path(@user)
       = li (action_name == 'reviews') do
         = link_to_with_icon "评测 #{@user.reviews_count}", 'fa fa-book', reviews_user_path(@user)
+      = li (action_name == 'topics') do
+        = link_to_with_icon "话题 #{@user.topics_count}", 'fa fa-leaf', topics_user_path(@user)
+      = li (action_name == 'groups') do
+        = link_to_with_icon "小组 #{@user.groups_count}", 'fa fa-tint', groups_user_path(@user)
       = li (action_name == 'activities') do
         = link_to_with_icon '动态', 'fa fa-bars', activities_user_path(@user)
 

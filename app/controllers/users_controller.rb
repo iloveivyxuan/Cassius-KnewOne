@@ -26,7 +26,11 @@ class UsersController < ApplicationController
   end
 
   def groups
+    @groups = Group.find_by_user(@user).page(params[:page]).per(24)
+  end
 
+  def topics
+    @topics = @user.topics.page(params[:page]).per(20)
   end
 
   def activities
