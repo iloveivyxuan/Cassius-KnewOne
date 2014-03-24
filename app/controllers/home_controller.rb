@@ -17,7 +17,7 @@ class HomeController < ApplicationController
         end
       else
         if @activities.empty?
-          @activities = Activity.visible.where(:type.in => %i(new_thing own_thing fancy_thing)).limit(20)
+          @activities = Activity.visible.where(:type.in => %i(new_thing own_thing fancy_thing)).limit(50)
           @activities = uniq_similar_feeds(@activities.to_a)
         end
         render 'home/index', layout: 'home'
