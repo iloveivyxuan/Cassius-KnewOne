@@ -123,6 +123,10 @@ img.lazy {
   width: auto;
 }
 
+.bootstrap-select.btn-group .dropdown-menu {
+  z-index: $zindex_selectpicker;
+}
+
 /* fucking baidu analystics */
 a[href^='http://tongji.baidu.com'] {
   display: none;
