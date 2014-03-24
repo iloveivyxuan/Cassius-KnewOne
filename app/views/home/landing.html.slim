@@ -15,10 +15,10 @@
   .explore_header
     .explore_header_inner
       = link_to_with_icon '探索发现', 'fa fa-compass', things_path, class: 'btn btn-link'
-      form.form-inline role="form"
+      = form_tag search_path, class: 'form-inline', role: 'form', method: 'get'
         .form-group.search
           label.sr-only 搜索 KnewOne
-          input.form-control placeholder="搜索 KnewOne"
+          input.form-control name='q' placeholder="搜索 KnewOne"
           .fa.fa-search
 
   .explore_body
