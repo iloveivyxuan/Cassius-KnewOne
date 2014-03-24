@@ -246,6 +246,7 @@ html.topics_show {
       .article_title {
         text-align: left;
         font-size: $font-size-h4;
+        @include text-overflow;
         i {
           font-size: $font-size-base;
           margin-left: 1em;
@@ -254,6 +255,7 @@ html.topics_show {
       }
 
       @media screen and (min-width: $screen-sm-min) {
+        padding-right: 100px;
         margin-bottom: 0;
       }
     }
