@@ -16,6 +16,10 @@ class HomeController < ApplicationController
           render 'home/index_xhr', layout: false
         end
       else
+        if @activities.empty?
+          @activities = Activity.visible.where(:type.in => %i(new_thing own_thing fancy_thing)).limit(20)
+          @activities = uniq_similar_feeds(@activities.to_a)
+        end
         render 'home/index', layout: 'home'
       end
     else
