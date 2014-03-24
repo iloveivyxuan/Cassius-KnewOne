@@ -645,11 +645,11 @@ html.things_index {
     @include wrapper(simple, $max-width: $screen-lg-min);
 
     .page-header {
+      margin-bottom: 2em;
 
       h1 {
-
         a {
-          color: $text-color;
+          color: $gray;
 
           &:hover {
             text-decoration: underline;

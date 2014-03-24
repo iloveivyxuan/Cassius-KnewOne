@@ -25,10 +25,6 @@
       = check_box_tag :self_run, params[:self_run]
       | KnewOne自营
 
-  / .form-group.search
-  /   input.form-control placeholder="关键字过滤"
-  /   i.fa.fa-search
-
 - content_for :script do
   javascript:
     $('#category_filter').on('change', function() {
