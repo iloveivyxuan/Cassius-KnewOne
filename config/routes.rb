@@ -78,6 +78,8 @@ Making::Application.routes.draw do
     get 'reviews'
     get 'followings'
     get 'followers'
+    get 'groups'
+    get 'topics'
   end
 
   namespace :haven do

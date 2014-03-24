@@ -17,7 +17,8 @@ module ActivitiesHelper
     own_thing: 'fa-check',
     fancy_thing: 'fa-heart',
     new_review: 'fa-pencil',
-    love_review: 'fa-thumbs-up'
+    love_review: 'fa-thumbs-up',
+    new_topic: 'fa-pencil'
   }
 
   TYPE_TEMPLATE_MAPPER = {
@@ -25,7 +26,8 @@ module ActivitiesHelper
       own_thing: :thing,
       fancy_thing: :thing,
       new_review: :review,
-      love_review: :review
+      love_review: :review,
+      new_topic: :topic
   }
 
   def feed_type_icon_class(activity)

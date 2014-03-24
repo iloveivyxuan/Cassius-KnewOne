@@ -3,7 +3,11 @@ class GroupPresenter < ApplicationPresenter
   presents :group
   delegate :name, :members_count, :topics_count, :public?, :private?, to: :group
 
-  def avatar(size=:tiny, options={})
+  def path
+    group_path(group)
+  end
+
+  def avatar(size=:small, options={})
     image_tag group.avatar.url(size), options.merge(alt: group.name)
   end
 
