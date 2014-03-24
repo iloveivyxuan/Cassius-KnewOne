@@ -660,6 +660,7 @@ html.things_index {
 
     > form {
       border-bottom: $border-default;
+      color: $gray;
       margin-bottom: 20px;
 
       @media screen and (min-width: $screen-sm-min) {
@@ -668,7 +669,7 @@ html.things_index {
         border-bottom: none;
 
         > .form-group {
-          margin-right: 20px;
+          margin-right: 30px;
 
           &.search {
             float: right;
@@ -677,7 +678,7 @@ html.things_index {
         }
 
         > .checkbox {
-          margin-right: 20px;
+          margin-right: 30px;
         }
       }
     }

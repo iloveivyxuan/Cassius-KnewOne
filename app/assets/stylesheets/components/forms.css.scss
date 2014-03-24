@@ -1,0 +1,47 @@
+// Forms.
+//
+
+.form-group {
+
+  @media (min-width: $screen-md-min) {
+    position: relative;
+  }
+
+  .selectpicker_label {
+    display: none;
+
+    @media (min-width: $screen-md-min) {
+      display: inline-block;
+      font-size: 14px;
+      height: 14px;
+      left: 12px;
+      margin-right: 0;
+      margin-top: -7px;
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      width: 14px;
+      z-index: 3;
+    }
+  }
+
+  @media (min-width: $screen-md-min) {
+
+    .bootstrap-select {
+
+      > .btn {
+        padding-left: 35px;
+      }
+
+      .dropdown-menu {
+
+        > li {
+
+          > a {
+            padding-left: 35px;
+          }
+        }
+      }
+    }
+  }
+}
