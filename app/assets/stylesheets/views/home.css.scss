@@ -372,7 +372,7 @@ html.guest_homepage {
     .reviews {
       border-left: $border-default;
       overflow: hidden;
-      padding-left: 30px;
+      padding-left: 25px;
     }
 
     .review {
@@ -389,13 +389,17 @@ html.guest_homepage {
       color: $gray;
       display: block;
       float: left;
-      margin-right: 10px;
+      margin-right: 1em;
       text-align: center;
-      width: 60px;
+      width: 70px;
 
       .name {
-        display: inline-block;
-        margin-top: 5px;
+        @include text-overflow;
+
+        display: block;
+        height: 40px;
+        margin-top: 10px;
+        overflow: hidden;
       }
     }
 

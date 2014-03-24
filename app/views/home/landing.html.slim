@@ -56,7 +56,7 @@
                   - present review.author do |up|
                     = link_to up.path, class: 'review_author' do
                       = up.avatar :small, size: '60x60'
-                      = up.name
+                      span.name = up.name
                   section.review_wrap
                     header.review_header
                       h4.review_title

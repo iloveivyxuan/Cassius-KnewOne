@@ -139,6 +139,7 @@ Making::Application.routes.draw do
   resources :things do
     collection do
       get 'random'
+      get 'category/:category', action: :index, as: :category
     end
 
     member do
