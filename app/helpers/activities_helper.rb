@@ -17,7 +17,7 @@ module ActivitiesHelper
     own_thing: 'fa-check',
     fancy_thing: 'fa-heart',
     new_review: 'fa-pencil',
-    love_review: 'fa-thumbs-up',
+    love_review: 'fa-plus',
     new_topic: 'fa-pencil'
   }
 
