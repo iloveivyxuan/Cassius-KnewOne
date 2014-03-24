@@ -60,7 +60,7 @@ class Thing < Post
   scope :published, -> { lt(created_at: Time.now) }
   scope :prior, -> { gt(priority: 0).desc(:priority, :created_at) }
   scope :self_run, -> { send :in, stage: [:dsell, :invest] }
-  scope :price_between, ->(from, to) { send :or, {:price.gt => from, :price.lt => to}, {:'kind.price'.gt => from, :'kind.price'.lt => to} }
+  scope :price_between, ->(from, to) { where :price.gt => from, :price.lt => to }
   default_scope -> { desc(:created_at) }
 
   STAGES.each do |k, v|
