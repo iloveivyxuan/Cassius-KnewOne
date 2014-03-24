@@ -34,8 +34,8 @@ header#header role="banner"
                 i.fa.fa-shopping-cart.fa_alone
                 span.badge.badge_success.cart_items_count= cart_items_count
 
-              #notification_box.nav_user_action.dropdown
-                = link_to notifications_path, id: 'notification_trigger', data: {url: notifications_path}, title: "#{unread_notifications_text}未读消息" do
+              #notification_box.dropdown
+                = link_to notifications_path, class: 'nav_user_action', id: 'notification_trigger', data: {url: notifications_path}, title: "#{unread_notifications_text}未读消息" do
                   i.fa.fa-bell.fa_alone
                   span#notification_count.badge.badge_primary= unread_notifications_count
                 .dropdown_box

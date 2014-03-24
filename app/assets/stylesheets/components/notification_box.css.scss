@@ -35,15 +35,10 @@
 }
 
 #notification_box {
+  display: inline-block;
 
   #notification_trigger {
     display: inline-block;
-
-    @media screen and (min-width: $screen-sm-min) {
-      font-size: 1.3333333333333333em;
-      line-height: 0.75em;
-      vertical-align: -15%;
-    }
   }
 
   header {

@@ -177,6 +177,11 @@ body {
         }
         position: relative;
 
+        &:hover,
+        &:focus {
+          background-color: transparent;
+        }
+
         @media screen and (min-width: $screen-sm-min) {
           height: 40px;
         }
