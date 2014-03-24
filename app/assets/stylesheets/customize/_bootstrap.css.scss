@@ -124,6 +124,17 @@ time {
   font-style: italic;
 }
 
+.form-inline {
+
+  @media (min-width: $screen-sm-min) {
+
+    .radio input[type="radio"],
+    .checkbox input[type="checkbox"] {
+      margin-right: 6px;
+    }
+  }
+}
+
 
 // =============================================================================
 // Components
