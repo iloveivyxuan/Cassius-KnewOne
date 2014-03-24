@@ -35,6 +35,8 @@ class User
   field :reviews_count, type: Integer, default: 0
   field :followers_count, type: Integer, default: 0
   field :followings_count, type: Integer, default: 0
+  field :groups_count, type: Integer, default: 0
+  field :topics_count, type: Integer, default: 0
   field :orders_count, type: Integer, default: 0
   field :expenses_count, type: Integer, default: 0
 
@@ -181,6 +183,10 @@ class User
 
   def reviews
     posts.where(_type: "Review")
+  end
+
+  def topics
+    posts.where(_type: "Topic")
   end
 
   ## Things
