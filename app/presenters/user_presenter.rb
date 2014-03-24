@@ -3,7 +3,7 @@ class UserPresenter < ApplicationPresenter
   presents :user
   delegate :name, to: :user
 
-  def avatar(size=:tiny, options={})
+  def avatar(size=:small, options={})
     image_tag user.avatar.url(size), options.merge(alt: user.name)
   end
 

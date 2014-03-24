@@ -6,6 +6,12 @@ class TopicPresenter < PostPresenter
     [topic.group, topic]
   end
 
+  def cover(version = :small)
+    if src = topic.official_cover(version)
+      image_tag src
+    end
+  end
+
   def edit_path
     [:edit, topic.group, topic]
   end

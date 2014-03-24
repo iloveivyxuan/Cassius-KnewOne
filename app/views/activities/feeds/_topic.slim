@@ -7,10 +7,10 @@
           = link_to tp.title, tp.path
       section.article_body
         figure
-          - present topic.group do |tp|
-            = link_to tp.path do
-              = tp.avatar
-              figurecaption title="#{tp.title}" = tp.title
+          - present topic.group do |gp|
+            = link_to gp.path do
+              = gp.avatar
+              figurecaption title="#{gp.name}" = gp.name
         .article_content
           = tp.cover(:normal)
           p = tp.summary(120)
