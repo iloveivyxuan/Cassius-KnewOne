@@ -186,7 +186,7 @@ class User
   end
 
   def topics
-    posts.where(_type: "Topic")
+    posts.where(_type: "Topic").desc(:created_at)
   end
 
   ## Things
