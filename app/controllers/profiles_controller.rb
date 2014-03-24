@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 class ProfilesController < ApplicationController
   prepend_before_action :require_signed_in
-  before_action :set_editor_choices, only: [:fancies, :owns, :reviews, :things, :followings, :followers, :groups]
-  layout 'home', only: [:fancies, :owns, :reviews, :things, :followers, :followings, :groups]
+  before_action :set_editor_choices, only: [:fancies, :owns, :reviews, :things, :followings, :followers, :groups, :topics]
+  layout 'home', only: [:fancies, :owns, :reviews, :things, :followers, :followings, :groups, :topics]
 
   def update
     params[:user][:auto_update_from_oauth] = false
@@ -31,7 +31,7 @@ class ProfilesController < ApplicationController
   end
 
   def reviews
-    @reviews = current_user.reviews.where(:thing_id.ne => nil).page(params[:page]).per(24)
+    @reviews = current_user.reviews.where(:thing_id.ne => nil).page(params[:page]).per(20)
   end
 
   def things
@@ -51,7 +51,7 @@ class ProfilesController < ApplicationController
   end
 
   def topics
-    @topics = current_user.topics.page(params[:page]).per(24)
+    @topics = current_user.topics.page(params[:page]).per(20)
   end
 
   private

@@ -1,0 +1,21 @@
+- if topic and topic.group
+  article.article_compact
+    - present topic do |tp|
+      header.article_header
+        h4.article_title = link_to tp.title, tp.path
+      section.article_body
+        figure
+          - present topic.group do |gp|
+            = link_to gp.group do
+              = gp.avatar
+            figurecaption title=gp.name
+              = gp.name
+        .article_content
+          = tp.cover
+          p = tp.summary(120)
+        .metas
+          .metas_group
+            = time_ago_tag(topic.created_at, 'meta')
+            = tp.comments_count
+      .article_feature
+        = tp.lovers_count
