@@ -1,6 +1,7 @@
 class Member
   include Mongoid::Document
   include Mongoid::Timestamps::Created
+  include Aftermath
 
   embedded_in :group, counter_cache: true
 
@@ -15,4 +16,6 @@ class Member
   def user
     @user ||= User.find user_id.to_s
   end
+
+  need_aftermath :create, :destroy
 end

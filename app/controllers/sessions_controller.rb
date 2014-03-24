@@ -41,4 +41,8 @@ class SessionsController < Devise::SessionsController
   def user_params
     params.require(:user).permit(:email, :password, :remember_me)
   end
+
+  def after_sign_out_path_for(resource_name)
+    root_path
+  end
 end

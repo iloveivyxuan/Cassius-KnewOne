@@ -77,5 +77,25 @@ class AftermathHandler
         u.inc orders_count: 1
       end
     end
+
+    def member_create(member)
+      u = member.user
+      u.inc groups_count: 1
+    end
+
+    def member_destroy(member)
+      u = member.user
+      u.inc groups_count: -1 if u.groups_count > 0
+    end
+
+    def topic_create(topic)
+      u = topic.author
+      u.inc topics_count: 1
+    end
+
+    def topic_destroy(topic)
+      u = topic.author
+      u.inc topics_count: -1 if u.topics_count > 0
+    end
   end
 end

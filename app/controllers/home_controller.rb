@@ -7,7 +7,7 @@ class HomeController < ApplicationController
   def index
     if user_signed_in?
       @activities = current_user.relate_activities.visible.page(params[:page]).per(20)
-      @activities = uniq_similar_feeds_v1(@activities.to_a)
+      @activities = uniq_similar_feeds(@activities.to_a)
 
       if request.xhr?
         if @activities.empty?
@@ -16,6 +16,10 @@ class HomeController < ApplicationController
           render 'home/index_xhr', layout: false
         end
       else
+        if @activities.empty?
+          @activities = Activity.visible.where(:type.in => %i(new_thing own_thing fancy_thing)).limit(20)
+          @activities = uniq_similar_feeds(@activities.to_a)
+        end
         render 'home/index', layout: 'home'
       end
     else
@@ -91,18 +95,14 @@ class HomeController < ApplicationController
     @editor_choices = Thing.rand_prior_records 1
   end
 
-  def uniq_similar_feeds_v1(feeds, cur = feeds.first)
-    next_cur = feeds.shift
-    return [cur] unless next_cur
+  def uniq_similar_feeds(feeds)
+    return [] if feeds.empty?
+    cur = feeds.shift
 
-    similar_feed?(next_cur, cur) ? uniq_similar_feeds_v1(feeds, cur) : [cur] + uniq_similar_feeds_v1(feeds, next_cur)
+    similar_feed?(cur, feeds.first) ? uniq_similar_feeds(feeds) : ([cur] + uniq_similar_feeds(feeds))
   end
 
   def similar_feed?(f1, f2)
-    f1.source_union == f2.source_union && f1.reference_union == f2.reference_union
-  end
-
-  def uniq_similar_feeds_v2(feeds)
-    feeds.group_by {|f| [f.source_union, f.reference_union]}.values.map &:first
+    !!f1 && !!f2 && f1.source_union == f2.source_union && f1.reference_union == f2.reference_union
   end
 end
