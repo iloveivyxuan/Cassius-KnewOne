@@ -20,7 +20,7 @@ class GroupPresenter < ApplicationPresenter
   end
 
   def founder
-    present(group.founder).as_author(:tiny)
+    present(group.founder).as_author(:tiny) if group.founder
   end
 
   def member?
