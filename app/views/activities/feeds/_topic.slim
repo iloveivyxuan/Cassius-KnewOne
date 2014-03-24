@@ -16,7 +16,7 @@
           p = tp.summary(120)
         .metas
           .metas_group
-            = link_to topic.author.name, topic.author, class: 'meta name'
+            = link_to activity.user.name, activity.user, class: 'meta name'
             i.meta.fa class="#{feed_type_icon_class(activity)}"
             = time_ago_tag(topic.created_at, 'meta')
           .metas_group
