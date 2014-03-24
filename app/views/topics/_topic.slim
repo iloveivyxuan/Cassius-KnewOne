@@ -8,6 +8,9 @@ article.article_compact
       figure
         = tp.author_avatar :small
       .metas
+        - if show_group
+          .metas_group
+            .meta.topic_group= tp.group
         .metas_group
           .meta.topic_author= tp.author_name
         .metas_group

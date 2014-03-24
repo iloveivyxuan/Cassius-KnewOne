@@ -3,6 +3,7 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.desc(:members_count).limit(10)
+    @topics = Topic.unscoped.desc(:commented_at).page(params[:page]).per(20)
   end
 
   def show

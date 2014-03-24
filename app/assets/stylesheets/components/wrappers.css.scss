@@ -51,7 +51,7 @@
 
       @if $columns == 2 {
 
-        > main {
+        > main, > section {
           @include make-md-column(9, $gutter: 40px);
 
           @media screen and (min-width: $screen-md-min) {
@@ -63,7 +63,7 @@
           }
         }
 
-        > aside {
+        > aside, > header {
           @include make-md-column(3, $gutter: 40px);
 
           @media screen and (min-width: $screen-md-min) {

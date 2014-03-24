@@ -11,29 +11,18 @@ header#header role="banner"
     #navbar_main.collapse.navbar-collapse
       ul.nav.navbar-nav
         li.nav_things
-          = link_to things_path do
-            i.fa.fa-magic.fa-fw
-            | 产品
-        li.nav_categories
           = link_to categories_path do
             i.fa.fa-tags.fa-fw
-            | 分类
+            | 产品
         li.nav_new_thing.visible-md.visible-lg
           - if user_signed_in?
             = link_to_with_icon "分享", "fa fa-plus fa-fw", new_thing_path
           - else
             = link_to_with_icon "分享", "fa fa-plus fa-fw", "#", data: {toggle: "modal", target: "#login-modal"}
-        li.nav_groups.dropdown
-          = link_to "#", class: "dropdown-toggle", data: {toggle: "dropdown"} do
-            i.fa.fa-tint.fa-fw
-            span 小组
-            b.caret
-          ul.dropdown-menu
-            - Group.each do |group|
-              li= link_to group.name, group
+        li.nav_groups
+          = link_to_with_icon "小组", "fa fa-tint fa-fw", groups_path
         li.nav_olark
           = link_to_with_icon "客服", "fa fa-comment fa-fw", "#olark_chat", data: {hint: "fa-comment", url: asset_path('olark.js')}
-
       .nav.navbar-nav.navbar-right
         - if user_signed_in?
           .nav_user.is_login

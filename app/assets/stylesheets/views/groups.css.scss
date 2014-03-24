@@ -1,3 +1,4 @@
+html.groups_index,
 html.groups_show,
 html.groups_new,
 html.groups_edit,
@@ -10,29 +11,13 @@ html.topics_create,
 html.topics_show {
   #wrapper {
     @include wrapper(grid, 2);
-    padding: 20px;
 
     > header {
-      @include make-md-column(3, $gutter: 4em);
       @include make-md-column-push(9);
-
-      padding: {left: 0; right: 0;}
-
-      @media screen and (min-width: $screen-sm-min) {
-        border-left: $border-default;
-        padding: {left: 2em; right: 2em;}
-      }
     }
 
     > section {
-      @include make-md-column(9, $gutter: 4em);
       @include make-md-column-pull(3);
-
-      padding: {left: 0; right: 0;}
-
-      @media screen and (min-width: $screen-sm-min) {
-        padding: {left: 2em; right: 2em;}
-      }
     }
 
     nav {
@@ -58,6 +43,26 @@ html.topics_show {
       @media screen and (min-width: $screen-sm-min) {
         .nav li a span:first-of-type {display: inline;}
       }
+    }
+  }
+
+  .flash_topics, .groups {
+    > header {
+      h4 {
+        margin-top: 0;
+        padding-left: .5em;
+        color: $gray;
+      }
+    }
+  }
+
+  .groups {
+    padding-top: 10px;
+
+    .card_compact {
+      img {width: 80px; height: 80px; }
+      h5 {color: $gray;}
+      .members_count {color: $text-muted;}
     }
   }
 
@@ -216,62 +221,57 @@ html.topics_show {
     }
   }
 
+  .topics {
+    .article_compact {margin-bottom: .3em;}
 
-  .group_content {
-    .new_topic {margin: 1em 0;}
-
-    .topics {
-      .article_compact {margin-bottom: .3em;}
-
-      .article_header {
-        .article_title {
-          text-align: left;
-          font-size: $font-size-h4;
-          i {
-            font-size: $font-size-base;
-            margin-left: 1em;
-            color: $red;
-          }
-        }
-
-        @media screen and (min-width: $screen-sm-min) {
-          margin-bottom: 0;
-        }
-      }
-
-      .article_body {
-        figure {
-          margin-top: 0 - $font-size-h4 * $line-height-base;
-          img {
-            width: 50px; height: 50px;
-            @extend .img-rounded;
-          }
-        }
-      }
-
-      .article_feature {
-        @media screen and (min-width: $screen-sm-min) {
-          top: 14px;
-        }
-      }
-
-      .metas {
+    .article_header {
+      .article_title {
         text-align: left;
-        .meta {
-          a {
-            color: $gray;
-            &:hover {color: $text-color;}
-          }
+        font-size: $font-size-h4;
+        i {
+          font-size: $font-size-base;
+          margin-left: 1em;
+          color: $red;
         }
+      }
 
-        .topic_commented_at {
-          @extend .hidden-xs;
+      @media screen and (min-width: $screen-sm-min) {
+        margin-bottom: 0;
+      }
+    }
+
+    .article_body {
+      figure {
+        margin-top: 0 - $font-size-h4 * $line-height-base;
+        img {
+          width: 50px; height: 50px;
+          @extend .img-rounded;
         }
       }
     }
-  }
-}
 
-html.groups_index {
-  
+    .article_feature {
+      @media screen and (min-width: $screen-sm-min) {
+        top: 14px;
+      }
+    }
+
+    .metas {
+      text-align: left;
+      .meta {
+        a {
+          color: $gray;
+          &:hover {color: $text-color;}
+        }
+      }
+
+      .topic_commented_at {
+        @extend .hidden-xs;
+      }
+    }
+  }
+
+  .group_content {
+    .new_topic {margin: 1em 0;}
+  }
 }

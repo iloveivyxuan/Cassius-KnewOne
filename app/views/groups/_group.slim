@@ -1,1 +1,8 @@
-li= link_to group.name, group
+- present group do |gp|
+  li
+    = link_to gp.group, class: "card_compact" do
+      figure= gp.avatar(:small)
+      h5= gp.name
+      .members_count
+        = gp.members_count
+        |  成员

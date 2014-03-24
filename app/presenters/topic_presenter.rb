@@ -30,6 +30,10 @@ class TopicPresenter < PostPresenter
     end
   end
 
+  def group
+    link_to topic.group.name, topic.group
+  end
+
   private
 
   def last_comment_author
