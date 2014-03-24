@@ -62,6 +62,14 @@ figure.thing {
       font-style: normal;
       margin: 0;
       > * {margin-right: .5em;}
+      .price {
+        @include text-overflow;
+
+        display: inline-block;
+        line-height: 16px;
+        max-width: 50px;
+        vertical-align: middle;
+      }
     }
   }
 
