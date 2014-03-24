@@ -9,6 +9,7 @@
 
   &:hover {
     color: $text-color;
+    background-color: darken(#eee, 5%);
   }
 
   img {

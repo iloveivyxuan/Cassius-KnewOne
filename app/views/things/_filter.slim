@@ -5,7 +5,7 @@
       i.fa.fa-tags
     = select_tag :category,
                  options_for_select([%w(全部 all)]+@categories.map {|c| [c.name, c.slug]}, (params[:category] || 'all')),
-                 class: 'form-control', id: 'category_select'
+                 class: 'form-control selectpicker', id: 'category_select', data: {size: 10}
   .form-group
     label.hidden-xs for="price_range"
       i.fa.fa-dollar
@@ -14,12 +14,12 @@
                                                    %w(200-499元 200-499),
                                                    %w(500-999元 500-999),
                                                    %w(1000元及以上 emperor)], (params[:price_range] || '0')),
-                 include_blank: false, class: 'form-control', id: 'price_range'
+                 include_blank: false, class: 'form-control selectpicker', id: 'price_range'
   .form-group
     label.hidden-xs for="sort_by"
       i.fa.fa-sort
     = select_tag :sort_by, options_for_select([%w(最新 created_at), %w(热门 priority)], (params[:sort_by] || 'created_at')),
-                 include_blank: false, class: 'form-control', id: 'category_select'
+                 include_blank: false, class: 'form-control selectpicker', id: 'category_select'
   .checkbox
     label
       = check_box_tag :self_run, params[:self_run]

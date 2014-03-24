@@ -45,7 +45,7 @@ html.topics_show {
     }
   }
 
-  .flash_topics, .groups {
+  .flash_topics, .hot_groups {
     > header {
       h4 {
         margin-top: 0;
@@ -64,7 +64,7 @@ html.topics_show {
     }
   }
 
-  .groups {
+  .hot_groups {
     padding-top: 10px;
 
     > header {
@@ -300,20 +300,6 @@ html.groups_all {
   }
 
   .new_group {float: right;}
-
-  ul.groups {
-    @include make-row;
-    padding-top: 1em;
-
-    > li {
-
-      @media (min-width: $screen-sm-min) {
-        @include make-sm-column(6);
-        @include make-md-column(4);
-        @include make-lg-column(3);
-      }
-    }
-  }
 }
 
 html.groups_new {
@@ -323,6 +309,20 @@ html.groups_new {
 }
 
 .groups {
+  @include make-row;
+  padding-top: 1em;
+
+  > li {
+
+    @media (min-width: $screen-sm-min) {
+      @include make-sm-column(6);
+      @include make-md-column(4);
+      @include make-lg-column(3);
+    }
+  }
+}
+
+.group {
   .card_compact {
     img {width: 80px; height: 80px; }
     h5 {color: $gray;}

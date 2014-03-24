@@ -21,6 +21,8 @@
 //= require bootstrap-wysiwyg
 //= require sisyphus
 //= require_tree ../templates
+//= require bootstrap-select/bootstrap-select
+//= require common
 //= require making
 //= require notificationbox
 //= require home

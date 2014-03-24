@@ -660,7 +660,7 @@ html.things_index {
 
     > form {
       border-bottom: $border-default;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
 
       @media screen and (min-width: $screen-sm-min) {
         @include clearfix;
