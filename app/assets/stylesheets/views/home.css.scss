@@ -348,6 +348,14 @@ html.guest_homepage {
     height: 490px;
     padding: 30px;
 
+    .explore_content_item {
+      display: none;
+
+      &.active {
+        display: block;
+      }
+    }
+
     .thing {
       float: left;
       height: 430px;
