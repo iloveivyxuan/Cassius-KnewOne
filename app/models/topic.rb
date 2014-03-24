@@ -1,4 +1,6 @@
 class Topic < Post
+  include Aftermath
+
   field :is_top, type: Boolean, default: false
 
   belongs_to :group, counter_cache: true
@@ -11,4 +13,6 @@ class Topic < Post
 
     src.gsub(/!.*$/, "!#{version}")
   end
+
+  need_aftermath :create, :destroy
 end
