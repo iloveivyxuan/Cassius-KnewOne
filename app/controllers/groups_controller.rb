@@ -6,6 +6,10 @@ class GroupsController < ApplicationController
     @topics = Topic.unscoped.desc(:commented_at).page(params[:page]).per(20)
   end
 
+  def all
+    @groups = Group.desc(:members_count).page(params[:page]).per(24)
+  end
+
   def show
     @topics = @group.topics.page(params[:page]).per(20)
     render layout: 'group'

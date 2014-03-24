@@ -1,6 +1,5 @@
 html.groups_index,
 html.groups_show,
-html.groups_new,
 html.groups_edit,
 html.groups_create,
 html.groups_members,
@@ -56,13 +55,32 @@ html.topics_show {
     }
   }
 
+  .flash_topics {
+    > header {
+      display: none;
+      @media screen and (min-width: $screen-md-min) {
+        display: block;
+      }
+    }
+  }
+
   .groups {
     padding-top: 10px;
 
-    .card_compact {
-      img {width: 80px; height: 80px; }
-      h5 {color: $gray;}
-      .members_count {color: $text-muted;}
+    > header {
+      h4 {
+        a {
+          float: right;
+          color: $gray;
+        }
+      }
+    }
+
+    > section {
+      display: none;
+      @media screen and (min-width: $screen-md-min) {
+        display: block;
+      }
     }
   }
 
@@ -273,5 +291,41 @@ html.topics_show {
 
   .group_content {
     .new_topic {margin: 1em 0;}
+  }
+}
+
+html.groups_all {
+  #wrapper {
+    @include wrapper(simple, $max-width: $screen-lg-min);
+  }
+
+  .new_group {float: right;}
+
+  ul.groups {
+    @include make-row;
+    padding-top: 1em;
+
+    > li {
+
+      @media (min-width: $screen-sm-min) {
+        @include make-sm-column(6);
+        @include make-md-column(4);
+        @include make-lg-column(3);
+      }
+    }
+  }
+}
+
+html.groups_new {
+  #wrapper {
+    @include wrapper(simple, $max-width: $screen-md-min);
+  }
+}
+
+.groups {
+  .card_compact {
+    img {width: 80px; height: 80px; }
+    h5 {color: $gray;}
+    .members_count {color: $text-muted;}
   }
 }

@@ -103,6 +103,7 @@ class Ability
     can :read, Post
     can :read, Comment
     can :read, Group
+    can :all, Group
     can :members, Group
     can :fancies, Group
     can :read, Topic

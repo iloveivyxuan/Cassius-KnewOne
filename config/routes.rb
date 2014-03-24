@@ -170,6 +170,7 @@ Making::Application.routes.draw do
 
   resources :groups do
     collection do
+      get 'all'
       get 'fuzzy'
       get 'page/:page', action: :index
     end
