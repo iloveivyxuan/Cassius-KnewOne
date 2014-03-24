@@ -20,8 +20,8 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
-    @group.members.add current_user, :founder
     if @group.save
+      @group.members.add current_user, :founder
       redirect_to group_path(@group)
     else
       render 'new'
