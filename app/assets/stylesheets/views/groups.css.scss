@@ -48,8 +48,12 @@ html.topics_show {
   .flash_topics, .hot_groups {
     > header {
       h4 {
+        border-bottom: $border-default;
         margin-top: 0;
-        padding-left: .5em;
+        padding: {
+          bottom: 10px;
+          left: .5em;
+        }
         color: $gray;
       }
     }
@@ -65,7 +69,6 @@ html.topics_show {
   }
 
   .hot_groups {
-    padding-top: 10px;
 
     > header {
       h4 {
