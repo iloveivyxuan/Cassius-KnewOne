@@ -33,7 +33,7 @@
               = link_to c.name, "#category_#{c.slug}", data: {toggle: "tab"}
     .explore_content
       - @categories.each_with_index do |c, i|
-        - thing = c.things.prior.first
+        - thing = c.things(:priority).first
         .explore_content_item.fade class="#{'active in' if i == 0}" id="category_#{c.slug}"
           - present thing do |tp|
             figure.thing
