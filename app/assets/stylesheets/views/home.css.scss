@@ -48,11 +48,10 @@ html.guest_homepage {
       @media (min-width: $screen-md-min) {
         left: 12%;
         margin: 0;
-        min-width: 500px;
         padding-top: 0;
         position: absolute;
         text-align: left;
-        top: 10%;
+        top: 32%;
         z-index: 1;
       }
 
@@ -62,10 +61,8 @@ html.guest_homepage {
         width: 48px;
 
         @media (min-width: $screen-md-min) {
-          height: 72px;
-          margin-top: 8px;
-          width: 72px;
-          float: left;
+          height: 60px;
+          width: 60px;
         }
       }
 
@@ -79,8 +76,7 @@ html.guest_homepage {
         vertical-align: middle;
 
         @media (min-width: $screen-md-min) {
-          display: block;
-          line-height: $headings-line-height;
+          line-height: 60px;
         }
       }
 
@@ -89,10 +85,13 @@ html.guest_homepage {
         margin: 5px 0;
 
         @media (min-width: $screen-md-min) {
-          color: $gray-light;
-          font-size: 24px;
-          margin-top: 0;
-          overflow: hidden;
+          color: #fff;
+          font-size: 18px;
+          margin: {
+            bottom: 0;
+            left: 20px;
+            top: 30px;
+          }
         }
       }
     }
@@ -155,6 +154,14 @@ html.guest_homepage {
 
         .entry_email {
           color: #bbb;
+
+          .tab-content .form-group.addon > a {
+            color: #bbb;
+
+            &:hover {
+              color: #fff;
+            }
+          }
         }
 
         .alert {

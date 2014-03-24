@@ -34,7 +34,7 @@
     .explore_content
       - @categories.each_with_index do |c, i|
         - thing = c.things.prior.first
-        .explore_content_item class="#{'active' if i == 0}" id="category_#{c.slug}"
+        .explore_content_item.fade class="#{'active in' if i == 0}" id="category_#{c.slug}"
           - present thing do |tp|
             figure.thing
               = link_to tp.path do
