@@ -14,20 +14,23 @@ window.Making = do (exports = window.Making || {}) ->
   _element_class_col_6  = ['thing']
   _element_class_col_12 = ['article_compact']
 
+  _pack = (rows, columns) ->
+    rows.push(_$row.clone().append(columns))
+
   _sort = (list, list_1, list_2, is_list_1 = true) ->
     if list_1.length == 0 and list_2.length == 0
       return
 
     if is_list_1
       if list_1.length % 2 > 0
-        list.push(list_1.shift())
+        _pack(list, list_1.shift())
       else if list_1.length > 0
-        list.push(list_1.shift(), list_1.shift())
+        _pack(list, [list_1.shift(), list_1.shift()])
 
       _sort(list, list_1, list_2, false)
     else
       if list_2.length > 0
-        list.push(list_2.shift())
+        _pack(list, list_2.shift())
 
       _sort(list, list_1, list_2, true)
 
@@ -87,21 +90,7 @@ window.Making = do (exports = window.Making || {}) ->
                   _inbox_12.push(_$item)
                   return true
 
-          _sort(_inbox, _inbox_6, _inbox_12, true)
-
-          while _inbox.length > 0
-            _rows.push(
-              _$row.clone().append ->
-                _items = []
-
-                if $(_inbox[0]).hasClass(_class_col_6) and
-                  $(_inbox[1]).hasClass(_class_col_6)
-                    _items.push(_inbox.shift(), _inbox.shift())
-                  else
-                    _items.push(_inbox.shift())
-
-                return _items
-            )
+          _sort(_rows, _inbox_6, _inbox_12, true)
 
           _$row_first = $(_rows[0])
           _$row_first_children = _$row_first.children()
