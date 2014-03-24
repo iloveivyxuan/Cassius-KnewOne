@@ -46,4 +46,8 @@ class Activity
         ->(record) { where reference_union: "#{record.class.name}_#{record.id.to_s}" }
   scope :by_type, ->(type) { where type: type }
   scope :by_types, ->(*types) { where :type.in => types }
+
+  def identifier
+    "#{source_union}_#{reference_union}"
+  end
 end

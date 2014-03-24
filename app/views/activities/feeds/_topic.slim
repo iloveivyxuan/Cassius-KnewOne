@@ -1,7 +1,7 @@
 - topic = activity.reference
 - if topic && topic.group
   - present topic do |tp|
-    article.article_compact
+    article.article_compact data-identifier="#{activity.identifier}"
       header.article_header
         h4.article_title
           = link_to tp.title, tp.path

@@ -1,7 +1,7 @@
 - thing = activity.reference
 - if thing
   - present thing do |tp|
-    figure.thing
+    figure.thing data-identifier="#{activity.identifier}"
       - tp.self_run?
         .pre_ribbon class="#{tp.stage}"
           span = tp.stage_text

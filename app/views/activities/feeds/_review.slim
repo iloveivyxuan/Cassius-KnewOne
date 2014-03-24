@@ -1,7 +1,7 @@
 - review = activity.reference
 - if review && review.thing
   - present review do |rp|
-    article.article_compact
+    article.article_compact data-identifier="#{activity.identifier}"
       header.article_header
         h4.article_title
           = link_to rp.title, rp.path
