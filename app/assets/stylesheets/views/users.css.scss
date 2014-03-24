@@ -400,6 +400,24 @@ html.users_activities {
       color: $text-muted;
       @include text-overflow;
     }
+    &.author {
+
+      > * {
+        margin-right: 0;
+      }
+
+      .btn {
+        @extend .btn-xs;
+      }
+
+      .btn-primary {
+        color: #fff;
+
+        i {
+          color: #fff;
+        }
+      }
+    }
   }
 }
 
