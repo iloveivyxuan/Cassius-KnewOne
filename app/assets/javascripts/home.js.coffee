@@ -60,6 +60,12 @@ window.Making = do (exports = window.Making || {}) ->
                   .addClass('nomore')
                   .html('没有更多了。')
                   .insertAfter(_$element)
+            .fail (xhr, status, error) ->
+              _$element.trigger 'loaded'
+              $('<div />')
+                .addClass('nomore')
+                .html('出错啦，刷新下再试试？')
+                .insertAfter(_$element)
           , _delay
 
         .on 'loaded', ->
