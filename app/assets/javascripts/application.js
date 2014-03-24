@@ -19,9 +19,9 @@
 //= require jquery.fitvids
 //= require jquery.qrcode
 //= require bootstrap-wysiwyg
+//= require bootstrap-select
 //= require sisyphus
 //= require_tree ../templates
-//= require bootstrap-select/bootstrap-select
 //= require common
 //= require making
 //= require notificationbox
