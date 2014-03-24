@@ -119,6 +119,14 @@ img.lazy {
   }
 }
 
+.bootstrap-select.form-control:not([class*="span"]) {
+  width: auto;
+}
+
+.bootstrap-select.btn-group .dropdown-menu {
+  z-index: $zindex_selectpicker;
+}
+
 /* fucking baidu analystics */
 a[href^='http://tongji.baidu.com'] {
   display: none;
