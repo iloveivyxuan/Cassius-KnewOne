@@ -1,12 +1,17 @@
-/ - if can? :create, Group
-/   .new_group= link_to "建立小组", new_group_path, class: 'btn btn-default'
-
-header.groups.panel
-  .panel-heading
-    h3.panel-title
+header.groups
+  header
+    h4
       i.fa.fa-tint
-      | 推荐小组
-    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', "#",
-    class: 'more', title: '更多'
-  .panel-body
+      | 小组
+      = link_to_with_icon '', 'fa fa-chevron-right', all_groups_path, title: '全部小组'
+  section
     ul= render @groups
+
+section.flash_topics
+  header
+    h4
+      i.fa.fa-leaf
+      | 话题
+  section
+    .topics= render @topics, show_group: true
+    = paginate @topics

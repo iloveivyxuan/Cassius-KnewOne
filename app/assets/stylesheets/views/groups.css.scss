@@ -1,5 +1,5 @@
+html.groups_index,
 html.groups_show,
-html.groups_new,
 html.groups_edit,
 html.groups_create,
 html.groups_members,
@@ -10,29 +10,13 @@ html.topics_create,
 html.topics_show {
   #wrapper {
     @include wrapper(grid, 2);
-    padding: 20px;
 
     > header {
-      @include make-md-column(3, $gutter: 4em);
       @include make-md-column-push(9);
-
-      padding: {left: 0; right: 0;}
-
-      @media screen and (min-width: $screen-sm-min) {
-        border-left: $border-default;
-        padding: {left: 2em; right: 2em;}
-      }
     }
 
     > section {
-      @include make-md-column(9, $gutter: 4em);
       @include make-md-column-pull(3);
-
-      padding: {left: 0; right: 0;}
-
-      @media screen and (min-width: $screen-sm-min) {
-        padding: {left: 2em; right: 2em;}
-      }
     }
 
     nav {
@@ -57,6 +41,45 @@ html.topics_show {
 
       @media screen and (min-width: $screen-sm-min) {
         .nav li a span:first-of-type {display: inline;}
+      }
+    }
+  }
+
+  .flash_topics, .groups {
+    > header {
+      h4 {
+        margin-top: 0;
+        padding-left: .5em;
+        color: $gray;
+      }
+    }
+  }
+
+  .flash_topics {
+    > header {
+      display: none;
+      @media screen and (min-width: $screen-md-min) {
+        display: block;
+      }
+    }
+  }
+
+  .groups {
+    padding-top: 10px;
+
+    > header {
+      h4 {
+        a {
+          float: right;
+          color: $gray;
+        }
+      }
+    }
+
+    > section {
+      display: none;
+      @media screen and (min-width: $screen-md-min) {
+        display: block;
       }
     }
   }
@@ -216,62 +239,93 @@ html.topics_show {
     }
   }
 
+  .topics {
+    .article_compact {margin-bottom: .3em;}
+
+    .article_header {
+      .article_title {
+        text-align: left;
+        font-size: $font-size-h4;
+        i {
+          font-size: $font-size-base;
+          margin-left: 1em;
+          color: $red;
+        }
+      }
+
+      @media screen and (min-width: $screen-sm-min) {
+        margin-bottom: 0;
+      }
+    }
+
+    .article_body {
+      figure {
+        margin-top: 0 - $font-size-h4 * $line-height-base;
+        img {
+          width: 50px; height: 50px;
+          @extend .img-rounded;
+        }
+      }
+    }
+
+    .article_feature {
+      @media screen and (min-width: $screen-sm-min) {
+        top: 14px;
+      }
+    }
+
+    .metas {
+      text-align: left;
+      .meta {
+        a {
+          color: $gray;
+          &:hover {color: $text-color;}
+        }
+      }
+
+      .topic_commented_at {
+        @extend .hidden-xs;
+      }
+    }
+  }
 
   .group_content {
     .new_topic {margin: 1em 0;}
+  }
+}
 
-    .topics {
-      .article_compact {margin-bottom: .3em;}
+html.groups_all {
+  #wrapper {
+    @include wrapper(simple, $max-width: $screen-lg-min);
+  }
 
-      .article_header {
-        .article_title {
-          text-align: left;
-          font-size: $font-size-h4;
-          i {
-            font-size: $font-size-base;
-            margin-left: 1em;
-            color: $red;
-          }
-        }
+  .new_group {float: right;}
 
-        @media screen and (min-width: $screen-sm-min) {
-          margin-bottom: 0;
-        }
-      }
+  ul.groups {
+    @include make-row;
+    padding-top: 1em;
 
-      .article_body {
-        figure {
-          margin-top: 0 - $font-size-h4 * $line-height-base;
-          img {
-            width: 50px; height: 50px;
-            @extend .img-rounded;
-          }
-        }
-      }
+    > li {
 
-      .article_feature {
-        @media screen and (min-width: $screen-sm-min) {
-          top: 14px;
-        }
-      }
-
-      .metas {
-        text-align: left;
-        .meta {
-          a {
-            color: $gray;
-            &:hover {color: $text-color;}
-          }
-        }
-
-        .topic_commented_at {
-          @extend .hidden-xs;
-        }
+      @media (min-width: $screen-sm-min) {
+        @include make-sm-column(6);
+        @include make-md-column(4);
+        @include make-lg-column(3);
       }
     }
   }
 }
 
-html.groups_index {
-  
+html.groups_new {
+  #wrapper {
+    @include wrapper(simple, $max-width: $screen-md-min);
+  }
+}
+
+.groups {
+  .card_compact {
+    img {width: 80px; height: 80px; }
+    h5 {color: $gray;}
+    .members_count {color: $text-muted;}
+  }
 }

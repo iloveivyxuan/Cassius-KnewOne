@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 class TopicsController < ApplicationController
   include MarkReadable
   load_and_authorize_resource :group, singleton: true
   load_and_authorize_resource :topic, through: :group
   layout 'group'
   after_action :allow_iframe_load, only: [:show]
-
-  def index
-    @topics = @topics.page params[:page]
-  end
 
   def show
     mark_read @topic

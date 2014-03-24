@@ -170,10 +170,13 @@ Making::Application.routes.draw do
 
   resources :groups do
     collection do
+      get 'all'
       get 'fuzzy'
+      get 'page/:page', action: :index
     end
 
     member do
+      get 'page/:page', action: :show
       get 'join'
       delete 'leave'
       post 'invite'
