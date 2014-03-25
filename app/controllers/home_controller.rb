@@ -74,14 +74,8 @@ class HomeController < ApplicationController
     end
   end
 
-  def join_alpha
-    cookies[:alpha] = { value: "pay", expires: 1.month.from_now }
-    redirect_to root_path
-  end
-
-  def leave_alpha
-    cookies.delete :alpha
-    redirect_to root_path
+  def qr_entry
+    redirect_to "sinaweibo://userinfo?uid=3160959662"
   end
 
   def jobs

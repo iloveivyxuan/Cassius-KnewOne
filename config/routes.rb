@@ -2,9 +2,7 @@ Making::Application.routes.draw do
   use_doorkeeper
   root to: 'home#index'
   get '/page/:page', to: "home#index"
-
-  get 'join_alpha', to: 'home#join_alpha'
-  get 'leave_alpha', to: 'home#leave_alpha'
+  get 'qr_entry', to: 'home#qr_entry'
 
   devise_for :users, controllers: {
     omniauth_callbacks: "omniauth_callbacks",
