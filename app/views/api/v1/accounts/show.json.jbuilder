@@ -1,5 +1,6 @@
 json.id current_user.id.to_s
 json.name current_user.name
+json.avatar_url current_user.avatar.url
 json.rank current_user.rank
 json.progress_to_next_rank current_user.progress.to_i
 json.location current_user.location

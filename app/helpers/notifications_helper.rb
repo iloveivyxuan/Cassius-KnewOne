@@ -40,51 +40,8 @@ module NotificationsHelper
     @_unread_count > 0 ? "#{@_unread_count} 条" : '没有'
   end
 
-  def render_comment_notification(notification, target = '_self')
-    return '' unless notification.context
-
-    html = ''
-    html += senders(notification)
-    if notification.context.author == current_user
-      html += "回复了我发布的#{notification_post(notification.context, target)}"
-    else
-      html += "在对#{notification_post(notification.context, target)}的回复中提到了我"
-    end
-    html.html_safe
-  end
-
-  def render_new_review_notification(notification, target = '_self')
-    return '' unless notification.context
-
-    html = ''
-    html += senders(notification)
-    if notification.context.thing.author == current_user
-      html += '为我分享的产品发表了评测'
-    else
-      html += '为我喜欢的产品发表了评测'
-    end
-    html += link_to notification.context.title, thing_review_path(notification.context.thing, notification.context), target: target
-
-    html.html_safe
-  end
-
-  def render_following_notification(notification, target = '_self')
-    html = ''
-
-    html += senders(notification)
-    html += '关注了你'
-
-    html.html_safe
-  end
-
-  def render_stock_notification(notification, target = '_self')
-    return '' unless notification.context
-
-    html = ''
-
-    html += link_to notification.context.title, notification.context, target: target
-    html += '有现货'
-
-    html.html_safe
+  def render_notification(notification)
+    return if notification.orphan?
+    render "notifications/#{notification.type}", notification: notification
   end
 end

@@ -18,7 +18,9 @@
         = home_nav(:owns) do
           = link_to_with_icon "我拥有 #{current_user.owns_count}", 'fa fa-fw fa-check', owns_profile_path
         = home_nav(:followings) do
-          = link_to_with_icon "我关注 #{current_user.followings_count}", 'fa fa-fw fa-users', followings_profile_path
+          = link_to_with_icon "我关注 #{current_user.followings_count}", 'fa fa-fw fa-headphones', followings_profile_path
+        = home_nav(:followers) do
+          = link_to_with_icon "关注我 #{current_user.followers_count}", 'fa fa-fw fa-microphone', followers_profile_path
         = home_nav(:things) do
           = link_to_with_icon "我的分享 #{current_user.things_count}", 'fa fa-fw fa-magic', things_profile_path
         = home_nav(:reviews) do
@@ -27,9 +29,11 @@
           = link_to_with_icon "我的小组 #{current_user.groups_count}", 'fa fa-fw fa-tint', groups_profile_path
         = home_nav(:topics) do
           = link_to_with_icon "我的话题 #{current_user.topics_count}", 'fa fa-fw fa-leaf', topics_profile_path
-        li = link_to_with_icon '设置', 'fa fa-fw fa-wrench', edit_profile_path
         li.divider
         li = link_to_with_icon '天天有礼', 'fa fa-fw fa-gift', rewards_path
+        li = link_to_with_icon '自营产品', 'fa fa-fw fa-shopping-cart', things_path(self_run: true)
+        li = link_to_with_icon '我的订单', 'fa fa-fw fa-truck', orders_path
+        li = link_to_with_icon '控制面板', 'fa fa-fw fa-dashboard', edit_profile_path
     /-- END nav --/
 
     section.tag.panel

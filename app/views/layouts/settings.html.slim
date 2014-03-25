@@ -10,6 +10,7 @@
           = link_to_with_icon '账户信息', 'fa fa-fw fa-cogs', edit_account_path
         = nav_tab :notification_settings do
           = link_to_with_icon '通知设置', 'fa fa-fw fa-inbox', edit_notification_settings_path
+        li= link_to_with_icon '安全登出', 'fa fa-sign-out fa-fw', destroy_user_session_path, method: :delete
         li.nav-group-title 购买
         = nav_tab :order do
           = link_to_with_icon '我的订单', 'fa fa-fw fa-file-text', orders_path

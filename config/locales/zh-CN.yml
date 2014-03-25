@@ -72,7 +72,7 @@ zh-CN:
         note: '说明'
         code: '兑换码'
       abatement_coupon:
-        threshold_price: '阀值金额'
+        threshold_price: '阈值金额'
         price: '降低金额'
       product_rebate_conpon:
         thing_id: '产品id'

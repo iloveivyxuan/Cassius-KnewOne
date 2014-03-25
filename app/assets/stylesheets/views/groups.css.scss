@@ -73,9 +73,10 @@ html.topics_show {
     > header {
       h4 {
         a {
-          float: right;
           color: $gray;
+          &:hover {color: $text-color;}
         }
+        a.more {float: right;}
       }
     }
 
