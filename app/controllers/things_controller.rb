@@ -13,7 +13,7 @@ class ThingsController < ApplicationController
       @things = Thing.unscoped.published
     end
 
-    @things = @things.self_run if params[:self_run]
+    @things = @things.self_run if params[:self_run].present?
 
     if params[:sort_by] == 'fanciers_count'
       @things = @things.desc(:fanciers_count)

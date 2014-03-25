@@ -11,7 +11,7 @@
                  include_blank: false, class: 'form-control selectpicker', id: 'category_select', data: {width: "160px"}
   .checkbox
     label
-      = check_box_tag :self_run, params[:self_run]
+      = check_box_tag :self_run, true, params[:self_run]
       | KnewOne自营
 
 - content_for :script do
