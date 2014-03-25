@@ -12,6 +12,7 @@ window.Making = do (exports = window.Making || {}) ->
   _class_col_12 = 'col-sm-12'
   _element_class_col_6  = ['thing']
   _element_class_col_12 = ['feed_article']
+  _$rows        = []
 
   _compare = (left, right) ->
     _get_id = (element) ->
@@ -30,23 +31,23 @@ window.Making = do (exports = window.Making || {}) ->
     else
       [left].concat(_uniq(list))
 
-  _pack = (rows, columns) ->
-    rows.push(_$row.clone().append(columns))
+  _pack = (columns) ->
+    _$rows.push _$row.clone().append(columns)
 
-  _sort = (list, list_1, list_2, is_list_1 = true) ->
+  _sort = (list_1, list_2, is_list_1 = true) ->
     if list_1.length is 0 and list_2.length is 0
       return
 
     if is_list_1
       if list_1.length > 0
-        _pack(list, list_1.splice(0, 2))
+        _pack list_1.splice(0, 2)
 
-      _sort(list, list_1, list_2, false)
+      _sort(list_1, list_2, false)
     else
       if list_2.length > 0
-        _pack(list, list_2.shift())
+        _pack list_2.shift()
 
-      _sort(list, list_1, list_2, true)
+      _sort(list_1, list_2, true)
 
   exports.InitHome = ->
     $ ->
@@ -115,13 +116,14 @@ window.Making = do (exports = window.Making || {}) ->
           if _things.length % 2 > 0
             _things[_things.length - 1].removeClass(_class_col_6).addClass(_class_col_12)
 
-          _sort(_rows, _things, _articles, true)
+          _sort _things, _articles, true
 
-          _$element.append(_rows).trigger 'show'
+          _$element.append(_$rows).trigger 'show'
 
         .on 'show', ->
           _$element
             .trigger 'loaded'
+            .children('.js_activity_packing').remove().end()
             .find('.js_activity_packing')
             .removeClass('js_activity_packing')
             .show()
