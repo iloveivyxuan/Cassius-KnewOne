@@ -14,18 +14,33 @@ window.Making = do (exports = window.Making || {}) ->
   _element_class_col_6  = ['thing']
   _element_class_col_12 = ['article_compact']
 
+  _compare = (left, right) ->
+    _get_id = (element) ->
+      element.get(0).getAttribute 'data-identifier'
+
+    left and right and _get_id(left) is _get_id(right)
+
+  _uniq = (list) ->
+    if list.length is 0 then return []
+
+    left = list.shift()
+    right = list[0]
+
+    if _compare(left, right)
+      _uniq(list)
+    else
+      [left].concat(_uniq(list))
+
   _pack = (rows, columns) ->
     rows.push(_$row.clone().append(columns))
 
   _sort = (list, list_1, list_2, is_list_1 = true) ->
-    if list_1.length == 0 and list_2.length == 0
+    if list_1.length is 0 and list_2.length is 0
       return
 
     if is_list_1
-      if list_1.length % 2 > 0
-        _pack(list, list_1.shift())
-      else if list_1.length > 0
-        _pack(list, [list_1.shift(), list_1.shift()])
+      if list_1.length > 0
+        _pack(list, list_1.splice(0, 2))
 
       _sort(list, list_1, list_2, false)
     else
@@ -77,10 +92,10 @@ window.Making = do (exports = window.Making || {}) ->
           _inbox       = []
           _inbox_6     = []
           _inbox_12    = []
-          _$row_first  = null
+          _$row_last   = null
 
           _$collection
-            .addClass('js-packing')
+            .addClass('js_activity_packing')
             .each (index) ->
               _$item = $(@)
 
@@ -96,22 +111,22 @@ window.Making = do (exports = window.Making || {}) ->
                   _inbox_12.push(_$item)
                   return true
 
-          _sort(_rows, _inbox_6, _inbox_12, true)
+          _sort(_rows, _uniq(_inbox_6), _uniq(_inbox_12), true)
 
-          _$row_first = $(_rows[0])
-          _$row_first_children = _$row_first.children()
+          _$row_last = $(_rows[_rows.length - 1])
+          _$row_last_children = _$row_last.children()
 
-          if _$row_first_children.length is 1 and _$row_first_children.hasClass(_class_col_6)
-            _$row_first.addClass(_class_single)
-            _$row_first_children.removeClass(_class_col_6).addClass(_class_col_12)
+          if _$row_last_children.length is 1 and _$row_last_children.hasClass(_class_col_6)
+            _$row_last.addClass(_class_single)
+            _$row_last_children.removeClass(_class_col_6).addClass(_class_col_12)
 
           _$element.append(_rows).trigger 'show'
 
         .on 'show', ->
           _$element
             .trigger 'loaded'
-            .find('.js-packing')
-            .removeClass('js-packing')
+            .find('.js_activity_packing')
+            .removeClass('js_activity_packing')
             .show()
           .end()
             .find('.row')

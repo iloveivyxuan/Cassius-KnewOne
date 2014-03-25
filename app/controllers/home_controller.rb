@@ -6,8 +6,7 @@ class HomeController < ApplicationController
 
   def index
     if user_signed_in?
-      @activities = current_user.relate_activities.visible.page(params[:page]).per(20)
-      @activities = uniq_similar_feeds(@activities.to_a)
+      @activities = current_user.relate_activities.visible.page(params[:page]).per(50)
 
       if request.xhr?
         if @activities.empty?
@@ -18,7 +17,6 @@ class HomeController < ApplicationController
       else
         if @activities.empty?
           @activities = Activity.visible.where(:type.in => %i(new_thing own_thing fancy_thing)).limit(50)
-          @activities = uniq_similar_feeds(@activities.to_a)
         end
         render 'home/index', layout: 'home'
       end
@@ -93,16 +91,5 @@ class HomeController < ApplicationController
 
   def set_editor_choices
     @editor_choices = Thing.rand_prior_records 1
-  end
-
-  def uniq_similar_feeds(feeds)
-    return [] if feeds.empty?
-    cur = feeds.shift
-
-    similar_feed?(cur, feeds.first) ? uniq_similar_feeds(feeds) : ([cur] + uniq_similar_feeds(feeds))
-  end
-
-  def similar_feed?(f1, f2)
-    !!f1 && !!f2 && f1.source_union == f2.source_union && f1.reference_union == f2.reference_union
   end
 end
