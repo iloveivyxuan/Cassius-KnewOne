@@ -3,7 +3,8 @@
   - present thing do |tp|
     figure.thing data-identifier="#{activity.identifier}"
       .metas
-        img.meta.avatar.img-circle alt="93821f45b2c379ea443d065f44eee7fa" src="http://image.knewone.com/users/93821f45b2c379ea443d065f44eee7fa.jpg!tiny"
+        = link_to activity.user, class: "meta" do
+          = image_tag activity.user.avatar.url(:tiny), alt: activity.user.name, class: "img-circle"
         = link_to activity.user.name, activity.user, class: 'meta name'
         i.meta.fa class="#{feed_type_icon_class(activity)}"
         = feed_type_text activity

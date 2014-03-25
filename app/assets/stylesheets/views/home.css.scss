@@ -524,7 +524,7 @@ html.signed_in_homepage {
     }
   }
 
-  .article_compact {
+  .feed_article {
     border-bottom: none;
     margin-bottom: 0;
   }
@@ -742,11 +742,9 @@ html.signed_in_homepage {
       }
     }
 
-    @media (min-width: $screen-sm-min) {
-      .thing,
-      .article_compact {
-        display: none;
-      }
+    .thing,
+    .feed_article {
+      display: none;
     }
   }
 }

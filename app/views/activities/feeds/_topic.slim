@@ -1,28 +1,29 @@
 - topic = activity.reference
 - if topic && topic.group
   - present topic do |tp|
-    article.article_compact data-identifier="#{activity.identifier}"
-      header.article_header
-        h4.article_title
-          = link_to tp.title, tp.path
-      section.article_body
-        figure
-          - present topic.group do |gp|
-            = link_to gp.path do
-              = gp.avatar
-              figurecaption title="#{gp.name}" = gp.name
-        .article_content
-          = tp.cover
-          p = tp.summary(120)
-        .metas
-          .metas_group
-            = link_to activity.user.name, activity.user, class: 'meta name'
-            i.meta.fa class="#{feed_type_icon_class(activity)}"
-            = time_ago_tag(topic.created_at, 'meta')
-          .metas_group
+    section.feed_article data-identifier="#{activity.identifier}"
+      .metas
+        = link_to activity.user, class: "meta" do
+          = image_tag activity.user.avatar.url(:tiny), alt: activity.user.name, class: "img-circle"
+        = link_to activity.user.name, activity.user, class: 'meta'
+        i.meta.fa class="#{feed_type_icon_class(activity)}"
+        = time_ago_tag(topic.created_at, 'meta')
+      figure
+        - present topic.group do |gp|
+          = link_to gp.path do
+            = gp.avatar
+            figurecaption title="#{gp.name}" = gp.name
+      article.feed_main
+        header.feed_header
+          h4.feed_title
+            = link_to tp.title, tp.path
+          .metas
             = link_to tp.path, class: 'meta' do
               i.fa.fa-comments-o
               = topic.comments.size
-      .article_feature
-        i.fa.fa-plus
-        = topic.lovers_count
+        section.feed_content
+          = tp.cover
+          p = tp.summary(120)
+        strong.feed_feature
+          i.fa.fa-plus
+          = topic.lovers_count

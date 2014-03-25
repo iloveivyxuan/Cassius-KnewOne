@@ -1,0 +1,186 @@
+// Feeds.
+//
+
+.feed_article {
+  @include clearfix;
+
+  border-bottom: 1px dashed #eee;
+  margin-bottom: 10px;
+  padding: 1em;
+  position: relative;
+
+  @media screen and (min-width: $screen-sm-min) {
+    padding-left: 70px;
+  }
+
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  > .metas {
+    clear: both;
+    margin-bottom: 10px;
+    text-align: center;
+
+    @media (min-width: $screen-sm-min) {
+      text-align: left;
+    }
+
+    .meta {
+
+      &.fa-pencil,
+      &.fa-plus {
+        color: #134f5c;
+      }
+    }
+  }
+
+  > figure {
+    display: center;
+    margin-bottom: 10px;
+    text-align: center;
+
+    @media screen and (min-width: $screen-sm-min) {
+      float: right;
+      margin-bottom: 0;
+      text-align: center;
+      width: 100px;
+    }
+
+    a {
+      color: $text-color;
+      display: block;
+    }
+
+    img {
+      display: none;
+
+      @media screen and (min-width: $screen-sm-min) {
+        display: block;
+        height: 80px;
+        margin: {
+          left: auto;
+          right: auto;
+        }
+        width: 80px;
+      }
+    }
+
+    figurecaption {
+
+      @media screen and (min-width: $screen-sm-min) {
+        display: block;
+        height: 40px;
+        line-height: 20px;
+        margin-top: 5px;
+        overflow: hidden;
+        text-align: center;
+
+        &:before {
+          content: '';
+        }
+      }
+    }
+  }
+
+  .feed_main {
+    background-color: #eee;
+    padding: 20px;
+    padding-bottom: 30px;
+    position: relative;
+
+    @media (min-width: $screen-sm-min) {
+      float: left;
+      padding-bottom: 20px;
+      width: 80%;
+    }
+  }
+
+  .feed_header {
+    height: 20px;
+    margin: 0 0 1em 0;
+    overflow: hidden;
+
+    @media (min-width: $screen-sm-min) {
+      @include clearfix;
+    }
+
+    > .metas {
+      bottom: 0;
+      left: 20px;
+      line-height: 30px;
+      position: absolute;
+
+      @media (min-width: $screen-sm-min) {
+        float: right;
+        line-height: 20px;
+        position: static;
+      }
+    }
+  }
+
+  .feed_title {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0;
+    text-align: center;
+
+    @media screen and (min-width: $screen-sm-min) {
+      @include text-overflow;
+
+      float: left;
+      max-width: 80%;
+      text-align: left;
+    }
+  }
+
+  .feed_content {
+    border-bottom: 1px dashed #ddd;
+
+    @media (min-width: $screen-sm-min) {
+      @include clearfix;
+
+      border-bottom: none;
+    }
+
+    img {
+      display: block;
+      height: auto;
+      margin-bottom: 1em;
+      width: 100%;
+
+      @media screen and (min-width: $screen-sm-min) {
+        float: left;
+        margin-bottom: 0;
+        margin-right: 1em;
+        height: 80px;
+        width: 80px;
+      }
+    }
+
+    p {
+      color: $text-muted;
+      height: 80px;
+      line-height: 26px;
+      margin-bottom: 0;
+      overflow: hidden;
+    }
+  }
+
+  .feed_feature {
+    bottom: 0;
+    font-weight: normal;
+    line-height: 30px;
+    position: absolute;
+    right: 20px;
+
+    @media screen and (min-width: $screen-sm-min) {
+      bottom: auto;
+      left: -60px;
+      line-height: 20px;
+      right: auto;
+      top: 20px;
+    }
+  }
+}

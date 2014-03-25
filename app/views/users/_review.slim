@@ -1,21 +1,20 @@
 - if review.thing
-  article.article_compact
+  section.feed_article
     - present review do |rp|
-      header.article_header
-        h4.article_title = link_to rp.title, rp.path
-      section.article_body
-        figure
-          = link_to thing_path(review.thing) do
-            = image_tag review.thing.cover.url(:small)
-          figurecaption title=review.thing.title
-            = review.thing.title
-        .article_content
-          = rp.cover
-          p = rp.summary(120)
-        .metas
-          .metas_group
+      figure
+        = link_to thing_path(review.thing) do
+          = image_tag review.thing.cover.url(:small)
+        figurecaption title=review.thing.title
+          = review.thing.title
+      article.feed_main
+        header.feed_header
+          h4.feed_title = link_to rp.title, rp.path
+          .metas
             = time_ago_tag(review.created_at, 'meta')
             = rp.comments_count(class: 'meta')
-      .article_feature
-        i.fa.fa-plus
-        = review.lovers_count
+        section.feed_content
+          = rp.cover
+          p = rp.summary(120)
+        strong.feed_feature
+          i.fa.fa-plus
+          = review.lovers_count

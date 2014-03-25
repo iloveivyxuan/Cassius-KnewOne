@@ -11,7 +11,7 @@ window.Making = do (exports = window.Making || {}) ->
   _class_col_6  = 'col-sm-6'
   _class_col_12 = 'col-sm-12'
   _element_class_col_6  = ['thing']
-  _element_class_col_12 = ['article_compact']
+  _element_class_col_12 = ['feed_article']
 
   _compare = (left, right) ->
     _get_id = (element) ->
