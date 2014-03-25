@@ -79,6 +79,9 @@ class Ability
     can :join, Group
     can :leave, Group
     can :fuzzy, Group
+    can :invite, Group do |group|
+      group.has_member? user
+    end
 
     can :vote, Topic
     can :create, Topic do |topic|

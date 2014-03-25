@@ -2,22 +2,18 @@
 class DialogPresenter < ApplicationPresenter
   presents :dialog
 
-  def newest_message
-    @newest_message ||= dialog.private_messages.first
-  end
-
   def sender_avatar
     present(dialog.sender).link_to_with_avatar(:tiny)
   end
 
   def sender_name
     sender = present(dialog.sender).link_to_with_name
-    newest_message.is_in ? sender : raw("我发送给 #{sender}")
+    dialog.newest_message.is_in ? sender : raw("我发送给 #{sender}")
   end
 
   def newest_message_content
     link_to dialog do
-      present(newest_message).content
+      present(dialog.newest_message).content
     end
   end
 
@@ -27,7 +23,7 @@ class DialogPresenter < ApplicationPresenter
 
   def messages_count
     link_to dialog.private_messages.count, dialog, title: "查看会话",
-    class: (dialog.unread_count > 0 ? "unread" : nil)
+    class: (dialog.unread ? "unread" : nil)
   end
 
   def reply
