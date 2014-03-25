@@ -2,7 +2,7 @@
   li
     figure.thing
       - if tp.self_run?
-        .pre_ribbon class="#{tp.stage}"
+        = link_to tp.thing, class: "pre_ribbon #{tp.stage}" do
           span= tp.stage_text
       = link_to (img_lazy ? tp.photo_lazy(size) : tp.photo(size)),
         tp.thing, target: '_blank'
