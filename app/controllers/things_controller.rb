@@ -8,23 +8,17 @@ class ThingsController < ApplicationController
   def index
     if params[:category].present? and params[:category] != 'all'
       @category = Category.find(params[:category])
-      @things = @category.things
+      @things = @category.things.unscoped.published
     else
-      @things = Thing.published
+      @things = Thing.unscoped.published
     end
 
     @things = @things.self_run if params[:self_run]
-    @things = @things.prior if params[:sort_by] != 'created_at'
 
-    case params[:price_range]
-      when '1-199'
-        @things = @things.price_between(1, 199)
-      when '200-499'
-        @things = @things.price_between(200, 499)
-      when '500-999'
-        @things = @things.price_between(500, 999)
-      when 'emperor'
-        @things = @things.or({:price.gt => 1000}, {:'kind.price'.gt => 1000})
+    if params[:sort_by] == 'fanciers_count'
+      @things = @things.desc(:fanciers_count)
+    else
+      @things = @things.desc(:created_at)
     end
 
     @things = @things.page(params[:page]).per((params[:per] || 24).to_i)

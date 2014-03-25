@@ -6,16 +6,8 @@
                  options_for_select([%w(全部 all)]+@categories.map {|c| [c.name, c.slug]}, (params[:category] || 'all')),
                  class: 'form-control selectpicker', id: 'category_select', data: {size: 10, width: "160px"}
   .form-group
-    i.fa.fa-dollar.selectpicker_label
-    = select_tag :price_range, options_for_select([%w(全部 0),
-                                                   %w(1-199元 1-199),
-                                                   %w(200-499元 200-499),
-                                                   %w(500-999元 500-999),
-                                                   %w(1000元及以上 emperor)], (params[:price_range] || '0')),
-                 include_blank: false, class: 'form-control selectpicker', id: 'price_range', data: {width: "160px"}
-  .form-group
     i.fa.fa-sort.selectpicker_label
-    = select_tag :sort_by, options_for_select([%w(最新 created_at), %w(热门 priority)], (params[:sort_by] || 'created_at')),
+    = select_tag :sort_by, options_for_select([%w(最新 created_at), %w(热门 fanciers_count)], (params[:sort_by] || 'created_at')),
                  include_blank: false, class: 'form-control selectpicker', id: 'category_select', data: {width: "160px"}
   .checkbox
     label

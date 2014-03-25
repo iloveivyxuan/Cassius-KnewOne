@@ -5,7 +5,9 @@ header.page-header
     | 战斗力分析
     small 总共 #{User.all.size}
 .pull-right
-  = link_to '导出CSV', "#{haven_users_path(format: :csv)}?#{request.query_string}", class: 'btn btn-success'
+  - queries = params.except(*request.path_parameters.keys)
+  = link_to '导出CSV(Numbers)', "#{haven_users_path(queries.merge(format: :csv, platform: 'numbers'))}", class: 'btn btn-success'
+  = link_to '导出CSV(Excel)', "#{haven_users_path(queries.merge(format: :csv))}", class: 'btn btn-success'
 = render 'filter'
 
 table.table.table-striped

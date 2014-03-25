@@ -42,7 +42,7 @@ module Haven
       end
 
       @users = @users.page params[:page]
-      
+
       respond_to do |format|
         format.html
         format.csv do
@@ -69,11 +69,13 @@ module Haven
             lines<< cols
           end
 
-          csv = CSV.generate :col_sep => ';' do |csv|
+          col_sep = (params[:platform] == 'numbers') ? ',' : ';'
+
+          csv = CSV.generate :col_sep => col_sep do |csv|
             lines.each { |l| csv<< l }
           end
 
-          if params[:encoding] == 'gb2312'
+          if params[:platform] != 'numbers'
             send_data csv.encode 'gb2312', :replace => ''
           else
             send_data csv, :replace => ''

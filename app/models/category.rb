@@ -12,8 +12,8 @@ class Category
 
   default_scope -> { desc(:things_count) }
 
-  def things(desc_by = :fanciers_count)
-    Thing.unscoped.published.any_in(categories: [name]).desc(desc_by)
+  def things
+    Thing.unscoped.published.any_in(categories: [name])
   end
 
   class << self
