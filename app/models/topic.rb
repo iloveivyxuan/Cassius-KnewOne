@@ -14,5 +14,5 @@ class Topic < Post
     src.gsub(/!.*$/, "!#{version}")
   end
 
-  need_aftermath :create, :destroy
+  need_aftermath :create, :destroy, :vote
 end

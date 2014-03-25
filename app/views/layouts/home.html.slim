@@ -19,6 +19,8 @@
           = link_to_with_icon "我拥有 #{current_user.owns_count}", 'fa fa-fw fa-check', owns_profile_path
         = home_nav(:followings) do
           = link_to_with_icon "我关注 #{current_user.followings_count}", 'fa fa-fw fa-users', followings_profile_path
+        = home_nav(:followers) do
+          = link_to_with_icon "关注我 #{current_user.followers_count}", 'fa fa-fw fa-users', followers_profile_path
         = home_nav(:things) do
           = link_to_with_icon "我的分享 #{current_user.things_count}", 'fa fa-fw fa-magic', things_profile_path
         = home_nav(:reviews) do

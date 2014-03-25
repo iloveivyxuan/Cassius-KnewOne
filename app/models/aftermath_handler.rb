@@ -55,6 +55,13 @@ class AftermathHandler
       u.inc reviews_count: -1 if u.reviews_count > 0
     end
 
+    def review_vote(review, voter, love)
+      u = review.author
+      if love && u != voter
+        u.notify :love_review, context: review, sender: voter
+      end
+    end
+
     def user_follow(record, user)
       record.inc followings_count: 1
       user.inc followers_count: 1
@@ -96,6 +103,13 @@ class AftermathHandler
     def topic_destroy(topic)
       u = topic.author
       u.inc topics_count: -1 if u.topics_count > 0
+    end
+
+    def topic_vote(topic, voter, love)
+      u = topic.author
+      if love && u != voter
+        u.notify :love_topic, context: topic, sender: voter
+      end
     end
   end
 end
