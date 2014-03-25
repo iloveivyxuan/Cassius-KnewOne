@@ -503,22 +503,30 @@ html.signed_in_homepage {
   .thing {
     border-radius: 0;
 
-    figcaption {
+    .metas {
+      color: $gray;
+      margin-bottom: 10px;
 
-      .metas_group {
-        @media (max-width: $screen-lg-min) {
-          border-right: none;
-          display: block;
-          margin-right: 0;
-          padding-right: 0;
-          text-align: center;
-        }
+      .meta {
 
-        .meta.fa-heart {
+        &.fa-heart {
           color: $red;
         }
+
+        &.fa-check {
+          color: $green;
+        }
+      }
+
+      a.meta {
+        color: $gray;
       }
     }
+  }
+
+  .article_compact {
+    border-bottom: none;
+    margin-bottom: 0;
   }
 
   aside {
@@ -679,7 +687,7 @@ html.signed_in_homepage {
           border-top: none;
         }
 
-        > [class *= 'col-sm'] {
+        > [class *= 'col-sm']:first-child {
           border-top: none;
         }
       }
@@ -688,51 +696,48 @@ html.signed_in_homepage {
         border-top: $border-default;
         display: none;
       }
+    }
 
-      &.single {
-
-        .col-sm-12 {
-
-          @media (min-width: $screen-sm-min) {
-            float: none;
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 450px;
-          }
-        }
+    .col-sm-6 {
+      border-top: $border-default;
+      margin: {
+        bottom: 1em;
+        left: auto;
+        right: auto;
       }
 
-      .col-sm-6 {
-        border-top: $border-default;
-        margin: {
-          bottom: 1em;
-          left: auto;
-          right: auto;
-        }
-
-        @media (min-width: $screen-sm-min) {
-          border-top: none;
-          margin-top: 1em;
-        }
-
-        @media (min-width: $screen-md-min) {
-          margin-bottom: 1em;
-          margin-top: 1em;
-        }
-
-        &:first-child {
-
-          @media (min-width: $screen-sm-min) {
-            border-right: $border-default;
-          }
-        }
+      @media (min-width: $screen-sm-min) {
+        border-top: none;
+        margin-top: 1em;
       }
 
-      .col-sm-12 {
-        border-top: $border-default;
+      @media (min-width: $screen-md-min) {
+        margin-bottom: 1em;
+        margin-top: 1em;
+      }
+
+      &:first-child {
 
         @media (min-width: $screen-sm-min) {
-          border-top: none;
+          border-right: $border-default;
+        }
+      }
+    }
+
+    .col-sm-12 {
+      border-top: $border-default;
+
+      @media (min-width: $screen-sm-min) {
+        border-top: none;
+      }
+
+      &.thing {
+
+        @media (min-width: $screen-sm-min) {
+          float: none;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 450px;
         }
       }
     }

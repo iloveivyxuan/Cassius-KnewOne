@@ -50,7 +50,6 @@ figure.thing {
     h5,
     .figure_detail {
       text-align: center;
-      color: $gray;
       height: $font-size-base * $line-height-base;
       @include text-overflow;
     }
@@ -61,7 +60,7 @@ figure.thing {
       display: block;
       font-style: normal;
       margin: 0;
-      > * {margin-right: .5em;}
+      > * {margin-right: 1em;}
     }
   }
 
