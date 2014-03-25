@@ -330,7 +330,10 @@ html.groups_new {
 .group {
   .card_compact {
     img {width: 80px; height: 80px; }
-    h5 {color: $gray;}
+    h5 {
+      color: $gray;
+      @include text-overflow;
+    }
     .members_count {color: $text-muted;}
   }
 }
