@@ -15,12 +15,13 @@ class Group
 
   embeds_many :members do
     def add(user, role = :member)
-      @base.members.remove user
-      @base.members.create user_id: user.id, role: role
+      unless @base.has_member? user
+        @base.members.create user_id: user.id, role: role
+      end
     end
 
     def remove(user)
-      @base.members.destroy_all user_id: user.id
+      @base.members.where(user_id: user.id).destroy
     end
   end
   field :members_count, type: Integer, default: 0
