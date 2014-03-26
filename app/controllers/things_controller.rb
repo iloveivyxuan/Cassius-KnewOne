@@ -139,11 +139,15 @@ class ThingsController < ApplicationController
     respond_to { |format| format.js }
   end
 
+  def details
+    render layout: 'thing'
+  end
+
   private
 
   def thing_params
     params.require(:thing)
-    .permit(:title, :subtitle, :official_site,
+    .permit(:title, :subtitle, :summary, :official_site,
             :content, :description, photo_ids: [])
   end
 

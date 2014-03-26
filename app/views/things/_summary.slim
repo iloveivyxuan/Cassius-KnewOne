@@ -1,0 +1,7 @@
+- if tp.summary.present?
+  #thing_summary
+    blockquote
+      .author= tp.author
+      = tp.summary
+      = link_to_with_icon("查看详情", "fa fa-book",
+                                 details_thing_path(tp.thing), class: "details")

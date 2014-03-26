@@ -22,5 +22,5 @@
               i.fa.fa-check
               = tp.owners_count
           - if tp.thing.reviews.count > 0
-            = link_to_with_icon tp.reviews_count, "fa fa-book", thing_reviews_path(tp.thing),
+            = link_to_with_icon tp.reviews_count, "fa fa-pencil", thing_reviews_path(tp.thing),
             target: "_blank", class: "reviews_count"

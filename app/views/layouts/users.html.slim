@@ -45,7 +45,7 @@
       = li (action_name == 'things') do
         = link_to_with_icon "分享 #{@user.things_count}", 'fa fa-magic', things_user_path(@user)
       = li (action_name == 'reviews') do
-        = link_to_with_icon "评测 #{@user.reviews_count}", 'fa fa-book', reviews_user_path(@user)
+        = link_to_with_icon "评测 #{@user.reviews_count}", 'fa fa-pencil', reviews_user_path(@user)
       = li (action_name == 'topics') do
         = link_to_with_icon "话题 #{@user.topics_count}", 'fa fa-leaf', topics_user_path(@user)
       = li (action_name == 'groups') do

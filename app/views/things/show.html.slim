@@ -2,7 +2,7 @@
 
 - present @thing do |tp|
   = render "carousel", tp: tp
-  = tp.content
+  = render "summary", tp: tp
   = render 'reviews', tp: tp
   = render 'shared/comments', post: @thing, id: "thing_comments", auth: true
 

@@ -29,6 +29,14 @@ class ThingPresenter < PostPresenter
     end if thing.content.present?
   end
 
+  def summary
+    if thing.summary.present?
+      thing.summary
+    else
+      super(200)
+    end
+  end
+
   def price
     return @price if @price
     kinds_price = thing.valid_kinds.map(&:price).uniq
@@ -209,5 +217,9 @@ class ThingPresenter < PostPresenter
 
   def fanciers_count
     content_tag :span, thing.fanciers_count, class: "fanciers_count"
+  end
+
+  def author
+    present(thing.author).as_author
   end
 end
