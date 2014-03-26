@@ -1,3 +1,9 @@
 <% present @thing do |tp| %>
    $("#thing_actions .fanciers").html("<%=j render('shared/fancy', p: tp) %>")
+   $("#thing_<%=tp.thing.id %>")
+     .find('.fanciers_count')
+       .replaceWith("<%=j tp.fanciers_count %>")
+     .end()
+     .find('.thing_fancy')
+       .html("<%=j render('shared/fancy', p: tp) %>")
 <% end %>

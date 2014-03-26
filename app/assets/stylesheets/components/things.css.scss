@@ -16,9 +16,48 @@ figure.thing {
   padding: 1em;
   @include border-radius(8px);
 
-  > a {
+  &:hover {
+
+    .thing_fancy {
+      opacity: 1;
+    }
+  }
+
+  .thing_thumb {
     @include stretch-img;
-    display: block;
+  }
+
+  .thing_fancy {
+    @include transition(opacity .2s ease);
+
+    background-color: rgba(0, 3, 9, 0.6);
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    a {
+      display: block;
+      font-size: 50px;
+      left: 50%;
+      line-height: 50px;
+      margin: {
+        left: -25px;
+        top: -25px;
+      }
+      position: absolute;
+      top: 50%;
+
+      .fa {
+        margin-right: 0;
+      }
+
+      .fanciers_count,
+      small {
+        display: none;
+      }
+    }
   }
 
   .invest_progress {
@@ -54,7 +93,13 @@ figure.thing {
       @include text-overflow;
     }
 
-    h5 {margin: 1em 0 .5em;}
+    h5 {
+      margin: 1em 0 .5em;
+
+      a {
+        color: $text-color;
+      }
+    }
 
     .figure_detail {
       display: block;

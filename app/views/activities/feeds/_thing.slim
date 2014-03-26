@@ -1,7 +1,7 @@
 - thing = activity.reference
 - if thing
   - present thing do |tp|
-    figure.thing data-identifier="#{activity.identifier}"
+    figure.thing id="thing_#{tp.thing.id}" data-identifier="#{activity.identifier}"
       .metas
         = link_to activity.user, class: "meta" do
           = image_tag activity.user.avatar.url(:tiny), alt: activity.user.name, class: "img-circle"
@@ -11,15 +11,17 @@
       - tp.self_run?
         .pre_ribbon class="#{tp.stage}"
           span = tp.stage_text
-      = link_to thing, target: '_blank' do
+      .thing_thumb
         = image_tag tp.photo_url(:normal), alt: thing.title, class: 'lazy'
+        .thing_fancy.fanciers
+          = render "shared/fancy", p: tp
       figcaption
         h5 data-placement="top" data-toggle="tooltip" title="" data-original-title="#{tp.full_title}"
-          = tp.full_title
+          = link_to tp.full_title, thing, target: '_blank'
         .figure_detail
             span.fanciers
               i.fa.fa-heart
-              = thing.fanciers_count
+              sapn.fanciers_count = thing.fanciers_count
             span.owners
               i.fa.fa-check
               = thing.owners.size

@@ -24,12 +24,18 @@ i.fa_alone {
   color: $red;
   a {color: $red;}
 
-  .fancied {
-    .fa-heart-o {display: none !important;}
+  .fancied .fa-heart-o,
+  .unfancied .fa-heart {
+    display: none !important;
+  }
+
+  .unfancied .fa-heart-o,
+  .fancied .fa-heart {
+    @include animation-name(heartbeat);
+    @include animation-duration(.6s);
   }
 
   .unfancied {
-    .fa-heart {display: none !important;}
     &:hover {
       span:last-child {color: $red;}
     }

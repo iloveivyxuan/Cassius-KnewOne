@@ -1,11 +1,13 @@
 - present thing do |tp|
   li
-    figure.thing
+    figure.thing id="thing_#{tp.thing.id}"
       - if tp.self_run?
         = link_to tp.thing, class: "pre_ribbon #{tp.stage}" do
           span= tp.stage_text
-      = link_to (img_lazy ? tp.photo_lazy(size) : tp.photo(size)),
-        tp.thing, target: '_blank'
+      .thing_thumb
+        = img_lazy ? tp.photo_lazy(size) : tp.photo(size)
+        .thing_fancy.fanciers
+          = render "shared/fancy", p: tp
       - if tp.stage == :invest
         .invest_progress
           .progress data-progress=tp.invest_progress
@@ -13,7 +15,7 @@
           small= tp.invest_currency
       figcaption
         h5 data-toggle="tooltip" data-placement="top" title=tp.full_title
-          = tp.full_title
+          = link_to tp.full_title, tp.thing, target: '_blank'
         em.figure_detail
           - if tp.thing.fanciers.count > 0
             span.fanciers

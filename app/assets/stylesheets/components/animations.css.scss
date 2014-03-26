@@ -12,6 +12,20 @@
   100% {@include transform(rotate(360deg));}
 }
 
+
+// Heartbeat
+// --------------------------------------------------------------------------
+
+.heartbeat {
+  @include animation-name(heartbeat);
+  @include animation-duration(.75s);
+}
+
+@include keyframes(heartbeat) {
+  50% {@include scale(1.5);}
+  100% {@include scale(1);}
+}
+
 // Shake
 // --------------------------------------------------------------------------
 
