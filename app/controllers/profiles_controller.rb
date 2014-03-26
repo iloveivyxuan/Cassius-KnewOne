@@ -64,10 +64,10 @@ class ProfilesController < ApplicationController
 
   def follow_recommends
     if friends = current_user.recommend_users
-      current_user.followings.concat friends
+      current_user.batch_follow friends
     end
 
-    current_user.followings.concat User.where(:followers_count.gt => 10).desc(:followers_count).limit(10)
+    current_user.batch_follow User.where(:followers_count.gt => 10).desc(:followers_count).limit(10)
 
     redirect_to root_path(skip: true)
   end
