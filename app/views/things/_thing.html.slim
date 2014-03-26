@@ -6,8 +6,9 @@
           span= tp.stage_text
       .thing_thumb
         = img_lazy ? tp.photo_lazy(size) : tp.photo(size)
-        .thing_fancy.fanciers
-          = render "shared/fancy", p: tp
+        .thing_fancy
+          = link_to "", tp.thing, class: "thing_fancy_backdrop", target: "_blank"
+          .fanciers = render "shared/fancy", p: tp
       - if tp.stage == :invest
         .invest_progress
           .progress data-progress=tp.invest_progress
