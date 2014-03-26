@@ -202,6 +202,10 @@ class User
     self.followings<< user
   end
 
+  def batch_follow(users)
+    self.followings.concat users
+  end
+
   def unfollow(user)
     self.followings.delete user
   end
@@ -349,7 +353,7 @@ class User
     end
   end
 
-  need_aftermath :follow, :unfollow
+  need_aftermath :follow, :unfollow, :batch_follow
 
   protected
   def password_required?
