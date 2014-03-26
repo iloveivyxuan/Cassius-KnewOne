@@ -28,6 +28,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_stored_or edit_account_path, flash: {oauth: {status: 'success', text: '绑定成功。'}}
     else
       user = User.create_from_omniauth(omniauth)
+      session[:new_user] = true
       sign_in user
 
       redirect_to after_sign_in_path_for(user),
@@ -62,6 +63,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_stored_or edit_account_path, flash: {oauth: {status: 'success', text: '绑定成功。'}}
     else
       session[:omniauth] = Auth.omniauth_to_auth(omniauth)
+      session[:new_user] = true
 
       redirect_to new_user_session_path
     end

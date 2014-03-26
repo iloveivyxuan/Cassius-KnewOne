@@ -19,7 +19,7 @@ class Auth
   validates :provider, presence: true
   validates :uid, presence: true
 
-  delegate :share, :follow, :topic_wrapper, :to => :handler, :allow_nil => true
+  delegate :share, :follow, :topic_wrapper, :friend_ids, :to => :handler, :allow_nil => true
 
   def handler
     @handler ||= "#{provider}_auth_handler".classify.constantize.
@@ -36,6 +36,10 @@ class Auth
     return true if self.access_token.blank?
     return false if self.expires_at.blank?
     Time.now > self.expires_at
+  end
+
+  def friends_on_site
+    User.where(:'auths.provider' => self.provider, :'auths.uid'.in => friend_ids(self.uid).map(&:to_s))
   end
 
   class << self

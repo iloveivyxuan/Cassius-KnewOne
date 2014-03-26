@@ -79,6 +79,8 @@ Making::Application.routes.draw do
     get 'followers'
     get 'groups'
     get 'topics'
+    get 'recommend_users'
+    post 'follow_recommends'
   end
 
   namespace :haven do

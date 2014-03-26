@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 class ProfilesController < ApplicationController
   prepend_before_action :require_signed_in
-  before_action :set_editor_choices, only: [:fancies, :owns, :reviews, :things, :followings, :followers, :groups, :topics]
-  layout 'home', only: [:fancies, :owns, :reviews, :things, :followers, :followings, :groups, :topics]
+  before_action :set_editor_choices, except: [:update, :edit, :follow_recommends]
+  layout 'home', except: [:update, :edit]
 
   def update
     params[:user][:auto_update_from_oauth] = false
@@ -52,6 +52,24 @@ class ProfilesController < ApplicationController
 
   def topics
     @topics = current_user.topics.page(params[:page]).per(20)
+  end
+
+  def recommend_users
+    if @friends = current_user.recommend_users
+      @friends = @friends.page(params[:friends_page]).per(24)
+    end
+
+    @recommend_users = User.where(:followers_count.gt => 10).desc(:followers_count).page(params[:recommends_page]).per(24)
+  end
+
+  def follow_recommends
+    if friends = current_user.recommend_users
+      current_user.followings.concat friends
+    end
+
+    current_user.followings.concat User.where(:followers_count.gt => 10).desc(:followers_count).limit(10)
+
+    redirect_to root_path(skip: true)
   end
 
   private

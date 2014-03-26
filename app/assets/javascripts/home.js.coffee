@@ -73,7 +73,7 @@ window.Making = do (exports = window.Making || {}) ->
                 _$element.trigger 'loaded'
                 $('<div />')
                   .addClass('nomore')
-                  .html('没有更多了。')
+                  .html('没有更多了, <a href="profile/recommend_users">关注更多的小伙伴!</a>')
                   .insertAfter(_$element)
             .fail (xhr, status, error) ->
               _$element.trigger 'loaded'
