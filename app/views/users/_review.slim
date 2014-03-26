@@ -6,15 +6,18 @@
           = image_tag review.thing.cover.url(:small)
         figurecaption title=review.thing.title
           = review.thing.title
-      article.feed_main
-        header.feed_header
-          h4.feed_title = link_to rp.title, rp.path
-          .metas
-            = time_ago_tag(review.created_at, 'meta')
-            = rp.comments_count(class: 'meta')
-        section.feed_content
-          = rp.cover
-          p = rp.summary(120)
-        strong.feed_feature
-          i.fa.fa-plus
-          = review.lovers_count
+      = link_to rp.path, class: "feed_main"
+        article
+          header.feed_header
+            h4.feed_title = rp.title
+            .metas
+              = time_ago_tag(review.created_at, 'meta')
+              .comments_count.meta
+                i.fa.fa-comments-o
+                = review.comments.count
+          section.feed_content
+            = rp.cover
+            p = rp.summary(120)
+          strong.feed_feature
+            i.fa.fa-plus
+            = review.lovers_count

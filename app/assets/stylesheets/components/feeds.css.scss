@@ -86,14 +86,21 @@
 
   .feed_main {
     background-color: #eee;
+    display: block;
     padding: 20px;
     padding-bottom: 30px;
     position: relative;
 
     @media (min-width: $screen-sm-min) {
+      @include transition(background-color .2s ease);
+
       float: left;
       padding-bottom: 20px;
       width: 80%;
+    }
+
+    &:hover {
+      background-color: darken(#eee, 5%);
     }
   }
 
@@ -121,6 +128,7 @@
   }
 
   .feed_title {
+    color: $gray;
     font-size: 14px;
     line-height: 20px;
     margin: 0;
@@ -169,6 +177,7 @@
   }
 
   .feed_feature {
+    color: $text-color;
     bottom: 0;
     font-weight: normal;
     line-height: 30px;
