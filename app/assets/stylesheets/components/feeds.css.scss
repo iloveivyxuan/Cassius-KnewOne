@@ -113,16 +113,22 @@
       @include clearfix;
     }
 
-    > .metas {
+    .metas {
       bottom: 0;
       left: 20px;
-      line-height: 30px;
       position: absolute;
 
       @media (min-width: $screen-sm-min) {
         float: right;
-        line-height: 20px;
         position: static;
+      }
+    }
+
+    .meta {
+      line-height: 30px;
+
+      @media (min-width: $screen-sm-min) {
+        line-height: 20px;
       }
     }
   }
