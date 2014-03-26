@@ -585,6 +585,7 @@ html.signed_in_homepage {
         border-right: $border-default;
         color: $text-muted;
         display: inline-block;
+        margin-bottom: 5px;
         margin-right: .5em;
         padding-right: .5em;
 
@@ -643,6 +644,10 @@ html.signed_in_homepage {
         position: relative;
         text-align: center;
         z-index: 1;
+
+        a {
+          color: $gray;
+        }
       }
     }
   }

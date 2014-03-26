@@ -31,8 +31,7 @@ i.fa_alone {
 
   .unfancied .fa-heart-o,
   .fancied .fa-heart {
-    @include animation-name(heartbeat);
-    @include animation-duration(.6s);
+    @extend .heartbeat;
   }
 
   .unfancied {
