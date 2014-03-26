@@ -25,7 +25,7 @@ class: "btn btn-warning cart_login buy_button", data: {toggle: "modal", target: 
     = select_tag "cart_item[kind_id]", tp.options_for_kinds,
     class: "select required form-control", prompt: "请选择型号"
   = f.input :quantity, as: :integer, required: true, disabled: true,
-    input_html: {min: 1, max: 100}, hint: "您最多可以购买<strong>100</strong>件".html_safe
+    input_html: {min: 1, max: 100}, hint: "最多可购<strong>100</strong>件".html_safe
   .cart_estimated_prompt
     | 此产品将在
     i.fa.fa-bell-o.fa-lg
@@ -41,4 +41,4 @@ class: "btn btn-warning cart_login buy_button", data: {toggle: "modal", target: 
         | 加入购物车
     - else
       = link_to_login
-    = link_to_with_icon "在线帮助", "fa fa-question", '#olark_chat', class: "support"
+    = link_to_with_icon "帮助", "fa fa-question", '#olark_chat', class: "support"

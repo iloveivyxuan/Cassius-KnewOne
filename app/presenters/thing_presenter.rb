@@ -30,25 +30,14 @@ class ThingPresenter < PostPresenter
   end
 
   def price
+    return @price if @price
     kinds_price = thing.valid_kinds.map(&:price).uniq
     p = if kinds_price.present?
           kinds_price.min
         elsif thing.price.present?
           thing.price
         end
-
-    if p.to_i > 0
-      p_text = price_format p, thing.price_unit
-      p_text << " 起" if kinds_price.size > 1
-      content_tag :span, p_text, class: 'price'
-    end
-  end
-
-  def content_for_price
-    price_text = price
-    if price_text.present?
-      content_tag :div, price_text, class: "price", id: "price"
-    end
+    @price = p.to_i > 0 ? price_format(p, thing.price_unit) : nil
   end
 
   def shopping_desc
@@ -64,23 +53,34 @@ class ThingPresenter < PostPresenter
   def domestic
     return concept unless thing.shop.present?
     link_to_with_icon "网购", "fa fa-location-arrow fa-lg", buy_thing_path(thing),
-                      title: title, class: "btn btn-info buy_button track_event", target: "_blank", rel: '_nofollow',
-                      data: {
-                          action: "buy",
-                          category: "domestic",
-                          label: title
-                      }
+    title: title, class: "btn btn-info buy_button track_event", target: "_blank", rel: '_nofollow',
+    data: {
+      action: "buy",
+      category: "domestic",
+      label: title
+    }
+  end
+
+  def kick
+    return concept unless thing.shop.present?
+    link_to_with_icon "众筹", "fa fa-fire fa-lg", buy_thing_path(thing),
+    title: title, class: "btn btn-warning buy_button track_event", target: "_blank", rel: '_nofollow',
+    data: {
+      action: "buy",
+      category: "kick",
+      label: title
+    }
   end
 
   def abroad
     return concept unless thing.shop.present?
     link_to_with_icon "海淘", "fa fa-plane fa-lg", buy_thing_path(thing),
-                      title: title, class: "btn btn-info buy_button track_event", target: "_blank", rel: '_nofollow',
-                      data: {
-                          action: "buy",
-                          category: "abroad",
-                          label: title
-                      }
+    title: title, class: "btn btn-info buy_button track_event", target: "_blank", rel: '_nofollow',
+    data: {
+      action: "buy",
+      category: "abroad",
+      label: title
+    }
   end
 
   def dsell
@@ -92,18 +92,7 @@ class ThingPresenter < PostPresenter
   end
 
   def buy
-    if respond_to? thing.stage
-      send thing.stage
-    else
-      concept
-    end
-  end
-
-  def content_for_buy
-    buy_text = buy
-    if buy_text.present?
-      content_tag :div, buy_text, class: "buy"
-    end
+    @buy ||= respond_to?(thing.stage) ? send(thing.stage) : concept
   end
 
   def official_site
@@ -112,7 +101,7 @@ class ThingPresenter < PostPresenter
         thing.official_site = "http://#{thing.official_site}"
       end
       link_to_with_icon "官方网站", "fa-li fa fa-globe", thing.official_site,
-                        target: "_blank", title: "官方信息", rel: '_nofollow'
+      target: "_blank", title: "官方信息", rel: '_nofollow'
     end
   end
 

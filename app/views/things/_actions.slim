@@ -1,17 +1,19 @@
 .shop
-  = tp.content_for_price
+  - if tp.price.present?
+    #price.price= tp.price
   - if user_signed_in?
     = tp.shopping_desc
-  = tp.content_for_buy
-
-.categories
-  = render partial: "things/category", collection: tp.categories
+  - if tp.buy
+    .buy= tp.buy
 
 .actions
   .fanciers= render "shared/fancy", p: tp
   .owners= render "things/own", tp: tp
   .share= render "things/share"
   .new_review= render 'reviews/link_to_new'
+
+.categories
+  = render partial: "things/category", collection: tp.categories
 
 ul.operations.fa-ul
   li= link_to_with_icon "分享到微信", "fa-li fa fa-qrcode", "#thing_share_wechat", title: "微信朋友圈分享",
@@ -23,19 +25,17 @@ ul.operations.fa-ul
   - if tp.thing.official_site.present?
     li= tp.official_site
   - if can? :create, Supplier
-    li= link_to_with_icon "供应此产品", "fa-li fa fa-beer", "#thing_supplier", title: "提供产品", \
+    li= link_to_with_icon "我想供货", "fa-li fa fa-beer", "#thing_supplier", title: "提供产品", \
                           data: {toggle: "modal", keyboard: false}
   - else
-    li= link_to_with_icon "供应此产品", "fa-li fa fa-beer", "#login-modal", title: "提供产品", \
+    li= link_to_with_icon "我想供货", "fa-li fa fa-beer", "#login-modal", title: "提供产品", \
                           data: {toggle: "modal", keyboard: false}
   - if can? :update, tp.thing
     li= link_to_with_icon "编辑", "fa-li fa fa-edit", edit_thing_path(tp.thing), title: "编辑"
   - if can? :pro_edit, tp.thing
-    li= link_to_with_icon "销售信息管理", "fa-li fa fa-cogs", edit_haven_thing_path(tp.thing), title: "销售管理"
-  - if can? :pro_edit, tp.thing
-    li= link_to_with_icon "发奖", "fa-li fa fa-gift", new_lottery_path(thing: tp.thing), title: "发奖"
+    li= link_to_with_icon "高级", "fa-li fa fa-cogs", edit_haven_thing_path(tp.thing), title: "销售管理"
   - if can? :destroy, tp.thing
-    li= link_to_with_icon "删除产品", "fa-li fa fa-trash-o", thing_path(tp.thing), title: "删除产品",
+    li= link_to_with_icon "删除", "fa-li fa fa-trash-o", thing_path(tp.thing), title: "删除产品",
       method: :delete, data: {confirm: "您确定要删除这个产品吗?"}
 
 - if tp.thing.valid_kinds.present?
@@ -52,3 +52,7 @@ ul.operations.fa-ul
   = render 'things/wechat', tp: tp
   = render 'things/supplier', tp: tp
   = render 'things/group_fancy', tp: tp
+
+- content_for :script do
+  javascript:
+    Making.CartItemNew();

@@ -18,7 +18,6 @@ class Thing < Post
   field :price_unit, type: String, default: "¥"
   field :shopping_desc, type: String, default: ""
   field :period, type: DateTime
-  field :target, type: Float, default: 0
   CURRENCY_LIST = %w{¥ $ € £}
 
   field :priority, type: Integer, default: 0
@@ -30,6 +29,7 @@ class Thing < Post
   field :stage, type: Symbol, default: :concept
   STAGES = {
       concept: "研发中",
+      kick: "众筹中",
       domestic: "国内导购",
       abroad: "国外海淘",
       dsell: "自销"

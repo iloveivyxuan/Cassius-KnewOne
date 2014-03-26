@@ -98,3 +98,27 @@
     }
   }
 }
+
+.nav-layout {
+  margin-bottom: 2em;
+
+  > li a {
+    span:first-of-type {
+      display: none;
+      margin-right: .5em;
+    }
+  }
+
+  @media screen and (max-width: $screen-xs-max) {
+    > li {
+      display: table-cell;
+      width: 1%;
+      float: none;
+      > a { margin-bottom: 0; }
+    }
+  }
+
+  @media screen and (min-width: $screen-sm-min) {
+    > li a span:first-of-type {display: inline;}
+  }
+}

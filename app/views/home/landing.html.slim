@@ -48,7 +48,6 @@
                   span.owners
                     i.fa.fa-check
                     = tp.owners_count
-                  = tp.price
           .reviews
             - thing.reviews.limit(3).each do |review|
               - present review do |rp|

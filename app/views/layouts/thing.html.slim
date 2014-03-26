@@ -7,16 +7,12 @@
     - content_for :sharing_cover
       = image_tag tp.photo_url(:middle)
 
-    / header= render "things/header", tp: tp
-    / section
-    /   nav= render "things/nav", tp: tp
-    /   .thing_content= yield
-    header#thing_header= render "things/header", tp: tp
-    section#thing_actions= render "things/actions", tp: tp
-    section#thing_content= yield
-
-- content_for :script do
-  javascript:
-    Making.CartItemNew();
+    #thing_title
+      h1= link_to(tp.title, tp.thing)
+      h2= tp.subtitle
+    aside#thing_actions= render "things/actions", tp: tp
+    main
+      nav= render "things/nav", tp: tp
+      #thing_content= yield
 
 = render template: 'layouts/application'

@@ -10,39 +10,8 @@ html.topics_create,
 html.topics_show {
   #wrapper {
     @include wrapper(grid, 2);
-
-    > header {
-      @include make-md-column-push(9);
-    }
-
-    > section {
-      @include make-md-column-pull(3);
-    }
-
-    nav {
-      margin-bottom: 2em;
-
-      .nav li a {
-        span:first-of-type {
-          display: none;
-          margin-right: .5em;
-        }
-      }
-
-      @media screen and (max-width: $screen-xs-max) {
-        .nav li {
-          /* TODO: Apply bootstrap nav justified to xs screen, maybe it's general */
-          display: table-cell;
-          width: 1%;
-          float: none;
-          > a { margin-bottom: 0; }
-        }
-      }
-
-      @media screen and (min-width: $screen-sm-min) {
-        .nav li a span:first-of-type {display: inline;}
-      }
-    }
+    > header { @include make-md-column-push(9); }
+    > section { @include make-md-column-pull(3); }
   }
 
   .flash_topics, .hot_groups {
@@ -295,7 +264,7 @@ html.topics_show {
     }
   }
 
-  .group_content {
+  #group_content {
     .new_topic {margin: 1em 0;}
   }
 }

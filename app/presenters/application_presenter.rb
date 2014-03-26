@@ -18,6 +18,6 @@ class ApplicationPresenter
   end
 
   def price_format(price, unit="￥")
-    number_to_currency(price, precision: 2, unit: unit)
+    number_to_currency(price, precision: 0, unit: unit)
   end
 end
