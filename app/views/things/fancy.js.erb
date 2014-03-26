@@ -8,7 +8,8 @@
       .replaceWith("<%=j tp.fanciers_count %>")
     .end()
     .find('.thing_fancy')
-      .html("<%=j render('shared/fancy', p: tp) %>")
-      .find('.fa:visible')
-        .addClass('heartbeat')
+      .find('.fanciers')
+        .html("<%=j render('shared/fancy', p: tp) %>")
+        .find('.fa:visible')
+          .addClass('heartbeat')
 <% end %>
