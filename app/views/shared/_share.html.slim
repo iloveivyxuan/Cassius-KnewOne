@@ -16,7 +16,6 @@
                 - if current_user.has_auth? k
                   label.checkbox.inline
                     = check_box_tag 'providers[]', k, true
-                    = content_tag :i, '', class: "fa fa-#{k}"
                     = v
             = f.input :pic, as: :hidden, input_html: {value: pic}
           .modal-footer

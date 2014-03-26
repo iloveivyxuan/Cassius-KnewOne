@@ -28,8 +28,7 @@ class Auth
 
   PROVIDERS = {
       'weibo' => '新浪微博',
-      'twitter' => 'Twitter',
-      'wechat' => '微信'
+      'twitter' => 'Twitter'
   }
 
   def expired?
