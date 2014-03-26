@@ -125,6 +125,7 @@ window.Making = do (exports = window.Making || {}) ->
             .trigger 'loaded'
             .children('.js_activity_packing').remove().end()
             .find('.js_activity_packing')
+            .removeAttr('data-identifier')
             .removeClass('js_activity_packing')
             .show()
           .end()

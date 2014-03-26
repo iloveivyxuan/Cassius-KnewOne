@@ -22,8 +22,9 @@
 //= require bootstrap-select
 //= require sisyphus
 //= require_tree ../templates
-//= require common
 //= require making
+//= require util
+//= require common
 //= require notificationbox
 //= require home
 //= require orders
