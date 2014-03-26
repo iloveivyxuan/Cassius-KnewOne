@@ -29,11 +29,6 @@ i.fa_alone {
     display: none !important;
   }
 
-  .unfancied .fa-heart-o,
-  .fancied .fa-heart {
-    @extend .heartbeat;
-  }
-
   .unfancied {
     &:hover {
       span:last-child {color: $red;}
