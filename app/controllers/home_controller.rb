@@ -7,7 +7,7 @@ class HomeController < ApplicationController
 
   def index
     if user_signed_in?
-      if current_user.followings.empty? && session[:new_user]
+      if current_user.followings.empty? && !session[:skip]
         if @friends = current_user.recommend_users
           @friends = @friends.page(params[:friends_page]).per(48)
         end
@@ -96,6 +96,6 @@ class HomeController < ApplicationController
   end
 
   def skip_follow_user
-    session.delete :new_user if params[:skip].present?
+    session[:skip] = true if params[:skip].present?
   end
 end
