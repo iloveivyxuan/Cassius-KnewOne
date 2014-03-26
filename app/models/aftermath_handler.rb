@@ -47,6 +47,8 @@ class AftermathHandler
       u = review.author
 
       u.inc reviews_count: 1
+
+      ReviewNotificationWorker.perform_async(review.id.to_s, :new_review, sender_id: u.id.to_s)
     end
 
     def review_destroy(review)
