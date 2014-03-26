@@ -1,5 +1,8 @@
 - present thing do |tp|
-  figure
-    = link_to tp.path, target: '_blank'
+  figure class="thing thing_#{tp.thing.id}"
+    .thing_thumb
       = tp.photo(:normal)
+      .thing_fancy
+        = link_to "", tp.path, class: "thing_fancy_backdrop", target: "_blank"
+        .fanciers= render "shared/fancy", p: tp
     figcaption = link_to tp.full_title, tp.path, target: '_blank'
