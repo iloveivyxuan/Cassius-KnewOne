@@ -7,7 +7,7 @@
           = image_tag activity.user.avatar.url(:tiny), alt: activity.user.name, class: "img-circle"
         = link_to activity.user.name, activity.user, class: 'meta'
         i.meta.fa class="#{feed_type_icon_class(activity)}"
-        = time_ago_tag(topic.created_at, 'meta')
+        = feed_type_text activity
       figure
         - present topic.group do |gp|
           = link_to gp.path do
