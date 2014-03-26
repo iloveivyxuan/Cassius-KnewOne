@@ -412,11 +412,10 @@ html.stories_show {
 
   .cart_estimated_prompt {
     color: $text-muted;
-    i {margin-left: .5em;}
     time {
       color: $green;
       font-size: 1em;
-      margin-right: .5em;
+      margin: 0 .5em;
     }
   }
 
