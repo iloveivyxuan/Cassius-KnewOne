@@ -147,10 +147,11 @@ class User
   end
 
   def set_profiles_by_auth(auth)
-    self.name = (auth.name || auth.nickname).gsub(' ', '-')
-    if self.name_was && self.name_was.include?("#{self.name}x")
-      reset_name!
-    elsif User.where(name: self.name).size > 1 || self.name.blank?
+    if self.name.blank?
+      self.name = (auth.name || auth.nickname).gsub(' ', '-') || 'KnewOne小伙伴'
+    end
+
+    if (!persisted? && User.where(name: self.name).size > 0) || self.name.blank?
       self.name += "x#{SecureRandom.uuid[0..4]}"
     end
 
@@ -340,6 +341,13 @@ class User
 
   # category
   include CategoryReferable
+
+  # recommend users from oauth(only support weibo)
+  def recommend_users
+    if auth = auths.select {|a| a.provider == 'weibo'}.first
+      auth.friends_on_site.desc(:followers_count)
+    end
+  end
 
   need_aftermath :follow, :unfollow
 

@@ -3,22 +3,30 @@ class HomeController < ApplicationController
   layout 'application'
   skip_after_action :store_location
   before_action :set_editor_choices, only: [:index]
+  before_action :skip_follow_user, only: [:index]
 
   def index
     if user_signed_in?
-      @activities = current_user.relate_activities.visible.page(params[:page]).per(50)
+      if current_user.followings.empty? && session[:new_user]
+        if @friends = current_user.recommend_users
+          @friends = @friends.page(params[:friends_page]).per(48)
+        end
 
-      if request.xhr?
-        if @activities.empty?
-          head :no_content
-        else
-          render 'home/index_xhr', layout: false
-        end
+        @recommend_users = User.where(:followers_count.gt => 10).desc(:followers_count).page(params[:recommends_page]).per(48)
+
+        render 'home/index_nofollowing', layout: 'home'
       else
-        if @activities.empty?
-          @activities = Activity.visible.where(:type.in => %i(new_thing own_thing fancy_thing)).limit(50)
+        @activities = current_user.relate_activities.visible.page(params[:page]).per(50)
+
+        if request.xhr?
+          if @activities.empty?
+            head :no_content
+          else
+            render 'home/index_xhr', layout: false
+          end
+        else
+          render layout: 'home'
         end
-        render 'home/index', layout: 'home'
       end
     else
       @landing_cover = LandingCover.find_for_home
@@ -85,5 +93,9 @@ class HomeController < ApplicationController
 
   def set_editor_choices
     @editor_choices = Thing.rand_prior_records 1
+  end
+
+  def skip_follow_user
+    session.delete :new_user if params[:skip].present?
   end
 end

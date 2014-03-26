@@ -24,6 +24,10 @@ class TwitterAuthHandler
     "@#{topic} "
   end
 
+  def friend_ids(uid, count)
+    []
+  end
+
   def self.parse_image(auth)
     auth[:info][:image].sub('_normal', '')
   end

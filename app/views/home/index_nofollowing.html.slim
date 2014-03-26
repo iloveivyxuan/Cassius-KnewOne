@@ -1,0 +1,17 @@
+header.page-header
+  h1
+    | 欢迎加入KnewOne，快关注小伙伴正式开始新奇酷之旅吧！
+  = link_to_with_icon "全部关注", "fa fa-plus", follow_recommends_profile_path, class: 'btn btn-primary', method: :post
+  = link_to_with_icon "跳过", "fa fa-forward", root_path(skip: true), class: 'btn btn-link'
+
+section
+  header
+    | 已在KnewOne安家的小伙伴们
+  ul.user_list = render @friends
+  = paginate @friends, param_name: 'friends_page'
+
+section
+  header
+    | KnewOne的活跃小伙伴
+  ul.user_list = render @recommend_users
+  = paginate @recommend_users, param_name: 'recommends_page'

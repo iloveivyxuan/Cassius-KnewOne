@@ -22,6 +22,10 @@ class WeiboAuthHandler
     end
   end
 
+  def friend_ids(uid, count = 500)
+    client.friendships.friends_ids(uid: uid, count: count).ids
+  end
+
   def topic_wrapper(topic)
     "@#{topic} "
   end
