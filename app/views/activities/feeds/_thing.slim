@@ -1,7 +1,7 @@
 - thing = activity.reference
 - if thing
   - present thing do |tp|
-    figure.thing id="thing_#{tp.thing.id}" data-identifier="#{activity.identifier}"
+    figure class="thing thing_#{tp.thing.id}" data-identifier="#{activity.identifier}"
       .metas
         = link_to activity.user, class: "meta" do
           = image_tag activity.user.avatar.url(:tiny), alt: activity.user.name, class: "img-circle"

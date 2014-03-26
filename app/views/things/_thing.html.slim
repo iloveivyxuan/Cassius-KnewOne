@@ -1,6 +1,6 @@
 - present thing do |tp|
   li
-    figure.thing id="thing_#{tp.thing.id}"
+    figure class="thing thing_#{tp.thing.id}"
       - if tp.self_run?
         = link_to tp.thing, class: "pre_ribbon #{tp.stage}" do
           span= tp.stage_text
