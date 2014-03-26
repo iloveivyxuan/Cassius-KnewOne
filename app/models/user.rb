@@ -41,6 +41,7 @@ class User
   field :expenses_count, type: Integer, default: 0
 
   field :admin_note, type: String, default: ''
+  field :recommend_priority, type: Integer, default: 0
 
   ## Database authenticatable
   field :email, :type => String

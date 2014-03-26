@@ -9,10 +9,10 @@ class HomeController < ApplicationController
     if user_signed_in?
       if current_user.followings.empty? && !session[:skip]
         if @friends = current_user.recommend_users
-          @friends = @friends.page(params[:friends_page]).per(48)
+          @friends = @friends.page(params[:friends_page]).per(21)
         end
 
-        @recommend_users = User.where(:followers_count.gt => 10).desc(:followers_count).page(params[:recommends_page]).per(48)
+        @recommend_users = User.desc(:recommend_priority, :followers_count).limit(21)
 
         render 'home/index_nofollowing', layout: 'home'
       else
