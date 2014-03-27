@@ -495,26 +495,6 @@ html.stories_show {
   color: $text-muted;
 }
 
-#reviews {
-  .review {
-    &:not(:last-child) {
-      padding-bottom: 2em;
-      border-bottom: 1px dashed #ccc;
-      margin-bottom: 2em;
-    }
-
-    article {
-      @media screen and (min-width: $screen-sm-min) {
-        .author, .score {display: inline;}
-      }
-
-      .details {
-        i {margin-left: 1em;}
-      }
-    }
-  }
-}
-
 #timeline {
   .story {
     position: relative;
@@ -532,17 +512,6 @@ html.stories_show {
       padding-bottom: .625em;
     }
   }
-}
-
-.thing_module {
-  h4 {
-    color: $text-muted;
-    .btn {margin-left: 2em;}
-    padding-bottom: .5em;
-    border-bottom: 5px solid #eee;
-    i.fa-angle-double-right {float: right;}
-  }
-  ul {margin: 1em 0;}
 }
 
 html.things_index {

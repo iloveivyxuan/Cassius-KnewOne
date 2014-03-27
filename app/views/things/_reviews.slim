@@ -1,11 +1,4 @@
 - reviews = tp.reviews(5)
 - if reviews.present?
-  #thing_reviews.thing_module
-    h4
-      i.fa.fa-pencil
-      | 评测
-      = render 'reviews/link_to_new'
-      = link_to_with_icon "", "fa fa-double-angle-right fa-lg",
-      thing_reviews_path(@thing)
-    ul#reviews
-      = render reviews
+  #thing_reviews
+    = render reviews

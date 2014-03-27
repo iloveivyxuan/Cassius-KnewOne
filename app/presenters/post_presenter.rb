@@ -14,8 +14,8 @@ class PostPresenter < ApplicationPresenter
     end
   end
 
-  def created_at
-    time_ago_tag(@object.created_at)
+  def created_at(css_class="")
+    time_ago_tag(@object.created_at, css_class)
   end
 
   def author_avatar(size)

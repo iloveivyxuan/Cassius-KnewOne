@@ -1,14 +1,21 @@
 - if review.thing
-  - present review do |rp|
-    li.review
-      article.post
-        header
-          h3= link_to rp.title, rp.path
-          = rp.author_tag
-          = rp.score
-        section
-          .post_content
-            = rp.summary
-        footer
-          = rp.lovers_count
-          = rp.comments_count
+  section.feed_article
+    - present review do |rp|
+      figure
+        = rp.author_avatar(:small)
+        figurecaption
+          = rp.author_name
+      = link_to rp.path, class: "feed_main" do
+        article
+          header.feed_header
+            h4.feed_title= rp.title
+            .metas
+              = rp.created_at 'meta'
+              .comments_count.meta
+                i.fa.fa-comments-o
+                = review.comments.count
+          section.feed_content
+            = rp.cover
+            p = rp.summary(120)
+          strong.feed_feature
+            = rp.lovers_count
