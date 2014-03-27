@@ -200,11 +200,11 @@ class User
   end
 
   def follow(user)
-    self.followings<< user
+    self.followings<< user unless followed? user
   end
 
   def batch_follow(users)
-    self.followings.concat users
+    users.each { |u| follow u }
   end
 
   def unfollow(user)
@@ -354,7 +354,7 @@ class User
     end
   end
 
-  need_aftermath :follow, :unfollow, :batch_follow
+  need_aftermath :follow, :unfollow
 
   protected
   def password_required?

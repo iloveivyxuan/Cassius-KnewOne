@@ -71,11 +71,6 @@ class AftermathHandler
       user.notify :following, sender: record
     end
 
-    def user_batch_follow(user, followings)
-      followings.inc followers_count: 1
-      user.set followings_count: user.followings.count
-    end
-
     def user_unfollow(record, user)
       record.inc followings_count: -1 if record.followings_count > 0
       user.inc followers_count: -1 if user.followers_count > 0

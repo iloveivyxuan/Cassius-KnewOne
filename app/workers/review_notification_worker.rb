@@ -3,7 +3,9 @@ class ReviewNotificationWorker
   sidekiq_options :queue => :notifications
 
   def perform(review_id, type, options = {})
-    r = Review.find(review_id)
+    r = Review.where(id: review_id).first
+    return unless r
+
     t = r.thing
     user_ids = (t.fancier_ids + t.owner_ids + [t.author.id]).uniq - [r.author.id]
 

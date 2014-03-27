@@ -37,7 +37,7 @@
         .explore_content_item.fade class="#{'active in' if i == 0}" id="category_#{c.slug}"
           - present thing do |tp|
             figure.thing
-              = link_to tp.path do
+              = link_to tp.path, class: "thing_thumb" do
                 = tp.photo(:normal)
               figcaption
                 h5 = tp.full_title
@@ -68,3 +68,17 @@
 
 footer#footer
   small 粤ICP备13057487号
+
+- content_for :script do
+  javascript:
+    $(function() {
+      var $tab_trigger = $('.explore').find('[data-toggle="tab"]'),
+          max = $tab_trigger.length - 1,
+          i = 0;
+
+      setInterval(function() {
+        $tab_trigger.eq(++i).trigger('click');
+
+        if (i == max) i = -1;
+      }, 5000);
+    });
