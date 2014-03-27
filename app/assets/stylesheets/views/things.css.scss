@@ -1,5 +1,6 @@
 html.things_show,
 html.things_comments,
+html.things_groups,
 html.things_details,
 html.reviews_index,
 html.reviews_new,
@@ -26,6 +27,15 @@ html.stories_show {
       padding: {
         bottom: 1em;
         top: 1em;
+      }
+    }
+
+    .nav-layout {
+      li a {
+        span {display: none;}
+        @media screen and (min-width: $screen-sm-min) {
+          span {display: inline;}
+        }
       }
     }
 

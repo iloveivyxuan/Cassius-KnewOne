@@ -143,6 +143,11 @@ class ThingsController < ApplicationController
     render layout: 'thing'
   end
 
+  def groups
+    @groups = @thing.fancy_groups.page(params[:page]).per(24)
+    render layout: 'thing'
+  end
+
   private
 
   def thing_params

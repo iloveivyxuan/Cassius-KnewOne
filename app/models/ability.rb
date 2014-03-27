@@ -113,7 +113,7 @@ class Ability
     can :read, Lottery
     can :read, User
     can [:owns, :fancies, :things, :reviews, :activities, :followings, :followers, :groups, :topics], User
-    can [:buy, :details, :comments, :wechat_qr, :random], Thing
+    can [:buy, :details, :groups, :comments, :wechat_qr, :random], Thing
   end
 
   def editor

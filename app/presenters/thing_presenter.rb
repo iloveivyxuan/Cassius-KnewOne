@@ -219,6 +219,10 @@ class ThingPresenter < PostPresenter
     content_tag :span, thing.fanciers_count, class: "fanciers_count"
   end
 
+  def groups_count
+    show_count thing.fancy_groups.count
+  end
+
   def author
     present(thing.author).as_author
   end
