@@ -90,27 +90,28 @@ body {
         }
       }
 
-      .form-group {
+      .search {
         margin-bottom: 0;
-        position: relative;
         width: 100%;
-        @include search-input;
 
-        input[type="search"] {
+        .form-control {
           background-color: #fcfcfc;
           font-size: 12px;
           height: 26px;
           line-height: 14px;
-          padding: 5px 10px 5px 30px;
+          padding: {
+            bottom: 5px;
+            top: 5px;
+          }
           width: 100%;
 
           &:focus {
             background-color: #fff;
           }
+        }
 
-          + .fa {
-            top: 6px;
-          }
+        .fa {
+          top: 6px;
         }
       }
     }

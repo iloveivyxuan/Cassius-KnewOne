@@ -19,7 +19,8 @@
         .form-group.search
           label.sr-only 搜索 KnewOne
           input.form-control name='q' placeholder="搜索 KnewOne"
-          .fa.fa-search
+          i.fa.fa-search
+          i.fa.fa-times
 
   .explore_body
     nav.explore_nav
@@ -80,5 +81,5 @@ footer#footer
         $tab_trigger.eq(++i).trigger('click');
 
         if (i == max) i = -1;
-      }, 5000);
+      }, 7000);
     });
