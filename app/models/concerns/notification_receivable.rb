@@ -29,7 +29,7 @@ module NotificationReceivable
         elsif options[:sender_id]
           sender = User.where(id: options[:sender_id]).first
         end
-        Notification.build(self, type, options).save if self.followings.include?(sender) || !defined?(sender)
+        Notification.build(self, type, options).save if !defined?(sender) || self.followings.include?(sender)
       when :all
         Notification.build(self, type, options).save
       else
