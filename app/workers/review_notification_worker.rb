@@ -4,8 +4,6 @@ class ReviewNotificationWorker
 
   def perform(review_id, type, options = {})
     r = Review.where(id: review_id).first
-    return unless r
-
     t = r.thing
     user_ids = (t.fancier_ids + t.owner_ids + [t.author.id]).uniq - [r.author.id]
 
