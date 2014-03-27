@@ -77,8 +77,8 @@ html.stories_show {
 
 #thing_content {
   #reviews_sort {
-    border: none;
-    margin-bottom: 0;
+    border: none !important;
+    margin-bottom: 0 !important;
   }
 
   .edit_post {padding-bottom: 0;}
@@ -488,9 +488,11 @@ html.stories_show {
 
 #thing_reviews {
   .new_review {
-    @extend .btn;
-    @extend .btn-default;
-    @extend .pull-right;
+    @include clearfix;
+    a {
+      color: $gray;
+      margin-bottom: 1em;
+    }
   }
 }
 

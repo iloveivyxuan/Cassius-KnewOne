@@ -1,4 +1,11 @@
 - reviews = tp.reviews(5)
 - if reviews.present?
   #thing_reviews
-    = render reviews
+    .new_review
+      - if user_signed_in?
+        = link_to_with_icon "我要写评测", "fa fa-pencil", new_thing_review_path(tp.thing),
+        class: "pull-left btn btn-default"
+      - if tp.thing.reviews.count > 5
+        = link_to_with_icon "更多", "fa fa-angle-right fa-lg", thing_reviews_path(tp.thing),
+        class: "pull-right"
+    .reviews= render reviews
