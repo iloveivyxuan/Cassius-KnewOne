@@ -148,6 +148,7 @@ html.stories_show {
     font-size: 16px;
 
     .author {
+      display: none;
       float: left;
       width: 14%;
       text-align: center;
@@ -157,6 +158,10 @@ html.stories_show {
         font-size: $font-size-base;
       }
       img {@extend .img-circle;}
+
+      @media screen and (min-width: $screen-sm-min) {
+        display: block;
+      }
     }
 
     > p {
