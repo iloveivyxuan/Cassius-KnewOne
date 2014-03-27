@@ -83,10 +83,6 @@ class ThingPresenter < PostPresenter
                       }
   end
 
-  def invest
-    dsell
-  end
-
   def dsell
     if thing.valid_kinds.blank?
       concept
@@ -200,33 +196,6 @@ class ThingPresenter < PostPresenter
 
   def target
     number_to_currency thing.target, precision: 0, unit: "￥"
-  end
-
-  def investors_count
-    show_count thing.investors.count
-  end
-
-  def invest_amount
-    thing.investors.map(&:amount).reduce(&:+)
-  end
-
-  def invest_currency
-    number_to_currency invest_amount, precision: 0, unit: "￥"
-  end
-
-  def content_for_invest_amount
-    return unless thing.investors.count > 0
-    "<em>#{invest_currency}</em><span> / </span><em>#{target}</em>".html_safe
-  end
-
-  def invest_progress
-    amount = invest_amount
-    return 0 if thing.target.blank? or thing.target <= 0 or amount.blank?
-    amount/thing.target
-  end
-
-  def invest_percentage
-    number_to_percentage invest_progress*100, precision: 2
   end
 
   def kinds

@@ -75,27 +75,6 @@ figure.thing {
     width: 100%;
   }
 
-  .invest_progress {
-    left: 0;
-    margin-bottom: -1px;
-    position: absolute;
-    width: 100%;
-    z-index: 1;
-
-    .progress {
-      border-radius: 0;
-      height: 1px;
-      margin-bottom: 0;
-    }
-
-    small {
-      color: $green;
-      left: 1em;
-      position: absolute;
-      top: -1.5em;
-    }
-  }
-
   figcaption {
     margin-left: -1em;
     margin-right: -1em;
@@ -153,9 +132,6 @@ figure.thing {
       @include opacity(0.8);
     }
 
-    &.invest {
-      span {@include background($brand-info);}
-    }
     &.ship {
       letter-spacing: .25em;
       span {@include background($brand-warning);}

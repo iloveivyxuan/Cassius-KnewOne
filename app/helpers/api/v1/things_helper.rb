@@ -12,10 +12,6 @@ module Api
         end
       end
 
-      def invest_amount(thing)
-        thing.investors.map(&:amount).reduce(&:+)
-      end
-
       def stage(thing)
         if thing.stage == :dsell
           if thing.kinds.size == 0

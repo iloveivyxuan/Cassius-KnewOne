@@ -32,7 +32,6 @@ class Thing < Post
       concept: "研发中",
       domestic: "国内导购",
       abroad: "国外海淘",
-      invest: "众筹",
       dsell: "自销"
   }
   validates :stage, inclusion: {in: STAGES.keys}
@@ -59,7 +58,7 @@ class Thing < Post
 
   scope :published, -> { lt(created_at: Time.now) }
   scope :prior, -> { gt(priority: 0).desc(:priority, :created_at) }
-  scope :self_run, -> { send :in, stage: [:dsell, :invest] }
+  scope :self_run, -> { send :in, stage: [:dsell] }
   scope :price_between, ->(from, to) { where :price.gt => from, :price.lt => to }
   default_scope -> { desc(:created_at) }
 
@@ -69,8 +68,6 @@ class Thing < Post
 
   embeds_many :kinds
   accepts_nested_attributes_for :kinds, allow_destroy: true
-
-  embeds_many :investors
 
   def photos
     Photo.find_with_order photo_ids
@@ -137,7 +134,7 @@ class Thing < Post
   end
 
   def self_run?
-    [:invest, :dsell].include? stage
+    [:dsell].include? stage
   end
 
   def cal_related_thing_ids(limit = 10, cate_power = 50, own_power = 2, fancy_power = 1)

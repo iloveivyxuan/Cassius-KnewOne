@@ -9,11 +9,6 @@
         .thing_fancy
           = link_to "", tp.thing, class: "thing_fancy_backdrop", target: "_blank"
           .fanciers = render "shared/fancy", p: tp
-      - if tp.stage == :invest
-        .invest_progress
-          .progress data-progress=tp.invest_progress
-            .progress-bar.progress-bar-success role="progressbar" style="width: #{tp.invest_percentage}" aria-valuenow=tp.invest_percentage aria-valuemin="0" aria-valuemax="100"
-          small= tp.invest_currency
       figcaption
         h5 data-toggle="tooltip" data-placement="top" title=tp.full_title
           = link_to tp.full_title, tp.thing, target: '_blank'

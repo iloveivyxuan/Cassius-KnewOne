@@ -1,15 +1,3 @@
-- if tp.stage == :invest || tp.thing.investors.present?
-  .investors
-    h4
-      i.fa.fa-fire
-      | 众筹
-      small<= tp.period
-    p
-      = tp.content_for_invest_amount
-    .progress
-      .progress-bar.progress-bar-success role="progressbar" style="width: #{tp.invest_percentage}"
-        span.sr-only= tp.invest_percentage
-
 .shop
   = tp.content_for_price
   - if user_signed_in?
@@ -44,8 +32,6 @@ ul.operations.fa-ul
     li= link_to_with_icon "编辑", "fa-li fa fa-edit", edit_thing_path(tp.thing), title: "编辑"
   - if can? :pro_edit, tp.thing
     li= link_to_with_icon "销售信息管理", "fa-li fa fa-cogs", edit_haven_thing_path(tp.thing), title: "销售管理"
-  - if can? :pro_edit, tp.thing and tp.thing.stage == :invest
-    li= link_to_with_icon "众筹管理", "fa-li fa fa-fire", admin_thing_investors_path(tp.thing), title: "众筹管理"
   - if can? :pro_edit, tp.thing
     li= link_to_with_icon "发奖", "fa-li fa fa-gift", new_lottery_path(thing: tp.thing), title: "发奖"
   - if can? :destroy, tp.thing

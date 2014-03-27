@@ -1,10 +1,16 @@
 - provide :keywords, "#{@thing.title}, #{@thing.subtitle}"
+- provide :feed, thing_url(@thing, format: "atom")
 
 - content_for :content do
   - present @thing do |tp|
     - page_title tp.full_title
     - content_for :sharing_cover
       = image_tag tp.photo_url(:middle)
+
+    / header= render "things/header", tp: tp
+    / section
+    /   nav= render "things/nav", tp: tp
+    /   .thing_content= yield
     header#thing_header= render "things/header", tp: tp
     section#thing_actions= render "things/actions", tp: tp
     section#thing_content= yield

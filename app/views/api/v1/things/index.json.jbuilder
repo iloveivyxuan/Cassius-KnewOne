@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 json.array!(@things) do |thing|
   thing_stage = stage(thing)
 
@@ -11,12 +12,6 @@ json.array!(@things) do |thing|
   json.cover_url thing.cover.url
   json.stage thing_stage
   json.stage_text ::Thing::STAGES[thing_stage]
-  if thing.stage == :invest
-    json.investors_count thing.investors.count
-    json.invest_amount invest_amount(thing)
-    json.invest_target thing.target
-    json.invest_unit '￥'
-  end
   if thing.self_run?
     json.has_stock thing.has_stock?
   end

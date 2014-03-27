@@ -111,7 +111,6 @@ class Ability
     can :fancies, Group
     can :read, Topic
     can :read, Lottery
-    can :read, Investor
     can :read, User
     can [:owns, :fancies, :things, :reviews, :activities, :followings, :followers, :groups, :topics], User
     can :buy, Thing

@@ -9,9 +9,7 @@ html.reviews_update,
 html.stories_index,
 html.stories_new,
 html.stories_edit,
-html.stories_show,
-html.investors_index,
-html.investors_admin {
+html.stories_show {
 
   #wrapper {
     @include wrapper(grid);
@@ -235,66 +233,6 @@ html.investors_admin {
           margin-right: 10%;
           vertical-align: -1px;
         }
-      }
-    }
-  }
-
-  .investors {
-    margin-bottom: 1em;
-    color: $text-muted;
-
-    h4 {
-      margin: 0;
-      > * {vertical-align: text-bottom;}
-      i {
-        color: $red;
-      }
-      time {
-        font-size: 1em;
-        margin: 0 .2em;
-        color: $red;
-      }
-    }
-
-    p {
-      margin: 0;
-      em {font-style: normal;}
-      em:first-child {
-        color: $green;
-      }
-    }
-
-    .progress {
-      display: none;
-      margin: 1em 0 0;
-    }
-
-    @media screen and (min-width: $screen-sm-min) {
-      @include clearfix;
-      h4 {float: left;}
-      p {
-        float: right;
-        margin-top: .5em;
-        em {font-size: 1.2em;}
-      }
-    }
-
-    @media screen and (min-width: $screen-md-min) {
-      padding-bottom: 2em;
-      border-bottom: $border-default;
-      margin-bottom: 2em;
-      h4, p {float: none;}
-      h4 {i {
-            font-size: 2em;
-            vertical-align: 3px;
-          }}
-      .progress {display: block;}
-    }
-
-    @media screen and (min-width: $screen-lg-min) {
-      p {
-        em {font-size: 1.5em;}
-        span {font-size: 1.4em;}
       }
     }
   }
@@ -556,24 +494,6 @@ html.investors_admin {
 .things_wrapper {
   @media screen and (min-width: 512px) {
     padding: 0 7%;
-  }
-}
-
-#thing_investors {
-  text-align: center;
-
-  li {
-    display: inline-block;
-    margin: 1.6em;
-    width: 80px;
-    text-align: center;
-    img {@extend .img-circle;}
-    > * {
-      display: block;
-      margin-bottom: .5em;
-      color: $text-muted;
-      @include text-overflow;
-    }
   }
 }
 

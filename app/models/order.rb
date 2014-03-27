@@ -460,17 +460,9 @@ class Order
   need_aftermath :confirm_payment!
 
   private
+
   def after_confirm
     self.user.inc karma: Settings.karma.order
-
-    order_items.each do |item|
-      thing = item.thing
-      if thing.stage == :invest
-        investor = thing.investors.find_or_initialize_by(user: self.user)
-        investor.amount += item.price
-        investor.save
-      end
-    end
   end
 
   class<< self

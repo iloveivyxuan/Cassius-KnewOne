@@ -155,11 +155,6 @@ Making::Application.routes.draw do
       member { post 'vote' }
     end
     resources :stories
-    resources :investors do
-      collection do
-        get 'admin'
-      end
-    end
   end
 
   resources :posts, only: [] do
