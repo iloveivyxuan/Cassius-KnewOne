@@ -67,22 +67,6 @@
   }
 }
 
-@mixin search-input() {
-  input[type="search"] {
-    border: 1px solid $input-border;
-    padding-left: 30px;
-    position: relative;
-    @include border-radius($border-radius-base);
-
-    + .fa {
-      color: $text-muted;
-      left: 10px;
-      position: absolute;
-      top: 7px;
-    }
-  }
-}
-
 @mixin stretch($offset-top: 0, $offset-right: 0, $offset-bottom: 0, $offset-left: 0) {
   position: absolute;
   @if $offset-top {
