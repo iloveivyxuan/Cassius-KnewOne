@@ -200,6 +200,7 @@ class User
   end
 
   def follow(user)
+    return if user == self
     self.followings<< user unless followed? user
   end
 
