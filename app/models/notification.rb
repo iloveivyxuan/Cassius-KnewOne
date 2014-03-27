@@ -78,13 +78,16 @@ class Notification
   def set_data(options = {})
     self.context = options.delete :context if options[:context]
 
-    if options[:sender_id].present? && (user = User.where(id: options.delete(:sender_id)).first)
-      self.senders<< user unless self.senders.include? user
-    end
 
     if sender = options.delete(:sender)
-      self.senders<< sender unless self.senders.include? sender
+      self.sender_ids<< sender.id.to_s
     end
+
+    if options[:sender_id].present? && (sender = User.where(id: options.delete(:sender_id)).first)
+      self.sender_ids<< sender.id.to_s
+    end
+
+    self.sender_ids.uniq!
 
     options.each do |k, v|
       self.data[k] = v
