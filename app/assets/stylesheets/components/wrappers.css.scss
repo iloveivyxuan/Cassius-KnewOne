@@ -55,7 +55,6 @@
           @include make-md-column(9, $gutter: 40px);
 
           @media screen and (min-width: $screen-md-min) {
-            border-right: $border-default;
             padding: {
               left: 2em;
               right: 2em;
@@ -67,6 +66,7 @@
           @include make-md-column(3, $gutter: 40px);
 
           @media screen and (min-width: $screen-md-min) {
+            border-left: $border-default;
             padding: {
               left: 2em;
               right: 2em;
