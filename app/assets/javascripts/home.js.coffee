@@ -94,6 +94,12 @@ window.Making = do (exports = window.Making || {}) ->
           _inbox_12    = []
           _$row_last   = null
 
+          if _$collection.length is 0
+            $('<div />')
+              .addClass('nomore')
+              .html('没有更多了, <a href="profile/recommend_users">关注更多的小伙伴!</a>')
+              .insertAfter(_$element)
+
           _$collection
             .addClass('js_activity_packing')
             .each (index) ->

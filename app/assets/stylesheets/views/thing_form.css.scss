@@ -70,7 +70,10 @@ html.things_edit {
     }
   }
 
-  #thing_title {text-align: left;}
+  #thing_title {
+    margin-bottom: 0;
+    text-align: left;
+  }
 
   #new_photo {
     margin-bottom: 2em;
