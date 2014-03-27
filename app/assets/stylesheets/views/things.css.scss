@@ -30,15 +30,6 @@ html.stories_show {
       }
     }
 
-    .nav-layout {
-      li a {
-        span {display: none;}
-        @media screen and (min-width: $screen-sm-min) {
-          span {display: inline;}
-        }
-      }
-    }
-
     #thing_content {
       > * {
         padding-bottom: 2em;
@@ -146,11 +137,10 @@ html.stories_show {
     @include clearfix;
     color: $gray;
     font-size: 16px;
-    margin: {left: 1em; right: 1em;}
 
     .author {
       float: left;
-      width: 80px;
+      width: 14%;
       text-align: center;
       margin: 0;
       > a {
@@ -160,9 +150,18 @@ html.stories_show {
       img {@extend .img-circle;}
     }
 
+    > p {
+      float: left;
+      width: 76%;
+      word-wrap: break-word;
+    }
+
     a.details {
-      font-size: $font-size-base;
-      margin-left: 1em;
+      float: right;
+      display: block;
+      width: 10%;
+      text-align: right;
+      color: $text-muted;
     }
   }
 }

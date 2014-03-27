@@ -2,6 +2,17 @@
   #thing_summary
     blockquote
       .author= tp.author
-      = tp.summary
-      = link_to_with_icon("查看详情", "fa fa-book",
-                                 details_thing_path(tp.thing), class: "details")
+      p= tp.summary(240)
+      = link_to_with_icon "", "fa fa-chevron-circle-down fa-2x", "#thing_details",
+      title: "查看详情", class: "details", data: {toggle: "collapse", parent: "#thing_summary"}
+    #thing_details.collapse
+      = tp.content
+
+- content_for :script do
+  javascript:
+    $('#thing_details').on('shown.bs.collapse', function (event) {
+      $('#thing_summary a.details i').removeClass('fa-chevron-circle-down').addClass('fa-chevron-circle-up');
+    });
+    $('#thing_details').on('hiden.bs.collapse', function (event) {
+      $('#thing_summary a.details i').removeClass('fa-chevron-circle-up').addClass('fa-chevron-circle-down');
+    });

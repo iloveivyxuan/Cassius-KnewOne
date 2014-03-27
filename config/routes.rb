@@ -148,7 +148,6 @@ Making::Application.routes.draw do
       get 'buy'
       get 'comments'
       get 'related'
-      get 'details'
       get 'groups'
       post 'group_fancy'
     end

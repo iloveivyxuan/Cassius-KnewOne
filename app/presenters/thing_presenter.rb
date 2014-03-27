@@ -29,14 +29,6 @@ class ThingPresenter < PostPresenter
     end if thing.content.present?
   end
 
-  def summary
-    if thing.summary.present?
-      thing.summary
-    else
-      super(200)
-    end
-  end
-
   def price
     return @price if @price
     kinds_price = thing.valid_kinds.map(&:price).uniq
@@ -50,9 +42,9 @@ class ThingPresenter < PostPresenter
 
   def shopping_desc
     return if thing.shopping_desc.blank?
-    summary = strip_tags(thing.shopping_desc).truncate(48).html_safe
+    su = strip_tags(thing.shopping_desc).truncate(48).html_safe
     render partial: 'things/shopping_desc',
-    locals: {title: title, summary: summary, details: thing.shopping_desc.html_safe}
+    locals: {title: title, summary: su, details: thing.shopping_desc.html_safe}
   end
 
   def concept

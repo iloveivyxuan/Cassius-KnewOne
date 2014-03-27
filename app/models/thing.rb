@@ -7,7 +7,6 @@ class Thing < Post
   slug :title, history: true
   field :subtitle, type: String, default: ""
   field :official_site, type: String, default: ""
-  field :summary, type: String, default: ""
   field :photo_ids, type: Array, default: []
   field :categories, type: Array, default: []
   after_save :update_categories
