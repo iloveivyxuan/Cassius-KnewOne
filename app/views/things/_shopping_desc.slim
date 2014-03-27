@@ -8,4 +8,8 @@
           button.close type="button" data-dismiss="modal"
             | &times;
           h4= title
-        .modal-body= details
+        .modal-body
+          = details
+          - if tp.thing.valid_kinds.present?
+            .kinds
+              ul= render tp.thing.valid_kinds

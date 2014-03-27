@@ -44,7 +44,7 @@ class ThingPresenter < PostPresenter
     return if thing.shopping_desc.blank?
     su = strip_tags(thing.shopping_desc).truncate(48).html_safe
     render partial: 'things/shopping_desc',
-    locals: {title: title, summary: su, details: thing.shopping_desc.html_safe}
+    locals: {title: title, summary: su, details: thing.shopping_desc.html_safe, tp: self}
   end
 
   def concept

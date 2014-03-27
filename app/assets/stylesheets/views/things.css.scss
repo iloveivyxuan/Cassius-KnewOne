@@ -30,6 +30,15 @@ html.stories_show {
       }
     }
 
+    .nav-layout {
+      li a {
+        span {display: none;}
+        @media screen and (min-width: $screen-sm-min) {
+          span {display: inline;}
+        }
+      }
+    }
+
     #thing_content {
       > * {
         padding-bottom: 2em;
@@ -354,14 +363,27 @@ html.stories_show {
     }
   }
 
-  .related_things {
+  .fancy_groups, .related_things {
     display: none;
     margin-top: 1em;
     border-top: $border-default;
     padding-top: 1em;
-
     h4 {color: $text-muted;}
 
+    @media screen and (min-width: $screen-md-min) {
+      display: block;
+    }
+  }
+
+  .fancy_groups {
+    > ul > li {
+      @media (min-width: $screen-sm-min) {
+        @include make-sm-column(12);
+      }
+    }
+  }
+
+  .related_things {
     > ul > li {
       float: left;
       width: 46%;
@@ -374,10 +396,6 @@ html.stories_show {
           @include text-overflow;
         }
       }
-    }
-
-    @media screen and (min-width: $screen-md-min) {
-      display: block;
     }
   }
 }

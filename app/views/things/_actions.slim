@@ -38,9 +38,10 @@ ul.operations.fa-ul
     li= link_to_with_icon "删除", "fa-li fa fa-trash-o", thing_path(tp.thing), title: "删除产品",
       method: :delete, data: {confirm: "您确定要删除这个产品吗?"}
 
-- if tp.thing.valid_kinds.present?
-  .kinds
-    ul= render tp.thing.valid_kinds
+- if tp.thing.fancy_groups.present?
+  .fancy_groups
+    h4 收藏此产品的小组
+    ul.groups = render tp.thing.fancy_groups(5)
 
 - if tp.related_things.present?
   .related_things
