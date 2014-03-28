@@ -1,5 +1,5 @@
 #group_fancy_thing.modal.fade
-  .modal-dialog
+  .modal-dialog.modal-sm
     .modal-content
       = form_tag group_fancy_thing_path(@thing), method: :post, remote: true do
         .modal-header
@@ -7,9 +7,8 @@
           h4.modal-title 小组收藏
         .modal-body
           = hidden_field_tag :group_id
-          .form-group.row
-            .col-sm-6
-              = text_field_tag 'group_name', nil,
+          .form-group
+            = text_field_tag 'group_name', nil,
               class: 'form-control', required: true, placeholder: '小组名称'
           .alert.alert-success.hide
             | 已收藏成功
@@ -20,3 +19,6 @@
 - content_for :script do
   javascript:
     Making.GroupFuzzy('#group_name', '#group_id');
+    $('#group_fancy_thing').on('shown.bs.modal', function() {
+      $('#group_name').focus();
+    });
