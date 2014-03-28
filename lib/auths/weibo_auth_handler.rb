@@ -23,7 +23,11 @@ class WeiboAuthHandler
   end
 
   def friend_ids(uid, count = 500)
-    client.friendships.friends_ids(uid: uid, count: count).ids
+    begin
+      client.friendships.friends_ids(uid: uid, count: count).ids
+    rescue OAuth2::Error
+      []
+    end
   end
 
   def topic_wrapper(topic)
