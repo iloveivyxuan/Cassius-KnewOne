@@ -1,4 +1,7 @@
 $('#group_fancy_thing .alert-success').removeClass('hide');
 setTimeout(function() {
-  $('#group_fancy_thing .alert-success').addClass('hide');
-}, 5000);
+  $('#group_fancy_thing')
+    .modal('hide')
+    .find('.alert-success')
+      .addClass('hide');
+}, 3000);
