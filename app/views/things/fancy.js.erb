@@ -1,5 +1,5 @@
 <% present @thing do |tp| %>
-  $("#thing_actions .fanciers")
+  $(".thing_<%= tp.thing.id %>_aside .actions .fanciers")
     .html("<%=j render('shared/fancy', p: tp) %>")
     .find('.fa:visible')
       .addClass('heartbeat')
