@@ -193,7 +193,7 @@ class Order
   end
 
   def can_confirm_free?
-    (freed? || self.expense_balance == total_price) && !confirmed?
+    (freed? || self.expense_balance == total_price) && freed?
   end
 
   def can_ship?
