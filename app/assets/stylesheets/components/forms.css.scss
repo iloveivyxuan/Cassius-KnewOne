@@ -1,10 +1,42 @@
 // Forms.
 //
 
+
 .form-group {
 
   @media (min-width: $screen-md-min) {
     position: relative;
+  }
+
+  &.search {
+    position: relative;
+
+    .form-control {
+      border: 1px solid $input-border;
+      border-radius: $border-radius-base;
+      padding: {
+        left: 30px;
+        right: 30px;
+      }
+    }
+
+    .fa {
+      color: $text-muted;
+      margin: 0;
+      position: absolute;
+      top: 10px;
+    }
+
+    .fa-search,
+    .fa-spinner {
+      left: 10px;
+    }
+
+    .fa-times {
+      cursor: pointer;
+      display: none;
+      right: 10px;
+    }
   }
 
   .selectpicker_label {

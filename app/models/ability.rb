@@ -82,6 +82,7 @@ class Ability
     can :invite, Group do |group|
       group.has_member? user
     end
+    can :fancy, Group
 
     can :vote, Topic
     can :create, Topic do |topic|
