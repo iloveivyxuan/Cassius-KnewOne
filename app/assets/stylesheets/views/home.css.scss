@@ -500,30 +500,6 @@ html.signed_in_homepage {
     }
   }
 
-  .thing {
-    border-radius: 0;
-
-    .metas {
-      color: $gray;
-      margin-bottom: 10px;
-
-      .meta {
-
-        &.fa-heart {
-          color: $red;
-        }
-
-        &.fa-check {
-          color: $green;
-        }
-      }
-
-      a.meta {
-        color: $gray;
-      }
-    }
-  }
-
   .feed_article {
     border-bottom: none;
     margin-bottom: 0;
@@ -667,6 +643,30 @@ html.signed_in_homepage {
   }
 
   #wrapper {
+
+    .thing {
+      border-radius: 0;
+
+      .metas {
+        color: $gray;
+        margin-bottom: 10px;
+
+        .meta {
+
+          &.fa-heart {
+            color: $red;
+          }
+
+          &.fa-check {
+            color: $green;
+          }
+        }
+
+        a.meta {
+          color: $gray;
+        }
+      }
+    }
 
     > .promotion {
       @include center-block;
