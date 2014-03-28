@@ -1,5 +1,5 @@
 <%= paginator.render do -%>
-<div class="pagination_wrapper">
+<footer class="page_footer">
   <ul class="pagination">
     <%= first_page_tag unless current_page.first? %>
     <%= prev_page_tag unless current_page.first? %>
@@ -13,5 +13,5 @@
     <%= next_page_tag unless current_page.last? %>
     <%= last_page_tag unless current_page.last? %>
   </ul>
-</div>
+</footer>
 <% end -%>
