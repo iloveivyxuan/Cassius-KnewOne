@@ -67,7 +67,7 @@ class ProfilesController < ApplicationController
       current_user.batch_follow friends
     end
 
-    current_user.batch_follow User.desc(:recommend_priority, :followers_count).limit(10)
+    current_user.batch_follow User.desc(:recommend_priority, :followers_count).limit(21)
 
     redirect_to root_path(skip: true)
   end

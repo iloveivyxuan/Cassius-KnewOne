@@ -7,11 +7,11 @@ header.page-header
 - if @friends
   section
     header
-      | 已在KnewOne安家的小伙伴们
+      | 你的新浪微博中已经有这些小伙伴在KnewOne安家啦：
     ul.user_list = render @friends
     = paginate @friends, param_name: 'friends_page'
 
 section
   header
-    | KnewOne的活跃小伙伴
+    | 关注这些KnewOne达人，让你的KnewOne之旅更加精彩：
   ul.user_list = render @recommend_users
