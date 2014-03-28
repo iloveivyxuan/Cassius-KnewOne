@@ -6,17 +6,12 @@
           button.close data-dismiss="modal" aria-hidden="true" &times;
           h4.modal-title 小组收藏
         .modal-body
-          = hidden_field_tag :group_id
           .form-group.row
             .col-sm-6
-              = text_field_tag 'group_name', nil,
-              class: 'form-control', required: true, placeholder: '小组名称'
+              = select_tag 'group_id', options_from_collection_for_select(current_user.joined_groups, "id", "name"),
+                           class: 'form-control', required: true, prompt: '选择一个小组'
           .alert.alert-success.hide
             | 已收藏成功
         .modal-footer
-          button.btn.btn-default data-dismiss="modal" 取消
+          button.btn.btn-default data-dismiss="modal" 关闭
           button.btn.btn-primary type="submit" 提交
-
-- content_for :script do
-  javascript:
-    Making.GroupFuzzy('#group_name', '#group_id');

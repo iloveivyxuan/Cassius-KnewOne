@@ -355,6 +355,10 @@ class User
     end
   end
 
+  def joined_groups
+    Group.where(:'members.user_id' => self.id.to_s)
+  end
+
   need_aftermath :follow, :unfollow
 
   protected
