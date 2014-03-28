@@ -49,6 +49,17 @@ html.stories_show {
       > *:last-child {border: none;}
     }
   }
+
+  #group_fancy_thing {
+
+    .twitter-typeahead {
+      width: 100%;
+    }
+
+    .alert {
+      margin-bottom: 0;
+    }
+  }
 }
 
 #thing_title {
