@@ -234,6 +234,11 @@ Making::Application.routes.draw do
         end
         resources :comments, controller: :thing_comments, only: [:index, :show, :create, :destroy]
       end
+
+      resources :categories, only: [:index, :show] do
+        resources :things, only: [:index]
+      end
+
       resources :users, only: [:index, :show] do
         member do
           get 'fancies'

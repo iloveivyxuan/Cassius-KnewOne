@@ -89,6 +89,10 @@ class Thing < Post
     self.categories = text.split(',').map(&:strip).reject(&:blank?).uniq
   end
 
+  def category_records
+    Category.any_in(name: self.categories)
+  end
+
   def update_categories
     return unless categories_changed?
     old = categories_change.first || []

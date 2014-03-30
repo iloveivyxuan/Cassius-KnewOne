@@ -4,8 +4,8 @@ module Api
       before_action :set_thing, except: [:index]
 
       def index
-        if params[:category_id]
-          c = Category.find(params[:category_id])
+        if c_id = (params[:category_id] || params[:category])
+          c = Category.find(c_id)
           scope = c.things
         else
           scope = Thing
