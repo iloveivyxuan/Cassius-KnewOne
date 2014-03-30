@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 json.array!(@things) do |thing|
   thing_stage = stage(thing)
 

@@ -1,6 +1,6 @@
 module Api
   module V1
-    class GroupsController < ApplicationController
+    class GroupsController < ApiController
       before_action :set_group, except: [:index]
 
       def index
