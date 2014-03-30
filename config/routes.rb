@@ -272,7 +272,7 @@ Making::Application.routes.draw do
         end
       end
 
-      resources :messages, only: [:index] do
+      resources :notifications, only: [:index] do
         collection do
           post 'mark'
         end

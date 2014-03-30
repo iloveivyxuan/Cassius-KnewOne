@@ -53,7 +53,9 @@ module Api
         render 'api/v1/shared/error', status: ex.status
       end
 
-      helper 'api/v1/api'
+      %w(api orders reviews things users).each do |h|
+        helper "api/v1/#{h}"
+      end
 
       INVALID_CODES = {
           :missing_field => 501,

@@ -1,7 +1,6 @@
 module Api
   module V1
     class ThingsController < ApiController
-      helper 'api/v1/things'
       before_action :set_thing, except: [:index]
 
       def index

@@ -1,7 +1,6 @@
 module Api
   module V1
     class UsersController < ApiController
-      helper 'api/v1/users'
       before_action :set_user, only: [:show, :reviews, :things, :owns, :fancies]
       doorkeeper_for :all
 
