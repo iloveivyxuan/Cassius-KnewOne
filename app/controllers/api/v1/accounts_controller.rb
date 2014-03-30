@@ -4,19 +4,6 @@ module Api
       doorkeeper_for :all
 
       def show
-
-      end
-
-      def profile
-
-      end
-
-      def email
-
-      end
-
-      def password
-
       end
     end
   end

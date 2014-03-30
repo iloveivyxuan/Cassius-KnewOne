@@ -2,7 +2,7 @@ json.id @order.id.to_s
 json.html_url order_path(@order)
 json.order_no @order.order_no
 json.address do
-  json.partial! 'api/v1/addresses/address', address: @order.address
+  json.partial! 'api/v1/official/addresses/address', address: @order.address
 end
 json.deliver_no @order.deliver_no if @order.deliver_no.present?
 json.trade_no @order.trade_no if @order.trade_no.present?
@@ -19,5 +19,5 @@ json.deliver_price @order.deliver_price if @order.deliver_price > 0
 json.total_price @order.total_price
 json.should_pay_price @order.should_pay_price
 
-json.items @order.order_items, partial: 'api/v1/orders/order_item', as: :item
-json.rebates @order.rebates, partial: 'api/v1/orders/rebate', as: :rebate
+json.items @order.order_items, partial: 'api/v1/official/orders/order_item', as: :item
+json.rebates @order.rebates, partial: 'api/v1/official/orders/rebate', as: :rebate

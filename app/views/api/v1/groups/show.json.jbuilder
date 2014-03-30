@@ -9,6 +9,9 @@ json.qualification @group.qualification
 json.members_count @group.members_count
 json.topics_count @group.topics_count
 json.created_at @group.created_at
+json.fancies group.fancies do |t|
+  json.partial! 'api/v1/things/thing', thing: t
+end
 json.recent_topics do
   json.array! @topics, partial: 'api/v1/topics/topic', as: :topic
 end

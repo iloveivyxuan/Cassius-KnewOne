@@ -263,6 +263,15 @@ Making::Application.routes.draw do
         resources :fancies, only: [:show, :update, :destroy]
         resources :owns, only: [:show, :update, :destroy]
         resources :followings, only: [:show, :update, :destroy]
+      end
+
+      resources :notifications, only: [:index] do
+        collection do
+          post 'mark'
+        end
+      end
+
+      scope module: 'official' do
         resource :cart, only: [:show] do
           resources :items, controller: :cart_items, only: [:index, :show, :create, :update, :destroy]
         end
@@ -275,18 +284,6 @@ Making::Application.routes.draw do
         end
         resources :coupons, only: [:index, :update]
         resources :addresses, except: [:new, :edit, :show]
-
-        member do
-          patch 'profile'
-          patch 'email'
-          patch 'password'
-        end
-      end
-
-      resources :notifications, only: [:index] do
-        collection do
-          post 'mark'
-        end
       end
 
       get 'oauth/default_callback', to: 'oauth#default_callback'
