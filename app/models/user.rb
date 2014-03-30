@@ -98,11 +98,12 @@ class User
       end
     end
 
-      def create_from_mobile_app(provider, uid)
+    def create_from_mobile_app(provider, profile)
       create! do |user|
-        user.auths << Auth.new(provider: provider, uid: uid)
+        auth = Auth.from_profile(provider, profile)
+        user.auths << auth
 
-        user.name = "小伙伴#{SecureRandom.uuid[0..5]}"
+        user.set_profiles_by_auth(auth)
       end
     end
 
@@ -159,6 +160,14 @@ class User
     self.location = auth.location
     self.description = auth.description
     self.remote_avatar_url = auth.avatar_url
+    self.gender = case auth.gender
+                    when 'm' then
+                      '男'
+                    when 'f' then
+                      '女'
+                    else
+                      nil
+                  end
   end
 
   ## Roles
@@ -337,10 +346,10 @@ class User
   include Feedable
 
   def relate_activities(type_from_users = %i(new_thing own_thing fancy_thing new_review love_review new_topic),
-                        type_from_sources = %i(new_review new_topic))
+      type_from_sources = %i(new_review new_topic))
     user_ids = self.following_ids.map(&:to_s)
-    source_unions = (self.fancy_ids + self.own_ids).map {|id| "Thing_#{id.to_s}"} +
-                    Group.find_by_user(self).map {|u| "Group_#{u.id.to_s}"}
+    source_unions = (self.fancy_ids + self.own_ids).map { |id| "Thing_#{id.to_s}" } +
+        Group.find_by_user(self).map { |u| "Group_#{u.id.to_s}" }
     Activity.or({:user_id.in => user_ids, :type.in => type_from_users},
                 {:source_union.in => source_unions, :user_id.ne => self.id.to_s, :type.in => type_from_sources})
   end
@@ -350,7 +359,7 @@ class User
 
   # recommend users from oauth(only support weibo)
   def recommend_users
-    if auth = auths.select {|a| a.provider == 'weibo'}.first
+    if auth = auths.select { |a| a.provider == 'weibo' }.first
       auth.friends_on_site.desc(:followers_count)
     end
   end

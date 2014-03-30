@@ -35,7 +35,7 @@ class WeiboAuthHandler
   end
 
   def self.parse_image(auth)
-    auth[:extra][:raw_info][:avatar_large] + ".jpg"
+    (auth[:avatar_large] || auth[:extra][:raw_info][:avatar_large]) + ".jpg"
   end
 
   private

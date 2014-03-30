@@ -33,5 +33,5 @@ Making::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'making.dev' }
 
-  config.log_level = :debug
+  config.log_level = :info
 end
