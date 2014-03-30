@@ -6,9 +6,9 @@ module Api
       def index
         if c_id = (params[:category_id] || params[:category])
           c = Category.find(c_id)
-          scope = c.things
+          scope = c.things.unscoped.published
         else
-          scope = Thing
+          scope = Thing.unscoped.published
         end
 
         scope = case params[:sort_by]
