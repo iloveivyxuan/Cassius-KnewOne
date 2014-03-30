@@ -77,7 +77,9 @@ class Ability
       group.has_admin? user
     end
     can :join, Group
-    can :leave, Group
+    can :leave, Group do |group|
+      group.founder != user
+    end
     can :fuzzy, Group
     can :invite, Group do |group|
       group.has_member? user

@@ -15,8 +15,9 @@ section.group_info
           span
             - if can? :update, gp.group
               = link_to_with_icon "管理", "fa fa-cog", edit_group_path(gp.group)
-            = link_to_with_icon "退出", "fa fa-chevron-right", leave_group_path(gp.group),
-            method: :delete, class: "leave_group", data: {confirm: "真的要退出吗?"}
+            - if can? :leave, gp.group
+              = link_to_with_icon "退出", "fa fa-chevron-right", leave_group_path(gp.group),
+                  method: :delete, class: "leave_group", data: {confirm: "真的要退出吗?"}
           = button_tag type: "button", class: "btn btn-default btn-sm",
           data: {toggle: 'modal', target: '#group_invitation'} do
             i.fa.fa-beer
