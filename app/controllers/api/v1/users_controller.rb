@@ -5,7 +5,7 @@ module Api
       doorkeeper_for :all
 
       def index
-        render_error :nyi, 'NYI', {user_id: current_user.id.to_s}
+        render_error :nyi, 'NYI'
       end
 
       def show
@@ -29,6 +29,14 @@ module Api
 
       def groups
         @groups = @user.joined_groups
+      end
+
+      def followers
+        @followers = @user.followers.page(params[:page]).per(params[:per_page] || 24)
+      end
+
+      def followings
+        @followings = @user.followings.page(params[:page]).per(params[:per_page] || 24)
       end
 
       private

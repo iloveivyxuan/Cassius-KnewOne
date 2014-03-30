@@ -246,6 +246,8 @@ Making::Application.routes.draw do
           get 'reviews'
           get 'things'
           get 'groups'
+          get 'followings'
+          get 'followers'
         end
       end
 
@@ -260,6 +262,7 @@ Making::Application.routes.draw do
       resource :account, only: [:show] do
         resources :fancies, only: [:show, :update, :destroy]
         resources :owns, only: [:show, :update, :destroy]
+        resources :followings, only: [:show, :update, :destroy]
         resource :cart, only: [:show] do
           resources :items, controller: :cart_items, only: [:index, :show, :create, :update, :destroy]
         end
