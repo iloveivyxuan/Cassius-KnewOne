@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 thing_stage = stage(@thing)
 
 json.id @thing.id.to_s

@@ -240,10 +240,13 @@ Making::Application.routes.draw do
           get 'owns'
           get 'reviews'
           get 'things'
+          get 'groups'
         end
       end
 
       resources :groups, only: [:index, :show] do
+        resources :members, controller: :group_members, only: [:index, :show, :create, :destroy]
+
         resources :topics, except: [:new, :edit] do
           resources :comments, controller: :topic_comments, only: [:index, :show, :create, :destroy]
         end

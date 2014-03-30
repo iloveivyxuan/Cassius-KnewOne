@@ -1,7 +1,7 @@
 module Api
   module V1
     class UsersController < ApiController
-      before_action :set_user, only: [:show, :reviews, :things, :owns, :fancies]
+      before_action :set_user, except: [:index]
       doorkeeper_for :all
 
       def index
@@ -25,6 +25,10 @@ module Api
 
       def fancies
         @fancies = @user.fancies.page(params[:page]).per(params[:per_page] || 8)
+      end
+
+      def groups
+        @groups = @user.joined_groups
       end
 
       private
