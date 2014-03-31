@@ -10,6 +10,21 @@ body {
   border: none;
   box-shadow: 0 1px 3px #555;
 
+  .nav {
+
+    .open {
+
+      > a {
+
+        &,
+        &:hover,
+        &:focus {
+          background-color: $navbar-inverse-link-active-bg;
+        }
+      }
+    }
+  }
+
   .navbar-brand {
     position: relative;
     margin-left: 40px;
@@ -32,11 +47,11 @@ body {
   .navbar-collapse {
     padding-top: $padding-large-vertical;
 
-    @media screen and (max-width: $screen-sm-min) {
+    @media (max-width: $screen-sm-min) {
       max-height: none;
     }
 
-    @media screen and (min-width: $screen-sm-min) {
+    @media (min-width: $screen-sm-min) {
       padding-top: 0;
     }
 
@@ -50,7 +65,7 @@ body {
 
           .fa {
 
-            @media screen and (min-width: $screen-sm-min) {
+            @media (min-width: $screen-sm-min) {
               font-size: 1.3333333333333333em;
               line-height: 0.75em;
               vertical-align: -15%;
@@ -61,7 +76,7 @@ body {
         &.nav_olark {
 
           .fa {
-            @media screen and (min-width: $screen-sm-min) {
+            @media (min-width: $screen-sm-min) {
               vertical-align: baseline;
             }
           }
@@ -70,22 +85,26 @@ body {
     }
 
     .navbar-form {
-      @media screen and (max-width: $screen-sm-min) {
+      @media (max-width: $screen-sm-min) {
         border-bottom-width: 0;
         margin-bottom: 0;
       }
 
-      @media screen and (min-width: $screen-sm-min) {
+      @media (min-width: $screen-sm-min) {
         margin-bottom: 7px;
         margin-top: 7px;
         transition-duration: .4s;
         transition-property: width;
-        width: 15%;
+        width: 12%;
+      }
+
+      @media (min-width: $screen-md-min) {
+        width: 20%;
       }
 
       &.focus {
 
-        @media screen and (min-width: $screen-sm-min) {
+        @media (min-width: $screen-sm-min) {
           width: 25%;
         }
       }
@@ -116,126 +135,209 @@ body {
       }
     }
   }
+}
 
-  .nav_user {
+.user_links {
+  @include clearfix;
 
-    .nav_user_action,
-    .nav_user_action > a {
-      background-color: transparent;
-      color: $navbar-inverse-link-color;
+  margin: ($navbar-padding-vertical / 2) (-$navbar-padding-horizontal);
 
-      &:hover {
+  @media (min-width: $screen-sm-min) {
+    margin: {
+      bottom: 0;
+      left: 20px;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  &.login {
+    border-top: 1px solid darken($navbar-inverse-bg, 7%);
+    padding: $padding-small-vertical $padding-large-horizontal;
+    padding-bottom: 0;
+
+    @media (min-width: $screen-sm-min) {
+      border-top: none;
+      padding: 0;
+    }
+  }
+
+  &.logout {
+
+    .user_link {
+      width: auto;
+
+      @media (min-width: $screen-sm-min) {
+        padding-right: 20px;
+      }
+    }
+  }
+}
+
+.user_link {
+
+  @mixin icon {
+    > .fa {
+      line-height: 40px;
+
+      @media (min-width: $screen-sm-min) {
+        font-size: 1.3333333333333333em;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  @mixin badge {
+    > .badge {
+      color: #fff;
+      font-weight: normal;
+      left: 28px;
+      margin-top: -12px;
+      padding: 1px 6px;
+      position: absolute;
+      top: 50%;
+      z-index: 1;
+
+      @media (min-width: $screen-sm-min) {
+        font-size: 14px;
+        left: 18px;
+      }
+    }
+  }
+
+  background-color: transparent;
+  color: $navbar-inverse-link-color;
+  display: block;
+  float: left;
+  height: 40px;
+  padding: 0 18px;
+  position: relative;
+  width: 50px;
+
+  &:hover {
+    color: $navbar-inverse-link-hover-color;
+  }
+
+  @media (min-width: $screen-sm-min) {
+    padding: {
+      left: 0;
+      right: 30px;
+    }
+  }
+
+  @include icon;
+  @include badge;
+
+  &.user {
+    height: auto;
+    padding: 0;
+    width: 80px;
+
+    @media (min-width: $screen-sm-min) {
+      float: right;
+      width: 70px;
+    }
+
+    .avatar {
+      float: left;
+
+      img {
+        display: block;
+        height: 40px;
+        width: 40px;
+      }
+    }
+
+    .more {
+      float: left;
+      width: 40px;
+
+      @media (min-width: $screen-sm-min) {
+        width: 30px;
+      }
+
+      .dropdown-toggle {
+        color: $navbar-inverse-link-color;
+        display: block;
+        line-height: 40px;
+        padding: {
+          left: 13px;
+          right: 13px;
+        }
+        text-align: center;
+
+        @media (min-width: $screen-sm-min) {
+          padding: {
+            left: 8px;
+            right: 8px;
+          }
+        }
+      }
+
+      .dropdown-menu {
+
+        @media (min-width: $screen-sm-min) {
+          right: 2px;
+        }
+      }
+    }
+
+    @media (max-width: $grid-float-breakpoint-max) {
+
+      .open .dropdown-menu {
+        position: relative;
+        float: none;
+        width: auto;
+        margin-top: 0;
         background-color: transparent;
+        border: 0;
+        box-shadow: none;
+        left: -40px;
+
+        > li > a {
+          color: $navbar-inverse-link-color;
+          line-height: $line-height-computed;
+          padding: 10px 15px;
+
+          &:hover,
+          &:focus {
+            background: transparent;
+            color: $navbar-inverse-link-hover-color;
+          }
+        }
+      }
+    }
+  }
+
+  &.cart {
+
+    & + .popover {
+      .popover-title {display: none;}
+    }
+  }
+
+  &.notification {
+    padding: 0;
+
+    > a {
+      color: $navbar-inverse-link-color;
+      line-height: 40px;
+      padding: 0 18px;
+
+      &:hover,
+      &:focus {
         color: $navbar-inverse-link-hover-color;
       }
-    }
 
-    .nav_user_account {
-
-      @media screen and (max-width: $screen-sm-min) {
-        & > .dropdown-menu > li > a {
-          padding: $padding-base-vertical $padding-large-horizontal;
-        }
-      }
-
-      @media screen and (min-width: $screen-sm-min) {
-        float: right;
-        margin-left: 20px;
-        margin-right: 10px;
-      }
-
-      #user {
-        display: inline-block;
-        margin-right: 10px;
-
-        @media screen and (min-width: $screen-sm-min) {
-          float: right;
-          margin-right: 0;
-
-          img {
-            height: 40px;
-            width: 40px;
-          }
-        }
-      }
-    }
-
-    &.is_login {
-      @include clearfix;
-
-      border-top: 1px solid darken($navbar-inverse-bg, 7%);
-      padding: $padding-small-vertical $padding-large-horizontal;
-      padding-bottom: 0;
-
-      .nav_user_action {
-        display: inline-block;
-        line-height: 30px;
+      @media (min-width: $screen-sm-min) {
         padding: {
-          bottom: 5px;
+          left: 0;
           right: 30px;
-          top: 5px;
-        }
-        position: relative;
-
-        &:hover,
-        &:focus {
-          background-color: transparent;
-        }
-
-        @media screen and (min-width: $screen-sm-min) {
-          height: 40px;
-        }
-
-        > .fa {
-
-          @media screen and (min-width: $screen-sm-min) {
-            font-size: 1.3333333333333333em;
-            line-height: 0.75em;
-            vertical-align: -15%;
-          }
-        }
-
-        > .badge {
-          color: #fff;
-          font-weight: normal;
-          left: 14px;
-          margin-top: -12px;
-          padding: 1px 6px;
-          position: absolute;
-          top: 50%;
-          z-index: 1;
-
-          @media screen and (min-width: $screen-sm-min) {
-            font-size: 14px;
-            left: 18px;
-          }
         }
       }
 
-      .nav_cart {
-
-        & + .popover {
-          .popover-title {display: none;}
-        }
-      }
-
-      @media screen and (min-width: $screen-sm-min) {
-        border-top: none;
-        padding: 0;
-
-        & > .dropdown-menu {
-          margin-right: 10px;
-          margin-top: 15px;
-        }
-      }
-    }
-
-    &.is_not_login {
-
-      .nav_user_action {
-        display: block;
-        padding: $nav-link-padding;
-      }
+      @include icon;
+      @include badge;
     }
   }
 }
@@ -252,7 +354,7 @@ body {
   width: 100%;
   z-index: $zindex_search_candidate;
 
-  @media screen and (max-width: $screen-sm-min - 1) {
+  @media (max-width: $screen-sm-min - 1) {
     display: none !important;
   }
 

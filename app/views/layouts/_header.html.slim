@@ -23,41 +23,48 @@ header#header role="banner"
           = link_to_with_icon "小组", "fa fa-tint fa-fw", groups_path
         li.nav_olark
           = link_to_with_icon "客服", "fa fa-comment fa-fw", "#olark_chat", data: {hint: "fa-comment", url: asset_path('olark.js')}
-      .nav.navbar-nav.navbar-right
-        - if user_signed_in?
-          .nav_user.is_login
-            .nav_user_account.dropdown
-              = link_to current_user, id: "user", data: {name: current_user.name, email: current_user.email, id: current_user.id} do
-                = image_tag current_user.avatar.url(:tiny)
 
-              = link_to cart_items_path, class: "nav_user_action nav_cart", title: "购物车" do
-                i.fa.fa-shopping-cart.fa_alone
-                span.badge.badge_success.cart_items_count= cart_items_count
+      - if user_signed_in?
+        .user_links.login.navbar-right
+          #user.user_link.user data-name=current_user.name data-email=current_user.email data-id=current_user.id
+            = link_to current_user, class: "avatar" do
+              = image_tag current_user.avatar.url(:tiny)
+            .more.dropdown
+              = link_to "#", class: 'dropdown-toggle', data: {toggle: "dropdown"} do
+                i.fa.fa-ellipsis-v.fa_alone
+              ul.dropdown-menu
+                li = link_to_with_icon '我的订单', 'fa fa-truck fa-fw', orders_path
+                li = link_to_with_icon "控制面板", "fa fa-tachometer fa-fw", setting_root_path
+                li = link_to_with_icon "安全登出", "fa fa-sign-out fa-fw", destroy_user_session_path, method: :delete
 
-              #notification_box.dropdown
-                = link_to notifications_path, class: 'nav_user_action', id: 'notification_trigger', data: {url: notifications_path}, title: "#{unread_notifications_text}未读消息" do
-                  i.fa.fa-bell.fa_alone
-                  span#notification_count.badge.badge_primary= unread_notifications_count
-                .dropdown_box
-                  header
-                    h5
-                      i.fa.fa-bell
-                      | 消息
-                  .dropdown_box_body
-                    ul.notifications
-                    .spinner
-                      i.fa.fa-spinner.fa-spin.fa-2x
-                  footer
-                    = link_to_with_icon "设置", "fa fa-cog", edit_notification_settings_path, class: "pull-left"
-                    = link_to_with_icon "更多", "fa fa-ellipsis-h", notifications_path, class: "pull-right"
+          = link_to cart_items_path, class: "user_link cart", title: "购物车" do
+            i.fa.fa-shopping-cart.fa_alone
+            span.badge.badge_success.cart_items_count= cart_items_count
 
-              - upmc = current_user.unread_private_messages_count
-              = link_to dialogs_path, class: "nav_user_action", title: "#{upmc}封未读私信" do
-                i.fa.fa-envelope-o.fa_alone
-                span.badge.badge_danger.private_messages_count= badge upmc
-        - else
-          .nav_user.is_not_login
-            = link_to_with_icon "登录", "fa fa-sign-in", "#", class: "nav_user_action", data: {toggle: "modal", target: "#login-modal"}
+          #notification_box.user_link.notification.dropdown
+            = link_to notifications_path, id: 'notification_trigger', data: {url: notifications_path}, title: "#{unread_notifications_text}未读消息" do
+              i.fa.fa-bell.fa_alone
+              span#notification_count.badge.badge_primary= unread_notifications_count
+            .dropdown_box
+              header
+                h5
+                  i.fa.fa-bell
+                  | 消息
+              .dropdown_box_body
+                ul.notifications
+                .spinner
+                  i.fa.fa-spinner.fa-spin.fa-2x
+              footer
+                = link_to_with_icon "设置", "fa fa-cog", edit_notification_settings_path, class: "pull-left"
+                = link_to_with_icon "更多", "fa fa-ellipsis-h", notifications_path, class: "pull-right"
+
+          - upmc = current_user.unread_private_messages_count
+          = link_to dialogs_path, class: "user_link", title: "#{upmc}封未读私信" do
+            i.fa.fa-envelope-o.fa_alone
+            span.badge.badge_danger.private_messages_count= badge upmc
+      - else
+        .user_links.logout.navbar-right
+          = link_to_with_icon "登录", "fa fa-sign-in", "#", class: "user_link", data: {toggle: "modal", target: "#login-modal"}
 
       = form_tag(search_path, method: "get", id: "navbar_search", class: "navbar-form navbar-right", role: "search") do
         .form-group.search

@@ -58,7 +58,7 @@ Making.CartItemCreate = (cart_items_count) ->
   if $('.navbar-toggle').is(':visible')
     $cart = $('.navbar-toggle')
   else
-    $cart = $('.nav_cart')
+    $cart = $('.navbar .cart')
 
   $cart.popover(
     content: $success[0].outerHTML
@@ -71,7 +71,7 @@ Making.CartItemCreate = (cart_items_count) ->
     $cart.popover('hide')
   , 5000
 
-  $('.nav_cart .cart_items_count').text(cart_items_count)
+  $('.navbar .cart .cart_items_count').text(cart_items_count)
 
 Making.CartCheck = ->
   if $('.cart_item:not([disabled])').length == 0
