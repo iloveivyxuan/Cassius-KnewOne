@@ -39,6 +39,10 @@ module Api
         @followings = @user.followings.page(params[:page]).per(params[:per_page] || 24)
       end
 
+      def activities
+        @activities = @user.activities.visible.page(params[:page]).per(24)
+      end
+
       private
 
       def set_user

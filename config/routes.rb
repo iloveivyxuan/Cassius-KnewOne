@@ -248,6 +248,7 @@ Making::Application.routes.draw do
           get 'groups'
           get 'followings'
           get 'followers'
+          get 'activities'
         end
       end
 

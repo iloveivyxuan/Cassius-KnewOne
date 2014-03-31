@@ -22,3 +22,4 @@ json.followings_count @user.followings_count
 json.followings_url url_wrapper(@user, action: :followings)
 json.followers_count @user.followers_count
 json.followers_url url_wrapper(@user, action: :followers)
+json.activities_url url_wrapper(user, action: :activities)
