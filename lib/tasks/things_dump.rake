@@ -11,7 +11,8 @@ task :things_dump, [:target] => [:environment] do |t, args|
             "Own Users",
             "Fancy Groups",
             "Reviews",
-            "Comments"].join(d)
+            "Comments",
+            "Self run?"].join(d)
 
     f.puts '-'*80
 
@@ -23,7 +24,8 @@ task :things_dump, [:target] => [:environment] do |t, args|
               t.owners.count,
               t.fancy_groups.count,
               t.reviews.count,
-              t.comments.count].join(d)
+              t.comments.count,
+              (t.self_run? ? 'Yes' : 'No' )].join(d)
     end
   end
 end
