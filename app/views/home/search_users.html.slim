@@ -1,0 +1,12 @@
+- if @users && @users.size > 0
+  ul.users.infinite#users= render @users
+  = paginate @users
+- else
+  p.h3.text-muted.text-center
+    | 没有关于&nbsp;
+    em.text-danger #{params[:q]}
+    | &nbsp;的搜索结果。
+
+- content_for :script do
+  javascript:
+    Making.InfiniteScroll("#wrapper > section");
