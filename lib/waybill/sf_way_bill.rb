@@ -30,8 +30,11 @@ class SfWayBill < WayBill
 
     # =====
 
-    str = "#{order.order_items.first.thing_title}x#{order.order_items.first.quantity} 等#{order.order_items.count}种"
-    set_text(160, 1360, str)
+    base_y = 1360
+    order.order_items.each do |i|
+      set_text(200, base_y, "#{i.thing_title}x#{i.quantity}")
+      base_y += 48
+    end
 
     # =====
 

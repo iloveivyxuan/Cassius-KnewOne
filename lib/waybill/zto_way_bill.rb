@@ -29,6 +29,14 @@ class ZtoWayBill < WayBill
 
     # =====
 
+    base_y = 800
+    order.order_items.each do |i|
+      set_text(200, base_y, "#{i.thing_title}x#{i.quantity}")
+      base_y += 48
+    end
+
+    # =====
+
     set_text(660, 1220, Date.today.to_s)
 
     self
