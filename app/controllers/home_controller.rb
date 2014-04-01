@@ -12,7 +12,7 @@ class HomeController < ApplicationController
           @friends = @friends.page(params[:friends_page]).per(21)
         end
 
-        @recommend_users = User.desc(:recommend_priority, :followers_count).limit(21)
+        @recommend_users = User.desc(:recommend_priority, :followers_count).limit(42)
 
         render 'home/index_nofollowing', layout: 'home'
       else
