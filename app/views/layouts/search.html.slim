@@ -5,14 +5,14 @@
       em.text-success #{params[:q]}
       | &nbsp;的搜索结果
 
-  nav
-    ul.nav.nav-pills
-      = search_nav('things', true) do
-        = link_to '产品', params.except(*request.path_parameters.keys).merge(type: 'things')
-      = search_nav('users') do
-        = link_to '用户', params.except(*request.path_parameters.keys).merge(type: 'users')
+  section.panel.panel-default.panel_control
+    .panel-body
+      nav.btn-group
+        = search_nav('things', true) do
+          = link_to '产品', params.except(*request.path_parameters.keys).merge(type: 'things'), class: "btn btn-default"
+        = search_nav('users') do
+          = link_to '用户', params.except(*request.path_parameters.keys).merge(type: 'users'), class: "btn btn-default"
 
-  section
-    = yield
+  = yield
 
 = render template: 'layouts/application'

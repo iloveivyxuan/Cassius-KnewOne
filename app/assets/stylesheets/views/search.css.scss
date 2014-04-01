@@ -1,6 +1,13 @@
 html.home_search {
 
   #wrapper {
-    @include wrapper(grid);
+    @include wrapper(simple, $max-width: $screen-lg-min);
+  }
+
+  .noresult {
+    color: $text-muted;
+    font-size: 24px;
+    margin: 40px 0;
+    text-align: center;
   }
 }

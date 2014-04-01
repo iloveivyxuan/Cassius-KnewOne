@@ -555,9 +555,9 @@ html.things_index {
     @include wrapper(simple, $max-width: $screen-lg-min);
 
     .page-header {
-      margin-bottom: 2em;
 
       h1 {
+
         a {
           color: $gray;
 
@@ -568,7 +568,7 @@ html.things_index {
       }
     }
 
-    > form {
+    .panel_control {
       border-bottom: $border-default;
       color: $gray;
       margin-bottom: 20px;
@@ -578,7 +578,7 @@ html.things_index {
 
         border-bottom: none;
 
-        > .form-group {
+        .form-group {
           margin-right: 30px;
 
           &.search {
@@ -587,7 +587,7 @@ html.things_index {
           }
         }
 
-        > .checkbox {
+        .checkbox {
           margin-right: 30px;
         }
       }

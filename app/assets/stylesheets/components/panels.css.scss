@@ -1,33 +1,48 @@
-.panel {
+.panel_compact {
+  box-shadow: none;
 
-  &.panel_compact {
-    box-shadow: none;
+  .panel-heading {
+    @include clearfix;
 
-    .panel-heading {
-      @include clearfix;
+    border-color: #eee;
+    padding-left: 0;
+    padding-right: 0;
 
-      border-color: #eee;
-      padding-left: 0;
-      padding-right: 0;
+    .panel-title {
+      color: $text-muted;
+      float: left;
+    }
 
-      .panel-title {
-        color: $text-muted;
-        float: left;
-      }
+    .more {
+      color: $text-muted;
+      display: block;
+      float: right;
+      font-size: 16px;
+      line-height: 24px;
+      text-align: center;
+      width: 24px;
 
-      .more {
-        color: $text-muted;
-        display: block;
-        float: right;
-        font-size: 16px;
-        line-height: 24px;
-        text-align: center;
-        width: 24px;
-
-        &:hover {
-          color: $text-color;
-        }
+      &:hover {
+        color: $text-color;
       }
     }
   }
+}
+
+.panel_control {
+  background-color: #f4f5f7;
+  border: none;
+  border-top: 1px solid #e2e7eb;
+  border-radius: 0;
+  box-shadow: none;
+
+  .btn-default.active {
+    background-color: darken($btn-default-bg, 10%);
+    border-color: darken($btn-default-border, 12%);
+  }
+}
+
+.page-header + .panel_control {
+  border-top: none;
+  margin-top: -10px;
 }

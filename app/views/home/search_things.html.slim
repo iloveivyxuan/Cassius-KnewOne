@@ -2,10 +2,10 @@
   ul.things.infinite#things= render @things, size: :normal, img_lazy: true
   = paginate @things
 - else
-  p.h3.text-muted.text-center
-    | 没有关于&nbsp;
+  p.noresult
+    | 没有找到与&nbsp;
     em.text-danger #{params[:q]}
-    | &nbsp;的搜索结果，
+    | &nbsp;相关的产品，
     = link_to '我来分享~', new_thing_path
 
 - content_for :script do
