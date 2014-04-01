@@ -34,7 +34,7 @@ class HomeController < ApplicationController
       if @landing_cover.nil?
         redirect_to random_things_path
       else
-         @categories = Category.gt(things_count: 10).limit(8)
+         @categories = Category.unscoped.prior.gt(things_count: 10).limit(8)
         render 'home/landing'
       end
     end
@@ -92,7 +92,8 @@ class HomeController < ApplicationController
   private
 
   def set_editor_choices
-    @editor_choices = Thing.rand_prior_records 1
+    # @editor_choices = Thing.rand_prior_records 1
+    @editor_choices = Thing.unscoped.published.prior.limit(1)
   end
 
   def skip_follow_user

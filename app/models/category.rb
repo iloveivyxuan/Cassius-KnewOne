@@ -5,12 +5,14 @@ class Category
   field :name, type: String
   slug :name, history: true
   field :things_count, type: Integer, default: 0
+  field :priority, type: Integer, default: 0
 
   mount_uploader :cover, CoverUploader
 
   validates :name, presence: true, uniqueness: true
 
   default_scope -> { desc(:things_count) }
+  scope :prior, -> { desc(:priority, :things_count) }
 
   def things
     Thing.unscoped.published.any_in(categories: [name])
