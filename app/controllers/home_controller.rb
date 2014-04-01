@@ -65,7 +65,7 @@ class HomeController < ApplicationController
     q.gsub!(/[^\u4e00-\u9fa5a-zA-Z0-9[:blank:].-_]+/, '')
 
     return head :no_content if q.empty?
-    per = params[:per_page] || 24
+    per = params[:per_page] || 48
 
     if (params[:type].blank? && params[:format].blank?) || !['things', 'users', nil].include?(params[:type])
       params[:type] = 'things'

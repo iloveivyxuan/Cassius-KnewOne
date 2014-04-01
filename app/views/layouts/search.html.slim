@@ -8,10 +8,8 @@
   section.panel.panel-default.panel_control
     .panel-body
       nav.btn-group
-        = search_nav('things', true) do
-          = link_to '产品', params.except(*request.path_parameters.keys).merge(type: 'things'), class: "btn btn-default"
-        = search_nav('users') do
-          = link_to '用户', params.except(*request.path_parameters.keys).merge(type: 'users'), class: "btn btn-default"
+        = search_nav '产品', 'things', params.except(*request.path_parameters.keys).merge(type: 'things'), true
+        = search_nav '用户', 'users', params.except(*request.path_parameters.keys).merge(type: 'users')
 
   = yield
 

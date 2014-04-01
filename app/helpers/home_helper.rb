@@ -3,7 +3,13 @@ module HomeHelper
     li((action_name == action.to_s), options, &block)
   end
 
-  def search_nav(type, default = false, options = {}, &block)
-    li(((params[:type] == type) || (default && params[:type].blank?)), options, &block)
+  def search_nav(text, type, href, default = false, options = {})
+    if (default && params[:type].blank?) || params[:type] == type
+      options[:class] = "#{options[:class]} btn btn-default active"
+    else
+      options[:class] = "#{options[:class]} btn btn-default"
+    end
+
+    link_to text, href, options
   end
 end
