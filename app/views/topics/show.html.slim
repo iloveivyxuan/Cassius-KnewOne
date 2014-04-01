@@ -12,10 +12,14 @@
 
     footer
       = render 'voting', topic: tp.topic
+      = link_to_with_icon "分享", "fa fa-share",
+                          user_signed_in? ? "#topic_share" : "#login-modal",
+                          title: "分享", data: {toggle: 'modal'}
       = render 'shared/post_actions', post: tp.topic,
-      edit_post_path: tp.edit_path, post_path: tp.path
+                edit_post_path: tp.edit_path, post_path: tp.path
 
     = render 'shared/comments', post: tp.topic, id: "topic_comments", auth: can?(:create, @topic)
+    = render 'shared/share', id: 'topic_share', content: tp.share_content, pic: @topic.group.avatar.url(:normal)
 
 - content_for :script do
   javascript:

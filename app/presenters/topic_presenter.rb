@@ -40,6 +40,16 @@ class TopicPresenter < PostPresenter
     link_to topic.group.name, topic.group
   end
 
+  def share_content
+    if topic.author == current_user
+      content = "我在#{share_topic}发起了话题：#{topic.title}"
+    else
+      content = "我在#{share_topic}分享了 @#{topic.author.name} 的话题： #{topic.title} "
+    end
+
+    content + group_topic_url(topic.group, topic, :refer => 'weibo')
+  end
+
   private
 
   def last_comment_author
