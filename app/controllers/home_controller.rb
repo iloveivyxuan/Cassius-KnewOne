@@ -92,8 +92,7 @@ class HomeController < ApplicationController
   private
 
   def set_editor_choices
-    # @editor_choices = Thing.rand_prior_records 1
-    @editor_choices = Thing.unscoped.published.prior.limit(1)
+    @editor_choices = Thing.rand_prior_records 1
   end
 
   def skip_follow_user
