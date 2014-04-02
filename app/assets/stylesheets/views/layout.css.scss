@@ -345,10 +345,11 @@ body {
 .search_candidate {
   $slideshow_control_width: 40px;
   $thing_height: 281px;
+  $user_height: 167px;
 
   background-color: $text-color;
   display: none;
-  padding: 0 $slideshow_control_width;
+  padding-top: 40px;
   position: fixed;
   top: 60px;
   width: 100%;
@@ -364,7 +365,7 @@ body {
     border-width: 15px;
     content: '';
     position: fixed;
-    right: 10%;
+    right: 20%;
     top: 30px;
   }
 
@@ -387,52 +388,21 @@ body {
     top: 10px;
   }
 
-  .slideshow_body {
+  .slideshow {
+    padding: 0 $slideshow_control_width;
+    width: 100%;
 
-    .slideshow_inner {
-      $gap: 15px;
+    &.things {
 
-      > li {
-        margin: 40px $gap $gap 0;
-        opacity: 1;
-        width: 220px;
+      .slideshow_control {
+        height: $thing_height;
+      }
+    }
 
-        &.more {
-          background-color: darken($text-color, 10);
-          border-radius: 8px;
-          height: $thing_height;
-          padding: $gap;
-          width: 220px;
+    &.users {
 
-          > a {
-            border: 1px dashed $text-muted;
-            border-radius: 6px;
-            color: $text-muted;
-            display: block;
-            font-weight: bold;
-            font-size: 1.2em;
-            height: 100%;
-            line-height: ($thing_height - $gap * 2);
-            text-align: center;
-
-            &:hover {
-              color: #fff;
-            }
-
-            .fa {
-              margin-right: 0;
-            }
-          }
-        }
-
-        &.empty {
-          color: #fff;
-          cursor: default;
-          font-size: 18px;
-          height: $thing_height;
-          line-height: $thing_height;
-          text-align: center;
-        }
+      .slideshow_control {
+        height: $user_height;
       }
     }
   }
@@ -441,9 +411,99 @@ body {
     background: transparent;
     box-shadow: none;
     color: #fff;
-    height: $thing_height;
-    top: 40px;
     width: $slideshow_control_width;
+  }
+
+  .slideshow_inner {
+    $gap: 15px;
+
+    > li {
+      opacity: 1;
+
+      &.more {
+        background-color: darken($text-color, 10);
+        border-radius: 8px;
+        padding: $gap;
+
+        > a {
+          border: 1px dashed $text-muted;
+          border-radius: 6px;
+          color: $text-muted;
+          display: block;
+          font-weight: bold;
+          font-size: 1.2em;
+          height: 100%;
+          text-align: center;
+
+          &:hover {
+            color: #fff;
+          }
+
+          .fa {
+            margin-right: 0;
+          }
+        }
+      }
+
+      &.empty {
+        color: #fff;
+        cursor: default;
+        font-size: 18px;
+        text-align: center;
+      }
+    }
+
+    &.things {
+      margin: 0;
+
+      > li {
+        float: none;
+        margin-bottom: 0;
+        margin-right: $gap;
+        padding: 0;
+        width: 220px;
+
+        &.more {
+          height: $thing_height;
+          padding: $gap;
+          width: 220px;
+
+          > a {
+            line-height: ($thing_height - $gap * 2);
+          }
+        }
+
+        &.empty {
+          height: $thing_height;
+          line-height: $thing_height;
+        }
+      }
+    }
+
+    &.users {
+
+      > li {
+
+        &.more {
+          height: 125px;
+          width: 100px;
+
+          > a {
+            margin-bottom: 0;
+            line-height: 95px;
+          }
+        }
+
+        &.empty {
+          height: 125px;
+          line-height: 95px;
+
+          > a {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
   }
 }
 

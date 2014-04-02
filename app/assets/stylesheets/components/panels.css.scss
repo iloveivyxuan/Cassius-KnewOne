@@ -36,9 +36,13 @@
   border-radius: 0;
   box-shadow: none;
 
-  .btn-default.active {
-    background-color: darken($btn-default-bg, 10%);
-    border-color: darken($btn-default-border, 12%);
+  .btn-default {
+    min-width: 80px;
+
+    &.active {
+      background-color: darken($btn-default-bg, 10%);
+      border-color: darken($btn-default-border, 12%);
+    }
   }
 }
 
