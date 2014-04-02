@@ -484,6 +484,13 @@ body {
 
       > li {
 
+        > a {
+
+          &:hover {
+            color: #fff;
+          }
+        }
+
         &.more {
           height: 125px;
           width: 100px;
