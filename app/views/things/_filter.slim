@@ -1,18 +1,20 @@
-= form_tag things_path, method: :get,
-           class: 'form-inline', id: 'category_filter', role: 'form' do
-  .form-group
-    i.fa.fa-tags.selectpicker_label
-    = select_tag :category,
-                 options_for_select([%w(全部 all)]+@categories.map {|c| [c.name, c.slug]}, (params[:category] || 'all')),
-                 class: 'form-control selectpicker', id: 'category_select', data: {size: 10, width: "160px"}
-  .form-group
-    i.fa.fa-sort.selectpicker_label
-    = select_tag :sort_by, options_for_select([%w(最新 created_at), %w(热门 fanciers_count)], (params[:sort_by] || 'created_at')),
-                 include_blank: false, class: 'form-control selectpicker', id: 'category_select', data: {width: "160px"}
-  .checkbox
-    label
-      = check_box_tag :self_run, true, params[:self_run]
-      | KnewOne自营
+section.panel.panel-default.panel_control
+  .panel-body
+    = form_tag things_path, method: :get,
+               class: 'form-inline', id: 'category_filter', role: 'form' do
+      .form-group
+        i.fa.fa-tags.selectpicker_label
+        = select_tag :category,
+                     options_for_select([%w(全部 all)]+@categories.map {|c| [c.name, c.slug]}, (params[:category] || 'all')),
+                     class: 'form-control selectpicker', id: 'category_select', data: {size: 10, width: "160px"}
+      .form-group
+        i.fa.fa-sort.selectpicker_label
+        = select_tag :sort_by, options_for_select([%w(最新 created_at), %w(热门 fanciers_count)], (params[:sort_by] || 'created_at')),
+                     include_blank: false, class: 'form-control selectpicker', id: 'category_select', data: {width: "160px"}
+      .checkbox
+        label
+          = check_box_tag :self_run, true, params[:self_run]
+          | KnewOne自营
 
 - content_for :script do
   javascript:

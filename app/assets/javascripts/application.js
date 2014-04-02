@@ -26,6 +26,7 @@
 //= require util
 //= require common
 //= require notificationbox
+//= require search
 //= require home
 //= require orders
 //= require cart_items

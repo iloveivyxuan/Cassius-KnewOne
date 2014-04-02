@@ -34,7 +34,7 @@ class HomeController < ApplicationController
       if @landing_cover.nil?
         redirect_to random_things_path
       else
-         @categories = Category.unscoped.prior.gt(things_count: 10).limit(8)
+        @categories = Category.unscoped.prior.gt(things_count: 10).limit(8)
         render 'home/landing'
       end
     end
@@ -62,23 +62,27 @@ class HomeController < ApplicationController
 
   def search
     q = (params[:q] || '')
-    q.gsub!(/[^\u4e00-\u9fa5a-zA-Z0-9[:blank:].-]+/, '')
+    q.gsub!(/[^\u4e00-\u9fa5a-zA-Z0-9[:blank:].-_]+/, '')
 
-    if resultable = q.present?
-      @things = Thing.unscoped.published.or({title: /#{q}/i}, {subtitle: /#{q}/i}).desc(:fanciers_count).page(params[:page]).per(12)
-      resultable = @things.any?
+    return head :no_content if q.empty?
+    per = params[:per_page] || 48
+
+    if (params[:type].blank? && params[:format].blank?) || !['things', 'users', nil].include?(params[:type])
+      params[:type] = 'things'
+    end
+
+    if params[:type].blank? || params[:type] == 'things'
+      @things = Thing.unscoped.published.or({title: /#{q}/i}, {subtitle: /#{q}/i}).desc(:fanciers_count).page(params[:page]).per(per)
+    end
+
+    if params[:type].blank? || params[:type] == 'users'
+      @users = User.find_by_fuzzy_name(q).page(params[:page]).per(per)
     end
 
     respond_to do |format|
-      if resultable
-        format.html
-        format.js
-        format.json
-      else
-        format.html
-        format.js { head :no_content }
-        format.json { head :no_content }
-      end
+      format.html { render "home/search_#{params[:type]}", layout: 'search' }
+      format.js
+      format.json
     end
   end
 
