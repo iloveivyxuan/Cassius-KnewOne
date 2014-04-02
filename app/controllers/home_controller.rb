@@ -7,26 +7,16 @@ class HomeController < ApplicationController
 
   def index
     if user_signed_in?
-      if current_user.followings.empty? && !session[:skip]
-        if @friends = current_user.recommend_users
-          @friends = @friends.page(params[:friends_page]).per(21)
-        end
+      @activities = current_user.relate_activities.visible.page(params[:page]).per(50)
 
-        @recommend_users = User.desc(:recommend_priority, :followers_count).limit(42)
-
-        render 'home/index_nofollowing', layout: 'home'
-      else
-        @activities = current_user.relate_activities.visible.page(params[:page]).per(50)
-
-        if request.xhr?
-          if @activities.empty?
-            head :no_content
-          else
-            render 'home/index_xhr', layout: false
-          end
+      if request.xhr?
+        if @activities.empty?
+          head :no_content
         else
-          render layout: 'home'
+          render 'home/index_xhr', layout: false
         end
+      else
+        render layout: 'home'
       end
     else
       @landing_cover = LandingCover.find_for_home
@@ -55,6 +45,16 @@ class HomeController < ApplicationController
     else
       render 'home/forbidden'
     end
+  end
+
+  def welcome
+    if @friends = current_user.recommend_users
+      @friends = @friends.page(params[:friends_page]).per(21)
+    end
+
+    @recommend_users = User.desc(:recommend_priority, :followers_count).limit(42)
+
+    @things = Thing.unscoped.published.limit(24)
   end
 
   def error

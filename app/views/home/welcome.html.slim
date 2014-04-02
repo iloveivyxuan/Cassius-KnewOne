@@ -1,0 +1,32 @@
+#step1
+  h1
+    | 欢迎来到 KnewOne！这是一个分享新奇酷产品和使用体验的社区。
+
+#step2
+  header
+    h1
+      | 推荐用户
+    = link_to_with_icon "全部关注", "fa fa-plus", follow_recommends_profile_path, class: 'btn btn-primary', method: :post
+    = link_to_with_icon "跳过", "fa fa-forward", root_path(skip: true), class: 'btn btn-link'
+
+  - if @friends && @friends.any?
+    section
+      header
+        | 你的新浪微博中已经有这些小伙伴在KnewOne安家啦：
+      ul.user_list = render @friends
+      = paginate @friends, param_name: 'friends_page'
+
+  section
+    header
+      | 关注这些KnewOne达人，让你的KnewOne之旅更加精彩：
+    ul.user_list = render @recommend_users
+
+#step3
+  header
+    h1
+      | 关注产品
+    = link_to_with_icon "全部关注", "fa fa-plus", follow_recommends_profile_path, class: 'btn btn-primary', method: :post
+    = link_to_with_icon "跳过", "fa fa-forward", root_path(skip: true), class: 'btn btn-link'
+  ul.things = render @things, size: :normal, img_lazy: false
+
+
