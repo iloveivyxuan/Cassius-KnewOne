@@ -11,6 +11,9 @@ class Auth
   field :nickname, type: String, default: ""
   field :location, type: String, default: ""
   field :description, type: String, default: ""
+  field :gender, type: String
+  field :followers_count, type: Integer
+  field :friends_count, type: Integer
   field :urls, type: Hash, default: {}
   field :avatar_url, type: String
 
@@ -41,9 +44,17 @@ class Auth
     User.where(:'auths.provider' => self.provider, :'auths.uid'.in => friend_ids(self.uid).map(&:to_s))
   end
 
+  def update_profile
+
+  end
+
   class << self
     def from_omniauth(data)
       new omniauth_to_auth(data)
+    end
+
+    def from_profile(provider, profile)
+      new profile_to_auth(provider, profile)
     end
 
     def omniauth_to_auth(data)
@@ -59,7 +70,25 @@ class Auth
           description: data[:info][:description],
           location: data[:info][:location],
           urls: data[:info][:urls],
+          followers_count: data[:extra][:raw_info][:followers_count],
+          friends_count: data[:extra][:raw_info][:friends_count],
+          gender: data[:extra][:raw_info][:gender],
           avatar_url: "#{data[:provider]}_auth_handler".classify.constantize.parse_image(data)
+      }
+    end
+
+    def profile_to_auth(provider, data)
+      {
+          provider: provider,
+          uid: data[:id].to_s,
+          name: data[:name],
+          nickname: data[:nickname],
+          description: data[:description],
+          location: data[:location],
+          followers_count: data[:followers_count],
+          friends_count: data[:friends_count],
+          gender: data[:gender],
+          avatar_url: "#{provider}_auth_handler".classify.constantize.parse_image(data)
       }
     end
   end

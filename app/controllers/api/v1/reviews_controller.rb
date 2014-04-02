@@ -1,7 +1,6 @@
 module Api
   module V1
     class ReviewsController < ApiController
-      helper 'api/v1/reviews'
       before_action :set_resources
       before_action :set_review, only: [:show]
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 json.array!(@things) do |thing|
   thing_stage = stage(thing)
 
@@ -18,6 +17,9 @@ json.array!(@things) do |thing|
   json.fanciers_count thing.fanciers.count
   json.owners_count thing.owners.count
   json.reviews_count thing.reviews.count
+  json.categories thing.category_records do |c|
+    json.partial! 'api/v1/categories/category', category: c
+  end
   if price = price(thing)
     json.min_price price
     json.price_unit '￥'

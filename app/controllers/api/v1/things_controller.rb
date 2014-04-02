@@ -1,20 +1,26 @@
 module Api
   module V1
     class ThingsController < ApiController
-      helper 'api/v1/things'
       before_action :set_thing, except: [:index]
 
       def index
-        per_page = (params[:per_page] || 8).to_i
-
-        scope = Thing
-        scope = scope.send params[:scope].to_sym if params[:scope].present?
-        scope = scope.where(title: /^#{params[:keyword]}/i) if params[:keyword].present?
-        if params[:sort_by].blank?
-          scope = scope.prior
+        if c_id = (params[:category_id] || params[:category])
+          c = Category.find(c_id)
+          scope = c.things.unscoped.published
+        else
+          scope = Thing.unscoped.published
         end
 
-        @things = scope.page(params[:page]).per(per_page)
+        scope = case params[:sort_by]
+                    when 'fanciers_count'
+                      scope.desc(:fanciers_count)
+                    else
+                      scope.desc(:created_at)
+                  end
+
+        scope = scope.self_run if params[:self_run].present?
+
+        @things = scope.page(params[:page]).per(params[:per_page] || 24)
       end
 
       def show

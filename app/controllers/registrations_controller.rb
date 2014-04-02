@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 class RegistrationsController < Devise::RegistrationsController
+  skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
   layout 'oauth'
 
   def update
@@ -48,6 +49,7 @@ class RegistrationsController < Devise::RegistrationsController
 
         format.html { redirect_to after_sign_in_path_for(resource) }
         format.js { @location = after_sign_in_path_for(resource) }
+        format.json { render json: resource, status: :created, location: resource }
       else
         clean_up_passwords resource
 
@@ -56,6 +58,7 @@ class RegistrationsController < Devise::RegistrationsController
           @error_fields = resource.errors.keys
           @messages = resource.errors.full_messages
         end
+        format.json { render json: resource.errors, status: :unprocessable_entity }
       end
     end
   end

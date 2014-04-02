@@ -1,0 +1,26 @@
+module Api
+  module V1
+    class SearchController < ApiController
+
+      def index
+        q = (params[:keyword] || '')
+        q.gsub!(/[^\u4e00-\u9fa5a-zA-Z0-9[:blank:].-_]+/, '')
+
+        render_error :missing_field, 'invalid keyword field' if q.empty?
+        per = params[:per_page] || 48
+
+        unless %w(things users).include?(params[:type])
+          params.delete :type
+        end
+
+        if params[:type].blank? || params[:type] == 'things'
+          @things = Thing.unscoped.published.or({title: /#{q}/i}, {subtitle: /#{q}/i}).desc(:fanciers_count).page(params[:things_page] || params[:page]).per(per)
+        end
+
+        if params[:type].blank? || params[:type] == 'users'
+          @users = User.find_by_fuzzy_name(q).page(params[:users_page] || params[:page]).per(per)
+        end
+      end
+    end
+  end
+end

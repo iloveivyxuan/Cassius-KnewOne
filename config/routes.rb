@@ -228,22 +228,35 @@ Making::Application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
+      get 'search', to: 'search#index'
+
       resources :things, only: [:index, :show] do
         resources :reviews, only: [:index, :show] do
           resources :comments, controller: :review_comments, only: [:index, :show, :create, :destroy]
         end
         resources :comments, controller: :thing_comments, only: [:index, :show, :create, :destroy]
       end
+
+      resources :categories, only: [:index, :show] do
+        resources :things, only: [:index]
+      end
+
       resources :users, only: [:index, :show] do
         member do
           get 'fancies'
           get 'owns'
           get 'reviews'
           get 'things'
+          get 'groups'
+          get 'followings'
+          get 'followers'
+          get 'activities'
         end
       end
 
       resources :groups, only: [:index, :show] do
+        resources :members, controller: :group_members, only: [:index, :show, :create, :destroy]
+
         resources :topics, except: [:new, :edit] do
           resources :comments, controller: :topic_comments, only: [:index, :show, :create, :destroy]
         end
@@ -252,6 +265,16 @@ Making::Application.routes.draw do
       resource :account, only: [:show] do
         resources :fancies, only: [:show, :update, :destroy]
         resources :owns, only: [:show, :update, :destroy]
+        resources :followings, only: [:show, :update, :destroy]
+      end
+
+      resources :notifications, only: [:index] do
+        collection do
+          post 'mark'
+        end
+      end
+
+      scope module: 'official' do
         resource :cart, only: [:show] do
           resources :items, controller: :cart_items, only: [:index, :show, :create, :update, :destroy]
         end
@@ -264,18 +287,6 @@ Making::Application.routes.draw do
         end
         resources :coupons, only: [:index, :update]
         resources :addresses, except: [:new, :edit, :show]
-
-        member do
-          patch 'profile'
-          patch 'email'
-          patch 'password'
-        end
-      end
-
-      resources :messages, only: [:index] do
-        collection do
-          post 'mark'
-        end
       end
 
       get 'oauth/default_callback', to: 'oauth#default_callback'

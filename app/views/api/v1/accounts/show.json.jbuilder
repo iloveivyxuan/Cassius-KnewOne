@@ -13,3 +13,6 @@ json.owns_count current_user.owns.count
 json.owns_url url_wrapper(current_user, action: :owns)
 json.reviews_count current_user.reviews.count
 json.reviews_url url_wrapper(current_user, action: :reviews)
+json.groups_count current_user.groups_count
+json.groups_url url_wrapper(current_user, action: :groups)
+json.activities_url url_wrapper(current_user, action: :activities)

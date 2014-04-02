@@ -1,6 +1,6 @@
 module Api
   module V1
-    class TopicsController < ApplicationController
+    class TopicsController < ApiController
       before_action :set_resources
       before_action :set_topic, except: [:index, :create]
       before_action :check_authorization, only: [:update, :destroy]

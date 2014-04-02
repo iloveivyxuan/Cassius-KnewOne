@@ -1,12 +1,11 @@
 module Api
   module V1
     class UsersController < ApiController
-      helper 'api/v1/users'
-      before_action :set_user, only: [:show, :reviews, :things, :owns, :fancies]
+      before_action :set_user, except: [:index]
       doorkeeper_for :all
 
       def index
-        render_error :nyi, 'NYI', {user_id: current_user.id.to_s}
+        render_error :nyi, 'NYI'
       end
 
       def show
@@ -26,6 +25,22 @@ module Api
 
       def fancies
         @fancies = @user.fancies.page(params[:page]).per(params[:per_page] || 8)
+      end
+
+      def groups
+        @groups = @user.joined_groups
+      end
+
+      def followers
+        @followers = @user.followers.page(params[:page]).per(params[:per_page] || 24)
+      end
+
+      def followings
+        @followings = @user.followings.page(params[:page]).per(params[:per_page] || 24)
+      end
+
+      def activities
+        @activities = @user.activities.visible.page(params[:page]).per(24)
       end
 
       private
