@@ -16,10 +16,12 @@ figure.thing {
   padding: 1em;
   @include border-radius(8px);
 
-  &:hover {
+  @media (min-width: $screen-md-min) {
+    &:hover {
 
-    .thing_fancy {
-      opacity: 1;
+      .thing_fancy {
+        opacity: 1;
+      }
     }
   }
 
@@ -40,13 +42,18 @@ figure.thing {
     width: 100%;
 
     .fanciers {
-      left: 50%;
-      margin: {
-        left: -25px;
-        top: -25px;
+      display: none;
+
+      @media (min-width: $screen-md-min) {
+        display: block;
+        left: 50%;
+        margin: {
+          left: -25px;
+          top: -25px;
+        }
+        position: absolute;
+        top: 50%;
       }
-      position: absolute;
-      top: 50%;
 
       a {
         display: block;
@@ -72,7 +79,12 @@ figure.thing {
     background-color: rgba(0, 3, 9, 0.6);
     display: block;
     height: 100%;
+    opacity: 0;
     width: 100%;
+
+    @media (min-width: $screen-md-min) {
+      opacity: 1;
+    }
   }
 
   figcaption {
