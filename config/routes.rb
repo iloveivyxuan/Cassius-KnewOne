@@ -228,6 +228,8 @@ Making::Application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
+      get 'search', to: 'search#index'
+
       resources :things, only: [:index, :show] do
         resources :reviews, only: [:index, :show] do
           resources :comments, controller: :review_comments, only: [:index, :show, :create, :destroy]
