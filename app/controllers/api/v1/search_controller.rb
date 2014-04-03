@@ -14,7 +14,7 @@ module Api
         end
 
         if params[:type].blank? || params[:type] == 'things'
-          @things = Thing.unscoped.published.or({title: /#{q}/i}, {subtitle: /#{q}/i}).desc(:fanciers_count).page(params[:things_page] || params[:page]).per(per)
+          @things = Thing.unscoped.published.or({slug: /#{q}/i}, {title: /#{q}/i}, {subtitle: /#{q}/i}).desc(:fanciers_count).page(params[:things_page] || params[:page]).per(per)
         end
 
         if params[:type].blank? || params[:type] == 'users'
