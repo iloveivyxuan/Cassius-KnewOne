@@ -36,7 +36,6 @@ window.Making = do (exports = window.Making || {}) ->
                           url: url
                           data:
                             q: keyword
-                            per_page: 30
                           dataType: 'html'
                           contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
 
@@ -97,29 +96,27 @@ window.Making = do (exports = window.Making || {}) ->
 
               else
 
-                $candidate.find('.slideshow').each ->
-                  $slideshow = $(@)
-                  $slideshow_body = $slideshow.find('.slideshow_body')
-                  $list = $slideshow.find('.slideshow_inner')
-                  $prev_page = $slideshow.find('.slideshow_control.left')
-                  $next_page = $slideshow.find('.slideshow_control.right')
-                  slideshow = $slideshow.data('slideshow')
+                $slideshow_body = $slideshow.find('.slideshow_body')
+                $list = $slideshow.find('.slideshow_inner')
+                $prev_page = $slideshow.find('.slideshow_control.left')
+                $next_page = $slideshow.find('.slideshow_control.right')
+                slideshow = $slideshow.data('slideshow')
 
-                  $list.empty()
-                  if slideshow
-                    slideshow.reload()
-                    $prev_page.disable()
-                    $next_page.disable()
+                $list.empty()
+                if slideshow
+                  slideshow.reload()
+                  $prev_page.disable()
+                  $next_page.disable()
 
-                  $('<li />')
-                    .addClass('empty')
-                    .html ->
-                      if $list.closest('ul').hasClass('things')
-                        '没有找到相关产品，<a href="/things/new">我来分享~</a>'
-                      else if $list.closest('ul').hasClass('users')
-                        '没有找到相关用户。'
-                    .css 'width', -> $slideshow_body.css 'width'
-                    .appendTo $list
+                $('<li />')
+                  .addClass('empty')
+                  .html ->
+                    if $list.closest('ul').hasClass('things')
+                      '没有找到相关产品，<a href="/things/new">我来分享~</a>'
+                    else if $list.closest('ul').hasClass('users')
+                      '没有找到相关用户。'
+                  .css 'width', -> $slideshow_body.css 'width'
+                  .appendTo $list
 
             if $backdrop.is(':hidden') then $backdrop.fadeIn()
             if $candidate.is(':hidden') then $candidate.show()
