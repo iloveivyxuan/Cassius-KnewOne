@@ -48,7 +48,10 @@ window.Making = do (exports = window.Making || {}) ->
                             contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
 
           cache[keyword].done (data, status, xhr) ->
-            if xhr.status is 200
+            url = @.url
+            param = url.slice(url.lastIndexOf('q=') + 2)
+
+            if xhr.status is 200 and param is $.trim($input.val())
               $keyword.text(keyword)
 
               $(data).each ->
