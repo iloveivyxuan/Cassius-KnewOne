@@ -11,16 +11,19 @@ if context = notification.context
   case context.class
     when Thing
       json.context_type 'thing'
+      json.context_type_text '产品'
       json.thing do
         json.partial! 'api/v1/things/thing', thing: context
       end
     when Review
       json.context_type 'review'
+      json.context_type_text '评测'
       json.review do
         json.partial! 'api/v1/reviews/review', review: context
       end
     when Topic
       json.context_type 'topic'
+      json.context_type_text '话题'
       json.topic do
         json.partial! 'api/v1/topics/topic', topic: context
       end
