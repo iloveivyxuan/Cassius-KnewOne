@@ -34,7 +34,8 @@ window.Making = do (exports = window.Making || {}) ->
         typing_time = new Date()
 
         setTimeout ->
-          if new Date() - typing_time < delay then return
+          if new Date() - typing_time < delay  or
+            $.trim($input.val()).length < 2 then return
 
           $status.removeClass('fa-search').addClass('fa-spinner fa-spin')
 
@@ -103,27 +104,30 @@ window.Making = do (exports = window.Making || {}) ->
 
                 else
 
-                  $slideshow_body = $slideshow.find('.slideshow_body')
-                  $list = $slideshow.find('.slideshow_inner')
+                  $body = $slideshow.find('.slideshow_body')
                   $prev_page = $slideshow.find('.slideshow_control.left')
                   $next_page = $slideshow.find('.slideshow_control.right')
                   slideshow = $slideshow.data('slideshow')
 
-                  $list.empty()
+                  $body.empty().css('width', '100%')
+
                   if slideshow
                     slideshow.reload()
-                    $prev_page.disable()
-                    $next_page.disable()
+                  $prev_page.disable()
+                  $next_page.disable()
 
                   $('<li />')
                     .addClass('empty')
                     .html ->
-                      if $list.closest('ul').hasClass('things')
+                      if $data.hasClass('things')
                         '没有找到相关产品，<a href="/things/new">我来分享~</a>'
-                      else if $list.closest('ul').hasClass('users')
+                      else if $data.hasClass('users')
                         '没有找到相关用户。'
-                    .css 'width', -> $slideshow_body.css 'width'
-                    .appendTo $list
+                    .css 'width', -> $body.css 'width'
+                    .appendTo($data)
+                  $data
+                    .addClass('slideshow_inner')
+                    .appendTo($body)
 
               if $backdrop.is(':hidden') then $backdrop.fadeIn()
               if $candidate.is(':hidden') then $candidate.show()
@@ -140,22 +144,24 @@ window.Making = do (exports = window.Making || {}) ->
           $candidate.hide()
           $backdrop.fadeOut()
 
-    $input
-      .on 'focusin', ->
-        if !$form.hasClass('focus')
-          if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ') and (max-width: ' + Making.Breakpoints.screenLGMin + ')')
-            $nav_primary.hide()
-          $form.addClass('focus')
-      .on 'focusout', ->
-        if !$('html').hasClass('csstransitions')
-          $nav_primary.show()
+    .on 'focusin', ->
+      if !$form.hasClass('focus')
+        if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ') and (max-width: ' + Making.Breakpoints.screenLGMin + ')')
+          $nav_primary.hide()
+        $form.addClass('focus')
 
-        $form
-          .removeClass('focus')
-          .one $.support.transition.end, ->
-            if Modernizr.mq '(max-width: ' + Making.Breakpoints.screenLGMin + ')'
-              $nav_primary.fadeIn()
-          .emulateTransitionEnd(transition_time)
+    .on 'focusout', ->
+      if !$('html').hasClass('csstransitions')
+        $nav_primary.show()
+      $form
+        .removeClass('focus')
+        .one $.support.transition.end, ->
+          if Modernizr.mq '(max-width: ' + Making.Breakpoints.screenLGMin + ')'
+            $nav_primary.fadeIn()
+        .emulateTransitionEnd(transition_time)
+
+    .on 'click', ->
+      $(@).select()
 
   #exports
   exports

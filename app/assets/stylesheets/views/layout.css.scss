@@ -489,6 +489,7 @@ body {
         &.empty {
           height: $thing_height;
           line-height: $thing_height;
+          margin-right: 0;
         }
       }
     }
@@ -516,7 +517,8 @@ body {
 
         &.empty {
           height: 125px;
-          line-height: 95px;
+          line-height: 125px;
+          margin: 0;
 
           > a {
             margin-bottom: 0;
