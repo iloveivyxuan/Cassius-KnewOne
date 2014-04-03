@@ -137,6 +137,19 @@ body {
   }
 }
 
+#nav_primary {
+
+  @media (max-width: $screen-sm-max) {
+    @include clearfix;
+
+    > li {
+      float: left;
+      text-align: center;
+      width: 33.333333%;
+    }
+  }
+}
+
 .user_links {
   @include clearfix;
 

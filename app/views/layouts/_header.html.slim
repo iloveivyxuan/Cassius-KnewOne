@@ -1,15 +1,15 @@
 header#header role="banner"
   nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
     .navbar-header
-      = button_tag data: {toggle: "collapse", target: "#navbar_main"}, class: "navbar-toggle" do
+      = button_tag data: {toggle: "collapse", target: "#nav_main"}, class: "navbar-toggle" do
         span.sr-only "导航"
         span.fa.fa-bars
       = link_to root_path, class: "navbar-brand" do
         = logo
         span= brand
 
-    #navbar_main.collapse.navbar-collapse
-      ul.nav.navbar-nav
+    #nav_main.collapse.navbar-collapse
+      ul.nav.navbar-nav#nav_primary
         li.nav_things
           = link_to categories_path do
             i.fa.fa-tags.fa-fw

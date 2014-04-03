@@ -11,7 +11,7 @@ window.Making = do (exports = window.Making || {}) ->
     url        = $form.attr('action') + '.js'
     cache      = {}
     max_length = 12
-    $nav_primary    = $('#navbar_main').children('.navbar-nav')
+    $nav_primary    = $('#nav_primary')
     transition_time = parseFloat($form.css('transition-duration')) * 1000
 
     $('.navbar').add($backdrop).add($close).on 'click.search', (e) ->
