@@ -8,10 +8,9 @@ header.page-header
 
 = render 'things/filter'
 
-section
-  ul.things.infinite#things= render @things, size: :normal, img_lazy: true
-  = paginate @things
+ul.things.infinite#things= render @things, size: :normal, img_lazy: true
+= paginate @things
 
 - content_for :script do
   javascript:
-    Making.InfiniteScroll("#wrapper > section");
+    Making.InfiniteScroll("#wrapper");
