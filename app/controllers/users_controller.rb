@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class UsersController < ApplicationController
-  load_and_authorize_resource except: [:fuzzy]
+  prepend_before_action :require_signed_in, only: [:share, :follow, :unfollow]
+  before_action :set_user, except: [:share, :follow, :unfollow, :fuzzy]
 
   def show
     @reviews = @user.reviews.where(:thing_id.ne => nil).limit(4)
@@ -78,6 +79,16 @@ class UsersController < ApplicationController
       format.json do
         @users = @users.limit(20)
       end
+    end
+  end
+
+  private
+
+  def set_user
+    if request.subdomain.present?
+      @user = User.find_by personal_domain: request.subdomain
+    else
+      @user = User.find(params[:id])
     end
   end
 end
