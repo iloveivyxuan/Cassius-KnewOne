@@ -34,6 +34,7 @@ class Notification
         ->(record) { record ? where(context_type: record.class.to_s, context_id: record.id.to_s) : where(context_type: nil, context_id: nil) }
 
   scope :by_type, ->(type) { where type: type }
+  scope :by_types, ->(types) { where :type.in => types }
 
   scope :by_receiver, ->(user) { where receiver: user }
 
