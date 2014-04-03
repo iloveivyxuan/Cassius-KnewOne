@@ -10,7 +10,7 @@ class Making.Views.ThingsNew extends Backbone.View
 
   validate_unicity: (event) ->
     if $('html').hasClass('things_new')
-      url     = $('#navbar_search').attr('action') + '.js' # todo
+      url     = $('#navbar_search').attr('action') + '.js' + '?type=things'
       keyword = $.trim event.target.value
       is_slideshow_initiated = false
       $thing_candidate = $('#thing_candidate')
@@ -18,7 +18,6 @@ class Making.Views.ThingsNew extends Backbone.View
       $close           = $thing_candidate.children('.close')
       $prev_page       = $thing_candidate.find('.slideshow_control.left')
       $next_page       = $thing_candidate.find('.slideshow_control.right')
-      $list            = $slideshow_body.find('.slideshow_inner')
 
       $.ajax
         url: url
@@ -27,9 +26,12 @@ class Making.Views.ThingsNew extends Backbone.View
         contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
       .done (data, status, xhr) ->
         if xhr.status is 200
-          is_slideshow_hidden = $thing_candidate.is(':hidden')
+          $data = $(data)
 
-          $list.empty().html(data)
+          if $data.children().length is 0 then return
+
+          is_slideshow_hidden = $thing_candidate.is(':hidden')
+          $slideshow_body.empty().append($data.addClass('slideshow_inner'))
 
           if is_slideshow_hidden then $thing_candidate.css('height', 0).show()
           $slideshow_body.css 'width', ->

@@ -61,9 +61,12 @@ html.things_edit {
       }
 
       .slideshow_inner {
+        margin: 0;
 
         > li {
+          margin-bottom: 0;
           opacity: 1;
+          padding: 0;
           width: 160px;
         }
       }
