@@ -6,5 +6,5 @@
 #thing_author
   label 分享者
   br
-  = link_to current_user do
-    = image_tag current_user.avatar.url(:small), class: "img-circle"
+  = link_to @thing.author do
+    = image_tag @thing.author.avatar.url(:small), class: "img-circle"
