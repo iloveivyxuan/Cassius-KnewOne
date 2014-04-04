@@ -1,9 +1,9 @@
 Making::Application.routes.draw do
   use_doorkeeper
 
-  constraints(lambda { |r| r.subdomain.present? }) do
-    get '', to: 'users#show', constraints: lambda { |r| r.subdomain.present? }
-    get ':action', controller: :users, constraints: lambda { |r| r.subdomain.present? }
+  constraints(lambda { |r| r.subdomain.present? && r.subdomain != 'www' }) do
+    get '', to: 'users#show'
+    get ':action', controller: :users
   end
 
   root to: 'home#index'
