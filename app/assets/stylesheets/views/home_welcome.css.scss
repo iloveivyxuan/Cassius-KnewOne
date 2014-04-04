@@ -1,0 +1,68 @@
+html.home_welcome {
+
+  // Layout
+  // ---------------------------------------------------------------------------
+
+  #wrapper {
+    @include wrapper(simple, $max-width: $screen-md-min);
+    min-height: 600px;
+    position: relative;
+
+    > section {
+      display: none;
+
+      &.active {
+        display: block;
+      }
+    }
+  }
+
+  // Section
+  // ---------------------------------------------------------------------------
+
+  .page-header {
+    @include clearfix;
+
+    .btn-link {
+      float: right;
+    }
+  }
+
+  #step1 {
+    @include translate3d(0,-50%,0);
+
+    background-color: transparent;
+    left: 0;
+    margin-bottom: 0;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 100%;
+
+    h1 {
+      margin-top: 0;
+    }
+
+    .btn-success {
+      margin-top: 50px;
+    }
+  }
+
+  #step2 {
+
+    .nav {
+      margin: 20px 0;
+    }
+
+    .tab-pane {
+
+      > ul {
+        border: $border-default;
+        height: 500px;
+        margin: 20px 0;
+        overflow-y: scroll;
+        text-align: center;
+      }
+    }
+  }
+}

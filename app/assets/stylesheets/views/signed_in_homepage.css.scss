@@ -1,0 +1,303 @@
+html.signed_in_homepage {
+
+  // Layout
+  // ---------------------------------------------------------------------------
+
+  #wrapper {
+    @include wrapper(grid, 2);
+
+    > main {
+      min-height: 940px;
+    }
+
+    > aside {
+      display: none;
+
+      @media (min-width: $screen-md-min) {
+        display: block;
+      }
+    }
+  }
+
+
+  // Section
+  // ---------------------------------------------------------------------------
+
+  .page-header {
+    display: none;
+
+    @media (min-width: $screen-md-min) {
+      @include clearfix;
+
+      display: block;
+    }
+
+    h1 {
+      color: $gray;
+      float: left;
+      font-size: 18px;
+      line-height: 34px;
+
+      .fa {
+        margin-left: 10px;
+      }
+    }
+
+    .btn {
+      float: right;
+    }
+  }
+
+  .feed_article {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  aside {
+
+    .nav {
+
+      > li.active {
+
+        > a {
+          background-color: $nav-link-hover-bg;
+          color: $text-color;
+        }
+      }
+
+      a {
+        color: $gray;
+
+        &.home {
+          @include text-overflow;
+
+          margin-bottom: 30px;
+        }
+
+        &:hover {
+          color: $text-color;
+        }
+      }
+
+      .divider {
+        border-bottom: $border-default;
+        margin: 30px 0;
+      }
+    }
+
+    .panel {
+      color: $gray;
+
+      .panel-heading {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+
+    footer {
+      color: $text-muted;
+      padding: {
+        left: 10px;
+        right: 10px;
+      }
+    }
+
+    .nav_bottom {
+      margin-bottom: 1em;
+
+      > a {
+        border-right: $border-default;
+        color: $text-muted;
+        display: inline-block;
+        margin-bottom: 5px;
+        margin-right: .5em;
+        padding-right: .5em;
+
+        &:last-child {
+          border-right: none;
+          margin-right: 0;
+          padding-right: 0;
+        }
+      }
+    }
+  }
+
+  #choiceness {
+
+    .panel-heading {
+      @include clearfix;
+      color: $text-muted;
+
+      .more {
+        color: $text-muted;
+        float: right;
+        line-height: 24px;
+      }
+    }
+
+    .panel-title {
+      float: left;
+    }
+
+    figure {
+      overflow: hidden;
+
+      > a {
+        display: block;
+        height: 0;
+        padding-bottom: 100%;
+        position: relative;
+
+        img {
+          bottom: 0;
+          left: 0;
+          max-width: 100%;
+          margin: auto;
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+      }
+
+      figcaption {
+        @include text-overflow;
+
+        background-color: #fff;
+        display: block;
+        padding-top: 5px;
+        position: relative;
+        text-align: center;
+        z-index: 1;
+
+        a {
+          color: $gray;
+        }
+      }
+    }
+  }
+
+  .promotion {
+    display: block;
+    margin: {
+      left: 10px;
+      right: 10px;
+    }
+
+    img {
+      margin-bottom: 20px;
+      height: auto;
+      width: 100%;
+    }
+  }
+
+  #wrapper {
+
+    .thing {
+      border-radius: 0;
+
+      .metas {
+        color: $gray;
+        margin-bottom: 10px;
+
+        .meta {
+
+          &.fa-heart {
+            color: $red;
+          }
+
+          &.fa-check {
+            color: $green;
+          }
+        }
+
+        a.meta {
+          color: $gray;
+        }
+      }
+    }
+
+    > .promotion {
+      @include center-block;
+      display: none;
+
+      @media (min-width: $screen-md-min) {
+        display: none;
+      }
+    }
+  }
+
+  #activities {
+
+    .row {
+      margin: {
+        left: 0;
+        right: 0;
+      }
+
+      &:first-child {
+
+        @media (min-width: $screen-sm-min) {
+          border-top: none;
+        }
+
+        > [class *= 'col-sm']:first-child {
+          border-top: none;
+        }
+      }
+
+      @media (min-width: $screen-sm-min) {
+        border-top: $border-default;
+        display: none;
+      }
+    }
+
+    .col-sm-6 {
+      border-top: $border-default;
+      margin: {
+        bottom: 1em;
+        left: auto;
+        right: auto;
+      }
+
+      @media (min-width: $screen-sm-min) {
+        border-top: none;
+        margin-top: 1em;
+      }
+
+      @media (min-width: $screen-md-min) {
+        margin-bottom: 1em;
+        margin-top: 1em;
+      }
+
+      &:first-child {
+
+        @media (min-width: $screen-sm-min) {
+          border-right: $border-default;
+        }
+      }
+    }
+
+    .col-sm-12 {
+      border-top: $border-default;
+
+      @media (min-width: $screen-sm-min) {
+        border-top: none;
+      }
+
+      &.thing {
+
+        @media (min-width: $screen-sm-min) {
+          float: none;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 450px;
+        }
+      }
+    }
+
+    .thing,
+    .feed_article {
+      display: none;
+    }
+  }
+}

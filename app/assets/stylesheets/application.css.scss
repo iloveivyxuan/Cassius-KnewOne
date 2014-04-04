@@ -50,7 +50,9 @@
 @import "components/pagination";
 
 // Views
-@import "views/home";
+@import "views/guest_homepage";
+@import "views/signed_in_homepage";
+@import "views/home_welcome";
 @import "views/things";
 @import "views/thing_form";
 @import "views/groups";
