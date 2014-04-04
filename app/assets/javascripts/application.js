@@ -28,6 +28,7 @@
 //= require notificationbox
 //= require search
 //= require home
+//= require thing
 //= require orders
 //= require cart_items
 //= require typeahead.bundle

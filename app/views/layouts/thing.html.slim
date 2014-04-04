@@ -16,4 +16,8 @@
       nav= render "things/nav", tp: tp
       #thing_content= yield
 
+- content_for :script do
+  javascript:
+    Making.InitThing();
+
 = render template: 'layouts/application'

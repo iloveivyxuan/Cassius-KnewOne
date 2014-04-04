@@ -40,13 +40,43 @@ html.stories_show {
     }
 
     #thing_content {
+      $gap: 2em;
+
       > * {
-        padding-bottom: 2em;
+        padding-bottom: $gap;
         border-bottom: $border-default;
-        margin-bottom: 2em;
+        margin-bottom: $gap;
       }
 
       > *:last-child {border: none;}
+
+      .post_content {
+        $summary_height: 200px;
+
+        &.is_folded {
+          max-height: $summary_height;
+          overflow: hidden;
+          padding-bottom: 0;
+        }
+
+        & + .more {
+          height: $summary_height + 40px;
+          margin-top: -($summary_height + 28px);
+          padding-bottom: 0;
+          position: relative;
+
+          a {
+            background-color: #f5f5f5;
+            bottom: 0;
+            color: $gray;
+            height: 40px;
+            line-height: 40px;
+            position: absolute;
+            text-align: center;
+            width: 100%;
+          }
+        }
+      }
     }
   }
 
@@ -93,6 +123,24 @@ html.stories_show {
   }
 
   .edit_post {padding-bottom: 0;}
+}
+
+#thing_author {
+  margin: 0;
+  text-align: center;
+
+  > label {
+    color: $text-muted;
+    font-style: italic;
+    font-weight: normal;
+  }
+
+  img {
+    @extend .img-circle;
+
+    height: 60px;
+    width: 60px;
+  }
 }
 
 #thing_photos {
