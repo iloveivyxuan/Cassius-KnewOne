@@ -3,17 +3,17 @@
   - present review do |rp|
     section.feed_article data-identifier="#{activity.identifier}"
       .metas
-        = link_to activity.user, class: "meta" do
+        = link_to user_url(activity.user), class: "meta" do
           = image_tag activity.user.avatar.url(:tiny), alt: activity.user.name, class: "img-circle"
-        = link_to activity.user.name, activity.user, class: 'meta'
+        = link_to activity.user.name, user_url(activity.user), class: 'meta'
         i.meta.fa class="#{feed_type_icon_class(activity)}"
         = feed_type_text activity
       figure
         - present review.thing do |tp|
-          = link_to tp.path do
+          = link_to tp.url do
             = tp.photo(:small)
             figurecaption title="#{tp.title}" = tp.title
-      = link_to rp.path, class: "feed_main"
+      = link_to rp.url, class: "feed_main"
         article
           header.feed_header
             h4.feed_title

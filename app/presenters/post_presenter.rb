@@ -3,7 +3,7 @@ class PostPresenter < ApplicationPresenter
   presents :post
   delegate :title, :id, :author, to: :post
 
-  def path
+  def url
     #abstract
   end
 
@@ -42,7 +42,7 @@ class PostPresenter < ApplicationPresenter
     css = "comments_count #{options.delete(:class)}"
     if @object.comments.present?
       link_to_with_icon @object.comments.count, "fa fa-comments-o",
-      path, class: css
+      url, class: css
     end
   end
 

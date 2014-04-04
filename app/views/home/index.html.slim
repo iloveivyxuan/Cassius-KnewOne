@@ -1,7 +1,7 @@
 header.page-header
   h1
     | 最新动态
-  = link_to_with_icon "分享产品", "fa fa-plus", new_thing_path, class: 'btn btn-primary'
+  = link_to_with_icon "分享产品", "fa fa-plus", new_thing_url, class: 'btn btn-primary'
 
 #activities
   = render_feeds(@activities)

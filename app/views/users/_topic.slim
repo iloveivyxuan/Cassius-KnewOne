@@ -2,7 +2,7 @@
   article.article_compact
     - present topic do |tp|
       header.article_header
-        h4.article_title = link_to tp.title, tp.path
+        h4.article_title = link_to tp.title, tp.url
       section.article_body
         figure
           - present topic.group do |gp|

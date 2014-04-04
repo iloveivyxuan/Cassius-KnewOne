@@ -16,13 +16,13 @@ module NotificationsHelper
     case post.class
       when Thing then
         content += "产品"
-        content += link_to post.title, thing_path(post), target: target
+        content += link_to post.title, thing_url(post), target: target
       when Review then
         content += "评测"
-        content += link_to post.title, thing_review_path(post.thing, post), target: target
+        content += link_to post.title, thing_review_url(post.thing, post), target: target
       when Topic then
         content += "帖子"
-        content += link_to post.title, group_topic_path(post.group, post), target: target
+        content += link_to post.title, group_topic_url(post.group, post), target: target
       else
         content += '失效的资源'
     end

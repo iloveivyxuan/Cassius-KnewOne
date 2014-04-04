@@ -14,7 +14,7 @@ section.orders_wrapper
         strong.field 用户：
         span
           = link_to @order.user.name, @order.user, target: '_blank'
-          = link_to '[余额]', haven_user_path(@order.user), target: '_blank'
+          = link_to '[余额]', haven_user_url(@order.user), target: '_blank'
       li
         strong.field 收货地址：
         span = address_text @order
@@ -77,7 +77,7 @@ section.orders_wrapper
     ul = render partial: 'orders/rebate', collection: @order.rebates if @order.rebates.any?
 
   section
-    = simple_nested_form_for @order, url: haven_order_path(@order), html: {class: "form"} do |f|
+    = simple_nested_form_for @order, url: haven_order_url(@order), html: {class: "form"} do |f|
       fieldset
         legend 订单调整
         = f.input :admin_note, as: :text, input_html: {rows: 3}
@@ -91,7 +91,7 @@ section.orders_wrapper
       = refund_to_balance_link(@order)
     hr
     .order_actions.text-right
-      .btn-group = link_to '返回', haven_orders_path, class: 'btn btn-default'
+      .btn-group = link_to '返回', haven_orders_url, class: 'btn btn-default'
       = way_bill_link(@order)
       = deliver_bill_link(@order)
       = refund_link(@order)

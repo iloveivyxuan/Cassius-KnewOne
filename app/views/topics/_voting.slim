@@ -1,6 +1,6 @@
 .voting
   - if can? :vote, topic and !topic.voted?(current_user)
-    = form_tag vote_group_topic_path(topic.group, topic), remote: true,
+    = form_tag vote_group_topic_url(topic.group, topic), remote: true,
     class: "not_voted", data: {type: 'html'} do
       = button_tag title: "有用", class: "btn btn-default btn-xs", data: {vote: true} do
         i.fa.fa-plus

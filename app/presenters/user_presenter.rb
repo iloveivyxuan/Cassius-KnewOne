@@ -3,8 +3,8 @@ class UserPresenter < ApplicationPresenter
   presents :user
   delegate :name, to: :user
 
-  def path
-    user_path(user)
+  def url
+    user_url(user)
   end
 
   def avatar(size=:small, options={})

@@ -4,7 +4,7 @@
   <h2>修改账号</h2>
 </header>
 <main role="main">
-  <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :patch }) do |f| %>
+  <%= simple_form_for(resource, :as => resource_name, :url => registration_url(resource_name), :html => { :method => :patch }) do |f| %>
     <% if current_user.email.blank? %>
       <%= f.input :email, :required => true, :autofocus => true %>
     <% else %>

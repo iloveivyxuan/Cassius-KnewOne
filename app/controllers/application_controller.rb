@@ -6,6 +6,13 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   after_action :store_location, only: [:index, :show]
 
+  prepend UserRoutesHelper
+  helper UserRoutesHelper
+
+  def default_url_options
+    { subdomain: nil }
+  end
+
   # some bots using some *strange* format to request urls
   # that would trigger missing template exception,
   # so this will reject those request, but you can adjust to your logic
@@ -83,7 +90,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    params[:redirect_from] || session.delete(:previous_url) || root_path || super
+    params[:redirect_from] || session.delete(:previous_url) || root__url || super
   end
 
   def require_admin

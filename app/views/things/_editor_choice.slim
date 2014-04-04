@@ -3,6 +3,6 @@
     .thing_thumb
       = tp.photo(:normal)
       .thing_fancy
-        = link_to "", tp.path, class: "thing_fancy_backdrop", target: "_blank"
+        = link_to "", tp.url, class: "thing_fancy_backdrop", target: "_blank"
         .fanciers= render "shared/fancy", p: tp
-    figcaption = link_to tp.full_title, tp.path, target: '_blank'
+    figcaption = link_to tp.full_title, tp.url, target: '_blank'

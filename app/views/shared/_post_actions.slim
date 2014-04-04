@@ -1,8 +1,8 @@
 - if can? :update, post
   small.post_actions
-    = link_to_with_icon "", "fa fa-edit", edit_post_path, title: "编辑文章"
-    = link_to_with_icon "", "fa fa-trash-o", post_path,
+    = link_to_with_icon "", "fa fa-edit", edit_post_url, title: "编辑文章"
+    = link_to_with_icon "", "fa fa-trash-o", post_url,
     method: :delete, title: "删除文章", data: {confirm: "您确定要删除文章吗?"}
     - if can? :manage, :all and post.instance_of? Review
       = link_to_with_icon "", "fa fa-gift",
-        new_lottery_path(review: post), title: "发奖"
+        new_lottery_url(review: post), title: "发奖"

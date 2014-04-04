@@ -1,7 +1,11 @@
 Making::Application.routes.draw do
   use_doorkeeper
 
-  get '', to: 'users#show', constraints: lambda { |r| r.subdomain.present? }
+  constraints(lambda { |r| r.subdomain.present? }) do
+    get '', to: 'users#show', constraints: lambda { |r| r.subdomain.present? }
+    get ':action', controller: :users, constraints: lambda { |r| r.subdomain.present? }
+  end
+
   root to: 'home#index'
   get '/page/:page', to: "home#index"
   get 'qr_entry', to: 'home#qr_entry'

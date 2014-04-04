@@ -20,7 +20,7 @@ class StoriesController < ApplicationController
     @story = Story.new story_params
       .merge(author: current_user, thing: @thing)
     if @story.save
-      redirect_to thing_stories_path(@thing)
+      redirect_to thing_stories_url(@thing)
     else
       render 'new'
     end
@@ -32,7 +32,7 @@ class StoriesController < ApplicationController
 
   def update
     if @story.update(story_params)
-      redirect_to thing_stories_path(@thing)
+      redirect_to thing_stories_url(@thing)
     else
       render 'new'
     end
@@ -40,7 +40,7 @@ class StoriesController < ApplicationController
 
   def destroy
     @story.destroy
-    redirect_to thing_stories_path(@thing)
+    redirect_to thing_stories_url(@thing)
   end
 
   private

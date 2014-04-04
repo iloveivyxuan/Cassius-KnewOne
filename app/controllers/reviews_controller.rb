@@ -26,7 +26,7 @@ class ReviewsController < ApplicationController
     if @review.save
       flash[:provider_sync] = params[:provider_sync]
       current_user.log_activity :new_review, @review, source: @review.thing
-      redirect_to thing_review_path(@thing, @review)
+      redirect_to thing_review_url(@thing, @review)
     else
       flash.now[:error] = @review.errors.full_messages.first
       render 'new'
@@ -39,7 +39,7 @@ class ReviewsController < ApplicationController
 
   def update
     if @review.update(review_params)
-      redirect_to thing_review_path(@thing, @review)
+      redirect_to thing_review_url(@thing, @review)
     else
       flash.now[:error] = @review.errors.full_messages.first
       render 'new'
@@ -48,7 +48,7 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review.destroy
-    redirect_to thing_reviews_path(@thing)
+    redirect_to thing_reviews_url(@thing)
   end
 
   def vote

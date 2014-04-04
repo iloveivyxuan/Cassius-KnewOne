@@ -1,5 +1,5 @@
 json.id @order.id.to_s
-json.html_url order_path(@order)
+json.html_url order_url(@order)
 json.order_no @order.order_no
 json.address do
   json.partial! 'api/v1/official/addresses/address', address: @order.address

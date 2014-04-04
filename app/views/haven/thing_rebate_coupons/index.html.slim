@@ -1,4 +1,4 @@
-= link_to '新建', new_haven_thing_rebate_coupon_path, class: 'btn btn-primary'
+= link_to '新建', new_haven_thing_rebate_coupon_url, class: 'btn btn-primary'
 table.table
   thead
     th 名称
@@ -14,4 +14,4 @@ table.table
       td = link_to coupon.thing.title, coupon.thing, target: '_blank'
       td = coupon.price
       td
-        = link_to '详情', haven_thing_rebate_coupon_path(coupon)
+        = link_to '详情', haven_thing_rebate_coupon_url(coupon)

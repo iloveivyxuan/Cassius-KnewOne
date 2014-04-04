@@ -14,16 +14,16 @@ section.group_info
         .be_member
           span
             - if can? :update, gp.group
-              = link_to_with_icon "管理", "fa fa-cog", edit_group_path(gp.group)
+              = link_to_with_icon "管理", "fa fa-cog", edit_group_url(gp.group)
             - if can? :leave, gp.group
-              = link_to_with_icon "退出", "fa fa-chevron-right", leave_group_path(gp.group),
+              = link_to_with_icon "退出", "fa fa-chevron-right", leave_group_url(gp.group),
                   method: :delete, class: "leave_group", data: {confirm: "真的要退出吗?"}
           = button_tag type: "button", class: "btn btn-default btn-sm",
           data: {toggle: 'modal', target: '#group_invitation'} do
             i.fa.fa-beer
             | 邀请好友加入
       - elsif gp.public?
-        = link_to_with_icon "加入小组", "fa fa-sign-in", join_group_path(gp.group),
+        = link_to_with_icon "加入小组", "fa fa-sign-in", join_group_url(gp.group),
         method: :get, class: 'btn btn-default btn-sm'
 
 section.members.panel
@@ -31,7 +31,7 @@ section.members.panel
     h3.panel-title
       i.fa.fa-group
       | 小组成员
-    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', members_group_path(gp.group),
+    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', members_group_url(gp.group),
     class: 'more', title: '更多'
   .panel-body
     ul= render partial: "groups/member", collection: gp.members_aside, as: :up
@@ -41,7 +41,7 @@ section.fancies.panel
     h3.panel-title
       i.fa.fa-bookmark
       | 小组收藏
-    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', fancies_group_path(gp.group),
+    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', fancies_group_url(gp.group),
     class: 'more', title: '更多'
   .panel-body
     ul.fancies_list
@@ -50,7 +50,7 @@ section.fancies.panel
 #group_invitation.modal.fade
   .modal-dialog
     .modal-content
-      = form_tag invite_group_path(gp.group, format: :js), method: :post, remote: true, class: "form-horizontal" do
+      = form_tag invite_group_url(gp.group, format: :js), method: :post, remote: true, class: "form-horizontal" do
         .modal-header
           button.close data-dismiss="modal" &times;
           h4.modal-title 邀请加入小组

@@ -74,7 +74,7 @@ module ApplicationHelper
   end
 
   def feed_link_tag
-    feed_url = content_for?(:feed) ? content_for(:feed) : things_url(format: "atom")
+    feed_url = content_for?(:feed) ? content_for(:feed) : things_url(format: :atom)
     auto_discovery_link_tag :atom, feed_url
   end
 

@@ -11,7 +11,7 @@
 
     footer
       = render 'shared/post_actions', post: sp.story,
-        edit_post_path: sp.edit_path, post_path: sp.path
+        edit_post_path: sp.edit_url, post_path: sp.url
 
     = render 'shared/comments', post: sp.story, id: "comments", auth: true
 

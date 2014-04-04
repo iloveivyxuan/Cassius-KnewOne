@@ -3,9 +3,9 @@
   - present thing do |tp|
     figure class="thing" data-identifier="#{activity.identifier}"
       .metas
-        = link_to activity.user, class: "meta" do
+        = link_to user_url(activity.user), class: "meta" do
           = image_tag activity.user.avatar.url(:tiny), alt: activity.user.name, class: "img-circle"
-        = link_to activity.user.name, activity.user, class: 'meta name'
+        = link_to activity.user.name, user_url(activity.user), class: 'meta name'
         i.meta.fa class="#{feed_type_icon_class(activity)}"
         = feed_type_text activity
       - tp.self_run?
@@ -26,6 +26,6 @@
             span.owners
               i.fa.fa-check
               = thing.owners.size
-            = link_to thing_reviews_path(thing), class: 'reviews_count', target: '_blank' do
+            = link_to thing_reviews_url(thing), class: 'reviews_count', target: '_blank' do
               i.fa.fa-pencil
               = thing.reviews.size

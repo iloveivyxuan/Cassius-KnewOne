@@ -5,7 +5,7 @@ class NotificationSettingsController < ApplicationController
   def update
     respond_to do |format|
       if current_user.notification_setting.update(notification_setting_params)
-        format.html { redirect_to edit_notification_settings_path }
+        format.html { redirect_to edit_notification_settings_url }
         format.json { head :no_content }
       else
         format.html { render "notification_settings/edit" }

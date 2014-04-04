@@ -1,7 +1,7 @@
 #group_fancy_thing.modal.fade
   .modal-dialog.modal-sm
     .modal-content
-      = form_tag group_fancy_thing_path(@thing), method: :post, remote: true do
+      = form_tag group_fancy_thing_url(@thing), method: :post, remote: true do
         .modal-header
           button.close data-dismiss="modal" aria-hidden="true" &times;
           h4.modal-title 小组收藏

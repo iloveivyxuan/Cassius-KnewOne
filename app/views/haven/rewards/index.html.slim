@@ -1,4 +1,4 @@
-= link_to '发奖', new_haven_reward_path, class: 'btn btn-lg btn-success'
+= link_to '发奖', new_haven_reward_url, class: 'btn btn-lg btn-success'
 
 table.table.table-striped
   thead
@@ -26,10 +26,10 @@ table.table.table-striped
             - if cc.used?
               | | 已使用
         td
-          = link_to '编辑', edit_haven_reward_path(reward)
+          = link_to '编辑', edit_haven_reward_url(reward)
           | |
-          = link_to '删除', haven_reward_path(reward), data: {:confirm => 'Are you sure?'}, :method => :delete
+          = link_to '删除', haven_reward_url(reward), data: {:confirm => 'Are you sure?'}, :method => :delete
           - unless reward.coupon_code
             | |
-            = link_to '发奖', award_haven_reward_path(reward), method: :patch, data: {:confirm => 'Are you sure?'}
+            = link_to '发奖', award_haven_reward_url(reward), method: :patch, data: {:confirm => 'Are you sure?'}
 

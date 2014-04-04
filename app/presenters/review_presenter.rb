@@ -2,12 +2,12 @@
 class ReviewPresenter < PostPresenter
   presents :review
 
-  def path
-    thing_review_path(review.thing, review)
+  def url
+    thing_review_url(review.thing, review)
   end
 
-  def edit_path
-    edit_thing_review_path(review.thing, review)
+  def edit_url
+    edit_thing_review_url(review.thing, review)
   end
 
   def score
