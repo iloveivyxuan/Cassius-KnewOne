@@ -1,10 +1,11 @@
+#thing_author
+  = link_to @thing.author do
+    = image_tag @thing.author.avatar.url(:small), class: "img-circle", alt: @thing.author.name
+  label
+    | 分享者：
+  = link_to @thing.author.name, @thing.author
+
 - if tp.summary.present?
   = tp.content
   .more
     = link_to "查看全部", "#"
-
-#thing_author
-  label 分享者
-  br
-  = link_to @thing.author do
-    = image_tag @thing.author.avatar.url(:small), class: "img-circle"

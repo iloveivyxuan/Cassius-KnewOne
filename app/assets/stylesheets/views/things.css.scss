@@ -31,9 +31,11 @@ html.stories_show {
     }
 
     .nav-layout {
-      li a {
+      > li a {
+        .fa {margin-right: 0;}
         span {display: none;}
         @media screen and (min-width: $screen-sm-min) {
+          .fa {margin-right: .5em;}
           span {display: inline;}
         }
       }
@@ -126,12 +128,15 @@ html.stories_show {
 }
 
 #thing_author {
-  margin: 0;
-  text-align: center;
+  background-color: #f5f5f5;
+  border-bottom: 0;
+  height: 40px;
+  line-height: 40px;
+  margin-bottom: 40px !important;
+  padding-bottom: 0 !important;
 
   > label {
     color: $text-muted;
-    font-style: italic;
     font-weight: normal;
   }
 
@@ -139,6 +144,8 @@ html.stories_show {
     @extend .img-circle;
 
     height: 60px;
+    margin: 10px;
+    vertical-align: top;
     width: 60px;
   }
 }
@@ -196,45 +203,6 @@ html.stories_show {
         i {margin-right: 0;}
       }
       &:hover .carousel-control {display: block;}
-    }
-  }
-}
-
-#thing_summary {
-  blockquote {
-    @include clearfix;
-    color: $gray;
-    font-size: 16px;
-
-    .author {
-      display: none;
-      float: left;
-      width: 14%;
-      text-align: center;
-      margin: 0;
-      > a {
-        display: block;
-        font-size: $font-size-base;
-      }
-      img {@extend .img-circle;}
-
-      @media screen and (min-width: $screen-sm-min) {
-        display: block;
-      }
-    }
-
-    > p {
-      float: left;
-      width: 76%;
-      word-wrap: break-word;
-    }
-
-    a.details {
-      float: right;
-      display: block;
-      width: 10%;
-      text-align: right;
-      color: $text-muted;
     }
   }
 }
