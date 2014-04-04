@@ -5,8 +5,12 @@ html.home_welcome {
 
   #wrapper {
     @include wrapper(simple, $max-width: $screen-md-min);
-    min-height: 600px;
+    min-height: 400px;
     position: relative;
+
+    @media (min-width: $screen-md-min) {
+      min-height: 600px;
+    }
 
     > section {
       display: none;
@@ -58,10 +62,9 @@ html.home_welcome {
 
       > ul {
         border: $border-default;
-        height: 500px;
+        height: 380px;
         margin: 20px 0;
         overflow-y: scroll;
-        text-align: center;
       }
     }
   }
