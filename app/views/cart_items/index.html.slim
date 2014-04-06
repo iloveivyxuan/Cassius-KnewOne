@@ -8,6 +8,8 @@ header.page-header
 
 = form_tag new_order_path, method: :get, authenticity_token: false
   fieldset
+    p.alert.alert-warning
+      | 温馨提示：清明节放假期间的订单将延迟至 4 月 8 号（周二）发货，对此给您带来的不便我们深感抱歉。
     - if @cart_items.any?
       ul.carts= render @cart_items
       small.deliver_tip
