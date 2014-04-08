@@ -10,7 +10,7 @@
     #thing_title
       h1= link_to(tp.title, tp.thing)
       h2= tp.subtitle
-    aside#thing_actions class="thing_#{tp.thing.id}_aside"
+    aside#thing_actions
       = render "things/actions", tp: tp
     main
       nav= render "things/nav", tp: tp

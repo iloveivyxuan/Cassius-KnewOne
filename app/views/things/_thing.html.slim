@@ -1,6 +1,6 @@
 - present thing do |tp|
   li
-    figure class="thing thing_#{tp.thing.id}"
+    figure class="thing"
       - if tp.self_run?
         = link_to tp.thing, class: "pre_ribbon #{tp.stage}" do
           span= tp.stage_text
@@ -13,10 +13,9 @@
         h5 data-toggle="tooltip" data-placement="top" title=tp.full_title
           = link_to tp.full_title, tp.thing, target: '_blank'
         em.figure_detail
-          - if tp.thing.fanciers.count > 0
-            span.fanciers
-              i.fa.fa-heart
-              = tp.fanciers_count
+          span.fanciers
+            i.fa.fa-heart
+            = tp.fanciers_count
           - if tp.thing.owners.count > 0
             span.owners
               i.fa.fa-check
