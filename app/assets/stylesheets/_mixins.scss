@@ -130,5 +130,5 @@
 
 @mixin vertical-list-item {
   padding: 1em 0;
-  &:not(:last-child) {border-bottom: 1px dashed #ccc;}
+  &:not(:last-child) {border-bottom: 1px dashed #eee;}
 }
