@@ -43,7 +43,7 @@ html.home_jobs {
   // Sections
 
   .section {
-    border-bottom: 1px dashed #eee;
+    border-bottom: $border-dashed;
     margin-bottom: 30px;
 
     &:last-child {

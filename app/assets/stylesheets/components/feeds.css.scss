@@ -4,7 +4,7 @@
 .feed_article {
   @include clearfix;
 
-  border-bottom: 1px dashed #eee;
+  border-bottom: $border-dashed;
   margin-bottom: 10px;
   padding: 1em;
   position: relative;

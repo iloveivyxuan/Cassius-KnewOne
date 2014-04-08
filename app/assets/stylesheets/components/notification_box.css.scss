@@ -7,7 +7,7 @@
   > li {
     @include clearfix;
 
-    border-bottom: 1px dashed #eee;
+    border-bottom: $border-dashed;
     padding: 10px;
 
     &:last-child {
