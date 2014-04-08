@@ -11,6 +11,8 @@ ul.things {
 }
 
 figure.thing {
+  $zindex_ribbon: 100;
+
   overflow: hidden;
   position: relative;
   background: white;
@@ -41,6 +43,7 @@ figure.thing {
     position: absolute;
     top: 0;
     width: 100%;
+    z-index: $zindex_ribbon + 1;
 
     .fanciers {
       display: none;
@@ -121,7 +124,7 @@ figure.thing {
     position: absolute;
     top: 0;
     right: 0;
-    z-index: 100;
+    z-index: $zindex_ribbon;
     height: 100px;
     width: 100px;
     overflow:hidden;
