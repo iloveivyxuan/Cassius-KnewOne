@@ -23,6 +23,7 @@
 //= require sisyphus
 //= require_tree ../templates
 //= require making
+//= require variable
 //= require util
 //= require common
 //= require notificationbox

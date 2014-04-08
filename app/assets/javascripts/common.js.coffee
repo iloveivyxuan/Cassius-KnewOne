@@ -1,7 +1,13 @@
 window.Making = do (exports = window.Making || {}) ->
+  keycode = exports.keycode
 
   $ ->
+    $textarea     = $('textarea')
     $selectpicker = $('select.selectpicker')
+
+    $(document).on 'keydown', 'textarea', (event) ->
+      if (event.metaKey or event.ctrlKey) and event.keyCode is keycode.ENTER
+        $(@).parents('form').find('button[type="submit"]').trigger('click')
 
     $('.form-group.search')
       .on 'click', '.fa-times', ->
