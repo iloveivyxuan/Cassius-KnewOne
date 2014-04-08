@@ -1,0 +1,13 @@
+html.profiles_recommend_users {
+  main {
+    ul.nav {
+      margin-bottom: 20px;
+    }
+
+    .tab-pane {
+      > ul {
+        margin: 20px 0;
+      }
+    }
+  }
+}

@@ -48,10 +48,7 @@ class HomeController < ApplicationController
   end
 
   def welcome
-    if @friends = current_user.recommend_users
-      @friends = @friends.page(params[:friends_page]).per(21)
-    end
-
+    @friends = current_user.recommend_users
     @recommend_users = User.desc(:recommend_priority, :followers_count).limit(42)
 
     @things = Thing.unscoped.published.limit(24)

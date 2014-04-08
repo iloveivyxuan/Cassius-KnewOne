@@ -1,17 +1,25 @@
 header.page-header
   h1
     | 推荐用户
-  = link_to_with_icon "全部关注", "fa fa-plus", follow_recommends_profile_path, class: 'btn btn-primary', method: :post
-  = link_to_with_icon "跳过", "fa fa-forward", root_path(skip: true), class: 'btn btn-link'
 
-- if @friends && @friends.any?
-  section
-    header
-      | 你的新浪微博中已经有这些小伙伴在KnewOne安家啦：
-    ul.user_list = render @friends
-    = paginate @friends, param_name: 'friends_page'
-
-section
-  header
-    | 关注这些KnewOne达人，让你的KnewOne之旅更加精彩：
-  ul.user_list = render @recommend_users
+- has_weibo = defined?(@friends)
+ul.nav.nav-pills
+  - if has_weibo
+    li.active
+      = link_to "新浪微博好友", "#weibo", data: {toggle: "tab"}
+  li class="#{'active' unless has_weibo}"
+    = link_to "KnewOne 达人", "#talent", data: {toggle: "tab"}
+.tab-content
+  - if has_weibo
+    section.tab-pane.active#weibo
+      p
+        | 你的新浪微博中已经有这些小伙伴在 KnewOne 安家啦：
+      ul.user_list = render @friends
+      footer.text-center
+        = link_to_with_icon "关注所有", "fa fa-plus", follow_recommends_profile_path, class: 'btn btn-primary', method: :post
+  section.tab-pane#talent class="#{'active' unless has_weibo}"
+    p
+      | 关注这些 KnewOne 达人，让你的 KnewOne 之旅更加精彩：
+    ul.user_list = render @recommend_users
+    footer.text-center
+      = link_to_with_icon "关注所有", "fa fa-plus", follow_recommends_profile_path(), class: 'btn btn-primary', method: :post
