@@ -2,6 +2,14 @@
 // Reset
 // =============================================================================
 
+body {
+  padding-bottom: $navbar-margin-bottom + $font-size-base;
+
+  #header {
+    margin-bottom: $navbar-height + $navbar-margin-bottom + $font-size-base;
+  }
+}
+
 ul, ol {
   list-style: none;
   margin: 0;

@@ -33,6 +33,8 @@
 @import "components/forms";
 @import "components/typeahead";
 @import "components/dropdown_boxes";
+@import "components/navbar";
+@import "components/search_candidate";
 @import "components/panels";
 @import "components/entry";
 @import "components/metas";
@@ -48,7 +50,6 @@
 @import "components/pagination";
 
 // Views
-@import "views/layout";
 @import "views/home";
 @import "views/things";
 @import "views/thing_form";
