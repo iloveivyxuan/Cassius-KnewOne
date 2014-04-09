@@ -11,9 +11,9 @@ header#header role="banner"
     #nav_main.collapse.navbar-collapse
       ul.nav.navbar-nav#nav_primary
         li.nav_things
-          = link_to_with_icon "产品", "fa fa-tags fa-fw", categories_path
-        li.nav_self_run
-          = link_to_with_icon "自营", "fa fa-magic fa-fw", things_path(self_run: true)
+          = link_to categories_path do
+            i.fa.fa-tags.fa-fw
+            | 产品
         li.nav_new_thing.visible-md.visible-lg
           - if user_signed_in?
             = link_to_with_icon "分享", "fa fa-plus fa-fw", new_thing_path

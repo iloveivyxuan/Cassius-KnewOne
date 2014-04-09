@@ -261,17 +261,12 @@ html.guest_homepage {
       }
       max-width: 1440px;
       width: 90%;
-
-      .explore_nav {
-        left: 150px;
-        position: absolute;
-        width: auto;
-      }
     }
-
 
     .btn {
       color: $gray;
+      left: 150px;
+      position: absolute;
 
       &:hover {
         color: $text-color;
