@@ -61,11 +61,7 @@ body {
 
         > a {
           line-height: 40px;
-          padding: 0 5px;
-
-          @media (min-width: $screen-md-min) {
-            padding: 0 10px;
-          }
+          padding: 0 15px;
 
           .fa {
 
@@ -99,17 +95,17 @@ body {
         margin-top: 7px;
         transition-duration: .4s;
         transition-property: width;
-        width: 10%;
+        width: 12%;
       }
 
       @media (min-width: $screen-md-min) {
-        width: 15%;
+        width: 20%;
       }
 
       &.focus {
 
         @media (min-width: $screen-sm-min) {
-          width: 20%;
+          width: 25%;
         }
       }
 
@@ -143,7 +139,7 @@ body {
 
 #nav_primary {
 
-  @media (max-width: $screen-xs-max) {
+  @media (max-width: $screen-sm-max) {
     @include clearfix;
 
     > li {
