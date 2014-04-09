@@ -420,14 +420,6 @@ html.stories_show {
       float: left;
       width: 46%;
       margin: 1em 2%;
-      figure {@include stretch-img;}
-      figcaption {
-        h5 {
-          text-align: center;
-          color: $text-muted;
-          @include text-overflow;
-        }
-      }
     }
   }
 }

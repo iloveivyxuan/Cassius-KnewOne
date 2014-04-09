@@ -1,9 +1,8 @@
 li
   figure class="thing"
     .thing_thumb
-      = tp.photo(:normal)
-      .thing_fancy
-        = link_to "", tp.thing, class: "thing_fancy_backdrop", target: "_blank"
-        .fanciers= render "shared/fancy", p: tp
-  figcaption
-    h5= tp.title
+      = link_to tp.thing, target: "_blank"
+        = tp.photo(:normal)
+    figcaption
+      h5
+        = link_to tp.title, tp.thing
