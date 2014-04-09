@@ -90,7 +90,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    params[:redirect_from] || session.delete(:previous_url) || root__url || super
+    params[:redirect_from] || session.delete(:previous_url) || root_url || super
   end
 
   def require_admin
