@@ -5,7 +5,7 @@ section.panel.panel_compact
   header.panel-heading
     h2.panel-title
       i.fa.fa-tags
-      | 分类浏览
+      | 产品分类
     = link_to_with_icon '', 'fa fa-chevron-right fa_alone', all_categories_path, class: 'more', title: '更多'
   .panel-body
     ul.categories
@@ -15,7 +15,7 @@ section.panel.panel_compact
   header.panel-heading
     h2.panel-title
       i.fa.fa-bolt
-      | 最新
+      | 最新产品
     = link_to_with_icon '', 'fa fa-chevron-right fa_alone', things_path, class: 'more', title: '更多'
   .panel-body
     ul.things = render @things, size: :normal, img_lazy: true
