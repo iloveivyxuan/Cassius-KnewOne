@@ -64,7 +64,7 @@ module Haven
                 sites['Twitter'],
                 sites['Blog'],
                 sites['Website'],
-                u.admin_note,
+                u.admin_note
             ]
             lines<< cols
           end
