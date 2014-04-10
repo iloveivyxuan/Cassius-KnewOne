@@ -76,6 +76,15 @@ html.stories_show {
             position: absolute;
             text-align: center;
             width: 100%;
+
+            &:hover {
+              background-color: darken(#f5f5f5, 5%);
+            }
+
+            .fa {
+              font-size: 18px;
+              vertical-align: -1px;
+            }
           }
         }
       }
