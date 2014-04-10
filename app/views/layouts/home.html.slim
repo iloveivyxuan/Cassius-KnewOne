@@ -31,7 +31,7 @@
           = link_to_with_icon "我的话题 #{current_user.topics_count}", 'fa fa-fw fa-leaf', topics_profile_path
         li.divider
         li = link_to_with_icon '天天有礼', 'fa fa-fw fa-gift', rewards_path
-        li = link_to_with_icon '推荐用户', 'fa fa-fw fa-users', recommend_users_profile_path
+        li = link_to_with_icon '查找朋友', 'fa fa-fw fa-users', recommend_users_profile_path
         li = link_to_with_icon '自营产品', 'fa fa-fw fa-shopping-cart', things_path(self_run: true)
     /-- END nav --/
 
