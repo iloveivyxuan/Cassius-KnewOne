@@ -34,6 +34,9 @@ module Haven
         if params[:filter].include? 'unbind_email'
           @users = @users.where(:email => nil, :unconfirmed_email => nil).order_by([:created_at, :asc])
         end
+        if params[:filter].include? 'created_at'
+          @users = @users.order_by([:created_at, :desc])
+        end
       else
         @users = @users.order_by([:expenses_count, :desc],
                                  [:things_count, :desc],
@@ -46,7 +49,7 @@ module Haven
       respond_to do |format|
         format.html
         format.csv do
-          lines = [%w(用户名 用户ID 分享产品 发表评测 成交订单 战斗力 邮箱 微博 Twitter 博客 网站 备注)]
+          lines = [%w(用户名 用户ID 分享产品 发表评测 成交订单 战斗力 邮箱 微博 Twitter 博客 网站 注册时间 备注)]
 
           @users.each do |u|
             sites = u.auths.collect(&:urls).compact.reduce(&:merge) || {}
@@ -64,6 +67,7 @@ module Haven
                 sites['Twitter'],
                 sites['Blog'],
                 sites['Website'],
+                u.created_at ? u.created_at : '',
                 u.admin_note
             ]
             lines<< cols
