@@ -64,6 +64,7 @@ window.Making =
           crossDomain: true
           headers:
             'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            'X-Requested-With': 'XMLHttpRequest'
 
   ToggleFixedNavbar: ->
     if Modernizr.mq('(max-width: ' + Making.Breakpoints.screenMDMax + ')') and
