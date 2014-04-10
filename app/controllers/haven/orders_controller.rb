@@ -29,7 +29,7 @@ module Haven
         end
 
         format.csv do
-          lines = [%w(订单编号 创建时间 订单状态 商品 总价 物流方式 配送地址 用户备注 管理员备注 系统备注 用户ID 用户名 用户邮箱)]
+          lines = [%w(订单编号 创建时间 订单状态 商品 总价 物流方式 物流单号 配送地址 用户备注 管理员备注 系统备注 用户ID 用户名 用户邮箱)]
 
           @orders.each do |order|
             cols = [
@@ -39,6 +39,7 @@ module Haven
                 (order.order_items.map { |i| "{{ #{i.name} x #{i.quantity} }} " }.reduce &:+),
                 "￥#{order.total_price}",
                 ::Order::DELIVER_METHODS[order.deliver_by],
+                order.deliver_no,
                 content_for_address(order.address),
                 order.note,
                 order.admin_note,
