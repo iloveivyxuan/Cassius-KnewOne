@@ -3,14 +3,25 @@ class ApplicationController < ActionController::Base
   before_action :trim_param_id
   protect_from_forgery
 
+  prepend_before_action do
+    logger.info '------ session -------'
+    logger.info session.to_hash
+    logger.info '----------------------'
+    logger.info request.host
+    logger.info request.headers['Origin']
+    logger.info '----------------------'
+  end
+
   before_action :configure_permitted_parameters, if: :devise_controller?
   after_action :store_location, only: [:index, :show]
+
+  after_action :cors_set_access_control_headers
 
   prepend UserRoutesHelper
   helper UserRoutesHelper
 
   def default_url_options
-    { subdomain: nil }
+    {subdomain: nil}
   end
 
   # some bots using some *strange* format to request urls
@@ -101,9 +112,26 @@ class ApplicationController < ActionController::Base
     response.headers['X-XSS-Protection'] = '0'
   end
 
+  def subdomain?
+    @_is_subdomain ||= request.headers['Origin'] && /^.+\.#{Settings.host}$/ =~ request.headers['Origin']
+  end
+
   private
 
   def trim_param_id
     params[:id] and params[:id].gsub! /[^\w]$/, ''
+  end
+
+  # FROM: http://www.tsheffler.com/blog/?p=428
+  # For all responses in this controller, return the CORS access control headers.
+  def cors_set_access_control_headers
+    if subdomain?
+      headers['Access-Control-Max-Age'] = '1728000'
+      headers['Access-Control-Allow-Origin'] = request.headers['Origin']
+      headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
+      headers['Access-Control-Request-Method'] = '*'
+      headers['Access-Control-Allow-Credentials'] = 'true'
+      headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization, X-CSRF-Token'
+    end
   end
 end

@@ -2,6 +2,7 @@
 class UsersController < ApplicationController
   prepend_before_action :require_signed_in, only: [:share, :follow, :unfollow]
   before_action :set_user, except: [:share, :fuzzy]
+  after_action :store_location, except: [:follow, :unfollow, :share, :fuzzy]
 
   def show
     @reviews = @user.reviews.where(:thing_id.ne => nil).limit(4)

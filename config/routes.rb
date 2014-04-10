@@ -1,6 +1,8 @@
 Making::Application.routes.draw do
   use_doorkeeper
 
+  match '*path' => 'home#preflight', :via => [:options]
+
   constraints(lambda { |r| r.subdomain.present? && r.subdomain != 'www' }) do
     get '', to: 'users#show'
     get ':action', controller: :users
@@ -11,11 +13,11 @@ Making::Application.routes.draw do
   get 'qr_entry', to: 'home#qr_entry'
 
   devise_for :users, controllers: {
-    omniauth_callbacks: "omniauth_callbacks",
-    registrations: "registrations",
-    confirmations: "confirmations",
-    sessions: "sessions",
-    passwords: "passwords"
+      omniauth_callbacks: "omniauth_callbacks",
+      registrations: "registrations",
+      confirmations: "confirmations",
+      sessions: "sessions",
+      passwords: "passwords"
   }
 
   scope 'settings' do

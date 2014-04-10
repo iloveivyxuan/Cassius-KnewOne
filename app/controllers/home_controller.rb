@@ -46,6 +46,14 @@ class HomeController < ApplicationController
     render layout: 'home'
   end
 
+  def preflight
+    if subdomain?
+      head :ok
+    else
+      head :not_found
+    end
+  end
+
   def not_found
   end
 

@@ -372,7 +372,7 @@ class User
   field :personal_domain, type: String
   validates :personal_domain, uniqueness: true,
             format: {with: /[a-z0-9_-]+/, multiline: false, message: '只能包含字母、数字、下划线和横线。'}, allow_nil: true
-  validates :personal_domain, length: {minimum: 6, maximum: 12}, unless: -> { self.role? :admin }
+  validates :personal_domain, length: {minimum: 6, maximum: 12}, unless: -> { self.role? :admin }, allow_nil: true
 
   need_aftermath :follow, :unfollow
 

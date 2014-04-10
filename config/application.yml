@@ -1,5 +1,4 @@
 defaults: &defaults
-  host: "knewone.com"
   upyun:
     username: "leslielilu"
     password: "g4l4pg2sh13sm"
@@ -64,6 +63,7 @@ test:
 
 production:
   <<: *defaults
+  host: "knewone.com"
   weibo:
     consumer_key: "3754720038"
     consumer_secret: "017ac4a56f1e3630366574fa405602b2"

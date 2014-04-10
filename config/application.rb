@@ -66,6 +66,9 @@ module Making
     # add fonts to assets paths
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
+    # disadvantage on caching
+    # config.action_view.embed_authenticity_token_in_remote_forms = true
+
     #Suppress Assets, Spec Tests and Helpers for views and helpers
     config.generators do |g|
       g.assets false
