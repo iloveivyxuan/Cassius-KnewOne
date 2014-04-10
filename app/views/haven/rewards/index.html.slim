@@ -13,7 +13,7 @@ table.table.table-striped
       tr
         td = reward.date
         td
-          = link_to reward.user.name, reward.user, target: '_blank'
+          = link_to reward.user.name, user_url(reward.user), target: '_blank'
         td
           = user_links(reward.user)
         td
@@ -22,7 +22,7 @@ table.table.table-striped
             | | #{cc.code}
             - if cc.bound_user?
               | | 已绑定给
-              = link_to cc.user.name, cc.user, target: '_blank'
+              = link_to cc.user.name, user_url(cc.user), target: '_blank'
             - if cc.used?
               | | 已使用
         td

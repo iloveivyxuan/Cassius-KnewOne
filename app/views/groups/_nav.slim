@@ -1,6 +1,6 @@
 ul.nav.nav-pills.nav-pills-list.nav-justified.nav-layout
   = nav_tab :group_show do
-    = link_to gp.group do
+    = link_to group_url(gp.group) do
       i.fa.fa-home
       span 话题
       span= gp.topics_count

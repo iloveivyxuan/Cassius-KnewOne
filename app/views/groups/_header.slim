@@ -1,8 +1,8 @@
 section.group_info
   .name
-    = link_to gp.avatar(:small), gp.group
+    = link_to gp.avatar(:small), group_url(gp.group)
     h1
-      = link_to gp.name, gp.group
+      = link_to gp.name, group_url(gp.group)
       - if gp.private?
         i.fa.fa-ticket title="此小组需要被邀请才能加入"
   blockquote

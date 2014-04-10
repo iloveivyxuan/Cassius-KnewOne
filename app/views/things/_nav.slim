@@ -1,6 +1,6 @@
 ul.nav.nav-pills.nav-pills-list.nav-justified.nav-layout
   = nav_tab :thing do
-    = link_to tp.thing do
+    = link_to thing_url(tp.thing) do
       i.fa.fa-home
       span 产品
   = nav_tab :reviews do

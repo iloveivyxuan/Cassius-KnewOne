@@ -37,7 +37,7 @@ class TopicPresenter < PostPresenter
   end
 
   def group
-    link_to topic.group.name, topic.group
+    link_to topic.group.name, group_url(topic.group)
   end
 
   def share_content

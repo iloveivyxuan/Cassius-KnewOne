@@ -36,5 +36,5 @@ table.table
       td = code.code
       td = code.expires_at
       td = code.admin_note
-      td = link_to ([code.user.name, code.user.email, code.user.id.to_s].reject(&:blank?).first), code.user, target: '_blank' unless code.user.nil?
+      td = link_to ([code.user.name, code.user.email, code.user.id.to_s].reject(&:blank?).first), user_url(code.user), target: '_blank' unless code.user.nil?
       td = link_to code.order.order_no, haven_order_url(code.order), target: '_blank' if code.used?

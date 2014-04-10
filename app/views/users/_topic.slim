@@ -6,7 +6,7 @@
       section.article_body
         figure
           - present topic.group do |gp|
-            = link_to gp.group do
+            = link_to group_url(gp.group) do
               = gp.avatar
             figurecaption title=gp.name
               = gp.name

@@ -7,7 +7,7 @@ section.feature
       span data-src="#{promotion.background_url(:larger)}" data-media="(min-width: 1441px)"
   - if promotion.user && promotion.note.present?
     .feature_comment
-      = link_to promotion.user do
+      = link_to user_url(promotion.user) do
         = image_tag promotion.user.avatar.url(:tiny), alt: promotion.user.name
       p
         i.fa.fa-heart

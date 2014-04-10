@@ -33,7 +33,7 @@ header#header role="banner"
       - if user_signed_in?
         .user_links.login.navbar-right
           #user.user_link.user data-name=current_user.name data-email=current_user.email data-id=current_user.id
-            = link_to current_user, class: "avatar" do
+            = link_to user_url(current_user), class: "avatar" do
               = image_tag current_user.avatar.url(:tiny)
             .more.dropdown
               = link_to "#", class: 'dropdown-toggle', data: {toggle: "dropdown"} do

@@ -2,7 +2,7 @@
 module NotificationsHelper
   def senders(message, target = '_self')
     links = message.senders.map do |sender|
-      link_to sender.name, sender, target: target
+      link_to sender.name, user_url(sender), target: target
     end.take(5).join('，')
 
     if message.senders.count > 5

@@ -23,7 +23,7 @@ table.table.table-striped.table-hover.table-bordered
     th 评测
   - @things.each do |t|
     tr
-      td= link_to t.title, t
+      td= link_to t.title, thing_url(t)
       td= t.created_at.strftime '%Y-%m-%d'
       td= t.author.name
       td= image_tag(t.cover.url(:small))

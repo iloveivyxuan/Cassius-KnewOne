@@ -15,7 +15,7 @@ table.table.table-striped
           small = notification_post(c.post)
           br
           = c.content
-        td = link_to c.author.name, c.author
+        td = link_to c.author.name, user_url(c.author)
         td = c.created_at.strftime '%Y-%m-%d %H:%M:%S'
         td = link_to '删除', haven_comment_url(c), method: :delete, data: {confirm: 'are you sure?'}
 

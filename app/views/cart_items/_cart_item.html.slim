@@ -1,9 +1,9 @@
 li.cart_item id="cart_item_#{cart_item.id}" disabled=!cart_item.has_enough_stock?
   .thing
     - present cart_item.thing do |tp|
-      .cover= link_to tp.photo(:small), tp.thing
+      .cover= link_to tp.photo(:small), thing_url(tp.thing)
       .info
-        .title= link_to tp.title, tp.thing
+        .title= link_to tp.title, thing_url(tp.thing)
         .kind
           = cart_item.kind.title
           strong.stock_hint.hide 抱歉, 此型号已没有库存

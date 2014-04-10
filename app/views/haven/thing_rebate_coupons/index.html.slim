@@ -11,7 +11,7 @@ table.table
     tr
       td = coupon.name
       td = coupon.note
-      td = link_to coupon.thing.title, coupon.thing, target: '_blank'
+      td = link_to coupon.thing.title, thing_url(coupon.thing), target: '_blank'
       td = coupon.price
       td
         = link_to '详情', haven_thing_rebate_coupon_url(coupon)

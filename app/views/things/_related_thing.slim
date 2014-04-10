@@ -1,8 +1,8 @@
 li
   figure class="thing"
     .thing_thumb
-      = link_to tp.thing, target: "_blank"
+      = link_to thing_url(tp.thing), target: "_blank"
         = tp.photo(:normal)
     figcaption
       h5
-        = link_to tp.title, tp.thing
+        = link_to tp.title, thing_url(tp.thing)
