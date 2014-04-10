@@ -34,10 +34,17 @@ li.order
         li
           strong.field 管理员备注：
           span = order.admin_note
-  .info
-    .total_price
-      span.tip 总计
-      strong
-        i.fa.fa-yen
-        span= order.total_price
+      li
+        strong.field 总计：
+        span
+          i.fa.fa-yen
+          = order.total_price
+      table.table
+        - order.order_items.each do |i|
+         tr
+           td = "#{i.thing_name} - #{i.kind_name}"
+           td = i.quantity
+           td
+             i.fa.fa-yen
+             = i.price
   hr
