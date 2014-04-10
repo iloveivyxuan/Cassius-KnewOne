@@ -1,9 +1,13 @@
 window.Making = do (exports = window.Making || {}) ->
-  keycode = exports.keycode
+
+  exports.keycode =
+    ENTER: 13
 
   $ ->
+    $nav_group    = $('.nav_group.dropdown')
     $textarea     = $('textarea')
     $selectpicker = $('select.selectpicker')
+    keycode       = exports.keycode
 
     $(document)
       .on 'click', '.fanciers > a', (event) ->
@@ -68,6 +72,16 @@ window.Making = do (exports = window.Making || {}) ->
           if $trigger.is(':hidden') then $trigger.show()
 
     if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')')
+
+      $nav_group.each ->
+        $nav = $(@).children('a').first()
+        url  = $nav.data('url')
+        $nav
+          .attr('href', url)
+          .removeClass('dropdown-toggle')
+          .removeAttr('data-toggle')
+          .removeAttr('data-url')
+
       if $selectpicker.length then $selectpicker.selectpicker()
 
   # exports
