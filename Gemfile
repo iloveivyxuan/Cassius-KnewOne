@@ -1,19 +1,17 @@
-#source 'https://rubygems.org'
-source 'http://ruby.taobao.org'
+source 'https://rubygems.org'
 ruby '2.1.1'
 
 # rails and friends
-gem 'rails', '~> 4.0.0'
-gem 'rails-i18n', '~> 4.0.0'
+gem 'rails'
+gem 'rails-i18n'
 
 # database
 gem 'mongoid', '>= 4.0.0.alpha1'
 gem 'mongoid_slug'
-gem 'mongoid_rails_migrations'
 
 # files
-gem 'carrierwave', '~> 0.9.0'
-gem 'carrierwave-mongoid', '~> 0.6.3', require: 'carrierwave/mongoid'
+gem 'carrierwave'
+gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 gem 'carrierwave-upyun'
 
@@ -66,7 +64,7 @@ gem 'font-awesome-rails'
 # services
 gem 'whenever', require: false
 gem 'sidekiq'
-gem 'sinatra', '>= 1.3.0', :require => nil
+gem 'sinatra', '>= 1.3.0', require: false
 gem 'mini_magick'
 
 # API
@@ -88,6 +86,7 @@ end
 group :development do
   gem 'quiet_assets'
   gem 'thin'
+  gem 'spring'
 
   # deploy
   gem 'capistrano', '~> 2.15.0'
