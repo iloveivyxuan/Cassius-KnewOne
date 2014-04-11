@@ -1,65 +1,21 @@
-set :rvm_ruby_string, 'default'
-set :rvm_type, :system
-require "rvm/capistrano"
-require 'bundler/capistrano'
-require 'capistrano-unicorn'
-require 'whenever/capistrano'
-require 'sidekiq/capistrano'
+lock '3.1.0'
 
-SERVER_LIST = {
-  'staging' => {host: '106.186.20.196', branch: 'staging', stage: 'staging'},
-  'production' => {host: '61.174.15.157', branch: 'master', stage: 'production'}
-}
-env = ENV['STAGE'] || 'production'
-
-target = SERVER_LIST[env]
-
-server target[:host], :web, :app, :db, primary: true
-
-set :rails_env, env
-
-set :application, "making"
-set :user, "deployer"
+set :application, 'making'
+set :user, 'deployer'
+set :repo_url, 'git@github.com:lilu/making.git'
 set :deploy_to, "/home/#{user}/apps/#{application}"
-set :deploy_via, :remote_cache
-set :use_sudo, false
+set :pty, true
+set :ssh_options, { forward_agent: true }
+set :log_level, :info
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+# set :linked_files, %w{config/application.yml}
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
-set :scm, :git
-set :repository,  "git@github.com:lilu/making.git"
-set :branch, target[:branch]
-
-set :rails_stage, target[:stage]
-
-default_run_options[:pty] = true
-ssh_options[:forward_agent] = true
-
-set :whenever_command, "bundle exec whenever"
+set :rvm_type, :system
+set :bundle_bins, fetch(:bundle_bins, []).push %w(whenever)
 set :whenever_roles, :app
 
 namespace :deploy do
-  desc "Make sure local git is in sync with remote."
-  task :check_revision, roles: :web do
-    unless `git rev-parse HEAD` == `git rev-parse origin/#{target[:branch]}`
-      puts "WARNING: HEAD is not the same as origin/#{target[:branch]}"
-      puts "Run `git push` to sync changes."
-      exit
-    end
-  end
-  before "deploy", "deploy:check_revision"
+  after :publishing, :restart
+  after :finishing, :cleanup
 end
-
-namespace :sitemap do
-  desc 'Generate new sitemap and ping to search engine'
-  task :refresh do
-    run "cd #{latest_release} && RAILS_ENV=#{rails_env} bundle exec rake sitemap:refresh"
-  end
-end
-
-after 'deploy:start', 'unicorn:start'
-after 'deploy:stop', 'unicorn:stop'
-after 'deploy:restart', 'unicorn:restart'
-before 'deploy:start', 'deploy:cleanup'
-before 'deploy:restart', 'deploy:cleanup'
-
-require './config/boot'
-require 'airbrake/capistrano'
