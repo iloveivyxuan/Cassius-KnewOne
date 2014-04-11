@@ -199,7 +199,7 @@ window.Making =
           .height($target.outerHeight())
 
       $(textarea).closest('form')
-        .on 'submit', ->
+        .on 'submit', (e) ->
           $editor = $('#editor')
           if $editor.text().length < 140
             $('<p>')
@@ -208,10 +208,9 @@ window.Making =
               .insertAfter($editor)
             return false
 
-        .submit (e) ->
-            resque = $('#editor').html()
-            $(textarea).val resque.replace(/<!--.*?-->/g, '')
-            $sisyphus.manuallyReleaseData()
+          resque = $editor.html()
+          $(textarea).val resque.replace(/<!--.*?-->/g, '')
+          $sisyphus.manuallyReleaseData()
 
   Voting: () ->
     $form = $('form.not_voted')
