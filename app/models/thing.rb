@@ -107,7 +107,13 @@ class Thing < Post
 
   def own(user)
     return if owned?(user)
-    owners << user
+
+    self.owner_ids<< user.id
+    user.own_ids<< self.id
+
+    save!
+    user.save!
+
     user.inc karma: Settings.karma.own
   end
 

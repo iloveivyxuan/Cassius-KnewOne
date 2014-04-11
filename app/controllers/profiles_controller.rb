@@ -23,11 +23,11 @@ class ProfilesController < ApplicationController
   end
 
   def fancies
-    @fancies = current_user.fancies.page(params[:page]).per(24)
+    @fancies = current_user.fancies_sorted_by_ids(params[:page], 24)
   end
 
   def owns
-    @owns = current_user.owns.page(params[:page]).per(24)
+    @owns = current_user.owns_sorted_by_ids(params[:page], 24)
   end
 
   def reviews

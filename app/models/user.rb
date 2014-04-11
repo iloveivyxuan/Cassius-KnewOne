@@ -368,6 +368,11 @@ class User
     Group.where(:'members.user_id' => self.id.to_s)
   end
 
+  include IdsSortable
+
+  sort_by_ids :owns, Thing
+  sort_by_ids :fancies, Thing
+
   need_aftermath :follow, :unfollow
 
   protected

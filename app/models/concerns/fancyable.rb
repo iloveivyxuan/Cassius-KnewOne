@@ -7,8 +7,15 @@ module Fancyable
 
   def fancy(user)
     return if fancied?(user)
-    fanciers << user
-    update_attribute :fanciers_count, fanciers.count
+
+    self.fancier_ids << user.id
+    user.fancy_ids << self.id
+
+    self.fanciers_count = fanciers.count
+
+    save!
+    user.save!
+
     user.inc karma: Settings.karma.fancy
   end
 
