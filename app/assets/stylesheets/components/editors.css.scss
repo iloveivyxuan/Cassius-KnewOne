@@ -9,10 +9,15 @@
   color: #555;
   outline: none;
   resize: both;
+  margin-bottom: 1em;
   @include border-radius(4px);
 
   ol {list-style: decimal inside;}
   ul {list-style: disc inside;}
+
+  & + .alert {
+    margin-bottom: 0;
+  }
 }
 
 #editor-toolbar {

@@ -199,8 +199,19 @@ window.Making =
           .height($target.outerHeight())
 
       $(textarea).closest('form')
-      .submit (e) ->
-          resque = $('#editor').html()
+        .on 'submit', (e) ->
+          $editor = $('#editor')
+          if $editor.text().length < 140
+            $('<p>')
+              .addClass('alert alert-danger')
+              .text('内容有点少，建议再详细描述下（至少 140 字）。')
+              .insertAfter($editor)
+            return false
+          else
+            $alert = $editor.next('p.alert')
+            if $alert.length then $alert.remove()
+
+          resque = $editor.html()
           $(textarea).val resque.replace(/<!--.*?-->/g, '')
           $sisyphus.manuallyReleaseData()
 

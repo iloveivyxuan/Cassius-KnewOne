@@ -1,5 +1,10 @@
-load 'deploy'
-load 'deploy/assets'
-Dir['vendor/gems/*/recipes/*.rb','vendor/plugins/*/recipes/*.rb'].each { |plugin| load(plugin) }
-load 'config/deploy' 
-
+require 'capistrano/setup'
+require 'capistrano/deploy'
+require 'capistrano/rvm'
+require 'capistrano/bundler'
+require 'capistrano/rails'
+require 'capistrano3/unicorn'
+require 'capistrano/sidekiq'
+require 'capistrano/sidekiq/monit'
+require 'whenever/capistrano'
+Dir.glob('lib/capistrano/tasks/*.cap').each { |r| import r }
