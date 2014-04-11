@@ -4,6 +4,7 @@ window.Making = do (exports = window.Making || {}) ->
     ENTER: 13
 
   $ ->
+    $user         = $('#user')
     $nav_group    = $('.nav_group.dropdown')
     $textarea     = $('textarea')
     $selectpicker = $('select.selectpicker')
@@ -74,13 +75,24 @@ window.Making = do (exports = window.Making || {}) ->
     if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')')
 
       $nav_group.each ->
-        $nav = $(@).children('a').first()
-        url  = $nav.data('url')
-        $nav
+        $this            = $(@)
+        $link            = $this.children('.nav_group_link')
+        url              = $link.data('url')
+        $dropdown_toggle = $this.children('.nav_group_more')
+        $dropdown_menu   = $this.children('.dropdown-menu')
+        $link
           .attr('href', url)
           .removeClass('dropdown-toggle')
           .removeAttr('data-toggle')
           .removeAttr('data-url')
+        $this.on 'mouseleave', -> $this.removeClass('open')
+        $link.on 'mouseenter', -> $this.removeClass('open')
+        $dropdown_toggle.on 'mouseenter', (event) ->
+          if !$this.hasClass('open') then $this.addClass('open')
+
+      $user.children('.dropdown')
+        .on 'mouseenter', -> $(@).addClass('open')
+        .on 'mouseleave', -> $(@).removeClass('open')
 
       if $selectpicker.length then $selectpicker.selectpicker()
 
