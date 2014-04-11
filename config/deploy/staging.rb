@@ -1,4 +1,4 @@
-server 'staging.knewone.com', roles: %w{web app db}
+server 'deployer@staging.knewone.com', roles: %w{web app db}
 
 set :branch, 'staging'
 
