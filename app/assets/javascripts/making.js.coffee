@@ -207,6 +207,9 @@ window.Making =
               .text('内容有点少，建议再详细描述下（至少 140 字）。')
               .insertAfter($editor)
             return false
+          else
+            $alert = $editor.next('p.alert')
+            if $alert.length then $alert.remove()
 
           resque = $editor.html()
           $(textarea).val resque.replace(/<!--.*?-->/g, '')
