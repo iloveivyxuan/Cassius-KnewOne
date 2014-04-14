@@ -9,7 +9,7 @@ section#step2
       | 推荐用户
     = link_to_with_icon "跳过", "fa fa-forward", "#step3", class: 'btn btn-link'
 
-  - has_weibo = @friends.any?
+  - has_weibo = @friends && @friends.any?
   ul.nav.nav-pills
     - if has_weibo
       li.active
