@@ -89,7 +89,7 @@ module Api
 
       def get_profile_from_twitter
         #TODO: May consider access_token belongs_to consumer, but seems no api can do this, or no need?
-        client = Twitter::REST::Client.new access_token: params[:access_token],
+        client = Twitter::Client.new access_token: params[:access_token],
                                            access_token_secret: params[:access_secret],
                                            consumer_key: Settings.twitter.consumer_key,
                                            consumer_secret: Settings.twitter.consumer_secret
