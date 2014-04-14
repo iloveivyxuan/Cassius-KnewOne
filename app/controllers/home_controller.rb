@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   skip_after_action :store_location
   before_action :set_editor_choices, only: [:index]
   before_action :skip_follow_user, only: [:index]
+  before_action :authenticate_user!, only: [:welcome]
 
   def index
     if user_signed_in?
@@ -51,7 +52,7 @@ class HomeController < ApplicationController
     @friends = current_user.recommend_users
     @recommend_users = User.desc(:recommend_priority, :followers_count).limit(42)
 
-    @things = Thing.unscoped.published.limit(24)
+    @things = Thing.unscoped.published.prior.limit(24)
   end
 
   def error

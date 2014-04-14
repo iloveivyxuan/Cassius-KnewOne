@@ -1,3 +1,5 @@
+- page_title '欢迎'
+
 section.jumbotron#step1
   h1 欢迎来到 KnewOne ！
   p 这是一个分享新奇酷产品和使用体验的社区。
@@ -6,10 +8,11 @@ section.jumbotron#step1
 section#step2
   header.page-header
     h1
-      | 推荐用户
+      | 查找朋友
     = link_to_with_icon "跳过", "fa fa-forward", "#step3", class: 'btn btn-link'
 
   - has_weibo = @friends && @friends.any?
+
   ul.nav.nav-pills
     - if has_weibo
       li.active
@@ -23,13 +26,13 @@ section#step2
           | 你的新浪微博中已经有这些小伙伴在 KnewOne 安家啦：
         ul.user_list = render @friends
         footer.text-center
-          = link_to_with_icon "关注所有", "fa fa-plus", follow_recommends_profile_url(redirect_from: welcome_path(anchor: 'step3')), class: 'btn btn-primary', method: :post
+          = link_to_with_icon "关注所有", "fa fa-plus", follow_recommends_profile_path, class: 'btn btn-primary', method: :post
     section.tab-pane#talent class="#{'active' unless has_weibo}"
       p
         | 关注这些 KnewOne 达人，让你的 KnewOne 之旅更加精彩：
       ul.user_list = render @recommend_users
       footer.text-center
-        = link_to_with_icon "关注所有", "fa fa-plus", follow_recommends_profile_url(redirect_from: welcome_path(anchor: 'step3')), class: 'btn btn-primary', method: :post
+        = link_to_with_icon "关注所有", "fa fa-plus", follow_recommends_profile_path, class: 'btn btn-primary', method: :post
 
 section#step3
   header.page-header
