@@ -3,26 +3,33 @@
 header.page-header
   h1
     | 查找朋友
+  = link_to_with_icon "关注所有", "fa fa-plus",
+    follow_recommends_profile_url(redirect_from: root_url),
+    class: 'btn btn-primary', method: :post
 
 - has_weibo = @friends && @friends.any?
-
-ul.nav.nav-pills
-  - if has_weibo
+- unless has_weibo
+  p
+    strong
+      | 您可以通过绑定 #{link_to '新浪微博', user_omniauth_authorize_url(:weibo, state: recommend_users_profile_url)} 后找到已在KnewOne上安家的朋友。
+    = link_to '绑定新浪微博', user_omniauth_authorize_url(:weibo, state: recommend_users_profile_url), class: 'btn btn-primary'
+- if has_weibo
+  ul.nav.nav-pills
     li.active
       = link_to "新浪微博好友", "#weibo", data: {toggle: "tab"}
-  li class="#{'active' unless has_weibo}"
-    = link_to "KnewOne 达人", "#talent", data: {toggle: "tab"}
+    li
+      = link_to "KnewOne 达人", "#celebrity", data: {toggle: "tab"}
 .tab-content
   - if has_weibo
     section.tab-pane.active#weibo
       p
         | 你的新浪微博中已经有这些小伙伴在 KnewOne 安家啦：
       ul.user_list = render @friends
-      footer.text-center
-        = link_to_with_icon "关注所有", "fa fa-plus", follow_recommends_profile_path, class: 'btn btn-primary', method: :post
-  section.tab-pane#talent class="#{'active' unless has_weibo}"
+  section.tab-pane#celebrity class="#{'active' unless has_weibo}"
     p
       | 关注这些 KnewOne 达人，让你的 KnewOne 之旅更加精彩：
     ul.user_list = render @recommend_users
-    footer.text-center
-      = link_to_with_icon "关注所有", "fa fa-plus", follow_recommends_profile_path, class: 'btn btn-primary', method: :post
+.text-center
+  = link_to_with_icon "关注所有", "fa fa-plus",
+    follow_recommends_profile_path(redirect_from: root_url),
+    class: 'btn btn-primary', method: :post
