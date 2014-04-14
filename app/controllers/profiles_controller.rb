@@ -61,9 +61,11 @@ class ProfilesController < ApplicationController
   end
 
   def follow_recommends
-    @friends = current_user.recommend_users
+    if friends = current_user.recommend_users
+      current_user.batch_follow friends
+    end
 
-    @recommend_users = User.desc(:recommend_priority, :followers_count).limit(42)
+    current_user.batch_follow User.desc(:recommend_priority, :followers_count).limit(42)
 
     redirect_back_or root_path
   end

@@ -25,7 +25,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # must be
       current_user.auths<< Auth.from_omniauth(omniauth)
       current_user.update_from_omniauth(omniauth)
-      redirect_stored_or edit_account_path, flash: {oauth: {status: 'success', text: '绑定成功。'}}
+
+      params[:redirect_from] = params[:state] if params[:state].present?
+      redirect_back_or edit_account_path, flash: {oauth: {status: 'success', text: '绑定成功。'}}
     else
       user = User.create_from_omniauth(omniauth)
       sign_in user
