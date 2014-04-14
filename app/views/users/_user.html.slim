@@ -1,8 +1,8 @@
 - show_follow_btn ||= user_signed_in?
 li.author
-  = link_to user do
+  = link_to user, target: '_blank' do
     = user_avatar(user, :small)
-  = link_to user do
+  = link_to user, target: '_blank' do
     = user.name
   - if show_follow_btn
     = render 'users/follow_btn', user: user
