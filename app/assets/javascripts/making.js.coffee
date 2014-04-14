@@ -161,7 +161,7 @@ window.Making =
         $("<input name='provider_sync' type='hidden' value=#{is_sync}>").appendTo(form)
         $(form).submit()
 
-  Editor: (textarea) ->
+  Editor: (textarea, validate = false) ->
     $ ->
       $("#editor")
       .wysiwyg
@@ -201,7 +201,7 @@ window.Making =
       $(textarea).closest('form')
         .on 'submit', (e) ->
           $editor = $('#editor')
-          if $editor.text().length < 140
+          if validate and $editor.text().length < 140
             $('<p>')
               .addClass('alert alert-danger')
               .text('内容有点少，建议再详细描述下（至少 140 字）。')
