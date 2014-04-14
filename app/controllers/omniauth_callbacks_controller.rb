@@ -32,9 +32,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user = User.create_from_omniauth(omniauth)
       sign_in user
 
-      redirect_to after_sign_in_path_for(user),
+      redirect_to welcome_url,
                   :notice => t('devise.omniauth_callbacks.success', kind: omniauth.provider),
-                  flash: {:show_set_email_modal => true}
+                  flash: {:show_set_email_modal => false}
     end
   end
 

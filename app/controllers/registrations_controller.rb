@@ -47,8 +47,8 @@ class RegistrationsController < Devise::RegistrationsController
 
         flash[:show_sign_up_modal] = true
 
-        format.html { redirect_to after_sign_in_path_for(resource) }
-        format.js { @location = after_sign_in_path_for(resource) }
+        format.html { redirect_to welcome_url }
+        format.js { @location = welcome_url }
         format.json { render json: resource, status: :created, location: resource }
       else
         clean_up_passwords resource
