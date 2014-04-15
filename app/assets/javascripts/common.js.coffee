@@ -94,7 +94,10 @@ window.Making = do (exports = window.Making || {}) ->
         .on 'mouseenter', -> $(@).addClass('open')
         .on 'mouseleave', -> $(@).removeClass('open')
 
-      if $selectpicker.length then $selectpicker.selectpicker()
+      if $selectpicker.length
+        $selectpicker.selectpicker()
+          .filter('.js_auto_submit').on 'change', ->
+            $(@).parents('form').trigger('submit')
 
   # exports
   exports

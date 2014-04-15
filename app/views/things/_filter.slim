@@ -6,18 +6,12 @@ section.panel.panel-default.panel_control
         i.fa.fa-tags.selectpicker_label
         = select_tag :category,
                      options_for_select([%w(全部 all)]+@categories.map {|c| [c.name, c.slug]}, (params[:category] || 'all')),
-                     class: 'form-control selectpicker', id: 'category_select', data: {size: 10, width: "160px"}
+                     class: 'form-control selectpicker js_auto_submit', id: 'category_select', data: {size: 10}
       .form-group
         i.fa.fa-sort.selectpicker_label
         = select_tag :sort_by, options_for_select([%w(最新 created_at), %w(热门 fanciers_count)], (params[:sort_by] || 'created_at')),
-                     include_blank: false, class: 'form-control selectpicker', id: 'category_select', data: {width: "160px"}
+                     include_blank: false, class: 'form-control selectpicker js_auto_submit', id: 'sort_select'
       .checkbox
         label
           = check_box_tag :self_run, true, params[:self_run]
           | KnewOne自营
-
-- content_for :script do
-  javascript:
-    $('#category_filter').on('change', function() {
-      $(this).submit()
-    });

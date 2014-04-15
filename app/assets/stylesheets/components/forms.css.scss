@@ -60,6 +60,7 @@
   @media (min-width: $screen-md-min) {
 
     .bootstrap-select {
+      min-width: 160px;
 
       > .btn {
         padding-left: 35px;
