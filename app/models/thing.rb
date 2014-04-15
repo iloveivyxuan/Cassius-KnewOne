@@ -124,7 +124,7 @@ class Thing < Post
   end
 
   def owned?(user)
-    owners.include? user
+    owner_ids.include? user.id
   end
 
   def valid_kinds
