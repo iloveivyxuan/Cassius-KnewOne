@@ -7,9 +7,14 @@
 
   section.panel.panel-default.panel_control
     .panel-body
-      nav.btn-group
-        = search_nav '产品', 'things', params.except(*request.path_parameters.keys).merge(type: 'things'), true
-        = search_nav '用户', 'users', params.except(*request.path_parameters.keys).merge(type: 'users')
+      = form_tag search_url, method: :get,
+                  class: 'form-inline', id: 'search_filter', role: 'form' do
+        = hidden_field_tag :q, params[:q]
+        .form-group
+          i.fa.fa-tags.selectpicker_label
+          = select_tag :type,
+                       options_for_select([['产品', 'things'], ['用户', 'users']], selected: params[:type]),
+                       class: 'form-control selectpicker js_auto_submit'
 
   = yield
 
