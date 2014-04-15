@@ -1,7 +1,7 @@
 module Api
   module V1
     module Official
-      class CartsController < ApiController
+      class CartsController < OfficialApiController
         doorkeeper_for :all, scopes: [:official]
 
         def show

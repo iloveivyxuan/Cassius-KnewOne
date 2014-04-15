@@ -1,9 +1,7 @@
 module Api
   module V1
     module Official
-      class CouponsController < ApiController
-        doorkeeper_for :all, scopes: [:official]
-
+      class CouponsController < OfficialApiController
         def index
           @coupons = current_user.coupon_codes
           if params[:scope].present? && params[:scope] == 'instant'

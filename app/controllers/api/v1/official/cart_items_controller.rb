@@ -1,9 +1,7 @@
 module Api
   module V1
     module Official
-      class CartItemsController < ApiController
-        doorkeeper_for :all, scopes: [:official]
-
+      class CartItemsController < OfficialApiController
         def show
           @item = current_user.cart_items.find(params[:id])
         end

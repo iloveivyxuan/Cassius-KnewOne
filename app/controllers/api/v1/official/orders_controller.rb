@@ -1,9 +1,7 @@
 module Api
   module V1
     module Official
-      class OrdersController < ApiController
-        doorkeeper_for :all, except: [:tenpay_callback, :alipay_callback], scopes: [:official]
-
+      class OrdersController < OfficialApiController
         def show
           @order = current_user.orders.find(params[:id])
         end
