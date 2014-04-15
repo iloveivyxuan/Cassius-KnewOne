@@ -84,63 +84,6 @@ Making::Application.routes.draw do
     post 'follow_recommends'
   end
 
-  namespace :hell do
-    resources :activities, only: [:index]
-  end
-
-  namespace :haven do
-    resources :orders, only: [:index, :show, :update] do
-      member do
-        patch 'ship'
-        patch 'close'
-        patch 'refund'
-        patch 'refund_to_balance'
-        patch 'refunded_balance_to_platform'
-        get 'generate_waybill'
-      end
-    end
-
-    resources :abatement_coupons, only: [:show, :index, :new, :create, :update] do
-      member do
-        post 'generate_code'
-        post 'batch_bind'
-      end
-    end
-
-    resources :thing_rebate_coupons, only: [:show, :index, :new, :create, :update] do
-      member do
-        post 'generate_code'
-        post 'batch_bind'
-      end
-    end
-
-    resources :landing_covers, except: [:show]
-    resources :promotions, except: [:show]
-    resources :things, only: [:index, :update, :edit] do
-      collection do
-        get 'resort'
-      end
-
-      member do
-        get 'send_stock_notification'
-      end
-    end
-
-    resources :users, only: [:index, :update, :show]
-
-    resources :reviews, only: [:index]
-
-    resources :comments, only: [:index, :destroy]
-
-    resources :rewards do
-      member do
-        patch 'award'
-      end
-    end
-
-    resources :categories, only: [:index, :edit, :update]
-  end
-
   resources :things do
     collection do
       get 'random'
@@ -230,6 +173,63 @@ Making::Application.routes.draw do
   get 'jobs', to: 'home#jobs'
   get 'valentine', to: 'specials#valentine'
   get 'womensday', to: 'specials#womensday'
+
+  namespace :haven do
+    resources :orders, only: [:index, :show, :update] do
+      member do
+        patch 'ship'
+        patch 'close'
+        patch 'refund'
+        patch 'refund_to_balance'
+        patch 'refunded_balance_to_platform'
+        get 'generate_waybill'
+      end
+    end
+
+    resources :abatement_coupons, only: [:show, :index, :new, :create, :update] do
+      member do
+        post 'generate_code'
+        post 'batch_bind'
+      end
+    end
+
+    resources :thing_rebate_coupons, only: [:show, :index, :new, :create, :update] do
+      member do
+        post 'generate_code'
+        post 'batch_bind'
+      end
+    end
+
+    resources :landing_covers, except: [:show]
+    resources :promotions, except: [:show]
+    resources :things, only: [:index, :update, :edit] do
+      collection do
+        get 'resort'
+      end
+
+      member do
+        get 'send_stock_notification'
+      end
+    end
+
+    resources :users, only: [:index, :update, :show]
+
+    resources :reviews, only: [:index]
+
+    resources :comments, only: [:index, :destroy]
+
+    resources :rewards do
+      member do
+        patch 'award'
+      end
+    end
+
+    resources :categories, only: [:index, :edit, :update]
+  end
+
+  namespace :hell, defaults: {format: :json} do
+    resources :activities, only: [:index]
+  end
 
   namespace :api, defaults: {format: :json} do
     namespace :v1 do

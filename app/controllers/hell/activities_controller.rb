@@ -16,10 +16,6 @@ module Hell
       end
 
       @activities = @activities.page(params[:page]).per(params[:per_page] || 24)
-
-      respond_to do |format|
-        format.json
-      end
     end
   end
 end
