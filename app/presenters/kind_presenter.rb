@@ -27,13 +27,13 @@ class KindPresenter < ApplicationPresenter
     "<em>#{kind.stock}</em> 库存".html_safe
   end
 
-  def build_option
-    [title, id, data: {
-        stock: stock,
-        max: max,
-        price: price,
-        photo: photo_number,
-        estimated: estimated_at
-    }, class: "kind_option", disabled: (stock <= 0)]
+  def option_for_select
+    content_tag :option, title, value: id, data: {
+      stock: stock,
+      max: max,
+      price: price,
+      photo: photo_number,
+      estimated: estimated_at
+    }, class: "kind_option", disabled: (stock <= 0)
   end
 end

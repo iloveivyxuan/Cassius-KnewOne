@@ -192,7 +192,7 @@ class ThingPresenter < PostPresenter
   end
 
   def options_for_kinds
-    options_for_select kinds.map(&:build_option)
+    kinds.map(&:option_for_select).join
   end
 
   def categories
