@@ -85,6 +85,8 @@ Making::Application.routes.draw do
   end
 
   namespace :haven do
+    resources :activities, only: [:index]
+
     resources :orders, only: [:index, :show, :update] do
       member do
         patch 'ship'
@@ -288,10 +290,6 @@ Making::Application.routes.draw do
         end
         resources :coupons, only: [:index, :update]
         resources :addresses, except: [:new, :edit, :show]
-      end
-
-      namespace :haven do
-        resources :activities, only: [:index]
       end
 
       get 'oauth/default_callback', to: 'oauth#default_callback'
