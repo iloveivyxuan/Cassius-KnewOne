@@ -1,4 +1,4 @@
-module Haven
+module Hell
   class ActivitiesController < ApplicationController
     def index
       @activities = Activity.visible
@@ -18,7 +18,7 @@ module Haven
       @activities = @activities.page(params[:page]).per(params[:per_page] || 24)
 
       respond_to do |format|
-        format.json { render 'haven/activities/index' }
+        format.json
       end
     end
   end

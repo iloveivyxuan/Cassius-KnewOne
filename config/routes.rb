@@ -84,9 +84,11 @@ Making::Application.routes.draw do
     post 'follow_recommends'
   end
 
-  namespace :haven do
+  namespace :hell do
     resources :activities, only: [:index]
+  end
 
+  namespace :haven do
     resources :orders, only: [:index, :show, :update] do
       member do
         patch 'ship'
