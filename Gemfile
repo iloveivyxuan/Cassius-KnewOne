@@ -78,6 +78,9 @@ gem 'intercom-rails'
 # sitemap
 gem 'sitemap_generator'
 
+# misc
+gem 'nokogiri'
+
 # servers
 group :production do
   gem 'unicorn'
