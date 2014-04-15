@@ -2,7 +2,7 @@
 .search_candidate {
   $slideshow_control_width: 40px;
   $thing_height: 281px;
-  $user_height: 167px;
+  $user_height: 139px;
 
   background-color: $text-color;
   display: none;
@@ -149,13 +149,15 @@
           }
         }
 
+        .follow_btn { display: none; }
+
         &.more {
-          height: 125px;
+          height: 97px;
           width: 100px;
 
           > a {
             margin-bottom: 0;
-            line-height: 95px;
+            line-height: 65px;
           }
         }
 
