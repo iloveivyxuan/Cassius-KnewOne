@@ -8,36 +8,36 @@ section.jumbotron#step1
 section#step2
   header.page-header
     h1
-      | 查找朋友
+      | 先来看看KnewOne上有哪些你感兴趣的用户吧！
     = link_to_with_icon "关注所有", "fa fa-plus",
                         follow_recommends_profile_url(redirect_from: welcome_url(anchor: 'step3')),
                         class: 'btn btn-primary', method: :post
     = link_to_with_icon "下一步", "fa fa-forward", "#step3", class: 'btn btn-link'
 
-  - has_weibo = @friends && @friends.any?
+  p
+    | 关注他们，你可以获得他们对新奇酷产品的讨论动态，与他们交流与新奇酷相关的一切，和他们一起感受未来世界的精彩！
 
-  - unless has_weibo
-    p
-      strong
-        | 您可以通过绑定 #{link_to '新浪微博', user_omniauth_authorize_path(:weibo, state: welcome_url(anchor: 'step2'))} 后找到已在KnewOne上安家的朋友。
-      = link_to '绑定新浪微博', user_omniauth_authorize_path(:weibo, state: welcome_url(anchor: 'step2')), class: 'btn btn-primary'
+  - has_weibo = @friends.any?
 
-  - if has_weibo
-    ul.nav.nav-pills
-      li.active
-        = link_to "新浪微博好友", "#weibo", data: {toggle: "tab"}
-      li
-        = link_to "KnewOne 达人", "#celebrity", data: {toggle: "tab"}
-  .tab-content
+  section
+    header
+      h2 新浪微博好友
     - if has_weibo
-      section.tab-pane.active#weibo
-        p
-          | 你的新浪微博中已经有这些小伙伴在 KnewOne 安家啦：
-        ul.user_list = render @friends
-    section.tab-pane#celebrity class="#{'active' unless has_weibo}"
       p
-        | 关注这些 KnewOne 达人，让你的 KnewOne 之旅更加精彩：
-      ul.user_list = render @recommend_users
+        | 你的新浪微博中已经有这些小伙伴在 KnewOne 安家啦：
+      ul.user_list = render @friends
+    - else
+      p
+        | 您可以通过绑定 #{link_to '新浪微博', user_omniauth_authorize_path(:weibo, state: welcome_url(anchor: 'step2'))} 后找到已在KnewOne上安家的朋友。
+        = link_to '绑定新浪微博', user_omniauth_authorize_path(:weibo, state: welcome_url(anchor: 'step2')), class: 'btn btn-primary'
+
+  section
+    header
+      h2 KnewOne达人
+    p
+      | 关注这些KnewOne达人，让你的KnewOnd之旅更加精彩吧：
+    ul.user_list = render @recommend_users
+
   .text-center
     = link_to_with_icon "下一步", "fa fa-forward", "#step3", class: 'btn btn-link'
     = link_to_with_icon "关注所有", "fa fa-plus",
@@ -47,11 +47,10 @@ section#step2
 section#step3
   header.page-header
     h1
-      | 蓄势待发！
+      | 标出你喜欢的新奇酷产品吧！
     = link_to_with_icon "完成", "fa fa-home", root_url, class: 'btn btn-primary'
   p
-    | KnewOne 有着数以千计的新奇酷产品，先来看看下面的这些开启你的 KnewOne 之旅吧!
-    | 如果你拥有其中的一些，欢迎你写下评测与我们分享你真实的使用体验。
+    | 对产品点击“喜欢”，你可以及时参与对产品的讨论，查看它们的动态，发表对他们的使用体验哦。
 
   ul.things = render @things, size: :normal, img_lazy: false
 
