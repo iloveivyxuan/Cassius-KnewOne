@@ -1,7 +1,5 @@
 module Haven
   class ActivitiesController < ApplicationController
-    layout 'settings'
-
     def index
       @activities = Activity.visible
 
@@ -17,10 +15,10 @@ module Haven
         @activities = @activities.in(type: types)
       end
 
-      @activities = @activities.page(params[:page]).per(24)
+      @activities = @activities.page(params[:page]).per(params[:per_page] || 24)
 
       respond_to do |format|
-        format.json
+        format.json { render 'haven/activities/index' }
       end
     end
   end
