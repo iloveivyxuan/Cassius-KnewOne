@@ -10,6 +10,7 @@ module Api
           AbstractController::Rendering,
           ActionController::Rendering,
           ActionController::Renderers::All,
+          ActionView::Layouts,
           ActionController::ConditionalGet,
           # need this for responding to different types .json .xml etc...
           ActionController::MimeResponds,
