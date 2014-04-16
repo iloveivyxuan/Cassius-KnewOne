@@ -78,15 +78,11 @@ module Hell
     def generate(params)
       timestamp = params.delete 'timestamp'
 
-      query = params.sort.map do |key, value|
+      query = params.sort.push(['timestamp', timestamp]).map do |key, value|
         "#{key}=#{value}"
       end.join('&')
 
-      if query.blank?
-        Digest::MD5.hexdigest("timestamp=#{timestamp}#{SECRET}")
-      else
-        Digest::MD5.hexdigest("#{query}&timestamp=#{timestamp}#{SECRET}")
-      end
+      Digest::MD5.hexdigest("#{query}#{SECRET}")
     end
 
     def valid_sign?(params)

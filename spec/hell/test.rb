@@ -20,38 +20,29 @@ end
 def generate(params)
   timestamp = params.delete 'timestamp'
 
-  query = params.sort.map do |key, value|
+  query = params.sort.push(['timestamp', timestamp]).map do |key, value|
     "#{key}=#{value}"
   end.join('&')
 
   puts "Query: #{query}"
 
-  if query.size == 0
-    Digest::MD5.hexdigest("timestamp=#{timestamp}#{SECRET}")
-  else
-    Digest::MD5.hexdigest("#{query}&timestamp=#{timestamp}#{SECRET}")
-  end
+  Digest::MD5.hexdigest("#{query}#{SECRET}")
 end
 
-# %i(get post patch put delete).each do |m|
-#   instance_eval <<-EVAL
-#     def #{m}(path, opts={})
-#       url = BASE_URL + path + '.json'
-#       opts.merge! :timestamp, Time.now.to_i
-#       opts.merge! sign: generate(opts)
-#
-#       puts "[\#{m.to_s.upcase}] \#{url} Params: \#{opts}"
-#       RestClient.send url, params: opts
-#     end
-#   EVAL
-# end
-
-def get(path, opts = {})
+def request(path, m = :get, opts = {})
   url = BASE_URL + path + '.json'
 
   opts.merge! timestamp: Time.now.to_i
 
-  JSON.parse RestClient.send(:get, url, params: opts.merge(sign: generate(stringify_keys(opts))))
+  RestClient.send(m, url, params: opts.merge(sign: generate(stringify_keys(opts))))
+end
+
+%w(get post patch put delete).each do |m|
+  instance_eval <<-EVAL
+    def #{m}(path, opts={})
+      JSON.parse request(path, :#{m}, opts)
+    end
+  EVAL
 end
 
 puts 'KnewOne interactive Hell API testing tool'
