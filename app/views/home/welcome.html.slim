@@ -36,7 +36,7 @@ section#step2
       h2 KnewOne达人
     p
       | 关注这些KnewOne达人，让你的KnewOne之旅更加精彩：
-    ul.user_list = render @recommend_users
+    ul.user_list#celebrity = render @recommend_users
 
   .text-center
     = link_to_with_icon "下一步", "fa fa-forward", "#step3", class: 'btn btn-link'
