@@ -13,5 +13,5 @@ section.panel.panel-default.panel_control
                      include_blank: false, class: 'form-control selectpicker js_auto_submit', id: 'sort_select'
       .checkbox
         label
-          = check_box_tag :self_run, true, params[:self_run]
+          = check_box_tag :self_run, true, params[:self_run], class: 'js_auto_submit'
           | KnewOne自营
