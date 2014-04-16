@@ -448,4 +448,51 @@ html.guest_homepage {
       }
     }
   }
+
+  #wrapper {
+
+    > .search_candidate {
+      $thing_height: 261px;
+
+      padding-bottom: 15px;
+      padding-top: 15px;
+      position: absolute;
+
+      .slideshow_control {
+        height: $thing_height;
+      }
+
+      .slideshow_inner {
+        $gap: 15px;
+
+        &.things {
+
+          > li {
+            width: 200px;
+
+            &.more {
+              height: $thing_height;
+
+              > a {
+                line-height: ($thing_height - $gap * 2);
+              }
+            }
+
+            &.empty {
+              height: $thing_height;
+              line-height: $thing_height;
+            }
+          }
+        }
+      }
+
+      .thing_fancy_backdrop {
+        opacity: 0 !important;
+      }
+
+      .fanciers {
+        display: none !important;
+      }
+    }
+  }
 }

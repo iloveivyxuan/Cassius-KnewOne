@@ -71,6 +71,8 @@ window.Making = do (exports = window.Making || {}) ->
         if $.trim(@.value) isnt ''
           $trigger = $(@).parents('.search').find('.fa-times')
           if $trigger.is(':hidden') then $trigger.show()
+    $('.js_auto_submit').on 'change', ->
+      $(@).parents('form').trigger('submit')
 
     if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')')
 
@@ -96,8 +98,6 @@ window.Making = do (exports = window.Making || {}) ->
 
       if $selectpicker.length
         $selectpicker.selectpicker()
-          .filter('.js_auto_submit').on 'change', ->
-            $(@).parents('form').trigger('submit')
 
   # exports
   exports

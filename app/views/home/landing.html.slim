@@ -15,10 +15,10 @@
   .explore_header
     .explore_header_inner
       = link_to_with_icon '探索发现', 'fa fa-compass', categories_path, class: 'btn btn-link'
-      = form_tag search_path, class: 'form-inline', role: 'form', method: 'get'
+      = form_tag search_path, class: 'form-inline', id: 'search_thing', role: 'form', method: 'get'
         .form-group.search
           label.sr-only 搜索 KnewOne
-          input.form-control name='q' placeholder="搜索 KnewOne"
+          input.form-control name='q' type='search' autocomplete="off" placeholder="搜索 KnewOne"
           i.fa.fa-search
           i.fa.fa-times
 
@@ -70,21 +70,15 @@
 footer#footer
   small 粤ICP备13057487号
 
+.search_candidate
+  .slideshow.things
+    button.slideshow_control.left
+      i.fa.fa-chevron-left
+    button.slideshow_control.right
+      i.fa.fa-chevron-right
+    .slideshow_body
+/-- Search Candidate --/
+
 - content_for :script do
   javascript:
-    $(function() {
-      var $tab_trigger = $('.explore').find('[data-toggle="tab"]'),
-          max = $tab_trigger.length - 1,
-          i = 0,
-          timeout;
-
-      timeout = setInterval(function() {
-        $tab_trigger.eq(++i).tab('show');
-
-        if (i == max) i = -1;
-      }, 10000);
-
-      $tab_trigger.on('click', function() {
-        clearTimeout(timeout);
-      });
-    });
+    Making.InitHomeGuest();
