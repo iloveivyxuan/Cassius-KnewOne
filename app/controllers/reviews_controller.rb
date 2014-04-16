@@ -18,7 +18,6 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    @review.score = 3
   end
 
   def create
