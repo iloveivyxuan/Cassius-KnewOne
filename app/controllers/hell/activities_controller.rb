@@ -4,11 +4,11 @@ module Hell
       @activities = Activity.visible
 
       if params[:started_at].to_i > 0
-        @activities = @activities.gte(created_at: params[:from].to_i)
+        @activities = @activities.gte(created_at: params[:started_at].to_i)
       end
 
       if params[:ended_at].to_i > 0
-        @activities = @activities.lte(created_at: params[:from].to_i)
+        @activities = @activities.lte(created_at: params[:ended_at].to_i)
       end
 
       if params[:types].present? && types = params[:types].split(',').compact.map(&:to_sym)
