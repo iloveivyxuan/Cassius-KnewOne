@@ -1,4 +1,4 @@
-= simple_form_for(current_user, url: email_account_url, wrapper: :horizontal, html: { method: :patch, class: 'form-horizontal' }) do |f|
+= simple_form_for(current_user, url: email_account_path, wrapper: :horizontal, html: { method: :patch, class: 'form-horizontal' }) do |f|
   = f.input :email, required: true
 
   .form-group

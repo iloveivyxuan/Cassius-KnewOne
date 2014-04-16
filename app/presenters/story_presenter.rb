@@ -1,12 +1,12 @@
 class StoryPresenter < PostPresenter
   presents :story
 
-  def url
-    thing_story_url(story.thing, story)
+  def path
+    thing_story_path(story.thing, story)
   end
 
-  def edit_url
-    edit_thing_story_url(story.thing, story)
+  def edit_path
+    edit_thing_story_path(story.thing, story)
   end
 
   def occured_at

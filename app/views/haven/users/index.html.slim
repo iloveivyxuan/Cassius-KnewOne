@@ -6,8 +6,8 @@ header.page-header
     small 总共 #{User.all.size}
 .pull-right
   - queries = params.except(*request.path_parameters.keys)
-  = link_to '导出CSV(Numbers)', "#{haven_users_url(queries.merge(format: :csv, platform: 'numbers'))}", class: 'btn btn-success'
-  = link_to '导出CSV(Excel)', "#{haven_users_url(queries.merge(format: :csv))}", class: 'btn btn-success'
+  = link_to '导出CSV(Numbers)', "#{haven_users_path(queries.merge(format: :csv, platform: 'numbers'))}", class: 'btn btn-success'
+  = link_to '导出CSV(Excel)', "#{haven_users_path(queries.merge(format: :csv))}", class: 'btn btn-success'
 = render 'filter'
 
 table.table.table-striped
@@ -25,17 +25,17 @@ table.table.table-striped
     - @users.each do |u|
       tr
         td
-          = link_to u.name, user_url(u), target: '_blank'
-          = link_to '[内幕]', haven_user_url(u)
-        td = link_to u.things_count, things_user_url(u), target: '_blank'
-        td = link_to u.reviews_count, reviews_user_url(u), target: '_blank'
+          = link_to u.name, u, target: '_blank'
+          = link_to '[内幕]', haven_user_path(u)
+        td = u.things_count
+        td = u.reviews_count
         td
-          = link_to u.orders_count, haven_orders_url(find_by: 'user_id', find_cond: u.id.to_s), title: '他为何如此屌？', target: '_blank'
-        td = link_to u.expenses_count, haven_orders_url(find_by: 'user_id', find_cond: u.id.to_s), title: '他为何如此屌？', target: '_blank'
+          = link_to u.orders_count, haven_orders_path(find_by: 'user_id', find_cond: u.id.to_s), title: '他为何如此屌？', target: '_blank'
+        td = link_to u.expenses_count, haven_orders_path(find_by: 'user_id', find_cond: u.id.to_s), title: '他为何如此屌？', target: '_blank'
         td
-          = link_to u.followings_count, followings_user_url(u), target: '_blank'
+          = link_to u.followings_count, followings_user_path(u), target: '_blank'
           | /
-          = link_to u.followers_count, followers_user_url(u), target: '_blank'
+          = link_to u.followers_count, followers_user_path(u), target: '_blank'
         td = u.created_at.strftime '%Y-%m-%d %H:%M:%S' if u.created_at
         td
           = user_links(u)

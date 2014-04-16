@@ -6,7 +6,7 @@ section.panel.panel_compact
     h2.panel-title
       i.fa.fa-tags
       | 产品分类
-    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', all_categories_url, class: 'more', title: '更多'
+    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', all_categories_path, class: 'more', title: '更多'
   .panel-body
     ul.categories
       = render partial: 'categories/category_big', collection: @categories, as: :category
@@ -16,6 +16,6 @@ section.panel.panel_compact
     h2.panel-title
       i.fa.fa-bolt
       | 最新产品
-    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', things_url, class: 'more', title: '更多'
+    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', things_path, class: 'more', title: '更多'
   .panel-body
     ul.things = render @things, size: :normal, img_lazy: true

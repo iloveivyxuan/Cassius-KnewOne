@@ -9,7 +9,7 @@ module Haven
 
     def destroy
       Comment.find(params[:id]).destroy
-      redirect_to haven_comments_url
+      redirect_to haven_comments_path
     end
   end
 end

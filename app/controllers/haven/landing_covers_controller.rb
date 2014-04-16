@@ -23,7 +23,7 @@ module Haven
       @landing_cover = LandingCover.new(landing_cover_params)
 
       if @landing_cover.save
-        redirect_to haven_landing_covers_url, notice: 'Landing cover was successfully created.'
+        redirect_to haven_landing_covers_path, notice: 'Landing cover was successfully created.'
       else
         render action: 'new'
       end
@@ -31,7 +31,7 @@ module Haven
 
     def update
       if @landing_cover.update(landing_cover_params)
-        redirect_to haven_landing_covers_url, notice: 'Landing cover was successfully updated.'
+        redirect_to haven_landing_covers_path, notice: 'Landing cover was successfully updated.'
       else
         render action: 'edit'
       end

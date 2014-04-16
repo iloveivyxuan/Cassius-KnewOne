@@ -1,10 +1,10 @@
 header.hot_groups
   header
     h4
-      = link_to all_groups_url, title: '全部小组' do
+      = link_to all_groups_path, title: '全部小组' do
         i.fa.fa-tint
         | 小组
-      = link_to_with_icon '', 'fa fa-chevron-right', all_groups_url, title: '全部小组', class: "more"
+      = link_to_with_icon '', 'fa fa-chevron-right', all_groups_path, title: '全部小组', class: "more"
   section
     ul= render @groups
 

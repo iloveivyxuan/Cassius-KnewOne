@@ -12,7 +12,7 @@ class SessionsController < Devise::SessionsController
 
     respond_to do |format|
       if @error = self.resource.nil?
-        format.html { redirect_to new_user_session_url, flash: {error: true} }
+        format.html { redirect_to new_user_session_path, flash: {error: true} }
         format.js
       else
         set_flash_message(:notice, :signed_in) if is_flashing_format?
@@ -43,6 +43,6 @@ class SessionsController < Devise::SessionsController
   end
 
   def after_sign_out_path_for(resource_name)
-    root_url
+    root_path
   end
 end

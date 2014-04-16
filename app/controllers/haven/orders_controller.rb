@@ -23,7 +23,7 @@ module Haven
 
       respond_to do |format|
         format.html do
-          return redirect_to haven_order_url(@orders.first) if @orders.count == 1
+          return redirect_to haven_order_path(@orders.first) if @orders.count == 1
 
           @orders = @orders.page params[:page]
         end
@@ -71,37 +71,37 @@ module Haven
 
     def update
       @order.update order_params
-      redirect_to haven_order_url(@order)
+      redirect_to haven_order_path(@order)
     end
 
     def ship
       @order.ship!(params[:order][:deliver_no], params[:order][:admin_note])
-      redirect_to haven_order_url(@order)
+      redirect_to haven_order_path(@order)
     end
 
     def close
       @order.close!
-      redirect_to haven_order_url(@order)
+      redirect_to haven_order_path(@order)
     end
 
     def refund
       @order.refund!
-      redirect_to haven_order_url(@order)
+      redirect_to haven_order_path(@order)
     end
 
     def refund_to_balance
       @order.refund_to_balance!(BigDecimal.new(params[:price]))
-      redirect_to haven_order_url(@order)
+      redirect_to haven_order_path(@order)
     end
 
     def refunded_balance_to_platform
       @order.refunded_balance_to_platform!
-      redirect_to haven_order_url(@order)
+      redirect_to haven_order_path(@order)
     end
 
     def generate_waybill
       @order.generate_waybill!
-      redirect_to haven_order_url(@order)
+      redirect_to haven_order_path(@order)
     end
 
     private

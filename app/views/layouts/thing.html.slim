@@ -8,7 +8,7 @@
       = image_tag tp.photo_url(:middle)
 
     #thing_title
-      h1= link_to(tp.title, thing_url(tp.thing))
+      h1= link_to(tp.title, tp.thing)
       h2= tp.subtitle
     aside#thing_actions
       = render "things/actions", tp: tp

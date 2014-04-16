@@ -1,7 +1,7 @@
 #new_private_message.modal.fade role="dialog" aria-labelledby="写私信"
   .modal-dialog
     .modal-content
-      = form_tag dialogs_url, method: :post, remote: true,
+      = form_tag dialogs_path, method: :post, remote: true,
       class: "form-horizontal", role: "form" do
         .modal-header
           button.close data-dismiss="modal" aria-hidden="true" &times;

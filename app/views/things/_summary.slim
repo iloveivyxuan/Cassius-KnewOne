@@ -1,9 +1,9 @@
 #thing_author
-  = link_to user_url(@thing.author) do
+  = link_to @thing.author do
     = image_tag @thing.author.avatar.url(:small), class: "img-circle", alt: @thing.author.name
   label
     | 分享者：
-  = link_to @thing.author.name, user_url(@thing.author)
+  = link_to @thing.author.name, @thing.author
 
 - if tp.summary.present?
   = tp.content

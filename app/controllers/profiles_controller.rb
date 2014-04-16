@@ -9,7 +9,7 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if current_user.update_without_password(user_params)
-        format.html { redirect_to edit_profile_url, flash: {profile: { status: 'success', text: '修改成功。' }} }
+        format.html { redirect_to edit_profile_path, flash: {profile: { status: 'success', text: '修改成功。' }} }
         format.json { head :no_content }
       else
         format.html { render "profiles/edit", layout: 'settings' }
@@ -67,14 +67,14 @@ class ProfilesController < ApplicationController
 
     current_user.batch_follow User.desc(:recommend_priority, :followers_count).limit(42)
 
-    redirect_back_or root_url
+    redirect_back_or root_path
   end
 
   private
 
   def user_params
     params.require(:user).
-        permit :avatar, :avatar_cache, :name, :gender, :description, :location, :site, :personal_domain, :auto_update_from_oauth
+        permit :avatar, :avatar_cache, :name, :gender, :description, :location, :site, :auto_update_from_oauth
   end
 
   def set_editor_choices

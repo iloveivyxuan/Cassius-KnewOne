@@ -1,9 +1,9 @@
 li.order_item
   .thing
     - present order_item.thing do |tp|
-      .cover= link_to tp.photo(:small), thing_url(tp.thing)
+      .cover= link_to tp.photo(:small), tp.thing
       .info
-        .title= link_to order_item.thing_name, thing_url(tp.thing)
+        .title= link_to order_item.thing_name, tp.thing
         .kind= order_item.kind_name
   .item_opts
     .price

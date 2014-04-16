@@ -22,7 +22,7 @@ class AddressesController < ApplicationController
     @address = current_user.addresses.build address_params
     respond_to do |format|
       if @address.save
-        format.html { redirect_back_or(addresses__url) }
+        format.html { redirect_back_or(addresses_path) }
         format.json { render json: @address, status: :created, location: @address }
       else
         format.html { render action: "new" }
@@ -39,7 +39,7 @@ class AddressesController < ApplicationController
     @address = current_user.addresses.find params[:id]
     respond_to do |format|
       if @address.update(address_params)
-        format.html { redirect_back_or(addresses__url) }
+        format.html { redirect_back_or(addresses_path) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -52,7 +52,7 @@ class AddressesController < ApplicationController
     @address = current_user.addresses.find params[:id]
     @address.destroy
     respond_to do |format|
-      format.html { redirect_to addresses__url }
+      format.html { redirect_to addresses_path }
       format.json { head :no_content }
     end
   end

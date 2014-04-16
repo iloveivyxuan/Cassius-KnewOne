@@ -17,7 +17,7 @@
         user_signed_in? ? "#review_share" : "#login-modal",
         title: "分享", data: {toggle: 'modal'}
       = render 'shared/post_actions', post: rp.review,
-        edit_post_path: rp.edit_url, post_path: rp.url
+        edit_post_path: rp.edit_path, post_path: rp.path
 
     = render 'shared/share', id: 'review_share',
     content: rp.share_content, pic: rp.thing_photo_url(:huge)

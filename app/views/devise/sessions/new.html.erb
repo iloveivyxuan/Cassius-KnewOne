@@ -6,14 +6,14 @@
 
 <main role="main">
   <div id="oauth">
-    <%= link_to_with_icon ' Twitter', 'icon-twitter', user_omniauth_authorize_url(:twitter), class: "btn btn-primary twitter_sign_in" %>
+    <%= link_to_with_icon ' Twitter', 'icon-twitter', user_omniauth_authorize_path(:twitter), class: "btn btn-primary twitter_sign_in" %>
     <span class="separator">|</span>
-    <%= link_to_with_icon ' 新浪微博', 'icon-weibo', user_omniauth_authorize_url(:weibo), class: "btn btn-danger weibo_sign_in" %>
+    <%= link_to_with_icon ' 新浪微博', 'icon-weibo', user_omniauth_authorize_path(:weibo), class: "btn btn-danger weibo_sign_in" %>
   </div>
 
-  <%= simple_form_for(resource, :as => resource_name, :url => session_url(resource_name, redirect_from: params[:redirect_from])) do |f| %>
+  <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name, redirect_from: params[:redirect_from])) do |f| %>
     <%- if flash[:error] %>
-      <div class="alert alert-danger">错误的用户名或密码。<%= link_to '忘记密码？', new_user_password_url %></div>
+      <div class="alert alert-danger">错误的用户名或密码。<%= link_to '忘记密码？', new_user_password_path %></div>
     <% end %>
     <%= f.input :email, :required => true, :autofocus => true %>
     <%= f.input :password, :required => true %>
@@ -25,6 +25,6 @@
     </div>
 
     <%= f.button :submit, "登录", class: "btn btn-primary btn-lg btn-block" %>
-    <%= link_to '注册', new_user_registration_url, class: 'btn btn-success btn-lg btn-block' %>
+    <%= link_to '注册', new_user_registration_path, class: 'btn btn-success btn-lg btn-block' %>
   <% end %>
 </main>

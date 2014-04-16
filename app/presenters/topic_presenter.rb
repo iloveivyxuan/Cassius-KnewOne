@@ -2,7 +2,7 @@
 class TopicPresenter < PostPresenter
   presents :topic
 
-  def url
+  def path
     [topic.group, topic]
   end
 
@@ -12,7 +12,7 @@ class TopicPresenter < PostPresenter
     end
   end
 
-  def edit_url
+  def edit_path
     [:edit, topic.group, topic]
   end
 
@@ -26,7 +26,7 @@ class TopicPresenter < PostPresenter
 
   def comments_count
     if topic.comments.present?
-      link_to_with_icon topic.comments.count, "fa fa-comment-o", url
+      link_to_with_icon topic.comments.count, "fa fa-comment-o", path
     end
   end
 
@@ -37,7 +37,7 @@ class TopicPresenter < PostPresenter
   end
 
   def group
-    link_to topic.group.name, group_url(topic.group)
+    link_to topic.group.name, topic.group
   end
 
   def share_content

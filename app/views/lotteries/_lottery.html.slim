@@ -17,7 +17,7 @@ tr.lottery
           p= tp.title
     - elsif lottery.contribution.class == Review
       - present lottery.contribution.thing do |tp|
-        = link_to thing_review_url(tp.thing, lottery.contribution) do
+        = link_to thing_review_path(tp.thing, lottery.contribution) do
           = tp.photo(:small)
           p= lottery.contribution.title
     - else
@@ -33,7 +33,7 @@ tr.lottery
 - if can? :update, Lottery
   tr
     td
-      = link_to edit_lottery_url(lottery) do
+      = link_to edit_lottery_path(lottery) do
         i.fa.fa-edit
       = link_to lottery, method: :delete do
         i.fa.fa-trash-o

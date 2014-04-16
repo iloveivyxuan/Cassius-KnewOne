@@ -12,26 +12,26 @@
     nav
       ul.nav.nav-pills.nav-stacked
         = home_nav(:index) do
-          = link_to_with_icon current_user.name, 'fa fa-fw fa-home', root_url, class: 'home'
+          = link_to_with_icon current_user.name, 'fa fa-fw fa-home', root_path, class: 'home'
         = home_nav(:fancies) do
-          = link_to_with_icon "我喜欢 #{current_user.fancies_count}", 'fa fa-fw fa-heart', fancies_profile_url
+          = link_to_with_icon "我喜欢 #{current_user.fancies_count}", 'fa fa-fw fa-heart', fancies_profile_path
         = home_nav(:owns) do
-          = link_to_with_icon "我拥有 #{current_user.owns_count}", 'fa fa-fw fa-check', owns_profile_url
+          = link_to_with_icon "我拥有 #{current_user.owns_count}", 'fa fa-fw fa-check', owns_profile_path
         = home_nav(:followings) do
-          = link_to_with_icon "我关注 #{current_user.followings_count}", 'fa fa-fw fa-headphones', followings_profile_url
+          = link_to_with_icon "我关注 #{current_user.followings_count}", 'fa fa-fw fa-headphones', followings_profile_path
         = home_nav(:followers) do
-          = link_to_with_icon "关注我 #{current_user.followers_count}", 'fa fa-fw fa-microphone', followers_profile_url
+          = link_to_with_icon "关注我 #{current_user.followers_count}", 'fa fa-fw fa-microphone', followers_profile_path
         = home_nav(:things) do
-          = link_to_with_icon "我的分享 #{current_user.things_count}", 'fa fa-fw fa-magic', things_profile_url
+          = link_to_with_icon "我的分享 #{current_user.things_count}", 'fa fa-fw fa-magic', things_profile_path
         = home_nav(:reviews) do
-          = link_to_with_icon "我的评测 #{current_user.reviews_count}", 'fa fa-fw fa-pencil', reviews_profile_url
+          = link_to_with_icon "我的评测 #{current_user.reviews_count}", 'fa fa-fw fa-pencil', reviews_profile_path
         = home_nav(:groups) do
-          = link_to_with_icon "我的小组 #{current_user.groups_count}", 'fa fa-fw fa-tint', groups_profile_url
+          = link_to_with_icon "我的小组 #{current_user.groups_count}", 'fa fa-fw fa-tint', groups_profile_path
         = home_nav(:topics) do
-          = link_to_with_icon "我的话题 #{current_user.topics_count}", 'fa fa-fw fa-leaf', topics_profile_url
+          = link_to_with_icon "我的话题 #{current_user.topics_count}", 'fa fa-fw fa-leaf', topics_profile_path
         li.divider
-        li = link_to_with_icon '天天有礼', 'fa fa-fw fa-gift', rewards_url
-        li = link_to_with_icon '查找朋友', 'fa fa-fw fa-users', recommend_users_profile_url
+        li = link_to_with_icon '天天有礼', 'fa fa-fw fa-gift', rewards_path
+        li = link_to_with_icon '查找朋友', 'fa fa-fw fa-users', recommend_users_profile_path
     /-- END nav --/
 
     section.tag.panel
@@ -49,7 +49,7 @@
     section#choiceness.panel
       header.panel-heading
         h5.panel-title 编辑精选
-        = link_to_with_icon '', 'fa fa-random', random_things_url(per: 1), class: 'more', remote: true
+        = link_to_with_icon '', 'fa fa-random', random_things_path(per: 1), class: 'more', remote: true
       .panel-body
         = @editor_choices.map { |t| render 'things/editor_choice', thing: t }.join.html_safe
     /-- END #choiceness --/
@@ -57,7 +57,7 @@
     footer
       nav.nav_bottom
         = link_to "建议反馈", "/things/knewone"
-        = link_to "加入我们", jobs_url
+        = link_to "加入我们", jobs_path
         = link_to "联系我们", "mailto:hello@knewone.com"
         br
         = link_to "微博", "http://weibo.com/knewone", target: "_blank"

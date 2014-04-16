@@ -8,7 +8,7 @@
       h3.panel-title
         i.fa.fa-check
         | 拥有
-      = link_to_with_icon '', 'fa fa-chevron-right fa_alone', owns_user_url(@user), class: 'more', title: '更多'
+      = link_to_with_icon '', 'fa fa-chevron-right fa_alone', owns_user_path(@user), class: 'more', title: '更多'
     .panel-body
       ul.things= render @owns, size: :normal, img_lazy: true
 
@@ -18,7 +18,7 @@
       h3.panel-title
         i.fa.fa-heart
         | 喜欢
-      = link_to_with_icon '', 'fa fa-chevron-right fa_alone', fancies_user_url(@user), class: 'more', title: '更多'
+      = link_to_with_icon '', 'fa fa-chevron-right fa_alone', fancies_user_path(@user), class: 'more', title: '更多'
     .panel-body
       ul.things= render @fancies, size: :normal, img_lazy: false
 
@@ -28,7 +28,7 @@
       h3.panel-title
         i.fa.fa-pencil
         | 评测
-      = link_to_with_icon '', 'fa fa-chevron-right fa_alone', reviews_user_url(@user), class: 'more', title: '更多'
+      = link_to_with_icon '', 'fa fa-chevron-right fa_alone', reviews_user_path(@user), class: 'more', title: '更多'
     .panel-body
       = render partial: 'users/review', collection: @reviews
 
@@ -37,7 +37,7 @@ section.panel.panel_compact.hidden-xs
     h3.panel-title
       i.fa.fa-bars
       | 动态
-    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', activities_user_url(@user), class: 'more', title: '更多'
+    = link_to_with_icon '', 'fa fa-chevron-right fa_alone', activities_user_path(@user), class: 'more', title: '更多'
   .panel-body
     - if @activities.any?
       ul.activities= render @activities

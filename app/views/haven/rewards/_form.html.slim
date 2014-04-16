@@ -1,5 +1,5 @@
 - coupons = Coupon.where(name: /^天天有礼/)
-= simple_form_for @reward, url: haven_rewards_url, html: {class: "reward_form form-horizontal"}, wrapper: :horizontal do |f|
+= simple_form_for @reward, url: haven_rewards_path, html: {class: "reward_form form-horizontal"}, wrapper: :horizontal do |f|
   = f.input :user_id, as: :hidden
   .form-group
     label.control-label 获奖者

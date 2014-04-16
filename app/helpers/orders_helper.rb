@@ -9,7 +9,7 @@ module OrdersHelper
   def confirm_free_link(order, css = 'btn btn-success')
     if order.can_confirm_free?
       content_tag :div, class: 'btn-group' do
-        link_to '确认订单', confirm_free_order_url(order),
+        link_to '确认订单', confirm_free_order_path(order),
                 method: :patch, class: css
       end
     end
@@ -18,7 +18,7 @@ module OrdersHelper
   def cancel_link(order, css = 'btn btn-default')
     if order.can_cancel?
       content_tag :div, class: 'btn-group' do
-        link_to '取消订单', cancel_order_url(order),
+        link_to '取消订单', cancel_order_path(order),
                 data: {confirm: '真的要取消这个订单么？'},
                 method: :patch, class: css
       end
@@ -34,7 +34,7 @@ module OrdersHelper
   def close_link(order, css = 'btn btn-danger')
     if order.can_close?
       content_tag :div, class: 'btn-group' do
-        link_to '关闭订单', close_haven_order_url(order),
+        link_to '关闭订单', close_haven_order_path(order),
                 data: {confirm: '确认关闭？'},
                 method: :patch, class: css
       end
@@ -44,7 +44,7 @@ module OrdersHelper
   def refund_link(order, css = 'btn btn-danger')
     if order.can_refund?
       content_tag :div, class: 'btn-group' do
-        link_to '已退款', refund_haven_order_url(order),
+        link_to '已退款', refund_haven_order_path(order),
                 data: {confirm: '确认退款？'},
                 method: :patch, class: css
       end
@@ -54,7 +54,7 @@ module OrdersHelper
   def refunded_balance_to_platform_link(order, css = 'btn btn-danger')
     if order.can_refunded_balance_to_platform? && order.payment_method != :btc
       content_tag :div, class: 'btn-group' do
-        link_to '改退款到第三方平台', refunded_balance_to_platform_haven_order_url(order),
+        link_to '改退款到第三方平台', refunded_balance_to_platform_haven_order_path(order),
                 data: {confirm: '确认退款？'},
                 method: :patch, class: css
       end
@@ -70,7 +70,7 @@ module OrdersHelper
   def way_bill_link(order, css = 'btn btn-default')
     content_tag :div, class: 'btn-group' do
       if order.waybill.url.nil?
-        link_to '生成运单', generate_waybill_haven_order_url(order), class: css
+        link_to '生成运单', generate_waybill_haven_order_path(order), class: css
       else
         link_to '下载运单', order.waybill.url, class: css, target: '_blank'
       end
@@ -80,7 +80,7 @@ module OrdersHelper
   def deliver_bill_link(order, css = 'btn btn-default')
     content_tag :div, class: 'btn-group' do
       if order.shipped? || order.confirmed?
-        link_to '发货单', deliver_bill_order_url(order), class: css, target: '_blank'
+        link_to '发货单', deliver_bill_order_path(order), class: css, target: '_blank'
       end
     end
   end
@@ -88,7 +88,7 @@ module OrdersHelper
   def return_link(order, css = 'btn btn-default')
     unless order.pending?
       content_tag :div, class: 'btn-group' do
-        link_to '返回首页', root_url, class: css
+        link_to '返回首页', root_path, class: css
       end
     end
   end
@@ -167,8 +167,8 @@ module OrdersHelper
     render 'shared/share', id: 'order_share', content: str, pic: item.thing.cover.url(:review)
   end
 
-  def new_order_url_with_params(order, options = {})
-    new_order_url(order: {
+  def new_order_path_with_params(order, options = {})
+    new_order_path(order: {
         coupon_code_id: (options.has_key?(:coupon_code_id) ? options[:coupon_code_id] : order.coupon_code.try(:id)),
         address_id: (options.has_key?(:address_id) ? options[:address_id] : order.address.try(:id))
     })

@@ -6,10 +6,10 @@
       aside
         = sp.occured_at
       header
-        h3= link_to sp.title, sp.url
+        h3= link_to sp.title, sp.path
       section.post_content
         = sp.content
       footer
         = sp.comments_count
         = render 'shared/post_actions', post: sp.story,
-        edit_post_path: sp.edit_url, post_path: sp.url
+        edit_post_path: sp.edit_path, post_path: sp.path

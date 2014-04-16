@@ -19,8 +19,8 @@ ul.nav.nav-pills
     - if conds[:filter].include?(k)
       li.active
         - conds[:filter].reject! {|f| f == k}
-        = link_to v, haven_users_url(conds)
+        = link_to v, haven_users_path(conds)
     - else
       li
         - conds[:filter].push(k)
-        = link_to v, haven_users_url(conds)
+        = link_to v, haven_users_path(conds)

@@ -1,4 +1,4 @@
-- path = user_signed_in? ? p.fancy_url : "#"
+- path = user_signed_in? ? p.fancy_path : "#"
 - data = user_signed_in? ? {url: path} : {toggle: "modal", target: "#login-modal"}
 - title = p.fancied? ? "取消喜欢" : "喜欢"
 - fancy_class = p.fancied? ? "fancied" : "unfancied"

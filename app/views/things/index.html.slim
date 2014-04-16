@@ -2,9 +2,9 @@
 
 header.page-header
   h1
-    = link_to_with_icon '产品', 'fa fa-magic', things_url, class: 'breadcrumb'
+    = link_to_with_icon '产品', 'fa fa-magic', things_path, class: 'breadcrumb'
     - if @category
-      = link_to @category.name, things_url(category: @category), class: 'breadcrumb'
+      = link_to @category.name, things_path(category: @category), class: 'breadcrumb'
 
 = render 'things/filter'
 

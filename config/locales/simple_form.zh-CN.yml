@@ -17,7 +17,6 @@ zh-CN:
         nickname: '昵称'
         site: '个人网站'
         urls: '网站'
-        personal_domain: '个性域名'
       thing:
         title: '名称'
         subtitle: '一句话介绍'

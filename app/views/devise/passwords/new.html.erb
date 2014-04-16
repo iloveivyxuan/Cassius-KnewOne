@@ -5,13 +5,13 @@
 </header>
 
 <main role="main">
-<%= simple_form_for(resource, :as => resource_name, :url => password_url(resource_name), :html => {:method => :post}) do |f| %>
+<%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :post}) do |f| %>
   <div class="form-inputs">
     <%= f.input :email, :required => true %>
   </div>
   <div class="form-actions">
     <%= f.button :submit, "发送密码找回邮件", class: "btn btn-success btn-lg btn-block" %>
-    <%= link_to '登录', new_user_session_url, class: "btn btn-primary btn-lg btn-block" %>
+    <%= link_to '登录', new_user_session_path, class: "btn btn-primary btn-lg btn-block" %>
   </div>
 <% end %>
 </main>

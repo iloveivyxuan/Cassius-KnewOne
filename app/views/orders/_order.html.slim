@@ -4,7 +4,7 @@ li.order
       ul
         li
           strong.field 订单编号：
-          span = link_to order.order_no, order_url(order)
+          span = link_to order.order_no, order
         li
           strong.field 下单时间：
           span = date_time_text order.created_at
@@ -29,6 +29,6 @@ li.order
   aside
     = pay_link order, false, 'btn btn-medium btn-success'
     = confirm_free_link order, 'btn btn-medium btn-success'
-    = link_to '订单详情', order_url(order), class: 'btn btn-default btn-medium'
+    = link_to '订单详情', order, class: 'btn btn-default btn-medium'
   section
     ul = render partial: 'orders/order_item', collection: order.order_items

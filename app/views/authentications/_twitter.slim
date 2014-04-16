@@ -2,10 +2,10 @@ tr
   - if auth
     td= link_to_with_icon 'Twitter', 'fa fa-twitter', auth.urls['Twitter'], target: '_blank'
     td.text-success 已绑定
-    td= link_to '解绑', authentication_url(auth.id), method: :delete, class: 'btn btn-danger', data: {confirm: '真的要解除绑定么？'}
+    td= link_to '解绑', authentication_path(auth.id), method: :delete, class: 'btn btn-danger', data: {confirm: '真的要解除绑定么？'}
   - else
     td
       i.fa.fa-twitter
       | Twitter
     td.text-danger 未绑定
-    td= link_to '绑定', user_omniauth_authorize_url(:twitter, redirect_from: request.url), class: 'btn btn-primary'
+    td= link_to '绑定', user_omniauth_authorize_path(:twitter, redirect_from: request.url), class: 'btn btn-primary'

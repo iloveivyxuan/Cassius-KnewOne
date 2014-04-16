@@ -3,8 +3,8 @@ class GroupPresenter < ApplicationPresenter
   presents :group
   delegate :name, :members_count, :topics_count, :public?, :private?, to: :group
 
-  def url
-    group_url(group)
+  def path
+    group_path(group)
   end
 
   def avatar(size=:small, options={})

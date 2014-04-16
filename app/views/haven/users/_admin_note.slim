@@ -1,5 +1,5 @@
 dd
-  = form_for @user, url: haven_user_url(@user) do |f|
+  = form_for @user, url: haven_user_path(@user) do |f|
     .form-group
       label 管理员备注
       = f.text_area :admin_note, class: 'form-control', size: '20x3'

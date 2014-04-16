@@ -5,7 +5,7 @@
         = rp.author_avatar(:small)
         figurecaption
           = rp.author_name
-      = link_to rp.url, class: "feed_main" do
+      = link_to rp.path, class: "feed_main" do
         article
           header.feed_header
             h4.feed_title= rp.title

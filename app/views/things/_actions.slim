@@ -31,11 +31,11 @@ ul.operations.fa-ul
     li= link_to_with_icon "我想供货", "fa-li fa fa-beer", "#login-modal", title: "提供产品", \
                           data: {toggle: "modal", keyboard: false}
   - if can? :update, tp.thing
-    li= link_to_with_icon "编辑", "fa-li fa fa-edit", edit_thing_url(tp.thing), title: "编辑"
+    li= link_to_with_icon "编辑", "fa-li fa fa-edit", edit_thing_path(tp.thing), title: "编辑"
   - if can? :pro_edit, tp.thing
-    li= link_to_with_icon "高级", "fa-li fa fa-cogs", edit_haven_thing_url(tp.thing), title: "销售管理"
+    li= link_to_with_icon "高级", "fa-li fa fa-cogs", edit_haven_thing_path(tp.thing), title: "销售管理"
   - if can? :destroy, tp.thing
-    li= link_to_with_icon "删除", "fa-li fa fa-trash-o", thing_url(tp.thing), title: "删除产品",
+    li= link_to_with_icon "删除", "fa-li fa fa-trash-o", thing_path(tp.thing), title: "删除产品",
       method: :delete, data: {confirm: "您确定要删除这个产品吗?"}
 
 - if tp.thing.fancy_groups.present?

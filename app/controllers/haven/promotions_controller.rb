@@ -23,7 +23,7 @@ module Haven
       @promotion = Promotion.new(promotion_params)
 
       if @promotion.save
-        redirect_to haven_promotions_url, notice: 'Promotion was successfully created.'
+        redirect_to haven_promotions_path, notice: 'Promotion was successfully created.'
       else
         render action: 'new'
       end
@@ -31,7 +31,7 @@ module Haven
 
     def update
       if @promotion.update(promotion_params)
-        redirect_to haven_promotions_url, notice: 'Promotion was successfully updated.'
+        redirect_to haven_promotions_path, notice: 'Promotion was successfully updated.'
       else
         render action: 'edit'
       end

@@ -6,10 +6,10 @@
         span= reward.date.strftime '%^b'
   .entry
     .abstract
-      | 用户 #{link_to reward.user.name, user_url(reward.user)} 获得
+      | 用户 #{link_to reward.user.name, reward.user} 获得
       = case reward.coupon.class
         - when AbatementCoupon then " #{reward.coupon.price}元代金券 一张"
-        - when ThingRebateCoupon then " #{link_to reward.coupon.thing.title, thing_url(reward.coupon.thing)}兑换券 一张".html_safe
+        - when ThingRebateCoupon then " #{link_to reward.coupon.thing.title, reward.coupon.thing}兑换券 一张".html_safe
     .content
       = reward.body.html_safe
 

@@ -1,6 +1,6 @@
 = render 'form'
 hr
-= form_tag generate_code_haven_thing_rebate_coupon_url(@coupon), class: "form-inline", role: "form"
+= form_tag generate_code_haven_thing_rebate_coupon_path(@coupon), class: "form-inline", role: "form"
   = label_tag :amount, '数量'
   = number_field_tag :amount, 1, min: 1, class: 'form-control'
   br
@@ -12,7 +12,7 @@ hr
   br
   = submit_tag '生成', class: 'btn btn-primary'
 hr
-= form_tag batch_bind_haven_thing_rebate_coupon_url(@coupon), role: "form"
+= form_tag batch_bind_haven_thing_rebate_coupon_path(@coupon), role: "form"
   | 一行输入一个用户的email或id或昵称
   = text_area_tag :user_list, '', class: 'form-control'
   br
@@ -36,5 +36,5 @@ table.table
       td = code.code
       td = code.expires_at
       td = code.admin_note
-      td = link_to ([code.user.name, code.user.email, code.user.id.to_s].reject(&:blank?).first), user_url(code.user), target: '_blank' unless code.user.nil?
-      td = link_to code.order.order_no, haven_order_url(code.order), target: '_blank' if code.used?
+      td = link_to ([code.user.name, code.user.email, code.user.id.to_s].reject(&:blank?).first), code.user, target: '_blank' unless code.user.nil?
+      td = link_to code.order.order_no, haven_order_path(code.order), target: '_blank' if code.used?

@@ -52,7 +52,7 @@ class LotteriesController < ApplicationController
   def create
     @lottery = Lottery.new lottery_params
     if @lottery.save
-      redirect_to lotteries_url
+      redirect_to lotteries_path
     else
       render 'new'
     end
@@ -64,7 +64,7 @@ class LotteriesController < ApplicationController
 
   def update
     if @lottery.update(lottery_params)
-      redirect_to lotteries_url
+      redirect_to lotteries_path
     else
       render 'new'
     end
@@ -72,7 +72,7 @@ class LotteriesController < ApplicationController
 
   def destroy
     @lottery.destroy
-    redirect_to lotteries_url
+    redirect_to lotteries_path
   end
 
   private

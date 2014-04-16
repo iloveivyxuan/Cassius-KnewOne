@@ -4,7 +4,7 @@ ul.list_block
       h4
         - thing = Thing.where(title: s.thing_title).first
         - if thing
-          = link_to s.thing_title, thing_url(thing)
+          = link_to s.thing_title, thing
         - else
           = s.thing_title
 
@@ -16,11 +16,11 @@ ul.list_block
       p= s.description
       .note style="color: red;"
         p= s.note
-      = link_to s.user.name, user_url(s.user), target: '_blank' if s.user
+      = link_to s.user.name, s.user, target: '_blank' if s.user
       |  |
-      = link_to_with_icon "备注", "fa fa-edit", edit_supplier_url(s), remote: true
+      = link_to_with_icon "备注", "fa fa-edit", edit_supplier_path(s), remote: true
       |  |
-      = link_to_with_icon "删除", "fa fa-trash-o", supplier_url(s), remote: true, method: :delete,
+      = link_to_with_icon "删除", "fa fa-trash-o", s, remote: true, method: :delete,
         data: {confirm: "您确认要删除吗?"}
 
 = paginate @suppliers

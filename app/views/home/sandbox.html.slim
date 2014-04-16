@@ -36,11 +36,11 @@ section#home_index
             = link_to review.thing.title, review.thing, target: "_blank"
           .media
             - present review do |rp|
-              = link_to thing_review_url(review.thing, review), target: "_blank", class: "pull-right" do
+              = link_to thing_review_path(review.thing, review), target: "_blank", class: "pull-right" do
                 = present(review.thing).photo(:smallo)
               .media-body
                 h5.media-heading
-                  = link_to rp.title, rp.url, target: "_blank"
+                  = link_to rp.title, rp.path, target: "_blank"
                 p= rp.summary(50)
 
     #home_filling

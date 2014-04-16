@@ -6,7 +6,7 @@ header.page-header
     = @category.name
 
 section
-  = form_for @category, url: haven_category_url(@category) do |f|
+  = form_for @category, url: haven_category_path(@category) do |f|
     - if @category.cover
       = image_tag @category.cover.url
     = f.file_field :cover

@@ -14,8 +14,8 @@
 .explore
   .explore_header
     .explore_header_inner
-      = link_to_with_icon '探索发现', 'fa fa-compass', categories_url, class: 'btn btn-link'
-      = form_tag search_url, class: 'form-inline', role: 'form', method: 'get'
+      = link_to_with_icon '探索发现', 'fa fa-compass', categories_path, class: 'btn btn-link'
+      = form_tag search_path, class: 'form-inline', role: 'form', method: 'get'
         .form-group.search
           label.sr-only 搜索 KnewOne
           input.form-control name='q' placeholder="搜索 KnewOne"
@@ -28,17 +28,17 @@
         - @categories.each_with_index do |c, i|
           - if i == 0
             li.active
-              = link_to categories_url(c.name), "#category_#{c.slug}", data: {toggle: "tab"}
+              = link_to c.name, "#category_#{c.slug}", data: {toggle: "tab"}
           - else
             li
-              = link_to categories_url(c.name), "#category_#{c.slug}", data: {toggle: "tab"}
+              = link_to c.name, "#category_#{c.slug}", data: {toggle: "tab"}
     .explore_content
       - @categories.each_with_index do |c, i|
         - thing = c.things.desc(:priority).first
         .explore_content_item.fade class="#{'active in' if i == 0}" id="category_#{c.slug}"
           - present thing do |tp|
             figure.thing
-              = link_to tp.url, class: "thing_thumb" do
+              = link_to tp.path, class: "thing_thumb" do
                 = tp.photo(:normal)
               figcaption
                 h5 = tp.full_title
@@ -54,13 +54,13 @@
               - present review do |rp|
                 article.review
                   - present review.author do |up|
-                    = link_to up.url, class: 'review_author' do
+                    = link_to up.path, class: 'review_author' do
                       = up.avatar :small, size: '60x60'
                       span.name = up.name
                   section.review_wrap
                     header.review_header
                       h4.review_title
-                        = link_to review.title, rp.url
+                        = link_to review.title, rp.path
                       em.like
                         i.fa.fa-plus
                         = review.lovers_count

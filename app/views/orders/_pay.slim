@@ -1,6 +1,6 @@
 .btn-group
-  = link_to '支付宝支付', alipay_order_url(order), class: css
+  = link_to '支付宝支付', alipay_order_path(order), class: css
 .btn-group
-  = link_to '微信支付', tenpay_wechat_order_url(order), class: css
+  = link_to '微信支付', tenpay_wechat_order_path(order), class: css
 .btn-group
   = link_to 'BTC支付', '#btc_pay', data: {toggle: 'modal'}, class: css

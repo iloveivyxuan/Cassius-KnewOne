@@ -9,9 +9,9 @@ table
   - @promotions.each do |promotion|
     tr
       td = promotion.link
-      td = link_to 'Edit', edit_haven_promotion_url(promotion)
-      td = link_to 'Destroy', haven_promotion_url(promotion), data: {:confirm => 'Are you sure?'}, :method => :delete
+      td = link_to 'Edit', edit_haven_promotion_path(promotion)
+      td = link_to 'Destroy', haven_promotion_path(promotion), data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 
-= link_to 'New Promotion', new_haven_promotion_url
+= link_to 'New Promotion', new_haven_promotion_path

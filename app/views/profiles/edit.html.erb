@@ -5,7 +5,7 @@
   <h2><i class="fa fa-user"></i>个人信息</h2>
 </header>
 
-<%= simple_form_for(current_user, url: profile_url, wrapper: :horizontal, html: { method: :patch, class: 'form-horizontal' }) do |f| %>
+<%= simple_form_for(current_user, url: profile_path, wrapper: :horizontal, html: { method: :patch, class: 'form-horizontal' }) do |f| %>
   <%= f.input :name, required: true %>
   <div class="form-group file optional user_avatar">
     <label class="file optional control-label" for="user_avatar">头像</label>
@@ -21,7 +21,6 @@
   <%= f.input :location %>
   <%= f.input :site %>
   <%= f.input :description, as: :text, input_html: {rows: 5} %>
-  <%= f.input :personal_domain %>
 
   <div class="form-group">
     <div class="form-action">

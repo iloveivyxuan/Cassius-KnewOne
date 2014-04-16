@@ -7,6 +7,6 @@ table.table
   tbody
     - @categories.each do |c|
       tr
-        th= link_to c.name, things_url(category: c)
+        th= link_to c.name, things_path(category: c)
         th= c.things_count
-        th= link_to '编辑', edit_haven_category_url(c)
+        th= link_to '编辑', edit_haven_category_path(c)

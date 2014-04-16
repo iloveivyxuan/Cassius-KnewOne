@@ -3,8 +3,8 @@ class UserPresenter < ApplicationPresenter
   presents :user
   delegate :name, to: :user
 
-  def url
-    user_url(user)
+  def path
+    user_path(user)
   end
 
   def avatar(size=:small, options={})
@@ -12,7 +12,7 @@ class UserPresenter < ApplicationPresenter
   end
 
   def as_author(size=:small)
-    link_to(avatar(size), user_url(user), class: "author_avatar").concat link_to(name, user, class: "author_name")
+    link_to(avatar(size), user, class: "author_avatar").concat link_to(name, user, class: "author_name")
   end
 
   def topic_wrapper(topic)
@@ -21,10 +21,10 @@ class UserPresenter < ApplicationPresenter
   end
 
   def link_to_with_avatar(size, options={})
-    link_to avatar(size), user_url(user), options.merge(title: user.name)
+    link_to avatar(size), user, options.merge(title: user.name)
   end
 
   def link_to_with_name
-    link_to name, user_url(user)
+    link_to name, user
   end
 end

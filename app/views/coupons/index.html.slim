@@ -6,7 +6,7 @@ header.page-header
     i.fa.fa-ticket
     | 优惠券
 
-= form_tag bind_coupons_url, role: "form"
+= form_tag bind_coupons_path, role: "form"
   .form-group class="#{"has-#{flash[:status]}" if flash[:status]}"
     .col-xs-9.col-sm-4
       = hidden_field_tag :redirect_from, params[:redirect_from]

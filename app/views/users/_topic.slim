@@ -2,11 +2,11 @@
   article.article_compact
     - present topic do |tp|
       header.article_header
-        h4.article_title = link_to tp.title, tp.url
+        h4.article_title = link_to tp.title, tp.path
       section.article_body
         figure
           - present topic.group do |gp|
-            = link_to group_url(gp.group) do
+            = link_to gp.group do
               = gp.avatar
             figurecaption title=gp.name
               = gp.name

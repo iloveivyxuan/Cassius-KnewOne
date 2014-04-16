@@ -6,8 +6,8 @@ header.page-header
     small 总共 #{Order.all.size}笔 成交 #{Order.deal.size}笔
 .pull-right
   - queries = params.except(*request.path_parameters.keys)
-  = link_to '导出CSV(Numbers)', "#{haven_orders_url(queries.merge(format: :csv, platform: 'numbers'))}", class: 'btn btn-success'
-  = link_to '导出CSV(Excel)', "#{haven_orders_url(queries.merge(format: :csv))}", class: 'btn btn-success'
+  = link_to '导出CSV(Numbers)', "#{haven_orders_path(queries.merge(format: :csv, platform: 'numbers'))}", class: 'btn btn-success'
+  = link_to '导出CSV(Excel)', "#{haven_orders_path(queries.merge(format: :csv))}", class: 'btn btn-success'
 = render partial: 'search', locals: {types: {all: '全部', order_no: '订单号', user_id: '用户ID'}}
 = render 'filter'
 ul.orders = render @orders

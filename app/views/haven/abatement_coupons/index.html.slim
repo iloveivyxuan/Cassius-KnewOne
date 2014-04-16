@@ -1,4 +1,4 @@
-= link_to '新建', new_haven_abatement_coupon_url, class: 'btn btn-primary'
+= link_to '新建', new_haven_abatement_coupon_path, class: 'btn btn-primary'
 table.table
   thead
     th 名称
@@ -14,4 +14,4 @@ table.table
       td = coupon.threshold_price
       td = coupon.price
       td
-        = link_to '详情', haven_abatement_coupon_url(coupon)
+        = link_to '详情', haven_abatement_coupon_path(coupon)

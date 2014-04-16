@@ -55,17 +55,6 @@ window.Making =
       Making.ToggleFixedNavbar()
       Making.InitUIDropdownBox()
 
-      # solving subdomain ajax
-      host_parts = location.hostname.split('.')
-      if host_parts.length > 2
-        $.ajaxSetup
-          xhrFields:
-            withCredentials: true
-          crossDomain: true
-          headers:
-            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-            'X-Requested-With': 'XMLHttpRequest'
-
   ToggleFixedNavbar: ->
     if Modernizr.mq('(max-width: ' + Making.Breakpoints.screenMDMax + ')') and
         $('html').hasClass('touch')

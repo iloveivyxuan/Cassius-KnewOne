@@ -2,16 +2,16 @@
   li
     figure class="thing"
       - if tp.self_run?
-        = link_to thing_url(tp.thing), class: "pre_ribbon #{tp.stage}" do
+        = link_to tp.thing, class: "pre_ribbon #{tp.stage}" do
           span= tp.stage_text
       .thing_thumb
         = img_lazy ? tp.photo_lazy(size) : tp.photo(size)
         .thing_fancy
-          = link_to "", tp.url, class: "thing_fancy_backdrop", target: "_blank"
+          = link_to "", tp.thing, class: "thing_fancy_backdrop", target: "_blank"
           .fanciers = render "shared/fancy", p: tp
       figcaption
         h5 data-toggle="tooltip" data-placement="top" title=tp.full_title
-          = link_to tp.full_title, thing_url(tp.thing), target: '_blank'
+          = link_to tp.full_title, tp.thing, target: '_blank'
         em.figure_detail
           span.fanciers
             i.fa.fa-heart
@@ -21,5 +21,5 @@
               i.fa.fa-check
               = tp.owners_count
           - if tp.thing.reviews.count > 0
-            = link_to_with_icon tp.reviews_count, "fa fa-pencil", thing_reviews_url(tp.thing),
+            = link_to_with_icon tp.reviews_count, "fa fa-pencil", thing_reviews_path(tp.thing),
             target: "_blank", class: "reviews_count"
