@@ -101,14 +101,18 @@ module PageExtractor
   end
 end
 
-# examples
+# # examples
 # [
-#  'http://fancy.com/things/596719893366182299/Long-Horn-Deluxe-Convertible-Sofa',
-#  'http://item.jd.com/1092249.html',
-#  'http://www.amazon.cn/gp/product/B005U6CFBQ/',
-#  'http://www.amazon.com/gp/product/B001FWYGJS/',
-#  'http://www.demohour.com/projects/340820',
-#  'https://www.kickstarter.com/projects/1060791749/city-of-darkness-revisited',
+# 'http://fancy.com/things/596719893366182299/Long-Horn-Deluxe-Convertible-Sofa',
+# 'http://item.jd.com/1092249.html',
+# # 'http://www.amazon.cn/gp/product/B005U6CFBQ/',
+# 'http://www.amazon.com/gp/product/B001FWYGJS/',
+# 'http://www.demohour.com/projects/340820',
+# 'https://www.kickstarter.com/projects/1060791749/city-of-darkness-revisited'
 # ].each do |url|
-#   p PageExtractor::extract(url)
+#   puts url
+#   s = Time.now.to_i
+#   puts PageExtractor::extract(url)
+#   e = Time.now.to_i
+#   puts "#{e - s}s"
 # end
