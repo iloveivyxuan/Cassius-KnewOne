@@ -47,7 +47,7 @@ class AccountsController < Devise::RegistrationsController
           current_user.send_confirmation_instructions
         end
 
-        format.html { redirect_to edit_account_path, flash: {email: { status: 'success', text: '修改成功，验证邮件已发送，请检查邮箱。' }} }
+        format.html { redirect_back_or edit_account_path, flash: {email: { status: 'success', text: '修改成功，验证邮件已发送，请检查邮箱。' }} }
         format.js { render 'email' }
       else
         format.html { render 'accounts/edit' }

@@ -1,4 +1,4 @@
-- if user_signed_in?
+- if user_signed_in? && !current_page?(welcome_path)
   = render 'layouts/state'
   - if !current_user.has_fulfilled_email? || !current_user.has_confirmed_email?
     = render 'layouts/setting_email_modal'

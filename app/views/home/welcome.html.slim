@@ -52,16 +52,17 @@ section.step#step2
                         class: 'btn btn-primary', method: :post
 
 section.step#step3
-  form
-    button.close type="button" data-dismiss="modal" aria-hidden="true" &times;
-    .form-group
-      .input-group
-        span.input-group-addon
-          i.fa.fa-envelope
-        input.form-control type="email" required="true"
-    .form-group
-      .form-action
-        button.btn.btn-block type="submit" 绑定邮箱
+  - unless current_user.has_fulfilled_email?
+    = simple_form_for current_user, url: email_account_path(redirect_from: root_path) do |f|
+      button.close type="button" data-dismiss="modal" aria-hidden="true" &times;
+      .form-group
+        .input-group
+          span.input-group-addon
+            i.fa.fa-envelope
+          input.form-control name="user[email]" type="email" required="true"
+      .form-group
+        .form-action
+          button.btn.btn-block type="submit" 绑定邮箱
 
   section.section
     h2
