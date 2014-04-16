@@ -11,7 +11,9 @@ class ReviewPresenter < PostPresenter
   end
 
   def score
-    content_tag :div, "", data: {score: review.score}, class: "score"
+    if review.score.present? and review.score > 0
+      content_tag :div, "", data: {score: review.score}, class: "score"
+    end
   end
 
   def share_content
