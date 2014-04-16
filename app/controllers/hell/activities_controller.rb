@@ -15,6 +15,12 @@ module Hell
         @activities = @activities.in(type: types)
       end
 
+      if params[:order_by] == 'desc'
+        @activities = @activities.desc(:created_at)
+      else
+        @activities = @activities.asc(:created_at)
+      end
+
       @activities = @activities.page(params[:page]).per(params[:per_page] || 24)
     end
   end
