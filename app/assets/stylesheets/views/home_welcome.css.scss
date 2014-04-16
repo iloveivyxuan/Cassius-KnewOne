@@ -218,10 +218,7 @@ html.home_welcome {
       margin: 30px;
 
       @media (min-width: $screen-sm-min) {
-        margin: {
-          bottom: 60px;
-          top: 60px;
-        }
+        margin: 60px;
       }
     }
 
