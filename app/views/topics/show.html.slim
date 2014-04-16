@@ -16,7 +16,7 @@
                           user_signed_in? ? "#topic_share" : "#login-modal",
                           title: "分享", data: {toggle: 'modal'}
       = render 'shared/post_actions', post: tp.topic,
-                edit_post_path: tp.edit_url, post_path: tp.url
+                edit_post_url: tp.edit_url, post_url: tp.url
 
     = render 'shared/comments', post: tp.topic, id: "topic_comments", auth: can?(:create, @topic)
     = render 'shared/share', id: 'topic_share', content: tp.share_content, pic: @topic.group.avatar.url(:normal)
