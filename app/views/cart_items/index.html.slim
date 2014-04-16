@@ -6,7 +6,7 @@ header.page-header
     i.fa.fa-shopping-cart
     | 购物车
 
-= form_tag new_order_path, method: :get, authenticity_token: false
+= form_tag new_order_url, method: :get, authenticity_token: false
   fieldset
     - if @cart_items.any?
       ul.carts= render @cart_items
@@ -26,7 +26,7 @@ header.page-header
         br
         | 购物车是空的！
         br
-        = link_to "想要看看哪些新奇酷产品是可以在 KnewOne 购买的吗？", things_path(self_run: true)
+        = link_to "想要看看哪些新奇酷产品是可以在 KnewOne 购买的吗？", things_url(self_run: true)
 
 - content_for :script do
   javascript:

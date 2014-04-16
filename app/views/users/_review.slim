@@ -2,11 +2,11 @@
   section.feed_article
     - present review do |rp|
       figure
-        = link_to thing_path(review.thing) do
+        = link_to thing_url(review.thing) do
           = image_tag review.thing.cover.url(:small)
         figurecaption title=review.thing.title
           = review.thing.title
-      = link_to rp.path, class: "feed_main"
+      = link_to rp.url, class: "feed_main"
         article
           header.feed_header
             h4.feed_title = rp.title

@@ -4,7 +4,7 @@ header.page-header
   h1
     | 发现
   .pull-right
-    = link_to '换一组', random_things_path, class: 'btn btn-primary'
+    = link_to '换一组', random_things_url, class: 'btn btn-primary'
 
 section
   ul.things#things= render @things, size: :normal, img_lazy: true

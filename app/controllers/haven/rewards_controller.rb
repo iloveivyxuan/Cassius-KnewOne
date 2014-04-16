@@ -19,7 +19,7 @@ module Haven
       @reward = Reward.new(reward_params)
 
       if @reward.save
-        redirect_to haven_rewards_path
+        redirect_to haven_rewards_url
       else
         render 'new'
       end
@@ -27,7 +27,7 @@ module Haven
 
     def update
       if @reward.update(reward_params)
-        redirect_to haven_rewards_path
+        redirect_to haven_rewards_url
       else
         render 'edit'
       end
@@ -36,13 +36,13 @@ module Haven
     def destroy
       @reward.destroy
 
-      redirect_to haven_rewards_path
+      redirect_to haven_rewards_url
     end
 
     def award
       @reward.award!
 
-      redirect_to haven_rewards_path
+      redirect_to haven_rewards_url
     end
 
     private

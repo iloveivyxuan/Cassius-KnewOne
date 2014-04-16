@@ -7,7 +7,7 @@ class ConfirmationsController < Devise::ConfirmationsController
 
     if successfully_sent?(resource)
       respond_to do |format|
-        format.html { redirect_stored_or after_resending_confirmation_instructions_path_for(resource_name) }
+        format.html { redirect_stored_or after_resending_confirmation_instructions__url_for(resource_name) }
         format.js
       end
     else
@@ -22,10 +22,10 @@ class ConfirmationsController < Devise::ConfirmationsController
 
     if resource.errors.empty?
       set_flash_message(:notice, :confirmed) if is_flashing_format?
-      respond_with_navigational(resource) { redirect_to after_confirmation_path_for(resource_name, resource),
+      respond_with_navigational(resource) { redirect_to after_confirmation__url_for(resource_name, resource),
                                                         flash: {show_confirmation_modal: true} }
     else
-      redirect_to root_path, alert: '认证码过期或无效'
+      redirect_to root__url, alert: '认证码过期或无效'
     end
   end
 end

@@ -1,10 +1,10 @@
-- link_path = user_signed_in? ? own_thing_path(tp.thing) : "#"
-- data = user_signed_in? ? nil : {toggle: "modal", target: "#login-modal"}
-- title = tp.owned? ? "取消拥有此产品" : "拥有此产品"
+- link_path = user_signed_in? ? own_thing_url(tp.thing) : "#"
 - own_class = tp.owned? ? "owned" : "unowned"
+- title = tp.owned? ? "取消拥有此产品" : "拥有此产品"
+- data = user_signed_in? ? nil : {toggle: "modal", target: "#login-modal"}
 
 = link_to link_path, remote: true, method: :post, class: own_class,
-title: title, data: data do
+          title: title, data: data do
   i.fa.fa-check-circle-o
   i.fa.fa-circle-o
   = tp.owners_count

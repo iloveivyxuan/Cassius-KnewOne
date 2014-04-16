@@ -16,7 +16,7 @@ class TopicsController < ApplicationController
     @topic.author = current_user
     if @topic.save
       current_user.log_activity :new_topic, @topic, source: @topic.group
-      redirect_to group_topic_path(@topic.group, @topic)
+      redirect_to group_topic_url(@topic.group, @topic)
     else
       render 'new'
     end
@@ -28,7 +28,7 @@ class TopicsController < ApplicationController
 
   def update
     if @topic.update topic_params
-      redirect_to group_topic_path(@topic.group, @topic)
+      redirect_to group_topic_url(@topic.group, @topic)
     else
       render 'new'
     end
@@ -36,7 +36,7 @@ class TopicsController < ApplicationController
 
   def destroy
     @topic.destroy
-    redirect_to group_path(@group)
+    redirect_to group_url(@group)
   end
 
   def vote

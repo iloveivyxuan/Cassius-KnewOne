@@ -32,7 +32,7 @@ class NotificationsController < ApplicationController
     current_user.notifications.mark_as_read
 
     respond_to do |format|
-      format.html { redirect_to notifications_path }
+      format.html { redirect_to notifications_url }
       format.json { head :no_content }
     end
   end

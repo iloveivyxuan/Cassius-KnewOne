@@ -22,7 +22,7 @@ class AccountsController < Devise::RegistrationsController
       set_flash_message :notice, :updated
       # Sign in the user bypassing validation in case his password changed
       sign_in current_user, :bypass => true
-      redirect_to edit_account_path, flash: {account: { status: 'success', text: '修改成功。' }}
+      redirect_to edit_account__url, flash: {account: { status: 'success', text: '修改成功。' }}
     else
       current_user.clean_up_passwords
       # set password will change this field
@@ -47,7 +47,7 @@ class AccountsController < Devise::RegistrationsController
           current_user.send_confirmation_instructions
         end
 
-        format.html { redirect_to edit_account_path, flash: {email: { status: 'success', text: '修改成功，验证邮件已发送，请检查邮箱。' }} }
+        format.html { redirect_to edit_account__url, flash: {email: { status: 'success', text: '修改成功，验证邮件已发送，请检查邮箱。' }} }
         format.js { render 'email' }
       else
         format.html { render 'accounts/edit' }

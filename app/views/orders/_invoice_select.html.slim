@@ -6,4 +6,4 @@
         = f.radio_button :invoice_id, '', class: 'order_invoice_radio', required: "required"
         | 无
     = render partial: 'invoice_radio', collection: current_user.invoices, as: :invoice, locals: {f: f}
-  = link_to '+ 添加发票信息', new_invoice_path(redirect_from: request.url), class: "btn btn-link"
+  = link_to '+ 添加发票信息', new_invoice_url(redirect_from: request.url), class: "btn btn-link"

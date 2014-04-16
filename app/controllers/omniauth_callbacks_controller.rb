@@ -8,7 +8,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if user = User.find_by_omniauth(omniauth)
       # Auth already bound
       if user_signed_in? && user.id != current_user.id
-        return redirect_stored_or root_path, flash: {
+        return redirect_stored_or root_url, flash: {
             oauth: {
                 status: 'danger', text: t('devise.omniauth_callbacks.bounded', kind: Auth::PROVIDERS[omniauth.provider])
             }
@@ -27,7 +27,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       current_user.update_from_omniauth(omniauth)
 
       params[:redirect_from] = params[:state] if params[:state].present?
-      redirect_back_or edit_account_path, flash: {oauth: {status: 'success', text: '绑定成功。'}}
+      redirect_back_or edit_account_url, flash: {oauth: {status: 'success', text: '绑定成功。'}}
     else
       user = User.create_from_omniauth(omniauth)
       sign_in user
@@ -44,7 +44,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if user = User.find_by_omniauth(omniauth)
       # Auth already bound
       if user_signed_in? && user.id != current_user.id
-        return redirect_stored_or root_path, flash: {
+        return redirect_stored_or root_url, flash: {
             oauth: {
                 status: 'danger', text: t('devise.omniauth_callbacks.bounded', kind: Auth::PROVIDERS[omniauth.provider])
             }
@@ -61,16 +61,16 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # must be
       current_user.auths<< Auth.from_omniauth(omniauth)
       current_user.update_from_omniauth(omniauth)
-      redirect_stored_or edit_account_path, flash: {oauth: {status: 'success', text: '绑定成功。'}}
+      redirect_stored_or edit_account_url, flash: {oauth: {status: 'success', text: '绑定成功。'}}
     else
       session[:omniauth] = Auth.omniauth_to_auth(omniauth)
 
-      redirect_to new_user_session_path
+      redirect_to new_user_session_url
     end
   end
 
   def failure
-    redirect_to root_path
+    redirect_to root_url
   end
 
   # This is solution for existing accout want bind Google login but current_user is always nil

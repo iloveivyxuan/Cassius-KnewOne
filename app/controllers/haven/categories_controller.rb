@@ -13,7 +13,7 @@ module Haven
 
     def update
       if @category.update category_params
-        redirect_to edit_haven_category_path(@category)
+        redirect_to edit_haven_category_url(@category)
       else
         render action: 'edit'
       end

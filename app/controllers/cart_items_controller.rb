@@ -11,7 +11,7 @@ class CartItemsController < ApplicationController
   def create
     @result = current_user.add_to_cart params[:cart_item]
     respond_to do |format|
-      format.html {redirect_to cart_items_path}
+      format.html {redirect_to cart_items__url}
       format.js
     end
   end
@@ -20,10 +20,10 @@ class CartItemsController < ApplicationController
     @cart_item.quantity_increment (params[:step].to_i || 1)
     respond_to do |format|
       if @cart_item.save
-        format.html { redirect_to cart_items_path }
+        format.html { redirect_to cart_items__url }
         format.js { @total_price = CartItem.total_price current_user.cart_items }
       else
-        format.html { redirect_to cart_items_path }
+        format.html { redirect_to cart_items__url }
         format.js { render nothing: true }
       end
     end
@@ -33,7 +33,7 @@ class CartItemsController < ApplicationController
     current_user.cart_items.delete @cart_item
     @total_price = CartItem.total_price current_user.cart_items
     respond_to do |format|
-      format.html { redirect_to cart_items_path }
+      format.html { redirect_to cart_items__url }
       format.js
     end
   end

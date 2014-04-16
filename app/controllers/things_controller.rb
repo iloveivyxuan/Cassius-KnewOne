@@ -78,7 +78,7 @@ class ThingsController < ApplicationController
   def destroy
     if @thing.safe_destroy?
       @thing.destroy
-      redirect_to root_path
+      redirect_to root_url
     else
       redirect_to @thing
     end

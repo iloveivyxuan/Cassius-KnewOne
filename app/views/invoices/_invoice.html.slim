@@ -1,5 +1,5 @@
 tr
   td= content_for_invoice(invoice)
   td
-    = link_to '[编辑]', invoice_path(invoice)
-    = link_to '[删除]', invoice, :confirm => '确定要删除么？', :method => :delete, class: 'text-danger'
+    = link_to '[编辑]', invoice_url(invoice)
+    = link_to '[删除]', invoice_url(invoice), :confirm => '确定要删除么？', :method => :delete, class: 'text-danger'

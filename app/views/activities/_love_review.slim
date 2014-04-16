@@ -2,6 +2,6 @@
 - thing = review.thing
 - if thing
   | 赞了关于产品
-  = link_to thing.title, thing
+  = link_to thing.title, things_url(thing)
   | 评测
-  = link_to review.title, thing_review_path(thing, review)
+  = link_to review.title, thing_review_url(thing, review)

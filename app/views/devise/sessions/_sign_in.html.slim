@@ -1,4 +1,4 @@
-= simple_form_for(User.new, url: user_session_path, remote: true) do |f|
+= simple_form_for(User.new, url: user_session_url, remote: true) do |f|
   .form-group
     .input-group
       span.input-group-addon
@@ -14,10 +14,10 @@
       label
         = f.check_box :remember_me
         | 记住我
-    = link_to "忘记密码？", new_user_password_path
+    = link_to "忘记密码？", new_user_password_url
   .form-group
     .form-action
-      = f.button :submit, "登录", class: "btn btn-primary btn-lg btn-block"
+      = f.submit "登录", class: "btn btn-primary btn-lg btn-block"
   .form-group.hidden#sign_in_alert_field
     .form-result
       .alert.alert-danger

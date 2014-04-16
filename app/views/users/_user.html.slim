@@ -1,8 +1,8 @@
 - show_follow_btn ||= user_signed_in?
 li.author
-  = link_to user, target: '_blank' do
+  = link_to user_url(user), target: '_blank' do
     = user_avatar(user, :small)
-  = link_to user, target: '_blank' do
+  = link_to user_url(user), target: '_blank' do
     = user.name
   p.followers_count = "#{user.followers_count}人关注"
   - if show_follow_btn

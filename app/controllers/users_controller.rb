@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 class UsersController < ApplicationController
-  load_and_authorize_resource except: [:fuzzy]
+  prepend_before_action :require_signed_in, only: [:share, :follow, :unfollow]
+  before_action :set_user, except: [:share, :fuzzy]
+  after_action :store_location, except: [:follow, :unfollow, :share, :fuzzy]
 
   def show
     @reviews = @user.reviews.where(:thing_id.ne => nil).limit(4)
@@ -58,7 +60,7 @@ class UsersController < ApplicationController
     current_user.log_activity :follow_user, @user, check_recent: true
 
     respond_to do |format|
-      format.html { redirect_stored_or user_path(@user) }
+      format.html { redirect_stored_or user_url(@user) }
       format.js
     end
   end
@@ -67,7 +69,7 @@ class UsersController < ApplicationController
     current_user.unfollow @user
 
     respond_to do |format|
-      format.html { redirect_stored_or user_path(@user) }
+      format.html { redirect_stored_or user_url(@user) }
       format.js
     end
   end
@@ -78,6 +80,16 @@ class UsersController < ApplicationController
       format.json do
         @users = @users.limit(20)
       end
+    end
+  end
+
+  private
+
+  def set_user
+    if request.subdomain.present?
+      @user = User.find_by personal_domain: request.subdomain
+    else
+      @user = User.find(params[:id] || params[:user_id])
     end
   end
 end

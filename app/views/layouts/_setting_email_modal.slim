@@ -7,7 +7,7 @@
         h4#setting-email-title.modal-title
           | 绑定您的邮箱以获得更新
       main.modal-body
-        = simple_form_for(current_user, url: email_account_path, remote: true, html: { method: :patch, class: 'form-horizontal' }) do |f|
+        = simple_form_for(current_user, url: email_account_url, remote: true, html: { method: :patch, class: 'form-horizontal' }) do |f|
           .form-group.email.required.user_email
             label.control-label.email.required for="user_email"
               abbr title="required" *

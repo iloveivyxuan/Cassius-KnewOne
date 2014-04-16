@@ -22,7 +22,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     if @group.save
       @group.members.add current_user, :founder
-      redirect_to group_path(@group)
+      redirect_to group_url(@group)
     else
       render 'new'
     end
@@ -34,7 +34,7 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirect_to group_path(@group)
+      redirect_to group_url(@group)
     else
       render 'new', layout: 'group'
     end
@@ -42,7 +42,7 @@ class GroupsController < ApplicationController
 
   def destroy
     @group.destroy
-    redirect_to groups_path
+    redirect_to groups_url
   end
 
   def join

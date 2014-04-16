@@ -17,7 +17,7 @@ module Haven
 
     def update
       if @coupon.update thing_rebate_coupon_params
-        redirect_to haven_thing_rebate_coupon_path(@coupon)
+        redirect_to haven_thing_rebate_coupon_url(@coupon)
       else
         render 'show'
       end
@@ -25,7 +25,7 @@ module Haven
 
     def create
       @coupon = ThingRebateCoupon.create thing_rebate_coupon_params
-      redirect_to haven_thing_rebate_coupon_path(@coupon)
+      redirect_to haven_thing_rebate_coupon_url(@coupon)
     end
 
     def generate_code
@@ -33,7 +33,7 @@ module Haven
       amount.times do
         @coupon.generate_code! expires_at: params[:expires_at], admin_note: params[:admin_note]
       end
-      redirect_to haven_thing_rebate_coupon_path(@coupon)
+      redirect_to haven_thing_rebate_coupon_url(@coupon)
     end
 
     def batch_bind
@@ -43,7 +43,7 @@ module Haven
         @coupon.generate_code! user: u, expires_at: params[:expires_at], admin_note: params[:admin_note]
       end
 
-      redirect_to haven_thing_rebate_coupon_path(@coupon)
+      redirect_to haven_thing_rebate_coupon_url(@coupon)
     end
 
     private

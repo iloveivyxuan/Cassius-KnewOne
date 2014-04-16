@@ -8,7 +8,7 @@ module Haven
 
     def update
       if @thing.update thing_params
-        redirect_to edit_haven_thing_path(@thing)
+        redirect_to edit_haven_thing_url(@thing)
       else
         render 'edit'
       end
@@ -36,13 +36,13 @@ module Haven
     def resort
       Thing.resort!
 
-      redirect_to haven_things_path
+      redirect_to haven_things_url
     end
 
     def send_stock_notification
       @thing.notify_fanciers_stock
 
-      redirect_to edit_haven_thing_path(@thing)
+      redirect_to edit_haven_thing_url(@thing)
     end
 
     private
