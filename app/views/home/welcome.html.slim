@@ -1,60 +1,82 @@
 - page_title '欢迎'
 
-section.jumbotron#step1
-  h1 欢迎来到 KnewOne！
+section.step.jumbotron#step1
+  h1 KnewOne
   p 这是一个分享新奇酷产品和使用体验的社区。
-  = link_to "开始", "#step2", class: "btn btn-primary btn-lg"
+  = link_to "GO", "#step2", class: "btn btn-lg"
 
-section#step2
-  header.page-header
-    h1
-      | 先来看看KnewOne上有哪些你感兴趣的用户吧！
-    = link_to_with_icon "关注所有", "fa fa-plus",
-                        follow_recommends_profile_url(redirect_from: welcome_url(anchor: 'step3')),
-                        class: 'btn btn-primary', method: :post
-    = link_to_with_icon "下一步", "fa fa-forward", "#step3", class: 'btn btn-link'
-
-  p
-    | 关注他们，你可以获得他们对新奇酷产品的讨论动态，与他们交流与新奇酷相关的一切，和他们一起感受未来世界的精彩！
+section.step#step2
+  section.section
+    h2
+      strong.logo KnewOne
+      | &nbsp;上有你感兴趣的人吗
+    p 关注他们，就可以看到他们的讨论动态，和他们交流！
+    footer.action
+      = link_to_with_icon "下一步", "fa fa-forward", "#step3", class: 'btn btn-default'
+      = link_to_with_icon "关注所有", "fa fa-plus",
+                          follow_recommends_profile_url(redirect_from: welcome_url(anchor: 'step3')),
+                          class: 'btn btn-primary', method: :post
 
   - has_weibo = @friends.any?
 
-  section
-    header
-      h2 新浪微博好友
+  section.section
+    h2 新浪微博好友
     - if has_weibo
       p
-        | 你的新浪微博中好友中已经有这些小伙伴在KnewOne安家啦：
+        | 关注好友，
+        span.logo KnewOne
+        | &nbsp;之旅更精彩！
       ul.user_list = render @friends
     - else
       p
-        | 您可以通过绑定 #{link_to '新浪微博', user_omniauth_authorize_path(:weibo, state: welcome_url(anchor: 'step2'))} 后找到已在KnewOne上安家的朋友。
+        | 绑定微博，找到在&nbsp;
+        span.logo KnewOne
+        | &nbsp;上安家的伙伴！
+      footer.action
         = link_to '绑定新浪微博', user_omniauth_authorize_path(:weibo, state: welcome_url(anchor: 'step2')), class: 'btn btn-primary'
 
-  section
-    header
-      h2 KnewOne达人
+  section.section
+    h2
+      strong.logo KnewOne
+      | &nbsp;达人
     p
-      | 关注这些KnewOne达人，让你的KnewOne之旅更加精彩：
+      | 关注达人，
+      span.logo KnewOne
+      | &nbsp;之旅更精彩！
     ul.user_list#celebrity = render @recommend_users
 
-  .text-center
-    = link_to_with_icon "下一步", "fa fa-forward", "#step3", class: 'btn btn-link'
+  footer.action
+    = link_to_with_icon "下一步", "fa fa-forward", "#step3", class: 'btn btn-default'
     = link_to_with_icon "关注所有", "fa fa-plus",
                         follow_recommends_profile_path(redirect_from: welcome_url(anchor: 'step3')),
                         class: 'btn btn-primary', method: :post
 
-section#step3
-  header.page-header
-    h1
+section.step#step3
+  form
+    button.close type="button" data-dismiss="modal" aria-hidden="true" &times;
+    .form-group
+      .input-group
+        span.input-group-addon
+          i.fa.fa-envelope
+        input.form-control type="email" required="true"
+    .form-group
+      .form-action
+        button.btn.btn-block type="submit" 绑定邮箱
+
+  section.section
+    h2
       | 标出你感兴趣的新奇酷产品吧！
-    = link_to_with_icon "完成", "fa fa-home", root_url, class: 'btn btn-primary'
-  p
-    | 在产品图上点击“心形”即可收藏该产品，你可以及时参与对产品的讨论以及查看它们的动态哦。
+    p
+      | 从这些新奇酷产品开始你的&nbsp;
+      span.logo KnewOne
+      | &nbsp;之旅吧！
+    footer.action
+      = link_to_with_icon "完成", "fa fa-home", root_url, class: 'btn btn-primary'
 
-  ul.things = render @things, size: :normal, img_lazy: false
+  section.section
+    ul.things = render @things, size: :normal, img_lazy: false
 
-  footer.text-center
+  footer.action
     = link_to_with_icon "完成", "fa fa-home", root_url, class: 'btn btn-primary'
 
 - content_for :script do
