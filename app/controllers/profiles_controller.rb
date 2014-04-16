@@ -55,7 +55,7 @@ class ProfilesController < ApplicationController
   end
 
   def recommend_users
-    @friends = current_user.recommend_users
+    @friends = current_user.recommend_users || []
 
     @recommend_users = User.desc(:recommend_priority, :followers_count).limit(42)
   end
