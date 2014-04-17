@@ -1,0 +1,112 @@
+#new-thing-modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        .modal-title
+          h4
+            i.fa.fa-plus
+            | 分享新产品
+
+      .modal-body
+        button.btn.btn-default [
+          data-dismiss="modal"
+          data-toggle="modal" data-target="#new-thing-from-url-modal"
+        ]
+          i.fa.fa-globe.fa-fw
+          | 从网站收集
+
+        = link_to_with_icon '本地上传',
+          'fa fa-cloud-upload fa-fw', new_thing_path,
+          class: 'btn btn-default'
+
+form#new-thing-from-url-modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        .modal-title
+          h4
+            i.fa.fa-globe
+            | 通过网页分享新产品
+
+      .modal-body
+        .form-group
+          label for="new-thing-url" 产品地址
+          input#new-thing-url.form-control required="required" type="url" placeholder="http://"
+
+        .progress.progress-striped.active style="display: none"
+          .progress-bar
+
+      .modal-footer
+        button.btn.btn-default [
+          type="button"
+          data-dismiss="modal"
+          data-toggle="modal" data-target="#new-thing-modal"
+        ]
+          i.fa.fa-chevron-left
+          | 返回
+
+        button.btn.btn-primary type="submit"
+          i.fa.fa-crop
+          | 抓取
+
+#new-thing-similar-modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        .modal-title
+          h4
+            i.fa.fa-globe
+            | 通过网页分享新产品
+
+      .modal-body
+        h5 发现类似的产品
+        a
+          figure
+            img alt="产品图片"
+            figcaption
+
+      .modal-footer
+        button.btn.btn-default [
+          type="button"
+          data-dismiss="modal"
+          data-toggle="modal" data-target="#new-thing-from-url-modal"
+        ]
+          i.fa.fa-chevron-left
+          | 返回
+
+        button.btn.btn-primary [
+          type="button"
+          data-dismiss="modal"
+          data-toggle="modal" data-target="#new-thing-edit-modal"
+        ]
+          i.fa.fa-chevron-right
+          | 继续创建
+
+#new-thing-edit-modal.modal.fade
+  = simple_form_for Thing.new,
+    url: create_by_extractor_things_path, remote: true,
+    defaults: {required: false} do |f|
+    .modal-dialog
+      .modal-content
+        .modal-header
+          .modal-title
+            h4
+              i.fa.fa-globe
+              | 通过网页分享新产品
+        .modal-body
+          img alt="产品图片"
+          = f.input :title, label: '产品名称'
+          = f.input :subtitle
+          = f.input :content, as: :text, label: '简要描述'
+          = hidden_field_tag 'images[]', nil, id: 'thing_images'
+
+        .modal-footer
+          button.btn.btn-default.prev [
+            type="button"
+            data-dismiss="modal"
+            data-toggle="modal" data-target="#new-thing-from-url-modal"
+          ]
+            i.fa.fa-chevron-left
+            | 返回
+
+          = f.button :submit, class: 'btn-primary'

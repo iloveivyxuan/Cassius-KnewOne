@@ -42,3 +42,55 @@
     margin-right: 5px;
   }
 }
+
+.modal-content {
+  padding: { left: 20px; right: 20px; }
+}
+
+#new-thing-modal {
+  .modal-body {
+    padding: 40px 80px;
+  }
+
+  .btn {
+    width:  160px;
+    height: 160px;
+    padding: 30px;
+
+    text-align: center;
+
+    i {
+      display: block;
+      margin: auto;
+      padding: { top: 5px; bottom: 15px; }
+      font-size: 60px;
+    }
+
+    &:last-child {
+      float: right;
+    }
+  }
+}
+
+#new-thing-similar-modal {
+  .modal-body {
+    figure {
+      margin: auto;
+      text-align: center;
+
+      img {
+        width: 300px;
+      }
+
+      figcaption {
+        margin-top: 25px;
+      }
+    }
+  }
+}
+
+#new-thing-edit-modal {
+  img {
+    max-width: 100%;
+  }
+}

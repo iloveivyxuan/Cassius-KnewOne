@@ -1,4 +1,83 @@
 window.Making = do (exports = window.Making || {}) ->
+  init_new_thing_modal = (->
+    $new_thing_modal          = $('#new-thing-modal')
+    $new_thing_from_url_modal = $('#new-thing-from-url-modal')
+    $new_thing_similar_modal  = $('#new-thing-similar-modal')
+    $new_thing_edit_modal     = $('#new-thing-edit-modal')
+
+    reset_new_thing_from_url_modal = (->
+      $new_thing_from_url_modal.find('input').val('')
+      $new_thing_from_url_modal.find('input, button').attr('disabled', false)
+      $new_thing_from_url_modal.find('.progress').hide()
+      $new_thing_from_url_modal.find('.progress-bar').css({width: 0})
+      $new_thing_from_url_modal.find('.alert').remove()
+    )
+
+    $new_thing_from_url_modal.on('show.bs.modal', reset_new_thing_from_url_modal)
+
+    $new_thing_from_url_modal.on('click', '.btn-primary', (event) ->
+      event.preventDefault()
+
+      $new_thing_from_url_modal.find('input, button').attr('disabled', true)
+      $new_thing_from_url_modal.find('.progress').show()
+
+      $progress_bar = $new_thing_from_url_modal.find('.progress-bar')
+      $progress_bar.animate({width: '100%'}, 3000)
+
+      url = $('#new-thing-url').val()
+
+      onFailure = (->
+        reset_new_thing_from_url_modal()
+
+        html = HandlebarsTemplates['shared/alert']({
+          level: 'danger'
+          content: '抓取失败，请确认地址无误后重试'
+        })
+        $new_thing_from_url_modal.find('.modal-body').append(html)
+      )
+
+      onSuccess = ((new_thing) ->
+        $.get('/api/v1/find_similar', {keyword: new_thing.title})
+        .fail(onFailure)
+        .done((similar_thing) ->
+          $new_thing_edit_modal.find('img').attr('src', new_thing.images[0])
+          $new_thing_edit_modal.find('#thing_images').val(new_thing.images[0])
+          $new_thing_edit_modal.find('#thing_title').val(new_thing.title)
+
+          if similar_thing
+            $new_thing_similar_modal.find('a').attr('href', similar_thing.url)
+            $new_thing_similar_modal.find('img').attr('src', similar_thing.cover_url)
+            $new_thing_similar_modal.find('figcaption').text(similar_thing.title)
+
+          $progress_bar.animate({width: '100%'}, 100)
+
+          setTimeout(->
+            $new_thing_from_url_modal.modal('hide')
+
+            $prev = $new_thing_edit_modal.find('.prev')
+
+            if similar_thing
+              $prev.attr('data-target', '#new-thing-similar-modal')
+              $new_thing_similar_modal.modal('show')
+            else
+              $prev.attr('data-target', '#new-thing-from-url-modal')
+              $new_thing_edit_modal.modal('show')
+          , 1000)
+        )
+      )
+
+      $.get('/api/v1/extract_url', {url})
+      .done(onSuccess)
+      .fail(onFailure)
+
+      # setTimeout(->
+      #   onSuccess({
+      #     title: 'LAMY dialog3 焦点系列伸缩钢笔'
+      #     images: ['http://image.knewone.com/photos/cbe692f85126b1d63c8fde996209459d.jpg']
+      #   })
+      # , 100)
+    )
+  )
 
   exports.keycode =
     ENTER: 13
@@ -95,6 +174,8 @@ window.Making = do (exports = window.Making || {}) ->
         .on 'mouseleave', -> $(@).removeClass('open')
 
       if $selectpicker.length then $selectpicker.selectpicker()
+
+  init_new_thing_modal()
 
   # exports
   exports

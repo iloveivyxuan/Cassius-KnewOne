@@ -22,7 +22,7 @@ header#header role="banner"
             li = link_to_with_icon "自营", "fa fa-shopping-cart fa-fw", things_path(self_run: true)
         li.visible-md.visible-lg
           - if user_signed_in?
-            = link_to_with_icon "分享", "fa fa-plus fa-fw", new_thing_path
+            = link_to_with_icon "分享", "fa fa-plus fa-fw", "#", data: {toggle: "modal", target: "#new-thing-modal"}
           - else
             = link_to_with_icon "分享", "fa fa-plus fa-fw", "#", data: {toggle: "modal", target: "#login-modal"}
         li
