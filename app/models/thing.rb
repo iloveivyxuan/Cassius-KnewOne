@@ -26,6 +26,9 @@ class Thing < Post
 
   field :sharing_text, type: String
 
+  validates :title, presence: true
+  validates :content, presence: true
+
   field :stage, type: Symbol, default: :concept
   STAGES = {
       concept: "研发中",
@@ -47,6 +50,9 @@ class Thing < Post
 
   has_many :reviews
   field :reviews_count, type: Integer, default: 0
+
+  has_many :feelings
+  field :feelings_count, type: Integer, default: 0
 
   has_and_belongs_to_many :owners, class_name: "User", inverse_of: :owns
 
