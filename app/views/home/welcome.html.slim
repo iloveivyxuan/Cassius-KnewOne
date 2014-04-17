@@ -8,7 +8,7 @@ section.step#step1
     p 关注他们，就可以看到他们对新奇酷的讨论动态，和他们交流！
     footer.actions
       = link_to_with_icon "关注所有", "fa fa-plus",
-                          follow_recommends_profile_url(redirect_from: welcome_url(anchor: 'step3')),
+                          follow_recommends_profile_url(redirect_from: welcome_url(anchor: 'step2')),
                           class: 'btn btn_compact_inverse', method: :post
       = link_to_with_icon "下一步", "fa fa-forward", "#step2", class: 'btn btn_compact_inverse'
 
@@ -62,7 +62,7 @@ section.step#step2
             .input-group
               span.input-group-addon
                 i.fa.fa-envelope
-              input.form-control name="user[email]" type="email" required="true"
+              input.form-control name="user[email]" type="email"
           button.btn type="submit"
             i.fa.fa-chevron-right.fa_alone
           p.help-block
