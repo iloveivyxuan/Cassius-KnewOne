@@ -20,8 +20,6 @@ html class=page_class lang="zh-CN"
     - if Rails.env.production?
       = render 'layouts/analystics'
   body
-    #sharing_cover
-      = yield :sharing_cover
     = render 'layouts/browsehappy'
     = render 'layouts/header'
     section#wrapper

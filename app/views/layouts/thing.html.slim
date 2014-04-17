@@ -4,17 +4,21 @@
 - content_for :content do
   - present @thing do |tp|
     - page_title tp.full_title
-    - content_for :sharing_cover
-      = image_tag tp.photo_url(:middle)
 
     #thing_title
       h1= link_to(tp.title, tp.thing)
-      h2= tp.subtitle
-    aside#thing_actions
-      = render "things/actions", tp: tp
+      p= tp.subtitle
     main
       nav= render "things/nav", tp: tp
       #thing_content= yield
+    aside#thing_actions
+      = render "things/actions", tp: tp
+
+    = render 'things/wechat', tp: tp
+    = render 'shared/share', id: 'thing_share', content: tp.share_content, pic: tp.photo_url(:huge)
+    - if user_signed_in?
+      = render 'things/supplier', tp: tp
+      = render 'things/group_fancy', tp: tp
 
 - content_for :script do
   javascript:

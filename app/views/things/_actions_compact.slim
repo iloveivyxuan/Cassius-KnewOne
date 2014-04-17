@@ -1,0 +1,14 @@
+#thing_actions_compact
+  .shop
+    - if tp.price.present?
+      #price.price= tp.price
+    - if user_signed_in?
+      = tp.shopping_desc
+    - if tp.buy
+      .buy= tp.buy
+
+  .actions
+    .fanciers= render "shared/fancy", p: tp
+    .owners= render "things/own", tp: tp
+    .share= render "things/share"
+    .new_review= render 'reviews/link_to_new'

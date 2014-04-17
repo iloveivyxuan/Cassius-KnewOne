@@ -14,9 +14,12 @@ html.stories_edit,
 html.stories_show {
   #wrapper {
     @include wrapper(grid, 2);
-    > aside { @include make-md-column-push(9); }
-    > main { @include make-md-column-pull(3); }
     > header {clear: both;}
+    > aside {
+      @media (max-width: $screen-sm-max) {
+        display: none;
+      }
+    }
 
     padding: {
       bottom: 1em;
@@ -107,7 +110,7 @@ html.stories_show {
   text-align: center;
   margin-bottom: 1em;
 
-  h1, h2 {margin: 0;}
+  h1, p {margin: 0;}
   h1 {
     font-size: $font-size-h3;
     a {
@@ -115,15 +118,15 @@ html.stories_show {
       &:hover {color: $link-color;}
     }
   }
-  h2 {
+  p {
     font-size: $font-size-h4;
     color: $text-muted;
   }
 
   @media screen and (max-width: $screen-xs-max) {
-    h1, h2 {@include text-overflow;}
+    h1, p {@include text-overflow;}
     h1 {font-size: $font-size-h4;}
-    h2 {font-size: $font-size-base;}
+    p {font-size: $font-size-base;}
   }
 }
 
@@ -429,6 +432,48 @@ html.stories_show {
       float: left;
       width: 46%;
       margin: 1em 2%;
+    }
+  }
+}
+
+#thing_actions_compact {
+
+  .shop {
+    margin-bottom: 1em;
+  }
+
+  .buy {
+    margin-top: 1em;
+
+    > #new_cart_item {display: none;}
+  }
+
+  .actions {
+
+    .fa {
+      @extend .fa-fw;
+    }
+
+    small {
+      font-size: 1em;
+      margin-left: .25em;
+    }
+
+    > div > a {
+      @extend .btn;
+      @extend .btn-link;
+      @extend .btn-block;
+
+      color: $gray;
+      text-align: left;
+
+      &:hover {
+        color: $text-color;
+      }
+    }
+
+    @media (min-width: $screen-md-min) {
+      display: none;
     }
   }
 }

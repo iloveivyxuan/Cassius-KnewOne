@@ -1,10 +1,10 @@
 - link_to_login = link_to_with_icon "请登录后购买", "fa fa-sign-in", "#",
-class: "btn btn-warning cart_login buy_button", data: {toggle: "modal", target: "#login-modal"}
+class: "btn btn-warning btn-block cart_login buy_button", data: {toggle: "modal", target: "#login-modal"}
 
 .mobile_buy
   - if user_signed_in?
     = link_to_with_icon "现在购买", "fa fa-shopping-cart", "#",
-      class: "btn btn-success btn-sm buy_button mobile_buy", data: {toggle: "modal", target: "#mobile_buy_modal"}
+      class: "btn btn-success btn-block buy_button mobile_buy", data: {toggle: "modal", target: "#mobile_buy_modal"}
     #mobile_buy_modal.modal.fade
       .modal-dialog
         .modal-content

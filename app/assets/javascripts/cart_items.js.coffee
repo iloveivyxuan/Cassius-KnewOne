@@ -1,5 +1,10 @@
 Making.CartItemNew = ->
   $ ->
+    if Modernizr.mq('(max-width: ' + Making.Breakpoints.screenSMMax + ')')
+      $('#thing_actions').remove()
+    else if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')')
+      $('#thing_actions_compact').remove()
+
     $form = $('#new_cart_item')
     $submit = $form.find('button[type="submit"]')
     $price = $('#price')

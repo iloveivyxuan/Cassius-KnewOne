@@ -1,5 +1,5 @@
 - if user_signed_in? and current_user.auths.any?
-  .share_modal.modal.fade id="#{id}"
+  .modal.fade.share_modal id="#{id}"
     .modal-dialog
       .modal-content
         = simple_form_for :share, url: share_users_path, \

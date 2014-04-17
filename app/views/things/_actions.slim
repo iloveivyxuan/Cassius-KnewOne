@@ -48,13 +48,6 @@ ul.operations.fa-ul
     h4 您可能也喜欢
     ul= render partial: "things/related_thing", collection: tp.related_things, as: :tp
 
-.modals
-  = render 'things/wechat', tp: tp
-  = render 'shared/share', id: 'thing_share', content: tp.share_content, pic: tp.photo_url(:huge)
-  - if user_signed_in?
-    = render 'things/supplier', tp: tp
-    = render 'things/group_fancy', tp: tp
-
 - content_for :script do
   javascript:
     Making.CartItemNew();
