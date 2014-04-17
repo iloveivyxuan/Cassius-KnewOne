@@ -1,0 +1,5 @@
+<% if @flag %>
+  window.location('<%= thing_url(@thing) %>');
+<% else %>
+  console.log('error');
+<% end %>

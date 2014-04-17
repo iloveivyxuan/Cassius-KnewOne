@@ -145,6 +145,24 @@ class ThingsController < ApplicationController
     render layout: 'thing'
   end
 
+  def create_by_extractor
+    photos = params[:images].map do |i|
+      Photo.create! remote_image_url: i, user: current_user
+    end
+
+    @thing = Thing.new thing_params.merge(author: current_user)
+    @thing.photo_ids.concat photos.map(&:id)
+
+    if @flag = @thing.save
+      @thing.fancy current_user
+      current_user.log_activity :new_thing, @thing
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def thing_params

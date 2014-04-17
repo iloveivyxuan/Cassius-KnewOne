@@ -142,6 +142,7 @@ Making::Application.routes.draw do
   resources :things do
     collection do
       get 'random'
+      post 'create_by_extractor'
       get 'category/:category', action: :index, as: :category
     end
 
