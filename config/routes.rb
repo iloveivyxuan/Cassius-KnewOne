@@ -143,6 +143,7 @@ Making::Application.routes.draw do
     collection do
       get 'random'
       post 'create_by_extractor'
+      get 'extract_url'
       get 'category/:category', action: :index, as: :category
     end
 
