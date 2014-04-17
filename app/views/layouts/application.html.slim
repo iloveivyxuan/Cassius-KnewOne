@@ -29,3 +29,6 @@ html class=page_class lang="zh-CN"
     = render 'layouts/fulfill_info'
     = javascript_include_tag "application"
     = yield :script
+    - if user_signed_in? and Rails.env.production?
+      javascript:
+        _hmt.push(['_trackEvent', 'session', 'signin']);
