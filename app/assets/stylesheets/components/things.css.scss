@@ -29,7 +29,7 @@ figure.thing {
   }
 
   .thing_thumb {
-    @include stretch-img;
+    @include stretch_img;
 
     display: block;
   }

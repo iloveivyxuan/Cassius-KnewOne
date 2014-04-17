@@ -1,84 +1,79 @@
 - page_title '欢迎'
 
-section.step.jumbotron#step1
-  h1 KnewOne
-  p 这是一个分享新奇酷产品和使用体验的社区。
-  = link_to "GO", "#step2", class: "btn btn-lg"
-
-section.step#step2
-  section.section
-    h2
+section.step#step1
+  header.step_header
+    h1
       strong.logo KnewOne
-      | &nbsp;上有你感兴趣的人吗
-    p 关注他们，就可以看到他们的讨论动态，和他们交流！
-    footer.action
-      = link_to_with_icon "下一步", "fa fa-forward", "#step3", class: 'btn btn-default'
+      | &nbsp;有你感兴趣的人吗？
+    p 关注他们，就可以看到他们对新奇酷的讨论动态，和他们交流！
+    footer.actions
       = link_to_with_icon "关注所有", "fa fa-plus",
                           follow_recommends_profile_url(redirect_from: welcome_url(anchor: 'step3')),
-                          class: 'btn btn-primary', method: :post
+                          class: 'btn btn_compact_inverse', method: :post
+      = link_to_with_icon "下一步", "fa fa-forward", "#step2", class: 'btn btn_compact_inverse'
 
   - has_weibo = @friends.any?
 
-  section.section
-    h2 新浪微博好友
-    - if has_weibo
+  section.step_body
+    section.section
+      h2 新浪微博好友
+      - if has_weibo
+        p
+          | 关注好友，
+          span.logo KnewOne
+          | &nbsp;之旅更精彩！
+        ul.user_list = render @friends
+      - else
+        p
+          | 绑定微博，找到在&nbsp;
+          span.logo KnewOne
+          | &nbsp;上安家的伙伴！
+        footer.actions
+          = link_to_with_icon '绑定新浪微博', 'fa fa-weibo', user_omniauth_authorize_path(:weibo, state: welcome_url(anchor: 'step2')), class: 'btn btn_compact'
+
+    section.section
+      h2
+        strong.logo KnewOne
+        | &nbsp;达人
       p
-        | 关注好友，
+        | 关注达人，
         span.logo KnewOne
         | &nbsp;之旅更精彩！
-      ul.user_list = render @friends
-    - else
-      p
-        | 绑定微博，找到在&nbsp;
-        span.logo KnewOne
-        | &nbsp;上安家的伙伴！
-      footer.action
-        = link_to '绑定新浪微博', user_omniauth_authorize_path(:weibo, state: welcome_url(anchor: 'step2')), class: 'btn btn-primary'
+      ul.user_list = render @recommend_users
 
-  section.section
-    h2
-      strong.logo KnewOne
-      | &nbsp;达人
-    p
-      | 关注达人，
-      span.logo KnewOne
-      | &nbsp;之旅更精彩！
-    ul.user_list = render @recommend_users
-
-  footer.action
-    = link_to_with_icon "下一步", "fa fa-forward", "#step3", class: 'btn btn-default'
+  footer.step_footer.actions
     = link_to_with_icon "关注所有", "fa fa-plus",
-                        follow_recommends_profile_path(redirect_from: welcome_url(anchor: 'step3')),
-                        class: 'btn btn-primary', method: :post
+                        follow_recommends_profile_path(redirect_from: welcome_url(anchor: 'step2')),
+                        class: 'btn btn_compact', method: :post
+    = link_to_with_icon "下一步", "fa fa-forward", "#step2", class: 'btn btn_compact'
 
-section.step#step3
-  - unless current_user.has_fulfilled_email?
-    = simple_form_for current_user, url: email_account_path(redirect_from: root_path) do |f|
-      button.close type="button" data-dismiss="modal" aria-hidden="true" &times;
-      .form-group
-        .input-group
-          span.input-group-addon
-            i.fa.fa-envelope
-          input.form-control name="user[email]" type="email" required="true"
-      .form-group
-        .form-action
-          button.btn.btn-block type="submit" 绑定邮箱
-
-  section.section
-    h2
-      | 标出你感兴趣的新奇酷产品吧！
-    p
+section.step#step2
+  header.step_header
+    h1
       | 从这些新奇酷产品开始你的&nbsp;
       span.logo KnewOne
       | &nbsp;之旅吧！
-    footer.action
-      = link_to_with_icon "完成", "fa fa-home", root_url, class: 'btn btn-primary'
+    footer.actions
+      = link_to_with_icon "完成", "fa fa-home", root_url, class: 'btn btn_compact_inverse js_finish'
 
-  section.section
-    ul.things = render @things, size: :normal, img_lazy: false
+      - unless current_user.has_fulfilled_email?
+        = simple_form_for current_user, url: email_account_path(redirect_from: root_path), html: {class: "form-inline", id: "fill_info"} do |f|
+          .form-group
+            .input-group
+              span.input-group-addon
+                i.fa.fa-envelope
+              input.form-control name="user[email]" type="email" required="true"
+          button.btn type="submit"
+            i.fa.fa-chevron-right.fa_alone
+          p.help-block
+            | 只要绑定邮箱，就能接收更多新奇酷信息。
 
-  footer.action
-    = link_to_with_icon "完成", "fa fa-home", root_url, class: 'btn btn-primary'
+  section.step_body
+    section.section
+      ul.things = render @things, size: :normal, img_lazy: false
+
+  footer.step_footer.actions
+    = link_to_with_icon "完成", "fa fa-home", root_url, class: 'btn btn_compact js_finish'
 
 - content_for :script do
   javascript:

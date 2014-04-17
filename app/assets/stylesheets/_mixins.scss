@@ -83,7 +83,7 @@
   }
 }
 
-@mixin stretch-img() {
+@mixin stretch_img() {
   position: relative;
   width: 100%;
   height: 0;
@@ -98,24 +98,36 @@
   }
 }
 
+@mixin button_compact($background-color, $color) {
+  background-color: transparent;
+  border-color: $color;
+  color: $color;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $color;
+    color: $background-color;
+  }
+}
 
 // Effect
 // -----------------------------------------------------------------------------
 
-@mixin keyframes($animation-name) {
-  @-webkit-keyframes $animation-name {
+@mixin keyframes($animation_name) {
+  @-webkit-keyframes $animation_name {
     @content;
   }
 
-  @-moz-keyframes $animation-name {
+  @-moz-keyframes $animation_name {
     @content;
   }
 
-  @-o-keyframes $animation-name {
+  @-o-keyframes $animation_name {
     @content;
   }
 
-  @keyframes $animation-name {
+  @keyframes $animation_name {
     @content;
   }
 }

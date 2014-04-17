@@ -1,18 +1,18 @@
 html.home_welcome {
+  $color_primary: #009ade;
+  $gap: 30px;
+  $gap_lg: 60px;
 
   // Layout
   // ---------------------------------------------------------------------------
 
   #wrapper {
     @include wrapper(simple, $max-width: $screen-lg-min);
+
     min-height: 380px;
     overflow: hidden;
     padding: 0;
     position: relative;
-
-    @media (min-width: $screen-sm-min) { min-height: 450px; }
-    @media (min-width: $screen-md-min) { min-height: 500px; }
-    @media (min-width: $screen-lg-min) { min-height: 600px; }
   }
 
   // Section
@@ -23,36 +23,50 @@ html.home_welcome {
     font-weight: normal;
   }
 
-  .step {
-    display: none;
-    padding: 30px;
+  .btn_compact {
+    @include button_compact(#fff, $color_primary);
+    @include transition(all .2s ease);
+  }
 
-    @media (min-width: $screen-sm-min) {
-      padding: 60px;
-    }
+  .btn_compact_inverse {
+    @include button_compact($color_primary, #fff);
+    @include transition(all .2s ease);
+  }
 
-    &.active {
-      display: block;
+  .actions {
+    min-height: 34px;
+    padding: 0 $gap;
+    text-align: center;
+
+    .btn {
+      margin-bottom: 10px;
+      width: 100%;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      @media (min-width: $screen-md-min) {
+        margin: {
+          bottom: 0;
+          left: 10px;
+          right: 10px;
+        }
+        width: auto;
+      }
     }
   }
 
   .section {
-    border-bottom: $border-default;
-    margin-bottom: 30px;
-    padding-bottom: 30px;
+    margin-bottom: $gap;
     text-align: center;
 
     @media (min-width: $screen-sm-min) {
-      margin-bottom: 60px;
+      margin-bottom: $gap_lg;
       padding: {
-        bottom: 60px;
         left: 20px;
         right: 20px;
       }
-    }
-
-    &:last-child {
-      border-bottom: none;
     }
 
     > h2 {
@@ -75,151 +89,64 @@ html.home_welcome {
     }
   }
 
-  .action {
-    text-align: center;
+  .step {
+    display: none;
 
-    .btn {
-      margin: {
-        left: 10px;
-        right: 10px;
-      }
-
-      @media (max-width: $screen-xs-max) {
-        display: block;
-        margin: 0 0 10px;
-        width: 100%;
-
-        &:last-child {
-          margin-bottom: 0;
-        }
-      }
+    &.active {
+      display: block;
     }
   }
 
-  #step1 {
-    background-color: #009ade;
-    bottom: 0;
-    left: 0;
-    margin-bottom: 0;
+  .step_header {
+    @extend .section;
+
+    background-color: $color_primary;
     padding: {
-      bottom: 0;
+      bottom: $gap_lg;
       left: 0;
       right: 0;
-      top: 60px;
-    }
-    position: absolute;
-    right: 0;
-    text-align: center;
-    top: 0;
-
-    @media (min-width: $screen-sm-min) {
-      padding-top: 12%;
+      top: 10%;
     }
 
     h1 {
       background-color: #fff;
-      color: #009ade;
-      font-family: "orbitron-bold";
-      font-size: 50px;
-      line-height: 120px;
-      margin-top: 0;
+      color: $color_primary;
+      font-size: 32px;
+      font-weight: bold;
+      margin: {
+        bottom: 20px;
+        top: 0;
+      }
+      padding: $gap;
 
       @media (min-width: $screen-sm-min) {
-        font-size: 78px;
+        font-size: 50px;
       }
     }
 
     p {
       color: #fff;
-      font-size: 16px;
-      letter-spacing: 5px;
-      padding: {
-        left: 1em;
-        right: 1em;
-      }
-    }
-
-    .btn {
-      @include transition(all .2s ease);
-
-      border-color: #fff;
-      color: #fff;
-      font-family: "orbitron-bold";
-      font-weight: normal;
-      margin-top: 50px;
-      width: 100px;
-
-      &:hover {
-        background-color: #fff;
-        color: #009ade;
-      }
+      padding: 0 $gap;
     }
   }
 
-  #step3 {
+  .step_body {
     padding: {
-      left: 0;
-      right: 0;
-      top: 0;
+      left: $gap;
+      right: $gap;
     }
+  }
 
-    > form {
-      background-color: #363d48;
-      padding: 40px 40px 20px;
-      position: relative;
+  .step_footer {
+    border-top: $border-default;
+    padding: $gap_lg $gap;
+    text-align: center;
+  }
 
-      .close {
-        color: #ccc;
-        position: absolute;
-        right: 14px;
-        top: 10px;
-      }
+  #step2 {
 
-      .form-group {
-        @include center-block;
-
-        @media (min-width: $screen-sm-min) {
-          min-width: 300px;
-          width: 20%;
-        }
-      }
-
-      .input-group-addon {
-        background: transparent;
-        color: #fff;
-      }
-
-      input.form-control {
-        @include transition(all .2s ease);
-
-        background: transparent;
-
-        &:focus {
-          background-color: #fff;
-        }
-      }
-
-      .btn {
-        @include transition(all .2s ease);
-
-        background: transparent;
-        border: 1px solid #ccc;
-        color: #fff;
-        letter-spacing: .5em;
-
-        &:hover {
-          background-color: #fff;
-          color: #363d48;
-        }
-      }
-    }
-
-    .section {
-      margin: 30px;
-
-      @media (min-width: $screen-sm-min) {
-        margin: 60px;
-      }
+    h1 {
+      margin-bottom: 60px;
     }
 
     .pre_ribbon {
@@ -230,6 +157,64 @@ html.home_welcome {
       ul.things > li {
         width: percentage(1/3);
       }
+    }
+  }
+
+  #fill_info {
+    display: none;
+
+    .form-group {
+      display: inline-block;
+      min-width: 200px;
+      vertical-align: middle;
+      width: 25%;
+    }
+
+    .form-control {
+      @include transition(all .2s ease);
+
+      background: transparent;
+      border-color: #fff;
+      color: #fff;
+
+      &:focus {
+        background-color: #fff;
+        color: $text-color;
+      }
+    }
+
+    .input-group-addon {
+      background: transparent;
+      border-color: #fff;
+      color: #fff;
+    }
+
+    .btn {
+      @include transition(all .2s ease);
+
+      background: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+      margin: {
+        bottom: 15px;
+        left: 10px;
+      }
+      width: auto;
+
+      &:hover {
+        background-color: #fff;
+        color: $color_primary;
+      }
+
+      @media (min-width: $screen-sm-min) {
+        margin-bottom: 0;
+      }
+    }
+
+    .help-block {
+      color: #fff;
+      font-style: normal;
+      margin-top: 10px;
     }
   }
 }
