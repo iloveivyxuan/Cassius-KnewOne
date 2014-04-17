@@ -233,6 +233,7 @@ Making::Application.routes.draw do
     namespace :v1 do
       get 'search', to: 'search#index'
       get 'extract_url', to: 'utils#extract_url'
+      get 'find_similar', to: 'utils#find_similar'
 
       resources :things, only: [:index, :show] do
         resources :reviews, only: [:index, :show] do
