@@ -14,11 +14,4 @@ class Review < Post
   scope :living, -> { where :thing_id.ne => nil }
 
   need_aftermath :create, :destroy, :vote
-
-  def official_cover(version = :small)
-    src = self.content.scan(/<img src=\"(.+?)\"/).try(:[], 0).try(:[], 0)
-    return nil unless src.present? and src[0..23] == 'http://image.knewone.com'
-
-    src.gsub(/!.*$/, "!#{version}")
-  end
 end

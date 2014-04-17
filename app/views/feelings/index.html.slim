@@ -1,0 +1,5 @@
+- provide :nav, :feelings
+
+- if @feelings.present?
+  ul#feelings= render @feelings
+  = paginate @feelings

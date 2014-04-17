@@ -39,4 +39,11 @@ class Post
   def voted?(user)
     lovers.include?(user) or foes.include?(user)
   end
+
+  def cover(version = :small)
+    src = self.content.scan(/<img src=\"(.+?)\"/).try(:[], 0).try(:[], 0)
+    return nil unless src.present? and src[0..23] == "http://#{Settings.image_host}"
+
+    src.gsub(/!.*$/, "!#{version}")
+  end
 end

@@ -1,0 +1,21 @@
+- if feeling.thing
+  section.feed_article
+    - present feeling do |fp|
+      figure
+        = fp.author_avatar(:small)
+        figurecaption
+          = fp.author_name
+      = link_to fp.path, class: "feed_main" do
+        article
+          header.feed_header
+            h4.feed_title= fp.title
+            .metas
+              = fp.created_at 'meta'
+              .comments_count.meta
+                i.fa.fa-comments-o
+                = feeling.comments.count
+          section.feed_content
+            = fp.cover
+            p = fp.content
+          strong.feed_feature
+            = fp.lovers_count

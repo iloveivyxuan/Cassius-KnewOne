@@ -1,13 +1,6 @@
 - present review do |rp|
   .voting
     - if can? :vote, rp.review and !rp.review.voted?(current_user)
-      = form_tag vote_thing_review_path(rp.review.thing, rp.review), remote: true,
-      class: "not_voted", data: {type: 'html'} do
-        = button_tag title: "有用", class: "btn btn-default btn-xs", data: {vote: true} do
-          i.fa.fa-thumbs-up
-          | 有用
-        = button_tag title: "没用", class: "btn btn-default btn-xs btn-inverse", data: {vote: false} do
-          i.fa.fa-thumbs-down
-          | 没用
+      = render 'shared/voting', path: vote_thing_review_path(rp.review.thing, rp.review)
     - else
       = rp.votings

@@ -105,6 +105,11 @@ Making::Application.routes.draw do
     resources :reviews do
       member { post 'vote' }
     end
+
+    resources :feelings do
+      member { post 'vote' }
+    end
+
     resources :stories
   end
 
