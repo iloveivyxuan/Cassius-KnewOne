@@ -74,28 +74,34 @@ module PageExtractor
   }]
 
   def self.extract(url)
+    html = open(url, 'User-Agent' => USER_AGENT).read
+    doc = Nokogiri::HTML(html)
+
     RULES.each do |rule|
       next unless rule[:url_pattern].match(url)
-
-      html = open(url, 'User-Agent' => USER_AGENT).read
-      doc = Nokogiri::HTML(html)
 
       begin
         info = {}
         rule[:selectors].each do |key, selector|
-          info[key] = case selector
-                      when Proc
-                        selector.call(doc)
-                      when Regexp
-                        html[selector]
-                      when String
-                        doc.css(selector).text
-                      else
-                        raise 'Illegal selector'
-                      end.strip
-        end
+          value = case selector
+                  when Proc
+                    selector.call(doc)
+                  when Regexp
+                    html.scan(selector)
+                  when String
+                    doc.css(selector).map(&:text).map(&:strip).uniq
+                  else
+                    raise 'Illegal selector'
+                  end
 
-        info[:images] = Array(info[:images])
+          raise 'Try other rules' unless value
+
+          if key == :images
+            info[key] = Array(value)
+          else
+            info[key] = Array(value).first
+          end
+        end
 
         return info
       rescue => e
