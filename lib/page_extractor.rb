@@ -5,21 +5,12 @@ module PageExtractor
   USER_AGENT = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36'
 
   RULES = [{
-    name: 'Amazon.com',
-    url_pattern: /amazon\.com/,
+    name: 'Amazon',
+    url_pattern: /(amazon|z)\.(com|cn)/,
     selectors: {
-      title: '#productTitle',
-      description: '#feature-bullets',
+      title: '.parseasinTitle, #productTitle, #mocaBBProductTitle',
+      description: '#productDescription, #postBodyPS',
       images: %r{http://ec.\.images-amazon\.com/images/I/.*?\.jpg}
-    }
-  }, {
-    name: 'Amazon.cn',
-    url_pattern: /(amazon|z)\.cn/,
-    selectors: {
-      title: '.parseasinTitle',
-      description: '#postBodyPS',
-      # NOT WORKING YET
-      images: %r{(?<="hiResImage":")http://ec.\.images-amazon\.com/images/I/.*?\.jpg}
     }
   }, {
     name: 'DemoHour',
