@@ -15,6 +15,13 @@ window.Making = do (exports = window.Making || {}) ->
 
     $new_thing_from_url_modal.on('show.bs.modal', reset_new_thing_from_url_modal)
 
+    reset_new_thing_edit_modal = (->
+      $new_thing_from_url_modal.find('#thing_subtitle').val('')
+      $new_thing_from_url_modal.find('#thing_content').val('')
+    )
+
+    $new_thing_edit_modal.on('show.bs.modal', reset_new_thing_edit_modal)
+
     $new_thing_from_url_modal.on('click', '.btn-primary', (event) ->
       event.preventDefault()
 
