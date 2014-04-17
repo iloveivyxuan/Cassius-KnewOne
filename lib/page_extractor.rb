@@ -17,7 +17,7 @@ module PageExtractor
     url_pattern: /demohour\.com/,
     selectors: {
       title: 'h1',
-      description: 'h2',
+      description: 'projects-home-right h2',
       images: lambda { |doc| doc.css('#project_poster_video img').attr('src').value }
     }
   }, {
