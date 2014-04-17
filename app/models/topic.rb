@@ -5,6 +5,9 @@ class Topic < Post
 
   belongs_to :group, counter_cache: true
 
+  validates :title, presence: true
+  validates :content, presence: true
+
   default_scope -> { desc(:is_top, :commented_at) }
 
   def official_cover(version = :small)

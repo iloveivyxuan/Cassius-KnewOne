@@ -7,9 +7,6 @@ class Post
   field :content, type: String, default: ""
   field :commented_at, type: DateTime
 
-  validates :title, presence: true
-  validates :content, presence: true
-
   belongs_to :author, class_name: "User", inverse_of: :post
 
   has_many :comments

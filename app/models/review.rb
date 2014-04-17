@@ -6,6 +6,9 @@ class Review < Post
 
   belongs_to :thing, counter_cache: true
 
+  validates :title, presence: true
+  validates :content, presence: true
+
   default_scope -> { desc(:is_top, :lovers_count, :created_at) }
 
   scope :living, -> { where :thing_id.ne => nil }
