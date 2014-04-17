@@ -10,14 +10,23 @@ module Api
       end
 
       def find_similar
-        if params[:keyword].blank?
-          render_error :missing_field, 'need keyword'
+        if params[:keyword].blank? && params[:url].blank?
+          render_error :missing_field, 'need keyword or url'
         end
 
-        @thing = Thing.unscoped.published.or({slug: /#{params[:keyword]}/i},
-                                             {title: /#{params[:keyword]}/i},
-                                             {subtitle: /#{params[:keyword]}/i}).desc(:fanciers_count).first
+        @thing = Thing.unscoped.published
 
+        if params[:keyword].present?
+          @thing = @thing.or({slug: /#{params[:keyword]}/i},
+                             {title: /#{params[:keyword]}/i},
+                             {subtitle: /#{params[:keyword]}/i})
+        end
+
+        if params[:url].present?
+          @thing = @thing.or(official_site: params[:url])
+        end
+
+        @thing = @thing.desc(:fanciers_count).first
         if @thing
           render text: {
               title: @thing.title,
