@@ -1,116 +1,15 @@
-#login-modal {
-
-  .modal-dialog {
-    width: 300px;
-
-    .entry {
-      margin-bottom: 0;
-      padding: 0;
-    }
-  }
-}
-
-#setting-email {
-
-  .form-group {
-    margin-left: 0;
-    margin-right: 0;
-
-    .controls {
-      margin-bottom: 15px;
-    }
-
-    @media screen and (min-width: $screen-sm-min) {
-
-      .control-label {
-        @include make-sm-column(3);
-      }
-
-      .controls {
-        @include make-sm-column(5);
-      }
-
-      .control-action {
-        @include make-sm-column(4);
-      }
-    }
-  }
-}
-
-.share_modal {
-  .words-check {
-    margin-right: 5px;
-  }
-}
-
-.modal-content {
-  padding: { left: 20px; right: 20px; }
-}
-
-#new-thing-modal {
-  .modal-body {
-    padding: 40px 80px;
+html.home_sandbox {
+  #wrapper {
+    @include wrapper(grid, 2);
+    > header { @include make-md-column-push(9); }
+    > section { @include make-md-column-pull(3); }
   }
 
-  .btn {
-    width:  160px;
-    height: 160px;
-    padding: 30px;
-
-    text-align: center;
-
-    i {
-      display: block;
-      margin: auto;
-      padding: { top: 5px; bottom: 15px; }
-      font-size: 60px;
-    }
-
-    &:last-child {
-      float: right;
-    }
-  }
-}
-
-#new-thing-similar-modal {
-  .modal-body {
-    figure {
-      margin: auto;
-      text-align: center;
-
-      img {
-        width: 300px;
-      }
-
-      figcaption {
-        margin-top: 25px;
-      }
-    }
-  }
-}
-
-#new-thing-edit-modal {
-  img {
-    max-width: 100%;
-  }
-
-  textarea {
-    width: 100%;
-    border-top: 1px dotted #ccc;
-    border-bottom: none;
-    border-left: none;
-    border-right: 0;
-    resize: none;
-  }
-
-  #new-thing-edit-modal-images-container {
-    display: none;
-  }
-
-  #new-thing-edit-modal-images {
+  #images {
     .carousel {
       .item {
         text-align: center;
+        max-height: 300px;
 
         overflow: hidden;
         background: white;
@@ -123,8 +22,7 @@
 
         img {
           margin: 0 auto;
-          max-width: 100%;
-          max-height: 300px;
+          max-width: 500px;
         }
 
         .select_backdrop {
@@ -147,8 +45,8 @@
 
           .select_btn_container {
             position: absolute;
-            left: 45%;
-            top: 45%;
+            left: 50%;
+            top: 50%;
             a {
               display: block;
               font-size: 50px;
@@ -210,7 +108,7 @@
     }
   }
 
-  #new-thing-edit-modal-sortable {
+  #sortable {
     li {
       display:inline-block;
       margin: 2px;

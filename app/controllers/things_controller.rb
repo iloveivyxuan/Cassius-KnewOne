@@ -145,6 +145,47 @@ class ThingsController < ApplicationController
     render layout: 'thing'
   end
 
+  def extract_url
+    return head :not_accepted if params[:url].blank?
+
+    @result = PageExtractor.extract(params[:url])
+
+    if @result
+      @thing = Thing.new official_site: @result[:url],
+                         title: @result[:title]
+
+      @similar = Thing.unscoped.published.or({slug: /#{@result[:title]}/i},
+                                           {title: /#{@result[:title]}/i},
+                                           {subtitle: /#{@result[:title]}/i},
+                                           {official_site: params[:url]}
+      ).desc(:fanciers_count).first
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def create_by_extractor
+    return render 'things/create_by_extractor_without_photos' if params[:images].nil? || params[:images].empty?
+
+    photos = params[:images].map do |i|
+      Photo.create! remote_image_url: i.gsub(/!.*/, ''), user: current_user
+    end
+
+    @thing = Thing.new thing_params.merge(author: current_user)
+    @thing.photo_ids.concat photos.map(&:id)
+
+    if @flag = @thing.save
+      @thing.fancy current_user
+      current_user.log_activity :new_thing, @thing
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def thing_params

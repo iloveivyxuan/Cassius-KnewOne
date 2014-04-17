@@ -26,6 +26,7 @@ html class=page_class lang="zh-CN"
       = content_for?(:content) ? yield(:content) : yield
     = render 'shared/go_top'
     = render 'shared/login'
+    = render 'shared/new_thing'
     = render 'layouts/fulfill_info'
     = javascript_include_tag "application"
     = yield :script

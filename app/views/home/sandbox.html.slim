@@ -1,52 +1,40 @@
-- provide :page_class, 'home_landing'
-#home_wrapper.feature.theme_dark
-  h1
-    = logo
-    = link_to brand
-  span.feature_image data-picture="" data-alt="A giant stone face at The Bayon temple in Angkor Thom, Cambodia"
-    span data-src="http://fakeimg.pl/480x300/282828/"
-    span data-src="http://fakeimg.pl/992x620/282828/" data-media="(min-width: 481px) and (max-width: 768px)"
-    span data-src="http://fakeimg.pl/992x620/282828/" data-media="(min-width: 769px) and (max-width: 992px)"
-    span data-src="http://fakeimg.pl/1640x1024/282828/" data-media="(min-width: 993px) and (max-width: 1440px)"
-    span data-src="http://fakeimg.pl/1920x1200/282828/" data-media="(min-width: 1441px)"
+- images = @extracted_data[:images]
+= form_tag create_by_extractor_things_path, remote: true do
+  = text_field_tag 'thing[title]', 'foo'
+  = text_field_tag 'thing[subtitle]', 'bar'
+  = text_field_tag 'thing[content]', 'hello world'
+  = text_field_tag 'thing[official_site]', 'http://knewone.com'
+  #images
+    .carousel.slide
+      .carousel-inner
+        - images.each_with_index do |photo, index|
+          div.item class="#{'active' if index == 0}"
+            .image_select
+              .select_backdrop
+              .select_btn_container
+                - if index == 0
+                  a.selected href="#" data-selector-id="image_#{index}"
+                    i.fa.fa-check-circle-o
+                - else
+                  a.unselect href="#" data-selector-id="image_#{index}"
+                    i.fa.fa-circle-o
+            = image_tag photo
+      - if images.size > 1
+        = link_to_with_icon "", "fa fa-chevron-left", "#images .carousel", data: {slide: "prev"},
+        class: "carousel-control left"
+        = link_to_with_icon "", "fa fa-chevron-right", "#images .carousel", data: {slide: "next"},
+        class: "carousel-control right"
+      .slideshow_body
+          ol.slideshow_inner#sortable
+            - images.each_with_index do |photo, index|
+              = content_tag :li, data: {target: "#images .carousel", "slide-to" => index}, id: "image_#{index}" do
+                .selected_icon class="#{'hidden' if index != 0}"
+                  i.fa.fa-check
+                = image_tag photo, class: "img-rounded"
+                = hidden_field_tag 'images[]', photo, id: "image_#{index}_field", disabled: (index != 0)
 
-  = link_to 'Anki Drive', '/', class: 'feature_name'
-  .feature_comment
-    = link_to
-      = image_tag 'http://making-photos.b0.upaiyun.com/users/adfa75fe739224e1bb0f60e62ba30e47.jpg!small', class: 'img-circle'
-    blockquote.text-right
-      p 人工智能和机器人进入了我们每个人的生活！
-      footer SynZhang
-  = render 'shared/entry'
-
-section#home_index
-
-  section
-    ul#home_things= render @things, size: :normal, img_lazy: true
-    = paginate @things
-
-  aside
-    ul#home_reviews
-      - @reviews.each do |review|
-        li
-          article
-            = link_to review.author do
-              = present(review.author).avatar :tiny
-            small 评测了
-            = link_to review.thing.title, review.thing, target: "_blank"
-          .media
-            - present review do |rp|
-              = link_to thing_review_path(review.thing, review), target: "_blank", class: "pull-right" do
-                = present(review.thing).photo(:smallo)
-              .media-body
-                h5.media-heading
-                  = link_to rp.title, rp.path, target: "_blank"
-                p= rp.summary(50)
-
-    #home_filling
-      script#ebsgovicon src="https://cert.ebs.gov.cn/govicon.js?id=0a9f8f12-2255-447a-9f72-4c4ad637c3c8&width=14&height=20" type="text/javascript"
-      small 粤ICP备13057487号
 
 - content_for :script do
   javascript:
-    Making.InfiniteScroll("#home_index > section", "#home_things > li");
+    Making.InitSandbox();
+

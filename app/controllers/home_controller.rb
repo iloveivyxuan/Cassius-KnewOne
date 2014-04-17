@@ -32,9 +32,14 @@ class HomeController < ApplicationController
   end
 
   def sandbox
-    @things = Thing.prior.page(params[:page]).per(24)
-    @reviews = Review.unscoped.desc(:created_at).limit(25)
-    render layout: 'home'
+    @extracted_data = {
+        images: %w(
+          http://image.knewone.com/photos/bf156596dc73be8b743a76a1b9231d71.jpg
+          http://image.knewone.com/photos/8cd9b1a51879a0cdde1866e2a0023a5c.jpg
+          http://image.knewone.com/photos/3f4452a976ee852fd53b2ef52119b60d.jpg!review
+        )
+    }
+    render layout: 'application'
   end
 
   def not_found

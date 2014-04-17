@@ -32,6 +32,7 @@
 //= require thing
 //= require orders
 //= require cart_items
+//= require sandbox
 //= require typeahead.bundle
 //= require fuzzy
 //= require_tree ./models
