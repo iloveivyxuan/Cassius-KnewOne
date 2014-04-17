@@ -106,14 +106,19 @@ module PageExtractor
   end
 end
 
-# # examples
+# examples
 # [
-# 'http://fancy.com/things/596719893366182299/Long-Horn-Deluxe-Convertible-Sofa',
-# 'http://item.jd.com/1092249.html',
-# # 'http://www.amazon.cn/gp/product/B005U6CFBQ/',
-# 'http://www.amazon.com/gp/product/B001FWYGJS/',
-# 'http://www.demohour.com/projects/340820',
-# 'https://www.kickstarter.com/projects/1060791749/city-of-darkness-revisited'
+#  'http://www.amazon.com/dp/B00CU0NSCU',
+#  'http://www.amazon.com/dp/B001FWYGJS',
+#  'http://www.amazon.com/dp/B004XC6GJ0',
+#  'http://www.amazon.com/dp/B00FJK5KVK',
+#  'http://www.amazon.com/dp/B00CEKXJ3Y',
+#  'http://www.amazon.cn/dp/B007AAWCPE',
+#  'http://www.amazon.cn/dp/B005U6CFBQ',
+#  'http://fancy.com/things/596719893366182299/Long-Horn-Deluxe-Convertible-Sofa',
+#  'http://item.jd.com/1092249.html',
+#  'http://www.demohour.com/projects/340820',
+#  'https://www.kickstarter.com/projects/1060791749/city-of-darkness-revisited'
 # ].each do |url|
 #   puts url
 #   s = Time.now.to_i
