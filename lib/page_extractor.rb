@@ -30,6 +30,14 @@ module PageExtractor
       images: lambda { |doc| doc.css('#project_poster_video img').attr('src').value }
     }
   }, {
+    name: 'Fancy',
+    url_pattern: /fancy\.com/,
+    selectors: {
+      title:  'span.title',
+      description: lambda { |doc| doc.css('meta[property="og:description"]').attr('content').value },
+      images: lambda { |doc| doc.css('meta[property="og:image"]').attr('content').value }
+    }
+  }, {
     name: 'JD',
     url_pattern: /jd\.com/,
     selectors: {
