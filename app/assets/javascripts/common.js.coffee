@@ -66,7 +66,7 @@ window.Making = do (exports = window.Making || {}) ->
           height = $this.prop('naturalHeight')
           width = $this.prop('naturalWidth')
 
-          if height >= 300 && width >= 300
+          if height >= 300 || width >= 300
             $item = $this.parent()
             $item.find('a')
             .on('click', (event)->
