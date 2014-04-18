@@ -1,8 +1,10 @@
 - provide :page_class, 'signed_in_homepage'
 
 - content_for :content do
-  / a.promotion href="#"
-  /   img src="http://image.knewone.com/photos/c5493a95e4697e1c1fccf5f771849b52.jpg!review"
+  a.promotion#promotion_xs_md href=makerfaire_path target="_blank"
+    span data-picture="true" data-alt="KnewOne 创客之选"
+      span data-src=asset_path('specials/makerfaire/banner/banner-xs.jpg')
+      span data-src=asset_path('specials/makerfaire/banner/banner-sm-md.jpg') data-media="(min-width: 768px)"
   /-- END .promotion --/
 
   main role="main"
@@ -42,8 +44,8 @@
         = render current_user.categories.limit(4)
     /-- END .tag --/
 
-    / a.promotion href="#"
-    /   img src="http://image.knewone.com/photos/c5493a95e4697e1c1fccf5f771849b52.jpg!review"
+    a.promotion href=makerfaire_path target="_blank"
+      img src=asset_path('specials/makerfaire/banner/banner-xs.jpg')
     /--END .promotion --/
 
     section#choiceness.panel

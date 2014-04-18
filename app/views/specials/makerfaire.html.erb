@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+		<meta name="description" content="Maker Faire, KnewOne, 探索分享新奇酷">
+    <meta name="keyword" content="Maker Faire, KnewOne, 剁手网, 新奇酷">
+    <meta name="author" content="lilu.life@gmail.com">
+    <link rel="shortcut icon" href="<%= asset_path 'favicon.png' %>">
+
+		<title>KnewOne | Maker Faire Shenzhen 2014 -- KnewOne带你寻找新奇酷</title>
+
+		<%= stylesheet_link_tag "specials/makerfaire/application" %>
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<%= javascript_include_tag "modernizr" %>
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?b44696b80ba45a90a23982e53f8347d0";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+	</head>
+
+	<body>
+		<div id="sharing_cover">
+      <%= image_tag 'specials/makerfaire/banner/sharing_cover.png' %>
+    </div>
+		<div class="site-wrapper">
+			<div class="site-wrapper-inner">
+				<div class="container">
+					<!-- <h1>KnewOne 带你寻找新奇酷<span>Maker Faire Shenzhen 2014</span></h1> -->
+					<ul class="socialShare">
+						<li>
+							<a href="javascript:(function(){window.open('http://v.t.sina.com.cn/share/share.php?title='+encodeURIComponent(document.title)+'&amp;url='+encodeURIComponent(location.href)+'&amp;source=bookmark','_blank','width=500,height=500');})()" title="新浪微博分享">
+								<i class="fa fa-weibo"></i>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:(function(){window.open('http://twitter.com/share?url='+encodeURIComponent(location.href)+'&amp;source=bookmark','_blank','width=500,height=500');})()" title="Share on Twitter">
+								<i class="fa fa-twitter"></i>
+							</a>
+						</li>
+						<li class="share qrCode">
+							<a id="social_share_wechat" data-toggle="popover" data-trigger="hover" data-container="body" data-placement="bottom" title="微信朋友圈分享">
+								<i class="fa fa-qrcode"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="cover-container container">
+					<img src="<%= asset_path 'specials/makerfaire/mobileTop.png' %>" class="mobileTop" alt="KnewOne带你寻找新奇酷--Maker Faire Shenzhen 2014" />
+					<img src="<%= asset_path 'specials/makerfaire/planet.png' %>" class="planet" alt="KnewOne带你寻找新奇酷--Maker Faire Shenzhen 2014" />
+				</div>
+			</div>
+		</div>
+
+		<main class="container">
+
+			<section class="firstGroup">
+				<div class="row">
+					<a href="http://knewone.com/things/make-fashion-wearables" target="_blank">
+						<figure class="col-lg-3 fashionFigure">
+							<div>
+							  <img src="<%= asset_path 'specials/makerfaire/fashion.png' %>">
+							</div>
+							<figcaption>
+								<h2><span>Make Fashion Wearables</span></h2>
+								<h3>玩转时尚与科技的服装设计<i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+					<a href="http://knewone.com/things/rapiro-xiao-ji-qi-ren" target="_blank">
+						<figure class="col-lg-3 rapiroFigure">
+							<div>
+								<img src="<%= asset_path 'specials/makerfaire/rapiro.png' %>">
+							</div>
+							<figcaption>
+								<h2><span>Rapiro</span>小机器人</h2>
+								<h3>来操控一架”高达“吧<i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+					<a href="http://knewone.com/things/lix-3d-da-yin-bi" target="_blank">
+						<figure class="col-lg-3 lixFigure">
+							<div>
+								<img src="<%= asset_path 'specials/makerfaire/lix.jpg' %>">
+							</div>
+							<figcaption>
+								<h2><span>Lix 3D</span>打印笔</h2>
+								<h3>轻薄超出你想象<i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+					<a href="http://knewone.com/things/osvehicle-kai-yuan-qi-che" target="_blank">
+						<figure class="col-lg-3 carFigure">
+							<div>
+								<img src="<%= asset_path 'specials/makerfaire/car.png' %>">
+							</div>
+							<figcaption>
+								<h2><span>OSVehicle</span>开源汽车</h2>
+								<h3>让你享受汽车DIY的乐趣<i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+					<a href="http://knewone.com/things/segway-x2" target="_blank">
+						<figure class="col-lg-3 segwayFigure">
+							<div>
+								<img src="<%= asset_path 'specials/makerfaire/segway.jpg' %>">
+							</div>
+							<figcaption>
+								<h2><span>Segway X2</span></h2>
+								<h3>两轮自平衡电动自行车，超前的个人交通工具<i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+					<a href="http://knewone.com/things/touch-board-kai-fa-ban" target="_blank">
+						<figure class="col-lg-3">
+							<div>
+								<img src="<%= asset_path 'specials/makerfaire/board.png' %>">
+							</div>
+							<figcaption>
+								<h2><span>Touch Board</span>开发板</h2>
+								<h3>把触摸变成声音<i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+					<a href="http://knewone.com/things/bareconductive-paint-dao-dian-mo-shui-bi" target="_blank">
+						<figure class="col-lg-3">
+							<div>
+								<img src="<%= asset_path 'specials/makerfaire/paint.jpg' %>">
+							</div>
+							<figcaption>
+								<h2><span>BareConductive paint</span>导电墨水笔</h2>
+								<h3>画出电路就能导电啦！<i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+					<a href="http://knewone.com/things/littlebits-dian-lu-ji-mu" target="_blank">
+						<figure class="col-lg-3 bitsFigure">
+							<div>
+								<img src="<%= asset_path 'specials/makerfaire/bits.jpg' %>">
+							</div>
+							<figcaption>
+								<h2><span>Littlebits</span>电路积木</h2>
+								<h3>iPad时代的乐高<i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+					<a href="http://knewone.com/things/uarm-mi-ni-ji-jie-bi" target="_blank">
+						<figure class="col-lg-3 armFigure">
+							<div>
+								<img src="<%= asset_path 'specials/makerfaire/arm.png' %>">
+							</div>
+							<figcaption>
+								<h2><span>uArm</span>迷你机械臂</h2>
+								<h3>拥有属于你的小工厂<i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+					<a href="http://knewone.com/things/makeblock-ji-qi-ren-tao-jian" target="_blank">
+						<figure class="col-lg-3 blockFigure">
+							<div>
+								<img src="<%= asset_path 'specials/makerfaire/makeblock.jpg' %>">
+							</div>
+							<figcaption>
+								<h2><span>Makeblock</span>金属乐高</h2>
+								<h3>帮助用户快速实现创意的<br />机械平台<i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+					<div class="firstGroupBottom">
+						<img src="<%= asset_path 'specials/makerfaire/firstGroupBottom.png' %>" alt=""/>
+					</div>
+				</div>
+			</section>
+
+			<section class="secondGroup">
+				<div class="secondGroupTop">
+					<img src="<%= asset_path 'specials/makerfaire/observatory.png' %>" alt=""/>
+				</div>
+				<div class="row">
+					<a href="http://knewone.com/things/arcbotics-liu-zu-ji-qi-ren-tao-jian" target="_blank">
+						<figure class="col-lg-3 arcFigure">
+							<div>
+								<img src="<%= asset_path 'specials/makerfaire/arc.jpg' %>">
+							</div>
+							<figcaption>
+								<h2><span>ArcBotics</span>六足机器人套件</h2>
+								<h3>一款全面的机器人学习平台<i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+					<a href="http://knewone.com/things/dji-phantom-2-vision-hui-fei-de-zhao-xiang-ji" target="_blank">
+						<figure class="col-lg-3 cameraFigure">
+							<div>
+							  <img src="<%= asset_path 'specials/makerfaire/phantom.jpg' %>">
+							</div>
+							<figcaption>
+								<h2><span>DJI Phantom 2 Vision</span>会飞的照相机</h2>
+								<h3>大疆创新推出的第二代航拍神器<i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+					<a href="http://knewone.com/things/necomimi-brainwave-cat-ears-mao-er-duo" target="_blank">
+						<figure class="col-lg-3 catEarFigure">
+							<div>
+							  <img src="<%= asset_path 'specials/makerfaire/catEar.jpg' %>">
+							</div>
+							<figcaption>
+								<h2><span>Necomimi Brainwave Cat Ears</span>猫耳朵</h2>
+								<h3>科技和萌的完美结合<i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+					<a href="http://knewone.com/things/brainlinkyi-nian-li-tou-gu" target="_blank">
+						<figure class="col-lg-3">
+							<div>
+							  <img src="<%= asset_path 'specials/makerfaire/brain.jpg' %>" alt="" />
+							</div>
+							<figcaption>
+								<h2><span>BrainLink</span>意念力头箍</h2>
+								<h3>脑电波控制器<i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+					<a href="http://knewone.com/things/jumping-sumo" target="_blank">
+						<figure class="col-lg-3">
+							<div>
+							  <img src="<%= asset_path 'specials/makerfaire/sumo.jpg' %>">
+							</div>
+							<figcaption>
+								<h2><span>Jumping Sumo</span></h2>
+								<h3>与iOS设备结合的新玩具车<i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+					<a href="http://knewone.com/things/polascii" target="_blank">
+						<figure class="col-lg-3 polaFigure">
+							<div>
+							  <img src="<%= asset_path 'specials/makerfaire/polascii.jpg' %>">
+							</div>
+							<figcaption>
+								<h2><span>Polascii</span></h2>
+								<h3>ASCII 字符拍立得 <i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+					<a href="http://knewone.com/things/rplidar-lei-da-xi-chen-qi" target="_blank">
+						<figure class="col-lg-3 lidarFigure">
+							<div>
+							  <img src="<%= asset_path 'specials/makerfaire/lidar.jpg' %>">
+							</div>
+							<figcaption>
+								<h2><span>RPLidar</span>雷达吸尘器</h2>
+								<h3>会“认路”的扫地机器人<i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+				</div>
+			</section>
+
+			<section class="thirdGroup">
+				<div class="thirdGroupTop">
+					<img src="<%= asset_path 'specials/makerfaire/gun.png' %>" alt=""/>
+				</div>
+				<div class="row">
+					<a href="http://knewone.com/things/xin-wo-betwine" target="_blank">
+						<figure class="col-lg-3 betwineFigure">
+							<div>
+							  <img src="<%= asset_path 'specials/makerfaire/betwine.jpg' %>">
+							</div>
+							<figcaption>
+								<h2><span>Betwine</span>新我</h2>
+								<h3>久坐纠正，爱人养成<i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+					<a href="http://knewone.com/things/yeelight-blue" target="_blank">
+						<figure class="col-lg-3">
+							<div>
+							  <img src="<%= asset_path 'specials/makerfaire/light.jpg' %>">
+							</div>
+							<figcaption>
+								<h2><span>Yeelight Blue</span></h2>
+								<h3>充满惊喜和乐趣的彩色情景灯<i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+					<a href="http://knewone.com/things/inwatch-zhi-neng-wan-biao" target="_blank">
+						<figure class="col-lg-3">
+							<div>
+							  <img src="<%= asset_path 'specials/makerfaire/watch.jpg' %>">
+							</div>
+							<figcaption>
+								<h2><span>inWatch</span>智能腕表</h2>
+								<h3>智能从未如此时尚<i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+					<a href="http://knewone.com/things/yin-mei-tu" target="_blank">
+						<figure class="col-lg-3">
+							<div>
+							  <img src="<%= asset_path 'specials/makerfaire/yin.png' %>">
+							</div>
+							<figcaption>
+								<h2><span></span>印美图</h2>
+								<h3>微信印出手机照片<i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+					<a href="http://knewone.com/things/galacard-zhi-neng-shu-zi-ming-pian" target="_blank">
+						<figure class="col-lg-3 cardFigure">
+							<div>
+							  <img src="<%= asset_path 'specials/makerfaire/card.jpg' %>">
+							</div>
+							<figcaption>
+								<h2><span>GalaCard</span>智能数字名片</h2>
+								<h3>综合利用NFC、二维码、APP、云端技术的智能名片<i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+					<a href="http://knewone.com/things/soulwoodzhi-neng-zhu-deng" target="_blank">
+						<figure class="col-lg-3">
+							<div>
+							  <img src="<%= asset_path 'specials/makerfaire/soul.png' %>">
+							</div>
+							<figcaption>
+								<h2><span>SOULWOOD</span>智能烛灯</h2>
+								<h3>手感美学，实木创意<i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+					<a href="http://knewone.com/things/quan-cheng-re-lian" target="_blank">
+						<figure class="col-lg-3 loveFigure">
+							<div>
+							  <img src="<%= asset_path 'specials/makerfaire/love.jpg' %>">
+							</div>
+							<figcaption>
+								<h2><span></span>全城热链</h2>
+								<h3>爱情长久的秘密武器<i class="fa fa-caret-right"></i></h3>
+							</figcaption>
+						</figure>
+					</a>
+					<div class="thirdGroupBottom">
+						<img src="<%= asset_path 'specials/makerfaire/door.png' %>" class="door" alt=""/>
+						<img src="<%= asset_path 'specials/makerfaire/door-2.png' %>" class="door2" alt=""/>
+					</div>
+				</div>
+			</section>
+
+			<footer>
+			</footer>
+
+			<aside>
+			</aside>
+
+		</main><!-- end container -->
+
+    <%- if user_signed_in? %>
+      <a
+        id="feedback"
+        href="#"
+        data-name="<%= current_user.name %>"
+        data-email="<%= current_user.email %>"
+        data-id="<%= current_user.id %>"
+        data-hint="fa-comment-o"
+        data-url="<%= asset_path('olark.js') %>">
+        <i class="fa fa-comment-o"></i>
+        <label>我想聊聊</label>
+      </a>
+    <% else %>
+      <a
+        id="feedback"
+        href="#"
+        data-hint="fa-comment-o"
+        data-url="<%= asset_path('olark.js') %>">
+        <i class="fa fa-comment-o"></i>
+        <label>我想聊聊</label>
+      </a>
+    <% end -%>
+
+    <%= javascript_include_tag "specials/makerfaire/application" %>
+	</body>
+</html>

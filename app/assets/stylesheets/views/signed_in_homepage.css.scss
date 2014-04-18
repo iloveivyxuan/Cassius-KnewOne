@@ -5,6 +5,7 @@ html.signed_in_homepage {
 
   #wrapper {
     @include wrapper(grid, 2);
+    overflow: hidden;
 
     > main {
       min-height: 940px;
@@ -218,7 +219,13 @@ html.signed_in_homepage {
 
     > .promotion {
       @include center-block;
-      display: none;
+
+      border-bottom: 1px solid #ebeced;
+      margin-top: -20px;
+
+      @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+        margin-top: -40px;
+      }
 
       @media (min-width: $screen-md-min) {
         display: none;
