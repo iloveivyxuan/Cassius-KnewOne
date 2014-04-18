@@ -29,6 +29,10 @@
         #new-thing-edit-modal-images
           .carousel.slide
             .carousel-inner
+            = link_to_with_icon "", "fa fa-chevron-left", "#new-thing-edit-modal-images .carousel", data: {slide: "prev"},
+                      class: "carousel-control left"
+            = link_to_with_icon "", "fa fa-chevron-right", "#new-thing-edit-modal-images .carousel", data: {slide: "next"},
+                      class: "carousel-control right"
             .slideshow_body
               ol.slideshow_inner#new-thing-edit-modal-sortable
 

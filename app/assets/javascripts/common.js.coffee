@@ -19,14 +19,6 @@ window.Making = do (exports = window.Making || {}) ->
       $progress_bar = $new_thing_from_url_modal.find('.progress-bar')
       $progress_bar.animate({width: '100%'}, 3000)
       return
-    ).on('ajax:error',
-    (event, xhr, settings)->
-      reset_new_thing_from_url_modal()
-      return
-    ).on('ajax:complete',
-    (event, xhr, settings)->
-      reset_new_thing_from_url_modal()
-      return
     )
 
     $new_thing_from_url_modal.on('show.bs.modal',
@@ -54,9 +46,13 @@ window.Making = do (exports = window.Making || {}) ->
       $slideshow_inner = $('#new-thing-edit-modal-sortable')
 
       i = 0
+      loaded = 0
+      flag = true
       $.each($('#new-thing-edit-modal-images-container .image .item').find('img'), (index, value)->
         $(value).one('load',
         ->
+          loaded += 1
+
           $this = $(@)
           height = $this.prop('naturalHeight')
           width = $this.prop('naturalWidth')
@@ -115,12 +111,37 @@ window.Making = do (exports = window.Making || {}) ->
 
             $selector = $('#' + $this.attr('data-selector-id')).attr('data-slide-to', i).attr('draggable', true)
             $slideshow_inner.append($selector)
-            i += 1
 
             $("#new-thing-edit-modal-sortable").sortable( "refresh" );
+
+            if $("#new-thing-edit-modal-sortable").children().size() > 0 && flag
+              flag = false
+              if $('#new-thing-similar-modal').html().length != 0
+                $('#new-thing-similar-modal').modal('show')
+              else
+                $('#new-thing-edit-modal').modal('show')
+
+              $('#new-thing-from-url-modal')
+              .find('input').val('').end()
+              .find('input, button').attr('disabled', false).end()
+              .find('.progress').hide().end()
+              .find('.progress-bar').css({width: 0})
+            i += 1
         ).each(
           ->
             if @.complete then $(@).load()
+        )
+
+        setTimeout(
+          ->
+            if $("#new-thing-edit-modal-sortable").children().size() == 0
+              $('#new-thing-from-url-modal').find('.alert').removeClass('hidden');
+              $('#new-thing-from-url-modal')
+              .find('input').val('').end()
+              .find('input, button').attr('disabled', false).end()
+              .find('.progress').hide().end()
+              .find('.progress-bar').css({width: 0})
+          , 5000
         )
       ).each($('#new-thing-edit-modal-sortable').children(), (index, value)->
         $value = $(value)
