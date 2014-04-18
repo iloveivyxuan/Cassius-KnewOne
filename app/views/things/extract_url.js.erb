@@ -5,6 +5,10 @@ $('#new-thing-similar-modal').html('<%= escape_javascript render('things/similar
 <% end %>
 Making.init_new_thing_modal();
 <% else %>
-$('#new-thing-from-url-modal').
-        find('.alert').removeClass('hidden');
+$('#new-thing-from-url-modal')
+        .find('.alert').removeClass('hidden').end()
+        .find('input').val('').end()
+        .find('input, button').attr('disabled', false).end()
+        .find('.progress').hide().end()
+        .find('.progress-bar').css({width: 0})
 <% end %>
