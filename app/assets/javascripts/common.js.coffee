@@ -18,6 +18,10 @@ window.Making = do (exports = window.Making || {}) ->
 
       $progress_bar = $new_thing_from_url_modal.find('.progress-bar')
       $progress_bar.animate({width: '100%'}, 3000)
+
+      $('#new-thing-edit-modal').html('')
+      $('#new-thing-similar-modal').html('')
+
       return true
     )
 
