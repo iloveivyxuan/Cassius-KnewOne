@@ -57,6 +57,8 @@ class Ability
     can :fancy, Thing
     can :own, Thing
     can :group_fancy, Thing
+    can :create_by_extractor, Thing
+    can :extract_url, Thing
 
     can :share, User
     can :bind, User
