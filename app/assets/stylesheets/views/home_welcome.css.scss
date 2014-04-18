@@ -143,6 +143,20 @@ html.home_welcome {
     text-align: center;
   }
 
+  #step1 {
+
+    .step_body {
+
+      @media (min-width: $screen-md-min) {
+        @include make-row;
+
+        > .section {
+          @include make-md-column(6);
+        }
+      }
+    }
+  }
+
   #step2 {
 
     h1 {
@@ -154,6 +168,7 @@ html.home_welcome {
     }
 
     @media (min-width: $screen-md-min) {
+
       ul.things > li {
         width: percentage(1/3);
       }
