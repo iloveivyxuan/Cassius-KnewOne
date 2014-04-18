@@ -117,6 +117,11 @@
   }
 
   #new-thing-edit-modal-images {
+    &.more-than-one {
+      .carousel:hover .carousel-control { display: block; }
+      #new-thing-edit-modal-sortable    { display: block; }
+    }
+
     .carousel {
       .item {
         text-align: center;
@@ -176,8 +181,6 @@
         }
       }
 
-      .more-than-one .carousel-control { display: block; }
-
       .carousel-control {
         display: none;
 
@@ -235,8 +238,6 @@
       }
     }
   }
-
-  .more-than-one #new-thing-edit-modal-sortable { display: block; }
 
   #new-thing-edit-modal-sortable {
     display: none;
