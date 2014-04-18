@@ -18,7 +18,7 @@ ul.nav.nav-pills
       ul.user_list = render @friends
       footer
         = link_to_with_icon "关注所有好友", "fa fa-plus",
-          follow_recommends_profile_path(redirect_from: root_url),
+          follow_recommends_profile_path(redirect_from: root_url, scope: 'weibo'),
           class: 'btn btn-primary', method: :post
     - else
       p
@@ -29,5 +29,5 @@ ul.nav.nav-pills
     ul.user_list#celebrity = render @recommend_users
     footer
       = link_to_with_icon "关注所有达人", "fa fa-plus",
-        follow_recommends_profile_path(redirect_from: root_url),
+        follow_recommends_profile_path(redirect_from: root_url, scope: 'recommends'),
         class: 'btn btn-primary', method: :post
