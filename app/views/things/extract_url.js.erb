@@ -1,9 +1,7 @@
 <% if @result %>
 $('#new-thing-edit-modal').html('<%= escape_javascript render('things/new_thing_modal', thing: @thing, images: @result[:images]) %>');
 <% if @similar %>
-$('#new-thing-similar-modal').html('<%= escape_javascript render('things/similar_thing_modal', thing: @similar) %>').modal('show');
-<% else %>
-$('#new-thing-edit-modal').modal('show');
+$('#new-thing-similar-modal').html('<%= escape_javascript render('things/similar_thing_modal', thing: @similar) %>');
 <% end %>
 Making.init_new_thing_modal();
 <% else %>
