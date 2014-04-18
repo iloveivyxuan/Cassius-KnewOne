@@ -18,7 +18,7 @@ window.Making = do (exports = window.Making || {}) ->
 
       $progress_bar = $new_thing_from_url_modal.find('.progress-bar')
       $progress_bar.animate({width: '100%'}, 3000)
-      return
+      return true
     )
 
     $new_thing_from_url_modal.on('show.bs.modal',
