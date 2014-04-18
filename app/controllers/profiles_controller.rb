@@ -61,11 +61,19 @@ class ProfilesController < ApplicationController
   end
 
   def follow_recommends
-    if friends = current_user.recommend_users
-      current_user.batch_follow friends
+    redirect_back_or root_path if params[:scope].blank?
+
+    scopes = params[:scope].blank? ? %w(weibo recommends) : params[:scope].split(',')
+
+    if scopes.include?('weibo')
+      if friends = current_user.recommend_users
+        current_user.batch_follow friends
+      end
     end
 
-    current_user.batch_follow User.desc(:recommend_priority, :followers_count).limit(42)
+    if scopes.include?('recommends')
+      current_user.batch_follow User.desc(:recommend_priority, :followers_count).limit(42)
+    end
 
     redirect_back_or root_path
   end
