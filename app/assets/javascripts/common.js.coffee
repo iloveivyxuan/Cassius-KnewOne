@@ -30,6 +30,11 @@ window.Making = do (exports = window.Making || {}) ->
       reset_new_thing_from_url_modal()
       $new_thing_from_url_modal.find('.alert').addClass('hidden')
     )
+
+    $('#new-thing-url').on('focus',
+    (e)->
+      $new_thing_from_url_modal.find('.alert').addClass('hidden')
+    )
   )
 
   exports.init_new_thing_modal = (
@@ -116,7 +121,7 @@ window.Making = do (exports = window.Making || {}) ->
             $selector = $('#' + $this.attr('data-selector-id')).attr('data-slide-to', i).attr('draggable', true)
             $slideshow_inner.append($selector)
 
-            $("#new-thing-edit-modal-sortable").sortable( "refresh" );
+            $("#new-thing-edit-modal-sortable").sortable("refresh");
 
             if $("#new-thing-edit-modal-sortable").children().size() > 0 && flag
               flag = false
@@ -145,7 +150,7 @@ window.Making = do (exports = window.Making || {}) ->
               .find('input, button').attr('disabled', false).end()
               .find('.progress').hide().end()
               .find('.progress-bar').css({width: 0})
-          , 5000
+        , 5000
         )
       ).each($('#new-thing-edit-modal-sortable').children(), (index, value)->
         $value = $(value)
@@ -263,12 +268,12 @@ window.Making = do (exports = window.Making || {}) ->
         $(@).parents('form').find('button[type="submit"]').trigger('click')
 
     $('.form-group.search')
-      .on 'click', '.fa-times', ->
-        $(@).hide().parents('.search').find('input').val('')
-      .on 'keyup', 'input',  ->
-        if $.trim(@.value) isnt ''
-          $trigger = $(@).parents('.search').find('.fa-times')
-          if $trigger.is(':hidden') then $trigger.show()
+    .on 'click', '.fa-times', ->
+      $(@).hide().parents('.search').find('input').val('')
+    .on 'keyup', 'input', ->
+      if $.trim(@.value) isnt ''
+        $trigger = $(@).parents('.search').find('.fa-times')
+        if $trigger.is(':hidden') then $trigger.show()
     $('.js_auto_submit').on 'change', ->
       $(@).parents('form').trigger('submit')
 
