@@ -10,8 +10,19 @@ module PageExtractor
                selectors: {
                    title: '.parseasinTitle, #productTitle, #mocaBBProductTitle',
                    description: '#productDescription, #postBodyPS',
-                   images: %r{http://ec.\.images-amazon\.com/images/I/.*?\.jpg}
-               }
+                   images:
+               lambda do |_, html|
+                 images = {}
+                 html.scan(%r{http://ec.\.images-amazon\.com/images/I/.*?\.jpg}).each do |url|
+                   id =   url[%r{(?<=/I/)[^.]+}]
+                   size = url[%r{(?<=\._[A-Z]{2})\d+}].to_i
+                   if !images.has_key?(id) || images[id][:size] < size
+                     images[id] = {url: url, size: size}
+                   end
+                 end
+                 images.map { |_, h| h[:url] }
+               end
+             }
            }, {
                name: 'DemoHour',
                url_pattern: /demohour\.com/,
@@ -83,7 +94,7 @@ module PageExtractor
         rule[:selectors].each do |key, selector|
           value = case selector
                     when Proc
-                      selector.call(doc)
+                      selector.call(doc, html)
                     when Regexp
                       html.scan(selector)
                     when String
