@@ -137,7 +137,9 @@
           background-color: rgba(0, 3, 9, 0.6);
           display: block;
           height: 100%;
-          width: 100%;
+          width: 80%;
+          position: absolute;
+          left: 10%
         }
 
         .image_select {
@@ -173,12 +175,13 @@
 
       .carousel-control {
         position: absolute;
-        top: 40%;
+        top: 30%;
         font-size: 28px;
         width: 40px;
         height: 40px;
         background: transparent;
         color: $gray;
+        z-index: 200;
         &.left {
           text-align: left;
           padding-left: 10px;
@@ -212,6 +215,10 @@
             }
           }
         }
+      }
+
+      .slideshow_inner {
+        text-align: left;
       }
     }
   }
