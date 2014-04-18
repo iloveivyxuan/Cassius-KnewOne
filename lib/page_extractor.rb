@@ -11,7 +11,7 @@ module PageExtractor
                    title: '.parseasinTitle, #productTitle, #mocaBBProductTitle',
                    description: '#productDescription, #postBodyPS',
                    images:
-               lambda do |_, html|
+               proc do |_, html|
                  images = {}
                  html.scan(%r{http://ec.\.images-amazon\.com/images/I/.*?\.jpg}).each do |url|
                    id =   url[%r{(?<=/I/)[^.]+}]
@@ -29,15 +29,15 @@ module PageExtractor
                selectors: {
                    title: 'h1',
                    description: 'projects-home-right h2',
-                   images: lambda { |doc| doc.css('#project_poster_video img').attr('src').value }
+                   images: proc { |doc| doc.css('#project_poster_video img').attr('src').value }
                }
            }, {
                name: 'Fancy',
                url_pattern: /fancy\.com/,
                selectors: {
                    title: 'span.title',
-                   description: lambda { |doc| doc.css('meta[property="og:description"]').attr('content').value },
-                   images: lambda { |doc| doc.css('meta[property="og:image"]').attr('content').value }
+                   description: proc { |doc| doc.css('meta[property="og:description"]').attr('content').value },
+                   images: proc { |doc| doc.css('meta[property="og:image"]').attr('content').value }
                }
            }, {
                name: 'JD',
@@ -45,23 +45,23 @@ module PageExtractor
                selectors: {
                    title: 'h1',
                    description: 'h2',
-                   images: lambda { |doc| doc.css('#preview img').attr('src').value }
+                   images: proc { |doc| doc.css('#preview img').attr('src').value }
                }
            }, {
                name: 'Open Graph',
                url_pattern: /.*/,
                selectors: {
-                   title: lambda { |doc| doc.css('meta[property="og:title"]').attr('content').value },
-                   description: lambda { |doc| doc.css('meta[property="og:description"]').attr('content').value },
-                   images: lambda { |doc| doc.css('meta[property="og:image"]').attr('content').value }
+                   title: proc { |doc| doc.css('meta[property="og:title"]').attr('content').value },
+                   description: proc { |doc| doc.css('meta[property="og:description"]').attr('content').value },
+                   images: proc { |doc| doc.css('meta[property="og:image"]').attr('content').value }
                }
            }, {
                name: 'Twitter Card',
                url_pattern: /.*/,
                selectors: {
-                   title: lambda { |doc| doc.css('meta[property="twitter:title"]').attr('content').value },
-                   description: lambda { |doc| doc.css('meta[property="twitter:description"]').attr('content').value },
-                   images: lambda { |doc| doc.css('meta[property="twitter:image"]').attr('content').value }
+                   title: proc { |doc| doc.css('meta[property="twitter:title"]').attr('content').value },
+                   description: proc { |doc| doc.css('meta[property="twitter:description"]').attr('content').value },
+                   images: proc { |doc| doc.css('meta[property="twitter:image"]').attr('content').value }
                }
            }, {
                name: 'Fallback',
@@ -69,7 +69,7 @@ module PageExtractor
                selectors: {
                    title: 'head > title',
                    description: 'head > title',
-                   images: lambda do |doc|
+                   images: proc do |doc|
                      doc.css('img').map { |element| element.attr('src') }
                    end
                }
