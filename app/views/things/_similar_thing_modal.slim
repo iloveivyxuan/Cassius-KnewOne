@@ -7,7 +7,7 @@
           | 通过网页分享新产品
 
     .modal-body
-      h5 发现类似的产品
+      h5 您要分享的产品已经在KnewOne上存在
       = link_to thing_path(thing), target: '_blank' do
         figure
           = image_tag thing.cover.url(:normal)
@@ -22,10 +22,6 @@
         i.fa.fa-chevron-left
         | 返回
 
-      button.btn.btn-primary [
-        type="button"
-        data-dismiss="modal"
-        data-toggle="modal" data-target="#new-thing-edit-modal"
-      ]
-        i.fa.fa-chevron-right
-        | 继续创建
+      = link_to_with_icon '查看此产品',
+        'fa fa-chevron-right', thing_path(thing),
+        class: 'btn btn-primary'

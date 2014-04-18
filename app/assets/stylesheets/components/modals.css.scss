@@ -85,11 +85,12 @@
       text-align: center;
 
       img {
-        width: 300px;
+        max-width: 300px;
       }
 
       figcaption {
         margin-top: 25px;
+        color: $gray;
       }
     }
   }
