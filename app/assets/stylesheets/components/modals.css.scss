@@ -176,7 +176,11 @@
         }
       }
 
+      .more-than-one .carousel-control { display: block; }
+
       .carousel-control {
+        display: none;
+
         position: absolute;
         top: 50%;
         margin-top: -20px;
@@ -196,8 +200,6 @@
         }
         i {margin-right: 0;}
       }
-
-      &:hover .carousel-control {display: block;}
     }
   }
 
@@ -234,7 +236,11 @@
     }
   }
 
+  .more-than-one #new-thing-edit-modal-sortable { display: block; }
+
   #new-thing-edit-modal-sortable {
+    display: none;
+
     li {
       display:inline-block;
       margin: 2px;
