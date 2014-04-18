@@ -87,7 +87,7 @@ module PageExtractor
                     when Regexp
                       html.scan(selector)
                     when String
-                      doc.css(selector).map(&:text).map(&:strip).uniq
+                      doc.css(selector).map(&:text).map(&:strip)
                     else
                       raise 'Illegal selector'
                   end
@@ -95,7 +95,7 @@ module PageExtractor
           raise 'Try other rules' unless value
 
           if key == :images
-            info[key] = Array(value)
+            info[key] = Array(value).uniq
           else
             info[key] = Array(value).first
           end
