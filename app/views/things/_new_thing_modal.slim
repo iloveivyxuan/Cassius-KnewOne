@@ -43,7 +43,7 @@
         .form-group
           label.col-sm-3.control-label for="thing_subtitle" 一句话描述
           .col-sm-9
-            = f.text_field :subtitle, class: 'form-control', required: true
+            = f.text_field :subtitle, class: 'form-control'
 
         = f.text_area :content, rows: 3, placeholder: '在这里写产品的简要描述信息', required: true
 
