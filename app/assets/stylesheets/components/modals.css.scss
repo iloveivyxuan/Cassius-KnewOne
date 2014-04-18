@@ -103,11 +103,13 @@
 
   textarea {
     width: 100%;
-    border-top: 1px dotted #ccc;
+    padding: 10px;
+    border-top: 1px dashed #ccc;
     border-bottom: none;
     border-left: none;
     border-right: 0;
     resize: none;
+    outline: none;
   }
 
   #new-thing-edit-modal-images-container {
@@ -130,7 +132,7 @@
 
         img {
           margin: 0 auto;
-          max-width: 100%;
+          max-width: 75%;
           max-height: 300px;
         }
 
@@ -200,6 +202,8 @@
   }
 
   .slideshow_body {
+    margin: { top: 15px; bottom: 15px; }
+
     .slideshow_inner {
       text-align: left;
     }
@@ -207,12 +211,19 @@
     li {
       position: relative;
 
+      opacity: 1;
+      img {
+        opacity: .3;
+        &:hover { opacity: 1; }
+      }
+
       .selected_icon {
-        left: 0;
-        top: 0;
+        right: 0;
+        bottom: 0;
         position: absolute;
         z-index: 100;
         i {
+          margin: 0;
           height: 25px;
           width: 25px;
           font-size: 25px;
