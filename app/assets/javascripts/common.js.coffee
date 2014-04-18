@@ -150,7 +150,7 @@ window.Making = do (exports = window.Making || {}) ->
               .find('input, button').attr('disabled', false).end()
               .find('.progress').hide().end()
               .find('.progress-bar').css({width: 0})
-        , 5000
+        , 20000
         )
       ).each($('#new-thing-edit-modal-sortable').children(), (index, value)->
         $value = $(value)
