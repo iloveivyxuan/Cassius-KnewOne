@@ -33,6 +33,8 @@ class BaseMailer < ActionMailer::Base
   WHITES = %w(gmail.com ruby-china.org)
 
   def mail(headers = {}, &block)
+    attachments.inline['logo.png'] = File.read(Rails.root.join("app/assets/images/logos/#{rand(21)}.png"))
+
     if self.delivery_method == :smtp
       smtp_config = route_smtp_server(headers[:to])
       m = super headers.merge(from: smtp_config[:from]), &block
