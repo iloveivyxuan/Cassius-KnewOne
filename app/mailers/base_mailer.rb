@@ -6,19 +6,19 @@ class BaseMailer < ActionMailer::Base
 
   SMTP_SERVERS = {
       white: {
-          from: 'welcome@knewone.com',
+          from: 'KnewOne <welcome@mg.knewone.com>',
           delivery_settings: {
-              address: 'smtp.exmail.qq.com',
+              address: 'smtp.mailgun.org',
               port: 25,
               domain: 'knewone.com',
-              user_name: 'welcome@knewone.com',
-              password: 'knewone123',
+              user_name: 'postmaster@mg.knewone.com',
+              password: '2i7eb7yyb7k0',
               authentication: 'plain',
               enable_starttls_auto: true
           }
       },
       default: {
-          from: 'welcome@service.knewone.com',
+          from: 'KnewOne <welcome@service.knewone.com>',
           delivery_settings: {
               address: 'smtpcloud.sohu.com',
               port: 25,
@@ -33,7 +33,7 @@ class BaseMailer < ActionMailer::Base
   WHITES = %w(gmail.com ruby-china.org)
 
   def mail(headers = {}, &block)
-    attachments.inline['logo.png'] = File.read(Rails.root.join("app/assets/images/logos/#{rand(21)}.png"))
+    attachments.inline['logo.png'] = File.read(Rails.root.join("app/assets/images/logos/#{rand(21)+1}.png"))
 
     if self.delivery_method == :smtp
       smtp_config = route_smtp_server(headers[:to])
