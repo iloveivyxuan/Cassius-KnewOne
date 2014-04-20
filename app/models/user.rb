@@ -72,6 +72,8 @@ class User
   ## Omniauthable
   embeds_many :auths
 
+  scope :confirmed, -> { gt confirmed_at: 0 }
+
   def has_fulfilled_email?
     self.unconfirmed_email.present? || self.email.present?
   end
@@ -173,6 +175,7 @@ class User
   ## Roles
   field :role, type: String, default: ""
   ROLES = %w[vip editor sale admin]
+  scope :staff, ->{ where :role.in => %i(editor sale admin) }
 
   def role?(base_role)
     ROLES.index(base_role.to_s) <= (ROLES.index(role) || -1)
