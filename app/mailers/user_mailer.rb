@@ -29,8 +29,11 @@ class UserMailer < BaseMailer
          template_name: template)
   end
 
-  def foo(email)
-    mail(to: email,
-         subject: 'Test mail sending')
+  def foo(user)
+    attachments.inline['guide.jpg'] = File.read(Rails.root.join('app/assets/images/mails/guide.jpg'))
+
+    @user = user
+    mail(to: @user.email,
+         subject: 'KnewOne分享功能全新上线，邀请您来体验')
   end
 end
