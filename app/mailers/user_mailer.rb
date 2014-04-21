@@ -36,4 +36,12 @@ class UserMailer < BaseMailer
     mail(to: @user.email,
          subject: 'KnewOne分享功能全新上线，邀请您来体验')
   end
+
+  def guide(email, name)
+    attachments.inline['guide.jpg'] = File.read(Rails.root.join('app/assets/images/mails/guide.jpg'))
+    @name = name
+
+    mail(to: email,
+         subject: 'KnewOne分享功能全新上线，邀请您来体验')
+  end
 end
