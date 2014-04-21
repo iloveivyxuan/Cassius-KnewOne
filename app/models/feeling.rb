@@ -9,4 +9,5 @@ class Feeling < Post
   validates :content, presence: true
 
   default_scope -> { desc(:lovers_count, :created_at) }
+
 end
