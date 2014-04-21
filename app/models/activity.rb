@@ -48,6 +48,6 @@ class Activity
   scope :by_types, ->(*types) { where :type.in => types }
 
   def identifier
-    "#{source_union}_#{reference_union}"
+    [source_union, reference_union].compact.join('_')
   end
 end

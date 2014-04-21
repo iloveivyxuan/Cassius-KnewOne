@@ -276,6 +276,10 @@ Making::Application.routes.draw do
         resources :fancies, only: [:show, :update, :destroy]
         resources :owns, only: [:show, :update, :destroy]
         resources :followings, only: [:show, :update, :destroy]
+
+        member do
+          get 'feeds'
+        end
       end
 
       resources :notifications, only: [:index] do
