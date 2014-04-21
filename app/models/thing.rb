@@ -26,6 +26,9 @@ class Thing < Post
 
   field :sharing_text, type: String
 
+  validates :title, presence: true
+  validates :content, presence: true
+
   field :stage, type: Symbol, default: :concept
   STAGES = {
       concept: "研发中",
@@ -45,10 +48,11 @@ class Thing < Post
 
   has_and_belongs_to_many :fancy_groups, class_name: "Group", inverse_of: :fancies
 
-  field :scores, type: Array, default: []
-
   has_many :reviews
   field :reviews_count, type: Integer, default: 0
+
+  has_many :feelings
+  field :feelings_count, type: Integer, default: 0
 
   has_and_belongs_to_many :owners, class_name: "User", inverse_of: :owns
 
@@ -129,18 +133,6 @@ class Thing < Post
 
   def valid_kinds
     kinds.ne(stage: :hidden).sort_by { |k| k.photo_number }
-  end
-
-  def add_score(score)
-    scores[score] ||= 0
-    scores[score] += 1
-    save
-  end
-
-  def del_score(score)
-    return if score.nil? || scores[score].nil? || scores[score] <= 0
-    scores[score] -= 1
-    save
   end
 
   def self_run?

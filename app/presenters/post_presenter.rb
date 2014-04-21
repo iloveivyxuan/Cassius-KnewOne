@@ -66,4 +66,16 @@ class PostPresenter < ApplicationPresenter
     count = content_tag :span, @object.lovers_count
     i.concat count
   end
+
+  def cover(version = :small)
+    if src = post.cover(version)
+      image_tag src
+    end
+  end
+
+  def score
+    if post.try(:score).present? and post.score > 0
+      content_tag :div, "", data: {score: post.score}, class: "score"
+    end
+  end
 end

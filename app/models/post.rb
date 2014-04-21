@@ -7,9 +7,6 @@ class Post
   field :content, type: String, default: ""
   field :commented_at, type: DateTime
 
-  validates :title, presence: true
-  validates :content, presence: true
-
   belongs_to :author, class_name: "User", inverse_of: :post
 
   has_many :comments
@@ -41,5 +38,12 @@ class Post
 
   def voted?(user)
     lovers.include?(user) or foes.include?(user)
+  end
+
+  def cover(version = :small)
+    src = self.content.scan(/<img src=\"(.+?)\"/).try(:[], 0).try(:[], 0)
+    return nil unless src.present? and src[0..23] == "http://#{Settings.image_host}"
+
+    src.gsub(/!.*$/, "!#{version}")
   end
 end

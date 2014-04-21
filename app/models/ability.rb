@@ -45,6 +45,12 @@ class Ability
     end
     can :vote, Review
 
+    can :create, Feeling
+    can [:update, :destroy], Feeling do |feeling|
+      feeling.author == user
+    end
+    can :vote, Feeling
+
     can :create, Comment
     can :destroy, Comment do |comment|
       comment.author == user
@@ -130,6 +136,7 @@ class Ability
     can :update, Category
     can :pro_edit, Thing
     can :manage, Review
+    can :manage, Feeling
     can :manage, Lottery
     can :manage, Supplier
   end

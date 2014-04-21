@@ -1,5 +1,6 @@
 defaults: &defaults
   host: "knewone.com"
+  image_host: "image.knewone.com"
   upyun:
     username: "leslielilu"
     password: "g4l4pg2sh13sm"
