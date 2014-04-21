@@ -1,10 +1,10 @@
 ---
-:concurrency: 5
+:concurrency: 4
 :pidfile: tmp/pids/sidekiq.pid
 staging:
   :concurrency: 4
 production:
-  :concurrency: 10
+  :concurrency: 4
 :queues:
   - default
   - notifications
