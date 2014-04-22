@@ -1,24 +1,23 @@
 module FeedsHelper
-  def render_feed_action(feed)
-    render "feeds/actions/#{feed.type.to_s}", feed: feed
+  def render_feeds(activities)
+    present_feeds(activities).reduce("") do |html, fp|
+      html.concat fp.render_to_html
+    end.html_safe
   end
 
-  def render_feed(feed)
-    tmpl = feed.type.to_s.split('_').last
-    render "feeds/#{tmpl}", feed: feed
+  def present_feeds(activities)
+    feeds = activities.map { |a| present(a, FeedPresenter) }
+    # merge_feeds feeds
   end
 
   def merge_feeds(feeds)
+    feeds = feeds.group_by(&:identifier).map do |g|
+      g.last.reduce(nil) do |f_merged, f|
+        f_merged ||= f
+      end
+    end
+    logger.debug feeds
     feeds
   end
 
-  def sort_feeds(feeds)
-    feeds = merge_feeds(feeds)
-  end
-
-  def render_feeds(feeds)
-    sort_feeds(feeds).reduce("") do |html, feed|
-      html.concat render_feed(feed)
-    end.html_safe
-  end
 end

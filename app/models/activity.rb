@@ -49,6 +49,6 @@ class Activity
   end
 
   def identifier
-    [source_union, reference_union].compact.join('_')
+    [type, source_union, reference_union].compact.join('_')
   end
 end

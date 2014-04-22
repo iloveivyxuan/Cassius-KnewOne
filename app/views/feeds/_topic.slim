@@ -1,9 +1,10 @@
-- topic = feed.reference
+- topic = fp.reference
 - if topic && topic.group
   - present topic do |tp|
-    section.feed_article data-identifier="#{feed.identifier}"
+    section.feed_article data-identifier="#{fp.identifier}"
       .metas
-        = render_feed_action feed
+        = fp.render_users
+        = fp.render_action
       figure
         - present topic.group do |gp|
           = link_to gp.path do

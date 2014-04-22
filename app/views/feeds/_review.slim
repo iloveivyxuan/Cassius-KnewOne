@@ -1,9 +1,10 @@
-- review = feed.reference
+- review = fp.reference
 - if review && review.thing
   - present review do |rp|
-    section.feed_article data-identifier="#{feed.identifier}"
+    section.feed_article data-identifier="#{fp.identifier}"
       .metas
-        = render_feed_action feed
+        = fp.render_users
+        = fp.render_action
       figure
         - present review.thing do |tp|
           = link_to tp.path do

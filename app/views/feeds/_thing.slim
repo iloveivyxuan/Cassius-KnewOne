@@ -1,9 +1,10 @@
-- thing = feed.reference
+- thing = fp.reference
 - if thing
   - present thing do |tp|
-    figure class="thing" data-identifier="#{feed.identifier}"
+    figure class="thing" data-identifier="#{fp.identifier}"
       .metas
-        = render_feed_action feed
+        = fp.render_users
+        = fp.render_action
       - tp.self_run?
         .pre_ribbon class="#{tp.stage}"
           span = tp.stage_text

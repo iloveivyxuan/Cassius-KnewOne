@@ -1,7 +1,6 @@
-- feeds = sort_feeds(@activities)
+- fps = present_feeds(@activities)
 table.table.table-striped
-  - feeds.each do |f|
+  - fps.each do |fp|
     tr
-      td= f.type
-      td= f.identifier
-      td= f.user.name
+      td= fp.identifier
+      td= fp.activity.user.name
