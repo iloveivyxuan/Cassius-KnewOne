@@ -8,12 +8,16 @@ module FeedsHelper
     render "feeds/#{tmpl}", feed: feed
   end
 
-  def resort_feeds(feeds)
+  def merge_feeds(feeds)
     feeds
   end
 
+  def sort_feeds(feeds)
+    feeds = merge_feeds(feeds)
+  end
+
   def render_feeds(feeds)
-    resort_feeds(feeds).reduce("") do |html, feed|
+    sort_feeds(feeds).reduce("") do |html, feed|
       html.concat render_feed(feed)
     end.html_safe
   end

@@ -216,30 +216,6 @@ class Thing < Post
   need_aftermath :create, :destroy, :own, :unown, :fancy, :unfancy
 
   class << self
-    def resort!
-      things = self.where(lock_priority: false).gt(priority: 0).to_a.shuffle
-
-      self_run = things.select(&:self_run?).group_by(&:recommended?).values.reduce(&:+).reverse
-      ugc = (things - self_run).group_by(&:recommended?).values.reduce &:+
-      count = things.count
-
-      self_run.each do |s|
-        s.set priority: count
-        count -= 1
-
-        (Random.new(SecureRandom.uuid.gsub(/[-a-z]/, '').to_i).rand(87) % 4).times do
-          t = ugc.pop
-          t.set priority: count
-          count -= 1
-        end
-      end
-
-      ugc.each do |t|
-        t.set priority: count
-        count -= 1
-      end
-    end
-
     def rand_records(per = 1)
       (0...Thing.published.count).to_a.shuffle.slice(0, per).map { |i| Thing.published.skip(i).first }
     end

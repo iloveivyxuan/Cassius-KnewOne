@@ -206,10 +206,6 @@ Making::Application.routes.draw do
     resources :landing_covers, except: [:show]
     resources :promotions, except: [:show]
     resources :things, only: [:index, :update, :edit] do
-      collection do
-        get 'resort'
-      end
-
       member do
         get 'send_stock_notification'
       end
