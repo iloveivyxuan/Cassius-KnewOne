@@ -133,6 +133,10 @@ class ThingPresenter < PostPresenter
     show_count thing.comments.count
   end
 
+  def feelings_count
+    show_count thing.feelings.count
+  end
+
   def share_content
     user_signed_in? or return
     topic = ' @KnewOne '
