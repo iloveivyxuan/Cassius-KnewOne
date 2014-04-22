@@ -3,7 +3,6 @@
   - present review do |rp|
     section.feed_article data-identifier="#{fp.identifier}"
       .metas
-        = fp.render_users
         = fp.render_action
       figure
         - present review.thing do |tp|

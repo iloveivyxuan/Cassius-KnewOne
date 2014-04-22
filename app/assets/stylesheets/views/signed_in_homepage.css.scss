@@ -192,7 +192,6 @@ html.signed_in_homepage {
   }
 
   #wrapper {
-
     .thing {
       border-radius: 0;
 
@@ -201,7 +200,6 @@ html.signed_in_homepage {
         margin-bottom: 10px;
 
         .meta {
-
           &.fa-heart {
             color: $red;
           }
@@ -209,10 +207,6 @@ html.signed_in_homepage {
           &.fa-check {
             color: $green;
           }
-        }
-
-        a.meta {
-          color: $gray;
         }
       }
     }

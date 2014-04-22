@@ -2,7 +2,7 @@ class FeedPresenter < ApplicationPresenter
   presents :activity
   delegate :identifier, :reference, to: :activity
 
-  def merge_user(user)
+  def add_user(user)
     @users ||= []
     @users << user unless @users.include? user
   end
@@ -16,10 +16,10 @@ class FeedPresenter < ApplicationPresenter
   end
 
   def render_action
-    render "feeds/actions/#{activity.type.to_s}", fp: self
-  end
-
-  def render_users
-    render 'feeds/actions/users', up: present(activity.user)
+    if users.present?
+      users_html = render "feeds/actions/users", users: users
+      action_html = render "feeds/actions/#{activity.type.to_s}"
+      users_html.concat action_html
+    end
   end
 end

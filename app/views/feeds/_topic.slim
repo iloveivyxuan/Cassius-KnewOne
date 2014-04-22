@@ -3,7 +3,6 @@
   - present topic do |tp|
     section.feed_article data-identifier="#{fp.identifier}"
       .metas
-        = fp.render_users
         = fp.render_action
       figure
         - present topic.group do |gp|

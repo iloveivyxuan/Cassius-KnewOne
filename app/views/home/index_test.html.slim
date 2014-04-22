@@ -3,4 +3,4 @@ table.table.table-striped
   - fps.each do |fp|
     tr
       td= fp.identifier
-      td= fp.activity.user.name
+      td= fp.users.map(&:name).join(',')

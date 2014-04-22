@@ -7,17 +7,16 @@ module FeedsHelper
 
   def present_feeds(activities)
     feeds = activities.map { |a| present(a, FeedPresenter) }
-    # merge_feeds feeds
+    uniq_feeds feeds
   end
 
-  def merge_feeds(feeds)
-    feeds = feeds.group_by(&:identifier).map do |g|
-      g.last.reduce(nil) do |f_merged, f|
+  def uniq_feeds(feeds)
+    feeds.group_by(&:identifier).map do |group|
+      group.last.reduce(nil) do |f_merged, f|
         f_merged ||= f
+        f_merged.add_user f.activity.user
+        f_merged
       end
     end
-    logger.debug feeds
-    feeds
   end
-
 end
