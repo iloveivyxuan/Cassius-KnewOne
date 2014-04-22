@@ -1,13 +1,9 @@
-- thing = activity.reference
+- thing = feed.reference
 - if thing
   - present thing do |tp|
-    figure class="thing" data-identifier="#{activity.identifier}"
+    figure class="thing" data-identifier="#{feed.identifier}"
       .metas
-        = link_to activity.user, class: "meta" do
-          = image_tag activity.user.avatar.url(:tiny), alt: activity.user.name, class: "img-circle"
-        = link_to activity.user.name, activity.user, class: 'meta name'
-        i.meta.fa class="#{feed_type_icon_class(activity)}"
-        = feed_type_text activity
+        = render_feed_action feed
       - tp.self_run?
         .pre_ribbon class="#{tp.stage}"
           span = tp.stage_text

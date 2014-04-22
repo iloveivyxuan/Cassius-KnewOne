@@ -16,6 +16,8 @@ class HomeController < ApplicationController
         else
           render 'home/index_xhr', layout: false
         end
+      elsif params[:test] == "test"
+        render 'home/index_test'
       else
         render layout: 'home'
       end

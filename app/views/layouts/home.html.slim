@@ -5,7 +5,6 @@
     span data-picture="true" data-alt="KnewOne 创客之选"
       span data-src=asset_path('specials/makerfaire/banner/banner-xs.jpg')
       span data-src=asset_path('specials/makerfaire/banner/banner-sm-md.jpg') data-media="(min-width: 768px)"
-  /-- END .promotion --/
 
   main role="main"
     = yield
@@ -34,7 +33,6 @@
         li.divider
         li = link_to_with_icon '天天有礼', 'fa fa-fw fa-gift', rewards_path
         li = link_to_with_icon '查找朋友', 'fa fa-fw fa-users', recommend_users_profile_path
-    /-- END nav --/
 
     section.tag.panel
       header.panel-heading
@@ -42,11 +40,9 @@
         | 我的标签
       .panel-body
         = render current_user.categories.limit(4)
-    /-- END .tag --/
 
     a.promotion href=makerfaire_path target="_blank"
       img src=asset_path('specials/makerfaire/banner/banner-xs.jpg')
-    /--END .promotion --/
 
     section#choiceness.panel
       header.panel-heading
@@ -54,7 +50,6 @@
         = link_to_with_icon '', 'fa fa-random', random_things_path(per: 1), class: 'more', remote: true
       .panel-body
         = @editor_choices.map { |t| render 'things/editor_choice', thing: t }.join.html_safe
-    /-- END #choiceness --/
 
     footer
       nav.nav_bottom
@@ -68,11 +63,5 @@
         | 粤ICP备13057487号
         br
         | &copy; 2014 KnewOne
-    /-- END footer --/
-  /--END aside --/
-
-- content_for :script do
-  javascript:
-    Making.InitHome();
 
 = render template: 'layouts/application'

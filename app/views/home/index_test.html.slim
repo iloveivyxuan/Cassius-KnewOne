@@ -1,0 +1,6 @@
+- feeds = resort_feeds(@activities)
+table.table.table-striped
+  - feeds.each do |f|
+    tr
+      td= f.type
+      td= f.identifier

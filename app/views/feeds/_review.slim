@@ -1,13 +1,9 @@
-- review = activity.reference
+- review = feed.reference
 - if review && review.thing
   - present review do |rp|
-    section.feed_article data-identifier="#{activity.identifier}"
+    section.feed_article data-identifier="#{feed.identifier}"
       .metas
-        = link_to activity.user, class: "meta" do
-          = image_tag activity.user.avatar.url(:tiny), alt: activity.user.name, class: "img-circle"
-        = link_to activity.user.name, activity.user, class: 'meta'
-        i.meta.fa class="#{feed_type_icon_class(activity)}"
-        = feed_type_text activity
+        = render_feed_action feed
       figure
         - present review.thing do |tp|
           = link_to tp.path do

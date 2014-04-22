@@ -1,10 +1,12 @@
 header.page-header
-  h1
-    | 最新动态
-  = link_to_with_icon "分享产品", "fa fa-plus", "#", data: {toggle: "modal", target: "#new-thing-modal"}, class: 'btn btn-primary'
+  h1 最新动态
 
 #activities
   = render_feeds(@activities)
 
 .spinner
   i.fa.fa-spinner.fa-spin.fa-2x
+
+- content_for :script do
+  javascript:
+    Making.InitHome();
