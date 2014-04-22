@@ -3,8 +3,16 @@ header.page-header
 = simple_nested_form_for @thing, url: haven_thing_path(@thing), html: {multipart: true, class: "pro_edit_thing_form"} do |f|
   .form-group
     label.control-label 分享者
-    = hidden_field_tag 'thing[author]', @thing.author.id.to_s, id: 'user_id'
-    input#user_autocomplete.form-control placeholder="用户昵称" value="#{@thing.author.name}"
+    = hidden_field_tag 'thing[author]', @thing.author.id.to_s, id: 'author_id'
+    input#author_autocomplete.form-control placeholder="用户昵称" value="#{@thing.author.name}"
+  .form-group
+    label.control-label 创造者
+    - if @thing.maker.present?
+      - maker_id, maker_name = @thing.maker.id.to_s, @thing.maker.name
+    - else
+      - maker_id, maker_name = "", ""
+    = hidden_field_tag 'thing[maker]', maker_id, id: 'maker_id'
+    input#maker_autocomplete.form-control placeholder="用户昵称" value="#{maker_name}"
   = f.input :categories_text, hint: "用,分隔"
   = f.input :shop, as: :url
   = f.input :price do
@@ -38,4 +46,5 @@ header.page-header
 - content_for :script do
   javascript:
     Making.Editor('#thing_shopping_desc');
-    Making.UserFuzzy('#user_autocomplete', '#user_id');
+    Making.UserFuzzy('#author_autocomplete', '#author_id');
+    Making.UserFuzzy('#maker_autocomplete', '#maker_id');

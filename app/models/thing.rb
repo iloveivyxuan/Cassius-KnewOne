@@ -11,6 +11,8 @@ class Thing < Post
   field :categories, type: Array, default: []
   after_save :update_categories
 
+  belongs_to :maker, class_name: "User", inverse_of: nil
+
   field :related_thing_ids, type: Array, default: []
 
   field :shop, type: String, default: ""
