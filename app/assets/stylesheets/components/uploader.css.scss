@@ -1,0 +1,117 @@
+// Uploader.
+//
+//
+
+.uploader {
+  margin-bottom: 2em;
+
+  .fileinput-button {
+    position: relative;
+
+    input {
+      position: absolute;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+      opacity: 0;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+.uploader_queue {
+  $size: 80px;
+
+  @include transition(background-color, .2s);
+  border: 1px dashed #ccc;
+
+  &.dragover {
+    background-color: lighten($green, 50%);
+  }
+
+  .help-block {
+    margin: 1em 1.25em 0;
+  }
+
+  ul {
+    @include clearfix;
+    padding: {
+      left: 1em;
+      top: 1em;
+    }
+
+    li {
+      float: left;
+      margin-right: 1em;
+      position: relative;
+
+      &.uploading {
+
+        .photo {
+
+          canvas {
+            opacity: .5;
+          }
+        }
+      }
+
+      &.uploaded {
+        cursor: move;
+      }
+
+      &.sortable-placeholder {
+        @include square($size);
+        background: lighten($green, 50%);
+        margin-bottom: 1em;
+      }
+
+      &.fail {
+        @include square($size);
+        background-color: lighten($pink, 45%);
+        color: $pink;
+        margin-bottom: 1em;
+        padding: 10px;
+        text-align: center;
+      }
+
+      &:hover {
+
+        .destroy {
+          opacity: 1;
+        }
+      }
+
+      .destroy {
+        background-color: #fff;
+        opacity: 0;
+        height: 25px;
+        line-height: 25px;
+        margin: 0;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        top: 0;
+        width: 25px;
+
+        .fa {
+          color: $red;
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+.uploader_item {
+  height: calc(80px + 1em);
+  width: 80px;
+
+  .progress {
+    bottom: .25em;
+    height: .5em;
+    margin-bottom: 0;
+    position: absolute;
+    width: 100%;
+  }
+}

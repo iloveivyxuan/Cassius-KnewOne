@@ -4,7 +4,7 @@ class Making.Views.Photo extends Backbone.View
   className: 'uploaded'
   template: HandlebarsTemplates['photos/photo']
 
-  events: 
+  events:
     "click .destroy": "destroy"
 
   render: =>
@@ -12,9 +12,8 @@ class Making.Views.Photo extends Backbone.View
     this
 
   destroy: (e) =>
-    @$el.fadeOut =>
-      @remove()
     e.preventDefault()
 
-
-
+    @$el.fadeOut =>
+      @.remove()
+      @.model.destroy()

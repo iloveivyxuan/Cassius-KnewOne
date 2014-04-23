@@ -22,7 +22,7 @@ header.page-header
   = f.input :content, as: :hidden
 
 #thing_form_content
-  = simple_form_for Photo.new do |f|
+  = simple_form_for Photo.new, html: {class: "uploader"} do |f|
     .form-group
       span.btn.btn-info.fileinput-button title="请为产品上传图片" data-placement="right"
         i.fa.fa-cloud-upload
@@ -30,9 +30,9 @@ header.page-header
         = f.file_field :image, multiple: true, name: "photo[image]"
       span.help-block
         | 产品至少需要上传一张照片（多张会更好），我们建议您的照片宽度至少大于1152像素，光线充足并适当留白
-    = content_tag :div, id: "photos", data: {photos: @photos} do
-      p
-        i.fa.fa-reply-all.fa-2x
+    = content_tag :div, class: "uploader_queue", id: "photos", data: {photos: @photos} do
+      p.help-block
+        i.fa.fa-arrows
         | 可以将照片文件直接从桌面拖拽进来
 
   .form-group
