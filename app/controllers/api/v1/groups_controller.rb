@@ -4,7 +4,7 @@ module Api
       before_action :set_group, except: [:index]
 
       def index
-        @groups = Group.all
+        @groups = Group.all.page(params[:page]).per(params[:per_page] || 24)
       end
 
       def show
