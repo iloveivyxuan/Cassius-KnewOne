@@ -12,7 +12,7 @@
         - present topic.group do |gp|
           = link_to gp.path do
             = gp.avatar
-            figurecaption title="#{gp.name}" = gp.name
+            figcaption title="#{gp.name}" = gp.name
       = link_to tp.path, class: "feed_main"
         article
           header.feed_header

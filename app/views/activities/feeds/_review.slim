@@ -12,7 +12,7 @@
         - present review.thing do |tp|
           = link_to tp.path do
             = tp.photo(:small)
-            figurecaption title="#{tp.title}" = tp.title
+            figcaption title="#{tp.title}" = tp.title
       = link_to rp.path, class: "feed_main"
         article
           header.feed_header

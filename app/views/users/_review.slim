@@ -4,7 +4,7 @@
       figure
         = link_to thing_path(review.thing) do
           = image_tag review.thing.cover.url(:small)
-        figurecaption title=review.thing.title
+        figcaption title=review.thing.title
           = review.thing.title
       = link_to rp.path, class: "feed_main"
         article
