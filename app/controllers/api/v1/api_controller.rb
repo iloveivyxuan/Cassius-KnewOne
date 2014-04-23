@@ -33,11 +33,24 @@ module Api
         include mod
       end
 
+      # Define some internal variables that should not be propagated to the view.
+      PROTECTED_IVARS = AbstractController::Rendering::DEFAULT_PROTECTED_INSTANCE_VARIABLES + [
+          :@_status, :@_headers, :@_params, :@_env, :@_response, :@_request,
+          :@_view_runtime, :@_stream, :@_url_options, :@_action_has_layout ]
+
+      def _protected_ivars # :nodoc:
+        PROTECTED_IVARS
+      end
+
+      def self.protected_instance_variables
+        PROTECTED_IVARS
+      end
+
       ActiveSupport.run_load_hooks(:action_controller, self)
 
       append_view_path "#{Rails.root}/app/views"
 
-      after_action :respond_request
+      after_filter :respond_request
 
       rescue_from Mongoid::Errors::DocumentNotFound do
         head :not_found
@@ -66,10 +79,6 @@ module Api
         respond_to do |format|
           format.json
         end
-      end
-
-      def render_json(obj, options = {})
-        render({text: obj.to_json, content_type: 'application/json'}.merge(options))
       end
 
       def render_error(*attrbutes)

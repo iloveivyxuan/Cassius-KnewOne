@@ -6,6 +6,7 @@ module Api
     class OauthController < ApiController
       before_action :check_fields, :check_expired, :check_sign, :check_provider, only: :exchange_access_token
 
+      skip_after_action :respond_request
       APP_NAME = 'KnewOne APP'
       SECRET = '62b5f1b6'
 
@@ -30,14 +31,14 @@ module Api
                                             use_refresh_token: Doorkeeper.configuration.refresh_token_enabled?
         end
 
-        render_json({access_token: token.token, user_id: user.id.to_s})
+        render :json => {:access_token => token.token, :user_id => user.id.to_s}
       end
 
       def default_callback
         if params[:code].blank?
           head :not_acceptable
         else
-          render_json({type: 'authorization_code', code: params[:code]})
+          render json: {type: 'authorization_code', code: params[:code]}
         end
       end
 
@@ -45,25 +46,25 @@ module Api
 
       def check_fields
         if params[:provider].blank? || params[:access_token].blank? || params[:timestamp].blank? || params[:sign].blank?
-          render_json({message: 'field missing'}, status: :bad_request)
+          render :status => :not_acceptable, :json => {:message => 'field missing'}
         end
       end
 
       def check_expired
         if params[:timestamp].to_i < Time.now.to_i - 300
-          render_json({message: 'expired'}, status: :bad_request)
+          render :status => :request_timeout, :json => {:message => 'expired'}
         end
       end
 
       def check_sign
         if Digest::MD5.hexdigest(params[:provider] + params[:access_token] + params[:timestamp] + SECRET) != params[:sign]
-          render_json({message: 'invalid sign'}, status: :bad_request)
+          render :status => :bad_request, :json => {:message => 'invalid sign'}
         end
       end
 
       def check_provider
         unless %w(weibo twitter).include?(params[:provider])
-          render_json({message: 'invalid provider'}, status: :bad_request)
+          render :status => :bad_request, :json => {:message => 'invalid provider'}
         end
       end
 
@@ -74,13 +75,13 @@ module Api
         result = client.oauth2.get_token_info
 
         if result.appkey.to_s != WEIBO_APPKEY
-          return render_json({message: 'invalid access token'}, status: :bad_request)
+          return render :status => :bad_request, :json => {:message => 'invalid access token'}
         end
 
         uid = result.uid.to_s
 
         if uid.blank?
-          return render_json({message: 'invalid access token'}, status: :bad_request)
+          return render :status => :bad_request, :json => {:message => 'invalid access_token'}
         end
 
         client.users.show(uid: uid)
