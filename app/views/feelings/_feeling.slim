@@ -16,6 +16,10 @@
               = fp.created_at
               .comments_count
                 = link_to_with_icon feeling.comments.count, "fa fa-comments-o", "#"
+              - if can? :destroy, feeling
+                .destroy
+                  = link_to_with_icon "", "fa fa-trash-o", [feeling.thing, feeling],
+                    method: :delete, remote: true
           section
             = fp.cover
             p = fp.content

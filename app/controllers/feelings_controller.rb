@@ -41,7 +41,10 @@ class FeelingsController < ApplicationController
 
   def destroy
     @feeling.destroy
-    redirect_to thing_feelings_path(@thing)
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def vote
