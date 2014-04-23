@@ -19,12 +19,10 @@ class FeelingsController < ApplicationController
 
   def create
     @feeling.author = current_user
-    if @feeling.save
-      flash[:provider_sync] = params[:provider_sync]
-      redirect_to thing_feeling_path(@thing, @feeling)
-    else
-      flash.now[:error] = @feeling.errors.full_messages.first
-      render 'new'
+    @feeling.save
+
+    respond_to do |format|
+      format.js
     end
   end
 

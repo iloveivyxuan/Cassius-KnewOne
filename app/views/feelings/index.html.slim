@@ -1,5 +1,14 @@
-- provide :nav, :feelings
+- provide :nav, :thing_feelings
 
-- if @feelings.present?
-  ul#feelings= render @feelings
-  = paginate @feelings
+h2 我来说两句
+
+= render 'form'
+
+= render 'sort'
+
+ul.feeling_list= render @feelings
+= paginate @feelings
+
+- content_for :script do
+  javascript:
+    Making.Rating();

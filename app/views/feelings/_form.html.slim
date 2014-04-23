@@ -1,0 +1,8 @@
+.feeling_form
+  = simple_form_for [@thing, Feeling.new], remote: true do |f|
+    = f.input :score, as: :range, label: false, input_html: {class:'range_rating', max: 5, min: 0}
+    = f.input :content, as: :text, label: false
+    = button_tag "发布", type: "submit", class: "btn btn-success pull-right"
+
+  = simple_form_for Photo.new do |f|
+    = f.file_field :image, multiple: true, name: "photo[image]", label: "上传图片"
