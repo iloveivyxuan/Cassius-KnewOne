@@ -5,6 +5,9 @@
         = fp.author_avatar(:small)
         figurecaption
           = fp.author_name
+
+      = render partial: 'voting', locals: {feeling: feeling}
+
       = link_to fp.path, class: "feed_main" do
         article
           header.feed_header
@@ -17,5 +20,3 @@
           section.feed_content
             = fp.cover
             p = fp.content
-          strong.feed_feature
-            = fp.lovers_count
