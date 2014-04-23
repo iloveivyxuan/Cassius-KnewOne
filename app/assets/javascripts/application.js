@@ -27,6 +27,7 @@
 //= require common
 //= require notificationbox
 //= require search
+//= require editor
 //= require welcome
 //= require home
 //= require thing

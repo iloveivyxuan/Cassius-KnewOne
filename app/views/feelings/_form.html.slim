@@ -1,8 +1,20 @@
 .feeling_form
-  = simple_form_for [@thing, Feeling.new], remote: true do |f|
-    = f.input :score, as: :range, label: false, input_html: {class:'range_rating', max: 5, min: 0}
-    = f.input :content, as: :text, label: false
-    = button_tag "发布", type: "submit", class: "btn btn-success pull-right"
+  = simple_form_for [@thing, Feeling.new], remote: true, html: {class: "editor_compact"} do |f|
+    = f.input :content, as: :text, label: false, wrapper_html: {class: "editor_content"}, input_html: {class: "form-control", rows: 5, maxlength: 140}
+    footer
+      span.separator |
+      = f.input :score, as: :range, label: false, input_html: {class:'range_rating', max: 5, min: 0}
+      = button_tag type: "submit", class: "btn btn-success", title: "按 Command + Enter 或 Control + Enter 键发布回复", data: {toggle: "tooltip", placement: "bottom"} do
+        i.fa.fa-comments-o
+        | 发布
 
-  = simple_form_for Photo.new do |f|
-    = f.file_field :image, multiple: true, name: "photo[image]", label: "上传图片"
+  = simple_form_for Photo.new, html: {class: "uploader"} do |f|
+    button.btn.btn-info.uploader_button type="button"
+      i.fa.fa-cloud-upload
+      | 上传图片
+      = f.file_field :image, multiple: true, name: "photo[image]", label: "上传图片"
+    = content_tag :div, class: "uploader_queue", id: "photos", data: {photos: @photos} do
+      p.help-block
+        i.fa.fa-arrows
+        | 可以将照片文件直接从桌面拖拽进来
+      ul

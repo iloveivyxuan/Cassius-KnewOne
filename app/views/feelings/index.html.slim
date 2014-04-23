@@ -1,14 +1,12 @@
 - provide :nav, :thing_feelings
 
-h2 我来说两句
-
 = render 'form'
 
-= render 'sort'
-
-ul.feeling_list= render @feelings
-= paginate @feelings
+section.feelings
+  = render 'sort'
+  ul= render @feelings
+  = paginate @feelings
 
 - content_for :script do
   javascript:
-    Making.Rating();
+    Making.InitFeelings();
