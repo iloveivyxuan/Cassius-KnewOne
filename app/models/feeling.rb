@@ -9,4 +9,8 @@ class Feeling < Post
   validates :content, presence: true
 
   default_scope -> { desc(:created_at) }
+
+  def photos
+    Photo.find_with_order photo_ids
+  end
 end
