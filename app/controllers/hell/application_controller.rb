@@ -5,27 +5,41 @@ module Hell
     abstract!
 
     MODULES = [
-        ActionController::Caching,
-        ActionController::Helpers,
-        ActionController::Redirecting,
         AbstractController::Rendering,
+
+        ActionController::Helpers,
+        ActionController::HideActions,
+        ActionController::UrlFor,
+        ActionController::Redirecting,
+        ActionView::Layouts,
         ActionController::Rendering,
         ActionController::Renderers::All,
-        ActionView::Layouts,
         ActionController::ConditionalGet,
-        # need this for responding to different types .json .xml etc...
+        ActionController::RackDelegation,
+        ActionController::Caching,
         ActionController::MimeResponds,
-        ActionController::RequestForgeryProtection,
-        # ActionController::ForceSSL,
-        AbstractController::Callbacks,
-        # need this to build params
-        ActionController::Instrumentation,
-        # need this for wrap_parameters
-        ActionController::ParamsWrapper,
+        ActionController::ImplicitRender,
         ActionController::StrongParameters,
+
+        ActionController::ForceSSL,
+
+        # Before callbacks should also be executed the earliest as possible, so
+        # also include them at the bottom.
+        AbstractController::Callbacks,
+
+        # Append rescue at the bottom to wrap as much as possible.
         ActionController::Rescue,
-        ActionController::Head,
-        Rails.application.routes.url_helpers,
+
+        # Add instrumentations hooks at the bottom, to ensure they instrument
+        # all the methods properly.
+        ActionController::Instrumentation,
+
+        # Params wrapper should come before instrumentation so they are
+        # properly showed in logs
+        ActionController::ParamsWrapper,
+
+        Devise::Controllers::Helpers,
+        Rails.application.routes.url_helpers
     ]
 
     MODULES.each do |mod|

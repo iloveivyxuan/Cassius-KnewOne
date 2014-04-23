@@ -4,46 +4,46 @@ module Api
       abstract!
 
       MODULES = [
-          ActionController::Caching,
-          ActionController::Helpers,
-          ActionController::Redirecting,
           AbstractController::Rendering,
+
+          ActionController::Helpers,
+          ActionController::HideActions,
+          ActionController::UrlFor,
+          ActionController::Redirecting,
+          ActionView::Layouts,
           ActionController::Rendering,
           ActionController::Renderers::All,
-          ActionView::Layouts,
           ActionController::ConditionalGet,
-          # need this for responding to different types .json .xml etc...
+          ActionController::RackDelegation,
+          ActionController::Caching,
           ActionController::MimeResponds,
-          ActionController::RequestForgeryProtection,
-          # ActionController::ForceSSL,
-          AbstractController::Callbacks,
-          # need this to build params
-          ActionController::Instrumentation,
-          # need this for wrap_parameters
-          ActionController::ParamsWrapper,
+          ActionController::ImplicitRender,
           ActionController::StrongParameters,
+
+          ActionController::ForceSSL,
+
+          # Before callbacks should also be executed the earliest as possible, so
+          # also include them at the bottom.
+          AbstractController::Callbacks,
+
+          # Append rescue at the bottom to wrap as much as possible.
           ActionController::Rescue,
-          ActionController::Head,
+
+          # Add instrumentations hooks at the bottom, to ensure they instrument
+          # all the methods properly.
+          ActionController::Instrumentation,
+
+          # Params wrapper should come before instrumentation so they are
+          # properly showed in logs
+          ActionController::ParamsWrapper,
+
           Doorkeeper::Helpers::Filter,
           Devise::Controllers::Helpers,
-          Rails.application.routes.url_helpers,
+          Rails.application.routes.url_helpers
       ]
 
       MODULES.each do |mod|
         include mod
-      end
-
-      # Define some internal variables that should not be propagated to the view.
-      PROTECTED_IVARS = AbstractController::Rendering::DEFAULT_PROTECTED_INSTANCE_VARIABLES + [
-          :@_status, :@_headers, :@_params, :@_env, :@_response, :@_request,
-          :@_view_runtime, :@_stream, :@_url_options, :@_action_has_layout ]
-
-      def _protected_ivars # :nodoc:
-        PROTECTED_IVARS
-      end
-
-      def self.protected_instance_variables
-        PROTECTED_IVARS
       end
 
       ActiveSupport.run_load_hooks(:action_controller, self)
