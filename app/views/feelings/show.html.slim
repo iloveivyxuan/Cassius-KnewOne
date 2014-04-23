@@ -1,0 +1,9 @@
+- provide :nav, :thing_feelings
+
+= render @feeling
+
+= render 'shared/comments', post: @feeling, id: "comments", auth: true
+
+- content_for :script do
+  javascript:
+    Making.Comments("#comments");
