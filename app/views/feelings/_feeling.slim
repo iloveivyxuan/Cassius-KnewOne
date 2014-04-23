@@ -1,21 +1,25 @@
 - if feeling.thing
-  li.feed_article
+  li id="feeling_#{feeling.id}"
     - present feeling do |fp|
       figure
         = fp.author_avatar(:small)
         figcaption
           = fp.author_name
-      = link_to fp.path, class: "feed_main" do
+
+      = render partial: 'voting', locals: {feeling: feeling}
+
+      = link_to fp.path do
         article
-          header.feed_header
-            h4.feed_title= fp.title
+          header
+            h4= fp.title
             .metas
-              = fp.created_at 'meta'
-              .comments_count.meta
-                i.fa.fa-comments-o
-                = feeling.comments.count
-          section.feed_content
+              = fp.created_at
+              .comments_count
+                = link_to_with_icon feeling.comments.count, "fa fa-comments-o", "#"
+              - if can? :destroy, feeling
+                .destroy
+                  = link_to_with_icon "", "fa fa-trash-o", [feeling.thing, feeling],
+                    method: :delete, remote: true
+          section
             = fp.cover
             p = fp.content
-          strong.feed_feature
-            = fp.lovers_count

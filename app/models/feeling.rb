@@ -6,7 +6,7 @@ class Feeling < Post
 
   belongs_to :thing, counter_cache: true
 
-  validates :content, presence: true
+  validates :content, presence: true, length: { maximum: 140 }
 
   default_scope -> { desc(:lovers_count, :created_at) }
 

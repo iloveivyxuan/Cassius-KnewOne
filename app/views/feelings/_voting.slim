@@ -1,13 +1,9 @@
-- present feeling do |fp|
-  .voting
-    - if can? :vote, fp.feeling and !fp.feeling.voted?(current_user)
-      = form_tag vote_thing_feeling_path(fp.feeling.thing, fp.feeling), remote: true,
-      class: "not_voted", data: {type: 'html'} do
-        = button_tag title: "有用", class: "btn btn-default btn-xs", data: {vote: true} do
-          i.fa.fa-thumbs-up
-          | 有用
-        = button_tag title: "没用", class: "btn btn-default btn-xs btn-inverse", data: {vote: false} do
-          i.fa.fa-thumbs-down
-          | 没用
+.voting
+  - present feeling do |fp|
+    - if can? :vote, feeling
+      = form_tag vote_thing_feeling_path(feeling.thing, feeling), remote: true do
+        = button_tag title: "赞", class: "btn btn-primary" do
+          = fp.lovers_count
     - else
-      = fp.votings
+      = button_tag title: "赞", class: "btn btn-primary", disabled: true do
+        = fp.lovers_count

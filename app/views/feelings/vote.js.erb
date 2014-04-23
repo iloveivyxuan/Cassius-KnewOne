@@ -1,0 +1,2 @@
+$('#feeling_<%= @feeling.id %> .voting')
+.replaceWith("<%=j render partial: 'voting', locals: {feeling: @feeling} %>")

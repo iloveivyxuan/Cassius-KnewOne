@@ -41,16 +41,18 @@ class FeelingsController < ApplicationController
 
   def destroy
     @feeling.destroy
-    redirect_to thing_feelings_path(@thing)
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def vote
-    if params[:vote] == "true"
-      @feeling.vote current_user, true
-    else
-      @feeling.vote current_user, false
+    @feeling.vote(current_user, true)
+
+    respond_to do |format|
+      format.js
     end
-    render partial: 'voting', locals: {feeling: @feeling}, layout: false
   end
 
   private
