@@ -1,5 +1,5 @@
 - if feeling.thing
-  li.feed_article id="feeling_#{feeling.id}"
+  li id="feeling_#{feeling.id}"
     - present feeling do |fp|
       figure
         = fp.author_avatar(:small)
@@ -8,15 +8,14 @@
 
       = render partial: 'voting', locals: {feeling: feeling}
 
-      = link_to fp.path, class: "feed_main" do
+      = link_to fp.path do
         article
-          header.feed_header
-            h4.feed_title= fp.title
+          header
+            h4= fp.title
             .metas
-              = fp.created_at 'meta'
-              .comments_count.meta
-                i.fa.fa-comments-o
-                = feeling.comments.count
-          section.feed_content
+              = fp.created_at
+              .comments_count
+                = link_to_with_icon feeling.comments.count, "fa fa-comments-o", "#"
+          section
             = fp.cover
             p = fp.content
