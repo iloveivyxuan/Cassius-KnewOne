@@ -49,7 +49,9 @@ class Ability
     can [:update, :destroy], Feeling do |feeling|
       feeling.author == user
     end
-    can :vote, Feeling
+    can :vote, Feeling do |feeling|
+      feeling.author != user && !feeling.voted?(user)
+    end
 
     can :create, Comment
     can :destroy, Comment do |comment|
