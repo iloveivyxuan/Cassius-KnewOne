@@ -18,6 +18,10 @@ if price = price(thing)
   json.min_price price
   json.price_unit '￥'
 end
+if current_user
+  json.fancied thing.fancied?(current_user)
+  json.owned thing.owned?(current_user)
+end
 json.author do
   json.partial! 'api/v1/users/user', user: thing.author
 end

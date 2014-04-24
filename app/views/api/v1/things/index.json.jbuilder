@@ -24,10 +24,12 @@ json.array!(@things) do |thing|
     json.min_price price
     json.price_unit '￥'
   end
+  if current_user
+    json.fancied thing.fancied?(current_user)
+    json.owned thing.owned?(current_user)
+  end
   json.created_at thing.created_at
   json.updated_at thing.updated_at
-  json.fancier_ids thing.fanciers.map {|u| u.id.to_s}
-  json.owner_ids thing.owners.map {|u| u.id.to_s}
   json.author do
     json.partial! 'api/v1/users/user', user: thing.author
   end
