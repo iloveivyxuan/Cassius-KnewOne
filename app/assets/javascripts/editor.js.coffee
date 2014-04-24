@@ -31,9 +31,11 @@ window.Making = do (exports = window.Making || {}) ->
           .find('.rating').children('.star').removeClass('selected')
           .find('[name*="[photo_ids]"]').remove()
 
-        _$uploader.find('.uploader_item .destroy').trigger('click')
-        _$uploader_queue.removeAttr('style')
         _$content.removeAttr('style')
+        _$uploader_queue
+          .removeAttr('style')
+          .children('ul')
+          .empty()
 
     _$element.data('reset', deferred_reset)
 
