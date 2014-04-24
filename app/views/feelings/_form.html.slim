@@ -9,7 +9,7 @@
         | 发布
 
   = simple_form_for Photo.new, html: {class: "uploader"} do |f|
-    button.btn.btn-info.uploader_button type="button"
+    button.btn.btn-info.uploader_button.fileinput-button type="button"
       i.fa.fa-cloud-upload
       | 上传图片
       = f.file_field :image, multiple: true, name: "photo[image]", label: "上传图片"
@@ -17,4 +17,3 @@
       p.help-block
         i.fa.fa-arrows
         | 可以将照片文件直接从桌面拖拽进来
-      ul

@@ -22,6 +22,7 @@ window.Making = do (exports = window.Making || {}) ->
 
   exports.InitFeelings = ->
     exports.EditorCompact('.feeling_form')
+    exports.FeelingsNew()
 
   #exports
   exports

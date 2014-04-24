@@ -153,6 +153,11 @@ window.Making =
       view = new Making.Views.ThingsNew
         el: "form.thing_form"
 
+  FeelingsNew: ->
+    $ ->
+      view = new Making.Views.FeelingNew
+        el: '.feeling_form > .editor_compact'
+
   FormLink: (form, button) ->
     $ ->
       $(button).click ->
