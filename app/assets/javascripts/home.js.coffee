@@ -1,11 +1,16 @@
 window.Making = do (exports = window.Making || {}) ->
 
   exports.InitHome = ->
-    $container = $('html.signed_in_homepage').find('#activities')
+    $container = $('#activities')
     $spinner = $container.siblings('.spinner')
     $no_content = $container.siblings('.nomore')
     _lock = false
     _page = 1
+
+    render_border = ->
+      $container
+        .find(".col-sm-6:odd").addClass('odd').end()
+        .find(".col-sm-6:even").addClass('even').end()
 
     loading_timeline =  ->
       $.ajax
@@ -15,7 +20,7 @@ window.Making = do (exports = window.Making || {}) ->
       .done (data) ->
         if data
           $container.append(data)
-          exports.ImageLazyLoading()
+          render_border()
           _lock = false
         else
           $no_content.removeClass('hide')
@@ -24,6 +29,8 @@ window.Making = do (exports = window.Making || {}) ->
     $ ->
       if $container.children().length is 0
         $no_content.removeClass('hide')
+      else
+        render_border()
 
       $(window).on 'scroll', ->
         if $(document).height() - $(window).scrollTop() - $(window).height() < 100 and !_lock

@@ -1,14 +1,9 @@
 - thing = fp.reference
 - present thing do |tp|
-  div class="feed_thing #{fp.style}"
+  section class="feed_thing #{fp.style}"
     figure.thing
-      .metas
-        = fp.render_action
-      - tp.self_run?
-        .pre_ribbon class="#{tp.stage}"
-          span = tp.stage_text
       .thing_thumb
-        = image_tag tp.photo_url(:normal), alt: thing.title, class: 'lazy'
+        = tp.photo(:normal)
         .thing_fancy
           = link_to "", thing, class: "thing_fancy_backdrop", target: "_blank"
           .fanciers= render "shared/fancy", p: tp
@@ -16,12 +11,16 @@
         h5 data-placement="top" data-toggle="tooltip" title="" data-original-title="#{tp.full_title}"
           = link_to tp.full_title, thing, target: '_blank'
         .figure_detail
-          span.fanciers
-            i.fa.fa-heart
-            sapn.fanciers_count = thing.fanciers_count
-          span.owners
-            i.fa.fa-check
-            = thing.owners.size
-          = link_to thing_reviews_path(thing), class: 'reviews_count', target: '_blank' do
-            i.fa.fa-pencil
-            = thing.reviews.size
+          = fp.render_action
+          - if thing.fanciers.size > 0
+            span.fanciers
+              i.fa.fa-heart
+              span.fanciers_count = tp.fanciers_count
+          - if thing.owners.size > 0
+            span.owners
+              i.fa.fa-check
+              = tp.owners_count
+          - if thing.reviews.size > 0
+            = link_to thing_reviews_path(thing), class: 'reviews_count', target: '_blank' do
+              i.fa.fa-pencil
+              = thing.reviews.size

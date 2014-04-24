@@ -96,8 +96,7 @@ figure.thing {
     margin-right: -1em;
     padding: 0 1em;
 
-    h5,
-    .figure_detail {
+    h5, .figure_detail {
       text-align: center;
       height: $font-size-base * $line-height-base;
       @include text-overflow;
