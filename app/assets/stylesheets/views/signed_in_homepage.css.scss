@@ -49,11 +49,6 @@ html.signed_in_homepage {
     }
   }
 
-  .feed_article {
-    border-bottom: none;
-    margin-bottom: 0;
-  }
-
   aside {
 
     .nav {
@@ -71,7 +66,6 @@ html.signed_in_homepage {
 
         &.home {
           @include text-overflow;
-
           margin-bottom: 30px;
         }
 
