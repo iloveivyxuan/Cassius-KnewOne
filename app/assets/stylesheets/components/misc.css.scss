@@ -79,7 +79,9 @@ img.lazy {
 
 #check_provider_sync {
   color: $text-muted;
-  margin-left: 2em;
+  margin: {left: 2em; right: 2em;}
+  vertical-align: bottom;
+  input {margin-right: 1em;}
 }
 
 .breadcrumb {
