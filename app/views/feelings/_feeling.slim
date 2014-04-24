@@ -14,6 +14,7 @@
           .metas
             = link_to fp.path do
               = fp.created_at
+            = fp.score
             .comments_count
               = link_to_with_icon feeling.comments.count, "fa fa-comments-o", "#"
             - if can? :destroy, feeling
