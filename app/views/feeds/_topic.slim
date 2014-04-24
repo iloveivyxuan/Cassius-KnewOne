@@ -1,26 +1,26 @@
 - topic = fp.reference
-- if topic && topic.group
-  - present topic do |tp|
-    section.feed_article data-identifier="#{fp.identifier}"
-      .metas
-        = fp.render_action
-      figure
+- present topic do |tp|
+  section class="feed_article #{fp.style}"
+    .metas
+      = fp.render_action
+    figure
+      - if topic.group
         - present topic.group do |gp|
           = link_to gp.path do
             = gp.avatar
             figurecaption title="#{gp.name}" = gp.name
-      = link_to tp.path, class: "feed_main"
-        article
-          header.feed_header
-            h4.feed_title
-              = tp.title
-            .metas
-              em.meta
-                i.fa.fa-comments-o
-                = topic.comments.size
-          section.feed_content
-            = tp.cover
-            p = tp.summary(120)
-          strong.feed_feature title="#{topic.lovers_count} 个人觉得赞"
-            i.fa.fa-plus
-            = topic.lovers_count
+    = link_to tp.path, class: "feed_main"
+      article
+        header.feed_header
+          h4.feed_title
+            = tp.title
+          .metas
+            em.meta
+              i.fa.fa-comments-o
+              = topic.comments.size
+        section.feed_content
+          = tp.cover
+          p = tp.summary(120)
+        strong.feed_feature title="#{topic.lovers_count} 个人觉得赞"
+          i.fa.fa-plus
+          = topic.lovers_count

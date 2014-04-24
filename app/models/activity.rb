@@ -2,6 +2,8 @@ class Activity
   include Mongoid::Document
   include Mongoid::Timestamps::Created
 
+  #type common rules: {action}_{reference}
+  #examples: new_review, fancy_thing
   field :type, type: Symbol
   validates :type, presence: true
 
@@ -46,9 +48,5 @@ class Activity
 
   def source=(record)
     self.source_union = "#{record.class.to_s}_#{record.id.to_s}"
-  end
-
-  def identifier
-    [type, source_union, reference_union].compact.join('_')
   end
 end

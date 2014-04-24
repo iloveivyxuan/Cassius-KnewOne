@@ -6,17 +6,25 @@ module FeedsHelper
   end
 
   def present_feeds(activities)
-    feeds = activities.map { |a| present(a, FeedPresenter) }
-    uniq_feeds feeds
+    feeds = activities
+      .uniq(&:reference_union)
+      .select(&:reference)
+      .map { |a| present(a, FeedPresenter) }
+    sort_feeds feeds
   end
 
-  def uniq_feeds(feeds)
-    feeds.group_by(&:identifier).map do |group|
-      group.last.reduce(nil) do |f_merged, f|
-        f_merged ||= f
-        f_merged.add_user f.activity.user
-        f_merged
-      end
+  def sort_feeds(feeds)
+    thing_feeds, post_feeds = [], []
+    feeds.each { |f| (f.tmpl == "thing" ? thing_feeds : post_feeds) << f }
+    if thing_feeds.length % 2 > 0
+      thing_feeds.last.display = :row
     end
+    arrange_feeds thing_feeds, post_feeds
+  end
+
+  def arrange_feeds(thing_feeds, post_feeds, scratch_thing = true)
+    return [] if thing_feeds.blank? and post_feeds.blank?
+    scratched = scratch_thing ? thing_feeds.shift(2) : post_feeds.shift(1)
+    scratched + arrange_feeds(thing_feeds, post_feeds, !scratch_thing)
   end
 end

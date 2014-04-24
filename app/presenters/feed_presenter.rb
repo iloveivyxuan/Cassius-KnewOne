@@ -1,25 +1,29 @@
 class FeedPresenter < ApplicationPresenter
   presents :activity
-  delegate :identifier, :reference, to: :activity
+  delegate :reference_union, :reference, :source, to: :activity
 
-  def add_user(user)
-    @users ||= []
-    @users << user unless @users.include? user
+  def tmpl
+    @tmpl ||= activity.type.to_s.split('_').last
   end
 
-  def users
-    @users || []
+  def display=(style)
+    if [:half, :row].include? style
+      @display = style
+    end
+  end
+
+  def style
+    @display ||= (tmpl == "thing" ? :half : :row)
+    {half: "col-sm-6", row: "col-sm-12"}[@display]
   end
 
   def render_to_html
-    render "feeds/#{activity.type.to_s.split('_').last}", fp: self
+    render "feeds/#{tmpl}", fp: self
   end
 
   def render_action
-    if users.present?
-      users_html = render "feeds/actions/users", users: users
-      action_html = render "feeds/actions/#{activity.type.to_s}"
-      users_html.concat action_html
-    end
+    users_html = render "feeds/actions/users", user: activity.user
+    action_html = render "feeds/actions/#{activity.type.to_s}"
+    users_html.concat action_html
   end
 end

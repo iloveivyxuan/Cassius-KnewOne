@@ -1,4 +1,3 @@
-- present users.first do |up|
+- present user do |up|
   = up.link_to_with_avatar :tiny, {class: "meta"}, {class: "img-circle"}
-span.meta.feed_users
-  = users.map { |user| present(user).link_to_with_name }.join(',').html_safe
+  = up.link_to_with_name

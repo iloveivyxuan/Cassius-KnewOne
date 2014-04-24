@@ -4,8 +4,13 @@ header.page-header
 #activities
   = render_feeds @activities
 
-.spinner
+.spinner.hide
   i.fa.fa-spinner.fa-spin.fa-2x
+
+.nomore.hide
+  i.fa.fa-smile-o
+  | 没有更多动态了，
+  = link_to '关注更多的小伙伴！', recommend_users_profile_path
 
 - content_for :script do
   javascript:

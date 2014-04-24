@@ -9,15 +9,8 @@ class HomeController < ApplicationController
   def index
     if user_signed_in?
       @activities = current_user.relate_activities.visible.page(params[:page]).per(50)
-
       if request.xhr?
-        if @activities.empty?
-          head :no_content
-        else
-          render 'home/index_xhr', layout: false
-        end
-      elsif params[:test] == "test"
-        render 'home/index_test'
+        render 'home/index_xhr', layout: false
       else
         render layout: 'home'
       end
