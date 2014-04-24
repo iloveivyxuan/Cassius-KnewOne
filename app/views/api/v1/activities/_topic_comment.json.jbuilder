@@ -1,6 +1,6 @@
 topic = activity.reference
 if group = topic.group
-  json.type activity.type
+  json.type 'topic_comment'
   json.created_at activity.created_at
   json.source_identity activity.source_union
 

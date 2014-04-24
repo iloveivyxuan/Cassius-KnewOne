@@ -1,6 +1,6 @@
 review = activity.reference
 if thing = review.thing
-  json.type activity.type
+  json.type 'review_comment'
   json.created_at activity.created_at
   json.source_identity activity.source_union
 

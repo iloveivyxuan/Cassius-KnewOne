@@ -1,4 +1,4 @@
-json.type activity.type
+json.type 'thing_comment'
 json.created_at activity.created_at
 json.source_identity activity.source_union
 
