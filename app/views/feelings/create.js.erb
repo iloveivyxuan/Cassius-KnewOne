@@ -5,5 +5,5 @@ $('<%= escape_javascript render(@feeling) %>')
 
 $('.feeling_form').data('reset').resolve();
 
-var count = parseInt($('.feelings_count').text());
+var count = parseInt($('.feelings_count').text()) || 0;
 $('.feelings_count').text(count + 1);
