@@ -10,6 +10,22 @@ window.Making = do (exports = window.Making || {}) ->
     _$counter         = _$editor.find('.counter')
     deferred_reset    = new $.Deferred()
 
+    _reset = (deferred) ->
+      deferred
+        .done () ->
+          _$editor[0].reset()
+          _$uploader[0].reset()
+
+          _$editor
+            .find('.rating').children('.star').removeClass('selected')
+            .find('[name*="[photo_ids]"]').remove()
+
+          _$content.removeAttr('style')
+          _$uploader_queue
+            .removeAttr('style')
+            .children('ul')
+            .empty()
+
     exports.Rating()
 
     _$element
@@ -23,21 +39,12 @@ window.Making = do (exports = window.Making || {}) ->
         _$uploader_queue.css marginTop: - (70 + height)
         _$content.css paddingBottom: height
 
-    deferred_reset
-      .done () ->
-        _$editor[0].reset()
-        _$uploader[0].reset()
+      .on 'submit', '.editor_compact', ->
+        deferred_reset = new $.Deferred()
+        _reset(deferred_reset)
+        _$element.data('reset', deferred_reset)
 
-        _$editor
-          .find('.rating').children('.star').removeClass('selected')
-          .find('[name*="[photo_ids]"]').remove()
-
-        _$content.removeAttr('style')
-        _$uploader_queue
-          .removeAttr('style')
-          .children('ul')
-          .empty()
-
+    _reset(deferred_reset)
     _$element.data('reset', deferred_reset)
 
   #exports

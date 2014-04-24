@@ -1,6 +1,8 @@
 .feeling_form
   = simple_form_for [@thing, Feeling.new], remote: true, html: {class: "editor_compact"} do |f|
-    = f.input :content, as: :text, label: false, wrapper_html: {class: "editor_content"}, input_html: {class: "form-control", rows: 5}
+    = f.input :content, as: :text, label: false,
+        wrapper_html: {class: "editor_content"},
+        input_html: {class: "form-control", rows: 5, maxLength: 1000}
     footer
       span.separator |
       = f.input :score, as: :range, label: false, input_html: {class:'range_rating', max: 5, min: 0}
