@@ -122,7 +122,10 @@
 
   > footer {
     @include clearfix;
-    padding-left: 104px;
+
+    @media (min-width: $screen-sm-min) {
+      padding-left: 104px;
+    }
 
     .form-group {
       display: inline-block;
@@ -134,6 +137,12 @@
       padding: {
         left: 1em;
         right: 1em;
+      }
+
+      &:first-child {
+        @media (max-width: $screen-xs-max) {
+          display: none;
+        }
       }
     }
 
@@ -157,6 +166,10 @@
   + .uploader {
     height: 0;
     margin-bottom: 0;
+
+    @media (max-width: $screen-xs-max) {
+      display: none;
+    }
 
     .uploader_button {
       margin:{
