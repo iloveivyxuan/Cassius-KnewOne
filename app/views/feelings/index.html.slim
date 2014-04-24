@@ -1,9 +1,9 @@
 - provide :nav, :thing_feelings
 
-= render 'form'
+= render 'feelings/form'
 
 section.feelings
-  = render 'sort', {thing: @thing}
+  = render 'feelings/sort', {thing: @thing}
   ul= render feelings
   = paginate feelings
 

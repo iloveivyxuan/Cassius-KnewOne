@@ -6,7 +6,7 @@
         figcaption
           = fp.author_name
 
-      = render partial: 'voting', locals: {feeling: feeling}
+      = render partial: 'feelings/voting', locals: {feeling: feeling}
 
       = link_to fp.path do
         article
