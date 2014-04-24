@@ -7,6 +7,7 @@ window.Making = do (exports = window.Making || {}) ->
     _$uploader        = _$element.children('.uploader')
     _$uploader_button = _$element.find('#photo_image')
     _$uploader_queue  = _$element.find('.uploader_queue')
+    _$counter         = _$editor.find('.counter')
     deferred_reset    = new $.Deferred()
 
     exports.Rating()

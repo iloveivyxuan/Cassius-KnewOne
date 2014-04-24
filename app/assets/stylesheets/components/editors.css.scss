@@ -137,7 +137,19 @@
       }
     }
 
-    button[type="submit"] {
+    .counter {
+      color: $gray;
+      display: inline-block;
+      line-height: 34px;
+      text-align: center;
+      width: 50px;
+
+      &.error {
+        color: $red;
+      }
+    }
+
+    .submit {
       float: right;
     }
   }
