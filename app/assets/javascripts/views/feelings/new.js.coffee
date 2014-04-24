@@ -9,9 +9,6 @@ class Making.Views.FeelingNew extends Backbone.View
 
   collect_photos: ->
     $photos = @photo_view.$('.uploaded')
-    if $photos.length == 0
-      $('.fileinput-button').tooltip('show')
-      return false
 
     _.each $photos, (el) =>
       $('<input>').attr(
