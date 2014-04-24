@@ -1,26 +1,27 @@
 - thing = fp.reference
 - present thing do |tp|
-  figure class="thing #{fp.style}"
-    .metas
-      = fp.render_action
-    - tp.self_run?
-      .pre_ribbon class="#{tp.stage}"
-        span = tp.stage_text
-    .thing_thumb
-      = image_tag tp.photo_url(:normal), alt: thing.title, class: 'lazy'
-      .thing_fancy
-        = link_to "", thing, class: "thing_fancy_backdrop", target: "_blank"
-        .fanciers= render "shared/fancy", p: tp
-    figcaption
-      h5 data-placement="top" data-toggle="tooltip" title="" data-original-title="#{tp.full_title}"
-        = link_to tp.full_title, thing, target: '_blank'
-      .figure_detail
-        span.fanciers
-          i.fa.fa-heart
-          sapn.fanciers_count = thing.fanciers_count
-        span.owners
-          i.fa.fa-check
-          = thing.owners.size
-        = link_to thing_reviews_path(thing), class: 'reviews_count', target: '_blank' do
-          i.fa.fa-pencil
-          = thing.reviews.size
+  div class="feed_thing #{fp.style}"
+    figure.thing
+      .metas
+        = fp.render_action
+      - tp.self_run?
+        .pre_ribbon class="#{tp.stage}"
+          span = tp.stage_text
+      .thing_thumb
+        = image_tag tp.photo_url(:normal), alt: thing.title, class: 'lazy'
+        .thing_fancy
+          = link_to "", thing, class: "thing_fancy_backdrop", target: "_blank"
+          .fanciers= render "shared/fancy", p: tp
+      figcaption
+        h5 data-placement="top" data-toggle="tooltip" title="" data-original-title="#{tp.full_title}"
+          = link_to tp.full_title, thing, target: '_blank'
+        .figure_detail
+          span.fanciers
+            i.fa.fa-heart
+            sapn.fanciers_count = thing.fanciers_count
+          span.owners
+            i.fa.fa-check
+            = thing.owners.size
+          = link_to thing_reviews_path(thing), class: 'reviews_count', target: '_blank' do
+            i.fa.fa-pencil
+            = thing.reviews.size

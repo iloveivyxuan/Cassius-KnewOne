@@ -228,32 +228,11 @@ html.signed_in_homepage {
   }
 
   #activities {
-
-    .row {
-      margin: {
-        left: 0;
-        right: 0;
-      }
-
-      &:first-child {
-
-        @media (min-width: $screen-sm-min) {
-          border-top: none;
-        }
-
-        > [class *= 'col-sm']:first-child {
-          border-top: none;
-        }
-      }
-
-      @media (min-width: $screen-sm-min) {
-        border-top: $border-default;
-        display: none;
-      }
+    > * {
+      border-bottom: $border-default;
     }
 
     .col-sm-6 {
-      border-top: $border-default;
       margin: {
         bottom: 1em;
         left: auto;
@@ -261,34 +240,21 @@ html.signed_in_homepage {
       }
 
       @media (min-width: $screen-sm-min) {
-        border-top: none;
         margin-top: 1em;
-      }
-
-      @media (min-width: $screen-md-min) {
-        margin-bottom: 1em;
-        margin-top: 1em;
-      }
-
-      &:first-child {
-
-        @media (min-width: $screen-sm-min) {
-          border-right: $border-default;
+        padding: 1em 0;
+        .thing {padding: 0 1em;}
+        &:nth-of-type(odd) {
+          .thing {border-right: $border-default;}
+        }
+        &:nth-of-type(even) {
+          .thing {border-right: 1px solid transparent;}
         }
       }
     }
 
     .col-sm-12 {
-      border-top: $border-default;
-
       @media (min-width: $screen-sm-min) {
-        border-top: none;
-      }
-
-      &.thing {
-
-        @media (min-width: $screen-sm-min) {
-          float: none;
+        .thing {
           margin-left: auto;
           margin-right: auto;
           max-width: 450px;

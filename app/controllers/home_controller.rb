@@ -8,7 +8,7 @@ class HomeController < ApplicationController
 
   def index
     if user_signed_in?
-      @activities = current_user.relate_activities.visible.page(params[:page]).per(50)
+      @activities = current_user.relate_activities.visible.page(params[:page]).per(10)
       if request.xhr?
         render 'home/index_xhr', layout: false
       else
