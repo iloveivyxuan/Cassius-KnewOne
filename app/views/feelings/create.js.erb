@@ -2,3 +2,6 @@ $('<%= escape_javascript render(@feeling) %>')
 .hide()
 .prependTo('.feelings > ul')
 .fadeIn('slow');
+
+var count = parseInt($('.feelings_count').text());
+$('.feelings_count').text(count + 1);
