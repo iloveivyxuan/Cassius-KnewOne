@@ -12,7 +12,7 @@ class Making.Views.FeelingNew extends Backbone.View
 
     _.each $photos, (el) =>
       $('<input>').attr(
-        name: "thing[photo_ids][]"
+        name: "feeling[photo_ids][]"
         value: $(el).data('photo-id')
         type: "hidden"
       ).appendTo @$el
