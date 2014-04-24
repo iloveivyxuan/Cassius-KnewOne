@@ -32,6 +32,8 @@ window.Making = do (exports = window.Making || {}) ->
           .find('[name*="[photo_ids]"]').remove()
 
         _$uploader.find('.uploader_item .destroy').trigger('click')
+        _$uploader_queue.removeAttr('style')
+        _$content.removeAttr('style')
 
     _$element.data('reset', deferred_reset)
 
