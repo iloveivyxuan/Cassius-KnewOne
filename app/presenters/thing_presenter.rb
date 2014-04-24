@@ -159,6 +159,10 @@ class ThingPresenter < PostPresenter
     thing.reviews.limit(limit)
   end
 
+  def feelings(limit)
+    thing.feelings.limit(limit)
+  end
+
   def stage
     if thing.stage == :dsell
       if thing.valid_kinds.size == 0
