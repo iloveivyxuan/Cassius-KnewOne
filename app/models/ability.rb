@@ -125,7 +125,8 @@ class Ability
     can :read, Topic
     can :read, Lottery
     can :read, User
-    can [:owns, :fancies, :things, :reviews, :activities, :followings, :followers, :groups, :topics], User
+    can [:owns, :fancies, :things, :reviews, :feelings,
+         :activities, :followings, :followers, :groups, :topics], User
     can [:buy, :groups, :comments, :wechat_qr, :random], Thing
   end
 

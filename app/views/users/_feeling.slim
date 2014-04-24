@@ -1,0 +1,27 @@
+- if feeling.thing
+  li
+    - present feeling do |fp|
+      = link_to thing_path(feeling.thing) do
+        figure
+          = image_tag feeling.thing.cover.url(:small)
+          figcaption title=feeling.thing.title
+            = feeling.thing.title
+
+      article
+        header
+          h4= fp.title
+          .metas
+            = link_to fp.path do
+              = fp.created_at
+            = fp.score
+            .comments_count
+              = link_to_with_icon feeling.comments.count, "fa fa-comments-o", "#"
+            - if can? :destroy, feeling
+              .destroy
+                = link_to_with_icon "", "fa fa-trash-o", [feeling.thing, feeling],
+                  method: :delete, remote: true, data: {confirm: "您确定要删除吗?"}
+        section
+          p= fp.content
+          ul.photos
+            - feeling.photos.each do |photo|
+              li= image_tag photo.url(:small), alt: photo.name

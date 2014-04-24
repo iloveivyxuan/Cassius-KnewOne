@@ -1,0 +1,7 @@
+- feeling = activity.reference
+- thing = feeling.thing
+- if thing
+  | 赞了关于产品
+  = link_to thing.title, thing
+  | 短评
+  = link_to truncate(feeling.content), thing_feeling_path(thing, feeling)

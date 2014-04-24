@@ -1,0 +1,24 @@
+- feeling = fp.reference
+- present feeling do |feeling_presenter|
+  section class="feed_article #{fp.style}"
+    .metas
+      = fp.render_action
+    figure
+      - if feeling.thing
+        - present feeling.thing do |tp|
+          = link_to tp.path do
+            = tp.photo(:small)
+            figcaption title="#{tp.title}" = tp.title
+    = link_to feeling_presenter.path, class: "feed_main"
+      article
+        header.feed_header
+          .metas
+            em.meta
+              i.fa.fa-comments-o
+              = feeling.comments.size
+        section.feed_content
+          = feeling_presenter.cover(:normal)
+          p= feeling_presenter.content
+        strong.feed_feature title="#{feeling.lovers_count} 个人觉得有用"
+          i.fa.fa-plus
+          = feeling.lovers_count

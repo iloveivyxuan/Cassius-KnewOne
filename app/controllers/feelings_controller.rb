@@ -20,7 +20,10 @@ class FeelingsController < ApplicationController
 
   def create
     @feeling.author = current_user
-    @feeling.save
+
+    if @feeling.save
+      current_user.log_activity :new_feeling, @feeling, source: @feeling.thing
+    end
 
     respond_to do |format|
       format.js
@@ -50,6 +53,8 @@ class FeelingsController < ApplicationController
 
   def vote
     @feeling.vote(current_user, true)
+
+    current_user.log_activity :love_feeling, @feeling, source: @feeling.thing
 
     respond_to do |format|
       format.js

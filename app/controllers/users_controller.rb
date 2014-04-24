@@ -21,6 +21,10 @@ class UsersController < ApplicationController
     @reviews = @user.reviews.where(:thing_id.ne => nil).page(params[:page]).per(24)
   end
 
+  def feelings
+    @feelings = @user.feelings.where(:thing_id.ne => nil).page(params[:page]).per(24)
+  end
+
   def things
     @things = @user.things.page(params[:page]).per(24)
   end

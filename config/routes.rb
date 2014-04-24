@@ -43,6 +43,7 @@ Making::Application.routes.draw do
       get 'fancies'
       get 'owns'
       get 'reviews'
+      get 'feelings'
       get 'things'
       get 'groups'
       get 'topics'
