@@ -14,11 +14,11 @@ window.Making = do (exports = window.Making || {}) ->
         if !_$editor.hasClass('uploading')
           _$editor.addClass('uploading')
 
-    _$uploader_button.on 'fileuploadadd', ->
-      height = _$uploader_queue.outerHeight()
+      .on 'fileuploadsubmit', ->
+        height = _$uploader_queue.outerHeight()
 
-      _$uploader_queue.css marginTop: - (119 + height)
-      _$content.css paddingBottom: height
+        _$uploader_queue.css marginTop: - (70 + height)
+        _$content.css paddingBottom: height
 
   #exports
   exports
