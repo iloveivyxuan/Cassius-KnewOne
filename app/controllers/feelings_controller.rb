@@ -59,7 +59,6 @@ class FeelingsController < ApplicationController
   private
 
   def feeling_params
-    permit_attrs = [:content, :score, :photo_ids]
-    params.require(:feeling).permit permit_attrs
+    params.require(:feeling).permit(:content, :score, photo_ids: [])
   end
 end
