@@ -21,5 +21,7 @@
                   = link_to_with_icon "", "fa fa-trash-o", [feeling.thing, feeling],
                     method: :delete, remote: true, data: {confirm: "您确定要删除吗?"}
           section
-            = fp.cover
-            p = fp.content
+            p= fp.content
+            ul.photos
+              - feeling.photos.each do |photo|
+                li= image_tag photo.url(:small), alt: photo.name
