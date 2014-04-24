@@ -1,7 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-<head>
-  <title><%= yield :title %> - KnewOne</title>
+<head><title><%= yield :title %> - KnewOne</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=320, target-densitydpi=device-dpi">
   <style type="text/css">
@@ -130,6 +129,7 @@
       }
 
       img {
+        max-width: 100%;
         height: auto;
         line-height: 100%;
       }
@@ -215,6 +215,38 @@
       border-bottom: 1px solid #ccc;
       margin: 1em auto;
       width: 95%;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .btn {
+      color: #fff;
+      display: inline-block;
+      margin-bottom: 0;
+      text-align: center;
+      vertical-align: middle;
+      cursor: pointer;
+      background-image: none;
+      border: 1px solid transparent;
+      white-space: nowrap;
+      padding: 6px 12px;
+      font-size: 14px;
+      line-height: 1.42857143;
+      border-radius: 3px;
+    }
+
+    .btn-lg {
+      padding: 10px 16px;
+      font-size: 18px;
+      line-height: 1.33;
+      border-radius: 4px;
+    }
+
+    .btn-success {
+      background-color: #5cb85c;
+      border-color: #4cae4c;
     }
 
     #background-table {
@@ -319,7 +351,7 @@
     }
 
     .article-content {
-      font-size: 13px;
+      font-size: 14px;
       line-height: 18px;
       color: #444444;
       margin-top: 0px;
@@ -328,7 +360,6 @@
     }
 
     .article-content a {
-      color: #7f8c4f;
       font-weight: bold;
       text-decoration: none;
     }
@@ -461,7 +492,7 @@
                     </tr>
                     <tr>
                       <td height="30">
-                        <div class="title"><%= yield :title_text %></div>
+                        <div class="title"><%= yield :title %></div>
                       </td>
                     </tr>
                     </tbody>

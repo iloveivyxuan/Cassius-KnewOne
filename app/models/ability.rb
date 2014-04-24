@@ -59,8 +59,8 @@ class Ability
     end
 
     can :create, Thing
-    can [:update, :destroy], Thing do |thing|
-      thing.author == user
+    can :update, Thing do |thing|
+      thing.author == user or thing.maker == user
     end
     can :fancy, Thing
     can :own, Thing
@@ -134,6 +134,7 @@ class Ability
     can :update, Story
     can :edit, Thing
     can :update, Thing
+    can :destroy, Thing
     can :edit, Category
     can :update, Category
     can :pro_edit, Thing

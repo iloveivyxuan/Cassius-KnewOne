@@ -9,8 +9,8 @@ module IdsSortable
           field = self.send(:"#{f.to_s.singularize}_ids").uniq.reverse
           count = field.size
           offset = per * (page - 1)
-
-          current_records = #{klass.to_s}.where(:id.in => field[(offset)..(offset + per - 1)]).sort_by {|t| field.index(t.id)}
+          ranged = field[(offset)..(offset + per - 1)] || []
+          current_records = #{klass.to_s}.where(:id.in => ranged).sort_by {|t| field.index(t.id)}
           Kaminari.paginate_array(current_records, total_count: count, offset: (per * (page - 1))).page(page).per(per)
         end
       EVAL

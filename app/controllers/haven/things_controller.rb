@@ -33,12 +33,6 @@ module Haven
       @things = @things.page params[:page]
     end
 
-    def resort
-      Thing.resort!
-
-      redirect_to haven_things_path
-    end
-
     def send_stock_notification
       @thing.notify_fanciers_stock
 

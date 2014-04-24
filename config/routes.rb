@@ -211,10 +211,6 @@ Making::Application.routes.draw do
     resources :landing_covers, except: [:show]
     resources :promotions, except: [:show]
     resources :things, only: [:index, :update, :edit] do
-      collection do
-        get 'resort'
-      end
-
       member do
         get 'send_stock_notification'
       end
@@ -281,6 +277,10 @@ Making::Application.routes.draw do
         resources :fancies, only: [:show, :update, :destroy]
         resources :owns, only: [:show, :update, :destroy]
         resources :followings, only: [:show, :update, :destroy]
+
+        member do
+          get 'feeds'
+        end
       end
 
       resources :notifications, only: [:index] do

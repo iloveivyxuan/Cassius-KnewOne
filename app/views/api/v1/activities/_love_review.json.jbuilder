@@ -2,6 +2,7 @@ review = activity.reference
 if thing = review.thing
   json.type activity.type
   json.created_at activity.created_at
+  json.source_identity activity.source_union
 
   json.review do
     json.partial! 'api/v1/reviews/review', review: review

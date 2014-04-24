@@ -1,18 +1,14 @@
-- review = activity.reference
+- review = fp.reference
 - present review do |rp|
-  section.feed_article data-identifier="#{activity.identifier}"
+  section class="feed_article #{fp.style}"
     .metas
-      = link_to activity.user, class: "meta" do
-        = image_tag activity.user.avatar.url(:tiny), alt: activity.user.name, class: "img-circle"
-      = link_to activity.user.name, activity.user, class: 'meta'
-      i.meta.fa class="#{feed_type_icon_class(activity)}"
-      = feed_type_text activity
+      = fp.render_action
     figure
       - if review.thing
         - present review.thing do |tp|
           = link_to tp.path do
             = tp.photo(:small)
-            figcaption title="#{tp.title}" = tp.title
+            figurecaption title="#{tp.title}" = tp.title
     = link_to rp.path, class: "feed_main"
       article
         header.feed_header

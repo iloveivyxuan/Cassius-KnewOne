@@ -39,9 +39,15 @@
   &:last-child {
     margin-right: 0;
   }
+
+  &.feed_users {
+    max-width: 40%;
+    display: inline-block;
+    @include text-overflow;
+  }
 }
 
-a.meta {
+a.meta, .meta a {
   color: $text-muted;
 
   &:hover {
