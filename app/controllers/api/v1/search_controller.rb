@@ -9,15 +9,15 @@ module Api
         render_error :missing_field, 'invalid keyword field' if q.empty?
         per = params[:per_page] || 48
 
-        unless %w(things users).include?(params[:type])
-          params.delete :type
+        types = params[:type].try(:split, ',') || []
+
+        if types.empty? || types.include?('things')
+          @things = Thing.unscoped.published.
+              or({slug: /#{q}/i}, {title: /#{q}/i}, {subtitle: /#{q}/i}).
+              desc(:fanciers_count).page(params[:things_page] || params[:page]).per(per)
         end
 
-        if params[:type].blank? || params[:type] == 'things'
-          @things = Thing.unscoped.published.or({slug: /#{q}/i}, {title: /#{q}/i}, {subtitle: /#{q}/i}).desc(:fanciers_count).page(params[:things_page] || params[:page]).per(per)
-        end
-
-        if params[:type].blank? || params[:type] == 'users'
+        if types.empty? || types.include?('users')
           @users = User.find_by_fuzzy_name(q).page(params[:users_page] || params[:page]).per(per)
         end
       end
