@@ -1,19 +1,18 @@
 // Feeds.
 //
 // article.feed_article
+//   header
 //   figure
 //     a
 //       img
 //     figcaption
 //       a
-//   a
-//     header
-//     section
-//       img
-//       p
-//       ul
-//         li
-//           img
+//   section
+//     img
+//     p
+//     ul
+//       li
+//         img
 //   footer
 //     ul.metas
 //       li
@@ -28,15 +27,54 @@
   padding: 1em;
   position: relative;
 
-  @media screen and (min-width: $screen-sm-min) {
+  @media (min-width: $screen-sm-min) {
     padding-left: 90px;
   }
 
-  > figure {
-    margin-bottom: 10px;
-    text-align: center;
+  .metas {
 
-    @media screen and (min-width: $screen-sm-min) {
+    .score {
+      display: none;
+      margin: 0;
+
+      @media (min-width: $screen-sm-min) {
+        display: inline-block;
+      }
+
+      .rate {
+        padding: 0;
+      }
+    }
+  }
+
+  > header {
+    margin-bottom: 15px;
+
+    @media (min-width: $screen-sm-min) {
+      float: left;
+      width: 80%;
+    }
+
+    h5 {
+      margin: 0;
+
+      a {
+        color: $text-color;
+        font-size: 16px;
+      }
+    }
+  }
+
+  > figure {
+    @include clearfix;
+    margin-bottom: 10px;
+    border: $border_default;
+    border-left: none;
+    border-right: none;
+    padding: 10px 30px;
+    position: relative;
+
+    @media (min-width: $screen-sm-min) {
       float: right;
       margin: {
         bottom: 0;
@@ -47,15 +85,17 @@
     }
 
     a {
-      color: $text-color;
+      color: $gray;
       display: block;
     }
 
     img {
-      display: none;
+      float: right;
+      height: 60px;
+      margin-left: 15px;
+      width: 60px;
 
-      @media screen and (min-width: $screen-sm-min) {
-        display: block;
+      @media (min-width: $screen-sm-min) {
         height: 80px;
         margin: {
           left: auto;
@@ -66,8 +106,15 @@
     }
 
     figcaption {
+      overflow: hidden;
 
-      @media screen and (min-width: $screen-sm-min) {
+      @media (max-width: $screen-xs-max) {
+        @include translate(0, -50%, 0);
+        position: absolute;
+        top: 50%;
+      }
+
+      @media (min-width: $screen-sm-min) {
         display: block;
         height: 40px;
         line-height: 20px;
@@ -79,39 +126,59 @@
           content: '';
         }
       }
-    }
-  }
 
-  > header {
-    margin-bottom: 15px;
+      a {
+        @media (max-width: $screen-sm-max) {
+          @include text-overflow;
+          line-height: 30px;
+        }
+      }
 
-    h5 {
-      color: $text-color;
-      font-size: 16px;
-      margin: 0;
+      // TODO
+      .score {
+        margin: {
+          bottom: 5px;
+          top: 5px;
+        }
+        .rate {padding: 0;}
+      }
     }
   }
 
   > section {
+    margin-bottom: 15px;
     position: relative;
 
     @media (min-width: $screen-sm-min) {
+      @include clearfix;
       float: left;
       width: 80%;
     }
 
-    > img {
-      display: block;
-      height: auto;
-      margin-bottom: 1em;
-      width: 100%;
+    .cover_small {
+      display: none;
 
-      @media screen and (min-width: $screen-sm-min) {
+      @media (min-width: $screen-sm-min) {
+        display: block;
         float: left;
-        margin-bottom: 0;
-        margin-right: 1em;
+        margin-right: 15px;
+      }
+
+      img {
         height: 80px;
         width: 80px;
+      }
+    }
+
+    .cover_normal {
+      margin-top: 15px;
+
+      @media (min-width: $screen-sm-min) {
+        display: none;
+      }
+
+      img {
+        width: 100%;
       }
     }
 
@@ -119,17 +186,22 @@
       color: $gray;
       font-size: 14px;
       line-height: 26px;
-      margin-bottom: 15px;
+      margin-bottom: 0;
+      overflow: hidden;
     }
 
     > ul {
       @include clearfix;
 
-      margin-bottom: 15px;
+      margin-top: 15px;
 
       > li {
         float: left;
-        margin-right: 10px;
+        margin-right: 4px;
+
+        @media (min-width: $screen-sm-min) {
+          margin-right: 10px;
+        }
       }
     }
   }
@@ -157,27 +229,16 @@
     }
   }
 
-  .metas {
-
-    .score {
-      margin: 0;
-
-      .rate {
-        padding: 0;
-      }
-    }
-  }
-
   .feed_action {
     color: $text-color;
-    bottom: 0;
-    font-weight: normal;
-    line-height: 30px;
+    bottom: 1em;
+    margin-bottom: -4px;
     position: absolute;
-    right: 20px;
+    right: 1em;
 
-    @media screen and (min-width: $screen-sm-min) {
+    @media (min-width: $screen-sm-min) {
       bottom: auto;
+      display: block;
       left: 0;
       right: auto;
       top: 18px;

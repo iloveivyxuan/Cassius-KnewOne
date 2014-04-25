@@ -1,21 +1,23 @@
 - if review.thing
-  section.feed_article id="review_#{review.id}"
-    - present review do |rp|
+  - present review do |rp|
+    article.feed_article id="review_#{review.id}"
+      header
+        h5
+         = link_to rp.title, rp.path
       figure
         = rp.author_avatar(:small)
         figcaption
           = rp.author_name
-      = link_to rp.path, class: "feed_main" do
-        article
-          header.feed_header
-            h4.feed_title= rp.title
-            .metas
-              = rp.created_at 'meta'
-              .comments_count.meta
-                i.fa.fa-comments-o
-                = review.comments.count
-          section.feed_content
-            = rp.cover
-            p = rp.summary(120)
-          strong.feed_feature
-            = rp.lovers_count
+          = rp.score
+      section
+        .cover_small = rp.cover(:small)
+        p = rp.summary(120)
+        .cover_normal = rp.cover(:normal)
+      footer
+        ul.metas
+          li = rp.created_at
+          li
+            .comments_count
+              i.fa.fa-comments-o
+              = review.comments.count
+      = render partial: 'reviews/voting', locals: {review: review}
