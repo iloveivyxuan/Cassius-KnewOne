@@ -1,6 +1,6 @@
 $('<%= escape_javascript render(@feeling) %>')
 .hide()
-.prependTo('.feelings > ul')
+.prependTo('.feelings')
 .fadeIn('slow');
 
 $('.feeling_form').data('reset').resolve();

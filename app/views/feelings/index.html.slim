@@ -2,10 +2,9 @@
 
 = render 'feelings/form'
 
-section.feelings
-  = render 'feelings/sort', {thing: @thing}
-  ul= render feelings
-  = paginate feelings
+= render 'feelings/sort', {thing: @thing}
+ul.feelings = render feelings
+= paginate feelings
 
 - content_for :script do
   javascript:

@@ -1,12 +1,36 @@
 // Metas.
 //
+//  ul.metas
+//    li
+//
 
 .metas {
   color: $text-muted;
   display: block;
   font-style: normal;
   overflow: hidden;
-  text-align: center;
+  // text-align: center;
+
+  > li {
+    display: inline-block;
+    font-style: normal;
+    line-height: 20px;
+    margin: 0;
+    margin-right: 1em;
+    vertical-align: middle;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    > a {
+      color: $text-muted;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 .metas_group {
@@ -28,6 +52,7 @@
   }
 }
 
+// Deprecated
 .meta {
   display: inline-block;
   font-style: normal;

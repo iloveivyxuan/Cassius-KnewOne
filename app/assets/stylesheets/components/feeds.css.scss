@@ -1,42 +1,38 @@
 // Feeds.
 //
+// article.feed_article
+//   figure
+//     a
+//       img
+//     figcaption
+//       a
+//   a
+//     header
+//     section
+//       img
+//       p
+//       ul
+//         li
+//           img
+//   footer
+//     ul.metas
+//       li
+//     section.comments
+//   .feed_action
+//     a.btn
+//
 
 .feed_article {
   @include clearfix;
 
-  border-bottom: $border-dashed;
-  margin-bottom: 10px;
   padding: 1em;
   position: relative;
 
   @media screen and (min-width: $screen-sm-min) {
-    padding-left: 70px;
-  }
-
-  &:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-  }
-
-  > .metas {
-    clear: both;
-    margin-bottom: 10px;
-    text-align: center;
-
-    @media (min-width: $screen-sm-min) {
-      text-align: left;
-    }
-
-    .meta {
-      &.fa-pencil,
-      &.fa-plus {
-        color: #134f5c;
-      }
-    }
+    padding-left: 90px;
   }
 
   > figure {
-    display: center;
     margin-bottom: 10px;
     text-align: center;
 
@@ -83,81 +79,25 @@
     }
   }
 
-  .feed_main {
-    background-color: #eee;
-    display: block;
-    padding: 20px;
-    padding-bottom: 30px;
+  > header {
+    margin-bottom: 20px;
+
+    h5 {
+      color: $text-color;
+      font-size: 16px;
+      margin: 0;
+    }
+  }
+
+  > section {
     position: relative;
 
     @media (min-width: $screen-sm-min) {
-      @include transition(background-color .2s ease);
-
       float: left;
-      padding-bottom: 20px;
       width: 80%;
     }
 
-    &:hover {
-      background-color: darken(#eee, 5%);
-    }
-  }
-
-  .feed_header {
-    height: 20px;
-    margin: 0 0 1em 0;
-    overflow: hidden;
-
-    @media (min-width: $screen-sm-min) {
-      @include clearfix;
-    }
-
-    .metas {
-      bottom: 0;
-      left: 20px;
-      position: absolute;
-
-      @media (min-width: $screen-sm-min) {
-        float: right;
-        position: static;
-      }
-    }
-
-    .meta {
-      line-height: 30px;
-
-      @media (min-width: $screen-sm-min) {
-        line-height: 20px;
-      }
-    }
-  }
-
-  .feed_title {
-    color: $gray;
-    font-size: 14px;
-    line-height: 20px;
-    margin: 0;
-    text-align: center;
-
-    @media screen and (min-width: $screen-sm-min) {
-      @include text-overflow;
-
-      float: left;
-      max-width: 80%;
-      text-align: left;
-    }
-  }
-
-  .feed_content {
-    border-bottom: 1px dashed #ddd;
-
-    @media (min-width: $screen-sm-min) {
-      @include clearfix;
-
-      border-bottom: none;
-    }
-
-    img {
+    > img {
       display: block;
       height: auto;
       margin-bottom: 1em;
@@ -172,16 +112,28 @@
       }
     }
 
-    p {
-      color: $text-muted;
-      height: 80px;
+    > p {
+      color: $gray;
+      font-size: 14px;
       line-height: 26px;
-      margin-bottom: 0;
-      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    > ul {
+      @include clearfix;
+
+      > li {
+        float: left;
+        margin-right: 10px;
+      }
     }
   }
 
-  .feed_feature {
+  > footer {
+    clear: both;
+  }
+
+  .feed_action {
     color: $text-color;
     bottom: 0;
     font-weight: normal;
@@ -191,10 +143,31 @@
 
     @media screen and (min-width: $screen-sm-min) {
       bottom: auto;
-      left: -60px;
-      line-height: 20px;
+      left: 0;
       right: auto;
-      top: 20px;
+      top: 1em;
+    }
+
+    .btn {
+      @include button_inverse(#ececec, #6e6e6e);
+
+      width: 60px;
     }
   }
+
+  // .feed_title {
+  //   color: $gray;
+  //   font-size: 14px;
+  //   line-height: 20px;
+  //   margin: 0;
+  //   text-align: center;
+
+  //   @media screen and (min-width: $screen-sm-min) {
+  //     @include text-overflow;
+
+  //     float: left;
+  //     max-width: 80%;
+  //     text-align: left;
+  //   }
+  // }
 }
