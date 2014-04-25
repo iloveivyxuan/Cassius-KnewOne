@@ -38,7 +38,10 @@
 
     @media screen and (min-width: $screen-sm-min) {
       float: right;
-      margin-bottom: 0;
+      margin: {
+        bottom: 0;
+        top: 4px;
+      }
       text-align: center;
       width: 100px;
     }
@@ -158,7 +161,7 @@
       bottom: auto;
       left: 0;
       right: auto;
-      top: 1em;
+      top: 18px;
     }
 
     .btn {

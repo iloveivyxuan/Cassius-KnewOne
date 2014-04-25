@@ -20,6 +20,7 @@
 //= require jquery.qrcode
 //= require bootstrap-wysiwyg
 //= require bootstrap-select
+//= require lightbox
 //= require sisyphus
 //= require_tree ../templates
 //= require making
