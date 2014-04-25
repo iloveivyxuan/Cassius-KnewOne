@@ -3,7 +3,11 @@ class FeelingPresenter < PostPresenter
   presents :feeling
 
   def content
-    sanitize(auto_link(@object.content, :all, :target => "_blank"))
+    content = auto_link @object.content, :all, target: '_blank'
+    feeling.content_users.each do |u|
+      content.gsub! "@#{u.name}", link_to("@#{u.name}", u)
+    end
+    simple_format content
   end
 
   def path
