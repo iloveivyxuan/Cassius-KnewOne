@@ -2,6 +2,7 @@
 class Comment
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Atable
   include Aftermath
 
   field :content, type: String
@@ -16,11 +17,6 @@ class Comment
 
   after_create :update_commented_at
   after_destroy :update_commented_at
-
-  def content_users
-    names = content.scan(/@(\S{2,20})/).flatten
-    User.in(name: names).to_a
-  end
 
   def related_users
     content_users

@@ -1,5 +1,6 @@
 class Feeling < Post
   include Rateable
+  include Atable
   include Aftermath
 
   field :photo_ids, type: Array, default: []
