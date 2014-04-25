@@ -1,4 +1,12 @@
-h4
-  i.fa.fa-comments-o
-  | 短评
-= render template: 'feelings/index', locals: {feelings: tp.thing.feelings.page}
+#thing_feelings
+  h4
+    i.fa.fa-comments-o
+    | 短评
+
+  = render 'feelings/form'
+
+  .feelings = render tp.thing.feelings.limit(10)
+
+  - content_for :script do
+    javascript:
+      Making.InitFeelings();
