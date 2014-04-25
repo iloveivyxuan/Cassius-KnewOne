@@ -18,11 +18,6 @@ ul.nav.nav-pills.nav-pills-list.nav-justified.nav-layout
       i.fa.fa-tint
       span 小组
       span= tp.groups_count
-  = nav_tab :thing_comments do
-    = link_to comments_thing_path(tp.thing) do
-      i.fa.fa-comments
-      span 留言
-      span= tp.comments_count
   - if tp.thing.stories.present?
     = nav_tab :stories do
       = link_to thing_stories_path(tp.thing) do
