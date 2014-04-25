@@ -83,7 +83,7 @@
   }
 
   > header {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 
     h5 {
       color: $text-color;
@@ -119,13 +119,13 @@
       color: $gray;
       font-size: 14px;
       line-height: 26px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     > ul {
       @include clearfix;
 
-      margin-bottom: 20px;
+      margin-bottom: 15px;
 
       > li {
         float: left;
@@ -136,6 +136,25 @@
 
   > footer {
     clear: both;
+
+    .comments_wrap {
+      border: $border_default;
+      display: none;
+      margin-top: 15px;
+      padding: {
+        bottom: 15px;
+        left: 20px;
+        right: 20px;
+        top: 5px;
+      }
+
+      // TODO
+      h4 {display: none;}
+      ul {
+        margin: 0;
+        padding-top: 10px;
+      }
+    }
   }
 
   .metas {

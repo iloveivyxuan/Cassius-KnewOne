@@ -2,7 +2,7 @@ class Making.Views.FeelingNew extends Backbone.View
 
   events:
     'keyup textarea': 'count'
-    "submit": "collect_photos"
+    'submit': 'collect_photos'
 
   initialize: ->
     @photo_view = new Making.Views.PhotosUpload

@@ -18,11 +18,12 @@
               = fp.created_at
           li = fp.score
           li
-            = link_to_with_icon feeling.comments.count, "fa fa-comments-o", "#"
+            = link_to_with_icon feeling.comments.count, "fa fa-comments-o", "#", class: 'comments_toggle', data: {id: "feeling_#{feeling.id}_comments"}
           - if can? :destroy, feeling
             li
               .meta.destroy
                 = link_to_with_icon "", "fa fa-trash-o", [feeling.thing, feeling],
                   method: :delete, remote: true, data: {confirm: "您确定要删除吗?"}
-        section.comments
+        section.comments_wrap
+          = render 'shared/comments', post: feeling, id: "feeling_#{feeling.id}_comments", auth: true
       = render partial: 'feelings/voting', locals: {feeling: feeling}
