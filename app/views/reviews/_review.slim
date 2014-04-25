@@ -1,5 +1,5 @@
 - if review.thing
-  section.feed_article
+  section.feed_article id="review_#{review.id}"
     - present review do |rp|
       figure
         = rp.author_avatar(:small)

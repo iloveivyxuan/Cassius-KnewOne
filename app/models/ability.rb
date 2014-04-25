@@ -43,7 +43,9 @@ class Ability
     can [:update, :destroy], Review do |review|
       review.author == user
     end
-    can :vote, Review
+    can :vote, Review do |review|
+      review.author != user && !review.voted?(user)
+    end
 
     can :create, Feeling
     can [:update, :destroy], Feeling do |feeling|

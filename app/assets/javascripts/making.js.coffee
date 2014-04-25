@@ -219,17 +219,6 @@ window.Making =
           $(textarea).val resque.replace(/<!--.*?-->/g, '')
           $sisyphus.manuallyReleaseData()
 
-  Voting: () ->
-    $form = $('form.not_voted')
-    $form.show().find('button').click (e) ->
-      $('<input>').attr
-        type: "hidden"
-        name: "vote"
-      .val($(@).data("vote"))
-      .appendTo($form)
-    .end().on "ajax:success", (e, html, status, xhr) ->
-      $form.replaceWith html
-
   Share: () ->
     share_content_length = ($el) ->
       count = 0.0

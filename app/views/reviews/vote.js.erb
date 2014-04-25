@@ -1,0 +1,2 @@
+$('#review_<%= @review.id %> .feed_action')
+.replaceWith("<%=j render partial: 'voting', locals: {review: @review} %>")

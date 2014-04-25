@@ -3,7 +3,7 @@
 
 - present @review do |rp|
 
-  article.post_show
+  article.post_show id="review_#{@review.id}"
     header
       h3= rp.title
       = rp.score

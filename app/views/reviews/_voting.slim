@@ -1,6 +1,9 @@
-- present review do |rp|
-  .voting
-    - if can? :vote, rp.review and !rp.review.voted?(current_user)
-      = render 'shared/voting', path: vote_thing_review_path(rp.review.thing, rp.review)
+.feed_action
+  - present review do |rp|
+    - if can? :vote, review
+      = form_tag vote_thing_review_path(review.thing, review), remote: true do
+        = button_tag title: "赞", class: "btn btn-sm" do
+          = rp.lovers_count
     - else
-      = rp.votings
+      = button_tag title: "赞", class: "btn btn-sm", disabled: true do
+        = rp.lovers_count
