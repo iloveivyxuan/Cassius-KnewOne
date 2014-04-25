@@ -1,2 +1,2 @@
-$('#feeling_<%= @feeling.id %> .voting')
+$('#feeling_<%= @feeling.id %> .feed_action')
 .replaceWith("<%=j render partial: 'voting', locals: {feeling: @feeling} %>")
