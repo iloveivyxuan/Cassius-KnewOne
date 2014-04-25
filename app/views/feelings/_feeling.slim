@@ -1,27 +1,25 @@
 - if feeling.thing
-  li
-    - present feeling do |fp|
-      article.feed_article id="feeling_#{feeling.id}"
-        figure
-          = fp.author_avatar(:small)
-          figcaption
-            = fp.author_name
-        section
-          p= fp.content
-          ul
-            - feeling.photos.each do |photo|
-              li= image_tag photo.url(:small), alt: photo.name
-        footer
-          ul.metas
-            li = link_to fp.path, class: "meta" do
-                = fp.created_at
-            li = fp.score
+  - present feeling do |fp|
+    article.feed_article id="feeling_#{feeling.id}"
+      figure
+        = fp.author_avatar(:small)
+        figcaption
+          = fp.author_name
+      section
+        p= fp.content
+        ul
+          - feeling.photos.each do |photo|
+            li= image_tag photo.url(:small), alt: photo.name
+      footer
+        ul.metas
+          li = link_to fp.path, class: "meta" do
+              = fp.created_at
+          li = fp.score
+          li
+            = link_to_with_icon feeling.comments.count, "fa fa-comments-o", "#"
+          - if can? :destroy, feeling
             li
-              = link_to_with_icon feeling.comments.count, "fa fa-comments-o", "#"
-            - if can? :destroy, feeling
-              li
-                .meta.destroy
-                  = link_to_with_icon "", "fa fa-trash-o", [feeling.thing, feeling],
-                    method: :delete, remote: true, data: {confirm: "您确定要删除吗?"}
-
-        = render partial: 'feelings/voting', locals: {feeling: feeling}
+              .meta.destroy
+                = link_to_with_icon "", "fa fa-trash-o", [feeling.thing, feeling],
+                  method: :delete, remote: true, data: {confirm: "您确定要删除吗?"}
+      = render partial: 'feelings/voting', locals: {feeling: feeling}

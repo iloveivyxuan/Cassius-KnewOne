@@ -122,6 +122,8 @@
     > ul {
       @include clearfix;
 
+      margin-bottom: 20px;
+
       > li {
         float: left;
         margin-right: 10px;
@@ -131,6 +133,17 @@
 
   > footer {
     clear: both;
+  }
+
+  .metas {
+
+    .score {
+      margin: 0;
+
+      .rate {
+        padding: 0;
+      }
+    }
   }
 
   .feed_action {
@@ -154,20 +167,4 @@
       width: 60px;
     }
   }
-
-  // .feed_title {
-  //   color: $gray;
-  //   font-size: 14px;
-  //   line-height: 20px;
-  //   margin: 0;
-  //   text-align: center;
-
-  //   @media screen and (min-width: $screen-sm-min) {
-  //     @include text-overflow;
-
-  //     float: left;
-  //     max-width: 80%;
-  //     text-align: left;
-  //   }
-  // }
 }
