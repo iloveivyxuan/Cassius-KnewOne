@@ -2,6 +2,10 @@
 class FeelingPresenter < PostPresenter
   presents :feeling
 
+  def content
+    sanitize(auto_link(@object.content, :all, :target => "_blank"))
+  end
+
   def path
     thing_feeling_path(feeling.thing, feeling)
   end
