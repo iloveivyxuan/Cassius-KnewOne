@@ -301,6 +301,7 @@ Making::Application.routes.draw do
         end
         resources :coupons, only: [:index, :update]
         resources :addresses, except: [:new, :edit, :show]
+        resource :balance, only: [:show]
       end
 
       get 'oauth/default_callback', to: 'oauth#default_callback'
