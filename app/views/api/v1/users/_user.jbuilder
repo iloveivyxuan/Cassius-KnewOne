@@ -18,3 +18,7 @@ json.followings_url url_wrapper(user, action: :followings)
 json.followers_count user.followers_count
 json.followers_url url_wrapper(user, action: :followers)
 json.activities_url url_wrapper(user, action: :activities)
+if current_user
+  json.followed user.followed?(current_user)
+  json.following current_user.followed?(user)
+end

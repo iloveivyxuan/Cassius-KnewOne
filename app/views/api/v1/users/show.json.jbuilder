@@ -5,9 +5,10 @@ json.progress_to_next_rank @user.progress.to_i
 json.location @user.location
 json.description @user.description
 json.gender @user.gender
-json.categories @user.categories do |c|
+json.categories @user.categories.limit(4) do |c|
   json.partial! 'api/v1/categories/category', category: c
 end
+json.avatar_url @user.avatar.url
 json.fancies_count @user.fancies.count
 json.fancies_url url_wrapper(@user, action: :fancies)
 json.things_count @user.things.count
@@ -23,3 +24,7 @@ json.followings_url url_wrapper(@user, action: :followings)
 json.followers_count @user.followers_count
 json.followers_url url_wrapper(@user, action: :followers)
 json.activities_url url_wrapper(@user, action: :activities)
+if current_user
+  json.followed @user.followed?(current_user)
+  json.following current_user.followed?(@user)
+end
