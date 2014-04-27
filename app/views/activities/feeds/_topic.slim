@@ -1,6 +1,6 @@
 - topic = activity.reference
 - present topic do |tp|
-  section.feed_article data-identifier="#{activity.identifier}"
+  section.feed_article id="topic_#{topic.id}" data-identifier="#{activity.identifier}"
     .metas
       = link_to activity.user, class: "meta" do
         = image_tag activity.user.avatar.url(:tiny), alt: activity.user.name, class: "img-circle"

@@ -13,7 +13,7 @@ class Making.Views.FeelingNew extends Backbone.View
     $submit = @$el.find('[type="submit"]')
     rest = 140 - event.target.value.length
     $counter.text(rest)
-    if rest <= 0
+    if rest < 0
       $submit.disable()
       $counter.addClass('error')
     else

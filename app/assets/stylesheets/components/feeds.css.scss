@@ -68,18 +68,20 @@
   > figure {
     @include clearfix;
     margin-bottom: 10px;
-    border: $border_default;
+    border: 1px solid #f9f9f9;
     border-left: none;
     border-right: none;
     padding: 10px 30px;
     position: relative;
 
     @media (min-width: $screen-sm-min) {
+      border: none;
       float: right;
       margin: {
         bottom: 0;
         top: 4px;
       }
+      padding: 0;
       text-align: center;
       width: 100px;
     }
@@ -96,6 +98,7 @@
       width: 60px;
 
       @media (min-width: $screen-sm-min) {
+        float: none;
         height: 80px;
         margin: {
           left: auto;
@@ -141,6 +144,10 @@
           top: 5px;
         }
         .rate {padding: 0;}
+
+        @media (min-width: $screen-sm-min) {
+          display: none;
+        }
       }
     }
   }
@@ -207,11 +214,30 @@
   }
 
   > footer {
+    @include clearfix;
     clear: both;
+
+    .metas {
+      float: left;
+
+      @media (min-width: $screen-sm-min) {
+        float: none;
+      }
+    }
+
+    .feed_action {
+      float: right;
+      margin-top: -4px;
+
+      @media (min-width: $screen-sm-min) {
+        display: none;
+      }
+    }
 
     .comments_wrap {
       border: $border_default;
       display: none;
+      float: left;
       margin-top: 15px;
       padding: {
         bottom: 15px;
@@ -219,6 +245,7 @@
         right: 20px;
         top: 5px;
       }
+      width: 100%;
 
       // TODO
       h4 {display: none;}
@@ -231,10 +258,6 @@
 
   .feed_action {
     color: $text-color;
-    bottom: 1em;
-    margin-bottom: -4px;
-    position: absolute;
-    right: 1em;
 
     @media (min-width: $screen-sm-min) {
       bottom: auto;
@@ -248,6 +271,18 @@
       @include button_inverse(#ececec, #6e6e6e);
 
       width: 60px;
+    }
+  }
+
+  > .feed_action {
+    display: none;
+
+    @media (min-width: $screen-sm-min) {
+      bottom: 1em;
+      display: block;
+      margin-bottom: -4px;
+      position: absolute;
+      right: 1em;
     }
   }
 }

@@ -7,6 +7,8 @@ window.Making = do (exports = window.Making || {}) ->
     _lock = false
     _page = 1
 
+    exports.Feeling('#activities')
+
     render_border = ->
       $container
         .find(".col-sm-6:odd").addClass('odd').end()
