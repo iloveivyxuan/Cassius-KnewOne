@@ -2,7 +2,7 @@
   - present feeling do |fp|
     article.feed_article id="feeling_#{feeling.id}"
       figure
-        = fp.author_avatar(:small)
+        = fp.author_avatar(:small, class: "img-circle")
         figcaption
           = fp.author_name
           = fp.score

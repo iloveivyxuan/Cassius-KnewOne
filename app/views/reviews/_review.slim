@@ -4,8 +4,8 @@
       header
         h5
          = link_to rp.title, rp.path
-      figure
-        = rp.author_avatar(:small)
+      figure.foo
+        = rp.author_avatar(:small, class: "img-circle")
         figcaption
           = rp.author_name
           = rp.score
