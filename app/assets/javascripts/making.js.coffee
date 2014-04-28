@@ -284,6 +284,9 @@ window.Making =
       $self = $(el)
       score = $self.data('score')
       $stars = $()
+
+      if $self.find('.star').length > 0 then return
+
       for val in [5..1]
         $star = $('<span />').addClass('star').data('val', val)
         $star.addClass('active') if $star.data('val') <= parseInt(score)

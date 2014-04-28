@@ -23,4 +23,4 @@ class Making.Views.Comment extends Backbone.View
     $textarea = $('form#create_comment textarea')
     $textarea.focus()
       .val($textarea.val() + ' @' + @model.get('author').name + ' ')
-      
+
