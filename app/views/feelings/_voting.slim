@@ -1,6 +1,0 @@
-.feed_action
-  - present feeling do |fp|
-    = render 'shared/voting',
-      path: vote_thing_feeling_path(feeling.thing, feeling),
-      count: fp.lovers_count,
-      disabled: !can?(:vote, feeling)

@@ -1,0 +1,3 @@
+= form_tag polymorphic_path([:vote, object.thing, object]), remote: true, class: 'voting' do
+  = button_tag title: "赞", class: "btn btn-sm", disabled: !can?(:vote, object) do
+    = present(object).lovers_count

@@ -56,7 +56,7 @@ class ReviewsController < ApplicationController
     current_user.log_activity :love_review, @review, source: @review.thing
 
     respond_to do |format|
-      format.js
+      format.js { render partial: 'shared/vote', locals: {object: @review} }
     end
   end
 

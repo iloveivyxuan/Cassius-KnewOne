@@ -1,6 +1,0 @@
-.feed_action
-  - present review do |rp|
-    = render 'shared/voting',
-      path: vote_thing_review_path(review.thing, review),
-      count: rp.lovers_count,
-      disabled: !can?(:vote, review)

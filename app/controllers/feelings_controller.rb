@@ -57,7 +57,7 @@ class FeelingsController < ApplicationController
     current_user.log_activity :love_feeling, @feeling, source: @feeling.thing
 
     respond_to do |format|
-      format.js
+      format.js { render partial: 'shared/vote', locals: {object: @feeling} }
     end
   end
 
