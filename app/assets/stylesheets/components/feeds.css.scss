@@ -295,7 +295,7 @@
   display: inline-block;
 
   a {
-    color: $text-muted;
+    color: $gray;
 
     &:hover {
       text-decoration: underline;
@@ -306,6 +306,12 @@
     color: $text-muted;
     margin-left: .5em;
   }
+
+  .fa-heart  { color: $red; }
+  .fa-check  { color: $green; }
+  .fa-pencil { color: #134f5c; }
+  .fa-plus   { color: #134f5c; }
+  .fa-magic  { color: #134f5c; }
 
   .feed_text {
     display: none;
@@ -325,5 +331,13 @@
     @include button_inverse(#ececec, #6e6e6e);
 
     width: 60px;
+  }
+}
+
+.feed_thing {
+
+  .feed_type {
+    border-right: $border_default;
+    padding-right: 1em;
   }
 }
