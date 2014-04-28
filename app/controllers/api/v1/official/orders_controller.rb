@@ -12,6 +12,10 @@ module Api
           @orders = @orders.page(params[:page]).per(params[:per_page] || 8)
         end
 
+        def new
+          @order = Order.build_order(current_user, (params.has_key?(:order) ? order_params : nil))
+        end
+
         def create
           @order = Order.build_order(current_user, order_params)
 

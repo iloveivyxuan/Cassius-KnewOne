@@ -292,7 +292,7 @@ Making::Application.routes.draw do
         resource :cart, only: [:show] do
           resources :items, controller: :cart_items, only: [:index, :show, :create, :update, :destroy]
         end
-        resources :orders, only: [:index, :show, :create] do
+        resources :orders, only: [:index, :show, :create, :new] do
           member do
             patch 'cancel'
             get 'tenpay_callback'
