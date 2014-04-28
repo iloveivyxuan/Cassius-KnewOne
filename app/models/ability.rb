@@ -98,7 +98,9 @@ class Ability
     end
     can :fancy, Group
 
-    can :vote, Topic
+    can :vote, Topic do |topic|
+      topic.author != user && !topic.voted?(user)
+    end
     can :create, Topic do |topic|
       topic.group.has_member? user
     end
