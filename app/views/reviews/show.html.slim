@@ -3,7 +3,7 @@
 
 - present @review do |rp|
 
-  article.post_show id="review_#{@review.id}"
+  article.post_show.foo id="review_#{@review.id}"
     header
       h3= rp.title
       = rp.score
@@ -26,7 +26,6 @@
 
 - content_for :script do
   javascript:
-    Making.Voting();
     Making.Comments("#comments");
     if ("#{flash[:provider_sync]}" == "true")
       $(function(){$('#review_share').modal('show')});
