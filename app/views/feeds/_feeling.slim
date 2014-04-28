@@ -18,5 +18,10 @@
               = image_tag photo.url(:small), alt: photo.name
     footer
       ul.metas
+        li = fp.render_action
+        li = feeling_presenter.created_at
         li
           = link_to_with_icon feeling.comments.count, "fa fa-comments-o", "#", class: 'comments_toggle', data: {id: "feeling_#{feeling.id}_comments"}
+        li = feeling_presenter.score
+      = render partial: 'feelings/voting', locals: {feeling: feeling}
+    = render partial: 'feelings/voting', locals: {feeling: feeling}

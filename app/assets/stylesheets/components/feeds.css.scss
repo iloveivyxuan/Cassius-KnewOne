@@ -157,7 +157,6 @@
     position: relative;
 
     @media (min-width: $screen-sm-min) {
-      @include clearfix;
       float: left;
       width: 80%;
     }
@@ -217,6 +216,12 @@
     @include clearfix;
     clear: both;
 
+    @media (min-width: $screen-sm-min) {
+      clear: none;
+      float: left;
+      width: 80%;
+    }
+
     .metas {
       float: left;
 
@@ -261,16 +266,6 @@
     }
   }
 
-  .feed_action {
-    color: $text-color;
-
-    .btn {
-      @include button_inverse(#ececec, #6e6e6e);
-
-      width: 60px;
-    }
-  }
-
   > .feed_action {
     display: none;
 
@@ -281,5 +276,17 @@
       position: absolute;
       top: 18px;
     }
+  }
+}
+
+.feed_action {
+  color: $text-color;
+  display: inline-block;
+  vertical-align: middle;
+
+  .btn {
+    @include button_inverse(#ececec, #6e6e6e);
+
+    width: 60px;
   }
 }
