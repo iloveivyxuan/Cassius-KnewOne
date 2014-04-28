@@ -18,8 +18,8 @@ class PostPresenter < ApplicationPresenter
     time_ago_tag(@object.created_at, css_class)
   end
 
-  def author_avatar(size)
-    present(post.author).link_to_with_avatar(size)
+  def author_avatar(size = :small, options = {})
+    present(post.author).link_to_with_avatar(size, {}, options)
   end
 
   def author_name
