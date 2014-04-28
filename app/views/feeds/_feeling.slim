@@ -25,5 +25,5 @@
         li
           = link_to_with_icon feeling.comments.count, "fa fa-comments-o", "#", class: 'comments_toggle', data: {id: "feeling_#{feeling.id}_comments"}
         li = feeling_presenter.score
-      = render partial: 'shared/voting', locals: {object: feeling}
-    = render partial: 'shared/voting', locals: {object: feeling}
+      .feed_action = render partial: 'shared/voting', locals: {object: feeling}
+    .feed_action = render partial: 'shared/voting', locals: {object: feeling}

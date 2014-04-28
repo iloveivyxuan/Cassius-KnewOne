@@ -18,6 +18,5 @@
           li = time_ago_tag(topic.created_at, 'meta')
           / TODO: .feed_article
           li = tp.comments_count
-      / TODO: .feed_article
-      /   = render partial: 'shared/voting', locals: {object: review}
-      / = render partial: 'shared/voting', locals: {object: review}
+        .feed_action = render partial: 'shared/voting', locals: {object: topic}
+      .feed_action = render partial: 'shared/voting', locals: {object: topic}

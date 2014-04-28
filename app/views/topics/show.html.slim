@@ -11,7 +11,7 @@
     section.post_content= tp.content
 
     footer
-      = render 'shared/voting', object: tp.topic
+      .feed_action = render 'shared/voting', object: tp.topic
       = link_to_with_icon "分享", "fa fa-share",
                           user_signed_in? ? "#topic_share" : "#login-modal",
                           title: "分享", data: {toggle: 'modal'}
