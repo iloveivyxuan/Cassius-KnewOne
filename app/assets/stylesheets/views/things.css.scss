@@ -663,6 +663,18 @@ html.things_show,
 html.feelings_index,
 html.reviews_index {
 
+  .feeling_form {
+    border-bottom: $border_default;
+    margin-bottom: 1em;
+    padding-bottom: 2em;
+  }
+
+  #thing_feelings {
+    h4 {
+      color: $gray;
+    }
+  }
+
   main {
 
     .feed_article {
