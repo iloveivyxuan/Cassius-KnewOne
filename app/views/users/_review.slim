@@ -21,5 +21,5 @@
             i.fa.fa-comments-o
             = review.comments.count
           li = rp.score
-        = render partial: 'reviews/voting', locals: {review: review}
-      = render partial: 'reviews/voting', locals: {review: review}
+        = render partial: 'shared/voting', locals: {object: review}
+      = render partial: 'shared/voting', locals: {object: review}

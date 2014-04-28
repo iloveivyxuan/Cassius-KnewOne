@@ -21,5 +21,5 @@
         li
           i.fa.fa-comments-o
           = topic.comments.size
-    /   = render partial: 'topic/voting', locals: {topic: topic}
-    / = render partial: 'topic/voting', locals: {topic: topic}
+    /   = render partial: 'shared/voting', locals: {object: topic}
+    / = render partial: 'shared/voting', locals: {object: topic}
