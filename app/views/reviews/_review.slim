@@ -17,8 +17,8 @@
         ul.metas
           li = rp.created_at
           li
-            .comments_count
-              i.fa.fa-comments-o
-              = review.comments.count
+            i.fa.fa-comments-o
+            = review.comments.count
+          li = rp.score
         = render partial: 'reviews/voting', locals: {review: review}
       = render partial: 'reviews/voting', locals: {review: review}

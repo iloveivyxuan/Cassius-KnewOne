@@ -247,6 +247,11 @@
       }
       width: 100%;
 
+      @media (min-width: $screen-sm-min) {
+        float: none;
+        width: auto;
+      }
+
       // TODO
       h4 {display: none;}
       ul {

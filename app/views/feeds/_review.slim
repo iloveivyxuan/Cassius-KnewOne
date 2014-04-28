@@ -1,26 +1,27 @@
 - review = fp.reference
 - present review do |rp|
-  section class="feed_article #{fp.style}"
-    .metas
-      = fp.render_action
+  article class="feed_article #{fp.style}" id="review_#{review.id}"
+    header
+      h5 = link_to rp.title, rp.path
     figure
       - if review.thing
         - present review.thing do |tp|
           = link_to tp.path do
             = tp.photo(:small)
-            figurecaption title="#{tp.title}" = tp.title
-    = link_to rp.path, class: "feed_main"
-      article
-        header.feed_header
-          h4.feed_title
-            = rp.title
-          .metas
-            em.meta
-              i.fa.fa-comments-o
-              = review.comments.size
-        section.feed_content
-          = rp.cover(:normal)
-          p = rp.summary(120)
-        strong.feed_feature title="#{review.lovers_count} 个人觉得有用"
-          i.fa.fa-plus
-          = review.lovers_count
+            figurecaption title="#{tp.title}"
+              = tp.title
+              = rp.score
+    section
+      .cover_small = rp.cover(:small)
+      p = rp.summary(120)
+      .cover_normal = rp.cover(:normal)
+    footer
+      ul.metas
+        li = fp.render_action
+        li = rp.created_at
+        li
+          i.fa.fa-comments-o
+          = review.comments.size
+        li = rp.score
+      = render partial: 'reviews/voting', locals: {review: review}
+    = render partial: 'reviews/voting', locals: {review: review}

@@ -1,26 +1,24 @@
 - topic = fp.reference
 - present topic do |tp|
-  section class="feed_article #{fp.style}"
-    .metas
-      = fp.render_action
+  article class="feed_article #{fp.style}"
+    header
+      h5 = link_to tp.title, tp.path
     figure
       - if topic.group
         - present topic.group do |gp|
           = link_to gp.path do
             = gp.avatar
-            figurecaption title="#{gp.name}" = gp.name
-    = link_to tp.path, class: "feed_main"
-      article
-        header.feed_header
-          h4.feed_title
-            = tp.title
-          .metas
-            em.meta
-              i.fa.fa-comments-o
-              = topic.comments.size
-        section.feed_content
-          = tp.cover
-          p = tp.summary(120)
-        strong.feed_feature title="#{topic.lovers_count} 个人觉得赞"
-          i.fa.fa-plus
-          = topic.lovers_count
+            figcaption title="#{gp.name}"
+              = gp.name
+    section
+      .cover_small = tp.cover(:small)
+      p = tp.summary(120)
+      .cover_small = tp.cover(:normal)
+    footer
+      ul.metas
+        li = fp.render_action
+        li
+          i.fa.fa-comments-o
+          = topic.comments.size
+    /   = render partial: 'topic/voting', locals: {topic: topic}
+    / = render partial: 'topic/voting', locals: {topic: topic}

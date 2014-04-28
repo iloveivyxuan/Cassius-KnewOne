@@ -1,6 +1,6 @@
 - feeling = fp.reference
 - present feeling do |feeling_presenter|
-  section class="feed_article #{fp.style}" id="feeling_#{feeling.id}"
+  article class="feed_article #{fp.style}" id="feeling_#{feeling.id}"
     figure
       - if feeling.thing
         - present feeling.thing do |tp|
