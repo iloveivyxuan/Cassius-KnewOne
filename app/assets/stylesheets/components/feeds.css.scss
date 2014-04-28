@@ -228,6 +228,18 @@
       @media (min-width: $screen-sm-min) {
         float: none;
       }
+
+      time {
+        font-size: 14px;
+      }
+
+      .score {
+        display: none;
+
+        @media (min-width: $screen-sm-min) {
+          display: block;
+        }
+      }
     }
 
     .feed_action {
@@ -275,6 +287,31 @@
       margin-bottom: -4px;
       position: absolute;
       top: 18px;
+    }
+  }
+}
+
+.feed_type {
+  display: inline-block;
+
+  a {
+    color: $text-muted;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .fa {
+    color: $text-muted;
+    margin-left: .5em;
+  }
+
+  .feed_text {
+    display: none;
+
+    @media (min-width: $screen-sm-min) {
+      display: inline-block;
     }
   }
 }

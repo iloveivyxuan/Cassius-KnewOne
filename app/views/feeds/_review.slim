@@ -17,7 +17,8 @@
       .cover_normal = rp.cover(:normal)
     footer
       ul.metas
-        li = fp.render_action
+        li
+          .feed_type = fp.render_action
         li = rp.created_at
         li
           i.fa.fa-comments-o

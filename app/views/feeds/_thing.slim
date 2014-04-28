@@ -11,7 +11,7 @@
         h5 data-placement="top" data-toggle="tooltip" title="" data-original-title="#{tp.full_title}"
           = link_to tp.full_title, thing, target: '_blank'
         .figure_detail
-          = fp.render_action
+          .feed_type = fp.render_action
           - if thing.fanciers.size > 0
             span.fanciers
               i.fa.fa-heart

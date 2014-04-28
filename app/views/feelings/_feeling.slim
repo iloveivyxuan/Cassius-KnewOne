@@ -8,11 +8,12 @@
           = fp.score
       section
         = fp.content
-        ul
-          - feeling.photos.each do |photo|
-            li
-              = link_to photo.url, data: {lightbox: "feeling_#{feeling.id}"} do
-                = image_tag photo.url(:small), alt: photo.name
+        - if feeling.photos.present?
+          ul
+            - feeling.photos.each do |photo|
+              li
+                = link_to photo.url, data: {lightbox: "feeling_#{feeling.id}"} do
+                  = image_tag photo.url(:small), alt: photo.name
       footer
         ul.metas
           li = link_to fp.path do
