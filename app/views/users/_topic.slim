@@ -16,7 +16,8 @@
       footer
         ul.metas
           li = time_ago_tag(topic.created_at, 'meta')
-          / TODO: .feed_article
-          li = tp.comments_count
+          li
+            i.fa.fa-comments-o
+            = topic.comments.size
         .feed_action = render partial: 'shared/voting', locals: {object: topic}
       .feed_action = render partial: 'shared/voting', locals: {object: topic}
