@@ -259,14 +259,6 @@
   .feed_action {
     color: $text-color;
 
-    @media (min-width: $screen-sm-min) {
-      bottom: auto;
-      display: block;
-      left: 0;
-      right: auto;
-      top: 18px;
-    }
-
     .btn {
       @include button_inverse(#ececec, #6e6e6e);
 
@@ -278,11 +270,11 @@
     display: none;
 
     @media (min-width: $screen-sm-min) {
-      bottom: 1em;
       display: block;
+      left: 0;
       margin-bottom: -4px;
       position: absolute;
-      right: 1em;
+      top: 18px;
     }
   }
 }
