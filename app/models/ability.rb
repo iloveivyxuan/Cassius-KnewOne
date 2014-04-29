@@ -44,7 +44,7 @@ class Ability
       review.author == user
     end
     can :vote, Review do |review|
-      review.author != user && !review.voted?(user)
+      !review.voted?(user)
     end
 
     can :create, Feeling
@@ -52,7 +52,7 @@ class Ability
       feeling.author == user
     end
     can :vote, Feeling do |feeling|
-      feeling.author != user && !feeling.voted?(user)
+      !feeling.voted?(user)
     end
 
     can :create, Comment
@@ -99,7 +99,7 @@ class Ability
     can :fancy, Group
 
     can :vote, Topic do |topic|
-      topic.author != user && !topic.voted?(user)
+      !topic.voted?(user)
     end
     can :create, Topic do |topic|
       topic.group.has_member? user
