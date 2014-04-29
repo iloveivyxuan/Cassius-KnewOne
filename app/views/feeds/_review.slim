@@ -19,10 +19,13 @@
       ul.metas
         li
           .feed_type = fp.render_action
-        li = rp.created_at
         li
-          i.fa.fa-comments-o
-          = review.comments.size
+          = link_to rp.path do
+            = rp.created_at
+        li
+          = link_to rp.path do
+            i.fa.fa-comments-o
+            = review.comments.size
         li = rp.score
       .feed_action = render partial: 'shared/voting', locals: {object: review}
     .feed_action = render partial: 'shared/voting', locals: {object: review}

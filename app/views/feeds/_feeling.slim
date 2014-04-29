@@ -21,9 +21,13 @@
       ul.metas
         li
           .feed_type = fp.render_action
-        li = feeling_presenter.created_at
         li
-          = link_to_with_icon feeling.comments.count, "fa fa-comments-o", "#", class: 'comments_toggle', data: {id: "feeling_#{feeling.id}_comments"}
+          = link_to feeling_presenter.path do
+            = feeling_presenter.created_at
+        li
+          = link_to feeling_presenter.path do
+            i.fa.fa-comments-o
+            = feeling.comments.count
         li = feeling_presenter.score
       .feed_action = render partial: 'shared/voting', locals: {object: feeling}
     .feed_action = render partial: 'shared/voting', locals: {object: feeling}
