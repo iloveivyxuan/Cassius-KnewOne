@@ -331,6 +331,12 @@
     @include button_inverse(#ececec, #6e6e6e);
 
     width: 60px;
+
+    &.done {
+      background-color: #6e6e6e;
+      color: #ececec;
+      opacity: 1;
+    }
   }
 }
 
