@@ -43,6 +43,7 @@ Making::Application.routes.draw do
       get 'fancies'
       get 'owns'
       get 'reviews'
+      get 'feelings'
       get 'things'
       get 'groups'
       get 'topics'
@@ -105,6 +106,11 @@ Making::Application.routes.draw do
     resources :reviews do
       member { post 'vote' }
     end
+
+    resources :feelings do
+      member { post 'vote' }
+    end
+
     resources :stories
   end
 
@@ -206,10 +212,6 @@ Making::Application.routes.draw do
     resources :landing_covers, except: [:show]
     resources :promotions, except: [:show]
     resources :things, only: [:index, :update, :edit] do
-      collection do
-        get 'resort'
-      end
-
       member do
         get 'send_stock_notification'
       end

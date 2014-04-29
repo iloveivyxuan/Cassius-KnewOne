@@ -49,7 +49,6 @@ window.Making =
             lock = true
             Making.ExtendCarousel()
             lock = false
-      $('[type="range"].range_rating').length && Making.Rating()
       $('.score').length && Making.Score()
       Making.AjaxComplete()
       Making.ToggleFixedNavbar()
@@ -154,6 +153,11 @@ window.Making =
       view = new Making.Views.ThingsNew
         el: "form.thing_form"
 
+  FeelingsNew: ->
+    $ ->
+      view = new Making.Views.FeelingNew
+        el: '.feeling_form > .editor_compact'
+
   FormLink: (form, button) ->
     $ ->
       $(button).click ->
@@ -210,17 +214,6 @@ window.Making =
 
           resque = $editor.html()
           $(textarea).val resque.replace(/<!--.*?-->/g, '')
-
-  Voting: () ->
-    $form = $('form.not_voted')
-    $form.show().find('button').click (e) ->
-      $('<input>').attr
-        type: "hidden"
-        name: "vote"
-      .val($(@).data("vote"))
-      .appendTo($form)
-    .end().on "ajax:success", (e, html, status, xhr) ->
-      $form.replaceWith html
 
   Share: () ->
     share_content_length = ($el) ->
@@ -282,40 +275,24 @@ window.Making =
       .lazyload
         threshold: 0
 
-  Rating: ->
-    $('[type="range"].range_rating').each ->
-      $range = $(@)
-      $stars = $()
-      for val in [parseInt($range.attr('max'))..1]
-        $stars = $stars.add($('<span />').addClass('star').data('val', val))
-      $rating = $('<div />')
-                  .addClass('rating')
-                  .append($stars)
-                  .insertAfter($range)
-                  .data('score', $range.val())
-                  .on 'click', '.star', ->
-                    $star = $(@)
-                    $star.addClass('selected')
-                      .siblings().removeClass('selected')
-                    $range.val($star.data('val'))
-                    $star.parents('.rating').data('score', $range.val())
-      $rating.find('.star').eq(-parseInt($range.val())).addClass('selected')
-
   Score: ->
     $('.score').each (i, el) ->
       $self = $(el)
       score = $self.data('score')
       $stars = $()
+
+      if $self.find('.star').length > 0 then return
+
       for val in [5..1]
         $star = $('<span />').addClass('star').data('val', val)
         $star.addClass('active') if $star.data('val') <= parseInt(score)
         $stars = $stars.add($star)
 
-      $rating = $('<div />')
-                  .addClass('rate')
-                  .data('score', score)
-                  .append($stars)
-                  .appendTo($self)
+      $('<div />')
+        .addClass('rate')
+        .data('score', score)
+        .append($stars)
+        .appendTo($self)
 
   ExtendCarousel: ->
     $('.carousel').each ->

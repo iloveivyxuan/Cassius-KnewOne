@@ -7,6 +7,7 @@ class Making.Views.PhotosUpload extends Backbone.View
     @collection = new Making.Collections.Photos(@$container.data('photos'))
     @collection.on
       add: @addPhoto
+      remove: @removePhoto
     $('#new_photo').fileupload
       dataType: "json"
       paramName: 'photo[image]' #rails 3.2.13 breaks multiple file upload, waiting for fixed
@@ -23,7 +24,7 @@ class Making.Views.PhotosUpload extends Backbone.View
     this
 
   addFile: (e, data) =>
-    @$container.find('p').remove()
+    @$container.find('.help-block').hide()
     file = data.files[0]
     data.view = new Making.Views.PhotoPreview
       model: file
@@ -53,7 +54,10 @@ class Making.Views.PhotosUpload extends Backbone.View
       model: photo
       attributes:
         'data-photo-id': photo.id
-    @$el.append view.render().el  
+    @$el.append view.render().el
     @$el.sortable
       items: '.uploaded'
-      handle: '.move'
+
+  removePhoto: =>
+    if @$el.children('li').length is 0
+      @$el.prev('.help-block').show()

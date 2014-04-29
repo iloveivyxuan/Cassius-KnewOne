@@ -43,7 +43,17 @@ class Ability
     can [:update, :destroy], Review do |review|
       review.author == user
     end
-    can :vote, Review
+    can :vote, Review do |review|
+      !review.voted?(user)
+    end
+
+    can :create, Feeling
+    can [:update, :destroy], Feeling do |feeling|
+      feeling.author == user
+    end
+    can :vote, Feeling do |feeling|
+      !feeling.voted?(user)
+    end
 
     can :create, Comment
     can :destroy, Comment do |comment|
@@ -88,7 +98,9 @@ class Ability
     end
     can :fancy, Group
 
-    can :vote, Topic
+    can :vote, Topic do |topic|
+      !topic.voted?(user)
+    end
     can :create, Topic do |topic|
       topic.group.has_member? user
     end
@@ -117,7 +129,8 @@ class Ability
     can :read, Topic
     can :read, Lottery
     can :read, User
-    can [:owns, :fancies, :things, :reviews, :activities, :followings, :followers, :groups, :topics], User
+    can [:owns, :fancies, :things, :reviews, :feelings,
+         :activities, :followings, :followers, :groups, :topics], User
     can [:buy, :groups, :comments, :wechat_qr, :random], Thing
   end
 
@@ -131,6 +144,7 @@ class Ability
     can :update, Category
     can :pro_edit, Thing
     can :manage, Review
+    can :manage, Feeling
     can :manage, Lottery
     can :manage, Supplier
   end

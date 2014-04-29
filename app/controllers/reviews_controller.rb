@@ -18,7 +18,6 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    @review.score = 3
   end
 
   def create
@@ -52,13 +51,13 @@ class ReviewsController < ApplicationController
   end
 
   def vote
-    if params[:vote] == "true"
-      @review.vote current_user, true
-      current_user.log_activity :love_review, @review, source: @review.thing
-    else
-      @review.vote current_user, false
+    @review.vote(current_user, true)
+
+    current_user.log_activity :love_review, @review, source: @review.thing
+
+    respond_to do |format|
+      format.js { render partial: 'shared/vote', locals: {object: @review} }
     end
-    render :partial => 'voting', locals: {review: @review}, layout: false
   end
 
   private

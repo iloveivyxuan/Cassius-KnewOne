@@ -8,6 +8,8 @@ html.reviews_edit,
 html.reviews_show,
 html.reviews_create,
 html.reviews_update,
+html.feelings_index,
+html.feelings_show,
 html.stories_index,
 html.stories_new,
 html.stories_edit,
@@ -43,51 +45,51 @@ html.stories_show {
         }
       }
     }
+  }
 
-    #thing_content {
-      $gap: 2em;
+  #thing_content {
+    $gap: 2em;
 
-      > * {
-        padding-bottom: $gap;
-        border-bottom: $border-default;
-        margin-bottom: $gap;
+    > * {
+      padding-bottom: $gap;
+      border-bottom: $border-default;
+      margin-bottom: $gap;
+    }
+
+    > *:last-child {border: none;}
+
+    .post_content {
+      $summary_height: 200px;
+
+      &.is_folded {
+        max-height: $summary_height;
+        overflow: hidden;
+        padding-bottom: 0;
       }
 
-      > *:last-child {border: none;}
+      & + .more {
+        height: $summary_height + 40px;
+        margin-top: -($summary_height + 28px);
+        padding-bottom: 0;
+        position: relative;
 
-      .post_content {
-        $summary_height: 200px;
+        a {
+          background-color: #f5f5f5;
+          bottom: 0;
+          color: $gray;
+          height: 40px;
+          line-height: 40px;
+          position: absolute;
+          text-align: center;
+          width: 100%;
 
-        &.is_folded {
-          max-height: $summary_height;
-          overflow: hidden;
-          padding-bottom: 0;
-        }
+          &:hover {
+            background-color: darken(#f5f5f5, 5%);
+          }
 
-        & + .more {
-          height: $summary_height + 40px;
-          margin-top: -($summary_height + 28px);
-          padding-bottom: 0;
-          position: relative;
-
-          a {
-            background-color: #f5f5f5;
-            bottom: 0;
-            color: $gray;
-            height: 40px;
-            line-height: 40px;
-            position: absolute;
-            text-align: center;
-            width: 100%;
-
-            &:hover {
-              background-color: darken(#f5f5f5, 5%);
-            }
-
-            .fa {
-              font-size: 18px;
-              vertical-align: -1px;
-            }
+          .fa {
+            font-size: 18px;
+            vertical-align: -1px;
           }
         }
       }
@@ -653,6 +655,54 @@ html.things_index {
           margin-right: 30px;
         }
       }
+    }
+  }
+}
+
+html.things_show,
+html.feelings_index,
+html.reviews_index {
+
+  .feeling_form {
+    border-bottom: $border_default;
+    margin-bottom: 1em;
+    padding-bottom: 2em;
+  }
+
+  #thing_feelings {
+    h4 {
+      color: $gray;
+    }
+  }
+
+  main {
+
+    .feed_article {
+      border-top: $border_default;
+      margin-bottom: 1em;
+      padding-top: 2em;
+
+      &:first-child {
+        border-top: none;
+        margin-top: 0;
+      }
+
+      @media (min-width: $screen-sm-min) {
+        padding-top: 1em;
+      }
+    }
+  }
+}
+
+
+html.feelings_index {
+
+  #thing_content {
+
+    > form {
+      border-bottom: 0;
+      margin-bottom: 1em;
+      padding-bottom: 0;
     }
   }
 }

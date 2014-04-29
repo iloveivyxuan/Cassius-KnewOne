@@ -1,21 +1,23 @@
 - if topic and topic.group
-  article.article_compact
+  article.feed_article id="topic_#{topic.id}"
     - present topic do |tp|
-      header.article_header
-        h4.article_title = link_to tp.title, tp.path
-      section.article_body
-        figure
-          - present topic.group do |gp|
-            = link_to gp.group do
-              = gp.avatar
-            figurecaption title=gp.name
-              = gp.name
-        .article_content
-          = tp.cover
-          p = tp.summary(120)
-        .metas
-          .metas_group
-            = time_ago_tag(topic.created_at, 'meta')
-            = tp.comments_count
-      .article_feature
-        = tp.lovers_count
+      header
+        h5 = link_to tp.title, tp.path
+      figure
+        - present topic.group do |gp|
+          = link_to gp.group do
+            = gp.avatar
+          figcaption title=gp.name
+            = gp.name
+      section
+        .cover_small = tp.cover(:small)
+        p = tp.summary(120)
+        .cover_normal = tp.cover(:normal)
+      footer
+        ul.metas
+          li = time_ago_tag(topic.created_at, 'meta')
+          li
+            i.fa.fa-comments-o
+            = topic.comments.size
+        .feed_action = render partial: 'shared/voting', locals: {object: topic}
+      .feed_action = render partial: 'shared/voting', locals: {object: topic}

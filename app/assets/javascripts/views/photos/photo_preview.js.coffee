@@ -5,7 +5,7 @@ class Making.Views.PhotoPreview extends Backbone.View
   template: HandlebarsTemplates['photos/preview']
 
   events:
-      "click .fail a": "remove"
+    "click .destroy": "remove"
 
   initialize: ->
     @model.readable_size = @_formatSize(@model.size)
@@ -13,11 +13,11 @@ class Making.Views.PhotoPreview extends Backbone.View
   render: =>
     @$el.html @template(@model)
     loadImage @model, (img) =>
-      @$(".photo").prepend img
+      @$(".uploader_item").prepend img
     , {
       canvas: true
-      maxWidth: @$('.photo').data('preview-width')
-      maxHeight: @$('.photo').data('preview-height')
+      maxWidth: @$('.uploader_item').data('preview-width')
+      maxHeight: @$('.uploader_item').data('preview-height')
     }
     this
 
@@ -35,7 +35,11 @@ class Making.Views.PhotoPreview extends Backbone.View
     @$('.progress .progress-bar').css('width', progress + '%')
 
   fail: (error) ->
-    @$('.progress').replaceWith "<p class=\"fail\">#{error}, 请<a href='#'>重新上传</a></p>"
+    @$el
+      .removeClass('uploading')
+      .addClass('fail')
+      .html('<p class="fail">' + error +
+        '<a class="destroy" title="删除" href="#"><i class="fa fa-trash-o"></i></a></p>')
     false
 
   _formatSize: (bytes) ->

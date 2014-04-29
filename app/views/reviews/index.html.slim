@@ -7,7 +7,7 @@
        class: "#{params[:sort]=='created_at'?'':'active'} btn btn-default"
        = link_to_with_icon "最新", "fa fa-clock-o", thing_reviews_path(@thing, sort: 'created_at'),
        class: "#{params[:sort]=='created_at'?'active':''} btn btn-default"
-  ul#reviews= render @reviews
+  #reviews= render @reviews
   = paginate @reviews
 - else
   .jumbotron

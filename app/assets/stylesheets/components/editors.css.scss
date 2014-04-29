@@ -87,3 +87,116 @@
     right: 0;
   }
 }
+
+.editor_compact {
+
+  .editor_content {
+    @include box-shadow(inset 0 1px 1px rgba(0,0,0,.075));
+
+    border: 1px solid #ccc;
+    border-radius: $input-border-radius;
+
+    &:focus {
+      @include box-shadow(inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rbba(102,175,233,0.6));
+      border-color: $input-border-focus;
+      outline: none;
+    }
+
+    textarea {
+      border: none;
+      resize: none;
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+
+    &.uploading {
+
+      textarea {
+        @include border-bottom-radius(0);
+        border-bottom: 0;
+      }
+    }
+  }
+
+  > footer {
+    @include clearfix;
+
+    @media (min-width: $screen-sm-min) {
+      padding-left: 104px;
+    }
+
+    .form-group {
+      display: inline-block;
+      margin-bottom: 0;
+      vertical-align: middle;
+    }
+
+    .separator {
+      padding: {
+        left: 1em;
+        right: 1em;
+      }
+
+      &:first-child {
+        @media (max-width: $screen-xs-max) {
+          display: none;
+        }
+      }
+    }
+
+    .counter {
+      color: $gray;
+      display: inline-block;
+      line-height: 34px;
+      text-align: center;
+      width: 50px;
+
+      &.error {
+        color: $red;
+      }
+    }
+
+    .submit {
+      float: right;
+    }
+  }
+
+  + .uploader {
+    height: 0;
+    margin-bottom: 0;
+
+    @media (max-width: $screen-xs-max) {
+      display: none;
+    }
+
+    .uploader_button {
+      margin:{
+        bottom: 0;
+        top: -56px;
+      }
+    }
+
+    .uploader_queue {
+      border: none;
+      border-top: $border-dashed;
+      display: none;
+      margin: {
+        bottom: 0;
+        top: -119px;
+      }
+    }
+  }
+
+  &.uploading {
+
+    .editor_content {
+      padding-bottom: 49px;
+    }
+
+    & + .uploader .uploader_queue {
+      display: block;
+    }
+  }
+}

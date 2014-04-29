@@ -1,0 +1,10 @@
+- provide :nav, :thing_feelings unless content_for? :nav
+
+= render 'feelings/form'
+= render 'feelings/sort', {thing: @thing}
+.feelings = render feelings
+= paginate feelings
+
+- content_for :script do
+  javascript:
+    Making.InitFeelings();

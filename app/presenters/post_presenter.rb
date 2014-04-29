@@ -18,8 +18,8 @@ class PostPresenter < ApplicationPresenter
     time_ago_tag(@object.created_at, css_class)
   end
 
-  def author_avatar(size)
-    present(post.author).link_to_with_avatar(size)
+  def author_avatar(size = :small, options = {})
+    present(post.author).link_to_with_avatar(size, {}, options)
   end
 
   def author_name
@@ -51,19 +51,21 @@ class PostPresenter < ApplicationPresenter
     present(current_user).topic_wrapper(brand)
   end
 
-  def votings
-    lc, fc = @object.lovers.count, @object.foes.count
-    lc <= 0 and return
-    content_tag :span, class: "lovers" do
-      i = content_tag :i, "", class: "fa fa-plus"
-      count = content_tag :small, "#{lc}/#{lc+fc}"
-      i.concat count
-    end
-  end
-
   def lovers_count
     i = content_tag :i, "", class: "fa fa-plus"
     count = content_tag :span, @object.lovers_count
     i.concat count
+  end
+
+  def cover(version = :small)
+    if src = post.cover(version)
+      image_tag src
+    end
+  end
+
+  def score
+    if post.try(:score).present? and post.score > 0
+      content_tag :div, "", data: {score: post.score}, class: "score"
+    end
   end
 end

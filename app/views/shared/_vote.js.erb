@@ -1,0 +1,3 @@
+<% id = "#{object.model_name.singular}_#{object.id}" %>
+$('#<%= id %> .voting')
+.replaceWith("<%=j render 'shared/voting', object: object %>")

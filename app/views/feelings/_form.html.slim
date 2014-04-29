@@ -1,0 +1,34 @@
+.feeling_form
+  - unless user_signed_in?
+    p.auth_tip
+      | 需要您
+      a.btn.btn-primary.btn-sm href="#" data-toggle="modal" data-target="#login-modal"
+        | 登录
+      | 之后才可以发表短评
+
+  = simple_form_for [@thing, Feeling.new], remote: true, html: {class: "editor_compact"} do |f|
+    = f.input :content, as: :text, label: false, disabled: !user_signed_in?,
+        wrapper_html: {class: "editor_content"},
+        input_html: {class: "form-control", placeholder: "不超过 140 字",rows: 5, maxLength: 1000}
+    footer
+      - if user_signed_in?
+        span.separator |
+        = f.input :score, as: :range, label: false, input_html: {class:'range_rating', max: 5, min: 0}
+
+      .submit
+        span.counter 140
+        = button_tag type: "submit", class: "btn btn-success", disabled: !user_signed_in?,
+          title: "按 Command + Enter 或 Control + Enter 键发布回复", data: {toggle: "tooltip", placement: "bottom"} do
+          i.fa.fa-comments-o
+          | 发布
+
+  - if user_signed_in?
+    = simple_form_for Photo.new, html: {class: "uploader"} do |f|
+      button.btn.btn-info.uploader_button.fileinput-button type="button"
+        i.fa.fa-cloud-upload
+        | 上传图片
+        = f.file_field :image, multiple: true, name: "photo[image]", label: "上传图片"
+      = content_tag :div, class: "uploader_queue", id: "photos", data: {photos: @photos} do
+        p.help-block
+          i.fa.fa-arrows
+          | 可以将照片文件直接从桌面拖拽进来

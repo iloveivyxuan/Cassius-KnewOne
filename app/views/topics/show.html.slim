@@ -3,7 +3,7 @@
 - present @topic do |tp|
   - page_title tp.title
 
-  article.post_show
+  article.post_show id="topic_#{@topic.id}"
     header
       h3= tp.title
       = tp.author_tag
@@ -11,7 +11,7 @@
     section.post_content= tp.content
 
     footer
-      = render 'voting', topic: tp.topic
+      .feed_action = render 'shared/voting', object: tp.topic
       = link_to_with_icon "分享", "fa fa-share",
                           user_signed_in? ? "#topic_share" : "#login-modal",
                           title: "分享", data: {toggle: 'modal'}
@@ -23,5 +23,4 @@
 
 - content_for :script do
   javascript:
-    Making.Voting();
     Making.Comments("#topic_comments");

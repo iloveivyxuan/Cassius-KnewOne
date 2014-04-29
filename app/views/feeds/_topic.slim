@@ -1,0 +1,25 @@
+- topic = fp.reference
+- present topic do |tp|
+  article class="feed_article #{fp.style}"
+    header
+      h5 = link_to tp.title, tp.path
+    figure
+      - if topic.group
+        - present topic.group do |gp|
+          = link_to gp.path do
+            = gp.avatar
+            figcaption title="#{gp.name}"
+              = gp.name
+    section
+      .cover_small = tp.cover(:small)
+      p = tp.summary(120)
+      .cover_small = tp.cover(:normal)
+    footer
+      ul.metas
+        li
+          .feed_type = fp.render_action
+        li
+          i.fa.fa-comments-o
+          = topic.comments.size
+      .feed_action = render partial: 'shared/voting', locals: {object: topic}
+    .feed_action = render partial: 'shared/voting', locals: {object: topic}

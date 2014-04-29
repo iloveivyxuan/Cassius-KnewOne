@@ -1,0 +1,16 @@
+#thing_feelings
+  h4
+    i.fa.fa-comments-o
+    | 短评
+
+  = render 'feelings/form'
+
+  .feelings = render tp.thing.feelings.limit(10)
+
+  - if tp.thing.feelings.count > 10
+    = link_to_with_icon "更多", "fa fa-angle-right fa-lg", thing_feelings_path(tp.thing),
+    class: "pull-right .more_feelings"
+
+  - content_for :script do
+    javascript:
+      Making.InitFeelings();

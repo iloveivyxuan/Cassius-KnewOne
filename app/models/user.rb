@@ -199,6 +199,10 @@ class User
     posts.where(_type: "Review")
   end
 
+  def feelings
+    posts.where(_type: "Feeling")
+  end
+
   def topics
     posts.where(_type: "Topic").desc(:created_at)
   end
@@ -348,7 +352,8 @@ class User
   # activity
   include Feedable
 
-  def relate_activities(type_from_users = %i(new_thing own_thing fancy_thing new_review love_review new_topic),
+  def relate_activities(type_from_users = %i(new_thing own_thing fancy_thing
+                                             new_review love_review new_feeling love_feeling new_topic),
       type_from_sources = %i(new_review new_topic))
     user_ids = self.following_ids.map(&:to_s)
     source_unions = (self.fancy_ids + self.own_ids).map { |id| "Thing_#{id.to_s}" } +

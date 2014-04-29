@@ -20,12 +20,14 @@
 //= require jquery.qrcode
 //= require bootstrap-wysiwyg
 //= require bootstrap-select
+//= require lightbox
 //= require_tree ../templates
 //= require making
 //= require util
 //= require common
 //= require notificationbox
 //= require search
+//= require editor
 //= require welcome
 //= require home
 //= require thing
@@ -34,6 +36,7 @@
 //= require sandbox
 //= require typeahead.bundle
 //= require fuzzy
+//= require rating
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ./views

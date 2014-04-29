@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def show
     @reviews = @user.reviews.where(:thing_id.ne => nil).limit(4)
+    @feelings = @user.feelings.where(:thing_id.ne => nil).limit(4)
     @fancies = @user.fancies.limit(3)
     @owns = @user.owns.limit(3)
     @activities = @user.activities.visible.limit(10)
@@ -19,6 +20,10 @@ class UsersController < ApplicationController
 
   def reviews
     @reviews = @user.reviews.where(:thing_id.ne => nil).page(params[:page]).per(24)
+  end
+
+  def feelings
+    @feelings = @user.feelings.where(:thing_id.ne => nil).page(params[:page]).per(24)
   end
 
   def things

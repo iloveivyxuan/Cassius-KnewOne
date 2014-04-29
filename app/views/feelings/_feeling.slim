@@ -1,0 +1,37 @@
+- if feeling.thing
+  - present feeling do |fp|
+    article.feed_article id="feeling_#{feeling.id}"
+      figure
+        = fp.author_avatar(:small, class: "img-circle")
+        figcaption
+          = fp.author_name
+          = fp.score
+      section
+        = fp.content
+        - if feeling.photos.present?
+          ul
+            - feeling.photos.each do |photo|
+              li
+                = link_to photo.url, data: {lightbox: "feeling_#{feeling.id}"} do
+                  = image_tag photo.url(:small), alt: photo.name
+      footer
+        ul.metas
+          li
+            = link_to fp.path do
+              = fp.created_at
+          li
+            = link_to fp.path, class: "comments_toggle", data: {id: "feeling_#{feeling.id}_comments"} do
+              i.fa.fa-comments-o
+              span.comments_count = feeling.comments.count
+          li = fp.score
+          - if can? :destroy, feeling
+            li
+              .destroy
+                = link_to_with_icon "", "fa fa-trash-o", [feeling.thing, feeling],
+                  method: :delete, remote: true, data: {confirm: "您确定要删除吗?"}
+        .feed_action
+          = render partial: 'shared/voting', locals: {object: feeling}
+        section.comments_wrap
+          = render 'shared/comments', post: feeling, id: "feeling_#{feeling.id}_comments", auth: true
+      .feed_action
+        = render partial: 'shared/voting', locals: {object: feeling}

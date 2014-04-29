@@ -20,11 +20,11 @@ class UserPresenter < ApplicationPresenter
     user.current_auth.topic_wrapper topic
   end
 
-  def link_to_with_avatar(size, options={})
-    link_to avatar(size), user, options.merge(title: user.name)
+  def link_to_with_avatar(size, options={}, img_options={})
+    link_to avatar(size, img_options), user, options.merge(title: user.name)
   end
 
-  def link_to_with_name
-    link_to name, user
+  def link_to_with_name(options={})
+    link_to name, user, options
   end
 end

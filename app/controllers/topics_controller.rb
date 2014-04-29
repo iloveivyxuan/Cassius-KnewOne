@@ -40,14 +40,13 @@ class TopicsController < ApplicationController
   end
 
   def vote
-    # TODO: same with reviews#vote, should be DRY
-    if params[:vote] == "true"
-      @topic.vote current_user, true
-      current_user.log_activity :love_topic, @topic, source: @topic.group
-    else
-      @topic.vote current_user, false
+    @topic.vote(current_user, true)
+
+    current_user.log_activity :love_topic, @topic, source: @topic.group
+
+    respond_to do |format|
+      format.js { render partial: 'shared/vote', locals: {object: @topic} }
     end
-    render partial: 'voting', locals: {topic: @topic}, layout: false
   end
 
   private

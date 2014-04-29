@@ -3,7 +3,7 @@
 
 - present @review do |rp|
 
-  article.post_show
+  article.post_show.foo id="review_#{@review.id}"
     header
       h3= rp.title
       = rp.score
@@ -12,7 +12,7 @@
     section.post_content= rp.content
 
     footer
-      = render 'voting', review: rp.review
+      .feed_action = render 'shared/voting', object: rp.review
       = link_to_with_icon "分享", "fa fa-share",
         user_signed_in? ? "#review_share" : "#login-modal",
         title: "分享", data: {toggle: 'modal'}
@@ -26,7 +26,6 @@
 
 - content_for :script do
   javascript:
-    Making.Voting();
     Making.Comments("#comments");
     if ("#{flash[:provider_sync]}" == "true")
       $(function(){$('#review_share').modal('show')});
