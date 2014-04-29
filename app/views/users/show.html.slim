@@ -22,6 +22,16 @@
     .panel-body
       ul.things= render @fancies, size: :normal, img_lazy: false
 
+- if @feelings.any?
+  section.panel.panel_compact.hidden-xs
+    header.panel-heading
+      h3.panel-title
+        i.fa.fa-comments-o
+        | 短评
+      = link_to_with_icon '', 'fa fa-chevron-right fa_alone', feelings_user_path(@user), class: 'more', title: '更多'
+    .panel-body
+      = render partial: 'users/feeling', collection: @feelings
+
 - if @reviews.any?
   section.panel.panel_compact.hidden-xs
     header.panel-heading
