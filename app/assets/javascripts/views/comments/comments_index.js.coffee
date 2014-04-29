@@ -45,7 +45,9 @@ class Making.Views.CommentsIndex extends Backbone.View
       success: =>
         @$('textarea').val("")
         $comments_count = @$el.parents('.feed_article').find('.comments_count')
-        $comments_count.text(parseInt($comments_count.text()) + 1)
+        initial = parseInt($comments_count.text())
+        result = if isNaN(initial) then 1 else initial + 1
+        $comments_count.text(result)
 
   append: (comment) =>
     view = new Making.Views.Comment(model: comment)
