@@ -18,7 +18,9 @@
         ul.metas
           li = fp.created_at
           li
-            = link_to_with_icon feeling.comments.count, "fa fa-comments-o", "#", class: 'comments_toggle', data: {id: "feeling_#{feeling.id}_comments"}
+            a.comments_toggle href="#" data-id="feeling_#{feeling.id}_comments"
+              i.fa.fa-comments-o
+              span.comments_count = feeling.comments.count
           li = fp.score
           li
             - if can? :destroy, feeling
