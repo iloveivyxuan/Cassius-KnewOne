@@ -77,6 +77,7 @@ Making::Application.routes.draw do
     get 'owns'
     get 'things'
     get 'reviews'
+    get 'feelings'
     get 'followings'
     get 'followers'
     get 'groups'

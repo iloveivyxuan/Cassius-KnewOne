@@ -34,6 +34,10 @@ class ProfilesController < ApplicationController
     @reviews = current_user.reviews.where(:thing_id.ne => nil).page(params[:page]).per(20)
   end
 
+  def feelings
+    @feelings = current_user.feelings.where(:thing_id.ne => nil).page(params[:page]).per(20)
+  end
+
   def things
     @things = current_user.things.page(params[:page]).per(24)
   end
