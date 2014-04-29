@@ -16,4 +16,3 @@ class Making.Views.Photo extends Backbone.View
 
     @$el.fadeOut =>
       @.remove()
-      @.model.destroy()
