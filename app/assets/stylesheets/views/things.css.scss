@@ -674,24 +674,6 @@ html.reviews_index {
       color: $gray;
     }
   }
-
-  main {
-
-    .feed_article {
-      border-top: $border_default;
-      margin-bottom: 1em;
-      padding-top: 2em;
-
-      &:first-child {
-        border-top: none;
-        margin-top: 0;
-      }
-
-      @media (min-width: $screen-sm-min) {
-        padding-top: 1em;
-      }
-    }
-  }
 }
 
 

@@ -115,6 +115,7 @@
         @include translate(0, -50%, 0);
         position: absolute;
         top: 50%;
+        max-width: 50%;
       }
 
       @media (min-width: $screen-sm-min) {
