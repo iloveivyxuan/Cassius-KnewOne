@@ -36,7 +36,8 @@
           li
             = link_to review_presenter.path do
               i.fa.fa-comments-o
-              = review.comments.count
+              span.comments_count = review.comments.count > 0 ? review.comments.count : ''
+              |  评论
           li = review_presenter.score
         .feed_action
           = render partial: 'shared/voting', locals: {object: review}
