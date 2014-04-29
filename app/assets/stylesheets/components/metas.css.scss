@@ -14,8 +14,12 @@
     font-style: normal;
     line-height: 20px;
     margin: 0;
-    margin-right: 1em;
+    margin-right: .1em;
     vertical-align: middle;
+
+    @media (min-width: $screen-sm-min) {
+      margin-right: 1em;
+    }
 
     &:last-child {
       margin-right: 0;
