@@ -16,7 +16,9 @@
                   = image_tag photo.url(:small), alt: photo.name
       footer
         ul.metas
-          li = fp.created_at
+          li
+            = link_to fp.path do
+              = fp.created_at
           li
             a.comments_toggle href="#" data-id="feeling_#{feeling.id}_comments"
               i.fa.fa-comments-o

@@ -16,13 +16,14 @@
                   = image_tag photo.url(:small), alt: photo.name
       footer
         ul.metas
-          li = link_to fp.path do
-              = fp.created_at
-          li = fp.score
           li
-            a.comments_toggle href="#" data-id="feeling_#{feeling.id}_comments"
+            = link_to fp.path do
+              = fp.created_at
+          li
+            = link_to fp.path, class: "comments_toggle", data: {id: "feeling_#{feeling.id}_comments"} do
               i.fa.fa-comments-o
               span.comments_count = feeling.comments.count
+          li = fp.score
           - if can? :destroy, feeling
             li
               .destroy
