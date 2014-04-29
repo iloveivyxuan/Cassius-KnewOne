@@ -227,23 +227,23 @@ window.Making = do (exports = window.Making || {}) ->
         $count = $trigger.find('.fanciers_count')
       else
         $count = $trigger
-        .parents('.thing')
-        .find('.figure_detail')
-        .find('.fanciers_count')
+          .parents('.thing')
+          .find('.figure_detail')
+          .find('.fanciers_count')
 
       if $trigger.hasClass('fancied')
         $trigger
-        .removeClass('fancied')
-        .addClass('unfancied')
-        .attr('title', '取消喜欢')
-        .children('.fa')
-        .removeClass('fa-heart')
-        .addClass('fa-heart-o heartbeat')
-        # TODO change transitionEnd event to animationend event
-        .one $.support.transition.end, ->
-          $(@).removeClass('heartbeat')
-        .emulateTransitionEnd(750)
-        if $count.length then $count.text(parseInt($count.text(), 10) - 1)
+          .removeClass('fancied')
+          .addClass('unfancied')
+          .attr('title', '取消喜欢')
+          .children('.fa')
+          .removeClass('fa-heart')
+          .addClass('fa-heart-o heartbeat')
+          # TODO change transitionEnd event to animationend event
+          .one $.support.transition.end, ->
+            $(@).removeClass('heartbeat')
+          .emulateTransitionEnd(750)
+          if $count.length then $count.text(parseInt($count.text(), 10) - 1)
 
       else
         $trigger
