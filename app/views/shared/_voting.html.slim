@@ -4,7 +4,7 @@
     = button_tag title: "赞", class: "btn btn-sm", disabled: true do
       = present(object).lovers_count
   - elsif object.voted?(current_user)
-    = button_tag title: "赞", class: "btn btn-sm done", disabled: true do
+    = button_tag title: "已赞过", class: "btn btn-sm done", disabled: true do
       = present(object).lovers_count
   - else
     = button_tag title: "赞", class: "btn btn-sm" do

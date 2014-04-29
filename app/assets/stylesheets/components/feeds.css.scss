@@ -24,7 +24,7 @@
 .feed_article {
   @include clearfix;
 
-  padding: 1em;
+  padding: 2em 1em;
   position: relative;
 
   @media (min-width: $screen-sm-min) {
@@ -286,7 +286,7 @@
       left: 0;
       margin-bottom: -4px;
       position: absolute;
-      top: 18px;
+      top: 30px;
     }
   }
 }

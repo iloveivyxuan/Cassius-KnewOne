@@ -11,6 +11,14 @@ i.fa_alone {
   margin: 0;
 }
 
+.list > * {
+  border-top: $border_default;
+
+  &:first-child {
+    border-top: none;
+  }
+}
+
 .list_block {
 
   > li {

@@ -29,7 +29,7 @@
         i.fa.fa-comments-o
         | 短评
       = link_to_with_icon '', 'fa fa-chevron-right fa_alone', feelings_user_path(@user), class: 'more', title: '更多'
-    .panel-body
+    .panel-body.list
       = render partial: 'users/feeling', collection: @feelings
 
 - if @reviews.any?
@@ -39,7 +39,7 @@
         i.fa.fa-pencil
         | 评测
       = link_to_with_icon '', 'fa fa-chevron-right fa_alone', reviews_user_path(@user), class: 'more', title: '更多'
-    .panel-body
+    .panel-body.list
       = render partial: 'users/review', collection: @reviews
 
 section.panel.panel_compact.hidden-xs

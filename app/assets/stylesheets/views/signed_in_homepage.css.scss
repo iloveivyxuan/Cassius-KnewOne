@@ -235,7 +235,7 @@ html.signed_in_homepage {
 
       @media (min-width: $screen-sm-min) {
         margin-bottom: 0;
-        padding: 1em 0;
+        padding: 2em 0;
         .thing {padding: 0 1em;}
         &.even .thing {border-right: $border-default;}
         &.odd .thing {border-right: 1px solid transparent;}
