@@ -2,7 +2,7 @@
 
 - if feeling.thing
   - present feeling do |feeling_presenter|
-    - klass = 'feed_article'
+    - klass = 'feed_article feeling'
     - klass += " #{feed_presenter.style}" if in_feeds
     article class=klass id="feeling_#{feeling.id}"
       figure.feeling_author
@@ -12,9 +12,11 @@
           = feeling_presenter.score
 
       figure.feeling_thing
-        = image_tag feeling.thing.cover.url(:small)
+        = link_to feeling_presenter.path do
+          = image_tag feeling.thing.cover.url(:small)
         figcaption
-          = feeling.thing.title
+          = link_to feeling_presenter.path do
+            = feeling.thing.title
           = feeling_presenter.score
 
       section
