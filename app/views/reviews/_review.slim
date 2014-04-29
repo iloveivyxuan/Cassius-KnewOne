@@ -1,28 +1,43 @@
+- in_feeds = local_assigns.has_key? :feed_presenter
+
 - if review.thing
-  - present review do |rp|
-    article.feed_article id="review_#{review.id}"
+  - present review do |review_presenter|
+    - klass = 'feed_article'
+    - klass += " #{feed_presenter.style}" if in_feeds
+    article class=klass id="review_#{review.id}"
       header
-        h5
-         = link_to rp.title, rp.path
-      figure.foo
-        = rp.author_avatar(:small, class: "img-circle")
+        h5= link_to review_presenter.title, review_presenter.path
+
+      figure.review_author
+        = review_presenter.author_avatar(:small, class: "img-circle")
         figcaption
-          = rp.author_name
-          = rp.score
+          = review_presenter.author_name
+          = review_presenter.score
+
+      figure.review_thing
+        = image_tag review.thing.cover.url(:small)
+        figcaption
+          = review.thing.title
+          = review_presenter.score
+
       section
-        .cover_small = rp.cover(:small)
-        p = rp.summary(120)
-        .cover_normal = rp.cover(:normal)
+        .cover_small = review_presenter.cover(:small)
+        p = review_presenter.summary(120)
+        .cover_normal = review_presenter.cover(:normal)
+
       footer
         ul.metas
+          - if in_feeds
+            li.feed_type
+              = feed_presenter.render_action
           li
-            = link_to rp.path do
-              = rp.created_at
+            = link_to review_presenter.path do
+              = review_presenter.created_at
           li
-            = link_to rp.path do
+            = link_to review_presenter.path do
               i.fa.fa-comments-o
               = review.comments.count
-          li = rp.score
+          li = review_presenter.score
         .feed_action
           = render partial: 'shared/voting', locals: {object: review}
       .feed_action

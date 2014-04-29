@@ -40,7 +40,7 @@
         | 评测
       = link_to_with_icon '', 'fa fa-chevron-right fa_alone', reviews_user_path(@user), class: 'more', title: '更多'
     .panel-body.list
-      = render partial: 'users/review', collection: @reviews
+      = render @reviews
 
 section.panel.panel_compact.hidden-xs
   header.panel-heading
