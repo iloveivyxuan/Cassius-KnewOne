@@ -2,6 +2,6 @@ header.page-header
   h1
     | 我评测的
 
-= render partial: 'users/review', collection: @reviews
+= render @reviews
 
 = paginate @reviews
