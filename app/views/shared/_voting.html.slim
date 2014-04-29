@@ -1,6 +1,9 @@
 - url = polymorphic_path([:vote, object.try(:thing) || object.try(:group), object])
 = form_tag url, remote: true, class: 'voting' do
-  - if !can?(:vote, object)
+  - if !user_signed_in?
+    = button_tag title: "赞", class: "btn btn-sm", disabled: true do
+      = present(object).lovers_count
+  - elsif object.voted?(current_user)
     = button_tag title: "赞", class: "btn btn-sm done", disabled: true do
       = present(object).lovers_count
   - else
