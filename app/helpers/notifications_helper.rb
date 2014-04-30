@@ -18,10 +18,18 @@ module NotificationsHelper
         content += "产品"
         content += link_to post.title, thing_path(post), target: target
       when Review then
-        content += "评测"
-        content += link_to post.title, thing_review_path(post.thing, post), target: target
+        if post.thing
+          content += "评测"
+          content += link_to post.title, thing_review_path(post.thing, post), target: target
+        else
+          content += '失效的资源'
+        end
       when Feeling then
-        content += link_to '短评', thing_feeling_path(post.thing, post), target: target
+        if post.thing
+          content += link_to '短评', thing_feeling_path(post.thing, post), target: target
+        else
+          content += '失效的资源'
+        end
       when Topic then
         content += "帖子"
         content += link_to post.title, group_topic_path(post.group, post), target: target
