@@ -15,8 +15,11 @@
         .cover_normal = tp.cover(:normal)
       footer
         ul.metas
-          li = time_ago_tag(topic.created_at, 'meta')
           li
-            i.fa.fa-comments-o
-            = topic.comments.size
+            = link_to tp.path do
+              = time_ago_tag(topic.created_at, 'meta')
+          li
+            = link_to tp.path do
+              i.fa.fa-comments-o
+              = topic.comments.size
         .feed_action = render partial: 'shared/voting', locals: {object: topic}
