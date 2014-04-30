@@ -663,15 +663,31 @@ html.things_show,
 html.feelings_index,
 html.reviews_index {
 
+  #thing_feelings {
+    h4 {
+      color: $text-muted;
+    }
+  }
+
   .feeling_form {
     border-bottom: $border_default;
     margin-bottom: 1em;
     padding-bottom: 2em;
   }
 
-  #thing_feelings {
-    h4 {
-      color: $text-muted;
+  .feed_article {
+
+    &.feeling {
+      @media (min-width: $screen-sm-min) {
+        min-height: calc(4em + 90px);
+      }
+
+      .feeling_author {
+
+        img {
+          @include square(60px);
+        }
+      }
     }
   }
 }
