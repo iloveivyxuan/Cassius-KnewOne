@@ -18,7 +18,7 @@ class BaseMailer < ActionMailer::Base
           }
       },
       default: {
-          from: 'welcome@service.knewone.com',
+          from: 'KnewOne <welcome@service.knewone.com>',
           delivery_settings: {
               address: 'smtpcloud.sohu.com',
               port: 25,
