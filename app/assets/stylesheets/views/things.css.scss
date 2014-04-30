@@ -681,12 +681,13 @@ html.reviews_index {
       @media (min-width: $screen-sm-min) {
         min-height: calc(4em + 90px);
       }
+    }
 
-      .feeling_author {
+    .review_author,
+    .feeling_author {
 
-        img {
-          @include square(60px);
-        }
+      img {
+        @include square(60px);
       }
     }
   }
