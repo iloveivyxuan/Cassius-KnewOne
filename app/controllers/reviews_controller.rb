@@ -60,6 +60,14 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def unvote
+    @review.unvote(current_user, true)
+
+    respond_to do |format|
+      format.js { render partial: 'shared/vote', locals: {object: @review} }
+    end
+  end
+
   private
 
   def review_params

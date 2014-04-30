@@ -105,11 +105,17 @@ Making::Application.routes.draw do
     end
 
     resources :reviews do
-      member { post 'vote' }
+      member do
+        post 'vote'
+        post 'unvote'
+      end
     end
 
     resources :feelings do
-      member { post 'vote' }
+      member do
+        post 'vote'
+        post 'unvote'
+      end
     end
 
     resources :stories
@@ -142,7 +148,10 @@ Making::Application.routes.draw do
     end
 
     resources :topics do
-      member { post 'vote' }
+      member do
+        post 'vote'
+        post 'unvote'
+      end
     end
   end
 

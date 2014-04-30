@@ -49,6 +49,14 @@ class TopicsController < ApplicationController
     end
   end
 
+  def unvote
+    @topic.unvote(current_user, true)
+
+    respond_to do |format|
+      format.js { render partial: 'shared/vote', locals: {object: @topic} }
+    end
+  end
+
   private
 
   def topic_params

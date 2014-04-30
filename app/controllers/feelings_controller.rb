@@ -61,6 +61,14 @@ class FeelingsController < ApplicationController
     end
   end
 
+  def unvote
+    @feeling.unvote(current_user, true)
+
+    respond_to do |format|
+      format.js { render partial: 'shared/vote', locals: {object: @feeling} }
+    end
+  end
+
   private
 
   def feeling_params
