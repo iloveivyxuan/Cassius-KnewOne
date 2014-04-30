@@ -125,10 +125,9 @@ form.edit_post {
   }
 
   img {
+    @include square(60px);
+    @extend .img-circle;
     vertical-align: -2px;
-    @extend .img-rounded;
-    width: 60px;
-    height: 60px;
   }
 }
 

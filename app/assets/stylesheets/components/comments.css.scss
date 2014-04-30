@@ -28,9 +28,8 @@
       float: left;
       margin-right: 1em;
       img {
-        @extend .img-rounded;
-        width: 60px;
-        height: 60px;
+        @include square(60px);
+        @extend .img-circle;
       }
     }
 
