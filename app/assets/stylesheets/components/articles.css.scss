@@ -43,7 +43,13 @@ article.post_show {
 
     .voting {
       display: inline-block;
-      button {margin-right: 1em;}
+      button {
+        margin-right: 1em;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
     }
 
     .share {margin-top: -5px;}
