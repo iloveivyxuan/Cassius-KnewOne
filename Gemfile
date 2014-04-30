@@ -101,6 +101,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'pry-rails'
   gem 'rspec-rails'
   gem 'mongoid-rspec'
   gem 'spork-rails'
