@@ -2,7 +2,7 @@
 
 = render 'feelings/form'
 = render 'feelings/sort', {thing: @thing}
-.feelings = render feelings
+.feelings.list = render feelings
 = paginate feelings
 
 - content_for :script do
