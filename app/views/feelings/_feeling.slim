@@ -12,15 +12,15 @@
           = feeling_presenter.score
 
       figure.feeling_thing
-        = link_to feeling_presenter.path do
+        = link_to feeling.thing do
           = image_tag feeling.thing.cover.url(:small)
         figcaption
-          = link_to feeling_presenter.path do
+          = link_to feeling.thing do
             = feeling.thing.title
           = feeling_presenter.score
 
       section
-        = feeling.content
+        p = feeling.content
         - if feeling.photos.present?
           ul
             - feeling.photos.each do |photo|

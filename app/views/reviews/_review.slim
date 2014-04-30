@@ -6,7 +6,7 @@
     - klass += " #{feed_presenter.style}" if in_feeds
     article class=klass id="review_#{review.id}"
       header
-        h5= link_to review_presenter.title, review_presenter.path
+        h5 = link_to review_presenter.title, review_presenter.path
 
       figure.review_author
         = review_presenter.author_avatar(:small, class: "img-circle")
@@ -15,9 +15,11 @@
           = review_presenter.score
 
       figure.review_thing
-        = image_tag review.thing.cover.url(:small)
+        = link_to review.thing do
+          = image_tag review.thing.cover.url(:small)
         figcaption
-          = review.thing.title
+          = link_to review.thing do
+            = review.thing.title
           = review_presenter.score
 
       section
