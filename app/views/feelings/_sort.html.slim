@@ -1,8 +1,2 @@
 - if thing.feelings.present?
-  = form_tag thing_feelings_path(thing), method: :get,
-              class: 'form-inline', role: 'form' do
-    .form-group
-      i.fa.fa-sort-amount-desc.selectpicker_label
-      = select_tag :sort,
-                   options_for_select([['最有用', ''], ['最新', 'created_at']], selected: params[:sort]),
-                   class: 'form-control selectpicker js_auto_submit'
+  = render 'shared/sort', url: thing_feelings_path(thing)

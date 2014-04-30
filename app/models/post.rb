@@ -53,9 +53,12 @@ class Post
   end
 
   def cover(version = :small)
-    src = self.content.scan(/<img src=\"(.+?)\"/).try(:[], 0).try(:[], 0)
-    return nil unless src.present? and src[0..23] == "http://#{Settings.image_host}"
+    content_photos(version).first
+  end
 
-    src.gsub(/!.*$/, "!#{version}")
+  def content_photos(version = :small)
+    self.content.scan(/<img src=\"(http:\/\/#{Settings.image_host}\/.+?)\"/).flatten.map do |src|
+      src.sub(/!.*$/, "!#{version}")
+    end
   end
 end

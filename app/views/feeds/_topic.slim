@@ -16,11 +16,13 @@
       .cover_normal = tp.cover(:normal)
     footer
       ul.metas
+        li.feed_type = fp.render_action
         li
-          .feed_type = fp.render_action
+          = link_to tp.path do
+            = tp.created_at
         li
-          i.fa.fa-comments-o
-          span.comments_count = topic.comments.count > 0 ? topic.comments.count : ''
-          |  评论
+          = link_to tp.path do
+            i.fa.fa-comments-o
+            span.comments_count = topic.comments.count > 0 ? topic.comments.count : ''
+            | 评论
       .feed_action = render partial: 'shared/voting', locals: {object: topic}
-    .feed_action = render partial: 'shared/voting', locals: {object: topic}

@@ -40,7 +40,7 @@
             a.comments_toggle href="#" data-id="feeling_#{feeling.id}_comments"
               i.fa.fa-comments-o
               span.comments_count = feeling.comments.count > 0 ? feeling.comments.count : ''
-              |  评论
+              | 评论
           li = feeling_presenter.score
           - if can? :destroy, feeling
             li.destroy
@@ -50,5 +50,3 @@
           = render partial: 'shared/voting', locals: {object: feeling}
         section.comments_wrap
           = render 'shared/comments', post: feeling, id: "feeling_#{feeling.id}_comments", auth: true
-      .feed_action
-        = render partial: 'shared/voting', locals: {object: feeling}

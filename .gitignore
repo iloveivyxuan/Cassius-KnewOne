@@ -42,3 +42,6 @@ capybara-*.html
 
 # powder
 .powder
+
+# redis db
+.rdb

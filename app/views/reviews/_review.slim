@@ -24,7 +24,11 @@
 
       section
         p = review_presenter.summary(120)
-        = review_presenter.cover(:normal)
+        .cover_normal = review_presenter.cover(:normal)
+        ul.photos
+          - review_presenter.content_photos(:small).take(4).each do |photo|
+            li= image_tag photo, alt: photo
+
 
       footer
         ul.metas
@@ -38,9 +42,7 @@
             = link_to review_presenter.path do
               i.fa.fa-comments-o
               span.comments_count = review.comments.count > 0 ? review.comments.count : ''
-              |  评论
+              | 评论
           li = review_presenter.score
         .feed_action
           = render partial: 'shared/voting', locals: {object: review}
-      .feed_action
-        = render partial: 'shared/voting', locals: {object: review}
