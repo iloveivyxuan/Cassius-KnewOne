@@ -1,12 +1,13 @@
-- action = object.voted?(current_user) ? :unvote : :vote
-- url = polymorphic_path([action, object.try(:thing) || object.try(:group), object])
-= form_tag url, remote: true, class: 'voting' do
-  - if !user_signed_in?
-    = button_tag title: "赞", class: "btn btn-sm", disabled: true do
-      = present(object).lovers_count
-  - elsif object.voted?(current_user)
-    = button_tag title: "取消赞", class: "btn btn-sm done" do
-      = present(object).lovers_count
-  - else
-    = button_tag title: "赞", class: "btn btn-sm" do
-      = present(object).lovers_count
+- if user_signed_in?
+  - action = object.voted?(current_user) ? :unvote : :vote
+  - url = polymorphic_path([action, object.try(:thing) || object.try(:group), object])
+  = form_tag url, remote: true, class: 'voting' do
+    - if object.voted?(current_user)
+      = button_tag title: "取消赞", class: "btn btn-sm done" do
+        = present(object).lovers_count
+    - else
+      = button_tag title: "赞", class: "btn btn-sm" do
+        = present(object).lovers_count
+- else
+  = button_tag title: "赞", class: "btn btn-sm", disabled: true do
+    = present(object).lovers_count
