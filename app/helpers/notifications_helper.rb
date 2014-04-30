@@ -21,8 +21,7 @@ module NotificationsHelper
         content += "评测"
         content += link_to post.title, thing_review_path(post.thing, post), target: target
       when Feeling then
-        content += "短评"
-        content += link_to post.title, thing_feeling_path(post.thing, post), target: target
+        content += link_to '短评', thing_feeling_path(post.thing, post), target: target
       when Topic then
         content += "帖子"
         content += link_to post.title, group_topic_path(post.group, post), target: target
