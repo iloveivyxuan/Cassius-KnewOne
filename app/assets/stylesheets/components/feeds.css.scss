@@ -200,13 +200,15 @@ $part_right: 10%;
     > ul {
       @include clearfix;
 
-      max-height: 80px;
-      margin-top: 15px;
+      max-height: 95px;
       overflow: hidden;
 
       > li {
         float: left;
-        margin-right: 4px;
+        margin: {
+          right: 4px;
+          top: 15px;
+        }
 
         @media (min-width: $screen-sm-min) {
           margin-right: 10px;
@@ -278,6 +280,21 @@ $part_right: 10%;
       margin-right: calc((#{$part_right} - 60px) / 2);
       position: absolute;
       top: calc(2em + 6px);
+    }
+  }
+
+  &.review,
+  &.topic {
+
+    > section {
+
+      > ul {
+        display: none;
+
+        @media (min-width: $screen-sm-min) {
+          display: block;
+        }
+      }
     }
   }
 }

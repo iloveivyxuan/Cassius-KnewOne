@@ -1,5 +1,5 @@
 - if topic and topic.group
-  article.feed_article id="topic_#{topic.id}"
+  article.feed_article.topic id="topic_#{topic.id}"
     - present topic do |tp|
       header
         h5 = link_to tp.title, tp.path
