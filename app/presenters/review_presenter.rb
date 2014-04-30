@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 class ReviewPresenter < PostPresenter
   presents :review
-  delegate :content_photos, to: :review
 
   def path
     thing_review_path(review.thing, review)

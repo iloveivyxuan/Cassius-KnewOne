@@ -10,9 +10,12 @@
           figcaption title=gp.name
             = gp.name
       section
-        .cover_small = tp.cover(:small)
         p = tp.summary(120)
         .cover_normal = tp.cover(:normal)
+        ul
+          - tp.content_photos(:small).take(8).each do |photo|
+            li= image_tag photo, alt: photo
+
       footer
         ul.metas
           li

@@ -3,6 +3,7 @@
   article class="feed_article #{fp.style}" id="topic_#{topic.id}"
     header
       h5 = link_to tp.title, tp.path
+
     figure
       - if topic.group
         - present topic.group do |gp|
@@ -10,10 +11,14 @@
             = gp.avatar
             figcaption title="#{gp.name}"
               = gp.name
+
     section
-      .cover_small = tp.cover(:small)
       p = tp.summary(120)
       .cover_normal = tp.cover(:normal)
+      ul
+        - tp.content_photos(:small).take(8).each do |photo|
+          li= image_tag photo, alt: photo
+
     footer
       ul.metas
         li.feed_type = fp.render_action
