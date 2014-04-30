@@ -33,6 +33,7 @@ class User
   field :fancies_count, type: Integer, default: 0
   field :owns_count, type: Integer, default: 0
   field :reviews_count, type: Integer, default: 0
+  field :feelings_count, type: Integer, default: 0
   field :followers_count, type: Integer, default: 0
   field :followings_count, type: Integer, default: 0
   field :groups_count, type: Integer, default: 0

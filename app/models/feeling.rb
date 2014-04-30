@@ -14,4 +14,6 @@ class Feeling < Post
   def photos
     Photo.find_with_order photo_ids
   end
+
+  need_aftermath :create, :destroy, :vote
 end

@@ -64,6 +64,27 @@ class AftermathHandler
       end
     end
 
+    def feeling_create(feeling)
+      u = feeling.author
+
+      u.inc feelings_count: 1
+
+      FeelingNotificationWorker.perform_async(feeling.id.to_s, :new_feeling, sender_id: u.id.to_s)
+    end
+
+    def feeling_destroy(feeling)
+      u = feeling.author
+
+      u.inc feelings_count: -1 if u.feelings_count > 0
+    end
+
+    def feeling_vote(feeling, voter, love)
+      u = feeling.author
+      if love && u != voter
+        u.notify :love_feeling, context: feeling, sender: voter
+      end
+    end
+
     def user_follow(record, user)
       record.inc followings_count: 1
       user.inc followers_count: 1
