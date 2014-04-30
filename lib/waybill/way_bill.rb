@@ -5,8 +5,8 @@ class WayBill
   attr_reader :image
 
   COMPANY = 'KnewOne.com'
-  SENDER = '超熊'
-  ADDRESS = '广东省 深圳市 南山区 香山西街8号南门波托菲诺香山里一期5栋3A'
+  SENDER = '超雄'
+  ADDRESS = '广东省 深圳市 南山区 南海大道万融大厦B座103'
   PHONE = '400-999-2512'
 
   def to_io_stream
@@ -26,7 +26,7 @@ class WayBill
       c.pointsize size
       c.encoding 'UTF-8'
       c.draw <<-CMD
-   	  text #{x},#{y} "#{text}"
+      text #{x},#{y} "#{text}"
       CMD
     end
   end
