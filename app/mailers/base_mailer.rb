@@ -6,7 +6,7 @@ class BaseMailer < ActionMailer::Base
 
   SMTP_SERVERS = {
       white: {
-          from: 'welcome@mg.knewone.com',
+          from: 'KnewOne <welcome@mg.knewone.com>',
           delivery_settings: {
               address: 'smtp.mailgun.org',
               port: 25,
