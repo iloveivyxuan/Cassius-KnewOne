@@ -46,6 +46,9 @@ class Ability
     can :vote, Review do |review|
       !review.voted?(user)
     end
+    can :unvote, Review do |review|
+      review.voted?(user)
+    end
 
     can :create, Feeling
     can [:update, :destroy], Feeling do |feeling|
@@ -53,6 +56,9 @@ class Ability
     end
     can :vote, Feeling do |feeling|
       !feeling.voted?(user)
+    end
+    can :unvote, Feeling do |feeling|
+      feeling.voted?(user)
     end
 
     can :create, Comment
@@ -98,14 +104,17 @@ class Ability
     end
     can :fancy, Group
 
-    can :vote, Topic do |topic|
-      !topic.voted?(user)
-    end
     can :create, Topic do |topic|
       topic.group.has_member? user
     end
     can [:update, :destroy], Topic do |topic|
       topic.group.has_admin? user
+    end
+    can :vote, Topic do |topic|
+      !topic.voted?(user)
+    end
+    can :unvote, Topic do |topic|
+      topic.voted?(user)
     end
 
     can :create, Dialog
