@@ -166,15 +166,28 @@
       overflow: hidden;
     }
 
-    > img {
-      margin-top: 15px;
-      width: 100%;
+    .cover_small {
+      display: none;
 
       @media (min-width: $screen-sm-min) {
+        display: block;
         float: right;
-        height: 80px;
-        margin-top: 0;
-        width: 80px;
+
+        img {
+          margin-left: 15px;
+        }
+      }
+    }
+
+    .cover_normal {
+
+      img {
+        margin-top: 15px;
+        width: 100%;
+      }
+
+      @media (min-width: $screen-sm-min) {
+        display: none;
       }
     }
 
@@ -267,19 +280,6 @@
       margin-bottom: -4px;
       position: absolute;
       top: 30px;
-    }
-  }
-
-  &.review {
-
-    > section {
-
-      > p {
-        @media (min-width: $screen-sm-min) {
-          float: left;
-          width: 80%;
-        }
-      }
     }
   }
 }
