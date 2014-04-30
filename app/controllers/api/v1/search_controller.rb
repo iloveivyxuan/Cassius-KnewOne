@@ -1,7 +1,6 @@
 module Api
   module V1
     class SearchController < ApiController
-
       def index
         q = (params[:keyword] || '')
         q.gsub!(/[^\u4e00-\u9fa5a-zA-Z0-9[:blank:].-_]+/, '')

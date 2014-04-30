@@ -1,7 +1,7 @@
 module Api
   module V1
     class ThingsController < ApiController
-      doorkeeper_for :all, only: [:create]
+      doorkeeper_for [:create]
       before_action :set_thing, except: [:index]
 
       def index
