@@ -252,7 +252,7 @@ Making::Application.routes.draw do
       get 'extract_url', to: 'utils#extract_url'
       get 'find_similar', to: 'utils#find_similar'
 
-      resources :things, only: [:index, :show] do
+      resources :things, only: [:index, :show, :create] do
         resources :reviews, only: [:index, :show] do
           resources :comments, controller: :review_comments, only: [:index, :show, :create, :destroy]
         end
