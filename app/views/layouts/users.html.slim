@@ -57,7 +57,7 @@
         = link_to feelings_user_path(@user) do
           i.fa.fa-comments
           | 短评
-          em = @user.feelings.count
+          em = @user.feelings_count
       = li (action_name == 'reviews') do
         = link_to reviews_user_path(@user) do
           i.fa.fa-pencil

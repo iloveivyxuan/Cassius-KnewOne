@@ -25,7 +25,7 @@
         = home_nav(:things) do
           = link_to_with_icon "我的分享 #{current_user.things_count}", 'fa fa-fw fa-magic', things_profile_path
         = home_nav(:feelings) do
-          = link_to_with_icon "我的短评 #{current_user.feelings.count}", 'fa fa-fw fa-comments-o', feelings_profile_path
+          = link_to_with_icon "我的短评 #{current_user.feelings_count}", 'fa fa-fw fa-comments-o', feelings_profile_path
         = home_nav(:reviews) do
           = link_to_with_icon "我的评测 #{current_user.reviews_count}", 'fa fa-fw fa-pencil', reviews_profile_path
         = home_nav(:groups) do
