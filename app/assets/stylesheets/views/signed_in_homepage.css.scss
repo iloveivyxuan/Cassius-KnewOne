@@ -89,6 +89,10 @@ html.signed_in_homepage {
       }
     }
 
+    .promotion {
+      margin-bottom: 20px;
+    }
+
     footer {
       color: $text-muted;
       padding: {
@@ -179,7 +183,6 @@ html.signed_in_homepage {
     }
 
     img {
-      margin-bottom: 20px;
       height: auto;
       width: 100%;
     }
