@@ -44,4 +44,12 @@ class UserMailer < BaseMailer
     mail(to: email,
          subject: 'KnewOne分享功能全新上线，邀请您来体验')
   end
+
+  def mail2(email, name)
+    attachments.inline['ryfit.jpg'] = File.read(Rails.root.join('app/assets/images/mails/ryfit.jpg'))
+    @name = name
+
+    mail(to: email,
+         subject: '来「KnewOne 牛玩」，智能硬件等你来「领养」！')
+  end
 end
