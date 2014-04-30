@@ -23,9 +23,12 @@
           = review_presenter.score
 
       section
-        .cover_small = review_presenter.cover(:small)
         p = review_presenter.summary(120)
         .cover_normal = review_presenter.cover(:normal)
+        ul.photos
+          - review_presenter.content_photos(:small).take(4).each do |photo|
+            li= image_tag photo, alt: photo
+
 
       footer
         ul.metas
