@@ -23,9 +23,8 @@
           = review_presenter.score
 
       section
-        .cover_small = review_presenter.cover(:small)
         p = review_presenter.summary(120)
-        .cover_normal = review_presenter.cover(:normal)
+        = review_presenter.cover(:normal)
 
       footer
         ul.metas

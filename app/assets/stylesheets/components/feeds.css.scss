@@ -28,7 +28,9 @@
   position: relative;
 
   @media (min-width: $screen-sm-min) {
-    padding-left: 90px;
+    min-height: calc(4em + 110px);
+    padding-left: 120px;
+    padding-right: 90px;
   }
 
   .metas {
@@ -49,11 +51,6 @@
 
   > header {
     margin-bottom: 15px;
-
-    @media (min-width: $screen-sm-min) {
-      float: left;
-      width: 80%;
-    }
 
     h5 {
       margin: 0;
@@ -76,13 +73,14 @@
 
     @media (min-width: $screen-sm-min) {
       border: none;
-      float: right;
+      left: 0;
       margin: {
         bottom: 0;
-        top: 4px;
       }
       padding: 0;
+      position: absolute;
       text-align: center;
+      top: calc(2em + 4px);
       width: 100px;
     }
 
@@ -109,10 +107,10 @@
     }
 
     figcaption {
-      overflow: hidden;
 
       @media (max-width: $screen-xs-max) {
         @include translate(0, -50%, 0);
+
         position: absolute;
         top: 50%;
         max-width: 50%;
@@ -120,10 +118,9 @@
 
       @media (min-width: $screen-sm-min) {
         display: block;
-        height: 40px;
+        height: 20px;
         line-height: 20px;
-        margin-top: 5px;
-        overflow: hidden;
+        margin-top: 10px;
         text-align: center;
 
         &:before {
@@ -132,8 +129,9 @@
       }
 
       a {
+        @include text-overflow;
+
         @media (max-width: $screen-sm-max) {
-          @include text-overflow;
           line-height: 30px;
         }
       }
@@ -155,38 +153,9 @@
 
   > section {
     margin-bottom: 15px;
-    position: relative;
 
     @media (min-width: $screen-sm-min) {
-      float: left;
-      width: 80%;
-    }
-
-    .cover_small {
-      display: none;
-
-      @media (min-width: $screen-sm-min) {
-        display: block;
-        float: left;
-        margin-right: 15px;
-      }
-
-      img {
-        height: 80px;
-        width: 80px;
-      }
-    }
-
-    .cover_normal {
-      margin-top: 15px;
-
-      @media (min-width: $screen-sm-min) {
-        display: none;
-      }
-
-      img {
-        width: 100%;
-      }
+      @include clearfix;
     }
 
     > p {
@@ -195,6 +164,18 @@
       line-height: 26px;
       margin-bottom: 0;
       overflow: hidden;
+    }
+
+    > img {
+      margin-top: 15px;
+      width: 100%;
+
+      @media (min-width: $screen-sm-min) {
+        float: right;
+        height: 80px;
+        margin-top: 0;
+        width: 80px;
+      }
     }
 
     > ul {
@@ -219,8 +200,6 @@
 
     @media (min-width: $screen-sm-min) {
       clear: none;
-      float: left;
-      width: 80%;
     }
 
     .metas {
@@ -284,10 +263,23 @@
 
     @media (min-width: $screen-sm-min) {
       display: block;
-      left: 0;
+      right: 0;
       margin-bottom: -4px;
       position: absolute;
       top: 30px;
+    }
+  }
+
+  &.review {
+
+    > section {
+
+      > p {
+        @media (min-width: $screen-sm-min) {
+          float: left;
+          width: 80%;
+        }
+      }
     }
   }
 }
