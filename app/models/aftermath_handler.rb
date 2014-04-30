@@ -68,8 +68,6 @@ class AftermathHandler
       u = feeling.author
 
       u.inc feelings_count: 1
-
-      FeelingNotificationWorker.perform_async(feeling.id.to_s, :new_feeling, sender_id: u.id.to_s)
     end
 
     def feeling_destroy(feeling)
