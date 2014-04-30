@@ -200,7 +200,7 @@ $part_right: 10%;
     > ul {
       @include clearfix;
 
-      height: 80px;
+      max-height: 80px;
       margin-top: 15px;
       overflow: hidden;
 
