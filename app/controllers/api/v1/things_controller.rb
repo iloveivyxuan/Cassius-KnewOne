@@ -2,7 +2,7 @@ module Api
   module V1
     class ThingsController < ApiController
       doorkeeper_for [:create]
-      before_action :set_thing, except: [:index]
+      before_action :set_thing, except: [:index, :create]
 
       def index
         if c_id = (params[:category_id] || params[:category])
