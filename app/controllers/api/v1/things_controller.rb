@@ -35,7 +35,7 @@ module Api
           Photo.create! image: image, user: current_user
         end
 
-        @thing = @thing.feelings.build thing_params.merge(author: current_user)
+        @thing = Thing.new thing_params.merge(author: current_user)
 
         if @thing.save
           render action: 'show', status: :created, location: [:api, :v1, @thing]
