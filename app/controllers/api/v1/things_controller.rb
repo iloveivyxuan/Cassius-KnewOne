@@ -31,14 +31,14 @@ module Api
       def create
         render_error :missing_field, 'missing images' unless params[:images] || params[:images].empty?
 
-        params[:images].each do |image|
+        photo_ids = params[:images].map do |image|
           Photo.create! image: image, user: current_user
-        end
+        end.map {|p| p.id.to_s}
 
-        @thing = Thing.new thing_params.merge(author: current_user)
+        @thing = Thing.new thing_params.merge(author: current_user, photo_ids: photo_ids)
 
-        if @thing.save
-          render action: 'show', status: :created, location: [:api, :v1, @thing]
+        if @thing.save!
+          render 'show', status: :created, location: [:api, :v1, @thing]
         else
           render json: @thing.errors, status: :unprocessable_entity
         end
