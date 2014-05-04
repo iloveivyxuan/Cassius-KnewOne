@@ -24,15 +24,17 @@ def generate(params)
     "#{key}=#{value}"
   end.join('&')
 
-  puts "Query: #{query}"
+  sign = Digest::MD5.hexdigest("#{query}#{SECRET}")
 
-  Digest::MD5.hexdigest("#{query}#{SECRET}")
+  puts "Query: #{query}&sign=#{sign}"
+
+  sign
 end
 
 def request(path, m = :get, opts = {})
   url = BASE_URL + path + '.json'
 
-  opts.merge! timestamp: Time.now.to_i
+  opts.merge! timestamp: Time.now.to_i unless opts[:timestamp]
 
   RestClient.send(m, url, params: opts.merge(sign: generate(stringify_keys(opts))))
 end
