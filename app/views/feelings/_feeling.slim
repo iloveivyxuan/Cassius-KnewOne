@@ -20,7 +20,7 @@
           = feeling_presenter.score
 
       section
-        p = feeling.content
+        = feeling_presenter.content
         - if feeling.photos.present?
           ul
             - feeling.photos.each do |photo|

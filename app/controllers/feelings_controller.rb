@@ -20,13 +20,15 @@ class FeelingsController < ApplicationController
 
   def create
     @feeling.author = current_user
+    @feeling.content.gsub! /\r\n/, "\n"
 
     if @feeling.save
       current_user.log_activity :new_feeling, @feeling, source: @feeling.thing
-    end
-
-    respond_to do |format|
-      format.js
+      respond_to do |format|
+        format.js
+      end
+    else
+      head :request_entity_too_large
     end
   end
 
