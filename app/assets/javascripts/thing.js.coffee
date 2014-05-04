@@ -1,6 +1,6 @@
 window.Making = do (exports = window.Making || {}) ->
   _$content       = $('#thing_content').find('.post_content')
-  _$read_more     = _$content.next('.more').children('a')
+  _$read_more     = _$content.next('.more')
   _summary_height = parseInt(_$content.css('maxHeight')) - 1
 
   exports.InitThing = ->
@@ -13,8 +13,7 @@ window.Making = do (exports = window.Making || {}) ->
     _$read_more.on 'click', (event) ->
       event.preventDefault()
 
-      $element = $(@).parents('.more')
-      $element
+      $(@)
         .prev('.post_content')
           .removeClass('is_folded')
         .end()
