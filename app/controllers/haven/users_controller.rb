@@ -6,10 +6,10 @@ module Haven
       @users ||= ::User
 
       if params[:name].present?
-        @users.where(name: /^#{name}/i)
-      end
-
-      if params[:filter]
+        @users = @users.where(name: /^#{params[:name]}/i)
+      elsif params[:email].present?
+        @users = @users.or({email: params[:email]}, {unconfirmed_email: params[:email]})
+      elsif params[:filter]
         if params[:filter].include? 'thing'
           @users = @users.where(:things_count.gt => 0).order_by([:things_count, :desc])
         end
