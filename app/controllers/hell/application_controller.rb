@@ -46,19 +46,6 @@ module Hell
       include mod
     end
 
-    # Define some internal variables that should not be propagated to the view.
-    PROTECTED_IVARS = AbstractController::Rendering::DEFAULT_PROTECTED_INSTANCE_VARIABLES + [
-        :@_status, :@_headers, :@_params, :@_env, :@_response, :@_request,
-        :@_view_runtime, :@_stream, :@_url_options, :@_action_has_layout ]
-
-    def _protected_ivars # :nodoc:
-      PROTECTED_IVARS
-    end
-
-    def self.protected_instance_variables
-      PROTECTED_IVARS
-    end
-
     ActiveSupport.run_load_hooks(:action_controller, self)
 
     append_view_path "#{Rails.root}/app/views"
@@ -103,7 +90,7 @@ module Hell
       params = params.stringify_keys
       sign = params.delete('sign')
 
-      generate(params) == sign
+      Digest::MD5.hexdigest(generate(params)) == Digest::MD5.hexdigest(sign)
     end
 
     def respond_request
