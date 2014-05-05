@@ -46,15 +46,15 @@ section.orders_wrapper
       - if @order.note.present?
         li
           strong.field 用户备注：
-          span = @order.note
+          span.warning = @order.note
       - if @order.system_note.present?
         li
           strong.field 系统备注：
-          span = @order.system_note
+          span.warning = @order.system_note
       - if @order.admin_note.present?
         li
           strong.field 管理员备注：
-          span = @order.admin_note
+          span.warning = @order.admin_note
       - if @order.shipped?
         li
           strong.field 物流信息：
