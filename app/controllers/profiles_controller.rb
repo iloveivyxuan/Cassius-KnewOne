@@ -22,42 +22,6 @@ class ProfilesController < ApplicationController
     render layout: 'settings'
   end
 
-  def fancies
-    @fancies = current_user.fancies_sorted_by_ids(params[:page], 24)
-  end
-
-  def owns
-    @owns = current_user.owns_sorted_by_ids(params[:page], 24)
-  end
-
-  def reviews
-    @reviews = current_user.reviews.where(:thing_id.ne => nil).page(params[:page]).per(20)
-  end
-
-  def feelings
-    @feelings = current_user.feelings.where(:thing_id.ne => nil).page(params[:page]).per(20)
-  end
-
-  def things
-    @things = current_user.things.page(params[:page]).per(24)
-  end
-
-  def followings
-    @followings = current_user.followings.page(params[:page]).per(48)
-  end
-
-  def followers
-    @followers = current_user.followers.page(params[:page]).per(48)
-  end
-
-  def groups
-    @groups = Group.find_by_user(current_user).page(params[:page]).per(24)
-  end
-
-  def topics
-    @topics = current_user.topics.page(params[:page]).per(20)
-  end
-
   def recommend_users
     @friends = current_user.recommend_users || []
 

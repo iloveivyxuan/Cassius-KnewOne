@@ -73,15 +73,6 @@ Making::Application.routes.draw do
   end
 
   resource :profile, only: [] do
-    get 'fancies'
-    get 'owns'
-    get 'things'
-    get 'reviews'
-    get 'feelings'
-    get 'followings'
-    get 'followers'
-    get 'groups'
-    get 'topics'
     get 'recommend_users'
     post 'follow_recommends'
   end

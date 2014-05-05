@@ -12,36 +12,9 @@
   aside role="complemental"
     nav
       ul.nav.nav-pills.nav-stacked
-        = home_nav(:index) do
-          = link_to_with_icon current_user.name, 'fa fa-fw fa-home', root_path, class: 'home'
-        = home_nav(:fancies) do
-          = link_to_with_icon "我喜欢 #{current_user.fancies_count}", 'fa fa-fw fa-heart', fancies_profile_path
-        = home_nav(:owns) do
-          = link_to_with_icon "我拥有 #{current_user.owns_count}", 'fa fa-fw fa-check', owns_profile_path
-        = home_nav(:followings) do
-          = link_to_with_icon "我关注 #{current_user.followings_count}", 'fa fa-fw fa-headphones', followings_profile_path
-        = home_nav(:followers) do
-          = link_to_with_icon "关注我 #{current_user.followers_count}", 'fa fa-fw fa-microphone', followers_profile_path
-        = home_nav(:things) do
-          = link_to_with_icon "我的分享 #{current_user.things_count}", 'fa fa-fw fa-magic', things_profile_path
-        = home_nav(:feelings) do
-          = link_to_with_icon "我的短评 #{current_user.feelings_count}", 'fa fa-fw fa-comments-o', feelings_profile_path
-        = home_nav(:reviews) do
-          = link_to_with_icon "我的评测 #{current_user.reviews_count}", 'fa fa-fw fa-pencil', reviews_profile_path
-        = home_nav(:groups) do
-          = link_to_with_icon "我的小组 #{current_user.groups_count}", 'fa fa-fw fa-tint', groups_profile_path
-        = home_nav(:topics) do
-          = link_to_with_icon "我的话题 #{current_user.topics_count}", 'fa fa-fw fa-leaf', topics_profile_path
-        li.divider
+        li.active = link_to_with_icon current_user.name, 'fa fa-fw fa-home', root_path, class: 'home'
         li = link_to_with_icon '天天有礼', 'fa fa-fw fa-gift', rewards_path
         li = link_to_with_icon '查找朋友', 'fa fa-fw fa-users', recommend_users_profile_path
-
-    section.tag.panel
-      header.panel-heading
-        i.fa.fa-tags.fa-fw
-        | 我的标签
-      .panel-body
-        = render current_user.categories.limit(4)
 
     a.promotion href=makerfaire_path target="_blank"
       img src=asset_path('specials/makerfaire/banner/banner-xs.jpg')
