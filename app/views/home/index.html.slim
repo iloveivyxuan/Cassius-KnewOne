@@ -1,5 +1,8 @@
 header.page-header
   h1 最新动态
+  h2
+    i.fa.fa-home
+    = current_user.name
 
 #activities
   = render_feeds @activities

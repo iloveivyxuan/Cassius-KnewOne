@@ -33,15 +33,25 @@ html.signed_in_homepage {
       display: block;
     }
 
+    h1,
+    h2 {
+      font-size: 18px;
+      font-weight: normal;
+      line-height: 34px;
+    }
     h1 {
       color: $gray;
       float: left;
-      font-size: 18px;
-      line-height: 34px;
 
       .fa {
         margin-left: 10px;
       }
+    }
+
+
+    h2 {
+      color: $text-muted;
+      float: right;
     }
 
     .btn {
@@ -51,95 +61,122 @@ html.signed_in_homepage {
 
   aside {
 
-    .nav {
+    .panel {
+      color: $gray;
+      margin-bottom: 2rem;
 
-      > li.active {
-
-        > a {
-          background-color: $nav-link-hover-bg;
-          color: $text-color;
-        }
-      }
-
-      a {
-        color: $gray;
-
-        &.home {
-          @include text-overflow;
-          margin-bottom: 30px;
-        }
-
-        &:hover {
-          color: $text-color;
-        }
-      }
-
-      .divider {
-        border-bottom: $border-default;
-        margin: 30px 0;
+      .panel-heading {
+        padding: 0;
       }
     }
 
-    .panel {
-      color: $gray;
+    .btn_block_group {
+      @include clearfix;
 
-      .panel-heading {
-        padding-left: 10px;
-        padding-right: 10px;
+      border-bottom: $border_default;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    .btn_block {
+      float: left;
+      min-width: 110px;
+      width: 50%;
+
+      .fa-comments,
+      .fa-smile-o {
+        color: $green;
+      }
+
+      .fa-weibo,
+      .fa-gift {
+        color: $red;
+      }
+
+      &.wechat {
+
+        label {
+          cursor: default;
+        }
+      }
+    }
+
+    .side_section {
+      display: block;
+      margin-bottom: 2rem;
+
+      img {
+        border-radius: 4px;
+        max-width: 100%;
       }
     }
 
     .promotion {
-      margin-bottom: 20px;
+      border-bottom: $border_default;
+      padding-bottom: 2rem;
     }
 
     footer {
       color: $text-muted;
-      padding: {
-        left: 10px;
-        right: 10px;
+
+      .btn_block_group {
+        border-bottom: none;
+        margin-bottom: 1rem;
+        padding-bottom: 0;
+      }
+
+      a {
+        color: $text-muted;
+      }
+
+      small {
+        display: block;
+        text-align: center;
       }
     }
 
     .nav_bottom {
-      margin-bottom: 1em;
+      @include clearfix;
+      margin-bottom: 2rem;
 
       > a {
-        border-right: $border-default;
         color: $text-muted;
-        display: inline-block;
-        margin-bottom: 5px;
-        margin-right: .5em;
-        padding-right: .5em;
+        float: left;
+        padding: 5px 0;
+        text-align: center;
+        width: 50%;
 
-        &:last-child {
-          border-right: none;
-          margin-right: 0;
-          padding-right: 0;
+        &:nth-child(1) {
+          border-right: $border-default;
+        }
+
+        img {
+          margin-top: .5rem;
         }
       }
     }
   }
 
   #choiceness {
+    padding-bottom: 2rem;
 
     .panel-heading {
       @include clearfix;
       color: $text-muted;
+      text-align: center;
 
-      .more {
-        color: $text-muted;
-        float: right;
-        line-height: 24px;
+      .fa-random {
+        margin-left: 2rem;
       }
     }
 
-    .panel-title {
-      float: left;
+    .panel-body {
+      padding: 0;
     }
 
     figure {
       overflow: hidden;
+      padding: 0;
 
       > a {
         display: block;
@@ -177,10 +214,6 @@ html.signed_in_homepage {
 
   .promotion {
     display: block;
-    margin: {
-      left: 10px;
-      right: 10px;
-    }
 
     img {
       height: auto;
