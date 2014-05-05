@@ -52,4 +52,26 @@ class UserMailer < BaseMailer
     mail(to: email,
          subject: '来「KnewOne 牛玩」，智能硬件等你来「领养」！')
   end
+
+  def ryfit_to_chosen(email, name)
+    attachments.inline['ryfit_qr.gif'] = File.read(Rails.root.join('app/assets/images/mails/ryfit_qr.gif'))
+    @name = name
+
+    mail(to: email,
+         subject: '恭喜您，在「KnewOne 牛玩」免费领养 RyFit 成功！')
+  end
+
+  def ryfit_to_loser(email, name)
+    @name = name
+
+    mail(to: email,
+         subject: '很遗憾，您未能成功在 「KnewOne 牛玩」领养 RyFit！')
+  end
+
+  def ryfit_to_expired(email, name)
+    @name = name
+
+    mail(to: email,
+         subject: '很遗憾，您未能成功在 「KnewOne 牛玩」领养 RyFit！')
+  end
 end
