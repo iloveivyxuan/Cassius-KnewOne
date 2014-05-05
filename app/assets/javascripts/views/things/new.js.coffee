@@ -1,7 +1,7 @@
 class Making.Views.ThingsNew extends Backbone.View
 
   events:
-    "submit": "collect_photos"
+    "submit": "validate"
     "focusout #thing_title": "validate_unicity"
 
   initialize: ->
@@ -75,9 +75,6 @@ class Making.Views.ThingsNew extends Backbone.View
 
   collect_photos: ->
     $photos = @photo_view.$('.uploaded')
-    if $photos.length == 0
-      $('.fileinput-button').tooltip('show')
-      return false
 
     _.each $photos, (el) =>
       $('<input>').attr(
@@ -85,3 +82,17 @@ class Making.Views.ThingsNew extends Backbone.View
         value: $(el).data('photo-id')
         type: "hidden"
       ).appendTo @$el
+
+  validate: ->
+    title       = $.trim($('#thing_title').val())
+    description = $.trim($('#thing_content').val())
+    $photos     = @photo_view.$('.uploaded')
+
+    if title isnt '' and description isnt '' and $photos.length > 0
+      @collect_photos()
+      $('#thing_form_submit').find('[type="submit"]').disable()
+      true
+    else
+      if $photos.length is 0
+        $('.fileinput-button').tooltip('show')
+      false
