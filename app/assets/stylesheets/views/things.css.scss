@@ -88,13 +88,13 @@ html.stories_show {
           }
 
           &:before {
-            @include background-image(linear-gradient(bottom, rgb(255,255,255) 5%, rgba(255, 255, 255, 0) 100%));
+            @include background-image(linear-gradient(bottom, #f5f5f5 5%, rgba(255, 255, 255, 0) 100%));
             content: '';
-            height: 30px;
+            height: 20px;
             left: 0;
             position: absolute;
             width: 100%;
-            top: -30px;
+            top: -20px;
           }
 
           .fa {
