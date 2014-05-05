@@ -6,8 +6,8 @@ staging:
 production:
   :concurrency: 20
 :queues:
-  - [notifications, 10]
-  - [devise, 9]
+  - notifications
+  - devise
   - mails
   - default
   - edm
