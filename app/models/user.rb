@@ -197,11 +197,11 @@ class User
   end
 
   def reviews
-    posts.where(_type: "Review")
+    posts.where(_type: "Review").desc(:created_at)
   end
 
   def feelings
-    posts.where(_type: "Feeling")
+    posts.where(_type: "Feeling").desc(:created_at)
   end
 
   def topics
