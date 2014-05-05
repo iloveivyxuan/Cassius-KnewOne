@@ -6,6 +6,7 @@ class Address
   field :name, type: String
   field :phone, type: String
   field :zip_code, type: String
+  field :default, type: Boolean, default: false
 
   embedded_in :user
   embedded_in :order
@@ -13,5 +14,5 @@ class Address
   validates :province, :district, :street, :name, :phone, presence: true
   validates_inclusion_of :province, in: Province.keys
 
-  default_scope -> { desc(:created_at) }
+  default_scope -> { desc(:default, :created_at) }
 end
