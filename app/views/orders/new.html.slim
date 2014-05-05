@@ -6,8 +6,6 @@ header.page-header
     i.fa.fa-shopping-cart
     | 提交订单
 = simple_form_for @order, html: {class: 'form'} do |f|
-  p.alert.alert-warning
-    | 温馨提示：五一假期内的订单将统一在 5 月 4 日发货，不便之处敬请谅解。
   fieldset
     ul.order_items = render partial: 'orders/order_item', collection: @order.order_items
     ul = render partial: 'orders/rebate', collection: @order.rebates if @order.rebates.any?
