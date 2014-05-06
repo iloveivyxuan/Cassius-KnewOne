@@ -450,6 +450,10 @@ div#thing_title {
 
 #thing_actions_compact {
 
+  @media (min-width: $screen-md-min) {
+    display: none;
+  }
+
   .shop {
     margin-bottom: 1em;
   }
