@@ -5,6 +5,45 @@ main role="main"
       | 加入我们
 
   section#position
+
+    section.section#content_strategist
+      h3.section_header
+        | 网络编辑
+        = link_to "我要应聘", "mailto:sxzz@knewone.com?subject=应聘－网络编辑", class: "btn btn-primary"
+      .section_content
+        figure
+          img src="http://image.knewone.com/photos/7b10ce29bd786d9fe92ed68b12d2c0a6.jpg"
+        .body
+          h4 描述
+          p 建设 KnewOne。
+          h4 要求
+          ol
+            li 有一定的编辑、运营经验，至少不是在校生
+            li 懂（最好精通）硬件产品知识
+            li 文字功底强，会聊天，能表达
+          h5 备注
+          p 提供 SNS 帐号以及一切有亮点的东西，让我们更了解你。
+
+    section.section#salesman
+      h3.section_header
+        | 销售
+        = link_to "我要应聘", "mailto:sxzz@knewone.com?subject=应聘－销售", class: "btn btn-primary"
+      .section_content
+        figure
+          img src="http://image.knewone.com/photos/4b98878d1d3e53e22267c1718ea71d7d.jpg"
+        .body
+          h4 描述
+          p KnewOne 产品采购、物流规划、销售改善。
+          h4 要求
+          ol
+            li 了解新奇酷产品，追求生活品质
+            li 有经常网购的习惯，熟知大多数电商网购规则
+            li 有从事淘宝网店或者电商相关工作经验
+            li 做事踏实、有责任心、执行力强、独立思考解决问题
+            li 海淘经验丰富者优先
+          h5 备注
+          p 提供 SNS 帐号以及一切有亮点的东西，让我们更了解你。
+
     section.section#ui_designer
       h3.section_header
         | UI 设计师
@@ -82,53 +121,15 @@ main role="main"
           h5 备注
           p 提供 Blog / Twitter / Github / 微博 / 豆瓣等帐号，让我们更了解你。
 
-    section.section#salesman
-      h3.section_header
-        | 销售
-        = link_to "我要应聘", "mailto:sxzz@knewone.com?subject=应聘－销售", class: "btn btn-primary"
-      .section_content
-        figure
-          img src="http://image.knewone.com/photos/4b98878d1d3e53e22267c1718ea71d7d.jpg"
-        .body
-          h4 描述
-          p KnewOne 产品采购、物流规划、销售改善。
-          h4 要求
-          ol
-            li 了解新奇酷产品，追求生活品质
-            li 有经常网购的习惯，熟知大多数电商网购规则
-            li 有从事淘宝网店或者电商相关工作经验
-            li 做事踏实、有责任心、执行力强、独立思考解决问题
-            li 海淘经验丰富者优先
-          h5 备注
-          p 提供 SNS 帐号以及一切有亮点的东西，让我们更了解你。
-
-    section.section#content_strategist
-      h3.section_header
-        | 网络编辑
-        = link_to "我要应聘", "mailto:sxzz@knewone.com?subject=应聘－网络编辑", class: "btn btn-primary"
-      .section_content
-        figure
-          img src="http://image.knewone.com/photos/7b10ce29bd786d9fe92ed68b12d2c0a6.jpg"
-        .body
-          h4 描述
-          p 建设 KnewOne。
-          h4 要求
-          ol
-            li 有一定的编辑、运营经验，至少不是在校生
-            li 懂（最好精通）硬件产品知识
-            li 文字功底强，会聊天，能表达
-          h5 备注
-          p 提供 SNS 帐号以及一切有亮点的东西，让我们更了解你。
-
 aside.hidden-print role="complementary"
   nav#navigation data-spy="affix" data-offset-top="80" data-offset-bottom="200" role="navigation"
     ul.nav
+      li = link_to "网络编辑", "#content_strategist"
+      li = link_to "销售", "#salesman"
       li = link_to "UI 设计师", "#ui_designer"
       li = link_to "前端程序员", "#front_end_developer"
       li = link_to "后端 ROR 程序员", "#web_developer"
       li = link_to "iOS 程序员", "#ios_developer"
-      li = link_to "销售", "#salesman"
-      li = link_to "网络编辑", "#content_strategist"
 
 - content_for :script do
   javascript:
