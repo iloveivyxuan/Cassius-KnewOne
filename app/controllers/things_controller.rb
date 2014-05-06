@@ -152,7 +152,8 @@ class ThingsController < ApplicationController
 
     if @result
       @thing = Thing.new official_site: @result[:url],
-                         title: @result[:title]
+                         title: @result[:title],
+                         content: @result[:content]
 
       @similar = Thing.unscoped.published.or({slug: /#{@result[:title]}/i},
                                            {title: /#{@result[:title]}/i},
