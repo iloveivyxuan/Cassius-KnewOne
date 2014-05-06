@@ -2,9 +2,9 @@
 
 - present @thing do |tp|
   = render "carousel", tp: tp
+  = render 'actions_compact', tp: tp
   = render "summary", tp: tp
   = render 'reviews', tp: tp
-  = render 'actions_compact', tp: tp
   = render 'feelings', tp: tp
 
 - content_for :script do
