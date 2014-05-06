@@ -262,7 +262,10 @@ div#thing_title {
     }
 
     @media screen and (min-width: $screen-sm-min) {
-      .price {font-size: 1.2em;}
+      .price {
+        font-size: 1.2em;
+        font-weight: bold;
+      }
     }
 
     @media screen and (min-width: $screen-md-min) {
@@ -455,16 +458,27 @@ div#thing_title {
   }
 
   .shop {
-    margin-bottom: 1em;
+    @include clearfix;
+
+    margin-bottom: 2rem;
+  }
+
+  .price {
+    float: left;
+    font-weight: bold;
+    line-height: 34px;
+    width: 40%;
   }
 
   .buy {
-    margin-top: 1em;
+    float: right;
+    width: 60%;
 
     > #new_cart_item {display: none;}
   }
 
   .actions {
+    @include clearfix;
 
     .fa {
       @extend .fa-fw;
@@ -475,16 +489,32 @@ div#thing_title {
       margin-left: .25em;
     }
 
-    > div > a {
-      @extend .btn;
-      @extend .btn-link;
-      @extend .btn-block;
+    > div {
+      border-bottom: $border_default;
+      float: left;
+      width: 50%;
 
-      color: $gray;
-      text-align: left;
+      &:nth-child(odd) {
+        border-right: $border_default;
+      }
 
-      &:hover {
-        color: $text-color;
+      &:last-child,
+      &:nth-last-child(2) {
+        border-bottom: none;
+      }
+
+      > a {
+        @extend .btn;
+        @extend .btn-link;
+
+        color: $gray;
+        height: 40px;
+        line-height: 26px;
+        width: 100%;
+
+        &:hover {
+          color: $text-color;
+        }
       }
     }
 
