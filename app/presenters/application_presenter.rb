@@ -17,7 +17,7 @@ class ApplicationPresenter
     (count > 0) ? count : ""
   end
 
-  def price_format(price, unit="￥")
-    number_to_currency(price, precision: 0, unit: unit)
+  def price_format(price, unit='￥')
+    number_to_currency(price, precision: 0, unit: unit, format: '%u%n')
   end
 end
