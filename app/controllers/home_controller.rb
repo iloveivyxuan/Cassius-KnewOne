@@ -31,10 +31,16 @@ class HomeController < ApplicationController
         render layout: 'home'
       end
     else
-      @categories = Category.unscoped.prior.gt(things_count: 10).limit(8)
       respond_to do |format|
-        format.html.mobile {render 'home/landing.html+mobile'}
-        format.html.desktop {render 'home/landing'}
+        format.html.mobile do
+
+          render 'home/landing.html+mobile'
+        end
+
+        format.html.desktop do
+          @categories = Category.unscoped.prior.gt(things_count: 10).limit(8)
+          render 'home/landing'
+        end
       end
     end
   end
