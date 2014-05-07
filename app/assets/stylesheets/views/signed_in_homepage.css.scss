@@ -242,6 +242,8 @@ html.signed_in_homepage {
   }
 
   #activities {
+    @include clearfix;
+
     > * {
       border-bottom: $border-default;
     }
