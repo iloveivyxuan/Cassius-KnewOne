@@ -39,10 +39,23 @@
             right: 0;
           }
 
+          @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+            padding: {
+              left: 8px;
+            }
+          }
+
           + a {
             padding: {
               left: 10px;
               right: 15px;
+            }
+
+            @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+              padding: {
+                left: 8px;
+                right: 8px;
+              }
             }
           }
         }
@@ -78,7 +91,6 @@
 .navbar-brand {
   position: relative;
   margin-left: 40px;
-  margin-right: 8px;
   font-family: "orbitron-bold";
 
   img {
@@ -132,7 +144,12 @@
     margin-top: 7px;
     transition-duration: .2s;
     transition-property: width;
-    width: 12%;
+  }
+
+  @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+    margin-right: 8px !important;
+    padding: 0;
+    width: 25px;
   }
 
   @media (min-width: $screen-md-min) {
@@ -149,7 +166,7 @@
   &.focus {
 
     @media (min-width: $screen-sm-min) {
-      width: 22%;
+      width: 20%;
     }
   }
 
@@ -170,6 +187,31 @@
 
       &:focus {
         background-color: #fff;
+      }
+
+      @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+        background-color: transparent;
+        border-color: transparent;
+        box-shadow: none;
+        padding: 0;
+        transition-duration: .2s;
+        transition-property: padding;
+
+        + .fa-search {
+          z-index: -1;
+        }
+
+        &:focus {
+          background-color: #fff;
+          border-color: #ccc;
+          padding: {
+            left: 30px;
+          }
+
+          + .fa-search {
+            z-index: 0;
+          }
+        }
       }
     }
 

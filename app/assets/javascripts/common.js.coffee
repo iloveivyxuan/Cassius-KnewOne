@@ -300,10 +300,12 @@ window.Making = do (exports = window.Making || {}) ->
           if !$this.hasClass('open') then $this.addClass('open')
 
       $user.children('.dropdown')
-      .on 'mouseenter', ->
-        $(@).addClass('open')
-      .on 'mouseleave', ->
-        $(@).removeClass('open')
+        .on 'mouseenter', ->
+          $(@).addClass('open')
+        .on 'mouseleave', ->
+          $(@).removeClass('open')
+
+      $('#new_thing_trigger').attr('data-target', '#new-thing-modal')
 
       if $selectpicker.length then $selectpicker.selectpicker()
 

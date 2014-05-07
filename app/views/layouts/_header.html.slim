@@ -10,7 +10,7 @@ header#header role="banner"
 
     #nav_main.collapse.navbar-collapse
       ul.nav.navbar-nav#nav_primary
-        li.nav_group.dropdown
+        li.nav_group.hidden-xs.dropdown
           = link_to "#", class: "nav_group_link dropdown-toggle", data: {toggle: "dropdown", url: categories_path} do
             i.fa.fa-magic.fa-fw
             | 产品
@@ -20,9 +20,13 @@ header#header role="banner"
             li = link_to_with_icon "分类", "fa fa-tags fa-fw", all_categories_path
             li = link_to_with_icon "最新", "fa fa-flash fa-fw", things_path
             li = link_to_with_icon "自营", "fa fa-shopping-cart fa-fw", things_path(self_run: true)
-        li.visible-md.visible-lg
+        li.visible-xs
+          = link_to_with_icon "产品", "fa fa-tags fa-fw", categories_path
+        li.visible-xs
+          = link_to_with_icon "商店", "fa fa-shopping-cart fa-fw", things_path(self_run: true)
+        li
           - if user_signed_in?
-            = link_to_with_icon "分享", "fa fa-plus fa-fw", "#", data: {toggle: "modal", target: "#new-thing-modal"}
+            = link_to_with_icon "分享", "fa fa-plus fa-fw", "#", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}
           - else
             = link_to_with_icon "分享", "fa fa-plus fa-fw", "#", data: {toggle: "modal", target: "#login-modal"}
         li
