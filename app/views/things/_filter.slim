@@ -6,11 +6,11 @@ section.panel.panel-default.panel_control
         i.fa.fa-tags.selectpicker_label
         = select_tag :category,
                      options_for_select([%w(全部 all)]+@categories.map {|c| [c.name, c.slug]}, (params[:category] || 'all')),
-                     class: 'form-control selectpicker invisible js_auto_submit', id: 'category_select', data: {size: 10}
+                     class: 'form-control selectpicker js_auto_submit', id: 'category_select', data: {size: 10}
       .form-group
         i.fa.fa-sort.selectpicker_label
         = select_tag :sort_by, options_for_select([%w(最新 created_at), %w(热门 fanciers_count)], (params[:sort_by] || 'created_at')),
-                     include_blank: false, class: 'form-control selectpicker invisible js_auto_submit', id: 'sort_select'
+                     include_blank: false, class: 'form-control selectpicker js_auto_submit', id: 'sort_select'
       .checkbox
         label
           = check_box_tag :self_run, true, params[:self_run], class: 'js_auto_submit'

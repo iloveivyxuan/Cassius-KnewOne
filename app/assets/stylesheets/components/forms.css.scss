@@ -57,6 +57,13 @@
     }
   }
 
+  select.selectpicker {
+
+    @media (min-width: $screen-md-min) {
+      visibility: hidden;
+    }
+  }
+
   @media (min-width: $screen-md-min) {
 
     .bootstrap-select {

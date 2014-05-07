@@ -29,8 +29,6 @@ window.Making = do (exports = window.Making || {}) ->
       .always -> $spinner.addClass('hide')
 
     $ ->
-      $('.page-header').find('.selectpicker').removeClass('invisible')
-
       if $container.children().length is 0
         $no_content.removeClass('hide')
       else

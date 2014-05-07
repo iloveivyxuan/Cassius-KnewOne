@@ -305,12 +305,7 @@ window.Making = do (exports = window.Making || {}) ->
       .on 'mouseleave', ->
         $(@).removeClass('open')
 
-      if $selectpicker.length
-        $selectpicker
-          .selectpicker()
-          .removeClass('invisible')
-          .next('.bootstrap-select')
-            .removeClass('invisible')
+      if $selectpicker.length then $selectpicker.selectpicker()
 
   init_new_thing_modal()
 
