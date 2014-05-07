@@ -12,7 +12,7 @@ header.page-header
           ['最新产品', 'things'],
           ['最新讨论', 'posts']],
           selected: (params[:filter] or session[:home_filter])),
-          class: 'form-control selectpicker js_auto_submit'
+          class: 'form-control selectpicker invisible js_auto_submit'
 
 #activities
   = render_feeds @activities

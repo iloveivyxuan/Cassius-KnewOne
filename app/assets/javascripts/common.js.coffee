@@ -306,7 +306,11 @@ window.Making = do (exports = window.Making || {}) ->
         $(@).removeClass('open')
 
       if $selectpicker.length
-        $selectpicker.selectpicker()
+        $selectpicker
+          .selectpicker()
+          .removeClass('invisible')
+          .next('.bootstrap-select')
+            .removeClass('invisible')
 
   init_new_thing_modal()
 
