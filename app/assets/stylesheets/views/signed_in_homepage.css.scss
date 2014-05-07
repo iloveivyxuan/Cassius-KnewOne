@@ -25,22 +25,19 @@ html.signed_in_homepage {
   // ---------------------------------------------------------------------------
 
   .page-header {
-    display: none;
-
-    @media (min-width: $screen-md-min) {
-      @include clearfix;
-
-      display: block;
-    }
+    @include clearfix;
 
     h1 {
       color: $gray;
       font-size: $font-size-h4;
-      margin-left: 1em;
     }
 
     .filter {
       float: right;
+
+      .form-group {
+        margin-bottom: 0;
+      }
     }
   }
 
@@ -229,7 +226,10 @@ html.signed_in_homepage {
       @include center-block;
 
       border-bottom: 1px solid #ebeced;
-      margin-top: -20px;
+      margin: {
+        bottom: 9px;
+        top: -20px;
+      }
 
       @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
         margin-top: -40px;
