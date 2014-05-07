@@ -8,7 +8,23 @@ class HomeController < ApplicationController
 
   def index
     if user_signed_in?
-      @activities = current_user.relate_activities.visible.page(params[:page]).per(50)
+      session[:home_filter] = (params[:filter] or session[:home_filter])
+
+      case session[:home_filter]
+      when "followings"
+        @activities = current_user.relate_activities
+          .visible.page(params[:page]).per(50)
+      when "things"
+        @activities = Activity.by_types(:new_thing)
+          .visible.page(params[:page]).per(30)
+      when "posts"
+        @activities = Activity.by_types(:new_review, :new_feeling, :new_topic)
+          .visible.page(params[:page]).per(30)
+      else
+        @activities = Activity.by_types(:new_thing, :new_review, :new_feeling, :new_topic)
+          .visible.page(params[:page]).per(30)
+      end
+
       if request.xhr?
         render 'home/index_xhr', layout: false
       else
@@ -28,7 +44,7 @@ class HomeController < ApplicationController
 
   def sandbox
     @extracted_data = {
-        images: %w(
+      images: %w(
           http://image.knewone.com/photos/bf156596dc73be8b743a76a1b9231d71.jpg
           http://image.knewone.com/photos/8cd9b1a51879a0cdde1866e2a0023a5c.jpg
           http://image.knewone.com/photos/3f4452a976ee852fd53b2ef52119b60d.jpg!review

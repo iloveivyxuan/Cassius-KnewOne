@@ -33,28 +33,13 @@ html.signed_in_homepage {
       display: block;
     }
 
-    h1,
-    h2 {
-      font-size: 18px;
-      font-weight: normal;
-      line-height: 34px;
-    }
     h1 {
       color: $gray;
-      float: left;
-
-      .fa {
-        margin-left: 10px;
-      }
+      font-size: $font-size-h4;
+      margin-left: 1em;
     }
 
-
-    h2 {
-      color: $text-muted;
-      float: right;
-    }
-
-    .btn {
+    .filter {
       float: right;
     }
   }
