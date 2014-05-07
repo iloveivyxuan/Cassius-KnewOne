@@ -68,7 +68,7 @@ html.users_activities {
         margin-bottom: 0;
 
         @media (min-width: $screen-sm-min) {
-          width: percentage(4 / 12);
+          @include make-sm-column(4);
         }
       }
     }
