@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_variant
   after_action :store_location, only: [:index, :show]
 
   # some bots using some *strange* format to request urls
@@ -98,5 +99,15 @@ class ApplicationController < ActionController::Base
 
   def trim_param_id
     params[:id] and params[:id].gsub! /[^\w]$/, ''
+  end
+
+  def set_variant
+    request.variant = if browser.tablet?
+                        :tablet
+                      elsif browser.mobile?
+                        :mobile
+                      else
+                        :desktop
+                      end
   end
 end

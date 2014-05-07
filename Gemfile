@@ -80,6 +80,7 @@ gem 'sitemap_generator'
 
 # misc
 gem 'nokogiri'
+gem 'browser'
 
 # servers
 group :production do

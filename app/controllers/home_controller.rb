@@ -31,14 +31,8 @@ class HomeController < ApplicationController
         render layout: 'home'
       end
     else
-      @landing_cover = LandingCover.find_for_home
-
-      if @landing_cover.nil?
-        redirect_to random_things_path
-      else
-        @categories = Category.unscoped.prior.gt(things_count: 10).limit(8)
-        render 'home/landing'
-      end
+      @categories = Category.unscoped.prior.gt(things_count: 10).limit(8)
+      render 'home/landing'
     end
   end
 

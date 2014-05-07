@@ -210,7 +210,6 @@ Making::Application.routes.draw do
       end
     end
 
-    resources :landing_covers, except: [:show]
     resources :promotions, except: [:show]
     resources :things, only: [:index, :update, :edit] do
       member do
