@@ -32,3 +32,6 @@ $screen-lg-max: ($screen-xl-min - 1) !default;
 $thumbnail-bg: #fff;
 
 $zindex-tooltip: 1029;
+
+$grid-float-breakpoint:     992px;
+$grid-float-breakpoint-max: $grid-float-breakpoint - 1;

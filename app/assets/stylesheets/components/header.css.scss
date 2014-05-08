@@ -17,7 +17,7 @@
         &:focus {
           background-color: transparent;
 
-          @media (min-width: $screen-sm-min) {
+          @media (min-width: $grid-float-breakpoint) {
             background-color: $navbar-inverse-link-active-bg;
           }
         }
@@ -39,7 +39,7 @@
             right: 0;
           }
 
-          @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+          @media (min-width: $grid-float-breakpoint) and (max-width: $screen-md-max) {
             padding: {
               left: 8px;
             }
@@ -51,7 +51,7 @@
               right: 15px;
             }
 
-            @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+            @media (min-width: $grid-float-breakpoint) and (max-width: $screen-md-max) {
               padding: {
                 left: 8px;
                 right: 8px;
@@ -65,7 +65,7 @@
 
   .dropdown-menu {
 
-    @media (min-width: $screen-sm-min) {
+    @media (min-width: $grid-float-breakpoint) {
       background-color: $navbar-inverse-link-active-bg;
       border-color: $navbar-inverse-link-active-bg;
       border-radius: 0 0 2px 2px;
@@ -114,7 +114,7 @@
       line-height: 40px;
       padding: 0 15px;
 
-      @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+      @media (min-width: $grid-float-breakpoint) and (max-width: $screen-md-max) {
         padding: {
           left: 8px;
           right: 8px;
@@ -123,7 +123,7 @@
 
       .fa {
 
-        @media (min-width: $screen-sm-min) {
+        @media (min-width: $grid-float-breakpoint) {
           font-size: 1.3333333333333333em;
           line-height: 0.75em;
           vertical-align: -15%;
@@ -134,26 +134,20 @@
 }
 
 .navbar-form {
-  @media (max-width: $screen-sm-min) {
+  @media (max-width: $grid-float-breakpoint) {
     border-bottom-width: 0;
     margin-bottom: 0;
   }
 
-  @media (min-width: $screen-sm-min) {
+  @media (min-width: $grid-float-breakpoint) {
     margin-bottom: 7px;
     margin-top: 7px;
     transition-duration: .2s;
     transition-property: width;
   }
 
-  @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-    margin-right: 8px !important;
-    padding: 0;
-    width: 25px;
-  }
-
   @media (min-width: $screen-md-min) {
-    width: 18%;
+    width: 14%;
   }
 
   @media (min-width: $grid-float-breakpoint) {
@@ -165,8 +159,8 @@
 
   &.focus {
 
-    @media (min-width: $screen-sm-min) {
-      width: 20%;
+    @media (min-width: $grid-float-breakpoint) {
+      width: 25%;
     }
   }
 
@@ -188,31 +182,6 @@
       &:focus {
         background-color: #fff;
       }
-
-      @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-        background-color: transparent;
-        border-color: transparent;
-        box-shadow: none;
-        padding: 0;
-        transition-duration: .2s;
-        transition-property: padding;
-
-        + .fa-search {
-          z-index: -1;
-        }
-
-        &:focus {
-          background-color: #fff;
-          border-color: #ccc;
-          padding: {
-            left: 30px;
-          }
-
-          + .fa-search {
-            z-index: 0;
-          }
-        }
-      }
     }
 
     .fa {
@@ -224,11 +193,11 @@
 .navbar-collapse {
   padding-top: $padding-large-vertical;
 
-  @media (max-width: $screen-sm-min) {
+  @media (max-width: $grid-float-breakpoint) {
     max-height: none;
   }
 
-  @media (min-width: $screen-sm-min) {
+  @media (min-width: $grid-float-breakpoint) {
     padding-top: 0;
   }
 }
@@ -236,12 +205,12 @@
 #nav_primary {
 
   .fa-comment {
-    @media (min-width: $screen-sm-min) {
+    @media (min-width: $grid-float-breakpoint) {
       vertical-align: baseline;
     }
   }
 
-  @media (max-width: $screen-xs-max) {
+  @media (max-width: $screen-sm-max) {
     @include clearfix;
 
     > li {
@@ -265,7 +234,7 @@
 
   margin: ($navbar-padding-vertical / 2) (-$navbar-padding-horizontal);
 
-  @media (min-width: $screen-sm-min) {
+  @media (min-width: $grid-float-breakpoint) {
     margin: 0;
   }
 
@@ -274,7 +243,7 @@
     padding: $padding-small-vertical $padding-large-horizontal;
     padding-bottom: 0;
 
-    @media (min-width: $screen-sm-min) {
+    @media (min-width: $grid-float-breakpoint) {
       border-top: none;
       padding: 0;
     }
@@ -285,7 +254,7 @@
     .user_link {
       width: auto;
 
-      @media (min-width: $screen-sm-min) {
+      @media (min-width: $grid-float-breakpoint) {
         padding-right: 20px;
       }
     }
@@ -298,7 +267,7 @@
     > .fa {
       line-height: 40px;
 
-      @media (min-width: $screen-sm-min) {
+      @media (min-width: $grid-float-breakpoint) {
         font-size: 1.3333333333333333em;
         vertical-align: middle;
       }
@@ -316,7 +285,7 @@
       top: 50%;
       z-index: 1;
 
-      @media (min-width: $screen-sm-min) {
+      @media (min-width: $grid-float-breakpoint) {
         font-size: 14px;
         left: 18px;
       }
@@ -336,7 +305,7 @@
     color: $navbar-inverse-link-hover-color;
   }
 
-  @media (min-width: $screen-sm-min) {
+  @media (min-width: $grid-float-breakpoint) {
     padding: {
       left: 0;
       right: 30px;
@@ -351,7 +320,7 @@
     padding: 0;
     width: 80px;
 
-    @media (min-width: $screen-sm-min) {
+    @media (min-width: $grid-float-breakpoint) {
       float: right;
       width: 70px;
     }
@@ -370,7 +339,7 @@
       float: left;
       width: 40px;
 
-      @media (min-width: $screen-sm-min) {
+      @media (min-width: $grid-float-breakpoint) {
         width: 30px;
       }
 
@@ -384,7 +353,7 @@
         }
         text-align: center;
 
-        @media (min-width: $screen-sm-min) {
+        @media (min-width: $grid-float-breakpoint) {
           padding: {
             left: 8px;
             right: 8px;
@@ -394,7 +363,7 @@
 
       .dropdown-menu {
 
-        @media (min-width: $screen-sm-min) {
+        @media (min-width: $grid-float-breakpoint) {
           right: 0;
         }
       }
@@ -447,7 +416,7 @@
         color: $navbar-inverse-link-hover-color;
       }
 
-      @media (min-width: $screen-sm-min) {
+      @media (min-width: $grid-float-breakpoint) {
         padding: {
           left: 0;
           right: 30px;
