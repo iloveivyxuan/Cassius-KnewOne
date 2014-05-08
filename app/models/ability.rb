@@ -28,7 +28,7 @@ class Ability
     can [:follow, :unfollow], User
 
     can [:create, :update, :destroy], Story do |story|
-      story.thing.author == user or story.author == user
+      [story.thing.author, story.thing.maker, story.author].include? user
     end
 
     can :create, Supplier
