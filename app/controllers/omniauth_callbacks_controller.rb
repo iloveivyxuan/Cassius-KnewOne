@@ -31,6 +31,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_back_or edit_account_path, flash: {oauth: {status: 'success', text: '绑定成功。'}}
     else
       user = User.create_from_omniauth(omniauth)
+      user.remember_me = true
       sign_in user
 
       redirect_to welcome_url,
