@@ -13,7 +13,7 @@ header#header role="banner"
         li
           = link_to_with_icon "分类", "fa fa-tags fa-fw", categories_path
         li
-          = link_to_with_icon "商店", "fa fa-shopping-cart fa-fw", things_path(self_run: true)
+          = link_to_with_icon "商店", "fa fa-truck fa-fw", things_path(self_run: true)
         li
           - if user_signed_in?
             = link_to_with_icon "分享", "fa fa-plus fa-fw", "#", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}
