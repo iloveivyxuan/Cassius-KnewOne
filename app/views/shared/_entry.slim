@@ -8,12 +8,12 @@ section.entry
       i.fa.fa-envelope.fa-3x
   .entry_email
     ul.nav.nav-pills.nav-pills-list.nav-justified
-      li
-        = link_to_with_icon '登录', 'fa fa-sign-in', '#email_sign_in_tab', data: {toggle: 'tab'}
       li.active
+        = link_to_with_icon '登录', 'fa fa-sign-in', '#email_sign_in_tab', data: {toggle: 'tab'}
+      li
         = link_to_with_icon '注册', 'fa  fa-magic', '#email_sign_up_tab', data: {toggle: 'tab'}
     .tab-content
-      #email_sign_up_tab.tab-pane.active
+      #email_sign_up_tab.tab-pane
         = render 'devise/registrations/sign_up'
-      #email_sign_in_tab.tab-pane
+      #email_sign_in_tab.tab-pane.active
         = render 'devise/sessions/sign_in'

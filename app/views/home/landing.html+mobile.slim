@@ -1,1 +1,8 @@
-h1 hello
+- provide :page_class, "landing_mobile"
+
+header
+  h2.slogan= slogan
+  .register= render 'shared/entry'
+
+section
+  ul.things= render @things, size: :normal, img_lazy: false
