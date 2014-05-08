@@ -1,6 +1,6 @@
 window.Making = do (exports = window.Making || {}) ->
 
-  if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ')')
+  if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')')
     _$window   = $(window)
     _$document = $(document)
     _$html     = $('html')
