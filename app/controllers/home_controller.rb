@@ -115,6 +115,9 @@ class HomeController < ApplicationController
   def jobs
   end
 
+  def user_agreement
+  end
+
   private
 
   def set_editor_choices

@@ -1,0 +1,30 @@
+html.home_user_agreement {
+
+  #wrapper {
+    @include wrapper(simple, $max-width: $screen-md-min);
+
+    article {
+      @extend .text-justify;
+      margin-bottom: 1rem;
+      padding: 0 1rem;
+    }
+
+    p {
+      text-indent: 2em;
+    }
+
+    ul,
+    ol {
+      margin-bottom: 1em;
+      padding-left: 40px;
+    }
+
+    ul {
+      list-style-type: circle;
+    }
+
+    ol {
+      list-style-type: decimal;
+    }
+  }
+}

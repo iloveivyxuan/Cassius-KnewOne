@@ -180,6 +180,7 @@ Making::Application.routes.draw do
   get "/500", :to => "home#error"
 
   get 'jobs', to: 'home#jobs'
+  get 'user_agreement', to: 'home#user_agreement'
   get 'valentine', to: 'specials#valentine'
   get 'womensday', to: 'specials#womensday'
   get 'makerfaire', to: 'specials#makerfaire'
