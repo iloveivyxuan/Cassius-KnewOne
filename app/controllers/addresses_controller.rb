@@ -3,7 +3,13 @@ class AddressesController < ApplicationController
   layout 'settings'
 
   def index
-    @addresses = current_user.addresses
+    if current_user.role? :editor and params[:user]
+      # admin can check user addresses
+      @addresses = User.find(params[:user]).addresses
+    else
+      @addresses = current_user.addresses
+    end
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @addresses }
