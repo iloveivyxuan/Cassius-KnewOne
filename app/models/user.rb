@@ -54,6 +54,7 @@ class User
 
   ## Rememberable
   field :remember_created_at, :type => Time
+  field :remember_token, :type => String
 
   ## Trackable
   field :sign_in_count, :type => Integer
