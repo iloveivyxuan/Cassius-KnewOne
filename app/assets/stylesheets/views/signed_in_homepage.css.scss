@@ -123,12 +123,13 @@ html.signed_in_homepage {
       > a {
         color: $text-muted;
         float: left;
-        padding: 5px 0;
+        margin-bottom: .5rem;
+        padding: 2px 0;
         text-align: center;
         width: 50%;
 
-        &:nth-child(1) {
-          border-right: $border-default;
+        &:nth-child(even) {
+          border-left: $border-default;
         }
 
         img {
