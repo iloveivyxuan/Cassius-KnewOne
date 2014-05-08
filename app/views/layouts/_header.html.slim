@@ -11,9 +11,9 @@ header#header role="banner"
     #nav_main.collapse.navbar-collapse
       ul.nav.navbar-nav#nav_primary
         li
-          = link_to_with_icon "分类", "fa fa-tags fa-fw", categories_path
+          = link_to_with_icon "商店", "fa fa-smile-o fa-fw", things_path(self_run: true)
         li
-          = link_to_with_icon "商店", "fa fa-truck fa-fw", things_path(self_run: true)
+          = link_to_with_icon "探索", "fa fa-lightbulb-o fa-fw", categories_path
         li
           - if user_signed_in?
             = link_to_with_icon "分享", "fa fa-plus fa-fw", "#", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}

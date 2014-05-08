@@ -1,8 +1,13 @@
-- page_title (@category ? @category.name : '最新产品')
+- title = (params[:self_run] ? "#{brand}商店" : "#{brand}产品")
+- title += "-#{@category.name}" if @category
+- page_title title
 
 header.page-header
   h1
-    = link_to_with_icon '产品', 'fa fa-magic', things_path, class: 'breadcrumb'
+    - if params[:self_run]
+      = link_to_with_icon '商店', 'fa fa-smile-o', things_path(self_run: true), class: 'breadcrumb'
+    - else
+      = link_to_with_icon '产品', 'fa fa-magic', things_path, class: 'breadcrumb'
     - if @category
       = link_to @category.name, things_path(category: @category), class: 'breadcrumb'
 
