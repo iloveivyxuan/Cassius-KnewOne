@@ -11,6 +11,7 @@ module Api
           ActionController::UrlFor,
           ActionController::Redirecting,
           ActionView::Layouts,
+          ActionController::Head,
           ActionController::Rendering,
           ActionController::Renderers::All,
           ActionController::ConditionalGet,

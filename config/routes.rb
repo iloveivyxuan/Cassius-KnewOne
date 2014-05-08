@@ -308,6 +308,7 @@ Making::Application.routes.draw do
       end
 
       get 'oauth/default_callback', to: 'oauth#default_callback'
+      get 'oauth/default_callback_2', to: 'oauth#default_callback_2'
       post 'oauth/exchange_access_token', to: 'oauth#exchange_access_token'
     end
   end

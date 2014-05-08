@@ -11,7 +11,10 @@ module Api
       SECRET = '62b5f1b6'
 
       WEIBO_APPKEY = '1934398743'
-      WEIBO_APPSECRET = '39084336b9ac5f3ae48535e31b737821'
+      WEIBO_SECRET = '39084336b9ac5f3ae48535e31b737821'
+
+      TWITTER_APPKEY = 'BvmzfKWOgpaSin9UldEybFRNQ'
+      TWITTER_SECRET = 'flAI84stBSsoP4v9xr4iMfDOYvOLZ9SWXvxatNkgNh3DG9UDXV'
 
       def exchange_access_token
         profile = send :"get_profile_from_#{params[:provider]}"
@@ -42,6 +45,10 @@ module Api
         end
       end
 
+      def default_callback_2
+        render json: params.except(*request.path_parameters.keys)
+      end
+
       private
 
       def check_fields
@@ -70,7 +77,7 @@ module Api
       end
 
       def get_profile_from_weibo
-        client = WeiboOAuth2::Client.new(WEIBO_APPKEY, WEIBO_APPSECRET)
+        client = WeiboOAuth2::Client.new(WEIBO_APPKEY, WEIBO_SECRET)
         client.get_token_from_hash :access_token => params[:access_token]
 
         result = client.oauth2.get_token_info
@@ -92,8 +99,8 @@ module Api
         #TODO: May consider access_token belongs_to consumer, but seems no api can do this, or no need?
         client = Twitter::Client.new access_token: params[:access_token],
                                      access_token_secret: params[:access_secret],
-                                     consumer_key: Settings.twitter.consumer_key,
-                                     consumer_secret: Settings.twitter.consumer_secret
+                                     consumer_key: TWITTER_APPKEY,
+                                     consumer_secret: TWITTER_SECRET
         client.users.verify_credentials
       end
     end
