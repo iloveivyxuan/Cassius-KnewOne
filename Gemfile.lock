@@ -115,7 +115,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.6)
-    airbrake (3.1.17)
+    airbrake (4.0.0)
       builder
       multi_json
     alipay (0.0.4)
@@ -218,7 +218,7 @@ GEM
     equalizer (0.0.9)
     erubis (2.7.0)
     eventmachine (1.0.3)
-    execjs (2.0.2)
+    execjs (2.1.0)
     fabrication (2.11.2)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
@@ -236,7 +236,7 @@ GEM
     guard-rspec (4.2.9)
       guard (~> 2.1)
       rspec (>= 2.14, < 4.0)
-    handlebars_assets (0.15)
+    handlebars_assets (0.16)
       execjs (>= 1.2.9)
       multi_json
       sprockets (>= 2.0.3)
@@ -451,6 +451,8 @@ GEM
       slim (~> 2.0)
     slop (3.5.0)
     spring (1.1.3)
+    spring-commands-rspec (1.0.2)
+      spring (>= 0.9.1)
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -477,7 +479,7 @@ GEM
       eventmachine (>= 1.0.0)
       rack (>= 1.0.0)
     thor (0.19.1)
-    thread_safe (0.3.3)
+    thread_safe (0.3.4)
     tilt (1.4.1)
     timers (1.1.0)
     tins (1.3.0)
@@ -583,6 +585,7 @@ DEPENDENCIES
   sitemap_generator
   slim-rails
   spring
+  spring-commands-rspec
   therubyracer
   thin
   twitter (>= 5.8.0)

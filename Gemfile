@@ -99,6 +99,7 @@ group :development do
   gem 'quiet_assets'
   gem 'thin'
   gem 'spring'
+  gem 'spring-commands-rspec'
 
   # deploy
   gem 'capistrano', '~> 3.1', require: false
