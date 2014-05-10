@@ -1,2 +1,0 @@
-Fabricator(:post) do
-end
