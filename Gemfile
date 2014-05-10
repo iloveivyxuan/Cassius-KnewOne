@@ -119,8 +119,6 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'mongoid-rspec'
-  gem 'spork-rails'
-  gem 'guard-spork'
   gem 'guard-rspec'
   gem 'guard-livereload', github: 'guard/guard-livereload'
   gem 'fabrication'
