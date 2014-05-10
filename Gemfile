@@ -109,6 +109,11 @@ group :development do
   gem 'capistrano-sidekiq', require: false
 end
 
+group :test do
+  gem 'capybara'
+  gem 'capybara-webkit'
+end
+
 group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails'
