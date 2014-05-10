@@ -112,6 +112,7 @@ end
 group :test do
   gem 'capybara'
   gem 'capybara-webkit'
+  gem 'simplecov', require: false
 end
 
 group :development, :test do
