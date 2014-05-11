@@ -119,6 +119,7 @@ end
 group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
   gem 'mongoid-rspec'
   gem 'guard-rspec'
   gem 'guard-livereload', github: 'guard/guard-livereload'
