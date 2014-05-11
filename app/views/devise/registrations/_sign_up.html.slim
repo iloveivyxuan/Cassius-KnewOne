@@ -16,7 +16,7 @@
       = f.password_field :password, placeholder: '密码', required: true, class: 'form-control'
   .checkbox
     label
-      = f.check_box :agreement, checked: true
+      = check_box_tag :agreement, true, true, id: 'user_agreement'
       | 同意
       = link_to "《KnewOne 用户协议》", user_agreement_path, target: "_blank"
   .form-group
