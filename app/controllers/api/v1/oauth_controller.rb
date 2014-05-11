@@ -101,7 +101,7 @@ module Api
                                      access_token_secret: params[:access_secret],
                                      consumer_key: TWITTER_APPKEY,
                                      consumer_secret: TWITTER_SECRET
-        client.users.verify_credentials
+        client.current_user
       end
     end
   end
