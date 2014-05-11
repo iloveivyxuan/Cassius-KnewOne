@@ -74,9 +74,9 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   private
-# check if we need password to update user data
-# ie if password or email was changed
-# extend this as needed
+  # check if we need password to update user data
+  # ie if password or email was changed
+  # extend this as needed
   def needs_password?(user, params)
     user.encrypted_password.present?
   end

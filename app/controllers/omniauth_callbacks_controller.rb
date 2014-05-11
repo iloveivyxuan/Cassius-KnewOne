@@ -34,6 +34,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user.remember_me = true
       sign_in user
 
+      FriendJoinedNotificationWorker.perform_async user.id.to_s
+
       redirect_to welcome_url,
                   :notice => t('devise.omniauth_callbacks.success', kind: omniauth.provider),
                   flash: {:show_set_email_modal => true}
