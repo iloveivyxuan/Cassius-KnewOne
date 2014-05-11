@@ -26,7 +26,7 @@ gem 'omniauth-weibo-oauth2'
 gem 'omniauth-twitter'
 gem 'omniauth-wechat', github: 'jasl/omniauth-wechat'
 gem 'weibo_2', github: 'simsicon/weibo_2'
-gem 'twitter'
+gem 'twitter', '>= 5.8.0'
 gem 'cancancan', '~> 1.7.0'
 
 # payment
@@ -56,7 +56,7 @@ gem 'jquery-fileupload-rails'
 gem 'handlebars_assets'
 
 # stylesheets
-gem 'sass-rails'
+gem 'sass-rails', '~> 4.0.3' # Resolve dependency with sprocket
 gem 'compass-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
