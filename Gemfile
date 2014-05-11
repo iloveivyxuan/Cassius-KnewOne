@@ -68,7 +68,7 @@ gem 'sidekiq'
 gem 'mini_magick'
 
 # API
-gem 'doorkeeper', github: 'applicake/doorkeeper'
+gem 'doorkeeper', github: 'doorkeeper-gem/doorkeeper'
 
 # monitoring
 gem 'newrelic_rpm'
