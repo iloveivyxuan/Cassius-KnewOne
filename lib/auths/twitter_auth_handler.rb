@@ -31,7 +31,7 @@ class TwitterAuthHandler
   end
 
   def self.parse_image(auth)
-    (auth[:profile_image_url] || auth[:info][:image]).sub('_normal', '')
+    (auth[:profile_image_url] || auth[:info][:image]).to_s.sub('_normal', '')
   end
 
   private
