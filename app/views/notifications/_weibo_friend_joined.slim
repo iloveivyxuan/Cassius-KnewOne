@@ -1,3 +1,4 @@
-| 微博好友
-= link_to context.name, context, target: '_blank'
-| 加入了KnewOne
+- if friend = notification.context
+  | 微博好友
+  = link_to friend.name, friend, target: '_blank'
+  | 加入了KnewOne
