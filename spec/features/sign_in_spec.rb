@@ -21,4 +21,10 @@ feature 'Sign in' do
     visit root_path
     page.should have_content(user.name)
   end
+
+  scenario 'with helper' do
+    user = create_signed_in_user
+    visit root_path
+    page.should have_content(user.name)
+  end
 end
