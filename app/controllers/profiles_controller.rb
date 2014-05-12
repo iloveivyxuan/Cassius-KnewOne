@@ -29,8 +29,6 @@ class ProfilesController < ApplicationController
   end
 
   def follow_recommends
-    return redirect_back_or root_path if params[:scope].blank?
-
     scopes = params[:scope].blank? ? %w(weibo recommends) : params[:scope].split(',')
 
     if scopes.include?('weibo')
