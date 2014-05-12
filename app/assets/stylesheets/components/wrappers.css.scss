@@ -9,10 +9,6 @@
   @media screen and (min-width: $screen-sm-min) {
     margin: 0 $wrapper_margin;
   }
-
-  > nav {
-    margin-bottom: 1em;
-  }
 }
 
 @mixin wrapper($layout, $columns: -1, $max-width: none) {

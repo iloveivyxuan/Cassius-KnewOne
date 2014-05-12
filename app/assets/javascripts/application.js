@@ -33,6 +33,7 @@
 //= require components/fuzzy
 //= require components/editor
 //= require components/cart_items
+//= require components/offcanvas
 //= require_tree ./pages
 //= require_tree ./models
 //= require_tree ./collections

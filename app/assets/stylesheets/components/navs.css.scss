@@ -76,20 +76,6 @@
         &.active {
           border: none;
 
-          &:after {
-            content: '\f105';
-            display: inline-block;
-            font-family: FontAwesome;
-            font-style: normal;
-            font-weight: normal;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            line-height: 1;
-            position: absolute;
-            right: 15px;
-            top: 12px;
-          }
-
           > a {
             background-color: $background-default-active;
           }

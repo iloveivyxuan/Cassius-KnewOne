@@ -43,6 +43,74 @@
   }
 }
 
+// TODO
+@mixin offcanvas {
+  overflow: hidden;
+  position: relative;
+
+  > .toggle {
+    background-color: #333332;
+    color: #fff;
+    cursor: pointer;
+    font-size: 24px;
+    line-height: 24px;
+    padding: 5px 7px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+
+    &.left {
+      left: 0;
+    }
+
+    &.right {
+      display: none;
+      right: 0;
+    }
+
+    .fa {
+      margin-right: 0;
+    }
+  }
+
+  > nav,
+  > main {
+    padding: 5%;
+    transition: .2s all ease;
+    width: 100%;
+  }
+
+  > nav {
+    float: left;
+    margin-left: -100%;
+  }
+
+  > main {
+    float: left;
+    padding: {
+      bottom: 40px;
+      top: 40px;
+    }
+  }
+
+  &.active_nav {
+
+    .toggle {
+      &.left  {display: none;}
+      &.right {display: block;}
+    }
+
+    > nav {
+      margin-left: 0;
+      width: 90%;
+    }
+
+    > main {
+      margin-right: -100%;
+    }
+  }
+}
+
 
 // UI Component
 // -----------------------------------------------------------------------------

@@ -4,42 +4,44 @@ html.settings {
   // ---------------------------------------------------------------------------
 
   #wrapper {
-    @include clearfix;
-    margin: 0;
-    overflow: hidden;
-    position: relative;
+    @media (max-width: $screen-sm-max) {
+      @include offcanvas;
 
-    @media screen and (min-width: $screen-md-min) {
-      @include make-row;
-      margin: 0 calc(#{$wrapper_margin} - 15px);
+      margin: 0;
     }
 
-    @media screen and (min-width: $screen-lg-min + 100) {
-      margin-left: auto;
-      margin-right: auto;
-      width: $screen-lg-min;
+    @media (min-width: $screen-md-min) {
+      @include wrapper(grid, 2);
+
+      .toggle {
+        display: none;
+      }
     }
 
-    &.is_aside_active {
+    > main {
+      background-color: #fff;
 
-      #aside {
-        @media screen and (max-width: $screen-md-min) {
-          margin-left: 0;
-          width: 85%;
+      @media (min-width: $screen-md-min) {
+        @include make-md-column-pull(3);
+      }
+    }
+
+    > nav {
+      @media (max-width: $screen-sm-max) {
+        padding: {
+          bottom: 0;
+          top: 0;
         }
       }
 
-      #switch_main {
-        display: block;
-      }
+      @media (min-width: $screen-md-min) {
+        @include make-md-column(3, $gutter: 40px);
+        @include make-md-column-push(9);
 
-      #switch_aside {
-        display: none;
-      }
-
-      #main {
-        @media screen and (max-width: $screen-md-min) {
-          margin-right: -100%;
+        border-left: $border-default;
+        padding: {
+          left: 2em;
+          right: 2em;
         }
       }
     }
@@ -48,161 +50,105 @@ html.settings {
   // Section
   // ---------------------------------------------------------------------------
 
-  #main,
-  #aside {
-    @media screen and (max-width: $screen-md-min) {
-      @include transition-property(all);
-      @include transition-duration(.2s);
-      @include transition-timing-function(ease-in);
-      width: 100%;
+  .nav-pills.nav-pills-list.vertical {
+    @media (min-width: $screen-md-min) {
+      border: none;
+
+      > li {
+        > a {
+          border-radius: $border-radius-base;
+        }
+      }
     }
   }
 
-  #aside {
-    @media screen and (max-width: $screen-md-min) {
-      float: left;
-      margin-left: -100%;
-      padding-left: 5%;
-      padding-right: 5%;
-    }
+  .form-horizontal {
 
-    @media screen and (min-width: $screen-md-min) {
-      @include make-md-column(3);
-    }
-  }
-
-  #main {
-    background-color: #fff;
-
-    @media screen and (max-width: $screen-md-min) {
-      float: left;
+    .form-group {
       margin-left: 0;
-      padding: 45px 5%;
-    }
-
-    @media screen and (min-width: $screen-md-min) {
-      @include make-md-column(9);
-
-      border: 1px solid $list-group-border;
-      border-radius: $list-group-border-radius;
-      padding-bottom: 20px;
-      padding-top: 20px;
-    }
-
-    .form-horizontal {
-
-      .form-group {
-        margin-left: 0;
-        margin-right: 0;
-
-        @media screen and (min-width: $screen-sm-min) {
-
-          .control-label {
-            @include make-sm-column(2);
-          }
-
-          .controls {
-            @include make-sm-column(5);
-          }
-
-          .help-block {
-            @include make-sm-column(4);
-          }
-
-          .form-action {
-            @include make-sm-column(9);
-            @include make-sm-column-offset(2);
-          }
-
-          .form-result {
-            @include make-sm-column(5);
-            @include make-sm-column-offset(2);
-          }
-        }
-      }
-    }
-
-    .section:not(:last-child) {
-      border-bottom: $border-default;
-    }
-
-    .section_title {
-      font-size: $font-size-h4;
-      margin-bottom: 1em;
-      padding-left: 1em;
-    }
-
-    #table_oauth {
-      text-align: center;
-      width: 100%;
-
-      @include make-sm-column(6);
-      @include make-sm-column-offset(2);
-      @include make-md-column(4);
-      @include make-md-column-offset(2);
-
-      thead {
-
-        th {
-          text-align: center;
-
-          &:first-child {
-            text-align: left;
-          }
-        }
-      }
-
-      tbody {
-
-        td {
-          padding-bottom: .5em;
-          padding-top: .5em;
-
-          &:first-child {
-            text-align: left;
-
-            .fa {
-              font-size: 1.4em;
-              vertical-align: middle;
-            }
-          }
-        }
-      }
-
-      & + .form-result {
-        @include make-sm-column(5);
-        @include make-sm-column-offset(2);
-      }
-    }
-  }
-
-  #switch_main,
-  #switch_aside {
-    background-color: #333332;
-    color: #fff;
-    cursor: pointer;
-    font-size: 24px;
-    line-height: 24px;
-    padding: 5px 7px;
-    position: absolute;
-    text-align: center;
-    top: 0;
-
-    @media screen and (min-width: $screen-md-min) {
-      display: none !important;
-    }
-
-    .fa {
       margin-right: 0;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      @media screen and (min-width: $screen-sm-min) {
+
+        .control-label {
+          @include make-sm-column(2);
+        }
+
+        .controls {
+          @include make-sm-column(5);
+        }
+
+        .help-block {
+          @include make-sm-column(4);
+        }
+
+        .form-action {
+          @include make-sm-column(9);
+          @include make-sm-column-offset(2);
+        }
+
+        .form-result {
+          @include make-sm-column(5);
+          @include make-sm-column-offset(2);
+        }
+      }
     }
   }
 
-  #switch_aside {
-    left: 0;
+  .section:not(:last-child) {
+    border-bottom: $border-default;
   }
 
-  #switch_main {
-    display: none;
-    right: 0;
+  .section_title {
+    font-size: $font-size-h4;
+    margin-bottom: 1em;
+    padding-left: 1em;
+  }
+
+  #table_oauth {
+    text-align: center;
+    width: 100%;
+
+    @include make-sm-column(6);
+    @include make-sm-column-offset(2);
+    @include make-md-column(4);
+    @include make-md-column-offset(2);
+
+    thead {
+
+      th {
+        text-align: center;
+
+        &:first-child {
+          text-align: left;
+        }
+      }
+    }
+
+    tbody {
+
+      td {
+        padding-bottom: .5em;
+        padding-top: .5em;
+
+        &:first-child {
+          text-align: left;
+
+          .fa {
+            font-size: 1.4em;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+
+    & + .form-result {
+      @include make-sm-column(5);
+      @include make-sm-column-offset(2);
+    }
   }
 }

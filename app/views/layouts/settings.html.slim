@@ -1,65 +1,63 @@
 - provide :page_class, 'settings'
 - content_for :content do
-  aside#aside role="complementary"
-    nav role="navigation"
-      ul.nav.nav-pills.nav-pills-list.vertical
-        li.nav-group-title 账户
-        = nav_tab :profile do
-          = link_to_with_icon '个人信息', 'fa fa-fw fa-user', edit_profile_path
-        = nav_tab :account do
-          = link_to_with_icon '账户信息', 'fa fa-fw fa-cogs', edit_account_path
-        = nav_tab :notification_settings do
-          = link_to_with_icon '通知设置', 'fa fa-fw fa-inbox', edit_notification_settings_path
-        li.nav-group-title 购买
-        = nav_tab :order do
-          = link_to_with_icon '我的订单', 'fa fa-fw fa-file-text', orders_path
-        = nav_tab :balance do
-          = link_to_with_icon '我的余额', 'fa fa-fw fa-money', balances_path
-        = nav_tab :address do
-          = link_to_with_icon '收货地址', 'fa fa-fw fa-truck', addresses_path
-        /= nav_tab :invoice do
-        /  = link_to_with_icon '发票信息', 'fa fa-fw fa-list-alt', invoices_path
-        = nav_tab :coupon do
-          = link_to_with_icon '优惠券', 'fa fa-fw fa-ticket', coupons_path
-        - if current_user.role? :editor
-          li.nav-group-title 管理
-          = nav_tab :comment do
-            = link_to_with_icon '评论', 'fa fa-fw fa-wrench', haven_comments_path
-          = nav_tab :reward do
-            = link_to_with_icon '天天有礼', 'fa fa-fw fa-wrench', haven_rewards_path
-          = nav_tab :user do
-            = link_to_with_icon '管理用户', 'fa fa-fw fa-wrench', haven_users_path
-          = nav_tab :category do
-            = link_to_with_icon '管理分类', 'fa fa-fw fa-wrench', haven_categories_path
-          = nav_tab :promotion do
-            = link_to_with_icon '分类顶部封面', 'fa fa-fw fa-wrench', haven_promotions_path
-          - if can? :manage, Review
-            = nav_tab :review do
-              = link_to_with_icon '管理评测', 'fa fa-fw fa-wrench', haven_reviews_path
-          - if can? :manage, Supplier
-            = nav_tab :supplier do
-              = link_to_with_icon '供货信息', 'fa fa-fw fa-wrench', suppliers_path
-          - if can? :manage, Order
-            = nav_tab :supplier do
-              = link_to_with_icon '管理订单', 'fa fa-fw fa-wrench', haven_orders_path
-          - if can? :manage, :all
-            = nav_tab :thing do
-              = link_to_with_icon '管理产品', 'fa fa-fw fa-wrench', haven_things_path
-            = nav_tab :coupon do
-              = link_to_with_icon '管理足价减优惠券', 'fa fa-fw fa-wrench', haven_abatement_coupons_path
-            = nav_tab :coupon do
-              = link_to_with_icon '管理产品减优惠券', 'fa fa-fw fa-wrench', haven_thing_rebate_coupons_path
-            = nav_tab :oauth do
-              = link_to_with_icon 'OAuth App', 'fa fa-fw fa-wrench', oauth_applications_path, target: '_blank'
-            = nav_tab :sidekiq do
-              = link_to_with_icon 'Sidekiq', 'fa fa-fw fa-wrench', '/haven/sidekiq', target: '_blank'
 
-  main#main role="main"
+  nav role="navigation"
+    ul.nav.nav-pills.nav-pills-list.vertical
+      li.nav-group-title 账户
+      = nav_tab :profile do
+        = link_to_with_icon '个人信息', 'fa fa-fw fa-user', edit_profile_path
+      = nav_tab :account do
+        = link_to_with_icon '账户信息', 'fa fa-fw fa-cogs', edit_account_path
+      = nav_tab :notification_settings do
+        = link_to_with_icon '通知设置', 'fa fa-fw fa-inbox', edit_notification_settings_path
+      li.nav-group-title 购买
+      = nav_tab :order do
+        = link_to_with_icon '我的订单', 'fa fa-fw fa-file-text', orders_path
+      = nav_tab :balance do
+        = link_to_with_icon '我的余额', 'fa fa-fw fa-money', balances_path
+      = nav_tab :address do
+        = link_to_with_icon '收货地址', 'fa fa-fw fa-truck', addresses_path
+      = nav_tab :coupon do
+        = link_to_with_icon '优惠券', 'fa fa-fw fa-ticket', coupons_path
+      - if current_user.role? :editor
+        li.nav-group-title 管理
+        = nav_tab :comment do
+          = link_to_with_icon '评论', 'fa fa-fw fa-wrench', haven_comments_path
+        = nav_tab :reward do
+          = link_to_with_icon '天天有礼', 'fa fa-fw fa-wrench', haven_rewards_path
+        = nav_tab :user do
+          = link_to_with_icon '管理用户', 'fa fa-fw fa-wrench', haven_users_path
+        = nav_tab :category do
+          = link_to_with_icon '管理分类', 'fa fa-fw fa-wrench', haven_categories_path
+        = nav_tab :promotion do
+          = link_to_with_icon '分类顶部封面', 'fa fa-fw fa-wrench', haven_promotions_path
+        - if can? :manage, Review
+          = nav_tab :review do
+            = link_to_with_icon '管理评测', 'fa fa-fw fa-wrench', haven_reviews_path
+        - if can? :manage, Supplier
+          = nav_tab :supplier do
+            = link_to_with_icon '供货信息', 'fa fa-fw fa-wrench', suppliers_path
+        - if can? :manage, Order
+          = nav_tab :supplier do
+            = link_to_with_icon '管理订单', 'fa fa-fw fa-wrench', haven_orders_path
+        - if can? :manage, :all
+          = nav_tab :thing do
+            = link_to_with_icon '管理产品', 'fa fa-fw fa-wrench', haven_things_path
+          = nav_tab :coupon do
+            = link_to_with_icon '管理足价减优惠券', 'fa fa-fw fa-wrench', haven_abatement_coupons_path
+          = nav_tab :coupon do
+            = link_to_with_icon '管理产品减优惠券', 'fa fa-fw fa-wrench', haven_thing_rebate_coupons_path
+          = nav_tab :oauth do
+            = link_to_with_icon 'OAuth App', 'fa fa-fw fa-wrench', oauth_applications_path, target: '_blank'
+          = nav_tab :sidekiq do
+            = link_to_with_icon 'Sidekiq', 'fa fa-fw fa-wrench', '/haven/sidekiq', target: '_blank'
+
+  main role="main"
     = yield
 
-  a#switch_aside
+  a.toggle.left
     i.fa.fa-arrow-circle-right
-  a#switch_main
+  a.toggle.right
     i.fa.fa-arrow-circle-left
 
 - content_for :script do
