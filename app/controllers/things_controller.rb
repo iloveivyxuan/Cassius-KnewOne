@@ -171,7 +171,7 @@ class ThingsController < ApplicationController
     return render 'things/create_by_extractor_without_photos' if params[:images].nil? || params[:images].empty?
 
     photos = params[:images].map do |i|
-      Photo.create! remote_image_url: i.gsub(/!.*/, ''), user: current_user
+      Photo.create! remote_image_url: i, user: current_user
     end
 
     @thing = Thing.new thing_params.merge(author: current_user)
