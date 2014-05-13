@@ -10,17 +10,17 @@ html class=page_class lang="zh-CN"
     meta name="description" content="#{page_description}"
     meta name="keywords" content="#{page_keywords}"
     meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"
+    = csrf_meta_tags
     = favicon_link_tag 'favicon.png', type: 'image/ico'
     = favicon_link_tag 'apple-touch.png', rel: "apple-touch-icon", type: 'image/png'
     = feed_link_tag
     = stylesheet_link_tag "application"
     = yield :stylesheet
     = javascript_include_tag "modernizr"
-    = csrf_meta_tags
     - if Rails.env.production?
       = render 'layouts/analystics'
-  body
     = render 'layouts/browsehappy'
+  body
     = render 'layouts/header'
     section#wrapper
       = content_for?(:content) ? yield(:content) : yield
