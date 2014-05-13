@@ -2,6 +2,7 @@ module Api
   module V1
     module Official
       class OrdersController < OfficialApiController
+
         def show
           @order = current_user.orders.find(params[:id])
         end
@@ -31,12 +32,8 @@ module Api
           head :no_content
         end
 
-        def tenpay_callback
-
-        end
-
-        def alipay_callback
-
+        def alipay
+          render text: generate_alipay_info(current_user.orders.find(params[:id]))
         end
 
         private
@@ -44,6 +41,22 @@ module Api
         def order_params
           params.require(:order).
               permit(:note, :address_id, :auto_owning, :coupon_code_id, :use_balance, :use_sf)
+        end
+
+        def body_text(order, length = 16)
+          order.order_items.map { |i| "#{i.name}x#{i.quantity}, " }.reduce(&:+)[0..(length-1)]
+        end
+
+        def generate_alipay_info(order, options = {})
+          options = {
+              :out_trade_no => order.order_no,
+              :subject => "KnewOne购物订单: #{order.order_no}",
+              :body => body_text(order, 500),
+              :total_fee => order.should_pay_price,
+              :notify_url => alipay_notify_order_url(order)
+          }.merge(options)
+
+          Alipay::MobileService.sdk_pay_order_info(options)
         end
       end
     end

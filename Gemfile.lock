@@ -102,7 +102,7 @@ GEM
     airbrake (3.1.16)
       builder
       multi_json
-    alipay (0.0.3)
+    alipay (0.0.4)
     arel (5.0.0)
     backbone-on-rails (1.1.1.0)
       actionmailer

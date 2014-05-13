@@ -22,7 +22,8 @@ module Making
     config.autoload_paths += %W(#{config.root}/lib
                                 #{config.root}/lib/auths
                                 #{config.root}/lib/waybill
-                                #{config.root}/lib/mongoid)
+                                #{config.root}/lib/mongoid
+                                #{config.root}/lib/alipay)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.

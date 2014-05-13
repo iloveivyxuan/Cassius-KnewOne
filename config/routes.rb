@@ -299,8 +299,7 @@ Making::Application.routes.draw do
         resources :orders, only: [:index, :show, :create, :new] do
           member do
             patch 'cancel'
-            get 'tenpay_callback'
-            get 'alipay_callback'
+            get 'alipay'
           end
         end
         resources :coupons, only: [:index, :update]
