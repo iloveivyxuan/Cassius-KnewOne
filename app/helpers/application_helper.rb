@@ -128,6 +128,16 @@ module ApplicationHelper
     num == 0 ? nil : num
   end
 
+  def fullpath_with_modal(modal_id)
+    path = request.fullpath
+    path.gsub! /open_modal=[^&]*&?/, ''
+    if path.include? '?'
+      "#{path}&open_modal=#{modal_id}"
+    else
+      "#{path}?open_modal=#{modal_id}"
+    end
+  end
+
   def alpha_pay?
     cookies[:alpha] == "pay" || params[:alpha] == "pay"
   end

@@ -283,10 +283,17 @@ do (exports = Making) ->
       _hmt.push ['_trackEvent', category, action, label]
     catch error
 
-  exports.AutoTriggerModal = () ->
-    $modal = $('#' + Making.GetParameterByKey('open_modal')).first()
-    if $modal.size() != 0
-      $modal.modal('show')
+  exports.SaveFormState = ($form) ->
+    window.localStorage["saved|#{window.location.pathname}|#{$form.attr('id')}"] = $form.serialize()
+
+  exports.LoadFormState = ($form) ->
+    id = $form.attr('id')
+    serialized = window.localStorage["saved|#{window.location.pathname}|#{id}"]
+    return if serialized == undefined
+    $form.deserialize(serialized,
+      except: ['authenticity_token']
+    )
+    delete window.localStorage["saved|#{window.location.pathname}|#{id}"]
 
   $ ->
     $user = $('#user')
@@ -303,7 +310,6 @@ do (exports = Making) ->
     exports.InitUIDropdownBox()
     exports.SetupOlark('[href="#olark_chat"]')
     exports.GoTop()
-    exports.AutoTriggerModal()
 
     # TODO
     ($popovertoggle = $(".popover-toggle")).length && $popovertoggle.popover()
@@ -395,6 +401,21 @@ do (exports = Making) ->
       $(@).parents('form').trigger('submit')
 
     init_new_thing_modal()
+
+    $('.save_form_state').on 'click', ->
+      $.each($('form'),
+        (i, v) ->
+          exports.SaveFormState($(v))
+      )
+
+    $.each($('form'),
+      (i, v) ->
+        exports.LoadFormState($(v))
+    )
+
+    $modal = $('#' + Making.GetParameterByKey('open_modal')).first()
+    if $modal.size() != 0
+      $modal.modal('toggle')
 
     # Screen MD
     if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')')

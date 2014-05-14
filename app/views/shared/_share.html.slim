@@ -3,7 +3,7 @@
     .modal-dialog
       .modal-content
         = simple_form_for :share, url: share_users_path, \
-          remote: true, html: {"data-type" => "json"} do |f|
+          remote: true, html: {'data-type' => 'json', 'id' => 'share_form'} do |f|
           .modal-header
             = button_tag type: 'button', class: 'close', data: {dismiss: "modal"} do
               raw &times;
@@ -12,12 +12,14 @@
             = f.input :content, as: :text, label: false, input_html: {rows: 5, value: content}
             = f.input :pic, as: :hidden, input_html: {value: pic}
             = content_tag :div, class: "#{'hidden' if current_user.auths.size == 1}" do
-              - Auth::PROVIDERS.each do |k, v|
-                - if current_user.has_auth? k
+              - current_user.auths.reject {|a| a.provider == 'wechat'}.each do |auth|
+                - if auth.expired?
+                  | #{Auth::PROVIDERS[auth.provider]} 授权已过期，
+                  = link_to '点此刷新', user_omniauth_authorize_path(auth.provider.to_sym, state: fullpath_with_modal(id)), class: 'save_form_state'
+                - else
                   label.checkbox.inline
-                    = check_box_tag 'providers[]', k, true
-                    = v
-            = f.input :pic, as: :hidden, input_html: {value: pic}
+                    = check_box_tag 'providers[]', auth.provider, true, data: {'skip-deserialize' => true}
+                    = Auth::PROVIDERS[auth.provider]
           .modal-footer
             span class="words-check"
             = button_tag "取消", type: 'button', class: "btn btn-default", data: {dismiss: "modal"}

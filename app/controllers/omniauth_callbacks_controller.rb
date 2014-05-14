@@ -19,6 +19,11 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user.remember_me = true
       sign_in user
 
+      params[:redirect_from] = params[:state] if params[:state].present?
+      logger.info '---'
+      logger.info params[:state]
+      logger.info '---'
+
       redirect_to after_sign_in_path_for(user),
                   :notice => t('devise.omniauth_callbacks.success', kind: omniauth.provider),
                   :flash => {:show_set_email_modal => !user.has_fulfilled_email?}
