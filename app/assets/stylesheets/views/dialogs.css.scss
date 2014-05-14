@@ -37,7 +37,7 @@ html.dialogs_index, html.dialogs_show {
       margin-right: 1em;
       > a {
         @extend .badge;
-        &.unread {background: $blue;}
+        &.unread {background: $red;}
       }
     }
   }

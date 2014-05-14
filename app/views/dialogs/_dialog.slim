@@ -1,5 +1,5 @@
-article.private_message id="dialog_#{dialog.id}"
-  - present dialog do |dp|
+- present dialog do |dp|
+  article.private_message id="dialog_#{dialog.id}"
     header
       .sender_avatar= dp.sender_avatar
       .sender_name= dp.sender_name

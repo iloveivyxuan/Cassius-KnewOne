@@ -13,8 +13,6 @@ class Dialog
 
   default_scope -> { desc(:updated_at) }
 
-  attr_accessor :unread
-
   def reset
     if private_messages.present?
       self.update_attributes(

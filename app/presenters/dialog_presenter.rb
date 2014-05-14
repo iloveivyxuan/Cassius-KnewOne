@@ -21,7 +21,7 @@ class DialogPresenter < ApplicationPresenter
 
   def messages_count
     link_to dialog.private_messages.count, dialog, title: "查看会话",
-    class: (dialog.unread ? "unread" : nil)
+    class: (dialog.unread_count > 0 ? "unread" : nil)
   end
 
   def reply
@@ -32,4 +32,5 @@ class DialogPresenter < ApplicationPresenter
     link_to_with_icon '删除', 'fa fa-trash-o', dialog, title: "删除对话",
     method: :delete, remote: true, data: {confirm: "您确定要删除此对话吗?"}
   end
+
 end
