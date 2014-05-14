@@ -11,8 +11,11 @@
           = hidden_field_tag :dialog_from, from
           .form-group.row
             label.control-label.col-sm-2 for="private-message-user" 发给
-            .col-sm-6
+            .col-sm-8
               = text_field_tag 'dialog_user_name', (@user.present? ? @user.name : nil), class: 'form-control', required: true, placeholder: '用户昵称'
+              - if @user.present? and (dialog_last = current_user.dialog_with(@user))
+                | &nbsp;&nbsp;&nbsp;
+                = link_to "查看以前的记录", dialog_last
           .form-group.row
             label.control-label.col-sm-2 for="private-message-content" 内容
             .col-sm-10

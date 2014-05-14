@@ -21,4 +21,8 @@ module UserDialogs
   def unread_private_messages_count
     dialogs.map(&:unread_count).reduce(0, :+)
   end
+
+  def dialog_with(user)
+    dialogs.where(sender: user).first
+  end
 end
