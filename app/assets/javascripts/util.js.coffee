@@ -25,6 +25,12 @@ window.Making = do (exports = window.Making || {}) ->
     document.body.removeChild(outer)
 
     return (w1 - w2)
+  # from http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+  exports.GetParameterByKey = (key) ->
+    key = key.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]")
+    regex = new RegExp("[\\?&]" + key + "=([^&#]*)")
+    results = regex.exec(location.search)
+    return (if results == null then "" else decodeURIComponent(results[1].replace(/\+/g, " ")))
 
   #exports
   exports

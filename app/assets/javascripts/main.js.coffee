@@ -283,6 +283,11 @@ do (exports = Making) ->
       _hmt.push ['_trackEvent', category, action, label]
     catch error
 
+  exports.AutoTriggerModal = () ->
+    $modal = $('#' + Making.GetParameterByKey('open_modal')).first()
+    if $modal.size() != 0
+      $modal.modal('show')
+
   $ ->
     $user = $('#user')
     $nav_group = $('.nav_group.dropdown')
@@ -298,6 +303,7 @@ do (exports = Making) ->
     exports.InitUIDropdownBox()
     exports.SetupOlark('[href="#olark_chat"]')
     exports.GoTop()
+    exports.AutoTriggerModal()
 
     # TODO
     ($popovertoggle = $(".popover-toggle")).length && $popovertoggle.popover()
