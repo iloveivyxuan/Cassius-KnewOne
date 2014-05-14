@@ -41,11 +41,16 @@
               i.fa.fa-comments-o
               span.comments_count = feeling.comments.count > 0 ? feeling.comments.count : ''
               | 评论
-          li = feeling_presenter.score
+          li
+            = link_to_with_icon "分享", "fa fa-share",
+                                user_signed_in? ? "#share_modal" : "#login-modal",
+                                title: "分享", class: 'share_btn',
+                                data: {toggle: 'modal', content: feeling_presenter.share_content, pic: feeling.thing.cover.url}
           - if can? :destroy, feeling
             li.destroy
               = link_to_with_icon "", "fa fa-trash-o", [feeling.thing, feeling],
                 method: :delete, remote: true, data: {confirm: "您确定要删除吗?"}
+          li = feeling_presenter.score
         .feed_action
           = render partial: 'shared/voting', locals: {object: feeling}
         section.comments_wrap

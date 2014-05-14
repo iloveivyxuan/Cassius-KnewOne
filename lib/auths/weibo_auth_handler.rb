@@ -15,7 +15,7 @@ class WeiboAuthHandler
   end
 
   def share(content, photo_url = nil)
-    if photo_url
+    if photo_url.present?
       client.statuses.upload_url_text "status" => preprocess_content(content), "url" => photo_url
     else
       client.statuses.update preprocess_content(content)

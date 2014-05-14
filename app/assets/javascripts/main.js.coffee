@@ -402,6 +402,14 @@ do (exports = Making) ->
 
     init_new_thing_modal()
 
+    $('.share_btn').on('click',
+      ->
+        $el = $(@)
+        $form = $('#share_modal_form')
+        $form.find('textarea[name="share[content]"]').val($el.attr('data-content'))
+        $form.find('input[name="share[pic]"]').val($el.attr('data-pic'))
+    )
+
     $('.save_form_state').on 'click', ->
       $.each($('form'),
         (i, v) ->
