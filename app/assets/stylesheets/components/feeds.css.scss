@@ -40,6 +40,14 @@ $part_right: 10%;
 
   .metas {
 
+    time {
+      @media (max-width: $screen-xs-max) {
+        @include text-overflow;
+        display: block;
+        max-width: 45px;
+      }
+    }
+
     .score {
       display: none;
       margin: 0;
@@ -241,6 +249,18 @@ $part_right: 10%;
       }
     }
 
+    .feed_type {
+
+      a {
+        @media (max-width: $screen-xs-max) {
+          @include text-overflow;
+          display: inline-block;
+          max-width: 45px;
+          vertical-align: middle;
+        }
+      }
+    }
+
     .comments_wrap {
       border: $border_default;
       display: none;
@@ -322,13 +342,6 @@ $part_right: 10%;
 
   a {
     color: $gray;
-
-    @media (max-width: $screen-xs-max) {
-      @include text-overflow;
-      display: inline-block;
-      max-width: 45px;
-      vertical-align: middle;
-    }
 
     &:hover {
       text-decoration: underline;
