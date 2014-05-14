@@ -21,9 +21,14 @@ html class=page_class lang="zh-CN"
       = render 'layouts/analystics'
     = render 'layouts/browsehappy'
   body
-    = render 'layouts/header'
+    - if browser.mobile? or browser.tablet?
+      = render 'layouts/header_mobile'
+    - else
+      = render 'layouts/header'
     section#wrapper
       = content_for?(:content) ? yield(:content) : yield
+    - if browser.mobile? or browser.tablet?
+      = render 'layouts/menu_mobile'
     = render 'shared/go_top'
     = render 'shared/login'
     = render 'shared/new_thing'

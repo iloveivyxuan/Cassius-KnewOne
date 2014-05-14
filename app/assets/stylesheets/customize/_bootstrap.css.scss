@@ -4,10 +4,6 @@
 
 body {
   padding-bottom: $navbar-margin-bottom + $font-size-base;
-
-  #header {
-    margin-bottom: $navbar-height + $navbar-margin-bottom + $font-size-base;
-  }
 }
 
 ul, ol {
@@ -185,7 +181,7 @@ time {
 }
 
 .navbar-inverse {
-  background-color: #363d48;
+  background-color: $navbar-inverse-bg;
   color: #ccc;
 
   .navbar-brand {

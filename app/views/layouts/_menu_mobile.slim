@@ -1,0 +1,22 @@
+section#menu
+  = form_tag search_path, class: 'form-inline', id: 'search_thing', role: 'form', method: 'get'
+    .form-group.search
+      label.sr-only 搜索 KnewOne
+      input.form-control name='q' type='search' autocomplete="off" placeholder="搜索 KnewOne"
+      i.fa.fa-search
+
+  nav role="navigation"
+    ul
+      li
+        = link_to_with_icon "商店", "fa fa-smile-o fa-fw", things_path(self_run: true)
+      li
+        = link_to_with_icon "探索", "fa fa-lightbulb-o fa-fw", categories_path
+      li
+        - if user_signed_in?
+          = link_to_with_icon "分享", "fa fa-plus fa-fw", "#", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}
+        - else
+          = link_to_with_icon "分享", "fa fa-plus fa-fw", "#", data: {toggle: "modal", target: "#login-modal"}
+      li
+        = link_to_with_icon "小组", "fa fa-tint fa-fw", groups_path
+      li
+        = link_to_with_icon "客服", "fa fa-comment fa-fw", "#olark_chat", data: {hint: "fa-comment", url: asset_path('olark.js')}

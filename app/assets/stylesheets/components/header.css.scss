@@ -1,3 +1,38 @@
+#header {
+  @media (max-width: $screen-md-max) {
+    background-color: $navbar-inverse-bg;
+    border-bottom: 1px solid $navbar-inverse-border;
+    height: $navbar-height;
+
+    h1 {
+      height: $navbar-height;
+      margin: 0 auto;
+      text-align: center;
+      width: 150px;
+    }
+
+    .logo {
+      color: $navbar-default-brand-color;
+      display: block;
+      font-size: $font-size-large;
+      line-height: $navbar-height;
+      text-shadow: 0 1px 1px #111;
+    }
+
+    .btn {
+      color: $navbar-inverse-link-color;
+      margin-top: -$navbar-height;
+      padding: {
+        bottom: 9px;
+        top: 9px;
+      }
+    }
+  }
+
+  @media (min-width: $screen-lg-min) {
+    margin-bottom: $navbar-height + $navbar-margin-bottom + $font-size-base;
+  }
+}
 
 .navbar {
   $navbar-inverse-link-active-bg: #3e4653;
@@ -101,7 +136,7 @@
     height: 48px;
   }
 
-  span {
+  .logo {
     text-shadow: 0 1px 1px #111;
   }
 }

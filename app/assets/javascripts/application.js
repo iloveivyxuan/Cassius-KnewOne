@@ -32,6 +32,7 @@
 //= require components/notificationbox
 //= require components/search
 //= require components/fuzzy
+//= require components/menu
 //= require components/editor
 //= require components/cart_items
 //= require components/offcanvas

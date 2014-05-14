@@ -1,0 +1,30 @@
+#menu {
+  @include transition(left .2s ease);
+  background-color: lighten($navbar-inverse-bg, 10%);
+  height: 100%;
+  left: -80%;
+  padding: {
+    bottom: 20px;
+    top: 20px;
+  }
+  position: fixed;
+  top: 0;
+  width: 80%;
+  z-index: $zindex_menu;
+
+  a {
+    color: $navbar-inverse-link-color;
+  }
+}
+
+.menu_backdrop {
+  @extend .modal-backdrop;
+  @extend .fade;
+}
+
+body.menu_open {
+
+  #menu {
+    left: 0;
+  }
+}

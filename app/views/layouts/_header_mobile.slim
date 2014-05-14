@@ -1,0 +1,10 @@
+header#header
+  h1
+    = link_to "KnewOne", "/", class: 'logo'
+
+  = link_to_with_icon "", "fa fa-bars fa_alone", "#menu", class: "btn btn-link pull-left", id: "menu_toggle"
+
+  - if user_signed_in?
+    = link_to_with_icon "", "fa fa-bell fa_alone", notifications_path, class: "btn btn-link pull-right"
+  - else
+    = link_to_with_icon "登录", "fa fa-sign-in", "#", class: "btn btn-link pull-right", data: {toggle: "modal", target: "#login-modal"}

@@ -3,6 +3,8 @@
 do (root = this) ->
   root.Making =
     Models     : {}
+    # TODO
+    View       : {}
     Views      : {}
     Collections: {}
     Routers    : {}

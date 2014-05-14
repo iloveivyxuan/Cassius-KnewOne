@@ -423,6 +423,10 @@ do (exports = Making) ->
     if $modal.size() != 0
       $modal.modal('toggle')
 
+    # Screen MD below
+    if Modernizr.mq('(max-width: ' + Making.Breakpoints.screenMDMax + ')')
+      menu = new exports.View.Menu('#menu', 'body', '#menu_toggle')
+
     # Screen MD
     if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')')
 
