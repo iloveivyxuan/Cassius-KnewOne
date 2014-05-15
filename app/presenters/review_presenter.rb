@@ -12,11 +12,13 @@ class ReviewPresenter < PostPresenter
 
   def share_content
     if review.author == current_user
-      content = "我在#{share_topic}为#{review.thing.title}写了一篇新评测: "
+      "我在#{share_topic} 为 #{review.thing.title} 写了一篇新评测《#{title}》: "
     else
-      content = "我在#{share_topic}分享了 @#{review.author.name} 对#{review.thing.title}的评测: "
-    end
+      "我在#{share_topic} 分享了 @#{review.author.name} 对 #{review.thing.title}的评测《#{title}》: "
+    end + %Q{“#{summary(40)}” } + thing_review_url(review.thing, review, refer: 'weibo')
+  end
 
-    content += thing_review_url(review.thing, review, refer: 'weibo')
+  def share_pic(size)
+    review.cover(size) or thing_photo_url(size)
   end
 end

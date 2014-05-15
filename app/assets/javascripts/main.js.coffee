@@ -402,13 +402,11 @@ do (exports = Making) ->
 
     init_new_thing_modal()
 
-    $('.share_btn').on('click',
-      ->
-        $el = $(@)
-        $form = $('#share_modal_form')
-        $form.find('textarea[name="share[content]"]').val($el.attr('data-content'))
-        $form.find('input[name="share[pic]"]').val($el.attr('data-pic'))
-    )
+    $('.share_btn').on 'click', ->
+      $('#share_modal_form')
+        .find('textarea[name="share[content]"]').val($(@).attr('data-content')).end()
+        .find('input[name="share[pic]"]').val($(@).attr('data-pic')).end()
+        .find('.pic_preview img').attr('src', $(@).attr('data-preview-pic')).end()
 
     $('.save_form_state').on 'click', ->
       $.each($('form'),

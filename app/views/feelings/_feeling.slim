@@ -42,10 +42,7 @@
               span.comments_count = feeling.comments.count > 0 ? feeling.comments.count : ''
               | 评论
           li
-            = link_to_with_icon "分享", "fa fa-share",
-                                user_signed_in? ? "#share_modal" : "#login-modal",
-                                title: "分享", class: 'share_btn',
-                                data: {toggle: 'modal', content: feeling_presenter.share_content, pic: feeling.thing.cover.url}
+            = feeling_presenter.link_to_share
           - if can? :destroy, feeling
             li.destroy
               = link_to_with_icon "", "fa fa-trash-o", [feeling.thing, feeling],

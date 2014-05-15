@@ -12,6 +12,7 @@
             .modal-body
               = f.input :content, as: :text, label: false, input_html: {rows: 5, value: ''}
               = f.input :pic, as: :hidden, input_html: {value: ''}
+              .pic_preview= image_tag ""
               = content_tag :div, class: "#{'hidden' if current_user.auths.size == 1}" do
                 - current_user.auths.reject {|a| a.provider == 'wechat'}.each do |auth|
                   - if auth.expired?

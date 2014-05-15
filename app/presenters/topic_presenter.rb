@@ -36,12 +36,14 @@ class TopicPresenter < PostPresenter
 
   def share_content
     if topic.author == current_user
-      content = "我在#{share_topic}发起了话题：#{topic.title}"
+      "我在#{share_topic}发起了话题《#{title}》: "
     else
-      content = "我在#{share_topic}分享了 @#{topic.author.name} 的话题： #{topic.title} "
-    end
+      "我在#{share_topic}分享了 @#{topic.author.name} 的话题 《#{title}》: "
+    end + %Q{“#{summary(40)}” } + group_topic_url(topic.group, topic, refer: 'weibo')
+  end
 
-    content + group_topic_url(topic.group, topic, :refer => 'weibo')
+  def share_pic(size)
+    topic.cover(size) or topic.group.avatar.url(size)
   end
 
   private

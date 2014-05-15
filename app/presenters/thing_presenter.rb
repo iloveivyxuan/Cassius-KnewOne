@@ -137,24 +137,6 @@ class ThingPresenter < PostPresenter
     show_count thing.feelings.count
   end
 
-  def share_content
-    user_signed_in? or return
-    topic = ' @KnewOne '
-    if current_user == thing.author
-      "我在#{topic}上分享了一个酷产品, #{title}: #{thing_url(thing, :refer => 'weibo')}"
-    else
-      "我在#{topic}发现了一个酷产品, #{title}: #{thing_url(thing, :refer => 'weibo')}"
-      # TODO: Thanks user depends on provider
-      # if current_user.current_auth && current_user != thing.author
-      #   if current_user.equal_auth_provider?(thing.author)
-      #     str += " (感谢 @#{thing.author.name} 分享)"
-      #   elsif thing.author.current_auth
-      #     str += " (感谢 #{thing.author.name} from #{thing.author.provider} 分享)"
-      #   end
-      # end
-    end
-  end
-
   def reviews(limit)
     thing.reviews.limit(limit)
   end
@@ -225,5 +207,17 @@ class ThingPresenter < PostPresenter
 
   def author
     present(thing.author).as_author
+  end
+
+  def share_content
+    if thing.author == current_user
+      "我在#{share_topic} 分享了一个酷产品: #{title} ! "
+    else
+      "我在#{share_topic} 发现了一个酷产品: 由 @#{thing.author.name} 分享的 #{title} ! "
+    end + thing_url(thing, refer: 'weibo')
+  end
+
+  def share_pic(size)
+    photo_url size
   end
 end

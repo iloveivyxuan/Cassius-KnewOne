@@ -68,4 +68,20 @@ class PostPresenter < ApplicationPresenter
       content_tag :div, "", data: {score: post.score}, class: "score"
     end
   end
+
+  def share_content
+  end
+
+  def share_pic(size)
+  end
+
+  def link_to_share
+    link_to_with_icon "分享", "fa fa-share",
+    user_signed_in? ? "#share_modal" : "#login-modal",
+    title: "分享", class: 'share_btn',
+    data: {toggle: 'modal',
+      content: share_content,
+      pic: share_pic(:huge),
+      preview_pic: share_pic(:small)}
+  end
 end

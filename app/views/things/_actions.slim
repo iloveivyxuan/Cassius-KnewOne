@@ -9,7 +9,7 @@
 .actions
   .fanciers= render "shared/fancy", p: tp
   .owners= render "things/own", tp: tp
-  .share= render "things/share"
+  .share= tp.link_to_share
   .new_review= render 'reviews/link_to_new'
 
 .categories

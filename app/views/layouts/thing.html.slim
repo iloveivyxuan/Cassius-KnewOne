@@ -15,7 +15,6 @@
       = render "things/actions", tp: tp
 
     = render 'things/wechat', tp: tp
-    = render 'shared/share', id: 'thing_share', content: tp.share_content, pic: tp.photo_url(:huge)
     - if user_signed_in?
       = render 'things/supplier', tp: tp
       = render 'things/group_fancy', tp: tp
