@@ -20,14 +20,15 @@
           li= image_tag photo, alt: photo
 
     footer
-      ul.metas
-        li.feed_type = fp.render_action
-        li
-          = link_to tp.path do
-            = tp.created_at
-        li
-          = link_to tp.path do
-            i.fa.fa-comments-o
-            span.comments_count = topic.comments.count > 0 ? topic.comments.count : ''
-            | 评论
-      .feed_action = render partial: 'shared/voting', locals: {object: topic}
+      .wrap
+        ul.metas
+          li.feed_type = fp.render_action
+          li
+            = link_to tp.path do
+              = tp.created_at
+          li
+            = link_to tp.path do
+              i.fa.fa-comments-o
+              span.comments_count = topic.comments.count > 0 ? topic.comments.count : ''
+              | 评论
+        .feed_action = render partial: 'shared/voting', locals: {object: topic}

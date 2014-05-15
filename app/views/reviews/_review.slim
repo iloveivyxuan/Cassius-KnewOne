@@ -31,19 +31,20 @@
               li= image_tag photo, alt: photo
 
       footer
-        ul.metas
-          - if in_feeds
-            li.feed_type
-              = feed_presenter.render_action
-          li
-            = link_to review_presenter.path do
-              = review_presenter.created_at
-          li
-            = link_to review_presenter.path do
-              i.fa.fa-comments-o
-              span.comments_count = review.comments.count > 0 ? review.comments.count : ''
-              | 评论
-          li = review_presenter.score
+        .wrap
+          ul.metas
+            - if in_feeds
+              li.feed_type
+                = feed_presenter.render_action
+            li
+              = link_to review_presenter.path do
+                = review_presenter.created_at
+            li
+              = link_to review_presenter.path do
+                i.fa.fa-comments-o
+                span.comments_count = review.comments.count > 0 ? review.comments.count : ''
+                | 评论
+            li = review_presenter.score
 
-        .feed_action
-          = render partial: 'shared/voting', locals: {object: review}
+          .feed_action
+            = render partial: 'shared/voting', locals: {object: review}

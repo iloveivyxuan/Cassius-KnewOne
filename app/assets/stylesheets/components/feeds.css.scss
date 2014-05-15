@@ -40,14 +40,6 @@ $part_right: 10%;
 
   .metas {
 
-    time {
-      @media (max-width: $screen-xs-max) {
-        @include text-overflow;
-        display: block;
-        max-width: 45px;
-      }
-    }
-
     .score {
       display: none;
       margin: 0;
@@ -226,14 +218,20 @@ $part_right: 10%;
   }
 
   > footer {
-    @include clearfix;
     clear: both;
 
-    .metas {
-      float: left;
+    > .wrap {
+      display: table;
+      table-layout: fixed;
+      width: 100%;
+    }
 
-      @media (min-width: $screen-sm-min) {
-        float: none;
+    .metas {
+      @media (max-width: $screen-xs-max) {
+        display: table-cell;
+        padding-right: 10px;
+        vertical-align: middle;
+        width: calc(100% - 70px);
       }
 
       time {
@@ -249,22 +247,9 @@ $part_right: 10%;
       }
     }
 
-    .feed_type {
-
-      a {
-        @media (max-width: $screen-xs-max) {
-          @include text-overflow;
-          display: inline-block;
-          max-width: 45px;
-          vertical-align: middle;
-        }
-      }
-    }
-
     .comments_wrap {
       border: $border_default;
       display: none;
-      float: left;
       margin-top: 15px;
       padding: {
         bottom: 15px;
@@ -272,7 +257,6 @@ $part_right: 10%;
         right: 20px;
         top: 5px;
       }
-      width: 100%;
 
       @media (min-width: $screen-sm-min) {
         float: none;
@@ -291,8 +275,8 @@ $part_right: 10%;
   .feed_action {
 
     @media (max-width: $screen-xs-max) {
-      float: right;
-      margin-top: -4px;
+      display: table-cell;
+      vertical-align: middle;
     }
 
     @media (min-width: $screen-sm-min) {

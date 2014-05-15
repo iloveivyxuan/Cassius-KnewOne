@@ -17,12 +17,13 @@
             li= image_tag photo, alt: photo
 
       footer
-        ul.metas
-          li
-            = link_to tp.path do
-              = time_ago_tag(topic.created_at, 'meta')
-          li
-            = link_to tp.path do
-              i.fa.fa-comments-o
-              = topic.comments.size
-        .feed_action = render partial: 'shared/voting', locals: {object: topic}
+        .wrap
+          ul.metas
+            li
+              = link_to tp.path do
+                = time_ago_tag(topic.created_at, 'meta')
+            li
+              = link_to tp.path do
+                i.fa.fa-comments-o
+                = topic.comments.size
+          .feed_action = render partial: 'shared/voting', locals: {object: topic}
