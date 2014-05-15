@@ -3,6 +3,7 @@ if thing = review.thing
   json.id activity.id.to_s
   json.type 'review_comment'
   json.created_at activity.created_at
+  json.created_at_ago_in_words time_ago_in_words(activity.created_at)
   json.source_identity activity.source_union
 
   json.review do
