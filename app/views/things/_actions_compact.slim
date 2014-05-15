@@ -2,10 +2,10 @@
   .shop
     - if tp.price.present?
       #price.price= tp.price
-    - if user_signed_in?
-      = tp.shopping_desc
     - if tp.buy
       .buy= tp.buy
+    - if user_signed_in?
+      = tp.shopping_desc
 
   .actions
     .fanciers= render "shared/fancy", p: tp
