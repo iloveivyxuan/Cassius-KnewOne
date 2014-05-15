@@ -27,6 +27,6 @@ class FeelingPresenter < PostPresenter
   end
 
   def share_pic(size)
-    feeling.cover.url(size) and feeling.thing.cover.url(size)
+    feeling.cover.url(size) or feeling.thing.cover.url(size)
   end
 end
