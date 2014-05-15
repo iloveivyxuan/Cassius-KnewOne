@@ -16,19 +16,27 @@ section#menu
 
   nav role="navigation"
     ul.nav.nav-stacked
-      - upmc = current_user.unread_private_messages_count
-      li
-        = link_to dialogs_path, title: "#{upmc}封未读私信" do
-          i.fa.fa-envelope-o.fa-fw
-          | 私信
-          span.badge.badge_danger.private_messages_count= badge upmc
       li
         - if user_signed_in?
           = link_to_with_icon "分享", "fa fa-plus fa-fw", "#", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}
         - else
           = link_to_with_icon "分享", "fa fa-plus fa-fw", "#", data: {toggle: "modal", target: "#login-modal"}
+      - upmc = current_user.unread_private_messages_count
       li
-        = link_to_with_icon "客服", "fa fa-comment fa-fw", "#olark_chat", data: {hint: "fa-comment", url: asset_path('olark.js')}
+        = link_to dialogs_path, title: "#{upmc}封未读私信" do
+          i.fa.fa-envelope-o.fa-fw
+          | 私信
+          span.badge.badge_danger.pull-right.private_messages_count= badge upmc
+      li
+        = link_to notifications_path, title: "#{unread_notifications_text}未读消息" do
+          i.fa.fa-bell.fa-fw
+          | 通知
+          span.badge.badge_primary.pull-right= unread_notifications_count
+      li
+        = link_to cart_items_path, title: "购物车" do
+          i.fa.fa-shopping-cart.fa-fw
+          | 购物车
+          span.badge.badge_success.pull-right.cart_items_count= cart_items_count
       li.nav_group_title
         | 频道
       li
@@ -37,6 +45,8 @@ section#menu
         = link_to_with_icon "探索", "fa fa-lightbulb-o fa-fw", categories_path
       li
         = link_to_with_icon "小组", "fa fa-tint fa-fw", groups_path
+      li
+        = link_to_with_icon "客服", "fa fa-comment fa-fw", "#olark_chat", data: {hint: "fa-comment", url: asset_path('olark.js')}
       li.nav_group_title
         | 帐户
       li
@@ -47,11 +57,6 @@ section#menu
         = link_to_with_icon '通知设置', 'fa fa-inbox fa-fw', edit_notification_settings_path
       li.nav_group_title
         | 购买
-      li
-        = link_to cart_items_path, title: "购物车" do
-          i.fa.fa-shopping-cart.fa-fw
-          | 购物车
-          span.badge.badge_success.cart_items_count= cart_items_count
       li
         = link_to_with_icon '订单', 'fa fa-truck fa-fw', orders_path
       li

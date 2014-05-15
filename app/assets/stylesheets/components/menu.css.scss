@@ -44,8 +44,14 @@
   }
 
   .profile {
+    @include clearfix;
+
     border-bottom: $border;
     margin-bottom: 1rem;
+    padding: {
+      left: 15px;
+      right: 15px;
+    }
     text-align: center;
 
     dt,
@@ -56,21 +62,26 @@
     dt {
       @include text-overflow;
       color: #fff;
+      float: left;
       font-weight: normal;
-      margin: {
-        left: auto;
-        right: auto;
-      }
-      max-width: 80%;
+      height: 40px;
+      line-height: 40px;
+      text-align: left;
+      max-width: 60%;
 
       a {
         color: #fff;
       }
     }
 
-    img {
-      @include square(80px);
-      border-radius: 50%;
+    .avatar {
+      float: left;
+      margin-right: 1rem;
+
+      img {
+        @include square(40px);
+        border-radius: 50%;
+      }
     }
   }
 
