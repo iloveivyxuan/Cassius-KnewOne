@@ -17,6 +17,8 @@ section#menu
   nav role="navigation"
     ul.nav.nav-stacked
       li
+        = link_to_with_icon "首页", "fa fa-home fa-fw", root_path
+      li
         - if user_signed_in?
           = link_to_with_icon "分享", "fa fa-plus fa-fw", "#", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}
         - else
