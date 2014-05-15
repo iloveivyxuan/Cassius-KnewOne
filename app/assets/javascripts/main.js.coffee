@@ -393,6 +393,12 @@ do (exports = Making) ->
     $('.js_auto_submit').on 'change', ->
       $(@).parents('form').trigger('submit')
 
+    $('.entry').on 'click', '[data-toggle="tab"]', (event) ->
+      event.preventDefault()
+      $this = $(@)
+      $pane = $this.parents('.entry').find($this.attr('href'))
+      $pane.addClass('active').siblings('.tab-pane').removeClass('active')
+
     init_new_thing_modal()
 
     $('.share_btn').on 'click', ->
