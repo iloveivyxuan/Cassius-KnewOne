@@ -43,6 +43,20 @@
   }
 }
 
+#share_modal {
+
+  .oauth {
+    color: $gray;
+
+    &:last-child {
+
+      .fa {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
 .modal-footer {
   .btn + .btn {
     margin-left: 1em;
