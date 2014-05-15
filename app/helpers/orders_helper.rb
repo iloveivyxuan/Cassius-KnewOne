@@ -93,10 +93,30 @@ module OrdersHelper
     end
   end
 
-  def share_link(css = 'btn btn-default')
+  def share_link(order, css = 'btn btn-default')
     if current_user.auths.any?
+      items = order.order_items.sort { |i| i.single_price }.reverse
+      popularize_items = items.select { |i| i.thing.sharing_text.present? }
+
+      if popularize_items.empty?
+        item = items.first
+
+        multi_items_str = ""
+        if items.size > 1
+          multi_items_str = "等#{items.size}种产品 "
+        end
+
+        str = "#KnewOne晒订单# 我在剁手网站 @KnewOne 买了“#{item.thing.title} - #{item.kind.title}”（价格￥#{item.single_price}）#{multi_items_str} 瞬间变身土豪，高端大气上档次的感觉你们是不会知道的！小伙伴们要不要来围观一下？围观地址： #{thing_url item.thing}"
+      else
+        item = popularize_items.first
+
+        str = item.thing.sharing_text.
+            gsub('{{item}}', "“#{item.thing.title} - #{item.kind.title}”（价格￥#{item.single_price}）").
+            gsub('{{url}}', thing_url(item.thing))
+      end
+
       content_tag :div, class: 'btn-group' do
-        link_to '分享', '#order_share', class: css, data: {toggle: 'modal'}
+        link_to '分享', '#share_modal', id: 'share_order_btn', class: "share_btn #{css}", data: {toggle: 'modal', content: str, pic: item.thing.cover.url(:review)}
       end
     end
   end
@@ -141,30 +161,6 @@ module OrdersHelper
 
   def payment_method_text(order)
     Order::PAYMENT_METHOD[order.payment_method]
-  end
-
-  def render_share_modal(order)
-    items = order.order_items.sort { |i| i.single_price }.reverse
-    popularize_items = items.select { |i| i.thing.sharing_text.present? }
-
-    if popularize_items.empty?
-      item = items.first
-
-      multi_items_str = ""
-      if items.size > 1
-        multi_items_str = "等#{items.size}种产品 "
-      end
-
-      str = "#KnewOne晒订单# 我在剁手网站 @KnewOne 买了“#{item.thing.title} - #{item.kind.title}”（价格￥#{item.single_price}）#{multi_items_str} 瞬间变身土豪，高端大气上档次的感觉你们是不会知道的！小伙伴们要不要来围观一下？围观地址： #{thing_url item.thing}"
-    else
-      item = popularize_items.first
-
-      str = item.thing.sharing_text.
-          gsub('{{item}}', "“#{item.thing.title} - #{item.kind.title}”（价格￥#{item.single_price}）").
-          gsub('{{url}}', thing_url(item.thing))
-    end
-
-    render 'shared/share', id: 'order_share', content: str, pic: item.thing.cover.url(:review)
   end
 
   def new_order_path_with_params(order, options = {})
