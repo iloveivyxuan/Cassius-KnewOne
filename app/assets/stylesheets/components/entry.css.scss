@@ -11,37 +11,23 @@
     margin: 0;
   }
 
-  .entry_title {
-    display: none;
+  .greet {
+    border-bottom: $border_default;
+    color: $text-color;
+    font-size: 14px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
 
-    @media screen and (min-width: $screen-md-min + 1) {
-      color: $text-muted;
-      display: block;
-      font-size: 14px;
-      margin: .5em 0 .5em 2em;
+    .logo {
+      color: $navbar-default-brand-color;
     }
   }
 
   .oauth {
     text-align: center;
 
-    .entry_email_toggle.active {
-      .fa {
-        color: #049cdb !important;
-      }
-    }
-
-    .fa {
-      color: darken(#ddd, 50%);
-      margin-right: .85em;
-
-      &:hover {
-        color: #049cdb !important;
-      }
-    }
-
-    > a:last-child .fa {
-      margin-right: 0;
+    .btn {
+      width: 118px;
     }
   }
 
@@ -61,7 +47,6 @@
   }
 
   .entry_email {
-    display: none;
     margin-top: 1em;
 
     .nav-justified {

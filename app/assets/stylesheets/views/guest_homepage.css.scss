@@ -113,14 +113,11 @@ html.guest_homepage {
         position: absolute;
         right: 10%;
         top: 50%;
-        width: 280px;
+        width: 300px;
         z-index: 1;
 
-        .oauth {
-
-          .fa {
-            color: #ccc;
-          }
+        .greet {
+          display: none;
         }
 
         .nav-pills-list {
@@ -169,10 +166,6 @@ html.guest_homepage {
           border-color: #181818;
           color: #ddd;
         }
-      }
-
-      .entry_email {
-        display: block;
       }
 
       .nav-justified > li > a {

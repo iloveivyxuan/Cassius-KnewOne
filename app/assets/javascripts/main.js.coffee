@@ -325,13 +325,6 @@ do (exports = Making) ->
           lock = true
           Making.ExtendCarousel()
           lock = false
-    $('.entry').on 'click', '.entry_email_toggle', ->
-      $form = $(@).parents('.entry').find('.entry_email')
-      $form.stop()[if $form.is(':hidden') then 'fadeIn' else 'fadeOut'](160)
-      $(@).toggleClass 'active'
-    if $html.hasClass 'guest_homepage'
-      $('.entry_email_toggle').addClass(if $('.entry_email').is(':visible') then 'active')
-
     $(document)
       .on 'click', 'a.disabled', (event) ->
         false
