@@ -21,7 +21,7 @@ module Api
           @order = Order.build_order(current_user, order_params)
 
           if @order.save
-            render action: 'show', status: :created, location: [:api, :v1, :account, @order]
+            render action: 'show', status: :created, location: [:api, :v1, @order]
           else
             render json: @order.errors, status: :unprocessable_entity
           end
