@@ -102,4 +102,6 @@ section#menu
             = link_to_with_icon 'Sidekiq', 'fa fa-fw fa-wrench', '/haven/sidekiq', target: '_blank'
   footer
     - if user_signed_in?
-      = link_to_with_icon "安全登出", "fa fa-sign-out fa-fw", destroy_user_session_path, class: "btn btn-danger btn-block", method: :delete
+      = link_to_with_icon "登出", "fa fa-sign-out fa-fw", destroy_user_session_path, class: "btn btn-danger btn-block", method: :delete
+    - else
+      = link_to_with_icon "登录", "fa fa-sign-in fa-fw", "#", class: "btn btn-success btn-block", data: {toggle: "modal", target: "#login-modal"}

@@ -9,5 +9,4 @@ header#header
       i.fa.fa-bell.fa_alone
       span.badge.badge_primary= unread_notifications_count
   - else
-    .pull-right
-      = link_to_with_icon "登录", "fa fa-sign-in", "#", class: "btn btn-link", data: {toggle: "modal", target: "#login-modal"}
+    = link_to_with_icon "登录", "fa fa-sign-in", "#", class: "btn btn-link pull-right", data: {toggle: "modal", target: "#login-modal"}
