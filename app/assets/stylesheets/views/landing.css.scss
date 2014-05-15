@@ -1,25 +1,9 @@
 html.landing_mobile {
-
-  #wrapper {
-
-    .entry {
-      background: transparent;
-      border: none;
-      max-width: 320px;
-      margin: {left: auto; right: auto;}
-
-      .greet {
-        display: none;
-      }
-    }
-  }
-
   h2.slogan {
     text-align: center;
     color: $gray;
     font-size: $font-size-h4;
     padding-bottom: .5em;
-    border-bottom: 1px solid white;
   }
 
   .things {margin: 0;}
