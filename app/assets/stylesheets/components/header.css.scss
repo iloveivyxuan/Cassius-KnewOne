@@ -1,5 +1,6 @@
-#header {
-  @media (max-width: $screen-md-max) {
+html.touch {
+
+  #header {
     $navbar-height: 44px;
 
     background-color: $navbar-inverse-bg;
@@ -45,8 +46,11 @@
       }
     }
   }
+}
 
-  @media (min-width: $screen-lg-min) {
+html.no-touch {
+
+  #header {
     margin-bottom: $navbar-height + $navbar-margin-bottom + $font-size-base;
   }
 }

@@ -15,24 +15,23 @@ $font-family-base    : "Helvetica Neue", Helvetica, Arial, "Microsoft YaHei", sa
 $headings-font-weight: normal;
 $headings-line-height: 1.5;
 
-$body-bg:        #ebeced;
-$link-color:     #588cc7;
-$btn-primary-bg: #049cdb;
-
-$navbar-height:              40px;
-$navbar-default-brand-color: #049cdb;
-$navbar-inverse-bg: #363d48;
-$navbar-inverse-link-color: #ccc;
-$navbar-inverse-link-hover-color: #fff;
-$navbar-inverse-link-active-bg: #333;
-
 $screen-lg-min: 1440px;
 $screen-xl-min: 1920px;
 $screen-lg-max: ($screen-xl-min - 1) !default;
+$grid-float-breakpoint    : 992px;
+$grid-float-breakpoint-max: $grid-float-breakpoint - 1;
+
+$body-bg       : #ebeced;
+$link-color    : #588cc7;
+$btn-primary-bg: #049cdb;
+
+$navbar-height                  : 40px;
+$navbar-default-brand-color     : #049cdb;
+$navbar-inverse-bg              : #363d48;
+$navbar-inverse-link-color      : #ccc;
+$navbar-inverse-link-hover-color: #fff;
+$navbar-inverse-link-active-bg  : #333;
 
 $thumbnail-bg: #fff;
 
 $zindex-tooltip: 1029;
-
-$grid-float-breakpoint:     1440px;
-$grid-float-breakpoint-max: $grid-float-breakpoint - 1;

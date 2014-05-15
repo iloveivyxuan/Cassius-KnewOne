@@ -21,22 +21,23 @@ section#menu
           = link_to_with_icon "分享", "fa fa-plus fa-fw", "#", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}
         - else
           = link_to_with_icon "分享", "fa fa-plus fa-fw", "#", data: {toggle: "modal", target: "#login-modal"}
-      - upmc = current_user.unread_private_messages_count
-      li
-        = link_to dialogs_path, title: "#{upmc}封未读私信" do
-          i.fa.fa-envelope-o.fa-fw
-          | 私信
-          span.badge.badge_danger.pull-right.private_messages_count= badge upmc
-      li
-        = link_to notifications_path, title: "#{unread_notifications_text}未读消息" do
-          i.fa.fa-bell.fa-fw
-          | 通知
-          span.badge.badge_primary.pull-right= unread_notifications_count
-      li
-        = link_to cart_items_path, title: "购物车" do
-          i.fa.fa-shopping-cart.fa-fw
-          | 购物车
-          span.badge.badge_success.pull-right.cart_items_count= cart_items_count
+      - if user_signed_in?
+        - upmc = current_user.unread_private_messages_count
+        li
+          = link_to dialogs_path, title: "#{upmc}封未读私信" do
+            i.fa.fa-envelope-o.fa-fw
+            | 私信
+            span.badge.badge_danger.pull-right.private_messages_count= badge upmc
+        li
+          = link_to notifications_path, title: "#{unread_notifications_text}未读消息" do
+            i.fa.fa-bell.fa-fw
+            | 通知
+            span.badge.badge_primary.pull-right= unread_notifications_count
+        li
+          = link_to cart_items_path, title: "购物车" do
+            i.fa.fa-shopping-cart.fa-fw
+            | 购物车
+            span.badge.badge_success.pull-right.cart_items_count= cart_items_count
       li.nav_group_title
         | 频道
       li
@@ -47,25 +48,26 @@ section#menu
         = link_to_with_icon "小组", "fa fa-tint fa-fw", groups_path
       li
         = link_to_with_icon "客服", "fa fa-comment fa-fw", "#olark_chat", data: {hint: "fa-comment", url: asset_path('olark.js')}
-      li.nav_group_title
-        | 帐户
-      li
-        = link_to_with_icon '个人信息', 'fa fa-user fa-fw', edit_profile_path
-      li
-        = link_to_with_icon '账户信息', 'fa fa-cogs fa-fw', edit_account_path
-      li
-        = link_to_with_icon '通知设置', 'fa fa-inbox fa-fw', edit_notification_settings_path
-      li.nav_group_title
-        | 购买
-      li
-        = link_to_with_icon '订单', 'fa fa-truck fa-fw', orders_path
-      li
-        = link_to_with_icon '余额', 'fa fa-money fa-fw', balances_path
-      li
-        = link_to_with_icon '优惠券', 'fa fa-ticket fa-fw', coupons_path
-      li
-        = link_to_with_icon '收货地址', 'fa fa-truck fa-fw', addresses_path
-      - if current_user.role? :editor
+      - if user_signed_in?
+        li.nav_group_title
+          | 帐户
+        li
+          = link_to_with_icon '个人信息', 'fa fa-user fa-fw', edit_profile_path
+        li
+          = link_to_with_icon '账户信息', 'fa fa-cogs fa-fw', edit_account_path
+        li
+          = link_to_with_icon '通知设置', 'fa fa-inbox fa-fw', edit_notification_settings_path
+        li.nav_group_title
+          | 购买
+        li
+          = link_to_with_icon '订单', 'fa fa-truck fa-fw', orders_path
+        li
+          = link_to_with_icon '余额', 'fa fa-money fa-fw', balances_path
+        li
+          = link_to_with_icon '优惠券', 'fa fa-ticket fa-fw', coupons_path
+        li
+          = link_to_with_icon '收货地址', 'fa fa-truck fa-fw', addresses_path
+      - if user_signed_in? and current_user.role? :editor
         li.nav_group_title
           | 管理员
         li
