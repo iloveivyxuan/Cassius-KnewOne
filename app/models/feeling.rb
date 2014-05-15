@@ -15,5 +15,14 @@ class Feeling < Post
     Photo.find_with_order photo_ids
   end
 
+  def cover
+    begin
+      return Photo.new if photo_ids.blank?
+      Photo.find photo_ids.first
+    rescue Mongoid::Errors::DocumentNotFound
+      Photo.new
+    end
+  end
+
   need_aftermath :create, :destroy, :vote
 end

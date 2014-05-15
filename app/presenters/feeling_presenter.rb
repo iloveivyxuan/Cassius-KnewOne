@@ -19,17 +19,14 @@ class FeelingPresenter < PostPresenter
   end
 
   def share_content
-    content = "我在 #{share_topic}"
-    content += if feeling.author == current_user
-                 "对 #{feeling.thing.title}发布了感想: "
-               else
-                 "分享了 @#{feeling.author.name} 对 #{feeling.thing.title}的感想: "
-               end
-    content += thing_feeling_url(feeling.thing, feeling, refer: 'weibo')
-    content += " " + feeling.content
+    if feeling.author == current_user
+      "我在 #{share_topic} 对 #{feeling.thing.title} 发布了短评: "
+    else
+      "我在 #{share_topic} 分享了 @#{feeling.author.name} 对 #{feeling.thing.title} 的短评: "
+    end + summary(80) + " " + thing_feeling_url(feeling.thing, feeling, refer: 'weibo')
   end
 
   def share_pic(size)
-    feeling.thing.cover.url size
+    feeling.cover.url(size) and feeling.thing.cover.url(size)
   end
 end
