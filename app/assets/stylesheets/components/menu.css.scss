@@ -1,19 +1,103 @@
 #menu {
+  $border: 1px solid $navbar-inverse-bg;
+
   @include transition(left .2s ease);
   background-color: lighten($navbar-inverse-bg, 10%);
+  border-right: $border;
   height: 100%;
-  left: -80%;
-  padding: {
-    bottom: 20px;
-    top: 20px;
-  }
+  left: -70%;
+  max-width: 300px;
+  overflow-y: scroll;
   position: fixed;
   top: 0;
-  width: 80%;
+  width: 70%;
   z-index: $zindex_menu;
 
   a {
     color: $navbar-inverse-link-color;
+
+    &.btn {
+      color: #fff;
+    }
+  }
+
+  > form:first-child {
+    border-bottom: $border;
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
+
+  .search {
+    margin-bottom: 0;
+
+    input {
+      background-color: darken($navbar-inverse-bg, 2%);
+      border-color: $navbar-inverse-bg;
+      box-shadow: none;
+      transition: none;
+
+      &:focus {
+        background-color: #fff;
+        border-color: #fff;
+      }
+    }
+  }
+
+  .profile {
+    border-bottom: $border;
+    margin-bottom: 1rem;
+    text-align: center;
+
+    dt,
+    dd {
+      margin-bottom: 1rem;
+    }
+
+    dt {
+      @include text-overflow;
+      color: #fff;
+      font-weight: normal;
+      margin: {
+        left: auto;
+        right: auto;
+      }
+      max-width: 80%;
+
+      a {
+        color: #fff;
+      }
+    }
+
+    img {
+      @include square(80px);
+      border-radius: 50%;
+    }
+  }
+
+  .nav {
+    margin-bottom: 1rem;
+
+    > li {
+      a {
+        &:hover,
+        &:active {
+          background-color: lighten($navbar-inverse-bg, 15%);
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .nav_group_title {
+    border-bottom: 1px solid lighten($navbar-inverse-bg, 7.5%);
+    color: #fff;
+    margin-top: .5rem;
+    padding: 10px 15px;
+  }
+
+  > footer {
+    border-top: $border;
+    padding: 1em;
   }
 }
 
@@ -23,6 +107,7 @@
 }
 
 body.menu_open {
+  overflow: hidden;
 
   #menu {
     left: 0;

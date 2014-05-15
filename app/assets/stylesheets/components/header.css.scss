@@ -1,8 +1,14 @@
 #header {
   @media (max-width: $screen-md-max) {
+    $navbar-height: 44px;
+
     background-color: $navbar-inverse-bg;
     border-bottom: 1px solid $navbar-inverse-border;
     height: $navbar-height;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: $zindex-navbar;
 
     h1 {
       height: $navbar-height;
@@ -23,8 +29,19 @@
       color: $navbar-inverse-link-color;
       margin-top: -$navbar-height;
       padding: {
-        bottom: 9px;
-        top: 9px;
+        bottom: 11px;
+        top: 11px;
+      }
+      width: 60px;
+    }
+
+    .notification {
+      position: relative;
+
+      .badge {
+        left: 30px;
+        position: absolute;
+        top: 5px;
       }
     }
   }
