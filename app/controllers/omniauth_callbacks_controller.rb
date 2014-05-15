@@ -19,10 +19,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user.remember_me = true
       sign_in user
 
-      params[:redirect_from] = params[:state] if params[:state].present?
-      logger.info '---'
-      logger.info params[:state]
-      logger.info '---'
+      params[:redirect_from] = params[:state] if params[:state].present? && params[:state][0] == '/'
 
       redirect_to after_sign_in_path_for(user),
                   :notice => t('devise.omniauth_callbacks.success', kind: omniauth.provider),
@@ -32,7 +29,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       current_user.auths<< Auth.from_omniauth(omniauth)
       current_user.update_from_omniauth(omniauth)
 
-      params[:redirect_from] = params[:state] if params[:state].present?
+      params[:redirect_from] = params[:state] if params[:state].present? && params[:state][0] == '/'
       redirect_back_or edit_account_path, flash: {oauth: {status: 'success', text: '绑定成功。'}}
     else
       user = User.create_from_omniauth(omniauth)
