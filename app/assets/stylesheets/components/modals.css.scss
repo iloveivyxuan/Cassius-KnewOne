@@ -1,5 +1,12 @@
 #login-modal {
 
+  .close {
+    position: absolute;
+    right: 8px;
+    top: 5px;
+    z-index: 1;
+  }
+
   .modal-dialog {
     width: 300px;
 
