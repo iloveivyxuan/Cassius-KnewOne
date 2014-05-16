@@ -374,9 +374,9 @@ class User
   include CategoryReferable
 
   # recommend users from oauth(only support weibo)
-  def recommend_users
+  def recommend_users(bilateral = false)
     if auth = auths.select { |a| a.provider == 'weibo' }.first
-      auth.friends_on_site.desc(:followers_count)
+      auth.friends_on_site(bilateral).desc(:followers_count)
     end
   end
 

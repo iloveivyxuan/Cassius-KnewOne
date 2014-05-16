@@ -40,8 +40,8 @@ class Auth
     Time.now > self.expires_at
   end
 
-  def friends_on_site
-    User.where(:'auths.provider' => self.provider, :'auths.uid'.in => friend_ids(self.uid).map(&:to_s))
+  def friends_on_site(bilateral = false)
+    User.where(:'auths.provider' => self.provider, :'auths.uid'.in => friend_ids(self.uid, bilateral).map(&:to_s))
   end
 
   def update_profile

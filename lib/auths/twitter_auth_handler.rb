@@ -26,7 +26,7 @@ class TwitterAuthHandler
     "@#{topic} "
   end
 
-  def friend_ids(uid, count)
+  def friend_ids(uid, bilateral = false, count)
     []
   end
 
