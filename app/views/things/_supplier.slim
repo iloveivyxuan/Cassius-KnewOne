@@ -5,7 +5,7 @@
         .modal-header
           = button_tag type: 'button', class: 'close', data: {dismiss: "modal"} do
             raw &times;
-          h4= tp.title
+          h4.modal-title= tp.title
         .modal-body
           p 如果您在销售此产品，或能提供货源，并且愿意与我们合作，请留下真实信息，我们会尽快联络您:
           = f.input :name
