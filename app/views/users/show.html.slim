@@ -2,6 +2,15 @@
   blockquote.description.hidden-xs
     = @user.description
 
+- if @makings.any?
+  section.panel.panel_compact
+    header.panel-heading
+      h3.panel-title
+        i.fa.fa-wrench
+        | 创造
+    .panel-body
+      ul.things= render @makings, size: :normal, img_lazy: true
+
 - if @owns.any?
   section.panel.panel_compact.hidden-xs
     header.panel-heading

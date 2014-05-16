@@ -213,6 +213,12 @@ class User
   has_and_belongs_to_many :fancies, class_name: "Thing", inverse_of: :fanciers
   has_and_belongs_to_many :owns, class_name: "Thing", inverse_of: :owners
 
+  def makings
+    Thing.where(maker: self).desc(:created_at)
+  end
+
+  ## Followings
+
   def followed?(user)
     self.followings.include? user
   end
@@ -374,8 +380,13 @@ class User
     end
   end
 
+  # groups
   def joined_groups
-    Group.where(:'members.user_id' => self.id.to_s)
+    Group.find_by_user self
+  end
+
+  def managed_groups
+    joined_groups.select {|g| g.has_admin? self}
   end
 
   include IdsSortable

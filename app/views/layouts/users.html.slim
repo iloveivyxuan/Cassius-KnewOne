@@ -33,6 +33,11 @@
         dd.tag title="标签"
           .data
             = render @user.categories.limit(4)
+      - managed_groups = @user.managed_groups
+      - if managed_groups.present?
+        dd.managed_groups title="管理的小组"
+          h5 管理的小组
+          ul= render managed_groups
 
   .user_content
     ul.nav_primary.nav.nav-pills.nav-pills-list.nav-justified
