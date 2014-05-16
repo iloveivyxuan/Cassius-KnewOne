@@ -90,7 +90,6 @@
 
     > li {
       a {
-        &:hover,
         &:active {
           background-color: lighten($navbar-inverse-bg, 15%);
           color: #fff;
