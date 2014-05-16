@@ -1,8 +1,9 @@
 .profile
   ul.profile_info
     li.profile_name
-      = @user.name
-      = render_user_gender(@user)
+      = link_to @user
+        = @user.name
+        = render_user_gender(@user)
     li.profile_level
       span.profile_level_rank
         | Lv.#{@user.rank}
@@ -12,7 +13,8 @@
       = @user.description
 
     li.profile_avatar
-      = user_avatar(@user, :square)
+      = link_to @user
+        = user_avatar(@user, :square)
     - if @user.location.present?
       li.profile_location
         i.fa.fa-map-marker

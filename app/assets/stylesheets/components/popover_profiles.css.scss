@@ -20,10 +20,12 @@
       .profile_name {
         @include text-overflow;
 
-        color: black;
-        font-weight: bold;
-        font-size: 22px;
-        line-height: 24px;
+        a {
+          color: black;
+          font-weight: bold;
+          font-size: 22px;
+          line-height: 24px;
+        }
 
         .gender {
           margin-left: 7px;
