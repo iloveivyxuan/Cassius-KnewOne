@@ -86,4 +86,8 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  def profile
+    render layout: false
+  end
 end
