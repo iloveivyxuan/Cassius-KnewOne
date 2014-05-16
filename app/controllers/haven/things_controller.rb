@@ -7,7 +7,13 @@ module Haven
     end
 
     def update
+      original_author_id = @thing.author_id # can't use _was api, cause update doesn't assign this
       if @thing.update thing_params
+        if @thing.author_id != original_author_id
+          User.find(original_author_id).inc things_count: -1
+          @thing.author.inc things_count: 1
+        end
+
         redirect_to edit_haven_thing_path(@thing)
       else
         render 'edit'
