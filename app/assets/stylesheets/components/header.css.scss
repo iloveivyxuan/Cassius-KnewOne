@@ -1,18 +1,18 @@
 html.touch {
 
   #header {
-    $navbar-height: 44px;
+    $header_inner_height: 44px;
 
     background-color: $navbar-inverse-bg;
     border-bottom: 1px solid $navbar-inverse-border;
-    height: $navbar-height;
+    height: $header_inner_height + 1;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: $zindex-navbar;
 
     h1 {
-      height: $navbar-height;
+      height: $header_inner_height;
       margin: 0 auto;
       text-align: center;
       width: 150px;
@@ -22,13 +22,13 @@ html.touch {
       color: $navbar-default-brand-color;
       display: block;
       font-size: $font-size-large;
-      line-height: $navbar-height;
+      line-height: $header_inner_height;
       text-shadow: 0 1px 1px #111;
     }
 
     .btn {
       color: $navbar-inverse-link-color;
-      margin-top: -$navbar-height;
+      margin-top: -$header_inner_height;
       padding: {
         bottom: 11px;
         top: 11px;
