@@ -30,7 +30,7 @@ Making::Application.configure do
   config.assets.debug = true
 
   # See everything in the log (default is :info)
-  config.log_level = :debug
+  config.log_level = :info
 
   config.action_mailer.delivery_method = :letter_opener
 

@@ -7,18 +7,6 @@ class AftermathHandler
       end
     end
 
-    def thing_create(thing)
-      u = thing.author
-
-      u.inc things_count: 1
-    end
-
-    def thing_destroy(thing)
-      u = thing.author
-
-      u.inc things_count: -1 if u.things_count > 0
-    end
-
     def thing_fancy(thing, user)
       user.inc fancies_count: 1
 
@@ -46,15 +34,7 @@ class AftermathHandler
     def review_create(review)
       u = review.author
 
-      u.inc reviews_count: 1
-
       ReviewNotificationWorker.perform_async(review.id.to_s, :new_review, sender_id: u.id.to_s)
-    end
-
-    def review_destroy(review)
-      u = review.author
-
-      u.inc reviews_count: -1 if u.reviews_count > 0
     end
 
     def review_vote(review, voter, love)
@@ -62,18 +42,6 @@ class AftermathHandler
       if love && u != voter
         u.notify :love_review, context: review, sender: voter
       end
-    end
-
-    def feeling_create(feeling)
-      u = feeling.author
-
-      u.inc feelings_count: 1
-    end
-
-    def feeling_destroy(feeling)
-      u = feeling.author
-
-      u.inc feelings_count: -1 if u.feelings_count > 0
     end
 
     def feeling_vote(feeling, voter, love)
@@ -114,16 +82,6 @@ class AftermathHandler
     def member_destroy(member)
       u = member.user
       u.inc groups_count: -1 if u.groups_count > 0
-    end
-
-    def topic_create(topic)
-      u = topic.author
-      u.inc topics_count: 1
-    end
-
-    def topic_destroy(topic)
-      u = topic.author
-      u.inc topics_count: -1 if u.topics_count > 0
     end
 
     def topic_vote(topic, voter, love)

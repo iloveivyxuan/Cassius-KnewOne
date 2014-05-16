@@ -10,5 +10,5 @@ class Topic < Post
 
   default_scope -> { desc(:is_top, :commented_at) }
 
-  need_aftermath :create, :destroy, :vote
+  need_aftermath :vote
 end

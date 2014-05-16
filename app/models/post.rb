@@ -20,6 +20,16 @@ class Post
 
   after_create :update_commented_at
 
+  after_create do
+    update_relates_counter self.author
+  end
+
+  after_destroy do
+    update_relates_counter self.author, -1
+  end
+
+  around_update :around_update_counter
+
   def update_commented_at
     update_attribute :commented_at, created_at
   end
@@ -59,6 +69,35 @@ class Post
   def content_photos(version = :small)
     self.content.scan(/<img src=\"(http:\/\/#{Settings.image_host}\/.+?)\"/).flatten.map do |src|
       src.sub(/!.*$/, "!#{version}")
+    end
+  end
+
+  private
+
+  def self_changed?
+    self.changed_attributes.reject { |k, v| v.nil? }.any?
+  end
+
+  def update_relates_counter(author, step = 1)
+    counter_field = :"#{model_name.plural}_count"
+
+    if author.methods.include?(counter_field) && (author.send(counter_field) + step) >= 0
+      author.inc counter_field => step
+    end
+  end
+
+  def around_update_counter
+    if self_changed? && self.author_id_changed?
+      original_author = User.find(self.author_id_was)
+
+      yield
+
+      if original_author != self.author
+        update_relates_counter self.author
+        update_relates_counter original_author, -1
+      end
+    else
+      yield
     end
   end
 end

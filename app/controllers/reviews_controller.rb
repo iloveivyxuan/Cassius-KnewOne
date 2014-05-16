@@ -37,13 +37,7 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    original_author_id = @review.author_id # can't use _was api, cause update doesn't assign this
     if @review.update(review_params)
-      if @review.author_id != original_author_id
-        User.find(original_author_id).inc reviews_count: -1
-        @review.author.inc reviews_count: 1
-      end
-
       redirect_to thing_review_path(@thing, @review)
     else
       flash.now[:error] = @review.errors.full_messages.first

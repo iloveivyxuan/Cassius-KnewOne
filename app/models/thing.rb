@@ -207,7 +207,7 @@ class Thing < Post
     ThingNotificationWorker.perform_async(self.id.to_s, :fanciers, :stock, options)
   end
 
-  need_aftermath :create, :destroy, :own, :unown, :fancy, :unfancy
+  need_aftermath :own, :unown, :fancy, :unfancy
 
   class << self
     def rand_records(per = 1)

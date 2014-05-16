@@ -13,5 +13,5 @@ class Review < Post
 
   scope :living, -> { where :thing_id.ne => nil }
 
-  need_aftermath :create, :destroy, :vote
+  need_aftermath :create, :vote
 end

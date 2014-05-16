@@ -24,5 +24,5 @@ class Feeling < Post
     end
   end
 
-  need_aftermath :create, :destroy, :vote
+  need_aftermath :vote
 end
