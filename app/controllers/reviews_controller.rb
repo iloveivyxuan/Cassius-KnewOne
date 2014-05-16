@@ -37,7 +37,13 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    original_author_id = @review.author_id # can't use _was api, cause update doesn't assign this
     if @review.update(review_params)
+      if @review.author_id != original_author_id
+        User.find(original_author_id).inc reviews_count: -1
+        @review.author.inc reviews_count: 1
+      end
+
       redirect_to thing_review_path(@thing, @review)
     else
       flash.now[:error] = @review.errors.full_messages.first
@@ -72,7 +78,7 @@ class ReviewsController < ApplicationController
 
   def review_params
     permit_attrs = [:title, :content, :score]
-    permit_attrs << :is_top if current_user.role? :editor
+    permit_attrs.concat [:is_top, :author] if current_user.role? :editor
     params.require(:review).permit permit_attrs
   end
 end

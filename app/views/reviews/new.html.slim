@@ -7,6 +7,11 @@
   = f.input :score, as: :range, label: false, input_html: {class:'range_rating', max: 5, min: 0}
   - if current_user.role? :editor
     = f.input :is_top, as: :boolean
+    - if @review.persisted?
+      .form-group
+        label.control-label 作者
+        = hidden_field_tag 'review[author]', @review.author.id.to_s, id: 'author_id'
+        input#author_autocomplete.form-control placeholder="用户昵称" value="#{@review.author.name}"
 
 = render 'shared/editor'
 
@@ -18,4 +23,5 @@
   javascript:
     Making.Editor('#review_content', true);
     Making.FormLink("form.edit_post", ".post_submit button");
+    Making.UserFuzzy('#author_autocomplete', '#author_id');
     Making.Rating();
