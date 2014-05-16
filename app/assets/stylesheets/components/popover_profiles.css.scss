@@ -1,0 +1,163 @@
+.popover {
+  .popover-content {
+    padding: 25px;
+  }
+
+  .profile {
+    $popover-profile-width: 360px;
+    $popover-profile-aside-width: 0.4 * $popover-profile-width;
+    $popover-profile-avatar-height: $popover-profile-aside-width - 25px;
+
+    width: $popover-profile-width;
+    padding-left: $popover-profile-aside-width;
+
+    position: relative;
+
+    .profile_info {
+      height: $popover-profile-avatar-height;
+      overflow: hidden;
+
+      .profile_name {
+        @include text-overflow;
+
+        color: black;
+        font-weight: bold;
+        font-size: 22px;
+        line-height: 24px;
+
+        .gender {
+          margin-left: 7px;
+          color: $gray-light;
+          font-size: 24px;
+        }
+      }
+
+      .profile_level {
+        margin-top: 15px;
+
+        .profile_level_rank {
+          vertical-align: middle;
+          color: $blue;
+          font-family: 'orbitron-bold';
+        }
+
+        .progress {
+          display: inline-block;
+          margin: 0 0 0 1em;
+          width: 70%;
+          vertical-align: middle;
+        }
+      }
+
+      .profile_description {
+        margin-top: 15px;
+        font-size: 16px;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+
+      .profile_avatar,
+      .profile_location,
+      .profile_followers {
+        position: absolute;
+        left: 0;
+        width: $popover-profile-avatar-height;
+      }
+
+      .profile_avatar {
+        top: 0;
+
+        img {
+          @extend .img-rounded;
+          height: 100%;
+          width:  100%;
+        }
+      }
+
+      .profile_location {
+        top: $popover-profile-avatar-height;
+        margin-top: 10px;
+
+        text-align: center;
+
+        @include text-overflow;
+      }
+
+      .profile_followers {
+        top: 160px;
+        padding: 10px 0;
+
+        border: solid $gray-lighter;
+        border-width: 1px 0;
+
+        text-align: center;
+
+        a { color: black; }
+      }
+    }
+
+    .profile_actions {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid $gray-lighter;
+
+      .profile_action_dialog,
+      .profile_action_follow {
+        display: inline-block;
+
+        .btn {
+          line-height: 28px;
+          font-size: 16px;
+        }
+      }
+
+      .profile_action_dialog .btn {
+        width: 50px;
+      }
+
+      .profile_action_follow .btn {
+        margin-left: 25px;
+        width: 140px;
+      }
+    }
+
+    .profile_links {
+      margin-top: 25px;
+
+      position: relative;
+      left: -$popover-profile-aside-width;
+      width: $popover-profile-width;
+
+      // http://stackoverflow.com/questions/11589590/
+      text-align: justify;
+      &:before {
+        content: '';
+        display: block;
+        width: 100%;
+        margin-bottom: -$line-height-base * 1em;
+      }
+      &:after {
+        content: '';
+        display: inline-block;
+        width: 100%;
+      }
+      li {
+        display: inline-block;
+        position: relative;
+        top: $line-height-base * 1em;
+      }
+
+      a {
+        color: $gray-light;
+      }
+
+      b {
+        margin-left: 0.5em;
+        font-weight: normal;
+        color: black;
+      }
+    }
+  }
+}
