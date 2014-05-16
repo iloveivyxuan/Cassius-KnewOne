@@ -107,4 +107,35 @@
       }
     }
   }
+
+  &.entry_compact {
+
+    .oauth {
+
+      > a {
+
+        .fa {
+          color: #ccc;
+        }
+
+        &:last-child {
+
+          .fa {
+            margin-right: 0;
+          }
+        }
+      }
+
+      .entry_email_toggle.active {
+
+        .fa {
+          color: #049cdb !important;
+        }
+      }
+    }
+
+    .entry_email {
+      display: none;
+    }
+  }
 }

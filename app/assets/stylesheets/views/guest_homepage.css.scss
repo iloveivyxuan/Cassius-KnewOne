@@ -113,7 +113,7 @@ html.guest_homepage {
         position: absolute;
         right: 10%;
         top: 50%;
-        width: 300px;
+        width: 280px;
         z-index: 1;
 
         .greet {
@@ -151,6 +151,7 @@ html.guest_homepage {
 
         .entry_email {
           color: #bbb;
+          display: block;
 
           .tab-content .form-group.addon > a {
             color: #bbb;

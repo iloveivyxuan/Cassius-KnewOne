@@ -45,6 +45,8 @@ window.Making = do (exports = window.Making || {}) ->
       max          = $tab_trigger.length - 1
       i            = 0
 
+      $('.entry_email_toggle').addClass(if $('.entry_email').is(':visible') then 'active')
+
       timeout = setInterval ->
         $tab_trigger.eq(++i).tab('show')
         if i is max then i = -1;

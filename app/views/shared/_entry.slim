@@ -14,7 +14,7 @@ section.entry
       li
         = link_to_with_icon '注册', 'fa  fa-magic', '#email_sign_up_tab', data: {toggle: 'tab'}
     .tab-content
-      #email_sign_up_tab.tab-pane
-        = render 'devise/registrations/sign_up'
       #email_sign_in_tab.tab-pane.active
         = render 'devise/sessions/sign_in'
+      #email_sign_up_tab.tab-pane
+        = render 'devise/registrations/sign_up'
