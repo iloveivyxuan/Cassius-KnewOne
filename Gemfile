@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
-ruby '2.1.1'
+if ENV['JASL']
+  ruby '2.1.2'
+else
+  ruby '2.1.1'
+end
 
 # rails and friends
 gem 'rails', '~> 4.1.0'
