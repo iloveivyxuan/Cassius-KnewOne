@@ -17,7 +17,7 @@ module Api
         end
 
         if types.empty? || types.include?('users')
-          @users = User.find_by_fuzzy_name(q).page(params[:users_page] || params[:page]).per(per)
+          @users = User.find_by_fuzzy(q).page(params[:users_page] || params[:page]).per(per)
         end
       end
     end

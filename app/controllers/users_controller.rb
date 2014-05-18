@@ -79,7 +79,7 @@ class UsersController < ApplicationController
   end
 
   def fuzzy
-    @users = User.find_by_fuzzy_name(params[:query])
+    @users = User.find_by_sequence(params[:query])
     respond_to do |format|
       format.json do
         @users = @users.limit(20)

@@ -98,7 +98,7 @@ class HomeController < ApplicationController
     end
 
     if params[:type].blank? || params[:type] == 'users'
-      @users = User.find_by_fuzzy_name(q).page(params[:page]).per(per)
+      @users = User.find_by_fuzzy(q).page(params[:page]).per(per)
     end
 
     respond_to do |format|
