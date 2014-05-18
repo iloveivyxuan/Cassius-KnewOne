@@ -94,9 +94,22 @@ module Haven
 
     def update
       user = User.find(params[:id])
+
+      if params[:user][:identities].blank?
+        params[:user][:identities] = []
+      else
+        params[:user][:identities].uniq!
+      end
+
+      if params[:user][:flags].blank?
+        params[:user][:flags] = []
+      else
+        params[:user][:flags].uniq!
+      end
+
       user.update(user_params)
 
-      redirect_back_or user
+      redirect_back_or haven_user_path(user)
     end
 
     private

@@ -5,5 +5,12 @@ dd
       = f.text_area :admin_note, class: 'form-control', size: '20x3'
     .form-group
       label 认证身份
-      = f.text_field :identities, :name => "#{f.object_name}[identities][]", class: 'form-control'
+      select name='user[identities][]' multiple="true" data-role="tagsinput"
+        - @user.identities.each do |i|
+          option value="#{i}" = i
+    .form-group
+      label 管理员印记
+      select name='user[flags][]' multiple="true" data-role="tagsinput"
+        - @user.flags.each do |i|
+          option value="#{i}" selected="selected" = i
     = f.submit '修改', class: 'btn btn-default'

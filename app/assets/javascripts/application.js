@@ -19,6 +19,7 @@
 //= require jquery.fitvids
 //= require jquery.qrcode
 //= require jquery.deserialize
+//= require bootstrap-tagsinput
 //= require bootstrap-wysiwyg
 //= require bootstrap-select
 //= require typeahead.bundle
