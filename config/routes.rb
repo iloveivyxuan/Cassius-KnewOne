@@ -235,6 +235,8 @@ Making::Application.routes.draw do
 
   namespace :hell, defaults: {format: :json} do
     resources :activities, only: [:index]
+
+    get 'stats/contents_product', to: 'stats#contents_product'
   end
 
   namespace :api, defaults: {format: :json} do
