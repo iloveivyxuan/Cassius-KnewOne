@@ -18,6 +18,8 @@ class Post
   has_many :related_lotteries, class_name: "Lottery",
            inverse_of: :contributions, dependent: :delete
 
+  index created_at: -1
+
   after_create :update_commented_at
 
   after_create do
