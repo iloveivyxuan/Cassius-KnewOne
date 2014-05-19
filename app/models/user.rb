@@ -16,6 +16,9 @@ class User
   field :identities, type: Array, default: []
   field :flags, type: Array, default: []
   field :status, type: Symbol, default: :normal
+
+  index name: 1
+
   STATUS = {blocked: '锁定', watching: '特别观照(贬)', normal: '正常'}
   validates :status, inclusion: {in: STATUS.keys, allow_blank: false}
   validates :gender, inclusion: {in: %w(男 女), allow_blank: true}
