@@ -87,6 +87,7 @@ class User
 
   ## Omniauthable
   embeds_many :auths
+  index 'auths.uid' => 1
 
   scope :confirmed, -> { gt confirmed_at: 0 }
 
