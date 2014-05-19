@@ -54,13 +54,19 @@ class User
   field :email, :type => String
   field :encrypted_password, :type => String
 
+  index email: 1, unique: true, sparse: true
+
   ## Recoverable
   field :reset_password_token, :type => String
   field :reset_password_sent_at, :type => Time
 
+  index reset_password_token: 1, unique: true, sparse: true
+
   ## Rememberable
   field :remember_created_at, :type => Time
   field :remember_token, :type => String
+
+  index remember_token: 1, unique: true, sparse: true
 
   ## Trackable
   field :sign_in_count, :type => Integer
@@ -74,6 +80,8 @@ class User
   field :confirmed_at, :type => Time
   field :confirmation_sent_at, :type => Time
   field :unconfirmed_email, :type => String # Only if using reconfirmable
+
+  index confirmation_token: 1, unique: true, sparse: true
 
   mount_uploader :avatar, AvatarUploader
 
