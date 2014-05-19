@@ -12,7 +12,7 @@
           = link_to tp.full_title, thing, target: '_blank'
         .figure_detail
           .feed_type = fp.render_action
-          - if thing.fanciers.size > 0
+          - if thing.fanciers_count > 0
             span.fanciers
               i.fa.fa-heart
               = tp.fanciers_count
@@ -20,7 +20,7 @@
             span.owners
               i.fa.fa-check
               = tp.owners_count
-          - if thing.reviews.size > 0
+          - if thing.reviews_count > 0
             = link_to thing_reviews_path(thing), class: 'reviews_count', target: '_blank' do
               i.fa.fa-pencil
-              = thing.reviews.size
+              = thing.reviews_count
