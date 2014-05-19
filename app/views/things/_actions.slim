@@ -1,53 +1,54 @@
-.shop
-  - if tp.price.present?
-    #price.price= tp.price
-  - if user_signed_in?
-    = tp.shopping_desc
-  - if tp.buy
-    .buy= tp.buy
+- cache_unless user_signed_in?, "#{request.fullpath}_#{@thing.updated_at.to_i}"
+  .shop
+    - if tp.price.present?
+      #price.price= tp.price
+    - if user_signed_in?
+      = tp.shopping_desc
+    - if tp.buy
+      .buy= tp.buy
 
-.actions
-  .fanciers= render "shared/fancy", p: tp
-  .owners= render "things/own", tp: tp
-  .share= tp.link_to_share
-  .new_review= render 'reviews/link_to_new'
+  .actions
+    .fanciers= render "shared/fancy", p: tp
+    .owners= render "things/own", tp: tp
+    .share= tp.link_to_share
+    .new_review= render 'reviews/link_to_new'
 
-.categories
-  = render partial: "things/category", collection: tp.categories
+  .categories
+    = render partial: "things/category", collection: tp.categories
 
-ul.operations.fa-ul
-  li= link_to_with_icon "分享到微信", "fa-li fa fa-qrcode", "#thing_share_wechat", title: "微信朋友圈分享",
-    data: {toggle: 'modal'}
-  li= link_to_with_icon "RSS", "fa-li fa fa-rss", thing_url(tp.thing, format: "atom")
-  - if can? :fancy, Group
-    li= link_to_with_icon "收藏进小组", "fa-li fa fa-bookmark", "#group_fancy_thing", title: "收藏进小组",
-      data: {toggle: "modal"}
-  - if tp.thing.official_site.present?
-    li= tp.official_site
-  - if can? :create, Supplier
-    li= link_to_with_icon "我想供货", "fa-li fa fa-beer", "#thing_supplier", title: "提供产品", \
-                          data: {toggle: "modal", keyboard: false}
-  - else
-    li= link_to_with_icon "我想供货", "fa-li fa fa-beer", "#login-modal", title: "提供产品", \
-                          data: {toggle: "modal", keyboard: false}
-  - if can? :update, tp.thing
-    li= link_to_with_icon "编辑", "fa-li fa fa-edit", edit_thing_path(tp.thing), title: "编辑"
-  - if can? :pro_edit, tp.thing
-    li= link_to_with_icon "高级", "fa-li fa fa-cogs", edit_haven_thing_path(tp.thing), title: "销售管理"
-  - if can? :destroy, tp.thing
-    li= link_to_with_icon "删除", "fa-li fa fa-trash-o", thing_path(tp.thing), title: "删除产品",
-      method: :delete, data: {confirm: "您确定要删除这个产品吗?"}
+  ul.operations.fa-ul
+    li= link_to_with_icon "分享到微信", "fa-li fa fa-qrcode", "#thing_share_wechat", title: "微信朋友圈分享",
+      data: {toggle: 'modal'}
+    li= link_to_with_icon "RSS", "fa-li fa fa-rss", thing_url(tp.thing, format: "atom")
+    - if can? :fancy, Group
+      li= link_to_with_icon "收藏进小组", "fa-li fa fa-bookmark", "#group_fancy_thing", title: "收藏进小组",
+        data: {toggle: "modal"}
+    - if tp.thing.official_site.present?
+      li= tp.official_site
+    - if can? :create, Supplier
+      li= link_to_with_icon "我想供货", "fa-li fa fa-beer", "#thing_supplier", title: "提供产品", \
+                            data: {toggle: "modal", keyboard: false}
+    - else
+      li= link_to_with_icon "我想供货", "fa-li fa fa-beer", "#login-modal", title: "提供产品", \
+                            data: {toggle: "modal", keyboard: false}
+    - if can? :update, tp.thing
+      li= link_to_with_icon "编辑", "fa-li fa fa-edit", edit_thing_path(tp.thing), title: "编辑"
+    - if can? :pro_edit, tp.thing
+      li= link_to_with_icon "高级", "fa-li fa fa-cogs", edit_haven_thing_path(tp.thing), title: "销售管理"
+    - if can? :destroy, tp.thing
+      li= link_to_with_icon "删除", "fa-li fa fa-trash-o", thing_path(tp.thing), title: "删除产品",
+        method: :delete, data: {confirm: "您确定要删除这个产品吗?"}
 
-- if tp.thing.fancy_groups.present?
-  .fancy_groups
-    h4 收藏此产品的小组
-    ul.groups = render tp.thing.fancy_groups(5)
+  - if tp.thing.fancy_groups.present?
+    .fancy_groups
+      h4 收藏此产品的小组
+      ul.groups = render tp.thing.fancy_groups(5)
 
-- if tp.related_things.present?
-  .related_things
-    h4 您可能也喜欢
-    ul= render partial: "things/related_thing", collection: tp.related_things, as: :tp
+  - if tp.related_things.present?
+    .related_things
+      h4 您可能也喜欢
+      ul= render partial: "things/related_thing", collection: tp.related_things, as: :tp
 
-- content_for :script do
-  javascript:
-    Making.CartItemNew();
+  - content_for :script do
+    javascript:
+      Making.CartItemNew();
