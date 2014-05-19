@@ -6,7 +6,7 @@ set :repo_url, 'git@github.com:lilu/making.git'
 set :deploy_to, "/home/deployer/apps/making"
 set :pty, true
 set :ssh_options, { forward_agent: true }
-set :log_level, :info
+set :log_level, :debug
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 # set :linked_files, %w{config/application.yml}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
