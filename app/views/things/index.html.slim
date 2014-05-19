@@ -13,7 +13,7 @@ header.page-header
 
 = render 'things/filter'
 
-- cache("thing_index_#{request.query_string}_#{@things.first.created_at.to_i}")
+- cache("thing_index_#{request.query_string}_#{@things.first.try(:created_at).try(:to_i)}") do
   ul.things.infinite#things= render @things, size: :normal, img_lazy: true
   = paginate @things
 
