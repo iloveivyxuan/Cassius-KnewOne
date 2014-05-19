@@ -5,7 +5,7 @@ Making.PopoverProfiles = ->
       container: 'body'
       content: '<i class="fa fa-spinner fa-spin"></i> 加载中'
       html: true
-      placement: 'right'
+      placement: 'auto right'
       trigger: 'manual'
     }) unless $element.data('bs.popover')
 
