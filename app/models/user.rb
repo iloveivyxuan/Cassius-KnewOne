@@ -81,6 +81,8 @@ class User
   field :confirmation_sent_at, :type => Time
   field :unconfirmed_email, :type => String # Only if using reconfirmable
 
+  validates_format_of :unconfirmed_email, with: email_regexp, allow_blank: true, if: :unconfirmed_email_changed?
+
   index confirmation_token: 1
 
   mount_uploader :avatar, AvatarUploader
