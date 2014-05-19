@@ -417,7 +417,7 @@ class Order
 
   def generate_waybill!
     return unless waybill.url.nil?
-    WayBillWorker.perform_async(self.id.to_s)
+    # WayBillWorker.perform_async(self.id.to_s)
   end
 
   def own_things
