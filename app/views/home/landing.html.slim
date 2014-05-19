@@ -23,49 +23,50 @@
           i.fa.fa-times
 
   .explore_body
-    nav.explore_nav
-      ul
+    - cache('landing_categories') do
+      nav.explore_nav
+        ul
+          - @categories.each_with_index do |c, i|
+            - if i == 0
+              li.active
+                = link_to c.name, "#category_#{c.slug}", data: {toggle: "tab"}
+            - else
+              li
+                = link_to c.name, "#category_#{c.slug}", data: {toggle: "tab"}
+      .explore_content
         - @categories.each_with_index do |c, i|
-          - if i == 0
-            li.active
-              = link_to c.name, "#category_#{c.slug}", data: {toggle: "tab"}
-          - else
-            li
-              = link_to c.name, "#category_#{c.slug}", data: {toggle: "tab"}
-    .explore_content
-      - @categories.each_with_index do |c, i|
-        - thing = c.things.desc(:priority).first
-        .explore_content_item.fade class="#{'active in' if i == 0}" id="category_#{c.slug}"
-          - present thing do |tp|
-            figure.thing
-              = link_to tp.path, class: "thing_thumb" do
-                = tp.photo(:normal)
-              figcaption
-                h5 = tp.full_title
-                em.figure_detail
-                  span.fanciers
-                    i.fa.fa-heart
-                    = tp.fanciers_count
-                  span.owners
-                    i.fa.fa-check
-                    = tp.owners_count
-          .reviews
-            - thing.reviews.limit(3).each do |review|
-              - present review do |rp|
-                article.review
-                  - present review.author do |up|
-                    = link_to up.path, class: 'review_author' do
-                      = up.avatar :small, size: '60x60'
-                      span.name = up.name
-                  section.review_wrap
-                    header.review_header
-                      h4.review_title
-                        = link_to review.title, rp.path
-                      em.like
-                        i.fa.fa-plus
-                        = review.lovers_count
-                    section.review_body
-                      p = rp.summary(120)
+          - thing = c.things.desc(:priority).first
+          .explore_content_item.fade class="#{'active in' if i == 0}" id="category_#{c.slug}"
+            - present thing do |tp|
+              figure.thing
+                = link_to tp.path, class: "thing_thumb" do
+                  = tp.photo(:normal)
+                figcaption
+                  h5 = tp.full_title
+                  em.figure_detail
+                    span.fanciers
+                      i.fa.fa-heart
+                      = tp.fanciers_count
+                    span.owners
+                      i.fa.fa-check
+                      = tp.owners_count
+            .reviews
+              - thing.reviews.limit(3).each do |review|
+                - present review do |rp|
+                  article.review
+                    - present review.author do |up|
+                      = link_to up.path, class: 'review_author' do
+                        = up.avatar :small, size: '60x60'
+                        span.name = up.name
+                    section.review_wrap
+                      header.review_header
+                        h4.review_title
+                          = link_to review.title, rp.path
+                        em.like
+                          i.fa.fa-plus
+                          = review.lovers_count
+                      section.review_body
+                        p = rp.summary(120)
 
 footer#footer
   small 粤ICP备13057487号
