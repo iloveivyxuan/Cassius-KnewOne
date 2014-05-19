@@ -1,16 +1,16 @@
-- cache("thing_show_#{tp.thing.id.to_s}_#{tp.thing.updated_at.to_i}_feelings") do
-  #thing_feelings.clearfix
-    h4
-      i.fa.fa-comments-o
-      | 短评
+#thing_feelings.clearfix
+  h4
+    i.fa.fa-comments-o
+    | 短评
 
-    = render 'feelings/form'
+  = render 'feelings/form'
 
+  - cache("thing_show_#{tp.thing.id.to_s}_#{tp.thing.updated_at.to_i}_feelings_v2") do
     .feelings.list = render tp.thing.feelings.limit(10)
 
     - if tp.thing.feelings.count > 10
-      = link_to_with_icon "更多", "fa fa-ellipsis-h", thing_feelings_path(tp.thing),
-      class: "btn btn-info pull-right"
+    = link_to_with_icon "更多", "fa fa-ellipsis-h", thing_feelings_path(tp.thing),
+                        class: "btn btn-info pull-right"
 
 - content_for :script do
   javascript:
