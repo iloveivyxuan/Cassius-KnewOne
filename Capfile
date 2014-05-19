@@ -1,6 +1,6 @@
 require 'capistrano/setup'
 require 'capistrano/deploy'
-require 'rvm1/capistrano3'
+require 'capistrano/rvm'
 require 'capistrano/bundler'
 require 'capistrano/rails'
 require 'capistrano3/unicorn'
