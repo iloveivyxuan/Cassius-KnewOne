@@ -9,8 +9,8 @@
     .feelings.list = render tp.thing.feelings.limit(10)
 
     - if tp.thing.feelings.count > 10
-    = link_to_with_icon "更多", "fa fa-ellipsis-h", thing_feelings_path(tp.thing),
-                        class: "btn btn-info pull-right"
+      = link_to_with_icon "更多", "fa fa-ellipsis-h", thing_feelings_path(tp.thing),
+                          class: "btn btn-info pull-right"
 
 - content_for :script do
   javascript:
