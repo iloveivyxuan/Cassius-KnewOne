@@ -1,9 +1,6 @@
 = simple_form_for(current_user, url: email_account_path, wrapper: :horizontal, html: { method: :patch, class: 'form-horizontal' }) do |f|
+  = render partial: 'accounts/result', locals: {type: :email}
   = f.input :email, required: true
-
   .form-group
     .form-action
       = f.button :submit, '更新', class: 'btn btn-primary'
-  .form-group
-    .form-result
-      = render partial: 'accounts/result', locals: {type: :email}

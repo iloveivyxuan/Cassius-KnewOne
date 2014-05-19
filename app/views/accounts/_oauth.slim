@@ -1,4 +1,5 @@
-.row
+.clearfix
+  = render partial: 'accounts/result', locals: {type: :oauth}
   - oauths = {'twitter' => nil, 'weibo' => nil}.merge(current_user.auths.map {|a| {a.provider => a}}.reduce(&:merge) || {})
   table#table_oauth
     thead
@@ -9,6 +10,3 @@
     tbody
       - oauths.each do |k, v|
         = render partial: "authentications/#{k}", locals: {auth: v}
-
-  .form-result
-    = render partial: 'accounts/result', locals: {type: :oauth}

@@ -64,16 +64,17 @@ html.settings {
 
   .form-horizontal {
 
-    .form-group {
-      margin-left: 0;
-      margin-right: 0;
+    > .alert {
+      text-align: center;
+    }
 
-      &:last-child {
-        margin-bottom: 0;
+    .form-group {
+      margin: {
+        left: 0;
+        right: 0;
       }
 
       @media screen and (min-width: $screen-sm-min) {
-
         .control-label {
           @include make-sm-column(2);
         }
@@ -88,11 +89,6 @@ html.settings {
 
         .form-action {
           @include make-sm-column(9);
-          @include make-sm-column-offset(2);
-        }
-
-        .form-result {
-          @include make-sm-column(5);
           @include make-sm-column-offset(2);
         }
       }
@@ -144,11 +140,6 @@ html.settings {
           }
         }
       }
-    }
-
-    & + .form-result {
-      @include make-sm-column(5);
-      @include make-sm-column-offset(2);
     }
   }
 }
