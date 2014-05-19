@@ -48,6 +48,8 @@ class User
   field :admin_note, type: String, default: ''
   field :recommend_priority, type: Integer, default: 0
 
+  index recommend_priority: -1, followers_count: -1
+
   ## Database authenticatable
   field :email, :type => String
   field :encrypted_password, :type => String
