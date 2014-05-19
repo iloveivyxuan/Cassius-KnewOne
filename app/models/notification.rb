@@ -2,7 +2,7 @@ class Notification
   include Mongoid::Document
   include Mongoid::Timestamps::Created
 
-  belongs_to :receiver, class_name: 'User'
+  belongs_to :receiver, class_name: 'User', index: true
   validates :receiver, presence: true
 
   field :read, type: Boolean, default: false
