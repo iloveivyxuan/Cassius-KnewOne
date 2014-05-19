@@ -3,6 +3,7 @@ module Fancyable
 
   included do
     field :fanciers_count, type: Integer, default: 0
+    index fanciers_count: -1
   end
 
   def fancy(user)
