@@ -1,16 +1,17 @@
-#thing_feelings.clearfix
-  h4
-    i.fa.fa-comments-o
-    | 短评
+- cache("thing_show_#{tp.thing.id.to_s}_#{tp.thing.updated_at.to_i}_feelings") do
+  #thing_feelings.clearfix
+    h4
+      i.fa.fa-comments-o
+      | 短评
 
-  = render 'feelings/form'
+    = render 'feelings/form'
 
-  .feelings.list = render tp.thing.feelings.limit(10)
+    .feelings.list = render tp.thing.feelings.limit(10)
 
-  - if tp.thing.feelings.count > 10
-    = link_to_with_icon "更多", "fa fa-ellipsis-h", thing_feelings_path(tp.thing),
-    class: "btn btn-info pull-right"
+    - if tp.thing.feelings.count > 10
+      = link_to_with_icon "更多", "fa fa-ellipsis-h", thing_feelings_path(tp.thing),
+      class: "btn btn-info pull-right"
 
-  - content_for :script do
-    javascript:
-      Making.InitFeelings();
+- content_for :script do
+  javascript:
+    Making.InitFeelings();

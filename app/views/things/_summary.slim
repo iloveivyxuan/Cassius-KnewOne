@@ -1,11 +1,12 @@
-#thing_author
-  = link_to @thing.author do
-    = image_tag @thing.author.avatar.url(:small), class: "img-circle", alt: @thing.author.name
-  label
-    | 分享者：
-  = link_to @thing.author.name, @thing.author
+- cache("thing_show_#{tp.thing.id.to_s}_#{tp.thing.updated_at.to_i}_summary") do
+  #thing_author
+    = link_to @thing.author do
+      = image_tag @thing.author.avatar.url(:small), class: "img-circle", alt: @thing.author.name
+    label
+      | 分享者：
+    = link_to @thing.author.name, @thing.author
 
-- if tp.summary.present?
-  = tp.content
-  .more
-    = link_to_with_icon "查看全部", "fa fa-angle-double-down"
+  - if tp.summary.present?
+    = tp.content
+    .more
+      = link_to_with_icon "查看全部", "fa fa-angle-double-down"
