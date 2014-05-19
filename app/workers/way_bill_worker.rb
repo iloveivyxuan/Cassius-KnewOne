@@ -1,5 +1,6 @@
 class WayBillWorker
   include Sidekiq::Worker
+  sidekiq_options :queue => :waybill
 
   PATH = Rails.root.join('tmp')
 

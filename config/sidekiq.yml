@@ -11,3 +11,4 @@ production:
   - mails
   - default
   - edm
+  - waybill
