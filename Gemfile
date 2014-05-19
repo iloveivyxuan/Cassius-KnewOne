@@ -96,7 +96,8 @@ group :development do
   gem 'capistrano', '~> 3.1', require: false
   gem 'capistrano-rails', '~> 1.1', require: false
   gem 'capistrano-bundler', '~> 1.1', require: false
-  gem 'capistrano-rvm', require: false
+  #gem 'capistrano-rvm', require: false
+  gem 'rvm1-capistrano3', require: false
   gem 'capistrano3-unicorn', require: false
   gem 'capistrano-sidekiq', require: false
 end
