@@ -9,6 +9,9 @@ Making::Application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  # Use a different cache store in production
+  config.cache_store = :redis_store, {namespace: "KO", expires_in: 1.day}
+
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false

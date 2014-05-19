@@ -82,6 +82,9 @@ gem 'sitemap_generator'
 gem 'nokogiri'
 gem 'browser'
 
+# cache
+gem 'redis-rails'
+
 # servers
 group :production do
   gem 'unicorn'
