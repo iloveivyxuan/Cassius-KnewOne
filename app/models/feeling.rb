@@ -5,7 +5,7 @@ class Feeling < Post
 
   field :photo_ids, type: Array, default: []
 
-  belongs_to :thing, counter_cache: true
+  belongs_to :thing, counter_cache: true, index: true
 
   validates :content, presence: true, length: { maximum: 140 }
 

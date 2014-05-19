@@ -7,7 +7,7 @@ class Comment
 
   field :content, type: String
 
-  belongs_to :post
+  belongs_to :post, index: true
   belongs_to :author, class_name: 'User'
   validates :author, presence: true
 
