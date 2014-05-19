@@ -1,1 +1,2 @@
-ul.things.infinite#things= render @things, size: :normal, img_lazy: true
+- cache("thing_index_#{request.query_string}_#{@things.first.created_at.to_i}")
+  ul.things.infinite#things= render @things, size: :normal, img_lazy: true
