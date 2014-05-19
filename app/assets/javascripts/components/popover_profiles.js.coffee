@@ -9,8 +9,6 @@ Making.PopoverProfiles = ->
       trigger: 'manual'
     }) unless $element.data('bs.popover')
 
-    $element.popover('show')
-
     $('.popover').on('mouseleave', -> $element.popover('hide'))
 
     $element.on('mouseleave', ->
