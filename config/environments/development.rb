@@ -10,7 +10,7 @@ Making::Application.configure do
   config.cache_classes = false
 
   # Use a different cache store in production
-  config.cache_store = :redis_store, {namespace: "KO", expires_in: 1.day}
+  config.cache_store = :redis_store, {namespace: "KO", expires_in: 10.minute}
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
