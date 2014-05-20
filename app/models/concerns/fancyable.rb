@@ -23,6 +23,7 @@ module Fancyable
   def unfancy(user)
     return unless fancied?(user)
     fanciers.delete user
+    user.fancies.delete self
     update_attribute :fanciers_count, fanciers.count
     user.inc karma: -Settings.karma.fancy
   end

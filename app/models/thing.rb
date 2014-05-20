@@ -128,6 +128,7 @@ class Thing < Post
   def unown(user)
     return unless owned?(user)
     owners.delete user
+    user.owns.delete self
     user.inc karma: -Settings.karma.own
   end
 
