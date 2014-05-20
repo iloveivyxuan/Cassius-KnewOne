@@ -1,3 +1,4 @@
-= senders(notification)
-| 赞了我的帖子
-= link_to notification.context.title, group_topic_path(notification.context.group, notification.context), target: '_blank'
+- if group = notification.context.group
+  = senders(notification)
+  | 赞了我的帖子
+  = link_to notification.context.title, group_topic_path(group, notification.context), target: '_blank'

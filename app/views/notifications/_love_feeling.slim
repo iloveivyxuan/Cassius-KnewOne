@@ -1,5 +1,4 @@
-- feeling = notification.context
-- if feeling && thing = feeling.thing
+- if thing = notification.context.thing
   = senders(notification)
   | 赞了我的
-  = link_to '短评', thing_feeling_path(thing, feeling), target: '_blank'
+  = link_to '短评', thing_feeling_path(thing, notification.context), target: '_blank'
