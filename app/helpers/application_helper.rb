@@ -128,6 +128,10 @@ module ApplicationHelper
     time.strftime '%Y-%m-%d %H:%M:%S'
   end
 
+  def date_text(time)
+    time.strftime '%Y-%m-%d'
+  end
+
   def no_link_href
     '#'
   end

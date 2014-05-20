@@ -4,10 +4,11 @@
   header.header
     h1= link_to(tp.title, tp.thing)
     p= tp.subtitle
-    = link_to @thing.author, class: "avatar" do
-      = image_tag @thing.author.avatar.url(:small), class: "img-circle", alt: @thing.author.name
-      label.name= @thing.author.name
-      small （创造者）
+    - if @thing.maker
+      = link_to @thing.maker, class: "avatar" do
+        = image_tag @thing.maker.avatar.url(:small), class: "img-circle", alt: @thing.maker.name
+        label.name= @thing.maker.name
+        small （创造者）
 
   section.actions
     .fanciers= render "shared/fancy", p: tp
@@ -29,7 +30,7 @@
         = image_tag @thing.author.avatar.url(:small), class: "img-circle", alt: @thing.author.name
         label.name= @thing.author.name
         small （分享者）
-      time.pull-right XXXX-XX-XX
+      time.pull-right = date_text(@thing.created_at)
     - if tp.summary.present?
       section
         article
@@ -56,9 +57,7 @@
     header
       h3.title
         i.fa.fa-comments
-        | 短评（
-        | XXX
-        | ）
+        | 短评（#{@thing.feelings_count}）
       - if user_signed_in?
         = link_to_with_icon "查看更多", "fa fa-angle-double-right", thing_feelings_path(tp.thing), class: "more"
       - else
@@ -74,9 +73,7 @@
     header
       h3.title
         i.fa.fa-pencil
-        | 评测（
-        | XXX
-        | ）
+        | 评测（#{@thing.reviews_count}）
       - if user_signed_in?
         = link_to_with_icon "查看更多", "fa fa-angle-double-right", thing_reviews_path(tp.thing), class: "more"
       - else
