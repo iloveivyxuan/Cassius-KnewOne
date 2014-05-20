@@ -22,7 +22,7 @@ Making.PopoverProfiles = ->
     $element.popover('show')
 
   cache = Object.create({})
-  selector = '[class$="_author"], .comment > .avatar'
+  selector = '[data-popover-profile]'
 
   $(document).on('mouseenter', selector, (event) ->
     $target = $(event.target)
@@ -30,13 +30,13 @@ Making.PopoverProfiles = ->
 
     initialize($target)
 
-    url = $target.find('a[href^="/users/"]').attr('href')
+    userId = $target.attr('data-popover-profile')
 
-    if cache[url]
-      return update($target, cache[url])
+    if cache[userId]
+      return update($target, cache[userId])
 
-    $.get("#{url}/profile", (html) ->
-      cache[url] = html
+    $.get("/users/#{userId}/profile", (html) ->
+      cache[userId] = html
       update($target, html)
     )
   )

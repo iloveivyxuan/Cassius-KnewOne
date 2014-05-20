@@ -6,6 +6,7 @@ json.can_destroy can?(:destroy, comment)
 json.can_reply can?(:create, comment)
 
 json.author do
+  json.id comment.author.id.to_s
   json.name comment.author.name
   json.url url_for(comment.author)
   json.photo_url comment.author.avatar.url(:small)
