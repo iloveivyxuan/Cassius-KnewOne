@@ -1,0 +1,215 @@
+html.things_show {
+
+  &.mobile {
+    $gap_horizontal: 20px;
+
+    #wrapper {
+      @include wrapper(simple, $max-width: $screen-md-min);
+      padding: 0;
+    }
+
+    .avatar {
+      color: $gray;
+      display: inline-block;
+
+      img {
+        height: 30px;
+        margin-right: .5rem;
+        width: 30px;
+      }
+
+      .name {
+        @include text-overflow;
+
+        color: $text-color;
+        display: inline-block;
+        font-weight: normal;
+        line-height: 30px;
+        margin-bottom: 0;
+        max-width: 6em;
+        vertical-align: middle;
+      }
+    }
+
+    .groups_compact {
+
+      .card_compact {
+        background-color: transparent;
+        margin-bottom: 0;
+
+        img {
+          float: left;
+          height: 50px;
+          margin-right: 20px;
+          width: 50px;
+        }
+
+        h5 {
+          color: $text-color;
+          line-height: 30px;
+          margin: 0;
+        }
+
+        .members_count {
+          line-height: 20px;
+        }
+      }
+    }
+
+    .header {
+      background-color: #f8fafa;
+      padding: 20px 30px;
+      text-align: center;
+
+      h1 {
+        margin: 0 0 10px;
+        font-size: 25px;
+        font-weight: bold;
+        line-height: 35px;
+
+        a {
+          color: $text-color;
+        }
+      }
+
+      p {
+        color: $text-muted;
+      }
+
+      .name {
+        color: $gray;
+      }
+    }
+
+    .actions {
+      background-color: #eef1f1;
+      height: 50px;
+      padding: 10px 30px;
+      text-align: center;
+
+      > div {
+        display: inline-block;
+
+        > a {
+          color: $text-muted;
+          display: inline-block;
+          height: 30px;
+          line-height: 30px;
+          padding:  {
+            left: .5rem;
+            right: .5rem;
+          }
+
+          small {
+            padding-left: 5px;
+          }
+        }
+      }
+
+      .fa {
+        @include square(20px);
+        border-radius: 50%;
+        color: #eef1f1;
+        line-height: 20px;
+        vertical-align: middle;
+      }
+
+      .fanciers {
+        .fa { background-color: $red; }
+      }
+      .owners {
+        .fa { background-color: $green; }
+      }
+      .share {
+        .fa { background-color: $blue; }
+      }
+    }
+
+    .photos {
+      height: 210px;
+      overflow: hidden;
+      position: relative;
+
+      footer {
+        @include clearfix;
+        background-color: #111;
+        bottom: 0;
+        color: #fff;
+        height: 40px;
+        line-height: 40px;
+        opacity: .4;
+        padding: 0 $gap_horizontal;
+        position: absolute;
+        width: 100%;
+      }
+    }
+
+    .details {
+
+      > header {
+        @include clearfix;
+        background-color: #edeff0;
+        height: 50px;
+        padding: 10px $gap_horizontal;
+
+        time {
+          line-height: 30px;
+        }
+      }
+
+      > footer {
+        padding: 10px;
+      }
+    }
+
+    .section {
+
+      > header {
+        @include clearfix;
+        background-color: #458cc7;
+        color: #fff;
+        font-size: 14px;
+        height: 40px;
+
+        .title {
+          font-size: 14px;
+          float: left;
+          line-height: 40px;
+          margin: 0 0 0 $gap_horizontal;
+        }
+
+        .more {
+          background-color: darken(#458cc7, 5%);
+          color: #fff;
+          float: right;
+          line-height: 40px;
+          padding: 0 $gap_horizontal;
+        }
+      }
+
+      > footer {
+        padding: 10px;
+      }
+
+      &.details,
+      &.shopping {
+
+        > header {
+          background-color: #edeff0;
+          color: $text-color;
+        }
+      }
+      
+      &.shopping {
+
+        > header {
+
+          .more {
+            background-color: darken(#edeff0, 5%);
+            color: $text-color;
+          }
+        }
+      }
+    }
+  }
+}

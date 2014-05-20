@@ -30,6 +30,10 @@ ul, ol {
   padding-left: 0;
 }
 
+img {
+  max-width: 100%;
+}
+
 video {
   width: 100%    !important;
   height: auto   !important;
@@ -94,6 +98,10 @@ textarea {
 
 .btn-link {
   &:hover {text-decoration: none;}
+}
+
+.btn-block {
+  line-height: 26px;
 }
 
 .btn-xs {

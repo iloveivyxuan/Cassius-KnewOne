@@ -70,7 +70,15 @@ module ApplicationHelper
   end
 
   def page_class
-    ["#{controller_path.gsub('/', '_')}_#{action_name}", content_for(:page_class)].reject(&:blank?).join(' ')
+    ["#{controller_path.gsub('/', '_')}_#{action_name}",
+      if browser.mobile?
+        "mobile"
+      elsif browser.tablet?
+        "tablet"
+      else
+        "desktop"
+      end,
+      content_for(:page_class)].reject(&:blank?).join(' ')
   end
 
   def feed_link_tag
