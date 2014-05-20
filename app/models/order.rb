@@ -157,9 +157,9 @@ class Order
     confirm_free! if can_confirm_free?
   end
 
-  # after_save do
-  #   generate_waybill! if confirmed?
-  # end
+  after_save do
+    generate_waybill! if confirmed?
+  end
 
   default_scope -> { order_by(created_at: :desc) }
 
