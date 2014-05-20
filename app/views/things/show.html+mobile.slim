@@ -1,0 +1,6 @@
+- present @thing do |tp|
+  - page_title tp.full_title
+
+  #thing_title
+    h1= link_to(tp.title, tp.thing)
+    p= tp.subtitle
