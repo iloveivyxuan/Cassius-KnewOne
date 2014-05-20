@@ -52,6 +52,7 @@ Making::Application.routes.draw do
       get 'followers'
       post 'followings', to: :follow
       delete 'followings', to: :unfollow
+      get 'profile'
     end
   end
 

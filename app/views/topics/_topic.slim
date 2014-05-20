@@ -12,7 +12,8 @@ article.article_compact
           .metas_group
             .meta.topic_group= tp.group
         .metas_group
-          .meta.topic_author= tp.author_name
+          .meta.topic_author data-popover-profile=topic.author.id
+            = tp.author_name
         .metas_group
           .meta.topic_commented_at= tp.last_commented_at
           .meta.topic_comments= tp.comments_count
