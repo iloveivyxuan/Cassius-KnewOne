@@ -14,7 +14,7 @@
     position: relative;
 
     .profile_info {
-      height: $popover-profile-avatar-height;
+      height: 148px;
       overflow: hidden;
 
       .profile_name {
@@ -23,8 +23,8 @@
         a {
           color: black;
           font-weight: bold;
-          font-size: 22px;
-          line-height: 24px;
+          font-size: 24px;
+          line-height: 27px;
         }
 
         .gender {
@@ -53,10 +53,10 @@
 
       .profile_description {
         margin-top: 15px;
-        font-size: 16px;
+        font-size: 17px;
 
         display: -webkit-box;
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
       }
 
@@ -101,9 +101,7 @@
     }
 
     .profile_actions {
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 1px solid $gray-lighter;
+      margin-top: 12px;
 
       .profile_action_dialog,
       .profile_action_follow {
