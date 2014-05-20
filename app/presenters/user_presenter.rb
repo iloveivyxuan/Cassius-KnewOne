@@ -21,10 +21,22 @@ class UserPresenter < ApplicationPresenter
   end
 
   def link_to_with_avatar(size, options={}, img_options={})
-    link_to avatar(size, img_options), user, options.merge(title: user.name)
+    link_to avatar(size, add_popover_options(img_options)),
+            user,
+            options.merge(title: user.name)
   end
 
   def link_to_with_name(options={})
     link_to name, user, options
+  end
+
+  def link_to_with_popoverable_name(options={})
+    link_to_with_name(add_popover_options(options))
+  end
+
+  private
+
+  def add_popover_options(options)
+    options.merge(data: {'popover-profile' => user.id.to_s})
   end
 end

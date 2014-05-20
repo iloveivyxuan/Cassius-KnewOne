@@ -310,6 +310,7 @@ do (exports = Making) ->
     exports.InitUIDropdownBox()
     exports.SetupOlark('[href="#olark_chat"]')
     exports.GoTop()
+    exports.PopoverProfiles()
 
     # TODO
     ($popovertoggle = $(".popover-toggle")).length && $popovertoggle.popover()

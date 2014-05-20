@@ -16,6 +16,6 @@
       i.fa.fa-plus
       | 关注
 - else
-  = link_to '#login-modal', class: 'btn btn-primary follow_btn' do
+  = link_to '#', class: 'btn btn-primary follow_btn', data: { toggle: 'modal', target: '#login-modal' } do
     i.fa.fa-plus
     | 关注

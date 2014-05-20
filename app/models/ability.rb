@@ -139,7 +139,7 @@ class Ability
     can :read, Lottery
     can :read, User
     can [:owns, :fancies, :things, :reviews, :feelings,
-         :activities, :followings, :followers, :groups, :topics], User
+         :activities, :followings, :followers, :groups, :topics, :profile], User
     can [:buy, :groups, :comments, :wechat_qr, :random], Thing
   end
 

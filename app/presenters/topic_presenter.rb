@@ -49,6 +49,6 @@ class TopicPresenter < PostPresenter
   private
 
   def last_comment_author
-    present(topic.comments.first.author).link_to_with_name
+    present(topic.comments.first.author).link_to_with_popoverable_name
   end
 end
