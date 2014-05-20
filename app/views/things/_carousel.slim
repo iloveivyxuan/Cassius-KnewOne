@@ -1,4 +1,4 @@
-- cache("thing_show_#{tp.thing.id.to_s}_#{tp.thing.updated_at.to_i}_carousel") do
+- cache ['things', 'carousel', tp.thing]
   #thing_photos
     .carousel.slide
       .carousel-inner

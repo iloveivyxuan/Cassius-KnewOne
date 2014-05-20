@@ -1,4 +1,4 @@
-- cache_unless user_signed_in?, "things_actions_#{request.fullpath}_#{@thing.updated_at.to_i}"
+- cache_unless user_signed_in?, ['things', 'actions', @thing]
   .shop
     - if tp.price.present?
       #price.price= tp.price

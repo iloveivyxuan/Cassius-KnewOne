@@ -1,5 +1,5 @@
 - in_feeds = local_assigns.has_key? :feed_presenter
-- cache_unless user_signed_in?, "#{feeling.cache_key}_#{in_feeds}"
+- cache_unless user_signed_in?, [feeling, in_feeds]
   - if feeling.thing
     - present feeling do |feeling_presenter|
       - klass = 'feed_article feeling'

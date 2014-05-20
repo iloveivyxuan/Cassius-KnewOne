@@ -1,5 +1,5 @@
 - in_feeds = local_assigns.has_key? :feed_presenter
-- cache_unless user_signed_in?, "#{review.cache_key}_#{in_feeds}"
+- cache_unless user_signed_in?, [review, in_feeds]
   - if review.thing
     - present review do |review_presenter|
       - klass = 'feed_article review'

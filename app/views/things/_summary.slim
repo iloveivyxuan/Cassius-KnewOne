@@ -1,4 +1,4 @@
-- cache("thing_show_#{tp.thing.id.to_s}_#{tp.thing.updated_at.to_i}_summary") do
+- cache ['things', 'summary', @thing]
   #thing_author
     = link_to @thing.author do
       = image_tag @thing.author.avatar.url(:small), class: "img-circle", alt: @thing.author.name
