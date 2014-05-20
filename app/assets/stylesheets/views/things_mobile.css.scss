@@ -36,15 +36,16 @@ html.things_show {
         vertical-align: middle;
       }
 
-      small {
+      small,
+      time {
         color: #bbb;
         font-size: .8em;
+        padding-left: .5em;
       }
     }
 
     article {
 
-      .content {}
       .more {
         $summary_height: 200px;
 
@@ -183,6 +184,7 @@ html.things_show {
         @include square(20px);
         border-radius: 50%;
         color: #eef1f1;
+        font-size: .8em;
         line-height: 20px;
         vertical-align: middle;
       }

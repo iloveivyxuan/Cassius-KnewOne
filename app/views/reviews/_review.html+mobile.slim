@@ -1,0 +1,28 @@
+- in_feeds = local_assigns.has_key? :feed_presenter
+
+- if review.thing
+  - present review do |review_presenter|
+    - klass = 'feed_article_mobile review'
+    - klass += " #{feed_presenter.style}" if in_feeds
+
+    article class=klass id="review_#{review.id}"
+      header
+        = link_to @thing.author, class: "avatar" do
+          img class="img-circle" src="http://image.knewone.com/users/177bc72d11560b0fb1cc60b08b5a4aaf.jpg!small"
+          label.name KnewOne
+          time 2014-05-20
+        = review_presenter.score
+      section
+        h5.title = link_to_with_icon review_presenter.title, "fa fa-file-text-o", review_presenter.path
+        p = review_presenter.summary(80)
+        - if review_presenter.content_photos
+          ul
+            - review_presenter.content_photos(:small).take(8).each do |photo|
+              li= image_tag photo, alt: photo
+      footer
+        em
+          i.fa.fa-thumbs-up
+          | 11
+        em
+          i.fa.fa-comment
+          | 22

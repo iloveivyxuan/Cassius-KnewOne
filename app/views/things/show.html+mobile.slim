@@ -37,7 +37,7 @@
           .content
             = tp.content
           .more
-            = link_to_with_icon "查看全部", "fa fa-angle-double-down"
+            = link_to_with_icon "查看全部", "fa fa-angle-double-down", "#"
 
   section.section.shopping
     header
@@ -63,6 +63,7 @@
       - else
         = link_to_with_icon "查看更多", "fa fa-angle-double-right", "#", class: "more", data: {toggle: "modal", target: "#login-modal"}
     section
+      = render tp.thing.feelings.limit(1)
     footer
       - if user_signed_in?
         = link_to_with_icon "写短评", "fa fa-comments", "#", class: "btn btn-success btn-block"
@@ -79,6 +80,7 @@
       - else
         = link_to_with_icon "查看更多", "fa fa-angle-double-right", "#", class: "more", data: {toggle: "modal", target: "#login-modal"}
     section
+      = render tp.thing.reviews.limit(1)
     footer
       - if user_signed_in?
         = link_to_with_icon "写评测", "fa fa-pencil", new_thing_review_path(tp.thing), class: "btn btn-success btn-block"

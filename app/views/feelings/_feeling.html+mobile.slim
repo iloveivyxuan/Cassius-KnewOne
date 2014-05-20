@@ -1,0 +1,43 @@
+- in_feeds = local_assigns.has_key? :feed_presenter
+
+- if feeling.thing
+  - present feeling do |feeling_presenter|
+    - klass = 'feed_article_mobile feeling'
+    - klass += " #{feed_presenter.style}" if in_feeds
+
+    article class=klass id="feeling_#{feeling.id}"
+      header
+        = link_to @thing.author, class: "avatar" do
+          img class="img-circle" src="http://image.knewone.com/users/177bc72d11560b0fb1cc60b08b5a4aaf.jpg!small"
+          label.name KnewOne
+          time 2014-05-20
+        = feeling_presenter.score
+      section
+        = feeling_presenter.content
+        - if feeling.photos.present?
+          ul
+            - feeling.photos.each do |photo|
+              li
+                = link_to photo.url, data: {lightbox: "feeling_#{feeling.id}"} do
+                  = image_tag photo.url(:small), alt: photo.name
+      footer
+        p
+          em
+            i.fa.fa-thumbs-up
+            | 11
+          em
+            i.fa.fa-comment
+            | 22
+        p.clearfix
+          a.btn.btn-link.btn-xs href="#"
+            i.fa.fa-plus
+            | 1
+          a.btn.btn-link.btn-xs href="#"
+            i.fa.fa-pencil-square-o
+            | 写评论
+          a.btn.btn-link.btn-xs href="#"
+            i.fa.fa-pencil-square-o
+            | 分享
+          a.btn.btn-link.btn-xs.pull-right href="#"
+            i.fa.fa-trash-o
+            | 删除
