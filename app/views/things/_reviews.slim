@@ -1,4 +1,4 @@
-- cache("thing_show_#{tp.thing.id.to_s}_#{tp.thing.updated_at.to_i}_reviews") do
+- cache_unless(user_signed_in?, "thing_show_#{tp.thing.cache_key}_reviews") do
   - reviews = tp.reviews(5)
   - if reviews.present?
     #thing_reviews.clearfix
