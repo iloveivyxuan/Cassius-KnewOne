@@ -1,0 +1,12 @@
+#shopping_modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal"
+          | &times;
+        h4.modal-title = title
+      .modal-body
+        = details
+        - if tp.thing.valid_kinds.present?
+          .kinds
+            ul= render tp.thing.valid_kinds

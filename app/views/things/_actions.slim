@@ -3,7 +3,7 @@
     - if tp.price.present?
       #price.price= tp.price
     - if user_signed_in?
-      = tp.shopping_desc
+      = tp.render_shopping_desc
     - if tp.buy
       .buy= tp.buy
 

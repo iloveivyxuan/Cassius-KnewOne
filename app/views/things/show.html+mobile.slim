@@ -38,8 +38,9 @@
         i.fa.fa-shopping-cart
         | 购买
       = link_to_with_icon "查看详情", "fa fa-angle-double-down", "#", class: "more", data: {toggle: "modal", target: "#shopping_modal"}
+      = tp.render_shopping_desc_modal
     section
-      / = summary
+      = tp.shopping_desc
     footer
       - if user_signed_in?
         = link_to_with_icon "购买", "fa fa-sign-out", "#", class: "btn btn-success btn-block"
