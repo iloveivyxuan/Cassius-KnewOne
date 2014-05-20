@@ -7,6 +7,7 @@
     = link_to @thing.author, class: "avatar" do
       = image_tag @thing.author.avatar.url(:small), class: "img-circle", alt: @thing.author.name
       label.name= @thing.author.name
+      small （创造者）
 
   section.actions
     .fanciers= render "shared/fancy", p: tp
@@ -27,23 +28,27 @@
       = link_to @thing.author, class: "avatar pull-left" do
         = image_tag @thing.author.avatar.url(:small), class: "img-circle", alt: @thing.author.name
         label.name= @thing.author.name
+        small （分享者）
       time.pull-right XXXX-XX-XX
     - if tp.summary.present?
-      article
-        / = tp.content
+      section
+        article
+          .content
+            = tp.content
+          .more
+            = link_to_with_icon "查看全部", "fa fa-angle-double-down"
 
   section.section.shopping
     header
       h3.title
         i.fa.fa-shopping-cart
         | 购买
-      = link_to_with_icon "查看详情", "fa fa-angle-double-down", "#", class: "more", data: {toggle: "modal", target: "#shopping_modal"}
-      = tp.render_shopping_desc_modal
+      = link_to_with_icon "查看详情", "fa fa-angle-double-right", "#", class: "more", data: {toggle: "modal", target: "#shopping_modal"}
     section
       = tp.shopping_desc
     footer
       - if user_signed_in?
-        = link_to_with_icon "购买", "fa fa-sign-out", "#", class: "btn btn-success btn-block"
+        = link_to_with_icon "购买", "fa fa-shopping-cart", "#", class: "btn btn-success btn-block"
       - else
         = link_to_with_icon "请登录后购买", "fa fa-sign-in", "#", class: "btn btn-danger btn-block", data: {toggle: "modal", target: "#login-modal"}
 
@@ -58,11 +63,12 @@
         = link_to_with_icon "查看更多", "fa fa-angle-double-right", thing_feelings_path(tp.thing), class: "more"
       - else
         = link_to_with_icon "查看更多", "fa fa-angle-double-right", "#", class: "more", data: {toggle: "modal", target: "#login-modal"}
+    section
     footer
       - if user_signed_in?
-        = link_to_with_icon "添加短评", "fa fa-comments", "#", class: "btn btn-success btn-block"
+        = link_to_with_icon "写短评", "fa fa-comments", "#", class: "btn btn-success btn-block"
       - else
-        = link_to_with_icon "添加短评", "fa fa-comments", "#", class: "btn btn-success btn-block", data: {toggle: "modal", target: "#login-modal"}
+        = link_to_with_icon "写短评", "fa fa-comments", "#", class: "btn btn-success btn-block", data: {toggle: "modal", target: "#login-modal"}
 
   section.section
     header
@@ -75,29 +81,41 @@
         = link_to_with_icon "查看更多", "fa fa-angle-double-right", thing_reviews_path(tp.thing), class: "more"
       - else
         = link_to_with_icon "查看更多", "fa fa-angle-double-right", "#", class: "more", data: {toggle: "modal", target: "#login-modal"}
+    section
     footer
       - if user_signed_in?
-        = link_to_with_icon "添加评测", "fa fa-pencil", new_thing_review_path(tp.thing), class: "btn btn-success btn-block"
+        = link_to_with_icon "写评测", "fa fa-pencil", new_thing_review_path(tp.thing), class: "btn btn-success btn-block"
       - else
-        = link_to_with_icon "添加评测", "fa fa-pencil", "#", class: "btn btn-success btn-block", data: {toggle: "modal", target: "#login-modal"}
+        = link_to_with_icon "写评测", "fa fa-pencil", "#", class: "btn btn-success btn-block", data: {toggle: "modal", target: "#login-modal"}
 
-  section.section
-    header
-      h3.title
-        i.fa.fa-tint
-        | 小组
-      - if user_signed_in?
-        = link_to_with_icon "查看更多", "fa fa-angle-double-right", thing_stories_path(tp.thing), class: "more"
-      - else
-        = link_to_with_icon "查看更多", "fa fa-angle-double-right", "#", class: "more", data: {toggle: "modal", target: "#login-modal"}
-    section
-      ul.groups_compact = render tp.thing.fancy_groups(4)
+  - if tp.thing.fancy_groups.present?
+    section.section
+      header
+        h3.title
+          i.fa.fa-tint
+          | 小组
+        - if user_signed_in?
+          = link_to_with_icon "查看更多", "fa fa-angle-double-right", thing_stories_path(tp.thing), class: "more"
+        - else
+          = link_to_with_icon "查看更多", "fa fa-angle-double-right", "#", class: "more", data: {toggle: "modal", target: "#login-modal"}
+      section
+        ul.groups_compact = render tp.thing.fancy_groups(4)
 
-  section.section
-    header
-      h3.title
-        | 喜欢这个产品的人也喜欢
-      - if user_signed_in?
-        = link_to_with_icon "查看更多", "fa fa-angle-double-right", thing_stories_path(tp.thing), class: "more"
-      - else
-        = link_to_with_icon "查看更多", "fa fa-angle-double-right", "#", class: "more", data: {toggle: "modal", target: "#login-modal"}
+  - if tp.related_things.present?
+    section.section.relation
+      header
+        h3.title
+          | 喜欢这个产品的人也喜欢
+        - if user_signed_in?
+          = link_to_with_icon "查看更多", "fa fa-angle-double-right", thing_stories_path(tp.thing), class: "more"
+        - else
+          = link_to_with_icon "查看更多", "fa fa-angle-double-right", "#", class: "more", data: {toggle: "modal", target: "#login-modal"}
+      section.clearfix
+        figure.thing_thumb_experimental
+          img src="http://image.knewone.com/photos/90329fc2d038c87a01840c12bd8ba73a.jpg!review" alt="alt"
+          figcaption Click and Grow Refill
+        figure.thing_thumb_experimental
+          img src="http://image.knewone.com/photos/90329fc2d038c87a01840c12bd8ba73a.jpg!review" alt="alt"
+          figcaption Click and Grow Refill
+
+  = tp.render_shopping_desc_modal

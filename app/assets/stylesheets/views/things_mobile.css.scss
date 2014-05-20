@@ -3,8 +3,13 @@ html.things_show {
   &.mobile {
     $gap_horizontal: 20px;
 
+    body {
+      padding-bottom: 0;
+    }
+
     #wrapper {
       @include wrapper(simple, $max-width: $screen-md-min);
+      margin-bottom: 0;
       padding: 0;
     }
 
@@ -24,10 +29,77 @@ html.things_show {
         color: $text-color;
         display: inline-block;
         font-weight: normal;
+        font-size: .8em;
         line-height: 30px;
         margin-bottom: 0;
         max-width: 6em;
         vertical-align: middle;
+      }
+
+      small {
+        color: #bbb;
+        font-size: .8em;
+      }
+    }
+
+    article {
+
+      .content {}
+      .more {
+        $summary_height: 200px;
+
+        height: $summary_height + 40px;
+        margin-top: -($summary_height + 28px);
+        padding-bottom: 0;
+        position: relative;
+
+        a {
+          background-color: #f5f5f5;
+          bottom: 0;
+          color: $gray;
+          height: 40px;
+          line-height: 40px;
+          position: absolute;
+          text-align: center;
+          width: 100%;
+
+          &:hover {
+            background-color: darken(#f5f5f5, 5%);
+          }
+
+          &:before {
+            @include background-image(linear-gradient(bottom, #f5f5f5 5%, rgba(255, 255, 255, 0) 100%));
+            content: '';
+            height: 20px;
+            left: 0;
+            position: absolute;
+            width: 100%;
+            top: -20px;
+          }
+
+          .fa {
+            font-size: 18px;
+            vertical-align: -1px;
+          }
+        }
+      }
+    }
+
+    .thing_thumb_experimental {
+      float: left;
+      position: relative;
+      width: 50%;
+
+      figcaption {
+        background-color: #111;
+        bottom: 0;
+        color: #fff;
+        height: 40px;
+        line-height: 40px;
+        opacity: .4;
+        padding: 0 $gap_horizontal;
+        position: absolute;
+        width: 100%;
       }
     }
 
@@ -74,6 +146,7 @@ html.things_show {
 
       p {
         color: $text-muted;
+        margin-bottom: 20px;
       }
 
       .name {
@@ -149,8 +222,6 @@ html.things_show {
       > header {
         @include clearfix;
         background-color: #edeff0;
-        height: 50px;
-        padding: 10px $gap_horizontal;
 
         time {
           line-height: 30px;
@@ -187,8 +258,12 @@ html.things_show {
         }
       }
 
+      > section {
+        padding: $gap_horizontal;
+      }
+
       > footer {
-        padding: 10px;
+        padding: 0 10px 10px;
       }
 
       &.details,
@@ -199,7 +274,15 @@ html.things_show {
           color: $text-color;
         }
       }
-      
+
+      &.details {
+
+        > header {
+          height: 50px;
+          padding: 10px $gap_horizontal;
+        }
+      }
+
       &.shopping {
 
         > header {
@@ -208,6 +291,13 @@ html.things_show {
             background-color: darken(#edeff0, 5%);
             color: $text-color;
           }
+        }
+      }
+
+      &.relation {
+
+        > section {
+          padding: 0;
         }
       }
     }
