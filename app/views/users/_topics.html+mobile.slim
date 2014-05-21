@@ -1,0 +1,21 @@
+- if topic and topic.group
+  article.feed_article_mobile.topic id="topic_#{topic.id}"
+    - present topic do |tp|
+      header
+        label.avatar
+          = tp.author_avatar(:small, class: "img-circle")
+          = tp.author_name
+        = tp.created_at
+      section
+        h5.title = link_to_with_icon tp.title, "fa fa-file-text-o", tp.path
+        p= tp.summary(120)
+        ul
+          - tp.content_photos(:small).take(8).each do |photo|
+            li= image_tag photo, alt: photo
+      footer
+        em
+          i.fa.fa-thumbs-up
+          = topic.lovers_count
+        em
+          i.fa.fa-comment
+          = topic.comments.count

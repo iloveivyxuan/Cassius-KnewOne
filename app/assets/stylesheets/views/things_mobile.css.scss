@@ -286,7 +286,10 @@ html.things_show {
       &.reviews {
 
         > section {
-          padding-top: 0;
+          padding: {
+            bottom: 0;
+            top: 0;
+          }
         }
       }
 

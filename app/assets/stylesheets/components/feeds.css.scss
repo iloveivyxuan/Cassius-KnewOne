@@ -378,11 +378,9 @@ html.users_reviews {
 
 
 .feed_article_mobile {
-  padding-bottom: 1rem;
-  padding-top: 1rem;
-
-  &:last-child {
-    padding-bottom: 0;
+  padding: {
+    bottom: 1rem;
+    top: 1rem;
   }
 
   > header {
