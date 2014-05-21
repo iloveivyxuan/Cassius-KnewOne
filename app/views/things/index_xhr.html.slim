@@ -1,2 +1,2 @@
-- cache ['things', 'index_xhr', @things.first, request.query_string]
+- cache_unless user_signed_in?, ['things', 'index_xhr', @things.first, request.query_string]
   ul.things.infinite#things= render @things, size: :normal, img_lazy: true
