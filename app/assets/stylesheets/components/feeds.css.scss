@@ -386,6 +386,14 @@ html.users_reviews {
       float: left;
     }
 
+    time {
+      color: #bbb;
+      display: inline-block;
+      font-size: .8em;
+      line-height: 30px;
+      padding-left: .5em;
+    }
+
     .score {
       float: right;
       margin: 0;
@@ -413,6 +421,7 @@ html.users_reviews {
       color: $text-muted;
       line-height: 22px;
       margin-bottom: 1rem;
+      word-break: break-all;
     }
 
     > ul {
@@ -421,6 +430,10 @@ html.users_reviews {
       margin-bottom: 1rem;
       max-height: 80px;
       overflow: hidden;
+
+      &:empty {
+        margin-bottom: 0;
+      }
 
       > li {
         float: left;
@@ -446,7 +459,7 @@ html.users_reviews {
         @include square(20px);
         border-radius: 50%;
         color: #fff;
-        font-size: .8em;
+        font-size: .7em;
         line-height: 20px;
         vertical-align: middle;
         text-align: center;
@@ -468,6 +481,10 @@ html.users_reviews {
         background-color: #6e6e6e;
         color: #ececec;
       }
+    }
+
+    p:last-child {
+      margin-bottom: 0;
     }
   }
 }

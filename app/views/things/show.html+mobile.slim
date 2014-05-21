@@ -44,7 +44,8 @@
       h3.title
         i.fa.fa-shopping-cart
         | 购买
-      = link_to_with_icon "查看详情", "fa fa-angle-double-right", "#", class: "more", data: {toggle: "modal", target: "#shopping_modal"}
+      - if tp.shopping_desc.present?
+        = link_to_with_icon "查看详情", "fa fa-angle-double-right", "#", class: "more", data: {toggle: "modal", target: "#shopping_modal"}
     section
       = tp.shopping_desc
     footer

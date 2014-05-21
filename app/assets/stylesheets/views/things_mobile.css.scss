@@ -16,6 +16,11 @@ html.things_show {
     .avatar {
       color: $gray;
       display: inline-block;
+      font-style: normal;
+
+      a {
+        color: $gray;
+      }
 
       img {
         height: 30px;
@@ -36,8 +41,7 @@ html.things_show {
         vertical-align: middle;
       }
 
-      small,
-      time {
+      small {
         color: #bbb;
         font-size: .8em;
         padding-left: .5em;
@@ -45,6 +49,10 @@ html.things_show {
     }
 
     article {
+
+      .content {
+        word-break: break-all;
+      }
 
       .more {
         $summary_height: 200px;
@@ -153,6 +161,10 @@ html.things_show {
       .name {
         color: $gray;
       }
+
+      > :last-child {
+        margin-bottom: 0;
+      }
     }
 
     .actions {
@@ -184,7 +196,7 @@ html.things_show {
         @include square(20px);
         border-radius: 50%;
         color: #eef1f1;
-        font-size: .8em;
+        font-size: .7em;
         line-height: 20px;
         vertical-align: middle;
       }
@@ -239,7 +251,7 @@ html.things_show {
 
       > header {
         @include clearfix;
-        background-color: #458cc7;
+        background-color: $navbar-inverse-bg;
         color: #fff;
         font-size: 14px;
         height: 40px;
@@ -252,7 +264,7 @@ html.things_show {
         }
 
         .more {
-          background-color: darken(#458cc7, 5%);
+          background-color: lighten($navbar-inverse-bg, 5%);
           color: #fff;
           float: right;
           line-height: 40px;
@@ -262,6 +274,10 @@ html.things_show {
 
       > section {
         padding: $gap_horizontal;
+
+        &:empty {
+          padding: 0 0 10px 0;
+        }
       }
 
       > footer {

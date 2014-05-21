@@ -7,10 +7,10 @@
 
     article class=klass id="feeling_#{feeling.id}"
       header
-        = link_to @thing.author, class: "avatar" do
-          img class="img-circle" src="http://image.knewone.com/users/177bc72d11560b0fb1cc60b08b5a4aaf.jpg!small"
-          label.name KnewOne
-          = present(feeling).created_at
+        em.avatar
+          = feeling_presenter.author_avatar(:small, class: "img-circle")
+          = feeling_presenter.author_name
+        = present(feeling).created_at
         = feeling_presenter.score
       section
         = feeling_presenter.content
