@@ -25,6 +25,7 @@ gem 'omniauth-oauth2', github: 'intridea/omniauth-oauth2'
 gem 'omniauth-weibo-oauth2'
 gem 'omniauth-twitter'
 gem 'omniauth-wechat', github: 'jasl/omniauth-wechat'
+gem 'omniauth-qq-oauth2', github: 'sunbo/omniauth-qq-oauth2'
 gem 'weibo_2', github: 'simsicon/weibo_2'
 gem 'twitter', '>= 5.8.0'
 gem 'cancancan', '~> 1.7.0'
@@ -59,7 +60,7 @@ gem 'handlebars_assets'
 gem 'sass-rails', '~> 4.0.3' # Resolve dependency with sprocket
 gem 'compass-rails'
 gem 'bootstrap-sass'
-gem 'font-awesome-rails'
+gem 'font-awesome-rails', github: 'bokmann/font-awesome-rails'
 
 # services
 gem 'whenever', require: false

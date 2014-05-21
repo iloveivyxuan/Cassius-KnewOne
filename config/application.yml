@@ -17,6 +17,9 @@ defaults: &defaults
   twitter:
     consumer_key: ""
     consumer_secret: ""
+  qq:
+    consumer_key: '101097605'
+    consumer_secret: '20ca8f3cc9ba72c9b2f4126d1a4ffc49'
   kexue:
     enable: false
   karma:
