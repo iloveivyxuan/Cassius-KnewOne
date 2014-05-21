@@ -213,7 +213,7 @@ class ThingPresenter < PostPresenter
     if thing.author == current_user
       "我在#{share_topic} 分享了一个酷产品: #{title} ! "
     else
-      "我在#{share_topic} 发现了一个酷产品: 由 @#{thing.author.name} 分享的 #{title} ! "
+      "我在#{share_topic} 发现了一个酷产品: 由 #{share_author_name} 分享的 #{title} ! "
     end + thing_url(thing, refer: 'weibo')
   end
 

@@ -22,7 +22,7 @@ class FeelingPresenter < PostPresenter
     if feeling.author == current_user
       "我在 #{share_topic} 对 #{feeling.thing.title} 发布了短评: "
     else
-      "我在 #{share_topic} 分享了 @#{feeling.author.name} 对 #{feeling.thing.title} 的短评: "
+      "我在 #{share_topic} 分享了 #{share_author_name} 对 #{feeling.thing.title} 的短评: "
     end + summary(80) + " " + thing_feeling_url(feeling.thing, feeling, refer: 'weibo')
   end
 

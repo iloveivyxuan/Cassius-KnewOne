@@ -14,7 +14,7 @@ class ReviewPresenter < PostPresenter
     if review.author == current_user
       "我在#{share_topic} 为 #{review.thing.title} 写了一篇新评测《#{title}》: "
     else
-      "我在#{share_topic} 分享了 @#{review.author.name} 对 #{review.thing.title} 的评测《#{title}》: "
+      "我在#{share_topic} 分享了 #{share_author_name} 对 #{review.thing.title} 的评测《#{title}》: "
     end + %Q{“#{summary(40)}” } + thing_review_url(review.thing, review, refer: 'weibo')
   end
 

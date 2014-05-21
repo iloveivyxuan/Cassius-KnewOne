@@ -75,6 +75,14 @@ class PostPresenter < ApplicationPresenter
   def share_pic(size)
   end
 
+  def share_author_name
+    if @object.author.current_auth
+      '@' + @object.author.current_auth.name
+    else
+      @object.author.name
+    end
+  end
+
   def link_to_share
     link_to_with_icon "分享", "fa fa-share",
     user_signed_in? ? "#share_modal" : "#login-modal",
