@@ -13,7 +13,7 @@
         = present(review).created_at
         = review_presenter.score
       section
-        h5.title = link_to_with_icon review_presenter.title, "fa fa-file-text-o", review_presenter.path
+        h5.title = link_to review_presenter.title, review_presenter.path
         p = review_presenter.summary(80)
         - if review_presenter.content_photos
           ul

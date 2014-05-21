@@ -18,15 +18,45 @@ html.things_show {
       @extend label.avatar;
     }
 
+    .item {
+      border-radius: 2px;
+      color: #fff;
+      display: inline-block;
+      font-size: .8em;
+      line-height: 28px;
+      overflow: hidden;
+
+      label,
+      span {
+        display: inline-block;
+        padding: 0 8px;
+      }
+
+      label {
+        background-color: $navbar-inverse-bg;
+        font-weight: normal;
+        margin-bottom: 0;
+      }
+
+      span {
+        background-color: darken($navbar-inverse-bg, 5%);
+      }
+    }
+
     article {
+      $summary_height: 200px;
 
       .post_content {
         word-break: break-all;
+
+        &.is_folded {
+          max-height: $summary_height;
+          overflow: hidden;
+          padding-bottom: 0;
+        }
       }
 
       .more {
-        $summary_height: 200px;
-
         height: $summary_height + 40px;
         margin-top: -($summary_height + 28px);
         padding-bottom: 0;
@@ -187,17 +217,33 @@ html.things_show {
       overflow: hidden;
       position: relative;
 
+      ul {
+        @include clearfix;
+
+        li {
+          float: left;
+          text-align: center;
+
+          img {
+            height: 210px;
+          }
+        }
+      }
+
       footer {
         @include clearfix;
-        background-color: #111;
+        background-color: rgba(#111, .4);
         bottom: 0;
         color: #fff;
         height: 40px;
         line-height: 40px;
-        opacity: .4;
         padding: 0 $gap_horizontal;
         position: absolute;
         width: 100%;
+
+        em {
+          font-style: normal;
+        }
       }
     }
 

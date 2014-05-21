@@ -13,13 +13,13 @@
         = present(feeling).created_at
         = feeling_presenter.score
       section
-        = feeling_presenter.content
         - if feeling.photos.present?
           ul
             - feeling.photos.each do |photo|
               li
                 = link_to photo.url, data: {lightbox: "feeling_#{feeling.id}"} do
                   = image_tag photo.url(:small), alt: photo.name
+        = feeling_presenter.content
       footer
         p
           em

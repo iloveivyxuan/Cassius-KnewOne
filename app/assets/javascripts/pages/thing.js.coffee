@@ -1,23 +1,35 @@
 window.Making = do (exports = window.Making || {}) ->
-  _$content       = $('#thing_content').find('.post_content')
-  _$read_more     = _$content.next('.more')
-  _summary_height = parseInt(_$content.css('maxHeight')) - 1
 
   exports.InitThing = ->
-    if _$content.height() < _summary_height
-      _$content
-        .removeClass('is_folded')
-        .next('.more')
-          .remove()
+    exports.ReadMore('.post_content')
 
-    _$read_more.on 'click', (event) ->
-      event.preventDefault()
+    if $html.hasClass('mobile')
+      $frame = $('#wrapper > .photos')
+      $page  = $frame.find('.page')
+      $num   = $page.find('em')
 
-      $(@)
-        .prev('.post_content')
-          .removeClass('is_folded')
-        .end()
-        .remove()
+      $frame
+        .children('ul')
+        .children('li')
+          .css('width', $frame.width())
+      frame = new Sly $frame,
+        horizontal: 1
+        itemNav: 'forceCentered'
+        smart: 1
+        activateMiddle: 1
+        mouseDragging: 1
+        touchDragging: 1
+        releaseSwing: 1
+        startAt: 0
+        scrollBy: 1
+        speed: 300
+        elasticBounds: 1
+        dragHandle: 1
+        dynamicHandle: 1
+        clickBar: 1
+      .init()
+      frame.on 'active', (event, index)->
+        $num.text(index + 1)
 
   exports.InitFeelings = ->
     exports.EditorCompact('.feeling_form')
