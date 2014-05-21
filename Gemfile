@@ -122,7 +122,6 @@ group :development, :test do
   gem 'mongoid-rspec'
   gem 'guard-rspec'
   gem 'guard-livereload', github: 'guard/guard-livereload'
-  gem 'fabrication'
   gem 'ffaker'
   gem 'database_cleaner'
 

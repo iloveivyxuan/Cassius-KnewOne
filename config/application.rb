@@ -71,8 +71,7 @@ module Making
     config.generators do |g|
       g.assets false
       g.view_specs false
-      g.test_framework      :rspec, fixture: true
-      g.fixture_replacement :fabrication
+      g.test_framework :rspec, fixture: false
     end
 
     config.action_view.sanitized_allowed_tags = ['embed', 'iframe', 'strike', 'u']
