@@ -10,7 +10,7 @@
         = link_to @thing.author, class: "avatar" do
           img class="img-circle" src="http://image.knewone.com/users/177bc72d11560b0fb1cc60b08b5a4aaf.jpg!small"
           label.name KnewOne
-          time 2014-05-20
+          = present(review).created_at
         = review_presenter.score
       section
         h5.title = link_to_with_icon review_presenter.title, "fa fa-file-text-o", review_presenter.path
