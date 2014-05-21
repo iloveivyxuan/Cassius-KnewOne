@@ -13,44 +13,14 @@ html.things_show {
       padding: 0;
     }
 
-    .avatar {
-      color: $gray;
-      display: inline-block;
-      font-style: normal;
-
-      a {
-        color: $gray;
-      }
-
-      img {
-        height: 30px;
-        margin-right: .5rem;
-        width: 30px;
-      }
-
-      .name {
-        @include text-overflow;
-
-        color: $text-color;
-        display: inline-block;
-        font-weight: normal;
-        font-size: .8em;
-        line-height: 30px;
-        margin-bottom: 0;
-        max-width: 6em;
-        vertical-align: middle;
-      }
-
-      small {
-        color: #bbb;
-        font-size: .8em;
-        padding-left: .5em;
-      }
+    // TODO
+    a.avatar {
+      @extend label.avatar;
     }
 
     article {
 
-      .content {
+      .post_content {
         word-break: break-all;
       }
 
@@ -309,6 +279,14 @@ html.things_show {
             background-color: darken(#edeff0, 5%);
             color: $text-color;
           }
+        }
+      }
+
+      &.feelings,
+      &.reviews {
+
+        > section {
+          padding-top: 0;
         }
       }
 

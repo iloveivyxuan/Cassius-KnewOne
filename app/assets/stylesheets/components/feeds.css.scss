@@ -378,6 +378,12 @@ html.users_reviews {
 
 
 .feed_article_mobile {
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
 
   > header {
     @include clearfix;

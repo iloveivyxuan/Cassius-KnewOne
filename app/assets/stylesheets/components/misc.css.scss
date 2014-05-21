@@ -117,6 +117,40 @@ img.lazy {
   }
 }
 
+label.avatar {
+  color: $gray;
+  display: inline-block;
+  font-weight: normal;
+
+  a {
+    color: $gray;
+  }
+
+  img {
+    height: 30px;
+    margin-right: .5rem;
+    width: 30px;
+  }
+
+  .name {
+    @include text-overflow;
+
+    color: $text-color;
+    display: inline-block;
+    font-weight: normal;
+    font-size: .8em;
+    line-height: 30px;
+    margin-bottom: 0;
+    max-width: 6em;
+    vertical-align: middle;
+  }
+
+  small {
+    color: #bbb;
+    font-size: .8em;
+  }
+}
+
 .btn_block {
   color: $text-muted;
   display: block;

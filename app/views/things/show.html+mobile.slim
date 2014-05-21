@@ -34,8 +34,7 @@
     - if tp.summary.present?
       section
         article
-          .content
-            = tp.content
+          = tp.content
           .more
             = link_to_with_icon "查看全部", "fa fa-angle-double-down", "#"
 
@@ -54,7 +53,7 @@
       - else
         = link_to_with_icon "请登录后购买", "fa fa-sign-in", "#", class: "btn btn-danger btn-block", data: {toggle: "modal", target: "#login-modal"}
 
-  section.section
+  section.section.feelings
     header
       h3.title
         i.fa.fa-comments
@@ -67,11 +66,11 @@
       = render tp.thing.feelings.limit(1)
     footer
       - if user_signed_in?
-        = link_to_with_icon "写短评", "fa fa-comments", "#", class: "btn btn-success btn-block"
+        = link_to_with_icon "写短评", "fa fa-comments", thing_feelings_path(tp.thing), class: "btn btn-success btn-block"
       - else
         = link_to_with_icon "写短评", "fa fa-comments", "#", class: "btn btn-success btn-block", data: {toggle: "modal", target: "#login-modal"}
 
-  section.section
+  section.section.reviews
     header
       h3.title
         i.fa.fa-pencil
@@ -95,7 +94,7 @@
           i.fa.fa-tint
           | 小组
         - if user_signed_in?
-          = link_to_with_icon "查看更多", "fa fa-angle-double-right", thing_stories_path(tp.thing), class: "more"
+          = link_to_with_icon "查看更多", "fa fa-angle-double-right", groups_thing_path(tp.thing), class: "more"
         - else
           = link_to_with_icon "查看更多", "fa fa-angle-double-right", "#", class: "more", data: {toggle: "modal", target: "#login-modal"}
       section
