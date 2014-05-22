@@ -331,6 +331,8 @@ class User
   def revoke_refund_to_balance!(order, value, note)
     cents = (value * 100).to_i
 
+    return false if balance_cents < cents
+
     # prevent overselling
     u = User.where(id: self.id.to_s, balance_cents: self.balance_cents).
         find_and_modify :$set => {balance_cents: (self.balance_cents - cents)}
