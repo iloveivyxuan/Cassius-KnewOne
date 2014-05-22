@@ -296,6 +296,58 @@ html.things_show {
           line-height: 40px;
           padding: 0 $gap_horizontal;
         }
+
+        .nav {
+          height: 100%;
+
+          li {
+            display: table-cell;
+            width: 1%;
+
+            > a {
+              color: #fff;
+              display: block;
+              line-height: 34px;
+              padding: 0;
+              position: relative;
+              text-align: center;
+
+              .fa {
+                color: #fff;
+              }
+
+              .badge {
+                background-color: #fff;
+                color: $navbar-inverse-bg;
+                font-size: .8em;
+                margin-left: 5px;
+              }
+            }
+
+            &:not(:last-child) {
+
+              > a:after {
+                border-right: 1px solid darken($navbar-inverse-bg, 5%);
+                bottom: 10px;
+                content: '';
+                position: absolute;
+                right: 0;
+                top: 10px;
+              }
+            }
+
+            &.active {
+
+              > a {
+                background-color: darken($navbar-inverse-bg, 5%);
+                border: {
+                  bottom: 3px solid darken($navbar-inverse-bg, 20%);
+                  top: 3px solid darken($navbar-inverse-bg, 5%);
+                }
+              }
+            }
+          }
+        }
       }
 
       > section {
@@ -310,42 +362,13 @@ html.things_show {
         padding: 0 10px 10px;
       }
 
-      &.details,
-      &.shopping {
+      &.details {
 
         > header {
           background-color: #edeff0;
           color: $text-color;
-        }
-      }
-
-      &.details {
-
-        > header {
           height: 50px;
           padding: 10px $gap_horizontal;
-        }
-      }
-
-      &.shopping {
-
-        > header {
-
-          .more {
-            background-color: darken(#edeff0, 5%);
-            color: $text-color;
-          }
-        }
-      }
-
-      &.feelings,
-      &.reviews {
-
-        > section {
-          padding: {
-            bottom: 0;
-            top: 0;
-          }
         }
       }
 

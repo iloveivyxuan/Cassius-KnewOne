@@ -43,39 +43,30 @@
         - else
           = link_to_with_icon "请登录后购买", "fa fa-sign-in", "#", class: "btn btn-danger btn-block", data: {toggle: "modal", target: "#login-modal"}
 
-  section.section.feelings
+  section.section
     header
-      h3.title
-        i.fa.fa-comments
-        | 短评（#{@thing.feelings_count}）
-      - if user_signed_in?
-        = link_to_with_icon "查看更多", "fa fa-angle-double-right", thing_feelings_path(tp.thing), class: "more"
-      - else
-        = link_to_with_icon "查看更多", "fa fa-angle-double-right", "#", class: "more", data: {toggle: "modal", target: "#login-modal"}
-    section
-      = render tp.thing.feelings.limit(1)
-    footer
-      - if user_signed_in?
-        = link_to_with_icon "写短评", "fa fa-comments", thing_feelings_path(tp.thing), class: "btn btn-success btn-block"
-      - else
-        = link_to_with_icon "写短评", "fa fa-comments", "#", class: "btn btn-success btn-block", data: {toggle: "modal", target: "#login-modal"}
-
-  section.section.reviews
-    header
-      h3.title
-        i.fa.fa-pencil
-        | 评测（#{@thing.reviews_count}）
-      - if user_signed_in?
-        = link_to_with_icon "查看更多", "fa fa-angle-double-right", thing_reviews_path(tp.thing), class: "more"
-      - else
-        = link_to_with_icon "查看更多", "fa fa-angle-double-right", "#", class: "more", data: {toggle: "modal", target: "#login-modal"}
-    section
-      = render tp.thing.reviews.limit(1)
-    footer
-      - if user_signed_in?
-        = link_to_with_icon "写评测", "fa fa-pencil", new_thing_review_path(tp.thing), class: "btn btn-success btn-block"
-      - else
-        = link_to_with_icon "写评测", "fa fa-pencil", "#", class: "btn btn-success btn-block", data: {toggle: "modal", target: "#login-modal"}
+      ul.nav
+        li.active
+          = link_to "#feelings", data: {toggle: "tab"} do
+            i.fa.fa-comments
+            | 短评
+            span.badge #{@thing.feelings_count}
+        li
+          = link_to "#reviews", data: {toggle: "tab"} do
+            i.fa.fa-pencil
+            | 评测
+            span.badge #{@thing.reviews_count}
+        li
+          = link_to "#shopping_desc", data: {toggle: "tab"} do
+            i.fa.fa-home
+            | 购买详情
+    section.tab-content
+      .tab-pane.fade.in.active#feelings
+        = render tp.thing.feelings.limit(2)
+      .tab-pane.fade#reviews
+        = render tp.thing.reviews.limit(2)
+      .tab-pane.fade#shopping_desc
+        | shopping desc
 
   - if tp.related_things(2).present?
     section.section.relation
