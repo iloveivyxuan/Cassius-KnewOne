@@ -5,6 +5,19 @@ FactoryGirl.define do
     password 'password'
 
     before(:create) { |user| user.skip_confirmation! }
+
+    trait :with_addresses do
+      after(:create) { |user| create_list(:address, rand(1..2), user: user) }
+    end
+  end
+
+  factory :address do
+    user
+    province '广东省'
+    district { Faker::Address.city }
+    street   { Faker::Address.street_address }
+    name     { Faker::Address.secondary_address }
+    phone    { Faker::PhoneNumber.phone_number }
   end
 
   factory :thing do
