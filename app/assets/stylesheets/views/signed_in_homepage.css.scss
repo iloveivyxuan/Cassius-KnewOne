@@ -274,11 +274,18 @@ html.signed_in_homepage {
         }
       }
     }
+  }
 
-    .feed_article_mobile {
-      padding: {
-        left: 0;
-        right: 0;
+  &.mobile {
+
+    #activities {
+
+      .feed_article {
+        padding: {
+          left: 0;
+          right: 0;
+          top: 1rem;
+        }
       }
     }
   }

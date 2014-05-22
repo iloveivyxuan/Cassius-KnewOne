@@ -2,7 +2,7 @@
 
 - if review.thing
   - present review do |review_presenter|
-    - klass = 'feed_article_mobile review'
+    - klass = 'feed_article review'
     - klass += " #{feed_presenter.style}" if in_feeds
 
     article class=klass id="review_#{review.id}"

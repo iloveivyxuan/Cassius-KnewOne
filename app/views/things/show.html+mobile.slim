@@ -12,10 +12,10 @@
     .owners= render "things/own", tp: tp
     .share= tp.link_to_share
 
-  section.photos
-    ul
+  section.photos.carousel.slide data-ride="carousel" data-interval="4000"
+    ul.carousel-inner
       - tp.photos.each_with_index do |photo, index|
-        li
+        li class="item #{'active' if index == 0}"
           = image_tag photo.url(:review), alt: photo.name
     footer
       strong.pull-left = tp.price
@@ -43,9 +43,9 @@
         - else
           = link_to_with_icon "请登录后购买", "fa fa-sign-in", "#", class: "btn btn-danger btn-block", data: {toggle: "modal", target: "#login-modal"}
 
-  section.section
+  section.section.fullarea
     header
-      ul.nav
+      ul.bartab
         li.active
           = link_to "#feelings", data: {toggle: "tab"} do
             i.fa.fa-comments
@@ -62,21 +62,28 @@
             | 购买详情
     section.tab-content
       .tab-pane.fade.in.active#feelings
-        = render tp.thing.feelings.limit(2)
+        .box
+          header.clearfix
+            - if user_signed_in?
+              = link_to_with_icon "我要写短评", "fa fa-comments", thing_feelings_path(tp.thing), class: "pull-right"
+            - else
+              = link_to_with_icon "我要写短评", "fa fa-comments", "#", class: "pull-right", data: {toggle: "modal", target: "#login-modal"}
+          section
+            = render tp.thing.feelings.limit(2)
+          footer
+            button.btn.btn-default.btn-block.btn-xs type="button"
+              i.fa.fa-refresh
+              | 继续加载
       .tab-pane.fade#reviews
         = render tp.thing.reviews.limit(2)
       .tab-pane.fade#shopping_desc
         | shopping desc
 
   - if tp.related_things(2).present?
-    section.section.relation
+    section.section.fullarea
       header
         h3.title
           | 喜欢这个产品的人也喜欢
-        - if user_signed_in?
-          = link_to_with_icon "查看更多", "fa fa-angle-double-right", thing_stories_path(tp.thing), class: "more"
-        - else
-          = link_to_with_icon "查看更多", "fa fa-angle-double-right", "#", class: "more", data: {toggle: "modal", target: "#login-modal"}
       section.clearfix
         = render partial: "things/related_thing", collection: tp.related_things(2), as: :tp
 
@@ -127,7 +134,7 @@
             | 加入购物车
         - else
           = link_to_login
-        = link_to_with_icon "帮助", "fa fa-question", '#olark_chat', class: "support"
+        = link_to_with_icon "帮助", "fa fa-question", '#olark_chat', class: "support", data: {hint: "fa-question", url: asset_path('olark.js')}
 
 - content_for :script do
   javascript:

@@ -14,3 +14,10 @@ do (exports = Making) ->
 
   exports.keycode =
     ENTER: 13
+
+  if $html.hasClass('mobile')
+    exports.device = 'mobile'
+  else if $html.hasClass('tablet')
+    exports.device = 'tablet'
+  else if $html.hasClass('desktop')
+    exports.device = 'desktop'

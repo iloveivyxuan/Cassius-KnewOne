@@ -18,31 +18,6 @@ html.things_show {
       @extend label.avatar;
     }
 
-    .item {
-      border-radius: 2px;
-      color: #fff;
-      display: inline-block;
-      font-size: .8em;
-      line-height: 28px;
-      overflow: hidden;
-
-      label,
-      span {
-        display: inline-block;
-        padding: 0 8px;
-      }
-
-      label {
-        background-color: $navbar-inverse-bg;
-        font-weight: normal;
-        margin-bottom: 0;
-      }
-
-      span {
-        background-color: darken($navbar-inverse-bg, 5%);
-      }
-    }
-
     article {
       $summary_height: 200px;
 
@@ -97,9 +72,7 @@ html.things_show {
     .thing_thumb_experimental {
       @include stretch_img;
       float: left;
-      // height: 0;
       padding-bottom: 50%;
-      // position: relative;
       width: 50%;
 
       figcaption {
@@ -227,16 +200,11 @@ html.things_show {
       overflow: hidden;
       position: relative;
 
-      ul {
-        @include clearfix;
+      .item {
+        text-align: center;
 
-        li {
-          float: left;
-          text-align: center;
-
-          img {
-            height: 210px;
-          }
+        img {
+          height: 210px;
         }
       }
 
@@ -297,7 +265,7 @@ html.things_show {
           padding: 0 $gap_horizontal;
         }
 
-        .nav {
+        .bartab {
           height: 100%;
 
           li {
@@ -356,10 +324,37 @@ html.things_show {
         &:empty {
           padding: 0 0 10px 0;
         }
+
+        .box {
+
+          > header {
+            background-color: #edf1f1;
+            padding: 10px;
+
+            a {
+              color: $gray;
+            }
+          }
+
+          > section {
+            padding: 10px;
+          }
+
+          > footer {
+            padding: 10px;
+          }
+        }
       }
 
       > footer {
         padding: 0 10px 10px;
+      }
+
+      &.fullarea {
+
+        > section {
+          padding: 0;
+        }
       }
 
       &.details {
@@ -369,13 +364,6 @@ html.things_show {
           color: $text-color;
           height: 50px;
           padding: 10px $gap_horizontal;
-        }
-      }
-
-      &.relation {
-
-        > section {
-          padding: 0;
         }
       }
     }

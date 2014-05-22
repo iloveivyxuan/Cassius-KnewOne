@@ -101,7 +101,10 @@ textarea {
 }
 
 .btn-block {
-  line-height: 26px;
+
+  @media (max-width: $screen-sm-max) {
+    line-height: 26px;
+  }
 }
 
 .btn-xs {

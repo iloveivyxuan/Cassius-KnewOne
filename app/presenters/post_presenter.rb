@@ -75,10 +75,10 @@ class PostPresenter < ApplicationPresenter
   def share_pic(size)
   end
 
-  def link_to_share
+  def link_to_share(klass = 'share_btn')
     link_to_with_icon "分享", "fa fa-share",
     user_signed_in? ? "#share_modal" : "#login-modal",
-    title: "分享", class: 'share_btn',
+    title: "分享", class: klass,
     data: {toggle: 'modal',
       content: share_content,
       pic: share_pic(:huge),

@@ -3,36 +3,21 @@ window.Making = do (exports = window.Making || {}) ->
   exports.InitThing = ->
     exports.ReadMore('.post_content')
 
-    if $html.hasClass('mobile')
-      $frame = $('#wrapper > .photos')
-      $page  = $frame.find('.page')
-      $num   = $page.find('em')
+    switch exports.device
 
-      $frame
-        .children('ul')
-        .children('li')
-          .css('width', $frame.width())
-      frame = new Sly $frame,
-        horizontal: 1
-        itemNav: 'forceCentered'
-        smart: 1
-        activateMiddle: 1
-        mouseDragging: 1
-        touchDragging: 1
-        releaseSwing: 1
-        startAt: 0
-        scrollBy: 1
-        speed: 300
-        elasticBounds: 1
-        dragHandle: 1
-        dynamicHandle: 1
-        clickBar: 1
-      .init()
-      frame.on 'active', (event, index)->
-        $num.text(index + 1)
+      when 'mobile'
+        $carousel = $('#wrapper > .photos')
+        $page_num = $carousel.find('.page').find('em')
 
-    if $html.hasClass('mobile')
-      exports.CartItemNew()
+        $carousel.on 'release', (event) ->
+          $page_num.text(
+            $carousel
+              .find('.carousel-inner')
+              .children('.item.active')
+              .index() + 1
+          )
+
+        exports.CartItemNew()
 
   exports.InitFeelings = ->
     exports.EditorCompact('.feeling_form')
