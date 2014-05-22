@@ -28,4 +28,11 @@ FactoryGirl.define do
     categories { ["category-#{rand(3)}"] }
 
   end
+
+  factory :order do
+    user
+    address
+    state :pending
+    deliver_by :sf
+  end
 end
