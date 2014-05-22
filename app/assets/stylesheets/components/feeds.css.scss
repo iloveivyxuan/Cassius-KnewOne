@@ -395,9 +395,17 @@ html.mobile {
 
     > header {
       @include clearfix;
+      margin-bottom: .5rem;
 
       .avatar {
         float: left;
+
+        a:last-child {
+          @include text-overflow;
+          display: inline-block;
+          max-width: 50px;
+          vertical-align: middle;
+        }
       }
 
       time {
