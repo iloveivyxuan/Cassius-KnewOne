@@ -73,8 +73,8 @@
 
         img {
           @extend .img-circle;
-          height: 100%;
-          width:  100%;
+          height: $popover-profile-avatar-height;
+          width:  $popover-profile-avatar-height;
         }
       }
 
