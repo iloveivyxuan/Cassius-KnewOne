@@ -1,7 +1,8 @@
+- from_id ||= nil
 li
   figure class="thing"
     .thing_thumb
-      = link_to tp.thing, target: "_blank"
+      = link_to thing_path(tp.thing, from_id: from_id), target: "_blank"
         = tp.photo(:normal)
     figcaption
       h5
