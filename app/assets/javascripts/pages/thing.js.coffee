@@ -31,6 +31,9 @@ window.Making = do (exports = window.Making || {}) ->
       frame.on 'active', (event, index)->
         $num.text(index + 1)
 
+    if $html.hasClass('mobile')
+      exports.CartItemNew()
+
   exports.InitFeelings = ->
     exports.EditorCompact('.feeling_form')
     # TODO Merge into EditorCompact.

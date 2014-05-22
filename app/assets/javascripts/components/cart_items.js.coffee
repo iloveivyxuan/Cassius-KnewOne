@@ -49,7 +49,7 @@ Making.CartItemNew = ->
     $('#mobile_buy_modal').on 'show.bs.modal', (e) ->
       $form = $form.find('button[type="submit"]').remove().end()
       $modal = $('#mobile_buy_modal .modal-body').empty()
-      $form.appendTo($modal).show()
+      $form.appendTo($modal).removeClass('hidden').show()
       $('#mobile_buy_modal .modal-footer .buy_button').click ->
         $form.trigger('submit')
         $('#mobile_buy_modal').modal('hide')

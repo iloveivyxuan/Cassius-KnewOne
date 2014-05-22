@@ -95,20 +95,28 @@ html.things_show {
     }
 
     .thing_thumb_experimental {
+      @include stretch_img;
       float: left;
-      position: relative;
+      // height: 0;
+      padding-bottom: 50%;
+      // position: relative;
       width: 50%;
 
       figcaption {
-        background-color: #111;
+        background-color: rgba(#111, .4);
         bottom: 0;
-        color: #fff;
         height: 40px;
         line-height: 40px;
-        opacity: .4;
         padding: 0 $gap_horizontal;
         position: absolute;
         width: 100%;
+
+        a {
+          @include text-overflow;
+          color: #fff;
+          display: inline-block;
+          width: 100%;
+        }
       }
     }
 
@@ -143,7 +151,7 @@ html.things_show {
       text-align: center;
 
       h1 {
-        margin: 0 0 10px;
+        margin: 0 0 5px;
         font-size: 25px;
         font-weight: bold;
         line-height: 35px;
@@ -155,11 +163,13 @@ html.things_show {
 
       p {
         color: $text-muted;
-        margin-bottom: 20px;
+        margin-bottom: 1rem;
       }
 
-      .name {
-        color: $gray;
+      .btn-link {
+        @include transition(background-color, .5s, ease);
+        @include button_compact(#fff, $navbar-inverse-bg);
+        border-radius: 3px;
       }
 
       > :last-child {
