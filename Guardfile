@@ -1,4 +1,4 @@
-notification :off
+notification :emacs
 
 guard 'livereload' do
   watch(%r{app/controllers/.+\.rb})
