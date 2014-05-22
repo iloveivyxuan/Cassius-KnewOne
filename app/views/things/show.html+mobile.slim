@@ -77,7 +77,7 @@
       - else
         = link_to_with_icon "写评测", "fa fa-pencil", "#", class: "btn btn-success btn-block", data: {toggle: "modal", target: "#login-modal"}
 
-  - if tp.related_things.present?
+  - if tp.related_things(2).present?
     section.section.relation
       header
         h3.title
@@ -87,7 +87,7 @@
         - else
           = link_to_with_icon "查看更多", "fa fa-angle-double-right", "#", class: "more", data: {toggle: "modal", target: "#login-modal"}
       section.clearfix
-        = render partial: "things/related_thing", collection: tp.related_things, as: :tp
+        = render partial: "things/related_thing", collection: tp.related_things(2), as: :tp
 
   = tp.render_shopping_desc_modal
 

@@ -200,8 +200,8 @@ class ThingPresenter < PostPresenter
     Category.any_in(name: thing.categories)
   end
 
-  def related_things
-    thing.related_things.map {|t| present(t)}
+  def related_things(size = 10)
+    @_related_things ||= thing.related_things(size).map {|t| present(t)}
   end
 
   def fancied?
