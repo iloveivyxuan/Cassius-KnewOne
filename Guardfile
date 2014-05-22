@@ -1,3 +1,5 @@
+notification :off
+
 guard 'livereload' do
   watch(%r{app/controllers/.+\.rb})
   watch(%r{app/views/.+\.(erb|haml|slim|jbuilder|builder)})
