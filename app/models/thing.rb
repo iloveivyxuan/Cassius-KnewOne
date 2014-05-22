@@ -84,7 +84,7 @@ class Thing < Post
   def cover
     begin
       Photo.find photo_ids.first
-    rescue Mongoid::Errors::DocumentNotFound
+    rescue Mongoid::Errors::DocumentNotFound, Mongoid::Errors::InvalidFind
       Photo.new
     end
   end
