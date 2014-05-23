@@ -37,11 +37,12 @@
           = tp.content
           .more
             = link_to_with_icon "查看全部", "fa fa-angle-double-down", "#"
-      footer
-        - if user_signed_in?
-          = link_to_with_icon "购买", "fa fa-shopping-cart", "#", class: "btn btn-success btn-block", data: {toggle: "modal", target: "#mobile_buy_modal"}
-        - else
-          = link_to_with_icon "请登录后购买", "fa fa-sign-in", "#", class: "btn btn-danger btn-block", data: {toggle: "modal", target: "#login-modal"}
+      - if @thing.self_run?
+        footer
+          - if user_signed_in?
+            = link_to_with_icon "购买", "fa fa-shopping-cart", "#", class: "btn btn-success btn-block", data: {toggle: "modal", target: "#mobile_buy_modal"}
+          - else
+            = link_to_with_icon "请登录后购买", "fa fa-sign-in", "#", class: "btn btn-danger btn-block", data: {toggle: "modal", target: "#login-modal"}
 
   section.section.fullarea.foo
     header
