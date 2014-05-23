@@ -103,7 +103,7 @@ Making::Application.routes.draw do
       end
     end
 
-    resources :feelings do
+    resources :feelings, except: [:new, :edit] do
       member do
         post 'vote'
         post 'unvote'

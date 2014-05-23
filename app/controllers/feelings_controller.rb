@@ -15,9 +15,6 @@ class FeelingsController < ApplicationController
   def show
   end
 
-  def new
-  end
-
   def create
     @feeling.author = current_user
     @feeling.content.gsub! /\r\n/, "\n"
@@ -30,10 +27,6 @@ class FeelingsController < ApplicationController
     else
       head :request_entity_too_large
     end
-  end
-
-  def edit
-    render 'new'
   end
 
   def update
