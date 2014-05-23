@@ -5,7 +5,7 @@
       label.avatar
         = tp.author_avatar(:small, class: "img-circle")
         = tp.author_name
-      label.feed_type 评测
+      label.feed_type 话题
       .feed_action
         = render partial: 'shared/voting', locals: {object: topic}
         =link_to "#{topic.comments.count} 评论", tp.path, class: "btn btn-link btn-xs", target: "_blank"
