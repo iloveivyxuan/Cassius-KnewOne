@@ -123,7 +123,7 @@ group :development, :test do
   gem 'mongoid-rspec'
   gem 'guard-rspec'
   gem 'guard-livereload', github: 'guard/guard-livereload'
-  gem 'ffaker'
+  gem 'faker'
   gem 'database_cleaner'
 
   # system notifications
