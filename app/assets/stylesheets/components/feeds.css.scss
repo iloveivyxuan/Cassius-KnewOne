@@ -34,6 +34,37 @@
   }
 }
 
+.feed_type {
+  display: inline-block;
+
+  a {
+    color: $gray;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .fa {
+    color: $text-muted;
+    margin-left: .5em;
+  }
+
+  .fa-heart  { color: $red; }
+  .fa-check  { color: $green; }
+  .fa-pencil { color: #134f5c; }
+  .fa-plus   { color: #134f5c; }
+  .fa-magic  { color: #134f5c; }
+
+  .feed_text {
+    display: none;
+
+    @media (min-width: $screen-sm-min) {
+      display: inline-block;
+    }
+  }
+}
+
 html.tablet,
 html.desktop {
   $part_left: 20%;
@@ -325,37 +356,6 @@ html.desktop {
 
     .btn {
       width: 60px;
-    }
-  }
-
-  .feed_type {
-    display: inline-block;
-
-    a {
-      color: $gray;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-    .fa {
-      color: $text-muted;
-      margin-left: .5em;
-    }
-
-    .fa-heart  { color: $red; }
-    .fa-check  { color: $green; }
-    .fa-pencil { color: #134f5c; }
-    .fa-plus   { color: #134f5c; }
-    .fa-magic  { color: #134f5c; }
-
-    .feed_text {
-      display: none;
-
-      @media (min-width: $screen-sm-min) {
-        display: inline-block;
-      }
     }
   }
 }

@@ -75,9 +75,25 @@
               i.fa.fa-refresh
               | 继续加载
       .tab-pane.fade#reviews
-        = render tp.thing.reviews.limit(2)
+        .box
+          header.clearfix
+            - if user_signed_in?
+              = link_to_with_icon "我要写评测", "fa fa-comments", thing_feelings_path(tp.thing), class: "pull-right"
+            - else
+              = link_to_with_icon "我要写评测", "fa fa-comments", "#", class: "pull-right", data: {toggle: "modal", target: "#login-modal"}
+          section
+            = render tp.thing.reviews.limit(2)
+          footer
+            button.btn.btn-default.btn-block.btn-xs type="button"
+              i.fa.fa-refresh
+              | 继续加载
       .tab-pane.fade#shopping_desc
-        | shopping desc
+        .box
+          section
+            / = details
+            - if tp.thing.valid_kinds.present?
+              .kinds
+                ul= render tp.thing.valid_kinds
 
   - if tp.related_things(2).present?
     section.section.fullarea
