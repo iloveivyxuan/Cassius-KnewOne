@@ -23,7 +23,7 @@ window.Making = do (exports = window.Making || {}) ->
 
         new exports.View.Stream('#feelings')
         new exports.View.Stream('#reviews')
-        exports.InitFeelings()
+        if $html.hasClass('things_show') then exports.InitFeelings()
         exports.CartItemNew()
         $('.feeling_form')
           .on 'click', '[type="submit"]', ->
