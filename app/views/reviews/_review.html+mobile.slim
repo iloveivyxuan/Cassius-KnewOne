@@ -10,10 +10,16 @@
         label.avatar
           = review_presenter.author_avatar(:small, class: "img-circle")
           = review_presenter.author_name
-        = present(review).created_at
-        .feed_action.pull-right
+        - if in_feeds
+          label.feed_type 评测
+        - else
+          = present(review).created_at
+        .feed_action
           = render partial: 'shared/voting', locals: {object: review}
           =link_to "#{review.comments.count} 评论", review_presenter.path, class: "btn btn-link btn-xs", target: "_blank"
+        - if in_feeds
+          = link_to review.thing.title, review.thing, class: "feed_target"
+          = present(review).created_at
       section
         header
           h5.title = link_to review_presenter.title, review_presenter.path, target: "_blank"

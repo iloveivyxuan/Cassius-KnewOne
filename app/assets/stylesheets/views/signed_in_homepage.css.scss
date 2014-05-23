@@ -286,6 +286,16 @@ html.signed_in_homepage {
           right: 0;
           top: 1rem;
         }
+
+        > header {
+
+          .avatar {
+
+            a:last-child {
+              max-width: 70px;
+            }
+          }
+        }
       }
     }
   }

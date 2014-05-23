@@ -335,6 +335,10 @@ html.things_show {
 
           > section {
             padding: 10px;
+
+            .nomore {
+              padding-bottom: 0;
+            }
           }
 
           > footer {

@@ -399,6 +399,7 @@ html.mobile {
 
       .avatar {
         float: left;
+        margin-right: .5em;
 
         a:last-child {
           @include text-overflow;
@@ -406,23 +407,23 @@ html.mobile {
           max-width: 50px;
           vertical-align: middle;
         }
+
+        + .feed_type {
+          float: left;
+        }
       }
 
       time {
         color: #bbb;
         display: inline-block;
+        float: left;
         font-size: .8em;
         line-height: 30px;
-        padding-left: .5em;
-      }
-
-      .feed_action {
-        padding: 4px 0;
       }
     }
 
     > section {
-      padding-left: 36px;
+      padding-left: 35px;
 
       .title {
         margin-top: 0;
@@ -463,10 +464,12 @@ html.mobile {
     }
 
     > footer {
-      padding-left: 36px;
+      padding-left: 35px;
     }
 
     .feed_action {
+      float: right;
+      padding: 4px 0;
 
       .btn {
         margin-right: 5px;
@@ -491,7 +494,61 @@ html.mobile {
       }
     }
 
+    .feed_target {
+      color: $text-muted;
+      float: left;
+      margin: {
+        bottom: 5px;
+        left: 35px;
+        top: 5px;
+      }
+      width: 65%;
+
+      + time {
+        float: right;
+      }
+    }
+
+    .feed_type {
+      @extend .label;
+      @extend .label-default;
+      margin: 6px 0;
+      padding: .2em .2em .3em;
+    }
+
+    &.topic {
+
+      .feed_type {
+        background-color: $brand-info;
+      }
+
+      .title {
+        @include clearfix;
+
+        a {
+          @include text-overflow;
+          display: inline-block;
+          max-width: 70%;
+        }
+
+        time {
+          float: right;
+        }
+      }
+    }
+
+    &.feeling {
+
+      .feed_type {
+        background-color: $brand-primary;
+      }
+    }
+
     &.review {
+
+      .feed_type {
+        background-color: $brand-success;
+      }
 
       > section {
 

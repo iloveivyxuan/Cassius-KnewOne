@@ -5,17 +5,15 @@
       label.avatar
         = tp.author_avatar(:small, class: "img-circle")
         = tp.author_name
-      = tp.created_at
+      label.feed_type 评测
+      .feed_action
+        = render partial: 'shared/voting', locals: {object: topic}
+        =link_to "#{topic.comments.count} 评论", tp.path, class: "btn btn-link btn-xs", target: "_blank"
     section
-      h5.title = link_to_with_icon tp.title, "fa fa-file-text-o", tp.path
-      p= tp.summary(120)
+      h5.title
+        = link_to tp.title, tp.path
+        = tp.created_at
       ul
         - tp.content_photos(:small).take(8).each do |photo|
           li= image_tag photo, alt: photo
-    footer
-      em
-        i.fa.fa-thumbs-up
-        = topic.lovers_count
-      em
-        i.fa.fa-comment
-        = topic.comments.count
+      p= tp.summary(120)
