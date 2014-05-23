@@ -22,6 +22,7 @@
 //= require bootstrap-tagsinput
 //= require bootstrap-wysiwyg
 //= require bootstrap-select
+//= require bootstrap-touch-carousel
 //= require typeahead.bundle
 //= require lightbox
 //= require_tree ../templates
@@ -37,6 +38,7 @@
 //= require components/editor
 //= require components/cart_items
 //= require components/popover_profiles
+//= require components/stream
 //= require_tree ./pages
 //= require_tree ./models
 //= require_tree ./collections

@@ -21,297 +21,10 @@
 //     a.btn
 //
 
-$part_left: 20%;
-$part_right: 10%;
-
-.feed_article {
-  @include clearfix;
-
-  padding: 2em 1em;
-  position: relative;
-
-  @media (min-width: $screen-sm-min) {
-    min-height: calc(4em + 110px);
-    padding: {
-      left: $part_left;
-      right: $part_right;
-    }
-  }
-
-  .metas {
-
-    .score {
-      display: none;
-      margin: 0;
-
-      @media (min-width: $screen-sm-min) {
-        display: inline-block;
-      }
-
-      .rate {
-        padding: 0;
-      }
-    }
-  }
-
-  > header {
-    margin-bottom: 15px;
-
-    h5 {
-      margin: 0;
-
-      a {
-        color: $text-color;
-        font-size: 16px;
-      }
-    }
-  }
-
-  > figure {
-    @include clearfix;
-    margin-bottom: 10px;
-    border: 1px solid #f6f6f6;
-    border-left: none;
-    border-right: none;
-    padding: 10px 30px;
-    position: relative;
-
-    @media (min-width: $screen-sm-min) {
-      border: none;
-      left: 0;
-      margin: {
-        bottom: 0;
-        left: 2.5%;
-      }
-      padding: 0;
-      position: absolute;
-      text-align: center;
-      top: calc(2em + 6px);
-      width: 15%;
-    }
-
-    a {
-      color: $gray;
-      display: block;
-    }
-
-    img {
-      float: right;
-      height: 60px;
-      margin-left: 15px;
-      width: 60px;
-
-      @media (min-width: $screen-sm-min) {
-        float: none;
-        height: 80px;
-        margin: {
-          left: auto;
-          right: auto;
-        }
-        width: 80px;
-      }
-    }
-
-    figcaption {
-
-      @media (max-width: $screen-xs-max) {
-        @include translate(0, -50%, 0);
-
-        position: absolute;
-        top: 50%;
-        max-width: 50%;
-      }
-
-      @media (min-width: $screen-sm-min) {
-        display: block;
-        height: 20px;
-        line-height: 20px;
-        margin-top: 10px;
-        text-align: center;
-
-        &:before {
-          content: '';
-        }
-      }
-
-      a {
-        @include text-overflow;
-
-        @media (max-width: $screen-sm-max) {
-          line-height: 30px;
-        }
-      }
-
-      // TODO
-      .score {
-        margin: {
-          bottom: 5px;
-          top: 5px;
-        }
-        .rate {padding: 0;}
-
-        @media (min-width: $screen-sm-min) {
-          display: none;
-        }
-      }
-    }
-  }
-
-  > section {
-    margin-bottom: 15px;
-
-    @media (min-width: $screen-sm-min) {
-      @include clearfix;
-    }
-
-    > p {
-      color: $gray;
-      font-size: 14px;
-      line-height: 26px;
-      margin-bottom: 0;
-      overflow: hidden;
-    }
-
-    .cover_small {
-      display: none;
-
-      @media (min-width: $screen-sm-min) {
-        display: block;
-        float: right;
-
-        img {
-          margin-left: 15px;
-        }
-      }
-    }
-
-    .cover_normal {
-
-      img {
-        margin-top: 15px;
-        width: 100%;
-      }
-
-      @media (min-width: $screen-sm-min) {
-        display: none;
-      }
-    }
-
-    > ul {
-      @include clearfix;
-
-      max-height: 95px;
-      overflow: hidden;
-
-      > li {
-        float: left;
-        margin: {
-          right: 4px;
-          top: 15px;
-        }
-
-        @media (min-width: $screen-sm-min) {
-          margin-right: 10px;
-        }
-      }
-    }
-  }
-
-  > footer {
-    clear: both;
-
-    > .wrap {
-      display: table;
-      table-layout: fixed;
-      width: 100%;
-    }
-
-    .metas {
-      @media (max-width: $screen-xs-max) {
-        display: table-cell;
-        padding-right: 10px;
-        vertical-align: middle;
-        width: calc(100% - 70px);
-      }
-
-      time {
-        font-size: 14px;
-      }
-
-      .score {
-        display: none;
-
-        @media (min-width: $screen-sm-min) {
-          display: block;
-        }
-      }
-    }
-
-    .comments_wrap {
-      border: $border_default;
-      display: none;
-      margin-top: 15px;
-      padding: {
-        bottom: 15px;
-        left: 20px;
-        right: 20px;
-        top: 5px;
-      }
-
-      @media (min-width: $screen-sm-min) {
-        float: none;
-        width: auto;
-      }
-
-      // TODO
-      h4 {display: none;}
-      ul {
-        margin: 0;
-        padding-top: 10px;
-      }
-    }
-  }
-
-  .feed_action {
-
-    @media (max-width: $screen-xs-max) {
-      display: table-cell;
-      vertical-align: middle;
-    }
-
-    @media (min-width: $screen-sm-min) {
-      right: 0;
-      margin-right: calc((#{$part_right} - 60px) / 2);
-      position: absolute;
-      top: calc(2em + 6px);
-    }
-  }
-
-  &.review,
-  &.topic {
-
-    > section {
-
-      > ul {
-        display: none;
-
-        @media (min-width: $screen-sm-min) {
-          display: block;
-        }
-      }
-    }
-  }
-}
-
 .feed_action {
-  color: $text-color;
-  display: inline-block;
-  vertical-align: middle;
 
   .btn {
     @include button_inverse(#ececec, #6e6e6e);
-
-    width: 60px;
 
     &.done {
       background-color: #6e6e6e;
@@ -352,6 +65,301 @@ $part_right: 10%;
   }
 }
 
+html.tablet,
+html.desktop {
+  $part_left: 20%;
+  $part_right: 10%;
+
+  .feed_article {
+    @include clearfix;
+
+    padding: 2em 1em;
+    position: relative;
+
+    @media (min-width: $screen-sm-min) {
+      min-height: calc(4em + 110px);
+      padding: {
+        left: $part_left;
+        right: $part_right;
+      }
+    }
+
+    .metas {
+
+      .score {
+        display: none;
+        margin: 0;
+
+        @media (min-width: $screen-sm-min) {
+          display: inline-block;
+        }
+
+        .rate {
+          padding: 0;
+        }
+      }
+    }
+
+    > header {
+      margin-bottom: 15px;
+
+      h5 {
+        margin: 0;
+
+        a {
+          color: $text-color;
+          font-size: 16px;
+        }
+      }
+    }
+
+    > figure {
+      @include clearfix;
+      margin-bottom: 10px;
+      border: 1px solid #f6f6f6;
+      border-left: none;
+      border-right: none;
+      padding: 10px 30px;
+      position: relative;
+
+      @media (min-width: $screen-sm-min) {
+        border: none;
+        left: 0;
+        margin: {
+          bottom: 0;
+          left: 2.5%;
+        }
+        padding: 0;
+        position: absolute;
+        text-align: center;
+        top: calc(2em + 6px);
+        width: 15%;
+      }
+
+      a {
+        color: $gray;
+        display: block;
+      }
+
+      img {
+        float: right;
+        height: 60px;
+        margin-left: 15px;
+        width: 60px;
+
+        @media (min-width: $screen-sm-min) {
+          float: none;
+          height: 80px;
+          margin: {
+            left: auto;
+            right: auto;
+          }
+          width: 80px;
+        }
+      }
+
+      figcaption {
+
+        @media (max-width: $screen-xs-max) {
+          @include translate(0, -50%, 0);
+
+          position: absolute;
+          top: 50%;
+          max-width: 50%;
+        }
+
+        @media (min-width: $screen-sm-min) {
+          display: block;
+          height: 20px;
+          line-height: 20px;
+          margin-top: 10px;
+          text-align: center;
+
+          &:before {
+            content: '';
+          }
+        }
+
+        a {
+          @include text-overflow;
+
+          @media (max-width: $screen-sm-max) {
+            line-height: 30px;
+          }
+        }
+
+        // TODO
+        .score {
+          margin: {
+            bottom: 5px;
+            top: 5px;
+          }
+          .rate {padding: 0;}
+
+          @media (min-width: $screen-sm-min) {
+            display: none;
+          }
+        }
+      }
+    }
+
+    > section {
+      margin-bottom: 15px;
+
+      @media (min-width: $screen-sm-min) {
+        @include clearfix;
+      }
+
+      > p {
+        color: $gray;
+        font-size: 14px;
+        line-height: 26px;
+        margin-bottom: 0;
+        overflow: hidden;
+      }
+
+      .cover_small {
+        display: none;
+
+        @media (min-width: $screen-sm-min) {
+          display: block;
+          float: right;
+
+          img {
+            margin-left: 15px;
+          }
+        }
+      }
+
+      .cover_normal {
+
+        img {
+          margin-top: 15px;
+          width: 100%;
+        }
+
+        @media (min-width: $screen-sm-min) {
+          display: none;
+        }
+      }
+
+      > ul {
+        @include clearfix;
+
+        max-height: 95px;
+        overflow: hidden;
+
+        > li {
+          float: left;
+          margin: {
+            right: 4px;
+            top: 15px;
+          }
+
+          @media (min-width: $screen-sm-min) {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+
+    > footer {
+      clear: both;
+
+      > .wrap {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+      }
+
+      .metas {
+        @media (max-width: $screen-xs-max) {
+          display: table-cell;
+          padding-right: 10px;
+          vertical-align: middle;
+          width: calc(100% - 70px);
+        }
+
+        time {
+          font-size: 14px;
+        }
+
+        .score {
+          display: none;
+
+          @media (min-width: $screen-sm-min) {
+            display: block;
+          }
+        }
+      }
+
+      .comments_wrap {
+        border: $border_default;
+        display: none;
+        margin-top: 15px;
+        padding: {
+          bottom: 15px;
+          left: 20px;
+          right: 20px;
+          top: 5px;
+        }
+
+        @media (min-width: $screen-sm-min) {
+          float: none;
+          width: auto;
+        }
+
+        // TODO
+        h4 {display: none;}
+        ul {
+          margin: 0;
+          padding-top: 10px;
+        }
+      }
+    }
+
+    .feed_action {
+
+      @media (max-width: $screen-xs-max) {
+        display: table-cell;
+        vertical-align: middle;
+      }
+
+      @media (min-width: $screen-sm-min) {
+        right: 0;
+        margin-right: calc((#{$part_right} - 60px) / 2);
+        position: absolute;
+        top: calc(2em + 6px);
+      }
+    }
+
+    &.review,
+    &.topic {
+
+      > section {
+
+        > ul {
+          display: none;
+
+          @media (min-width: $screen-sm-min) {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  .feed_action {
+    color: $text-color;
+    display: inline-block;
+    vertical-align: middle;
+
+    .btn {
+      width: 60px;
+    }
+  }
+}
+
 .feed_thing {
 
   .feed_type {
@@ -374,4 +382,205 @@ html.users_feelings,
 html.users_reviews {
   figure.feeling_author {display: none;}
   figure.review_author {display: none;}
+}
+
+html.mobile {
+
+  .feed_article {
+    padding-bottom: 1rem;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+
+    > header {
+      @include clearfix;
+      margin-bottom: 1rem;
+
+      .avatar {
+        float: left;
+        margin-right: .5em;
+
+        a:last-child {
+          @include text-overflow;
+          display: inline-block;
+          max-width: 50px;
+          vertical-align: middle;
+        }
+
+        + .feed_type {
+          float: left;
+        }
+      }
+
+      time {
+        color: #bbb;
+        display: inline-block;
+        float: left;
+        font-size: .8em;
+        line-height: 30px;
+      }
+    }
+
+    > section {
+      padding-left: 35px;
+
+      .title {
+        margin-top: 0;
+
+        a {
+          color: $text-color;
+        }
+      }
+
+      > p {
+        color: $text-muted;
+        line-height: 22px;
+        margin-bottom: 0;
+        word-break: break-all;
+      }
+
+      > ul {
+        @include clearfix;
+
+        margin-bottom: 1rem;
+        max-height: 80px;
+        overflow: hidden;
+
+        &:empty {
+          margin-bottom: 0;
+        }
+
+        > li {
+          float: left;
+          margin-right: 4px;
+
+          img {
+            height: 60px;
+            width: 60px;
+          }
+        }
+      }
+    }
+
+    > footer {
+      padding-left: 35px;
+    }
+
+    .feed_action {
+      float: right;
+      padding: 4px 0;
+
+      .btn {
+        margin-right: 5px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
+      .fa-share {
+        display: none;
+      }
+
+      // TODO
+      > form:first-child {
+        display: inline-block;
+        margin-right: 5px;
+
+        .btn {
+          padding: 1px 5px;
+        }
+      }
+    }
+
+    .feed_target {
+      color: $text-muted;
+      float: left;
+      margin: {
+        bottom: 5px;
+        left: 35px;
+        top: 5px;
+      }
+      width: 65%;
+
+      + time {
+        float: right;
+      }
+    }
+
+    .feed_type {
+      @extend .label;
+      @extend .label-default;
+      margin: 6px 0;
+      padding: .2em .2em .3em;
+    }
+
+    &.topic {
+
+      .feed_type {
+        background-color: $brand-info;
+      }
+
+      .title {
+        @include clearfix;
+
+        a {
+          @include text-overflow;
+          display: inline-block;
+          max-width: 70%;
+        }
+
+        time {
+          float: right;
+        }
+      }
+    }
+
+    &.feeling {
+
+      .feed_type {
+        background-color: $brand-primary;
+      }
+    }
+
+    &.review {
+
+      .feed_type {
+        background-color: $brand-success;
+      }
+
+      > section {
+
+        > header {
+          @include clearfix;
+
+          .title {
+            float: left;
+            width: calc(100% - 100px);
+          }
+
+          .score {
+            float: right;
+            margin: 0;
+
+            .rate {
+              padding: {
+                bottom: 5px;
+                top: 0;
+              }
+            }
+          }
+        }
+
+        .cover_normal {
+
+          img {
+            margin-top: 15px;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
 }

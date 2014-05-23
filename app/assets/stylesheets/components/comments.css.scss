@@ -49,3 +49,44 @@
     }
   }
 }
+
+html.mobile {
+
+  .comments {
+
+    h4 {
+      display: none;
+    }
+
+    .comment_form {
+
+      button[type="submit"] {
+        @extend .btn-block;
+      }
+    }
+
+    > ul {
+      margin-bottom: 1rem;
+    }
+
+    .comment {
+
+      .avatar {
+
+        img {
+          @include square(30px);
+        }
+      }
+
+      header,
+      section {
+        padding-left: 40px;
+      }
+    }
+
+    .comments_more {
+      @extend .btn-block;
+      @extend .btn-sm;
+    }
+  }
+}

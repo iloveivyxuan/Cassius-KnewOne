@@ -40,11 +40,22 @@ class ThingPresenter < PostPresenter
     @price = p.to_i > 0 ? price_format(p, thing.price_unit) : nil
   end
 
-  def shopping_desc
+  def shopping_desc(length = 48)
     return if thing.shopping_desc.blank?
-    su = strip_tags(thing.shopping_desc).truncate(48).html_safe
+    strip_tags(thing.shopping_desc).truncate(length).html_safe
+  end
+
+  def render_shopping_desc
+    su = shopping_desc
+    return unless su
+
     render partial: 'things/shopping_desc',
-    locals: {title: title, summary: su, details: thing.shopping_desc.html_safe, tp: self}
+    locals: {summary: su, tp: self}
+  end
+
+  def render_shopping_desc_modal
+    render partial: 'things/shopping_desc_modal',
+           locals: {title: title, details: thing.shopping_desc.html_safe, tp: self}
   end
 
   def concept
@@ -189,8 +200,8 @@ class ThingPresenter < PostPresenter
     Category.any_in(name: thing.categories)
   end
 
-  def related_things
-    thing.related_things.map {|t| present(t)}
+  def related_things(size = 10)
+    @_related_things ||= thing.related_things(size).map {|t| present(t)}
   end
 
   def fancied?

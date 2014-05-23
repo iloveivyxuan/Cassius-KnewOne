@@ -1,23 +1,37 @@
 window.Making = do (exports = window.Making || {}) ->
-  _$content       = $('#thing_content').find('.post_content')
-  _$read_more     = _$content.next('.more')
-  _summary_height = parseInt(_$content.css('maxHeight')) - 1
 
   exports.InitThing = ->
-    if _$content.height() < _summary_height
-      _$content
-        .removeClass('is_folded')
-        .next('.more')
-          .remove()
+    exports.ReadMore('.post_content')
 
-    _$read_more.on 'click', (event) ->
-      event.preventDefault()
+    switch exports.device
 
-      $(@)
-        .prev('.post_content')
-          .removeClass('is_folded')
-        .end()
-        .remove()
+      when 'mobile'
+        $carousel = $('#wrapper > .photos')
+        $page_num = $carousel.find('.page').find('em')
+
+        $carousel.on 'release', (event) ->
+          $page_num.text(
+            $carousel
+              .find('.carousel-inner')
+              .children('.item.active')
+              .index() + 1
+          )
+
+        $('#toggle_feelings_form').on 'click', (event) ->
+          event.preventDefault()
+          $('.feeling_form').toggle()
+
+        new exports.View.Stream('#feelings')
+        new exports.View.Stream('#reviews')
+        exports.InitFeelings()
+        exports.CartItemNew()
+        $('.feeling_form')
+          .on 'click', '[type="submit"]', ->
+            $(@)
+              .parents('.feeling_form')
+              .next('.stream_content')
+              .next('.nomore')
+              .hide()
 
   exports.InitFeelings = ->
     exports.EditorCompact('.feeling_form')

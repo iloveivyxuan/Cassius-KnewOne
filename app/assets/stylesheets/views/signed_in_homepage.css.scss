@@ -275,4 +275,28 @@ html.signed_in_homepage {
       }
     }
   }
+
+  &.mobile {
+
+    #activities {
+
+      .feed_article {
+        padding: {
+          left: 0;
+          right: 0;
+          top: 1rem;
+        }
+
+        > header {
+
+          .avatar {
+
+            a:last-child {
+              max-width: 70px;
+            }
+          }
+        }
+      }
+    }
+  }
 }

@@ -61,9 +61,11 @@ class ThingsController < ApplicationController
   end
 
   def show
-    @thing = Thing.find(params[:id]) || not_found
-    mark_read @thing
-    render layout: 'thing'
+    respond_to do |format|
+      format.html.mobile
+      format.html.tablet {render layout: 'thing'}
+      format.html.desktop {render layout: 'thing'}
+    end
   end
 
   def edit

@@ -1,4 +1,5 @@
-html.things_show,
+html.things_show.tablet,
+html.things_show.desktop,
 html.things_comments,
 html.things_groups,
 html.things_details,
@@ -14,6 +15,7 @@ html.stories_index,
 html.stories_new,
 html.stories_edit,
 html.stories_show {
+
   #wrapper {
     @include wrapper(grid, 2);
     > header {clear: both;}
@@ -708,7 +710,8 @@ html.things_index {
   }
 }
 
-html.things_show,
+html.things_show.tablet,
+html.things_show.desktop,
 html.feelings_index,
 html.reviews_index {
 
@@ -741,7 +744,6 @@ html.reviews_index {
     }
   }
 }
-
 
 html.feelings_index {
 

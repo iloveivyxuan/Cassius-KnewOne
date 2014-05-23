@@ -25,12 +25,33 @@ window.Making = do (exports = window.Making || {}) ->
     document.body.removeChild(outer)
 
     return (w1 - w2)
+
   # from http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
   exports.GetParameterByKey = (key) ->
     key = key.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]")
     regex = new RegExp("[\\?&]" + key + "=([^&#]*)")
     results = regex.exec(location.search)
     return (if results == null then "" else decodeURIComponent(results[1].replace(/\+/g, " ")))
+
+  exports.ReadMore = (content) ->
+    _$content = $(content)
+    _$more    = _$content.next('.more')
+    _summary_height = parseInt(_$content.css('maxHeight')) - 1
+
+    if _$content.height() < _summary_height
+      _$content
+        .removeClass('is_folded')
+        .next('.more')
+          .remove()
+
+    _$more.on 'click', (event) ->
+      event.preventDefault()
+
+      $(@)
+        .prev('.post_content')
+          .removeClass('is_folded')
+        .end()
+        .remove()
 
   #exports
   exports

@@ -70,7 +70,15 @@ module ApplicationHelper
   end
 
   def page_class
-    ["#{controller_path.gsub('/', '_')}_#{action_name}", content_for(:page_class)].reject(&:blank?).join(' ')
+    ["#{controller_path.gsub('/', '_')}_#{action_name}",
+      if browser.mobile?
+        "mobile"
+      elsif browser.tablet?
+        "tablet"
+      else
+        "desktop"
+      end,
+      content_for(:page_class)].reject(&:blank?).join(' ')
   end
 
   def feed_link_tag
@@ -109,7 +117,7 @@ module ApplicationHelper
   end
 
   def time_ago(time)
-    time_ago_in_words(time)+"前"
+    time_ago_in_words(time)
   end
 
   def boolean_tag(val)
@@ -118,6 +126,10 @@ module ApplicationHelper
 
   def date_time_text(time)
     time.strftime '%Y-%m-%d %H:%M:%S'
+  end
+
+  def date_text(time)
+    time.strftime '%Y-%m-%d'
   end
 
   def no_link_href

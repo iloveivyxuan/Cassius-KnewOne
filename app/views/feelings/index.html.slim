@@ -2,10 +2,10 @@
 
 = render 'feelings/form'
 
-- cache_unless user_signed_in?, ['feelings', 'index', @thing, feelings.first, request.query_string]
+- cache_unless user_signed_in?, ['feelings', 'index', @thing, @feelings.first, request.query_string]
   = render 'feelings/sort', {thing: @thing}
-  .feelings.list = render feelings
-  = paginate feelings
+  .feelings.list = render @feelings
+  = paginate @feelings
 
 - content_for :script do
   javascript:

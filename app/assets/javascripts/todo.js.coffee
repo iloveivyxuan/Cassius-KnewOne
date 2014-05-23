@@ -174,9 +174,10 @@ do (exports = Making) ->
         default_height = parseInt($item.css('max-height'))
         height         = _.min([default_height, $inner.width() * 0.75]) + 'px'
 
-        $item.css
-          height: height
-          lineHeight: height
+        if !$html.hasClass('mobile')
+          $item.css
+            height: height
+            lineHeight: height
 
         if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ')')
           $overview      = $carousel.next('.carousel_overview')

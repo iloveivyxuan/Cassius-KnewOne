@@ -1,0 +1,166 @@
+- present @thing do |tp|
+  - page_title tp.full_title
+
+  header.header
+    h1= link_to(tp.title, tp.thing)
+    p= tp.subtitle
+    - if @thing.maker
+      = link_to @thing.maker.name, @thing.maker, class: "btn btn-link btn-sm"
+
+  section.actions
+    .fanciers= render "shared/fancy", p: tp
+    .owners= render "things/own", tp: tp
+    .share= tp.link_to_share
+
+  section.photos.carousel.slide data-ride="carousel" data-interval="4000"
+    ul.carousel-inner
+      - tp.photos.each_with_index do |photo, index|
+        li class="item #{'active' if index == 0}"
+          = image_tag photo.url(:review), alt: photo.name
+    footer
+      strong.pull-left = tp.price
+      .page.pull-right
+        em 1
+        | /
+        = tp.photos.count
+
+  section.section.details
+    header
+      = link_to @thing.author, class: "avatar pull-left" do
+        = image_tag @thing.author.avatar.url(:small), class: "img-circle", alt: @thing.author.name
+        label.name= @thing.author.name
+        small （分享者）
+      time.pull-right = date_text(@thing.created_at)
+    - if tp.summary.present?
+      section
+        article
+          = tp.content
+          .more
+            = link_to_with_icon "查看全部", "fa fa-angle-double-down", "#"
+      footer
+        - if user_signed_in?
+          = link_to_with_icon "购买", "fa fa-shopping-cart", "#", class: "btn btn-success btn-block", data: {toggle: "modal", target: "#mobile_buy_modal"}
+        - else
+          = link_to_with_icon "请登录后购买", "fa fa-sign-in", "#", class: "btn btn-danger btn-block", data: {toggle: "modal", target: "#login-modal"}
+
+  section.section.fullarea.foo
+    header
+      ul.bartab
+        li.active
+          = link_to "#feelings", data: {toggle: "tab"} do
+            i.fa.fa-comments
+            | 短评
+            span.badge #{@thing.feelings_count}
+        li
+          = link_to "#reviews", data: {toggle: "tab"} do
+            i.fa.fa-pencil
+            | 评测
+            span.badge #{@thing.reviews_count}
+        - if @thing.shopping_desc.present?
+          li
+            = link_to "#shopping_desc", data: {toggle: "tab"} do
+              i.fa.fa-home
+              | 购买详情
+    section.tab-content
+      .tab-pane.stream.fade.in.active#feelings
+        .box
+          header.clearfix
+            - if user_signed_in?
+              = link_to_with_icon "我要写短评", "fa fa-comments", "#", class: "pull-right", id: "toggle_feelings_form"
+            - else
+              = link_to_with_icon "我要写短评", "fa fa-comments", "#", class: "pull-right", data: {toggle: "modal", target: "#login-modal"}
+          section
+            = render "feelings/form"
+            .stream_content.feelings
+            .nomore.hidden
+              i.fa.fa-smile-o
+              | 什么都没有。
+          footer
+            button.btn.btn-default.btn-block.btn-xs.hidden.stream_more type="button" data-url=thing_feelings_path(tp.thing)
+              i.fa.fa-refresh
+              | 继续加载
+      .tab-pane.stream.fade#reviews
+        .box
+          header.clearfix
+            - if user_signed_in?
+              = link_to_with_icon "我要写评测", "fa fa-comments", new_thing_review_path(tp.thing), class: "pull-right"
+            - else
+              = link_to_with_icon "我要写评测", "fa fa-comments", "#", class: "pull-right", data: {toggle: "modal", target: "#login-modal"}
+          section
+            .stream_content
+            .nomore.hidden
+              i.fa.fa-smile-o
+              | 什么都没有。
+          footer
+            button.btn.btn-default.btn-block.btn-xs.hidden.stream_more type="button" data-url=thing_reviews_path(tp.thing)
+              i.fa.fa-refresh
+              | 继续加载
+      - if @thing.shopping_desc.present?
+        .tab-pane.fade#shopping_desc
+          .box
+            section
+              = tp.thing.shopping_desc.html_safe
+              - if tp.thing.valid_kinds.present?
+                .kinds
+                  ul= render tp.thing.valid_kinds
+
+  - if tp.related_things(2).present?
+    section.section.fullarea
+      header
+        h3.title
+          | 喜欢这个产品的人也喜欢
+      section.clearfix
+        = render partial: "things/related_thing", collection: tp.related_things(2), as: :tp
+
+  = tp.render_shopping_desc_modal
+
+  - if user_signed_in?
+    #mobile_buy_modal.modal.fade
+      .modal-dialog
+        .modal-content
+          .modal-header
+            h4.modal-title= "购买#{tp.title}"
+          .modal-body
+          .modal-footer
+            = button_tag "取消", type: "button", class: "btn btn-default", data: {dismiss: "modal"}
+            = button_tag type: "button", class: "btn btn-success buy_button", data: {toggle: "modal", target: "#mobile_buy_success", dismiss: "modal"} do
+              i.fa.fa-shopping-cart.fa-lg
+              | 加入购物车
+
+    #mobile_buy_success.modal.fade
+      .modal-dialog
+        .modal-content
+          .modal-header
+            h4.modal-title= "购买#{tp.title}"
+          .modal-body.text-center
+            | 已加入购物车。
+          .modal-footer
+            = link_to_with_icon "继续逛逛", "fa fa-smile-o", "#", class: "btn btn-primary", data: {dismiss: "modal"}
+            = link_to_with_icon "结算", "fa fa-credit-card", cart_items_path, class: "btn btn-success"
+
+    = simple_form_for CartItem.new(thing: tp.thing), remote: true, html: {method: :post, class: "hidden"} do |f|
+      = f.input :thing, as: :hidden, input_html: {value: tp.id}
+      = f.input :kind_id, as: :select, required: true do
+        = select_tag "cart_item[kind_id]", tp.options_for_kinds,
+        class: "select required form-control", prompt: "请选择型号"
+      = f.input :quantity, as: :integer, required: true, disabled: true,
+        input_html: {min: 1, max: 100}, hint: "最多可购<strong>100</strong>件".html_safe
+      .cart_estimated_prompt
+        | 此产品将在
+        time
+        | 后到货
+      .cart_success
+        i.fa.fa-check.fa-lg
+        | 已加入购物车
+      .submit
+        - if user_signed_in?
+          = button_tag type: "submit", class: "btn btn-success buy_button", disabled: true do
+            i.fa.fa-shopping-cart.fa-lg
+            | 加入购物车
+        - else
+          = link_to_login
+        = link_to_with_icon "帮助", "fa fa-question", '#olark_chat', class: "support", data: {hint: "fa-question", url: asset_path('olark.js')}
+
+- content_for :script do
+  javascript:
+    Making.InitThing();
