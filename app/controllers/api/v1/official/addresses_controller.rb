@@ -11,11 +11,11 @@ module Api
         end
 
         def create
-          address = current_user.addresses.build address_params
-          if address.save
+          @address = current_user.addresses.build address_params
+          if @address.save
             render action: 'show', status: :created, location: @address
           else
-            render json: address.errors, status: :unprocessable_entity
+            render json: @address.errors, status: :unprocessable_entity
           end
         end
 
