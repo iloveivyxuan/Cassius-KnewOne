@@ -9,7 +9,7 @@ window.Making = do (exports = window.Making || {}) ->
         $carousel = $('#wrapper > .photos')
         $page_num = $carousel.find('.page').find('em')
 
-        $carousel.on 'release', (event) ->
+        $carousel.on 'swipeleft swiperight', (event) ->
           $page_num.text(
             $carousel
               .find('.carousel-inner')
