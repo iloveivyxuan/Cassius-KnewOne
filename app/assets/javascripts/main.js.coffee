@@ -307,7 +307,6 @@ do (exports = Making) ->
     exports.Share()
     exports.AjaxComplete()
     exports.ToggleFixedNavbar()
-    exports.InitUIDropdownBox()
     exports.SetupOlark('[href="#olark_chat"]')
     exports.GoTop()
     exports.PopoverProfiles()

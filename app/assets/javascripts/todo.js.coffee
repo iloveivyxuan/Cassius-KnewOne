@@ -8,18 +8,6 @@ do (exports = Making) ->
         $thing = $(@)
         $thing.find('h5').tooltip()
 
-    InitUIDropdownBox: ->
-      $dropdown_box = $('.dropdown_box')
-      if $dropdown_box.length
-        $body = $('body')
-        $dropdown_box
-          .on 'mouseenter', ->
-            if !$body.hasClass('dropdown_box_open')
-              $body.addClass('dropdown_box_open')
-          .on 'mouseleave', ->
-            if $body.hasClass('dropdown_box_open')
-              $body.removeClass('dropdown_box_open')
-
     ThingsNew: ->
       $ ->
         view = new Making.Views.ThingsNew
