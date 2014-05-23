@@ -2,6 +2,9 @@ json.id feeling.id.to_s
 json.url url_wrapper(feeling.thing, feeling)
 # json.html_url thing_feeling_url(feeling.thing, feeling)
 
+json.created_at feeling.created_at
+json.created_at_ago_in_words time_ago_in_words(feeling.created_at)
+
 json.lovers_count feeling.lovers.count
 json.foes_count feeling.foes.count
 
