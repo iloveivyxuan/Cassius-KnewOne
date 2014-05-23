@@ -56,10 +56,11 @@
             i.fa.fa-pencil
             | 评测
             span.badge #{@thing.reviews_count}
-        li
-          = link_to "#shopping_desc", data: {toggle: "tab"} do
-            i.fa.fa-home
-            | 购买详情
+        - if @thing.shopping_desc.present?
+          li
+            = link_to "#shopping_desc", data: {toggle: "tab"} do
+              i.fa.fa-home
+              | 购买详情
     section.tab-content
       .tab-pane.fade.in.active#feelings
         .box
@@ -87,13 +88,14 @@
             button.btn.btn-default.btn-block.btn-xs type="button"
               i.fa.fa-refresh
               | 继续加载
-      .tab-pane.fade#shopping_desc
-        .box
-          section
-            / = details
-            - if tp.thing.valid_kinds.present?
-              .kinds
-                ul= render tp.thing.valid_kinds
+      - if @thing.shopping_desc.present?
+        .tab-pane.fade#shopping_desc
+          .box
+            section
+              = tp.thing.shopping_desc.html_safe
+              - if tp.thing.valid_kinds.present?
+                .kinds
+                  ul= render tp.thing.valid_kinds
 
   - if tp.related_things(2).present?
     section.section.fullarea
