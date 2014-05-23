@@ -10,7 +10,14 @@ class ReviewsController < ApplicationController
     if params[:sort] == "created_at"
       @reviews = @thing.reviews.unscoped.desc(:created_at)
     end
-    @reviews = @reviews.page params[:page]
+
+    @reviews = @reviews.page(params[:page]).per(params[:per])
+
+    if request.xhr?
+      render 'reviews/index_xhr', layout: false
+    else
+      render 'reviews/index'
+    end
   end
 
   def show

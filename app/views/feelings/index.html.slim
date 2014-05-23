@@ -2,10 +2,10 @@
 
 = render 'feelings/form'
 
-- cache("feeling_index_#{@thing.id.to_s}_#{request.query_string}_#{feelings.first.try(:created_at).try(:to_i)}_v2") do
-  = render 'feelings/sort', {thing: @thing}
-  .feelings.list = render feelings
-  = paginate feelings
+- cache("feeling_index_#{@thing.id.to_s}_#{request.query_string}_#{@feelings.first.try(:created_at).try(:to_i)}_v2") do
+  = render 'feelings/sort', thing: @thing
+  .feelings.list = render @feelings
+  = paginate @feelings
 
 - content_for :script do
   javascript:

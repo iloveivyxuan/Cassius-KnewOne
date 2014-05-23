@@ -4,12 +4,17 @@ class FeelingsController < ApplicationController
   layout 'thing'
 
   def index
-    feelings = if params[:sort] == "created_at"
+    @feelings = if params[:sort] == "created_at"
                  @thing.feelings.unscoped.desc(:created_at)
                else
                  @thing.feelings
-               end.page params[:page]
-    render locals: {feelings: feelings}
+               end.page(params[:page]).per(params[:per])
+
+    if request.xhr?
+      render 'feelings/index_xhr', layout: false
+    else
+      render 'feelings/index'
+    end
   end
 
   def show
