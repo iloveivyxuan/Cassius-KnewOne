@@ -9,6 +9,10 @@ FactoryGirl.define do
     trait :with_addresses do
       after(:create) { |user| create_list(:address, rand(1..2), user: user) }
     end
+
+    trait :with_invoices do
+      after(:create) { |user| create_list(:invoice, rand(1..2), user: user) }
+    end
   end
 
   factory :address do
@@ -34,5 +38,11 @@ FactoryGirl.define do
     address
     state :pending
     deliver_by :sf
+  end
+
+  factory :invoice do
+    user
+    title '个人'
+    kind '普通发票'
   end
 end
