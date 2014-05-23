@@ -17,8 +17,11 @@ window.Making = do (exports = window.Making || {}) ->
               .index() + 1
           )
 
-        exports.FeelingsNew()
-        exports.Feeling('.feelings')
+        $('#toggle_feelings_form').on 'click', (event) ->
+          event.preventDefault()
+          $('.feeling_form').toggle()
+
+        exports.InitFeelings()
         exports.CartItemNew()
 
   exports.InitFeelings = ->

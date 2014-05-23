@@ -93,27 +93,23 @@ html.things_show {
       }
     }
 
-    .groups_compact {
+    .feeling_form {
+      display: none;
+      margin-bottom: 1rem;
 
-      .card_compact {
-        background-color: transparent;
-        margin-bottom: 0;
+      .feeling_score {
+        display: none;
+      }
 
-        img {
-          float: left;
-          height: 50px;
-          margin-right: 20px;
-          width: 50px;
+      .submit {
+        float: none;
+
+        .counter {
+          display: none;
         }
 
-        h5 {
-          color: $text-color;
-          line-height: 30px;
-          margin: 0;
-        }
-
-        .members_count {
-          line-height: 20px;
+        button[type="submit"] {
+          @extend .btn-block;
         }
       }
     }
