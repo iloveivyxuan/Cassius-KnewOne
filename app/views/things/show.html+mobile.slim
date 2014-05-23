@@ -69,7 +69,7 @@
               = link_to_with_icon "我要写短评", "fa fa-comments", thing_feelings_path(tp.thing), class: "pull-right"
             - else
               = link_to_with_icon "我要写短评", "fa fa-comments", "#", class: "pull-right", data: {toggle: "modal", target: "#login-modal"}
-          section
+          section.feelings
             = render tp.thing.feelings.limit(2)
           footer
             button.btn.btn-default.btn-block.btn-xs type="button"
@@ -79,7 +79,7 @@
         .box
           header.clearfix
             - if user_signed_in?
-              = link_to_with_icon "我要写评测", "fa fa-comments", thing_feelings_path(tp.thing), class: "pull-right"
+              = link_to_with_icon "我要写评测", "fa fa-comments", new_thing_review_path(tp.thing), class: "pull-right"
             - else
               = link_to_with_icon "我要写评测", "fa fa-comments", "#", class: "pull-right", data: {toggle: "modal", target: "#login-modal"}
           section

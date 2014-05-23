@@ -49,3 +49,35 @@
     }
   }
 }
+
+html.mobile {
+
+  .comments {
+
+    h4 {
+      display: none;
+    }
+
+    .comment_form {
+
+      button[type="submit"] {
+        @extend .btn-block;
+      }
+    }
+
+    .comment {
+
+      .avatar {
+
+        img {
+          @include square(30px);
+        }
+      }
+
+      header,
+      section {
+        padding-left: 40px;
+      }
+    }
+  }
+}

@@ -425,6 +425,7 @@ html.mobile {
       padding-left: 36px;
 
       .title {
+        margin-top: 0;
 
         a {
           color: $text-color;
@@ -463,52 +464,6 @@ html.mobile {
 
     > footer {
       padding-left: 36px;
-
-      em {
-        display: inline-block;
-        margin: 0 .5rem;
-        font-style: normal;
-
-        .fa {
-          @include square(20px);
-          border-radius: 50%;
-          color: #fff;
-          font-size: .7em;
-          line-height: 20px;
-          vertical-align: middle;
-          text-align: center;
-        }
-
-        .fa-thumbs-up { background-color: $red; }
-        .fa-comment { background-color: $blue; }
-      }
-
-      .btn {
-        @include button_inverse(#ececec, #6e6e6e);
-        margin-right: 6px;
-
-        &:last-child {
-          margin-right: 0;
-        }
-
-        &:focus {
-          background-color: #6e6e6e;
-          color: #ececec;
-        }
-      }
-
-      p:last-child {
-        margin-bottom: 0;
-      }
-
-      &.feeling {
-
-        .share_btn {
-          @extend .btn;
-          @extend .btn-link;
-          @extend .btn-xs;
-        }
-      }
     }
 
     .feed_action {
@@ -532,6 +487,41 @@ html.mobile {
 
         .btn {
           padding: 1px 5px;
+        }
+      }
+    }
+
+    &.review {
+
+      > section {
+
+        > header {
+          @include clearfix;
+
+          .title {
+            float: left;
+            width: calc(100% - 100px);
+          }
+
+          .score {
+            float: right;
+            margin: 0;
+
+            .rate {
+              padding: {
+                bottom: 5px;
+                top: 0;
+              }
+            }
+          }
+        }
+
+        .cover_normal {
+
+          img {
+            margin-top: 15px;
+            width: 100%;
+          }
         }
       }
     }

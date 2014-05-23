@@ -17,6 +17,8 @@ window.Making = do (exports = window.Making || {}) ->
               .index() + 1
           )
 
+        exports.FeelingsNew()
+        exports.Feeling('.feelings')
         exports.CartItemNew()
 
   exports.InitFeelings = ->
