@@ -23,6 +23,7 @@
 //= require bootstrap-wysiwyg
 //= require bootstrap-select
 //= require bootstrap-touch-carousel
+//= require bootstrap-modal-popover
 //= require typeahead.bundle
 //= require lightbox
 //= require_tree ../templates
