@@ -103,9 +103,7 @@
   border-color: $color;
   color: $color;
 
-  &:hover,
-  &:focus,
-  &:active {
+  &:hover {
     background-color: $color;
     color: $background-color;
   }

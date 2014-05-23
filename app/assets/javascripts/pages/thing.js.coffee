@@ -21,8 +21,17 @@ window.Making = do (exports = window.Making || {}) ->
           event.preventDefault()
           $('.feeling_form').toggle()
 
+        new exports.View.Stream('#feelings')
+        new exports.View.Stream('#reviews')
         exports.InitFeelings()
         exports.CartItemNew()
+        $('.feeling_form')
+          .on 'click', '[type="submit"]', ->
+            $(@)
+              .parents('.feeling_form')
+              .next('.stream_content')
+              .next('.nomore')
+              .hide()
 
   exports.InitFeelings = ->
     exports.EditorCompact('.feeling_form')
