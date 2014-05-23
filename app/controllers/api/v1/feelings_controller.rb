@@ -12,10 +12,10 @@ module Api
       end
 
       def create
-        render_error :missing_field, 'missing images' unless params[:images] || params[:images].empty?
-
-        params[:images].each do |image|
-          Photo.create! image: image, user: current_user
+        if params[:images]
+          params[:images].each do |image|
+            Photo.create! image: image, user: current_user
+          end
         end
 
         @feeling = @thing.feelings.build feeling_params
