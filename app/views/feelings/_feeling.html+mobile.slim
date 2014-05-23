@@ -20,6 +20,8 @@
           ul
             - feeling.photos.each do |photo|
               li
-                = link_to photo.url, data: {lightbox: "feeling_#{feeling.id}"} do
+                = link_to photo.url, data: {lightbox: "fe#{feeling.id}"} do
                   = image_tag photo.url(:small), alt: photo.name
         = feeling_presenter.content
+      footer.comments_wrap
+        = render 'shared/comments', post: feeling, id: "feeling_#{feeling.id}_comments", auth: true

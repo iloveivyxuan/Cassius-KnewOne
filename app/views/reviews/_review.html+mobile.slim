@@ -11,18 +11,12 @@
           = review_presenter.author_avatar(:small, class: "img-circle")
           = review_presenter.author_name
         = present(review).created_at
-        = review_presenter.score
+        .feed_action.pull-right
+          = render partial: 'shared/voting', locals: {object: review}
+          =link_to "#{review.comments.count} 评论", review_presenter.path, class: "btn btn-link btn-xs", target: "_blank"
       section
-        h5.title = link_to review_presenter.title, review_presenter.path
+        header
+          h5.title = link_to review_presenter.title, review_presenter.path, target: "_blank"
+          = review_presenter.score
         p = review_presenter.summary(80)
-        - if review_presenter.content_photos
-          ul
-            - review_presenter.content_photos(:small).take(8).each do |photo|
-              li= image_tag photo, alt: photo
-      footer
-        em
-          i.fa.fa-thumbs-up
-          = review.lovers_count
-        em
-          i.fa.fa-comment
-          = review.comments.count
+        .cover_normal = review_presenter.cover(:normal)
