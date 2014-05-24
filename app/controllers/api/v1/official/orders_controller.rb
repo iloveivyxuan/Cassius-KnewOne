@@ -2,6 +2,7 @@ module Api
   module V1
     module Official
       class OrdersController < OfficialApiController
+        before_action :have_items_in_cart, only: [:new, :create]
 
         def show
           @order = current_user.orders.find(params[:id])
@@ -57,6 +58,14 @@ module Api
           }.merge(options)
 
           Alipay::MobileService.sdk_pay_order_info(options)
+        end
+
+        protected
+
+        def have_items_in_cart
+          if current_user.cart_items.select { |item| item.legal? && item.has_enough_stock? }.empty?
+            render_error :no_item_in_cart, 'Cart is empty!'
+          end
         end
       end
     end

@@ -70,7 +70,8 @@ module Api
 
       INVALID_CODES = {
           :missing_field => 501,
-          :nyi => 999
+          :nyi => 999,
+          :no_item_in_cart => 998
       }
 
       protected
