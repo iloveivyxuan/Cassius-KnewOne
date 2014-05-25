@@ -10,6 +10,10 @@ FactoryGirl.define do
       after(:create) { |user| create_list(:address, rand(1..2), user: user) }
     end
 
+    trait :with_cart_items do
+      after(:create) { |user| create_list(:cart_item, rand(1..2), user: user) }
+    end
+
     trait :with_invoices do
       after(:create) { |user| create_list(:invoice, rand(1..2), user: user) }
     end
@@ -43,6 +47,13 @@ FactoryGirl.define do
     stock { rand(0..100) }
     sold  { rand(0..100) }
     price { Faker::Commerce.price }
+  end
+
+  factory :cart_item do
+    user
+    association :thing, factory: [:thing, :for_sell]
+    kind_id { thing.kinds.first.id }
+    quantity 1
   end
 
   factory :order do
