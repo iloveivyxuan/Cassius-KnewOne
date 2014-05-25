@@ -69,4 +69,26 @@ FactoryGirl.define do
     title '个人'
     kind '普通发票'
   end
+
+  factory :review do
+    author
+    thing
+    title   { Faker::Lorem.word }
+    content { Faker::Lorem.paragraph }
+  end
+
+  factory :feeling do
+    author
+    thing
+    title   { Faker::Lorem.word }
+    content { Faker::Lorem.sentence }
+  end
+
+  factory :story do
+    author
+    thing
+    title   { Faker::Lorem.word }
+    content { Faker::Lorem.sentence }
+    occured_at { Time.now }
+  end
 end
