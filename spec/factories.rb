@@ -50,6 +50,18 @@ FactoryGirl.define do
     address
     state :pending
     deliver_by :sf
+
+    after :create do |order|
+      create_list(:order_item, rand(1..2), order: order)
+      create_list(:invoice, rand(1..2), user: order.user)
+    end
+  end
+
+  factory :order_item do
+    association :thing, factory: [:thing, :for_sell]
+    kind_id      { thing.kinds.first.id }
+    single_price { thing.kinds.first.price }
+    quantity 1
   end
 
   factory :invoice do
