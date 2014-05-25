@@ -31,6 +31,18 @@ FactoryGirl.define do
     content  { Faker::Lorem.paragraph }
     categories { ["category-#{rand(3)}"] }
 
+    trait :for_sell do
+      after(:create) { |thing| create_list(:kind, 1, thing: thing) }
+    end
+  end
+
+  factory :kind do
+    thing
+    title { '限量版' }
+    stage :stock
+    stock { rand(0..100) }
+    sold  { rand(0..100) }
+    price { Faker::Commerce.price }
   end
 
   factory :order do
