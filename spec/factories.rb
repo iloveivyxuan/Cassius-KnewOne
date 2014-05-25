@@ -126,4 +126,8 @@ FactoryGirl.define do
     title   { Faker::Lorem.word }
     content { Faker::Lorem.paragraph }
   end
+
+  factory :photo do
+    image { File.new("#{Rails.root}/app/assets/images/logos/1.png") }
+  end
 end
