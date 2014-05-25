@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :user, aliases: [:author] do
+  factory :user, aliases: [:author, :sender, :receiver] do
     sequence(:name) { |i| "#{i}-#{Faker::Name.first_name}-#{Faker::Name.last_name}" }
     email { "#{name}@example.com" }
     password 'password'
@@ -129,5 +129,23 @@ FactoryGirl.define do
 
   factory :photo do
     image { File.new("#{Rails.root}/app/assets/images/logos/1.png") }
+  end
+
+  factory :notification do
+    receiver
+    type :comment
+    context_type :Thing
+    context_id { create(:thing).id }
+  end
+
+  factory :dialog do
+    user
+    sender
+
+    after(:create) { |dialog| create_list(:private_message, rand(1..2), dialog: dialog) }
+  end
+
+  factory :private_message do
+    content { Faker::Lorem.sentences }
   end
 end
