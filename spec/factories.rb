@@ -91,4 +91,39 @@ FactoryGirl.define do
     content { Faker::Lorem.sentence }
     occured_at { Time.now }
   end
+
+  factory :group do
+    name { Faker::Lorem.word }
+
+    trait :private do
+      qualification :private
+    end
+
+    trait :with_members do
+      after(:create) { |group| create_list(:member, rand(1..2), group: group) }
+    end
+  end
+
+  factory :member do
+    ignore do
+      user { create(:user) }
+    end
+
+    user_id { user.id }
+
+    trait :admin do
+      role :admin
+    end
+
+    trait :founder do
+      role :founder
+    end
+  end
+
+  factory :topic do
+    author
+    group
+    title   { Faker::Lorem.word }
+    content { Faker::Lorem.paragraph }
+  end
 end
