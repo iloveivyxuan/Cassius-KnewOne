@@ -15,13 +15,17 @@ class UserPresenter < ApplicationPresenter
     link_to(avatar(size), user, class: "author_avatar").concat link_to(name, user, class: "author_name")
   end
 
+  def as_author_with_profile(size=:small)
+    link_to(avatar(size), user, add_popover_options(class: "author_avatar")).concat link_to(name, user, class: "author_name")
+  end
+
   def topic_wrapper(topic)
     return nil unless user.current_auth
     user.current_auth.topic_wrapper topic
   end
 
   def link_to_with_avatar(size, options={}, img_options={})
-    link_to avatar(size, add_popover_options(img_options)),
+    link_to avatar(size, img_options),
             user,
             options.merge(title: user.name)
   end
