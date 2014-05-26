@@ -63,7 +63,7 @@ class AftermathHandler
       user.inc followers_count: -1 if user.followers_count > 0
     end
 
-    def order_confirm_payment!(order)
+    def order_confirm_payment!(order, trade_no, price, method, raw)
       u = order.user
 
       if order.payment_method != :btc
