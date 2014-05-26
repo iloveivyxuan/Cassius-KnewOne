@@ -1,6 +1,6 @@
 require 'mini_magick'
 class SfWayBill < WayBill
-  ACCOUNT = ''
+  ACCOUNT = '7559366000'
 
   def initialize
     @image = MiniMagick::Image.open(Rails.root.join('lib/waybill/sf_white_board.gif'))

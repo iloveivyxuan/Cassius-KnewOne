@@ -7,7 +7,7 @@ class WayBill
   COMPANY = 'KnewOne.com'
   SENDER = '超雄'
   ADDRESS = '广东省 深圳市 南山区 南海大道万融大厦B座103'
-  PHONE = '18682302338'
+  PHONE = '400-999-2512'
 
   def to_io_stream
     self.image.to_blob
