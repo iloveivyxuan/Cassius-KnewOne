@@ -6,6 +6,8 @@ section.entry
   .oauth
     = link_to_with_icon "微博登录", "fa fa-weibo", user_omniauth_authorize_path(:weibo), class: "btn btn-danger", title: "用微博登录"
     span.separator |
+    = link_to_with_icon "QQ登录", "fa fa-qq", user_omniauth_authorize_path(:qq_connect), class: "btn btn-danger", title: "用QQ登录"
+    span.separator |
     = link_to_with_icon "Twitter 登录", "fa fa-twitter", user_omniauth_authorize_path(:twitter), class: "btn btn-primary", title: "用 Twitter 登录"
   .entry_email
     ul.nav.nav-pills.nav-pills-list.nav-justified

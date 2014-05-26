@@ -1,5 +1,6 @@
 - if user_signed_in?
-  - if current_user.auths.any?
+  - auths = current_user.auths.reject {|a| %w(wechat qq_connect).include?(a.provider)}
+  - if auths.any?
     #share_modal.modal.fade.share_modal
       .modal-dialog
         .modal-content
@@ -14,7 +15,7 @@
               = f.input :pic, as: :hidden, input_html: {value: ''}
               .pic_preview= image_tag ""
               = content_tag :div, class: "#{'hidden' if current_user.auths.size == 1}" do
-                - current_user.auths.reject {|a| a.provider == 'wechat'}.each do |auth|
+                - auths.each do |auth|
                   - if auth.expired?
                     | #{Auth::PROVIDERS[auth.provider]} 授权已过期，
                     = link_to '点此刷新', user_omniauth_authorize_path(auth.provider.to_sym, state: fullpath_with_modal('share_modal')), class: 'save_form_state'
