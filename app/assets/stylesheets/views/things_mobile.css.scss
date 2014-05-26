@@ -324,25 +324,17 @@ html.things_show {
 
         .box {
 
-          > header {
-            background-color: #edf1f1;
+          > header,
+          > section,
+          > footer {
             padding: 10px;
-
-            a {
-              color: $gray;
-            }
           }
 
           > section {
-            padding: 10px;
 
             .nomore {
               padding-bottom: 0;
             }
-          }
-
-          > footer {
-            padding: 10px;
           }
         }
       }

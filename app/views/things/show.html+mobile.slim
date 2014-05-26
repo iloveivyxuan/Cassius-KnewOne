@@ -65,11 +65,11 @@
     section.tab-content
       .tab-pane.stream.fade.in.active#feelings
         .box
-          header.clearfix
+          header
             - if user_signed_in?
-              = link_to_with_icon "我要写短评", "fa fa-comments", "#", class: "pull-right", id: "toggle_feelings_form"
+              = link_to_with_icon "我要写短评", "fa fa-comments", "#", class: "btn btn-success btn-block", id: "toggle_feelings_form"
             - else
-              = link_to_with_icon "我要写短评", "fa fa-comments", "#", class: "pull-right", data: {toggle: "modal", target: "#login-modal"}
+              = link_to_with_icon "我要写短评", "fa fa-comments", "#", class: "btn btn-success btn-block", data: {toggle: "modal", target: "#login-modal"}
           section
             = render "feelings/form"
             .stream_content.feelings
@@ -82,11 +82,11 @@
               | 继续加载
       .tab-pane.stream.fade#reviews
         .box
-          header.clearfix
+          header
             - if user_signed_in?
-              = link_to_with_icon "我要写评测", "fa fa-comments", new_thing_review_path(tp.thing), class: "pull-right"
+              = link_to_with_icon "我要写评测", "fa fa-comments", new_thing_review_path(tp.thing), class: "btn btn-success btn-block"
             - else
-              = link_to_with_icon "我要写评测", "fa fa-comments", "#", class: "pull-right", data: {toggle: "modal", target: "#login-modal"}
+              = link_to_with_icon "我要写评测", "fa fa-comments", "#", class: "btn btn-success btn-block", data: {toggle: "modal", target: "#login-modal"}
           section
             .stream_content
             .nomore.hidden
