@@ -5,7 +5,7 @@ article.article_compact
         = link_to tp.title, tp.path
         = tp.top
     section.article_body
-      figure
+      figure data-popover-profile=topic.author.id
         = tp.author_avatar :small
       .metas
         - if show_group

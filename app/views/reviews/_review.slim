@@ -8,7 +8,7 @@
         header
           h5 = link_to review_presenter.title, review_presenter.path
 
-        figure.review_author
+        figure.review_author data-popover-profile=review.author.id
           = review_presenter.author_avatar(:small, class: "img-circle")
           figcaption
             = review_presenter.author_name

@@ -10,7 +10,7 @@ class PostPresenter < ApplicationPresenter
   def author_tag
     content_tag :div, class: "author" do
       present(@object.author)
-        .as_author.concat created_at
+        .as_author_with_profile.concat created_at
     end
   end
 
