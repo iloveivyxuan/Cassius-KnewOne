@@ -7,7 +7,7 @@ class Post
   field :content, type: String, default: ""
   field :commented_at, type: DateTime
 
-  belongs_to :author, class_name: "User", inverse_of: :post
+  belongs_to :author, class_name: "User", inverse_of: :posts
 
   has_many :comments
 
