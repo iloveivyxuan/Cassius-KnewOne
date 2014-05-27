@@ -36,19 +36,25 @@ class AccountsController < Devise::RegistrationsController
   end
 
   def email
-    current_user.email = params[:user][:email]
+    email_changed = (params[:user][:email].present? &&
+                     params[:user][:email] != current_user.email)
 
     respond_to do |format|
-      if current_user.save
-        # devise will send confirmation email when user created, but sign up by oauth, it will not trigger
-        # and there isn't satisfied with devise's reconfirmation condition,
-        # so need invoke send send_confirmation_instructions here
-        if current_user.email.blank? && current_user.unconfirmed_email.present?
-          current_user.send_confirmation_instructions
-        end
-
-        format.html { redirect_back_or edit_account_path, flash: {email: { status: 'success', text: '修改成功，验证邮件已发送，请检查邮箱。' }} }
+      if current_user.update(email_params)
         format.js { render 'email' }
+
+        if email_changed
+          # devise will send confirmation email when user created, but sign up by oauth, it will not trigger
+          # and there isn't satisfied with devise's reconfirmation condition,
+          # so need invoke send send_confirmation_instructions here
+          if current_user.email.blank? && current_user.unconfirmed_email.present?
+            current_user.send_confirmation_instructions
+          end
+
+          format.html { redirect_back_or edit_account_path, flash: {email: { status: 'success', text: '修改成功，验证邮件已发送，请检查邮箱。' }} }
+        else
+          format.html { render 'accounts/edit' }
+        end
       else
         format.html { render 'accounts/edit' }
         format.js { render 'accounts/email_fail' }
@@ -74,5 +80,9 @@ class AccountsController < Devise::RegistrationsController
 
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
+  end
+
+  def email_params
+    params.require(:user).permit(:email)
   end
 end
