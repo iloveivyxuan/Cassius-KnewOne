@@ -1,4 +1,8 @@
-source 'https://rubygems.org'
+if ENV['USE_TAOBAO_GEM_SOURCE']
+  source 'https://ruby.taobao.org'
+else
+  source 'https://rubygems.org'
+end
 ruby '2.1.1'
 
 # rails and friends
