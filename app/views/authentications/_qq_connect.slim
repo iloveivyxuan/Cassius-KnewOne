@@ -1,7 +1,7 @@
 tr
   - if auth
     td
-      i.fa.fa-weibo
+      i.fa.fa-qq
       | QQ
     td.text-success 已绑定
     td= link_to '解绑', authentication_path(auth.id), method: :delete, class: 'btn btn-danger', data: {confirm: '真的要解除绑定么？'}
