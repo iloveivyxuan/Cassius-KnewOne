@@ -1,4 +1,4 @@
-lock '3.1.0'
+# lock '3.1.0'
 
 set :application, 'making'
 set :user, 'deployer'
