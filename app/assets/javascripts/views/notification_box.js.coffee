@@ -43,10 +43,18 @@ Making.Views.Notification = Backbone.View.extend
     , @
 
   loaded: (data, xhr, $element) ->
+    $content = $element.find('.notifications')
+
     if xhr.status is 200
-      $element.find('.notifications').html(data)
-      $element.find('.spinner').hide()
-      @render()
+      $content.html(data)
+    else if xhr.status is 204
+      $content.html('<li class="empty">没有消息。</li>')
+
+    $element.find('.spinner').hide()
+    @render()
 
   fail: (xhr, $element) ->
-    # TODO
+    $element
+      .find('.notifications')
+      .html('<li class="error">出错啦，稍候再试试。</li>')
+    $element.find('.spinner').hide()
