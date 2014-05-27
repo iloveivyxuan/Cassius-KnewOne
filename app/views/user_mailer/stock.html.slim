@@ -1,0 +1,8 @@
+- content_for :username do
+  = @user.name
+
+- content_for :title do
+  | “#{@thing.title}”到货了。
+
+p
+  | 你在 KnewOne 上喜欢的产品 #{link_to @thing.title, thing_url(@thing, from: :edm)} 已经到货了。

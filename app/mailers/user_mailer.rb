@@ -29,14 +29,6 @@ class UserMailer < BaseMailer
          template_name: template)
   end
 
-  def foo(user)
-    attachments.inline['guide.jpg'] = File.read(Rails.root.join('app/assets/images/mails/guide.jpg'))
-
-    @user = user
-    mail(to: @user.email,
-         subject: 'KnewOne分享功能全新上线，邀请您来体验')
-  end
-
   def guide(email, name)
     attachments.inline['guide.jpg'] = File.read(Rails.root.join('app/assets/images/mails/guide.jpg'))
     @name = name
@@ -73,5 +65,13 @@ class UserMailer < BaseMailer
 
     mail(to: email,
          subject: '很遗憾，您未能成功在 「KnewOne 牛玩」领养 RyFit！')
+  end
+
+  def stock(user, thing)
+    @user = user
+    @thing = thing
+
+    mail(to: user.email,
+         subject: "你在「KnewOne 牛玩」上喜欢的产品\"#{thing.title}\"到货了")
   end
 end

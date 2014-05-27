@@ -6,6 +6,7 @@ class ThingNotificationWorker
     t = Thing.find(thing_id)
     t.send(target).each do |u|
       u.notify type, {context: t}.merge(options)
+      UserMailer.stock(u, t).deliver
     end
   end
 end
