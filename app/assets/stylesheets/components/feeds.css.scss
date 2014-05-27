@@ -243,6 +243,12 @@ html.desktop {
         }
       }
 
+      > .video {
+        @media (max-width: $screen-sm-max) {
+          display: none;
+        }
+      }
+
       > ul {
         @include clearfix;
 

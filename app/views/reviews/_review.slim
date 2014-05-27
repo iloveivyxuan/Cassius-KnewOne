@@ -25,6 +25,9 @@
         section
           p = review_presenter.summary(120)
           .cover_normal = review_presenter.cover(:normal)
+          - if review_presenter.videos.present?
+            .video
+              = review_presenter.videos.first
           - if review_presenter.content_photos
             ul
               - review_presenter.content_photos(:small).take(8).each do |photo|
