@@ -14,7 +14,9 @@ do (exports = Making, $ = jQuery) ->
       $navbar         = $('.navbar')
 
       @$box
-        .on 'click', (event) -> event.stopPropagation()
+        .on 'click', (event) ->
+          if !$(event.target).hasClass('dropdown_box_propagate')
+            event.stopPropagation()
         # TODO
         .on 'mouseenter', ->
           if scrollbar_width > 0 and $document.height() > $window.height()
@@ -62,6 +64,8 @@ do (exports = Making, $ = jQuery) ->
     .on 'click.dropdownbox.data-api', '[data-toggle="dropdown_box"]', (event) ->
       $(@).dropdownbox('toggle')
       false
-    .on 'click.dropdownbox.data-api', clear_boxes
+    .on 'click.dropdownbox.data-api', (event) ->
+      if !$(event.target).hasClass('dropdown_box_propagate')
+        clear_boxes()
 
   return
