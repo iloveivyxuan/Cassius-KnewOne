@@ -74,4 +74,14 @@ class UserMailer < BaseMailer
     mail(to: user.email,
          subject: "你在「KnewOne 牛玩」上喜欢的产品\"#{thing.title}\"到货了")
   end
+
+  def private_message(dialog)
+    @dialog = dialog
+    @receiver = dialog.user
+    @sender = dialog.sender
+    @message = dialog.newest_message
+
+    mail(to: @receiver.email,
+         subject: '你在「KnewOne 牛玩」上收到了一封私信')
+  end
 end
