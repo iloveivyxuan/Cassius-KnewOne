@@ -3,7 +3,7 @@ if ENV['USE_TAOBAO_GEM_SOURCE']
 else
   source 'https://rubygems.org'
 end
-ruby '2.1.1'
+ruby '2.1.2'
 
 # rails and friends
 gem 'rails', '~> 4.1.0'
