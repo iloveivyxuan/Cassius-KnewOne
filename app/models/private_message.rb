@@ -14,8 +14,4 @@ class PrivateMessage
 
   after_create -> { dialog.reset }
   after_destroy -> { dialog.reset }
-
-  after_create do
-    PrivateMessageEmailWorker.perform_in(1.hours.from_now, self.dialog.id.to_s)
-  end
 end

@@ -11,6 +11,8 @@ module UserDialogs
     dialog = Dialog.find_or_create_by sender: self, user: receiver
     dialog.private_messages << PrivateMessage.new(content: content, is_new: true, is_in: true)
 
+    PrivateMessageEmailWorker.perform_in(1.hours.from_now, dialog)
+
     dialog = Dialog.find_or_create_by sender: receiver, user: self
     message = PrivateMessage.new(content: content)
     dialog.private_messages << message
