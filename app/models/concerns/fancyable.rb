@@ -9,13 +9,13 @@ module Fancyable
   def fancy(user)
     return if fancied?(user)
 
-    self.fancier_ids << user.id
-    user.fancy_ids << self.id
+    self.push(fancier_ids: user.id)
+    user.push(fancy_ids: self.id)
 
-    self.fanciers_count = fanciers.count
+    update_attribute :fanciers_count, fanciers.count
 
-    save!
-    user.save!
+    reload
+    user.reload
 
     user.inc karma: Settings.karma.fancy
   end

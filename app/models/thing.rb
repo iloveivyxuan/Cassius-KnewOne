@@ -116,11 +116,11 @@ class Thing < Post
   def own(user)
     return if owned?(user)
 
-    self.owner_ids<< user.id
-    user.own_ids<< self.id
+    self.push(owner_ids: user.id)
+    user.push(own_ids: self.id)
 
-    save!
-    user.save!
+    reload
+    user.reload
 
     user.inc karma: Settings.karma.own
   end
