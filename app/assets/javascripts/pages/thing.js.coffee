@@ -19,7 +19,8 @@ window.Making = do (exports = window.Making || {}) ->
 
         $('#toggle_feelings_form').on 'click', (event) ->
           event.preventDefault()
-          $('.feeling_form').toggle()
+          $(@).hide()
+          $('.feeling_form').show()
 
         new exports.View.Stream('#feelings')
         new exports.View.Stream('#reviews')

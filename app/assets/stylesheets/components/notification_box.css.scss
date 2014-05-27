@@ -18,9 +18,19 @@
       background-color: #eff7fd;
     }
 
-    &.read {
+    &.read,
+    &.empty {
       background-color: transparent;
       color: $text-muted;
+    }
+
+    &.empty {
+      text-align: center;
+    }
+
+    &.error {
+      color: $red;
+      text-align: center;
     }
 
     a {
