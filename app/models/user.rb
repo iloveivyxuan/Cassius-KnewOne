@@ -315,13 +315,12 @@ class User
   def revoke_refund_to_balance!(order, value, note)
     cents = (value * 100).to_i
 
-    return false if balance_cents < cents
+    u = User
+      .where(id: id, :balance_cents.gte => cents)
+      .find_and_modify(:$inc => {balance_cents: -cents})
 
-    # prevent overselling
-    u = User.where(id: self.id.to_s, balance_cents: self.balance_cents).
-        find_and_modify :$set => {balance_cents: (self.balance_cents - cents)}
     if u
-      u.balance_logs<< RevokeRefundBalanceLog.new(order: order, value_cents: cents, note: note)
+      balance_logs << RevokeRefundBalanceLog.new(order: order, value_cents: cents, note: note)
       reload
       true
     else
@@ -331,19 +330,16 @@ class User
 
   def expense_balance!(value, note)
     cents = (value * 100).to_i
-    balance_cents = self.balance_cents
 
-    return false if balance_cents < cents
+    u = User
+      .where(id: id, :balance_cents.gte => cents)
+      .find_and_modify(:$inc => {balance_cents: -cents})
 
-    # prevent overselling
-    u = User.where(id: self.id.to_s, balance_cents: balance_cents).
-        find_and_modify :$set => {balance_cents: (balance_cents - cents)}
-    reload
-    if u && u.balance > 0
-      u.balance_logs<< ExpenseBalanceLog.new(value_cents: cents, note: note)
+    if u
+      balance_logs << ExpenseBalanceLog.new(value_cents: cents, note: note)
+      reload
       true
     else
-      # TODO: rollback
       false
     end
   end
