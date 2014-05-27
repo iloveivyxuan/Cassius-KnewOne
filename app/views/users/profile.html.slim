@@ -24,8 +24,8 @@
         | #{@user.followers_count} 关注者
 
   ul.profile_actions
-    / li.profile_action_dialog
-    /   = render 'private_message_btn'
+    li.profile_action_dialog
+      = render 'private_message_btn'
     li.profile_action_follow
       = render 'follow_btn', user: @user
 
