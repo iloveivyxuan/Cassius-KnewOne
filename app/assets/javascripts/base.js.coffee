@@ -12,6 +12,7 @@ do (root = this) ->
   root.$document = $(document)
   root.$window   = $(window)
   root.$html     = $('html')
+  root.$docbody  = $('body')
 
   root.EventBus =
 
