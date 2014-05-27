@@ -435,6 +435,7 @@ do (exports = Making) ->
     # Screen MD
     if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')')
 
+      $('#notification_box').children('a').attr('data-toggle', 'dropdown_box')
       new Making.Views.Notification()
 
       $nav_group.each ->

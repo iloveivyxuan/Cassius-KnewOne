@@ -42,7 +42,7 @@ header#header role="banner"
             span.badge.badge_success.cart_items_count= cart_items_count
 
           #notification_box.user_link.notification.dropdown
-            = link_to notifications_path, id: "notification_trigger", data: {toggle: "dropdown_box"}, title: "#{unread_notifications_text}未读消息" do
+            = link_to notifications_path, id: "notification_trigger", title: "#{unread_notifications_text}未读消息" do
               i.fa.fa-bell.fa_alone
               span#notification_count.badge.badge_primary= unread_notifications_count
             .dropdown_box

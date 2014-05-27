@@ -26,7 +26,8 @@ Making.Views.Notification = Backbone.View.extend
   fetch: ->
 
     _.each [@$relations, @$importants, @$things], ($item, index, list) ->
-      $item.find('.spiner').show()
+      $item.find('.notifications').empty()
+      $item.find('.spinner').show()
 
       $
         .ajax
@@ -43,12 +44,8 @@ Making.Views.Notification = Backbone.View.extend
 
   loaded: (data, xhr, $element) ->
     if xhr.status is 200
-      $content = $element.find('.notifications')
-      $spiner  = $element.find('.spiner')
-
-      $content.html data
-      $spiner.hide()
-
+      $element.find('.notifications').html(data)
+      $element.find('.spinner').hide()
       @render()
 
   fail: (xhr, $element) ->
