@@ -32,26 +32,13 @@
     }
   }
 
-  .dropdown_box_body {
+  > section {
     border-bottom: 1px solid #ddd;
     border-top: 1px solid #ddd;
     color: $text-color;
     height: 280px;
     min-height: 280px;
     overflow: auto;
-    position: relative;
-
-    > .spinner {
-      bottom: 0;
-      display: none;
-      height: 28px;
-      left: 0;
-      margin: auto;
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 25px;
-    }
   }
 
   > footer {

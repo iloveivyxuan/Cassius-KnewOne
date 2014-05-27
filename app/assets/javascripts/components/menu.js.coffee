@@ -7,7 +7,7 @@ do (exports = Making) ->
       @$backdrop    = $('<div class="menu_backdrop"></div>')
       @active_class = 'menu_open'
 
-      _.bindAll(this, 'show', 'hide')
+      _.bindAll(@, 'show', 'hide')
 
       @$toggle.on 'tap click', @show
 

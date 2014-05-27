@@ -41,23 +41,6 @@
     display: inline-block;
   }
 
-  header {
-    @include clearfix;
-
-    > h5 {
-      float: left;
-    }
-
-    > a {
-      color: $text-muted;
-      float: right;
-
-      &:hover {
-        color: $text-color;
-      }
-    }
-  }
-
   .dropdown_box {
     right: -20px;
 
@@ -65,18 +48,57 @@
       right: 54px;
     }
 
-    .notifications {
+    > header {
+      overflow: hidden;
+      padding: 0;
+    }
+  }
 
-      > li {
+  .nav {
 
-        a {
-          padding: 0 5px;
+    > li {
+
+      > a {
+        color: $text-muted;
+        padding: {
+          bottom: 8px;
+          top: 8px;
         }
+      }
 
-        time {
-          float: none;
-          padding-left: 1em;
+      &.active {
+
+        > a {
+          background-color: $nav-link-hover-bg;
+          color: $text-color;
         }
+      }
+    }
+  }
+
+  .spinner {
+    bottom: 0;
+    display: none;
+    height: 28px;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 25px;
+  }
+
+  .notifications {
+
+    > li {
+
+      a {
+        padding: 0 5px;
+      }
+
+      time {
+        float: none;
+        padding-left: 1em;
       }
     }
   }

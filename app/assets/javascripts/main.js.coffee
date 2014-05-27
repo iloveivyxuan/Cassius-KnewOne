@@ -307,7 +307,6 @@ do (exports = Making) ->
     exports.Share()
     exports.AjaxComplete()
     exports.ToggleFixedNavbar()
-    exports.InitUIDropdownBox()
     exports.SetupOlark('[href="#olark_chat"]')
     exports.GoTop()
     exports.PopoverProfiles()
@@ -435,6 +434,8 @@ do (exports = Making) ->
 
     # Screen MD
     if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')')
+
+      new Making.Views.Notification()
 
       $nav_group.each ->
         $this = $(@)
