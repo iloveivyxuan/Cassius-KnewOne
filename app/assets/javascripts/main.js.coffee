@@ -435,6 +435,8 @@ do (exports = Making) ->
     # Screen MD
     if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')')
 
+      new Making.Views.Notification()
+
       $nav_group.each ->
         $this = $(@)
         $link = $this.children('.nav_group_link')

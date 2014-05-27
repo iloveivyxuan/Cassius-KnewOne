@@ -8,6 +8,7 @@ do (root = this) ->
     Views      : {}
     Collections: {}
     Routers    : {}
+    Events     : _.clone(Backbone.Events)
 
   root.$document = $(document)
   root.$window   = $(window)

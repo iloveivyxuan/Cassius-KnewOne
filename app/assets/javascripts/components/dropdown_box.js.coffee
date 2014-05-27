@@ -15,23 +15,21 @@ do (exports = Making, $ = jQuery) ->
 
       @$box
         .on 'click', (event) ->
-          if !$(event.target).hasClass('dropdown_box_propagate')
-            event.stopPropagation()
+          event.stopPropagation() unless $(event.target).hasClass('dropdown_box_propagate')
         # TODO
         .on 'mouseenter', ->
+          $docbody.addClass('dropdown_box_open')
           if scrollbar_width > 0 and $document.height() > $window.height()
-            $docbody.addClass('dropdown_box_open')
             $html.css 'margin-right', scrollbar_width + 'px'
             $navbar.css 'padding-right', scrollbar_width + 'px'
         .on 'mouseleave', ->
+          $docbody.removeClass('dropdown_box_open')
           if scrollbar_width > 0 and $document.height() > $window.height()
-            $docbody.removeClass('dropdown_box_open')
             $html.css 'margin-right', 0
             $navbar.css 'padding-right', 0
 
     toggle: ->
       @$parent.toggleClass('open')
-      false
 
   clear_boxes = ->
     $(toggle).each ->
@@ -65,7 +63,7 @@ do (exports = Making, $ = jQuery) ->
       $(@).dropdownbox('toggle')
       false
     .on 'click.dropdownbox.data-api', (event) ->
-      if !$(event.target).hasClass('dropdown_box_propagate')
-        clear_boxes()
+      # TODO
+      clear_boxes() unless $(event.target).hasClass('dropdown_box_propagate')
 
   return

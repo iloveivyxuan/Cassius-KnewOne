@@ -33,7 +33,6 @@
 //= require common
 //= require components/rating
 //= require components/dropdown_box
-//= require components/notificationbox
 //= require components/search
 //= require components/fuzzy
 //= require components/menu

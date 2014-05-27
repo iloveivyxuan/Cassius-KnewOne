@@ -41,63 +41,39 @@ header#header role="banner"
             i.fa.fa-shopping-cart.fa_alone
             span.badge.badge_success.cart_items_count= cart_items_count
 
-          = link_to '#notification_box', class: 'user_link notification', role: 'button', id: 'notification_trigger',
-                    data: {url: notifications_path, toggle: 'modal-popover', placement: 'bottom'},
-                    title: "#{unread_notifications_text}未读消息" do
-            i.fa.fa-bell.fa_alone
-            span#notification_count.badge.badge_primary= unread_notifications_count
-
-          #notification_box.popover
-            .arrow
-            .popover-content
-              ul.nav.nav-tabs
-                li
-                  a href="#notification_box_relations_tab" data-toggle="tab"
-                    i.fa.fa-users
-                li.active
-                  a href="#notification_box_importants_tab" data-toggle="tab"
-                    i.fa.fa-info
-                li
-                  a href="#notification_box_things_tab" data-toggle="tab"
-                    i.fa.fa-book
-
-              .tab-content
-                #notification_box_relations_tab.tab-pane
-                  ul.notifications
-                  .spinner
-                    i.fa.fa-spinner.fa-spin.fa-2x
-
-                #notification_box_importants_tab.tab-pane.active
-                  ul.notifications
-                  .spinner
-                    i.fa.fa-spinner.fa-spin.fa-2x
-
-                #notification_box_things_tab.tab-pane
-                  ul.notifications
-                  .spinner
-                    i.fa.fa-spinner.fa-spin.fa-2x
-
-                footer
-                  = link_to_with_icon "设置", "fa fa-cog", edit_notification_settings_path, class: "pull-left"
-                  = link_to_with_icon "更多", "fa fa-ellipsis-h", notifications_path, class: "pull-right"
-
-
-          /#notification_box.user_link.notification.dropdown
-          /  = link_to notifications_path, id: 'notification_trigger', data: {url: notifications_path}, title: "#{unread_notifications_text}未读消息" do
-          /    i.fa.fa-bell.fa_alone
-          /    span#notification_count.badge.badge_primary= unread_notifications_count
-          /  .dropdown_box
-          /    header
-          /      h5
-          /        i.fa.fa-bell
-          /        | 消息
-          /    .dropdown_box_body
-          /      ul.notifications
-          /      .spinner
-          /        i.fa.fa-spinner.fa-spin.fa-2x
-          /    footer
-          /      = link_to_with_icon "设置", "fa fa-cog", edit_notification_settings_path, class: "pull-left"
-          /      = link_to_with_icon "更多", "fa fa-ellipsis-h", notifications_path, class: "pull-right"
+          #notification_box.user_link.notification.dropdown
+            = link_to notifications_path, id: "notification_trigger", data: {toggle: "dropdown_box"}, title: "#{unread_notifications_text}未读消息" do
+              i.fa.fa-bell.fa_alone
+              span#notification_count.badge.badge_primary= unread_notifications_count
+            .dropdown_box
+              header
+                ul.nav.nav-justified
+                  li
+                    a.dropdown_box_propagate href="#notification_relations" data-toggle="tab"
+                      i.fa.fa-users.fa_alone.dropdown_box_propagate
+                  li.active
+                    a.dropdown_box_propagate href="#notification_importants" data-toggle="tab"
+                      i.fa.fa-info.fa_alone.dropdown_box_propagate
+                  li
+                    a.dropdown_box_propagate href="#notification_things" data-toggle="tab"
+                      i.fa.fa-book.fa_alone.dropdown_box_propagate
+              section
+                section.tab-content
+                  .tab-pane#notification_relations
+                    ul.notifications
+                    .spinner
+                      i.fa.fa-spinner.fa-spin.fa-2x
+                  .tab-pane#notification_importants.active
+                    ul.notifications
+                    .spinner
+                      i.fa.fa-spinner.fa-spin.fa-2x
+                  .tab-pane#notification_things
+                    ul.notifications
+                    .spinner
+                      i.fa.fa-spinner.fa-spin.fa-2x
+              footer
+                = link_to_with_icon "设置", "fa fa-cog", edit_notification_settings_path, class: "pull-left"
+                = link_to_with_icon "更多", "fa fa-ellipsis-h", notifications_path, class: "pull-right"
 
           - upmc = current_user.unread_private_messages_count
           = link_to dialogs_path, class: "user_link", title: "#{upmc}封未读私信" do
