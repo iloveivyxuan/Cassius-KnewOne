@@ -6,7 +6,7 @@
       dt.name itemprop="name"
         h1
           = @user.name
-          = link_to '[内幕]', haven_user_path(@user) if current_user.try :role?, :editor
+          = link_to '[内幕]', haven_user_path(@user), class: "note" if current_user.try :role?, :editor
           = render_user_gender(@user)
           - if @user.identities.any?
             small.note

@@ -229,7 +229,9 @@ html.users_activities {
           display: none;
 
           @media (min-width: $screen-sm-min) {
+            color: $gray;
             display: inline-block;
+            font-size: 12px;
             height: 18px;
             line-height: 18px;
             overflow: hidden;
