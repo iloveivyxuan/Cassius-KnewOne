@@ -39,6 +39,7 @@ Making.Views.Notification = Backbone.View.extend
           Making.Events.trigger('notifications:loaded', data, xhr, $item)
         .fail (xhr, status, error) ->
           Making.Events.trigger('notifications:fail', xhr, $item)
+    , @
 
   loaded: (data, xhr, $element) ->
     if xhr.status is 200
