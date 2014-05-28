@@ -19,6 +19,8 @@ Making.PopoverProfiles = ->
 
   show = ($element, newContent) ->
     $element.data('bs.popover').options.content = newContent
+
+    $('.popover').remove()
     $element.popover('show')
 
     $('.popover').on('mouseleave', -> $element.popover('hide'))
