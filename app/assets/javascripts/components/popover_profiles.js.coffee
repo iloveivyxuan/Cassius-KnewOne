@@ -22,6 +22,7 @@ Making.PopoverProfiles = ->
 
     $('.popover').remove()
     $element.popover('show')
+    $('.popover-title').remove()
 
     $('.popover').on('mouseleave', -> $element.popover('hide'))
 
