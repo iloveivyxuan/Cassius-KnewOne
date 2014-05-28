@@ -8,7 +8,6 @@ header.page-header
 section#private_messages
   = form_tag dialogs_path, method: :post, remote: true, role: "form" do
     = hidden_field_tag :dialog_user_id, @dialog.sender.id
-    = hidden_field_tag :dialog_from, "dialog_show"
     = text_area_tag 'dialog_content', nil, rows: 5,
     class: 'form-control', required: true, autofocus: true
     button.btn.btn-primary type="submit"
