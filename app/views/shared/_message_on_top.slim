@@ -1,0 +1,6 @@
+.message-on-top
+  - if flash[:message]
+    p class="alert alert-#{flash[:message][:type]} fade in"
+      = flash[:message][:content]
+      button type="button" class="close" data-dismiss="alert" aria-hidden="true"
+        | &times;
