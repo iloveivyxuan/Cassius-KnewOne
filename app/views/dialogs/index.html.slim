@@ -1,7 +1,7 @@
 - page_title '我的私信'
 
 header.page-header
-  button.btn.btn-primary data-toggle="modal" data-target="#new_private_message"
+  button.btn.btn-primary data-toggle="modal" data-target="#new_private_message_modal"
     | 写私信
   h1
     i.fa.fa-envelope-o
@@ -12,9 +12,3 @@ section#dialogs
 
 footer
   = paginate @dialogs
-
-= render 'shared/private_message', from: "dialog_index"
-
-- content_for :script do
-  javascript:
-    Making.UserFuzzy('#dialog_user_name', '#dialog_user_id');

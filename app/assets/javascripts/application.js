@@ -39,6 +39,7 @@
 //= require components/editor
 //= require components/cart_items
 //= require components/popover_profiles
+//= require components/private_message
 //= require components/stream
 //= require_tree ./pages
 //= require_tree ./models

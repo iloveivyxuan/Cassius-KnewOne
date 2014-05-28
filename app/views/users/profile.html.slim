@@ -25,7 +25,7 @@
 
   ul.profile_actions
     li.profile_action_dialog
-      = render 'private_message_btn'
+      = render 'private_message_btn', user: @user
     li.profile_action_follow
       = render 'follow_btn', user: @user
 
