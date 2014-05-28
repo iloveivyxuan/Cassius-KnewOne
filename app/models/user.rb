@@ -45,6 +45,11 @@ class User
   field :orders_count, type: Integer, default: 0
   field :expenses_count, type: Integer, default: 0
 
+  # Last contents product timestamp
+  field :last_review_created_at, type: Time
+  field :last_thing_created_at, type: Time
+  field :last_feeling_created_at, type: Time
+
   field :admin_note, type: String, default: ''
   field :recommend_priority, type: Integer, default: 0
 

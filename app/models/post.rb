@@ -24,6 +24,7 @@ class Post
 
   after_create do
     update_relates_counter self.author
+    touch_relates_timestamp self.author
   end
 
   after_destroy do
@@ -88,6 +89,14 @@ class Post
     end
   end
 
+  def touch_relates_timestamp(author)
+    timestamp_field = :"last_#{model_name.singular}_created_at"
+
+    if author.methods.include?(timestamp_field)
+      author.set timestamp_field => Time.now.to_i
+    end
+  end
+
   def around_update_counter
     if self_changed? && self.author_id_changed?
       original_author = User.find(self.author_id_was)
@@ -97,6 +106,7 @@ class Post
       if original_author != self.author
         update_relates_counter self.author
         update_relates_counter original_author, -1
+        touch_relates_timestamp self.author
       end
     else
       yield
