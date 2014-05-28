@@ -6,3 +6,6 @@
 
 p
   | 你在 KnewOne 上喜欢的产品 #{link_to @thing.title, thing_url(@thing, from: :edm)} 已经到货了。
+
+p
+  | #{link_to '点此查看', thing_url(@thing, from: :edm)}
