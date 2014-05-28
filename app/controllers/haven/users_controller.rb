@@ -36,9 +36,15 @@ module Haven
         end
         if params[:filter].include? 'created_at'
           @users = @users.order_by([:created_at, :desc])
+          if params[:from].present?
+            @users = @users.where(:created_at.gte => Date.parse(params[:from]))
+          end
+          if params[:to].present?
+            @users = @users.where(:created_at.lt => Date.parse(params[:to]).next_day)
+          end
         end
       else
-        @users = @users.order_by([:expenses_count, :desc],
+        @users = @users.order_by([:created_at, :desc],
                                  [:things_count, :desc],
                                  [:reviews_count, :desc],
                                  [:orders_count, :desc])
