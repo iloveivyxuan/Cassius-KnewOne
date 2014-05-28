@@ -99,6 +99,7 @@ group :development do
   gem 'quiet_assets'
   gem 'thin'
   gem 'spring'
+  gem 'spring-commands-rspec'
 
   # deploy
   gem 'capistrano', '~> 3.1', require: false
@@ -109,16 +110,20 @@ group :development do
   gem 'capistrano-sidekiq', require: false
 end
 
+group :test do
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'simplecov', require: false
+end
+
 group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
   gem 'mongoid-rspec'
-  gem 'spork-rails'
-  gem 'guard-spork'
   gem 'guard-rspec'
   gem 'guard-livereload', github: 'guard/guard-livereload'
-  gem 'fabrication'
-  gem 'ffaker'
+  gem 'faker'
   gem 'database_cleaner'
 
   # system notifications

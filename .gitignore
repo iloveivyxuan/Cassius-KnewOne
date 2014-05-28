@@ -33,6 +33,7 @@
 capybara-*.html
 .rspec
 /spec/tmp/*
+/coverage/
 
 # Vagrant
 .vagrant

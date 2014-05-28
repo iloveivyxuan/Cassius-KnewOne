@@ -1,2 +1,0 @@
-Fabricator(:thing) do
-end
