@@ -1,4 +1,18 @@
 Making.PopoverProfiles = ->
+  calculatePlacement = (tip, element) ->
+    $tip = $(tip)
+    $element = $(element)
+
+    tipWidth = $tip.appendTo($('body')).outerWidth()
+    $tip.detach()
+
+    elementOffsetRight = $element.offset().left + $element.outerWidth()
+
+    if elementOffsetRight + tipWidth < $(window).width()
+      'right'
+    else
+      'left'
+
   # http://stackoverflow.com/questions/15989591/
   initialize = ($element) ->
     return if  $element.data('bs.popover')
@@ -7,7 +21,7 @@ Making.PopoverProfiles = ->
       container: 'body'
       content: '<i class="fa fa-spinner fa-spin"></i> 加载中'
       html: true
-      placement: 'auto right'
+      placement: calculatePlacement
       trigger: 'manual'
     })
 
