@@ -1,0 +1,16 @@
+.message-on-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 200px;
+  z-index: 1031;
+
+  text-align: center;
+
+  .alert {
+    padding: 8px 14px;
+    border-radius: 0 0 4px 4px;
+  }
+}
