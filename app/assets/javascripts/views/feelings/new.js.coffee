@@ -6,26 +6,28 @@ class Making.Views.FeelingNew extends Backbone.View
 
   initialize: ->
     @photo_view = new Making.Views.PhotosUpload
-    @photo_view.render()
+    @max        = 140
+    @$submit    = @$('[type="submit"]')
+    @$counter   = @$('.counter')
 
-    @$el.find('[type="submit"]').disable()
+    @photo_view.render()
+    @$submit.disable()
 
   count: (event) ->
-    $counter = @$el.find('.counter')
-    $submit = @$el.find('[type="submit"]')
-    rest = 140 - event.target.value.length
-    $counter.text(rest)
-    if event.target.value.length == 0
-      $submit.disable()
-    else if rest < 0
-      $submit.disable()
-      $counter.addClass('error')
+    rest = @max - event.target.value.length
+    @$counter.text(rest)
+    if rest is @max
+      @$submit.disable()
+    else if rest > 0
+      if @$submit.hasClass('disabled')
+        @$submit.enable()
+        @$counter.removeClass('error')
     else
-      if $submit.hasClass('disabled')
-        $submit.enable()
-        $counter.removeClass('error')
+      @$submit.disable()
+      @$counter.addClass('error')
 
   on_submit: ->
+    @$submit.button('loading')
     $photos = @photo_view.$('.uploaded')
 
     _.each $photos, (el) =>
@@ -36,4 +38,3 @@ class Making.Views.FeelingNew extends Backbone.View
       ).appendTo @$el
 
     @$el.find('[type="submit"]').disable()
-    @$el.find('.counter').text('')

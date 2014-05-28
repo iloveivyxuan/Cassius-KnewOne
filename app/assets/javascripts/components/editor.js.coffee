@@ -4,10 +4,12 @@ window.Making = do (exports = window.Making || {}) ->
     _$element         = $(element)
     _$editor          = _$element.children('.editor_compact')
     _$content         = _$editor.find('.editor_content')
+    _$textarea        = _$content.children('textarea')
     _$uploader        = _$element.children('.uploader')
     _$uploader_button = _$element.find('#photo_image')
     _$uploader_queue  = _$element.find('.uploader_queue')
     _$counter         = _$editor.find('.counter')
+    _$button          = _$editor.find('[type="submit"]')
     deferred_reset    = new $.Deferred()
 
     _reset = (deferred) ->
@@ -21,10 +23,12 @@ window.Making = do (exports = window.Making || {}) ->
             .find('[name*="[photo_ids]"]').remove()
 
           _$content.removeAttr('style')
+          _$counter.text(maxlength) if (maxlength = parseInt(_$textarea.data('maxlength'))) isnt 0
           _$uploader_queue
             .removeAttr('style')
             .children('ul')
             .empty()
+          _$button.button('reset')
 
     exports.Rating()
 

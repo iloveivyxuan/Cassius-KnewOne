@@ -9,7 +9,7 @@
   = simple_form_for [@thing, Feeling.new], remote: true, html: {class: "editor_compact"} do |f|
     = f.input :content, as: :text, label: false, disabled: !user_signed_in?,
         wrapper_html: {class: "editor_content"},
-        input_html: {class: "form-control", placeholder: "不超过 140 字",rows: 5, maxLength: 1000}
+        input_html: {class: "form-control", placeholder: "不超过 140 字",rows: 5, data: {maxlength: 140}}
     footer
       - if user_signed_in?
         span.separator |
@@ -17,8 +17,8 @@
 
       .submit
         span.counter 140
-        = button_tag type: "submit", class: "btn btn-success", disabled: !user_signed_in?,
-          title: "按 Command + Enter 或 Control + Enter 键发布回复", data: {toggle: "tooltip", placement: "bottom"} do
+        = button_tag type: "submit", class: "btn btn-success",
+          title: "按 Command + Enter 或 Control + Enter 键发布回复", "data" => {"loading-text" => "提交中...", "toggle" => "tooltip", "placement" => "bottom"} do
           i.fa.fa-comments-o
           | 发布
 
