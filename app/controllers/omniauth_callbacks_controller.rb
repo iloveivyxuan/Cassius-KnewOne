@@ -5,10 +5,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def callback
     omniauth = request.env['omniauth.auth']
 
-    logger.info '------'
-    logger.info omniauth.to_hash
-    logger.info '------'
-
     if user = User.find_by_omniauth(omniauth)
       # Auth already bound
       if user_signed_in? && user.id != current_user.id
@@ -34,6 +30,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       current_user.update_from_omniauth(omniauth)
 
       params[:redirect_from] = params[:state] if params[:state].present? && params[:state][0] == '/'
+
       redirect_back_or edit_account_path, flash: {oauth: {status: 'success', text: '绑定成功。'}}
     else
       user = User.create_from_omniauth(omniauth)

@@ -38,19 +38,16 @@ body {
   margin-top: 5px;
 }
 
-.separator {
-  color: #eee;
-  padding: 0 .5em;
-}
-
 .inline_block {
   display: inline-block;
 }
 
 #oauth {
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
 }
 
 #oauth > .btn {
   width: 7em;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
 }

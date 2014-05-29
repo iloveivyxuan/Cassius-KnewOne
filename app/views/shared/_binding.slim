@@ -6,7 +6,7 @@
           | &times;
         h4.modal-title 绑定第三方账号
       .modal-body.text-center
-        = link_to user_omniauth_authorize_path(:twitter), class: "oauth" do
+        = link_to user_omniauth_authorize_path(:twitter, state: request.fullpath), class: "oauth" do
           i.fa.fa-twitter.fa-4x
-        = link_to user_omniauth_authorize_path(:weibo), class: "oauth" do
+        = link_to user_omniauth_authorize_path(:weibo, state: request.fullpath), class: "oauth" do
           i.fa.fa-weibo.fa-4x

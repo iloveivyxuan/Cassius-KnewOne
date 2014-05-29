@@ -14,7 +14,7 @@
               = f.input :content, as: :text, label: false, input_html: {rows: 5, value: ''}
               = f.input :pic, as: :hidden, input_html: {value: ''}
               .pic_preview.hide= image_tag ""
-              - if current_user.auths.size > 1
+              - if auths.size > 1
                 = content_tag :div, class: "checkbox" do
                   - auths.each do |auth|
                     - if auth.expired?

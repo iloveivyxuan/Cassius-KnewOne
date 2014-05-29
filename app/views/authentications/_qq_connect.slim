@@ -10,4 +10,4 @@ tr
       i.fa.fa-qq
       | QQ
     td.text-danger 未绑定
-    td= link_to '绑定', user_omniauth_authorize_path(:qq_connect, redirect_from: request.url), class: 'btn btn-primary'
+    td= link_to '绑定', user_omniauth_authorize_path(:qq_connect), class: 'btn btn-primary'
