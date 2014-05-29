@@ -408,11 +408,15 @@ do (exports = Making) ->
 
     init_new_thing_modal()
 
-    $('.share_btn').on 'click', ->
+    $(document).on 'click', '.share_btn', ->
       $('#share_modal_form')
         .find('textarea[name="share[content]"]').val($(@).attr('data-content')).end()
         .find('input[name="share[pic]"]').val($(@).attr('data-pic')).end()
-        .find('.pic_preview img').attr('src', $(@).attr('data-preview-pic')).end()
+      if $(@).attr('data-preview-pic')
+        $('#share_modal_form')
+          .find('.pic_preview')
+          .find('img').attr('src', $(@).attr('data-preview-pic')).end()
+          .removeClass('hide')
 
     $('.save_form_state').on 'click', ->
       $.each($('form'),

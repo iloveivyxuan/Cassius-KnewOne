@@ -9,7 +9,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Override url method to implement with "Image Space"
   def url(version_name = nil)
     @url ||= super({})
-    [@url, version_name].compact.join('!')
+    [@url, version_name].compact.join('!') if @url
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

@@ -13,16 +13,17 @@
             .modal-body
               = f.input :content, as: :text, label: false, input_html: {rows: 5, value: ''}
               = f.input :pic, as: :hidden, input_html: {value: ''}
-              .pic_preview= image_tag ""
-              = content_tag :div, class: "#{'hidden' if current_user.auths.size == 1}" do
+              .pic_preview.hide= image_tag ""
+              = content_tag :div, class: "#{'hidden' if current_user.auths.size == 1} checkbox" do
                 - auths.each do |auth|
                   - if auth.expired?
                     | #{Auth::PROVIDERS[auth.provider]} 授权已过期，
                     = link_to '点此刷新', user_omniauth_authorize_path(auth.provider.to_sym, state: fullpath_with_modal('share_modal')), class: 'save_form_state'
                   - else
-                    label.checkbox.inline
+                    label
                       = check_box_tag 'providers[]', auth.provider, true, data: {'skip-deserialize' => true}
                       = Auth::PROVIDERS[auth.provider]
+                      | &nbsp;&nbsp;
             .modal-footer
               span class="words-check"
               = button_tag "取消", type: 'button', class: "btn btn-default", data: {dismiss: "modal"}
