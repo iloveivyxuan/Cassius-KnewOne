@@ -1,6 +1,7 @@
 class Notification
   include Mongoid::Document
   include Mongoid::Timestamps::Created
+  include NotificationBuilder
 
   belongs_to :receiver, class_name: 'User', index: true
   validates :receiver, presence: true
@@ -43,18 +44,6 @@ class Notification
   scope :unread, -> { where read: false }
   default_scope -> { order_by [:created_at, :desc] }
 
-  # potential timing sequence issue
-  before_create do
-    @similar = find_unread_similar
-    if @similar && self.sender_ids.any?
-      self.sender_ids.concat(@similar.sender_ids).uniq!
-    end
-  end
-
-  after_create do
-    @similar.destroy if @similar
-  end
-
   def read!
     set read: true
   end
@@ -69,11 +58,6 @@ class Notification
 
   def orphan?
     self.context_id.present? && context.nil?
-  end
-
-  def find_unread_similar
-    return nil unless self.context
-    Notification.unread.by_type(self.type).by_receiver(self.receiver).by_context(self.context).first
   end
 
   def set_data(options = {})
@@ -93,17 +77,6 @@ class Notification
     options.each do |k, v|
       self.data[k] = v
     end
-  end
-
-  def self.build(receiver, type, options = {})
-    options.symbolize_keys!
-
-    receiver_id = receiver.is_a?(String) ? receiver : receiver.id.to_s
-
-    n = new receiver_id: receiver_id, type: type
-    n.set_data options
-
-    n
   end
 
   def self.mark_as_read_by_context(receiver, context)
