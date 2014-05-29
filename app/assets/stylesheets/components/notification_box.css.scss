@@ -68,6 +68,8 @@
 
     > li {
 
+      border-right: 1px solid #eee;
+
       > a {
         color: $text-muted;
         padding: {
@@ -79,9 +81,13 @@
       &.active {
 
         > a {
-          background-color: $nav-link-hover-bg;
+          //background-color: $nav-link-hover-bg;
           color: $text-color;
         }
+      }
+
+      &:last-child {
+        border-right: none;
       }
     }
   }
