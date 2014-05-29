@@ -118,6 +118,8 @@
 
     .oauth {
 
+      text-align: center;
+
       > a {
 
         .fa {
@@ -126,6 +128,7 @@
 
         .fa-qq {
           font-size: 2.6em !important;
+          vertical-align: 2px;
         }
 
         &:last-child {
