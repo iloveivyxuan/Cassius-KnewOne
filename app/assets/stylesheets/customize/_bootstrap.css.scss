@@ -243,6 +243,14 @@ time {
   form {margin: 0;}
 }
 
+.modal-dialog {
+  margin: 50px 10px;
+
+  @media (min-width: $screen-md-min) {
+    margin: 50px auto;
+  }
+}
+
 .modal-footer {
   margin-top: 0;
 }
