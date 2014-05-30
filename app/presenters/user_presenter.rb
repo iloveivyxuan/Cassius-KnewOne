@@ -16,7 +16,8 @@ class UserPresenter < ApplicationPresenter
   end
 
   def as_author_with_profile(size=:small)
-    link_to(avatar(size), user, add_popover_options(class: "author_avatar")).concat link_to(name, user, class: "author_name")
+    link_to(avatar(size), user, add_popover_options(class: "author_avatar"))
+      .concat(link_to(name, user, add_popover_options(class: "author_name")))
   end
 
   def topic_wrapper(topic)
