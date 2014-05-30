@@ -1,4 +1,4 @@
 - if content = render_notification(notification)
-  li class=(notification.read? ? "read" : "unread")
+  li class="#{notification.read? ? "read" : "unread"} #{"unopened" unless notification.opened?}"
     = content
     = time_ago_tag notification.created_at

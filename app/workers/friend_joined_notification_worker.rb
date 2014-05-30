@@ -7,7 +7,7 @@ class FriendJoinedNotificationWorker
     #TODO: Just support Weibo fridend
     if friends = user.recommend_users(true)
       friends.each do |f|
-        f.notify :weibo_friend_joined, context: user
+        f.notify :weibo_friend_joined, context: user, opened: false
       end
     end
   end

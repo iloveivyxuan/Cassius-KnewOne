@@ -15,7 +15,12 @@
     }
 
     &.unread {
+      font-weight: normal !important;
       background-color: #eff7fd;
+    }
+
+    &.unopened {
+      font-weight: bold;
     }
 
     &.read,

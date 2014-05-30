@@ -61,6 +61,8 @@ class ThingsController < ApplicationController
   end
 
   def show
+    mark_read @thing
+
     respond_to do |format|
       format.html.mobile
       format.html.tablet {render layout: 'thing'}

@@ -7,6 +7,7 @@ class Notification
   validates :receiver, presence: true
 
   field :read, type: Boolean, default: false
+  field :opened, type: Boolean, default: true
   field :data, type: Hash, default: {}
   field :sender_ids, type: Array, default: []
 
@@ -75,12 +76,12 @@ class Notification
     self.sender_ids.uniq!
 
     options.each do |k, v|
-      self.data[k] = v
+      send :"#{k}=", v
     end
   end
 
   def self.mark_as_read_by_context(receiver, context)
-    receiver.notifications.unread.by_context(context).set read: true
+    receiver.notifications.by_context(context).set read: true, opened: true
   end
 
   def self.batch_mark_as_read(ids)

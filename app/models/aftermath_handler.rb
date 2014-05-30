@@ -3,7 +3,7 @@ class AftermathHandler
   class<< self
     def comment_create(comment)
       comment.related_users.each do |receiver|
-        receiver.notify :comment, context: comment.post, sender: comment.author
+        receiver.notify :comment, context: comment.post, sender: comment.author, opened: false
       end
     end
 
@@ -34,7 +34,7 @@ class AftermathHandler
     def review_create(review)
       u = review.author
 
-      ReviewNotificationWorker.perform_async(review.id.to_s, :new_review, sender_id: u.id.to_s)
+      ReviewNotificationWorker.perform_async(review.id.to_s, :new_review, sender_id: u.id.to_s, opened: false)
     end
 
     def review_vote(review, voter, love)
