@@ -63,6 +63,10 @@ class PostPresenter < ApplicationPresenter
     end
   end
 
+  def videos
+    @object.content.scan(%r{<iframe .+?></iframe>}).map(&:html_safe)
+  end
+
   def score
     if post.try(:score).present? and post.score > 0
       content_tag :div, "", data: {score: post.score}, class: "score"
