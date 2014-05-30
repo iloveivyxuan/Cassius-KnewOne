@@ -4,7 +4,7 @@ class NotificationsController < ApplicationController
   after_action :mark_read, only: [:index]
 
   def index
-    @notifications = current_user.notifications
+    @notifications = current_user.notifications.page params[:page]
 
     case params[:scope]
       when 'unread'
@@ -13,17 +13,17 @@ class NotificationsController < ApplicationController
         @notifications = @notifications.marked_as_read
     end
 
-    if params[:types]
-      types = params[:types].split(',')
-      @notifications = @notifications.by_types(types) if types.any?
-    end
-
-    @notifications = @notifications.page params[:page]
-    @unread_count = current_user.notifications.unread.count
-
     if request.xhr?
+      @tabs = {
+          importants: @notifications.by_types(%w(stock weibo_friend_joined comment new_review)),
+          relations: @notifications.by_types(%w(following)),
+          things: @notifications.by_types(%w(love_feeling love_review love_topic))
+      }
+      @active_tab_key = @tabs.map {|pair| pair[1].select {|i| !i.read?}.any? ? pair[0] : nil}.compact.first || :importants
+
       render 'notifications/index_xhr', layout: false
     else
+      @unread_count = current_user.notifications.unread.count
       render 'notifications/index'
     end
   end

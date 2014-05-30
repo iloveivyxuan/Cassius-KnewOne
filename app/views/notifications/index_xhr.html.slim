@@ -1,1 +1,14 @@
-= render @notifications
+header
+  ul.nav.nav-justified
+    - @tabs.keys.each do |k|
+      li class="#{'active' if k == @active_tab_key}"
+        a.dropdown_box_propagate href="#notification_#{k}" data-toggle="tab"
+          i.fa.fa_alone.dropdown_box_propagate class="#{notification_tab_icon(k)}"
+section
+  .tab-content
+    - @tabs.each do |k, v|
+      .tab-pane id="notification_#{k}" class="#{'active' if k == @active_tab_key}"
+        ul.notifications = render v
+footer
+  = link_to_with_icon "设置", "fa fa-cog", edit_notification_settings_path, class: "pull-left"
+  = link_to_with_icon "更多", "fa fa-ellipsis-h", notifications_path, class: "pull-right"

@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
 module NotificationsHelper
+  NOTIFICATION_TAB_ICONS_MAPPING = {
+      importants: 'fa-info',
+      relations: 'fa-user',
+      things: 'fa-heart'
+  }
+
   def senders(message, target = '_self')
     links = message.senders.map do |sender|
       link_to sender.name, sender, target: target
@@ -53,5 +59,9 @@ module NotificationsHelper
   def render_notification(notification)
     return if notification.orphan?
     render "notifications/#{notification.type}", notification: notification
+  end
+
+  def notification_tab_icon(key)
+    NOTIFICATION_TAB_ICONS_MAPPING[key]
   end
 end
