@@ -14,33 +14,33 @@ module NotificationsHelper
     if message.senders.count > 5
       links += "等#{message.senders.count}人"
     end
-    raw links
+    raw "#{links} "
   end
 
   def notification_post(post, target = '_blank')
     content = ""
     case post.class
       when Thing then
-        content += "产品"
+        content += "产品 "
         content += link_to post.title, thing_path(post), target: target
       when Review then
         if post.thing
-          content += "评测"
+          content += "评测 "
           content += link_to post.title, thing_review_path(post.thing, post), target: target
         else
-          content += '失效的资源'
+          content += ' 失效的资源'
         end
       when Feeling then
         if post.thing
-          content += link_to '短评', thing_feeling_path(post.thing, post), target: target
+          content += link_to ' 短评', thing_feeling_path(post.thing, post), target: target
         else
-          content += '失效的资源'
+          content += ' 失效的资源'
         end
       when Topic then
-        content += "帖子"
+        content += "帖子 "
         content += link_to post.title, group_topic_path(post.group, post), target: target
       else
-        content += '失效的资源'
+        content += ' 失效的资源'
     end
 
     raw content

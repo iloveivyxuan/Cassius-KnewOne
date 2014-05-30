@@ -33,10 +33,6 @@
       text-align: center;
     }
 
-    a {
-      padding: 0 1em;
-    }
-
     time {
       float: right;
       padding-left: 2em;
@@ -107,13 +103,8 @@
 
     > li {
 
-      a {
-        padding: 0 5px;
-      }
-
       time {
-        float: none;
-        padding-left: 1em;
+        display: none;
       }
     }
   }
