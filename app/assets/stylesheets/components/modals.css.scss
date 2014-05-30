@@ -8,9 +8,11 @@
   }
 
   .modal-dialog {
-    max-width: 340px;
-    width: 94%;
-    padding-top: 55px;
+
+    @media (min-width: $screen-md-min) {
+      max-width: 340px;
+      width: 94%;
+    }
 
     .entry {
       margin-bottom: 0;
