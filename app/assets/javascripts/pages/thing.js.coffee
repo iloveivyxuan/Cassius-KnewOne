@@ -3,6 +3,23 @@ window.Making = do (exports = window.Making || {}) ->
   exports.InitThing = ->
     exports.ReadMore('.post_content')
 
+    # TODO
+    if $html.hasClass('touch')
+      $window.on 'load', ->
+        $player = $('.fluid-width-video-wrapper')
+
+        $player
+          .css
+            'height': $player.css('height')
+            'width': $player.css('width')
+            'position': 'absolute'
+            'left': '-1000%'
+            'overflow': 'hidden'
+        $('.post_content').next('.more').on 'click', ->
+          $player.css
+            'position': 'relative'
+            'left': 0
+
     switch exports.device
 
       when 'mobile'
