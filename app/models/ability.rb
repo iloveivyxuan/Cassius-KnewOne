@@ -149,6 +149,8 @@ class Ability
     can :edit, Thing
     can :update, Thing
     can :destroy, Thing
+    can :batch_update, Thing
+    can :batch_edit, Thing
     can :edit, Category
     can :update, Category
     can :pro_edit, Thing

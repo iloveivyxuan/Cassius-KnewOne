@@ -7,7 +7,8 @@ hgroup
     tr
       th 标题
       th 副标题
-      th 分类
+      th style="width:15%" 分类
+      th
     - @things.each do |t|
       tr
         td
@@ -15,6 +16,8 @@ hgroup
           = text_field_tag 'things[][title]', t.title, style: 'width: 100%'
         td= text_field_tag 'things[][subtitle]', t.subtitle, style: 'width: 100%'
         td= text_field_tag 'things[][categories_text]', t.categories_text, hint: "用,分隔", style: 'width: 100%'
+        td
+          = link_to '查看', t
 
   = submit_tag '修改', class: 'btn btn-primary'
 
