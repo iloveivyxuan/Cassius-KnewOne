@@ -39,6 +39,18 @@ module Haven
       redirect_to edit_haven_thing_path(@thing)
     end
 
+    def batch_edit
+      @things = Thing.unscoped.desc(:created_at).page params[:page]
+    end
+
+    def batch_update
+      params[:things].each do |t|
+        Thing.find(t.delete(:id)).update_attributes! t.permit!
+      end
+
+      redirect_back_or batch_edit_haven_things_path
+    end
+
     private
 
     def thing_params

@@ -1,0 +1,21 @@
+hgroup
+  h1
+    | 批量修改产品
+
+= form_tag batch_update_haven_things_path(redirect_from: request.fullpath), method: :patch do
+  table.table.table-striped.table-hover.table-bordered
+    tr
+      th 标题
+      th 副标题
+      th 分类
+    - @things.each do |t|
+      tr
+        td
+          = hidden_field_tag 'things[][id]', t.id.to_s
+          = text_field_tag 'things[][title]', t.title, style: 'width: 100%'
+        td= text_field_tag 'things[][subtitle]', t.subtitle, style: 'width: 100%'
+        td= text_field_tag 'things[][categories_text]', t.categories_text, hint: "用,分隔", style: 'width: 100%'
+
+  = submit_tag '修改', class: 'btn btn-primary'
+
+= paginate @things

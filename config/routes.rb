@@ -217,6 +217,11 @@ Making::Application.routes.draw do
       member do
         get 'send_stock_notification'
       end
+
+      collection do
+        get 'batch_edit'
+        patch 'batch_update'
+      end
     end
 
     resources :users, only: [:index, :update, :show]

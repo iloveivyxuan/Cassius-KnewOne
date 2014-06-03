@@ -1,6 +1,6 @@
 hgroup
   h1
-    | 产品列表
+    | 产品列表 [#{link_to '批量修改', batch_edit_haven_things_path}]
     small 全部 #{Thing.all.size} 自营 #{Thing.self_run.size}
   p
     = link_to "可购产品列表", haven_things_path(filter: "can_buy"), class: 'btn btn-default'
