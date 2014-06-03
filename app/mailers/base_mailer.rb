@@ -2,7 +2,7 @@ class BaseMailer < ActionMailer::Base
   abstract!
   layout 'mailer'
   default content_type: 'text/html',
-          reply_to: 'hello@knewone.com'
+          reply_to: 'help@knewone.com'
 
   SMTP_SERVERS = {
       white: {
