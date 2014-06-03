@@ -1,6 +1,6 @@
 class Making.Views.PhotosUpload extends Backbone.View
 
-  tagName: "ul"
+  tagName: 'ul'
 
   initialize: ->
     @$container = $("#photos")
@@ -46,8 +46,11 @@ class Making.Views.PhotosUpload extends Backbone.View
     @collection.add data.result
 
   fail: (e, data) =>
-    result = $.parseJSON(data.jqXHR.responseText)
-    data.view.fail result.errors.image[0]
+    data.view.$el
+      .removeClass('uploading')
+      .addClass('fail')
+      .html('<p class="fail">出错了，再试试。<a class="destroy" title="删除" href="#"><i class="fa fa-trash-o"></i></a></p>')
+    false
 
   addPhoto: (photo) =>
     view = new Making.Views.Photo
