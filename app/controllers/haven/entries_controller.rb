@@ -17,6 +17,8 @@ module Haven
 
     def update
       @entry.update_attributes entry_params
+
+      redirect_to haven_entries_url
     end
 
     def create

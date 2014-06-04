@@ -5,6 +5,12 @@ Making::Application.routes.draw do
   get '/page/:page', to: "home#index"
   get 'qr_entry', to: 'home#qr_entry'
 
+  get 'explore', to: 'explore#index'
+  %w(features reviews specials events).each do |a|
+    get "explore/#{a}", to: "explore##{a}", as: "explore_#{a}"
+  end
+  resources :entries, only: [:show]
+
   devise_for :users, controllers: {
     omniauth_callbacks: "omniauth_callbacks",
     registrations: "registrations",

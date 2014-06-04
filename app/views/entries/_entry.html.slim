@@ -1,0 +1,11 @@
+article
+  = image_tag entry.cover.url
+  .entry
+    .title
+      = entry.post.title
+    .info
+      = link_to entry.post.author.name, entry.post.author
+      | |
+      = time_ago_tag entry.post.created_at
+      | #{entry.post.lovers_count}赞
+      | #{entry.post.comments.size}评论

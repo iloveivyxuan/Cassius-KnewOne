@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Entry
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -11,7 +12,7 @@ class Entry
 
   scope :published, -> {where published: true}
 
-  validates :cover, :post_id, presence: true
+  validates :post_id, presence: true
 
   def post
     @_post ||= Post.find(self.post_id)

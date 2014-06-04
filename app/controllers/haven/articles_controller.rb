@@ -17,6 +17,8 @@ module Haven
 
     def update
       @article.update_attributes article_params
+
+      redirect_to haven_articles_url
     end
 
     def create
