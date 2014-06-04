@@ -27,8 +27,7 @@ do (exports = Making) ->
 
     Editor: (textarea, editor = '#editor', validate = false) ->
       $ ->
-        $editor = $(editor)
-        $editor
+        $(editor)
         .wysiwyg
             dragAndDropImages: false
         .html($(textarea).val())
@@ -36,7 +35,7 @@ do (exports = Making) ->
         .on "drop", (e) ->
             e.stopPropagation()
 
-        $editor.prev("#editor-toolbar")
+        $("#editor-toolbar")
         .fadeIn()
         #https://github.com/twitter/bootstrap/issues/5687
         .find('.btn-group > a').tooltip({container: 'body'}).end()
