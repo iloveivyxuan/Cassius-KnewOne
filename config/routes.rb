@@ -224,6 +224,10 @@ Making::Application.routes.draw do
       end
     end
 
+    resources :articles, except: [:show]
+
+    resources :entries, except: [:show]
+
     resources :users, only: [:index, :update, :show]
 
     resources :reviews, only: [:index]
