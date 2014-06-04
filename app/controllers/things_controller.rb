@@ -183,6 +183,7 @@ class ThingsController < ApplicationController
     end
 
     @thing = Thing.new thing_params.merge(author: current_user)
+    @thing.content = @thing.content.gsub("\r", '').split("\n").compact.map {|l| "<p>#{l}</p>"}.join
     @thing.photo_ids.concat photos.map(&:id)
 
     if @flag = @thing.save
