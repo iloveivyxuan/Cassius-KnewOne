@@ -122,16 +122,15 @@
     max-width: 100%;
   }
 
-  #new_thing_description {
-
-    .control-label {
-      text-align: left;
-      padding-left: 20px;
-    }
-
-    #editor-wrapper {
-      margin-bottom: 0;
-    }
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border-top: 1px dashed #ccc;
+    border-bottom: none;
+    border-left: none;
+    border-right: 0;
+    resize: none;
+    outline: none;
   }
 
   #new-thing-edit-modal-images-container {

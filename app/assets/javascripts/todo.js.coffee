@@ -25,9 +25,9 @@ do (exports = Making) ->
           $("<input name='provider_sync' type='hidden' value=#{is_sync}>").appendTo(form)
           $(form).submit()
 
-    Editor: (textarea, editor = '#editor', validate = false) ->
+    Editor: (textarea, validate = false) ->
       $ ->
-        $(editor)
+        $("#editor")
         .wysiwyg
             dragAndDropImages: false
         .html($(textarea).val())

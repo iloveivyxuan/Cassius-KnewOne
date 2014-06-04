@@ -44,11 +44,9 @@
           label.col-sm-3.control-label for="thing_subtitle" 一句话描述
           .col-sm-9
             = f.text_field :subtitle, class: 'form-control'
-        .form-group#new_thing_description
-          label.col-sm-12.control-label 产品简要描述信息
-          .col-sm-12
-            = f.hidden_field :content, value: '', require: true
-            = render 'shared/editor'
+
+        = f.hidden_field :content value: ''
+        = render 'shared/editor'
 
         .progress.progress-striped.active style="display: none"
           .progress-bar
