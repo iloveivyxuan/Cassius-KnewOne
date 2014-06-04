@@ -162,10 +162,10 @@ class ThingsController < ApplicationController
       @thing = Thing.new official_site: @result[:url],
                          title: @result[:title],
                          content: @result[:content]
-
-      @similar = Thing.unscoped.published.or({slug: /#{@result[:title]}/i},
-                                           {title: /#{@result[:title]}/i},
-                                           {subtitle: /#{@result[:title]}/i},
+      title_regexp = /#{Regexp.escape(@result[:title])}/i
+      @similar = Thing.unscoped.published.or({slug: title_regexp},
+                                           {title: title_regexp},
+                                           {subtitle: title_regexp},
                                            {official_site: params[:url]}
       ).desc(:fanciers_count).first
     end

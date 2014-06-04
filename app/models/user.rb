@@ -135,13 +135,13 @@ class User
 
     def find_by_sequence(name)
       return all if name.blank?
-      str = name.gsub /[^\u4e00-\u9fa5a-zA-Z0-9_-]+/, ''
+      str = Regexp.escape(name.gsub(/[^\u4e00-\u9fa5a-zA-Z0-9_-]+/, ''))
       where(name: /^#{str}/i)
     end
 
     def find_by_fuzzy(name)
       return all if name.blank?
-      str = name.gsub /[^\u4e00-\u9fa5a-zA-Z0-9_-]+/, ''
+      str = Regexp.escape(name.gsub(/[^\u4e00-\u9fa5a-zA-Z0-9_-]+/, ''))
       where(name: /#{str}/i)
     end
   end

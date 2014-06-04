@@ -6,7 +6,7 @@ module Haven
       @users ||= ::User
 
       if params[:name].present?
-        @users = @users.where(name: /^#{params[:name]}/i)
+        @users = @users.where(name: /^#{Regexp.escape(params[:name])}/i)
       elsif params[:email].present?
         @users = @users.or({email: params[:email].downcase}, {unconfirmed_email: params[:email].downcase})
       elsif params[:filter]
