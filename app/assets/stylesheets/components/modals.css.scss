@@ -126,11 +126,21 @@
 
     .control-label {
       text-align: left;
-      padding-left: 20px;
+      padding: {
+        bottom: 7px;
+        left: 20px;
+      }
     }
 
     #editor-wrapper {
       margin-bottom: 0;
+    }
+
+    #editor {
+      border-left: none;
+      border-right: none;
+      border-top-style: dashed;
+      border-radius: 0;
     }
   }
 
