@@ -41,12 +41,22 @@ do (exports = Making) ->
   exports.init_new_thing_modal = (
     ->
       $new_thing_edit_modal = $('#new-thing-edit-modal')
-      exports.Editor('#thing_content')
+      exports.Editor('#new-thing-edit-modal #thing_content', '#new-thing-edit-modal #editor')
       $new_thing_edit_modal.find('#editor-toolbar').hide()
       $new_thing_edit_modal.find('#editor').css('height', '100px')
 
       $('#create_thing_modal_form').on('ajax:beforeSend',
       (event, xhr, settings)->
+        $description = $('#new_thing_description')
+        if $.trim($description.find('#editor').html()) is ''
+          $description
+            .tooltip
+              'title': '请填写产品简要描述信息'
+              'placement': 'bottom'
+              'trigger': 'manual'
+            .tooltip('show')
+          return false
+
         $new_thing_edit_modal
         .find('button').attr('disabled', true).end()
         .find('.progress').show()
