@@ -48,6 +48,13 @@ do (exports = Making) ->
         .find('button').attr('disabled', true).end()
         .find('.progress').show()
 
+        $content = $('#create_thing_modal_form').find('#thing_content')
+        content_text = $content.val().split('\n')
+        content_html = ''
+        _.each content_text, (item, index, list) ->
+          content_html += '<p>' + item + '</p>'
+        $content.val content_html.replace(/<!--.*?-->/g, '')
+
         $progress_bar = $new_thing_edit_modal.find('.progress-bar')
         $progress_bar.animate({width: '100%'}, 3000)
       )
