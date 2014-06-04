@@ -41,9 +41,6 @@ do (exports = Making) ->
   exports.init_new_thing_modal = (
     ->
       $new_thing_edit_modal = $('#new-thing-edit-modal')
-      exports.Editor('#thing_content')
-      $new_thing_edit_modal.find('#editor-toolbar').hide()
-      $new_thing_edit_modal.find('#editor').css('height', '100px')
 
       $('#create_thing_modal_form').on('ajax:beforeSend',
       (event, xhr, settings)->
@@ -51,8 +48,12 @@ do (exports = Making) ->
         .find('button').attr('disabled', true).end()
         .find('.progress').show()
 
-        resque = $(@).find('#editor').html()
-        $(@).find('#thing_content').val resque.replace(/<!--.*?-->/g, '')
+        $content = $('#create_thing_modal_form').find('#thing_content')
+        content_text = $content.val().split('\n')
+        content_html = ''
+        _.each content_text, (item, index, list) ->
+          content_html += '<p>' + item + '</p>'
+        $content.val content_html.replace(/<!--.*?-->/g, '')
 
         $progress_bar = $new_thing_edit_modal.find('.progress-bar')
         $progress_bar.animate({width: '100%'}, 3000)
