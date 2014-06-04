@@ -108,3 +108,17 @@
     > li a span:first-of-type {display: inline;}
   }
 }
+
+.nav_compact {
+
+  > li {
+
+    > a {
+      border-radius: $border-radius-base;
+      padding: {
+        bottom: 5px;
+        top: 5px;
+      }
+    }
+  }
+}

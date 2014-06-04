@@ -1,0 +1,13 @@
+ul.list_styled,
+ol.list_styled {
+  margin-bottom: ($line-height-computed / 2);
+  padding-left: 40px;
+}
+
+ol.list_styled {
+  list-style-type: decimal;
+}
+
+ul.list_styled {
+  list-style-type: disc;
+}

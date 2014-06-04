@@ -5,6 +5,12 @@ Making::Application.routes.draw do
     get "maps/#{a}/page/:page", to: "maps##{a}"
   end
 
+  get 'help', to: 'help#index'
+
+  %w(index how_to_share how_to_review terms knewone_for_user knewone_for_startup).each do |a|
+    get "help/#{a}"
+  end
+
   use_doorkeeper
   root to: 'home#index'
   get 'welcome', to: 'home#welcome'
