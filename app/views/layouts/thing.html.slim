@@ -1,10 +1,9 @@
 - provide :keywords, "#{@thing.title}, #{@thing.subtitle}"
+- provide :description, "#{@thing.title},#{@thing.subtitle},关于该产品我们有#{@thing.feelings_count}条短评,#{@thing.reviews_count}篇评测,在KnewOne有#{@thing.owner_ids.size}个用户拥有#{@thing.title},#{@thing.fanciers_count}个用户喜欢#{@thing.title}！"
 - provide :feed, thing_url(@thing, format: "atom")
 
 - content_for :content do
   - present @thing do |tp|
-    - page_title tp.full_title
-
     #thing_title
       h1= link_to(tp.title, tp.thing)
       p= tp.subtitle

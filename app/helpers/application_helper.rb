@@ -66,7 +66,7 @@ module ApplicationHelper
   end
 
   def page_description
-    [content_for(:description), Settings.description].reject(&:blank?).join('; ')
+    [content_for(:description), Settings.description].reject(&:blank?).join
   end
 
   def page_class

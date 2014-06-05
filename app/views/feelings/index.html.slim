@@ -1,4 +1,5 @@
 - provide :nav, :thing_feelings unless content_for? :nav
+- page_title "[#{[@thing.title, @thing.subtitle].reject(&:blank?).join(' - ')} 短评]"
 
 = render 'feelings/form'
 

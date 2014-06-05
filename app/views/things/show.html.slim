@@ -1,6 +1,7 @@
 - provide :nav, :thing
 
 - present @thing do |tp|
+  - page_title "[#{tp.full_title}] 评测,价格,使用,购买"
   = render "carousel", tp: tp
   = render 'actions_compact', tp: tp
   = render "summary", tp: tp
