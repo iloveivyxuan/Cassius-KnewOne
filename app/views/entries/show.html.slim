@@ -1,5 +1,7 @@
 - post = @entry.post
+- author = post.author
+
 - if post.class == Review
-  = render 'entries/review', post: post
+  = render 'entries/review', entry: @entry, post: post, author: author
 - else
-  = render 'entries/article', post: post
+  = render 'entries/article', entry: @entry, post: post, author: author

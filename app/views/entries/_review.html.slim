@@ -1,1 +1,24 @@
 = post.title
+
+- thing = post.thing
+= image_tag thing.cover.url(:small)
+= thing.title
+= thing.subtitle
+
+= image_tag author.avatar.url(:small)
+= author.name
+= time_ago_tag post.created_at
+
+= post.content
+
+.voting id="review_#{post.id.to_s}"
+  = render partial: 'shared/voting', locals: {object: post}
+
+- if previous_entry = entry.previous
+  = link_to "< #{previous_entry.post.title}"
+
+- if next_entry = entry.next
+  = link_to "#{next_entry.post.title} >"
+
+= post.comments.size
+

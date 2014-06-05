@@ -123,6 +123,13 @@ Making::Application.routes.draw do
     resources :comments
   end
 
+  resources :articles, only: [] do
+    member do
+      post 'vote'
+      post 'unvote'
+    end
+  end
+
   resources :categories, only: [:index] do
     collection do
       get 'all'

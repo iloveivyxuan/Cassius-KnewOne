@@ -22,5 +22,13 @@ class Entry
     @_things ||= Thing.find(self.thing_ids)
   end
 
+  def previous
+    @_previous ||= self.class.where(:_id.lt => self._id).order_by([[:_id, :desc]]).limit(1).first
+  end
+
+  def next
+    @_next ||= self.class.where(:_id.gt => self._id).order_by([[:_id, :asc]]).limit(1).first
+  end
+
   CATEGORIES = %w(特写 评测 专题 活动)
 end

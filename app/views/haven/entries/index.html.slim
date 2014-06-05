@@ -4,6 +4,7 @@ table.table.table-strip
   tr
     th 封面
     th 标题
+    th 分类
     th 创建时间
     th 公开
     th 操作
@@ -11,6 +12,7 @@ table.table.table-strip
     tr
       td = image_tag(e.cover.url(:small))
       td = e.post.title
+      td = e.category
       td = date_time_text(e.created_at)
       td = e.published?
       td
