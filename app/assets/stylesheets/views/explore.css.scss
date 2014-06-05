@@ -1,0 +1,122 @@
+html.explore {
+
+  #wrapper {
+    @include wrapper(simple, $max-width: $screen-lg-min);
+
+    @media (min-width: $screen-md-min) {
+      padding: 50px 12%;
+      position: relative;
+    }
+
+    > header {
+      @include clearfix;
+      margin-bottom: 2rem;
+
+      @media (min-width: $screen-md-min) {
+        margin-bottom: 4rem;
+      }
+
+      a {
+        border-bottom: $border_default;
+        color: $gray;
+        display: block;
+        font-size: 3rem;
+        text-align: center;
+
+        @media (min-width: $screen-sm-min) {
+          float: right;
+          text-align: right;
+          width: 50%;
+        }
+      }
+    }
+
+    > .nav {
+      border-left: $border_default;
+      left: 90%;
+      position: absolute;
+      top: 150px;
+
+      > li {
+
+        > a {
+          color: $text-muted;
+          padding: {
+            left: 2em;
+            right: 2em;
+          }
+          width: 8em;
+        }
+
+        &:hover,
+        &:active,
+        &.active {
+
+          > a {
+            background-color: transparent;
+            border-left: 2px solid darken(#eee, 10%);
+            color: $text-color;
+            padding-left: calc(2em - 2px);
+          }
+        }
+      }
+    }
+  }
+
+  .article_thumb {
+    margin-bottom: 4rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    > figure {
+      margin-bottom: 2rem;
+    }
+
+    > footer {
+      @include clearfix;
+      border-right: $border_default;
+      padding: 0 1rem;
+
+      @media (min-width: $screen-sm-min) {
+        padding: 0 2rem;
+      }
+
+      .title {
+        float: right;
+        margin-top: 0;
+
+        a {
+          color: $text-color;
+        }
+      }
+
+      .metas {
+        clear: both;
+        float: right;
+        text-align: right;
+        width: 80%;
+
+        > li {
+
+          @media (max-width: $screen-xs-max) {
+            margin-bottom: .5rem;
+          }
+        }
+
+        .name {
+          border-right: $border_default;
+          padding-right: 1rem;
+        }
+
+        .time {
+
+          @media (max-width: $screen-xs-max) {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+}

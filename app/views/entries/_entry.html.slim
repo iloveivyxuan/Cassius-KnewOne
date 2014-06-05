@@ -1,11 +1,16 @@
-article
-  = image_tag entry.cover.url
-  .entry
-    .title
-      = link_to entry.post.title, entry
-    .info
-      = link_to entry.post.author.name, entry.post.author
-      | |
-      = time_ago_tag entry.post.created_at
-      | #{entry.post.lovers_count}赞
-      | #{entry.post.comments.size}评论
+article.article_thumb
+  figure
+    = image_tag entry.cover.url
+  footer
+    h3.title = link_to entry.post.title, entry
+    ul.metas
+      li.name = link_to entry.post.author.name, entry.post.author
+      li.time = time_ago_tag entry.post.created_at
+      li
+        i.fa.fa-plus
+        = entry.post.lovers_count
+        | &nbsp;赞
+      li
+        i.fa.fa-comments-o
+        = entry.post.comments.size
+        | &nbsp;评论

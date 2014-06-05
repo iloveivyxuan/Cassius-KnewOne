@@ -2,7 +2,11 @@
 
 header
   = link_to explore_path do
-    | KnewOne 发现
+    em.logo KnewOne
+    | &nbsp;发现
 
 section
   = render @entries
+
+footer
+  = paginate @entries
