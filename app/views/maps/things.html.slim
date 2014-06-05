@@ -1,0 +1,7 @@
+h1 所有产品
+
+ul
+  - @things.each do |t|
+    li = link_to t.title, t
+
+= paginate @things

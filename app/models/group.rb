@@ -7,6 +7,8 @@ class Group
   mount_uploader :avatar, AvatarUploader
   field :qualification, type: Symbol, default: :public
 
+  scope :public, -> {where qualification: :public}
+
   validates :name, presence: true
   validates :qualification, inclusion: {in: [:private, :public]}
 

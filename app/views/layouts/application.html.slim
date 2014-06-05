@@ -37,6 +37,12 @@ html class=page_class lang="zh-CN"
     = render 'layouts/fulfill_info'
     = render 'shared/private_message'
     = render 'shared/share_modal'
+    .site_maps.hidden
+      = link_to '产品', maps_things_path
+      = link_to '评测', maps_reviews_path
+      = link_to '小组', maps_groups_path
+      = link_to '帖子', maps_topics_path
+      = link_to '分类', maps_categories_path
     = javascript_include_tag "application"
     = yield :script
     - if user_signed_in? and Rails.env.production?

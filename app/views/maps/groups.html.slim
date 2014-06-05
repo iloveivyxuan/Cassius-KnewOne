@@ -1,0 +1,7 @@
+h1 所有小组
+
+ul
+  - @groups.each do |g|
+    li = link_to g.name, g
+
+= paginate @groups

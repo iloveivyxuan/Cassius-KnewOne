@@ -24,11 +24,24 @@ SitemapGenerator::Sitemap.create do
   #   Article.find_each do |article|
   #     add article_path(article), :lastmod => article.updated_at
   #   end
-  Thing.all.each do |t|
+
+  Thing.published.each do |t|
     add thing_path(t), :lastmod => t.updated_at
 
     t.reviews.each do |r|
       add thing_review_path(t, r), :lastmod => t.updated_at
     end
+  end
+
+  Group.public.each do |g|
+    add group_path(g)
+
+    g.topics.each do |t|
+      add group_topic_path(g, t), :lastmod => t.updated_at
+    end
+  end
+
+  Category.where(:things_count.gt => 0).each do |c|
+    add "/things/category/#{c.slug}"
   end
 end

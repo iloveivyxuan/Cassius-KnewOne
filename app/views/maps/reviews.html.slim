@@ -1,0 +1,8 @@
+h1 所有评测
+
+ul
+  - @reviews.each do |r|
+    - if r.thing
+      li = link_to r.title, thing_review_path(r.thing, r)
+
+  = paginate @reviews

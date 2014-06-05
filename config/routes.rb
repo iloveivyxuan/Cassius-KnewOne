@@ -1,4 +1,10 @@
 Making::Application.routes.draw do
+
+  %w(things reviews topics groups categories).each do |a|
+    get "maps/#{a}"
+    get "maps/#{a}/page/:page", to: "maps##{a}"
+  end
+
   use_doorkeeper
   root to: 'home#index'
   get 'welcome', to: 'home#welcome'

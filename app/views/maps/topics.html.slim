@@ -1,0 +1,8 @@
+h1 所有帖子
+
+ul
+  - @topics.each do |t|
+    - if t.group && t.group.public?
+      li = link_to t.title, group_topic_path(t.group, t)
+
+= paginate @topics
