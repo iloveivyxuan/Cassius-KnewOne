@@ -1,0 +1,5 @@
+- post = @entry.post
+- if post.class == Review
+  = render 'entries/review', post: post
+- else
+  = render 'entries/article', post: post

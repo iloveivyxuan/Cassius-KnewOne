@@ -2,7 +2,7 @@ article
   = image_tag entry.cover.url
   .entry
     .title
-      = entry.post.title
+      = link_to entry.post.title, entry
     .info
       = link_to entry.post.author.name, entry.post.author
       | |
