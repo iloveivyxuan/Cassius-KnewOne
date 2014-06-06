@@ -154,6 +154,25 @@ label.avatar {
   }
 }
 
+.share {
+
+  a {
+    color: $text-muted;
+    display: inline-block;
+
+    &:hover {
+      color: $gray;
+    }
+
+    &:last-child {
+
+      .fa {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
 .btn_block {
   color: $text-muted;
   display: block;
@@ -186,7 +205,6 @@ a.btn_block {
 .bootstrap-select.btn-group .dropdown-menu {
   z-index: $zindex_selectpicker;
 }
-
 
 #go_top {
   color: $text-muted;
