@@ -14,7 +14,7 @@ module Api
           render_error :missing_field, 'need keyword or url'
         end
 
-        @thing = Thing.unscoped.published
+        @thing = Thing.published
 
         if params[:keyword].present?
           @thing = @thing.or({slug: /#{params[:keyword]}/i},

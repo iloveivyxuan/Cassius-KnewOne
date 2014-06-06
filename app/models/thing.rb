@@ -68,7 +68,6 @@ class Thing < Post
   scope :prior, -> { gt(priority: 0).desc(:priority, :created_at) }
   scope :self_run, -> { send :in, stage: [:dsell] }
   scope :price_between, ->(from, to) { where :price.gt => from, :price.lt => to }
-  default_scope -> { desc(:created_at) }
 
   STAGES.each do |k, v|
     scope k, -> { where(stage: k) }
@@ -212,11 +211,11 @@ class Thing < Post
 
   class << self
     def rand_records(per = 1)
-      (0...Thing.published.count).to_a.shuffle.slice(0, per).map { |i| Thing.published.skip(i).first }
+      (0...Thing.published.count).to_a.shuffle.slice(0, per).map { |i| Thing.published.desc(:created_at).skip(i).first }
     end
 
     def rand_prior_records(per = 1)
-      (0...Thing.published.prior.count).to_a.shuffle.slice(0, per).map { |i| Thing.published.prior.skip(i).first }
+      (0...Thing.published.prior.count).to_a.shuffle.slice(0, per).map { |i| Thing.published.desc(:created_at).prior.skip(i).first }
     end
 
     def recal_all_related_things

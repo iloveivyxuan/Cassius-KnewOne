@@ -19,9 +19,9 @@ module Haven
                   when "can_buy" then
                     Thing.ne(shop: "")
                   when "locked" then
-                    Thing.unscoped.where(lock_priority: true).desc(:priority)
+                    Thing.where(lock_priority: true).desc(:priority)
                   else
-                    Thing.unscoped
+                    Thing
                 end
 
       if params[:sort_by] == 'reviews_count'
@@ -40,7 +40,7 @@ module Haven
     end
 
     def batch_edit
-      @things = Thing.unscoped.desc(:created_at).page params[:page]
+      @things = Thing.desc(:created_at).page params[:page]
     end
 
     def batch_update

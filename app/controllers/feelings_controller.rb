@@ -5,9 +5,9 @@ class FeelingsController < ApplicationController
 
   def index
     @feelings = if params[:sort] == "created_at"
-                 @thing.feelings.unscoped.desc(:created_at)
+                 @thing.feelings.desc(:created_at)
                else
-                 @thing.feelings
+                 @thing.feelings.desc(:lovers_count, :created_at)
                end.page(params[:page]).per(params[:per])
 
     if request.xhr?

@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.desc(:members_count).limit(10)
-    @topics = Topic.unscoped.desc(:commented_at).page(params[:page]).per(20)
+    @topics = Topic.desc(:commented_at).page(params[:page]).per(20)
   end
 
   def all
@@ -11,7 +11,7 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @topics = @group.topics.page(params[:page]).per(20)
+    @topics = @group.topics.desc(:is_top, :commented_at).page(params[:page]).per(20)
     render layout: 'group'
   end
 
@@ -89,7 +89,7 @@ class GroupsController < ApplicationController
   end
 
   def fancies
-    @things = @group.fancies.page(params[:page]).per(24)
+    @things = @group.fancies.desc(:created_at).page(params[:page]).per(24)
     render layout: 'group'
   end
 

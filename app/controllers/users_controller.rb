@@ -3,11 +3,11 @@ class UsersController < ApplicationController
   load_and_authorize_resource except: [:fuzzy]
 
   def show
-    @reviews = @user.reviews.where(:thing_id.ne => nil).limit(4)
-    @feelings = @user.feelings.where(:thing_id.ne => nil).limit(4)
-    @fancies = @user.fancies.limit(3)
-    @owns = @user.owns.limit(3)
-    @makings = @user.makings
+    @reviews = @user.reviews.desc(:is_top, :lovers_count, :created_at).where(:thing_id.ne => nil).limit(4)
+    @feelings = @user.feelings.desc(:lovers_count, :created_at).where(:thing_id.ne => nil).limit(4)
+    @fancies = @user.fancies.desc(:created_at).limit(3)
+    @owns = @user.owns.desc(:created_at).limit(3)
+    @makings = @user.makings.desc(:created_at)
     @activities = @user.activities.visible.limit(10)
   end
 
@@ -20,15 +20,15 @@ class UsersController < ApplicationController
   end
 
   def reviews
-    @reviews = @user.reviews.where(:thing_id.ne => nil).page(params[:page]).per(24)
+    @reviews = @user.reviews.desc(:is_top, :lovers_count, :created_at).where(:thing_id.ne => nil).page(params[:page]).per(24)
   end
 
   def feelings
-    @feelings = @user.feelings.where(:thing_id.ne => nil).page(params[:page]).per(24)
+    @feelings = @user.feelings.desc(:lovers_count, :created_at).where(:thing_id.ne => nil).page(params[:page]).per(24)
   end
 
   def things
-    @things = @user.things.page(params[:page]).per(24)
+    @things = @user.things.desc(:created_at).page(params[:page]).per(24)
   end
 
   def groups

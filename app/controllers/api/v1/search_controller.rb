@@ -11,7 +11,7 @@ module Api
         types = params[:type].try(:split, ',') || []
 
         if types.empty? || types.include?('things')
-          @things = Thing.unscoped.published.
+          @things = Thing.published.
               or({slug: /#{q}/i}, {title: /#{q}/i}, {subtitle: /#{q}/i}).
               desc(:fanciers_count).page(params[:things_page] || params[:page]).per(per)
         end

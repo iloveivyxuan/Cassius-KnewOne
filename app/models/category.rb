@@ -11,11 +11,10 @@ class Category
 
   validates :name, presence: true, uniqueness: true
 
-  default_scope -> { desc(:things_count) }
   scope :prior, -> { desc(:priority, :things_count) }
 
   def things
-    Thing.unscoped.published.any_in(categories: [name])
+    Thing.published.any_in(categories: [name])
   end
 
   class << self

@@ -8,7 +8,9 @@ class ReviewsController < ApplicationController
 
   def index
     if params[:sort] == "created_at"
-      @reviews = @thing.reviews.unscoped.desc(:created_at)
+      @reviews = @thing.reviews.desc(:created_at)
+    else
+      @reviews = @thing.reviews.desc(:is_top, :lovers_count, :created_at)
     end
 
     @reviews = @reviews.page(params[:page]).per(params[:per])

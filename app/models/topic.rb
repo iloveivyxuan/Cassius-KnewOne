@@ -8,7 +8,5 @@ class Topic < Post
   validates :title, presence: true
   validates :content, presence: true
 
-  default_scope -> { desc(:is_top, :commented_at) }
-
   need_aftermath :vote
 end

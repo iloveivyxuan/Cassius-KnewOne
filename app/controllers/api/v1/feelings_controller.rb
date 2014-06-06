@@ -5,7 +5,7 @@ module Api
       before_action :set_feeling, only: [:show]
 
       def index
-        @feelings = @thing.feelings.page(params[:page]).per(params[:per_page] || 8)
+        @feelings = @thing.feelings.desc(:lovers_count, :created_at).page(params[:page]).per(params[:per_page] || 8)
       end
 
       def show

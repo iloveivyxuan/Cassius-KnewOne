@@ -149,11 +149,11 @@ class ThingPresenter < PostPresenter
   end
 
   def reviews(limit)
-    thing.reviews.limit(limit)
+    thing.reviews.desc(:is_top, :lovers_count, :created_at).limit(limit)
   end
 
   def feelings(limit)
-    thing.feelings.limit(limit)
+    thing.feelings.desc(:lovers_count, :created_at).limit(limit)
   end
 
   def stage

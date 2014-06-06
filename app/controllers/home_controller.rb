@@ -33,17 +33,17 @@ class HomeController < ApplicationController
     else
       respond_to do |format|
         format.html.mobile do
-          @things = Thing.published.recent.hot.limit(30)
+          @things = Thing.published.desc(:created_at).recent.hot.limit(30)
           render 'home/landing.html+mobile'
         end
 
         format.html.tablet do
-          @things = Thing.published.recent.hot.limit(32)
+          @things = Thing.published.desc(:created_at).recent.hot.limit(32)
           render 'home/landing.html+mobile'
         end
 
         format.html.desktop do
-          @categories = Category.unscoped.prior.gt(things_count: 10).limit(8)
+          @categories = Category.prior.gt(things_count: 10).limit(8)
           render 'home/landing'
         end
       end
@@ -76,7 +76,7 @@ class HomeController < ApplicationController
     @friends = current_user.recommend_users || []
     @recommend_users = User.desc(:recommend_priority, :followers_count).limit(42) - @friends
 
-    @things = Thing.unscoped.published.prior.limit(24)
+    @things = Thing.published.prior.limit(24)
   end
 
   def error
@@ -95,7 +95,7 @@ class HomeController < ApplicationController
     end
 
     if params[:type].blank? || params[:type] == 'things'
-      @things = Thing.unscoped.published.or({slug: /#{q}/i}, {title: /#{q}/i}, {subtitle: /#{q}/i}).desc(:fanciers_count).page(params[:page]).per(per)
+      @things = Thing.published.or({slug: /#{q}/i}, {title: /#{q}/i}, {subtitle: /#{q}/i}).desc(:fanciers_count).page(params[:page]).per(per)
     end
 
     if params[:type].blank? || params[:type] == 'users'
@@ -123,7 +123,7 @@ class HomeController < ApplicationController
 
   def set_editor_choices
     #@editor_choices = Thing.rand_prior_records 1
-    @editor_choices = Thing.unscoped.published.prior.limit(1)
+    @editor_choices = Thing.published.prior.limit(1)
   end
 
   def skip_follow_user

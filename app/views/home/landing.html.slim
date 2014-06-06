@@ -51,7 +51,7 @@
                       i.fa.fa-check
                       = tp.owners_count
             .reviews
-              - thing.reviews.limit(3).each do |review|
+              - thing.reviews.desc(:is_top, :lovers_count, :created_at).limit(3).each do |review|
                 - present review do |rp|
                   article.review
                     - present review.author do |up|

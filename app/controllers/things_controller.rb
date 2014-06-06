@@ -8,9 +8,9 @@ class ThingsController < ApplicationController
   def index
     if params[:category].present? and params[:category] != 'all'
       @category = Category.find(params[:category])
-      @things = @category.things.unscoped.published
+      @things = @category.things.published
     else
-      @things = Thing.unscoped.published
+      @things = Thing.published
     end
 
     if params[:stage].present?
@@ -65,8 +65,8 @@ class ThingsController < ApplicationController
 
     respond_to do |format|
       format.html.mobile
-      format.html.tablet {render layout: 'thing'}
-      format.html.desktop {render layout: 'thing'}
+      format.html.tablet { render layout: 'thing' }
+      format.html.desktop { render layout: 'thing' }
     end
   end
 
@@ -164,10 +164,10 @@ class ThingsController < ApplicationController
                          title: @result[:title],
                          content: @result[:content]
       title_regexp = /#{Regexp.escape(@result[:title])}/i
-      @similar = Thing.unscoped.published.or({slug: title_regexp},
-                                           {title: title_regexp},
-                                           {subtitle: title_regexp},
-                                           {official_site: params[:url]}
+      @similar = Thing.published.or({slug: title_regexp},
+                                    {title: title_regexp},
+                                    {subtitle: title_regexp},
+                                    {official_site: params[:url]}
       ).desc(:fanciers_count).first
     end
 
@@ -184,7 +184,7 @@ class ThingsController < ApplicationController
     end
 
     @thing = Thing.new thing_params.merge(author: current_user)
-    @thing.content = @thing.content.gsub("\r", '').split("\n").compact.map {|l| "<p>#{l}</p>"}.join
+    @thing.content = @thing.content.gsub("\r", '').split("\n").compact.map { |l| "<p>#{l}</p>" }.join
     @thing.photo_ids.concat photos.map(&:id)
 
     if @flag = @thing.save

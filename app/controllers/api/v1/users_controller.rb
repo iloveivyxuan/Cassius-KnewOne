@@ -12,19 +12,19 @@ module Api
       end
 
       def reviews
-        @reviews = @user.reviews.page(params[:page]).per(params[:per_page] || 8)
+        @reviews = @user.reviews.desc(:is_top, :lovers_count, :created_at).page(params[:page]).per(params[:per_page] || 8)
       end
 
       def things
-        @things = @user.things.page(params[:page]).per(params[:per_page] || 8)
+        @things = @user.things.desc(:created_at).page(params[:page]).per(params[:per_page] || 8)
       end
 
       def owns
-        @owns = @user.owns.page(params[:page]).per(params[:per_page] || 8)
+        @owns = @user.owns.desc(:created_at).page(params[:page]).per(params[:per_page] || 8)
       end
 
       def fancies
-        @fancies = @user.fancies.page(params[:page]).per(params[:per_page] || 8)
+        @fancies = @user.fancies.desc(:created_at).page(params[:page]).per(params[:per_page] || 8)
       end
 
       def groups

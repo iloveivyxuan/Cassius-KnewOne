@@ -4,7 +4,7 @@ module Haven
     layout 'settings'
 
     def index
-      @reviews = Review.unscoped.desc(:created_at).page params[:page]
+      @reviews = Review.desc(:created_at).page params[:page]
     end
   end
 end

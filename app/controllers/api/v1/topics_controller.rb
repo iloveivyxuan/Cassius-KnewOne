@@ -7,7 +7,7 @@ module Api
       doorkeeper_for :all, except: [:index, :show]
 
       def index
-        @topics = @group.topics.page(params[:page]).per(params[:per_page])
+        @topics = @group.topics.desc(:is_top, :commented_at).page(params[:page]).per(params[:per_page])
       end
 
       def show

@@ -8,7 +8,7 @@ module Api
       end
 
       def show
-        @topics = @group.topics.limit(params[:topics_limit] || 8)
+        @topics = @group.topics.desc(:is_top, :commented_at).limit(params[:topics_limit] || 8)
       end
 
       private
