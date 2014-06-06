@@ -63,6 +63,13 @@ GIT
       launchy (~> 2.2)
 
 GIT
+  remote: git://github.com/simi/mongoid-paranoia.git
+  revision: bf0ee2f3bf10770298a24a6a5a86edec8bdcfdd1
+  specs:
+    mongoid-paranoia (0.1)
+      mongoid (> 3)
+
+GIT
   remote: git://github.com/simsicon/weibo_2.git
   revision: 8e033c1d9c3d522704c0d7354ceee01d02c77b99
   specs:
@@ -564,6 +571,7 @@ DEPENDENCIES
   modernizr-rails
   mongoid (>= 4.0.0.alpha1)
   mongoid-grid_fs!
+  mongoid-paranoia!
   mongoid-rspec
   mongoid_slug
   nested_form

@@ -36,6 +36,7 @@ class TopicsController < ApplicationController
 
   def destroy
     @topic.destroy
+    current_user.log_activity :delete_topic, @topic, visible: false
     redirect_to group_path(@group)
   end
 

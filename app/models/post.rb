@@ -2,6 +2,7 @@
 class Post
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Paranoia
 
   field :title, type: String
   field :content, type: String, default: ""

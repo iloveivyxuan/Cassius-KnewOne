@@ -46,6 +46,8 @@ class FeelingsController < ApplicationController
   def destroy
     @feeling.destroy
 
+    current_user.log_activity :delete_feeling, @feeling, visible: false
+
     respond_to do |format|
       format.js
     end

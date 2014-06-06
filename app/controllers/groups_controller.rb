@@ -42,6 +42,7 @@ class GroupsController < ApplicationController
 
   def destroy
     @group.destroy
+    current_user.log_activity :delete_group, @group, visible: false
     redirect_to groups_path
   end
 

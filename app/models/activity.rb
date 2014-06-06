@@ -28,22 +28,22 @@ class Activity
     where reference_union: "#{record.class.name}_#{record.id.to_s}"
   end
 
-  def reference
+  def reference(with_deleted = false)
     return if self.reference_union.blank?
 
     reference_type, reference_id = self.reference_union.split('_')
-    @_reference ||= reference_type.constantize.where(id: reference_id).first
+    @_reference ||= with_deleted ? reference_type.constantize.unscoped.where(id: reference_id).first : reference_type.constantize.where(id: reference_id).first
   end
 
   def reference=(record)
     self.reference_union = "#{record.class.to_s}_#{record.id.to_s}"
   end
 
-  def source
+  def source(with_deleted = false)
     return if self.source_union.blank?
 
     source_type, source_id = self.source_union.split('_')
-    @_source ||= source_type.constantize.where(id: source_id).first
+    @_source ||= with_deleted ? source_type.constantize.unscoped.where(id: source_id).first : source_type.constantize.where(id: source_id).first
   end
 
   def source=(record)

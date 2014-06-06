@@ -86,6 +86,7 @@ class ThingsController < ApplicationController
   def destroy
     if @thing.safe_destroy?
       @thing.destroy
+      current_user.log_activity :delete_thing, @thing, visible: false
       redirect_to root_path
     else
       redirect_to @thing

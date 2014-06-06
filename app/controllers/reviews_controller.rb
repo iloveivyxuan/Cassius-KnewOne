@@ -54,6 +54,7 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review.destroy
+    current_user.log_activity :delete_review, @review, visible: false
     redirect_to thing_reviews_path(@thing)
   end
 
