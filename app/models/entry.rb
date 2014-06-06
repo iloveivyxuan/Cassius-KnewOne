@@ -22,12 +22,20 @@ class Entry
     @_things ||= Thing.find(self.thing_ids)
   end
 
-  def previous
-    @_previous ||= self.class.where(:_id.lt => self._id).order_by([[:_id, :desc]]).limit(1).first
+  def previous(same_category = true)
+    if same_category
+      self.class.where(:_id.lt => self._id, category: self.category).order_by([[:_id, :desc]]).limit(1).first
+    else
+      self.class.where(:_id.lt => self._id).order_by([[:_id, :desc]]).limit(1).first
+    end
   end
 
-  def next
-    @_next ||= self.class.where(:_id.gt => self._id).order_by([[:_id, :asc]]).limit(1).first
+  def next(same_category = true)
+    if same_category
+      self.class.where(:_id.gt => self._id, category: self.category).order_by([[:_id, :asc]]).limit(1).first
+    else
+      self.class.where(:_id.gt => self._id).order_by([[:_id, :asc]]).limit(1).first
+    end
   end
 
   CATEGORIES = %w(特写 评测 专题 活动)
