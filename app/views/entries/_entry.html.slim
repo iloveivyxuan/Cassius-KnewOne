@@ -1,6 +1,7 @@
 article.article_thumb
   figure
-    = image_tag entry.cover.url
+    = link_to entry do
+      = image_tag entry.cover.url
   footer
     h3.title = link_to entry.post.title, entry
     ul.metas

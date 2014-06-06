@@ -22,10 +22,10 @@ module Haven
     end
 
     def create
-      article = Article.new article_params
-      article.author = current_user
+      @article = Article.new article_params
+      @article.author = current_user
 
-      if article.save
+      if @article.save
         redirect_to haven_articles_url
       else
         render 'new'
