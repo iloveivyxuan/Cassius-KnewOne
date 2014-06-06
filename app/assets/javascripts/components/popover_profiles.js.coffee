@@ -10,8 +10,12 @@ Making.PopoverProfiles = ->
 
     if elementOffsetRight + tipWidth < $(window).width()
       'right'
-    else
+    else if $element.offset().left > tipWidth
       'left'
+    else if $element.offset().top > tipWidth
+      'top'
+    else
+      'bottom'
 
   # http://stackoverflow.com/questions/15989591/
   initialize = ($element) ->
