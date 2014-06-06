@@ -13,14 +13,14 @@ article.article
           small = thing.subtitle
 
     .clearfix
-      ul.metas.pull-left
+      ul.metas
         li
           label.avatar
             = image_tag author.avatar.url(:small), class: "img-circle"
             = link_to author.name, author, data: {"popover-profile" => author.id.to_s}
         li
           = time_ago_tag post.created_at
-      ul.metas.pull-right
+      ul.metas
         li
           i.fa.fa-plus
           em = post.lovers_count

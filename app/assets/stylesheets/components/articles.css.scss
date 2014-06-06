@@ -310,16 +310,23 @@ form.edit_post {
   > header {
 
     .title {
+      border-bottom: 1px solid darken($page-header-border-color, 10%);
       color: $text-color;
-      padding-bottom: (($line-height-computed / 2) - 1);
+      font-size: 2rem;
       margin: 0 0 $line-height-computed;
-      border-bottom: 1px solid $page-header-border-color;
+      padding-bottom: (($line-height-computed / 2) - 1);
+      text-align: center;
+
+      @media (min-width: $screen-md-min) {
+        font-size: 3rem;
+        text-align: left;
+      }
     }
 
     figure {
       border-bottom: $border_default;
       margin-bottom: $padding-large-vertical;
-      padding-bottom: $padding-large-vertical;
+      padding-bottom: $line-height-computed;
       text-align: center;
 
       img {
@@ -331,6 +338,10 @@ form.edit_post {
         display: inline-block;
         vertical-align: middle;
         text-align: left;
+
+        @media (max-width: $screen-sm-max) {
+          max-width: calc(100% - 82px - #{$padding-large-horizontal});
+        }
 
         label {
           color: $text-color;
@@ -347,6 +358,18 @@ form.edit_post {
     }
 
     .metas {
+      text-align: center;
+
+      @media (min-width: $screen-md-min) {
+
+        &:first-child {
+          float: left;
+        }
+
+        &:last-child {
+          float: right;
+        }
+      }
 
       > li {
         height: 30px;
