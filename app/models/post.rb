@@ -97,6 +97,13 @@ class Post
     end
   end
 
+  def change_activity_user(author)
+    if a = Activity.by_type(:"new_#{model_name.singular}").by_reference(self).first
+      a.user = author
+      a.save
+    end
+  end
+
   def around_update_counter
     if self_changed? && self.author_id_changed?
       original_author = User.find(self.author_id_was)
@@ -107,6 +114,7 @@ class Post
         update_relates_counter self.author
         update_relates_counter original_author, -1
         touch_relates_timestamp self.author
+        change_activity_user self.author
       end
     else
       yield
