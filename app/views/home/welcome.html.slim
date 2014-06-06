@@ -29,7 +29,7 @@ section.step#step1
           span.logo KnewOne
           | &nbsp;上安家的伙伴！
         footer.actions
-          = link_to_with_icon '绑定新浪微博', 'fa fa-weibo', user_omniauth_authorize_path(:weibo, state: welcome_url(anchor: 'step1')), class: 'btn btn_compact'
+          = link_to_with_icon '绑定新浪微博', 'fa fa-weibo', user_omniauth_authorize_path(:weibo, state: welcome_path(anchor: 'step1')), class: 'btn btn_compact'
 
     section.section
       h2

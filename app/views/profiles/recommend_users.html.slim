@@ -24,7 +24,7 @@ ul.nav.nav-pills
       p
         | 绑定微博，找到在 KnewOne 上安家的伙伴！
       footer
-        = link_to '绑定新浪微博', user_omniauth_authorize_path(:weibo, state: recommend_users_profile_url), class: 'btn btn-primary'
+        = link_to '绑定新浪微博', user_omniauth_authorize_path(:weibo, state: recommend_users_profile_path), class: 'btn btn-primary'
   .tab-pane.text-center.fade#knewone
     ul.user_list#celebrity = render @recommend_users
     footer
