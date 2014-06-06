@@ -14,6 +14,6 @@ class CategoriesController < ApplicationController
   private
 
   def set_categories
-    @categories = Categoryd.desc(:things_count).gt(things_count: 10)
+    @categories = Category.desc(:things_count).gt(things_count: 10)
   end
 end
