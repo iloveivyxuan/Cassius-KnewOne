@@ -25,6 +25,11 @@
       margin-right: 0;
     }
 
+    > em {
+      font-style: normal;
+      margin-right: .5em;
+    }
+
     > a {
       color: $text-muted;
 
