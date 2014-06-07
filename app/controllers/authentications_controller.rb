@@ -8,7 +8,7 @@ class AuthenticationsController < ApplicationController
       current_user.auths.find(params[:id]).destroy
       redirect_to edit_account_path, flash: {oauth: { status: 'success', text: '解绑成功。' }}
     else
-      redirect_to edit_account_path, flash: {oauth: { status: 'success', text: '解绑失败。' }}
+      redirect_to edit_account_path, flash: {oauth: { status: 'success', text: '请您设置邮箱设置密码后再解绑。' }}
     end
   end
 end
