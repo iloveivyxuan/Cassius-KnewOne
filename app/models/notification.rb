@@ -64,7 +64,6 @@ class Notification
   def set_data(options = {})
     self.context = options.delete :context if options[:context]
 
-
     if sender = options.delete(:sender)
       self.sender_ids<< sender.id.to_s
     end

@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 class CommentsController < ApplicationController
+  include MarkReadable
   respond_to :json
   load_and_authorize_resource :post
 
   def index
+    mark_read @post
     @comments = @post.comments.page(params[:page]).per(Settings.comments.per_page)
     respond_with @comments
   end

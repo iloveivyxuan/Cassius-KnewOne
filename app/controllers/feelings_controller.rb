@@ -1,4 +1,5 @@
 class FeelingsController < ApplicationController
+  include MarkReadable
   load_and_authorize_resource :thing, singleton: true
   load_and_authorize_resource :feeling, through: :thing
   layout 'thing'
@@ -18,6 +19,7 @@ class FeelingsController < ApplicationController
   end
 
   def show
+    mark_read @feeling
   end
 
   def create
