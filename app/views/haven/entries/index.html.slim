@@ -16,6 +16,8 @@ table.table.table-strip
       td = date_time_text(e.created_at)
       td = e.published?
       td
+        = link_to '查看', e, target: '_blank'
+        span.separator |
         = link_to '编辑', edit_haven_entry_path(e)
         span.separator |
         = link_to '删除', haven_entry_path(e), method: :delete, data: {confirm: 'are you sure?'}
