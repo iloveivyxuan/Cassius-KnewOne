@@ -65,10 +65,91 @@ html.explore {
 
   .article {
 
+    > header {
+
+      figure {
+        border-bottom: $border_default;
+        margin-bottom: $padding-large-vertical;
+        padding-bottom: $line-height-computed;
+        text-align: center;
+
+        img {
+          border: $border_default;
+          margin-right: $padding-large-horizontal;
+        }
+
+        figcaption {
+          display: inline-block;
+          vertical-align: middle;
+          text-align: left;
+
+          @media (max-width: $screen-sm-max) {
+            max-width: calc(100% - 82px - #{$padding-large-horizontal});
+          }
+
+          label {
+            color: $text-color;
+            font-weight: normal;
+            margin-bottom: $padding-base-vertical;
+          }
+
+          small {
+            color: $text-muted;
+            display: block;
+            font-size: 1em;
+          }
+        }
+      }
+    }
+
     .content {
 
       img {
         width: 100%;
+      }
+    }
+
+    .recommendation {
+      @include imgtxt(left, $padding-base-horizontal, '.description');
+      display: none;
+      padding-right: 3rem;
+
+      &:last-child {
+        padding-right: 0;
+      }
+
+      @media (max-width: $screen-sm-max) {
+
+        &:first-child {
+          display: block;
+          margin: {
+            left: auto;
+            right: auto;
+          }
+          max-width: 300px;
+          padding-right: 0;
+        }
+      }
+
+      @media (min-width: $screen-md-min) {
+        display: table-cell;
+        width: 1%;
+      }
+
+      > img {
+        border: $border_default;
+      }
+
+      .description {
+        color: $text-muted;
+
+        .title {
+          @include text-overflow();
+          color: $text-color;
+          font-size: 14px;
+          margin-top: 0;
+          max-width: 200px;
+        }
       }
     }
   }
