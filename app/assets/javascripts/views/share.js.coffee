@@ -4,11 +4,15 @@ Making.Views.Share = Backbone.View.extend
 
   events:
     'mouseenter .weixin': 'weixin'
+    'click .weixin': 'prevent_default'
     'click .weibo': 'weibo'
     'click .twitter': 'twitter'
 
   initialize: ->
     @$weixin = @$('.weixin')
+
+  prevent_default: (event) ->
+    event.preventDefault()
 
   weixin: (event) ->
     event.preventDefault()
