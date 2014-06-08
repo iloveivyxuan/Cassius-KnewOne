@@ -314,7 +314,7 @@ form.edit_post {
       color: $text-color;
       font-size: 2rem;
       margin: 0 0 $line-height-computed;
-      padding-bottom: (($line-height-computed / 2) - 1);
+      padding-bottom: (($line-height-computed / 2) - 1) * 2;
       text-align: center;
 
       @media (min-width: $screen-md-min) {
@@ -433,6 +433,7 @@ form.edit_post {
 
   > .actions {
     @include clearfix;
+    margin-bottom: 2rem;
 
     .voting {
       float: left;
@@ -457,8 +458,44 @@ form.edit_post {
     }
   }
 
+  .recommendations {
+    display: none;
+
+    @media (min-width: $screen-md-min) {
+      display: block;
+    }
+  }
+
+  .recommendation {
+    @include imgtxt(left, $padding-base-horizontal, '.description');
+    display: table-cell;
+    padding-right: 3rem;
+    width: 1%;
+
+    &:last-child {
+      padding-right: 0;
+    }
+
+    > img {
+      border: $border_default;
+    }
+
+    .description {
+      color: $text-muted;
+
+      .title {
+        @include text-overflow();
+        color: $text-color;
+        font-size: 14px;
+        margin-top: 0;
+        max-width: 200px;
+      }
+    }
+  }
+
   > .pager {
     border-top: $border_default;
+    margin-top: 0;
 
     > li {
 
@@ -479,6 +516,4 @@ form.edit_post {
       }
     }
   }
-
-  > .comments {}
 }

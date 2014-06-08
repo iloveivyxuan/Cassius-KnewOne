@@ -12,12 +12,10 @@ article.article
         li = time_ago_tag post.created_at
       ul.metas
         li
-          i.fa.fa-plus
-          em = post.lovers_count
+          = post.lovers_count
           | 赞
         li
-          i.fa.fa-comments-o
-          em = post.comments.size
+          = post.comments.size
           | 评论
 
   .content = post.content.html_safe
@@ -27,12 +25,18 @@ article.article
       = render partial: 'shared/voting', locals: {object: post}
     = render "shared/share"
 
-  .relate_things
-    - entry.things.each do |t|
-      .thing
-        = t.cover.url(:normal)
-        = t.title
-        = t.subtitle
+  section.panel.unstyled.recommendations
+    header.panel-heading
+      h3.panel-title
+        i.fa.fa-plus-square-o
+        | 了解更多
+    .panel-body
+      - entry.things.each do |t|
+        = link_to t, class: "recommendation", target: "_blank" do
+          = image_tag t.cover.url(:small), class: "img-circle", width: 80, height: 80
+          .description
+            h4.title = t.title
+            p = t.subtitle
 
   ul.pager
     - if previous_entry = entry.previous

@@ -22,12 +22,10 @@ article.article
           = time_ago_tag post.created_at
       ul.metas
         li
-          i.fa.fa-plus
-          em = post.lovers_count
+          = post.lovers_count
           | 赞
         li
-          i.fa.fa-comments-o
-          em = post.comments.size
+          = post.comments.size
           | 评论
 
   .content = post.content.html_safe
