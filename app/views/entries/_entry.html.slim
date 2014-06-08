@@ -8,10 +8,8 @@ article.article_thumb
       li.name = link_to entry.post.author.name, entry.post.author
       li.time = time_ago_tag entry.post.created_at
       li
-        i.fa.fa-plus
         = entry.post.lovers_count
         | &nbsp;赞
       li
-        i.fa.fa-comments-o
         = entry.post.comments.size
         | &nbsp;评论

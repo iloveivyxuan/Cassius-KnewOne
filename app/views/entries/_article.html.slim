@@ -35,7 +35,7 @@ article.article
       .panel-body
         - relates.each do |t|
           = link_to t, class: "recommendation", target: "_blank" do
-            = image_tag t.cover.url(:small), class: "img-circle", width: 80, height: 80
+            = image_tag t.cover.url(:small), width: 80, height: 80
             .description
               h4.title = t.title
               p = t.subtitle

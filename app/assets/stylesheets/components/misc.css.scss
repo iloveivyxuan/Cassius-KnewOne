@@ -170,6 +170,20 @@ label.avatar {
         margin-right: 0;
       }
     }
+
+    &.weixin {
+      display: none;
+    }
+  }
+}
+
+html.desktop {
+
+  .share {
+
+    a.weixin {
+      display: inline-block;
+    }
   }
 }
 

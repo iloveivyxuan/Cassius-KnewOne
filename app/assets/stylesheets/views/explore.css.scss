@@ -136,10 +136,6 @@ html.explore {
         width: 1%;
       }
 
-      > img {
-        border: $border_default;
-      }
-
       .description {
         color: $text-muted;
 
@@ -187,7 +183,11 @@ html.explore {
         clear: both;
         float: right;
         text-align: right;
-        width: 80%;
+        width: 60%;
+
+        @media (min-width: $screen-sm-min) {
+          width: auto;
+        }
 
         > li {
 
