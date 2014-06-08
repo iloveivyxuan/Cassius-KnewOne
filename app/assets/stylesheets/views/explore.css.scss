@@ -111,7 +111,6 @@ html.explore {
 
     .recommendation {
       @include imgtxt(left, $padding-base-horizontal, '.description');
-      display: none;
       padding-right: 3rem;
 
       &:last-child {
@@ -120,15 +119,14 @@ html.explore {
 
       @media (max-width: $screen-sm-max) {
 
-        &:first-child {
-          display: block;
-          margin: {
-            left: auto;
-            right: auto;
-          }
-          max-width: 300px;
-          padding-right: 0;
+        display: block;
+        margin: {
+          bottom: 1rem;
+          left: auto;
+          right: auto;
         }
+        max-width: 300px;
+        padding-right: 0;
       }
 
       @media (min-width: $screen-md-min) {

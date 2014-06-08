@@ -30,15 +30,30 @@ article.article
     section.panel.unstyled.recommendations
       header.panel-heading
         h3.panel-title
-          i.fa.fa-plus-square-o
-          | 了解更多
-      .panel-body
-        - relates.each do |t|
-          = link_to t, class: "recommendation", target: "_blank" do
-            = image_tag t.cover.url(:small), width: 80, height: 80
-            .description
-              h4.title = t.title
-              p = t.subtitle
+          - if browser.mobile?
+            = link_to "#recommendations", data: {toggle: "collapse", parent: ".recommendations"} do
+              i.fa.fa-plus-square-o
+              | 了解更多
+          - else
+            i.fa.fa-plus-square-o
+            | 了解更多
+      - if browser.mobile?
+        #recommendations.panel-collapse.collapse
+          .panel-body
+            - relates.each do |t|
+              = link_to t, class: "recommendation", target: "_blank" do
+                = image_tag t.cover.url(:small), width: 80, height: 80
+                .description
+                  h4.title = t.title
+                  p = t.subtitle
+      - else
+        .panel-body
+          - relates.each do |t|
+            = link_to t, class: "recommendation", target: "_blank" do
+              = image_tag t.cover.url(:small), width: 80, height: 80
+              .description
+                h4.title = t.title
+                p = t.subtitle
 
   ul.pager
     - if previous_entry = entry.previous
