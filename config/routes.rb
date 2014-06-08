@@ -11,6 +11,12 @@ Making::Application.routes.draw do
   get '/page/:page', to: "home#index"
   get 'qr_entry', to: 'home#qr_entry'
 
+  get 'explore', to: 'explore#index'
+  %w(features reviews specials events).each do |a|
+    get "explore/#{a}", to: "explore##{a}", as: "explore_#{a}"
+  end
+  resources :entries, only: [:show]
+
   devise_for :users, controllers: {
     omniauth_callbacks: "omniauth_callbacks",
     registrations: "registrations",
@@ -123,6 +129,13 @@ Making::Application.routes.draw do
     resources :comments
   end
 
+  resources :articles, only: [] do
+    member do
+      post 'vote'
+      post 'unvote'
+    end
+  end
+
   resources :categories, only: [:index] do
     collection do
       get 'all'
@@ -229,6 +242,10 @@ Making::Application.routes.draw do
         patch 'batch_update'
       end
     end
+
+    resources :articles, except: [:show]
+
+    resources :entries, except: [:show]
 
     resources :users, only: [:index, :update, :show]
 

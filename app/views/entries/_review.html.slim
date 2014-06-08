@@ -1,0 +1,48 @@
+article.article
+
+  header
+    h1.title = post.title
+
+    - thing = post.thing
+    figure
+      = link_to thing do
+        = image_tag thing.cover.url(:small), class: "img-circle"
+      figcaption
+        = link_to thing do
+          label =  thing.title
+          small = thing.subtitle
+
+    .clearfix
+      ul.metas
+        li
+          label.avatar
+            = image_tag author.avatar.url(:small), class: "img-circle"
+            = link_to author.name, author, data: {"popover-profile" => author.id.to_s}
+        li
+          = time_ago_tag post.created_at
+      ul.metas
+        li
+          = post.lovers_count
+          | 赞
+        li
+          = post.comments.size
+          | 评论
+
+  .content = post.content.html_safe
+
+  .actions
+    .voting id="review_#{post.id.to_s}"
+      = render partial: 'shared/voting', locals: {object: post}
+    = render "shared/share"
+
+  ul.pager
+    - if previous_entry = entry.previous
+      li.previous = link_to "< #{previous_entry.post.title}", previous_entry
+    - if next_entry = entry.next
+      li.next = link_to "#{next_entry.post.title} >", next_entry
+
+  = render 'shared/comments', post: post, id: "comments", auth: true
+
+- content_for :script do
+  javascript:
+    Making.Comments("#comments");

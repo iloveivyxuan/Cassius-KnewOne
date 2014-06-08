@@ -49,3 +49,16 @@
   border-top: none;
   margin-top: -10px;
 }
+
+.panel.unstyled {
+  border-radius: 0;
+  box-shadow: none;
+
+  .panel-heading,
+  .panel-body {
+    padding: {
+      left: 0;
+      right: 0;
+    }
+  }
+}

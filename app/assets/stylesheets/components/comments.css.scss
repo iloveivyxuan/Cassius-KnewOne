@@ -90,3 +90,22 @@ html.mobile {
     }
   }
 }
+
+html.desktop {
+
+  .comment {
+
+    .reply,
+    .destroy {
+      display: none;
+    }
+
+    &:hover {
+
+      .reply,
+      .destroy {
+        display: inline-block;
+      }
+    }
+  }
+}

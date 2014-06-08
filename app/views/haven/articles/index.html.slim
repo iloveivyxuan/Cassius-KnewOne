@@ -1,0 +1,17 @@
+= link_to '新建', new_haven_article_path, class: 'btn btn-primary'
+
+table.table.table-strip
+  tr
+    th ID
+    th 标题
+    th 作者
+    th 创建时间
+    th
+  - @articles.each do |a|
+    tr
+      td = a.id.to_s
+      td = a.title
+      td = a.author.name
+      td = date_time_text(a.created_at)
+      td
+        = link_to '编辑', edit_haven_article_path(a)

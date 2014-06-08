@@ -50,7 +50,6 @@ i {
 
 time {
   color: $text-muted;
-  font-size: .8em;
 }
 
 textarea {
@@ -139,11 +138,6 @@ input[type="checkbox"] {
 
 input[type="number"] {
   max-width: 100px;
-}
-
-time {
-  color: $text-muted;
-  font-size: .8em;
 }
 
 .form-group.date,

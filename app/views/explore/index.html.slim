@@ -1,0 +1,12 @@
+- provide :nav, action_name
+
+header
+  = link_to explore_path do
+    em.logo KnewOne
+    | &nbsp;发现
+
+section
+  = render @entries
+
+footer
+  = paginate @entries

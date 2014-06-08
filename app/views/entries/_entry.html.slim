@@ -1,0 +1,15 @@
+article.article_thumb
+  figure
+    = link_to entry do
+      = image_tag entry.cover.url
+  footer
+    h3.title = link_to entry.post.title, entry
+    ul.metas
+      li.name = link_to entry.post.author.name, entry.post.author
+      li.time = time_ago_tag entry.post.created_at
+      li
+        = entry.post.lovers_count
+        | &nbsp;赞
+      li
+        = entry.post.comments.size
+        | &nbsp;评论

@@ -121,6 +121,24 @@
   }
 }
 
+@mixin imgtxt ($float, $gap, $text) {
+  @include clearfix;
+
+  > img {
+    float: $float;
+    @if $float == left {
+      margin-right: $gap;
+    } @else if $float == right {
+      margin-left: $gap;
+    }
+  }
+
+  #{$text} {
+    overflow: hidden;
+  }
+}
+
+
 // Effect
 // -----------------------------------------------------------------------------
 

@@ -1,0 +1,21 @@
+= link_to '新建', new_haven_entry_path, class: 'btn btn-primary'
+
+table.table.table-strip
+  tr
+    th 封面
+    th 标题
+    th 分类
+    th 创建时间
+    th 公开
+    th 操作
+  - @entries.each do |e|
+    tr
+      td = image_tag(e.cover.url(:small))
+      td = e.post.title
+      td = e.category
+      td = date_time_text(e.created_at)
+      td = e.published?
+      td
+        = link_to '编辑', edit_haven_entry_path(e)
+        span.separator |
+        = link_to '删除', haven_entry_path(e), method: :delete, data: {confirm: 'are you sure?'}

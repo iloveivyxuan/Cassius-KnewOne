@@ -1,0 +1,8 @@
+.share
+  = link_to_with_icon "", "fa fa-weixin", "#", class: "weixin", data: {toggle: "popover", trigger: "click", container: "body", placement: "top"}, title: "分享到微信"
+  = link_to_with_icon "", "fa fa-weibo", "#", class: "weibo", title: "分享到新浪微博"
+  = link_to_with_icon "", "fa fa-twitter", "#", class: "twitter", title: "分享到 Twitter"
+
+- content_for :script do
+  javascript:
+    new Making.Views.Share();

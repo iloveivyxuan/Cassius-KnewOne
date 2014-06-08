@@ -1,0 +1,9 @@
+= simple_form_for [:haven, @article], html: {class: "edit_post"} do |f|
+  = f.input :title, label: false, placeholder: "标题"
+  = f.input :content, as: :hidden
+  = render 'shared/editor'
+  = f.button :submit
+
+- content_for :script do
+  javascript:
+    Making.Editor('#article_content');
