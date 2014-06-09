@@ -1,0 +1,22 @@
+- content_for :username do
+  = @name
+
+- content_for :title do
+  | KnewOne动态
+
+p
+  | 在这一个月里，在KnewOne上：
+ul
+  - if things = @counts[:things]
+    li 新增了 #{things} 种新奇酷产品
+  - if reviews = @counts[:reviews]
+    li 新增了 #{reviews} 篇评测
+  - if activities = @counts[:activities]
+    li 好友产生了 #{activities} 条动态
+  - if (fancies_reviews = @counts[:fancies_reviews]) && fancies_reviews > 0
+    li 关注的产品，新增了 #{fancies_reviews} 篇评测
+  - if (fancies_feelings = @counts[:fancies_feelings]) && fancies_reviews > 0
+    li 关注的产品，新增了 #{fancies_feelings} 篇短评
+
+p
+  = link_to '点此查看', root_url(from: :recall), class: 'btn btn-primary btn-large'

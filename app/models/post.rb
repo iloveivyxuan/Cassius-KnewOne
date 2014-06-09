@@ -23,6 +23,9 @@ class Post
 
   index created_at: -1
 
+  scope :from_date, ->(date) { where :created_at.gte => date.to_time.to_i }
+  scope :to_date, ->(date) { where :created_at.lt => date.next_day.to_time.to_i }
+
   after_create :update_commented_at
 
   after_create do

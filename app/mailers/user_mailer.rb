@@ -84,4 +84,17 @@ class UserMailer < BaseMailer
     mail(to: @receiver.email,
          subject: '你在「KnewOne 牛玩」上收到了一封私信')
   end
+
+  def recall(user_id, counts = {})
+    @user = User.find(user_id)
+    @counts = counts
+    @counts[:activities] ||= @user.relate_activities.from_date(30.days.ago).to_date(Date.today).size
+    @counts[:things] ||= Thing.from_date(30.days.ago).to_date(Date.today).size
+    @counts[:reviews] ||= Review.from_date(30.days.ago).to_date(Date.today).size
+    @counts[:fancies_reviews] ||= Review.where(:id.in => (@user.fancy_ids + @user.own_ids)).from_date(30.days.ago).to_date(Date.today).size
+    @counts[:fancies_feelings] ||= Feeling.where(:id.in => (@user.fancy_ids + @user.own_ids)).from_date(30.days.ago).to_date(Date.today).size
+
+    mail(to: @user.email,
+         subject: 'KnewOne动态')
+  end
 end
