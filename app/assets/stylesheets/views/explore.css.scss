@@ -22,10 +22,11 @@ html.explore {
         }
 
         a {
-          border-bottom: $border_default;
-          color: $gray;
+          border-bottom: 1px solid #878485;
+          color: #868686;
           display: block;
-          font-size: 3rem;
+          font-size: 40px;
+          padding-bottom: 12px;
           text-align: center;
 
           @media (min-width: $screen-sm-min) {
@@ -38,15 +39,15 @@ html.explore {
     }
 
     > .nav {
-      border-left: $border_default;
+      border-left: 1px solid #878485;
       left: 84%;
       position: absolute;
-      top: 203px;
+      top: 230px;
 
       > li {
 
         > a {
-          color: $text-muted;
+          color: #868686;
           padding: {
             left: 2em;
             right: 2em;
@@ -60,9 +61,9 @@ html.explore {
 
           > a {
             background-color: transparent;
-            border-left: 2px solid darken(#eee, 10%);
+            border-left: 1px solid #878485;
             color: $text-color;
-            padding-left: calc(2em - 2px);
+            padding-left: calc(2em - 1px);
           }
         }
       }
@@ -178,7 +179,7 @@ html.explore {
 
     > footer {
       @include clearfix;
-      border-right: $border_default;
+      border-right: 1px solid #878485;
       padding: 0 1rem;
 
       @media (min-width: $screen-sm-min) {
@@ -186,7 +187,9 @@ html.explore {
       }
 
       .title {
+        color: #646464;
         float: right;
+        font-size: 20px;
         margin-top: 0;
 
         a {
