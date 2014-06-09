@@ -27,11 +27,11 @@ article.article
 
   - relates = entry.things
   - if relates.any?
-    section.panel.unstyled.recommendations
+    section.panel.unstyled
       header.panel-heading
         h3.panel-title
           - if browser.mobile?
-            = link_to "#recommendations", data: {toggle: "collapse", parent: ".recommendations"} do
+            = link_to "#recommendations", data: {toggle: "collapse"} do
               i.fa.fa-plus-square-o
               | 了解更多
           - else
@@ -39,7 +39,7 @@ article.article
             | 了解更多
       - if browser.mobile?
         #recommendations.panel-collapse.collapse
-          .panel-body
+          .panel-body.recommendations
             - relates.each do |t|
               = link_to t, class: "recommendation", target: "_blank" do
                 = image_tag t.cover.url(:small), width: 80, height: 80
@@ -47,7 +47,7 @@ article.article
                   h4.title = t.title
                   p = t.subtitle
       - else
-        .panel-body
+        .panel-body.recommendations
           - relates.each do |t|
             = link_to t, class: "recommendation", target: "_blank" do
               = image_tag t.cover.url(:small), width: 80, height: 80
