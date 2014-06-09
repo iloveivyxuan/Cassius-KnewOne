@@ -1,9 +1,14 @@
 = simple_form_for [:haven, @entry] do |f|
   = f.input :category, collection: Entry::CATEGORIES
   = f.input :post_id
-  select name='entry[thing_ids][]' multiple="true" data-role="tagsinput"
-    - @entry.thing_ids.each do |i|
-      option value="#{i}" = i
+  = f.input :external_link
+  .form-group.select
+    label.control-label 推荐商品
+    br
+    select.form-control name='entry[thing_ids][]' multiple="true" data-role="tagsinput"
+      - @entry.thing_ids.each do |i|
+        option value="#{i}" = i
+  = f.input :title
   = f.input :cover
   = f.input :cover_cache, as: :hidden
   = f.input :published, as: :radio_buttons

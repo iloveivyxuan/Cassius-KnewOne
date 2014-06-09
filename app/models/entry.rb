@@ -6,20 +6,29 @@ class Entry
   mount_uploader :cover, ImageUploader
 
   field :post_id, type: String
+  field :external_link, type: String
+  field :title, type: String
   field :thing_ids, type: Array, default: []
   field :category, type: String
   field :published, type: Boolean, default: false
 
   scope :published, -> {where published: true}
 
-  validates :post_id, presence: true
+  validate do
+    if self.post.blank? && self.title.blank?
+      errors.add :title, '必须提供一个标题'
+    end
+    if self.post.blank? && self.external_link.blank?
+      errors.add :post_id, '外部链接和文章必选其一'
+    end
+  end
 
   def post
-    @_post ||= Post.find(self.post_id)
+    @_post ||= Post.where(id: self.post_id).first
   end
 
   def things
-    @_things ||= Thing.find(self.thing_ids)
+    @_things ||= Thing.where(:id.in => self.thing_ids)
   end
 
   def previous(same_category = true)

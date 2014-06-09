@@ -101,6 +101,13 @@ zh-CN:
         stock: '产品到货'
         new_review: '产品有新评测'
         comment: '提到我的评论'
+      entry:
+        category: '分类'
+        post_id: '文章/评测ID'
+        external_link: '链接'
+        title: '标题'
+        cover: '封面'
+        published: '公开'
 
     placeholders:
       user:
