@@ -5,7 +5,8 @@ class Entry
 
   mount_uploader :cover, ImageUploader
 
-  field :post_id, type: String
+  belongs_to :post
+
   field :external_link, type: String
   field :title, type: String
   field :sharing_content, type: String

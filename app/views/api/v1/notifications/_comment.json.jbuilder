@@ -27,6 +27,9 @@ if context = notification.context
       json.topic do
         json.partial! 'api/v1/topics/topic', topic: context
       end
+    when Activity
+      json.context_type 'article'
+      json.context_type_text '文章'
   end
 end
 
