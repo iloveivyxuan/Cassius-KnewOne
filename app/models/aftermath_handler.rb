@@ -74,6 +74,34 @@ class AftermathHandler
       end
     end
 
+    def order_refund!(order)
+      u = order.user
+
+      if order.payment_method != :btc
+        u.inc expenses_count: -order.trade_price.to_i,
+              orders_count: -1
+      else
+        u.inc orders_count: -1
+      end
+    end
+
+    def order_refund_to_balance!(order, price)
+      u = order.user
+
+      if order.payment_method != :btc
+        u.inc expenses_count: -order.trade_price.to_i,
+              orders_count: -1
+      else
+        u.inc orders_count: -1
+      end
+    end
+
+    def order_confirm_free!(order)
+      u = order.user
+
+      u.inc orders_count: 1
+    end
+
     def member_create(member)
       u = member.user
       u.inc groups_count: 1

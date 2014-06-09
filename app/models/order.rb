@@ -457,7 +457,7 @@ class Order
     h ? h.created_at : nil
   end
 
-  need_aftermath :confirm_payment!
+  need_aftermath :confirm_payment!, :refund_to_balance!, :refund!, :confirm_free!
 
   private
 
