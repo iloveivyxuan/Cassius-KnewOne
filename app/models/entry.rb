@@ -8,6 +8,7 @@ class Entry
   field :post_id, type: String
   field :external_link, type: String
   field :title, type: String
+  field :sharing_content, type: String
   field :thing_ids, type: Array, default: []
   field :category, type: String
   field :published, type: Boolean, default: false

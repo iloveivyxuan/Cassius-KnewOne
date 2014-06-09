@@ -9,6 +9,7 @@
       - @entry.thing_ids.each do |i|
         option value="#{i}" = i
   = f.input :title
+  = f.input :sharing_content
   = f.input :cover
   = f.input :cover_cache, as: :hidden
   = f.input :published, as: :radio_buttons
