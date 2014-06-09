@@ -28,7 +28,7 @@ class Entry
   end
 
   def things
-    @_things ||= Thing.where(:id.in => self.thing_ids)
+    @_things ||= Thing.or({:id.in => self.thing_ids}, {:slugs.in => self.thing_ids})
   end
 
   def previous(same_category = true)
