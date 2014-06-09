@@ -2,7 +2,8 @@
 
 - content_for :content do
 
-  = yield
+  .content
+    = yield
 
   - if !browser.mobile? and !browser.tablet?
     ul.nav

@@ -4,38 +4,44 @@ html.explore {
     @include wrapper(simple, $max-width: $screen-lg-min);
 
     @media (min-width: $screen-md-min) {
-      padding: 50px 12%;
+      @include clearfix;
+      padding: 80px 0 8rem;
       position: relative;
     }
 
-    > header {
-      @include clearfix;
-      margin-bottom: 2rem;
+    > .content {
+      margin-left: 12%;
+      width: 60%;
 
-      @media (min-width: $screen-md-min) {
-        margin-bottom: 4rem;
-      }
+      > header {
+        @include clearfix;
+        margin-bottom: 2rem;
 
-      a {
-        border-bottom: $border_default;
-        color: $gray;
-        display: block;
-        font-size: 3rem;
-        text-align: center;
+        @media (min-width: $screen-md-min) {
+          margin-bottom: 80px;
+        }
 
-        @media (min-width: $screen-sm-min) {
-          float: right;
-          text-align: right;
-          width: 50%;
+        a {
+          border-bottom: $border_default;
+          color: $gray;
+          display: block;
+          font-size: 3rem;
+          text-align: center;
+
+          @media (min-width: $screen-sm-min) {
+            float: right;
+            text-align: right;
+            width: 50%;
+          }
         }
       }
     }
 
     > .nav {
       border-left: $border_default;
-      left: 90%;
+      left: 84%;
       position: absolute;
-      top: 150px;
+      top: 203px;
 
       > li {
 
@@ -149,7 +155,7 @@ html.explore {
   }
 
   .article_thumb {
-    margin-bottom: 4rem;
+    margin-bottom: 6rem;
 
     &:last-child {
       margin-bottom: 0;
@@ -157,6 +163,17 @@ html.explore {
 
     > figure {
       margin-bottom: 2rem;
+      overflow: hidden;
+
+      a {
+        display: block;
+        height: 0;
+        padding-bottom: percentage(9 / 16);
+
+        img {
+          width: 100%;
+        }
+      }
     }
 
     > footer {
