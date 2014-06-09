@@ -9,9 +9,7 @@ html.explore {
       position: relative;
     }
 
-    > .content {
-      margin-left: 12%;
-      width: 60%;
+    main {
 
       > header {
         @include clearfix;
@@ -25,7 +23,7 @@ html.explore {
           border-bottom: 1px solid #878485;
           color: #868686;
           display: block;
-          font-size: 3rem;
+          font-size: 2.5rem;
           padding-bottom: 12px;
           text-align: center;
 
@@ -42,42 +40,44 @@ html.explore {
 
         .logo {
           font-family: "orbitron-medium";
-          font-size: 36px;
+          font-size: 1.2em;
           vertical-align: -1px;
         }
       }
     }
 
-    > .nav {
-      border-left: 1px solid #878485;
-      left: 80%;
-      position: fixed;
-      top: 304px;
+    > nav {
+      float: right;
+      margin-right: 14%;
 
-      @media (min-width: $screen-lg-min) {
-        left: 76%;
-      }
-
-      > li {
-
-        > a {
-          color: #868686;
-          padding: {
-            left: 2em;
-            right: 2em;
-          }
-          width: 8em;
+      > .nav {
+        border-left: 1px solid #878485;
+        
+        &.affix-top {
+          margin-top: 156px;
         }
 
-        &:hover,
-        &:active,
-        &.active {
+        > li {
 
           > a {
-            background-color: transparent;
-            border-left: 1px solid #878485;
-            color: $text-color;
-            padding-left: calc(2em - 1px);
+            color: #868686;
+            padding: {
+              left: 2em;
+              right: 0;
+            }
+            width: 4em;
+          }
+
+          &:hover,
+          &:active,
+          &.active {
+
+            > a {
+              background-color: transparent;
+              border-left: 1px solid #878485;
+              color: $text-color;
+              padding-left: calc(2em - 1px);
+            }
           }
         }
       }
@@ -85,18 +85,30 @@ html.explore {
   }
 
   .article {
+    margin-top: 78px;
 
     > header {
 
+      > .title {
+        border-bottom-color: #868686;
+        color: #868686;
+        margin-bottom: 30px;
+        padding-bottom: 33px;
+      }
+
       figure {
-        border-bottom: $border_default;
+        border-bottom: 1px solid #868686;
         margin-bottom: $padding-large-vertical;
-        padding-bottom: $line-height-computed;
+        padding-bottom: 33px;
         text-align: center;
 
         img {
-          border: $border_default;
+          border: 1px solid #868686;
           margin-right: $padding-large-horizontal;
+
+          @media (min-width: $screen-md-min) {
+            margin-right: 30px;
+          }
         }
 
         figcaption {
@@ -166,6 +178,10 @@ html.explore {
           max-width: 200px;
         }
       }
+    }
+
+    .pager {
+      border-top-color: #878485;
     }
   }
 
@@ -239,6 +255,33 @@ html.explore {
             margin-right: 0;
           }
         }
+      }
+    }
+  }
+
+  &.tablet {
+
+    #wrapper {
+
+      main {
+        margin: {
+          left: auto;
+          right: auto;
+        }
+        width: 60%;
+      }
+    }
+  }
+
+  &.desktop {
+
+    #wrapper {
+
+      main {
+        float: left;
+        margin-left: 14%;
+        min-height: 300px;
+        width: 60%;
       }
     }
   }
