@@ -45,6 +45,7 @@ html class=page_class lang="zh-CN"
       = link_to '帖子', maps_topics_path
       = link_to '分类', maps_categories_path
       = link_to '发现', maps_entries_path
+      = link_to '产品时间线', maps_stories_path
     = javascript_include_tag "application"
     = yield :script
     - if user_signed_in? and Rails.env.production?

@@ -1,0 +1,8 @@
+h1 所有产品时间线
+
+ul
+  - @stories.each do |s|
+    - if s.thing
+      li = link_to s.title, thing_story_path(s.thing, s)
+
+  = paginate @stories

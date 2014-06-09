@@ -9,5 +9,7 @@ class Story < Post
 
   default_scope -> { desc(:occured_at) }
 
+  scope :living, -> { where :thing_id.ne => nil }
+
   belongs_to :thing
 end

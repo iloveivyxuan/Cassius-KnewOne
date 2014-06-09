@@ -31,6 +31,10 @@ SitemapGenerator::Sitemap.create do
     t.reviews.each do |r|
       add thing_review_path(t, r), :lastmod => t.updated_at
     end
+
+    t.stories.each do |s|
+      add thing_story_path(t, s), :lastmod => t.updated_at
+    end
   end
 
   Group.public.each do |g|
