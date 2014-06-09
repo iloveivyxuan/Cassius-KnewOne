@@ -4,25 +4,25 @@ Making.Views.Share = Backbone.View.extend
 
   events:
     'mouseenter .weixin': 'weixin'
+    'mouseleave .weixin': 'weixin'
     'click .weixin': 'prevent_default'
     'click .weibo': 'weibo'
     'click .twitter': 'twitter'
 
   initialize: ->
     @$weixin = @$('.weixin')
-
-  prevent_default: (event) ->
-    event.preventDefault()
-
-  weixin: (event) ->
-    event.preventDefault()
-
     @$weixin.popover
       html: true
       content: $('<div />').qrcode
         render: 'image'
         ecLevel: 'L'
         text: document.URL
+
+  prevent_default: (event) ->
+    event.preventDefault()
+
+  weixin: (event) ->
+    @$weixin.popover if event.type is 'mouseenter' then 'show' else 'hide'
 
   weibo: (event) ->
     event.preventDefault()
