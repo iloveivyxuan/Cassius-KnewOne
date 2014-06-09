@@ -2,6 +2,7 @@
 class Entry
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::MultiParameterAttributes
 
   mount_uploader :cover, ImageUploader
 

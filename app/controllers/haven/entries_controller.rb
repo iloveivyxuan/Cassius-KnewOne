@@ -4,7 +4,7 @@ module Haven
     before_action :set_entry, except: [:index, :create, :new]
 
     def index
-      @entries = Entry.all.page params[:page]
+      @entries = Entry.desc(:created_at).page params[:page]
     end
 
     def edit
