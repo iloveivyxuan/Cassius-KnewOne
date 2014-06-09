@@ -25,7 +25,7 @@ html.explore {
           border-bottom: 1px solid #878485;
           color: #868686;
           display: block;
-          font-size: 40px;
+          font-size: 3rem;
           padding-bottom: 12px;
           text-align: center;
 
@@ -34,15 +34,23 @@ html.explore {
             text-align: right;
             width: 50%;
           }
+
+          @media (min-width: $screen-lg-min) {
+            font-size: 40px;
+          }
         }
       }
     }
 
     > .nav {
       border-left: 1px solid #878485;
-      left: 84%;
-      position: absolute;
-      top: 230px;
+      left: 80%;
+      position: fixed;
+      top: 304px;
+
+      @media (min-width: $screen-lg-min) {
+        left: 76%;
+      }
 
       > li {
 
