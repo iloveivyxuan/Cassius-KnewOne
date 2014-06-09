@@ -44,4 +44,10 @@ SitemapGenerator::Sitemap.create do
   Category.where(:things_count.gt => 0).each do |c|
     add "/things/category/#{c.slug}"
   end
+
+  Entry.published.each do |e|
+    if e.post
+      add entry_path(e)
+    end
+  end
 end

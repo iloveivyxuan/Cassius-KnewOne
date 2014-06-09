@@ -18,4 +18,8 @@ class MapsController < ApplicationController
   def categories
     @categories = Category.where(:things_count.gt => 0)
   end
+
+  def entries
+    @entries = Entry.published.desc(:created_at).page(params[:page]).per(200)
+  end
 end

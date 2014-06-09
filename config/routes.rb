@@ -1,6 +1,6 @@
 Making::Application.routes.draw do
 
-  %w(things reviews topics groups categories).each do |a|
+  %w(things reviews topics groups categories entries).each do |a|
     get "maps/#{a}"
     get "maps/#{a}/page/:page", to: "maps##{a}"
   end

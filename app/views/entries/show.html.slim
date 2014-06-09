@@ -1,6 +1,8 @@
 - post = @entry.post
 - author = post.author
 - provide :sharing_content, @entry.sharing_content
+- page_title entry_title(@entry)
+
 - if post.class == Review
   = render 'entries/review', entry: @entry, post: post, author: author
 - else

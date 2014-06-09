@@ -1,0 +1,7 @@
+h1 所有发现
+
+ul
+  - @entries.each do |e|
+    li = link_to entry_title(e), e
+
+= paginate @entries
