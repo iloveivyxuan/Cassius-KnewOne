@@ -184,8 +184,60 @@ html.explore {
       }
     }
 
+    .actions {
+      margin-bottom: 4rem;
+    }
+
+    .panel {
+      margin-bottom: 4rem;
+    }
+
+    .panel-heading {
+      margin-bottom: 5px;
+    }
+
     .pager {
-      border-top-color: #878485;
+      border-top-color: $text-muted;
+      padding-top: 5px;
+    }
+
+    .voting {
+
+      .btn {
+        background-color: transparent;
+        border: 1px solid #dedede;
+        border-radius: 4px;
+        box-shadow: 0 1px 1px #ddd;
+        position: relative;
+
+        &:hover,
+        &:active,
+        &:focus {
+          // background-color: transparent;
+        }
+
+        .fa {
+          margin-right: 10px;
+        }
+
+        span {
+          display: inline-block;
+          padding-left: 10px;
+
+          &:before {
+            border-left: 1px solid #dedede;
+            content: '';
+            height: 60%;
+            left: 28px;
+            position: absolute;
+            width: 0;
+          }
+
+          &:after {
+            content: '赞';
+          }
+        }
+      }
     }
   }
 

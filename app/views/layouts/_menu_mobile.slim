@@ -43,6 +43,8 @@ section#menu
       li.nav_group_title
         | 频道
       li
+        = link_to_with_icon "发现", "fa fa-smile-o fa-fw", explore_path
+      li
         = link_to_with_icon "商店", "fa fa-smile-o fa-fw", things_path(self_run: true)
       li
         = link_to_with_icon "探索", "fa fa-lightbulb-o fa-fw", categories_path
