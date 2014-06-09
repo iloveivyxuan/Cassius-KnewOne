@@ -32,11 +32,11 @@ article.article
         h3.panel-title
           - if browser.mobile?
             = link_to "#recommendations", data: {toggle: "collapse"} do
-              i.fa.fa-plus-square-o
-              | 了解更多
+              | 了解更多&nbsp;
+              i.fa.fa-angle-double-right
           - else
-            i.fa.fa-plus-square-o
-            | 了解更多
+            | 了解更多&nbsp;
+            i.fa.fa-angle-double-right
       - if browser.mobile?
         #recommendations.panel-collapse.collapse
           .panel-body.recommendations

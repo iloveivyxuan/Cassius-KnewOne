@@ -1,5 +1,5 @@
 // Menu
-// 
+//
 // For Mobile Device.
 //
 
@@ -94,6 +94,7 @@
     margin-bottom: 1rem;
 
     > li {
+
       a {
         &:hover {
           background-color: lighten($navbar-inverse-bg, 10%);
@@ -102,6 +103,29 @@
         &:active {
           background-color: lighten($navbar-inverse-bg, 15%);
           color: #fff;
+        }
+      }
+
+      .nav_collapse {
+
+        a {
+          @extend .btn;
+          @extend .btn-block;
+          border-radius: 0;
+          color: #ccc;
+          padding-left: 4em;
+          text-align: left;
+
+          &:hover {
+            background-color: lighten($navbar-inverse-bg, 10%);
+            box-shadow: none;
+          }
+
+          &:active {
+            background-color: lighten($navbar-inverse-bg, 15%);
+            box-shadow: none;
+            color: #fff;
+          }
         }
       }
     }
