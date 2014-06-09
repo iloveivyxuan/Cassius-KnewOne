@@ -5,6 +5,19 @@
                      "orbitron-bold.svg", svg),
                    "orbitron-bold.eot");
 
+@include font-face("orbitron-medium", font-files(
+                     "orbitron-medium.woff", woff,
+                     "orbitron-medium.ttf", truetype,
+                     "orbitron-medium.svg", svg),
+                   "orbitron-medium.eot");
+
+@include font-face("orbitron-light", font-files(
+                     "orbitron-light.woff", woff,
+                     "orbitron-light.ttf", truetype,
+                     "orbitron-light.svg", svg),
+                   "orbitron-light.eot");
+
+
 // Layout
 // -----------------------------------------------------------------------------
 
