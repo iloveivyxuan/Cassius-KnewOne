@@ -2,6 +2,7 @@
 - author = post.author
 - provide :sharing_content, @entry.sharing_content
 - page_title entry_title(@entry)
+- active_nav_tab(@entry)
 
 - if post.class == Review
   = render 'entries/review', entry: @entry, post: post, author: author

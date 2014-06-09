@@ -48,5 +48,10 @@ class Entry
     end
   end
 
-  CATEGORIES = %w(特写 评测 专题 活动)
+  CATEGORIES = {
+      '特写' => 'features',
+      '评测' => 'reviews',
+      '专题' => 'specials',
+      '活动' => 'events'
+  }
 end

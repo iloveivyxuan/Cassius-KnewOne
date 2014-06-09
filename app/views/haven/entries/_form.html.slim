@@ -1,5 +1,5 @@
 = simple_form_for [:haven, @entry] do |f|
-  = f.input :category, collection: Entry::CATEGORIES
+  = f.input :category, collection: Entry::CATEGORIES.keys
   = f.input :post_id
   = f.input :external_link
   .form-group.select
