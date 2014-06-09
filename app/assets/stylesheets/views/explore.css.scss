@@ -23,7 +23,6 @@ html.explore {
           color: #868686;
           display: block;
           font-size: 2.5rem;
-          padding-bottom: 12px;
           text-align: center;
 
           @media (min-width: $screen-sm-min) {
@@ -53,7 +52,7 @@ html.explore {
         border-left: 1px solid #878485;
 
         &.affix-top {
-          margin-top: calc(2.5rem + 80px);
+          margin-top: calc(2.5rem + 80px - 12px);
         }
 
         > li {
@@ -87,7 +86,7 @@ html.explore {
     margin-top: 2rem;
 
     @media (min-width: $screen-md-min) {
-      margin-top: 36px;
+      margin-top: 24px;
     }
 
     > header {
@@ -216,12 +215,6 @@ html.explore {
           right: 15px;
         }
         position: relative;
-
-        &:hover,
-        &:active,
-        &:focus {
-          // background-color: transparent;
-        }
 
         .fa {
           margin-right: 10px;
