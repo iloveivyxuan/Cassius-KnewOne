@@ -145,10 +145,10 @@ html.signed_in_homepage {
     .panel-heading {
       @include clearfix;
       color: $text-muted;
-      text-align: center;
-
-      .fa-random {
-        margin-left: 2rem;
+      span {float: left;}
+      a {
+        float: right;
+        margin-right: 1rem;
       }
     }
 
