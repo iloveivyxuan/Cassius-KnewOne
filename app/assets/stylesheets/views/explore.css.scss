@@ -2,9 +2,9 @@ html.explore {
 
   #wrapper {
     @include wrapper(simple, $max-width: $screen-lg-min);
+    @include clearfix;
 
     @media (min-width: $screen-md-min) {
-      @include clearfix;
       padding: 2.5rem 0 4rem;
       position: relative;
     }

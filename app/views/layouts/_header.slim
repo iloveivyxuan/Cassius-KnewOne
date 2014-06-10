@@ -11,18 +11,22 @@ header#header role="banner"
     #nav_main.collapse.navbar-collapse
       ul.nav.navbar-nav#nav_primary
         li
-          = link_to_with_icon "商店", "fa fa-smile-o fa-fw", things_path(self_run: true)
+          = link_to "商店", things_path(self_run: true)
         li
-          = link_to_with_icon "探索", "fa fa-lightbulb-o fa-fw", categories_path
+          = link_to "分类", categories_path
+        li
+          = link_to explore_path  do
+            | 发现
+            span.badge.badge-default new
         li
           - if user_signed_in?
-            = link_to_with_icon "分享", "fa fa-plus fa-fw", "#", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}
+            = link_to "分享", "#", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}
           - else
-            = link_to_with_icon "分享", "fa fa-plus fa-fw", "#", data: {toggle: "modal", target: "#login-modal"}
+            = link_to "分享", "#", data: {toggle: "modal", target: "#login-modal"}
         li
-          = link_to_with_icon "小组", "fa fa-tint fa-fw", groups_path
+          = link_to "小组", groups_path
         li
-          = link_to_with_icon "客服", "fa fa-comment fa-fw", "#olark_chat", data: {hint: "fa-comment", url: asset_path('olark.js')}
+          = link_to "客服", "#olark_chat", data: {hint: "fa-comment", url: asset_path('olark.js')}
 
       - if user_signed_in?
         .user_links.login.navbar-right
