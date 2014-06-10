@@ -24,11 +24,14 @@ module Haven
                     Thing
                 end
 
-      if params[:sort_by] == 'reviews_count'
-        @things = @things.order_by [:reviews_count, :desc]
-      else
-        @things = @things.order_by [:created_at, :desc]
-      end
+      @things = case params[:sort_by]
+                  when 'reviews_count'
+                    @things.order_by [:reviews_count, :desc]
+                  when 'priority'
+                    @things.order_by [:priority, :desc]
+                  else
+                    @things.order_by [:created_at, :desc]
+                end
 
       @things = @things.page params[:page]
     end
