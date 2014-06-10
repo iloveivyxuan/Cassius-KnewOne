@@ -18,7 +18,7 @@ article.article
           = post.comments.size
           | 评论
 
-  .content = post.content.html_safe
+  .content = sanitize post.content
 
   .actions
     .voting id="article_#{post.id.to_s}"
