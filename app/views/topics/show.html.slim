@@ -8,7 +8,7 @@
       h3= tp.title
       = tp.author_tag
 
-    section.post_content= tp.content
+    section.article.post_content= tp.content
 
     footer
       .feed_action= render 'shared/voting', object: tp.topic
