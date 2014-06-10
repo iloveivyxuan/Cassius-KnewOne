@@ -1,7 +1,8 @@
 article.article_thumb
-  figure
-    = link_to entry do
-      = image_tag entry.cover.url
+  - if entry.cover.present?
+    figure
+      = link_to entry do
+        = image_tag entry.cover.url
   footer
     h3.title = link_to entry_title(entry), entry
     - if entry.post
