@@ -173,6 +173,20 @@
       }
     }
   }
+
+  figure.thing {
+
+    .thing_fancy_backdrop {
+      opacity: 0 !important;
+    }
+
+    .thing_fancy {
+
+      .fanciers {
+        display: none;
+      }
+    }
+  }
 }
 
 .search_backdrop {
