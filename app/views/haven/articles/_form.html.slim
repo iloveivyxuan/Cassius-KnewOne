@@ -1,4 +1,7 @@
 = simple_form_for [:haven, @article], html: {class: "edit_post"} do |f|
+  .form-group
+    = hidden_field_tag 'article[author]', @article.author.id.to_s, id: 'author_id'
+    input#author_autocomplete.form-control placeholder="用户昵称" value="#{@article.author.name}"
   = f.input :title, label: false, placeholder: "标题"
   = f.input :content, as: :hidden
   = render 'shared/editor'
@@ -7,3 +10,4 @@
 - content_for :script do
   javascript:
     Making.Editor('#article_content');
+    Making.UserFuzzy('#author_autocomplete', '#author_id');

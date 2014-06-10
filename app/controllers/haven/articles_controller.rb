@@ -13,6 +13,7 @@ module Haven
 
     def new
       @article = Article.new
+      @article.author = current_user
     end
 
     def update
@@ -23,7 +24,7 @@ module Haven
 
     def create
       @article = Article.new article_params
-      @article.author = current_user
+      @article.author = current_user if params[:article][:author_id].blank?
 
       if @article.save
         redirect_to haven_articles_url
