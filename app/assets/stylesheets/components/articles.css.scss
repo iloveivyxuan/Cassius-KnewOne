@@ -395,6 +395,11 @@ form.edit_post {
       margin-left: 0;
       margin-top: 0;
     }
+
+    iframe,
+    video {
+      max-width: 100%;
+    }
   }
 
   > .actions {
