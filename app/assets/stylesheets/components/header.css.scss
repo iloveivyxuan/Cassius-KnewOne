@@ -197,14 +197,12 @@ html.no-touch {
   }
 
   @media (min-width: $grid-float-breakpoint) {
-
     &.navbar-right:last-child {
-      margin-right: 0;
+      margin-right: 20px;
     }
   }
 
   &.focus {
-
     @media (min-width: $grid-float-breakpoint) {
       width: 25%;
     }
@@ -316,6 +314,9 @@ html.no-touch {
       @media (min-width: $grid-float-breakpoint) {
         font-size: 1.3333333333333333em;
         vertical-align: middle;
+
+        &.fa-bell-o {font-size: 1.25em;}
+        &.fa-envelope-o {font-size: 1.25em;}
       }
     }
   }

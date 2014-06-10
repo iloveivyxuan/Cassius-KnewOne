@@ -6,7 +6,7 @@ header#header
 
   - if user_signed_in?
     = link_to notifications_path, class: "btn btn-link pull-right notification", title: "#{unread_notifications_text}未读消息" do
-      i.fa.fa-bell.fa_alone
+      i.fa.fa-bell-o.fa_alone
       span.badge.badge_primary= unread_notifications_count
   - else
     = link_to_with_icon "登录", "fa fa-sign-in", "#", class: "btn btn-link pull-right", data: {toggle: "modal", target: "#login-modal"}
