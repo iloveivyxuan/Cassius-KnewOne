@@ -171,20 +171,9 @@ html.no-touch {
       line-height: 40px;
       padding: 0 15px;
 
-      @media (min-width: $grid-float-breakpoint) and (max-width: $screen-md-max) {
-        padding: {
-          left: 8px;
-          right: 8px;
-        }
-      }
-
-      .fa {
-
-        @media (min-width: $grid-float-breakpoint) {
-          font-size: 1.3333333333333333em;
-          line-height: 0.75em;
-          vertical-align: -15%;
-        }
+      .badge {
+        margin-left: 2px;
+        vertical-align: 1px;
       }
     }
   }
