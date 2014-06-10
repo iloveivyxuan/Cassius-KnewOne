@@ -138,6 +138,7 @@ html.explore {
     }
 
     .content {
+      font-size: 18px;
 
       img {
         width: 100%;
@@ -187,11 +188,11 @@ html.explore {
     }
 
     .actions {
-      margin-bottom: 4rem;
+      margin-bottom: 6rem;
     }
 
     .panel {
-      margin-bottom: 3rem;
+      margin-bottom: 5rem;
     }
 
     .panel-heading {
@@ -201,6 +202,7 @@ html.explore {
     .pager {
       border-top-color: $text-muted;
       font-size: 16px;
+      margin-bottom: 6rem;
       padding-top: 5px;
     }
 

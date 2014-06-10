@@ -489,15 +489,41 @@ form.edit_post {
     margin-top: 0;
 
     > li {
+      color: $text-muted;
+      display: block;
+      width: 45%;
+
+      &.previous {
+        float: left;
+        text-align: left;
+
+        &:before {
+          content: '<';
+        }
+      }
+
+      &.next {
+        float: right;
+        text-align: right;
+
+        &:after {
+          content: '>';
+        }
+      }
 
       > a {
+        @include text-overflow;
         border: none;
         border-radius: 0;
         color: $text-muted;
+        display: inline-block;
+        float: none;
+        max-width: calc(100% - 1.5em);
         padding: {
           left: 0;
           right: 0;
         }
+        vertical-align: middle;
 
         &:hover,
         &:focus {
