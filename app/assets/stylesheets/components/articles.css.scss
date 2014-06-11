@@ -348,6 +348,7 @@ form.edit_post {
     color: $text-color;
     font-size: 14px;
     line-height: 1.8;
+    word-wrap: break-word;
 
     h1 { font-size: 2.6em; }
     h2 { font-size: 2.15em; }
@@ -470,7 +471,7 @@ form.edit_post {
         color: $text-muted;
         display: inline-block;
         float: none;
-        max-width: calc(100% - 1.5em);
+        max-width: 80%;
         padding: {
           left: 0;
           right: 0;
