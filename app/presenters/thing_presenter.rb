@@ -61,6 +61,14 @@ class ThingPresenter < PostPresenter
   def concept
   end
 
+  def pre_order
+    if thing.valid_kinds.blank?
+      concept
+    else
+      render partial: 'cart_items/new', locals: {tp: self}
+    end
+  end
+
   def domestic
     return concept unless thing.shop.present?
     link_to_with_icon "网购", "fa fa-location-arrow fa-lg", buy_thing_path(thing),

@@ -17,6 +17,7 @@ class Kind
   field :estimates_at, type: DateTime
 
   STAGES = {
+      pre_order: "预售",
       stock: "现货",
       ship: "即将到货",
       exclusive: "限量",
