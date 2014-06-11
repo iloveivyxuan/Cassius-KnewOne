@@ -20,7 +20,6 @@
 //= require jquery.qrcode
 //= require jquery.deserialize
 //= require bootstrap-tagsinput
-//= require jquery.autocomplete
 //= require medium-editor/js/medium-editor
 //= require medium-editor/js/medium-editor-insert-plugin
 //= require medium-editor/js/medium-editor-insert-images
