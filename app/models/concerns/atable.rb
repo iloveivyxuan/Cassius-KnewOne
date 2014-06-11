@@ -6,6 +6,6 @@ module Atable
   end
 
   def find_content_users
-    content.scan(/@(\S{2,20})/).flatten
+    content.scan(/@(\S+)/).flatten
   end
 end
