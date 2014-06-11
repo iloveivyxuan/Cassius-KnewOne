@@ -11,11 +11,17 @@ class CouponCode
   field :admin_note, type: String
   field :expires_at, type: Date
 
+  field :generator_id, type: String
+
   validates :code, presence: true, uniqueness: true
 
   delegate :name, :note, to: :coupon
 
   scope :unused, -> { where(:used => false) }
+
+  def generator
+    User.where(id: self.generator_id).first
+  end
 
   def bind_user!(user)
     return false unless self.user.nil?
