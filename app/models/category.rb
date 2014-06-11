@@ -11,7 +11,7 @@ class Category
 
   validates :name, presence: true, uniqueness: true
 
-  scope :prior, -> { desc(:priority, :things_count) }
+  scope :prior, -> { desc(:things_count) }
 
   def things
     Thing.published.any_in(categories: [name])
