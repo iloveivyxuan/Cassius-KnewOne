@@ -3,12 +3,12 @@ class CategoriesController < ApplicationController
 
   def index
     @promotion = Promotion.newest
-    @categories = @categories.limit(12)
+    @categories = @categories.prior.limit(12)
     @things = Thing.published.desc(:created_at).limit(12)
   end
 
   def all
-    @categories = Category.desc(:things_count).gt(things_count: 10)
+    @categories = Category.prior.gt(things_count: 10)
   end
 
   private

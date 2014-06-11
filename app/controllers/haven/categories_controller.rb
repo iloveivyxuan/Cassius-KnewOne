@@ -4,7 +4,7 @@ module Haven
     layout 'settings'
 
     def index
-      @categories = Category.all
+      @categories = Category.prior
     end
 
     def edit
