@@ -24,8 +24,3 @@ Making.OrderPage =
         ->
           window.location.href = $(@).attr("data-href")
       )
-
-      $('.order_address_radio').click(
-        ->
-          window.location.href = $(@).attr("data-href")
-      )

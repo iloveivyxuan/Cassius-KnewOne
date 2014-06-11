@@ -1,8 +1,5 @@
 li.radio
   label
-    = f.radio_button :address_id, address.id, \
-                     :'data-href' => new_order_path_with_params(@order, address_id: address.id), \
-                     :class => 'order_address_radio'
-
+    = f.radio_button :address_id, address.id, class: 'order_address_radio'
     = content_for_address address
   = link_to '[编辑]', edit_address_path(address, redirect_from: request.url)
