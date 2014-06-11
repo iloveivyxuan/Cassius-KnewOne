@@ -4,10 +4,14 @@ class FeelingPresenter < PostPresenter
 
   def content
     content = auto_link @object.content, :all, target: '_blank'
+    content = simple_format content
+
     feeling.content_users.each do |u|
-      content.gsub! "@#{u.name}", link_to("@#{u.name}", u)
+      content.gsub! "@#{u.name}", link_to("@#{u.name}", u,
+                                          data: {'popover-profile' => u.id.to_s})
     end
-    simple_format content
+
+    content.html_safe
   end
 
   def path
