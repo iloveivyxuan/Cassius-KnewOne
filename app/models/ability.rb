@@ -14,6 +14,8 @@ class Ability
       editor
       can :manage, Order
       can :send_stock_notification, Thing
+      can :manage, AbatementCoupon
+      can :manage, ThingRebateCoupon
     elsif user.role? :editor
       signed user
       editor
