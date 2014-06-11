@@ -42,21 +42,26 @@ class Order
   end
 
   attr_accessor :use_sf
+
   def use_sf?
     !['0', false, nil].include?(self.use_sf) || self.deliver_by == :sf
   end
+
   SF_PRICE = 10.0
 
-  STATES = {:pending => '等待付款',
-            :freed => '无需支付，请用户确认',
-            :confirmed => '支付成功，系统正在受理',
-            :shipped => '已发货',
-            :canceled => '订单取消',
-            :closed => '订单关闭',
-            :refunded => '已协商退款',
-            :refunded_to_balance => '已退款到余额',
-            :refunded_to_platform => '已退款到第三方支付平台',
-            :unexpected => '订单异常，请联系客服'}
+  STATES = {
+      :pre_order => '预购',
+      :pending => '等待付款',
+      :freed => '无需支付，请用户确认',
+      :confirmed => '支付成功，系统正在受理',
+      :shipped => '已发货',
+      :canceled => '订单取消',
+      :closed => '订单关闭',
+      :refunded => '已协商退款',
+      :refunded_to_balance => '已退款到余额',
+      :refunded_to_platform => '已退款到第三方支付平台',
+      :unexpected => '订单异常，请联系客服'
+  }
   DELIVER_METHODS = {
       :sf => '顺丰',
       :zt => '中通'

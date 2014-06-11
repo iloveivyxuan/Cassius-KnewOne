@@ -37,7 +37,7 @@ class ThingPresenter < PostPresenter
         elsif thing.price.present?
           thing.price
         end
-    @price = p.to_i > 0 ? price_format(p, thing.price_unit) : nil
+    @price = p ? price_format(p, thing.price_unit) : nil
   end
 
   def shopping_desc(length = 48)
