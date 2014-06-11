@@ -90,8 +90,8 @@ common: &default_settings
   # If a proxy is used, the host setting is required.  Other settings
   # are optional. Default port is 8080.
   #
-  proxy_host: 127.0.0.1
-  proxy_port: 8087
+#  proxy_host: 127.0.0.1
+#  proxy_port: 8087
   # proxy_user:
   # proxy_pass:
 
