@@ -1,12 +1,23 @@
-= simple_nested_form_for [:haven, @special], html: {multipart: true, class: "edit_post"} do |f|
+= simple_form_for [:haven, @special], html: {multipart: true, class: "edit_post"} do |f|
   .form-group
     = hidden_field_tag 'special[author]', @special.author.id.to_s, id: 'author_id'
     input#author_autocomplete.form-control placeholder="用户昵称" value="#{@special.author.name}"
   = f.input :title, label: false, placeholder: "标题"
-  .special_subjects
-    = f.simple_fields_for :special_subjects
-    = f.link_to_add "新增专题产品", :special_subjects, class: "btn btn-default"
   = f.button :submit
+
+- if @special.persisted?
+  = link_to '新推荐产品', new_haven_special_special_subject_path(@special), class: 'btn btn-primary'
+  table.table.table-strip
+    tr
+      th 产品
+      th
+    - @special.special_subjects.each do |s|
+      tr
+        td = s.thing.try :title
+        td
+          = link_to '编辑', edit_haven_special_special_subject_path(@special, s)
+          | |
+          = link_to '删除', haven_special_special_subject_path(@special, s), method: :delete
 
 - content_for :script do
   javascript:

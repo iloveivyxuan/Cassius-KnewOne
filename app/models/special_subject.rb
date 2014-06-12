@@ -3,8 +3,11 @@ class SpecialSubject
 
   embedded_in :special
 
-  belongs_to :thing
-
+  field :thing_id, type: String
   field :subtitle, type: String
   field :content, type: String
+
+  def thing
+    @_thing ||= Thing.or({id: self.thing_id}, {slugs: self.thing_id}).first
+  end
 end

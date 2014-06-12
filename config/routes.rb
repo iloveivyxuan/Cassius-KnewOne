@@ -251,7 +251,9 @@ Making::Application.routes.draw do
 
     resources :articles, except: [:show]
 
-    resources :specials, except: [:show]
+    resources :specials, except: [:show] do
+      resources :special_subjects, except: [:show, :index]
+    end
 
     resources :entries, except: [:show]
 
