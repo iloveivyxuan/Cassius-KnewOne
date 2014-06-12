@@ -72,6 +72,9 @@ class Ability
     can :update, Thing do |thing|
       thing.author == user or thing.maker == user
     end
+    can :destroy, Thing do |thing|
+      thing.author == user
+    end
     can :fancy, Thing
     can :own, Thing
     can :group_fancy, Thing
