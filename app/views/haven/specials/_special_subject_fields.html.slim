@@ -1,0 +1,11 @@
+- id = SecureRandom.uuid[0..7]
+fieldset.special_subject_fields id="#{id}"
+  legend 推荐产品
+  = f.input :thing_id
+  = f.input :subtitle
+  = f.input :content, as: :hidden, input_html: {id: "special_subject_#{id}_content"}
+  = render 'shared/editor'
+  = f.link_to_remove "删除", class: "remove_special_subject pull-right"
+
+javascript:
+  Making.Editor('#special_subject_#{id}_content');

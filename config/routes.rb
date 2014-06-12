@@ -7,7 +7,7 @@ Making::Application.routes.draw do
 
   get 'help', to: 'help#index'
 
-  %w(index how_to_share how_to_review terms knewone_for_user knewone_for_startup).each do |a|
+  %w(how_to_share how_to_review terms knewone_for_user knewone_for_startup).each do |a|
     get "help/#{a}"
   end
 
@@ -250,6 +250,8 @@ Making::Application.routes.draw do
     end
 
     resources :articles, except: [:show]
+
+    resources :specials, except: [:show]
 
     resources :entries, except: [:show]
 
