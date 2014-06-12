@@ -19,7 +19,7 @@ module Haven
     def update
       @special.update_attributes special_params
 
-      redirect_to haven_special_url(@special)
+      redirect_to edit_haven_special_url(@special)
     end
 
     def create
@@ -27,7 +27,7 @@ module Haven
       @special.author = current_user if params[:special][:author_id].blank?
 
       if @special.save
-        redirect_to haven_special_url(@special)
+        redirect_to edit_haven_special_url(@special)
       else
         render 'new'
       end
