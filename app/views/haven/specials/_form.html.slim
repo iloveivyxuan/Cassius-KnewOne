@@ -5,20 +5,6 @@
   = f.input :title, label: false, placeholder: "标题"
   = f.button :submit
 
-- if @special.persisted?
-  = link_to '新推荐产品', new_haven_special_special_subject_path(@special), class: 'btn btn-primary'
-  table.table.table-strip
-    tr
-      th 产品
-      th
-    - @special.special_subjects.each do |s|
-      tr
-        td = s.thing.try :title
-        td
-          = link_to '编辑', edit_haven_special_special_subject_path(@special, s)
-          | |
-          = link_to '删除', haven_special_special_subject_path(@special, s), method: :delete
-
 - content_for :script do
   javascript:
     Making.UserFuzzy('#author_autocomplete', '#author_id');
