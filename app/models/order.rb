@@ -50,7 +50,6 @@ class Order
   SF_PRICE = 10.0
 
   STATES = {
-      :pre_order => '预购',
       :pending => '等待付款',
       :freed => '无需支付，请用户确认',
       :confirmed => '支付成功，系统正在受理',
