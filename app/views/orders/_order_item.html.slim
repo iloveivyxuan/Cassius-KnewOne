@@ -4,7 +4,10 @@ li.order_item
       .cover= link_to tp.photo(:small), tp.thing
       .info
         .title= link_to order_item.thing_name, tp.thing
-        .kind= order_item.kind_name
+        .kind
+          = order_item.kind_name
+          - if order_item.kind.stage == :pre_order
+            | &nbsp;[预购]
   .item_opts
     .price
       i.fa.fa-yen

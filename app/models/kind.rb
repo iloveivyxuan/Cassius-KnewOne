@@ -17,6 +17,7 @@ class Kind
   field :estimates_at, type: DateTime
 
   STAGES = {
+      pre_order: "预售",
       stock: "现货",
       ship: "即将到货",
       exclusive: "限量",
@@ -30,7 +31,7 @@ class Kind
   }
 
   validates :price, numericality: {
-      greater_than: 0
+      greater_than_or_equal_to: 0
   }
 
   def has_stock?

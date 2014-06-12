@@ -37,7 +37,7 @@ class ThingPresenter < PostPresenter
         elsif thing.price.present?
           thing.price
         end
-    @price = p.to_i > 0 ? price_format(p, thing.price_unit) : nil
+    @price = p ? price_format(p, thing.price_unit) : nil
   end
 
   def shopping_desc(length = 48)
@@ -59,6 +59,14 @@ class ThingPresenter < PostPresenter
   end
 
   def concept
+  end
+
+  def pre_order
+    if thing.valid_kinds.blank?
+      concept
+    else
+      render partial: 'cart_items/new', locals: {tp: self}
+    end
   end
 
   def domestic
