@@ -32,6 +32,8 @@ module NotificationReceivable
         Notification.build(self, type, options).save if !defined?(sender) || (sender && self.followings.include?(sender))
       when :all
         Notification.build(self, type, options).save
+      when :none
+        true
       else
         Notification.build(self, type, options).save
     end
