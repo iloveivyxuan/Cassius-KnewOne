@@ -67,7 +67,7 @@ class Thing < Post
   scope :hot, -> { gt(fanciers_count: 30) }
   scope :published, -> { lt(created_at: Time.now) }
   scope :prior, -> { gt(priority: 0).desc(:priority, :created_at) }
-  scope :self_run, -> { send :in, stage: [:dsell] }
+  scope :self_run, -> { send :in, stage: [:dsell, :pre_order] }
   scope :price_between, ->(from, to) { where :price.gt => from, :price.lt => to }
 
   STAGES.each do |k, v|
@@ -141,7 +141,7 @@ class Thing < Post
   end
 
   def self_run?
-    [:dsell].include? stage
+    [:dsell, :pre_order].include? stage
   end
 
   def cal_related_thing_ids(limit = 10, cate_power = 50, own_power = 2, fancy_power = 1)

@@ -155,5 +155,8 @@ figure.thing {
     &.stock {
       span {@include background($brand-success);}
     }
+    &.pre_order {
+      span {@include background($brand-success);}
+    }
   }
 }
