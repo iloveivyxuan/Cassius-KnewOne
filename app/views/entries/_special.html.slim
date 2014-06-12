@@ -1,0 +1,17 @@
+ul
+  - post.special_subjects.each do |s|
+    li
+      = link_to "#subject_#{s.id.to_s}" do
+        = image_tag s.thing.cover.url(:normal)
+        = s.thing.title
+        = s.subtitle
+
+- post.special_subjects.each do |s|
+  section id="#subject_#{s.id.to_s}"
+    header
+      a name="subject_#{s.id.to_s}"
+      = image_tag s.thing.cover.url(:normal)
+      = s.thing.title
+      = s.subtitle
+    .content
+      = sanitize s.content
