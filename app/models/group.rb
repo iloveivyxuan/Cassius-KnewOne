@@ -13,7 +13,7 @@ class Group
   validates :name, presence: true
   validates :qualification, inclusion: {in: [:private, :public]}
 
-  has_many :topics
+  has_many :topics, dependent: :destroy
   field :topics_count, type: Integer, default: 0
 
   embeds_many :members do

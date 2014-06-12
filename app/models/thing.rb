@@ -50,17 +50,17 @@ class Thing < Post
 
   has_and_belongs_to_many :fancy_groups, class_name: "Group", inverse_of: :fancies
 
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   field :reviews_count, type: Integer, default: 0
 
-  has_many :feelings
+  has_many :feelings, dependent: :destroy
   field :feelings_count, type: Integer, default: 0
 
   has_and_belongs_to_many :owners, class_name: "User", inverse_of: :owns
 
-  has_many :stories
+  has_many :stories, dependent: :destroy
 
-  has_many :lotteries, dependent: :delete
+  has_many :lotteries, dependent: :destroy
 
   scope :recent, -> { gt(created_at: 1.month.ago) }
   scope :hot, -> { gt(fanciers_count: 30) }
