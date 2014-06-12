@@ -86,4 +86,14 @@ class Notification
   def self.batch_mark_as_read(ids)
     Notification.where(:id.in => ids).set read: true
   end
+
+  after_create :push_to_apn
+
+  private
+
+  def push_to_apn
+    return unless receiver.apple_device_token
+    badge = receiver.notifications.unread.count
+    APN.notify_async(receiver.apple_device_token, {notification_id: id, badge: badge})
+  end
 end
