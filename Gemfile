@@ -72,6 +72,7 @@ gem 'whenever', require: false
 gem 'sinatra', '>= 1.3.0', require: false
 gem 'sidekiq'
 gem 'mini_magick'
+gem 'apn_sender', require: ['apn', 'apn/jobs/sidekiq_notification_job']
 
 # API
 gem 'doorkeeper', github: 'doorkeeper-gem/doorkeeper'
