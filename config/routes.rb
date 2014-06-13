@@ -142,6 +142,13 @@ Making::Application.routes.draw do
     end
   end
 
+  resources :specials, only: [] do
+    member do
+      post 'vote'
+      post 'unvote'
+    end
+  end
+
   resources :categories, only: [:index] do
     collection do
       get 'all'
