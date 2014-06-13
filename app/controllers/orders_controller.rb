@@ -19,7 +19,13 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.build_order(current_user, order_params)
+    if params[:order][:address_id] == 'new'
+      address = current_user.addresses.build(order_params[:address])
+      address.save!
+      params[:order][:address_id] = address.id.to_s
+    end
+
+    @order = Order.build_order(current_user, order_params.except(:address))
 
     if @order.save
       redirect_to @order, flash: {provider_sync: params[:provider_sync]}
@@ -170,6 +176,7 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).
-        permit(:note, :address_id, :invoice_id, :auto_owning, :coupon_code_id, :use_balance, :use_sf)
+        permit(:note, :address_id, :invoice_id, :auto_owning, :coupon_code_id, :use_balance, :use_sf,
+               address: [:province, :district, :street, :name, :phone, :zip_code, :default])
   end
 end
