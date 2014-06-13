@@ -1,6 +1,10 @@
+- content_for :username do
+  = @user.name.present? ? @user.name : 'KnewOne小伙伴'
+
+- content_for :title do
+  | 天天有礼
+
 - thing = @reward.coupon.thing
-p
-  | 亲爱的 #{@user.name.present? ? @user.name : 'KnewOne小伙伴'}：
 p
   | 因“
   = @reward.reason
