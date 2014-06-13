@@ -19,6 +19,7 @@ table.table.table-striped
       th 发表评测
       th 成交订单
       th 战斗力
+      th 小皮鞭
       th 关注/被关注
       th 注册时间
       th 爱
@@ -33,6 +34,7 @@ table.table.table-striped
         td
           = link_to u.orders_count, haven_orders_path(find_by: 'user_id', find_cond: u.id.to_s), title: '他为何如此屌？', target: '_blank'
         td = link_to u.expenses_count, haven_orders_path(find_by: 'user_id', find_cond: u.id.to_s), title: '他为何如此屌？', target: '_blank'
+        td = u.role
         td
           = link_to u.followings_count, followings_user_path(u), target: '_blank'
           | /
