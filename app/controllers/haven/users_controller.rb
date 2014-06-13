@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module Haven
   class UsersController < ApplicationController
     layout 'settings'
@@ -10,6 +11,9 @@ module Haven
       elsif params[:email].present?
         @users = @users.or({email: params[:email].downcase}, {unconfirmed_email: params[:email].downcase})
       elsif params[:filter]
+        if params[:filter].include? 'role'
+          @users = @users.staff
+        end
         if params[:filter].include? 'thing'
           @users = @users.where(:things_count.gt => 0).order_by([:things_count, :desc])
         end
@@ -112,6 +116,8 @@ module Haven
       else
         params[:user][:flags].uniq!
       end
+
+      params[:user][:role] = params[:user][:role].first
 
       user.update(user_params)
 
