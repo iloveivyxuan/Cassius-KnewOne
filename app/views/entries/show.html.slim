@@ -1,6 +1,7 @@
 - post = @entry.post
 - author = post.author
 - provide :sharing_content, @entry.sharing_content
+- provide :sharing_cover, image_tag(@entry.cover.url)
 - page_title entry_title(@entry)
 - active_nav_tab(@entry)
 
