@@ -414,6 +414,10 @@ form.edit_post {
     border-top: $border_default;
     margin-top: 0;
 
+    &:empty {
+      display: none;
+    }
+
     > li {
       color: $text-muted;
       display: block;

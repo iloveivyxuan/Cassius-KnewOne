@@ -450,6 +450,14 @@ html.explore {
     }
   }
 
+  // @TODO
+  .pager {
+
+    &:empty {
+      display: none;
+    }
+  }
+
   &.tablet {
 
     #wrapper {
