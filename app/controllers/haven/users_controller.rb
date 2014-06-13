@@ -12,7 +12,7 @@ module Haven
         @users = @users.or({email: params[:email].downcase}, {unconfirmed_email: params[:email].downcase})
       elsif params[:filter]
         if params[:filter].include? 'role'
-          @users = @users.staff.order_by([:things_count, :desc])
+          @users = @users.staff
         end
         if params[:filter].include? 'thing'
           @users = @users.where(:things_count.gt => 0).order_by([:things_count, :desc])
