@@ -5,7 +5,7 @@
       .modal-dialog
         .modal-content
           = simple_form_for :share, url: share_users_path, \
-            remote: true, html: {'data-type' => 'json', 'id' => 'share_modal_form'} do |f|
+            remote: true, html: {'id' => 'share_modal_form'} do |f|
             .modal-header
               = button_tag type: 'button', class: 'close', data: {dismiss: "modal"} do
                 raw &times;

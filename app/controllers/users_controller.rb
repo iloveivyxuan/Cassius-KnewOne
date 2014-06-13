@@ -56,7 +56,7 @@ class UsersController < ApplicationController
       auth.share params[:share][:content], params[:share][:pic]
     end
 
-    render nothing: true
+    render js: "Making.ShowMessageOnTop('分享成功！')"
   end
 
   def follow
