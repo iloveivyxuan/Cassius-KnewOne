@@ -18,6 +18,9 @@ article.article
           = post.comments.size
           | 评论
 
+  - if Entry::CATEGORIES[entry.category] == 'events'
+    = render 'entries/relate_things', entry: entry, title: '相关产品'
+
   .content = sanitize post.content
 
   .actions
@@ -25,35 +28,8 @@ article.article
       = render partial: 'shared/voting', locals: {object: post}
     = render "shared/share"
 
-  - relates = entry.things
-  - if relates.any?
-    section.panel.unstyled
-      header.panel-heading
-        h3.panel-title
-          - if browser.mobile?
-            = link_to "#recommendations", data: {toggle: "collapse"} do
-              | 了解更多&nbsp;
-              i.fa.fa-angle-double-right
-          - else
-            | 了解更多&nbsp;
-            i.fa.fa-angle-double-right
-      - if browser.mobile?
-        #recommendations.panel-collapse.collapse
-          .panel-body.recommendations
-            - relates.each do |t|
-              = link_to t, class: "recommendation", target: "_blank" do
-                = image_tag t.cover.url(:small), width: 80, height: 80
-                .description
-                  h4.title = t.title
-                  p = t.subtitle
-      - else
-        .panel-body.recommendations
-          - relates.each do |t|
-            = link_to t, class: "recommendation", target: "_blank" do
-              = image_tag t.cover.url(:small), width: 80, height: 80
-              .description
-                h4.title = t.title
-                p = t.subtitle
+  - if Entry::CATEGORIES[entry.category] != 'events'
+    = render 'entries/relate_things', entry: entry
 
   ul.pager
     - if previous_entry = entry.previous
