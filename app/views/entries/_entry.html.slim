@@ -8,7 +8,7 @@ article.article_thumb
     - if entry.post
       ul.metas
         li.name = link_to entry.post.author.name, entry.post.author
-        li.time = time_ago_tag entry.post.created_at
+        li.time = time_ago_tag entry.created_at
         li
           = entry.post.lovers_count
           | &nbsp;赞

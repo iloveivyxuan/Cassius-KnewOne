@@ -19,7 +19,7 @@ article.article
             = image_tag author.avatar.url(:small), class: "img-circle"
             = link_to author.name, author, data: {"popover-profile" => author.id.to_s}
         li
-          = time_ago_tag post.created_at
+          = time_ago_tag entry.created_at
       ul.metas
         li
           = post.lovers_count
