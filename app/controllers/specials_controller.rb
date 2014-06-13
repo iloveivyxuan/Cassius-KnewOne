@@ -1,8 +1,8 @@
 class SpecialsController < ApplicationController
   layout false
 
-  prepend_before_action :require_signed_in, except: [:valentine, :womensday]
-  before_action :set_article, except: [:valentine, :womensday]
+  prepend_before_action :require_signed_in, except: [:valentine, :womensday, :makerfaire]
+  before_action :set_special, except: [:valentine, :womensday, :makerfaire]
 
   def vote
     @special.vote(current_user, true)
@@ -28,7 +28,7 @@ class SpecialsController < ApplicationController
 
   private
 
-  def set_article
+  def set_special
     @special = Special.find(params[:id])
   end
 end
