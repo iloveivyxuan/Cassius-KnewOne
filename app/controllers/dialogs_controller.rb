@@ -20,7 +20,6 @@ class DialogsController < ApplicationController
 
     if receiver
       @message = current_user.send_private_message_to receiver, params[:dialog_content]
-      flash.now[:message] = {type: 'success', content: '发送成功！'}
     end
   end
 

@@ -1,10 +1,7 @@
 $('#dialog_content').val("");
 $('#new_private_message_modal').modal('hide');
 
-$('.message-on-top').replaceWith("<%=j render('shared/message_on_top') %>");
-setTimeout(function () {
-  $('.message-on-top .alert').alert('close')
-}, 2000)
+Making.ShowMessageOnTop('发送成功！');
 
 if ($('html').is('.dialogs_index')) {
   window.location.reload();
