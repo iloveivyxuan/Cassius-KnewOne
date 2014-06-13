@@ -41,6 +41,7 @@
 //= require components/popover_profiles
 //= require components/private_message
 //= require components/stream
+//= require components/message_on_top
 //= require_tree ./pages
 //= require_tree ./models
 //= require_tree ./collections
