@@ -3,10 +3,12 @@ table.table
     tr
       th 分类
       th 产品数量
+      th 优先级
       th
   tbody
     - @categories.each do |c|
       tr
         th= link_to c.name, things_path(category: c)
         th= c.things_count
+        th= c.priority
         th= link_to '编辑', edit_haven_category_path(c)

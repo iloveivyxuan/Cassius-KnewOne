@@ -11,4 +11,6 @@ section
       = image_tag @category.cover.url
     = f.file_field :cover
     = f.hidden_field :cover_cache
+    label 优先级
+    = f.text_field :priority
     = f.submit
