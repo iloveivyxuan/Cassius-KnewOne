@@ -51,4 +51,13 @@ class Activity
   def source=(record)
     self.source_union = "#{record.class.to_s}_#{record.id.to_s}"
   end
+
+  after_create :push_to_apn
+
+  private
+
+  def push_to_apn
+    return unless user.apple_device_token && visible
+    # APN.notify_async(user.apple_device_token, {})
+  end
 end

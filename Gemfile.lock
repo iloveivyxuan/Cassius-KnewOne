@@ -126,6 +126,10 @@ GEM
       builder
       multi_json
     alipay (0.0.4)
+    apn_sender (2.0.1)
+      activesupport (>= 3.1)
+      connection_pool
+      daemons
     arel (5.0.1.20140414130214)
     backbone-on-rails (1.1.1.0)
       actionmailer
@@ -532,6 +536,7 @@ PLATFORMS
 DEPENDENCIES
   airbrake
   alipay
+  apn_sender
   backbone-on-rails
   bootstrap-sass
   browser

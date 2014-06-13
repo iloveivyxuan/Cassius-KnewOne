@@ -29,6 +29,12 @@ module Api
 
         @feeds = @feeds.page(params[:page]).per(params[:per_page] || 24)
       end
+
+      def apple_device_token
+        current_user.apple_device_token = params.require(:token)
+        current_user.save!
+        head :no_content
+      end
     end
   end
 end

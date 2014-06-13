@@ -320,6 +320,7 @@ Making::Application.routes.draw do
 
         member do
           get 'feeds'
+          put 'apple_device_token'
         end
       end
 

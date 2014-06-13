@@ -93,5 +93,7 @@ module Making
       # Only Authorized Applications
       # Doorkeeper::AuthorizedApplicationsController.layout "doorkeeper"
     end
+
+    APN.password = 'Knewone123'
   end
 end

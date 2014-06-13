@@ -367,6 +367,10 @@ class User
   # notification
   include NotificationReceivable
 
+  ## Apple Push Notifications
+  field :apple_device_token, type: String
+  index apple_device_token: 1
+
   # activity
   include Feedable
 
