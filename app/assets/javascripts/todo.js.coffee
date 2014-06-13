@@ -72,6 +72,7 @@ do (exports = Making) ->
               $alert = $editor.next('p.alert')
               if $alert.length then $alert.remove()
 
+            $editor.find('a').attr('target', '_blank')
             resque = $editor.html()
             $(textarea).val resque.replace(/<!--.*?-->/g, '')
 
