@@ -20,7 +20,11 @@ class KindPresenter < ApplicationPresenter
   end
 
   def price
-    price_format(kind.price)
+    if kind.stage == :pre_order
+      kind.price > 0 ? price_format(kind.price) : '价格待定'
+    else
+      price_format(kind.price)
+    end
   end
 
   def limit
