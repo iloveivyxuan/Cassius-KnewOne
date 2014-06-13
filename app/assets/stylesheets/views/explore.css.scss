@@ -359,12 +359,17 @@ html.explore {
       width: 1%;
     }
 
+    img {
+      vertical-align: top;
+    }
+
     .description {
       color: $text-muted;
       display: inline-block;
       margin-left: $padding-base-horizontal;
       text-align: left;
       max-width: calc(100% - 80px - #{$padding-base-horizontal});
+      vertical-align: top;
 
       .title {
         @include text-overflow();
@@ -372,6 +377,12 @@ html.explore {
         font-size: 14px;
         margin-top: 0;
         max-width: 200px;
+      }
+
+      p {
+        height: 3em;
+        margin-bottom: 0;
+        overflow: hidden;
       }
     }
   }
