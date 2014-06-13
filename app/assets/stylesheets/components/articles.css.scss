@@ -410,36 +410,13 @@ form.edit_post {
     }
   }
 
-  > .actions {
-    @include clearfix;
-    margin-bottom: 2rem;
-
-    .voting {
-      float: left;
-
-      .btn {
-        @include button_inverse(#ececec, #6e6e6e);
-
-        &.done {
-          background-color: #6e6e6e;
-          color: #ececec;
-          opacity: 1;
-        }
-      }
-    }
-
-    .share {
-      float: right;
-
-      .fa {
-        @extend .fa-2x;
-      }
-    }
-  }
-
   > .pager {
     border-top: $border_default;
     margin-top: 0;
+
+    &:empty {
+      display: none;
+    }
 
     > li {
       color: $text-muted;

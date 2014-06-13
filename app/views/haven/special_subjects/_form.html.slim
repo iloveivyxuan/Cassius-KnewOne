@@ -1,0 +1,10 @@
+= simple_form_for [:haven, @special, @subject], html: {multipart: true, class: "edit_post"} do |f|
+  = f.input :thing_id
+  = f.input :subtitle
+  = f.input :content, as: :hidden, input_html: {id: 'special_subject_content'}
+  = render 'shared/editor'
+  = f.button :submit
+
+- content_for :script do
+  javascript:
+    Making.Editor('#special_subject_content');

@@ -7,7 +7,7 @@ Making::Application.routes.draw do
 
   get 'help', to: 'help#index'
 
-  %w(index how_to_share how_to_review terms knewone_for_user knewone_for_startup).each do |a|
+  %w(how_to_share how_to_review terms knewone_for_user knewone_for_startup).each do |a|
     get "help/#{a}"
   end
 
@@ -142,6 +142,13 @@ Making::Application.routes.draw do
     end
   end
 
+  resources :specials, only: [] do
+    member do
+      post 'vote'
+      post 'unvote'
+    end
+  end
+
   resources :categories, only: [:index] do
     collection do
       get 'all'
@@ -250,6 +257,10 @@ Making::Application.routes.draw do
     end
 
     resources :articles, except: [:show]
+
+    resources :specials, except: [:show] do
+      resources :special_subjects, except: [:show, :index]
+    end
 
     resources :entries, except: [:show]
 

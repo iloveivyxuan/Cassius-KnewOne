@@ -4,7 +4,10 @@
 - page_title entry_title(@entry)
 - active_nav_tab(@entry)
 
-- if post.class == Review
+- case post.class
+- when Review
   = render 'entries/review', entry: @entry, post: post, author: author
+- when Special
+  = render 'entries/special', entry: @entry, post: post, author: author
 - else
   = render 'entries/article', entry: @entry, post: post, author: author
