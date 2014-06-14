@@ -295,7 +295,9 @@ Making::Application.routes.draw do
         resources :reviews, only: [:index, :show] do
           resources :comments, controller: :review_comments, only: [:index, :show, :create, :destroy]
         end
-        resources :feelings, only: [:index, :show, :create]
+        resources :feelings, only: [:index, :show, :create] do
+          resources :comments, controller: :feeling_comments, only: [:index, :show, :create, :destroy]
+        end
         resources :comments, controller: :thing_comments, only: [:index, :show, :create, :destroy]
       end
 
