@@ -8,7 +8,7 @@ li.radio
       .row
         .col-xs-3
           .form-group.select.required.address_province
-            = address_form.select :province, options_for_select(Province.keys), {}, class: 'select required form-control'
+            = address_form.select :province, options_for_select(Province.keys, '北京市'), {}, class: 'select required form-control'
         .col-xs-3
           = address_form.input :district, required: false, label: false, placeholder: '地区'
         .col-xs-5
