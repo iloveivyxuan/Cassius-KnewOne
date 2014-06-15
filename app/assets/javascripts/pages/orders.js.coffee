@@ -25,6 +25,18 @@ Making.OrderPage =
           window.location.href = $(@).attr("data-href")
       )
 
+      requireAddress = (required) ->
+        $(['#order_address_district'
+           '#order_address_street'
+           '#order_address_name'
+           '#order_address_phone'].join(', ')).prop('required', required)
+
+      $('[name="order[address_id]"]').on('change', ->
+        required = $('#order_address_id_new').prop('checked')
+        requireAddress(required)
+      )
+
       $('[name^="order[address]"').on('focus', ->
         $('#order_address_id_new').prop('checked', true)
+        requireAddress(true)
       )
