@@ -2,4 +2,7 @@
   label for="order_address_id" * 收货地址
   ul.addresses.option_list
     = render partial: 'address_radio', collection: current_user.addresses, as: :address, locals: {f: f}
-    = render 'address_form', f: f
+    - if current_user.addresses.empty?
+      = link_to '您必须添加一个收货地址才能够提交订单，点此添加。', new_address_path(redirect_from: request.url), class: 'text-warning'
+    - else
+      = link_to '+ 添加收货地址', new_address_path(redirect_from: request.url), class: "btn btn-link"

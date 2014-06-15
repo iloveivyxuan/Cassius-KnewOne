@@ -24,7 +24,3 @@ Making.OrderPage =
         ->
           window.location.href = $(@).attr("data-href")
       )
-
-      $('[name^="order[address]"').on('focus', ->
-        $('#order_address_id_new').prop('checked', true)
-      )
