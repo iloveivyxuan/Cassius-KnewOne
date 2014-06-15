@@ -60,6 +60,9 @@
               = link_to_with_icon 'OAuth App', 'fa fa-fw fa-wrench', oauth_applications_path, target: '_blank'
             = nav_tab :sidekiq do
               = link_to_with_icon 'Sidekiq', 'fa fa-fw fa-wrench', '/haven/sidekiq', target: '_blank'
+        - if current_user.role? :admin
+          = nav_tab :role do
+            = link_to_with_icon '管理用户权限', 'fa fa-fw fa-wrench', haven_staffs_path
 
   main role="main"
     = yield
