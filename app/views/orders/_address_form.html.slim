@@ -6,19 +6,19 @@ li.radio
   #new_address
     = f.fields_for :address do |address_form|
       .row
-        .col-xs-3
+        .col-xs-12.col-md-3
           .form-group.select.required.address_province
             = address_form.select :province, options_for_select(Province.keys, '北京市'), {}, class: 'select required form-control'
-        .col-xs-3
+        .col-xs-12.col-md-3
           = address_form.input :district, required: false, label: false, placeholder: '地区'
-        .col-xs-5
+        .col-xs-12.col-md-5
           = address_form.input :street, required: false, label: false, placeholder: '街道地址'
       .row
-        .col-xs-3
+        .col-xs-12.col-md-3
           = address_form.input :name, required: false, label: false, placeholder: '联系人'
-        .col-xs-3
+        .col-xs-12.col-md-3
           = address_form.input :phone, required: false, label: false, placeholder: '电话'
-        .col-xs-3
+        .col-xs-12.col-md-3
           = address_form.input :zip_code, required: false, label: false, placeholder: '邮编'
-        .col-xs-3
+        .col-xs-12.col-md-3
           = address_form.input :default, label: '设为首选', as: :boolean
