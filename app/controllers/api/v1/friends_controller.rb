@@ -12,7 +12,7 @@ module Api
       end
 
       def batch_follow
-        users = User.where :id.in => params[:ids]
+        users = User.where :id.in => params[:ids].split(',')
 
         current_user.batch_follow users
 
