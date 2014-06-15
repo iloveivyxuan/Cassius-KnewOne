@@ -15,4 +15,12 @@ class Address
   validates_inclusion_of :province, in: Province.keys
 
   default_scope -> { desc(:default, :created_at) }
+
+  after_save do
+    if default_changed? && default == true
+      user.addresses.each do |address|
+        address.update(default: false) if address != self
+      end
+    end
+  end
 end
