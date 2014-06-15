@@ -305,6 +305,14 @@ Making::Application.routes.draw do
         resources :things, only: [:index]
       end
 
+      resources :friends, only: [] do
+        collection do
+          get 'weibo'
+          get 'recommends'
+          post 'batch_follow'
+        end
+      end
+
       resources :users, only: [:index, :show] do
         member do
           get 'fancies'
