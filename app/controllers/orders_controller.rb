@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.build_order(current_user, order_params)
 
-    if @order.save!
+    if @order.save
       redirect_to @order, flash: {provider_sync: params[:provider_sync]}
     else
       render 'new'
