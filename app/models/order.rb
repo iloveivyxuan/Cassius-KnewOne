@@ -31,6 +31,9 @@ class Order
   embeds_many :order_items
   embeds_many :order_histories
 
+  scope :by_thing_kind, ->(kind) { where 'order_items.thing_id' => kind.thing.id, 'order_items.kind_id' => kind.id.to_s }
+  scope :by_thing, ->(thing) { where 'order_items.thing_id' => thing.id }
+
   embeds_many :rebates
 
   has_one :coupon_code, autosave: true

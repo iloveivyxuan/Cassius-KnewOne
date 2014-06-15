@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 class OrderItem
   include Mongoid::Document
-  include Mongoid::Timestamps
 
   field :thing_title, type: String
   field :kind_title, type: String
