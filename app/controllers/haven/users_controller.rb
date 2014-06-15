@@ -117,8 +117,6 @@ module Haven
         params[:user][:flags].uniq!
       end
 
-      params[:user][:role] = params[:user][:role].first
-
       user.update(user_params)
 
       redirect_back_or haven_user_path(user)
