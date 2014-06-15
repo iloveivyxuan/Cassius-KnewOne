@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-module Jesus
-  class UsersController < ApplicationController
+module Haven
+  class StaffsController < ApplicationController
     layout 'settings'
     before_action :authenticate_admin
 
@@ -43,7 +43,7 @@ module Jesus
 
       user.update(user_params)
 
-      redirect_back_or jesus_users_path
+      redirect_back_or haven_staffs_path
     end
 
     private

@@ -15,8 +15,8 @@ ul.nav.nav-pills
     - if conds[:filter].include?(k)
       li.active
         - conds[:filter] = [] << k
-        = link_to v, jesus_users_path(conds)
+        = link_to v, haven_staffs_path(conds)
     - else
       li
         - conds[:filter] = [] << k
-        = link_to v, jesus_users_path(conds)
+        = link_to v, haven_staffs_path(conds)

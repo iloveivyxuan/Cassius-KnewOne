@@ -277,10 +277,8 @@ Making::Application.routes.draw do
     end
 
     resources :categories, only: [:index, :edit, :update]
-  end
 
-  namespace :jesus do
-    resources :users
+    resources :staffs
   end
 
   namespace :hell, defaults: {format: :json} do
