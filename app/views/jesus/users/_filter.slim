@@ -1,0 +1,22 @@
+- queries = params.except(*request.path_parameters.keys)
+- queries[:filter] ||= []
+ul.nav.nav-pills
+  - if queries[:filter].any?
+    li
+      = link_to '全部用户', queries.reject! {|k, v| k == :filter}
+  - else
+    li
+      = link_to '全部用户', queries.reject! {|k, v| k == :filter}
+  - {'staff' => '员工',
+     'admin' => '管理员',
+     'editor' => '编辑',
+     'sale' => '销售'}.each do |k, v|
+    - conds = queries.deep_dup
+    - if conds[:filter].include?(k)
+      li.active
+        - conds[:filter] = [] << k
+        = link_to v, jesus_users_path(conds)
+    - else
+      li
+        - conds[:filter] = [] << k
+        = link_to v, jesus_users_path(conds)

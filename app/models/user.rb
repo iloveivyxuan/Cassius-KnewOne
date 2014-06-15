@@ -206,6 +206,9 @@ class User
   field :role, type: String, default: ""
   ROLES = %w[vip editor sale admin]
   scope :staff, ->{ where :role.in => %i(editor sale admin) }
+  scope :admin, -> { where role: "admin" }
+  scope :editor, -> { where role: "editor" }
+  scope :sale, -> { where role: "sale" }
 
   def role?(base_role)
     ROLES.index(base_role.to_s) <= (ROLES.index(role) || -1)

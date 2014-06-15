@@ -1,0 +1,12 @@
+dd
+  = form_for @user, url: jesus_user_path(@user) do |f|
+    
+    .form-group
+      label 权限管理
+      select name='user[role][]'
+        option value="admin" = "admin"
+        option value="editor" = "editor"
+        option value="sale" = "sale"
+        option value="" = "none"
+
+    = f.submit '修改', class: 'btn btn-default'
