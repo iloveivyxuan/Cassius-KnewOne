@@ -18,7 +18,7 @@ table.table.table-striped
     - @users.each do |u|
       tr
         td
-          = link_to u.name, jesus_user_path(u)
+          = link_to u.name, haven_staff_path(u)
         td = u.role
         td = u.created_at.strftime '%Y-%m-%d %H:%M:%S' if u.created_at
 = paginate @users
