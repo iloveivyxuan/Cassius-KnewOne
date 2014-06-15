@@ -109,6 +109,10 @@ zh-CN:
         cover: '封面'
         published: '公开'
         sharing_content: '分享文案'
+      special:
+        intro: '开头'
+        ending: '结尾'
+        show_nav: '显示产品列表'
       special_subject:
         thing_id: '产品ID'
         subtitle: '描述'

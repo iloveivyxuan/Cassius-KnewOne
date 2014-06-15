@@ -3,8 +3,14 @@
     = hidden_field_tag 'special[author]', @special.author.id.to_s, id: 'author_id'
     input#author_autocomplete.form-control placeholder="用户昵称" value="#{@special.author.name}"
   = f.input :title, label: false, placeholder: "标题"
+  | 开头
+  = f.input :intro, as: :hidden
+  = render 'shared/editor'
+  = f.input :ending, as: :text
+  = f.input :show_nav, as: :radio_buttons
   = f.button :submit
 
 - content_for :script do
   javascript:
+    Making.Editor('#special_intro');
     Making.UserFuzzy('#author_autocomplete', '#author_id');
