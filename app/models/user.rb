@@ -182,7 +182,7 @@ class User
 
   def set_profiles_by_auth(auth)
     if self.name.blank?
-      self.name = (auth.name || auth.nickname).gsub(' ', '-') || 'KnewOne小伙伴'
+      self.name = (auth.name || auth.nickname).try(:gsub, ' ', '-') || 'KnewOne小伙伴'
     end
 
     if (!persisted? && User.where(name: self.name).size > 0) || self.name.blank?
