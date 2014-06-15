@@ -24,9 +24,6 @@ html.explore {
           @media (min-width: $screen-sm-min) {
             float: right;
             text-align: right;
-          }
-
-          @media (min-width: $screen-lg-min) {
             font-size: 40px;
           }
         }
@@ -75,6 +72,12 @@ html.explore {
         }
       }
     }
+  }
+
+  .intro {
+    font-size: 18px;
+    line-height: 1.8;
+    padding-bottom: 3rem;
   }
 
   .article {
