@@ -1,0 +1,24 @@
+- page_title '用户管理'
+header.page-header
+  h2
+    i.fa.fa-users
+    | 战斗力分析
+    small 总共 #{User.all.size} / 当前条件 #{@users.size}
+.pull-right
+
+= render 'filter'
+
+table.table.table-striped
+  thead
+    tr
+      th 用户
+      th 小皮鞭
+      th 注册时间
+  tbody
+    - @users.each do |u|
+      tr
+        td
+          = link_to u.name, jesus_user_path(u)
+        td = u.role
+        td = u.created_at.strftime '%Y-%m-%d %H:%M:%S' if u.created_at
+= paginate @users

@@ -279,6 +279,10 @@ Making::Application.routes.draw do
     resources :categories, only: [:index, :edit, :update]
   end
 
+  namespace :jesus do
+    resources :users
+  end
+
   namespace :hell, defaults: {format: :json} do
     resources :activities, only: [:index]
 
