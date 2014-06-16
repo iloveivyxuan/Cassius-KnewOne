@@ -12,6 +12,9 @@
 @import "bootstrap-tagsinput";
 @import "bootstrap-touch-carousel";
 @import "lightbox";
+@import "medium-editor/medium-editor";
+@import "medium-editor/themes/bootstrap";
+@import "medium-editor-insert-plugin/medium-editor-insert-plugin";
 
 
 // =============================================================================
@@ -88,6 +91,6 @@
 @import "views/other";
 
 // Vendor
-@import "medium-editor/css/sass/medium-editor";
-@import "medium-editor/css/sass/medium-editor-insert-plugin";
-@import "medium-editor/css/sass/themes/bootstrap";
+// @import "medium-editor/css/sass/medium-editor";
+// @import "medium-editor/css/sass/medium-editor-insert-plugin";
+// @import "medium-editor/css/sass/themes/bootstrap";

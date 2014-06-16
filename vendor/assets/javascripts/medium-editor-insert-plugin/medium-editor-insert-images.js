@@ -1,9 +1,9 @@
 /*!
- * medium-editor-insert-plugin v0.1.1 - jQuery insert plugin for MediumEditor
+ * medium-editor-insert-plugin v0.2.4 - jQuery insert plugin for MediumEditor
  *
  * Images Addon
  *
- * https://github.com/orthes/medium-editor-images-plugin
+ * https://github.com/orthes/medium-editor-insert-plugin
  *
  * Copyright (c) 2013 Pavel Linkesch (http://linkesch.sk)
  * Released under the MIT license
@@ -11,38 +11,131 @@
 
 (function ($) {
 
-  $.fn.mediumInsert.images = {
-
-    /**
-    * Images initial function
-    * @return {void}
-    */
-
-    init: function () {
-      this.$el = $.fn.mediumInsert.insert.$el;
-      this.options = $.extend(this.default,
-        $.fn.mediumInsert.settings.imagesPlugin);
-
-      this.setImageEvents();
-      this.setDragAndDropEvents();
-      this.preparePreviousImages();
-    },
+  $.fn.mediumInsert.registerAddon('images', {
 
     /**
     * Images default options
     */
 
     default: {
+      /**
+      * Active or inactive image's drag and drop
+      */
+      useDragAndDrop: true,
+
+      /**
+      * Relative path to a script that handles file uploads
+      */
+      imagesUploadScript: 'upload.php',
+
+      /**
+      * Relative path to a script that handles file deleting
+      */
+      imagesDeleteScript: 'delete.php',
+
+      /**
+      * Format data before sending them to server while uploading an image
+      *
+      * @param {File} file File to upload
+      * @return {object} formData FormData instance
+      */
       formatData: function (file) {
         var formData = new FormData();
         formData.append('file', file);
         return formData;
+      },
+
+      /**
+      * Upload single file
+      *
+      * @param {element} $placeholder Placeholder to add image to
+      * @param {File} file File to upload
+      * @param {object} that Context
+      * @param {void}
+      */
+      uploadFile: function ($placeholder, file, that) {
+        $.ajax({
+          type: "post",
+          url: that.options.imagesUploadScript,
+          xhr: function () {
+            var xhr = new XMLHttpRequest();
+            xhr.upload.onprogress = that.updateProgressBar;
+            return xhr;
+          },
+          cache: false,
+          contentType: false,
+          complete: function (jqxhr) {
+            that.uploadCompleted(jqxhr, $placeholder);
+          },
+          processData: false,
+          data: that.options.formatData(file)
+        });
+      },
+
+      /**
+      * Makes ajax call for deleting a file on a server
+      *
+      * @param {string} file File name
+      * @param {object} that Context
+      * @return {void}
+      */
+      deleteFile: function (file, that) {
+        $.ajax({
+          type: "post",
+          url: that.options.imagesDeleteScript,
+          data: {
+            file: file
+          }
+        });
       }
+    },
+
+
+    /**
+    * Images initial function
+    *
+    * @param {object} options Options to overide defaults
+    * @return {void}
+    */
+
+    init: function (options) {
+      if (options && options.$el) {
+        this.$el = options.$el;
+      }
+      this.options = $.extend(this.default, options);
+
+      this.setImageEvents();
+
+      if (this.options.useDragAndDrop === true){
+        this.setDragAndDropEvents();
+      }
+
+      this.preparePreviousImages();
+
+    },
+
+
+    /**
+    * Returns insert button
+    *
+    * @param {string} buttonLabels
+    * @return {string}
+    */
+
+    insertButton: function(buttonLabels){
+      var label = 'Img';
+      if (buttonLabels == 'fontawesome' || typeof buttonLabels === 'object' && !!(buttonLabels.fontawesome)) {
+        label = '<i class="fa fa-picture-o"></i>';
+      }
+      return '<button data-addon="images" data-action="add" class="medium-editor-action medium-editor-action-image mediumInsert-action">'+label+'</button>';
     },
 
     /**
     * Make existing images interactive
+    *
+    * @return {void}
     */
+
     preparePreviousImages: function () {
       this.$el.find('.mediumInsert-images').each(function() {
         var $parent = $(this).parent();
@@ -52,6 +145,7 @@
 
     /**
     * Add image to placeholder
+    *
     * @param {element} $placeholder Placeholder to add image to
     * @return {element} $selectFile <input type="file"> element
     */
@@ -63,7 +157,7 @@
       $selectFile = $('<input type="file">').click();
       $selectFile.change(function () {
         files = this.files;
-        that.uploadFiles($placeholder, files);
+        that.uploadFiles($placeholder, files, that);
       });
 
       $.fn.mediumInsert.insert.deselect();
@@ -73,6 +167,7 @@
 
     /**
     * Update progressbar while upload
+    *
     * @param {event} e XMLHttpRequest.upload.onprogress event
     * @return {void}
     */
@@ -82,7 +177,8 @@
           complete;
 
       if (e.lengthComputable) {
-        complete = (e.loaded / e.total * 100 | 0);
+        complete = e.loaded / e.total * 100;
+        complete = complete ? complete : 0;
         $progress.attr('value', complete);
         $progress.html(complete);
       }
@@ -90,45 +186,67 @@
 
     /**
     * Show uploaded image after upload completed
+    *
     * @param {jqXHR} jqxhr jqXHR object
     * @return {void}
     */
 
-    uploadCompleted: function (jqxhr) {
-      var $progress = $('.progress:first', this.$el),
+    uploadCompleted: function (jqxhr, $placeholder) {
+      var $progress = $('.progress:first', $placeholder),
           $img;
 
       $progress.attr('value', 100);
       $progress.html(100);
 
-      $progress.before('<div class="mediumInsert-images"><img src="'+ jqxhr.responseText +'" draggable="true" alt=""></div>');
-      $img = $progress.siblings('img');
+      if (jqxhr.responseText) {
+        $progress.before('<figure class="mediumInsert-images"><img src="'+ jqxhr.responseText +'" draggable="true" alt=""></figure>');
+        $img = $progress.siblings('img');
+
+        $img.load(function () {
+          $img.parent().mouseleave().mouseenter();
+        });
+      } else {
+        $progress.before('<div class="mediumInsert-error">There was a problem uploading the file.</div>');
+
+        setTimeout(function () {
+          $('.mediumInsert-error:first', $placeholder).fadeOut(function () {
+            $(this).remove();
+          });
+        }, 3000);
+      }
+
       $progress.remove();
 
-      $img.load(function () {
-        $img.parent().mouseleave().mouseenter();
-      });
+      $.fn.mediumInsert.insert.$el.keyup();
     },
 
+    /**
+    * Upload single file
+    *
+    * @param {element} $placeholder Placeholder to add image to
+    * @param {File} file File to upload
+    * @param {object} that Context
+    * @param {void}
+    */
+
+    uploadFile: function ($placeholder, file, that) {
+      return that.options.uploadFile($placeholder, file, that);
+    },
 
     /**
-    * Upload files, display progress bar and finally uploaded file
+    * Lopp though files, check file types and call uploadFile() function on each file that passes
+    *
     * @param {element} placeholder Placeholder to add image to
     * @param {FileList} files Files to upload
+    * @param {object} that Context
     * @return {void}
     */
 
-    uploadFiles: function ($placeholder, files) {
+    uploadFiles: function ($placeholder, files, that) {
       var acceptedTypes = {
         'image/png': true,
         'image/jpeg': true,
         'image/gif': true
-      },
-      that = this,
-      xhr = function () {
-        var xhr = new XMLHttpRequest();
-        xhr.upload.onprogress = that.updateProgressBar;
-        return xhr;
       };
 
       for (var i = 0; i < files.length; i++) {
@@ -137,31 +255,37 @@
         if (acceptedTypes[file.type] === true) {
           $placeholder.append('<progress class="progress" min="0" max="100" value="0">0</progress>');
 
-          $.ajax({
-            type: "post",
-            url: $.fn.mediumInsert.settings.imagesUploadScript,
-            xhr: xhr,
-            cache: false,
-            contentType: false,
-            complete: this.uploadCompleted,
-            processData: false,
-            data: this.options.formatData(file)
-          });
+          that.uploadFile($placeholder, file, that);
         }
       }
     },
 
     /**
+    * Makes ajax call for deleting a file on a server
+    *
+    * @param {string} file File name
+    * @param {object} that Context
+    * @return {void}
+    */
+
+    deleteFile: function (file, that) {
+      return that.options.deleteFile(file, that);
+    },
+
+    /**
     * Set image events displaying remove and resize buttons
+    *
     * @return {void}
     */
 
     setImageEvents: function () {
+      var that = this;
+
       this.$el.on('mouseenter', '.mediumInsert-images', function () {
         var $img = $('img', this),
             positionTop,
             positionLeft;
-            
+
         if ($.fn.mediumInsert.settings.enabled === false) {
           return;
         }
@@ -209,17 +333,22 @@
       });
 
       this.$el.on('click', '.mediumInsert-imageRemove', function () {
+        var img = $(this).siblings('img').attr('src');
+
         if ($(this).parent().siblings().length === 0) {
           $(this).parent().parent().parent().removeClass('small');
         }
         $(this).parent().remove();
+
+        that.deleteFile(img, that);
 
         $.fn.mediumInsert.insert.deselect();
       });
     },
 
     /**
-    * Set drag and drop evnets
+    * Set drag and drop events
+    *
     * @return {void}
     */
 
@@ -241,7 +370,7 @@
         if ($.fn.mediumInsert.settings.enabled === false) {
           return;
         }
-        
+
         $(this).removeClass('hover');
       });
 
@@ -249,7 +378,7 @@
         if ($.fn.mediumInsert.settings.enabled === false) {
           return;
         }
-        
+
         $(this).addClass('hover');
         $(this).attr('contenteditable', true);
       });
@@ -258,16 +387,16 @@
         if ($.fn.mediumInsert.settings.enabled === false) {
           return;
         }
-        
+
         $(this).removeClass('hover');
         $(this).attr('contenteditable', false);
       });
 
-      this.$el.on('dragstart', '.mediumInsert .mediumInsert-images img', function (e) {
+      this.$el.on('dragstart', '.mediumInsert .mediumInsert-images img', function () {
         if ($.fn.mediumInsert.settings.enabled === false) {
           return;
         }
-        
+
         dropSortIndex = $(this).parent().index();
         dropSortParent = $(this).parent().parent().parent().attr('id');
       });
@@ -276,7 +405,7 @@
         if ($.fn.mediumInsert.settings.enabled === false) {
           return;
         }
-        
+
         if (dropSuccessful === true) {
           if ($(e.originalEvent.target.parentNode).siblings().length === 0) {
             $(e.originalEvent.target.parentNode).parent().parent().removeClass('small');
@@ -292,17 +421,17 @@
         if ($.fn.mediumInsert.settings.enabled === false) {
           return;
         }
-        
+
         e.preventDefault();
       });
 
-      this.$el.on('drop', '.mediumInsert .mediumInsert-images img', function (e) {
+      this.$el.on('drop', '.mediumInsert .mediumInsert-images img', function () {
         var index, $dragged, finalIndex;
 
         if ($.fn.mediumInsert.settings.enabled === false) {
           return;
         }
-        
+
 
         if (dropSortParent !== $(this).parent().parent().parent().attr('id')) {
           dropSort = false;
@@ -343,7 +472,7 @@
         files = e.originalEvent.dataTransfer.files;
         if (files.length > 0) {
           // File upload
-          that.uploadFiles($('.mediumInsert-placeholder', this), files);
+          that.uploadFiles($('.mediumInsert-placeholder', this), files, that);
         } else if (dropSort === true) {
           dropSort = false;
         } else {
@@ -354,5 +483,5 @@
         }
       });
     }
-  };
+  });
 }(jQuery));
