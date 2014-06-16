@@ -1,6 +1,8 @@
 dd
   = form_for @user, url: haven_staff_path(@user) do |f|
     
+    = @user.name
+
     .form-group
       label 权限管理
       select name='user[role][]'

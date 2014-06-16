@@ -46,6 +46,10 @@ module Haven
       redirect_back_or haven_staffs_path
     end
 
+    def role
+      redirect_to :action => 'show', :id => User.find(params[:role][:staff]).id
+    end
+
     private
 
     def user_params
