@@ -3,6 +3,10 @@ class DialogsController < ApplicationController
 
   def index
     @dialogs = current_user.dialogs.page(params[:page]).per(20)
+    @dialogs.each do |dialog|
+      dialog.reset
+      dialog.newest_message.update(is_new: false)
+    end
   end
 
   def show

@@ -13,6 +13,9 @@ html.dialogs_index, html.dialogs_show {
 
 .private_message {
   @include vertical-list-item;
+  padding: 1.5em;
+  cursor: pointer;
+  &:hover {background: #eee;}
 
   header {
     @include clearfix;
