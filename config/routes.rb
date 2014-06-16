@@ -278,7 +278,9 @@ Making::Application.routes.draw do
 
     resources :categories, only: [:index, :edit, :update]
 
-    resources :staffs
+    resources :staffs do
+      get 'role', to: 'staffs#role'
+    end
   end
 
   namespace :hell, defaults: {format: :json} do
