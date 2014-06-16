@@ -12,3 +12,7 @@ section#dialogs
 
 footer
   = paginate @dialogs
+
+- content_for :script do
+  javascript:
+    Making.DialogPage.InitIndex();

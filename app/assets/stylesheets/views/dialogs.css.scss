@@ -14,6 +14,8 @@ html.dialogs_index, html.dialogs_show {
 .private_message {
   @include vertical-list-item;
 
+  cursor: pointer;
+
   header {
     @include clearfix;
     margin-bottom: 1em;
