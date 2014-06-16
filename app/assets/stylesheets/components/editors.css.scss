@@ -1,7 +1,7 @@
 // Editors.
 //
 
-.editor-container {
+.editor {
   bottom: 0;
   display: none;
   left: 0;
@@ -10,9 +10,13 @@
   right: 0;
   top: 0;
   z-index: $zindex_editor;
+  // @TODO
+  padding-bottom: 0 !important;
+  border-bottom: none !important;
+  margin-bottom: 0 !important;
 }
 
-.editor {
+.editor-inner {
   background-color: #fff;
   min-height: 100%;
   left: 0;
@@ -21,24 +25,31 @@
   width: 100%;
   z-index: 1;
 
-  > .title,
-  > .content {
+  > header,
+  > .body {
     margin: {
       bottom: $padding-large-vertical * 2;
       left: auto;
       right: auto;
     }
+    // @TODO
     width: 55%;
   }
 
-  > .title {
-    border: none;
-    display: block;
-    font-size: $font-size-h1;
+  > header {
+    border-bottom: $border-default;
     margin-top: $padding-large-vertical * 2;
+
+    .title {
+      border: none;
+      display: block;
+      font-size: $font-size-h1;
+      padding-bottom: 0;
+      width: 100%;
+    }
   }
 
-  > .content {
+  > .body {
   }
 }
 
@@ -116,22 +127,6 @@
 .medium-editor-placeholder:after {
   color: $text-muted;
   top: 0;
-}
-
-// @TODO
-#editor_compact_experimental {
-  border: 1px solid #ccc;
-  border-radius: $border-radius-base;
-  height: 200px;
-  padding-bottom: 0 !important;
-  width: 100%;
-}
-
-.editor-container,
-#insert-video-modal {
-  padding-bottom: 0 !important;
-  border-bottom: none !important;
-  margin-bottom: 0 !important;
 }
 
 body.editor-open {

@@ -298,6 +298,7 @@ form.edit_post {
 .article {
 
   > header,
+  > .body,
   > .content,
   > .pager {
     margin-bottom: 2rem;
@@ -344,9 +345,10 @@ form.edit_post {
     }
   }
 
+  > .body,
   > .content {
     color: $text-color;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.8;
     word-wrap: break-word;
 

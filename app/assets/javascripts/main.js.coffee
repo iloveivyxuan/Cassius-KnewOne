@@ -336,6 +336,13 @@ do (exports = Making) ->
       .on 'click', 'a.disabled', (event) ->
         false
 
+      .on 'click', '[data-toggle="editor"]', (event) ->
+        switch exports.device
+          when 'desktop'
+            event.preventDefault()
+            new exports.Views.Editor type: 'review'
+            $docbody.addClass('editor-open')
+
       .on 'click', '.fanciers > a', (event) ->
         event.preventDefault()
 

@@ -47,7 +47,6 @@
 //= require components/stream
 //= require components/message_on_top
 //= require_tree ./pages
-//= require editor
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ./views
