@@ -27,6 +27,13 @@ module NotificationsHelper
         else
           content += ' 失效的资源'
         end
+      when Special then
+        if entry = post.entry
+          content += "专题 "
+          content += link_to post.title, entry_path(entry), target: target
+        else
+          content += ' 失效的资源'
+        end
       when Thing then
         content += "产品 "
         content += link_to post.title, thing_path(post), target: target
