@@ -1,5 +1,8 @@
 .editor
-
-/ @TODO
-footer
-  a.btn.btn-success data-toggle="editor" href="http://douban.com" 点我点我
+  .editor-menu
+    output 正在保存草稿
+    .buttons
+      button.btn.btn-default.editor-close type="button" 返回
+      button.btn.btn-default.editor-drop type="button" 舍弃
+      button.btn.btn-success.editor-submit type="submit" 发布
+  article.editor-content.article

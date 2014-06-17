@@ -340,7 +340,10 @@ do (exports = Making) ->
         switch exports.device
           when 'desktop'
             event.preventDefault()
-            new exports.Views.Editor type: 'review'
+            $this = $(@)
+            new exports.Views.Editor
+              template: $this.data('edit-template')
+              mode: $this.data('edit-mode')
             $docbody.addClass('editor-open')
 
       .on 'click', '.fanciers > a', (event) ->

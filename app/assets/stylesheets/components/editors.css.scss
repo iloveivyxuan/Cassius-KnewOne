@@ -16,10 +16,49 @@
   margin-bottom: 0 !important;
 }
 
-.editor-inner {
+.editor-menu {
+  background-color: #fff;
+  box-shadow: 0 1px 3px #eee;
+  height: $navbar-height;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+
+  output {
+    color: $text-color;
+    display: block;
+    height: $navbar-height;
+    left: calc(50% - 4em);
+    line-height: $navbar-height;
+    padding-top: 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 8em;
+  }
+
+  .buttons {
+    float: right;
+    margin: 3px 2em 3px 0;
+
+    .btn {
+      border: $border-default;
+      margin-left: 1em;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+.editor-content {
   background-color: #fff;
   min-height: 100%;
   left: 0;
+  padding-top: $navbar-height + $padding-large-vertical * 2;
   position: absolute;
   top: 0;
   width: 100%;
@@ -38,7 +77,6 @@
 
   > header {
     border-bottom: $border-default;
-    margin-top: $padding-large-vertical * 2;
 
     .title {
       border: none;

@@ -13,7 +13,7 @@
         = hidden_field_tag 'review[author]', @review.author.id.to_s, id: 'author_id'
         input#author_autocomplete.form-control placeholder="用户昵称" value="#{@review.author.name}"
 
-= render 'shared/editor_experimental'
+= render 'shared/editor'
 
 .post_submit
   = button_tag "提交评测", class: "btn btn-lg btn-primary "

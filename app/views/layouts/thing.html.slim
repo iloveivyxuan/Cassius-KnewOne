@@ -17,6 +17,7 @@
     - if user_signed_in?
       = render 'things/supplier', tp: tp
       = render 'things/group_fancy', tp: tp
+  = render 'shared/editor_experimental'
 
 - content_for :script do
   javascript:
