@@ -17,6 +17,8 @@ header.page-header
 #activities
   = render_feeds @activities
 
+= paginate @activities
+
 .spinner.hide
   i.fa.fa-spinner.fa-spin.fa-2x
 

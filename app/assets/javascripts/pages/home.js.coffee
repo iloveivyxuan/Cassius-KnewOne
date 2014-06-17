@@ -9,6 +9,10 @@ window.Making = do (exports = window.Making || {}) ->
 
     exports.Feeling('#activities')
 
+    return unless Modernizr.touch
+
+    $('.paginate').hide()
+
     render_border = ->
       $container
         .find(".col-sm-6:odd").addClass('odd').end()
