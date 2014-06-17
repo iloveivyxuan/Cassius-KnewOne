@@ -4,6 +4,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def callback
     omniauth = request.env['omniauth.auth']
 
+    logger.info '--------'
+    logger.info omniauth.to_hash
+    logger.info '-------'
+
     if user = User.find_by_omniauth(omniauth)
       # Auth already bound
       if user_signed_in? && user.id != current_user.id
@@ -88,4 +92,5 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   alias_method :weibo, :callback
   alias_method :twitter, :callback
   alias_method :qq_connect, :callback
+  alias_method :douban, :callback
 end

@@ -10,7 +10,7 @@ section.entry
         td = link_to_with_icon "Twitter 登录", "fa fa-twitter", user_omniauth_authorize_path(:twitter), class: "btn btn-info", title: "用 Twitter 登录"
       tr
         td = link_to_with_icon " QQ登录", "fa fa-qq", user_omniauth_authorize_path(:qq_connect), class: "btn btn-primary", title: "用QQ登录"
-        td
+        td = link_to_with_icon "豆瓣登录", "fa fa-qq", user_omniauth_authorize_path(:douban), class: "btn btn-success", title: "用QQ登录"
   .entry_email
     ul.nav.nav-pills.nav-pills-list.nav-justified
       li.active
