@@ -230,6 +230,13 @@ class Thing < Post
 
   need_aftermath :own, :unown, :fancy, :unfancy
 
+  include Rankable
+
+  def calculate_heat
+    (1 + 50 * reviews_count + 5 * feelings_count + fancier_ids.count + owner_ids.count) *
+    freezing_coefficient
+  end
+
   class << self
     def rand_records(per = 1)
       (0...Thing.published.count).to_a.shuffle.slice(0, per).map { |i| Thing.published.desc(:created_at).skip(i).first }
