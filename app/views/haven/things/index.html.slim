@@ -4,8 +4,6 @@ hgroup
     small 全部 #{Thing.all.size} 自营 #{Thing.self_run.size}
   p
     = link_to "可购产品列表", haven_things_path(filter: "can_buy"), class: 'btn btn-default'
-    = link_to "锁定产品列表", haven_things_path(filter: "locked"), class: 'btn btn-default'
-  p
     = link_to "按分享时间排序", haven_things_path(sort_by: 'created_at'), class: 'btn btn-default'
     = link_to "按评测数量排序", haven_things_path(sort_by: 'reviews_count'), class: 'btn btn-default'
     = link_to "按优先级排序", haven_things_path(sort_by: 'priority'), class: 'btn btn-default'
