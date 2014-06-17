@@ -67,7 +67,7 @@
   .mediumInsert-buttonsShow,
   .mediumInsert-action {
     cursor: pointer;
-    display: block;
+    display: inline-block;
     text-align: center;
     text-decoration: none;
   }
@@ -80,9 +80,16 @@
 
     .mediumInsert-buttonsShow {
       @include fontawesome("\f055");
+      border: none;
+      border-radius: 0;
       color: $text-muted;
       font-size: 0;
       float: left;
+      height: 20px;
+      margin: {
+        bottom: 3px;
+        top: 3px;
+      }
       overflow: hidden;
       padding-right: 80px;
       position: relative;
@@ -90,8 +97,9 @@
 
       &:before {
         font-size: 20px;
-        right: 1em;
+        right: .5em;
         position: absolute;
+        top: 1px;
       }
 
       &.active {
@@ -100,11 +108,15 @@
       }
     }
 
-    .mediumInsert-buttonsOptions {
+    ul.mediumInsert-buttonsOptions {
+      border: none;
+      background-color: transparent;
       float: left;
+      position: static;
 
       > li {
         float: left;
+        display: inline-block;
 
         .mediumInsert-action {
           border: 1px solid $text-muted;
@@ -112,11 +124,20 @@
           color: $text-muted;
           line-height: 1.2em;
           margin: .15em 10px .15em 0;
+          padding: 0;
           width: 80px;
 
           &:hover {
             background-color: $text-color;
             color: #fff;
+          }
+
+          &:active {
+            outline: none;
+          }
+
+          .fa {
+            margin-right: 0;
           }
         }
       }
@@ -126,6 +147,7 @@
 
 .medium-editor-placeholder:after {
   color: $text-muted;
+  font-style: normal;
   top: 0;
 }
 
