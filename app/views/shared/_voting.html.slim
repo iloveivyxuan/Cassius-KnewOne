@@ -9,5 +9,5 @@
       = button_tag title: "赞", class: "btn btn-sm" do
         = present(object).lovers_count
 - else
-  = button_tag title: "赞", class: "btn btn-sm", disabled: true do
+  = link_to '#', data: {target: '#login-modal', toggle: 'modal'}, class: 'btn btn-sm' do
     = present(object).lovers_count
