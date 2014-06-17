@@ -667,6 +667,8 @@ if (typeof module === 'object') {
         },
 
         execAction: function (action, e) {
+            this.removeRedundantElements(action);
+
             if (action.indexOf('append-') > -1) {
                 this.execFormatBlock(action.replace('append-', ''));
                 this.setToolbarPosition();
@@ -676,8 +678,45 @@ if (typeof module === 'object') {
             } else if (action === 'image') {
                 document.execCommand('insertImage', false, window.getSelection());
             } else {
+                if (action == 'insertorderedlist') {
+                }
+
                 document.execCommand(action, false, null);
                 this.setToolbarPosition();
+            }
+        },
+
+        removeRedundantElements: function(action) {
+            var selection = window.getSelection(),
+                selectionData = this.getSelectionData(this.selection.anchorNode);
+
+            if (['append-h1', 'append-h2', 'append-h3', 'append-h4', 'append-h5', 'append-h6']
+                .join(' ')
+                .indexOf(action) >= 0) {
+
+                var parent = selection.anchorNode.parentNode;
+
+                while (!parent.getAttribute('contentEditable')) {
+                    if (parent.tagName.toLowerCase() === 'li') {
+                        document.execCommand('outdent', false, null); // @TODO
+                        break;
+                    }
+                    parent = parent.parentNode;
+                }
+            } else if (['insertorderedlist', 'insertunorderedlist'].join(' ').indexOf(action) >= 0) {
+                if (['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'].join(' ').indexOf(selectionData.tagName) >= 0) {
+                    var node = selectionData.el,
+                        parent = node.parentNode,
+                        children = node.childNodes;
+
+                    for (var i = 0; i < children.length; i++) {
+                        parent.insertBefore(children[i], node);
+                    }
+
+                    parent.removeChild(node);
+                } else {
+
+                }
             }
         },
 
