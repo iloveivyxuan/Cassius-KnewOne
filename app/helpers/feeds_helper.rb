@@ -24,7 +24,7 @@ module FeedsHelper
 
   def arrange_feeds(thing_feeds, post_feeds, scratch_thing = true)
     return [] if thing_feeds.blank? and post_feeds.blank?
-    scratched = scratch_thing ? thing_feeds.shift(2) : post_feeds.shift(1)
+    scratched = scratch_thing ? thing_feeds.shift(5) : post_feeds.shift(2)
     scratched + arrange_feeds(thing_feeds, post_feeds, !scratch_thing)
   end
 end

@@ -2,6 +2,12 @@ class FeedPresenter < ApplicationPresenter
   presents :activity
   delegate :reference_union, :reference, :source, to: :activity
 
+  TAGS = ["col-sm-6", "col-sm-6", "col-sm-4", "col-sm-4", "col-sm-4"]
+
+  def style_tags
+    @@tags.pop
+  end
+
   def tmpl
     @tmpl ||= activity.type.to_s.split('_').last
   end
@@ -13,8 +19,9 @@ class FeedPresenter < ApplicationPresenter
   end
 
   def style
-    @display ||= (tmpl == "thing" ? :half : :row)
-    {half: "col-sm-6", row: "col-sm-12"}[@display]
+    @@tags ||= TAGS.clone
+    @@tags = TAGS.clone if @@tags.empty?
+    tmpl == "thing" ? style_tags : "col-sm-12"
   end
 
   def render_to_html
