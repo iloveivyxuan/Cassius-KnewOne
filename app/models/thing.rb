@@ -24,7 +24,6 @@ class Thing < Post
 
   field :priority, type: Integer, default: 0
   field :recommended, type: Boolean, default: false
-  field :lock_priority, type: Boolean, default: false
 
   field :sharing_text, type: String
 
