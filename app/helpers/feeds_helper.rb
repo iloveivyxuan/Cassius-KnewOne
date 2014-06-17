@@ -16,9 +16,7 @@ module FeedsHelper
   def sort_feeds(feeds)
     thing_feeds, post_feeds = [], []
     feeds.each { |f| (f.tmpl == "thing" ? thing_feeds : post_feeds) << f }
-    if thing_feeds.length % 2 > 0
-      thing_feeds.last.display = :row
-    end
+    thing_feeds.last.display = :row if thing_feeds.length.odd?
     arrange_feeds thing_feeds, post_feeds
   end
 
