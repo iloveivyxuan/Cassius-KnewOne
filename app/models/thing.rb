@@ -233,7 +233,12 @@ class Thing < Post
   include Rankable
 
   def calculate_heat
-    (1 + 50 * reviews_count + 5 * feelings_count + fancier_ids.count + owner_ids.count) *
+    (1 +
+     priority +
+     50 * reviews_count +
+     5 * feelings_count +
+     fancier_ids.count +
+     owner_ids.count) *
     freezing_coefficient
   end
 
