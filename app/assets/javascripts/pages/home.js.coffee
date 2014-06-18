@@ -11,7 +11,7 @@ window.Making = do (exports = window.Making || {}) ->
 
     return unless Modernizr.touch
 
-    $('.paginate').hide()
+    $('.pagination').hide()
 
     render_border = ->
       $container
