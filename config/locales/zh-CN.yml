@@ -33,7 +33,6 @@ zh-CN:
         shop: '购买'
         price: '价格'
         description: '简介'
-        recommended: '首页推荐'
         sharing_text: '分享文案'
       kind:
         title: '名称'

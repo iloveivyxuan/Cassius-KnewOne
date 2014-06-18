@@ -19,7 +19,6 @@ header.page-header
     = f.input_field :price_unit, collection: Thing.const_get(:CURRENCY_LIST)
     = f.input_field :price, as: :decimal
   = f.input :priority, as: :integer
-  = f.input :recommended, as: :boolean
   = f.input :sharing_text
   | 可用标记:
   | &nbsp;购买的商品&nbsp;
