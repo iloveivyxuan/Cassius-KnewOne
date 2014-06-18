@@ -19,16 +19,41 @@ html.signed_in_homepage {
   #activities {
     @include clearfix;
 
-    margin-right: -15px;
+    $activity-gap: 15px;
+    margin-right: -$activity-gap;
 
     > section,
     > article {
-      margin: 0 15px 15px 0;
+      margin: 0 $activity-gap $activity-gap 0;
       background: white;
 
       &:last-child {
         margin-bottom: 0;
       }
+    }
+
+    .col-sm-3,
+    .col-md-3,
+    .col-lg-3 {
+      width: calc(#{percentage(3 / 12)} - #{$activity-gap});
+    }
+
+    .col-sm-4,
+    .col-md-4,
+    .col-lg-4 {
+      width: calc(#{percentage(4 / 12)} - #{$activity-gap});
+    }
+
+    .col-sm-6,
+    .col-md-6,
+    .col-lg-6 {
+      width: calc(#{percentage(6 / 12)} - #{$activity-gap});
+    }
+
+    .col-sm-12,
+    .col-md-12,
+    .col-lg-12 {
+      width: calc(100% - #{$activity-gap});
     }
   }
 
