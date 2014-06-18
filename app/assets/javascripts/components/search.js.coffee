@@ -46,7 +46,7 @@ window.Making = do (exports = window.Making || {}) ->
                 url_request = decodeURI(@.url)
                 param = url_request.slice(url_request.lastIndexOf('q=') + 2)
 
-                if xhr.status is 200 and param is $.trim($input.val())
+                if xhr.status is 200 and param is $.trim($input.val()).replace(' ', '+')
                   if $keyword.length then $keyword.text(keyword)
 
                   $(data).each ->
