@@ -23,6 +23,46 @@ html.signed_in_homepage {
   // Section
   // ---------------------------------------------------------------------------
 
+  footer[role="contentinfo"] {
+    padding-top: 2.5em;
+    border-top: 1px dashed $gray-light;
+
+    small {
+      float: left;
+      width: 25%;
+
+      text-align: center;
+      color: $gray-light;
+      font-size: 14px;
+
+      .icp {
+        display: block;
+      }
+    }
+
+    nav {
+      float: left;
+      width: 75%;
+
+      text-align: right;
+      font-size: 16px;
+      font-weight: bold;
+
+      ul {
+        display: inline-block;
+      }
+
+      li {
+        float: left;
+        margin-right: 2.5rem;
+      }
+
+      a {
+        color: $gray;
+      }
+    }
+  }
+
   &.mobile {
 
     #activities {

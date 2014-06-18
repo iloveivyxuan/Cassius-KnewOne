@@ -29,6 +29,7 @@ html class=page_class lang="zh-CN"
       = render 'layouts/header'
     section#wrapper
       = content_for?(:content) ? yield(:content) : yield
+    = render 'layouts/footer'
     - if browser.mobile? or browser.tablet?
       = render 'layouts/menu_mobile'
     = render 'shared/message_on_top'
