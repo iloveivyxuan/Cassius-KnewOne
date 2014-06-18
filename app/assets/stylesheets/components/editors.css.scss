@@ -206,12 +206,13 @@
 }
 
 .medium-editor-toolbar-form-anchor {
-  background-color: transparent;
+  background-color: #fff;
   border: 1px solid $text-muted;
   border-radius: 1em;
   color: $gray;
   float: left;
   height: 24px;
+  line-height: 22px;
   padding: 0 1em;
 
   input {
@@ -219,12 +220,8 @@
     background-color: #fff;
     border-radius: 0;
     color: $gray;
-    height: 14px;
-    line-height: 14px;
-    margin: {
-      bottom: 4px;
-      top: 4px;
-    }
+    height: 22px;
+    line-height: 22px;
     padding: 0;
   }
 }
