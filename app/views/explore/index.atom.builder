@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
 atom_feed do |feed|
-  feed.title("KnewOne 发现")
+  feed.title("KnewOne Explore")
   feed.updated(Entry.published.first.created_at)
 
   @entries.each do |e|
