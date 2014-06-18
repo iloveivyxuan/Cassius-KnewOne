@@ -12,7 +12,7 @@ atom_feed do |feed|
     feed.entry(post, :url => url) do |entry| ##
       entry.title(post.title)
       entry.content(post.content, type: 'html')
-      entry.link href: e.cover.url(:large), rel:"enclosure", type:"image/jpeg"
+      entry.cover e.cover.url(:normal)
       entry.author do |author|
         author.name(post.author.name)
       end
