@@ -2,6 +2,11 @@
 class ExploreController < ApplicationController
   def index
     @entries = Entry.published.desc(:created_at).page params[:page]
+
+    respond_to do |format|
+      format.html
+      format.atom
+    end
   end
 
   {
