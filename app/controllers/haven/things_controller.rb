@@ -27,6 +27,8 @@ module Haven
                     @things.order_by [:reviews_count, :desc]
                   when 'priority'
                     @things.order_by [:priority, :desc]
+                  when 'heat'
+                    @things.order_by [:heat, :desc]
                   else
                     @things.order_by [:created_at, :desc]
                 end
