@@ -32,6 +32,10 @@ html.signed_in_homepage {
     }
   }
 
+  footer[role="contentinfo"] {
+    display: block;
+  }
+
   &.mobile {
 
     #activities {
