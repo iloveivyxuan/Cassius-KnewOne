@@ -62,7 +62,7 @@ class Thing < Post
 
   has_many :lotteries, dependent: :destroy
 
-  scope :hot, -> { gt(fanciers_count: 30) }
+  scope :recent, -> { gt(created_at: 1.month.ago) }
   scope :published, -> { lt(created_at: Time.now) }
   scope :prior, -> { gt(priority: 0).desc(:priority, :created_at) }
   scope :self_run, -> { send :in, stage: [:dsell, :pre_order] }

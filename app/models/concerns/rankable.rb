@@ -4,6 +4,8 @@ module Rankable
   included do
     field :heat, type: Float
     index heat: -1
+
+    scope :hot, -> { desc(:heat) }
   end
 
   def freezing_coefficient
