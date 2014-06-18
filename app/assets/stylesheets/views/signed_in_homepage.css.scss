@@ -16,6 +16,17 @@ html.signed_in_homepage {
   // Section
   // ---------------------------------------------------------------------------
 
+  #activities {
+    > section,
+    > article {
+      margin: 0 15px 15px 0;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
   footer[role="contentinfo"] {
     padding-top: 2.5em;
     border-top: 1px dashed $gray-light;
