@@ -274,7 +274,7 @@
       });
 
       insertBlock += '</ul>';
-      insertBlock = '<div class="mediumInsert" contenteditable="false">'+
+      insertBlock = '<div class="mediumInsert empty" contenteditable="false">'+
         '<div class="mediumInsert-buttons">'+
           '<a class="mediumInsert-buttonsShow">+</a>'+
           insertBlock +

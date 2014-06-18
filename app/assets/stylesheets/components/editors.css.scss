@@ -92,20 +92,29 @@
 }
 
 .mediumInsert {
-  height: 1.5em;
-  line-height: 1.5em;
-  margin: -1.5em 0 0 -80px;
-  min-height: 0;
-  z-index: -1;
 
-  &:hover {
-    z-index: 0;
+  margin: {
+    bottom: 0;
+    left: -80px;
+    top: 0;
+  }
+  min-height: 0;
+  padding-left: 80px;
+
+  &.empty {
+    height: 1.5em;
+    line-height: 1.5em;
+    margin-top: -1.5em;
+    z-index: -1;
+
+    &:hover {
+      z-index: 0;
+    }
   }
 
   .mediumInsert-buttonsShow,
   .mediumInsert-action {
     cursor: pointer;
-    display: inline-block;
     text-align: center;
     text-decoration: none;
   }
@@ -125,8 +134,8 @@
       float: left;
       height: 20px;
       margin: {
-        bottom: 3px;
-        top: 3px;
+        bottom: 2px;
+        top: 2px;
       }
       overflow: hidden;
       padding-right: 80px;
@@ -150,6 +159,7 @@
       border: none;
       background-color: transparent;
       float: left;
+      padding: 1px 0;
       position: static;
 
       > li {
@@ -157,11 +167,12 @@
         display: inline-block;
 
         .mediumInsert-action {
+          background-color: #fff;
           border: 1px solid $text-muted;
           border-radius: 1em;
           color: $text-muted;
           line-height: 1.2em;
-          margin: .15em 10px .15em 0;
+          margin-right: 10px;
           padding: 0;
           width: 80px;
 
@@ -180,6 +191,11 @@
         }
       }
     }
+  }
+
+  .mediumInsert-embeds {
+    margin-bottom: 1.5em;
+    padding: 0;
   }
 }
 

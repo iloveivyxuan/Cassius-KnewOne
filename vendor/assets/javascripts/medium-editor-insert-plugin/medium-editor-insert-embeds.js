@@ -48,6 +48,7 @@
       $.fn.mediumInsert.insert.deselect();
 
       this.currentPlaceholder = $placeholder;
+      this.currentPlaceholder.closest('.mediumInsert').removeClass('empty');
       $(".mediumInsert-embedsText").focus();
     },
 
@@ -58,6 +59,7 @@
         if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
           that.setEnterActionEvents();
           that.removeToolbar();
+
         }
       });
 
