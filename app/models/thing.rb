@@ -23,7 +23,6 @@ class Thing < Post
   CURRENCY_LIST = %w{¥ $ € £}
 
   field :priority, type: Integer, default: 0
-  field :recommended, type: Boolean, default: false
 
   field :sharing_text, type: String
 
