@@ -39,7 +39,7 @@
       $.fn.mediumInsert.insert.deselect();
 
 
-      var formHtml = '<div class="medium-editor-toolbar-form-anchor mediumInsert-embedsWire" style="display: block;"><input type="text" value="" placeholder="输入视频代码" class="mediumInsert-embedsText"></div>';
+      var formHtml = '<div class="medium-editor-toolbar-form-anchor mediumInsert-embedsWire" style="display: block;"><input type="text" value="" placeholder="粘贴视频代码" class="mediumInsert-embedsText"></div>';
       $(formHtml).appendTo($placeholder.prev());
       setTimeout(function () {
         $placeholder.prev().find('input').focus();
@@ -48,18 +48,25 @@
       $.fn.mediumInsert.insert.deselect();
 
       this.currentPlaceholder = $placeholder;
-      this.currentPlaceholder.closest('.mediumInsert').removeClass('empty');
       $(".mediumInsert-embedsText").focus();
     },
 
+    /**
+     * Change the mediumInsert state to filled.
+     *
+     * @return {void}
+     */
+    fill : function () {
+      this.currentPlaceholder.closest('.mediumInsert').removeClass('empty');
+    },
 
     setEmbedButtonEvents : function () {
       var that = this;
       $(document).on('keypress', 'input.mediumInsert-embedsText', function (e) {
         if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+          that.fill();
           that.setEnterActionEvents();
           that.removeToolbar();
-
         }
       });
 
