@@ -7,13 +7,6 @@ html.signed_in_homepage {
     background: #f7f7f9;
   }
 
-  #wrapper,
-  .wrapper {
-    @include clearfix;
-    margin: 0 auto;
-    max-width: 1380px;
-  }
-
   #wrapper {
     > main {
       min-height: 940px;
