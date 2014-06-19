@@ -26,10 +26,6 @@ Making.Views.Editor = Backbone.View.extend
     @render()
 
   render: ->
-    @$help.popover
-      html: true
-      # @TODO
-      content: '欢迎您在这里写下对于产品本身的使用体验，给其他对产品感兴趣的朋友们提供客观可信的参考，谢谢：）'
     if @mode is 'complemental'
       @$drop.addClass('hidden')
       @$submit.addClass('hidden')
@@ -44,14 +40,17 @@ Making.Views.Editor = Backbone.View.extend
             url: '/draft'
           .done (data, status, xhr) ->
             @$content.html(@template(data))
-            @initPlugin()
+            if !@editor
+              @initPlugin()
             @$el.show()
-        return
       else
         # @$content.html(@template({}))
-        @initPlugin()
+        if !@editor
+          @initPlugin()
         @$el.show()
-        return
+    @initHelp()
+    return @
+
 
   initPlugin: ->
     @$body = @$('.editor-content > .body')
@@ -71,6 +70,16 @@ Making.Views.Editor = Backbone.View.extend
         images: {}
         embeds: {}
 
+  initHelp: ->
+    self = @
+    @$help
+      .popover
+        html: true
+      .popover('show')
+
+    setTimeout ->
+      self.$help.popover('hide')
+    , 3000
   saveDraft: ->
     console.log 'TODO: save draft.'
 
