@@ -178,3 +178,23 @@
   padding: 1em 0;
   &:not(:last-child) {border-bottom: $border-dashed;}
 }
+
+
+// Media queries
+// -----------------------------------------------------------------------------
+
+@mixin breakpoint($class) {
+  @if $class == xs {
+    @media (min-width: 0px) { @content; }
+  } @else if $class == sm {
+    @media (min-width: $screen-sm) { @content; }
+  } @else if $class == md {
+    @media (min-width: $screen-md) { @content; }
+  } @else if $class == lg {
+    @media (min-width: $screen-lg) { @content; }
+  } @else if $class == xl {
+    @media (min-width: $screen-xl) { @content; }
+  } @else {
+    @warn "Not supported";
+  }
+}
