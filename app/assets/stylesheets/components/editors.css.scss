@@ -48,9 +48,34 @@
       top: 3px;
     }
 
+    &:focus {
+      outline: none;
+    }
+
     &:first-child {
       margin-left: 0;
     }
+
+    &.editor-help {
+      border: none;
+      margin: {
+        bottom: 4px;
+        top: 4px;
+      }
+    }
+  }
+}
+
+.editor-help {
+  color: $gray;
+
+  &:hover,
+  &:focus {
+    color: $text-color;
+  }
+  
+  .popover-content {
+    width: 250px;
   }
 }
 
