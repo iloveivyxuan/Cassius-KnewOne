@@ -8,6 +8,7 @@ Making.Views.Editor = Backbone.View.extend
   el: '.editor'
 
   events:
+    'click .editor-close': 'close'
     'click .editor-submit': 'submit'
 
   initialize: (data) ->
@@ -69,6 +70,15 @@ Making.Views.Editor = Backbone.View.extend
       addons:
         images: {}
         embeds: {}
+
+  saveDraft: ->
+    console.log 'TODO: save draft.'
+
+  close: ->
+    # @TODO
+    @saveDraft()
+    @$el.hide()
+    $docbody.removeClass('editor-open')
 
   submit: (event) ->
     @$bodyField.val(@editor.serialize()['element-0'].value)

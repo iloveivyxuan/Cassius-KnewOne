@@ -341,9 +341,13 @@ do (exports = Making) ->
           when 'desktop'
             event.preventDefault()
             $this = $(@)
-            new exports.Views.Editor
-              template: $this.data('edit-template')
-              mode: $this.data('edit-mode')
+            if !$this.data('editor')
+              editor = new exports.Views.Editor
+                        template: $this.data('edit-template')
+                        mode: $this.data('edit-mode')
+              $this.data('editor', editor)
+            else
+              $this.data('editor').render()
             $docbody.addClass('editor-open')
 
       .on 'click', '.fanciers > a', (event) ->
