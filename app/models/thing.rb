@@ -63,7 +63,6 @@ class Thing < Post
 
   has_many :lotteries, dependent: :destroy
 
-  scope :recent, -> { gt(created_at: 1.month.ago) }
   scope :hot, -> { gt(fanciers_count: 30) }
   scope :published, -> { lt(created_at: Time.now) }
   scope :prior, -> { gt(priority: 0).desc(:priority, :created_at) }
