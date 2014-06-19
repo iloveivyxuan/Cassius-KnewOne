@@ -192,6 +192,8 @@ Making::Application.routes.draw do
     resources :private_messages, only: [:destroy]
   end
 
+  resources :drafts, only: [:index, :show, :update, :destroy]
+
   resources :lotteries do
     get 'page/:page', action: :index, on: :collection
   end
