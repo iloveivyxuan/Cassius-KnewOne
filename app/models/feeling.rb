@@ -22,11 +22,5 @@ class Feeling < Post
     end
   end
 
-  include Rankable
-
-  def calculate_heat
-    (1 + lovers_count + comments.count) * freezing_coefficient
-  end
-
   need_aftermath :vote
 end
