@@ -1,5 +1,20 @@
 // Editors.
 //
+//.editor
+//  .editor-menu
+//    output
+//     .pull-right
+//       button.btn.btn-link.editor-help type="button" data-container=".editor-menu" data-toggle="popover" data-placement="bottom" title="帮助"
+//         i.fa.fa-question.fa-alone
+//       button.btn.btn-default.editor-close type="button" 返回
+//       button.btn.btn-default.editor-drop type="button" 舍弃
+//       button.btn.btn-success.editor-submit type="submit" 发布
+//  article.editor-content.article
+//    header
+//      input.title type="text" required placeholder="标题"
+//      p
+//    .body
+//
 
 .editor {
   bottom: 0;
@@ -113,6 +128,8 @@
   }
 
   > .body {
+    // @TODO
+    min-height: 350px;
   }
 }
 

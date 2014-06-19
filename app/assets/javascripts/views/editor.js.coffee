@@ -7,15 +7,20 @@ Making.Views.Editor = Backbone.View.extend
 
   el: '.editor'
 
+  events:
+    'click .editor-submit': 'submit'
+
   initialize: (data) ->
     @mode     = data.mode
-    @template = HandlebarsTemplates['editor/' + data.template]
+    # @template = HandlebarsTemplates['editor/' + data.template]
+    @$form    = @$el.parents('form')
     @$help    = @$('.editor-help')
     @$submit  = @$('.editor-submit')
     @$drop    = @$('.editor-drop')
     @$close   = @$('.editor-close')
     @$output  = @$('.editor-menu output')
     @$content = @$('.editor-content')
+    @$bodyField = @$('[name$="[content]"]')
 
     @render()
 
@@ -42,7 +47,7 @@ Making.Views.Editor = Backbone.View.extend
             @$el.show()
         return
       else
-        @$content.html(@template({}))
+        # @$content.html(@template({}))
         @initPlugin()
         @$el.show()
         return
@@ -64,3 +69,7 @@ Making.Views.Editor = Backbone.View.extend
       addons:
         images: {}
         embeds: {}
+
+  submit: (event) ->
+    @$bodyField.val(@editor.serialize()['element-0'].value)
+    @$form.submit()

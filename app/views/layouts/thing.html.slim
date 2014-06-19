@@ -17,7 +17,22 @@
     - if user_signed_in?
       = render 'things/supplier', tp: tp
       = render 'things/group_fancy', tp: tp
-  = render 'shared/editor_experimental'
+  = form_for [@thing, Review.new], html: {class: "editor"} do |f|
+    .editor-menu
+      output 正在保存草稿
+      .pull-right
+        button.btn.btn-link.editor-help type="button" data-container=".editor-help" data-toggle="popover" data-placement="bottom" title="帮助"
+          i.fa.fa-question.fa-alone
+        button.btn.btn-default.editor-close type="button" 返回
+        button.btn.btn-default.editor-drop type="button" 舍弃
+        button.btn.btn-success.editor-submit type="submit" 发布
+    article.editor-content.article
+      header
+        = f.text_field :title, class: "title", required: true, autocomplete: "off", placeholder: "标题"
+        p
+          = f.range_field :score, max: 5, min: 0
+      .body
+      = f.hidden_field :content
 
 - content_for :script do
   javascript:
