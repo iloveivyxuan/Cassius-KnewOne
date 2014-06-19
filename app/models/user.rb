@@ -302,6 +302,9 @@ class User
   validates :balance_cents, :presence => true, numericality: {greater_than_or_equal_to: 0}
   embeds_many :balance_logs, cascade_callbacks: true
 
+  # Draft
+  has_many :drafts
+
   def balance
     BigDecimal.new(self.balance_cents) / 100
   end
