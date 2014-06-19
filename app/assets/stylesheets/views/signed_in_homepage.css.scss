@@ -65,7 +65,7 @@ html.signed_in_homepage {
 
         &:nth-child(8n + 7),
         &:nth-child(8n + 8) {
-          width: calc(100% - #{$activity-gap});
+          width: calc(50% - #{$activity-gap});
         }
       }
     }
