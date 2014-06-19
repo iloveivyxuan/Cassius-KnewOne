@@ -137,7 +137,7 @@ module Haven
     def encourage_thing_author
       @user = User.find(params[:id])
 
-      ThingMailer.encourage_thing_author(@user).deliver
+      ThingMailer.delay.encourage_thing_author(@user)
 
       redirect_back_or haven_users_path
     end
@@ -145,7 +145,7 @@ module Haven
     def encourage_review_author
       @user = User.find(params[:id])
 
-      ThingMailer.encourage_review_author(@user).deliver
+      ThingMailer.delay.encourage_review_author(@user)
 
       redirect_back_or haven_users_path
     end
