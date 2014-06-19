@@ -136,25 +136,6 @@ do (exports = Making) ->
         .lazyload
           threshold: 0
 
-    Score: ->
-      $('.score').each (i, el) ->
-        $self = $(el)
-        score = $self.data('score')
-        $stars = $()
-
-        if $self.find('.star').length > 0 then return
-
-        for val in [5..1]
-          $star = $('<span />').addClass('star').data('val', val)
-          $star.addClass('active') if $star.data('val') <= parseInt(score)
-          $stars = $stars.add($star)
-
-        $('<div />')
-          .addClass('rate')
-          .data('score', score)
-          .append($stars)
-          .appendTo($self)
-
     ExtendCarousel: ->
       $('.carousel').each ->
         $carousel      = $(@)

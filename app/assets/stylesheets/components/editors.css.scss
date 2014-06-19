@@ -107,7 +107,7 @@
   > header,
   > .body {
     margin: {
-      bottom: $padding-large-vertical * 2;
+      bottom: $padding-large-vertical * 3;
       left: auto;
       right: auto;
     }
@@ -117,14 +117,21 @@
   }
 
   > header {
-    border-bottom: $border-default;
 
     .title {
       border: none;
+      border-bottom: $border-default;
       display: block;
       font-size: $font-size-h1;
-      padding-bottom: 0;
+      margin-bottom: $padding-large-vertical;
+      padding-bottom: $padding-large-vertical;
       width: 100%;
+    }
+
+    label {
+      color: $gray;
+      height: 32px;
+      line-height: 32px;
     }
   }
 

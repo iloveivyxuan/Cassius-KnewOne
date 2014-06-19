@@ -315,7 +315,7 @@ do (exports = Making) ->
     # TODO
     ($popovertoggle = $(".popover-toggle")).length && $popovertoggle.popover()
     ($postcontent = $(".post_content, .article")).length && $postcontent.fitVids()
-    $('.score').length && Making.Score()
+    ($score = $('.score')).length && $score.score()
     if $(".track_event").length
       $(".track_event").click ->
         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')

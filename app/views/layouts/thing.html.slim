@@ -30,7 +30,8 @@
       header
         = f.text_field :title, class: "title", required: true, autocomplete: "off", placeholder: "标题"
         p
-          = f.range_field :score, max: 5, min: 0
+          label 评分：
+          = f.range_field :score, max: 5, min: 0, class: "range-rating"
       .body
       = f.hidden_field :content
 

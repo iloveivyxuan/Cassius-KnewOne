@@ -48,6 +48,7 @@ Making.Views.Editor = Backbone.View.extend
         if !@editor
           @initPlugin()
         @$el.show()
+    @initWidget()
     @initHelp()
     return @
 
@@ -80,6 +81,10 @@ Making.Views.Editor = Backbone.View.extend
     setTimeout ->
       self.$help.popover('hide')
     , 3000
+
+  initWidget: ->
+    !@$rating && (@$rating = @$('.range-rating')).length && @$rating.rating()
+
   saveDraft: ->
     console.log 'TODO: save draft.'
 
