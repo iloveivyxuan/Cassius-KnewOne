@@ -30,6 +30,10 @@ class Activity
   scope :from_date, ->(date) { where :created_at.gte => date.to_time.to_i }
   scope :to_date, ->(date) { where :created_at.lt => date.next_day.to_time.to_i }
 
+  def tmpl
+    self.type.to_s.split("_").last
+  end
+
   def reference(with_deleted = false)
     return if self.reference_union.blank?
 

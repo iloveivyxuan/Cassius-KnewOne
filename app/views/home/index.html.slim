@@ -8,17 +8,14 @@
         .form-group
           i.fa.fa-filter.selectpicker_label
           = select_tag :filter,
-          options_for_select([['最新动态', 'everything'],
-            ['我关注的', 'followings'],
-            ['最新产品', 'things'],
-            ['最新讨论', 'posts']],
+          options_for_select([['热点内容', 'hot'],
+            ['我关注的', 'followings']],
             selected: (params[:filter] or session[:home_filter])),
             class: 'form-control selectpicker js_auto_submit'
 
   #activities
     = render_feeds @activities
-
-  = paginate @activities
+  = paginate Kaminari.paginate_array([], total_count: 10000).page(params[:page]).per(40)
 
   .spinner.hide
     i.fa.fa-spinner.fa-spin.fa-2x
