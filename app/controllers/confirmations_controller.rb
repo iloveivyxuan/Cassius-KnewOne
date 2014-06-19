@@ -2,7 +2,12 @@
 class ConfirmationsController < Devise::ConfirmationsController
   # POST /resource/confirmation
   def create
-    self.resource = resource_class.send_confirmation_instructions(resource_params)
+    if user_signed_in?
+      self.resource = current_user.send_confirmation_instructions
+    else
+      self.resource = resource_class.send_confirmation_instructions(resource_params)
+    end
+
     yield resource if block_given?
 
     if successfully_sent?(resource)
