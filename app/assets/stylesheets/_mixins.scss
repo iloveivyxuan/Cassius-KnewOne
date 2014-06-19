@@ -105,11 +105,15 @@
 }
 
 @mixin button_compact($background-color, $color) {
+  @include transition-property(background-color, border-color, color);
+  @include transition-duration(.2s);
+
   background-color: transparent;
   border-color: $color;
   color: $color;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: $color;
     color: $background-color;
   }

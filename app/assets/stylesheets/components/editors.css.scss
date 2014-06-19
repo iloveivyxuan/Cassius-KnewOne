@@ -56,7 +56,6 @@
   }
 
   .btn {
-    border: $border-default;
     margin: {
       bottom: 3px;
       left: 1em;
@@ -70,19 +69,19 @@
     &:first-child {
       margin-left: 0;
     }
-
-    &.editor-help {
-      border: none;
-      margin: {
-        bottom: 4px;
-        top: 4px;
-      }
-    }
   }
 }
 
 .editor-help {
+  @extend .btn;
+  @extend .btn-link;
+
+  border: none;
   color: $gray;
+  margin: {
+    bottom: 4px;
+    top: 4px;
+  }
 
   &:hover,
   &:focus {
@@ -93,6 +92,23 @@
     width: 250px;
   }
 }
+
+.editor-close,
+.editor-drop,
+.editor-submit {
+  @extend .btn;
+  border-radius: 1em;
+  font-size: 14px;
+  padding: {
+    top: 3px;
+    bottom: 3px;
+  }
+  width: 60px;
+}
+
+.editor-close  { @include button_compact(#fff, $gray); }
+.editor-drop   { @include button_compact(#fff, $red); }
+.editor-submit { @include button_compact(#fff, $green); }
 
 .editor-content {
   background-color: #fff;
