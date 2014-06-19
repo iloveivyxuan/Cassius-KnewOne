@@ -3,7 +3,8 @@ class ConfirmationsController < Devise::ConfirmationsController
   # POST /resource/confirmation
   def create
     if user_signed_in?
-      self.resource = current_user.send_confirmation_instructions
+      current_user.send_confirmation_instructions
+      self.resource = current_user
     else
       self.resource = resource_class.send_confirmation_instructions(resource_params)
     end
