@@ -5,7 +5,7 @@ class ThingEncourageOwnersWorker
   def perform(thing_id)
     t = Thing.find(thing_id)
     t.owners.each do |u|
-      ThingMailer.create_encourage_owner(t, u) rescue Exception
+      ThingMailer.create_encourage_owner(t, u).deliver rescue Exception
     end
   end
 end

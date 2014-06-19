@@ -54,6 +54,12 @@ module Haven
       redirect_back_or batch_edit_haven_things_path
     end
 
+    def encourage_owners
+      ThingEncourageOwnersWorker.perform_async(params[:id])
+
+      redirect_back_or haven_things_path
+    end
+
     private
 
     def thing_params
