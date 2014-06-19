@@ -5,8 +5,6 @@
 
 Making.Views.Editor = Backbone.View.extend
 
-  el: '.editor'
-
   events:
     'click .editor-close': 'close'
     'click .editor-submit': 'submit'

@@ -1,6 +1,6 @@
 - if can? :update, post
   small.post_actions
-    = link_to_with_icon "", "fa fa-edit", edit_post_path, title: "编辑文章"
+    = link_to_with_icon "", "fa fa-edit", edit_post_path, title: "编辑文章", data: {"editor-mode" => "main", "editor-selector" => "#form-review", "editor-template" => "review", "toggle" => "editor"}
     = link_to_with_icon "", "fa fa-trash-o", post_path,
     method: :delete, title: "删除文章", data: {confirm: "您确定要删除文章吗?"}
     - if can? :manage, :all and post.instance_of? Review

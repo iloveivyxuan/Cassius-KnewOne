@@ -1,5 +1,5 @@
 - if user_signed_in?
   / = link_to_with_icon "写评测", "fa fa-pencil", new_thing_review_path(@thing), class: 'new_review', data: {toggle: 'tooltip', title: '把你的使用心得分享给大家吧～', trigger: 'manual',placement: 'bottom'}
-  = link_to_with_icon "写评测", "fa fa-pencil", new_thing_review_path(@thing), class: 'new_review', data: {"toggle" => "editor", "edit-template" => "review", "edit-mode" => "main"}
+  = link_to_with_icon "写评测", "fa fa-pencil", new_thing_review_path(@thing), class: 'new_review', data: {"toggle" => "editor", "editor-selector" => "#form-review", "editor-template" => "review", "editor-mode" => "main"}
 - else
   = link_to_with_icon "写评测", "fa fa-pencil", '#', class: 'new_review', data: {toggle: "modal", target: "#login-modal"}

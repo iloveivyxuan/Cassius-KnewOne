@@ -17,7 +17,8 @@
     - if user_signed_in?
       = render 'things/supplier', tp: tp
       = render 'things/group_fancy', tp: tp
-  = form_for [@thing, Review.new], html: {class: "editor"} do |f|
+
+  = form_for [@thing, Review.new], html: {class: "editor", id: "form-review"} do |f|
     .editor-menu
       output 正在保存草稿
       .pull-right

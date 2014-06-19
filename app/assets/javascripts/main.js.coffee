@@ -343,8 +343,9 @@ do (exports = Making) ->
             $this = $(@)
             if !$this.data('editor')
               editor = new exports.Views.Editor
-                        template: $this.data('edit-template')
-                        mode: $this.data('edit-mode')
+                        el: $this.data('editor-selector')
+                        # template: $this.data('editor-template')
+                        mode: $this.data('editor-mode')
               $this.data('editor', editor)
             else
               $this.data('editor').render()
