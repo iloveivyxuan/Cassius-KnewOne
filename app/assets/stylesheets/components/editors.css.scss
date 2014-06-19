@@ -97,7 +97,7 @@
 .editor-drop,
 .editor-submit {
   @extend .btn;
-  border-radius: 1em;
+  border-radius: 4px;
   font-size: 14px;
   padding: {
     top: 3px;
@@ -145,9 +145,11 @@
     }
 
     label {
-      color: $gray;
+      color: $text-muted;
+      font-weight: normal;
       height: 32px;
       line-height: 32px;
+      margin-bottom: 0;
     }
   }
 
