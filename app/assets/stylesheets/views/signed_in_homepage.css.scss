@@ -16,6 +16,28 @@ html.signed_in_homepage {
   // Section
   // ---------------------------------------------------------------------------
 
+  header.filter {
+    margin-bottom: 1.5em;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    li {
+      display: inline-block;
+      margin-right: 2em;
+
+      &.active {
+        border-bottom: 1px solid $blue;
+      }
+
+      a {
+        display: block;
+        padding-bottom: 0.5em;
+        color: $gray;
+      }
+    }
+  }
+
   #activities {
     @include clearfix;
 

@@ -1,17 +1,11 @@
 .container
-  header.page-header
-    h1
-      i.fa.fa-home
-      = current_user.name
-    .filter
-      = form_tag root_path, method: :get, class: 'form-inline', role: 'form' do
-        .form-group
-          i.fa.fa-filter.selectpicker_label
-          = select_tag :filter,
-          options_for_select([['热点内容', 'hot'],
-            ['我关注的', 'followings']],
-            selected: (params[:filter] or session[:home_filter])),
-            class: 'form-control selectpicker js_auto_submit'
+  header.filter
+    nav
+      ul
+        li class="#{session[:home_filter] == 'hot' ? 'active' : ''}"
+          = link_to '热点内容', {filter: 'hot'}
+        li class="#{session[:home_filter] == 'followings' ? 'active' : ''}"
+          = link_to '我关注的', {filter: 'followings'}
 
   #activities
     = render_feeds @activities
