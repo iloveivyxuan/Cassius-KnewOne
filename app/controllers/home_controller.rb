@@ -14,6 +14,7 @@ class HomeController < ApplicationController
   def index
     if user_signed_in?
       session[:home_filter] = (params[:filter] or session[:home_filter])
+      session[:home_filter] ||= 'hot'
       @activities = []
       params[:page] ||= 0
       case session[:home_filter]
