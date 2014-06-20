@@ -11,6 +11,33 @@ module Haven
       elsif params[:email].present?
         @users = @users.or({email: params[:email].downcase}, {unconfirmed_email: params[:email].downcase})
       elsif params[:filter]
+        if params[:filter].include? 'last_thing_created_at'
+          @users = @users.order_by([:last_thing_created_at, :desc])
+          if params[:from].present?
+            @users = @users.where(:last_thing_created_at.gte => Date.parse(params[:from]))
+          end
+          if params[:to].present?
+            @users = @users.where(:last_thing_created_at.lt => Date.parse(params[:to]).next_day)
+          end
+        end
+        if params[:filter].include? 'last_review_created_at'
+          @users = @users.order_by([:last_review_created_at, :desc])
+          if params[:from].present?
+            @users = @users.where(:last_review_created_at.gte => Date.parse(params[:from]))
+          end
+          if params[:to].present?
+            @users = @users.where(:last_review_created_at.lt => Date.parse(params[:to]).next_day)
+          end
+        end
+        if params[:filter].include? 'last_feeling_created_at'
+          @users = @users.order_by([:last_feeling_created_at, :desc])
+          if params[:from].present?
+            @users = @users.where(:last_feeling_created_at.gte => Date.parse(params[:from]))
+          end
+          if params[:to].present?
+            @users = @users.where(:last_feeling_created_at.lt => Date.parse(params[:to]).next_day)
+          end
+        end
         if params[:filter].include? 'role'
           @users = @users.staff
         end
@@ -46,15 +73,6 @@ module Haven
           if params[:to].present?
             @users = @users.where(:created_at.lt => Date.parse(params[:to]).next_day)
           end
-        end
-        if params[:filter].include? 'last_thing_created_at'
-          @users = @users.order_by([:last_thing_created_at, :desc])
-        end
-        if params[:filter].include? 'last_review_created_at'
-          @users = @users.order_by([:last_review_created_at, :desc])
-        end
-        if params[:filter].include? 'last_feeling_created_at'
-          @users = @users.order_by([:last_feeling_created_at, :desc])
         end
       else
         @users = @users.order_by([:created_at, :desc],
