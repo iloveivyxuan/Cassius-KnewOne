@@ -17,23 +17,68 @@ html.signed_in_homepage {
   // ---------------------------------------------------------------------------
 
   header.filter {
+    position: relative;
     margin-bottom: 1.5em;
 
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 18px;
+    line-height: 1;
 
-    li {
+    &:after {
+      content: '';
+
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+
+      border-bottom: 1px solid $gray-light;
+    }
+
+    h1 {
       display: inline-block;
-      margin-right: 2em;
+      width: 80%;
 
-      &.active {
-        border-bottom: 1px solid $blue;
-      }
+      margin: 0;
+      padding: 0;
+
+      font-size: 18px;
+      line-height: 1;
 
       a {
-        display: block;
+        display: inline-block;
         padding-bottom: 0.5em;
+        border-bottom: 2px solid $blue;
+
         color: $gray;
+        font-weight: bold;
+      }
+    }
+
+    nav {
+      display: inline-block;
+      width: 20%;
+
+      text-align: right;
+
+      li {
+        display: inline-block;
+        margin-left: 2em;
+
+        a {
+          display: block;
+          padding-bottom: 0.5em;
+          color: $gray-light;
+          font-weight: bold;
+        }
+
+        &.active {
+          border-bottom: 2px solid $blue;
+
+          a {
+            color: $gray;
+          }
+        }
       }
     }
   }
