@@ -33,7 +33,7 @@ Making.Views.Share = Backbone.View.extend
     pic = $('.sharing_cover').attr('src')
     if pic == undefined then pic = ''
 
-    window.open 'http://v.t.sina.com.cn/share/share.php?title=' + encodeURIComponent(content) + '&amp;url=' + encodeURIComponent(location.href) + '&amp;source=bookmark' + '&amp;content=utf-8', '_blank', 'width=500,height=500'
+    window.open 'http://v.t.sina.com.cn/share/share.php?appkey=<%= Settings.weibo.consumer_key %>&title=' + encodeURIComponent(content) + '&url=' + encodeURIComponent(location.href) + '&pic=' + encodeURIComponent(pic) + '&source=bookmark' + '&content=utf-8', '_blank', 'width=500,height=500'
 
   twitter: (event) ->
     event.preventDefault()
