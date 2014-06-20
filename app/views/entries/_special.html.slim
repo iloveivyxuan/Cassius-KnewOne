@@ -25,7 +25,7 @@ section.article
         = link_to "#subject_#{s.id.to_s}", class: "thing_special" do
           .image
             = image_tag s.thing.cover.url(:normal)
-          h6.title = s.thing.title
+          h6.title = s.title.present? ? s.title : s.thing.title
           p = s.subtitle
 
   - if post.intro.present?
@@ -40,7 +40,7 @@ section.article
           = image_tag s.thing.cover.url(:small), class: "image"
         .text
           = link_to s.thing, target: "_blank" do
-            h3.title = s.thing.title
+            h3.title = s.title.present? ? s.title : s.thing.title
           p = s.subtitle
       .content
         = sanitize s.content

@@ -4,6 +4,7 @@ class SpecialSubject
   embedded_in :special
 
   field :thing_id, type: String
+  field :title, type: String
   field :subtitle, type: String
   field :content, type: String
 
