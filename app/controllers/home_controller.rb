@@ -8,6 +8,7 @@ class HomeController < ApplicationController
 
   PER_THINGS = 6
   PER_REVIEWS = 2
+  PER_FEELINGS = 4
   PER_GROUPS = 5
 
   def index
@@ -21,9 +22,12 @@ class HomeController < ApplicationController
           @activities_things = current_user.relate_activities([:new_thing], [])
             .visible.limit(PER_THINGS).skip(PER_THINGS * i + params[:page].to_i * PER_THINGS * PER_GROUPS)
           @activities += @activities_things
-          @activities_exclude_things = current_user.relate_activities([:new_review, :new_feeling], [:new_review])
+          @activities_reviews = current_user.relate_activities([:new_review], [:new_review])
             .visible.limit(PER_REVIEWS).skip(PER_REVIEWS * i + params[:page].to_i * PER_REVIEWS * PER_GROUPS)
-          @activities += @activities_exclude_things
+          @activities += @activities_reviews
+          @activities_feelings = current_user.relate_activities([:new_feeling], [])
+            .visible.limit(PER_FEELINGS).skip(PER_FEELINGS * i + params[:page].to_i * PER_FEELINGS * PER_GROUPS)
+          @activities += @activities_feelings
         end
       else
         PER_GROUPS.times do |i|
