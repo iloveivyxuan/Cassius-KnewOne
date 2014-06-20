@@ -97,17 +97,17 @@ zh-CN:
   datetime:
     distance_in_words:
       about_x_hours:
-        one: '约1小时前'
-        other: '约%{count}小时前'
+        one: '1小时前'
+        other: '%{count}小时前'
       about_x_months:
-        one: '约1个月前'
-        other: '约%{count}个月前'
+        one: '1个月前'
+        other: '%{count}个月前'
       about_x_years:
-        one: '约1年前'
-        other: '约%{count}年前'
+        one: '1年前'
+        other: '%{count}年前'
       almost_x_years:
-        one: '近1年前'
-        other: '近%{count}年前'
+        one: '1年前'
+        other: '%{count}年前'
       half_a_minute: '刚刚'
       less_than_x_minutes:
         one: '刚刚'
