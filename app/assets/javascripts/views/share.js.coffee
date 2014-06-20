@@ -26,9 +26,14 @@ Making.Views.Share = Backbone.View.extend
 
   weibo: (event) ->
     event.preventDefault()
+
     content = $('meta[name="sharing_content"]').attr('content')
     if content == undefined or content.length == 0 then content = document.title + ' ' + location.href
-    window.open 'http://v.t.sina.com.cn/share/share.php?title=' + encodeURIComponent(content) + '&amp;url=' + encodeURIComponent(location.href) + '&amp;source=bookmark' + '&amp;content=utf-8', '_blank', 'width=500,height=500'
+
+    pic = $('.sharing_cover img').attr('src')
+    if pic == undefined then pic = ''
+
+    window.open 'http://v.t.sina.com.cn/share/share.php?title=' + encodeURIComponent(content) + '&amp;url=' + encodeURIComponent(location.href) + '&amp;pic=' + encodeURIComponent(pic) + '&amp;source=bookmark' + '&amp;content=utf-8', '_blank', 'width=500,height=500'
 
   twitter: (event) ->
     event.preventDefault()
