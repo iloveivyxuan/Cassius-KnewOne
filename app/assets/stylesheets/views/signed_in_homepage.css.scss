@@ -55,6 +55,10 @@ html.signed_in_homepage {
     .col-lg-12 {
       width: calc(100% - #{$activity-gap});
     }
+
+    .video {
+      display: none;
+    }
   }
 
   footer[role="contentinfo"] {
