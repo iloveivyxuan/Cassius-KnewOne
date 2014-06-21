@@ -1,11 +1,29 @@
 module Api
   module V1
     class UsersController < ApiController
-      before_action :set_user, except: [:index]
-      doorkeeper_for :all
+      before_action :set_user, except: [:index, :create]
+      doorkeeper_for :all, except: [:create]
+      APP_NAME = 'KnewOne APP'
 
       def index
         render_error :nyi, 'NYI'
+      end
+
+      def create
+        params[:password_confirmation] = params[:password] # no need password confirmation when sign up
+
+        user = User.new user_params
+
+        if user.save
+          app = Doorkeeper::Application.where(name: APP_NAME).first
+          token = app.access_tokens.create! resource_owner_id: user.id,
+                                            scopes: 'public official',
+                                            expires_in: Doorkeeper.configuration.access_token_expires_in,
+                                            use_refresh_token: Doorkeeper.configuration.refresh_token_enabled?
+          render :json => {:access_token => token.token, :user_id => user.id.to_s}
+        else
+          render json: user.errors, status: :unprocessable_entity
+        end
       end
 
       def show
@@ -67,6 +85,10 @@ module Api
 
       def set_user
         @user = User.find(params[:id])
+      end
+
+      def user_params
+        params.require(:user).permit :name, :email, :password
       end
     end
   end
