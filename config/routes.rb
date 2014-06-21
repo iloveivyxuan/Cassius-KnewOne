@@ -304,11 +304,15 @@ Making::Application.routes.draw do
       resources :things, only: [:index, :show, :create] do
         resources :reviews, only: [:index, :show] do
           resources :comments, controller: :review_comments, only: [:index, :show, :create, :destroy]
+          resource :vote, only: [:create, :destroy, :show]
         end
         resources :feelings, only: [:index, :show, :create] do
           resources :comments, controller: :feeling_comments, only: [:index, :show, :create, :destroy]
+          resource :vote, only: [:create, :destroy, :show]
         end
         resources :comments, controller: :thing_comments, only: [:index, :show, :create, :destroy]
+
+        resource :vote, only: [:create, :destroy, :show]
       end
 
       resources :categories, only: [:index, :show] do
@@ -341,6 +345,7 @@ Making::Application.routes.draw do
 
         resources :topics, except: [:new, :edit] do
           resources :comments, controller: :topic_comments, only: [:index, :show, :create, :destroy]
+          resource :vote, only: [:create, :destroy, :show]
         end
       end
 
