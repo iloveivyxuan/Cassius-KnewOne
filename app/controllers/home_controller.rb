@@ -19,39 +19,9 @@ class HomeController < ApplicationController
       params[:page] ||= 0
       case session[:home_filter]
       when "followings"
-        PER_GROUPS.times do |i|
-          @activities_things = current_user.relate_activities([:new_thing], [])
-            .visible.limit(PER_THINGS).skip(PER_THINGS * i + params[:page].to_i * PER_THINGS * PER_GROUPS)
-          @activities += @activities_things
-          @activities_reviews = current_user.relate_activities([:new_review], [:new_review])
-            .visible.limit(PER_REVIEWS).skip(PER_REVIEWS * i + params[:page].to_i * PER_REVIEWS * PER_GROUPS)
-          @activities += @activities_reviews
-          @activities_feelings = current_user.relate_activities([:new_feeling], [])
-            .visible.limit(PER_FEELINGS).skip(PER_FEELINGS * i + params[:page].to_i * PER_FEELINGS * PER_GROUPS)
-          @activities += @activities_feelings
-        end
+        @activities = following_activities(params[:page])
       else
-        PER_GROUPS.times do |i|
-          @things = Thing.hot.limit(PER_THINGS).skip(PER_THINGS * i + params[:page].to_i * PER_THINGS * PER_GROUPS)
-          @reviews = Review.hot.limit(PER_REVIEWS).skip(PER_REVIEWS * i + params[:page].to_i * PER_REVIEWS * PER_GROUPS)
-
-          @things.each do |t|
-            @activities << Activity.new(
-                                        type: :new_thing,
-                                        reference_union: "Thing_#{t.id}",
-                                        source_union: "Thing_#{t.id}",
-                                        visible: true,
-                                        user_id: t.author.id)
-          end
-          @reviews.each do |r|
-            @activities << Activity.new(
-                                        type: :new_review,
-                                        reference_union: "Review_#{r.id}",
-                                        source_union: "Thing_#{r.thing.id}",
-                                        visible: true,
-                                        user_id: r.author.id)
-          end
-        end
+        @activities = hot_activities(params[:page])
       end
 
       if request.xhr?
@@ -157,5 +127,67 @@ class HomeController < ApplicationController
 
   def skip_follow_user
     session[:skip] = true if params[:skip].present?
+  end
+
+  def following_activities(page)
+    page ||= 0
+    PER_GROUPS.times do |i|
+      @activities_things = current_user.relate_activities([:new_thing], [])
+        .visible.limit(PER_THINGS).skip(PER_THINGS * i + page.to_i * PER_THINGS * PER_GROUPS)
+      @activities += @activities_things
+      @activities_reviews = current_user.relate_activities([:new_review], [:new_review])
+        .visible.limit(PER_REVIEWS).skip(PER_REVIEWS * i + page.to_i * PER_REVIEWS * PER_GROUPS)
+      @activities += @activities_reviews
+      @activities_feelings = current_user.relate_activities([:new_feeling], [])
+        .visible.limit(PER_FEELINGS).skip(PER_FEELINGS * i + page.to_i * PER_FEELINGS * PER_GROUPS)
+      @activities += @activities_feelings
+    end
+    @activities = @activities.sort { |x, y| y.created_at <=> x.created_at }
+    things = @activities.select { |i| i.type == :new_thing }
+
+    # 把三个 thing 拼成一组
+    i = 0
+    while !things.empty?
+      obj = @activities[i]
+      if obj.type == :new_thing
+        things.delete(obj)
+        first, second = things.shift(2)
+        @activities.delete(first)
+        @activities.delete(second)
+        @activities.compact!
+        @activities.insert(i + 1, first)
+        @activities.insert(i + 2, second)
+        i += 2
+      end
+      i += 1
+    end
+
+    @activities
+  end
+
+  def hot_activities(page)
+    page ||= 0
+    PER_GROUPS.times do |i|
+      @things = Thing.hot.limit(PER_THINGS).skip(PER_THINGS * i + page.to_i * PER_THINGS * PER_GROUPS)
+      @reviews = Review.hot.limit(PER_REVIEWS).skip(PER_REVIEWS * i + page.to_i * PER_REVIEWS * PER_GROUPS)
+
+      @things.each do |t|
+        @activities << Activity.new(
+                                    type: :new_thing,
+                                    reference_union: "Thing_#{t.id}",
+                                    source_union: "Thing_#{t.id}",
+                                    visible: true,
+                                    user_id: t.author.id)
+      end
+      @reviews.each do |r|
+        @activities << Activity.new(
+                                    type: :new_review,
+                                    reference_union: "Review_#{r.id}",
+                                    source_union: "Thing_#{r.thing.id}",
+                                    visible: true,
+                                    user_id: r.author.id)
+      end
+    end
+    @activities
   end
 end
