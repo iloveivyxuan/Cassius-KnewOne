@@ -21,8 +21,14 @@ class OrdersController < ApplicationController
   def create
     if params[:order][:address_id] == 'new'
       address = current_user.addresses.build(order_params[:address])
-      address.save!
-      params[:order][:address_id] = address.id.to_s
+      if address.save
+        params[:order][:address_id] = address.id.to_s
+      else
+        current_user.addresses.delete(address)
+        @order = Order.build_order(current_user, nil)
+        render 'new'
+        return
+      end
     end
 
     @order = Order.build_order(current_user, order_params.except(:address))
