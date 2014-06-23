@@ -144,15 +144,15 @@ q, blockquote {
         cursor: pointer;
         &.mediumInsert-imageRemove {
           right: 0;
-          background-image: url(../images/remove.png);
+          background-image: url(http://image.knewone.com/photos/59bb85ed01a766ef8a8b240fed4bd978.png);
         }
         &.mediumInsert-imageResizeSmaller {
           right: 31px;
-          background-image: url(../images/resize-smaller.png);
+          background-image: url(http://image.knewone.com/photos/812cd0b085fc1df24c51d8d782825597.png);
         }
         &.mediumInsert-imageResizeBigger {
           @extend .mediumInsert-imageResizeSmaller;
-          background-image: url(../images/resize-bigger.png);
+          background-image: url(http://image.knewone.com/photos/065866679a675ff017140ebfaecfd379.png);
         }
       }
       &:first-child:after {
