@@ -1,6 +1,8 @@
 do (exports = Making) ->
 
   # TODO
+  exports.user = $('#user').data('id')
+  
   exports.Breakpoints =
     "screenXSMin": "480px"
     "screenXSMax": "767px"

@@ -20,7 +20,7 @@
 
   = form_for [@thing, Review.new], html: {class: "editor", id: "form-review"} do |f|
     .editor-menu
-      output 正在保存草稿
+      output
       .pull-right
         button.editor-help type="button" data-container=".editor-help" data-toggle="popover" data-placement="bottom" data-content="欢迎您在这里写下对于产品本身的使用体验，给其他对产品感兴趣的朋友们提供客观可信的参考，谢谢：）" title="温馨提示"
           i.fa.fa-question.fa-alone
@@ -30,7 +30,7 @@
     article.editor-content.article
       header
         = f.text_field :title, class: "title", required: true, autocomplete: "off", placeholder: "标题"
-        p
+        div
           label 评分：
           = f.range_field :score, max: 5, min: 0, class: "range-rating"
       .body

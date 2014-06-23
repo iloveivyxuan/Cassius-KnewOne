@@ -17,7 +17,7 @@
         .on 'click', '.star', ->
           $star = $(@)
           $star.addClass('selected').siblings().removeClass('selected')
-          $range.val($star.data('val'))
+          $range.val($star.data('val')).trigger('change')
           $star.parents('.rating').data('score', $range.val())
 
       score = parseInt($range.val())
