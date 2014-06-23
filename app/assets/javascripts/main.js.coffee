@@ -340,15 +340,17 @@ do (exports = Making) ->
         switch exports.device
           when 'desktop'
             event.preventDefault()
-            $this = $(@)
-            if !$this.data('editor')
+            $this   = $(@)
+            $target = $($this.data('editor-selector'))
+            if !$target.data('editor')
               editor = new exports.Views.Editor
                         el: $this.data('editor-selector')
                         # template: $this.data('editor-template')
+                        model: new exports.Models.Editor()
                         mode: $this.data('editor-mode')
-              $this.data('editor', editor)
+              $target.data('editor', editor)
             else
-              $this.data('editor').render()
+              $target.data('editor').render()
             $docbody.addClass('editor-open')
 
       .on 'click', '.fanciers > a', (event) ->

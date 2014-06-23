@@ -3,95 +3,172 @@
 # Edit Mode: main, complemental.
 #
 
-Making.Views.Editor = Backbone.View.extend
+do (exports = Making) ->
 
-  events:
-    'click .editor-close': 'close'
-    'click .editor-submit': 'submit'
+  exports.Views.Editor = Backbone.View.extend
 
-  initialize: (data) ->
-    @mode     = data.mode
-    # @template = HandlebarsTemplates['editor/' + data.template]
-    @$form    = @$el.parents('form')
-    @$help    = @$('.editor-help')
-    @$submit  = @$('.editor-submit')
-    @$drop    = @$('.editor-drop')
-    @$close   = @$('.editor-close')
-    @$output  = @$('.editor-menu output')
-    @$content = @$('.editor-content')
-    @$bodyField = @$('[name$="[content]"]')
+    events:
+      'change [name]': 'save'
+      'input .editor-content > .body': 'save'
+      'click .editor-close': 'close'
+      'click .editor-drop': 'drop'
+      'click .editor-submit': 'submit'
 
-    @render()
+    initialize: (options) ->
+      @mode       = options.mode
+      # @template = HandlebarsTemplates['editor/' + options.template]
+      @draftId    = (exports.user + '+' + 'draft' + location.pathname + '+' + @el.id).replace(/\//g, '+')
+      @url        = location.origin + '/drafts/' + @draftId
+      @$help      = @$('.editor-help')
+      @$submit    = @$('.editor-submit')
+      @$drop      = @$('.editor-drop')
+      @$close     = @$('.editor-close')
+      @$output    = @$('.editor-menu output')
+      @$content   = @$('.editor-content')
+      @$fields    = @$content.find('[name]')
+      @$bodyField = @$('[name$="[content]"]')
 
-  render: ->
-    if @mode is 'complemental'
-      @$drop.addClass('hidden')
-      @$submit.addClass('hidden')
-    else
-      # @TODO
-      # has draft?
-      if false
+      @listenTo @model, 'change:status', @showStatus
+
+      @render()
+
+    render: ->
+      if @mode is 'complemental'
+        @$drop.addClass('hidden')
+        @$submit.addClass('hidden')
+      else
         # @TODO
-        # loading
+        # has draft?
+        if false
+          # @TODO
+          # loading
+          $
+            .ajax
+              url: @url
+            .done (data, status, xhr) ->
+              @$content.html(@template(data))
+              if !@editor
+                @activatePlugin()
+              @$el.show()
+        else
+          # @$content.html(@template({}))
+          if !@editor
+            @activatePlugin()
+          @$el.show()
+      @initHelp()
+      @initWidget()
+      return @
+
+    # @TODO
+    reset: ->
+      console.log 'TODO: reset.'
+
+    showStatus: ->
+      @$output.text(@model.get('status'))
+
+    activatePlugin: ->
+      @$body = @$('.editor-content > .body')
+
+      @editor = new MediumEditor @$body,
+        buttons: ['header1', 'header2', 'bold', 'italic', 'quote', 'anchor',
+                    'orderedlist', 'unorderedlist']
+        buttonLabels: 'fontawesome'
+        firstHeader: 'h2'
+        secondHeader: 'h3'
+        placeholder: '正文'
+        targetBlank: true
+
+      @$body.mediumInsert
+        editor: @editor
+        addons:
+          images: {}
+          embeds: {}
+
+    deactivatePlugin: ->
+      @editor.deactivate()
+      @$body.mediumInsert('disable')
+
+    initHelp: ->
+      self = @
+      @$help
+        .popover
+          html: true
+        .popover('show')
+
+      setTimeout ->
+        self.$help.popover('hide')
+      , 3000
+
+    initWidget: ->
+      !@$rating && (@$rating = @$('.range-rating')).length && @$rating.rating()
+
+    formatDraft: ->
+      content = {}
+
+      @$bodyField.val(@editor.serialize()['element-0'].value)
+
+      _.each @$fields, (element, index, list) ->
+        $field = $(element)
+        content[$field.attr('name')] = $field.prop('value')
+      , @
+
+      @model.get('draft').content = JSON.stringify(content)
+
+      return @model.get('draft')
+
+    hide: ->
+      @$el.hide()
+      $docbody.removeClass('editor-open')
+
+    save: (persisten, callback) ->
+      console.log 'save'
+      if persisten is true
+        draftId = @draftId
+        draft   = @formatDraft()
+        hide    = _.bind(@hide, @)
+
+        @model.updateStatus('save')
         $
           .ajax
-            url: '/draft'
+            url: @url
+            type: 'put'
+            data:
+              draft: draft
           .done (data, status, xhr) ->
-            @$content.html(@template(data))
-            if !@editor
-              @initPlugin()
-            @$el.show()
+            localStorage.removeItem(draftId)
+            hide()
       else
-        # @$content.html(@template({}))
-        if !@editor
-          @initPlugin()
-        @$el.show()
-    @initWidget()
-    @initHelp()
-    return @
+        localStorage[@draftId] = JSON.stringify(@formatDraft())
 
+    read: ->
+      $
+        .ajax
+          url: @url
+          type: 'get'
+        .done (data, status, xhr) ->
 
-  initPlugin: ->
-    @$body = @$('.editor-content > .body')
+    close: ->
+      @save true, @hide
 
-    @editor = new MediumEditor @$body,
-      buttons: ['header1', 'header2', 'bold', 'italic', 'quote', 'anchor',
-                  'orderedlist', 'unorderedlist']
-      buttonLabels: 'fontawesome'
-      firstHeader: 'h2'
-      secondHeader: 'h3'
-      placeholder: '正文'
-      targetBlank: true
+    drop: ->
+      if confirm '确定舍弃文档吗？'
+        draftId          = @draftId
+        hide             = _.bind(@hide, @)
+        reset            = _.bind(@reset, @)
+        deactivatePlugin = _.bind(@deactivatePlugin, @)
 
-    @$body.mediumInsert
-      editor: @editor
-      addons:
-        images: {}
-        embeds: {}
+        @model.updateStatus('drop')
+        # @TODO
+        $
+          .ajax
+            url: @url
+            type: 'delete'
+          .done (data, status, xhr) ->
+            localStorage.removeItem(draftId)
+            hide()
+            reset()
+            deactivatePlugin()
 
-  initHelp: ->
-    self = @
-    @$help
-      .popover
-        html: true
-      .popover('show')
-
-    setTimeout ->
-      self.$help.popover('hide')
-    , 3000
-
-  initWidget: ->
-    !@$rating && (@$rating = @$('.range-rating')).length && @$rating.rating()
-
-  saveDraft: ->
-    console.log 'TODO: save draft.'
-
-  close: ->
-    # @TODO
-    @saveDraft()
-    @$el.hide()
-    $docbody.removeClass('editor-open')
-
-  submit: (event) ->
-    @$bodyField.val(@editor.serialize()['element-0'].value)
-    @$form.submit()
+    submit: (event) ->
+      @model.updateStatus('submit')
+      @$bodyField.val(@editor.serialize()['element-0'].value)
