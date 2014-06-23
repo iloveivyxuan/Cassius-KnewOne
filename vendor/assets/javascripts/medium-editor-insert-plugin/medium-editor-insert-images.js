@@ -24,6 +24,11 @@
       useDragAndDrop: true,
 
       /**
+      * CDN domain, if used.
+      */
+      domain: '',
+
+      /**
       * Relative path to a script that handles file uploads
       */
       imagesUploadScript: 'upload.php',
@@ -54,22 +59,22 @@
       * @param {void}
       */
       uploadFile: function ($placeholder, file, that) {
-        $.ajax({
-          type: "post",
-          url: that.options.imagesUploadScript,
-          xhr: function () {
-            var xhr = new XMLHttpRequest();
-            xhr.upload.onprogress = that.updateProgressBar;
-            return xhr;
-          },
-          cache: false,
-          contentType: false,
-          complete: function (jqxhr) {
-            that.uploadCompleted(jqxhr, $placeholder);
-          },
-          processData: false,
-          data: that.options.formatData(file)
-        });
+        // $.ajax({
+        //   type: "post",
+        //   url: that.options.imagesUploadScript,
+        //   xhr: function () {
+        //     var xhr = new XMLHttpRequest();
+        //     xhr.upload.onprogress = that.updateProgressBar;
+        //     return xhr;
+        //   },
+        //   cache: false,
+        //   contentType: false,
+        //   complete: function (jqxhr) {
+        //     that.uploadCompleted(jqxhr, $placeholder);
+        //   },
+        //   processData: false,
+        //   data: that.options.formatData(file)
+        // });
       },
 
       /**
@@ -80,13 +85,14 @@
       * @return {void}
       */
       deleteFile: function (file, that) {
-        $.ajax({
-          type: "post",
-          url: that.options.imagesDeleteScript,
-          data: {
-            file: file
-          }
-        });
+        throw new Error('Not implemented');
+        // $.ajax({
+        //   type: "post",
+        //   url: that.options.imagesDeleteScript,
+        //   data: {
+        //     file: file
+        //   }
+        // });
       }
     },
 
@@ -154,7 +160,33 @@
       var that = this,
           $selectFile, files;
 
-      $selectFile = $('<input type="file">').click();
+      if (this.options.templateFile) {
+        $selectFile = this.options.templateFile
+                        .clone().attr('id', '')
+                        .fileupload({
+                          dataType: 'json',
+                          dropZone: null,
+                          formData: function() {
+                            return [{
+                              name: "policy",
+                              value: $selectFile.attr('data-policy')
+                            }, {
+                              name: "signature",
+                              value: $selectFile.attr('data-signature')
+                            }];
+                          },
+                          send: function() {
+                          },
+                          always: function() {
+                          },
+                          done: function(e, data) {
+                            that.uploadCompleted(data.jqXHR, $placeholder);
+                          }
+                        })
+                        .click();
+      } else {
+        $selectFile = $('<input type="file">').click();
+      }
       $selectFile.change(function () {
         files = this.files;
         that.uploadFiles($placeholder, files, that);
@@ -198,8 +230,9 @@
       $progress.attr('value', 100);
       $progress.html(100);
 
-      if (jqxhr.responseText) {
-        $progress.before('<figure class="mediumInsert-images"><img src="'+ jqxhr.responseText +'" draggable="true" alt=""></figure>');
+      if (jqxhr.responseJSON) {
+        $placeholder.closest('.mediumInsert').removeClass('empty');
+        $progress.before('<figure class="mediumInsert-images"><img src="' + this.options.domain + jqxhr.responseJSON.url + '" draggable="true" alt=""></figure>');
         $img = $progress.siblings('img');
 
         $img.load(function () {

@@ -92,7 +92,10 @@ do (exports = Making) ->
       @$body.mediumInsert
         editor: @editor
         addons:
-          images: {}
+          images:
+            useDragAndDrop: false
+            domain: $('#file').data('domain')
+            templateFile: $('#file')
           embeds: {}
 
     deactivatePlugin: ->

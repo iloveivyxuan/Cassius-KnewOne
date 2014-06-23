@@ -17,6 +17,7 @@
           = f.range_field :score, max: 5, min: 0, class: "range-rating"
       .body
       = f.hidden_field :content
+  = attachment_tag target: "#pictureBtn", edit: "insertImage"
 
 - content_for :script do
   coffee:
