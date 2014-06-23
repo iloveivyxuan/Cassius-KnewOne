@@ -92,6 +92,9 @@ gem 'browser'
 # cache
 gem 'redis-rails'
 
+# resolve error like ArgumentError: invalid byte sequence in UTF-8
+gem 'utf8-cleaner'
+
 # servers
 group :production do
   gem 'unicorn'
