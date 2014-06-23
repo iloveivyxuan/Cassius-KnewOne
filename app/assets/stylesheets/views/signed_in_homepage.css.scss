@@ -35,35 +35,10 @@ html.signed_in_homepage {
       border-bottom: 1px solid $gray-light;
     }
 
-    h1 {
-      display: inline-block;
-      width: 80%;
-
-      margin: 0;
-      padding: 0;
-
-      font-size: 18px;
-      line-height: 1;
-
-      a {
-        display: inline-block;
-        padding-bottom: 0.5em;
-        border-bottom: 2px solid $blue;
-
-        color: $gray;
-        font-weight: bold;
-      }
-    }
-
     nav {
-      display: inline-block;
-      width: 20%;
-
-      text-align: right;
-
       li {
         display: inline-block;
-        margin-left: 2em;
+        margin-right: 2em;
 
         a {
           display: block;

@@ -1,8 +1,5 @@
 .container
   header.filter
-    h1
-      = link_to current_user.name, current_user
-
     nav
       ul
         li class="#{session[:home_filter] == 'hot' ? 'active' : ''}"
