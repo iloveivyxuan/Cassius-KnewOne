@@ -345,7 +345,6 @@ do (exports = Making) ->
             if !$target.data('editor')
               editor = new exports.Views.Editor
                         el: $this.data('editor-selector')
-                        # template: $this.data('editor-template')
                         model: new exports.Models.Editor()
                         mode: $this.data('editor-mode')
               $target.data('editor', editor)

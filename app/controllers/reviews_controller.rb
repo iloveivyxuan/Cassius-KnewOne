@@ -27,6 +27,7 @@ class ReviewsController < ApplicationController
   end
 
   def new
+    render layout: 'application'
   end
 
   def create
@@ -42,7 +43,7 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    render 'new'
+    render 'new', layout: 'application'
   end
 
   def update

@@ -18,24 +18,6 @@
       = render 'things/supplier', tp: tp
       = render 'things/group_fancy', tp: tp
 
-  = form_for [@thing, Review.new], html: {class: "editor", id: "form-review"} do |f|
-    .editor-menu
-      output
-      .pull-right
-        button.editor-help type="button" data-container=".editor-help" data-toggle="popover" data-placement="bottom" data-content="欢迎您在这里写下对于产品本身的使用体验，给其他对产品感兴趣的朋友们提供客观可信的参考，谢谢：）" title="温馨提示"
-          i.fa.fa-question.fa-alone
-        button.editor-close type="button" 返回
-        button.editor-drop type="button" 舍弃
-        button.editor-submit type="submit" 发布
-    article.editor-content.article
-      header
-        = f.text_field :title, class: "title", required: true, autocomplete: "off", placeholder: "标题"
-        div
-          label 评分：
-          = f.range_field :score, max: 5, min: 0, class: "range-rating"
-      .body
-      = f.hidden_field :content
-
 - content_for :script do
   javascript:
     Making.InitThing();

@@ -1,6 +1,8 @@
 # Editor.
 #
-# Edit Mode: main, complemental.
+# Edit Mode:
+#   standalone: Init from new page.
+#   complemental: Init from current page.
 #
 
 do (exports = Making) ->
@@ -16,7 +18,6 @@ do (exports = Making) ->
 
     initialize: (options) ->
       @mode       = options.mode
-      # @template = HandlebarsTemplates['editor/' + options.template]
       @draftId    = (exports.user + '+' + 'draft' + location.pathname + '+' + @el.id).replace(/\//g, '+')
       @url        = location.origin + '/drafts/' + @draftId
       @$help      = @$('.editor-help')
@@ -25,6 +26,7 @@ do (exports = Making) ->
       @$close     = @$('.editor-close')
       @$output    = @$('.editor-menu output')
       @$content   = @$('.editor-content')
+      @$body      = @$content.children('.body')
       @$fields    = @$content.find('[name]')
       @$bodyField = @$('[name$="[content]"]')
 
@@ -33,42 +35,51 @@ do (exports = Making) ->
       @render()
 
     render: ->
-      if @mode is 'complemental'
-        @$drop.addClass('hidden')
-        @$submit.addClass('hidden')
-      else
-        # @TODO
-        # has draft?
-        if false
+      @model.updateStatus('edit')
+
+      switch @mode
+        when 'standalone'
+          @$close.addClass('hidden')
           # @TODO
-          # loading
-          $
-            .ajax
-              url: @url
-            .done (data, status, xhr) ->
-              @$content.html(@template(data))
-              if !@editor
-                @activatePlugin()
-              @$el.show()
-        else
-          # @$content.html(@template({}))
-          if !@editor
-            @activatePlugin()
-          @$el.show()
+          # has draft?
+          if false
+            # @TODO
+            @model.updateStatus('load')
+            $
+              .ajax
+                url: @url
+                type: 'get'
+              .done (data, status, xhr) ->
+                @model.updateStatus('edit')
+                @show()
+          else
+            @show()
+        when 'complemental'
+          # @TODO
+          @$drop.addClass('hidden')
+          @$submit.addClass('hidden')
+
       @initHelp()
       @initWidget()
-      return @
+      @
 
     # @TODO
     reset: ->
       console.log 'TODO: reset.'
 
+    show: ->
+      @getBody()
+      @activatePlugin()
+      @$el.show()
+
+    hide: ->
+      @$el.hide()
+      $docbody.removeClass('editor-open')
+
     showStatus: ->
       @$output.text(@model.get('status'))
 
     activatePlugin: ->
-      @$body = @$('.editor-content > .body')
-
       @editor = new MediumEditor @$body,
         buttons: ['header1', 'header2', 'bold', 'italic', 'quote', 'anchor',
                     'orderedlist', 'unorderedlist']
@@ -102,10 +113,16 @@ do (exports = Making) ->
     initWidget: ->
       !@$rating && (@$rating = @$('.range-rating')).length && @$rating.rating()
 
+    getBody: ->
+      @$body.html(@$bodyField.val())
+
+    setBody: ->
+      @$bodyField.val(@editor.serialize()['element-0'].value)
+
     formatDraft: ->
       content = {}
 
-      @$bodyField.val(@editor.serialize()['element-0'].value)
+      @setBody()
 
       _.each @$fields, (element, index, list) ->
         $field = $(element)
@@ -115,10 +132,6 @@ do (exports = Making) ->
       @model.get('draft').content = JSON.stringify(content)
 
       return @model.get('draft')
-
-    hide: ->
-      @$el.hide()
-      $docbody.removeClass('editor-open')
 
     save: (persisten, callback) ->
       console.log 'save'
@@ -148,10 +161,19 @@ do (exports = Making) ->
         .done (data, status, xhr) ->
 
     close: ->
-      @save true, @hide
+      callback = null
+
+      switch @mode
+        when 'standalone'
+          callback = -> history.back()
+        when 'complemental'
+          callback = @hide
+
+      @save true, callback
 
     drop: ->
       if confirm '确定舍弃文档吗？'
+        $el              = @$el
         draftId          = @draftId
         hide             = _.bind(@hide, @)
         reset            = _.bind(@reset, @)
@@ -168,7 +190,8 @@ do (exports = Making) ->
             hide()
             reset()
             deactivatePlugin()
+            $el.data('editor', null)
 
     submit: (event) ->
       @model.updateStatus('submit')
-      @$bodyField.val(@editor.serialize()['element-0'].value)
+      @setBody()
