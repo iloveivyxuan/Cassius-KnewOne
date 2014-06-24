@@ -8,7 +8,7 @@
           = link_to '我关注的', {filter: 'followings'}
 
   #activities
-    = render_feeds @activities
+    = render partial: 'activity', collection: @activities
   = paginate Kaminari.paginate_array([], total_count: 10000).page(params[:page]).per(40)
 
   .spinner.hide
