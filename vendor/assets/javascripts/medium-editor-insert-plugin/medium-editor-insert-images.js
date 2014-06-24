@@ -85,7 +85,6 @@
       * @return {void}
       */
       deleteFile: function (file, that) {
-        throw new Error('Not implemented');
         // $.ajax({
         //   type: "post",
         //   url: that.options.imagesDeleteScript,
@@ -143,9 +142,20 @@
     */
 
     preparePreviousImages: function () {
-      this.$el.find('.mediumInsert-images').each(function() {
-        var $parent = $(this).parent();
-        $parent.html('<div class="mediumInsert-placeholder" draggable="true">' + $parent.html() + '</div>');
+      var $insertBlockTemplate = $($.fn.mediumInsert.insert.insertBlock);
+
+      $insertBlockTemplate
+        .removeClass('empty')
+        .find('.mediumInsert-placeholder')
+          .attr('draggable', true)
+          .append($('<figure class="mediumInsert-images" />'))
+
+      this.$el.find('img').each(function() {
+        var $this = $(this),
+            $insertBlock = $insertBlockTemplate.clone();
+
+        $this.after($insertBlock);
+        $this.appendTo($insertBlock.find('.mediumInsert-images'));
       });
     },
 

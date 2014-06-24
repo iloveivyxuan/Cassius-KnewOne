@@ -39,17 +39,15 @@
           $inserts = $('.mediumInsert', $clone);
           for (j = 0; j < $inserts.length; j++) {
             $insert = $($inserts[j]);
-            $insertData = $('.mediumInsert-placeholder, .mediumInsert-embeds', $insert).children();
+            // @TODO
+            // $insertData = $('.mediumInsert-placeholder, .mediumInsert-embeds', $insert).children();
+            $insertData = $('.mediumInsert-placeholder', $insert).children();
             if ($insertData.length === 0) {
               $insert.remove();
             } else {
-              $insert.removeAttr('contenteditable');
-              $('img[draggable]', $insert).removeAttr('draggable');
-              if ($insert.hasClass('small')) {
-                $insertData.addClass('small');
-              }
-              $('.mediumInsert-buttons', $insert).remove();
-              $insertData.unwrap();
+              $('img[draggable]', $insert).removeAttr('draggable')
+              $insert.after($insertData.children());
+              $insert.remove();
             }
           }
 
@@ -281,6 +279,7 @@
         '</div>'+
         '<div class="mediumInsert-placeholder"></div>'+
       '</div>';
+      $.fn.mediumInsert.insert.insertBlock = insertBlock;
 
       if ($el.is(':empty')) {
         $el.html('<p><br></p>');
