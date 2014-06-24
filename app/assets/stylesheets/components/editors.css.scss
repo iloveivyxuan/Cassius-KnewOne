@@ -273,6 +273,11 @@
   top: 0;
 }
 
+.mediumInsert-imageResizeSmaller,
+.mediumInsert-imageResizeBigger {
+  display: none !important;
+}
+
 .medium-editor-toolbar-form-anchor {
   background-color: #fff;
   border: 1px solid $text-muted;
