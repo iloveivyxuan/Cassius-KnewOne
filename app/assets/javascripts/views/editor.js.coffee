@@ -120,7 +120,7 @@ do (exports = Making) ->
       @$body.html(@$bodyField.val())
 
     setBody: ->
-      @$bodyField.val(@editor.serialize()['element-0'].value)
+      @$bodyField.val(@editor.serialize()[@$body.attr('id')].value)
 
     formatDraft: ->
       content = {}

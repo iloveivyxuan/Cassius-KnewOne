@@ -15,7 +15,7 @@
         div
           label 评分：
           = f.range_field :score, max: 5, min: 0, class: "range-rating"
-      .body
+      .body#form-review-body
       = f.hidden_field :content
   = attachment_tag target: "#pictureBtn", edit: "insertImage"
 
