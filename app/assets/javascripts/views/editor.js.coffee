@@ -18,7 +18,10 @@ do (exports = Making) ->
 
     initialize: (options) ->
       @mode       = options.mode
-      @draftId    = (exports.user + '+' + 'draft' + location.pathname + '+' + @el.id).replace(/\//g, '+')
+      @draftId    = exports.user +
+                    '+draft+' +
+                    encodeURIComponent(location.pathname) +
+                    '+#' + (@el.id ? '')
       @url        = location.origin + '/drafts/' + @draftId
       @$help      = @$('.editor-help')
       @$submit    = @$('.editor-submit')
@@ -35,37 +38,36 @@ do (exports = Making) ->
       @render()
 
     render: ->
-      @model.updateStatus('edit')
-
       switch @mode
         when 'standalone'
-          @$close.addClass('hidden')
-          # @TODO
-          # has draft?
-          if false
-            # @TODO
-            @model.updateStatus('load')
-            $
-              .ajax
-                url: @url
-                type: 'get'
-              .done (data, status, xhr) ->
-                @model.updateStatus('edit')
-                @show()
-          else
-            @show()
+          that = @
+          that.model.updateStatus('load')
+          $
+            .ajax
+              url: that.url
+              type: 'get'
+            .done (data, status, xhr) ->
+              that.fillDraft(JSON.parse(data.content))
+            .fail (xhr, status, error) ->
+              if xhr.status is 404 and localStorage[that.draftId] isnt undefined
+                that.fillDraft(JSON.parse(JSON.parse(localStorage[that.draftId]).content))
+            .always ->
+              that.model.updateStatus('edit')
+              that.show()
+              that.initWidget()
+              that.initHelp()
         when 'complemental'
           # @TODO
           @$drop.addClass('hidden')
           @$submit.addClass('hidden')
-
-      @initHelp()
-      @initWidget()
       @
 
     # @TODO
     reset: ->
       console.log 'TODO: reset.'
+
+    fillDraft: (draft) ->
+      @setContent(draft)
 
     show: ->
       @getBody()
@@ -122,7 +124,7 @@ do (exports = Making) ->
     setBody: ->
       @$bodyField.val(@editor.serialize()[@$body.attr('id')].value)
 
-    formatDraft: ->
+    getContent: ->
       content = {}
 
       @setBody()
@@ -136,39 +138,46 @@ do (exports = Making) ->
 
       return @model.get('draft')
 
+    setContent: (content) ->
+      _.each @$fields, (element, index, list) ->
+        $field = $(element)
+        key    = $field.prop('name')
+        $field.prop('value', content[key])
+      , @
+
+      @getBody()
+
     save: (persisten, callback) ->
       console.log 'save'
+      @model.updateStatus('save')
+
       if persisten is true
-        draftId = @draftId
-        draft   = @formatDraft()
-        hide    = _.bind(@hide, @)
+        that  = @
+        draft = @getContent()
 
         @model.updateStatus('save')
+
         $
           .ajax
-            url: @url
+            url: that.url
             type: 'put'
             data:
               draft: draft
           .done (data, status, xhr) ->
-            localStorage.removeItem(draftId)
-            hide()
+            localStorage.removeItem(that.draftId)
+            that.model.updateStatus('edit')
+            that.hide()
       else
-        localStorage[@draftId] = JSON.stringify(@formatDraft())
-
-    read: ->
-      $
-        .ajax
-          url: @url
-          type: 'get'
-        .done (data, status, xhr) ->
+        localStorage[@draftId] = JSON.stringify(@getContent())
+        @model.updateStatus('edit')
 
     close: ->
       callback = null
 
       switch @mode
         when 'standalone'
-          callback = -> history.back()
+          callback = ->
+            history.back()
         when 'complemental'
           callback = @hide
 
@@ -176,24 +185,20 @@ do (exports = Making) ->
 
     drop: ->
       if confirm '确定舍弃文档吗？'
-        $el              = @$el
-        draftId          = @draftId
-        hide             = _.bind(@hide, @)
-        reset            = _.bind(@reset, @)
-        deactivatePlugin = _.bind(@deactivatePlugin, @)
+        that = @
 
         @model.updateStatus('drop')
-        # @TODO
+
         $
           .ajax
-            url: @url
+            url: that.url
             type: 'delete'
           .done (data, status, xhr) ->
-            localStorage.removeItem(draftId)
-            hide()
-            reset()
-            deactivatePlugin()
-            $el.data('editor', null)
+            localStorage.removeItem(that.draftId)
+            that.hide()
+            that.reset()
+            that.deactivatePlugin()
+            that.$el.data('editor', null)
 
     submit: (event) ->
       @model.updateStatus('submit')

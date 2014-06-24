@@ -2,7 +2,7 @@ Making.Models.Editor = Backbone.Model.extend
   defaults:
     status: ''
     draft:
-      content: {}
+      content: ''
 
   updateStatus: (status) ->
 
