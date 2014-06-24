@@ -314,7 +314,7 @@ do (exports = Making) ->
 
     # TODO
     ($popovertoggle = $(".popover-toggle")).length && $popovertoggle.popover()
-    ($postcontent = $(".post_content, .article")).length && $postcontent.fitVids()
+    ($postcontent = $(".post_content, .article")).length && $postcontent.parents('.editor').length is 0 && $postcontent.fitVids()
     ($score = $('.score')).length && $score.score()
     if $(".track_event").length
       $(".track_event").click ->

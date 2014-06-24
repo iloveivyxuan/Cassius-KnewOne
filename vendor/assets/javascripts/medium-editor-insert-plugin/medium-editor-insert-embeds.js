@@ -20,6 +20,7 @@
     init : function () {
       this.$el = $.fn.mediumInsert.insert.$el;
       this.setEmbedButtonEvents();
+      this.preparePreviousEmbeds();
     },
 
     insertButton : function (buttonLabels) {
@@ -49,6 +50,30 @@
 
       this.currentPlaceholder = $placeholder;
       $(".mediumInsert-embedsText").focus();
+    },
+
+    /**
+    * Make existing embeds interactive
+    *
+    * @return {void}
+    */
+
+    preparePreviousEmbeds: function () {
+      var $insertBlockTemplate = $($.fn.mediumInsert.insert.insertBlock);
+
+      $insertBlockTemplate
+        .removeClass('empty')
+        .find('.mediumInsert-placeholder')
+          .attr('draggable', true)
+          .append($('<div class="mediumInsert-embeds" />'))
+
+      this.$el.find('iframe, embed, object, video, audio, .video, .twitter-tweet, .instagram').each(function() {
+        var $this = $(this),
+            $insertBlock = $insertBlockTemplate.clone();
+
+        $this.after($insertBlock);
+        $this.appendTo($insertBlock.find('.mediumInsert-embeds'));
+      });
     },
 
     /**
