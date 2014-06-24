@@ -7,10 +7,10 @@ class ApplicationController < ActionController::Base
   before_action :set_variant
   after_action :store_location, only: [:index, :show]
 
-  # some bots using some *strange* format to request urls
-  # that would trigger missing template exception,
-  # so this will reject those request, but you can adjust to your logic
   if Rails.env.production?
+    # some bots using some *strange* format to request urls
+    # that would trigger missing template exception,
+    # so this will reject those request, but you can adjust to your logic
     rescue_from ActionView::MissingTemplate do
       head :not_acceptable
     end
