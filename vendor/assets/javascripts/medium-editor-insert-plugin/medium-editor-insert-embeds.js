@@ -91,7 +91,7 @@
         return false;
       } else {
         embed_tag = $('<div class="mediumInsert-embeds"></div>').append(embed_tag);
-        that.currentPlaceholder.parent().append(embed_tag);
+        that.currentPlaceholder.append(embed_tag);
       }
     },
 
