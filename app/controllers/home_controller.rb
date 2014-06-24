@@ -143,43 +143,31 @@ class HomeController < ApplicationController
       @activities += @activities_feelings
     end
     @activities = @activities.sort { |x, y| y.created_at <=> x.created_at }
-    things = @activities.select { |i| i.type == :new_thing }
-
-    # 把三个 thing 拼成一组
-    i = 0
-    while !things.empty?
-      obj = @activities[i]
-      if obj.type == :new_thing
-        things.delete(obj)
-        first, second = things.shift(2)
-        @activities.delete(first)
-        @activities.delete(second)
-        @activities.compact!
-        @activities.insert(i + 1, first)
-        @activities.insert(i + 2, second)
-        i += 2
-      end
-      i += 1
-    end
-
     @activities
   end
 
   def hot_activities(page)
     page ||= 0
+    things = []
+    reviews = []
     PER_GROUPS.times do |i|
-      @things = Thing.hot.limit(PER_THINGS).skip(PER_THINGS * i + page.to_i * PER_THINGS * PER_GROUPS)
-      @reviews = Review.hot.limit(PER_REVIEWS).skip(PER_REVIEWS * i + page.to_i * PER_REVIEWS * PER_GROUPS)
+      things += Thing.hot.limit(PER_THINGS).skip(PER_THINGS * i + page.to_i * PER_THINGS * PER_GROUPS)
+      reviews += Review.hot.limit(PER_REVIEWS).skip(PER_REVIEWS * i + page.to_i * PER_REVIEWS * PER_GROUPS)
+    end
 
-      @things.each do |t|
+    # 每次随机取产品或评测
+    while (!things.empty? || !reviews.empty?) do
+      rand = [true, false].sample
+      if reviews.empty? || (rand && !things.empty?)
+        t = things.shift
         @activities << Activity.new(
                                     type: :new_thing,
                                     reference_union: "Thing_#{t.id}",
                                     source_union: "Thing_#{t.id}",
                                     visible: true,
                                     user_id: t.author.id)
-      end
-      @reviews.each do |r|
+      else
+        r = reviews.shift
         @activities << Activity.new(
                                     type: :new_review,
                                     reference_union: "Review_#{r.id}",
@@ -188,6 +176,7 @@ class HomeController < ApplicationController
                                     user_id: r.author.id)
       end
     end
+
     @activities
   end
 end

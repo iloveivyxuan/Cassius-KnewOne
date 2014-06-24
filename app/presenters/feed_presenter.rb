@@ -13,8 +13,7 @@ class FeedPresenter < ApplicationPresenter
   end
 
   def style
-    @display = (tmpl == "thing" ? :third : :row)
-    {third: "col-sm-4", row: "col-sm-12"}[@display]
+    "col-sm-3"
   end
 
   def render_to_html
