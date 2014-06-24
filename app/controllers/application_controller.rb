@@ -20,6 +20,10 @@ class ApplicationController < ActionController::Base
       head :not_acceptable
     end
 
+    rescue_from ArgumentError do
+      head :bad_request
+    end
+
     rescue_from EncodingError do
       head :bad_request
     end
