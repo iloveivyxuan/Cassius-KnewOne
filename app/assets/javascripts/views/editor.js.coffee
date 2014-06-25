@@ -170,7 +170,7 @@ do (exports = Making) ->
           .done (data, status, xhr) ->
             localStorage.removeItem(that.draftId)
             that.model.updateStatus('edit')
-            if (typeof callback) isnt undefined then callback()
+            if callback then callback()
       else
         localStorage[@draftId] = JSON.stringify(@getContent())
         @model.updateStatus('edit')
