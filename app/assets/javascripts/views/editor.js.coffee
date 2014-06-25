@@ -83,8 +83,9 @@ do (exports = Making) ->
     hide: ->
       @$el.hide()
       $docbody.removeClass('editor-open')
-      $window.off 'unload'
-      $window.off 'beforeunload'
+      $window
+        .off 'unload'
+        .off 'beforeunload'
 
     showStatus: ->
       @$output.text(@model.get('status'))
@@ -204,8 +205,9 @@ do (exports = Making) ->
               @$el.data('editor', null)
 
         @model.updateStatus('drop')
-        $window.off 'unload'
-        $window.off 'beforeunload'
+        $window
+          .off 'unload'
+          .off 'beforeunload'
 
         $
           .ajax
@@ -216,9 +218,22 @@ do (exports = Making) ->
             callback()
 
     submit: (event) ->
+      that = @
+
+      $window
+        .off 'unload'
+        .off 'beforeunload'
+
+      # @FIXME
+      # 提交表单，同时删除草稿（本地＋服务器），
+      # 愿主保佑不会遇到删除草稿成功但提交表单失败的情况。
+      localStorage.removeItem(that.draftId)
+      $.ajax
+        url: that.url
+        type: 'delete'
+
       @model.updateStatus('submit')
-      $window.off 'unload'
-      $window.off 'beforeunload'
+
       @setBody()
 
     # @TODO
