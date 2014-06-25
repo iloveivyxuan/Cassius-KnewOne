@@ -54,6 +54,7 @@ class Order
 
   STATES = {
       :pending => '等待付款',
+      :nonpresale => '无预售订单',
       :freed => '无需支付，请用户确认',
       :confirmed => '支付成功，系统正在受理',
       :shipped => '已发货',
@@ -91,6 +92,7 @@ class Order
   field :use_balance, type: Boolean, default: false
   field :expense_balance, type: BigDecimal, default: 0
   field :price, type: BigDecimal
+  field :order_type, type: String, default: ''
 
   mount_uploader :waybill, WaybillUploader
 
@@ -122,6 +124,7 @@ class Order
   before_create do
     self.order_no = rand.to_s[2..11]
     self.deliver_price = calculate_deliver_price
+    self.order_type =  is_order_allpresale
     # mongoid may not rollback when error occurred
     order_items.each &:claim_stock!
     sync_price
@@ -382,6 +385,15 @@ class Order
     save!
 
     order_histories.create from: state, to: :unexpected, raw: raw
+  end
+  
+  def is_order_allpresale
+    i=order_items.map { |item| identify_order_type item }.reduce &:|
+    i== 0 ? 'all_presale' : 'has_cash'
+  end
+
+  def identify_order_type(order_item)
+    order_item.kind.stage.to_s=='pre_order' ? 0 : 1
   end
 
   def all_products_have_stock?
