@@ -131,25 +131,14 @@ class HomeController < ApplicationController
 
   def following_activities(page)
     page ||= 0
-    all_kinds = PER_THINGS + PER_REVIEWS + PER_FEELINGS
-    PER_GROUPS.times do |i|
-      @activities_things = current_user.relate_activities
-        .visible.limit(all_kinds).skip(all_kinds * i + page.to_i * all_kinds * PER_GROUPS)
-      @activities += @activities_things
-    end
-    @activities = @activities.sort { |x, y| y.created_at <=> x.created_at }
-    @activities
+    all_kinds = (PER_THINGS + PER_REVIEWS + PER_FEELINGS) * PER_GROUPS
+    current_user.relate_activities.visible.limit(all_kinds).skip(page.to_i * all_kinds)
   end
 
   def hot_activities(page)
     page ||= 0
-    things = []
-    reviews = []
-    PER_GROUPS.times do |i|
-      things += Thing.hot.limit(PER_THINGS).skip(PER_THINGS * i + page.to_i * PER_THINGS * PER_GROUPS)
-      reviews += Review.hot.limit(PER_REVIEWS).skip(PER_REVIEWS * i + page.to_i * PER_REVIEWS * PER_GROUPS)
-    end
-
+    things = Thing.hot.order_by("created_at DESC").limit(PER_THINGS * PER_GROUPS).skip(page.to_i * PER_THINGS * PER_GROUPS).to_a
+    reviews = Review.hot.order_by("created_at DESC").limit(PER_REVIEWS * PER_GROUPS).skip(page.to_i * PER_REVIEWS * PER_GROUPS).to_a
     # 每次随机取产品或评测
     while (!things.empty? || !reviews.empty?) do
       rand = [true, false].sample
@@ -171,7 +160,6 @@ class HomeController < ApplicationController
                                     user_id: r.author.id)
       end
     end
-
     @activities
   end
 end
