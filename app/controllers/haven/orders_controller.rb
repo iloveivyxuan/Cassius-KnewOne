@@ -9,7 +9,9 @@ module Haven
     def index
       @orders = ::Order.unscoped
 
-      @orders = @orders.where(state: params[:state]) if params[:state]
+      @orders = @orders.where(order_type: 'has_cash' ) if params[:state]=='nonpresale'
+
+      @orders = @orders.where(state: params[:state]) if params[:state] and params[:state]!='nonpresale'
 
       @orders = case params[:find_by]
                   when 'order_no'
@@ -30,7 +32,6 @@ module Haven
       respond_to do |format|
         format.html do
           return redirect_to haven_order_path(@orders.first) if @orders.count == 1
-
           @orders = @orders.page params[:page]
         end
 
