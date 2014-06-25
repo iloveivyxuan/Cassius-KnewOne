@@ -114,9 +114,20 @@ html.signed_in_homepage {
             @include text-overflow;
 
             display: block;
+            height: 26px;
             font-size: 14px;
             color: $gray;
           }
+        }
+
+        .feed-summery {
+          margin: 0.5em 0;
+          color: $gray;
+
+          display: -webkit-box;
+          -webkit-line-clamp: 4;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
       }
 
@@ -236,6 +247,9 @@ html.signed_in_homepage {
         height: percentage(5 / 12);
       }
 
+      .score {
+        margin: 0;
+      }
     }
 
     .video {
