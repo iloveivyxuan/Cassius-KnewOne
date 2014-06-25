@@ -92,8 +92,8 @@ do (exports = Making) ->
 
     activatePlugin: ->
       @editor = new MediumEditor @$body,
-        buttons: ['header1', 'header2', 'bold', 'italic', 'quote', 'anchor',
-                    'orderedlist', 'unorderedlist']
+        buttons: ['anchor', 'bold', 'italic', 'header1', 'header2',
+                    'orderedlist', 'unorderedlist', 'quote']
         buttonLabels: 'fontawesome'
         firstHeader: 'h2'
         secondHeader: 'h3'
