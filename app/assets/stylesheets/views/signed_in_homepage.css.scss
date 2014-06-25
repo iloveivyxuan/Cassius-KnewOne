@@ -44,7 +44,6 @@ html.signed_in_homepage {
           display: block;
           padding-bottom: 0.5em;
           color: $gray-light;
-          font-weight: bold;
         }
 
         &.active {
@@ -61,41 +60,166 @@ html.signed_in_homepage {
   #activities {
     @include clearfix;
 
-    $activity-gap: 15px;
-    margin-right: -$activity-gap;
+    $activity-gap: 20px;
 
-    > section,
-    > article {
+    margin: 0 (-$activity-gap) (-$activity-gap) 0;
+
+    > .feed {
+      float: left;
+      width: calc(25% - #{$activity-gap});
+      height: 400px;
       margin: 0 $activity-gap $activity-gap 0;
       background: white;
 
-      &:last-child {
-        margin-bottom: 0;
+      position: relative;
+
+      .feed-photo {
+        position: relative;
+        overflow: hidden;
+
+        img {
+          @include stretch;
+          margin: auto;
+          width: 100%;
+        }
+      }
+
+      .feed-content {
+        padding: 1em;
+
+        h5 {
+          @include text-overflow;
+
+          margin: 0;
+          font-size: 14px;
+          color: $gray-dark;
+
+          small {
+            @include text-overflow;
+
+            display: block;
+            font-size: 14px;
+            color: $gray;
+          }
+        }
+      }
+
+      .feed-details {
+        position: absolute;
+        bottom: 1em;
+        width: 100%;
+
+        padding-left: 40px;
+
+        .feed-user-avatar {
+          position: absolute;
+          left: 0;
+          width: 32px;
+
+          img {
+            @extend .img-circle;
+          }
+        }
+
+        .feed-action,
+        .feed-action a {
+          font-size: 14px;
+          line-height: 1;
+          color: $gray;
+        }
+
+        .feed-timestamp {
+          margin-top: 6px;
+        }
+
+        .feed-timestamp,
+        .feed-counts,
+        .feed-counts a {
+          font-size: 12px;
+          line-height: 1;
+          color: $gray-light;
+        }
+
+        .feed-counts {
+          position: absolute;
+          right: 2em;
+          bottom: 0;
+
+          text-align: right;
+
+          li {
+            display: inline-block;
+            margin-left: 1em;
+          }
+
+          span {
+            margin-left: 0.2em;
+          }
+        }
       }
     }
 
-    .col-sm-3,
-    .col-md-3,
-    .col-lg-3 {
-      width: calc(#{percentage(3 / 12)} - #{$activity-gap});
+    .feed-thing {
+      position: relative;
+
+      .feed-photo {
+        height: percentage(8 / 12);
+      }
+
+      .feed-fancy {
+        @include transition(opacity .2s ease);
+        opacity: 0;
+
+        @include breakpoint(md) {
+          &:hover {
+            opacity: 1;
+          }
+        }
+
+        .fancy-backdrop {
+          @include stretch;
+          background-color: rgba(black, 0.5);
+        }
+
+        .fancy-button {
+          display: none;
+
+          @include breakpoint(md) {
+            display: block;
+          }
+
+          a {
+            display: block;
+            width: 50px;
+            height: 50px;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -25px 0 0 -25px;
+
+            font-size: 50px;
+            line-height: 1;
+
+            .fa {
+              color: #ff3b3b;
+              margin-right: 0;
+            }
+
+            .fanciers_count,
+            small {
+              display: none;
+            }
+          }
+        }
+      }
     }
 
-    .col-sm-4,
-    .col-md-4,
-    .col-lg-4 {
-      width: calc(#{percentage(4 / 12)} - #{$activity-gap});
-    }
+    .feed-review {
+      .feed-photo {
+        height: percentage(5 / 12);
+      }
 
-    .col-sm-6,
-    .col-md-6,
-    .col-lg-6 {
-      width: calc(#{percentage(6 / 12)} - #{$activity-gap});
-    }
-
-    .col-sm-12,
-    .col-md-12,
-    .col-lg-12 {
-      width: calc(100% - #{$activity-gap});
     }
 
     .video {

@@ -336,7 +336,7 @@ do (exports = Making) ->
       .on 'click', 'a.disabled', (event) ->
         false
 
-      .on 'click', '.fanciers > a', (event) ->
+      .on 'click', '.fanciers > a, .fancy-button > a', (event) ->
         event.preventDefault()
 
         $trigger = $(@)
@@ -345,11 +345,15 @@ do (exports = Making) ->
 
         if $trigger.find('.fanciers_count').is(':visible')
           $count = $trigger.find('.fanciers_count')
-        else
+        else if $trigger.parents('.thing').length > 0
           $count = $trigger
             .parents('.thing')
             .find('.figure_detail')
             .find('.fanciers_count')
+        else
+          $count = $trigger
+            .parents('.feed-thing')
+            .find('.fanciers-count')
 
         if $trigger.hasClass('fancied')
           $trigger
