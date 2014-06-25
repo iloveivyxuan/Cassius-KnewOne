@@ -204,6 +204,8 @@ do (exports = Making) ->
               @$el.data('editor', null)
 
         @model.updateStatus('drop')
+        $window.off 'unload'
+        $window.off 'beforeunload'
 
         $
           .ajax
