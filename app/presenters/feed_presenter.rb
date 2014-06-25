@@ -13,7 +13,7 @@ class FeedPresenter < ApplicationPresenter
   end
 
   def style
-    "col-sm-3"
+    ""
   end
 
   def render_to_html

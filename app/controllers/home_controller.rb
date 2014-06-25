@@ -131,16 +131,11 @@ class HomeController < ApplicationController
 
   def following_activities(page)
     page ||= 0
+    all_kinds = PER_THINGS + PER_REVIEWS + PER_FEELINGS
     PER_GROUPS.times do |i|
-      @activities_things = current_user.relate_activities([:new_thing], [])
-        .visible.limit(PER_THINGS).skip(PER_THINGS * i + page.to_i * PER_THINGS * PER_GROUPS)
+      @activities_things = current_user.relate_activities
+        .visible.limit(all_kinds).skip(all_kinds * i + page.to_i * all_kinds * PER_GROUPS)
       @activities += @activities_things
-      @activities_reviews = current_user.relate_activities([:new_review], [:new_review])
-        .visible.limit(PER_REVIEWS).skip(PER_REVIEWS * i + page.to_i * PER_REVIEWS * PER_GROUPS)
-      @activities += @activities_reviews
-      @activities_feelings = current_user.relate_activities([:new_feeling], [])
-        .visible.limit(PER_FEELINGS).skip(PER_FEELINGS * i + page.to_i * PER_FEELINGS * PER_GROUPS)
-      @activities += @activities_feelings
     end
     @activities = @activities.sort { |x, y| y.created_at <=> x.created_at }
     @activities
