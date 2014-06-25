@@ -233,7 +233,7 @@ class Thing < Post
 
   def calculate_heat
     (1 +
-     priority +
+     (priority || 0) +
      50 * reviews_count +
      5 * feelings_count +
      fancier_ids.count +
