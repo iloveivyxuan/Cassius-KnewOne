@@ -71,12 +71,14 @@ do (exports = Making) ->
       console.log 'TODO: reset.'
 
     show: ->
+      that = @
       @getBody()
       @activatePlugin()
       @$el.show()
 
-      $window.on 'beforeunload', (_.bind @beforeunload, @)
-      $window.on 'unload', (_.bind @unload, @)
+      $window
+        .on 'beforeunload', (_.bind @beforeunload, @)
+        .on 'unload', (_.bind @unload, @)
 
     hide: ->
       @$el.hide()
@@ -226,4 +228,4 @@ do (exports = Making) ->
         return '文档还未保存，确定要离开吗？'
 
     unload: ->
-      localStorage.removeItm(@draftId)
+      localStorage.removeItem(@draftId)
