@@ -51,10 +51,10 @@ do (exports = Making) ->
               url: that.url
               type: 'get'
             .done (data, status, xhr) ->
-              that.fillDraft(JSON.parse(data.content))
+              that.setContent(JSON.parse(data.content))
             .fail (xhr, status, error) ->
-              if xhr.status is 404 and localStorage[that.draftId] isnt undefined
-                that.fillDraft(JSON.parse(JSON.parse(localStorage[that.draftId]).content))
+              if localStorage[that.draftId] isnt undefined
+                that.setContent(JSON.parse(JSON.parse(localStorage[that.draftId]).content))
             .always ->
               that.model.updateStatus('edit')
               that.show()
@@ -70,17 +70,19 @@ do (exports = Making) ->
     reset: ->
       console.log 'TODO: reset.'
 
-    fillDraft: (draft) ->
-      @setContent(draft)
-
     show: ->
       @getBody()
       @activatePlugin()
       @$el.show()
 
+      $window.on 'beforeunload', (_.bind @beforeunload, @)
+      $window.on 'unload', (_.bind @unload, @)
+
     hide: ->
       @$el.hide()
       $docbody.removeClass('editor-open')
+      $window.off 'unload'
+      $window.off 'beforeunload'
 
     showStatus: ->
       @$output.text(@model.get('status'))
@@ -152,14 +154,11 @@ do (exports = Making) ->
       @getBody()
 
     save: (persisten, callback) ->
-      console.log 'save'
       @model.updateStatus('save')
 
       if persisten is true
         that  = @
         draft = @getContent()
-
-        @model.updateStatus('save')
 
         $
           .ajax
@@ -170,9 +169,11 @@ do (exports = Making) ->
           .done (data, status, xhr) ->
             localStorage.removeItem(that.draftId)
             that.model.updateStatus('edit')
+            that.model.set('persisten', true)
             if callback then callback()
       else
         localStorage[@draftId] = JSON.stringify(@getContent())
+        @model.set('persisten', false)
         @model.updateStatus('edit')
 
     close: ->
@@ -212,8 +213,17 @@ do (exports = Making) ->
 
     submit: (event) ->
       @model.updateStatus('submit')
+      $window.off 'unload'
+      $window.off 'beforeunload'
       @setBody()
 
     # @TODO
     send: ->
       @save(true)
+
+    beforeunload: ->
+      if !@model.get('persisten')
+        return '文档还未保存，确定要离开吗？'
+
+    unload: ->
+      localStorage.removeItm(@draftId)

@@ -1,6 +1,7 @@
 Making.Models.Editor = Backbone.Model.extend
   defaults:
     status: ''
+    persisten: false
     draft:
       content: ''
 
