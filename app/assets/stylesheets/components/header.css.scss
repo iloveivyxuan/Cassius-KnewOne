@@ -254,6 +254,11 @@ html.no-touch {
     }
   }
 
+  .nav-share {
+    background-color: $navbar-default-brand-color;
+    color: #fff;
+  }
+
   @media (max-width: $screen-sm-max) {
     @include clearfix;
 
