@@ -1,5 +1,7 @@
 - provide :nav, :reviews
 - content_for :content
+  .spinner-fullscreen
+    em 正在加载
   = form_for [@thing, @review], html: {class: "editor", id: "form-review"} do |f|
     .editor-menu
       output
