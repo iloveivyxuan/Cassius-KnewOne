@@ -9,9 +9,9 @@ module Haven
     def index
       @orders = ::Order.unscoped
 
-      @orders = @orders.where(order_type: 'has_cash' ) if params[:state]=='nonpresale'
+      @orders = @orders.where(pre_order: false) if params[:filtpreorder]
 
-      @orders = @orders.where(state: params[:state]) if params[:state] and params[:state]!='nonpresale'
+      @orders = @orders.where(state: params[:state]) if params[:state]
 
       @orders = case params[:find_by]
                   when 'order_no'

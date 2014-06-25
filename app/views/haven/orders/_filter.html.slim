@@ -12,3 +12,9 @@ ul.nav.nav-pills
     - else
       li
         = link_to v, params.merge(state: k)
+  - if params[:filtpreorder].blank?
+    li
+      = link_to '过滤预售订单', params.merge(filtpreorder: true)
+  - else
+    li.active
+      = link_to '过滤预售订单', params.reject!{|k| k=='filtpreorder'}
