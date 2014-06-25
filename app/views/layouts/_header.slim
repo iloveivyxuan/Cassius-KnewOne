@@ -20,9 +20,9 @@ header#header role="banner"
             span.badge.badge-default new
         li
           - if user_signed_in?
-            = link_to "分享", "#", class: "nav-share", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}
+            = link_to "分享", "#", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}
           - else
-            = link_to "分享", "#", class: "nav-share", data: {toggle: "modal", target: "#login-modal"}
+            = link_to "分享", "#", data: {toggle: "modal", target: "#login-modal"}
         li
           = link_to "小组", groups_path
         li
