@@ -6,9 +6,10 @@
 //     .pull-right
 //       button.btn.btn-link.editor-help type="button" data-container=".editor-menu" data-toggle="popover" data-placement="bottom" title="帮助"
 //         i.fa.fa-question.fa-alone
-//       button.btn.btn-default.editor-close type="button" 返回
-//       button.btn.btn-default.editor-drop type="button" 舍弃
-//       button.btn.btn-success.editor-submit type="submit" 发布
+//       button.editor-close type="button" 返回
+//       button.editor-drop type="button" 舍弃
+//       button.editor-save type="button" 保存
+//       button.editor-submit type="submit" 发布
 //  article.editor-content.article
 //    header
 //      input.title type="text" required placeholder="标题"
@@ -259,8 +260,16 @@
     }
   }
 
+  .mediumInsert-placeholder {
+    margin-left: 0;
+
+    .mediumInsert-images img {
+      margin-top: 0;
+      vertical-align: middle;
+    }
+  }
+
   .mediumInsert-embeds {
-    margin-bottom: 1.5em;
     padding: 0;
   }
 }
