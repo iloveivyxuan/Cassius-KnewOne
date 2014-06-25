@@ -10,11 +10,12 @@ do (exports = Making) ->
   exports.Views.Editor = Backbone.View.extend
 
     events:
-      'change [name]': 'save'
+      'change [name]'                : 'save'
       'input .editor-content > .body': 'save'
-      'click .editor-close': 'close'
-      'click .editor-drop': 'drop'
-      'click .editor-submit': 'submit'
+      'click .editor-close'          : 'close'
+      'click .editor-drop'           : 'drop'
+      'click .editor-save'           : 'send'
+      'click .editor-submit'         : 'submit'
 
     initialize: (options) ->
       @mode       = options.mode
@@ -41,7 +42,10 @@ do (exports = Making) ->
       switch @mode
         when 'standalone'
           that = @
-          that.model.updateStatus('load')
+
+          @model.updateStatus('load')
+          @$close.addClass('hidden')
+
           $
             .ajax
               url: that.url
@@ -166,7 +170,7 @@ do (exports = Making) ->
           .done (data, status, xhr) ->
             localStorage.removeItem(that.draftId)
             that.model.updateStatus('edit')
-            that.hide()
+            if (typeof callback) isnt undefined then callback()
       else
         localStorage[@draftId] = JSON.stringify(@getContent())
         @model.updateStatus('edit')
@@ -175,9 +179,6 @@ do (exports = Making) ->
       callback = null
 
       switch @mode
-        when 'standalone'
-          callback = ->
-            history.back()
         when 'complemental'
           callback = @hide
 
@@ -185,7 +186,19 @@ do (exports = Making) ->
 
     drop: ->
       if confirm '确定舍弃文档吗？'
-        that = @
+        that     = @
+        callback = null
+
+        switch @mode
+          when 'standalone'
+            callback = ->
+              window.close()
+          when 'complemental'
+            callback = ->
+              @hide()
+              @reset()
+              @deactivatePlugin()
+              @$el.data('editor', null)
 
         @model.updateStatus('drop')
 
@@ -193,13 +206,14 @@ do (exports = Making) ->
           .ajax
             url: that.url
             type: 'delete'
-          .done (data, status, xhr) ->
+          .always ->
             localStorage.removeItem(that.draftId)
-            that.hide()
-            that.reset()
-            that.deactivatePlugin()
-            that.$el.data('editor', null)
+            callback()
 
     submit: (event) ->
       @model.updateStatus('submit')
       @setBody()
+
+    # @TODO
+    send: ->
+      @save(true)

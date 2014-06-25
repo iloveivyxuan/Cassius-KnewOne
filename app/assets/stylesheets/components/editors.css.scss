@@ -95,8 +95,10 @@
 
 .editor-close,
 .editor-drop,
+.editor-save,
 .editor-submit {
   @extend .btn;
+  @include button_compact(#fff, $gray);
   border-radius: 4px;
   font-size: 14px;
   padding: {
@@ -105,10 +107,6 @@
   }
   width: 60px;
 }
-
-.editor-close  { @include button_compact(#fff, $gray); }
-.editor-drop   { @include button_compact(#fff, $red); }
-.editor-submit { @include button_compact(#fff, $green); }
 
 .editor-content {
   background-color: #fff;
