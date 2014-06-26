@@ -313,6 +313,11 @@ Making::Application.routes.draw do
         resources :comments, controller: :thing_comments, only: [:index, :show, :create, :destroy]
 
         resource :vote, only: [:create, :destroy, :show]
+
+        collection do
+          get 'random'
+          get 'recommends'
+        end
       end
 
       resources :categories, only: [:index, :show] do
