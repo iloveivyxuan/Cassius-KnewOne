@@ -126,7 +126,12 @@ class HomeController < ApplicationController
 
   def following_activities(page)
     page ||= 0
-    current_user.relate_activities.visible.limit(60).skip(page.to_i * 60)
+    current_user
+      .relate_activities
+      .visible
+      .limit(60)
+      .skip(page.to_i * 60)
+      .uniq(&:reference_union)
   end
 
   def hot_activities(page)
