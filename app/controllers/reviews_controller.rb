@@ -27,7 +27,11 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    render layout: 'application'
+    respond_to do |format|
+      format.html.mobile { render 'new' }
+      format.html.tablet { render 'new.html+mobile' }
+      format.html.desktop { render layout: 'application' }
+    end
   end
 
   def create
@@ -43,7 +47,11 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    render 'new', layout: 'application'
+    respond_to do |format|
+      format.html.mobile { render 'new' }
+      format.html.tablet { render 'new.html+mobile' }
+      format.html.desktop { render 'new', layout: 'application' }
+    end
   end
 
   def update
