@@ -314,7 +314,6 @@ do (exports = Making) ->
 
     # TODO
     ($popovertoggle = $(".popover-toggle")).length && $popovertoggle.popover()
-    ($postcontent = $(".post_content, .article")).length && $postcontent.parents('.editor').length is 0 && $postcontent.fitVids()
     ($score = $('.score')).length && $score.score()
     if $(".track_event").length
       $(".track_event").click ->
@@ -452,6 +451,9 @@ do (exports = Making) ->
     # Screen MD below
     if Modernizr.mq('(max-width: ' + Making.Breakpoints.screenMDMax + ')')
       menu = new exports.View.Menu('#menu', 'body', '#menu_toggle')
+
+    if Modernizr.mq('(max-width: ' + Making.Breakpoints.screenSMMax + ')')
+      ($postcontent = $(".post_content, .article")).length && $postcontent.parents('.editor').length is 0 && $postcontent.fitVids()
 
     # Screen MD
     if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')')
