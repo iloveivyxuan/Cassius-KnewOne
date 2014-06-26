@@ -137,8 +137,8 @@ class HomeController < ApplicationController
 
   def hot_activities(page)
     page ||= 0
-    things = Thing.hot.order_by("created_at DESC").limit(PER_THINGS * PER_GROUPS).skip(page.to_i * PER_THINGS * PER_GROUPS).to_a
-    reviews = Review.hot.order_by("created_at DESC").limit(PER_REVIEWS * PER_GROUPS).skip(page.to_i * PER_REVIEWS * PER_GROUPS).to_a
+    things = Thing.hot.limit(PER_THINGS * PER_GROUPS).skip(page.to_i * PER_THINGS * PER_GROUPS).to_a
+    reviews = Review.hot.limit(PER_REVIEWS * PER_GROUPS).skip(page.to_i * PER_REVIEWS * PER_GROUPS).to_a
     # 每次随机取产品或评测
     while (!things.empty? || !reviews.empty?) do
       rand = [true, false].sample
