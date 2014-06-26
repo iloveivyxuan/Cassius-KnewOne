@@ -285,7 +285,7 @@
         $el.html('<p><br></p>');
       }
 
-      $el.keyup(function () {
+      $el.keyup(function (event) {
         var $lastChild = $el.children(':last'),
             i;
 
@@ -311,9 +311,20 @@
         i = that.getMaxId() +1;
 
         $el.children('p').each(function () {
-          if ($(this).next().hasClass('mediumInsert') === false) {
-            $(this).after(insertBlock);
-            $(this).next('.mediumInsert').attr('id', 'mediumInsert-'+ i);
+          $this = $(this)
+          if ($this.next().hasClass('mediumInsert') === false) {
+            $this.after(insertBlock);
+            $this.next('.mediumInsert')
+              .attr('id', 'mediumInsert-'+ i)
+              .addClass(function() {
+                var $mediumInsert = $(this);
+                if (event.which == 13 && $mediumInsert.next().length != 0) {
+                  setTimeout(function() {
+                    $mediumInsert.removeClass('show');
+                  }, 1500);
+                  return 'show';
+                }
+              });
           }
           i++;
         });

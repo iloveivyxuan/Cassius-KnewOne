@@ -27,9 +27,9 @@
   = attachment_tag target: "#pictureBtn", edit: "insertImage"
 
 - content_for :script do
-  coffee:
-    do (exports = Making) ->
-      editor = new exports.Views.Editor
-                el: '#form-review'
-                model: new exports.Models.Editor()
-                mode: 'standalone'
+  javascript:
+    var editor = new Making.Views.Editor({
+                  el: '#form-review',
+                  model: new Making.Models.Editor(),
+                  mode: 'standalone'
+                });

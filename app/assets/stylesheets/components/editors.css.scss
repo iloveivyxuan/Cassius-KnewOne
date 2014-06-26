@@ -198,7 +198,8 @@
     margin-top: -1.5em;
     z-index: -1;
 
-    &:hover {
+    &:hover,
+    &.show {
       z-index: 0;
     }
   }
