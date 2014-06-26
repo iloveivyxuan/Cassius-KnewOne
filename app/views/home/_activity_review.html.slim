@@ -4,13 +4,13 @@
   section.feed.feed-review
     .feed-photo
       = link_to review_presenter.path, target: '_blank'
-        = review_presenter.cover(:normal) or present(thing).photo(:normal)
+        = review_presenter.cover(:'post.fixed') or present(thing).photo(:'post.fixed')
 
     .feed-content
       = link_to review_presenter.path, target: '_blank'
         h5
-          = review_presenter.title
-          small= review_presenter.score
+          span.feed-title= review_presenter.title
+          = review_presenter.score
 
       p.feed-summery= review_presenter.summary(80)
 

@@ -2,7 +2,7 @@
 - present thing do |thing_presenter|
   section.feed.feed-thing
     .feed-photo
-      = thing_presenter.photo(:normal)
+      = thing_presenter.photo(:'thing.fixed')
       .feed-fancy
         = link_to '', thing, class: 'fancy-backdrop', target: "_blank"
         .fancy-button= render 'shared/fancy', p: thing_presenter
@@ -10,7 +10,7 @@
     .feed-content
       = link_to thing, target: '_blank'
         h5
-          = thing.title
+          span.feed-title= thing.title
           small= thing.subtitle
 
       ul.feed-details
