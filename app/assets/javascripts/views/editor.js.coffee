@@ -98,6 +98,7 @@ do (exports = Making) ->
         firstHeader: 'h2'
         secondHeader: 'h3'
         placeholder: '正文'
+        anchorInputPlaceholder: '在这里插入链接'
         targetBlank: true
 
       @$body.mediumInsert
