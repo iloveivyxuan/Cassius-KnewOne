@@ -1154,6 +1154,10 @@ if (typeof module === 'object') {
                     html = '',
                     p;
 
+                if (e.target.getAttribute('contenteditable') === 'false') {
+                  return true;
+                }
+
                 this.classList.remove('medium-editor-placeholder');
                 if (!self.options.forcePlainText && !self.options.cleanPastedHTML) {
                     return this;
