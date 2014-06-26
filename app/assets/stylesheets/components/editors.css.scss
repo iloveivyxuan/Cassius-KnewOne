@@ -285,7 +285,7 @@
   display: none !important;
 }
 
-.medium-editor-toolbar-form-anchor {
+.mediumInsert-embedsWire {
   background-color: #fff;
   border: 1px solid $text-muted;
   border-radius: 1em;
@@ -295,7 +295,7 @@
   line-height: 22px;
   padding: 0 1em;
 
-  input {
+  .mediumInsert-embedsText {
     @include placeholder-color($text-muted);
     background-color: #fff;
     border-radius: 0;
