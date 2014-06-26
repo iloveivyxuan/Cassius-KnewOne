@@ -9,6 +9,8 @@ module Haven
     def index
       @orders = ::Order.unscoped
 
+      @orders = @orders.where(pre_order: false) if params[:filtpreorder]
+
       @orders = @orders.where(state: params[:state]) if params[:state]
 
       @orders = case params[:find_by]
@@ -30,7 +32,6 @@ module Haven
       respond_to do |format|
         format.html do
           return redirect_to haven_order_path(@orders.first) if @orders.count == 1
-
           @orders = @orders.page params[:page]
         end
 
