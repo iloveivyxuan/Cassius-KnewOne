@@ -6,11 +6,6 @@ class HomeController < ApplicationController
   before_action :skip_follow_user, only: [:index]
   before_action :authenticate_user!, only: [:welcome]
 
-  PER_THINGS = 6
-  PER_REVIEWS = 2
-  PER_FEELINGS = 4
-  PER_GROUPS = 5
-
   def index
     if user_signed_in?
       session[:home_filter] = (params[:filter] or session[:home_filter])
@@ -131,14 +126,13 @@ class HomeController < ApplicationController
 
   def following_activities(page)
     page ||= 0
-    all_kinds = (PER_THINGS + PER_REVIEWS + PER_FEELINGS) * PER_GROUPS
-    current_user.relate_activities.visible.limit(all_kinds).skip(page.to_i * all_kinds)
+    current_user.relate_activities.visible.limit(60).skip(page.to_i * 60)
   end
 
   def hot_activities(page)
     page ||= 0
-    things = Thing.hot.limit(PER_THINGS * PER_GROUPS).skip(page.to_i * PER_THINGS * PER_GROUPS).to_a
-    reviews = Review.hot.limit(PER_REVIEWS * PER_GROUPS).skip(page.to_i * PER_REVIEWS * PER_GROUPS).to_a
+    things = Thing.hot.limit(30).skip(page.to_i * 30).to_a
+    reviews = Review.hot.limit(30).skip(page.to_i * 30).to_a
     # 每次随机取产品或评测
     while (!things.empty? || !reviews.empty?) do
       rand = [true, false].sample
