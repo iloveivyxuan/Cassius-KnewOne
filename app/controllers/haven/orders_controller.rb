@@ -27,7 +27,7 @@ module Haven
       @orders = @orders.where(:created_at.lte => params[:end_date]) if params[:end_date].present?
       @orders = @orders.where(:created_at.gte => params[:start_date]) if params[:start_date].present?
 
-      @orders = @orders.desc(:updated_at)
+      @orders = @orders.desc(:created_at)
 
       respond_to do |format|
         format.html do
