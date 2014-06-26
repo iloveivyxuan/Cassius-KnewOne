@@ -118,11 +118,6 @@ do (exports = Making) ->
       @$help
         .popover
           html: true
-        .popover('show')
-
-      setTimeout ->
-        self.$help.popover('hide')
-      , 3000
 
     initWidget: ->
       !@$rating && (@$rating = @$('.range-rating')).length && @$rating.rating()

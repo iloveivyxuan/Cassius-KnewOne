@@ -73,12 +73,36 @@
   }
 }
 
+.editor-target {
+  color: $text-muted;
+  float: left;
+  height: $navbar-height;
+  line-height: $navbar-height;
+  margin-bottom: 0;
+
+  a {
+    @include text-overflow;
+    color: $text-muted;
+    display: inline-block;
+    max-width: 15em;
+    padding: 0 .5em;
+    vertical-align: middle;
+
+    &:hover {
+      color: $text-color;
+    }
+
+    &:before { content: '“'; }
+    &:after { content: '”'; }
+  }
+}
+
 .editor-help {
   @extend .btn;
   @extend .btn-link;
 
   border: none;
-  color: $gray;
+  color: $text-muted;
   margin: {
     bottom: 4px;
     top: 4px;
@@ -99,7 +123,7 @@
 .editor-save,
 .editor-submit {
   @extend .btn;
-  @include button_compact(#fff, $gray);
+  @include button_compact(#fff, $text-muted);
   border-radius: 4px;
   font-size: 14px;
   padding: {
