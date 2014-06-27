@@ -141,31 +141,47 @@ class HomeController < ApplicationController
     activities.take(activities.size / lcm * lcm)
   end
 
+  N_GROUPS = 8
+  N_THINGS_PER_GROUP = 6
+  N_REVIEWS_PER_GROUP = 1
+
   def hot_activities(page)
     page ||= 0
-    things = Thing.hot.limit(30).skip(page.to_i * 30).to_a
-    reviews = Review.hot.limit(30).skip(page.to_i * 30).to_a
-    # 每次随机取产品或评测
-    while (!things.empty? || !reviews.empty?) do
-      rand = [true, false].sample
-      if reviews.empty? || (rand && !things.empty?)
+
+    things = Thing
+      .hot
+      .limit(N_THINGS_PER_GROUP * N_GROUPS)
+      .skip(page.to_i * N_THINGS_PER_GROUP * N_GROUPS)
+      .to_a
+
+    reviews = Review
+      .hot
+      .limit(N_REVIEWS_PER_GROUP * N_GROUPS)
+      .skip(page.to_i * N_REVIEWS_PER_GROUP * N_GROUPS)
+      .to_a
+
+    activities = []
+
+    N_GROUPS.times do
+      N_THINGS_PER_GROUP.times do
         t = things.shift
-        @activities << Activity.new(
-                                    type: :new_thing,
-                                    reference_union: "Thing_#{t.id}",
-                                    source_union: "Thing_#{t.id}",
-                                    visible: true,
-                                    user_id: t.author.id)
-      else
+        activities << Activity.new(type: :new_thing,
+                                   reference_union: "Thing_#{t.id}",
+                                   source_union: "Thing_#{t.id}",
+                                   visible: true,
+                                   user_id: t.author.id)
+      end
+
+      N_REVIEWS_PER_GROUP.times do
         r = reviews.shift
-        @activities << Activity.new(
-                                    type: :new_review,
-                                    reference_union: "Review_#{r.id}",
-                                    source_union: "Thing_#{r.thing.id}",
-                                    visible: true,
-                                    user_id: r.author.id)
+        activities << Activity.new(type: :new_review,
+                                   reference_union: "Review_#{r.id}",
+                                   source_union: "Thing_#{r.thing.id}",
+                                   visible: true,
+                                   user_id: r.author.id)
       end
     end
-    @activities
+
+    activities
   end
 end
