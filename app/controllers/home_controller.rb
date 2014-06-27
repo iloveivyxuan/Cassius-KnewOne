@@ -128,7 +128,8 @@ class HomeController < ApplicationController
     page ||= 0
 
     activities = current_user
-      .relate_activities
+      .relate_activities(%i(new_thing own_thing fancy_thing
+                            new_review love_review new_feeling love_feeling))
       .visible
       .limit(60 + 20)
       .skip(page.to_i * 60)
