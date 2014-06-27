@@ -9,7 +9,8 @@ class DraftsController < ApplicationController
   end
 
   def show
-    @draft = current_user.drafts.find_by(key: params[:id])
+    @draft = current_user.drafts.where(key: params[:id]).first
+    return head :not_found unless @draft
     respond_with @draft
   end
 
