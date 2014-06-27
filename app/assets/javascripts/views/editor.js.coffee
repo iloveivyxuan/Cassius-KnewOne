@@ -53,8 +53,7 @@ do (exports = Making) ->
             .done (data, status, xhr) ->
               that.setContent(JSON.parse(data.content))
             .fail (xhr, status, error) ->
-              if localStorage[that.draftId]?
-              # if (typeof localStorage[that.draftId]) isnt 'undefined'
+              if (typeof localStorage[that.draftId]) isnt 'undefined'
                 that.setContent(JSON.parse(JSON.parse(localStorage[that.draftId]).content))
             .always ->
               that.model.updateStatus('edit')
