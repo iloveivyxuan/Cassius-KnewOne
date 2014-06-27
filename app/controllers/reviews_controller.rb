@@ -30,7 +30,11 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       format.html.mobile { render 'new' }
       format.html.tablet { render 'new.html+mobile' }
-      format.html.desktop { render layout: 'application' }
+      if ["admin", "editor", "sale"].include?(current_user.role)
+        format.html.desktop { render layout: 'application' }
+      else
+        format.html.desktop { render 'new.html+mobile' }
+      end
     end
   end
 
@@ -50,7 +54,12 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       format.html.mobile { render 'new' }
       format.html.tablet { render 'new.html+mobile' }
-      format.html.desktop { render 'new', layout: 'application' }
+      if ["admin", "editor", "sale"].include?(current_user.role)
+        format.html.desktop { render 'new', layout: 'application' }
+      else
+        format.html.desktop { render 'new.html+mobile' }
+      end
+
     end
   end
 
