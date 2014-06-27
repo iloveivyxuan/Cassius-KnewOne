@@ -1,6 +1,14 @@
-do (exports = Making) ->
+do (root = @, exports = Making) ->
 
   # TODO
+  if !window.location.origin
+    window.location.origin = window.location.protocol +
+      "//" +
+      window.location.hostname +
+      (if window.location.port then ':' + window.location.port else '')
+
+  exports.user = $('#user').data('id')
+
   exports.Breakpoints =
     "screenXSMin": "480px"
     "screenXSMax": "767px"

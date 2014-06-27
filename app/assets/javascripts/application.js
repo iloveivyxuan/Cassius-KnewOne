@@ -20,6 +20,10 @@
 //= require jquery.qrcode
 //= require jquery.deserialize
 //= require bootstrap-tagsinput
+//= require medium-editor/medium-editor
+//= require medium-editor-insert-plugin/medium-editor-insert-plugin
+//= require medium-editor-insert-plugin/medium-editor-insert-images
+//= require medium-editor-insert-plugin/medium-editor-insert-embeds
 //= require bootstrap-wysiwyg
 //= require bootstrap-select
 //= require bootstrap-touch-carousel

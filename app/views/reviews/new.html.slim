@@ -1,27 +1,35 @@
 - provide :nav, :reviews
-
-= simple_form_for [@thing, @review], html: {class: "edit_post"} do |f|
-  .help-block 欢迎您在这里写下对于产品本身的使用体验，给其他对产品感兴趣的朋友们提供客观可信的参考，谢谢：）
-  = f.input :title, label: false, placeholder: "标题"
-  = f.input :content, as: :hidden
-  = f.input :score, as: :range, label: false, input_html: {class:'range_rating', max: 5, min: 0}
-  - if current_user.role? :editor
-    = f.input :is_top, as: :boolean
-    - if @review.persisted?
-      .form-group
-        label.control-label 作者
-        = hidden_field_tag 'review[author]', @review.author.id.to_s, id: 'author_id'
-        input#author_autocomplete.form-control placeholder="用户昵称" value="#{@review.author.name}"
-
-= render 'shared/editor'
-
-.post_submit
-  = button_tag "提交评测", class: "btn btn-lg btn-primary "
-  = provider_sync if @review.new_record?
+- content_for :content
+  .spinner-fullscreen
+    em 正在加载
+  = form_for [@thing, @review], html: {class: "editor", id: "form-review"} do |f|
+    .editor-menu
+      p.editor-target
+        | 在这里写下您对
+        = link_to @thing.title, @thing, target: "_blank"
+        | 的使用体验
+      output
+      .pull-right
+        button.editor-help type="button" data-container=".editor-help" data-toggle="popover" data-placement="bottom" data-content="欢迎您在这里写下对于产品本身的使用体验，给其他对产品感兴趣的朋友们提供客观可信的参考，谢谢：）" title="温馨提示"
+          i.fa.fa-question.fa-alone
+        button.editor-close type="button" 返回
+        button.editor-drop type="button" 舍弃
+        button.editor-save type="button" 保存
+        button.editor-submit type="submit" 发布
+    article.editor-content.article
+      header
+        = f.text_field :title, class: "title", required: true, autocomplete: "off", placeholder: "标题"
+        div
+          label 评分：
+          = f.range_field :score, max: 5, min: 0, class: "range-rating"
+      .body#form-review-body
+      = f.hidden_field :content
+  = attachment_tag target: "#pictureBtn", edit: "insertImage"
 
 - content_for :script do
   javascript:
-    Making.Editor('#review_content', true);
-    Making.FormLink("form.edit_post", ".post_submit button");
-    Making.UserFuzzy('#author_autocomplete', '#author_id');
-    Making.Rating();
+    var editor = new Making.Views.Editor({
+                  el: '#form-review',
+                  model: new Making.Models.Editor(),
+                  mode: 'standalone'
+                });

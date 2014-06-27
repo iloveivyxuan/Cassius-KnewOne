@@ -105,11 +105,15 @@
 }
 
 @mixin button_compact($background-color, $color) {
+  @include transition-property(background-color, border-color, color);
+  @include transition-duration(.2s);
+
   background-color: transparent;
   border-color: $color;
   color: $color;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: $color;
     color: $background-color;
   }
@@ -141,6 +145,26 @@
 
   #{$text} {
     overflow: hidden;
+  }
+}
+
+@mixin placeholder-color($color) {
+  &::-webkit-input-placeholder { /* WebKit browsers */
+    color: $color;
+  }
+
+  &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+      color: $color;
+      opacity:  1;
+  }
+
+  &::-moz-placeholder { /* Mozilla Firefox 19+ */
+      color: $color;
+      opacity:  1;
+  }
+
+  &:-ms-input-placeholder { /* Internet Explorer 10+ */
+      color: $color;
   }
 }
 

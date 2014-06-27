@@ -27,6 +27,15 @@ class ReviewsController < ApplicationController
   end
 
   def new
+    respond_to do |format|
+      format.html.mobile { render 'new' }
+      format.html.tablet { render 'new.html+mobile' }
+      if ["admin", "editor", "sale"].include?(current_user.role)
+        format.html.desktop { render layout: 'application' }
+      else
+        format.html.desktop { render 'new.html+mobile' }
+      end
+    end
   end
 
   def create
@@ -42,7 +51,16 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    render 'new'
+    respond_to do |format|
+      format.html.mobile { render 'new' }
+      format.html.tablet { render 'new.html+mobile' }
+      if ["admin", "editor", "sale"].include?(current_user.role)
+        format.html.desktop { render 'new', layout: 'application' }
+      else
+        format.html.desktop { render 'new.html+mobile' }
+      end
+
+    end
   end
 
   def update
