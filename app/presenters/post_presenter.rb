@@ -97,7 +97,7 @@ class PostPresenter < ApplicationPresenter
       pic: share_pic(:huge),
       preview_pic: share_pic(:small),
       category: "share",
-      action: "share_#{post.class.to_s.downcase}",
+      action: "share_internal_#{post.class.to_s.downcase}",
       label: path
     }
   end
