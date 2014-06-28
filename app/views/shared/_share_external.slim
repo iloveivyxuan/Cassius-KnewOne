@@ -1,11 +1,11 @@
 .share
   = link_to_with_icon "", "fa fa-weixin", "#", title: "分享到微信", class: "weixin track_event",
   data: {toggle: "popover", trigger: "manual", container: "body", placement: "top",
-    category: "share", action: "share_external_wechat_#{type}", label: title}
+    category: "share_external", action: "share_external_wechat_#{type}", label: title}
   = link_to_with_icon "", "fa fa-weibo", "#", class: "weibo track_event", title: "分享到新浪微博",
-  data: {category: "share", action: "share_external_weibo_#{type}", label: title}
+  data: {category: "share_external", action: "share_external_weibo_#{type}", label: title}
   = link_to_with_icon "", "fa fa-twitter", "#", class: "twitter track_event", title: "分享到 Twitter",
-  data: {category: "share", action: "share_external_twitter_#{type}", label: title}
+  data: {category: "share_external", action: "share_external_twitter_#{type}", label: title}
 
 - content_for :script do
   javascript:
