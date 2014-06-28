@@ -8,7 +8,7 @@
       = link_to @thing.maker.name, @thing.maker, class: "btn btn-link btn-sm"
 
   section.actions
-    .fanciers= render "shared/fancy", p: tp
+    .fanciers= render "shared/fancy", p: tp, from: "thing"
     .owners= render "things/own", tp: tp
     .share= tp.link_to_share
 
