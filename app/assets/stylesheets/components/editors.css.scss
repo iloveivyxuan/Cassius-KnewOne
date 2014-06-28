@@ -13,7 +13,7 @@
 //  article.editor-content.article
 //    header
 //      input.title type="text" required placeholder="标题"
-//      div
+//      .editor-metas
 //    .body
 //
 
@@ -166,19 +166,45 @@
       padding-bottom: $padding-large-vertical;
       width: 100%;
     }
-
-    label {
-      color: $text-muted;
-      font-weight: normal;
-      height: 32px;
-      line-height: 32px;
-      margin-bottom: 0;
-    }
   }
 
   > .body {
     // @TODO
     min-height: 350px;
+  }
+}
+
+.editor-metas {
+  @extend .form-inline;
+
+  .form-group {
+
+    &:not(:last-child):after {
+      color: #eee;
+      content: '|';
+      display: inline-block;
+      line-height: 32px;
+      margin: 0 1.5em;
+    }
+  }
+
+  label {
+    color: $text-muted;
+    font-weight: normal;
+    height: 32px;
+    line-height: 32px;
+    margin-bottom: 0;
+  }
+
+  .form-control {
+    padding: {
+      bottom: 5px;
+      top: 5px;
+    }
+  }
+
+  .twitter-typeahead {
+    vertical-align: middle;
   }
 }
 
