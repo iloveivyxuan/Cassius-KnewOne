@@ -19,17 +19,27 @@
     article.editor-content.article
       header
         = f.text_field :title, class: "title", required: true, autocomplete: "off", placeholder: "标题"
-        div
-          label 评分：
-          = f.range_field :score, max: 5, min: 0, class: "range-rating"
+        .editor-metas
+          .form-group
+            label 评分：
+            = f.range_field :score, max: 5, min: 0, class: "range-rating"
+          .form-group
+            label 置顶：
+            = f.check_box :is_top
+          - if @review.persisted?
+            .form-group
+              label 作者：
+              = hidden_field_tag 'review[author]', @review.author.id.to_s, id: 'author_id'
+              input#author_autocomplete.form-control placeholder="用户昵称" value="#{@review.author.name}"
       .body#form-review-body
       = f.hidden_field :content
   = attachment_tag target: "#pictureBtn", edit: "insertImage"
 
 - content_for :script do
   javascript:
-    var editor = new Making.Views.Editor({
-                  el: '#form-review',
-                  model: new Making.Models.Editor(),
-                  mode: 'standalone'
-                });
+    new Making.Views.Editor({
+      el: '#form-review',
+      model: new Making.Models.Editor(),
+      mode: 'standalone'
+    });
+    Making.UserFuzzy('#author_autocomplete', '#author_id');
