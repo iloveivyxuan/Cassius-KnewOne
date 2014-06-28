@@ -83,7 +83,11 @@ module ApplicationHelper
 
   def feed_link_tag
     feed_url = content_for?(:feed) ? content_for(:feed) : things_url(format: "atom")
-    auto_discovery_link_tag :atom, feed_url
+    if content_for?(:rss)
+      (auto_discovery_link_tag :atom, feed_url) + (auto_discovery_link_tag :rss, content_for(:rss))
+    else
+      auto_discovery_link_tag :atom, feed_url
+    end
   end
 
   def notification
