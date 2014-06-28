@@ -6,7 +6,7 @@
         = tp.photo(:normal)
         .thing_fancy
           = link_to "", thing, class: "thing_fancy_backdrop", target: "_blank"
-          .fanciers= render "shared/fancy", p: tp
+          .fanciers= render "shared/fancy", p: tp, from: "feed"
       figcaption
         h5 data-placement="top" data-toggle="tooltip" title="" data-original-title="#{tp.full_title}"
           = link_to tp.full_title, thing, target: '_blank'

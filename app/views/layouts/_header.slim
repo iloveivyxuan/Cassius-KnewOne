@@ -15,9 +15,7 @@ header#header role="banner"
         li
           = link_to "分类", categories_path
         li
-          = link_to explore_path  do
-            | 发现
-            span.badge.badge-default new
+          = link_to "发现", explore_path
         li
           - if user_signed_in?
             = link_to "分享", "#", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}
