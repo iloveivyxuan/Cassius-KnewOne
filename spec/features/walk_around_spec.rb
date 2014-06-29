@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'Walk around (Smoke test)' do
+feature 'Walk around (Smoke test)', slow: true do
   given!(:user) { create(:user, :with_addresses, :with_invoices) }
   given!(:thing) { create(:thing, :for_sell, author: user) }
   given!(:order) { create(:order, user: user) }
