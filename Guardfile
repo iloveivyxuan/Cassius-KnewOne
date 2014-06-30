@@ -28,7 +28,7 @@ guard :rspec, cmd: 'bundle exec spring rspec' do
   watch(%r{^spec/factories(/.+)?\.rb$})               { "spec" }
 
   # Capybara features specs
-  watch(%r{^app/(.+)\.(rb|erb|haml|slim)$})           { "spec/features" }
+  # watch(%r{^app/(.+)\.(rb|erb|haml|slim)$})           { "spec/features" }
 
   # Turnip features and steps
   watch(%r{^spec/acceptance/(.+)\.feature$})
