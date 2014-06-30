@@ -145,6 +145,8 @@ class HomeController < ApplicationController
   N_THINGS_PER_GROUP = 6
   N_REVIEWS_PER_GROUP = 1
 
+  PER_PAGE_SIZE = (N_THINGS_PER_GROUP + N_REVIEWS_PER_GROUP) * N_GROUPS
+
   def hot_activities(page)
     page ||= 0
 
