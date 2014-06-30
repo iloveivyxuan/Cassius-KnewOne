@@ -1,0 +1,27 @@
+- queries = params.except(*request.path_parameters.keys)
+- queries[:filter] ||= []
+ul.nav.nav-pills
+    - if queries[:filter].any?
+      li
+        = link_to '全部', queries.reject! {|k, v| k == :filter}
+    - else
+      li.active
+        = link_to '全部', queries.reject! {|k, v| k == :filter}
+
+    - {'login_today' => '今日登录',
+       'reg_today' => '今日注册',
+       'role' => '有权限',
+      'reg_email' => '用邮箱注册',
+       'reg_weibo' => '用微博注册',
+       'reg_qq' => '用qq注册',
+       'reg_douban' => '用豆瓣注册',
+       'reg_twitter' => '用twitter注册'}.each do |k, v|
+      - conds = queries.deep_dup
+      - if conds[:filter].include?(k)
+        li.active
+          - conds[:filter].reject! {|f| f == k}
+          = link_to v, analysis_haven_users_path(conds)
+      - else
+        li
+          - conds[:filter].push(k)
+          = link_to v, analysis_haven_users_path(conds)
