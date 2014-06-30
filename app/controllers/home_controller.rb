@@ -164,21 +164,25 @@ class HomeController < ApplicationController
 
     N_GROUPS.times do
       N_THINGS_PER_GROUP.times do
-        t = things.shift
-        activities << Activity.new(type: :new_thing,
-                                   reference_union: "Thing_#{t.id}",
-                                   source_union: "Thing_#{t.id}",
-                                   visible: true,
-                                   user_id: t.author.id)
+        unless things.empty?
+          t = things.shift
+          activities << Activity.new(type: :new_thing,
+                                     reference_union: "Thing_#{t.id}",
+                                     source_union: "Thing_#{t.id}",
+                                     visible: true,
+                                     user_id: t.author.id)
+        end
       end
 
       N_REVIEWS_PER_GROUP.times do
-        r = reviews.shift
-        activities << Activity.new(type: :new_review,
-                                   reference_union: "Review_#{r.id}",
-                                   source_union: "Thing_#{r.thing.id}",
-                                   visible: true,
-                                   user_id: r.author.id)
+        unless reviews.empty?
+          r = reviews.shift
+          activities << Activity.new(type: :new_review,
+                                     reference_union: "Review_#{r.id}",
+                                     source_union: "Thing_#{r.thing.id}",
+                                     visible: true,
+                                     user_id: r.author.id)
+        end
       end
     end
 
