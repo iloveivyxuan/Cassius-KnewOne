@@ -161,9 +161,11 @@ module Haven
         end
         #if params[:filter].include? 'reg_douban'
          # @users = @users.where(:'auths.provider' => 'douban')
+         # logger.info("has douban in filter#{@users.size}")
         #end
         if params[:filter].include? 'reg_twitter'
           @users = @users.where(:'auths.provider' => 'twitter')
+          logger.info("has twitter in filter#{@users.size}")
         end
       else
         @users = @users.order_by([:created_at, :desc])
