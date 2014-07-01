@@ -1,6 +1,6 @@
 do (exports = Making) ->
 
   exports.Models.Draft = Backbone.Model.extend
-    idAttribute: '_id'
+    idAttribute: 'key'
     url: ->
       return '/drafts/' + @get('key')
