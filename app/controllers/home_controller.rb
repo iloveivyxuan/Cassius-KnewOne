@@ -49,15 +49,10 @@ class HomeController < ApplicationController
     end
   end
 
-  def sandbox
-    @extracted_data = {
-      images: %w(
-          http://image.knewone.com/photos/bf156596dc73be8b743a76a1b9231d71.jpg
-          http://image.knewone.com/photos/8cd9b1a51879a0cdde1866e2a0023a5c.jpg
-          http://image.knewone.com/photos/3f4452a976ee852fd53b2ef52119b60d.jpg!review
-        )
-    }
-    render layout: 'application'
+  def hits
+    @nums = {things: 6, reviews: 1, groups: 4}
+    @things = Thing.hot.page(params[:page]).per(@nums[:things]*@nums[:groups])
+    @reviews = Review.hot.page(params[:page]).per(@nums[:reviews]*@nums[:groups])
   end
 
   def not_found

@@ -1,0 +1,30 @@
+- review = hot_review
+- thing = hot_review.thing
+- present review do |review_presenter|
+  article.feed.feed-review
+    .feed-photo
+      = link_to review_presenter.path, target: '_blank'
+        = review_presenter.cover(:'post.fixed') or present(thing).photo(:'post.fixed')
+
+    .feed-content
+      = link_to review_presenter.path, target: '_blank'
+        h5
+          span.feed-title= review_presenter.title
+          = review_presenter.score
+
+      p.feed-summery= review_presenter.summary(80)
+
+      ul.feed-details
+        li.feed-user-avatar= review_presenter.author_avatar
+        li.feed-action
+          = present(review.author).link_to_with_popoverable_name
+        li.feed-timestamp= time_ago_tag(review.created_at)
+        li.feed-counts
+          ul
+            li.feed-lovers
+              | 赞
+              span.lovers-count= review.lovers_count
+            li.feed-comments
+              = link_to "#{review_presenter.path}#comments", target: '_blank'
+                | 评论
+                span.comments-count= review.comments.size

@@ -1,0 +1,302 @@
+html.home_hits {
+
+  // Layout
+  // ---------------------------------------------------------------------------
+
+  body {
+    background: #f7f7f9;
+  }
+
+  #wrapper {
+    > main {
+      min-height: 940px;
+    }
+  }
+
+  // Section
+  // ---------------------------------------------------------------------------
+
+  header.filter {
+    position: relative;
+    margin-bottom: 1.5em;
+
+    font-size: 18px;
+    line-height: 1;
+
+    nav {
+      li {
+        display: inline-block;
+        margin-right: 2em;
+
+        a {
+          display: block;
+          padding-bottom: 0.5em;
+          color: $gray-light;
+        }
+
+        &.active {
+          border-bottom: 2px solid $blue;
+
+          a {
+            color: $gray;
+          }
+        }
+      }
+    }
+  }
+
+  section.hits {
+    @include clearfix;
+
+    line-height: 1.5;
+
+    $activity-gap: 20px;
+
+    margin: 0 (-$activity-gap) (-$activity-gap) 0;
+
+    > .feed {
+      float: left;
+      margin: 0 $activity-gap $activity-gap 0;
+      background: white;
+
+      width: 100%;
+      height: 360px;
+
+      @include breakpoint(sm) {
+        width: 350px;
+        width: calc(50% - #{$activity-gap});
+      }
+
+      @include breakpoint(md) {
+        width: 300px;
+        width: calc(#{percentage(1 / 3)} - #{$activity-gap});
+      }
+
+      @include breakpoint(lg) {
+        width: 323px;
+        width: calc(25% - #{$activity-gap});
+      }
+
+      position: relative;
+
+      .feed-photo {
+        position: relative;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .feed-content {
+        padding: 1em;
+
+        h5 {
+          @include text-overflow;
+
+          margin: 0;
+          font-size: 14px;
+          color: $gray-dark;
+        }
+
+        .feed-summery {
+          color: $gray;
+
+          display: -webkit-box;
+          -webkit-line-clamp: 4;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      }
+
+      .feed-details {
+        position: absolute;
+        bottom: 1em;
+        width: 100%;
+
+        padding-left: 40px;
+
+        .feed-user-avatar {
+          position: absolute;
+          left: 0;
+          width: 32px;
+
+          img {
+            @extend .img-circle;
+          }
+        }
+
+        .feed-action,
+        .feed-action a {
+          font-size: 14px;
+          line-height: 1;
+          color: $gray;
+        }
+
+        .feed-timestamp {
+          margin-top: 6px;
+        }
+
+        .feed-timestamp,
+        .feed-counts,
+        .feed-counts a {
+          font-size: 12px;
+          line-height: 1;
+          color: $gray-light;
+        }
+
+        .feed-counts {
+          position: absolute;
+          right: 2em;
+          bottom: 0;
+
+          text-align: right;
+
+          li {
+            display: inline-block;
+            margin-left: 1em;
+          }
+
+          span {
+            margin-left: 0.2em;
+          }
+        }
+      }
+    }
+
+    .feed-thing {
+      position: relative;
+
+      .feed-fancy {
+        @include transition(opacity .2s ease);
+        opacity: 0;
+
+        @include breakpoint(md) {
+          &:hover {
+            opacity: 1;
+          }
+        }
+
+        .fancy-backdrop {
+          @include stretch;
+          background-color: rgba(black, 0.5);
+        }
+
+        .fancy-button {
+          display: none;
+
+          @include breakpoint(md) {
+            display: block;
+          }
+
+          a {
+            display: block;
+            width: 50px;
+            height: 50px;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -25px 0 0 -25px;
+
+            font-size: 50px;
+            line-height: 1;
+
+            .fa {
+              color: #ff3b3b;
+              margin-right: 0;
+            }
+
+            .fanciers_count,
+            small {
+              display: none;
+            }
+          }
+        }
+      }
+
+      h5 small {
+        @include text-overflow;
+        width: 80%;
+
+        display: block;
+        font-size: 14px;
+        color: $gray;
+      }
+    }
+
+    .feed-review,
+    .feed-feeling {
+      h5 {
+        position: relative;
+
+        line-height: 1;
+
+        .feed-title {
+          @include text-overflow;
+
+          display: inline-block;
+          width: 60%;
+          width: calc(100% - 95px);
+        }
+
+        .score {
+          position: absolute;
+          top: 0;
+          right: 0;
+          margin: 0;
+
+          .rate {
+            padding: 0;
+          }
+        }
+      }
+
+      .feed-summery {
+        margin: 1.5em 0 0;
+      }
+    }
+
+    .feed-feeling {
+      .fa-quote-left {
+        margin-right: 0.5em;
+      }
+
+      .fa-quote-right {
+        margin-left: 0.5em;
+      }
+    }
+
+    .video {
+      display: none;
+    }
+  }
+
+  footer[role="contentinfo"] {
+    display: block;
+  }
+
+  &.mobile {
+
+    #activities {
+
+      .feed_article {
+        padding: {
+          left: 0;
+          right: 0;
+          top: 1rem;
+        }
+
+        > header {
+
+          .avatar {
+
+            a:last-child {
+              max-width: 70px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
