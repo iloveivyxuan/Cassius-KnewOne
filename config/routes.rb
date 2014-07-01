@@ -5,17 +5,25 @@ Making::Application.routes.draw do
     get "maps/#{a}/page/:page", to: "maps##{a}"
   end
 
-  get 'help', to: 'help#index'
+  use_doorkeeper
 
+  root to: 'home#index'
+
+  get 'page/:page', to: "home#index"
+  get 'search', to: 'home#search', as: :search
+  get 'hits', to: 'home#hits', as: :hits
+  get 'welcome', to: 'home#welcome'
+  get 'jobs', to: 'home#jobs'
+  get 'user_agreement', to: 'home#user_agreement'
+  get 'qr_entry', to: 'home#qr_entry'
+  get "404", to: "home#not_found"
+  get "403", to: "home#forbidden"
+  get "500", to: "home#error"
+
+  get 'help', to: 'help#index'
   %w(how_to_share how_to_review terms knewone_for_user knewone_for_startup).each do |a|
     get "help/#{a}"
   end
-
-  use_doorkeeper
-  root to: 'home#index'
-  get 'welcome', to: 'home#welcome'
-  get '/page/:page', to: "home#index"
-  get 'qr_entry', to: 'home#qr_entry'
 
   get 'explore', to: 'explore#index'
   %w(features reviews specials events).each do |a|
@@ -205,15 +213,6 @@ Making::Application.routes.draw do
     mount Sidekiq::Web => '/haven/sidekiq'
   end
 
-  get '/search', to: 'home#search', as: :search
-  get '/sandbox', to: 'home#sandbox'
-
-  get "/404", :to => "home#not_found"
-  get "/403", :to => "home#forbidden"
-  get "/500", :to => "home#error"
-
-  get 'jobs', to: 'home#jobs'
-  get 'user_agreement', to: 'home#user_agreement'
   get 'valentine', to: 'specials#valentine'
   get 'womensday', to: 'specials#womensday'
   get 'makerfaire', to: 'specials#makerfaire'

@@ -8,16 +8,7 @@ class HomeController < ApplicationController
 
   def index
     if user_signed_in?
-      session[:home_filter] = (params[:filter] or session[:home_filter])
-      session[:home_filter] ||= 'hot'
-      @activities = []
-      params[:page] ||= 0
-      case session[:home_filter]
-      when "followings"
-        @activities = following_activities(params[:page])
-      else
-        @activities = hot_activities(params[:page])
-      end
+      @activities = following_activities params[:page]
 
       if request.xhr?
         render 'home/index_xhr', layout: false
@@ -44,15 +35,10 @@ class HomeController < ApplicationController
     end
   end
 
-  def sandbox
-    @extracted_data = {
-      images: %w(
-          http://image.knewone.com/photos/bf156596dc73be8b743a76a1b9231d71.jpg
-          http://image.knewone.com/photos/8cd9b1a51879a0cdde1866e2a0023a5c.jpg
-          http://image.knewone.com/photos/3f4452a976ee852fd53b2ef52119b60d.jpg!review
-        )
-    }
-    render layout: 'application'
+  def hits
+    @nums = {things: 6, reviews: 1, groups: 4}
+    @things = Thing.hot.page(params[:page]).per(@nums[:things]*@nums[:groups])
+    @reviews = Review.hot.page(params[:page]).per(@nums[:reviews]*@nums[:groups])
   end
 
   def not_found
@@ -125,8 +111,6 @@ class HomeController < ApplicationController
   end
 
   def following_activities(page)
-    page ||= 0
-
     activities = current_user
       .relate_activities(%i(new_thing own_thing fancy_thing
                             new_review love_review new_feeling love_feeling),
@@ -139,55 +123,5 @@ class HomeController < ApplicationController
 
     lcm = [2, 3, 4].inject(:lcm)
     activities.take(activities.size / lcm * lcm)
-  end
-
-  N_GROUPS = 8
-  N_THINGS_PER_GROUP = 6
-  N_REVIEWS_PER_GROUP = 1
-
-  PER_PAGE_SIZE = (N_THINGS_PER_GROUP + N_REVIEWS_PER_GROUP) * N_GROUPS
-
-  def hot_activities(page)
-    page ||= 0
-
-    things = Thing
-      .hot
-      .limit(N_THINGS_PER_GROUP * N_GROUPS)
-      .skip(page.to_i * N_THINGS_PER_GROUP * N_GROUPS)
-      .to_a
-
-    reviews = Review
-      .hot
-      .limit(N_REVIEWS_PER_GROUP * N_GROUPS)
-      .skip(page.to_i * N_REVIEWS_PER_GROUP * N_GROUPS)
-      .to_a
-
-    activities = []
-
-    N_GROUPS.times do
-      N_THINGS_PER_GROUP.times do
-        unless things.empty?
-          t = things.shift
-          activities << Activity.new(type: :new_thing,
-                                     reference_union: "Thing_#{t.id}",
-                                     source_union: "Thing_#{t.id}",
-                                     visible: true,
-                                     user_id: t.author.id)
-        end
-      end
-
-      N_REVIEWS_PER_GROUP.times do
-        unless reviews.empty?
-          r = reviews.shift
-          activities << Activity.new(type: :new_review,
-                                     reference_union: "Review_#{r.id}",
-                                     source_union: "Thing_#{r.thing.id}",
-                                     visible: true,
-                                     user_id: r.author.id)
-        end
-      end
-    end
-
-    activities
   end
 end

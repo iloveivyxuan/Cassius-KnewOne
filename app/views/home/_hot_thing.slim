@@ -1,0 +1,31 @@
+- present hot_thing do |thing_presenter|
+  article.feed.feed-thing
+    .feed-photo
+      = thing_presenter.photo(:'thing.fixed')
+      .feed-fancy
+        = link_to '', hot_thing, class: 'fancy-backdrop', target: "_blank"
+        .fancy-button= render 'shared/fancy', p: thing_presenter
+
+    .feed-content
+      = link_to hot_thing, target: '_blank'
+        h5
+          span.feed-title= hot_thing.title
+          small= hot_thing.subtitle
+
+      ul.feed-details
+        li.feed-user-avatar= thing_presenter.author_avatar
+        li.feed-action
+          = present(hot_thing.author).link_to_with_popoverable_name
+        li.feed-timestamp= time_ago_tag(hot_thing.created_at)
+        li.feed-counts
+          ul
+            li.feed-fanciers
+              | 喜欢
+              span.fanciers-count= hot_thing.fanciers_count
+            li.feed-owners
+              | 拥有
+              span.owners-count= hot_thing.owners.size
+            li.feed-reviews
+              = link_to thing_reviews_path(hot_thing), target: '_blank' do
+                | 评测
+                span.reviews-count= hot_thing.reviews_count
