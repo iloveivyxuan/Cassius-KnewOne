@@ -7,7 +7,11 @@ xml.rss :version => "2.0" do
 
     @entries.each do |e|
       if e.post_id.blank?
-        post = Post.new(title: e.title, content: auto_link(e.external_link), author: { name: "KnewOne" })
+        post = Post.new(
+                        title: e.title,
+                        content: auto_link(e.external_link),
+                        author: { name: "KnewOne" },
+                        created_at: e.created_at)
       else
         post = Post.find(e.post_id)
       end
@@ -15,10 +19,10 @@ xml.rss :version => "2.0" do
       xml.item do
         xml.title post.title
         xml.description post.content
+        xml.author { |author| author.name(post.author.name) }
         xml.pubDate post.created_at.to_s(:rfc822)
         xml.cover e.cover.url(:normal)
         xml.link url_for(:action => 'show', :controller => 'entries', :id => e.id)
-        xml.guid url_for(:action => 'show', :controller => 'entries', :id => e.id)
       end
 
     end
