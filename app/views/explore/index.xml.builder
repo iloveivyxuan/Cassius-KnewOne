@@ -2,7 +2,7 @@ xml.rss :version => "2.0" do
   xml.channel do
     xml.title "KnewOne Explore"
     xml.description "KnewOne, 探索分享新奇酷"
-    xml.link explore_url(format: "rss")
+    xml.link explore_url(format: "xml")
 
     @entries.each do |e|
       if e.post_id.blank?
