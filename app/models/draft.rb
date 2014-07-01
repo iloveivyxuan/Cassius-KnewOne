@@ -5,7 +5,5 @@ class Draft
   field :key, type: String
   validates :key, presence: true
 
-  field :content, type: String, default: ''
-
   belongs_to :user
 end
