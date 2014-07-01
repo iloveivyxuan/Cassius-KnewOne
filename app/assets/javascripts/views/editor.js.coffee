@@ -30,6 +30,7 @@ do (exports = Making) ->
       @$bodyField = @$('[name$="[content]"]')
       @draft      = new exports.Models.Draft
                       type: options.type
+                      id: '' # force Backbone use PUT to create
                       key: exports.user + '+draft+' +
                             encodeURIComponent(location.pathname) +
                             '+#' + (@el.id ? '')
