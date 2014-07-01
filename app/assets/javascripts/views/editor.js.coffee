@@ -19,6 +19,7 @@ do (exports = Making) ->
 
     initialize: (options) ->
       @mode       = options.mode
+      @type       = options.type
       @draftId    = exports.user +
                     '+draft+' +
                     encodeURIComponent(location.pathname) +
@@ -130,7 +131,8 @@ do (exports = Making) ->
       @$bodyField.val(@editor.serialize()[@$body.attr('id')].value)
 
     getContent: ->
-      content = {}
+      content =
+        type: @type
 
       @setBody()
 
