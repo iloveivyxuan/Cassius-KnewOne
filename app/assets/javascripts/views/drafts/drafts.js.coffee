@@ -26,7 +26,7 @@ do (exports = Making) ->
       event.preventDefault()
       $target = $(event.target)
       @drafts
-        .findWhere({'key': $target.data('key')})
+        .findWhere({'id': $target.data('id')})
           .destroy
             success: ->
               $target.parents('li').fadeOut()
