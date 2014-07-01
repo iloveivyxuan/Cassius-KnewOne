@@ -155,7 +155,7 @@ do (exports = Making) ->
       if persisten is true
         that  = @
 
-        @draft.save
+        @draft.save null,
           success: (model, response, options) ->
             localStorage.removeItem(that.draft.get('key'))
             that.model.updateStatus('edit')
