@@ -6,10 +6,16 @@ do (exports = Making) ->
 
     template: HandlebarsTemplates['editor/draft']
 
+    initialize: ->
+      @listenTo @model, 'destroy', @destroy
+
     render: ->
       @$el.html(@template(@model.attributes))
 
       return this
+
+    destroy: ->
+      @$el.fadeOut(200)
 
   Handlebars.registerHelper 'draft_title', ->
     return title = @[@type + '[title]']
