@@ -29,6 +29,7 @@ do (exports = Making) ->
       @$fields    = @$content.find('[name]')
       @$bodyField = @$('[name$="[content]"]')
       @draft      = new exports.Models.Draft
+                      type: options.type
                       key: exports.user + '+draft+' +
                             encodeURIComponent(location.pathname) +
                             '+#' + (@el.id ? '')
