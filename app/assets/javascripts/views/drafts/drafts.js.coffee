@@ -4,15 +4,29 @@ do (exports = Making) ->
 
     el: '.drafts'
 
+    events:
+      'click .destory': 'destory'
+
     initialize: ->
       @drafts = new exports.Collections.Drafts()
 
-      @listenTo @drafts, 'reset', @render
+      @listenTo @drafts, 'sync', @render
 
-      @drafts.fetch({reset: true})
+      @drafts.fetch()
 
     render: ->
+      @list = []
       _.each @drafts.models, (draft, index, list) ->
         draftView = new exports.Views.Draft({model: draft})
-        @$el.append(draftView.render().el)
+        @list.push(draftView.render().el)
       , @
+      @$el.append(@list)
+
+    destory: (event) ->
+      event.preventDefault()
+      $target = $(event.target)
+      @drafts
+        .findWhere({'key': $target.data('key')})
+          .destroy
+            success: ->
+              $target.parents('li').fadeOut()

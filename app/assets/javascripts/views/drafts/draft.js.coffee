@@ -12,14 +12,10 @@ do (exports = Making) ->
       return this
 
   Handlebars.registerHelper 'draft_title', ->
-    console.log JSON.parse(@content)
-    content = JSON.parse(@content)
-    title   = content[content.type + '[title]']
-    return title
+    return title = @[@type + '[title]']
 
   Handlebars.registerHelper 'draft_summary', ->
-    content = JSON.parse(@content)
-    body = $(content[content.type + '[content]']).text()
+    body = $(@[@type + '[content]']).text()
     summary = ''
     if body.length > 140
       summary = body.slice(0, 140) + '......'

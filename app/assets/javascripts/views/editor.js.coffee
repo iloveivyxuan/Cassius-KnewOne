@@ -29,7 +29,7 @@ do (exports = Making) ->
       @$fields    = @$content.find('[name]')
       @$bodyField = @$('[name$="[content]"]')
       @draft      = new exports.Models.Draft
-                      id: exports.user + '+draft+' +
+                      key: exports.user + '+draft+' +
                             encodeURIComponent(location.pathname) +
                             '+#' + (@el.id ? '')
                       link: location.href
@@ -53,8 +53,8 @@ do (exports = Making) ->
             .done (data, status, xhr) ->
               that.getContent(data)
             .fail (xhr, status, error) ->
-              if (typeof localStorage[that.draft.get('id')]) isnt 'undefined'
-                that.getContent(JSON.parse(localStorage[that.model.get('id')]))
+              if (typeof localStorage[that.draft.get('key')]) isnt 'undefined'
+                that.getContent(JSON.parse(localStorage[that.draft.get('key')]))
             .always ->
               that.model.updateStatus('edit')
               that.show()
@@ -154,18 +154,25 @@ do (exports = Making) ->
       if persisten is true
         that  = @
 
-        $
-          .ajax
-            url: @draft.url()
-            type: 'put'
-            data: draft
-          .done (data, status, xhr) ->
-            localStorage.removeItem(that.draft.get('id'))
+        @draft.save
+          success: (model, response, options) ->
+            localStorage.removeItem(that.draft.get('key'))
             that.model.updateStatus('edit')
             that.model.set('persisten', true)
             if callback then callback()
+
+        # $
+        #   .ajax
+        #     url: @draft.url()
+        #     type: 'put'
+        #     data: draft
+        #   .done (data, status, xhr) ->
+        #     localStorage.removeItem(that.draft.get('key'))
+        #     that.model.updateStatus('edit')
+        #     that.model.set('persisten', true)
+        #     if callback then callback()
       else
-        localStorage[@draft.get('id')] = JSON.stringify(draft)
+        localStorage[@draft.get('key')] = JSON.stringify(draft)
         @model.set('persisten', false)
         @model.updateStatus('edit')
 
@@ -199,13 +206,18 @@ do (exports = Making) ->
           .off 'unload'
           .off 'beforeunload'
 
-        $
-          .ajax
-            url: @draft.url()
-            type: 'delete'
-          .always ->
-            localStorage.removeItem(that.draft.get('id'))
+        @draft.destroy
+          success: ->
+            localStorage.removeItem(that.draft.get('key'))
             callback()
+
+        # $
+        #   .ajax
+        #     url: @draft.url()
+        #     type: 'delete'
+        #   .always ->
+        #     localStorage.removeItem(that.draft.get('key'))
+        #     callback()
 
     submit: (event) ->
       that = @
@@ -217,10 +229,11 @@ do (exports = Making) ->
       # @FIXME
       # 提交表单，同时删除草稿（本地＋服务器），
       # 愿主保佑不会遇到删除草稿成功但提交表单失败的情况。
-      localStorage.removeItem(that.draft.get('id'))
-      $.ajax
-        url: @draft.url()
-        type: 'delete'
+      localStorage.removeItem(that.draft.get('key'))
+      @draft.destroy()
+      # $.ajax
+      #   url: @draft.url()
+      #   type: 'delete'
 
       @model.updateStatus('submit')
 
@@ -235,4 +248,4 @@ do (exports = Making) ->
         return '文档还未保存，确定要离开吗？'
 
     unload: ->
-      localStorage.removeItem(@draft.get('id'))
+      localStorage.removeItem(@draft.get('key'))
