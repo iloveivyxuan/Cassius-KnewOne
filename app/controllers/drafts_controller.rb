@@ -16,7 +16,13 @@ class DraftsController < ApplicationController
 
   def update
     @draft = current_user.drafts.find_or_create_by(key: params[:id])
-    @draft.update(draft_params)
+
+    if params.include?(:review)
+      draft_params_review.each { |k, v| @draft["review[#{k.to_sym}]"] = v }
+      @draft[:type] = "review"
+    end
+
+    @draft.save
     respond_with @draft
   end
 
@@ -28,7 +34,7 @@ class DraftsController < ApplicationController
 
   private
 
-  def draft_params
-    params.require(:draft).permit(:content)
+  def draft_params_review
+    params.require(:review).permit(:title, :score, :is_top, :content, :author)
   end
 end
