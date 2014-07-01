@@ -20,6 +20,7 @@ class DraftsController < ApplicationController
     if params.include?(:review)
       draft_params_review.each { |k, v| @draft["review[#{k.to_sym}]"] = v }
       @draft[:type] = "review"
+      @draft[:link] = params[:link]
     end
 
     @draft.save
