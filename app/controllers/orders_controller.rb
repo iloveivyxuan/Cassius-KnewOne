@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class OrdersController < ApplicationController
   before_action :require_signed_in, only: [:index, :show, :new, :create, :cancel, :tenpay, :alipay]
   before_action :have_items_in_cart, only: [:new, :create]

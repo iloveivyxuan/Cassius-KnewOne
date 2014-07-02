@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 module Haven
   class CommentsController < ApplicationController
     layout 'settings'

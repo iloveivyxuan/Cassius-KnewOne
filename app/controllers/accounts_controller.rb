@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AccountsController < Devise::RegistrationsController
   prepend_before_action :require_signed_in
   layout 'settings'

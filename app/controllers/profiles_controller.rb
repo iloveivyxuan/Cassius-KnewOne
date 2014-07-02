@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class ProfilesController < ApplicationController
   prepend_before_action :require_signed_in
   before_action :set_editor_choices, except: [:update, :edit, :follow_recommends]

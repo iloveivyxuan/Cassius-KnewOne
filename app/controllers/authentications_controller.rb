@@ -1,4 +1,3 @@
-# encoding: utf-8
 class AuthenticationsController < ApplicationController
   prepend_before_action :require_signed_in
   layout 'settings'

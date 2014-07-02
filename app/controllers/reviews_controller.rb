@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class ReviewsController < ApplicationController
   include MarkReadable
   load_and_authorize_resource :thing, singleton: true

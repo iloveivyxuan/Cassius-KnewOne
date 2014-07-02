@@ -1,4 +1,3 @@
-# encoding: utf-8
 class Coupon
   include Mongoid::Document
   include Mongoid::Timestamps

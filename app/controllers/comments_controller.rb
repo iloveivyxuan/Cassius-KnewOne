@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class CommentsController < ApplicationController
   include MarkReadable
   respond_to :json

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 module ApplicationHelper
 
   # TODO: should be monky patching into ActiveSupport

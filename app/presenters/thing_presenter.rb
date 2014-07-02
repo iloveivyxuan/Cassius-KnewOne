@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class ThingPresenter < PostPresenter
   presents :thing
   delegate :title, :subtitle, :photos, :self_run?, to: :thing

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class ApplicationController < ActionController::Base
   before_action :trim_param_id
   protect_from_forgery

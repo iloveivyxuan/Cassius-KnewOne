@@ -1,4 +1,3 @@
-# encoding: utf-8
 class AbatementCoupon < Coupon
   field :threshold_price, type: BigDecimal, default: 0
   field :price, type: BigDecimal, default: 0

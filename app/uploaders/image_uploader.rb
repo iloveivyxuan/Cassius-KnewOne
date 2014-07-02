@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class ImageUploader < CarrierWave::Uploader::Base
   include Sprockets::Rails::Helper
 

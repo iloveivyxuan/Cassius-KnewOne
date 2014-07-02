@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class NotificationsController < ApplicationController
   prepend_before_action :authenticate_user!
   after_action :mark_read, only: [:index]
