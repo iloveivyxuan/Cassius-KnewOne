@@ -5,7 +5,7 @@ class DraftsController < ApplicationController
 
   def index
     @drafts = current_user.drafts
-    respond_with @drafts
+    respond_with @drafts.map(&:hoist_content)
   end
 
   def show
