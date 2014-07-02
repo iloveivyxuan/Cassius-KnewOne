@@ -10,7 +10,7 @@
         | 的使用体验
       output
       .pull-right
-        button.editor-help type="button" data-container=".editor-help" data-toggle="popover" data-placement="bottom" data-content="欢迎您在这里写下对于产品本身的使用体验，给其他对产品感兴趣的朋友们提供客观可信的参考，谢谢：）" title="温馨提示"
+        button.editor-help-toggle type="button" data-toggle="modal" data-target="#editor-help"
           i.fa.fa-question.fa-alone
         button.editor-close type="button" 返回
         button.editor-drop type="button" 舍弃
@@ -34,6 +34,7 @@
       .body#form-review-body
       = f.hidden_field :content
   = attachment_tag target: "#pictureBtn", edit: "insertImage"
+  = render "shared/editor_help"
 
 - content_for :script do
   javascript:

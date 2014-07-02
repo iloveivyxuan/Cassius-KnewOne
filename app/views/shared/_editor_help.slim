@@ -1,0 +1,25 @@
+.modal.fade.editor-help#editor-help
+  .modal-dialog
+    .modal-content
+      header.modal-header
+        button.close type="button" data-dismiss="modal"
+          span aria-hidden="true" &times;
+          span.sr-only Close
+        h3.modal-title 编辑器使用帮助
+      .modal-body
+        ul.nav.nav-pills role="tablist"
+          li.active
+            a href="#typography" role="tab" data-toggle="tab" 排版格式
+          li
+            a href="#insert-image" role="tab" data-toggle="tab" 插入图片
+        .tab-content
+          .tab-pane.active#typography
+            img src="http://image.knewone.com/photos/fddbad8d478b0dcb0472303f56d86cf1.gif"
+          .tab-pane#insert-image
+            img src="http://image.knewone.com/photos/991282381fe939b73960b9edef66b124.gif"
+      footer.modal-footer
+        label
+          input#show-editor-help type="checkbox"
+          | 不再提示
+        span.separator |
+        button.btn.btn-primary type="button" data-dismiss="modal" 关闭

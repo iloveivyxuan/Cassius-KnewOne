@@ -19,7 +19,6 @@ do (exports = Making) ->
 
     initialize: (options) ->
       @mode       = options.mode
-      @$help      = @$('.editor-help')
       @$submit    = @$('.editor-submit')
       @$drop      = @$('.editor-drop')
       @$close     = @$('.editor-close')
@@ -116,9 +115,20 @@ do (exports = Making) ->
       @$body.mediumInsert('disable')
 
     initHelp: ->
-      @$help
-        .popover
-          html: true
+      key       = exports.user + '+hide-editor-help'
+      isHide    = localStorage[key]
+      $checkbox = $('#show-editor-help')
+
+      if isHide is 'true'
+        $checkbox.attr('checked', true)
+      else
+        $checkbox.removeAttr('checked')
+
+      if $checkbox.prop('checked') isnt true
+        $('#editor-help').modal('show')
+
+      $checkbox.on 'change', ->
+        localStorage[key] = $(@).prop('checked')
 
     initWidget: ->
       !@$rating && (@$rating = @$('.range-rating')).length && @$rating.rating()
