@@ -7,7 +7,7 @@ module Alipay
 
     def self.to_query_string(params, wrap_quotation = true)
       params.sort.map do |key, value|
-        wrap_quotation ? "#{key}=\"#{value.gsub('"', '')}\"" : "#{key}=#{value.gsub('"', '')}"
+        wrap_quotation ? "#{key.to_s}=\"#{value.to_s.gsub('"', '')}\"" : "#{key.to_s}=#{value.to_s.gsub('"', '')}"
       end.join('&')
     end
 
