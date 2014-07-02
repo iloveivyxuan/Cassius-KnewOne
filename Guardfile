@@ -1,6 +1,6 @@
 notification :emacs
 
-guard 'livereload' do
+guard 'livereload', host: 'making.dev' do
   watch(%r{app/controllers/.+\.rb})
   watch(%r{app/views/.+\.(erb|haml|slim|jbuilder|builder)})
   watch(%r{app/helpers/.+\.rb})
