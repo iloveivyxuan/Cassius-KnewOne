@@ -33,6 +33,10 @@ module Api
         @reviews = @user.reviews.desc(:is_top, :lovers_count, :created_at).page(params[:page]).per(params[:per_page] || 8)
       end
 
+      def feelings
+        @feelings = @user.feelings.desc(:created_at).page(params[:page]).per(params[:per_page] || 24)
+      end
+
       def things
         @things = @user.things.desc(:created_at).page(params[:page]).per(params[:per_page] || 8)
       end
