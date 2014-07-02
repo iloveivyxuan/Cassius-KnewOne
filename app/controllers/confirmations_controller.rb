@@ -1,4 +1,3 @@
-# encoding: utf-8
 class ConfirmationsController < Devise::ConfirmationsController
   # POST /resource/confirmation
   def create

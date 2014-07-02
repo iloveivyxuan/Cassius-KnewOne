@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 module Hell
   class ApplicationController < ActionController::Metal
     SECRET = 'd15cd239'

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 module Haven
   class ApplicationController < ::ActionController::Base
     prepend_before_action :require_admin_signed_in

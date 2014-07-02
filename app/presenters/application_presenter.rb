@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class ApplicationPresenter
   def initialize(object, template=nil)
     @object = object

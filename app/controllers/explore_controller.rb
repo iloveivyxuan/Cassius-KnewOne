@@ -1,4 +1,3 @@
-#encoding: utf-8
 class ExploreController < ApplicationController
   def index
     @entries = Entry.published.desc(:created_at).page(params[:page]).per(6)

@@ -1,4 +1,3 @@
-#encoding: utf-8
 class ThingMailer < BaseMailer
   def encourage_owner(thing, user)
     @thing = thing

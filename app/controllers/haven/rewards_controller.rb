@@ -1,4 +1,3 @@
-#encoding: utf-8
 module Haven
   class RewardsController < ApplicationController
     before_action :set_reward, only: [:edit, :update, :destroy, :award]

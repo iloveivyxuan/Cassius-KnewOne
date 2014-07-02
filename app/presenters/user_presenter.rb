@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class UserPresenter < ApplicationPresenter
   presents :user
   delegate :name, to: :user

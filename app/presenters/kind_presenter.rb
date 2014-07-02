@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class KindPresenter < ApplicationPresenter
   presents :kind
   delegate :title, :id, :photo_number, :stock, :max_per_buy, to: :kind
