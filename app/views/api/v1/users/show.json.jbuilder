@@ -17,6 +17,8 @@ json.owns_count @user.owns.count
 json.owns_url url_wrapper(@user, action: :owns)
 json.reviews_count @user.reviews.count
 json.reviews_url url_wrapper(@user, action: :reviews)
+json.feelings_count @user.feelings.count
+json.feelings_url url_wrapper(@user, action: :feelings)
 json.groups_count @user.groups_count
 json.groups_url url_wrapper(@user, action: :groups)
 json.followings_count @user.followings_count
