@@ -10,20 +10,17 @@ class DraftsController < ApplicationController
 
   def show
     @draft = current_user.drafts.where(key: params[:id]).first
+
     return head :not_found unless @draft
-    respond_with @draft
+
+    content = JSON.parse(@draft.content) rescue {}
+    content.merge!(@draft.attributes.except('content'))
+    respond_with content
   end
 
   def update
     @draft = current_user.drafts.find_or_create_by(key: params[:id])
-
-    if params.include?(:review)
-      draft_params_review.each { |k, v| @draft["review[#{k.to_sym}]"] = v }
-      @draft[:type] = "review"
-      @draft[:link] = params[:link]
-    end
-
-    @draft.save
+    @draft.update(content: request.body.string)
     respond_with @draft
   end
 
@@ -31,11 +28,5 @@ class DraftsController < ApplicationController
     @draft = current_user.drafts.find_by(key: params[:id])
     @draft.destroy
     respond_with @draft
-  end
-
-  private
-
-  def draft_params_review
-    params.require(:review).permit(:title, :score, :is_top, :content, :author)
   end
 end
