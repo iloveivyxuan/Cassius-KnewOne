@@ -276,6 +276,8 @@ Making::Application.routes.draw do
 
     resources :reviews, only: [:index]
 
+    resources :feelings, only: [:index]
+
     resources :comments, only: [:index, :destroy]
 
     resources :rewards do
