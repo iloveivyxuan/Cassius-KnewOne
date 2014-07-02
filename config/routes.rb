@@ -267,7 +267,7 @@ Making::Application.routes.draw do
 
     resources :entries, except: [:show]
 
-    resources :users, only: [:index, :update, :show, :analysis] do
+    resources :users, only: [:index, :update, :show] do
       member do
         post 'encourage_thing_author'
         post 'encourage_review_author'
