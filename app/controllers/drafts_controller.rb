@@ -10,12 +10,8 @@ class DraftsController < ApplicationController
 
   def show
     @draft = current_user.drafts.where(key: params[:id]).first
-
     return head :not_found unless @draft
-
-    content = JSON.parse(@draft.content) rescue {}
-    content.merge!(@draft.attributes.except('content'))
-    respond_with content
+    respond_with @draft.hoist_content
   end
 
   def update
