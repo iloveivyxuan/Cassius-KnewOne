@@ -18,7 +18,9 @@ do (exports = Making) ->
       @$el.fadeOut(200)
 
   Handlebars.registerHelper 'draft_title', ->
-    return title = @[@type + '[title]']
+    title = @[@type + '[title]']
+    if title is '' then title = '无标题文档'
+    return title
 
   Handlebars.registerHelper 'draft_summary', ->
     body = $(@[@type + '[content]']).text()
