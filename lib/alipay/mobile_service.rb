@@ -17,8 +17,8 @@ module Alipay
     end
 
     def self.query_string(options)
-      options.merge('sign_type' => 'RSA', 'sign' => Alipay::MobileSign.generate(options)).map do |key, value|
-        "#{CGI.escape(key.to_s)}=#{CGI.escape(value.to_s)}"
+      options.sort.concat([['sign_type', 'RSA'], ['sign', Alipay::MobileSign.generate(options)]]).map do |key, value|
+        "#{CGI.escape(key.to_s)}=\"#{CGI.escape(value.to_s)}\""
       end.join('&')
     end
 
