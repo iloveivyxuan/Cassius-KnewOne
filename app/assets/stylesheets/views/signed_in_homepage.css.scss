@@ -8,6 +8,8 @@ html.signed_in_homepage {
   }
 
   #wrapper {
+    margin: 0;
+
     > main {
       min-height: 940px;
     }
