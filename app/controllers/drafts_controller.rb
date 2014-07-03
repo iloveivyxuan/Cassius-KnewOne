@@ -5,18 +5,18 @@ class DraftsController < ApplicationController
 
   def index
     @drafts = current_user.drafts
-    respond_with @drafts
+    respond_with @drafts.map(&:hoist_content)
   end
 
   def show
     @draft = current_user.drafts.where(key: params[:id]).first
     return head :not_found unless @draft
-    respond_with @draft
+    respond_with @draft.hoist_content
   end
 
   def update
     @draft = current_user.drafts.find_or_create_by(key: params[:id])
-    @draft.update(draft_params)
+    @draft.update(content: request.body.string)
     respond_with @draft
   end
 
@@ -24,11 +24,5 @@ class DraftsController < ApplicationController
     @draft = current_user.drafts.find_by(key: params[:id])
     @draft.destroy
     respond_with @draft
-  end
-
-  private
-
-  def draft_params
-    params.require(:draft).permit(:content)
   end
 end

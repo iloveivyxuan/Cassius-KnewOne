@@ -2,8 +2,6 @@ Making.Models.Editor = Backbone.Model.extend
   defaults:
     status: ''
     persisten: false
-    draft:
-      content: ''
 
   updateStatus: (status) ->
 
@@ -13,8 +11,8 @@ Making.Models.Editor = Backbone.Model.extend
       when 'edit'
         @set 'status', ''
       when 'save'
-        @set 'status', '正在保存草稿'
+        @set 'status', '正在保存'
       when 'drop'
-        @set 'status', '正在删除文档'
+        @set 'status', '正在删除'
       when 'submit'
-        @set 'status', '正在发布文档'
+        @set 'status', '正在发布'

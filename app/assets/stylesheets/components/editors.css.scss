@@ -4,9 +4,9 @@
 //  .editor-menu
 //    output
 //     .pull-right
-//       button.btn.btn-link.editor-help type="button" data-container=".editor-menu" data-toggle="popover" data-placement="bottom" title="帮助"
+//       button.editor-help-toggle type="button" data-toggle="modal" data-target="#editor-help"
 //         i.fa.fa-question.fa-alone
-//       button.editor-close type="button" 返回
+//       button.editor-close type="button" 退出
 //       button.editor-drop type="button" 舍弃
 //       button.editor-save type="button" 保存
 //       button.editor-submit type="submit" 发布
@@ -91,13 +91,10 @@
     &:hover {
       color: $text-color;
     }
-
-    &:before { content: '“'; }
-    &:after { content: '”'; }
   }
 }
 
-.editor-help {
+.editor-help-toggle {
   @extend .btn;
   @extend .btn-link;
 
@@ -115,6 +112,13 @@
 
   .popover-content {
     width: 250px;
+  }
+}
+
+.editor-help {
+
+  .nav {
+    padding-bottom: $padding-large-vertical;
   }
 }
 
@@ -242,6 +246,7 @@
 
     min-width: 80px;
     width: auto;
+    z-index: 1;
 
     .mediumInsert-buttonsShow {
       @include fontawesome("\f055");
