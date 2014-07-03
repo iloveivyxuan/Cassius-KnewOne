@@ -171,17 +171,6 @@ do (exports = Making) ->
             that.model.updateStatus('edit')
             that.model.set('persisten', true)
             if callback then callback()
-
-        # $
-        #   .ajax
-        #     url: @draft.url()
-        #     type: 'put'
-        #     data: draft
-        #   .done (data, status, xhr) ->
-        #     localStorage.removeItem(that.draft.get('id'))
-        #     that.model.updateStatus('edit')
-        #     that.model.set('persisten', true)
-        #     if callback then callback()
       else
         localStorage[@draft.get('id')] = JSON.stringify(draft)
         @model.set('persisten', false)
@@ -222,14 +211,6 @@ do (exports = Making) ->
             localStorage.removeItem(that.draft.get('id'))
             callback()
 
-        # $
-        #   .ajax
-        #     url: @draft.url()
-        #     type: 'delete'
-        #   .always ->
-        #     localStorage.removeItem(that.draft.get('id'))
-        #     callback()
-
     submit: (event) ->
       that = @
 
@@ -242,9 +223,6 @@ do (exports = Making) ->
       # 愿主保佑不会遇到删除草稿成功但提交表单失败的情况。
       localStorage.removeItem(that.draft.get('id'))
       @draft.destroy()
-      # $.ajax
-      #   url: @draft.url()
-      #   type: 'delete'
 
       @model.updateStatus('submit')
 
