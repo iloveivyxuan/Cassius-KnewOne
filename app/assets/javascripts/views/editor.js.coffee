@@ -44,7 +44,7 @@ do (exports = Making) ->
           that = @
 
           @model.updateStatus('load')
-          @$close.addClass('hidden')
+          @$drop.addClass('hidden')
 
           $
             .ajax
@@ -177,16 +177,17 @@ do (exports = Making) ->
         @model.updateStatus('edit')
 
     close: ->
-      callback = null
+      that = @
 
-      switch @mode
-        when 'complemental'
-          callback = @hide
-
-      @save true, callback
+      @save true, ->
+        switch that.mode
+          when 'standalone'
+            window.close()
+          when 'complemental'
+            that.hide()
 
     drop: ->
-      if confirm '确定舍弃文档吗？'
+      if confirm '确定删除草稿吗？'
         that     = @
         callback = null
 
