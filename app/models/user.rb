@@ -16,6 +16,8 @@ class User
   field :flags, type: Array, default: []
   field :status, type: Symbol, default: :normal
 
+  validates :name, uniqueness: { case_sensitive: false }
+
   index name: 1
 
   STATUS = {blocked: '锁定', watching: '特别观照(贬)', normal: '正常'}
