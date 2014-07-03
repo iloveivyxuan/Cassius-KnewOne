@@ -1,31 +1,26 @@
 - present hot_thing do |thing_presenter|
-  article.feed.feed-thing
-    .feed-photo
-      = thing_presenter.photo(:'thing.fixed')
-      .feed-fancy
-        = link_to '', hot_thing, class: 'fancy-backdrop', target: "_blank"
-        .fancy-button= render 'shared/fancy', p: thing_presenter, from: 'feed'
-
-    .feed-content
-      = link_to hot_thing, target: '_blank'
-        h5
-          span.feed-title= hot_thing.title
-          small= hot_thing.subtitle
-
-      ul.feed-details
-        li.feed-user-avatar= thing_presenter.author_avatar
-        li.feed-action
-          = present(hot_thing.author).link_to_with_popoverable_name
-        li.feed-timestamp= time_ago_tag(hot_thing.created_at)
-        li.feed-counts
-          ul
-            li.feed-fanciers
-              | 喜欢
-              span.fanciers-count= hot_thing.fanciers_count
-            li.feed-owners
-              | 拥有
-              span.owners-count= hot_thing.owners.size
-            li.feed-reviews
-              = link_to thing_reviews_path(hot_thing), target: '_blank' do
-                | 评测
-                span.reviews-count= hot_thing.reviews_count
+  article.thing
+    header.cover
+      = link_to hot_thing do
+        = thing_presenter.photo :'thing.fixed'
+      .fancy_thing
+        = link_to "", hot_thing, class: "fancy_backdrop"
+        .fancy_button= render "shared/fancy", p: thing_presenter
+    section.content
+      = link_to hot_thing do
+        h4.title= thing_presenter.title
+        p.subtitle= thing_presenter.subtitle
+    footer.info
+      .creator= thing_presenter.author
+      .interactions
+        = link_to hot_thing, class: "fanciers_count" do
+          | 喜欢
+          = thing_presenter.fanciers_count
+        - if thing_presenter.has_owner?
+          = link_to hot_thing do
+            | 拥有
+            = thing_presenter.owners_count
+        - if thing_presenter.has_review?
+          = link_to thing_reviews_path(hot_thing), class: "reviews_count" do
+            | 评测
+            = thing_presenter.reviews_count

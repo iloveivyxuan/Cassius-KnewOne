@@ -1,7 +1,5 @@
 .container
-  header
-
   section.hits
-    - @nums[:groups].times do |i|
-      = render partial: 'hot_thing', collection: @things[i*@nums[:things]...(i+1)*@nums[:things]]
-      = render partial: 'hot_review', collection: @reviews[i*@nums[:reviews]...(i+1)*@nums[:reviews]]
+    - @batch.times do |i|
+      = render partial: 'hot_thing', collection: @things[6*i...6*(i+1)]
+      / = render partial: 'hot_review', collection: @reviews[i*@nums[:reviews]...(i+1)*@nums[:reviews]]

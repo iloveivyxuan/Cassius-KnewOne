@@ -22,7 +22,7 @@ class PostPresenter < ApplicationPresenter
   end
 
   def author_name
-    present(post.author).link_to_with_name
+    present(post.author).link_to_with_popoverable_name
   end
 
   def content

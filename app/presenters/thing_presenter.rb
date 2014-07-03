@@ -139,6 +139,14 @@ class ThingPresenter < PostPresenter
     thing.owners.desc(:created_at).limit(10)
   end
 
+  def has_owner?
+    thing.owners.count > 0
+  end
+
+  def has_review?
+    thing.reviews.count > 0
+  end
+
   def reviews_count
     show_count thing.reviews.count
   end
@@ -224,7 +232,7 @@ class ThingPresenter < PostPresenter
   end
 
   def author
-    present(thing.author).as_author
+    present(thing.author).as_author_with_profile
   end
 
   def share_content

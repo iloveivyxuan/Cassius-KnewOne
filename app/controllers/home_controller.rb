@@ -50,9 +50,9 @@ class HomeController < ApplicationController
   end
 
   def hits
-    @nums = {things: 6, reviews: 1, groups: 4}
-    @things = Thing.hot.page(params[:page]).per(@nums[:things]*@nums[:groups])
-    @reviews = Review.hot.page(params[:page]).per(@nums[:reviews]*@nums[:groups])
+    @batch = 4
+    @things = Thing.hot.page(params[:page]).per(6*@batch)
+    @reviews = Review.hot.page(params[:page]).per(@batch)
   end
 
   def not_found
