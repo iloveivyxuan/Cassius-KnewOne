@@ -351,7 +351,7 @@ do (exports = Making) ->
               $target.data('editor').render()
             $docbody.addClass('editor-open')
 
-      .on 'click', '.fanciers > a, .fancy-button > a', (event) ->
+      .on 'click', '.fanciers > a, .fancy-button > a, .fancy_button > a', (event) ->
         event.preventDefault()
 
         $trigger = $(@)
