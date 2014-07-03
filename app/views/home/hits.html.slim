@@ -1,4 +1,4 @@
-.container
+.container-fluid
   section.hits
     - @batch.times do |i|
       = render partial: 'hot_thing', collection: @things[6*i...6*(i+1)]

@@ -1,5 +1,32 @@
+html.home_hits #wrapper {margin: 0;}
+
+html.home_hits .container-fluid {
+  @media (min-width: $screen-lg-min) {
+    width: $container-large-desktop;
+  }
+}
+
 html.home_hits section.hits {
+  @include clearfix;
+  margin-top: 20px;
+
   article.thing {
-    margin: 20px 0;
+    $gutter: 20px;
+    margin-bottom: $gutter;
+
+    @media (min-width: $screen-sm-min) {
+      float: left;
+    }
+    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+      &:nth-child(odd) {margin-right: $gutter;}
+      width: 350px;
+      width: calc((100% - #{$gutter})/2);
+    }
+
+    @media (min-width: $screen-md-min) {
+      &:nth-child(3n+1), &:nth-child(3n+2) {margin-right: $gutter;}
+      width: 306px;
+      width: calc((100% - #{$gutter}*2)/3);
+    }
   }
 }
