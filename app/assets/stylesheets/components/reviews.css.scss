@@ -1,0 +1,74 @@
+article.review {
+  background: white;
+
+  header.cover {
+    img {width: 100%;}
+
+    @media (min-width: $screen-sm-min) {
+      float: left;
+      padding: 10px;
+      img {width: 160px;height: 160px;}
+    }
+  }
+
+  section.content {
+    padding: 1em;
+
+    h4, p {
+      margin: 0;
+      font-size: $font-size-base;
+    }
+
+    h4 {
+      a {color: $black;}
+    }
+
+    p {
+      color: $gray-light;
+    }
+
+    .score {
+      .star {font-size: 12px;}
+      margin: 0;
+    }
+  }
+
+  footer.info {
+    @include clearfix;
+    padding: 0 1em 1em;
+    width: 100%;
+
+    @media (min-width: $screen-sm-min) {
+      padding-right: 30px;
+    }
+
+    .creator {
+      float: left;
+      max-width: 50%;
+      @include text-overflow;
+
+      > a {
+        vertical-align: bottom;
+        color: $gray;
+      }
+
+      img {
+        width: 32px;
+        margin-right: .5em;
+        @extend .img-circle;
+      }
+    }
+
+    .interactions {
+      float: right;
+      max-width: 50%;
+      @include text-overflow;
+      margin-top: 12px;
+
+      > * {
+        margin-left: .5em;
+        color: $gray-light;
+      }
+    }
+  }
+}
