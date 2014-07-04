@@ -31,14 +31,14 @@ class User
     EVAL
   end
   validates :name, presence: true, uniqueness: true,
-            format: {with: /\A[^\s]+\z/, multiline: false, message: '昵称中不能包含空格。'}
+            format: {with: /\A[^\s]+\z/, multiline: false, message: '不能包含空格'}
 
   RESERVED_WORDS = ['KnewOne', '知新创想', '牛玩']
   validate :name_cannot_include_reserved_words
 
   def name_cannot_include_reserved_words
     if RESERVED_WORDS.any? { |word| /#{Regexp.escape(word)}/i.match(name) }
-      errors.add(:name, '昵称中不能包含保留字符。')
+      errors.add(:name, '不能包含保留字符')
     end
   end
   private :name_cannot_include_reserved_words
