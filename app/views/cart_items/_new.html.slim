@@ -1,10 +1,13 @@
 - link_to_login = link_to_with_icon "请登录后购买", "fa fa-sign-in", "#",
 class: "btn btn-info buy_button cart_login", data: {toggle: "modal", target: "#login-modal"}
 
+- data = { category: "buy", action: "buy_#{@thing.stage}", label: request.path }
+
 .mobile_buy
   - if user_signed_in?
+    - data.merge!({ toggle: "modal", target: "#mobile_buy_modal" })
     = link_to_with_icon "现在购买", "fa fa-shopping-cart", "#",
-      class: "btn btn-success btn-block buy_button mobile_buy", data: {toggle: "modal", target: "#mobile_buy_modal"}
+      class: "btn btn-success btn-block buy_button mobile_buy track_event", data: data
     #mobile_buy_modal.modal.fade
       .modal-dialog
         .modal-content
@@ -13,7 +16,8 @@ class: "btn btn-info buy_button cart_login", data: {toggle: "modal", target: "#l
           .modal-body
           .modal-footer
             = button_tag "取消", type: "button", class: "btn btn-default", data: {dismiss: "modal"}
-            = button_tag type: "button", class: "btn btn-success buy_button", data: {toggle: "modal", target: "#mobile_buy_success", dismiss: "modal"} do
+            - data.merge!({ toggle: "modal", target: "#mobile_buy_success", dismiss: "modal" })
+            = button_tag type: "button", class: "btn btn-success buy_button track_event", data: data do
               i.fa.fa-shopping-cart.fa-lg
               | 加入购物车
     #mobile_buy_success.modal.fade
@@ -45,7 +49,7 @@ class: "btn btn-info buy_button cart_login", data: {toggle: "modal", target: "#l
     | 已加入购物车
   .submit
     - if user_signed_in?
-      = button_tag type: "submit", class: "btn btn-success buy_button", disabled: true do
+      = button_tag type: "submit", class: "btn btn-success buy_button track_event", data: data, disabled: true do
         i.fa.fa-shopping-cart.fa-lg
         | 加入购物车
     - else

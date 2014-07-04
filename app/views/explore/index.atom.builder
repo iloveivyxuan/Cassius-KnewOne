@@ -13,7 +13,7 @@ atom_feed do |feed|
       post = Post.find(e.post_id)
     end
     url = url_for(:action => 'show', :controller => 'entries', :id => e.id)
-    feed.entry(post, :url => url) do |entry|
+    feed.entry(post, :url => "#{url}?source=atom") do |entry|
       entry.title(post.title)
       entry.content(post.content, type: 'html')
       entry.cover e.cover.url(:normal)

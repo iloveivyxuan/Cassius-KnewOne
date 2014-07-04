@@ -4,8 +4,9 @@
     #thing_reviews.clearfix
       .new_review
         - if user_signed_in?
+          - data = { category: "review", action: "review_write", label: request.path }
           = link_to_with_icon "我要写评测", "fa fa-pencil", new_thing_review_path(tp.thing),
-          class: "pull-left btn btn-default"
+          class: "pull-left btn btn-default track_event", data: data
       .reviews.list = render reviews
 
       - if tp.thing.reviews.count > 5

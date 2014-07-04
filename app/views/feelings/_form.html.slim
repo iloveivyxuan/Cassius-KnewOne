@@ -17,8 +17,10 @@
 
       .submit
         span.counter 140
-        = button_tag type: "submit", class: "btn btn-success",
-          title: "按 Command + Enter 或 Control + Enter 键发布回复", "data" => {"loading-text" => "提交中...", "toggle" => "tooltip", "placement" => "bottom"} do
+        - data = { category: "feeling", action: "feeling_submit", label: request.path }
+        - data.merge!({"loading-text" => "提交中...", "toggle" => "tooltip", "placement" => "bottom"})
+        = button_tag type: "submit", class: "btn btn-success track_event",
+          title: "按 Command + Enter 或 Control + Enter 键发布回复", "data" => data do
           i.fa.fa-comments-o
           | 发布
 
