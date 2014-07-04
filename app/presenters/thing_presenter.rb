@@ -231,10 +231,6 @@ class ThingPresenter < PostPresenter
     show_count thing.fancy_groups.count
   end
 
-  def author
-    present(thing.author).as_author_with_profile
-  end
-
   def share_content
     if thing.author == current_user
       "我在#{share_topic} 分享了一个酷产品: #{title} ! "

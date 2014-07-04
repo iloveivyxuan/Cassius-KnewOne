@@ -6,14 +6,23 @@ html.home_hits .container-fluid {
   }
 }
 
+html.home_hits > header {
+  img {
+    width: 100%;
+    height: 150px;
+  }
+}
+
 html.home_hits section.hits {
   @include clearfix;
-  margin-top: 20px;
+  $gutter: 20px;
+  margin-top: $gutter;
+
+  article {
+    margin-bottom: $gutter;
+  }
 
   article.thing {
-    $gutter: 20px;
-    margin-bottom: $gutter;
-
     @media (min-width: $screen-sm-min) {
       float: left;
     }
@@ -27,6 +36,27 @@ html.home_hits section.hits {
       &:nth-child(3n+1), &:nth-child(3n+2) {margin-right: $gutter;}
       width: 306px;
       width: calc((100% - #{$gutter}*2)/3);
+    }
+  }
+
+  article.review {
+    width: 100%;
+    float: left;
+
+    @media (min-width: $screen-sm-min) {
+      section.content {
+        .summary {
+          min-height: 90px;
+        }
+      }
+    }
+
+    @media (min-width: $screen-md-min) {
+      /* So thing:review is golden porpotion */
+      padding: 35px;
+      header.cover { 
+        padding-right: 45px;
+      }
     }
   }
 }

@@ -9,6 +9,10 @@ class ReviewPresenter < PostPresenter
     edit_thing_review_path(review.thing, review)
   end
 
+  def cover(size)
+    super(size) or present(review.thing).photo(size)
+  end
+
   def share_content
     if review.author == current_user
       "我在#{share_topic} 为 #{review.thing.title} 写了一篇新评测《#{title}》: "

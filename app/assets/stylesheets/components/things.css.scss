@@ -176,10 +176,11 @@ article.thing {
       @include text-overflow;
       margin: 0;
       font-size: $font-size-base;
+      min-height: $font-size-base * $line-height-base;
     }
 
-    h4 {color: $black;}
-    p {color : $gray;}
+    h4 a {color: $black;}
+    p a {color : $gray;}
   }
 
   footer.info {
@@ -213,7 +214,6 @@ article.thing {
       > * {
         margin-left: .5em;
         color: $gray-light;
-        font-size: 12px;
       }
 
       .fanciers_count {display: none;}
@@ -229,16 +229,20 @@ article.thing {
       display: none;
     }
 
+    .fancy_button a {
+      .fa {color: #ff3b3b;}
+      small {display: none;}
+    }
+
     @media (max-width: $screen-sm-max) {
       .fancy_button a {
         display: block;
         position: absolute;
         bottom: 0;
         right: 0;
-        padding: .5em;
-        .fa {color: $red;}
-        .fanciers_count, small {color: $gray-light;}
-        background-color: #f9f9f9;
+        padding: .5em 1em;
+        .fanciers_count {color: #eee;}
+        background-color: rgba(black, 0.4);
       }
     }
 
@@ -263,12 +267,9 @@ article.thing {
         font-size: 50px;
         line-height: 1;
 
-        .fa {
-          color: #ff3b3b;
-          margin-right: 0;
-        }
+        .fa {margin-right: 0;}
 
-        .fanciers_count, small {display: none;}
+        .fanciers_count {display: none;}
       }
     }
   }
