@@ -109,18 +109,36 @@ class HomeController < ApplicationController
     session[:skip] = true if params[:skip].present?
   end
 
+  THINGS_PER_ROW_IN_FOLLOWINGS = 2
+
   def following_activities(page)
-    activities = current_user
-      .relate_activities(%i(new_thing own_thing fancy_thing
-                            new_review love_review new_feeling love_feeling),
-                         %i(new_review))
+    thing_activities = current_user
+      .relate_activities(%i(new_thing own_thing fancy_thing))
       .visible
-      .limit(60 + 20)
-      .skip(page.to_i * 60)
+      .page(page)
+      .per(50)
       .to_a
       .uniq(&:reference_union)
 
-    lcm = [2, 3, 4].inject(:lcm)
-    activities.take(activities.size / lcm * lcm)
+    thing_activities = thing_activities.take(thing_activities.size /
+                                             THINGS_PER_ROW_IN_FOLLOWINGS *
+                                             THINGS_PER_ROW_IN_FOLLOWINGS)
+
+    other_activities = current_user
+      .relate_activities(%i(new_review love_review new_feeling love_feeling),
+                         %i(new_review))
+      .visible
+      .page(page)
+      .per(20)
+      .to_a
+      .uniq(&:reference_union)
+
+    activities = []
+    until thing_activities.empty? || other_activities.empty?
+      activities.concat(thing_activities.shift(THINGS_PER_ROW_IN_FOLLOWINGS))
+      activities << other_activities.shift
+    end
+    activities.concat(thing_activities)
+    activities.concat(other_activities)
   end
 end

@@ -48,36 +48,24 @@ html.signed_in_homepage {
   }
 
   #activities {
-    @include clearfix;
+    width: 100%;
 
-    line-height: 1.5;
+    @include breakpoint(md) {
+      float: left;
+      width: percentage(2 / 3);
+    }
 
     $activity-gap: 20px;
 
-    margin: 0 (-$activity-gap) (-$activity-gap) 0;
+    @include clearfix;
 
     > .feed {
       float: left;
+      width: calc(100% - #{$activity-gap});
+
       margin: 0 $activity-gap $activity-gap 0;
+      height: 550px;
       background: white;
-
-      width: 100%;
-      height: 360px;
-
-      @include breakpoint(sm) {
-        width: 350px;
-        width: calc(50% - #{$activity-gap});
-      }
-
-      @include breakpoint(md) {
-        width: 300px;
-        width: calc(#{percentage(1 / 3)} - #{$activity-gap});
-      }
-
-      @include breakpoint(lg) {
-        width: 323px;
-        width: calc(25% - #{$activity-gap});
-      }
 
       position: relative;
 
@@ -168,6 +156,12 @@ html.signed_in_homepage {
 
     .feed-thing {
       position: relative;
+
+      height: 450px;
+
+      @include breakpoint(sm) {
+        width: calc(50% - #{$activity-gap});
+      }
 
       .feed-fancy {
         @include transition(opacity .2s ease);
@@ -272,6 +266,133 @@ html.signed_in_homepage {
     .video {
       display: none;
     }
+  }
+
+  .aside-container {
+    display: none;
+
+    @include breakpoint(md) {
+      display: block;
+      float: left;
+      width: percentage(1 / 3);
+    }
+
+    aside[role="complemental"] {
+      @include breakpoint(md) {
+        width: $container-md / 3;
+      }
+
+      @include breakpoint(lg) {
+        width: $container-lg / 3;
+      }
+
+      &.affix {
+        top: 60px;
+      }
+
+      &.affix-bottom {
+        position: absolute;
+      }
+
+      > section {
+        margin-bottom: 2rem;
+        padding: 1rem;
+      }
+
+      h2 {
+        margin: 0;
+        margin-bottom: 1rem;
+        color: black;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .entries {
+        padding: 0;
+
+        li {
+          margin-bottom: 1rem;
+        }
+      }
+
+      .drafts {
+        background: white;
+        margin-bottom: 0;
+        padding-bottom: 1rem;
+
+        .drafts-count {
+          margin-left: 0.5rem;
+
+          @include border-radius(20px);
+          padding: 1px 5px;
+          background: $gray-light;
+          color: white;
+          font-size: 90%;
+          font-weight: normal;
+        }
+      }
+
+      .tags {
+        background: white;
+      }
+
+      .recommended-users {
+        background: white;
+
+        .recommended-user {
+          margin-top: 0.5rem;
+        }
+
+        .author_avatar {
+          display: inline-block;
+          width: 15%;
+
+          img {
+            @extend .img-circle;
+            width: 36px;
+          }
+        }
+
+        .author_name {
+          @include text-overflow;
+          display: inline-block;
+          vertical-align: middle;
+          width: 35%;
+          color: black;
+        }
+
+        .user-info {
+          display: inline-block;
+          width: 50%;
+          text-align: right;
+
+          .reviews-count {
+            width: 40%;
+          }
+
+          .fancies-count {
+            width: 60%;
+          }
+
+          li {
+            display: inline-block;
+            text-align: left;
+
+            a {
+              color: $gray;
+            }
+
+            b {
+              margin-left: 0.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .pagination {
+    clear: both;
   }
 
   footer[role="contentinfo"] {

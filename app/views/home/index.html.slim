@@ -7,8 +7,12 @@
         li class="#{session[:home_filter] == 'followings' ? 'active' : ''}"
           = link_to '我关注的', {filter: 'followings'}
 
-  #activities
+  section#activities
     = render partial: 'activity', collection: @activities
+
+  .aside-container
+    = render 'aside'
+
   = paginate_nav
 
   .spinner.hide
