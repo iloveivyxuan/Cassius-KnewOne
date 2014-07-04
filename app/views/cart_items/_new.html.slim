@@ -1,8 +1,7 @@
 - link_to_login = link_to_with_icon "请登录后购买", "fa fa-sign-in", "#",
 class: "btn btn-info buy_button cart_login", data: {toggle: "modal", target: "#login-modal"}
 
-- product_status = @thing.shop.present? ? "product" : "presale"
-- data = { category: "buy", action: "buy_#{product_status}", label: request.path }
+- data = { category: "buy", action: "buy_#{@thing.stage}", label: request.path }
 
 .mobile_buy
   - if user_signed_in?
