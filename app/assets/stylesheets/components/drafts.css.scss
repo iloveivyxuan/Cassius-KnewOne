@@ -1,0 +1,12 @@
+ul.drafts {
+  @extend .list;
+
+  > li {
+    padding: $padding-large-vertical * 2 0;
+
+    h5 {
+      font-weight: bold;
+      margin: 0 0 $padding-large-vertical;
+    }
+  }
+}

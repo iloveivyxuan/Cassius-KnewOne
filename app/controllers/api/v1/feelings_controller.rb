@@ -12,14 +12,16 @@ module Api
       end
 
       def create
+        photos = []
         if params[:images]
-          params[:images].each do |image|
+          photos = params[:images].map do |image|
             Photo.create! image: image, user: current_user
           end
         end
 
         @feeling = @thing.feelings.build feeling_params
         @feeling.author = current_user
+        @feeling.photo_ids.concat photos.map { |p| p.id.to_s }
 
         if @feeling.save
           render action: 'show', status: :created, location: [:api, :v1, @thing, @feeling]

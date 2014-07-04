@@ -22,9 +22,9 @@ module Haven
     end
 
     def create
-      entry = Entry.new entry_params
+      @entry = Entry.new entry_params
 
-      if entry.save
+      if @entry.save
         redirect_to haven_entries_url
       else
         render 'new'

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class Thing < Post
   include Mongoid::Slug
   include Mongoid::MultiParameterAttributes
@@ -62,6 +61,7 @@ class Thing < Post
   has_many :lotteries, dependent: :destroy
 
   scope :recent, -> { gt(created_at: 1.month.ago) }
+  scope :hot, -> { gt(fanciers_count: 30) }
   scope :published, -> { lt(created_at: Time.now) }
   scope :prior, -> { gt(priority: 0).desc(:priority, :created_at) }
   scope :self_run, -> { send :in, stage: [:dsell, :pre_order] }

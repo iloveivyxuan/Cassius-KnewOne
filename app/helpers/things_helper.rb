@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 module ThingsHelper
   def render_mobile_buy(thing)
     case thing.stage

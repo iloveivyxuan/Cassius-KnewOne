@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class LotteriesController < ApplicationController
   load_and_authorize_resource
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 module NotificationsHelper
   NOTIFICATION_TAB_ICONS_MAPPING = {
       importants: 'fa-info',

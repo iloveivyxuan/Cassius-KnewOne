@@ -1,0 +1,18 @@
+- present feeling do |rp|
+  li.feeling
+    article.post
+      header
+        h3
+          - if feeling.thing
+            = link_to feeling.thing.title, rp.path
+          - else
+            | 产品已被删除
+        = rp.author_tag
+        = rp.score
+        = feeling.created_at
+      section
+        .article.post_content
+          = rp.summary
+      footer
+        = rp.lovers_count
+        = rp.comments_count if feeling.thing

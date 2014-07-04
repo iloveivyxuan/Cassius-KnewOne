@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 module Haven
   class ReviewsController < ApplicationController
     layout 'settings'

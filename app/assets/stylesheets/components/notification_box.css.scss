@@ -81,7 +81,7 @@
       &.active {
 
         > a {
-          //background-color: $nav-link-hover-bg;
+          background-color: darken($nav-link-hover-bg, 5%);
           color: $text-color;
         }
       }

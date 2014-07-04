@@ -12,3 +12,23 @@
   padding: 20px 0;
   text-align: center;
 }
+
+.spinner-fullscreen {
+  background-color: #fff;
+  display: table;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: $zindex-navbar-fixed + 1;
+
+  em {
+    color: $gray;
+    display: table-cell;
+    font-size: 16px;
+    font-style: normal;
+    text-align: center;
+    vertical-align: middle;
+  }
+}

@@ -1,4 +1,3 @@
-# encoding: utf-8
 class ThingRebateCoupon < Coupon
   field :thing_id, type: String
   field :price, type: BigDecimal, default: 0

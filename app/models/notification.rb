@@ -16,6 +16,7 @@ class Notification
 
   field :context_type, type: String
   field :context_id, type: String
+  index context_type: 1, context_id: 1
 
   def context
     return if (self.context_type || self.context_id).blank?

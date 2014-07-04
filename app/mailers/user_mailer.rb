@@ -1,4 +1,3 @@
-#encoding: utf-8
 class UserMailer < BaseMailer
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -85,14 +84,15 @@ class UserMailer < BaseMailer
          subject: '你在「KnewOne 牛玩」上收到了一封私信')
   end
 
-  def recall(user_id, counts = {})
+  def recall(user_id, items = {})
     @user = User.find(user_id)
-    @counts = counts
-    @counts[:activities] ||= @user.relate_activities.from_date(30.days.ago).to_date(Date.today).size
-    @counts[:things] ||= Thing.from_date(30.days.ago).to_date(Date.today).size
-    @counts[:reviews] ||= Review.from_date(30.days.ago).to_date(Date.today).size
-    @counts[:fancies_reviews] ||= Review.where(:id.in => (@user.fancy_ids + @user.own_ids)).from_date(30.days.ago).to_date(Date.today).size
-    @counts[:fancies_feelings] ||= Feeling.where(:id.in => (@user.fancy_ids + @user.own_ids)).from_date(30.days.ago).to_date(Date.today).size
+    @items = items
+    @items[:activities_count] ||= @user.relate_activities.from_date(30.days.ago).to_date(Date.today).size
+    @items[:global_things_count] ||= Thing.recent.size
+    @items[:global_reviews_count] ||= Review.recent.size
+    @items[:things] ||= @user.things.recent
+    @items[:owns] ||= @user.owns.recent
+    @items[:reviews] ||= @user.reviews.recent
 
     mail(to: @user.email,
          subject: 'KnewOne动态')

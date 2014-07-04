@@ -41,6 +41,9 @@ Making::Application.routes.draw do
 
   scope 'settings' do
     root to: 'profiles#edit', as: 'setting_root'
+
+    get 'drafts', to: 'profiles#drafts', as: 'setting_drafts'
+
     scope path_names: {edit: ''}, only: [:edit, :update] do
       resource :profile, path_prefix: 'admin'
       resource :account do
@@ -200,6 +203,8 @@ Making::Application.routes.draw do
     resources :private_messages, only: [:destroy]
   end
 
+  resources :drafts, only: [:index, :show, :update, :destroy]
+
   resources :lotteries do
     get 'page/:page', action: :index, on: :collection
   end
@@ -247,6 +252,7 @@ Making::Application.routes.draw do
     resources :things, only: [:index, :update, :edit] do
       member do
         get 'send_stock_notification'
+        post 'encourage_owners'
       end
 
       collection do
@@ -263,9 +269,20 @@ Making::Application.routes.draw do
 
     resources :entries, except: [:show]
 
-    resources :users, only: [:index, :update, :show]
+    resources :users, only: [:index, :update, :show] do
+      member do
+        post 'encourage_thing_author'
+        post 'encourage_review_author'
+      end
+
+      collection do
+        get "analysis"
+      end
+    end
 
     resources :reviews, only: [:index]
+
+    resources :feelings, only: [:index]
 
     resources :comments, only: [:index, :destroy]
 
@@ -297,11 +314,20 @@ Making::Application.routes.draw do
       resources :things, only: [:index, :show, :create] do
         resources :reviews, only: [:index, :show] do
           resources :comments, controller: :review_comments, only: [:index, :show, :create, :destroy]
+          resource :vote, only: [:create, :destroy, :show]
         end
         resources :feelings, only: [:index, :show, :create] do
           resources :comments, controller: :feeling_comments, only: [:index, :show, :create, :destroy]
+          resource :vote, only: [:create, :destroy, :show]
         end
         resources :comments, controller: :thing_comments, only: [:index, :show, :create, :destroy]
+
+        resource :vote, only: [:create, :destroy, :show]
+
+        collection do
+          get 'random'
+          get 'recommends'
+        end
       end
 
       resources :categories, only: [:index, :show] do
@@ -316,11 +342,12 @@ Making::Application.routes.draw do
         end
       end
 
-      resources :users, only: [:index, :show] do
+      resources :users, only: [:index, :show, :create] do
         member do
           get 'fancies'
           get 'owns'
           get 'reviews'
+          get 'feelings'
           get 'things'
           get 'groups'
           get 'followings'
@@ -334,6 +361,7 @@ Making::Application.routes.draw do
 
         resources :topics, except: [:new, :edit] do
           resources :comments, controller: :topic_comments, only: [:index, :show, :create, :destroy]
+          resource :vote, only: [:create, :destroy, :show]
         end
       end
 

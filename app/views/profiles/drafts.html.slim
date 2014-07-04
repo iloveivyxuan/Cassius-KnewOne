@@ -1,0 +1,13 @@
+- provide :nav, :drafts
+
+header.page-header
+  h2
+    i.fa.fa-inbox
+    | 我的草稿
+
+section
+  ul.drafts
+
+- content_for :script do
+  javascript:
+    new Making.Views.Drafts();

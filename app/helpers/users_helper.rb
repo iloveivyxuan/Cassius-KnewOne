@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 module UsersHelper
   def user_avatar(user, size=:tiny)
     image_tag user.avatar.url(size), alt: user.name

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class GroupPresenter < ApplicationPresenter
   presents :group
   delegate :name, :members_count, :topics_count, :public?, :private?, to: :group

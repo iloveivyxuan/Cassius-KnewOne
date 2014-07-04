@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class HomeController < ApplicationController
   layout 'application'
   skip_after_action :store_location

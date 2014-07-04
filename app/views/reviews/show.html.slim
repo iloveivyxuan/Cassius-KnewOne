@@ -3,13 +3,13 @@
 
 - present @review do |rp|
 
-  article.post_show id="review_#{@review.id}"
+  article.article.post_show id="review_#{@review.id}"
     header
       h3= rp.title
       = rp.score
       = rp.author_tag
 
-    section.article.post_content= rp.content
+    section.body.post_content= rp.content
 
     footer
       .feed_action = render 'shared/voting', object: rp.review

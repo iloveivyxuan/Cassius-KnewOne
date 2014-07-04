@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class PostPresenter < ApplicationPresenter
   presents :post
   delegate :title, :id, :author, :content_photos, to: :post
@@ -87,13 +86,18 @@ class PostPresenter < ApplicationPresenter
     end
   end
 
-  def link_to_share(klass = 'share_btn')
-    link_to_with_icon "分享", "fa fa-share",
+  def link_to_share(klass = '')
+    link_to_with_icon "分享", "fa fa-share-alt",
     user_signed_in? ? "#share_modal" : "#login-modal",
-    title: "分享", class: klass,
-    data: {toggle: 'modal',
+    title: "分享", class: "#{klass} share_btn track_event",
+    data: {
+      toggle: 'modal',
       content: share_content,
       pic: share_pic(:huge),
-      preview_pic: share_pic(:small)}
+      preview_pic: share_pic(:small),
+      category: "share_internal_ready",
+      action: "share_internal_ready_#{post.class.to_s.downcase}",
+      label: path
+    }
   end
 end

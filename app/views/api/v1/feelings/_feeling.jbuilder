@@ -8,6 +8,10 @@ json.created_at_ago_in_words time_ago_in_words(feeling.created_at)
 json.lovers_count feeling.lovers.count
 json.foes_count feeling.foes.count
 
+if current_user
+  json.loved feeling.lovers.include?(current_user)
+end
+
 json.score feeling.score
 json.content feeling.content
 json.photo_urls feeling.photos.map {|p| p.image.url}

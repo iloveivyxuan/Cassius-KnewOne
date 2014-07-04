@@ -2,7 +2,7 @@ module Api
   module V1
     class ThingsController < ApiController
       doorkeeper_for [:create]
-      before_action :set_thing, except: [:index, :create]
+      before_action :set_thing, except: [:index, :create, :random, :recommends]
 
       def index
         if c_id = (params[:category_id] || params[:category])
@@ -22,6 +22,18 @@ module Api
         scope = scope.self_run if params[:self_run].present?
 
         @things = scope.page(params[:page]).per(params[:per_page] || 24)
+      end
+
+      def random
+        @things = Thing.rand_records (params[:per] || 24).to_i
+
+        render 'api/v1/things/index'
+      end
+
+      def recommends
+        @things = Thing.published.prior.limit (params[:per] || 1).to_i
+
+        render 'api/v1/things/index'
       end
 
       def show

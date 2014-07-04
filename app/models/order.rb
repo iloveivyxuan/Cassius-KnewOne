@@ -1,4 +1,3 @@
-# encoding: utf-8
 class Order
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -51,7 +50,6 @@ class Order
   end
 
   SF_PRICE = 10.0
-
   STATES = {
       :pending => '等待付款',
       :freed => '无需支付，请用户确认',
@@ -91,6 +89,7 @@ class Order
   field :use_balance, type: Boolean, default: false
   field :expense_balance, type: BigDecimal, default: 0
   field :price, type: BigDecimal
+  field :pre_order, type: Boolean, default: false
 
   mount_uploader :waybill, WaybillUploader
 
@@ -122,6 +121,7 @@ class Order
   before_create do
     self.order_no = rand.to_s[2..11]
     self.deliver_price = calculate_deliver_price
+    self.pre_order = is_order_allpresale
     # mongoid may not rollback when error occurred
     order_items.each &:claim_stock!
     sync_price
@@ -382,6 +382,10 @@ class Order
     save!
 
     order_histories.create from: state, to: :unexpected, raw: raw
+  end
+
+  def is_order_allpresale
+    order_items.all? {|i| i.kind.stage.to_s == "pre_order"}
   end
 
   def all_products_have_stock?

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   include ApplicationHelper
 

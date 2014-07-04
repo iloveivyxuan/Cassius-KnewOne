@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 class ProfilesController < ApplicationController
   prepend_before_action :require_signed_in
   before_action :set_editor_choices, except: [:update, :edit, :follow_recommends]
-  layout 'home', except: [:update, :edit]
+  layout 'home', except: [:update, :edit, :drafts]
 
   def update
     params[:user][:auto_update_from_oauth] = false
@@ -42,6 +41,10 @@ class ProfilesController < ApplicationController
     end
 
     redirect_back_or root_path
+  end
+
+  def drafts
+    render layout: 'settings'
   end
 
   private

@@ -1,4 +1,3 @@
-#encoding: utf-8
 require 'digest/md5'
 
 module Api
@@ -17,7 +16,11 @@ module Api
       TWITTER_SECRET = 'flAI84stBSsoP4v9xr4iMfDOYvOLZ9SWXvxatNkgNh3DG9UDXV'
 
       def exchange_access_token
-        profile = send :"get_profile_from_#{params[:provider]}"
+        begin
+          profile = send :"get_profile_from_#{params[:provider]}"
+        rescue OAuth2::Error
+          return render :status => :bad_request, :json => {:message => "fetch profile from #{params[:provider]} failure"}
+        end
 
         user = User.find_by_omniauth(provider: params[:provider], uid: profile[:id])
         unless user

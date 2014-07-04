@@ -115,7 +115,8 @@ zh-CN:
         show_nav: '显示产品列表'
       special_subject:
         thing_id: '产品ID'
-        subtitle: '描述'
+        title: '标题'
+        subtitle: '副标题'
         content: '内容'
 
     placeholders:

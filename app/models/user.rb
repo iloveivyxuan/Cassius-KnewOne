@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -16,6 +15,8 @@ class User
   field :identities, type: Array, default: []
   field :flags, type: Array, default: []
   field :status, type: Symbol, default: :normal
+
+  validates :name, uniqueness: { case_sensitive: false }
 
   index name: 1
 
@@ -301,6 +302,9 @@ class User
   field :balance_cents, type: Integer, default: 0
   validates :balance_cents, :presence => true, numericality: {greater_than_or_equal_to: 0}
   embeds_many :balance_logs, cascade_callbacks: true
+
+  # Draft
+  has_many :drafts
 
   def balance
     BigDecimal.new(self.balance_cents) / 100

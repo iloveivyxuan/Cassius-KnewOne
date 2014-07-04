@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 class TopicPresenter < PostPresenter
   presents :topic
 
   def path
-    [topic.group, topic]
+    group_topic_path(topic.group, topic)
   end
 
   def edit_path

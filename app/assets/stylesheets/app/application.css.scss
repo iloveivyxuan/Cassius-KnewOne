@@ -1,13 +1,16 @@
 @import "normalize";
 
 img,
-video {
-    max-width: 100%;
-    height: auto;
-    vertical-align: middle;
+video,
+iframe,
+embed,
+object {
+    max-width: 100% !important;
+    height: auto !important;
+    vertical-align: middle !important;
 }
 
 body,
 p {
-    font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft YaHei", sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
 }

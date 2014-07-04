@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class ReviewPhoto
   include Mongoid::Document
   include Mongoid::Timestamps

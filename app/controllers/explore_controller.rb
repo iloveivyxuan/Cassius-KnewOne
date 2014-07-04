@@ -1,7 +1,12 @@
-#encoding: utf-8
 class ExploreController < ApplicationController
   def index
-    @entries = Entry.published.desc(:created_at).page params[:page]
+    @entries = Entry.published.desc(:created_at).page(params[:page]).per(6)
+
+    respond_to do |format|
+      format.html
+      format.atom
+      format.xml { render :layout => false }
+    end
   end
 
   {
@@ -12,7 +17,7 @@ class ExploreController < ApplicationController
   }.each do |k, v|
     class_eval <<-EVAL
         def #{k}
-          @entries = Entry.published.where(category: '#{v}').desc(:created_at).page params[:page]
+          @entries = Entry.published.where(category: '#{v}').desc(:created_at).page(params[:page]).per(6)
           render 'index'
         end
     EVAL

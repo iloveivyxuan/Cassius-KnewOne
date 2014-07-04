@@ -1,5 +1,3 @@
-#encoding: utf-8
-
 module Haven
   class OrdersController < ApplicationController
     layout 'settings'
@@ -8,6 +6,8 @@ module Haven
 
     def index
       @orders = ::Order.unscoped
+
+      @orders = @orders.where(pre_order: false) if params[:filtpreorder]
 
       @orders = @orders.where(state: params[:state]) if params[:state]
 
@@ -25,12 +25,11 @@ module Haven
       @orders = @orders.where(:created_at.lte => params[:end_date]) if params[:end_date].present?
       @orders = @orders.where(:created_at.gte => params[:start_date]) if params[:start_date].present?
 
-      @orders = @orders.desc(:updated_at)
+      @orders = @orders.desc(:created_at)
 
       respond_to do |format|
         format.html do
           return redirect_to haven_order_path(@orders.first) if @orders.count == 1
-
           @orders = @orders.page params[:page]
         end
 

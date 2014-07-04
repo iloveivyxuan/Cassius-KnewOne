@@ -1,4 +1,6 @@
 - provide :nav, action_name
+- provide :feed, explore_url(format: "atom")
+- provide :rss, explore_url(format: "xml")
 
 header
   = link_to explore_path do

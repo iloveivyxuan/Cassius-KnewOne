@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class Auth
   include Mongoid::Document
   field :provider, type: String

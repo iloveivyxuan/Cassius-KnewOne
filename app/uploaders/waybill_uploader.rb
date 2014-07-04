@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class WaybillUploader < CarrierWave::Uploader::Base
   def store_dir
     "#{model.class.to_s.underscore.pluralize}"

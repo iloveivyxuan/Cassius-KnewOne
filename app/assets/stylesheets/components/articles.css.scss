@@ -52,7 +52,9 @@ article.post_show {
       }
     }
 
-    .share {margin-top: -5px;}
+    .share_btn {
+      color: $text-muted;
+    }
 
     .fanciers {
       float: right;
@@ -74,15 +76,13 @@ article.post_show {
     max-width: 100%;
   }
   .fluid-width-video-wrapper {overflow: hidden;}
-  ol {list-style: decimal inside;}
-  ul {list-style: disc inside;}
   blockquote { font-size: 1.1em; }
 }
 
 .post_actions {
-  i {
+  a {
     color: $text-muted;
-    margin-right: 1em;
+    margin-right: 1.5em;
   }
 }
 
@@ -298,6 +298,7 @@ form.edit_post {
 .article {
 
   > header,
+  > .body,
   > .content,
   > .pager {
     margin-bottom: 2rem;
@@ -344,9 +345,10 @@ form.edit_post {
     }
   }
 
+  > .body,
   > .content {
     color: $text-color;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.8;
     word-wrap: break-word;
 
@@ -379,6 +381,14 @@ form.edit_post {
       color: #000;
     }
 
+    img {
+      margin:{
+        bottom: 1.5em;
+        left: auto;
+        right: auto;
+      }
+    }
+
     ol,
     ul {
       padding-left: 1.5em;
@@ -400,12 +410,16 @@ form.edit_post {
       border-left-color: #ebeced;
       border-left-width: 4px;
       font-style: italic;
-      margin-left: 0;
-      margin-top: 0;
+      margin: {
+        left: 2em;
+        right: 2em;
+        top: 0;
+      }
     }
 
     iframe,
     video {
+      vertical-align: middle;
       width: 100%;
     }
   }

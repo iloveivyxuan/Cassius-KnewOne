@@ -41,7 +41,9 @@ Making.PopoverProfiles = ->
     $('.popover').remove()
     $element.popover('show')
 
-    $('.popover').on('mouseleave', -> $element.popover('hide'))
+    $('.popover')
+    .addClass('profile')
+    .on('mouseleave', -> $element.popover('hide'))
 
   cache = Object.create({})
   selector = '[data-popover-profile]'

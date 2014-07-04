@@ -12,6 +12,9 @@
 @import "bootstrap-tagsinput";
 @import "bootstrap-touch-carousel";
 @import "lightbox";
+@import "medium-editor/medium-editor";
+@import "medium-editor/themes/bootstrap";
+@import "medium-editor-insert-plugin/medium-editor-insert-plugin";
 
 
 // =============================================================================
@@ -47,6 +50,7 @@
 @import "components/articles";
 @import "components/comments";
 @import "components/editors";
+@import "components/drafts";
 @import "components/spinners";
 @import "components/state";
 @import "components/notification_box";
