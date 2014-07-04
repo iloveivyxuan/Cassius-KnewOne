@@ -5,7 +5,7 @@
       = thing_presenter.photo(:'thing.fixed')
       .feed-fancy
         = link_to '', thing, class: 'fancy-backdrop', target: "_blank"
-        .fancy-button= render 'shared/fancy', p: thing_presenter
+        .fancy-button= render 'shared/fancy', p: thing_presenter, from: 'feed'
 
     .feed-content
       = link_to thing, target: '_blank'
