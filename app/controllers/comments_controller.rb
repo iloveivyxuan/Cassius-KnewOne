@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    authorize! :create, @post if @post.class == Topic
+    authorize! :create, @post
     @comment = @post.comments.create(comment_params.merge(author: current_user))
     @comment.author.log_activity :comment, @comment.post, check_recent: true
     respond_with @comment
