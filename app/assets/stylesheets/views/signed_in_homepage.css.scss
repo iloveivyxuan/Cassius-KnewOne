@@ -4,6 +4,7 @@ html.signed_in_homepage {
   // ---------------------------------------------------------------------------
 
   body {
+    position: relative;
     background: #f7f7f9;
   }
 
@@ -292,11 +293,17 @@ html.signed_in_homepage {
 
       &.affix-bottom {
         position: absolute;
+        top: auto !important;
+        bottom: 204px;
       }
 
       > section {
         margin-bottom: 2rem;
         padding: 1rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
       }
 
       h2 {
