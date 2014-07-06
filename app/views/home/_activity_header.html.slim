@@ -1,0 +1,8 @@
+- user_presenter = present activity.user
+
+header
+  .feed-user-avatar= user_presenter.link_to_with_avatar(:small)
+  .feed-user-name= user_presenter.link_to_with_popoverable_name
+  .feed-action
+    = time_ago_tag(activity.created_at)
+    = present(activity, FeedPresenter).action

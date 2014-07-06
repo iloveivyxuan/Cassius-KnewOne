@@ -65,47 +65,16 @@ html.signed_in_homepage {
       width: calc(100% - #{$activity-gap});
 
       margin: 0 $activity-gap $activity-gap 0;
-      height: 550px;
+      padding: 1rem;
       background: white;
 
       position: relative;
 
-      .feed-photo {
+      header {
         position: relative;
-        overflow: hidden;
-
-        img {
-          width: 100%;
-        }
-      }
-
-      .feed-content {
-        padding: 1em;
-
-        h5 {
-          @include text-overflow;
-
-          margin: 0;
-          font-size: 14px;
-          color: $gray-dark;
-        }
-
-        .feed-summery {
-          color: $gray;
-
-          display: -webkit-box;
-          -webkit-line-clamp: 4;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-      }
-
-      .feed-details {
-        position: absolute;
-        bottom: 1em;
-        width: 100%;
-
         padding-left: 40px;
+
+        line-height: 1;
 
         .feed-user-avatar {
           position: absolute;
@@ -117,35 +86,41 @@ html.signed_in_homepage {
           }
         }
 
-        .feed-action,
-        .feed-action a {
+        .feed-user-name {
           font-size: 14px;
-          line-height: 1;
-          color: $gray;
+
+          a {
+            color: $gray-darker;
+          }
         }
 
-        .feed-timestamp {
-          margin-top: 6px;
-        }
-
-        .feed-timestamp,
-        .feed-counts,
-        .feed-counts a {
-          font-size: 12px;
-          line-height: 1;
+        .feed-action {
+          margin-top: 4px;
+          font-size: 14px;
           color: $gray-light;
+
+          time {
+            margin-right: 0.5rem;
+          }
         }
+      }
 
+      h5 {
+        @include text-overflow;
+
+        margin: 0;
+        font-size: 14px;
+        color: $gray-dark;
+      }
+
+      footer {
         .feed-counts {
-          position: absolute;
-          right: 2em;
-          bottom: 0;
-
-          text-align: right;
+          color: $gray;
+          a { color: $gray; }
 
           li {
             display: inline-block;
-            margin-left: 1em;
+            margin-right: 1em;
           }
 
           span {
@@ -156,57 +131,58 @@ html.signed_in_homepage {
     }
 
     .feed-thing {
-      position: relative;
-
-      height: 450px;
-
       @include breakpoint(sm) {
         width: calc(50% - #{$activity-gap});
       }
 
-      .feed-fancy {
-        @include transition(opacity .2s ease);
-        opacity: 0;
+      .feed-photo {
+        position: relative;
+        margin: 1rem -1rem;
 
-        @include breakpoint(md) {
-          &:hover {
-            opacity: 1;
-          }
-        }
-
-        .fancy-backdrop {
-          @include stretch;
-          background-color: rgba(black, 0.5);
-        }
-
-        .fancy-button {
-          display: none;
+        .feed-fancy {
+          @include transition(opacity .2s ease);
+          opacity: 0;
 
           @include breakpoint(md) {
-            display: block;
+            &:hover {
+              opacity: 1;
+            }
           }
 
-          a {
-            display: block;
-            width: 50px;
-            height: 50px;
+          .fancy-backdrop {
+            @include stretch;
+            background-color: rgba(black, 0.5);
+          }
 
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin: -25px 0 0 -25px;
+          .fancy-button {
+            display: none;
 
-            font-size: 50px;
-            line-height: 1;
-
-            .fa {
-              color: #ff3b3b;
-              margin-right: 0;
+            @include breakpoint(md) {
+              display: block;
             }
 
-            .fanciers_count,
-            small {
-              display: none;
+            a {
+              display: block;
+              width: 50px;
+              height: 50px;
+
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              margin: -25px 0 0 -25px;
+
+              font-size: 50px;
+              line-height: 1;
+
+              .fa {
+                color: #ff3b3b;
+                margin-right: 0;
+              }
+
+              .fanciers_count,
+              small {
+                display: none;
+              }
             }
           }
         }
@@ -214,53 +190,16 @@ html.signed_in_homepage {
 
       h5 small {
         @include text-overflow;
-        width: 80%;
+
+        min-height: 1em;
 
         display: block;
         font-size: 14px;
         color: $gray;
       }
-    }
 
-    .feed-review,
-    .feed-feeling {
-      h5 {
-        position: relative;
-
-        line-height: 1;
-
-        .feed-title {
-          @include text-overflow;
-
-          display: inline-block;
-          width: 60%;
-          width: calc(100% - 95px);
-        }
-
-        .score {
-          position: absolute;
-          top: 0;
-          right: 0;
-          margin: 0;
-
-          .rate {
-            padding: 0;
-          }
-        }
-      }
-
-      .feed-summery {
-        margin: 1.5em 0 0;
-      }
-    }
-
-    .feed-feeling {
-      .fa-quote-left {
-        margin-right: 0.5em;
-      }
-
-      .fa-quote-right {
-        margin-left: 0.5em;
+      footer {
+        margin-top: 1rem;
       }
     }
 

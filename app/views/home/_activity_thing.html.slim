@@ -1,33 +1,29 @@
 - thing = activity.reference
-- present thing do |thing_presenter|
-  section.feed.feed-thing
-    .feed-photo
-      = thing_presenter.photo(:'thing.fixed')
-      .feed-fancy
-        = link_to '', thing, class: 'fancy-backdrop', target: "_blank"
-        .fancy-button= render 'shared/fancy', p: thing_presenter, from: 'feed'
+- thing_presenter = present thing
 
-    .feed-content
-      = link_to thing, target: '_blank'
-        h5
-          span.feed-title= thing.title
-          small= thing.subtitle
+section.feed.feed-thing
+  = render 'activity_header', activity: activity
 
-      ul.feed-details
-        li.feed-user-avatar= thing_presenter.author_avatar
-        li.feed-action
-          = present(thing.author).link_to_with_popoverable_name
-          |  #{present(activity, FeedPresenter).action}
-        li.feed-timestamp= time_ago_tag(thing.created_at)
-        li.feed-counts
-          ul
-            li.feed-fanciers
-              | 喜欢
-              span.fanciers-count= thing.fanciers_count
-            li.feed-owners
-              | 拥有
-              span.owners-count= thing.owners.size
-            li.feed-reviews
-              = link_to thing_reviews_path(thing), target: '_blank' do
-                | 评测
-                span.reviews-count= thing.reviews_count
+  .feed-photo
+    = thing_presenter.photo(:'thing.fixed')
+    .feed-fancy
+      = link_to '', thing, class: 'fancy-backdrop', target: "_blank"
+      .fancy-button= render 'shared/fancy', p: thing_presenter, from: 'feed'
+
+  = link_to thing, target: '_blank'
+    h5
+      span.feed-title= thing.title
+      small= thing.subtitle
+
+  footer
+    ul.feed-counts
+      li.feed-fanciers
+        | 喜欢
+        span.fanciers-count= thing.fanciers_count
+      li.feed-owners
+        | 拥有
+        span.owners-count= thing.owners.size
+      li.feed-reviews
+        = link_to thing_reviews_path(thing), target: '_blank' do
+          | 评测
+          span.reviews-count= thing.reviews_count
