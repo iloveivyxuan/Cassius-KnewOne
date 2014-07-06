@@ -1,31 +1,33 @@
 - review = activity.reference
 - thing = review.thing
-- present review do |review_presenter|
-  section.feed.feed-review
-    .feed-photo
-      = link_to review_presenter.path, target: '_blank'
-        = review_presenter.cover(:'post.fixed') or present(thing).photo(:'post.fixed')
+- review_presenter = present review
 
-    .feed-content
-      = link_to review_presenter.path, target: '_blank'
-        h5
-          span.feed-title= review_presenter.title
-          = review_presenter.score
+section.feed.feed-review
+  = render 'activity_header', activity: activity
 
-      p.feed-summery= review_presenter.summary(80)
+  .feed-photo
+    = link_to review_presenter.path, target: '_blank'
+      = present(thing).photo(:normal)
 
-      ul.feed-details
-        li.feed-user-avatar= review_presenter.author_avatar
-        li.feed-action
-          = present(review.author).link_to_with_popoverable_name
-          |  #{present(activity, FeedPresenter).action}
-        li.feed-timestamp= time_ago_tag(review.created_at)
-        li.feed-counts
-          ul
-            li.feed-lovers
-              | 赞
-              span.lovers-count= review.lovers_count
-            li.feed-comments
-              = link_to "#{review_presenter.path}#comments", target: '_blank'
-                | 评论
-                span.comments-count= review.comments.size
+  = link_to review_presenter.path, target: '_blank'
+    h5
+      span.feed-title= review_presenter.title
+
+  section
+    p.feed-summery= review_presenter.summary(80)
+    - if review_presenter.content_photos.present?
+      ul.feed-photos
+        - review_presenter.content_photos(:small).take(8).each do |photo|
+          li= image_tag photo
+
+  footer
+    = review_presenter.score
+
+    ul.feed-counts
+      li.feed-lovers
+        | 赞
+        span.lovers-count= review.lovers_count
+      li.feed-comments
+        = link_to "#{review_presenter.path}#comments", target: '_blank'
+          | 评论
+          span.comments-count= review.comments.size

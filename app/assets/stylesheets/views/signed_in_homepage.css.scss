@@ -203,6 +203,59 @@ html.signed_in_homepage {
       }
     }
 
+    .feed-review {
+      padding-left: 25%;
+
+      .feed-photo {
+        @include stretch($offset-right: auto);
+        width: 24%;
+
+        img {
+          @include stretch;
+          margin: auto;
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+
+      h5 {
+        margin-top: 1rem;
+      }
+
+      .feed-summery {
+        margin: 1rem 0 0;
+        color: $gray;
+      }
+
+      .feed-photos {
+        @include clearfix;
+
+        margin-top: 1rem;
+        max-height: 80px;
+        overflow: hidden;
+
+        li {
+          float: left;
+          margin-right: 1rem;
+        }
+      }
+
+      footer {
+        position: absolute;
+        top: 1rem;
+        right: 0;
+
+        .score {
+          display: inline-block;
+          margin: 0 1.5rem 0 0;
+        }
+
+        .feed-counts {
+          display: inline-block;
+        }
+      }
+    }
+
     .video {
       display: none;
     }
