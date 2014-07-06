@@ -1,37 +1,37 @@
 - feeling = activity.reference
 - thing = feeling.thing
-- present feeling do |feeling_presenter|
-  section.feed.feed-feeling
-    .feed-photo
-      = link_to feeling_presenter.path, target: '_blank'
-        - if feeling.photos.present?
-          = image_tag feeling.photos.first.url(:'post.fixed')
-        - else
-          = present(thing).photo(:'post.fixed')
+- feeling_presenter = present feeling
 
-    .feed-content
-      = link_to thing, target: '_blank'
-        h5
-          span.feed-title= thing.title
-          small= feeling_presenter.score
+section.feed.feed-feeling
+  = render 'activity_header', activity: activity
 
-      p.feed-summery
-        i.fa.fa-quote-left
-        = feeling_presenter.summary(80)
-        i.fa.fa-quote-right
+  .feed-photo
+    = link_to feeling_presenter.path, target: '_blank'
+      = present(thing).photo(:normal)
 
-      ul.feed-details
-        li.feed-user-avatar= feeling_presenter.author_avatar
-        li.feed-action
-          = present(feeling.author).link_to_with_popoverable_name
-          |  #{present(activity, FeedPresenter).action}
-        li.feed-timestamp= time_ago_tag(feeling.created_at)
-        li.feed-counts
-          ul
-            li.feed-lovers
-              | 赞
-              span.lovers-count= feeling.lovers_count
-            li.feed-comments
-              = link_to "#{feeling_presenter.path}#comments", target: '_blank'
-                | 评论
-                span.comments-count= feeling.comments.size
+  = link_to feeling_presenter.path, target: '_blank'
+    h5
+      span.feed-title= feeling_presenter.title
+
+  section
+    p.feed-summery
+      i.fa.fa-quote-left
+      = feeling_presenter.summary(80)
+      i.fa.fa-quote-right
+
+    - if feeling_presenter.content_photos.present?
+      ul.feed-photos
+        - feeling_presenter.content_photos(:small).take(8).each do |photo|
+          li= image_tag photo
+
+  footer
+    = feeling_presenter.score
+
+    ul.feed-counts
+      li.feed-lovers
+        | 赞
+        span.lovers-count= feeling.lovers_count
+      li.feed-comments
+        = link_to "#{feeling_presenter.path}#comments", target: '_blank'
+          | 评论
+          span.comments-count= feeling.comments.size
