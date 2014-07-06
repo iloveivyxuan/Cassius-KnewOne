@@ -4,8 +4,7 @@ Making.PrivateMessage = ->
   $modal = $('#new_private_message_modal')
 
   $(document).on('click', selector, (event) ->
-    $target = $(event.target)
-    $target = $target.parents(selector) unless $target.is(selector)
+    $target = $(this)
 
     userId   = $target.attr('data-user-id')
     userName = $target.attr('data-user-name')
