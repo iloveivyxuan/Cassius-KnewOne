@@ -113,7 +113,7 @@ class HomeController < ApplicationController
 
   def following_activities(page)
     thing_activities = current_user
-      .relate_activities(%i(new_thing own_thing fancy_thing))
+      .relate_activities(%i(new_thing own_thing fancy_thing), [])
       .visible
       .page(page)
       .per(50)
