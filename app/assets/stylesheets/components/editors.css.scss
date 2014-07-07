@@ -227,12 +227,20 @@
   &.empty {
     height: 1.5em;
     line-height: 1.5em;
-    margin-top: -1.5em;
     z-index: -1;
 
     &:hover,
     &.show {
       z-index: 0;
+    }
+
+    & + h2,
+    & + h3,
+    & + p,
+    & + ol,
+    & + ul,
+    & + blockquote {
+      margin-top: -28px;
     }
   }
 
