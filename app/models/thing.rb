@@ -9,7 +9,7 @@ class Thing < Post
   field :photo_ids, type: Array, default: []
   field :categories, type: Array, default: []
   after_save :update_categories
-  before_create :update_amazon_link
+  before_save :update_amazon_link
 
   belongs_to :maker, class_name: "User", inverse_of: nil
 
@@ -109,7 +109,7 @@ class Thing < Post
   end
 
   def update_amazon_link
-    if self.shop.include?("amazon.cn") && !self.shop.include?("kne09-23")
+    if self.shop_changed? && self.shop.include?("amazon.cn") && !self.shop.include?("kne09-23")
       new_link = add_param(self.shop, "tag", "kne09-23")
       self.shop = new_link unless new_link.nil?
     end
