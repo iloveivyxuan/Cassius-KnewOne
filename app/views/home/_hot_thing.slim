@@ -5,7 +5,7 @@
         = thing_presenter.photo :'thing.fixed'
       .fancy_thing
         = link_to "", hot_thing, class: "fancy_backdrop"
-        .fancy_button= render "shared/fancy", p: thing_presenter
+        .fancy_button= render "shared/fancy", p: thing_presenter, from: "hits"
     section.content
       h4.title= link_to thing_presenter.title, hot_thing
       p.subtitle= link_to thing_presenter.subtitle, hot_thing
