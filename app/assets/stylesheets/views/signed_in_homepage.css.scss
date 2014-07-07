@@ -56,19 +56,19 @@ html.signed_in_homepage {
       width: percentage(2 / 3);
     }
 
-    $activity-gap: 20px;
-
     @include clearfix;
 
     > .feed {
       float: left;
-      width: calc(100% - #{$activity-gap});
+      width: 100%;
 
-      margin: 0 $activity-gap $activity-gap 0;
-      padding: 1rem;
-      background: white;
+      padding: 0 1rem 1rem 0;
 
-      position: relative;
+      .feed-wrapper {
+        position: relative;
+        padding: 1rem;
+        background: white;
+      }
 
       header {
         position: relative;
@@ -132,7 +132,7 @@ html.signed_in_homepage {
 
     .feed-thing {
       @include breakpoint(sm) {
-        width: calc(50% - #{$activity-gap});
+        width: 50%;
       }
 
       .feed-photo {
@@ -205,7 +205,9 @@ html.signed_in_homepage {
 
     .feed-review,
     .feed-feeling {
-      padding-left: 25%;
+      .feed-wrapper {
+        padding-left: 25%;
+      }
 
       .feed-photo {
         @include stretch($offset-right: auto);
