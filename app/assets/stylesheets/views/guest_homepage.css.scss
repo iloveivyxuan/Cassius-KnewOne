@@ -66,7 +66,7 @@ html.guest_homepage {
         padding: 0;
         font-size: 0.85em;
         line-height: 1.2;
-        color: $gray-light;
+        color: #727272;
         letter-spacing: 2px;
         @include MQ(M) { font-size: 0.65em }
         @include MQ(Lplus) {
@@ -85,11 +85,11 @@ html.guest_homepage {
         a {
           font-size: 0.85em;
           line-height: 80px;
-          color: $gray-light;
+          color: #727272;
           font-weight: bold;
           letter-spacing: 2px;
           @include MQ(Lplus) { font-size: 0.95em }
-          &:hover { color: $gray-light }
+          &:hover { color: #727272 }
           span { color: $blue }
         }
       }
@@ -509,7 +509,7 @@ html.guest_homepage {
       left: 10px;
       font-size: 1.9em;
       line-height: 60px;
-      i { color: $gray-light }
+      i { color: #727272 }
     }
     #search_thing {
       width: 100%;
@@ -545,7 +545,7 @@ html.guest_homepage {
       font-size: 1.2em;
       line-height: 60px;
       color: #fff;
-      background-color: $gray-light;
+      background-color: #727272;
       border: 0;
       @include transition-property(all);
       @include transition-duration(0.25s);
@@ -617,7 +617,7 @@ html.guest_homepage {
           }
         }
         &.active a {
-          color: $gray-light;
+          color: #727272;
           border-bottom: 2px solid $blue;
           i {
             float: left;
@@ -718,7 +718,7 @@ html.guest_homepage {
           }
           h5 {
             font-size: 1.15em;
-            color: $gray-light;
+            color: #727272;
             letter-spacing: 2px;
           }
           .product_detail {
@@ -781,7 +781,7 @@ html.guest_homepage {
         float: left;
         padding: 0 5%;
         margin-right: 2%;
-        color: $gray-light;
+        color: #727272;
         text-align: center;
         img {
           width: 100%;
@@ -946,7 +946,7 @@ html.guest_homepage {
           h5 {
             font-size: 1em;
             line-height: 1.5;
-            color: $gray-light;
+            color: #727272;
             letter-spacing: 2px;
           }
         }
@@ -986,7 +986,7 @@ html.guest_homepage {
           float: left;
           padding: 0 3%;
           margin-right: 5%;
-          color: $gray-light;
+          color: #727272;
           text-align: center;
           img {
             width: 100%;
