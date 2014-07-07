@@ -20,13 +20,13 @@ aside
           button.close data-dismiss="modal" type="button"
             | &times;
           h5
-            | 登陆
+            | 登录
             span Sign In
         .modal-body
           = render 'devise/sessions/sign_in'
           .form-group.social_sign_in
             span
-              | 社交网络账号直接登陆
+              | 社交网络账号直接登录
               i.fa.fa-caret-right
             div
               = link_to user_omniauth_authorize_path(:weibo), title: "用微博登录"
