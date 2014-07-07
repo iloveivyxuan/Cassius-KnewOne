@@ -11,7 +11,7 @@ Making::Application.routes.draw do
 
   get 'page/:page', to: "home#index"
   get 'search', to: 'home#search', as: :search
-  get 'hits', to: 'home#hits', as: :hits
+  get 'hits/(:page)', to: 'home#hits', as: :hits
   get 'welcome', to: 'home#welcome'
   get 'jobs', to: 'home#jobs'
   get 'user_agreement', to: 'home#user_agreement'
