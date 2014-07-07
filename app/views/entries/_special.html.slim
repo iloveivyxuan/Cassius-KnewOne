@@ -45,7 +45,6 @@ section.article
           .image
             = image_tag s.thing.cover.url(:normal)
           h6.title = s.title.present? ? s.title : s.thing.title
-          p = s.subtitle
 
   .actions
     .voting id="special_#{post.id.to_s}"
