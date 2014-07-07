@@ -16,8 +16,6 @@ class User
   field :flags, type: Array, default: []
   field :status, type: Symbol, default: :normal
 
-  validates :name, uniqueness: { case_sensitive: false }
-
   index name: 1
 
   STATUS = {blocked: '锁定', watching: '特别观照(贬)', normal: '正常'}
@@ -30,7 +28,7 @@ class User
       end
     EVAL
   end
-  validates :name, presence: true, uniqueness: true,
+  validates :name, presence: true, uniqueness: { case_sensitive: false },
             format: {with: /\A[^\s]+\z/, multiline: false, message: '不能包含空格'}
 
   RESERVED_WORDS = ['KnewOne', '知新创想', '牛玩']
