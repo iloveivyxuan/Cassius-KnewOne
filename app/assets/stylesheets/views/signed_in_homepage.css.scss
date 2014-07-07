@@ -143,6 +143,10 @@ html.signed_in_homepage {
         position: relative;
         margin: 1rem -1rem;
 
+        img {
+          width: 100%;
+        }
+
         .feed-fancy {
           @include transition(opacity .2s ease);
           opacity: 0;
