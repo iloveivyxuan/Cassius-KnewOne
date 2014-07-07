@@ -62,7 +62,10 @@ html.signed_in_homepage {
       float: left;
       width: 100%;
 
-      padding: 0 1rem 1rem 0;
+      padding-bottom: 1rem;
+      @include breakpoint(sm) {
+        padding-right: 1rem;
+      }
 
       .feed-wrapper {
         position: relative;
