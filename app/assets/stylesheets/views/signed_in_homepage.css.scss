@@ -114,6 +114,10 @@ html.signed_in_homepage {
       }
 
       footer {
+        position: absolute;
+        top: 1rem;
+        right: 0;
+
         .feed-counts {
           color: $gray;
           a { color: $gray; }
@@ -197,10 +201,6 @@ html.signed_in_homepage {
         font-size: 14px;
         color: $gray;
       }
-
-      footer {
-        margin-top: 1rem;
-      }
     }
 
     .feed-review,
@@ -244,10 +244,6 @@ html.signed_in_homepage {
       }
 
       footer {
-        position: absolute;
-        top: 1rem;
-        right: 0;
-
         .score {
           display: inline-block;
           margin: 0 1.5rem 0 0;
