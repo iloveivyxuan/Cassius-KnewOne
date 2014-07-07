@@ -30,6 +30,10 @@ class ApplicationController < ActionController::Base
     rescue_from ActionController::InvalidCrossOriginRequest do
       head :bad_request
     end
+
+    rescue_from ActionController::ParameterMissing do
+      head :bad_request
+    end
   end
 
   rescue_from CanCan::AccessDenied do |exception|
