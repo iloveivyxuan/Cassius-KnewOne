@@ -17,15 +17,6 @@ section.article
           = post.comments.size
           | 评论
 
-  - if post.show_nav?
-    .thing_specials
-      - post.special_subjects.each do |s|
-        = link_to "#subject_#{s.id.to_s}", class: "thing_special" do
-          .image
-            = image_tag s.thing.cover.url(:normal)
-          h6.title = s.title.present? ? s.title : s.thing.title
-          p = s.subtitle
-
   - if post.intro.present?
     .intro
       = sanitize post.intro
@@ -46,6 +37,14 @@ section.article
   - if post.ending.present?
     .ending
       = sanitize post.ending
+
+  - if post.show_nav?
+    .thing_specials
+      - post.special_subjects.each do |s|
+        = link_to "#subject_#{s.id.to_s}", class: "thing_special" do
+          .image
+            = image_tag s.thing.cover.url(:normal)
+          h6.title = s.title.present? ? s.title : s.thing.title
 
   .actions
     .voting id="special_#{post.id.to_s}"
