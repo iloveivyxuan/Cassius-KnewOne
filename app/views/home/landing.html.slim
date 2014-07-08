@@ -59,7 +59,7 @@
                           i.fa.fa-comment-o
                           = thing_presenter.comments_count
                 section.reviews
-                  - thing.reviews.desc(:is_top, :lovers_count).limit(i == 0 ? 2 : 1).each_with_index do |review, i|
+                  - thing.reviews.desc(:is_top, :lovers_count).limit(i == 0 ? 2 : 1).reverse.each_with_index do |review, i|
                     article.review class="review_#{i + 1}"
                       div
                         - review_presenter = present review
