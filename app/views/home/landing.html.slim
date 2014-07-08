@@ -83,19 +83,6 @@
                                 - review_presenter.content_photos(:small).take(8).each do |photo|
                                   li= image_tag photo
 
-  section.explore_thing
-    ul= render Thing.rand_records(4), size: :normal, img_lazy: false
-
-  section.explore_user
-    - cache ['landing_active_users', Time.now.to_i / 60] do
-      div
-        h2
-          i.fa.fa-group
-          | 活跃用户
-        ul.explore_user_list
-          - User.active_users(10).each do |user|
-            li= present(user).link_to_with_avatar(:small)
-
 footer#footer
   div
     small 粤ICP备13057487号
@@ -103,15 +90,6 @@ footer#footer
       / li= link_to '关于KnewOne', about_path ?
       li= link_to '联系我们', 'mailto:hello@knewone.com'
       li= link_to '加入我们', jobs_path
-
-.search_candidate
-  .slideshow.things
-    button.slideshow_control.left
-      i.fa.fa-chevron-left
-    button.slideshow_control.right
-      i.fa.fa-chevron-right
-    .slideshow_body
-/-- Search Candidate --/
 
 - content_for :script do
   javascript:
