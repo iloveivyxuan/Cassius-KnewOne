@@ -27,11 +27,11 @@
     - cache ['landing_categories', Time.now.to_i / 60] do
       nav.explore_nav
         ul
-          - @categories.each_with_index do |c, i|
+          - @categories.each_with_index do |category, i|
             li class="#{i == 0 ? 'active' : ''}"
-              a href="#category_#{c.slug}" data-toggle="tab"
-                span= c.name
-                i= c.slug
+              a href="#category_#{category.slug}" data-toggle="tab"
+                i.fa.fa-sort-down
+                span= category.name
       .explore_content
         - @categories.each_with_index do |c, i|
           - thing = c.things.desc(:priority).first
