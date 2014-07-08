@@ -4,11 +4,10 @@ hgroup
     small 全部 #{Thing.all.size} 自营 #{Thing.self_run.size}
   p
     = link_to "可购产品列表", haven_things_path(filter: "can_buy"), class: 'btn btn-default'
-    = link_to "锁定产品列表", haven_things_path(filter: "locked"), class: 'btn btn-default'
-  p
     = link_to "按分享时间排序", haven_things_path(sort_by: 'created_at'), class: 'btn btn-default'
     = link_to "按评测数量排序", haven_things_path(sort_by: 'reviews_count'), class: 'btn btn-default'
     = link_to "按优先级排序", haven_things_path(sort_by: 'priority'), class: 'btn btn-default'
+    = link_to "按热度排序", haven_things_path(sort_by: 'heat'), class: 'btn btn-default'
 
 table.table.table-striped.table-hover.table-bordered
   tr
@@ -20,8 +19,9 @@ table.table.table-striped.table-hover.table-bordered
     th 操作
     th 喜欢
     th 拥有
-    th 优先
+    th 优先级
     th 评测
+    th 热度
   - @things.each do |t|
     tr
       td= link_to t.title, t
@@ -39,5 +39,6 @@ table.table.table-striped.table-hover.table-bordered
       td= t.owners.size
       td= t.priority
       td= t.reviews_count
+      td= t.heat.round(2)
 
 = paginate @things

@@ -23,8 +23,6 @@ class Thing < Post
   CURRENCY_LIST = %w{¥ $ € £}
 
   field :priority, type: Integer, default: 0
-  field :recommended, type: Boolean, default: false
-  field :lock_priority, type: Boolean, default: false
 
   field :sharing_text, type: String
 
@@ -63,7 +61,7 @@ class Thing < Post
 
   has_many :lotteries, dependent: :destroy
 
-  scope :hot, -> { gt(fanciers_count: 30) }
+  scope :recent, -> { gt(created_at: 1.month.ago) }
   scope :published, -> { lt(created_at: Time.now) }
   scope :prior, -> { gt(priority: 0).desc(:priority, :created_at) }
   scope :self_run, -> { send :in, stage: [:dsell, :pre_order] }
@@ -230,6 +228,18 @@ class Thing < Post
   end
 
   need_aftermath :own, :unown, :fancy, :unfancy
+
+  include Rankable
+
+  def calculate_heat
+    (1 +
+     (priority || 0) +
+     50 * reviews_count +
+     5 * feelings_count +
+     fancier_ids.count +
+     owner_ids.count) *
+    freezing_coefficient
+  end
 
   class << self
     def rand_records(per = 1)

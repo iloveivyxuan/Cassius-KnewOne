@@ -22,7 +22,6 @@ figure.thing {
 
   @media (min-width: $screen-md-min) {
     &:hover {
-
       .thing_fancy {
         opacity: 1;
       }
@@ -157,6 +156,121 @@ figure.thing {
     }
     &.pre_order {
       span {@include background($brand-success);}
+    }
+  }
+}
+
+/* TODO: figure.thing should be merged into this */
+article.thing {
+  background: white;
+
+  header.cover {
+    position: relative;
+    img {width: 100%;}
+  }
+
+  section.content {
+    padding: 1em;
+
+    h4, p {
+      @include text-overflow;
+      margin: 0;
+      font-size: $font-size-base;
+      min-height: $font-size-base * $line-height-base;
+    }
+
+    h4 a {color: $black;}
+    p a {color : $gray;}
+  }
+
+  footer.info {
+    @include clearfix;
+    padding: 0 1em 1em;
+    width: 100%;
+
+    .creator {
+      float: left;
+      max-width: 50%;
+      @include text-overflow;
+
+      > a {
+        vertical-align: bottom;
+        color: $gray;
+      }
+
+      img {
+        width: 32px;
+        margin-right: .5em;
+        @extend .img-circle;
+      }
+    }
+
+    .interactions {
+      float: right;
+      max-width: 50%;
+      @include text-overflow;
+      margin-top: 12px;
+
+      > * {
+        margin-left: .5em;
+        color: $gray-light;
+      }
+
+      .fanciers_count {display: none;}
+      @media (min-width: $screen-md-min) {
+        .fanciers_count {display: inline;}
+      }
+    }
+  }
+
+  .fancy_thing {
+    .fancy_backdrop {
+      @include stretch;
+      display: none;
+    }
+
+    .fancy_button a {
+      .fa {color: #ff3b3b;}
+      small {display: none;}
+    }
+
+    @media (max-width: $screen-sm-max) {
+      .fancy_button a {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: .5em 1em;
+        .fanciers_count {color: #eee;}
+        background-color: rgba(black, 0.4);
+      }
+    }
+
+    @media (min-width: $screen-md-min) {
+      opacity: 0;
+      &:hover {opacity: 1;}
+      @include transition(opacity .2s ease);
+
+      .fancy_backdrop {
+        display: block;
+        background-color: rgba(black, 0.5);
+      }
+
+      .fancy_button a {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 50px;
+        height: 50px;
+        margin: -25px 0 0 -25px;
+        font-size: 50px;
+        line-height: 1;
+
+        .fa {margin-right: 0;}
+
+        .fanciers_count {display: none;}
+      }
     }
   }
 }

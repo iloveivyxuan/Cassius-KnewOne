@@ -18,8 +18,6 @@ module Haven
       @things = case params[:filter]
                   when "can_buy" then
                     Thing.ne(shop: "")
-                  when "locked" then
-                    Thing.where(lock_priority: true).desc(:priority)
                   else
                     Thing
                 end
@@ -29,6 +27,8 @@ module Haven
                     @things.order_by [:reviews_count, :desc]
                   when 'priority'
                     @things.order_by [:priority, :desc]
+                  when 'heat'
+                    @things.order_by [:heat, :desc]
                   else
                     @things.order_by [:created_at, :desc]
                 end

@@ -32,12 +32,12 @@ class HomeController < ApplicationController
     else
       respond_to do |format|
         format.html.mobile do
-          @things = Thing.published.desc(:created_at).recent.hot.limit(30)
+          @things = Thing.published.hot.limit(30)
           render 'home/landing.html+mobile'
         end
 
         format.html.tablet do
-          @things = Thing.published.desc(:created_at).recent.hot.limit(32)
+          @things = Thing.published.hot.limit(32)
           render 'home/landing.html+mobile'
         end
 
@@ -49,15 +49,10 @@ class HomeController < ApplicationController
     end
   end
 
-  def sandbox
-    @extracted_data = {
-      images: %w(
-          http://image.knewone.com/photos/bf156596dc73be8b743a76a1b9231d71.jpg
-          http://image.knewone.com/photos/8cd9b1a51879a0cdde1866e2a0023a5c.jpg
-          http://image.knewone.com/photos/3f4452a976ee852fd53b2ef52119b60d.jpg!review
-        )
-    }
-    render layout: 'application'
+  def hits
+    @batch = 5
+    @things = Thing.hot.page(params[:page]).per(6*@batch)
+    @reviews = Review.hot.page(params[:page]).per(@batch)
   end
 
   def not_found

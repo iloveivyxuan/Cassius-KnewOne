@@ -41,3 +41,13 @@ end
 every 1.day, :at => '4:00 am' do
   rake '-s sitemap:refresh'
 end
+
+every 1.day, at: '4:30 am' do
+  runner 'Thing.update_all_heat_since(2.years.ago)'
+  runner 'Review.update_all_heat_since(2.years.ago)'
+end
+
+every 10.minutes do
+  runner 'Thing.update_all_heat_since(20.days.ago)'
+  runner 'Review.update_all_heat_since(20.days.ago)'
+end

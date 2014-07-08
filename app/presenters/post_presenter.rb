@@ -13,6 +13,10 @@ class PostPresenter < ApplicationPresenter
     end
   end
 
+  def author
+    present(@object.author).as_author_with_profile
+  end
+
   def created_at(css_class="")
     time_ago_tag(@object.created_at, css_class)
   end
@@ -22,7 +26,7 @@ class PostPresenter < ApplicationPresenter
   end
 
   def author_name
-    present(post.author).link_to_with_name
+    present(post.author).link_to_with_popoverable_name
   end
 
   def content
@@ -35,6 +39,14 @@ class PostPresenter < ApplicationPresenter
 
   def thing_photo_url(size)
     @object.thing.present? and present(@object.thing).photo_url(size)
+  end
+
+  def has_comment?
+    @object.comments.count > 0
+  end
+
+  def has_lover?
+    @object.lovers_count > 0
   end
 
   def comments_count(options = {})
