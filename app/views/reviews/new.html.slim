@@ -45,7 +45,8 @@
       mode: 'standalone',
       type: 'review',
       beforeSubmit: function(event) {
-        if ($('[name="review[content]"]').val().length < 140) {
+        var content = $($('[name="review[content]"]').val()).text();
+        if (content.length < 140) {
           return confirm('您的评测不足 140 字，想要把正文内容转化为短评来发布吗？');
         }
       }
