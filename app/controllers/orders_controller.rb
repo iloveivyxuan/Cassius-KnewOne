@@ -112,11 +112,13 @@ class OrdersController < ApplicationController
       elsif callback_params[:trade_status] == 'TRADE_CLOSED'
         @order.unexpect!("支付宝交易异常,交易号#{callback_params[:trade_no]}，状态TRADE_CLOSED", callback_params)
       end
+
+      render text: 'success'
     else
       @order.unexpect!("支付宝交易异常,校验无效", callback_params)
-    end
 
-    render text: 'success'
+      render text: 'fail'
+    end
   end
 
   def alipay_callback
