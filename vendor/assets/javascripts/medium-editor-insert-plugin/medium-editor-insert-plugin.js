@@ -343,12 +343,12 @@
       var that = this,
           $el = $.fn.mediumInsert.insert.$el;
 
-      $el.on('selectstart', '.mediumInsert', function (e) {
+      $el.on('selectstart.mediumInsert', '.mediumInsert', function (e) {
         e.preventDefault();
         return false;
       });
 
-      $el.on('blur', function () {
+      $el.on('blur.mediumInsert', function () {
         var $clone = $(this).clone(),
             cloneHtml;
 
@@ -364,7 +364,7 @@
       // Fix #29
       // Sometimes in Firefox when you hit enter, <br type="_moz"> appears instead of <p><br></p>
       // If it happens, force to wrap the <br> into a paragraph
-      $el.on('keypress', function (e) {
+      $el.on('keypress.mediumInsert', function (e) {
         if (that.isFirefox) {
           if (e.keyCode === 13) {
             //wrap content text in p to avoid firefox problems
@@ -388,7 +388,7 @@
       // Fix #39
       // For some reason Chrome doesn't "select-all", when the last placeholder is visible.
       // So it's needed to hide it when the user "selects all", and show it again when they presses any other key.
-      $el.on('keydown', function (e) {
+      $el.on('keydown.mediumInsert', function (e) {
         // Fix Select-all using (ctrl + a) in chrome
         if (navigator.userAgent.match(/chrome/i)) {
           $el.children().last().removeClass('hide');
@@ -404,7 +404,7 @@
         }
       });
 
-      $el.on('click', '.mediumInsert-buttons a.mediumInsert-buttonsShow', function () {
+      $el.on('click.mediumInsert', '.mediumInsert-buttons a.mediumInsert-buttonsShow', function () {
         var $options = $(this).siblings('.mediumInsert-buttonsOptions'),
             $placeholder = $(this).parent().siblings('.mediumInsert-placeholder');
 
@@ -429,12 +429,12 @@
         that.deselect();
       });
 
-      $el.on('mouseleave', '.mediumInsert', function () {
+      $el.on('mouseleave.mediumInsert', '.mediumInsert', function () {
         $('a.mediumInsert-buttonsShow', this).removeClass('active');
         $('.mediumInsert-buttonsOptions', this).hide();
       });
 
-      $el.on('click', '.mediumInsert-buttons .mediumInsert-action', function () {
+      $el.on('click.mediumInsert', '.mediumInsert-buttons .mediumInsert-action', function () {
         var addon = $(this).data('addon'),
             action = $(this).data('action'),
             $placeholder = $(this).parents('.mediumInsert-buttons').siblings('.mediumInsert-placeholder');
