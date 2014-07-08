@@ -33,39 +33,55 @@
                 i.fa.fa-sort-down
                 span= category.name
       .explore_content
-        - @categories.each_with_index do |c, i|
-          - thing = c.things.desc(:priority).first
-          .explore_content_item.fade class="#{'active in' if i == 0}" id="category_#{c.slug}"
-            - present thing do |tp|
-              figure.thing
-                = link_to tp.path, class: "thing_thumb" do
-                  = tp.photo(:normal)
-                figcaption
-                  h5 = tp.full_title
-                  em.figure_detail
-                    span.fanciers
-                      i.fa.fa-heart
-                      = tp.fanciers_count
-                    span.owners
-                      i.fa.fa-check
-                      = tp.owners_count
-            .reviews
-              - thing.reviews.desc(:is_top, :lovers_count, :created_at).limit(3).each do |review|
-                - present review do |rp|
-                  article.review
-                    - present review.author do |up|
-                      = link_to up.path, class: 'review_author' do
-                        = up.avatar :small, size: '60x60'
-                        span.name = up.name
-                    section.review_wrap
-                      header.review_header
-                        h4.review_title
-                          = link_to review.title, rp.path
-                        em.like
-                          i.fa.fa-plus
-                          = review.lovers_count
-                      section.review_body
-                        p = rp.summary(120)
+        - @categories.each_with_index do |category, i|
+          .explore_content_item.fade class="#{'active in' if i == 0}" id="category_#{category.slug}"
+            - category.things.desc(:reviews_count).gt(reviews_count: 0).limit(8).each_with_index do |thing, i|
+              section class="product_#{i == 0 ? 1 : 2}"
+                - thing_presenter = present thing
+                figure.product
+                  = link_to thing_presenter.path, class: "product_thumb" do
+                    = thing_presenter.photo(:normal)
+                  figcaption
+                    div
+                      hgroup
+                        h4
+                          span= thing.title
+                        h5
+                          = thing.subtitle
+                      .product_detail
+                        span
+                          i.fa.fa-heart-o
+                          = thing_presenter.fanciers_count
+                        span
+                          i.fa.fa-check-circle-o
+                          = thing_presenter.owners_count
+                        span
+                          i.fa.fa-comment-o
+                          = thing_presenter.comments_count
+                section.reviews
+                  - thing.reviews.desc(:is_top, :lovers_count).limit(i == 0 ? 2 : 1).each_with_index do |review, i|
+                    article.review class="review_#{i + 1}"
+                      div
+                        - review_presenter = present review
+                        - user_presenter = present review.author
+                        = link_to user_presenter.path, class: 'review_author' do
+                          = user_presenter.avatar :small
+                          span.name = user_presenter.name
+                        section.review_wrap
+                          header.review_header
+                            hgroup.review_title
+                              h4= link_to review.title, review_presenter.path
+                              h5= thing.title
+                              = review_presenter.score
+                            em.like
+                              i.fa.fa-thumbs-o-up
+                              = review.lovers_count
+                          section.review_body
+                            p= review_presenter.summary(120)
+                            - if i == 1
+                              ul
+                                - review_presenter.content_photos(:small).take(8).each do |photo|
+                                  li= image_tag photo
 
   section.explore_thing
     ul= render Thing.rand_records(4), size: :normal, img_lazy: false
