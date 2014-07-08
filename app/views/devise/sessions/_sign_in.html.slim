@@ -10,11 +10,14 @@
         i.fa.fa-key
       = f.password_field :password, required: true, placeholder: '密码', class: 'form-control'
   .form-group.addon
-    #remember_me.checkbox
-      label
-        = f.check_box :remember_me
-        | 记住我
-    = link_to "忘记密码？", new_user_password_path
+    div
+      #remember_me.checkbox
+        label
+          = f.check_box :remember_me
+          | 记住我
+      = link_to new_user_password_path
+        i.fa.fa-question-circle
+        | 忘记密码？
   .form-group
     .form-action
       = f.button :submit, "用邮箱登录", class: "btn btn-primary btn-lg btn-block"
