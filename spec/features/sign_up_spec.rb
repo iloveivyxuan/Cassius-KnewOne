@@ -10,13 +10,13 @@ feature 'Sign up' do
   scenario 'with email', js: true do
     within '.landing .entry_email' do
       click_link '注册'
+    end
 
-      within '#email_sign_up_tab' do
-        fill_in '昵称',     with: user.name
-        fill_in '邮箱地址', with: user.email
-        fill_in '密码',     with: user.password
-        click_button '用邮箱注册'
-      end
+    within '#email_sign_up_pop_up' do
+      fill_in '昵称',     with: user.name
+      fill_in '邮箱地址', with: user.email
+      fill_in '密码',     with: user.password
+      click_button '用邮箱注册'
     end
 
     page.should have_title('欢迎')
