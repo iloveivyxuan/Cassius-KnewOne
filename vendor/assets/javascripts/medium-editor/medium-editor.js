@@ -1210,7 +1210,7 @@ if (typeof module === 'object') {
             for (i = 0; i < this.elements.length; i += 1) {
                 activatePlaceholder(this.elements[i]);
                 this.elements[i].addEventListener('blur', placeholderWrapper);
-                this.elements[i].addEventListener('keypress', placeholderWrapper);
+                this.elements[i].addEventListener('keyup', placeholderWrapper);
             }
             return this;
         },
