@@ -9,6 +9,7 @@ require 'rspec/autorun'
 
 require 'capybara/rails'
 require 'capybara/rspec'
+require 'capybara-screenshot/rspec'
 Capybara.asset_host = "http://#{Settings.host}"
 Capybara.default_wait_time = 5
 Capybara.javascript_driver = :webkit
