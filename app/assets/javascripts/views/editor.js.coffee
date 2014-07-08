@@ -33,6 +33,7 @@ do (exports = Making) ->
                             encodeURIComponent(location.pathname) +
                             '+#' + (@el.id ? '')
                       link: location.href
+      @beforeSubmit = options.beforeSubmit
 
       @listenTo @model, 'change:status', @showStatus
 
@@ -215,6 +216,12 @@ do (exports = Making) ->
     submit: (event) ->
       that = @
 
+      @setBody()
+
+      if @beforeSubmit?
+        result = @beforeSubmit(event)
+        if result is false then return false
+
       $window
         .off 'unload'
         .off 'beforeunload'
@@ -226,8 +233,6 @@ do (exports = Making) ->
       @draft.destroy()
 
       @model.updateStatus('submit')
-
-      @setBody()
 
     # @TODO
     send: ->
