@@ -31,12 +31,12 @@ class User
   validates :name, presence: true, uniqueness: { case_sensitive: false },
             format: {with: /\A[^\s]+\z/, multiline: false, message: '不能包含空格'}
 
-  RESERVED_WORDS = ['KnewOne', '知新创想', '牛玩']
+  RESERVED_WORDS = ['knewone', '知新创想', '牛玩']
   validate :name_cannot_include_reserved_words
 
   def name_cannot_include_reserved_words
-    if RESERVED_WORDS.any? { |word| /#{Regexp.escape(word)}/i.match(name) }
-      errors.add(:name, '不能包含保留字符')
+    if !staff? && RESERVED_WORDS.any? { |word| name.downcase.include? word }
+      errors.add(:name, '名字不和谐')
     end
   end
   private :name_cannot_include_reserved_words
