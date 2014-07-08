@@ -172,7 +172,7 @@
 
       if (this.options.templateFile) {
         $selectFile = this.options.templateFile
-                        .clone().attr('id', '')
+                        .clone().attr('id', '').attr('multiple', true)
                         .fileupload({
                           dataType: 'json',
                           dropZone: null,

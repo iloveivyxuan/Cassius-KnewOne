@@ -127,6 +127,11 @@ q, blockquote {
     position: relative;
     margin-left: 40px;
     text-align: center;
+    .progress {
+      display: block;
+      margin: 0 auto 1.5em;
+    }
+
     .mediumInsert-images {
       img {
         margin-top: 1em;
@@ -159,12 +164,12 @@ q, blockquote {
         content:"\a";
         white-space: pre;
       }
-      &:not(:first-child) {
-        margin-right: 10px;
-        img {
-          width: 20%;
-        }
-      }
+      // &:not(:first-child) {
+      //   margin-right: 10px;
+      //   img {
+      //     width: 20%;
+      //   }
+      // }
     }
     .mediumInsert-maps {
       padding: 10px;
