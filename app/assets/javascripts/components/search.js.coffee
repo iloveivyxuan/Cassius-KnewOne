@@ -4,7 +4,7 @@ window.Making = do (exports = window.Making || {}) ->
     if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ')')
       $form       = $(form)
       $input      = $form.find('input[type="search"]')
-      $status     = $input.next('.fa')
+      $status     = $form.find('.fa-search')
       $candidate  = $('.search_candidate')
       $backdrop   = $('.search_backdrop')
       $keyword    = $candidate.find('.search_keyword')

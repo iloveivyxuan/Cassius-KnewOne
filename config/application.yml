@@ -20,6 +20,9 @@ defaults: &defaults
   qq:
     consumer_key: '101097605'
     consumer_secret: '20ca8f3cc9ba72c9b2f4126d1a4ffc49'
+  douban:
+    consumer_key: '0e15780d13b4f5832a4068273b1ee089'
+    consumer_secret: '2231d26bdaf58224'
   kexue:
     enable: false
   karma:

@@ -68,7 +68,7 @@ class HomeController < ApplicationController
 
   def welcome
     @friends = current_user.recommend_users || []
-    @recommend_users = User.desc(:recommend_priority, :followers_count).limit(42) - @friends
+    @recommend_users = User.active_users(42) - @friends
 
     @things = Thing.published.prior.limit(24)
   end
