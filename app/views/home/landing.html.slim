@@ -36,52 +36,7 @@
         - @categories.each_with_index do |category, i|
           .explore_content_item.fade class="#{'active in' if i == 0}" id="category_#{category.slug}"
             - category.things.desc(:reviews_count).gt(reviews_count: 0).limit(8).each_with_index do |thing, i|
-              section class="product_#{i == 0 ? 1 : 2}"
-                - thing_presenter = present thing
-                figure.product
-                  = link_to thing_presenter.path, class: "product_thumb" do
-                    = thing_presenter.photo(:normal)
-                  figcaption
-                    div
-                      hgroup
-                        h4
-                          span= thing.title
-                        h5
-                          = thing.subtitle
-                      .product_detail
-                        span
-                          i.fa.fa-heart-o
-                          = thing_presenter.fanciers_count
-                        span
-                          i.fa.fa-check-circle-o
-                          = thing_presenter.owners_count
-                        span
-                          i.fa.fa-comment-o
-                          = thing_presenter.comments_count
-                section.reviews
-                  - thing.reviews.desc(:is_top, :lovers_count).limit(i == 0 ? 2 : 1).reverse.each_with_index do |review, i|
-                    article.review class="review_#{i + 1}"
-                      div
-                        - review_presenter = present review
-                        - user_presenter = present review.author
-                        = link_to user_presenter.path, class: 'review_author' do
-                          = user_presenter.avatar :small
-                          span.name = user_presenter.name
-                        section.review_wrap
-                          header.review_header
-                            hgroup.review_title
-                              h4= link_to review.title, review_presenter.path
-                              h5= thing.title
-                              = review_presenter.score
-                            em.like
-                              i.fa.fa-thumbs-o-up
-                              = review.lovers_count
-                          section.review_body
-                            p= review_presenter.summary(120)
-                            - if i == 1
-                              ul
-                                - review_presenter.content_photos(:small).take(8).each do |photo|
-                                  li= image_tag photo
+              = render 'landing_thing', thing: thing, index: i
 
 = render 'shared/footer'
 

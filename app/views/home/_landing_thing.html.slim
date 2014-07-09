@@ -1,0 +1,26 @@
+- thing_presenter = present thing
+section class="product_#{index == 0 ? 1 : 2}"
+  figure.product
+    = link_to thing, class: "product_thumb"
+      = thing_presenter.photo(:normal)
+    figcaption
+      div
+        hgroup
+          h4
+            span= thing.title
+          h5
+            = thing.subtitle
+        .product_detail
+          span
+            i.fa.fa-heart-o
+            = thing_presenter.fanciers_count
+          span
+            i.fa.fa-check-circle-o
+            = thing_presenter.owners_count
+          span
+            i.fa.fa-comment-o
+            = thing_presenter.comments_count
+  section.reviews
+    - reviews = thing.reviews.desc(:is_top, :lovers_count).limit(index == 0 ? 2 : 1).reverse
+    - reviews.each_with_index do |review, j|
+      = render 'landing_review', review: review, index: j
