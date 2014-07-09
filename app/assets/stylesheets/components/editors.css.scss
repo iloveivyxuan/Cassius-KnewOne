@@ -30,6 +30,10 @@
   padding-bottom: 0 !important;
   border-bottom: none !important;
   margin-bottom: 0 !important;
+
+  & + #file {
+    display: none;
+  }
 }
 
 .editor-menu {
