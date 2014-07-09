@@ -1,0 +1,7 @@
+article.home_feed
+  h4= feed.thing.title
+  - feed.activities.each do |a|
+    p
+      = a.type
+      | -------
+      = a.reference_union

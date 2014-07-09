@@ -1,14 +1,12 @@
 class HomeController < ApplicationController
   layout 'application'
   skip_after_action :store_location
-  before_action :set_editor_choices, only: [:index]
-  before_action :skip_follow_user, only: [:index]
   before_action :authenticate_user!, only: [:welcome]
 
   def index
     if user_signed_in?
-      @activities = following_activities params[:page]
-
+      activities = current_user.relate_activities.page(params[:page]).per(100)
+      @feeds = HomeFeed.create_from_activities activities
       if request.xhr?
         render 'home/index_xhr', layout: false
       else
@@ -54,7 +52,6 @@ class HomeController < ApplicationController
   def welcome
     @friends = current_user.recommend_users || []
     @recommend_users = User.desc(:recommend_priority, :followers_count).limit(42) - @friends
-
     @things = Thing.published.prior.limit(24)
   end
 
@@ -96,49 +93,5 @@ class HomeController < ApplicationController
   end
 
   def user_agreement
-  end
-
-  private
-
-  def set_editor_choices
-    #@editor_choices = Thing.rand_prior_records 1
-    @editor_choices = Thing.published.prior.limit(1)
-  end
-
-  def skip_follow_user
-    session[:skip] = true if params[:skip].present?
-  end
-
-  THINGS_PER_ROW_IN_FOLLOWINGS = 2
-
-  def following_activities(page)
-    thing_activities = current_user
-      .relate_activities(%i(new_thing own_thing fancy_thing), [])
-      .visible
-      .page(page)
-      .per(50)
-      .to_a
-      .uniq(&:reference_union)
-
-    thing_activities = thing_activities.take(thing_activities.size /
-                                             THINGS_PER_ROW_IN_FOLLOWINGS *
-                                             THINGS_PER_ROW_IN_FOLLOWINGS)
-
-    other_activities = current_user
-      .relate_activities(%i(new_review love_review new_feeling love_feeling),
-                         %i(new_review))
-      .visible
-      .page(page)
-      .per(20)
-      .to_a
-      .uniq(&:reference_union)
-
-    activities = []
-    until thing_activities.empty? || other_activities.empty?
-      activities.concat(thing_activities.shift(THINGS_PER_ROW_IN_FOLLOWINGS))
-      activities << other_activities.shift
-    end
-    activities.concat(thing_activities)
-    activities.concat(other_activities)
   end
 end

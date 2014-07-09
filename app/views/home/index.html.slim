@@ -1,28 +1,18 @@
 .container
-  header.filter
-    nav
-      ul
-        li class="#{session[:home_filter] == 'hot' ? 'active' : ''}"
-          = link_to '热点内容', {filter: 'hot'}
-        li class="#{session[:home_filter] == 'followings' ? 'active' : ''}"
-          = link_to '我关注的', {filter: 'followings'}
-
   section#activities
-    = render partial: 'activity', collection: @activities
+    = render partial: 'feed', collection: @feeds
 
-  .aside-container
-    = render 'aside'
+/   .aside-container
+/     = render 'aside'
 
-  = paginate_nav
+/   .spinner.hide
+/     i.fa.fa-spinner.fa-spin.fa-2x
 
-  .spinner.hide
-    i.fa.fa-spinner.fa-spin.fa-2x
+/   .nomore.hide
+/     i.fa.fa-smile-o
+/     | 没有更多动态了，
+/     = link_to '关注更多的小伙伴！', recommend_users_profile_path
 
-  .nomore.hide
-    i.fa.fa-smile-o
-    | 没有更多动态了，
-    = link_to '关注更多的小伙伴！', recommend_users_profile_path
-
-- content_for :script do
-  javascript:
-    Making.InitHome();
+/ - content_for :script do
+/   javascript:
+/     Making.InitHome();
