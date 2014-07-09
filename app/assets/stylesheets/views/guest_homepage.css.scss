@@ -448,14 +448,14 @@ html.guest_homepage {
           }
         }
 
-        &.landing_night {
+        &.landing_evening {
           top: -50%;
           left: -50%;
           width: 200%;
           height: 200%;
         }
 
-        &.landing_day {
+        &.landing_day, &.landing_deepnight {
           top: 0;
           left: 0;
           width: 100%;
