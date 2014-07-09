@@ -2,7 +2,7 @@ module Rankable
   extend ActiveSupport::Concern
 
   included do
-    field :heat, type: Float
+    field :heat, type: Float, default: 0
     index heat: -1
 
     scope :hot, -> { desc(:heat) }
