@@ -1,6 +1,10 @@
 html.home_hits #wrapper {margin: 0;}
 
 html.home_hits .container-fluid {
+  @media (max-width: $screen-xs-max) {
+    padding: 0;
+  }
+
   @media (min-width: $screen-lg-min) {
     width: $container-large-desktop;
   }
