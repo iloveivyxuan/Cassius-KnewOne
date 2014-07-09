@@ -5,11 +5,12 @@ section class="product_#{index == 0 ? 1 : 2}"
       = thing_presenter.photo(:normal)
     figcaption
       div
-        hgroup
-          h4
-            span= thing.title
-          h5
-            = thing.subtitle
+        = link_to thing
+          hgroup
+            h4
+              span= thing.title
+            h5
+              = thing.subtitle
         .product_detail
           span
             i.fa.fa-heart-o
