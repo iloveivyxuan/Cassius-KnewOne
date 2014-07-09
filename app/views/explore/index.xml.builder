@@ -21,7 +21,8 @@ xml.rss :version => "2.0" do
         xml.author { |author| author.name(post.author.name) }
         xml.pubDate post.created_at.to_s(:rfc822)
         xml.cover e.cover.url(:normal)
-        xml.link url_for(:action => 'show', :controller => 'entries', :id => e.id)
+        link = url_for(:action => 'show', :controller => 'entries', :id => e.id)
+        xml.link "#{link}?source=xml"
       end
 
     end

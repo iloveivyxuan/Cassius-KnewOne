@@ -46,7 +46,7 @@ class Order
   attr_accessor :use_sf
 
   def use_sf?
-    !['0', false, nil].include?(self.use_sf) || self.deliver_by == :sf
+    !['0', false, 'false', nil].include?(self.use_sf) || self.deliver_by == :sf
   end
 
   SF_PRICE = 10.0

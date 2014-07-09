@@ -6,3 +6,6 @@ Alipay.seller_email = 'hello@knewone.com'
 
 Alipay::MobileSign.private_key = OpenSSL::PKey::RSA.new(File.read(Rails.root.join('lib/alipay/rsa_private_key.pem')))
 Alipay::MobileSign.alipay_public_key = OpenSSL::PKey::RSA.new(File.read(Rails.root.join('lib/alipay/alipay_public_key.pem')))
+
+# hacking alipay gem to support verify ATN signed with rsa
+require 'alipay/ext/notify'

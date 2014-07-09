@@ -9,6 +9,7 @@ class Thing < Post
   field :photo_ids, type: Array, default: []
   field :categories, type: Array, default: []
   after_save :update_categories
+  before_save :update_amazon_link
 
   belongs_to :maker, class_name: "User", inverse_of: nil
 
@@ -103,6 +104,28 @@ class Thing < Post
     new = categories_change.last || []
     (old - new).each { |c| Category.find_and_minus c }
     (new - old).each { |c| Category.find_and_plus c }
+  end
+
+  def update_amazon_link
+    if self.shop_changed? && self.shop.include?("amazon.cn") && !self.shop.include?("kne09-23")
+      new_link = add_param(self.shop, "tag", "kne09-23")
+      self.shop = new_link unless new_link.nil?
+    end
+  end
+
+  # before: http://www.amazon.com/gp/product/B0052IGZFO
+  # after:  http://www.amazon.com/gp/product/B0052IGZFO?foo=bar
+  def add_param(url, param_name, param_value)
+    begin
+      uri = URI.parse(url)
+    rescue
+      uri = nil
+    end
+
+    unless uri.nil?
+      uri.query = [uri.query, "#{param_name}=#{param_value}"].compact.join('&')
+      uri.to_s
+    end
   end
 
   def top_review

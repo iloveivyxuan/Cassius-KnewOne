@@ -7,9 +7,10 @@ section.step#step1
       | &nbsp;有你感兴趣的人吗？
     p 关注他们，就可以看到他们对新奇酷的讨论动态，和他们交流！
     footer.actions
+      - data = { category: "follow", action: "follow_all", label: current_user.name }
       = link_to_with_icon "关注所有", "fa fa-plus",
                           follow_recommends_profile_url(redirect_from: welcome_url(anchor: 'step2')),
-                          class: 'btn btn_compact_inverse', method: :post
+                          class: 'btn btn_compact_inverse track_event', data: data, method: :post
       = link_to_with_icon "下一步", "fa fa-forward", "#step2", class: 'btn btn_compact_inverse'
 
   - has_weibo = @friends.any?

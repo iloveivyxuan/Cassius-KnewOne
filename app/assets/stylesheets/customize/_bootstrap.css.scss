@@ -130,6 +130,10 @@ legend {
   }
 }
 
+label {
+  font-weight: normal;
+}
+
 input {
   &:focus {outline: none !important;}
 }
@@ -137,6 +141,7 @@ input {
 input[type="radio"],
 input[type="checkbox"] {
   height: 14px;
+  margin-right: 4px;
   margin-top: 4px \9;
   width: 14px;
 }

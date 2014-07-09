@@ -1,10 +1,17 @@
 - if thing = notification.context.thing
   = senders(notification)
+  - thing_title = link_to " #{thing.title} ", thing_path(thing)
   - if thing.author == current_user
-    | 为我分享的产品发表了评测
+    | 为我分享的产品
+    = thing_title
+    | 发表了评测
   - elsif thing.fanciers.include? current_user
-    | 为我喜欢的产品发表了评测
+    | 为我喜欢的产品
+    = thing_title
+    | 发表了评测
   - else
-    | 为我拥有的产品发表了评测
+    | 为我拥有的产品
+    = thing_title
+    | 发表了评测
     | &nbsp;
-  = link_to notification.context.title, thing_review_path(thing, notification.context), target: '_blank'
+  = link_to " “#{notification.context.title}” ", thing_review_path(thing, notification.context), target: '_blank'

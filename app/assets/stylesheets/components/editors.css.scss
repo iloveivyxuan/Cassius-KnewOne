@@ -84,8 +84,10 @@
     @include text-overflow;
     color: $text-muted;
     display: inline-block;
+    margin-top: -2px;
     max-width: 15em;
-    padding: 0 .5em;
+    height: 1em;
+    line-height: 1em;
     vertical-align: middle;
 
     &:hover {

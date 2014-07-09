@@ -16,6 +16,8 @@ module Api
 
         def new
           @order = Order.build_order(current_user, (params.has_key?(:order) ? order_params : nil))
+          @addresses = current_user.addresses
+          @coupons = current_user.coupon_codes.select {|c| c.test?(@order)}
         end
 
         def create
