@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class UserPresenter < ApplicationPresenter
   presents :user
   delegate :name, to: :user
@@ -26,9 +25,7 @@ class UserPresenter < ApplicationPresenter
   end
 
   def link_to_with_avatar(size, options={}, img_options={})
-    link_to avatar(size, img_options),
-            user,
-            options.merge(title: user.name)
+    link_to avatar(size, img_options), user, add_popover_options(options)
   end
 
   def link_to_with_name(options={})

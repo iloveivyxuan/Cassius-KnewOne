@@ -23,6 +23,16 @@ html.home_jobs {
 
       padding: 1em 1.5em 50px;
 
+      > header {
+        text-align: center;
+        h1 {
+          color: $navbar-default-brand-color;
+          font-size: $font-size-h2;
+          font-family: "orbitron-medium";
+        }
+        margin-bottom: 2em;
+      }
+
       @media screen and (max-width: $screen-md-min) {
         border-radius: 0;
       }
@@ -41,6 +51,7 @@ html.home_jobs {
   }
 
   // Sections
+
 
   .section {
     border-bottom: $border-dashed;

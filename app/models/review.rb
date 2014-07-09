@@ -11,5 +11,11 @@ class Review < Post
 
   scope :living, -> { where :thing_id.ne => nil }
 
+  include Rankable
+
+  def calculate_heat
+    (1 + lovers_count + comments.count) * freezing_coefficient
+  end
+
   need_aftermath :create, :vote
 end

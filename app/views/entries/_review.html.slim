@@ -1,5 +1,3 @@
-img.hidden src=entry.cover.url(:tiny)
-
 article.article
 
   header
@@ -35,7 +33,7 @@ article.article
   .actions
     .voting id="review_#{post.id.to_s}"
       = render partial: 'shared/voting', locals: {object: post}
-    = render "shared/share"
+    = render "shared/share_external", type: entry.category, title: entry_title(entry)
 
   ul.pager
     - if previous_entry = entry.previous

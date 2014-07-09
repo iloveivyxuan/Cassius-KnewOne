@@ -21,7 +21,9 @@ table.table.table-striped
       th 战斗力
       th 小皮鞭
       th 关注/被关注
-      th 注册时间
+      th 最后分享产品
+      th 最后发表评测
+      th 最后发表短评
       th 爱
   tbody
     - @users.each do |u|
@@ -39,7 +41,15 @@ table.table.table-striped
           = link_to u.followings_count, followings_user_path(u), target: '_blank'
           | /
           = link_to u.followers_count, followers_user_path(u), target: '_blank'
-        td = u.created_at.strftime '%Y-%m-%d %H:%M:%S' if u.created_at
+        td = u.last_thing_created_at.strftime '%Y-%m-%d' if u.last_thing_created_at
+        td = u.last_review_created_at.strftime '%Y-%m-%d' if u.last_review_created_at
+        td = u.last_feeling_created_at.strftime '%Y-%m-%d' if u.last_feeling_created_at
         td
           = user_links(u)
+          - if u.reviews.recent.size > 0
+            br
+            = link_to '[鼓励评测]', encourage_review_author_haven_user_path(u), method: :post, data: {confirm: '确认发送？'}
+          - if u.things.recent.size > 0
+            br
+            = link_to '[鼓励产品]', encourage_thing_author_haven_user_path(u), method: :post, data: {confirm: '确认发送？'}
 = paginate @users

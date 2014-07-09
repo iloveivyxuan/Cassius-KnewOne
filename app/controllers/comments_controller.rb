@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class CommentsController < ApplicationController
   include MarkReadable
   respond_to :json
@@ -11,6 +10,7 @@ class CommentsController < ApplicationController
   end
 
   def create
+    authorize! :create, Comment
     authorize! :create, @post if @post.class == Topic
     @comment = @post.comments.create(comment_params.merge(author: current_user))
     @comment.author.log_activity :comment, @comment.post, check_recent: true

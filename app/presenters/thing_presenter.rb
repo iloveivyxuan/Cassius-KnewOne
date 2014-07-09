@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class ThingPresenter < PostPresenter
   presents :thing
   delegate :title, :subtitle, :photos, :self_run?, to: :thing
@@ -140,6 +139,14 @@ class ThingPresenter < PostPresenter
     thing.owners.desc(:created_at).limit(10)
   end
 
+  def has_owner?
+    thing.owners.count > 0
+  end
+
+  def has_review?
+    thing.reviews.count > 0
+  end
+
   def reviews_count
     show_count thing.reviews.count
   end
@@ -222,10 +229,6 @@ class ThingPresenter < PostPresenter
 
   def groups_count
     show_count thing.fancy_groups.count
-  end
-
-  def author
-    present(thing.author).as_author
   end
 
   def share_content

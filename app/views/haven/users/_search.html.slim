@@ -1,0 +1,9 @@
+= form_tag params, method: :get, class: 'form-inline' do
+  .form-group
+    = select_tag :find_by, options_for_select(types.to_a.collect(&:reverse), params[:find_by]), include_blank: false, class: 'form-control'
+  .form-groups
+    = date_field_tag :start_date, params[:start_date], class: 'form-control', placeholder: '起始日期', size: '15'
+  .form-group
+    = date_field_tag :end_date, params[:end_date], class: 'form-control', placeholder: '截止日期', size: '15'
+  = link_to '清空条件', analysis_haven_users_path, class: 'btn btn-default'
+  = submit_tag '过滤', class: 'btn btn-primary'

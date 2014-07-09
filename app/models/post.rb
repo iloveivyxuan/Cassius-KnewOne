@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class Post
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -23,8 +22,9 @@ class Post
 
   index created_at: -1
 
-  scope :from_date, ->(date) { where :created_at.gte => date.to_time.to_i }
-  scope :to_date, ->(date) { where :created_at.lt => date.next_day.to_time.to_i }
+  scope :from_date, ->(date) { where :created_at.gte => date }
+  scope :to_date, ->(date) { where :created_at.lt => date.next_day }
+  scope :recent, ->(date = 1.month.ago) { gt(created_at: date) }
 
   after_create :update_commented_at
 
@@ -81,6 +81,9 @@ class Post
     end
   end
 
+  after_destroy :cleanup_relevant_activities
+  after_destroy :cleanup_relevant_notifications
+
   private
 
   def self_changed?
@@ -125,5 +128,15 @@ class Post
     else
       yield
     end
+  end
+
+  def cleanup_relevant_activities
+    union = "#{self.class.to_s}_#{id.to_s}"
+    Activity.where(reference_union: union).update(visible: false)
+    Activity.where(source_union: union).update(visible: false)
+  end
+
+  def cleanup_relevant_notifications
+    Notification.where(context_type: self.class.to_s, context_id: id.to_s).destroy
   end
 end

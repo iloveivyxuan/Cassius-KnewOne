@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -29,8 +28,18 @@ class User
       end
     EVAL
   end
-  validates :name, presence: true, uniqueness: true,
-            format: {with: /\A[^\s]+\z/, multiline: false, message: '昵称中不能包含空格。'}
+  validates :name, presence: true, uniqueness: { case_sensitive: false },
+            format: {with: /\A[^\s]+\z/, multiline: false, message: '不能包含空格'}
+
+  RESERVED_WORDS = ['knewone', '知新创想', '牛玩']
+  validate :name_cannot_include_reserved_words
+
+  def name_cannot_include_reserved_words
+    if !staff? && RESERVED_WORDS.any? { |word| name.downcase.include? word }
+      errors.add(:name, '名字不和谐')
+    end
+  end
+  private :name_cannot_include_reserved_words
 
   # Stats
   field :things_count, type: Integer, default: 0

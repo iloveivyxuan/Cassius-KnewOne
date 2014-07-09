@@ -4,18 +4,22 @@ atom_feed do |feed|
 
   @entries.each do |e|
     if e.post_id.blank?
-      post = Post.new(title: e.title, content: auto_link(e.external_link), author: { name: "KnewOne" })
+      post = Post.new(
+                      title: e.title,
+                      content: auto_link(e.external_link),
+                      author: { name: "KnewOne" },
+                      created_at: e.created_at)
     else
       post = Post.find(e.post_id)
     end
     url = url_for(:action => 'show', :controller => 'entries', :id => e.id)
-    feed.entry(post, :url => url) do |entry| ##
+    feed.entry(post, :url => "#{url}?source=atom") do |entry|
       entry.title(post.title)
       entry.content(post.content, type: 'html')
       entry.cover e.cover.url(:normal)
-      entry.author do |author|
-        author.name(post.author.name)
-      end
+      xml.author { |author| author.name(post.author.name) }
+      entry.pubDate post.created_at.to_s(:rfc822)
+      entry.link url
     end
   end
 end

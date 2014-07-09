@@ -7,7 +7,16 @@ module Api
       end
 
       def feeds
-        @feeds = current_user.relate_activities.visible
+        @feeds = case params[:scope]
+          when "followings"
+            current_user.relate_activities.visible
+          when "things"
+            Activity.by_types(:new_thing).visible
+          when "posts"
+            Activity.by_types(:new_review, :new_feeling, :new_topic).visible
+          else
+            Activity.by_types(:new_thing, :new_review, :new_feeling, :new_topic).visible
+        end
 
         if params[:started_at].to_i > 0
           @feeds = @feeds.gte(created_at: params[:started_at].to_i)

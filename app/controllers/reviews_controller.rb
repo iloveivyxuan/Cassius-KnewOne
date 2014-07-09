@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class ReviewsController < ApplicationController
   include MarkReadable
   load_and_authorize_resource :thing, singleton: true
@@ -91,7 +90,7 @@ class ReviewsController < ApplicationController
 
   def review_params
     permit_attrs = [:title, :content, :score]
-    permit_attrs.concat [:is_top, :author] if current_user.role? :editor
+    permit_attrs.concat [:is_top, :author] if current_user && current_user.role?(:editor)
     params.require(:review).permit permit_attrs
   end
 end

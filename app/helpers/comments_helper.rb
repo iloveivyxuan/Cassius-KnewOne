@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 require 'rails_rinku'
 
 module CommentsHelper

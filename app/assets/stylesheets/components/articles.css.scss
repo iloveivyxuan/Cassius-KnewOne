@@ -52,7 +52,9 @@ article.post_show {
       }
     }
 
-    .share {margin-top: -5px;}
+    .share_btn {
+      color: $text-muted;
+    }
 
     .fanciers {
       float: right;
@@ -78,9 +80,9 @@ article.post_show {
 }
 
 .post_actions {
-  i {
+  a {
     color: $text-muted;
-    margin-right: 1em;
+    margin-right: 1.5em;
   }
 }
 

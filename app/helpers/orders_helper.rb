@@ -1,4 +1,3 @@
-# encoding: utf-8
 module OrdersHelper
   def pay_link(order, drop_up = true, css = 'btn btn-success btn_pay')
     if order.can_pay?

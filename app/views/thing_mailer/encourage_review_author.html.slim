@@ -1,0 +1,21 @@
+- content_for :username do
+  = @user.name.present? ? @user.name : 'KnewOne小伙伴'
+
+- content_for :title do
+  | 你在KnewOne上评测产品的最新动态
+
+p
+  | 在过去的一个月里，你在 KnewOne 上已经累计分享了 #{@reviews.size} 篇评测：
+
+ul
+  - @reviews.each do |r|
+    li #{link_to r.title, thing_review_url(r.thing, r)}：被 #{r.lovers_count} 人点赞，有 #{r.comments.size} 篇评论
+
+p
+  | 去看看看牛玩小伙伴们的反馈吧！
+
+p
+  | #{link_to '点击链接', categories_url(from: :edm)}，查看牛玩小伙伴分享的新奇酷。
+
+/p
+/  | 分享有好礼！在 KnewOne 上分享你发现的新奇酷产品和使用体验，让更多人知道你有多酷！累计评测 * 个产品，还可以申请 KnewOne 的小礼物一份哦！

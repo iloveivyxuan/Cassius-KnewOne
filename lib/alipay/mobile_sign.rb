@@ -5,14 +5,14 @@ module Alipay
   module MobileSign
     mattr_accessor :private_key, :alipay_public_key
 
-    def self.to_query_string(params)
+    def self.to_query_string(params, wrap_quotation = true)
       params.sort.map do |key, value|
-        "#{key}=#{value}"
+        wrap_quotation ? "#{key.to_s}=\"#{value.to_s.gsub('"', '')}\"" : "#{key.to_s}=#{value.to_s.gsub('"', '')}"
       end.join('&')
     end
 
     def self.generate(params)
-      Base64.encode64 private_key.sign(OpenSSL::Digest::SHA256.new, to_query_string(params))
+      Base64.encode64(private_key.sign(OpenSSL::Digest::SHA1.new, to_query_string(params))).gsub("\n", '')
     end
 
     def self.verify?(params)
@@ -20,7 +20,7 @@ module Alipay
       params.delete('sign_type')
       sign = params.delete('sign')
 
-      alipay_public_key.verify(OpenSSL::Digest::SHA256.new, Base64.decode64(sign), to_query_string(params))
+      alipay_public_key.verify(OpenSSL::Digest::SHA1.new, Base64.decode64(sign), to_query_string(params, false))
     end
   end
 end

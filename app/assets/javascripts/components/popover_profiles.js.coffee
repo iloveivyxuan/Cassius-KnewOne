@@ -51,8 +51,7 @@ Making.PopoverProfiles = ->
   $(document).on('mouseenter', selector, (event) ->
     return if $('html').is('.mobile')
 
-    $target = $(event.target)
-    $target = $target.parents(selector) unless $target.is(selector)
+    $target = $(this)
 
     initialize($target)
 

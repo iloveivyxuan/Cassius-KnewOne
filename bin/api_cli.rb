@@ -7,9 +7,9 @@ CONSOLE = Pry
 
 APP_ID = '9c414322e74aa71057e3523fe4af986dd87256157c730d86c0c08864bb98cf9b'
 SECRET = '5456e36028ddde788caba33cedfbf79ff77f5eb0a40135119765be2c119ccfae'
-URL = 'http://making.dev'
-USERNAME = 'jasl@knewone.com'
-PASSWORD = 'aaaaaa'
+URL = ARGV[2] || 'http://making.dev'
+USERNAME = ARGV[0] || 'jasl@knewone.com'
+PASSWORD = ARGV[1] || 'aaaaaa'
 SCOPES = 'public official'
 
 client = OAuth2::Client.new(APP_ID, SECRET, site: URL)

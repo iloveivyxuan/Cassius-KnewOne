@@ -3,7 +3,7 @@ atom_feed language: "zh-CN" do |feed|
   feed.updated @things.first.created_at if @things.length > 0
 
   @things.each do |thing|
-    feed.entry thing, url: thing_url(thing) do |entry|
+    feed.entry thing, url: "#{thing_url(thing)}?source=atom" do |entry|
       entry.title thing.title
       entry.subtitle thing.subtitle
       entry.content thing.content, type: 'html'

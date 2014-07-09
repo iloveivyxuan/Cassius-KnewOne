@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class Thing < Post
   include Mongoid::Slug
   include Mongoid::MultiParameterAttributes
@@ -10,6 +9,7 @@ class Thing < Post
   field :photo_ids, type: Array, default: []
   field :categories, type: Array, default: []
   after_save :update_categories
+  before_save :update_amazon_link
 
   belongs_to :maker, class_name: "User", inverse_of: nil
 
@@ -23,8 +23,6 @@ class Thing < Post
   CURRENCY_LIST = %w{¥ $ € £}
 
   field :priority, type: Integer, default: 0
-  field :recommended, type: Boolean, default: false
-  field :lock_priority, type: Boolean, default: false
 
   field :sharing_text, type: String
 
@@ -64,7 +62,6 @@ class Thing < Post
   has_many :lotteries, dependent: :destroy
 
   scope :recent, -> { gt(created_at: 1.month.ago) }
-  scope :hot, -> { gt(fanciers_count: 30) }
   scope :published, -> { lt(created_at: Time.now) }
   scope :prior, -> { gt(priority: 0).desc(:priority, :created_at) }
   scope :self_run, -> { send :in, stage: [:dsell, :pre_order] }
@@ -107,6 +104,28 @@ class Thing < Post
     new = categories_change.last || []
     (old - new).each { |c| Category.find_and_minus c }
     (new - old).each { |c| Category.find_and_plus c }
+  end
+
+  def update_amazon_link
+    if self.shop_changed? && self.shop.include?("amazon.cn") && !self.shop.include?("kne09-23")
+      new_link = add_param(self.shop, "tag", "kne09-23")
+      self.shop = new_link unless new_link.nil?
+    end
+  end
+
+  # before: http://www.amazon.com/gp/product/B0052IGZFO
+  # after:  http://www.amazon.com/gp/product/B0052IGZFO?foo=bar
+  def add_param(url, param_name, param_value)
+    begin
+      uri = URI.parse(url)
+    rescue
+      uri = nil
+    end
+
+    unless uri.nil?
+      uri.query = [uri.query, "#{param_name}=#{param_value}"].compact.join('&')
+      uri.to_s
+    end
   end
 
   def top_review
@@ -209,6 +228,18 @@ class Thing < Post
   end
 
   need_aftermath :own, :unown, :fancy, :unfancy
+
+  include Rankable
+
+  def calculate_heat
+    (1 +
+     (priority || 0) +
+     50 * reviews_count +
+     5 * feelings_count +
+     fancier_ids.count +
+     owner_ids.count) *
+    freezing_coefficient
+  end
 
   class << self
     def rand_records(per = 1)

@@ -1,0 +1,68 @@
+html.home_hits #wrapper {margin: 0;}
+
+html.home_hits .container-fluid {
+  @media (min-width: $screen-lg-min) {
+    width: $container-large-desktop;
+  }
+}
+
+html.home_hits section.hits {
+  @include clearfix;
+  $gutter: 20px;
+  margin-top: $gutter;
+
+  article {
+    margin-bottom: $gutter;
+  }
+
+  article.thing {
+    @media (min-width: $screen-sm-min) {
+      float: left;
+    }
+    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+      &:nth-child(odd) {margin-right: $gutter;}
+      width: 350px;
+      width: calc((100% - #{$gutter})/2);
+    }
+
+    @media (min-width: $screen-md-min) {
+      &:nth-child(3n+1), &:nth-child(3n+2) {margin-right: $gutter;}
+      width: 306px;
+      width: calc((100% - #{$gutter}*2)/3);
+    }
+  }
+
+  article.review {
+    width: 100%;
+    float: left;
+
+    @media (min-width: $screen-sm-min) {
+      section.content {
+        .summary {
+          min-height: 90px;
+        }
+      }
+    }
+
+    @media (min-width: $screen-md-min) {
+      /* So thing:review is golden porpotion */
+      padding: 35px;
+      header.cover { 
+        padding-right: 45px;
+      }
+    }
+  }
+}
+
+html.home_hits .container-fluid > footer {
+  ul.pager {
+    margin: 0;
+    .previous {margin-right: 20px;}
+    .next {margin-left: 20px;}
+    li > a, li > span {
+      border-radius: 0;
+      color: $gray;
+      float: none;
+    }
+  }
+}

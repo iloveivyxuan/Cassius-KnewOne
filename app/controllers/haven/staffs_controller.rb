@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 module Haven
   class StaffsController < ApplicationController
     layout 'settings'

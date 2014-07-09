@@ -47,6 +47,7 @@
 @import "components/entry";
 @import "components/metas";
 @import "components/things";
+@import "components/reviews";
 @import "components/articles";
 @import "components/comments";
 @import "components/editors";
@@ -66,6 +67,7 @@
 @import "views/guest_homepage";
 @import "views/landing";
 @import "views/signed_in_homepage";
+@import "views/hits";
 @import "views/home_welcome";
 @import "views/profiles";
 @import "views/things";
@@ -88,5 +90,4 @@
 @import "views/rewards";
 @import "views/help";
 @import "views/user_agreement";
-@import "views/sandbox";
 @import "views/other";

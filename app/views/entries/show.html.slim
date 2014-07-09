@@ -4,6 +4,7 @@
 - page_title entry_title(@entry)
 - active_nav_tab(@entry)
 
+img.hidden.sharing_cover src=@entry.cover.url(:normal)
 - case post.class
 - when Review
   = render 'entries/review', entry: @entry, post: post, author: author

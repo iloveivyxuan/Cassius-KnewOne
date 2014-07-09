@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class ReviewPresenter < PostPresenter
   presents :review
 
@@ -8,6 +7,10 @@ class ReviewPresenter < PostPresenter
 
   def edit_path
     edit_thing_review_path(review.thing, review)
+  end
+
+  def cover(size)
+    super(size) or present(review.thing).photo(size)
   end
 
   def share_content

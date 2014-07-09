@@ -5,17 +5,25 @@ Making::Application.routes.draw do
     get "maps/#{a}/page/:page", to: "maps##{a}"
   end
 
-  get 'help', to: 'help#index'
+  use_doorkeeper
 
+  root to: 'home#index'
+
+  get 'page/:page', to: "home#index"
+  get 'search', to: 'home#search', as: :search
+  get 'hits/(:page)', to: 'home#hits', as: :hits
+  get 'welcome', to: 'home#welcome'
+  get 'jobs', to: 'home#jobs'
+  get 'user_agreement', to: 'home#user_agreement'
+  get 'qr_entry', to: 'home#qr_entry'
+  get "404", to: "home#not_found"
+  get "403", to: "home#forbidden"
+  get "500", to: "home#error"
+
+  get 'help', to: 'help#index'
   %w(how_to_share how_to_review terms knewone_for_user knewone_for_startup).each do |a|
     get "help/#{a}"
   end
-
-  use_doorkeeper
-  root to: 'home#index'
-  get 'welcome', to: 'home#welcome'
-  get '/page/:page', to: "home#index"
-  get 'qr_entry', to: 'home#qr_entry'
 
   get 'explore', to: 'explore#index'
   %w(features reviews specials events).each do |a|
@@ -210,15 +218,6 @@ Making::Application.routes.draw do
     mount Sidekiq::Web => '/haven/sidekiq'
   end
 
-  get '/search', to: 'home#search', as: :search
-  get '/sandbox', to: 'home#sandbox'
-
-  get "/404", :to => "home#not_found"
-  get "/403", :to => "home#forbidden"
-  get "/500", :to => "home#error"
-
-  get 'jobs', to: 'home#jobs'
-  get 'user_agreement', to: 'home#user_agreement'
   get 'valentine', to: 'specials#valentine'
   get 'womensday', to: 'specials#womensday'
   get 'makerfaire', to: 'specials#makerfaire'
@@ -253,6 +252,7 @@ Making::Application.routes.draw do
     resources :things, only: [:index, :update, :edit] do
       member do
         get 'send_stock_notification'
+        post 'encourage_owners'
       end
 
       collection do
@@ -269,9 +269,20 @@ Making::Application.routes.draw do
 
     resources :entries, except: [:show]
 
-    resources :users, only: [:index, :update, :show]
+    resources :users, only: [:index, :update, :show] do
+      member do
+        post 'encourage_thing_author'
+        post 'encourage_review_author'
+      end
+
+      collection do
+        get "analysis"
+      end
+    end
 
     resources :reviews, only: [:index]
+
+    resources :feelings, only: [:index]
 
     resources :comments, only: [:index, :destroy]
 
@@ -303,11 +314,20 @@ Making::Application.routes.draw do
       resources :things, only: [:index, :show, :create] do
         resources :reviews, only: [:index, :show] do
           resources :comments, controller: :review_comments, only: [:index, :show, :create, :destroy]
+          resource :vote, only: [:create, :destroy, :show]
         end
         resources :feelings, only: [:index, :show, :create] do
           resources :comments, controller: :feeling_comments, only: [:index, :show, :create, :destroy]
+          resource :vote, only: [:create, :destroy, :show]
         end
         resources :comments, controller: :thing_comments, only: [:index, :show, :create, :destroy]
+
+        resource :vote, only: [:create, :destroy, :show]
+
+        collection do
+          get 'random'
+          get 'recommends'
+        end
       end
 
       resources :categories, only: [:index, :show] do
@@ -322,11 +342,12 @@ Making::Application.routes.draw do
         end
       end
 
-      resources :users, only: [:index, :show] do
+      resources :users, only: [:index, :show, :create] do
         member do
           get 'fancies'
           get 'owns'
           get 'reviews'
+          get 'feelings'
           get 'things'
           get 'groups'
           get 'followings'
@@ -340,6 +361,7 @@ Making::Application.routes.draw do
 
         resources :topics, except: [:new, :edit] do
           resources :comments, controller: :topic_comments, only: [:index, :show, :create, :destroy]
+          resource :vote, only: [:create, :destroy, :show]
         end
       end
 

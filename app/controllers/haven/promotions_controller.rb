@@ -1,4 +1,3 @@
-#encoding: utf-8
 module Haven
   class PromotionsController < ApplicationController
     before_action :set_promotion, only: [:show, :edit, :update, :destroy]

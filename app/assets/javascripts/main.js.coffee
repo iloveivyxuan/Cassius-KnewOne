@@ -335,7 +335,7 @@ do (exports = Making) ->
       .on 'click', 'a.disabled', (event) ->
         false
 
-      .on 'click', '.fanciers > a', (event) ->
+      .on 'click', '.fanciers > a, .fancy-button > a, .fancy_button > a', (event) ->
         event.preventDefault()
 
         $trigger = $(@)

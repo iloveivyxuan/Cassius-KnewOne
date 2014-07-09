@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class UsersController < ApplicationController
   load_and_authorize_resource except: [:fuzzy]
 
@@ -52,7 +51,9 @@ class UsersController < ApplicationController
   end
 
   def share
-    current_user.auths.select {|a| params[:providers].include? a.provider}.each do |auth|
+    return render js: "Making.ShowMessageOnTop('需要选择一个分享目标！', 'danger')" unless params[:providers]
+
+    current_user.auths.where(:provider.in => params[:providers]).each do |auth|
       auth.share params[:share][:content], params[:share][:pic]
     end
 

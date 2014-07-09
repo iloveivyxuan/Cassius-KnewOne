@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class Lottery
   include Mongoid::Document
   include Mongoid::MultiParameterAttributes

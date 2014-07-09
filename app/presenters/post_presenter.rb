@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class PostPresenter < ApplicationPresenter
   presents :post
   delegate :title, :id, :author, :content_photos, to: :post
@@ -14,6 +13,10 @@ class PostPresenter < ApplicationPresenter
     end
   end
 
+  def author
+    present(@object.author).as_author_with_profile
+  end
+
   def created_at(css_class="")
     time_ago_tag(@object.created_at, css_class)
   end
@@ -23,7 +26,7 @@ class PostPresenter < ApplicationPresenter
   end
 
   def author_name
-    present(post.author).link_to_with_name
+    present(post.author).link_to_with_popoverable_name
   end
 
   def content
@@ -36,6 +39,14 @@ class PostPresenter < ApplicationPresenter
 
   def thing_photo_url(size)
     @object.thing.present? and present(@object.thing).photo_url(size)
+  end
+
+  def has_comment?
+    @object.comments.count > 0
+  end
+
+  def has_lover?
+    @object.lovers_count > 0
   end
 
   def comments_count(options = {})
@@ -87,13 +98,18 @@ class PostPresenter < ApplicationPresenter
     end
   end
 
-  def link_to_share(klass = 'share_btn')
-    link_to_with_icon "分享", "fa fa-share",
+  def link_to_share(klass = '')
+    link_to_with_icon "分享", "fa fa-share-alt",
     user_signed_in? ? "#share_modal" : "#login-modal",
-    title: "分享", class: klass,
-    data: {toggle: 'modal',
+    title: "分享", class: "#{klass} share_btn track_event",
+    data: {
+      toggle: 'modal',
       content: share_content,
       pic: share_pic(:huge),
-      preview_pic: share_pic(:small)}
+      preview_pic: share_pic(:small),
+      category: "share_internal_ready",
+      action: "share_internal_ready_#{post.class.to_s.downcase}",
+      label: path
+    }
   end
 end

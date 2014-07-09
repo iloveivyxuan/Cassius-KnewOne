@@ -1,4 +1,6 @@
 - if user_signed_in?
-  = link_to_with_icon "写评测", "fa fa-pencil", new_thing_review_path(@thing), target: "_blank", class: 'new_review', data: {toggle: 'tooltip', title: '把你的使用心得分享给大家吧～', trigger: 'manual',placement: 'bottom'}
+  - data = { toggle: 'tooltip', title: '把你的使用心得分享给大家吧～', trigger: 'manual', placement: 'bottom' }
+  - data.merge!({ category: "review", action: "review_write", label: request.path })
+  = link_to_with_icon "写评测", "fa fa-pencil", new_thing_review_path(@thing), target: "_blank", class: 'track_event new_review', data: data
 - else
   = link_to_with_icon "写评测", "fa fa-pencil", '#', class: 'new_review', data: {toggle: "modal", target: "#login-modal"}
