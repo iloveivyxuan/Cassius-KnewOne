@@ -24,19 +24,7 @@ aside
             span Sign In
         .modal-body
           = render 'devise/sessions/sign_in'
-          .form-group.social_sign_in
-            span
-              | 社交网络账号直接登录
-              i.fa.fa-caret-right
-            div
-              = link_to user_omniauth_authorize_path(:weibo), title: "用微博登录"
-                i.fa.fa-weibo
-              = link_to user_omniauth_authorize_path(:twitter), title: "用Twitter登录"
-                i.fa.fa-twitter
-              = link_to user_omniauth_authorize_path(:qq_connect), title: "用QQ登录"
-                i.fa.fa-qq
-              = link_to user_omniauth_authorize_path(:douban), title: "用豆瓣登录"
-                i.fa.fa-douban
+          = render 'shared/social_sign_in'
 
 aside
   #email_sign_up_pop_up.modal.fade
