@@ -281,7 +281,7 @@ html.guest_homepage {
     }
     @include MQ(Lplus) {
       height: auto;
-      min-height: 370px;
+      min-height: 240px;
       background-image: none;
     }
 
@@ -306,7 +306,7 @@ html.guest_homepage {
       }
       @include MQ(Lplus) {
         position: absolute;
-        top: 30%;
+        top: 38.2%;
         left: 10%;
         z-index: 1;
         width: auto;
@@ -325,8 +325,8 @@ html.guest_homepage {
           }
         }
         &:last-child{
-          display: block;
-          margin: 0 auto;
+          display: inine-block;
+          margin: 20px auto;
           margin-top: 20px;
           margin-bottom: 20px;
           @include MQ(Sneg) { margin-top: 10px }
