@@ -433,10 +433,6 @@ html.guest_homepage {
       @include MQ(Lplus) {
         display: block;
         position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
         img {
           position: absolute;
           top: 0;
@@ -451,9 +447,22 @@ html.guest_homepage {
             width:100%;
           }
         }
+
+        &.landing_night {
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+        }
+
+        &.landing_day {
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
       }
     }
-
   }
 
   /**************************Explore**************************/

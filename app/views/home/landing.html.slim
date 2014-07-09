@@ -7,8 +7,12 @@
 
   = render 'shared/entry_compact'
 
-  span.landing_image_wrap data-picture="true" data-alt="Landing"
-    span data-src=image_path("landing-bg.jpg") data-media="(min-width: 992px)"
+  - if (8..18).include? Time.now.hour
+    span.landing_image_wrap.landing_day data-picture="true" data-alt="Landing"
+      span data-src=image_path("landing-day.jpg") data-media="(min-width: 992px)"
+  - else
+    span.landing_image_wrap.landing_night data-picture="true" data-alt="Landing"
+      span data-src=image_path("landing-night.jpg") data-media="(min-width: 992px)"
 
 .explore
   .explore_header
