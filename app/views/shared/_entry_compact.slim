@@ -36,4 +36,6 @@ aside
           h5
             | 注册
             span Sign Up
-        .modal-body= render 'devise/registrations/sign_up'
+        .modal-body
+          = render 'devise/registrations/sign_up'
+          = render 'shared/social_sign_in'
