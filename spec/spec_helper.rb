@@ -9,6 +9,7 @@ require 'rspec/autorun'
 
 require 'capybara/rails'
 require 'capybara/rspec'
+require 'capybara-screenshot/rspec'
 Capybara.asset_host = "http://#{Settings.host}"
 Capybara.default_wait_time = 5
 Capybara.javascript_driver = :webkit
@@ -55,7 +56,7 @@ RSpec.configure do |config|
   config.order = "random"
 
   config.filter_run focus: true
-  config.filter_run_excluding slow: true
+  config.filter_run_excluding slow: true, js: true
   config.run_all_when_everything_filtered = true
 
   config.before(:suite) do

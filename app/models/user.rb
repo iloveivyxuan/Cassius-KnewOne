@@ -153,6 +153,10 @@ class User
       str = Regexp.escape(name.gsub(/[^\u4e00-\u9fa5a-zA-Z0-9_-]+/, ''))
       where(name: /#{str}/i)
     end
+
+    def active_users(limit)
+      User.desc(:recommend_priority, :followers_count).limit(limit)
+    end
   end
 
   def current_auth

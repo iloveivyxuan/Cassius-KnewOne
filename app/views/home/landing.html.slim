@@ -3,73 +3,41 @@
 .landing
   header
     = logo
-    h1= brand
-    small= slogan
+    = image_tag "slogan.png", title: "在这里，分享新奇酷产品和你的体验", alt: "KnewOne-Slogan"
 
   = render 'shared/entry_compact'
 
   span.landing_image_wrap data-picture="true" data-alt="Landing"
-    span data-src="http://image.knewone.com/landing_covers/6ea663fc0e5d82c3cc501c88574a742e.jpg" data-media="(min-width: 992px)"
+    span data-src=image_path("landingBg.jpg") data-media="(min-width: 992px)"
 
 .explore
   .explore_header
     .explore_header_inner
-      = link_to_with_icon '探索发现', 'fa fa-bars', categories_path, class: 'btn btn-link'
-      = form_tag search_path, class: 'form-inline', id: 'search_thing', role: 'form', method: 'get'
-        .form-group.search
-          label.sr-only 搜索 KnewOne
-          input.form-control name='q' type='search' autocomplete="off" placeholder="搜索 KnewOne"
+      = form_tag search_path, class: 'form-inline', id: 'search_form', role: 'form', method: 'get'
+        label.sr-only 搜索发现新奇酷
+        input#search_thing autocomplete="off" name="q" placeholder="搜索发现新奇酷" role="search" type="search"
+        label for="search_input"
           i.fa.fa-search
-          i.fa.fa-times
+      a.btn.btn-link.discover href="/categories"
+        i.fa.fa-lightbulb-o
+        | 浏览发现
 
   .explore_body
     - cache ['landing_categories', Time.now.to_i / 60] do
       nav.explore_nav
         ul
-          - @categories.each_with_index do |c, i|
-            - if i == 0
-              li.active
-                = link_to c.name, "#category_#{c.slug}", data: {toggle: "tab"}
-            - else
-              li
-                = link_to c.name, "#category_#{c.slug}", data: {toggle: "tab"}
+          - @categories.each_with_index do |category, i|
+            li class="#{i == 0 ? 'active' : ''}"
+              a href="#category_#{category.slug}" data-toggle="tab"
+                i.fa.fa-sort-down
+                span= category.name
       .explore_content
-        - @categories.each_with_index do |c, i|
-          - thing = c.things.desc(:priority).first
-          .explore_content_item.fade class="#{'active in' if i == 0}" id="category_#{c.slug}"
-            - present thing do |tp|
-              figure.thing
-                = link_to tp.path, class: "thing_thumb" do
-                  = tp.photo(:normal)
-                figcaption
-                  h5 = tp.full_title
-                  em.figure_detail
-                    span.fanciers
-                      i.fa.fa-heart
-                      = tp.fanciers_count
-                    span.owners
-                      i.fa.fa-check
-                      = tp.owners_count
-            .reviews
-              - thing.reviews.desc(:is_top, :lovers_count, :created_at).limit(3).each do |review|
-                - present review do |rp|
-                  article.review
-                    - present review.author do |up|
-                      = link_to up.path, class: 'review_author' do
-                        = up.avatar :small, size: '60x60'
-                        span.name = up.name
-                    section.review_wrap
-                      header.review_header
-                        h4.review_title
-                          = link_to review.title, rp.path
-                        em.like
-                          i.fa.fa-plus
-                          = review.lovers_count
-                      section.review_body
-                        p = rp.summary(120)
+        - @categories.each_with_index do |category, i|
+          .explore_content_item.fade class="#{'active in' if i == 0}" id="category_#{category.slug}"
+            - category.things.desc(:reviews_count).gt(reviews_count: 0).limit(8).each_with_index do |thing, i|
+              = render 'landing_thing', thing: thing, index: i
 
-footer#footer
-  small 粤ICP备13057487号
+= render 'shared/footer'
 
 .search_candidate
   .slideshow.things
@@ -78,7 +46,6 @@ footer#footer
     button.slideshow_control.right
       i.fa.fa-chevron-right
     .slideshow_body
-/-- Search Candidate --/
 
 - content_for :script do
   javascript:

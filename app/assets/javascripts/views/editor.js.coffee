@@ -37,6 +37,7 @@ do (exports = Making) ->
                             encodeURIComponent(location.pathname) +
                             '+#' + (@el.id ? '')
                       link: location.href
+      @beforeSubmit = options.beforeSubmit
 
       if @mode is 'complemental'
         @$origin = $(options.origin)
