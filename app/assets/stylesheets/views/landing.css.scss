@@ -1,10 +1,20 @@
 html.landing_mobile {
   h2.slogan {
+    margin: 0;
+    padding: 1em 0;
+    background: $blue;
+    color: white;
+
+    font-size: 16px;
     text-align: center;
-    color: $gray;
-    font-size: $font-size-h4;
-    padding-bottom: .5em;
   }
 
-  .things {margin: 0;}
+  .things {
+    margin: 0;
+
+    .thing {
+      margin-top: 20px;
+      &:first-child { margin-top: 0; }
+    }
+  }
 }
