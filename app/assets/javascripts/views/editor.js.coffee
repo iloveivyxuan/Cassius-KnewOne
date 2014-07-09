@@ -18,22 +18,30 @@ do (exports = Making) ->
       'click .editor-submit'         : 'submit'
 
     initialize: (options) ->
-      @mode       = options.mode
-      @$submit    = @$('.editor-submit')
-      @$drop      = @$('.editor-drop')
-      @$close     = @$('.editor-close')
-      @$output    = @$('.editor-menu output')
-      @$content   = @$('.editor-content')
-      @$body      = @$content.children('.body')
-      @$fields    = @$content.find('[name]')
-      @$bodyField = @$('[name$="[content]"]')
-      @draft      = new exports.Models.Draft
-                      type: options.type
+      @mode        = options.mode
+      @type        = options.type
+      @$spinner    = $('.spinner-fullscreen')
+      @$submit     = @$('.editor-submit')
+      @$drop       = @$('.editor-drop')
+      @$close      = @$('.editor-close')
+      @$output     = @$('.editor-menu output')
+      @$content    = @$('.editor-content')
+      @$body       = @$content.children('.body')
+      @$fields     = @$content.find('[name]')
+      @placeholder = options.placeholder
+      @$bodyField  = if options.bodyField? then $(options.bodyField) else
+                      @$('[name$="[content]"]')
+      @draft       = new exports.Models.Draft
+                      type: @type
                       id: exports.user + '+draft+' +
                             encodeURIComponent(location.pathname) +
                             '+#' + (@el.id ? '')
                       link: location.href
       @beforeSubmit = options.beforeSubmit
+
+      if @mode is 'complemental'
+        @$origin = $(options.origin)
+        @$toggle = $(options.toggle)
 
       @listenTo @model, 'change:status', @showStatus
 
@@ -41,10 +49,10 @@ do (exports = Making) ->
 
     render: ->
       switch @mode
+
         when 'standalone'
           that = @
 
-          @model.updateStatus('load')
           @$drop.addClass('hidden')
 
           $
@@ -57,15 +65,67 @@ do (exports = Making) ->
               if (typeof localStorage[that.draft.get('id')]) isnt 'undefined'
                 that.getContent(JSON.parse(localStorage[that.draft.get('id')]))
             .always ->
-              that.model.updateStatus('edit')
               that.show()
               that.initWidget()
               that.initHelp()
+
         when 'complemental'
-          # @TODO
+          that = @
+
           @$drop.addClass('hidden')
           @$submit.addClass('hidden')
-      @
+
+          $
+            .ajax
+              url: @draft.url()
+              type: 'get'
+            .done (data, status, xhr) ->
+              that.setBody(data[that.type + '[content]'])
+            .always () ->
+              that.$origin.html(that.$bodyField.val())
+
+          @$origin
+            .on 'keydown', _.bind (event) ->
+              if event.keyCode is 13
+                document.execCommand('formatblock', false, '<p>')
+
+              if @$origin.html().length is 0
+                @$origin.empty()
+                document.execCommand('formatblock', false, '<p>')
+            , @
+
+            .on 'paste', _.bind (event) ->
+              event.preventDefault()
+
+              clipboardData = event.originalEvent.clipboardData || window.clipboardData
+              paragraphs    = clipboardData.getData('text').split(/[\r\n]/g)
+              html          = ''
+
+              _.each paragraphs, (paragraph, index, list) ->
+                if paragraph isnt ''
+                  if (navigator.userAgent.match(/firefox/i) && index is 0)
+                    html += exports.htmlEntities(paragraph)
+                  else
+                    html += '<p>' + exports.htmlEntities(paragraph) + '</p>'
+
+              document.execCommand('insertHTML', false, html);
+            , @
+
+            .on 'blur', _.bind (event) ->
+              @setBody(@$origin.html())
+            , @
+
+          @$toggle.on 'click', _.bind (event) ->
+            event.preventDefault()
+            @getBody()
+            @show()
+            @initHelp()
+            $docbody.addClass('editor-open')
+          , @
+
+          $(@$bodyField[0].form).on 'submit', _.bind(@submit, @)
+
+      return this
 
     # @TODO
     reset: ->
@@ -76,6 +136,7 @@ do (exports = Making) ->
       @getBody()
       @activatePlugin()
       @$el.show()
+      @$spinner.addClass('hidden')
 
       $window
         .on 'beforeunload', (_.bind @beforeunload, @)
@@ -84,6 +145,7 @@ do (exports = Making) ->
     hide: ->
       @$el.hide()
       $docbody.removeClass('editor-open')
+      @deactivatePlugin()
       $window
         .off 'unload'
         .off 'beforeunload'
@@ -92,15 +154,18 @@ do (exports = Making) ->
       @$output.text(@model.get('status'))
 
     activatePlugin: ->
-      @editor = new MediumEditor @$body,
-        buttons: ['anchor', 'bold', 'italic', 'header1', 'header2',
-                    'orderedlist', 'unorderedlist', 'quote']
-        buttonLabels: 'fontawesome'
-        firstHeader: 'h2'
-        secondHeader: 'h3'
-        placeholder: '正文'
-        anchorInputPlaceholder: '在这里插入链接'
-        targetBlank: true
+      if !@editor
+        @editor = new MediumEditor @$body,
+          buttons: ['anchor', 'bold', 'italic', 'header1', 'header2',
+                      'orderedlist', 'unorderedlist', 'quote']
+          buttonLabels: 'fontawesome'
+          firstHeader: 'h2'
+          secondHeader: 'h3'
+          placeholder: @placeholder
+          anchorInputPlaceholder: '在这里插入链接'
+          targetBlank: true
+      else
+        @editor.activate()
 
       @$body.mediumInsert
         editor: @editor
@@ -113,7 +178,8 @@ do (exports = Making) ->
 
     deactivatePlugin: ->
       @editor.deactivate()
-      @$body.mediumInsert('disable')
+      # @TODO
+      @$body.off('.mediumInsert')
 
     initHelp: ->
       key       = exports.user + '+hide-editor-help'
@@ -126,7 +192,7 @@ do (exports = Making) ->
         $checkbox.removeAttr('checked')
 
       if $checkbox.prop('checked') isnt true
-        $('#editor-help').modal('show')
+        $('.editor-help').modal('show')
 
       $checkbox.on 'change', ->
         localStorage[key] = $(@).prop('checked')
@@ -137,8 +203,8 @@ do (exports = Making) ->
     getBody: ->
       @$body.html(@$bodyField.val())
 
-    setBody: ->
-      @$bodyField.val(@editor.serialize()[@$body.attr('id')].value)
+    setBody: (value = @editor.serialize()[@$body.attr('id')].value) ->
+      @$bodyField.val(value)
 
     setContent: ->
       @setBody()
@@ -158,7 +224,13 @@ do (exports = Making) ->
       @getBody()
 
     save: (persisten, callback) ->
-      @setContent()
+      switch @mode
+        when 'standalone'
+          @setContent()
+        when 'complemental'
+          @setBody()
+          @draft.set(@$bodyField.attr('name'), @$bodyField.prop('value'))
+
       draft = @draft.toJSON()
 
       @model.updateStatus('save')
@@ -186,6 +258,9 @@ do (exports = Making) ->
             window.close()
           when 'complemental'
             that.hide()
+            that.$origin
+              .empty()
+              .html(that.$bodyField.val())
 
     drop: ->
       if confirm '确定删除草稿吗？'
@@ -200,7 +275,6 @@ do (exports = Making) ->
             callback = ->
               @hide()
               @reset()
-              @deactivatePlugin()
               @$el.data('editor', null)
 
         @model.updateStatus('drop')
@@ -214,25 +288,30 @@ do (exports = Making) ->
             callback()
 
     submit: (event) ->
-      that = @
+      switch @mode
 
-      @setBody()
+        when 'standalone'
+          @model.updateStatus('submit')
+          @setBody()
 
-      if @beforeSubmit?
-        result = @beforeSubmit(event)
-        if result is false then return false
+          if @beforeSubmit?
+            result = @beforeSubmit(event)
+            if result is false then return false
 
-      $window
-        .off 'unload'
-        .off 'beforeunload'
+          $window
+            .off 'unload'
+            .off 'beforeunload'
+          # @FIXME
+          # 提交表单，同时删除草稿（本地＋服务器），
+          # 愿主保佑不会遇到删除草稿成功但提交表单失败的情况。
+          localStorage.removeItem(@draft.get('id'))
+          @draft.destroy()
 
-      # @FIXME
-      # 提交表单，同时删除草稿（本地＋服务器），
-      # 愿主保佑不会遇到删除草稿成功但提交表单失败的情况。
-      localStorage.removeItem(that.draft.get('id'))
-      @draft.destroy()
+        when 'complemental'
+          localStorage.removeItem(@draft.get('id'))
+          @draft.destroy()
 
-      @model.updateStatus('submit')
+      return true
 
     # @TODO
     send: ->

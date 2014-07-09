@@ -44,6 +44,7 @@
       model: new Making.Models.Editor(),
       mode: 'standalone',
       type: 'review',
+      placeholder: '正文',
       beforeSubmit: function(event) {
         var content = $($('[name="review[content]"]').val()).text();
         if (content.length < 140) {

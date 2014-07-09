@@ -19,7 +19,14 @@ do (exports = Making) ->
 
   Handlebars.registerHelper 'draft_title', ->
     title = @[@type + '[title]']
-    if title is '' then title = '无标题文档'
+    if title is '' or title is undefined then title = '无标题文档'
+    switch @type
+      when 'review'
+        title = '[评测] ' + title
+      when 'thing'
+        title = '[产品] ' + title
+      when 'topic'
+        title = '[话题] ' + title
     return title
 
   Handlebars.registerHelper 'draft_summary', ->

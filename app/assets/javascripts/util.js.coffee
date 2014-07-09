@@ -53,5 +53,14 @@ window.Making = do (exports = window.Making || {}) ->
         .end()
         .remove()
 
+  # converts special characters (like <) into their escaped/encoded values (like &lt;).
+  # This allows you to show to display the string without the browser reading it as HTML.
+  exports.htmlEntities = (str) ->
+    return String(str)
+              .replace(/&/g, '&amp;')
+              .replace(/</g, '&lt;')
+              .replace(/>/g, '&gt;')
+              .replace(/"/g, '&quot;')
+
   #exports
   exports
