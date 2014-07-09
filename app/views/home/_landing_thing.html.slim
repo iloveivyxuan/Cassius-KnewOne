@@ -5,7 +5,7 @@ section class="product_#{index == 0 ? 1 : 2}"
       - if index == 0
         = thing_presenter.photo(:review)
       - else
-        = thing_presenter.photo(:normal)
+        = thing_presenter.photo(:'thing.fixed')
     figcaption
       div
         = link_to thing
