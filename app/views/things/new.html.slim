@@ -35,39 +35,46 @@ header.page-header
         i.fa.fa-arrows
         | 可以将照片文件直接从桌面拖拽进来
 
-  .editor-lite.article
-    .toolbar
-      = link_to_with_icon "全屏编辑", "fa fa-arrows-alt", "#",
-        class: "btn btn-default btn-sm",
-        id: "form-thing-toggle",
-        data: { toggle: "editor",
-                mode: "complemental",
-                target: "#form-thing",
-                origin: "#form-thing-body-lite",
-                field: "[name='thing[content]']",
-                type: "thing",
-                placeholder: "在这里填写产品的详细信息"}
-    .content.body#form-thing-body-lite contenteditable="true" placeholder="在这里填写产品的详细信息"
-      p
-        br
+  - if current_user.role?(:editor)
+    .editor-lite.article
+      .toolbar
+        = link_to_with_icon "全屏编辑", "fa fa-arrows-alt", "#",
+          class: "btn btn-default btn-sm",
+          id: "form-thing-toggle",
+          data: { toggle: "editor",
+                  mode: "complemental",
+                  target: "#form-thing",
+                  origin: "#form-thing-body-lite",
+                  field: "[name='thing[content]']",
+                  type: "thing",
+                  placeholder: "在这里填写产品的详细信息"}
+      .content.body#form-thing-body-lite contenteditable="true" placeholder="在这里填写产品的详细信息"
+        p
+          br
 
-  .spinner-fullscreen.hidden
-    em 正在加载
+    .spinner-fullscreen.hidden
+      em 正在加载
 
-  .editor#form-thing
-    .editor-menu
-      output
-      .pull-right
-        button.editor-help-toggle type="button" data-toggle="modal" data-target="#editor-help"
-          i.fa.fa-question.fa-alone
-        button.editor-close type="button" 返回
-        button.editor-drop type="button" 舍弃
-        button.editor-save type="button" 保存
-        button.editor-submit type="submit" 发布
-    article.editor-content.article
-      .body#form-thing-body
-  = attachment_tag target: "#pictureBtn", edit: "insertImage"
-  = render "shared/editor_help"
+    .editor#form-thing
+      .editor-menu
+        output
+        .pull-right
+          button.editor-help-toggle type="button" data-toggle="modal" data-target="#editor-help"
+            i.fa.fa-question.fa-alone
+          button.editor-close type="button" 返回
+          button.editor-drop type="button" 舍弃
+          button.editor-save type="button" 保存
+          button.editor-submit type="submit" 发布
+      article.editor-content.article
+        .body#form-thing-body
+    = attachment_tag target: "#pictureBtn", edit: "insertImage"
+    = render "shared/editor_help"
+
+  - else
+    .form-group
+      span.help-block
+        | 请填写产品的简要描述信息
+      = render 'shared/editor'
 
 #thing_form_submit
   = button_tag "提交产品", class: "btn btn-primary btn-lg"
@@ -76,4 +83,18 @@ header.page-header
 - content_for :script do
   javascript:
     Making.ThingsNew();
+    if ($('#form-thing').length) {
+      new Making.Views.Editor({
+        el: '#form-thing',
+        model: new Making.Models.Editor(),
+        mode: 'complemental',
+        type: 'thing',
+        origin: '#form-thing-body-lite',
+        bodyField: '[name="thing[content]"]',
+        toggle: '#form-thing-toggle',
+        placeholder: '在这里填写产品的详细信息'
+      });
+    } else {
+      Making.Editor('#thing_content');
+    }
     Making.FormLink('form.thing_form', '#thing_form_submit button');

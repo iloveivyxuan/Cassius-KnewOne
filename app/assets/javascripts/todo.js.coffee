@@ -13,15 +13,15 @@ do (exports = Making) ->
         view = new Making.Views.ThingsNew
           el: "form.thing_form"
 
-        new exports.Views.Editor
-          el: '#form-thing'
-          model: new exports.Models.Editor()
-          mode: 'complemental'
-          type: 'thing'
-          origin: '#form-thing-body-lite'
-          bodyField: '[name="thing[content]"]'
-          toggle: '#form-thing-toggle'
-          placeholder: '在这里填写产品的详细信息'
+        # new exports.Views.Editor
+        #   el: '#form-thing'
+        #   model: new exports.Models.Editor()
+        #   mode: 'complemental'
+        #   type: 'thing'
+        #   origin: '#form-thing-body-lite'
+        #   bodyField: '[name="thing[content]"]'
+        #   toggle: '#form-thing-toggle'
+        #   placeholder: '在这里填写产品的详细信息'
 
     FeelingsNew: ->
       $ ->
