@@ -4,6 +4,12 @@ do (exports = Making) ->
     $new_thing_modal = $('#new-thing-modal')
     $new_thing_from_url_modal = $('#new-thing-from-url-modal')
 
+    $new_thing_from_url_modal.on('click', 'button[type="submit"]', ->
+      url = $new_thing_from_url_modal.find('#new-thing-url').val()
+      url = "http://#{url}" if url && !/^https?:\/\//.test(url)
+      $new_thing_from_url_modal.find('#new-thing-url').val(url)
+    )
+
     reset_new_thing_from_url_modal = (->
       $new_thing_from_url_modal
       .find('input').val('').end()
