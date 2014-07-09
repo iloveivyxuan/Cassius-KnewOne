@@ -26,10 +26,20 @@ html.guest_homepage {
       display: none;
     }
   }
+
   #go_top {
     display: none;
     bottom: 85px;
     @include MQ(Lplus) { display:block }
+  }
+
+  #header .navbar-brand {
+    img {display: none;}
+    .logo {
+      color: #ccc;
+      text-shadow: 0 1px 1px #111;
+      &:hover {color: white;}
+    }
   }
 
   footer {
@@ -305,7 +315,7 @@ html.guest_homepage {
       }
       @include MQ(Lplus) {
         position: absolute;
-        top: 38.2%;
+        top: 28%;
         left: 10%;
         z-index: 1;
         width: auto;
@@ -324,7 +334,7 @@ html.guest_homepage {
           }
         }
         &:last-child{
-          display: inine-block;
+          display: block;
           margin: 20px auto;
           margin-top: 20px;
           margin-bottom: 20px;
