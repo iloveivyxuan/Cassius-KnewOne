@@ -11,6 +11,8 @@ header#header role="banner"
     #nav_main.collapse.navbar-collapse
       ul.nav.navbar-nav#nav_primary
         li
+          = link_to "热点", hits_path
+        li
           = link_to "商店", things_path(self_run: true)
         li
           = link_to "分类", categories_path
