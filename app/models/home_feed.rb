@@ -3,7 +3,7 @@ class HomeFeed
 
   class << self
     def create_from_activities(activities)
-      activities.reduce([]) do |feeds, a|
+      activities.sort_by(&:created_at).reduce([]) do |feeds, a|
         thing = a.reference.is_a?(Thing) ? a.reference : a.reference.try(:thing)
         if index = feeds.find_index {|f| f.thing == thing}
           feeds[index].add_activity a
