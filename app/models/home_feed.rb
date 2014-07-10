@@ -3,15 +3,21 @@ class HomeFeed
 
   class << self
     def create_from_activities(activities)
-      activities.sort_by(&:created_at).reduce([]) do |feeds, a|
+      feed_from_thing = {}
+      feeds = []
+
+      activities.sort_by(&:created_at).each do |a|
         thing = a.reference.is_a?(Thing) ? a.reference : a.reference.try(:thing)
-        if index = feeds.find_index {|f| f.thing == thing}
-          feeds[index].add_activity a
+        if feed_from_thing[thing]
+          feed_from_thing[thing].add_activity a
         elsif thing
-          feeds << HomeFeed.new(thing, [a])
+          feed = HomeFeed.new(thing, [a])
+          feed_from_thing[thing] = feed
+          feeds << feed
         end
-        feeds
       end
+
+      feeds
     end
   end
 
