@@ -11,10 +11,10 @@ html.landing_mobile {
 
   .things {
     margin: 0;
+    padding: 0 20px;
 
     .thing {
       margin-top: 20px;
-      &:first-child { margin-top: 0; }
     }
   }
 }
