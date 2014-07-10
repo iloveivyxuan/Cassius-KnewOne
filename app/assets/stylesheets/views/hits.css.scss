@@ -38,9 +38,10 @@ html.home_hits section.hits {
 
   article.review {
     width: 100%;
-    float: left;
 
     @media (min-width: $screen-sm-min) {
+      float: left;
+
       section.content {
         .summary {
           min-height: 90px;
