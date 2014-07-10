@@ -10,12 +10,12 @@ do (exports = Making) ->
   exports.Views.Editor = Backbone.View.extend
 
     events:
-      'change [name]'                : 'save'
-      'input .editor-content > .body': 'save'
-      'click .editor-close'          : 'close'
-      'click .editor-drop'           : 'drop'
-      'click .editor-save'           : 'send'
-      'click .editor-submit'         : 'submit'
+      'change [name]'        : 'save'
+      'input'                : 'autoSave'
+      'click .editor-close'  : 'close'
+      'click .editor-drop'   : 'drop'
+      'click .editor-save'   : 'save'
+      'click .editor-submit' : 'submit'
 
     initialize: (options) ->
       @mode        = options.mode
@@ -38,6 +38,8 @@ do (exports = Making) ->
                             '+#' + (@el.id ? '')
                       link: location.href
       @beforeSubmit = options.beforeSubmit
+      @delay        = 1500
+      @typingTime   = 0
 
       if @mode is 'complemental'
         @$origin = $(options.origin)
@@ -61,9 +63,6 @@ do (exports = Making) ->
               type: 'get'
             .done (data, status, xhr) ->
               that.getContent(data)
-            .fail (xhr, status, error) ->
-              if (typeof localStorage[that.draft.get('id')]) isnt 'undefined'
-                that.getContent(JSON.parse(localStorage[that.draft.get('id')]))
             .always ->
               that.show()
               that.initWidget()
@@ -140,14 +139,12 @@ do (exports = Making) ->
 
       $window
         .on 'beforeunload', (_.bind @beforeunload, @)
-        .on 'unload', (_.bind @unload, @)
 
     hide: ->
       @$el.hide()
       $docbody.removeClass('editor-open')
       @deactivatePlugin()
       $window
-        .off 'unload'
         .off 'beforeunload'
 
     showStatus: ->
@@ -223,7 +220,7 @@ do (exports = Making) ->
 
       @getBody()
 
-    save: (persisten, callback) ->
+    save: (callback) ->
       switch @mode
         when 'standalone'
           @setContent()
@@ -231,28 +228,29 @@ do (exports = Making) ->
           @setBody()
           @draft.set(@$bodyField.attr('name'), @$bodyField.prop('value'))
 
+      that  = @
       draft = @draft.toJSON()
 
       @model.updateStatus('save')
+      @draft.save null,
+        success: (model, response, options) ->
+          that.model.updateStatus('edit')
+          that.model.set('persisten', true)
+          if (typeof callback is 'function') then callback()
 
-      if persisten is true
-        that  = @
+    autoSave: (event) ->
+      that = @
+      @typingTime = new Date()
 
-        @draft.save null,
-          success: (model, response, options) ->
-            localStorage.removeItem(that.draft.get('id'))
-            that.model.updateStatus('edit')
-            that.model.set('persisten', true)
-            if callback then callback()
-      else
-        localStorage[@draft.get('id')] = JSON.stringify(draft)
-        @model.set('persisten', false)
-        @model.updateStatus('edit')
+      setTimeout ->
+        if (new Date() - that.typingTime) > that.delay
+          that.save()
+      , @delay
 
     close: ->
       that = @
 
-      @save true, ->
+      @save ->
         switch that.mode
           when 'standalone'
             window.close()
@@ -264,12 +262,12 @@ do (exports = Making) ->
 
     drop: ->
       if confirm '确定删除草稿吗？'
-        that     = @
         callback = null
 
         switch @mode
           when 'standalone'
             callback = ->
+              console.log 'drop callback'
               window.close()
           when 'complemental'
             callback = ->
@@ -279,13 +277,9 @@ do (exports = Making) ->
 
         @model.updateStatus('drop')
         $window
-          .off 'unload'
           .off 'beforeunload'
-
         @draft.destroy
-          success: ->
-            localStorage.removeItem(that.draft.get('id'))
-            callback()
+          success: callback
 
     submit: (event) ->
       switch @mode
@@ -299,27 +293,14 @@ do (exports = Making) ->
             if result is false then return false
 
           $window
-            .off 'unload'
             .off 'beforeunload'
-          # @FIXME
-          # 提交表单，同时删除草稿（本地＋服务器），
-          # 愿主保佑不会遇到删除草稿成功但提交表单失败的情况。
-          localStorage.removeItem(@draft.get('id'))
           @draft.destroy()
 
         when 'complemental'
-          localStorage.removeItem(@draft.get('id'))
           @draft.destroy()
 
       return true
 
-    # @TODO
-    send: ->
-      @save(true)
-
     beforeunload: ->
       if !@model.get('persisten')
         return '文档还未保存，确定要离开吗？'
-
-    unload: ->
-      localStorage.removeItem(@draft.get('id'))
