@@ -1,12 +1,9 @@
 - cache_unless user_signed_in?, ['hits', params[:page] || 1, Time.now.to_i / 60]
   .container-fluid
-    header
+    header.promotion
       = image_tag "hits-banner.jpg", alt: "KO热点"
     section.hits
-      - @batch.times do |i|
-        .hits_group
-          = render partial: 'hot_thing', collection: @things[6*i...6*(i+1)]
-          = render partial: 'hot_review', collection: @reviews[i...i+1]
+      = render 'hits_groups'
     footer
       ul.pager
         li.previous

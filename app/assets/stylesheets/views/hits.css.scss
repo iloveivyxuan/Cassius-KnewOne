@@ -1,12 +1,24 @@
-html.home_hits #wrapper {margin: 0;}
+html.home_hits body {
+  padding-top: 45px;
+  #header {margin: 0;}
+  #wrapper {margin: 0;}
+}
 
 html.home_hits .container-fluid {
+  padding: {left: 20px; right: 20px;}
   @media (min-width: $screen-lg-min) {
     width: $container-large-desktop;
   }
 }
 
-html.home_hits section.hits {
+html.home_hits header.promotion {
+  margin: 0 -20px;
+  @media (min-width: $screen-sm-min) {
+    margin: 20px -20px;
+  }
+}
+
+html.home_hits section.hits, html.landing_mobile section.hits {
   @include clearfix;
   $gutter: 20px;
   margin-top: $gutter;

@@ -162,34 +162,30 @@ window.Making = do (exports = window.Making || {}) ->
       $nav_primary    = $('#nav_primary')
       transition_time = parseFloat($form.css('transition-duration')) * 1000
 
-      if !$('html').hasClass('guest_homepage')
-        exports.SearchThing('#navbar_search')
+      exports.SearchThing('#navbar_search')
 
-        $('.navbar').add($backdrop).add($close).on 'click.search', (e) ->
-          if $candidate.is(':visible')
-            $candidate.hide()
-            $backdrop.fadeOut()
+      $('.navbar').add($backdrop).add($close).on 'click.search', (e) ->
+        if $candidate.is(':visible')
+          $candidate.hide()
+          $backdrop.fadeOut()
 
-        $input
-          .on 'focusin', ->
-            if !$form.hasClass('focus')
-              if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin +
-                ') and (max-width: ' + Making.Breakpoints.screenLGMin + ')')
-                  $nav_primary.hide()
-              $form.addClass('focus')
-
-          .on 'focusout', ->
-            if !$('html').hasClass('csstransitions')
-              $nav_primary.show()
-            $form
-              .removeClass('focus')
-              .one $.support.transition.end, ->
-                if Modernizr.mq '(max-width: ' + Making.Breakpoints.screenLGMin + ')'
-                  $nav_primary.fadeIn()
-              .emulateTransitionEnd(transition_time)
-
-          .on 'click', ->
-            $(@).select()
+      $input
+        .on 'focusin', ->
+          if !$form.hasClass('focus')
+            if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ') and (max-width: ' + Making.Breakpoints.screenLGMin + ')')
+              $nav_primary.hide()
+            $form.addClass('focus')
+        .on 'focusout', ->
+          if !$('html').hasClass('csstransitions')
+            $nav_primary.show()
+          $form
+            .removeClass('focus')
+            .one $.support.transition.end, ->
+              if Modernizr.mq '(max-width: ' + Making.Breakpoints.screenLGMin + ')'
+                $nav_primary.fadeIn()
+            .emulateTransitionEnd(transition_time)
+        .on 'click', ->
+          $(@).select()
 
   #exports
   exports
