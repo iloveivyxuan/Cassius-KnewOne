@@ -7,7 +7,7 @@ module Rankable
 
     scope :hot, -> { desc(:heat) }
 
-    before_save do
+    before_update do
       self.heat = calculate_heat
     end
   end
