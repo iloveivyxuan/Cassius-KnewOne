@@ -36,6 +36,9 @@ hgroup
           br
           | 价格
           = text_field_tag 'things[][price]', t.price, style: 'width: 100%'
+          br
+          | 优先级
+          = text_field_tag 'things[][priority]', t.priority, style: 'width: 100%'
         td
           | 阶段
           = select_tag 'things[][stage]', options_for_select(Thing::STAGES.invert, t.stage), style: 'width: 100%'
