@@ -5,13 +5,9 @@ class HomeController < ApplicationController
 
   def index
     if user_signed_in?
-      activities = current_user.relate_activities.page(params[:page]).per(100)
-      @feeds = HomeFeed.create_from_activities activities
-      if request.xhr?
-        render 'home/index_xhr', layout: false
-      else
-        render layout: 'home'
-      end
+      @activities = current_user.relate_activities.page(params[:page]).per(100)
+      @feeds = HomeFeed.create_from_activities @activities
+      render layout: 'home'
     else
       respond_to do |format|
         format.html.mobile do
