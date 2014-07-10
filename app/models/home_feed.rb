@@ -30,4 +30,8 @@ class HomeFeed
 
     @activities << activity
   end
+
+  def activities_from(reference)
+    @activities.select { |a| a.reference == reference }
+  end
 end
