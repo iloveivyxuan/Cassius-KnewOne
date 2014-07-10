@@ -30,10 +30,6 @@ html class=page_class lang="zh-CN"
     section#wrapper
       = content_for?(:content) ? yield(:content) : yield
     - if browser.mobile? or browser.tablet?
-      / render 'layouts/footer_mobile'
-    - else
-      = render 'layouts/footer'
-    - if browser.mobile? or browser.tablet?
       = render 'layouts/menu_mobile'
     = render 'shared/message_on_top'
     = render 'shared/go_top'
