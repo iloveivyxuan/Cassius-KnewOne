@@ -31,6 +31,10 @@ class HomeFeed
     @activities << activity
   end
 
+  def activities_not_from_reviews
+    @activities.reject { |a| a.reference.is_a? Review }
+  end
+
   def activities_from(reference)
     @activities.select { |a| a.reference == reference }
   end
