@@ -445,6 +445,19 @@
 
         $(this).parents('.mediumInsert').mouseleave();
       });
+
+      $el.on('click.mediumInsert', '.mediumInsert', function(e) {
+          var $target   = $(e.target),
+              range     = document.createRange(),
+              selection = window.getSelection();
+
+          if ($target.hasClass('mediumInsert')) {
+            range.selectNodeContents($target.prev().get(0));
+            range.collapse(false);
+            selection.removeAllRanges();
+            selection.addRange(range);
+          }
+      });
     }
 
   };
