@@ -3,5 +3,5 @@
 header
   h2.slogan= slogan
 
-section
-  ul.things= render @things, size: :normal, img_lazy: false
+section.things
+  = render partial: 'hot_thing', collection: @things

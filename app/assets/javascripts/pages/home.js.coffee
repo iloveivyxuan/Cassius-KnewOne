@@ -20,7 +20,7 @@ window.Making = do (exports = window.Making || {}) ->
       $tab_trigger.on 'click', -> clearTimeout(timeout)
 
       $('#header').find('[class^="search_"]').remove()
-      exports.SearchThing('#search_thing')
+      exports.SearchThing('#search_form')
       $candidate.css 'top', ->
         $('.explore_header').offset().top + $('.explore_header').outerHeight()
       $(document).on 'click', (event) ->

@@ -34,14 +34,39 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review.author = current_user
-    if @review.save
-      flash[:provider_sync] = params[:provider_sync]
-      current_user.log_activity :new_review, @review, source: @review.thing
-      redirect_to thing_review_path(@thing, @review)
+    # review whose content is less than 140 will be transformed to feeling.
+    review_content = ActionView::Base.full_sanitizer.sanitize(@review.content)
+    if review_content.size < 140
+      @feeling = Feeling.new
+      %w(title score thing).each { |attr| @feeling[attr] = @review[attr] }
+      @feeling.content = review_content
+      @feeling.author = current_user
+      # add photos for feeling
+      Nokogiri::HTML(@review.content).xpath("//img").each do |i|
+        p = Photo.new
+        p.remote_image_url = i.attributes["src"].value
+        p.user = current_user
+        p.save
+        @feeling.photo_ids << p.id
+      end
+      if @feeling.save
+        flash[:provider_sync] = params[:provider_sync]
+        current_user.log_activity :new_feeling, @feeling, source: @feeling.thing
+        redirect_to thing_feeling_url(@thing, @feeling)
+      else
+        flash.now[:error] = @feeling.errors.full_messages.first
+        render 'new'
+      end
     else
-      flash.now[:error] = @review.errors.full_messages.first
-      render 'new'
+      @review.author = current_user
+      if @review.save
+        flash[:provider_sync] = params[:provider_sync]
+        current_user.log_activity :new_review, @review, source: @review.thing
+        redirect_to thing_review_url(@thing, @review)
+      else
+        flash.now[:error] = @review.errors.full_messages.first
+        render 'new'
+      end
     end
   end
 

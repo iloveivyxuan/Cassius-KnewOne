@@ -23,7 +23,7 @@ class ThingPresenter < PostPresenter
   end
 
   def content
-    content_tag :article, class: "article post_content is_folded" do
+    content_tag :div, class: "body post_content is_folded" do
       sanitize(raw thing.content)
     end if thing.content.present?
   end

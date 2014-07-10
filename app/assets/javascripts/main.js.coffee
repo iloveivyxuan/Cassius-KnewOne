@@ -4,6 +4,12 @@ do (exports = Making) ->
     $new_thing_modal = $('#new-thing-modal')
     $new_thing_from_url_modal = $('#new-thing-from-url-modal')
 
+    $new_thing_from_url_modal.on('click', 'button[type="submit"]', ->
+      url = $new_thing_from_url_modal.find('#new-thing-url').val()
+      url = "http://#{url}" if url && !/^https?:\/\//.test(url)
+      $new_thing_from_url_modal.find('#new-thing-url').val(url)
+    )
+
     reset_new_thing_from_url_modal = (->
       $new_thing_from_url_modal
       .find('input').val('').end()
@@ -335,22 +341,6 @@ do (exports = Making) ->
       .on 'click', 'a.disabled', (event) ->
         false
 
-      .on 'click', '[data-toggle="editor"]', (event) ->
-        switch exports.device
-          when 'desktop'
-            event.preventDefault()
-            $this   = $(@)
-            $target = $($this.data('editor-selector'))
-            if !$target.data('editor')
-              editor = new exports.Views.Editor
-                        el: $this.data('editor-selector')
-                        model: new exports.Models.Editor()
-                        mode: $this.data('editor-mode')
-              $target.data('editor', editor)
-            else
-              $target.data('editor').render()
-            $docbody.addClass('editor-open')
-
       .on 'click', '.fanciers > a, .fancy-button > a, .fancy_button > a', (event) ->
         event.preventDefault()
 
@@ -457,7 +447,7 @@ do (exports = Making) ->
       menu = new exports.View.Menu('#menu', 'body', '#menu_toggle')
 
     if Modernizr.mq('(max-width: ' + Making.Breakpoints.screenSMMax + ')')
-      ($postcontent = $(".post_content, .article")).length && $postcontent.parents('.editor').length is 0 && $postcontent.fitVids()
+      ($postcontent = $(".post_content, .article > .body")).length && $postcontent.parents('.editor').length is 0 && $postcontent.fitVids()
 
     # Screen MD
     if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')')

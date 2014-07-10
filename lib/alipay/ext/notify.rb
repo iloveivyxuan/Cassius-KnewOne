@@ -3,10 +3,10 @@ module Alipay
     def self.verify?(params)
       params = Utils.stringify_keys(params)
 
-      sign_verified = case params['sign_type'].downcase
-                        when 'md5'
+      sign_verified = case params['sign_type']
+                        when 'MD5'
                           Sign.verify?(params)
-                        when 'rsa'
+                        when 'RSA'
                           MobileSign.verify?(params)
                         else
                           false

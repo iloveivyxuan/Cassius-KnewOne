@@ -216,6 +216,7 @@ Devise.setup do |config|
   config.omniauth :weibo, Settings.weibo.consumer_key, Settings.weibo.consumer_secret
   config.omniauth :wechat, Settings.wechat.consumer_key, Settings.wechat.consumer_secret
   config.omniauth :qq_connect, Settings.qq.consumer_key, Settings.qq.consumer_secret
+  config.omniauth :douban, Settings.douban.consumer_key, Settings.douban.consumer_secret
   kexue_opts = {}
   if Settings.kexue.enable
     kexue_opts.merge! client_options:

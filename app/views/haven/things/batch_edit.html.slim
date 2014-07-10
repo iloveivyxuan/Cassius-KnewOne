@@ -1,6 +1,18 @@
 hgroup
   h1
     | 批量修改产品
+  p
+    = link_to "无购买链接", batch_edit_haven_things_path(filter: "no_link"), class: 'btn btn-default'
+    = link_to "无分类", batch_edit_haven_things_path(filter: "no_category"), class: 'btn btn-default'
+    = link_to "无价格", batch_edit_haven_things_path(filter: "no_price"), class: 'btn btn-default'
+    = link_to "研发中", batch_edit_haven_things_path(filter: 'concept'), class: 'btn btn-default'
+    = link_to "众筹中", batch_edit_haven_things_path(filter: 'kick'), class: 'btn btn-default'
+    = link_to "预售", batch_edit_haven_things_path(filter: 'pre_order'), class: 'btn btn-default'
+    = link_to "国内导购", batch_edit_haven_things_path(filter: 'domestic'), class: 'btn btn-default'
+    = link_to "国外海淘", batch_edit_haven_things_path(filter: 'abroad'), class: 'btn btn-default'
+    = link_to "自销", batch_edit_haven_things_path(filter: 'dsell'), class: 'btn btn-default'
+    = link_to "国内导购", batch_edit_haven_things_path(filter: 'heat'), class: 'btn btn-default'
+    = link_to "国内导购", batch_edit_haven_things_path(filter: 'heat'), class: 'btn btn-default'
 
 = form_tag batch_update_haven_things_path(redirect_from: request.fullpath), method: :patch do
   table.table.table-striped.table-hover.table-bordered
