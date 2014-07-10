@@ -1,5 +1,5 @@
 class HomeFeed
-  attr_accessor :thing, :activities
+  attr_accessor :thing, :reviews, :activities
 
   class << self
     def create_from_activities(activities)
@@ -17,10 +17,17 @@ class HomeFeed
 
   def initialize(thing, activities=[])
     @thing = thing
-    @activities = activities
+    @reviews = []
+    @activities = []
+    activities.each(&method(:add_activity))
   end
 
   def add_activity(activity)
+    if activity.reference.is_a? Review
+      review = activity.reference
+      @reviews << review unless @reviews.include?(review)
+    end
+
     @activities << activity
   end
 end
