@@ -4,5 +4,82 @@ html.signed_in_homepage {
   }
 
   &.mobile {
+    .feed {
+      article.thing,
+      article.review {
+        margin-top: 20px;
+
+        .info {
+          display: none;
+        }
+      }
+
+      h5 + article.review {
+        margin-top: 0;
+      }
+
+      .feed-activity {
+        ul {
+          @include clearfix;
+          li {
+            float: left;
+          }
+        }
+
+        position: relative;
+        padding: 10px 10px 10px (10px + 40px);
+        background: white;
+        border-top: 1px solid $gray-lighter;
+
+        .feed-user-avatar {
+          position: absolute;
+          top: 5px;
+          left: 10px;
+          width: 32px;
+
+          img {
+            @extend .img-circle;
+          }
+        }
+
+        .feed-user-name {
+          @include text-overflow;
+          width: 45%;
+        }
+
+        .feed-timestamp {
+          width: 20%;
+          text-align: right;
+        }
+
+        .feed-action {
+          width: 35%;
+          text-align: right;
+        }
+
+        .feed-feeling {
+          p {
+            margin: 10px 0 0 0;
+
+            .fa-quote-left { margin-right: 0.5em }
+            .fa-quote-right { margin-left: 0.5em }
+          }
+
+          .feed-counts {
+            color: $gray;
+            a { color: $gray; }
+
+            li {
+              display: inline-block;
+              margin: 10px 1em 0 0;
+            }
+
+            span {
+              margin-left: 0.2em;
+            }
+          }
+        }
+      }
+    }
   }
 }
