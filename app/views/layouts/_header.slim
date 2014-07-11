@@ -18,8 +18,6 @@ header#header role="banner"
           = link_to "发现", explore_path
         li
           = link_to "小组", groups_path
-        li
-          = link_to "客服", "#olark_chat", data: {hint: "fa-comment", url: asset_path('olark.js')}
         li#nav_publish
           - if user_signed_in?
             = link_to_with_icon "发布", "fa fa-plus", "#", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}
@@ -82,7 +80,15 @@ header#header role="banner"
           i.fa.fa-times
 
       ul.nav.navbar-nav.navbar-right#nav_secondary
-        li= link_to_with_icon "", "fa fa-bars", categories_path
+        li.nav_group.dropdown
+          = link_to_with_icon "", "fa fa-bars", "#",
+          class: 'nav_group_more', data: {toggle: "dropdown"}
+          .dropdown-menu
+            ul.categories
+              - Category.prior.gt(things_count: 10).limit(42).each do |c|
+                li= link_to c.name, category_things_path(category: c)
+            .category_more
+              = link_to "...查看全部", categories_path
 
   /-- Navbar --/
 
