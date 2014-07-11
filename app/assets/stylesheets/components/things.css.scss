@@ -185,7 +185,7 @@ article.thing {
       width: 75%;
     }
 
-    @media (min-width: $screen-md-min) {
+    @media (min-width: $screen-sm-min) {
        @include text-overflow;
     }
   }
