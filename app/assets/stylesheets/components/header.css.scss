@@ -82,12 +82,9 @@ html.no-touch {
   }
 
   .nav {
-
     > li {
-
       &.nav_group {
         @include clearfix;
-
         > a {
           float: left;
           padding: {
@@ -117,6 +114,12 @@ html.no-touch {
         }
       }
     }
+  }
+
+  #nav_publish {
+    a {color: white;}
+    background-color: $blue;
+    margin-left: 15px;
   }
 
   .dropdown-menu {
@@ -179,6 +182,7 @@ html.no-touch {
 }
 
 .navbar-form {
+  padding: {left: 0; right: 30px;}
   @media (max-width: $grid-float-breakpoint) {
     border-bottom-width: 0;
     margin-bottom: 0;
@@ -272,6 +276,14 @@ html.no-touch {
   }
 }
 
+#nav_secondary {
+  margin-right: 15px;
+  li a {
+    i {margin-right: 0;}
+    color: white;
+  }
+}
+
 .user_links {
   @include clearfix;
 
@@ -314,8 +326,8 @@ html.no-touch {
         font-size: 1.3333333333333333em;
         vertical-align: middle;
 
-        &.fa-bell-o {font-size: 1.25em;}
-        &.fa-envelope-o {font-size: 1.25em;}
+        &.fa-bolt {font-size: 1.25em;}
+        &.fa-envelope-o {font-size: 1.2em;}
       }
     }
   }
@@ -443,7 +455,6 @@ html.no-touch {
   }
 
   &.cart {
-
     & + .popover {
       .popover-title {display: none;}
     }

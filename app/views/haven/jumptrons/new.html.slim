@@ -1,0 +1,15 @@
+= form_for(:jumptron, url: haven_jumptrons_path, method: :post) do |f|
+  p
+    | 图片：
+    = f.file_field "image"
+  p
+    | 名字：
+    = f.text_field :alt
+  p
+    | 链接：
+    = f.text_field :href
+  p
+    | 默认：
+    = f.check_box 'default'
+
+  = f.submit

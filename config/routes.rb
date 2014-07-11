@@ -249,6 +249,7 @@ Making::Application.routes.draw do
     end
 
     resources :promotions, except: [:show]
+    resources :jumptrons
     resources :things, only: [:index, :update, :edit] do
       member do
         get 'send_stock_notification'
