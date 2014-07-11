@@ -172,15 +172,22 @@ article.thing {
   section.content {
     padding: 1em;
 
+    h4 a {color: $black;}
+    p a {color : $gray;}
+
     h4, p {
-      @include text-overflow;
       margin: 0;
       font-size: $font-size-base;
       min-height: $font-size-base * $line-height-base;
     }
 
-    h4 a {color: $black;}
-    p a {color : $gray;}
+    @media (max-width: $screen-sm-max) {
+      width: 75%;
+    }
+
+    @media (min-width: $screen-md-min) {
+       @include text-overflow;
+    }
   }
 
   footer.info {
@@ -238,11 +245,12 @@ article.thing {
       .fancy_button a {
         display: block;
         position: absolute;
-        bottom: 0;
-        right: 0;
+        bottom: -3.5em;
+        right: 1em;
         padding: .5em 1em;
-        .fanciers_count {color: #eee;}
-        background-color: rgba(black, 0.4);
+        .fanciers_count {color: $gray-light;}
+        background-color: #eee;
+        color: $gray;
       }
     }
 
