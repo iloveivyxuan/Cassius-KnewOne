@@ -1,6 +1,6 @@
 - cache_unless user_signed_in?, ['hits', params[:page] || 1, Time.now.to_i / 60]
   .container-fluid
-    header
+    header.jumptron
       - if (j = Jumptron.where(default: true).first)
         a href=j.href target="_blank"
           img src=j.image.url alt=j.alt
