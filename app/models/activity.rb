@@ -2,6 +2,8 @@ class Activity
   include Mongoid::Document
   include Mongoid::Timestamps::Created
 
+  index created_at: -1
+
   #type common rules: {action}_{reference}
   #examples: new_review, fancy_thing
   field :type, type: Symbol
