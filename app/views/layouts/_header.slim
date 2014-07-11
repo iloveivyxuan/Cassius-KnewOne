@@ -80,7 +80,7 @@ header#header role="banner"
           i.fa.fa-times
 
       ul.nav.navbar-nav.navbar-right#nav_secondary
-        li.nav_group.dropdown
+        li.nav_group.dropdown.open
           = link_to_with_icon "", "fa fa-bars", "#",
           class: 'nav_group_more', data: {toggle: "dropdown"}
           .dropdown-menu
@@ -88,7 +88,7 @@ header#header role="banner"
               - Category.prior.gt(things_count: 10).limit(42).each do |c|
                 li= link_to c.name, category_things_path(category: c)
             .category_more
-              = link_to "...查看全部", categories_path
+              = link_to "查看全部>>", categories_path
 
   /-- Navbar --/
 

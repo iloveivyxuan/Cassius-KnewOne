@@ -298,7 +298,10 @@ html.no-touch {
       padding: .5em 0;
       width: 14.2851%;
       text-align: center;
-      a {color: white;}
+      &:hover {background-color: $gray;}
+      a {
+        color: white;
+      }
     }
   }
 
