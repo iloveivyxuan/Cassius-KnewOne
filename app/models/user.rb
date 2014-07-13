@@ -28,7 +28,7 @@ class User
       end
     EVAL
   end
-  validates :name, presence: true, uniqueness: { case_sensitive: false },
+  validates :name, presence: true, uniqueness: {case_sensitive: false},
             format: {with: /\A[^\s]+\z/, multiline: false, message: '不能包含空格'}
 
   RESERVED_WORDS = ['knewone', '知新创想', '牛玩']
@@ -39,6 +39,7 @@ class User
       errors.add(:name, '名字不和谐')
     end
   end
+
   private :name_cannot_include_reserved_words
 
   # Stats
@@ -218,7 +219,7 @@ class User
   ## Roles
   field :role, type: String, default: ""
   ROLES = %w[vip editor sale admin]
-  scope :staff, ->{ where :role.in => %i(editor sale admin) }
+  scope :staff, -> { where :role.in => %i(editor sale admin) }
   scope :admin, -> { where role: "admin" }
   scope :editor, -> { where role: "editor" }
   scope :sale, -> { where role: "sale" }
@@ -340,8 +341,8 @@ class User
     cents = (value * 100).to_i
 
     u = User
-      .where(id: id, :balance_cents.gte => cents)
-      .find_and_modify(:$inc => {balance_cents: -cents})
+    .where(id: id, :balance_cents.gte => cents)
+    .find_and_modify(:$inc => {balance_cents: -cents})
 
     if u
       balance_logs << RevokeRefundBalanceLog.new(order: order, value_cents: cents, note: note)
@@ -356,8 +357,8 @@ class User
     cents = (value * 100).to_i
 
     u = User
-      .where(id: id, :balance_cents.gte => cents)
-      .find_and_modify(:$inc => {balance_cents: -cents})
+    .where(id: id, :balance_cents.gte => cents)
+    .find_and_modify(:$inc => {balance_cents: -cents})
 
     if u
       balance_logs << ExpenseBalanceLog.new(value_cents: cents, note: note)
@@ -395,12 +396,12 @@ class User
 
   def relate_activities(type_from_users = %i(new_thing own_thing fancy_thing
                                              new_review love_review new_feeling love_feeling new_topic),
-      type_from_sources = %i(new_review new_topic))
+                        type_from_sources = %i(new_review new_topic))
     user_ids = self.following_ids.map(&:to_s)
     source_unions = (self.fancy_ids + self.own_ids).map { |id| "Thing_#{id.to_s}" } +
         Group.find_by_user(self).map { |u| "Group_#{u.id.to_s}" }
-    Activity.or({:user_id.in => user_ids, :type.in => type_from_users},
-                {:source_union.in => source_unions, :user_id.ne => self.id.to_s, :type.in => type_from_sources})
+    Activity.visible.or({:user_id.in => user_ids, :type.in => type_from_users},
+                        {:source_union.in => source_unions, :user_id.ne => self.id.to_s, :type.in => type_from_sources})
   end
 
   # category
@@ -419,7 +420,7 @@ class User
   end
 
   def managed_groups
-    joined_groups.select {|g| g.has_admin? self}
+    joined_groups.select { |g| g.has_admin? self }
   end
 
   include IdsSortable
