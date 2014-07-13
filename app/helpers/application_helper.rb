@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  # TODO: should be monky patching into ActiveSupport
+  # TODO: should be monkey patching into ActiveSupport
   def obj_to_s(obj)
     obj.class.to_s.demodulize.underscore
   end

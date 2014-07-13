@@ -78,17 +78,20 @@ class UserMailer < BaseMailer
          subject: '你在「KnewOne 牛玩」上收到了一封私信')
   end
 
-  def recall(user_id, items = {})
+  def newspaper(user_id, date = Date.today, items = {})
+    @from_date = date - 7.days
+    @date = date
     @user = User.find(user_id)
     @items = items
-    @items[:activities_count] ||= @user.related_activities.from_date(30.days.ago).to_date(Date.today).size
-    @items[:global_things_count] ||= Thing.recent.size
-    @items[:global_reviews_count] ||= Review.recent.size
-    @items[:things] ||= @user.things.recent
-    @items[:owns] ||= @user.owns.recent
-    @items[:reviews] ||= @user.reviews.recent
+
+    @items[:things] ||= @user.things.from_date(@from_date).to_date(@date)
+    @items[:owns] ||= @user.owns.from_date(@from_date).to_date(@date)
+    @items[:reviews] ||= @user.reviews.from_date(@from_date).to_date(@date)
+    @items[:friends_things] ||= Thing.where(:id.in => @user.relate_activities(%i(new_thing), []).map(&:reference_union).map {|s| s.gsub 'Thing_', ''})
 
     mail(to: @user.email,
-         subject: 'KnewOne动态')
+         subject: 'KnewOne用户周报') do |format|
+      format.html { render layout: 'newspaper' }
+    end
   end
 end

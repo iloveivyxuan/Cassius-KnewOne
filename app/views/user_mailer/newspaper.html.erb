@@ -1,0 +1,129 @@
+<div style="padding:10px 0 0 0;text-align:center;margin:0 0 30px 0;">
+  <b style="font-size:17px;">你好，<%= @user.name %></b>
+
+  <p style="color:#cfcfcf;line-height:24px;">在过去的一周里<br/>(<%= @date.strftime('%Y.%m.%d') %> ~ <%= @from_date.strftime('%Y.%m.%d') %>)</p>
+</div>
+
+<%- if (owns = @items[:owns]) && owns.size > 0 %>
+  <div style="margin:0 0 40px 0;">
+    <div style="margin:20px 0 0 0;text-align:center;padding:12px;" id="social" width="100%">
+      <b>你在 KnewOne 上拥有的产品</b>
+    </div>
+    <table style="margin:10px 0 0 0;" border="0" cellpadding="10" cellspacing="0" width="100%">
+      <%- owns.each do |t| %>
+        <tr>
+          <td align="right" width="40%">
+            <%= image_tag t.cover.url(:small), style: 'border:1px solid #eee;', width: '100px' %>
+          </td>
+          <td valign="top" style="line-height:26px;">
+            <b><%= link_to t.title, thing_url(t, from: :newspaper) %></b>
+            <br/>
+            <b style="color:#aaa;font-size:13px;"><%= t.fanciers.size %> 喜欢 <%= t.feelings.size %> 短评 <%= t.reviews.size %> 评测</b>
+
+            <p style="margin:5px 0 0 0;font-size:12px;line-height:20px;">在使用这个产品后，有什么体验呢？<br/>请和小伙伴们
+              <%= link_to '分享你的使用体验', new_thing_review_url(t, from: :newspaper), id: 'aldeco' %> 吧！</p>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+<% end %>
+
+<%- if (reviews = @items[:reviews]) && reviews.size > 0 %>
+  <div style="margin:0 0 40px 0;">
+    <div style="margin:20px 0 0 0;text-align:center;padding:12px;" id="social" width="100%">
+      <b>你在 KnewOne 上发表的评测反馈</b>
+    </div>
+    <table style="margin:10px 0 0 0;" border="0" cellpadding="10" cellspacing="0" width="100%">
+      <%- if r = reviews.first %>
+        <tr>
+          <td align="right" width="30%">
+            <%= image_tag r.thing.cover.url(:small), style: 'border:1px solid #eee;', width: '100px' %>
+          </td>
+          <td valign="top" style="line-height:26px;">
+            <b><%= link_to r.title, thing_review_url(r.thing, r, from: :newspaper) %></b>
+            <br/>
+            <b style="color:#aaa;font-size:13px;"><%= r.lovers.size %> 赞 <%= r.comments.size %> 评论</b>
+
+            <p style="margin:5px 0 0 0;font-size:12px;line-height:20px;">
+              <%= strip_tags(r.content).truncate(60) %>
+            </p>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+
+    <%- if reviews.size > 1 %>
+      <p style="font-weight:bolder;font-size:12px;margin:5px 0 0 0;" align="center">
+        <%= link_to "查看更多你写的 #{reviews.size - 1} 篇评测 →", reviews_user_url(@user, from: :newspaper), style: 'text-decoration:none;' %>
+      </p>
+    <% end %>
+  </div>
+<% end %>
+
+<%- if (things = @items[:things]) && things.size > 0 %>
+  <%- size = things.size > 4 ? 4 : things.size %>
+  <div style="margin:0 0 40px 0;">
+    <div style="margin:20px 0 0 0;text-align:center;padding:12px;" id="social" width="100%">
+      <b>你在 KnewOne 上分享产品收到的反馈</b>
+    </div>
+    <table style="margin:10px 0 0 0;" border="0" cellpadding="10" cellspacing="0" width="<%= size*25 %>%">
+      <tr>
+        <%- things.limit(4).each do |t| %>
+          <td align="left" valign="top" width="<%= 100/size %>%">
+            <%= image_tag t.cover.url(:small), style: 'border:1px solid #eee;', width: '100px' %>
+            <%= link_to t.title, thing_url(t, from: :newspaper) %><br/>
+            <b style="color:#aaa;font-size:12px;"><%= t.fanciers.size %> 赞 <%= t.feelings.size %> 短评</b>
+          </td>
+        <% end %>
+      </tr>
+    </table>
+
+    <% if things.size > 4 %>
+      <p style="font-weight:bolder;font-size:12px;margin:5px 0 0 0;" align="center">
+        <%= link_to "查看更多你分享的 #{things.size - 4} 个产品 →", things_user_url(@user, from: :newspaper), style: 'text-decoration:none;' %>
+      </p>
+    <% end %>
+  </div>
+<% end %>
+
+<%- if (things = @items[:friends_things]) && things.size > 0 %>
+  <%- size = things.size > 4 ? 4 : things.size %>
+  <div style="margin:0 0 40px 0;">
+    <div style="margin:20px 0 0 0;text-align:center;padding:12px;" id="social" width="100%">
+      <b>你关注的小伙伴分享的新奇酷</b>
+    </div>
+    <table style="margin:10px 0 0 0;" border="0" cellpadding="10" cellspacing="0" width="<%= size*25 %>%">
+      <tr>
+        <%- things.limit(4).each do |t| %>
+          <td align="left" valign="top" width="<%= 100/size %>%">
+            <%= image_tag t.cover.url(:small), style: 'border:1px solid #eee;', width: '100px' %>
+            <b><%= link_to t.title, thing_url(t, from: :newspaper) %></b><br/>
+            <b style="color:#aaa;font-size:12px;"><%= t.fanciers.size %> 赞 <%= t.feelings.size %> 短评</b>
+          </td>
+        <% end %>
+      </tr>
+    </table>
+
+    <% if things.size > 4 %>
+      <p style="font-weight:bolder;font-size:12px;margin:5px 0 0 0;" align="center">
+        <%= link_to '查看更多你关注的人分享的产品 →', things_user_url(@user, from: :newspaper), style: 'text-decoration:none;' %>
+      </p>
+    <% end %>
+  </div>
+<% end %>
+
+<div style="margin:40px 0 10px 0;border-top:1px solid #eee;padding:25px 0 0 0;">
+  <table border="0" cellpadding="10" cellspacing="0" width="100%">
+    <tr>
+      <td width>
+        <img src="http://cl.ly/image/2X0i2s3D3d2E/gift.png">
+      </td>
+      <td style="font-size:20px;line-height:40px;margin:10px 0 0 0;padding:10px 10px 0 20px;" valign="top">
+        <b>在 KnewOne 上分享你发现的新奇酷产品和使用体验，可以获奖喔！<br/>
+          <%= link_to '点此查看获奖者名单', rewards_url(from: :newspaper), style: 'font-size:15px;font-weight:bolder;text-decoration:none;' %>
+        </b>
+      </td>
+    </tr>
+  </table>
+</div>

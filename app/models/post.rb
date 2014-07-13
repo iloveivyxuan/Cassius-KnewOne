@@ -30,11 +30,13 @@ class Post
 
   index created_at: -1
 
-  scope :from_date, ->(date) { where :created_at.gte => date.to_time.to_i }
-  scope :to_date, ->(date) { where :created_at.lt => date.next_day.to_time.to_i }
 
   before_save :format_title
   before_save :remove_ending_blanks
+
+  scope :from_date, ->(date) { where :created_at.gte => date }
+  scope :to_date, ->(date) { where :created_at.lt => date.next_day }
+  scope :recent, ->(range = 30) { gt(created_at: range.days.ago) }
 
   after_create :update_commented_at
 
