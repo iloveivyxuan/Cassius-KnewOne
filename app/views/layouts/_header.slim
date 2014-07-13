@@ -18,6 +18,9 @@ header#header role="banner"
           = link_to "发现", explore_path
         li
           = link_to "小组", groups_path
+        li
+          = link_to "客服", "#olark_chat", data: {hint: "fa-comment", url: asset_path('olark.js')}
+
         li#nav_publish
           - if user_signed_in?
             = link_to_with_icon "发布", "fa fa-plus", "#", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}
