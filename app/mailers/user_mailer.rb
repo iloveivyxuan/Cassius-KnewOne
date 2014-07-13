@@ -81,6 +81,9 @@ class UserMailer < BaseMailer
   end
 
   def newspaper(user_id, date = Date.today, items = {})
+    attachments.inline['gift.png'] = File.read(Rails.root.join('app/assets/images/mails/gift.png'))
+    attachments.inline['header.png'] = File.read(Rails.root.join('app/assets/images/mails/newspaper_header.png'))
+
     @from_date = date - 7.days
     @date = date
     @user = User.find(user_id)
