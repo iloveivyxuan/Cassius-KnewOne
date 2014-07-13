@@ -9,6 +9,7 @@ Making.Views.Notification = Backbone.View.extend
     @url = '/notifications'
     @spinner_template = $('#notification_box .dropdown_box').html()
     @$content = $('#notification_box .dropdown_box')
+    @$count = @$('#notification_count')
 
     Making.Events
     .on('notifications:loaded', @loaded, @)
@@ -27,3 +28,4 @@ Making.Views.Notification = Backbone.View.extend
   loaded: (data, xhr) ->
     if xhr.status is 200
       @$content.html(data)
+      @$count.text('')
