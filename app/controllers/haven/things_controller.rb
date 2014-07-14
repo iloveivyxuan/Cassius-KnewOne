@@ -45,16 +45,26 @@ module Haven
     def batch_edit
       @things = case params[:filter]
                 when "no_link"
-                  Thing.where(shop: "").page params[:page]
+                  Thing.where(shop: "")
                 when "no_category"
-                  Thing.where(categories: []).page params[:page]
+                  Thing.where(categories: [])
                 when "no_price"
-                  Thing.where(price: nil).page params[:page]
+                  Thing.where(price: nil)
                 when "concept", "kick", "pre_order", "domestic", "abroad", "dsell"
-                  Thing.where(stage: params[:filter]).page params[:page]
+                  Thing.where(stage: params[:filter])
                 else
-                  Thing.desc(:created_at).page params[:page]
+                  Thing.desc(:created_at)
                 end
+
+      # order
+      @things = case params[:order_by]
+                when "priority"
+                  Thing.order_by([:priority, :asc])
+                else
+                  @things
+                end
+
+      @things = @things.page params[:page]
     end
 
     def batch_update

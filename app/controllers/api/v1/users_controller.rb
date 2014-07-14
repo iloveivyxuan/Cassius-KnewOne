@@ -42,11 +42,11 @@ module Api
       end
 
       def owns
-        @owns = @user.owns.desc(:created_at).page(params[:page]).per(params[:per_page] || 8)
+        @owns = @user.owns_sorted_by_ids(params[:page], params[:per_page] || 8)
       end
 
       def fancies
-        @fancies = @user.fancies.desc(:created_at).page(params[:page]).per(params[:per_page] || 8)
+        @fancies = @user.fancies_sorted_by_ids(params[:page], params[:per_page] || 8)
       end
 
       def groups

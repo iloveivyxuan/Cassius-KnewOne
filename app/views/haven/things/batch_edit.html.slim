@@ -13,6 +13,7 @@ hgroup
     = link_to "自销", batch_edit_haven_things_path(filter: 'dsell'), class: 'btn btn-default'
     = link_to "国内导购", batch_edit_haven_things_path(filter: 'heat'), class: 'btn btn-default'
     = link_to "国内导购", batch_edit_haven_things_path(filter: 'heat'), class: 'btn btn-default'
+    = link_to "按优先度倒序排列", batch_edit_haven_things_path(order_by: 'priority'), class: 'btn btn-default'
 
 = form_tag batch_update_haven_things_path(redirect_from: request.fullpath), method: :patch do
   table.table.table-striped.table-hover.table-bordered
@@ -36,6 +37,9 @@ hgroup
           br
           | 价格
           = text_field_tag 'things[][price]', t.price, style: 'width: 100%'
+          br
+          | 优先级
+          = text_field_tag 'things[][priority]', t.priority, style: 'width: 100%'
         td
           | 阶段
           = select_tag 'things[][stage]', options_for_select(Thing::STAGES.invert, t.stage), style: 'width: 100%'

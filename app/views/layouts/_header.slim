@@ -11,20 +11,21 @@ header#header role="banner"
     #nav_main.collapse.navbar-collapse
       ul.nav.navbar-nav#nav_primary
         li
+          = link_to "精选", hits_path
+        li
           = link_to "商店", things_path(self_run: true)
         li
-          = link_to "分类", categories_path
-        li
           = link_to "发现", explore_path
-        li
-          - if user_signed_in?
-            = link_to "分享", "#", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}
-          - else
-            = link_to "分享", "#", data: {toggle: "modal", target: "#login-modal"}
         li
           = link_to "小组", groups_path
         li
           = link_to "客服", "#olark_chat", data: {hint: "fa-comment", url: asset_path('olark.js')}
+
+        li#nav_publish
+          - if user_signed_in?
+            = link_to_with_icon "发布", "fa fa-plus", "#", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}
+          - else
+            = link_to_with_icon "发布", "fa fa-plus", "#", data: {toggle: "modal", target: "#login-modal"}
 
       - if user_signed_in?
         .user_links.login.navbar-right
@@ -41,12 +42,12 @@ header#header role="banner"
                 li = link_to_with_icon "安全登出", "fa fa-sign-out fa-fw", destroy_user_session_path, method: :delete
 
           = link_to cart_items_path, class: "user_link cart", title: "购物车" do
-            i.fa.fa-shopping-cart.fa_alone
+            i.fa.fa-shopping-cart.fa-fw
             span.badge.badge_success.cart_items_count= cart_items_count
 
           #notification_box.user_link.notification.dropdown
             = link_to notifications_path, id: "notification_trigger", title: "#{unread_notifications_text}未读消息" do
-              i.fa.fa-bell-o.fa_alone
+              i.fa.fa-bolt.fa-fw
               span#notification_count.badge.badge_primary= unread_notifications_count
             .dropdown_box
               header
@@ -69,7 +70,7 @@ header#header role="banner"
 
           - upmc = current_user.unread_private_messages_count
           = link_to dialogs_path, class: "user_link", title: "#{upmc}封未读私信" do
-            i.fa.fa-envelope-o.fa_alone
+            i.fa.fa-envelope-o.fa-fw
             span.badge.badge_danger.private_messages_count= badge upmc
       - else
         .user_links.logout.navbar-right
@@ -80,6 +81,18 @@ header#header role="banner"
           input.form-control type="search" name="q" autocomplete="off" spellcheck="false"
           i.fa.fa-search
           i.fa.fa-times
+
+      ul.nav.navbar-nav.navbar-right#nav_secondary
+        li.nav_group.dropdown
+          = link_to_with_icon "", "fa fa-bars", "#",
+          class: 'nav_group_more', data: {toggle: "dropdown"}
+          .dropdown-menu
+            ul.categories
+              - Category.prior.gt(things_count: 10).limit(42).each do |c|
+                li= link_to c.name, category_things_path(category: c)
+            .category_more
+              = link_to "查看全部>>", categories_path
+
   /-- Navbar --/
 
   .search_backdrop

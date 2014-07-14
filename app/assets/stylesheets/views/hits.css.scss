@@ -1,16 +1,26 @@
-html.home_hits #wrapper {margin: 0;}
+html.home_hits body {
+  padding-top: 45px;
+  #header {margin: 0;}
+  #wrapper {margin: 0;}
+}
 
 html.home_hits .container-fluid {
-  @media (max-width: $screen-xs-max) {
-    padding: 0;
-  }
-
+  padding: {left: 20px; right: 20px;}
   @media (min-width: $screen-lg-min) {
     width: $container-large-desktop;
   }
 }
 
-html.home_hits section.hits {
+html.home_hits header.jumptron
+{
+  @include clearfix;
+  margin: 0 -20px;
+  @media (min-width: $screen-sm-min) {
+    margin: 40px -20px 30px;
+  }
+}
+
+html.home_hits section.hits, html.landing_mobile section.hits {
   @include clearfix;
   $gutter: 20px;
   margin-top: $gutter;
@@ -52,7 +62,7 @@ html.home_hits section.hits {
     @media (min-width: $screen-md-min) {
       /* So thing:review is golden porpotion */
       padding: 35px;
-      header.cover { 
+      header.cover {
         padding-right: 45px;
       }
     }

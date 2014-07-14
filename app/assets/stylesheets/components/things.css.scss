@@ -186,7 +186,7 @@ article.thing {
     }
 
     @media (min-width: $screen-sm-min) {
-       @include text-overflow;
+      @include text-overflow;
     }
   }
 

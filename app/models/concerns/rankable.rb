@@ -6,6 +6,10 @@ module Rankable
     index heat: -1
 
     scope :hot, -> { desc(:heat) }
+
+    before_update do
+      self.heat = calculate_heat
+    end
   end
 
   def freezing_coefficient

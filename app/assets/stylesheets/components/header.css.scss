@@ -50,7 +50,6 @@ html.touch {
 }
 
 html.no-touch {
-
   #header {
     margin-bottom: $navbar-height + $navbar-margin-bottom + $font-size-base;
   }
@@ -83,12 +82,9 @@ html.no-touch {
   }
 
   .nav {
-
     > li {
-
       &.nav_group {
         @include clearfix;
-
         > a {
           float: left;
           padding: {
@@ -118,6 +114,12 @@ html.no-touch {
         }
       }
     }
+  }
+
+  #nav_publish {
+    a {color: white;}
+    background-color: $blue;
+    margin-left: 15px;
   }
 
   .dropdown-menu {
@@ -180,6 +182,7 @@ html.no-touch {
 }
 
 .navbar-form {
+  padding: {left: 0; right: 30px;}
   @media (max-width: $grid-float-breakpoint) {
     border-bottom-width: 0;
     margin-bottom: 0;
@@ -273,6 +276,44 @@ html.no-touch {
   }
 }
 
+#nav_secondary {
+  margin-right: 15px;
+  > li > a {
+    padding-left: 15px;
+    padding-right: 15px;
+    i {margin-right: 0;}
+    color: white;
+  }
+
+  .dropdown-menu {
+    width: 480px;
+    padding: 1em 2em 0;
+    right: -222px;
+  }
+
+  .categories {
+    @include clearfix;
+    li {
+      float: left;
+      padding: .5em 0;
+      width: 14.2851%;
+      text-align: center;
+      &:hover {background-color: $gray;}
+      a {
+        color: white;
+      }
+    }
+  }
+
+  .category_more {
+    margin: .5em 0 1em;
+    text-align: right;
+    > a {
+      color: white;
+    }
+  }
+}
+
 .user_links {
   @include clearfix;
 
@@ -315,8 +356,8 @@ html.no-touch {
         font-size: 1.3333333333333333em;
         vertical-align: middle;
 
-        &.fa-bell-o {font-size: 1.25em;}
-        &.fa-envelope-o {font-size: 1.25em;}
+        &.fa-bolt {font-size: 1.25em;}
+        &.fa-envelope-o {font-size: 1.2em;}
       }
     }
   }
@@ -409,7 +450,6 @@ html.no-touch {
       }
 
       .dropdown-menu {
-
         @media (min-width: $grid-float-breakpoint) {
           right: 0;
         }
@@ -444,7 +484,6 @@ html.no-touch {
   }
 
   &.cart {
-
     & + .popover {
       .popover-title {display: none;}
     }

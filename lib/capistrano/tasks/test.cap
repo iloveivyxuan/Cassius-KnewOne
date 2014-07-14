@@ -1,0 +1,5 @@
+namespace :deploy do
+  task :test do
+    sh './bin/test'
+  end
+end

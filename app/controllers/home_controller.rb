@@ -16,12 +16,12 @@ class HomeController < ApplicationController
     else
       respond_to do |format|
         format.html.mobile do
-          @things = Thing.published.hot.limit(30)
+          hits
           render 'home/landing.html+mobile'
         end
 
         format.html.tablet do
-          @things = Thing.published.hot.limit(32)
+          hits
           render 'home/landing.html+mobile'
         end
 

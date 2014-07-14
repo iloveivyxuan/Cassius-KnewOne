@@ -16,6 +16,7 @@ set :bundle_bins, %w(gem rake rails whenever)
 set :whenever_roles, :app
 
 namespace :deploy do
+  before :starting, :test
   after :publishing, :restart
   after :finishing, :cleanup
 end

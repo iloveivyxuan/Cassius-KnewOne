@@ -20,14 +20,14 @@ section#menu
         = link_to_with_icon "首页", "fa fa-home fa-fw", root_path
       li
         - if user_signed_in?
-          = link_to_with_icon "分享", "fa fa-plus fa-fw", "#", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}
+          = link_to_with_icon "发布", "fa fa-plus fa-fw", "#", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}
         - else
-          = link_to_with_icon "分享", "fa fa-plus fa-fw", "#", data: {toggle: "modal", target: "#login-modal"}
+          = link_to_with_icon "发布", "fa fa-plus fa-fw", "#", data: {toggle: "modal", target: "#login-modal"}
       - if user_signed_in?
         - upmc = current_user.unread_private_messages_count
         li
           = link_to dialogs_path, title: "#{upmc}封未读私信" do
-            i.fa.fa-envelope-o.fa-fw
+            i.fa.fa-paper-plane-o.fa-fw
             | 私信
             span.badge.badge_danger.pull-right.private_messages_count= badge upmc
         li
@@ -50,6 +50,8 @@ section#menu
           = link_to '评测', explore_reviews_path
           = link_to '专题', explore_specials_path
           = link_to '活动', explore_events_path
+      li
+          = link_to "精选", hits_path
       li
         = link_to_with_icon "商店", "fa fa-smile-o fa-fw", things_path(self_run: true)
       li

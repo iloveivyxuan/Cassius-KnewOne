@@ -29,7 +29,7 @@ class User
       end
     EVAL
   end
-  validates :name, presence: true, uniqueness: { case_sensitive: false },
+  validates :name, presence: true, uniqueness: {case_sensitive: false},
             format: {with: /\A[^\s]+\z/, multiline: false, message: '不能包含空格'}
 
   RESERVED_WORDS = ['knewone', '知新创想', '牛玩']
@@ -40,6 +40,7 @@ class User
       errors.add(:name, '名字不和谐')
     end
   end
+
   private :name_cannot_include_reserved_words
 
   # Stats
@@ -219,7 +220,7 @@ class User
   ## Roles
   field :role, type: String, default: ""
   ROLES = %w[vip editor sale admin]
-  scope :staff, ->{ where :role.in => %i(editor sale admin) }
+  scope :staff, -> { where :role.in => %i(editor sale admin) }
   scope :admin, -> { where role: "admin" }
   scope :editor, -> { where role: "editor" }
   scope :sale, -> { where role: "sale" }
@@ -341,8 +342,8 @@ class User
     cents = (value * 100).to_i
 
     u = User
-      .where(id: id, :balance_cents.gte => cents)
-      .find_and_modify(:$inc => {balance_cents: -cents})
+    .where(id: id, :balance_cents.gte => cents)
+    .find_and_modify(:$inc => {balance_cents: -cents})
 
     if u
       balance_logs << RevokeRefundBalanceLog.new(order: order, value_cents: cents, note: note)
@@ -357,8 +358,8 @@ class User
     cents = (value * 100).to_i
 
     u = User
-      .where(id: id, :balance_cents.gte => cents)
-      .find_and_modify(:$inc => {balance_cents: -cents})
+    .where(id: id, :balance_cents.gte => cents)
+    .find_and_modify(:$inc => {balance_cents: -cents})
 
     if u
       balance_logs << ExpenseBalanceLog.new(value_cents: cents, note: note)
@@ -416,7 +417,7 @@ class User
   end
 
   def managed_groups
-    joined_groups.select {|g| g.has_admin? self}
+    joined_groups.select { |g| g.has_admin? self }
   end
 
   include IdsSortable
