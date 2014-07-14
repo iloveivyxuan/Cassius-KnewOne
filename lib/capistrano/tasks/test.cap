@@ -1,5 +1,11 @@
 namespace :deploy do
   task :test do
+    if `git rev-parse HEAD` != `git rev-parse origin/master`
+      puts 'WARNING: HEAD is not the same as origin/master'
+      puts 'Please run `git checkout master && git pull`'
+      exit
+    end
+
     sh './bin/test'
   end
 end
