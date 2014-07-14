@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   def show
     @reviews = @user.reviews.desc(:is_top, :lovers_count, :created_at).where(:thing_id.ne => nil).limit(4)
     @feelings = @user.feelings.desc(:lovers_count, :created_at).where(:thing_id.ne => nil).limit(4)
-    @fancies = @user.fancies.desc(:created_at).limit(3)
-    @owns = @user.owns.desc(:created_at).limit(3)
+    @fancies = @user.fancies_sorted_by_ids(1, 3)
+    @owns = @user.owns_sorted_by_ids(1, 3)
     @makings = @user.makings.desc(:created_at)
     @activities = @user.activities.visible.limit(10)
   end
