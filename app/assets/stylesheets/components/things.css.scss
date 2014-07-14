@@ -175,6 +175,11 @@ article.thing {
     h4 a {color: $black;}
     p a {color : $gray;}
 
+    .title,
+    .subtitle {
+      @include text-overflow;
+    }
+
     h4, p {
       margin: 0;
       font-size: $font-size-base;
