@@ -13,3 +13,4 @@ production:
   - elasticsearch
   - edm
   - waybill
+  - newspaper
