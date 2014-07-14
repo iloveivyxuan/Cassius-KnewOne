@@ -90,9 +90,20 @@ class UserMailer < BaseMailer
     @items = items
 
     @items[:things] ||= @user.things.from_date(@from_date).to_date(@date)
+    @items[:things_count] ||= @items[:things].size
+
     @items[:owns] ||= @user.owns.from_date(@from_date).to_date(@date)
+    @items[:owns_count] ||= @items[:owns].size
+
     @items[:reviews] ||= @user.reviews.from_date(@from_date).to_date(@date)
+    @items[:reviews_count] ||= @items[:reviews].size
+
     @items[:friends_things] ||= Thing.where(:id.in => @user.relate_activities(%i(new_thing), []).map(&:reference_union).map {|s| s.gsub 'Thing_', ''})
+    @items[:friends_things_count] ||= @items[:friends_things].size
+
+    if @items[:things_count] + @items[:owns_count] + @items[:friends_things_count] == 0
+      @items[:hot_things] ||= Thing.hot.limit(8)
+    end
 
     mail(to: @user.email,
          subject: 'KnewOne用户周报') do |format|

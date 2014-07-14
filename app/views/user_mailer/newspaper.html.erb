@@ -4,7 +4,7 @@
   <p style="color:#cfcfcf;line-height:24px;">在过去的一周里<br/>(<%= @date.strftime('%Y.%m.%d') %> ~ <%= @from_date.strftime('%Y.%m.%d') %>)</p>
 </div>
 
-<%- if (owns = @items[:owns]) && owns.size > 0 %>
+<%- if (owns = @items[:owns]) && @items[:owns_count] > 0 %>
   <div style="margin:0 0 40px 0;">
     <div style="margin:20px 0 0 0;text-align:center;padding:12px;" id="social" width="100%">
       <b>你在 KnewOne 上拥有的产品</b>
@@ -29,7 +29,7 @@
   </div>
 <% end %>
 
-<%- if (reviews = @items[:reviews]) && reviews.size > 0 %>
+<%- if (reviews = @items[:reviews]) && @items[:reviews_count] > 0 %>
   <div style="margin:0 0 40px 0;">
     <div style="margin:20px 0 0 0;text-align:center;padding:12px;" id="social" width="100%">
       <b>你在 KnewOne 上发表的评测反馈</b>
@@ -53,7 +53,7 @@
       <% end %>
     </table>
 
-    <%- if reviews.size > 1 %>
+    <%- if @items[:reviews_count] > 1 %>
       <p style="font-weight:bolder;font-size:12px;margin:5px 0 0 0;" align="center">
         <%= link_to "查看更多你写的 #{reviews.size - 1} 篇评测 →", reviews_user_url(@user, from: :newspaper), style: 'text-decoration:none;' %>
       </p>
@@ -61,8 +61,8 @@
   </div>
 <% end %>
 
-<%- if (things = @items[:things]) && things.size > 0 %>
-  <%- size = things.size > 4 ? 4 : things.size %>
+<%- if (things = @items[:things]) && @items[:things_count] > 0 %>
+  <%- size = @items[:things_count] > 4 ? 4 : @items[:things_count] %>
   <div style="margin:0 0 40px 0;">
     <div style="margin:20px 0 0 0;text-align:center;padding:12px;" id="social" width="100%">
       <b>你在 KnewOne 上分享产品收到的反馈</b>
@@ -79,7 +79,7 @@
       </tr>
     </table>
 
-    <% if things.size > 4 %>
+    <% if @items[:things_count] > 4 %>
       <p style="font-weight:bolder;font-size:12px;margin:5px 0 0 0;" align="center">
         <%= link_to "查看更多你分享的 #{things.size - 4} 个产品 →", things_user_url(@user, from: :newspaper), style: 'text-decoration:none;' %>
       </p>
@@ -87,15 +87,15 @@
   </div>
 <% end %>
 
-<%- if (things = @items[:friends_things]) && things.size > 0 %>
-  <%- size = things.size > 4 ? 4 : things.size %>
+<%- if (friends_things = @items[:friends_things]) && @items[:friends_things_count] > 0 %>
+  <%- size = @items[:friends_things_count] > 4 ? 4 : @items[:friends_things_count] %>
   <div style="margin:0 0 40px 0;">
     <div style="margin:20px 0 0 0;text-align:center;padding:12px;" id="social" width="100%">
       <b>你关注的小伙伴分享的新奇酷</b>
     </div>
     <table style="margin:10px 0 0 0;" border="0" cellpadding="10" cellspacing="0" width="<%= size*25 %>%">
       <tr>
-        <%- things.limit(4).each do |t| %>
+        <%- friends_things.limit(4).each do |t| %>
           <td align="left" valign="top" width="<%= 100/size %>%">
             <%= image_tag t.cover.url(:small), style: 'border:1px solid #eee;', width: '100px' %>
             <b><%= link_to t.title, thing_url(t, from: :newspaper) %></b><br/>
@@ -105,11 +105,43 @@
       </tr>
     </table>
 
-    <% if things.size > 4 %>
+    <% if @items[:friends_things_count] > 4 %>
       <p style="font-weight:bolder;font-size:12px;margin:5px 0 0 0;" align="center">
         <%= link_to '查看更多你关注的人分享的产品 →', things_user_url(@user, from: :newspaper), style: 'text-decoration:none;' %>
       </p>
     <% end %>
+  </div>
+<% end %>
+
+<%- if hot_things = @items[:hot_things] %>
+  <div style="margin:0 0 40px 0;">
+    <div style="margin:20px 0 0 0;text-align:center;padding:12px;" id="social" width="100%">
+      <b>KnewOne 上的热门新奇酷</b>
+    </div>
+    <table style="margin:10px 0 0 0;" border="0" cellpadding="10" cellspacing="0" width="<%= size*25 %>%">
+      <tr>
+        <%- hot_things[0..3].each do |t| %>
+          <td align="left" valign="top" width="<%= 100/size %>%">
+            <%= image_tag t.cover.url(:small), style: 'border:1px solid #eee;', width: '100px' %>
+            <%= link_to t.title, thing_url(t, from: :newspaper) %><br/>
+            <b style="color:#aaa;font-size:12px;"><%= t.fanciers.size %> 赞 <%= t.feelings.size %> 短评</b>
+          </td>
+        <% end %>
+      </tr>
+      <tr>
+        <%- hot_things[4..-1].each do |t| %>
+          <td align="left" valign="top" width="<%= 100/size %>%">
+            <%= image_tag t.cover.url(:small), style: 'border:1px solid #eee;', width: '100px' %>
+            <%= link_to t.title, thing_url(t, from: :newspaper) %><br/>
+            <b style="color:#aaa;font-size:12px;"><%= t.fanciers.size %> 赞 <%= t.feelings.size %> 短评</b>
+          </td>
+        <% end %>
+      </tr>
+    </table>
+
+    <p style="font-weight:bolder;font-size:12px;margin:5px 0 0 0;" align="center">
+      <%= link_to "查看更多 →", hits_url(from: :newspaper), style: 'text-decoration:none;' %>
+    </p>
   </div>
 <% end %>
 
