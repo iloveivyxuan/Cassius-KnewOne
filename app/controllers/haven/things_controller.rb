@@ -58,8 +58,10 @@ module Haven
 
       # order
       @things = case params[:order_by]
-                when "priority"
+                when "priority_asc"
                   Thing.order_by([:priority, :asc])
+                when "priority_desc"
+                  Thing.order_by([:priority, :desc])
                 else
                   @things
                 end
