@@ -1,17 +1,17 @@
 require 'spec_helper'
 
-describe Thing do
+describe Thing, :type => :model do
   let(:user) { create(:user) }
   let(:thing) { create(:thing) }
 
   describe '#own' do
     subject { -> { thing.own(user) } }
 
-    it { should change { thing.owned?(user) }.to true }
-    it { should change(thing, :owner_ids).to include user.id }
-    it { should change(user, :own_ids).to include thing.id }
-    it { should change(user, :owns_count).by 1 }
-    it { should change(user, :karma).by Settings.karma.own }
+    it { is_expected.to change { thing.owned?(user) }.to true }
+    it { is_expected.to change(thing, :owner_ids).to include user.id }
+    it { is_expected.to change(user, :own_ids).to include thing.id }
+    it { is_expected.to change(user, :owns_count).by 1 }
+    it { is_expected.to change(user, :karma).by Settings.karma.own }
   end
 
   describe '#unown' do
@@ -21,22 +21,22 @@ describe Thing do
 
     subject { -> { thing.unown(user) } }
 
-    it { should change { thing.owned?(user) }.to false }
-    it { should change(thing, :owner_ids).from include user.id }
-    it { should change(user, :own_ids).from include thing.id }
-    it { should change(user, :owns_count).by(-1) }
-    it { should change(user, :karma).by(-Settings.karma.own) }
+    it { is_expected.to change { thing.owned?(user) }.to false }
+    it { is_expected.to change(thing, :owner_ids).from include user.id }
+    it { is_expected.to change(user, :own_ids).from include thing.id }
+    it { is_expected.to change(user, :owns_count).by(-1) }
+    it { is_expected.to change(user, :karma).by(-Settings.karma.own) }
   end
 
   describe '#fancy' do
     subject { -> { thing.fancy(user) } }
 
-    it { should change { thing.fancied?(user) }.to true }
-    it { should change(thing, :fancier_ids).to include user.id }
-    it { should change(user, :fancy_ids).to include thing.id }
-    it { should change(thing, :fanciers_count).by 1 }
-    it { should change(user, :fancies_count).by 1 }
-    it { should change(user, :karma).by Settings.karma.fancy }
+    it { is_expected.to change { thing.fancied?(user) }.to true }
+    it { is_expected.to change(thing, :fancier_ids).to include user.id }
+    it { is_expected.to change(user, :fancy_ids).to include thing.id }
+    it { is_expected.to change(thing, :fanciers_count).by 1 }
+    it { is_expected.to change(user, :fancies_count).by 1 }
+    it { is_expected.to change(user, :karma).by Settings.karma.fancy }
   end
 
   describe '#unfancy' do
@@ -46,12 +46,12 @@ describe Thing do
 
     subject { -> { thing.unfancy(user) } }
 
-    it { should change { thing.fancied?(user) }.to false }
-    it { should change(thing, :fancier_ids).from include user.id }
-    it { should change(user, :fancy_ids).from include thing.id }
-    it { should change(thing, :fanciers_count).by(-1) }
-    it { should change(user, :fancies_count).by(-1) }
-    it { should change(user, :karma).by(-Settings.karma.fancy) }
+    it { is_expected.to change { thing.fancied?(user) }.to false }
+    it { is_expected.to change(thing, :fancier_ids).from include user.id }
+    it { is_expected.to change(user, :fancy_ids).from include thing.id }
+    it { is_expected.to change(thing, :fanciers_count).by(-1) }
+    it { is_expected.to change(user, :fancies_count).by(-1) }
+    it { is_expected.to change(user, :karma).by(-Settings.karma.fancy) }
   end
 
   describe '#related_things' do

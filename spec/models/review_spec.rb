@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Review do
+describe Review, :type => :model do
   let(:review) { create(:review) }
   let(:author) { review.author }
   let(:user) { create(:user) }
@@ -8,10 +8,10 @@ describe Review do
   describe '#vote' do
     subject { -> { review.vote(user, true) } }
 
-    it { should change { review.voted?(user) }.to true }
-    it { should change(review, :lover_ids).to include user.id }
-    it { should change(review, :lovers_count).by 1 }
-    it { should change(author, :karma).by Settings.karma.post }
+    it { is_expected.to change { review.voted?(user) }.to true }
+    it { is_expected.to change(review, :lover_ids).to include user.id }
+    it { is_expected.to change(review, :lovers_count).by 1 }
+    it { is_expected.to change(author, :karma).by Settings.karma.post }
   end
 
   describe '#unvote' do
@@ -21,10 +21,10 @@ describe Review do
 
     subject { -> { review.unvote(user, true) } }
 
-    it { should change { review.voted?(user) }.to false }
-    it { should change(review, :lover_ids).from include user.id }
-    it { should change(review, :lovers_count).by(-1) }
-    it { should change(author, :karma).by(-Settings.karma.post) }
+    it { is_expected.to change { review.voted?(user) }.to false }
+    it { is_expected.to change(review, :lover_ids).from include user.id }
+    it { is_expected.to change(review, :lovers_count).by(-1) }
+    it { is_expected.to change(author, :karma).by(-Settings.karma.post) }
   end
 
   context 'when changes author' do
@@ -41,7 +41,7 @@ describe Review do
       end
     end
 
-    it { should change { original_author.reviews_count }.by(-1) }
-    it { should change { user.reviews_count }.by 1 }
+    it { is_expected.to change { original_author.reviews_count }.by(-1) }
+    it { is_expected.to change { user.reviews_count }.by 1 }
   end
 end
