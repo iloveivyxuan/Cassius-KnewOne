@@ -19,6 +19,6 @@ feature 'Sign up' do
       click_button '用邮箱注册'
     end
 
-    page.should have_title('欢迎')
+    expect(page).to have_title('欢迎')
   end
 end

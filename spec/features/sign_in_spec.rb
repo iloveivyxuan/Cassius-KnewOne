@@ -18,12 +18,12 @@ feature 'Sign in' do
       click_button '登录'
     end
 
-    page.should have_content(user.name)
+    expect(page).to have_content(user.name)
   end
 
   scenario 'with helper' do
     user = create_signed_in_user
     visit root_path
-    page.should have_content(user.name)
+    expect(page).to have_content(user.name)
   end
 end

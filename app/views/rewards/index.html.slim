@@ -32,9 +32,11 @@ table.table
         p.abstract
           strong
             | 幸运粉 #{link_to reward.user.name, reward.user} 获得
-            = case reward.coupon.class
-              - when AbatementCoupon then " #{reward.coupon.price}元代金券 一张"
-              - when ThingRebateCoupon then " #{link_to reward.coupon.thing.title, reward.coupon.thing} 兑换券 一张".html_safe
+            - case reward.coupon.class
+              - when AbatementCoupon
+                | #{reward.coupon.price}元代金券 一张
+              - when ThingRebateCoupon
+                | #{link_to reward.coupon.thing.title, reward.coupon.thing} 兑换券 一张
         p.content
           p
             strong 中奖原因：
