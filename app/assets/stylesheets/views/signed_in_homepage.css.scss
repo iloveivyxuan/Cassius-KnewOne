@@ -14,10 +14,6 @@ html.signed_in_homepage {
         }
       }
 
-      h5 + article.review {
-        margin-top: 0;
-      }
-
       .feed-activity {
         ul {
           @include clearfix;
@@ -77,6 +73,33 @@ html.signed_in_homepage {
             span {
               margin-left: 0.2em;
             }
+          }
+        }
+      }
+
+      .feed-reviews {
+        position: relative;
+        overflow: hidden;
+
+        h5 {
+          display: inline-block;
+          background: #f7f7f9;
+          padding-right: 0.5em;
+
+          &:before {
+            // http://stackoverflow.com/questions/6250394#answer-11889223
+            content: '....................................................................................................';
+            letter-spacing: 0.5em;
+
+            position: absolute;
+            top: 6px;
+            left: 0;
+            right: 0;
+            z-index: -1;
+          }
+
+          & + article.review {
+            margin-top: 0;
           }
         }
       }
