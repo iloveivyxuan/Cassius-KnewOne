@@ -32,7 +32,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-wechat', github: 'jasl/omniauth-wechat'
 gem 'omniauth-qq-oauth2', github: 'sunbo/omniauth-qq-oauth2'
 gem 'omniauth-douban-oauth2'
-gem 'weibo_2', github: 'simsicon/weibo_2'
+gem 'weibo_2', github: 'jasl/weibo_2'
 gem 'twitter', '>= 5.8.0'
 gem 'cancancan', '~> 1.7.0'
 
@@ -125,7 +125,7 @@ end
 
 group :development, :test do
   gem 'pry-rails'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 2.99'
   gem 'factory_girl_rails'
   gem 'mongoid-rspec'
   gem 'guard-rspec'
