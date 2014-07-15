@@ -13,11 +13,12 @@ describe Order do
   let(:note) { Faker::Lorem.sentence }
 
   describe '.build_order' do
-    subject { Order.build_order(user) }
+    let (:order) { Order.build_order(user) }
 
-    it { should be_an Order }
-    its(:items_price) { should eq items_price }
-    its(:should_pay_price) { should be >= subject.items_price }
+    specify do
+      expect(order.items_price).to eq items_price
+      expect(order.should_pay_price).to be >= items_price
+    end
   end
 
   context 'when use balance' do
