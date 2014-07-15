@@ -8,9 +8,12 @@ class HomeFeed
 
       activities.sort_by(&:created_at).each do |a|
         thing = a.reference.is_a?(Thing) ? a.reference : a.reference.try(:thing)
+
+        next unless thing
+
         if feed_from_thing[thing]
           feed_from_thing[thing].add_activity a
-        elsif thing
+        else
           feed = HomeFeed.new(thing, [a])
           feed_from_thing[thing] = feed
           feeds << feed
