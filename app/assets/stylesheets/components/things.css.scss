@@ -250,12 +250,13 @@ article.thing {
       .fancy_button a {
         display: block;
         position: absolute;
-        bottom: -3.5em;
+        bottom: 1em;
         right: 1em;
         padding: .5em 1em;
-        .fanciers_count {color: $gray-light;}
-        background-color: #eee;
+        .fanciers_count {color: white;}
+        background-color: rgba(0, 0, 0, 0.5);
         color: $gray;
+        @include border-radius(3px);
       }
     }
 

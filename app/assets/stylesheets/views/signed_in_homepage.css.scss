@@ -55,6 +55,10 @@ html.signed_in_homepage {
         .feed-user-name {
           @include text-overflow;
           width: 45%;
+
+          a {
+            color: $black;
+          }
         }
 
         .feed-timestamp {
@@ -67,6 +71,26 @@ html.signed_in_homepage {
           text-align: right;
         }
 
+        @include breakpoint(md) {
+          .feed-user-name {
+            width: auto;
+            max-width: 45%;
+          }
+
+          .feed-timestamp {
+            width: auto;
+            text-align: left;
+            color: $gray-light;
+
+            &:before { content: '（'; }
+            &:after  { content: '）'; }
+          }
+
+          .feed-action {
+            float: right;
+          }
+        }
+
         .feed-feeling {
           p {
             margin: 10px 0 0 0;
@@ -76,12 +100,16 @@ html.signed_in_homepage {
           }
 
           .feed-counts {
-            color: $gray;
+            &,
             a { color: $gray; }
 
             li {
               display: inline-block;
               margin: 10px 1em 0 0;
+
+              @include border-radius(3px);
+              padding: 0.5em 1em;
+              background-color: $gray-lighter;
             }
 
             span {
@@ -115,6 +143,10 @@ html.signed_in_homepage {
           & + article.review {
             margin-top: 0;
           }
+        }
+
+        header.cover {
+          display: none;
         }
       }
     }
