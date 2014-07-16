@@ -168,24 +168,15 @@ html.signed_in_homepage {
       }
 
       .feed-reviews {
-        position: relative;
-        overflow: hidden;
-
         h5 {
-          display: inline-block;
-          background: #f7f7f9;
-          padding-right: 0.5em;
+          overflow-x: hidden;
+          width: 100%;
+          white-space: nowrap;
 
-          &:before {
-            // http://stackoverflow.com/questions/6250394#answer-11889223
-            content: '....................................................................................................';
+          &:after {
+            content: ' ........................................................................................................................................................................................................';
             letter-spacing: 0.5em;
-
-            position: absolute;
-            top: 6px;
-            left: 0;
-            right: 0;
-            z-index: -1;
+            vertical-align: super;
           }
 
           & + article.review {
