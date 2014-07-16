@@ -44,6 +44,10 @@ Making.PopoverProfiles = ->
     $('.popover')
     .addClass('profile')
     .on('mouseleave', -> $element.popover('hide'))
+    .on('click', '.follow_btn', ->
+      userId = $element.attr('data-popover-profile')
+      delete cache[userId]
+    )
 
   cache = Object.create({})
   selector = '[data-popover-profile]'
