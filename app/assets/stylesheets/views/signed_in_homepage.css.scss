@@ -19,7 +19,7 @@ html.signed_in_homepage {
 
     > .feed {
       @include breakpoint(sm) {
-        padding-left: 14em;
+        padding-left: 10em;
       }
 
       article.thing,
