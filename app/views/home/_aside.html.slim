@@ -1,0 +1,41 @@
+aside role="complemental" data-spy="affix" data-offset-top="60" data-offset-bottom="200"
+  section.entries
+    ul
+      - Entry.published.where(category: '专题').desc(:created_at).limit(2).each do |entry|
+        li= link_to entry.external_link
+          = image_tag(entry.cover, alt: entry.title)
+
+  - if current_user.drafts.present?
+    section.drafts
+      header
+        = link_to setting_drafts_path
+          h2
+            | 我的草稿
+            span.drafts-count= current_user.drafts.size
+
+  section.tags
+    header
+      h2 热门标签
+    section
+      ul.list-inline.tag
+        - Category.prior.limit(4).each do |category|
+          li= link_to category_things_path(category: category)
+            span.label.label-default= category.name
+
+  section.recommended-users
+    header
+      h2 推荐用户
+    section
+      ul
+        - User.desc(:recommend_priority).limit(5).each do |user|
+          li.recommended-user
+            = present(user).as_author_with_profile
+            ul.user-info.list-inline
+              li.fancies-count
+                = link_to fancies_user_path(user)
+                  | 喜欢
+                  b = user.fancies_count
+              li.reviews-count
+                = link_to reviews_user_path(user)
+                  | 评测
+                  b = user.reviews_count

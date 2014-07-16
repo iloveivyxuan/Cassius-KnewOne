@@ -1,6 +1,10 @@
 .container
   ul#feeds.infinite
     = render partial: 'feed', collection: @feeds
+
+  .aside-container
+    = render 'aside'
+
   = paginate @activities
 
 - content_for :script do
