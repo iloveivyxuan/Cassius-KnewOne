@@ -34,7 +34,7 @@ hgroup
           = text_field_tag 'things[][subtitle]', t.subtitle, style: 'width: 100%'
           br
           | 价格单位
-          = select_tag 'things[][price_unit]', options_for_select(["¥", "$", "€", "£"], "¥")
+          = select_tag 'things[][price_unit]', options_for_select(["¥", "$", "€", "£", "JPY¥"], "¥")
           br
           | 价格
           = text_field_tag 'things[][price]', t.price, style: 'width: 100%'
