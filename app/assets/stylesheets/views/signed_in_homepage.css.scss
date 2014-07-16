@@ -10,6 +10,7 @@ html.signed_in_homepage {
     @include breakpoint(lg) {
       float: left;
       width: percentage(2 / 3);
+      padding-right: 20px;
     }
 
     @include clearfix;
@@ -17,8 +18,6 @@ html.signed_in_homepage {
     margin-top: -20px;
 
     > .feed {
-      padding-right: 20px;
-
       @include breakpoint(md) {
         padding-left: 14em;
       }
