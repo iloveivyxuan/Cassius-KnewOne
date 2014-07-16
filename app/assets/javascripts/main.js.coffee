@@ -441,7 +441,9 @@ do (exports = Making) ->
     # Touch Devices
     # @FIXME #624
     if $html.hasClass('touch')
-      $document.on 'touchstart', (event) -> console.log 'What happened?'
+      $document.on 'touchstart', (event) ->
+        console.log 'What happened?'
+        return
 
     # Screen MD below
     if Modernizr.mq('(max-width: ' + Making.Breakpoints.screenMDMax + ')')
