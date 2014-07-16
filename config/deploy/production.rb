@@ -9,6 +9,7 @@ set :ssh_options, { port: 22222, forward_agent: true }
 namespace :deploy do
   task :restart do
     invoke 'unicorn:reload'
+    invoke 'sidekiq:restart'
   end
 end
 
