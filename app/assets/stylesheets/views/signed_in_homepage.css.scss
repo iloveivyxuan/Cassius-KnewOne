@@ -18,7 +18,7 @@ html.signed_in_homepage {
     margin-top: -20px;
 
     > .feed {
-      @include breakpoint(md) {
+      @include breakpoint(sm) {
         padding-left: 14em;
       }
 
@@ -31,7 +31,7 @@ html.signed_in_homepage {
         .info {
           display: none;
 
-          @include breakpoint(md) {
+          @include breakpoint(sm) {
             display: block;
             visibility: hidden;
 
@@ -55,7 +55,7 @@ html.signed_in_homepage {
           }
         }
 
-        @include breakpoint(md) {
+        @include breakpoint(sm) {
           &:before {
             content: '';
 
@@ -115,7 +115,7 @@ html.signed_in_homepage {
           text-align: right;
         }
 
-        @include breakpoint(md) {
+        @include breakpoint(sm) {
           .feed-user-name {
             width: auto;
             max-width: 45%;
