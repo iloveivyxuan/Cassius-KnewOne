@@ -19,9 +19,9 @@ li.feed-activity
         - if feeling.comments.size > 0
           li.feed-comments
             = link_to "#{present(feeling).path}#comments", target: '_blank'
-              | 评论
               span.comments-count= feeling.comments.size
+              |  评论
         - if feeling.lovers_count > 0
           li.feed-lovers
-              | 赞
               span.lovers-count= feeling.lovers_count
+              |  赞
