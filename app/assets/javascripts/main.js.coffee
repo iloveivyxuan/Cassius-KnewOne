@@ -438,6 +438,11 @@ do (exports = Making) ->
     if $modal.size() != 0
       $modal.modal('toggle')
 
+    # Touch Devices
+    # @FIXME #624
+    if $html.hasClass('touch')
+      $document.on 'touchstart', (event) -> console.log 'What happened?'
+
     # Screen MD below
     if Modernizr.mq('(max-width: ' + Making.Breakpoints.screenMDMax + ')')
       menu = new exports.View.Menu('#menu', 'body', '#menu_toggle')
