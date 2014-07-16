@@ -19,12 +19,57 @@ html.signed_in_homepage {
     > .feed {
       padding-right: 20px;
 
+      @include breakpoint(md) {
+        padding-left: 14em;
+      }
+
       article.thing,
       article.review {
         margin-top: 20px;
 
+        position: relative;
+
         .info {
           display: none;
+
+          @include breakpoint(md) {
+            display: block;
+            visibility: hidden;
+
+            .creator {
+              visibility: visible;
+
+              position: absolute;
+              top: 0;
+              right: 100%;
+
+              width: 14em;
+              text-align: center;
+
+              .author_avatar {
+                display: block;
+                img {
+                  width: 60px;
+                }
+              }
+            }
+          }
+        }
+
+        @include breakpoint(md) {
+          &:before {
+            content: '';
+
+            position: absolute;
+            top: 20px;
+            right: 100%;
+
+            height: 0;
+            width: 0;
+            border: 10px solid transparent;
+            border-left-width: 0;
+            border-right-color: white;
+          }
         }
       }
 
