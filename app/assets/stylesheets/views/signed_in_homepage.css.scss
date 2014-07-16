@@ -33,7 +33,11 @@ html.signed_in_homepage {
 
           @include breakpoint(sm) {
             display: block;
+
             visibility: hidden;
+            overflow: hidden;
+            height: 0;
+            padding: 0;
 
             .creator {
               visibility: visible;
