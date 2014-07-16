@@ -248,6 +248,8 @@
         $img.load(function () {
           $img.parent().mouseleave().mouseenter();
         });
+
+        $.fn.mediumInsert.insert.$el.trigger('input');
       } else {
         $progress.before('<div class="mediumInsert-error">There was a problem uploading the file.</div>');
 
