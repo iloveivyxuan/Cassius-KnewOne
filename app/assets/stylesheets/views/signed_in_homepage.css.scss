@@ -29,19 +29,12 @@ html.signed_in_homepage {
         position: relative;
 
         .info {
-          display: none;
+          overflow: hidden;
+          height: 0;
+          padding: 0;
 
           @include breakpoint(sm) {
-            display: block;
-
-            visibility: hidden;
-            overflow: hidden;
-            height: 0;
-            padding: 0;
-
             .creator {
-              visibility: visible;
-
               position: absolute;
               top: 0;
               right: 100%;
