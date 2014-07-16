@@ -222,7 +222,7 @@ Devise.setup do |config|
     kexue_opts.merge! client_options:
                           {
                               proxy: Settings.kexue.proxy,
-                              ssl: {ca_file: Settings.kexue.cert_file, verify: OpenSSL::SSL::VERIFY_NONE}
+                              ssl: {ca_file: Settings.kexue.cert_file, verify_ssl: false}
                           }
   end
   config.omniauth :twitter, Settings.twitter.consumer_key, Settings.twitter.consumer_secret, kexue_opts
