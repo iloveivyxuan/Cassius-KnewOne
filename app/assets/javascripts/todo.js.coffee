@@ -116,7 +116,7 @@ do (exports = Making) ->
           collection: collection
           el: el
 
-    InfiniteScroll: (container, item) ->
+    InfiniteScroll: (container, callback) ->
       $('.pagination').hide()
       $(container).infinitescroll
         navSelector: '.pagination'
@@ -132,6 +132,7 @@ do (exports = Making) ->
           $('.loading-things').remove()
           $(data).find(".lazy").css("visibility", "visible").lazyload
             threshold: 400
+          callback() if callback?
 
     CalculatePrice: ($el) ->
       price = parseFloat($el.children('.price').attr('data-price'))
