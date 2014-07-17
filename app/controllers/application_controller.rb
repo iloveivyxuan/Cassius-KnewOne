@@ -61,6 +61,12 @@ class ApplicationController < ActionController::Base
 
   helper_method :redirect_stored_or, :redirect_back_or
 
+  # get mentioned users
+  # eg. "@Liam hello world cc @Syn" will get @Liam and @Syn
+  def mentioned_users(content)
+    User.in(name: content.scan(/@(\S+)/).flatten).to_a
+  end
+
   protected
 
   def require_signed_in
