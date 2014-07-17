@@ -3,6 +3,37 @@ window.Making = do (exports = window.Making || {}) ->
   exports.InitHome = ->
     Making.InfiniteScroll("#wrapper")
 
+    $(document)
+    .on('submit', '.feed-feeling .comment-form', (event) ->
+      $form = $(this)
+
+      event.preventDefault()
+
+      $.post($(this).attr('action'), $(this).serialize())
+      .done(->
+        Making.ShowMessageOnTop('评论成功！')
+
+        $form
+        .trigger('reset')
+        .siblings('.feed-counts')
+        .find('.feed-comments')
+          .trigger('click')
+          .find('.comments-count')
+            .text(-> (parseInt($(this).text()) || 0) + 1)
+      )
+      .fail(->
+        Making.ShowMessageOnTop('发送失败，请重试', 'warning')
+      )
+    )
+    .on('click', '.feed-feeling .feed-comments', (event) ->
+      event.preventDefault()
+
+      $(this)
+      .toggleClass('active')
+      .closest('.feed-feeling').find('.comment-form')
+      .slideToggle()
+    )
+
   exports.InitHomeGuest = ->
     $ ->
       $('.entry_email_toggle').addClass(if $('.entry_email').is(':visible') then 'active')

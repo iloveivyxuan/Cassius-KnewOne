@@ -13,12 +13,15 @@ li.feed-activity
       p= feeling.content
 
       ul.feed-counts
-        - if feeling.comments.size > 0
-          li.feed-comments
-            = link_to "#{present(feeling).path}#comments", target: '_blank'
-              span.comments-count= feeling.comments.size
-              |  评论
-        - if feeling.lovers_count > 0
-          li.feed-lovers
-              span.lovers-count= feeling.lovers_count
-              |  赞
+        li.feed-comments
+          span.comments-count= feeling.comments.size
+          |  评论
+        li.feed-lovers
+          span.lovers-count= feeling.lovers_count
+          |  赞
+
+      = form_tag post_comments_path(feeling), class: 'comment-form'
+        = text_area_tag 'comment[content]', nil, class: 'form-control', required: true, rows: 5, maxlength: 300, placeholder: '请输入文字'
+        button.btn.btn-success type='submit'
+          i.fa.fa-comments-o
+          | 发布

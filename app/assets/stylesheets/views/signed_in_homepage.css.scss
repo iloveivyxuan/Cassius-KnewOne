@@ -166,10 +166,30 @@ html.signed_in_homepage {
               @include border-radius(3px);
               padding: 0.5em 1em;
               background-color: $gray-lighter;
+
+              cursor: pointer;
+
+              &.active {
+                background-color: darken($gray-lighter, 10%);
+              }
             }
 
             span {
               margin-left: 0.2em;
+            }
+          }
+
+          .comment-form {
+            display: none;
+
+            @include clearfix;
+
+            textarea {
+              margin: 1em 0;
+            }
+
+            .btn {
+              float: right;
             }
           }
         }
