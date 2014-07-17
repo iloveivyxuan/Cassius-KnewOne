@@ -14,7 +14,17 @@ class HomeFeed
         if feed_from_thing[thing]
           feed_from_thing[thing].add_activity a
         else
-          feed = HomeFeed.new(thing, [a])
+          feed = HomeFeed.new(thing)
+
+          if a.type != :new_thing
+            feed.add_activity(Activity.new(type: :new_thing,
+                                           user_id: thing.author_id,
+                                           reference_union: "Thing_#{thing.id}",
+                                           created_at: thing.created_at))
+          end
+
+          feed.add_activity(a)
+
           feed_from_thing[thing] = feed
           feeds << feed
         end
