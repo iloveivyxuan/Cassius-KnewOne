@@ -269,11 +269,7 @@ Making::Application.routes.draw do
 
     resources :entries, except: [:show]
 
-    resources :users, only: [:index, :update, :show] do
-      collection do
-        get "analysis"
-      end
-    end
+    resources :users, only: [:index, :update, :show]
 
     resources :reviews, only: [:index]
 
