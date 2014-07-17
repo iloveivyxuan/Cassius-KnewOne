@@ -10,10 +10,7 @@ li.feed-activity
   - if activity.type == :new_feeling
     - feeling = activity.reference
     .feed-feeling
-      p
-        i.fa.fa-quote-left
-        = feeling.content
-        i.fa.fa-quote-right
+      p= feeling.content
 
       ul.feed-counts
         - if feeling.comments.size > 0
