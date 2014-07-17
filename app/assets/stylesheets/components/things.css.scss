@@ -175,11 +175,6 @@ article.thing {
     h4 a {color: $black;}
     p a {color : $gray;}
 
-    .title,
-    .subtitle {
-      @include text-overflow;
-    }
-
     h4, p {
       margin: 0;
       font-size: $font-size-base;
@@ -250,11 +245,11 @@ article.thing {
       .fancy_button a {
         display: block;
         position: absolute;
-        bottom: 1em;
+        bottom: -3.5em;
         right: 1em;
         padding: .5em 1em;
-        .fanciers_count {color: white;}
-        background-color: rgba(0, 0, 0, 0.5);
+        .fanciers_count {color: $gray-light;}
+        background-color: #eee;
         color: $gray;
         @include border-radius(3px);
       }
