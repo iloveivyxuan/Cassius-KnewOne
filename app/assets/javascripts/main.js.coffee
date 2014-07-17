@@ -449,8 +449,10 @@ do (exports = Making) ->
     if Modernizr.mq('(max-width: ' + Making.Breakpoints.screenMDMax + ')')
       menu = new exports.View.Menu('#menu', 'body', '#menu_toggle')
 
-    if Modernizr.mq('(max-width: ' + Making.Breakpoints.screenSMMax + ')')
-      ($postcontent = $(".post_content, .article > .body")).length && $postcontent.parents('.editor').length is 0 && $postcontent.fitVids()
+    # Post content video wrapper
+    $(".post_content, .article > .body")
+      .find("iframe, embed").addClass("embed-responsive-item")
+      .wrap( "<div class='embed-responsive embed-responsive-16by9'></div>" )
 
     # Screen MD
     if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')')
