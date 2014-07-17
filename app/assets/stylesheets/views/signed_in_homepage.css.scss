@@ -65,10 +65,19 @@ html.signed_in_homepage {
 
       article.thing,
       article.review {
+        position: relative;
         margin-top: 20px;
 
+        h4 {
+          line-height: 40px;
+        }
+
         .info {
-          display: none;
+          position: absolute;
+          right: 0;
+          bottom: 0;
+
+          .creator { display: none; }
         }
       }
 
