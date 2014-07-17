@@ -347,6 +347,8 @@ form.edit_post {
 
   > .body,
   > .content {
+    @include clearfix;
+
     color: $text-color;
     font-size: 16px;
     line-height: 1.8;
