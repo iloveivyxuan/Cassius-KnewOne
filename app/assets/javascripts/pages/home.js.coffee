@@ -1,7 +1,7 @@
 window.Making = do (exports = window.Making || {}) ->
 
   exports.InitHome = ->
-    Making.InfiniteScroll("#wrapper");
+    Making.InfiniteScroll("#wrapper")
 
   exports.InitHomeGuest = ->
     $ ->
