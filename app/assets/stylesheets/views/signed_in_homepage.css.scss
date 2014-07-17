@@ -18,54 +18,57 @@ html.signed_in_homepage {
     margin-top: -20px;
 
     > .feed {
+      .feed-latest-user {
+        display: none;
+
+        width: 14em;
+        text-align: center;
+
+        .author_avatar {
+          display: block;
+          img {
+            @extend .img-circle;
+            width: 60px;
+          }
+        }
+
+        .author_name {
+          color: $black;
+        }
+      }
+
       @include breakpoint(sm) {
-        padding-left: 10em;
+        position: relative;
+        margin-left: 10em;
+
+        .feed-latest-user {
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 100%;
+        }
+
+        &:before {
+          content: '';
+
+          position: absolute;
+          top: 20px;
+          right: 100%;
+
+          height: 0;
+          width: 0;
+          border: 10px solid transparent;
+          border-left-width: 0;
+          border-right-color: white;
+        }
       }
 
       article.thing,
       article.review {
         margin-top: 20px;
 
-        position: relative;
-
         .info {
-          overflow: hidden;
-          height: 0;
-          padding: 0;
-
-          @include breakpoint(sm) {
-            .creator {
-              position: absolute;
-              top: 0;
-              right: 100%;
-
-              width: 14em;
-              text-align: center;
-
-              .author_avatar {
-                display: block;
-                img {
-                  width: 60px;
-                }
-              }
-            }
-          }
-        }
-
-        @include breakpoint(sm) {
-          &:before {
-            content: '';
-
-            position: absolute;
-            top: 20px;
-            right: 100%;
-
-            height: 0;
-            width: 0;
-            border: 10px solid transparent;
-            border-left-width: 0;
-            border-right-color: white;
-          }
+          display: none;
         }
       }
 
