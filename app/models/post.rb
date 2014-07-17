@@ -76,7 +76,7 @@ class Post
 
   def content_photos(version = :small)
     self.content.scan(/<img src=\"(http:\/\/#{Settings.image_host}\/.+?)\"/).flatten.map do |src|
-      src.sub(/!.*$/, "!#{version}")
+      src.sub(/!.*$/, "") + "!#{version}"
     end
   end
 

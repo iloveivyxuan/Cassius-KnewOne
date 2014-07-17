@@ -30,7 +30,8 @@ class PostPresenter < ApplicationPresenter
   end
 
   def content
-    sanitize(@object.content)
+    c = @object.content.gsub /"(http:\/\/#{Settings.image_host}\/.+?)(!.+?)?"/, '"\1!review"'
+    sanitize c
   end
 
   def summary(length = 512)
