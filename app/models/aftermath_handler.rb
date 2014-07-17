@@ -11,6 +11,9 @@ class AftermathHandler
       user.inc fancies_count: 1
 
       user.category_references<< thing.categories
+
+      # notify thing's author
+      thing.author.notify :fancy_thing, context: thing, sender: user, opened: false
     end
 
     def thing_unfancy(thing, user)
