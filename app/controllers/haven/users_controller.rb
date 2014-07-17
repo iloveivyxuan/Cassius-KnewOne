@@ -85,7 +85,7 @@ module Haven
       respond_to do |format|
         format.html
         format.csv do
-          lines = [%w(用户名 用户ID 分享产品 发表评测 成交订单 战斗力 邮箱 微博 Twitter 博客 网站 注册时间 最后分享产品 最后发表评测 最后发表短评 备注)]
+          lines = [%w(用户名 用户ID 分享产品 发表评测 成交订单 战斗力 邮箱 微博 Twitter 博客 网站 注册时间 备注)]
 
           @users.each do |u|
             sites = u.auths.collect(&:urls).compact.reduce(&:merge) || {}
@@ -104,9 +104,6 @@ module Haven
                 sites['Blog'],
                 sites['Website'],
                 u.created_at ? u.created_at : '',
-                u.last_thing_created_at ? u.last_thing_created_at : '',
-                u.last_review_created_at ? u.last_review_created_at : '',
-                u.last_feeling_created_at ? u.last_feeling_created_at : '',
                 u.admin_note
             ]
             lines<< cols
@@ -233,22 +230,6 @@ module Haven
       user.update(user_params)
 
       redirect_back_or haven_user_path(user)
-    end
-
-    def encourage_thing_author
-      @user = User.find(params[:id])
-
-      ThingMailer.encourage_thing_author(@user).deliver
-
-      redirect_back_or haven_users_path
-    end
-
-    def encourage_review_author
-      @user = User.find(params[:id])
-
-      ThingMailer.encourage_review_author(@user).deliver
-
-      redirect_back_or haven_users_path
     end
 
     private

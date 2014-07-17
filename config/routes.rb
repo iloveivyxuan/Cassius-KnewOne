@@ -253,7 +253,6 @@ Making::Application.routes.draw do
     resources :things, only: [:index, :update, :edit] do
       member do
         get 'send_stock_notification'
-        post 'encourage_owners'
       end
 
       collection do
@@ -271,11 +270,6 @@ Making::Application.routes.draw do
     resources :entries, except: [:show]
 
     resources :users, only: [:index, :update, :show] do
-      member do
-        post 'encourage_thing_author'
-        post 'encourage_review_author'
-      end
-
       collection do
         get "analysis"
       end
