@@ -8,7 +8,7 @@ gem 'rails-i18n'
 # database
 gem 'mongoid', '>= 4.0.0.alpha1'
 gem 'mongoid_slug'
-gem 'mongoid-paranoia', github: 'simi/mongoid-paranoia'
+gem 'mongoid_paranoia'
 
 # files
 gem 'carrierwave'

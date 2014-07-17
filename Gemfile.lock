@@ -73,13 +73,6 @@ GIT
       launchy (~> 2.2)
 
 GIT
-  remote: git://github.com/simi/mongoid-paranoia.git
-  revision: 47fc64675ad5ce0ac36ecdd4f89f061054817015
-  specs:
-    mongoid-paranoia (0.1.2)
-      mongoid (> 3)
-
-GIT
   remote: git://github.com/sunbo/omniauth-qq-oauth2.git
   revision: 785b391e14b16e2c69aec79f6db922ddc2ad4f6e
   specs:
@@ -314,6 +307,8 @@ GEM
       mongoid (>= 3.0.1)
       rake
       rspec (>= 2.14)
+    mongoid_paranoia (0.1.2)
+      mongoid (> 3)
     mongoid_slug (3.2.1)
       mongoid (> 3.0)
       stringex (~> 2.0)
@@ -587,8 +582,8 @@ DEPENDENCIES
   modernizr-rails
   mongoid (>= 4.0.0.alpha1)
   mongoid-grid_fs!
-  mongoid-paranoia!
   mongoid-rspec
+  mongoid_paranoia
   mongoid_slug
   nested_form
   newrelic_rpm
