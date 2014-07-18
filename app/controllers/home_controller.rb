@@ -12,6 +12,9 @@ class HomeController < ApplicationController
         .page(params[:page]).per(100)
 
       @feeds = HomeFeed.create_from_activities @activities
+
+      return redirect_to hits_url if @feeds.empty?
+
       render layout: 'home'
     else
       respond_to do |format|
