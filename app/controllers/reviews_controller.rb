@@ -44,10 +44,10 @@ class ReviewsController < ApplicationController
       # add photos for feeling
       Nokogiri::HTML(@review.content).xpath("//img").each do |i|
         p = Photo.new
-        p.remote_image_url = i.attributes["src"].value
+        p.remote_image_url = i.attributes["src"].value.split("!").first
         p.user = current_user
         p.save
-        @feeling.photo_ids << p.id
+        @feeling.photo_ids << p.id if p.persisted?
       end
       if @feeling.save
         flash[:provider_sync] = params[:provider_sync]
