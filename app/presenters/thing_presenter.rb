@@ -75,7 +75,7 @@ class ThingPresenter < PostPresenter
     data: {
       action: "buy",
       category: "domestic",
-      label: title
+      label: "buy+domestic+#{title}"
     }
   end
 
@@ -86,7 +86,7 @@ class ThingPresenter < PostPresenter
     data: {
       action: "buy",
       category: "kick",
-      label: title
+      label: "buy+kick+#{title}"
     }
   end
 
@@ -97,7 +97,7 @@ class ThingPresenter < PostPresenter
     data: {
       action: "buy",
       category: "abroad",
-      label: title
+      label: "buy+abroad+#{title}"
     }
   end
 
