@@ -156,26 +156,17 @@ html.signed_in_homepage {
           }
 
           .feed-counts {
-            &,
-            a { color: $gray; }
+            color: $gray;
 
-            li {
-              display: inline-block;
+            button {
               margin: 10px 1em 0 0;
 
-              @include border-radius(3px);
-              padding: 0.5em 1em;
-              background-color: $gray-lighter;
+              background: $gray-lighter;
+              &.active { background: darken($gray-lighter, 10%); }
 
-              cursor: pointer;
-
-              &.active {
-                background-color: darken($gray-lighter, 10%);
+              span {
+                margin-left: 0.2em;
               }
-            }
-
-            span {
-              margin-left: 0.2em;
             }
           }
 

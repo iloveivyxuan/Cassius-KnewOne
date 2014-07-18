@@ -12,11 +12,11 @@ li.feed-activity
     .feed-feeling
       p= feeling.content
 
-      ul.feed-counts
-        li.feed-comments
+      .feed-counts
+        button.btn.btn-sm.feed-comments
           span.comments-count= feeling.comments.size
           |  评论
-        li.feed-lovers
+        button.btn.btn-sm.feed-lovers
           span.lovers-count= feeling.lovers_count
           |  赞
 
