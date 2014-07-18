@@ -3,10 +3,10 @@
 
   .feed-counts
     button.btn.btn-sm.feed-comments
-      span.comments-count= feeling.comments.size
+      span.comments-count= feeling.has_comments? ? feeling.comments.size : ''
       |  评论
     button.btn.btn-sm.feed-lovers
-      span.lovers-count= feeling.lovers_count
+      span.lovers-count= feeling.has_lovers? ? feeling.lovers_count : ''
       |  赞
 
   = form_tag post_comments_path(feeling), class: 'comment-form'
