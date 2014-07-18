@@ -5,7 +5,7 @@
     button.btn.btn-sm.feed-comments
       span.comments-count= feeling.has_comments? ? feeling.comments.size : ''
       |  评论
-    button.btn.btn-sm.feed-lovers
+    button.btn.btn-sm.feed-lovers class=(feeling.voted?(current_user) ? 'active' : '') data-url=thing_feeling_path(feeling.thing, feeling)
       span.lovers-count= feeling.has_lovers? ? feeling.lovers_count : ''
       |  赞
 

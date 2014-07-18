@@ -33,6 +33,26 @@ window.Making = do (exports = window.Making || {}) ->
       .closest('.feed-feeling').find('.comment-form')
       .slideToggle()
     )
+    .on('click', '.feed-feeling .feed-lovers', (event) ->
+      $this = $(this)
+
+      event.preventDefault()
+
+      if $this.hasClass('active')
+        action = 'unvote'
+        increment = -1
+      else
+        action = 'vote'
+        increment = 1
+
+      $.post("#{$(this).data('url')}/#{action}")
+      .done(->
+        $this
+        .toggleClass('active')
+        .find('.lovers-count')
+          .text(-> (parseInt($(this).text()) || 0) + increment)
+      )
+    )
 
   exports.InitHomeGuest = ->
     $ ->
