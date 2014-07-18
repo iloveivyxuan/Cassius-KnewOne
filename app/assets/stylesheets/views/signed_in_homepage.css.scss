@@ -123,7 +123,7 @@ html.signed_in_homepage {
       }
 
       .feed-activity {
-        ul {
+        > ul {
           @include clearfix;
           li {
             float: left;
