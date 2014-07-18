@@ -6,9 +6,14 @@ set :rails_env, 'production'
 
 set :ssh_options, { port: 22222, forward_agent: true }
 
+set :unicorn_config_path, File.join(current_path, "config", "unicorn", "#{fetch(:rails_env)}.rb")
+
 namespace :deploy do
+  before :updating, :test
+
   task :restart do
     invoke 'unicorn:reload'
+    invoke 'sidekiq:restart'
   end
 end
 

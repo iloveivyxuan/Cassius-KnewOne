@@ -58,8 +58,10 @@ module Haven
 
       # order
       @things = case params[:order_by]
-                when "priority"
+                when "priority_asc"
                   Thing.order_by([:priority, :asc])
+                when "priority_desc"
+                  Thing.order_by([:priority, :desc])
                 else
                   @things
                 end
@@ -73,12 +75,6 @@ module Haven
       end
 
       redirect_back_or batch_edit_haven_things_path
-    end
-
-    def encourage_owners
-      ThingEncourageOwnersWorker.perform_async(params[:id])
-
-      redirect_back_or haven_things_path
     end
 
     private

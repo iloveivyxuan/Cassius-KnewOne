@@ -19,41 +19,41 @@ module NotificationsHelper
   def notification_post(post, target = '_blank')
     content = ""
     case post.class
-      when Article then
-        if entry = post.entry
-          content += "文章 "
-          content += link_to post.title, entry_path(entry), target: target
-        else
-          content += ' 失效的资源'
-        end
-      when Special then
-        if entry = post.entry
-          content += "专题 "
-          content += link_to post.title, entry_path(entry), target: target
-        else
-          content += ' 失效的资源'
-        end
-      when Thing then
-        content += "产品 "
-        content += link_to post.title, thing_path(post), target: target
-      when Review then
-        if post.thing
-          content += "评测 "
-          content += link_to post.title, thing_review_path(post.thing, post), target: target
-        else
-          content += ' 失效的资源'
-        end
-      when Feeling then
-        if post.thing
-          content += link_to ' 短评', thing_feeling_path(post.thing, post), target: target
-        else
-          content += ' 失效的资源'
-        end
-      when Topic then
-        content += "帖子 "
-        content += link_to post.title, group_topic_path(post.group, post), target: target
+    when Article then
+      if entry = post.entry
+        content += "文章 "
+        content += link_to post.title, entry_path(entry), target: target
       else
         content += ' 失效的资源'
+      end
+    when Special then
+      if entry = post.entry
+        content += "专题 "
+        content += link_to post.title, entry_path(entry), target: target
+      else
+        content += ' 失效的资源'
+      end
+    when Thing then
+      content += "产品 "
+      content += link_to post.title, thing_path(post), target: target
+    when Review then
+      if post.thing
+        content += "评测 "
+        content += link_to post.title, thing_review_path(post.thing, post), target: target
+      else
+        content += ' 失效的资源'
+      end
+    when Feeling then
+      if post.thing
+        content += link_to ' 短评', thing_feeling_path(post.thing, post), target: target
+      else
+        content += ' 失效的资源'
+      end
+    when Topic then
+      content += "帖子 "
+      content += link_to post.title, group_topic_path(post.group, post), target: target
+    else
+      content += ' 失效的资源'
     end
 
     raw content

@@ -160,6 +160,7 @@ class ThingsController < ApplicationController
     @result = PageExtractor.extract(params[:url])
 
     if @result
+      @result[:title] ||= "请在这里输入产品名称"
       @thing = Thing.new official_site: @result[:url],
                          title: @result[:title],
                          content: @result[:content]

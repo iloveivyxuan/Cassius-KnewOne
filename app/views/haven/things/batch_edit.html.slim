@@ -13,7 +13,8 @@ hgroup
     = link_to "自销", batch_edit_haven_things_path(filter: 'dsell'), class: 'btn btn-default'
     = link_to "国内导购", batch_edit_haven_things_path(filter: 'heat'), class: 'btn btn-default'
     = link_to "国内导购", batch_edit_haven_things_path(filter: 'heat'), class: 'btn btn-default'
-    = link_to "按优先度倒序排列", batch_edit_haven_things_path(order_by: 'priority'), class: 'btn btn-default'
+    = link_to "优先度倒序", batch_edit_haven_things_path(order_by: 'priority_asc'), class: 'btn btn-default'
+    = link_to "优先度正序", batch_edit_haven_things_path(order_by: 'priority_desc'), class: 'btn btn-default'
 
 = form_tag batch_update_haven_things_path(redirect_from: request.fullpath), method: :patch do
   table.table.table-striped.table-hover.table-bordered
@@ -33,7 +34,7 @@ hgroup
           = text_field_tag 'things[][subtitle]', t.subtitle, style: 'width: 100%'
           br
           | 价格单位
-          = select_tag 'things[][price_unit]', options_for_select(["¥", "$", "€", "£"], "¥")
+          = select_tag 'things[][price_unit]', options_for_select(["¥", "$", "€", "£", "JPY¥"], "¥")
           br
           | 价格
           = text_field_tag 'things[][price]', t.price, style: 'width: 100%'

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe User do
+describe User, :type => :model do
   let(:user) { create(:user) }
 
   describe 'Cart' do
@@ -29,7 +29,7 @@ describe User do
 
     it 'has no balance when created' do
       expect(user.balance).to eq 0
-      expect(user.has_balance?).to be_false
+      expect(user.has_balance?).to be false
     end
 
     describe '#recharge_balance!' do
@@ -71,7 +71,7 @@ describe User do
           user.revoke_refund_to_balance!(order, user.balance + 0.01, note)
         end
 
-        it { should be_false }
+        it { is_expected.to be false }
       end
 
       context 'when balance enough' do
@@ -100,7 +100,7 @@ describe User do
           user.expense_balance!(user.balance + 0.01, note)
         end
 
-        it { should be_false }
+        it { is_expected.to be false }
       end
 
       context 'when balance enough' do

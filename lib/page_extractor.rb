@@ -8,7 +8,7 @@ module PageExtractor
              name: 'Amazon',
              url_pattern: /(amazon|z)\.(com|cn)/,
              selectors: {
-               title: '#btAsinTitle > span, #productTitle, #mocaBBProductTitle',
+               title: '#btAsinTitle > span, #btAsinTitle, #productTitle, #mocaBBProductTitle',
                description: '#productDescription, #postBodyPS',
                images:
                proc do |_, html|

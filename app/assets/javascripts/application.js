@@ -16,7 +16,6 @@
 //= require jquery.infinitescroll
 //= require jquery.hotkeys
 //= require jquery.cookie
-//= require jquery.fitvids
 //= require jquery.qrcode
 //= require jquery.deserialize
 //= require bootstrap-tagsinput

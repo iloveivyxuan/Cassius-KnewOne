@@ -30,7 +30,8 @@ class PostPresenter < ApplicationPresenter
   end
 
   def content
-    sanitize(@object.content)
+    c = @object.content.gsub /"(http:\/\/#{Settings.image_host}\/.+?)(!.+?)?"/, '"\1!review"'
+    sanitize c
   end
 
   def summary(length = 512)
@@ -109,7 +110,7 @@ class PostPresenter < ApplicationPresenter
       preview_pic: share_pic(:small),
       category: "share_internal_ready",
       action: "share_internal_ready_#{post.class.to_s.downcase}",
-      label: path
+      label: "share_internal_ready_#{post.class.to_s.downcase}+#{path}"
     }
   end
 end

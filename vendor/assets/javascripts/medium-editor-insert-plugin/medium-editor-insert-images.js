@@ -242,12 +242,14 @@
 
       if (jqxhr.responseJSON) {
         $placeholder.closest('.mediumInsert').removeClass('empty');
-        $progress.before('<figure class="mediumInsert-images"><img src="' + this.options.domain + jqxhr.responseJSON.url + '" draggable="true" alt=""></figure>');
+        $progress.before('<figure class="mediumInsert-images"><img src="' + this.options.domain + jqxhr.responseJSON.url + '!review' + '" draggable="true" alt=""></figure>');
         $img = $progress.siblings('img');
 
         $img.load(function () {
           $img.parent().mouseleave().mouseenter();
         });
+
+        $.fn.mediumInsert.insert.$el.trigger('input');
       } else {
         $progress.before('<div class="mediumInsert-error">There was a problem uploading the file.</div>');
 

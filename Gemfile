@@ -1,8 +1,4 @@
-if ENV['USE_TAOBAO_GEM_SOURCE']
-  source 'https://ruby.taobao.org'
-else
-  source 'https://rubygems.org'
-end
+source 'https://ruby.taobao.org'
 ruby '2.1.2'
 
 # rails and friends
@@ -12,7 +8,7 @@ gem 'rails-i18n'
 # database
 gem 'mongoid', '>= 4.0.0.alpha1'
 gem 'mongoid_slug'
-gem 'mongoid-paranoia', github: 'simi/mongoid-paranoia'
+gem 'mongoid_paranoia'
 
 # files
 gem 'carrierwave'
@@ -32,7 +28,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-wechat', github: 'jasl/omniauth-wechat'
 gem 'omniauth-qq-oauth2', github: 'sunbo/omniauth-qq-oauth2'
 gem 'omniauth-douban-oauth2'
-gem 'weibo_2', github: 'simsicon/weibo_2'
+gem 'weibo_2', github: 'jasl/weibo_2'
 gem 'twitter', '>= 5.8.0'
 gem 'cancancan', '~> 1.7.0'
 

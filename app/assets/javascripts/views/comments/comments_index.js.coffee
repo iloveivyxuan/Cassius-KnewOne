@@ -29,6 +29,8 @@ class Making.Views.CommentsIndex extends Backbone.View
       auth: @$el.data('auth'),
       more: @$el.data('count') > @$el.data('per')
 
+    @$submit = @$('[type="submit"]')
+
     @disableForm() unless @$el.data("signin") and @$el.data("auth")
     this
 
@@ -38,6 +40,7 @@ class Making.Views.CommentsIndex extends Backbone.View
 
   create: (e) ->
     e.preventDefault()
+    @$submit.disable()
     @collection.create
       content: @$('textarea').val()
     ,
@@ -48,6 +51,7 @@ class Making.Views.CommentsIndex extends Backbone.View
         initial = parseInt($comments_count.text())
         result = if isNaN(initial) then 1 else initial + 1
         $comments_count.text(result)
+        @$submit.enable()
 
   append: (comment) =>
     view = new Making.Views.Comment(model: comment)

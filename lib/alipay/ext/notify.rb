@@ -1,5 +1,5 @@
 module Alipay
-  class Notify
+  module Notify
     def self.verify?(params)
       params = Utils.stringify_keys(params)
 

@@ -44,7 +44,7 @@ FactoryGirl.define do
     thing
     title { '限量版' }
     stage :stock
-    stock { rand(0..100) }
+    stock { rand(1..100) }
     sold  { rand(0..100) }
     price { Faker::Commerce.price }
   end

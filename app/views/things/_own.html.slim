@@ -1,6 +1,6 @@
 - link_path = user_signed_in? ? own_thing_path(tp.thing) : "#"
 - data = user_signed_in? ? {} : {toggle: "modal", target: "#login-modal"}
-- data.merge!({category: "own", action: "own_thing", label: tp.path})
+- data.merge!({category: "own", action: "own_thing", label: "own_thing+#{tp.path}"})
 - title = tp.owned? ? "取消拥有此产品" : "拥有此产品"
 - own_class = tp.owned? ? "owned" : "unowned"
 

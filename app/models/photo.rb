@@ -18,10 +18,8 @@ class Photo
 
   class << self
     def find_with_order(ids)
-      photos = Photo.find ids.uniq
-      ids.map do |id|
-        photos.find { |p| p.id.to_s == id.to_s }
-      end.compact
+      photos = Photo.where(:id.in => ids.uniq)
+      photos.sort_by {|t| ids.index(t.id.to_s)}
     end
   end
 

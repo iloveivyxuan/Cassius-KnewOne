@@ -15,10 +15,7 @@ ul.nav.nav-pills
      'followings' => '关注',
      'followers' => '被关注',
      'created_at' => '注册时间',
-     'role' => '有权限',
-     'last_thing_created_at' => '最后分享产品',
-     'last_review_created_at' => '最后发表评测',
-     'last_feeling_created_at' => '最后发表短评'}.each do |k, v|
+     'role' => '有权限'}.each do |k, v|
     - conds = queries.deep_dup
     - if conds[:filter].include?(k)
       li.active

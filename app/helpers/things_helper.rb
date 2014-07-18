@@ -20,7 +20,7 @@ module ThingsHelper
                             data: {
                                 action: "buy",
                                 category: "kick",
-                                label: thing.title
+                                label: "buy+kick+#{thing.title}"
                             }
         end
       when :domestic
@@ -30,7 +30,7 @@ module ThingsHelper
                             data: {
                                 action: "buy",
                                 category: "domestic",
-                                label: thing.title
+                                label: "buy+domestic+#{thing.title}"
                             }
         end
       when :abroad
@@ -40,7 +40,7 @@ module ThingsHelper
                             data: {
                                 action: "buy",
                                 category: "abroad",
-                                label: thing.title
+                                label: "buy+abroad+#{thing.title}"
                             }
         end
       else

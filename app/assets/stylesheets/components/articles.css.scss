@@ -347,6 +347,8 @@ form.edit_post {
 
   > .body,
   > .content {
+    @include clearfix;
+
     color: $text-color;
     font-size: 16px;
     line-height: 1.8;
@@ -381,6 +383,10 @@ form.edit_post {
       color: #000;
     }
 
+    i {
+      margin: 0;
+    }
+
     img {
       margin:{
         bottom: 1.5em;
@@ -409,6 +415,7 @@ form.edit_post {
     blockquote {
       border-left-color: #ebeced;
       border-left-width: 4px;
+      color: $gray;
       font-style: italic;
       margin: {
         left: 2em;
