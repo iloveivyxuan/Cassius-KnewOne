@@ -7,7 +7,7 @@
         = present(object).lovers_count
     - else
       - klass = object.class.to_s.downcase
-      - data = { category: "like", action: "like_#{klass}", label: request.path }
+      - data = { category: "like", action: "like_#{klass}", label: "like_#{klass}+#{request.path}" }
       = button_tag title: "赞", class: "btn btn-sm track_event", data: data do
         = present(object).lovers_count
 - else
