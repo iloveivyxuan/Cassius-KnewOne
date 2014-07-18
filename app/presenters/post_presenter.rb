@@ -110,7 +110,7 @@ class PostPresenter < ApplicationPresenter
       preview_pic: share_pic(:small),
       category: "share_internal_ready",
       action: "share_internal_ready_#{post.class.to_s.downcase}",
-      label: path
+      label: "share_internal_ready_#{post.class.to_s.downcase}+#{path}"
     }
   end
 end
