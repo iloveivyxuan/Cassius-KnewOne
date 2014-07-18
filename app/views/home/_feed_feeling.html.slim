@@ -2,15 +2,12 @@
   p= feeling.content
 
   .feed-counts
-    button.btn.btn-sm.feed-comments
-      span.comments-count= feeling.has_comments? ? feeling.comments.size : ''
+    button.btn.btn-sm.feed-comments.comments_toggle data-id="feeling_#{feeling.id}_comments"
+      span.comments_count= feeling.has_comments? ? feeling.comments.size : ''
       |  评论
     button.btn.btn-sm.feed-lovers class=(feeling.voted?(current_user) ? 'active' : '') data-url=thing_feeling_path(feeling.thing, feeling)
       span.lovers-count= feeling.has_lovers? ? feeling.lovers_count : ''
       |  赞
 
-  = form_tag post_comments_path(feeling), class: 'comment-form'
-    = text_area_tag 'comment[content]', nil, class: 'form-control', required: true, rows: 5, maxlength: 300, placeholder: '请输入文字'
-    button.btn.btn-success type='submit'
-      i.fa.fa-comments-o
-      | 发布
+  section.comments_wrap
+    = render 'shared/comments', post: feeling, id: "feeling_#{feeling.id}_comments", auth: true

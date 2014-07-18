@@ -243,6 +243,11 @@ html.signed_in_homepage {
         }
       }
     }
+
+    .comments_wrap {
+      display: none;
+      h4 { display: none; }
+    }
   }
 
   .aside-container {
