@@ -1,0 +1,16 @@
+.feed-feeling
+  p= feeling.content
+
+  .feed-counts
+    button.btn.btn-sm.feed-comments
+      span.comments-count= feeling.comments.size
+      |  评论
+    button.btn.btn-sm.feed-lovers
+      span.lovers-count= feeling.lovers_count
+      |  赞
+
+  = form_tag post_comments_path(feeling), class: 'comment-form'
+    = text_area_tag 'comment[content]', nil, class: 'form-control', required: true, rows: 5, maxlength: 300, placeholder: '请输入文字'
+    button.btn.btn-success type='submit'
+      i.fa.fa-comments-o
+      | 发布
