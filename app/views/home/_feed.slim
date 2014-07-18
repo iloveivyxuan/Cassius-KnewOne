@@ -11,6 +11,6 @@ li.feed
     ul.feed-reviews
       h5 产品相关评测动态
       - feed.reviews.each do |review|
-        = render 'hot_review', hot_review: review
+        = render 'feed_review', review: review
         .feed-activities
           = render partial: 'feed_activity', collection: feed.activities_from(review), as: :activity

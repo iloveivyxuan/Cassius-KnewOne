@@ -63,8 +63,7 @@ html.signed_in_homepage {
         }
       }
 
-      article.thing,
-      article.review {
+      article.thing {
         position: relative;
         margin-top: 20px;
 
@@ -78,6 +77,42 @@ html.signed_in_homepage {
           bottom: 0;
 
           .creator { display: none; }
+        }
+      }
+
+      .feed-review {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background: white;
+
+        header {
+          @include clearfix;
+
+          h4 {
+            float: left;
+            width: 70%;
+            @include text-overflow;
+
+            color: $black;
+          }
+
+          .score {
+            float: right;
+            width: 30%;
+            text-align: right;
+          }
+        }
+
+        .feed-review-summary {
+          color: $gray-light;
+        }
+
+
+        .feed-counts {
+          > a {
+            margin-left: 0.5em;
+            color: $gray-light;
+          }
         }
       }
 
