@@ -1,0 +1,7 @@
+- story = activity.reference
+- thing = story.thing
+- if story.thing
+  | 发表了关于产品
+  = link_to thing.title, thing
+  | 的动态
+  = link_to story.title, thing_story_path(story.thing, story)
