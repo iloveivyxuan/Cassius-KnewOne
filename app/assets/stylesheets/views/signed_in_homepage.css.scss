@@ -153,8 +153,19 @@ html.signed_in_homepage {
 
       .feed-activities {
         padding: 20px 0;
-        border-top: 1px solid $gray-lighter;
         background: white;
+
+        position: relative;
+        &:before {
+          content: '';
+
+          position: absolute;
+          top: 0;
+          left: 25px;
+          right: 25px;
+
+          border-top: 1px solid $gray-lighter;
+        }
       }
 
       .feed-activity {
