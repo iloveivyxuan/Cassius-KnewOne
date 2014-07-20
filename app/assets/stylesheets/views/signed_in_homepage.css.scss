@@ -224,20 +224,8 @@ html.signed_in_homepage {
       }
 
       .feed-reviews {
-        h5 {
-          overflow-x: hidden;
-          width: 100%;
-          white-space: nowrap;
-
-          &:after {
-            content: ' ........................................................................................................................................................................................................';
-            letter-spacing: 0.5em;
-            vertical-align: super;
-          }
-
-          & + article.review {
-            margin-top: 0;
-          }
+        h5 + article.review {
+          margin-top: 0;
         }
 
         header.cover {
