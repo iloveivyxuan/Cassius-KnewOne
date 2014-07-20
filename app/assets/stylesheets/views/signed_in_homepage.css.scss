@@ -288,16 +288,6 @@ html.signed_in_homepage {
         width: $container-md / 3;
       }
 
-      &.affix {
-        top: 60px;
-      }
-
-      &.affix-bottom {
-        position: absolute;
-        top: auto !important;
-        bottom: 194px;
-      }
-
       > section {
         margin-bottom: 2rem;
         padding: 1rem;

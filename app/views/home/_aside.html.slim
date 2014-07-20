@@ -1,4 +1,4 @@
-aside role="complemental" data-spy="affix" data-offset-top="60" data-offset-bottom="200"
+aside role="complemental"
   section.entries
     ul
       - Entry.published.where(category: '专题').desc(:created_at).limit(2).each do |entry|
