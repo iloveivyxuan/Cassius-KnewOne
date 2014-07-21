@@ -117,26 +117,18 @@ html.signed_in_homepage {
 
           h4 {
             float: left;
-            width: 70%;
-            @include text-overflow;
-
+            width: 65%;
             margin: 0;
-            line-height: 1;
-
             color: $black;
           }
 
           .score {
             float: right;
-            width: 30%;
+            width: 35%;
             text-align: right;
 
-            margin: 0;
-            line-height: 1;
-
-            .rate {
-              padding: 0;
-            }
+            margin: 3px 0;
+            .rate { padding: 0; }
           }
         }
 
@@ -144,7 +136,6 @@ html.signed_in_homepage {
           margin-top: 16px;
           color: $gray-light;
         }
-
 
         .feed-counts {
           > a {
