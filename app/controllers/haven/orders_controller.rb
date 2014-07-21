@@ -39,7 +39,7 @@ module Haven
           @orders.each do |order|
             cols = [
                 order.order_no,
-                order.created_at.strftime('%Y-%m-%d'),
+                order.created_at.strftime('%Y-%m-%d %H:%M:%S'),
                 ::Order::STATES[order.state],
                 (order.order_items.map { |i| "{{ #{i.name} x #{i.quantity} }} " }.reduce &:+),
                 "￥#{order.total_price}",
