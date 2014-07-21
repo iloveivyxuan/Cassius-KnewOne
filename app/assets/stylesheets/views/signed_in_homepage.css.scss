@@ -199,14 +199,13 @@ html.signed_in_homepage {
           }
         }
 
-        .feed-timestamp {
-          width: 20%;
-          text-align: right;
-        }
-
         .feed-action {
-          width: 35%;
+          width: 55%;
           text-align: right;
+
+          time {
+            margin-right: 0.5em;
+          }
         }
 
         @include breakpoint(sm) {
@@ -215,18 +214,16 @@ html.signed_in_homepage {
             max-width: 45%;
           }
 
-          .feed-timestamp {
-            width: auto;
-            text-align: left;
-            color: $gray-light;
-
-            &:before { content: '（'; }
-            &:after  { content: '）'; }
-          }
-
           .feed-action {
             float: left;
             text-align: left;
+
+            time {
+              margin-right: 0;
+
+              &:before { content: '（'; }
+              &:after  { content: '）'; }
+            }
           }
         }
 
