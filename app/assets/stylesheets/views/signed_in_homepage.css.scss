@@ -146,48 +146,35 @@ html.signed_in_homepage {
       }
 
       .feed-activities {
-        padding: 10px 0;
         background: white;
-
-        position: relative;
-        &:before {
-          content: '';
-
-          position: absolute;
-          top: 0;
-          left: 16px;
-          right: 16px;
-
-          border-top: 1px solid $gray-lighter;
-        }
       }
 
       .feed-activity {
         > ul {
-          @include clearfix;
           li {
-            float: left;
+            display: inline-block;
           }
         }
 
-        position: relative;
-        padding: 12px 16px;
-        padding-left: (16px + 40px);
+        margin: 0 16px;
+        padding-bottom: 20px;
 
-        .feed-user-avatar {
-          position: absolute;
-          top: 9px;
-          left: 16px;
-          width: 26px;
+        &:first-child {
+          padding-top: 20px;
+          border-top: 1px solid $gray-lighter;
+        }
+
+        .feed-user {
+          width: 45%;
+          @include text-overflow;
+
+          vertical-align: middle;
 
           img {
             @extend .img-circle;
+            width: 26px;
+            margin-right: 0.5em;
           }
-        }
-
-        .feed-user-name {
-          @include text-overflow;
-          width: 45%;
 
           a {
             color: $black;
@@ -198,19 +185,19 @@ html.signed_in_homepage {
           width: 55%;
           text-align: right;
 
+          vertical-align: middle;
+
           time {
             margin-right: 0.5em;
           }
         }
 
         @include breakpoint(sm) {
-          .feed-user-name {
+          .feed-user {
             width: auto;
-            max-width: 45%;
           }
 
           .feed-action {
-            float: left;
             text-align: left;
 
             time {
