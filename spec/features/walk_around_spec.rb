@@ -132,7 +132,9 @@ feature 'Walk around (Smoke test)', slow: true do
   end
 
   def visit_all_paths_as(role)
-    unless role == :guest
+    if role == :guest
+      sign_out
+    else
       user.role = role
       user.save!
       sign_in user
@@ -145,23 +147,11 @@ feature 'Walk around (Smoke test)', slow: true do
     end
   end
 
-  scenario 'as guest' do
+  scenario 'Here we go!' do
     visit_all_paths_as :guest
-  end
-
-  scenario 'as normal user' do
     visit_all_paths_as ''
-  end
-
-  scenario 'as editor' do
     visit_all_paths_as :editor
-  end
-
-  scenario 'as sale' do
     visit_all_paths_as :sale
-  end
-
-  scenario 'as admin' do
     visit_all_paths_as :admin
   end
 end
