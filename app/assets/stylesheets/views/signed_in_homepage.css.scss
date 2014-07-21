@@ -71,7 +71,6 @@ html.signed_in_homepage {
 
         .title,
         .subtitle {
-          line-height: 1;
           min-height: initial;
         }
 
@@ -105,7 +104,7 @@ html.signed_in_homepage {
       }
 
       .feed-review {
-        margin-top: 10px;
+        margin-top: 20px;
         padding: 25px;
         background: white;
 
@@ -177,14 +176,14 @@ html.signed_in_homepage {
         }
 
         position: relative;
-        padding: 10px 25px;
+        padding: 12px 25px;
         padding-left: (25px + 40px);
 
         .feed-user-avatar {
           position: absolute;
-          top: 5px;
+          top: 9px;
           left: 25px;
-          width: 32px;
+          width: 26px;
 
           img {
             @extend .img-circle;
@@ -233,7 +232,8 @@ html.signed_in_homepage {
 
         .feed-feeling {
           p {
-            margin: 10px 0 0 0;
+            margin: 1em 0 0 0;
+            font-size: 13px;
             color: $gray-light;
           }
 
@@ -241,7 +241,7 @@ html.signed_in_homepage {
             color: $gray;
 
             button {
-              margin: 10px 1em 0 0;
+              margin: 1em 1em 0 0;
 
               background: $gray-lighter;
               &.active { background: darken($gray-lighter, 10%); }
