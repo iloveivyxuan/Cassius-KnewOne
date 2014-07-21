@@ -33,6 +33,7 @@ table.table.table-striped.table-hover.table-bordered
         = link_to "产品", edit_thing_path(t), class: "btn btn-default"
       td= link_to "发奖", new_lottery_path(thing: t), class: "btn btn-default"
       td= t.fanciers_count
+      td= t.owners.count
       td= t.priority
       td= t.reviews_count
       td= t.heat.round(2)
