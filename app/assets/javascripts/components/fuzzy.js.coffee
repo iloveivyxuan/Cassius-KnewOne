@@ -46,3 +46,19 @@ Making.GroupFuzzy = (source, target, current_user=true) ->
       empty: '<em class="tt-no-suggestion">没有结果</em>'
   .on 'typeahead:selected', (event, suggestion, name) ->
     $(target).val suggestion.data
+
+Making.AtUser = (element) ->
+  $(element).atwho
+    at: "@"
+    callbacks:
+      remote_filter: (query, callback) ->
+        $.getJSON "/users/fuzzy.json",
+          query: query
+        , (data) ->
+          usernames = []
+          data.forEach (e) ->
+            usernames.push name: e.value
+            return
+          callback usernames
+          return
+        return
