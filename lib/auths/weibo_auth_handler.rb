@@ -15,10 +15,16 @@ class WeiboAuthHandler
   end
 
   def share(content, photo_url = nil)
-    if photo_url.present?
-      client.statuses.upload_url_text "status" => preprocess_content(content), "url" => photo_url
-    else
+    begin
+      if photo_url.present?
+        client.statuses.upload_url_text "status" => preprocess_content(content), "url" => photo_url
+      else
+        client.statuses.update preprocess_content(content)
+      end
+    rescue OAuth2::Error => ex
+      # retry again
       client.statuses.update preprocess_content(content)
+      raise ex
     end
   end
 
@@ -29,7 +35,6 @@ class WeiboAuthHandler
       else
         client.friendships.friends_ids(uid: uid, count: count).ids
       end
-
     rescue OAuth2::Error
       []
     end
