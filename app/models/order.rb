@@ -69,7 +69,8 @@ class Order
   PAYMENT_METHOD = {
       :tenpay => '财付通',
       :alipay => '支付宝',
-      :btc => '比特币'
+      :btc => '比特币',
+      :other => '其它'
   }
 
   field :state, type: Symbol, default: :pending
