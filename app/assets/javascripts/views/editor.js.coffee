@@ -153,8 +153,7 @@ do (exports = Making) ->
     activatePlugin: ->
       if !@editor
         @editor = new MediumEditor @$body,
-          buttons: ['anchor', 'bold', 'italic', 'header1', 'header2',
-                      'orderedlist', 'unorderedlist', 'quote']
+          buttons: ['anchor', 'bold', 'italic', 'header1', 'header2', 'quote']
           buttonLabels: 'fontawesome'
           firstHeader: 'h2'
           secondHeader: 'h3'
