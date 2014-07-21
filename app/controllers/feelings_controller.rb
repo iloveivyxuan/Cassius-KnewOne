@@ -27,6 +27,10 @@ class FeelingsController < ApplicationController
     @feeling.content.gsub! /\r\n/, "\n"
 
     if @feeling.save
+      content_users = mentioned_users(@feeling.content)
+      content_users.each do |u|
+        u.notify :feeling, context: @feeling, sender: current_user, opened: false
+      end
       current_user.log_activity :new_feeling, @feeling, source: @feeling.thing
       respond_to do |format|
         format.js

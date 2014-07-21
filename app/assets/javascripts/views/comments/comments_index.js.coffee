@@ -29,6 +29,7 @@ class Making.Views.CommentsIndex extends Backbone.View
       auth: @$el.data('auth'),
       more: @$el.data('count') > @$el.data('per')
 
+    Making.AtUser('.comments textarea')
     @$submit = @$('[type="submit"]')
 
     @disableForm() unless @$el.data("signin") and @$el.data("auth")

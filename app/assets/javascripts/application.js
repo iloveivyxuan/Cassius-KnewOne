@@ -28,6 +28,8 @@
 //= require bootstrap-touch-carousel
 //= require bootstrap-modal-popover
 //= require typeahead.bundle
+//= require jquery.caret
+//= require jquery.atwho
 //= require lightbox
 //= require_tree ../templates
 //= require base
