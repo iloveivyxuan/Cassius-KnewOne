@@ -42,7 +42,6 @@ Making.PopoverProfiles = ->
     $element.popover('show')
 
     $('.popover')
-    .addClass('profile')
     .on('mouseleave', -> $element.popover('hide'))
     .on('click', '.follow_btn', ->
       userId = $element.attr('data-popover-profile')
