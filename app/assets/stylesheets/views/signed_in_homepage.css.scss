@@ -380,7 +380,13 @@ html.signed_in_homepage {
   }
 
   .loading-things {
+    float: none;
+    width: auto;
     margin-top: 1em;
+
+    @include breakpoint(sm) {
+      margin-left: 10em;
+    }
   }
 
   .pagination {
