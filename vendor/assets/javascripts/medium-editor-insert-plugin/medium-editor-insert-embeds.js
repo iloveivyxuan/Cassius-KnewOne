@@ -26,9 +26,9 @@
     insertButton : function (buttonLabels) {
       var label = 'Embed';
       if (buttonLabels == 'fontawesome' || typeof buttonLabels === 'object' && !!(buttonLabels.fontawesome)) {
-        label = '<i class="fa fa-code"></i>';
+        label = '<i class="fa fa-video-camera"></i>';
       }
-      return '<button type="button" data-addon="embeds" data-action="add" class="medium-editor-action medium-editor-action-image mediumInsert-action">' + label + '</button>';
+      return '<button type="button" data-addon="embeds" data-action="add" class="medium-editor-action medium-editor-action-image mediumInsert-action" title="插入视频">' + label + '</button>';
     },
 
     /**

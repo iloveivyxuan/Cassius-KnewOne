@@ -274,7 +274,7 @@
       insertBlock += '</ul>';
       insertBlock = '<div class="mediumInsert empty" contenteditable="false">'+
         '<div class="mediumInsert-buttons">'+
-          '<a class="mediumInsert-buttonsShow">+</a>'+
+          '<a class="mediumInsert-buttonsShow" title="插入媒体">+</a>'+
           insertBlock +
         '</div>'+
         '<div class="mediumInsert-placeholder"></div>'+
