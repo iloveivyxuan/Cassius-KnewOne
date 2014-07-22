@@ -69,7 +69,8 @@ class Order
   PAYMENT_METHOD = {
       :tenpay => '财付通',
       :alipay => '支付宝',
-      :btc => '比特币'
+      :btc => '比特币',
+      :other => '其它'
   }
 
   field :state, type: Symbol, default: :pending
@@ -90,6 +91,7 @@ class Order
   field :expense_balance, type: BigDecimal, default: 0
   field :price, type: BigDecimal
   field :pre_order, type: Boolean, default: false
+  field :valid_period_days, type: Integer, default: 1
 
   mount_uploader :waybill, WaybillUploader
 
@@ -492,7 +494,8 @@ class Order
     end
 
     def cleanup_expired_orders
-      pending.where(:created_at.lt => 1.days.ago).each(&:close!)
+      pending.where(:created_at.lt => 1.days.ago, :valid_period_days => 1).each(&:close!)
+      pending.where(:created_at.lt => 3.days.ago, :valid_period_days => 3).each(&:close!)
     end
   end
 end

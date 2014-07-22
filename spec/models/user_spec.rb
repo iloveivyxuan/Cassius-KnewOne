@@ -118,15 +118,4 @@ describe User, :type => :model do
       end
     end
   end
-
-  describe 'validations' do
-    context 'name' do
-      it "is unique and not case sensitive" do
-        user1 = User.new(name: "foobar", email: "foobar@1.com")
-        user2 = User.new(name: "Foobar", email: "foobar@2.com")
-        expect(user1.save).to eq true
-        expect(user2.save).to eq false
-      end
-    end
-  end # describe 'validations'
 end

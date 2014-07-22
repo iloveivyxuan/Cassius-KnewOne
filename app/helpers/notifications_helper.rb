@@ -52,6 +52,9 @@ module NotificationsHelper
     when Topic then
       content += "帖子 "
       content += link_to post.title, group_topic_path(post.group, post), target: target
+    when Story then
+      content += "动态 "
+      content += link_to post.title, thing_story_path(post.thing, post), target: target
     else
       content += ' 失效的资源'
     end

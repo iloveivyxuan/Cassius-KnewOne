@@ -60,6 +60,11 @@ class ReviewsController < ApplicationController
     else
       @review.author = current_user
       if @review.save
+        content_users = mentioned_users(@review.content)
+        content_users.each do |u|
+          u.notify :review, context: @review, sender: current_user, opened: false
+        end
+
         flash[:provider_sync] = params[:provider_sync]
         current_user.log_activity :new_review, @review, source: @review.thing
         redirect_to thing_review_url(@thing, @review)

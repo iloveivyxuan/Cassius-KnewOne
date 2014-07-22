@@ -6,7 +6,7 @@ def sign_in(user = create(:user))
 end
 
 def sign_out
-  login_out(:user)
+  logout(:user)
 end
 
 def create_signed_in_user

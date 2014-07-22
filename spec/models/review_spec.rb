@@ -6,25 +6,30 @@ describe Review, :type => :model do
   let(:user) { create(:user) }
 
   describe '#vote' do
-    subject { -> { review.vote(user, true) } }
+    before do
+      review.vote(user, true)
+    end
 
-    it { is_expected.to change { review.voted?(user) }.to true }
-    it { is_expected.to change(review, :lover_ids).to include user.id }
-    it { is_expected.to change(review, :lovers_count).by 1 }
-    it { is_expected.to change(author, :karma).by Settings.karma.post }
+    specify do
+      expect(review.voted?(user)).to be true
+      expect(review.lover_ids).to include user.id
+      expect(review.lovers_count).to eq 1
+      expect(author.karma).to eq Settings.karma.post
+    end
   end
 
   describe '#unvote' do
     before do
       review.vote(user, true)
+      review.unvote(user, true)
     end
 
-    subject { -> { review.unvote(user, true) } }
-
-    it { is_expected.to change { review.voted?(user) }.to false }
-    it { is_expected.to change(review, :lover_ids).from include user.id }
-    it { is_expected.to change(review, :lovers_count).by(-1) }
-    it { is_expected.to change(author, :karma).by(-Settings.karma.post) }
+    specify do
+      expect(review.voted?(user)).to be false
+      expect(review.lover_ids).to_not include user.id
+      expect(review.lovers_count).to eq 0
+      expect(author.karma).to eq 0
+    end
   end
 
   context 'when changes author' do
@@ -32,16 +37,13 @@ describe Review, :type => :model do
 
     before do
       review.author = user
+      review.save!
+      original_author.reload
     end
 
-    subject do
-      lambda do
-        review.save!
-        original_author.reload
-      end
+    specify do
+     expect(original_author.reviews_count).to eq 0
+     expect(user.reviews_count).to eq 1
     end
-
-    it { is_expected.to change { original_author.reviews_count }.by(-1) }
-    it { is_expected.to change { user.reviews_count }.by 1 }
   end
 end

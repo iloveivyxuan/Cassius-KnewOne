@@ -15,6 +15,12 @@ class TopicsController < ApplicationController
   def create
     @topic.author = current_user
     if @topic.save
+      # notify mentioned users when there is new topic
+      title_users, content_users = mentioned_users(@topic.title), mentioned_users(@topic.content)
+      (title_users + content_users).each do |u|
+        u.notify :topic, context: @topic, sender: current_user, opened: false
+      end
+
       current_user.log_activity :new_topic, @topic, source: @topic.group
       redirect_to group_topic_path(@topic.group, @topic)
     else

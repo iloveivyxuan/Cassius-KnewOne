@@ -317,6 +317,7 @@ do (exports = Making) ->
     exports.GoTop()
     exports.PopoverProfiles()
     exports.PrivateMessage()
+    exports.AtUser('textarea')
 
     # TODO
     ($popovertoggle = $(".popover-toggle")).length && $popovertoggle.popover()
