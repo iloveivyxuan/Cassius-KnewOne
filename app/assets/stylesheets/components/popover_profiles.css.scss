@@ -1,8 +1,4 @@
-.popover.profile {
-  .popover-content {
-    padding: 25px;
-  }
-
+.popover {
   .profile {
     $popover-profile-width: 360px;
     $popover-profile-aside-width: 0.4 * $popover-profile-width;
@@ -10,6 +6,8 @@
 
     width: $popover-profile-width;
     padding-left: $popover-profile-aside-width;
+
+    margin: 16px 11px;
 
     position: relative;
 
