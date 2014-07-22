@@ -36,9 +36,11 @@ Making.PopoverProfiles = ->
     )
 
   show = ($element, newContent) ->
-    $element.data('bs.popover').options.content = newContent
-
     $('.popover').remove()
+
+    return unless $element.is(':hover')
+
+    $element.data('bs.popover').options.content = newContent
     $element.popover('show')
 
     $('.popover')
