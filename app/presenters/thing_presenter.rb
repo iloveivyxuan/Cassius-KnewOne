@@ -22,10 +22,10 @@ class ThingPresenter < PostPresenter
     tag "img", options.merge(class: 'lazy', alt: title, data:{original: photo_url(size)})
   end
 
-  def content
-    content_tag :div, class: "body post_content is_folded" do
-      sanitize(raw thing.content)
-    end if thing.content.present?
+  def content(is_fold = true)
+    content_tag :div, class: "body post_content #{is_fold ? 'is_folded' : ''}" do
+      sanitize(thing.content)
+    end
   end
 
   def price
