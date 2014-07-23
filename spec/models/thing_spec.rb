@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Thing, :type => :model do
+describe Thing, type: :model do
   let(:user) { create(:user) }
   let(:thing) { create(:thing) }
 

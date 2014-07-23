@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe User, :type => :model do
+describe User, type: :model do
   let(:user) { create(:user) }
 
   describe 'Cart' do
