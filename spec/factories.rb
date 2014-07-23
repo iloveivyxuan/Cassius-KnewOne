@@ -7,15 +7,15 @@ FactoryGirl.define do
     before(:create) { |user| user.skip_confirmation! }
 
     trait :with_addresses do
-      after(:create) { |user| create_list(:address, rand(1..2), user: user) }
+      after(:create) { |user| create_list(:address, 1, user: user) }
     end
 
     trait :with_cart_items do
-      after(:create) { |user| create_list(:cart_item, rand(1..2), user: user) }
+      after(:create) { |user| create_list(:cart_item, 1, user: user) }
     end
 
     trait :with_invoices do
-      after(:create) { |user| create_list(:invoice, rand(1..2), user: user) }
+      after(:create) { |user| create_list(:invoice, 1, user: user) }
     end
   end
 
@@ -44,8 +44,8 @@ FactoryGirl.define do
     thing
     title { '限量版' }
     stage :stock
-    stock { rand(1..100) }
-    sold  { rand(0..100) }
+    stock 100
+    sold  0
     price { Faker::Commerce.price }
   end
 
@@ -63,8 +63,8 @@ FactoryGirl.define do
     deliver_by :sf
 
     after :create do |order|
-      create_list(:order_item, rand(1..2), order: order)
-      create_list(:invoice, rand(1..2), user: order.user)
+      create_list(:order_item, 1, order: order)
+      create_list(:invoice, 1, user: order.user)
     end
   end
 
@@ -111,7 +111,7 @@ FactoryGirl.define do
     end
 
     trait :with_members do
-      after(:create) { |group| create_list(:member, rand(1..2), group: group) }
+      after(:create) { |group| create_list(:member, 1, group: group) }
     end
   end
 
@@ -153,7 +153,7 @@ FactoryGirl.define do
     user
     sender
 
-    after(:create) { |dialog| create_list(:private_message, rand(1..2), dialog: dialog) }
+    after(:create) { |dialog| create_list(:private_message, 1, dialog: dialog) }
   end
 
   factory :private_message do
