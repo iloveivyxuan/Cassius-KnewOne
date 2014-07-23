@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 module Haven
   class FeelingsController < ApplicationController
     layout 'settings'
