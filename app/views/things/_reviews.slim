@@ -9,6 +9,6 @@
           class: "pull-left btn btn-default track_event", data: data
       .reviews.list = render reviews
 
-      - if tp.thing.reviews.count > 5
+      - if tp.thing.all_reviews.count > 5
         = link_to_with_icon "更多", "fa fa-ellipsis-h", thing_reviews_path(tp.thing),
         class: "btn btn-info pull-right"

@@ -1,0 +1,21 @@
+header.page-header
+  h2
+    | 关联产品
+  = link_to "关联新产品", new_haven_link_path
+
+table.table.table-striped
+  thead
+    tr
+      th 标题
+      th 副标题
+      th 操作
+  tbody
+    - @things.each do |t|
+      tr
+        td = t.title
+        td = t.subtitle
+        td
+           = link_to "[管理关联]", haven_link_path(t)
+           = link_to "[删除关联]", haven_link_path(t), method: :delete
+
+= paginate @things

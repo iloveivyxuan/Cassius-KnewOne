@@ -132,7 +132,7 @@ class ThingPresenter < PostPresenter
   end
 
   def owners_count
-    content_tag :span, thing.owners.count, class: "owners_count"
+    content_tag :span, thing.all_owners_count, class: "owners_count"
   end
 
   def owners
@@ -148,7 +148,7 @@ class ThingPresenter < PostPresenter
   end
 
   def reviews_count
-    show_count thing.reviews.count
+    show_count thing.all_reviews.count
   end
 
   def updates_count
@@ -160,15 +160,15 @@ class ThingPresenter < PostPresenter
   end
 
   def feelings_count
-    show_count thing.feelings.count
+    show_count thing.all_feelings.count
   end
 
   def reviews(limit)
-    thing.reviews.desc(:is_top, :lovers_count, :created_at).limit(limit)
+    thing.all_reviews.desc(:is_top, :lovers_count, :created_at).limit(limit)
   end
 
-  def feelings(limit)
-    thing.feelings.desc(:lovers_count, :created_at).limit(limit)
+  def feelings(limit=10)
+    thing.all_feelings.desc(:lovers_count, :created_at).limit(limit)
   end
 
   def stage
@@ -224,7 +224,7 @@ class ThingPresenter < PostPresenter
   end
 
   def fanciers_count
-    content_tag :span, thing.fanciers_count, class: "fanciers_count"
+    content_tag :span, thing.all_fanciers_count, class: "fanciers_count"
   end
 
   def groups_count

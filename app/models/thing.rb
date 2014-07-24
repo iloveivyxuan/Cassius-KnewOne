@@ -67,10 +67,13 @@ class Thing < Post
   scope :prior, -> { gt(priority: 0).desc(:priority, :created_at) }
   scope :self_run, -> { send :in, stage: [:dsell, :pre_order] }
   scope :price_between, ->(from, to) { where :price.gt => from, :price.lt => to }
+  scope :linked, -> { where :link.ne => nil }
 
   STAGES.each do |k, v|
     scope k, -> { where(stage: k) }
   end
+
+  field :link, type: Array, default: nil
 
   embeds_many :kinds
   accepts_nested_attributes_for :kinds, allow_destroy: true
@@ -240,6 +243,50 @@ class Thing < Post
      fancier_ids.count +
      owner_ids.count) *
     freezing_coefficient
+  end
+
+  # get the count of all fanciers & owners, including linked things.
+  # eg. all_fanciers_count & all_owners_count
+  %w(fanciers owners).each do |s|
+    define_method "all_#{s}_count".to_sym do
+      if self.link.nil?
+        self.send("#{s}".to_sym).count
+      else
+        things = self.link.map { |t| Thing.find(t) }
+        things.map(&"#{s}".to_sym).map(&:count).reduce(&:+)
+      end
+    end
+  end
+
+  # get all reviews & feelings, including linked things.
+  # eg. all_reviews, all_feelings
+  %w(reviews feelings).each do |s|
+    define_method "all_#{s}".to_sym do
+      if self.link.nil?
+        self.send("#{s}".to_sym)
+      else
+        things = self.link.map { |t| Thing.find(t) }
+        content = []
+        things.each{ |t| content += t.send("#{s}".to_sym).to_a }
+        content_ids = content.map(&:id)
+        s.singularize.capitalize.constantize.where(:id.in => content_ids)
+      end
+    end
+  end
+
+  # get all linked things of a specific thing.
+  # return Array or empty Array.
+  def all_links
+    if self.link.nil?
+      return []
+    else
+      self.link.map { |l| Thing.find(l) }
+    end
+  end
+
+  # delete all linked things of a specific thing.
+  def delete_links
+    self.all_links.each { |t| t.update_attributes(link: nil) }
   end
 
   class << self

@@ -8,7 +8,7 @@
   - cache_unless user_signed_in?, ['things', 'feelings', tp.thing]
     .feelings.list = render tp.feelings(10)
 
-    - if tp.thing.feelings.count > 10
+    - if tp.thing.all_feelings.count > 10
       = link_to_with_icon "更多", "fa fa-ellipsis-h", thing_feelings_path(tp.thing),
                           class: "btn btn-info pull-right"
 
