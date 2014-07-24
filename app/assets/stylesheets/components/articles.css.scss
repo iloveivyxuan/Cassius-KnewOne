@@ -388,6 +388,11 @@ form.edit_post {
       margin: 0;
     }
 
+    del,
+    strike {
+      color: $text-muted;
+    }
+
     img {
       margin:{
         bottom: 1.5em;
