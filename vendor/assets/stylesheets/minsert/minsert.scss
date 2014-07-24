@@ -1,0 +1,35 @@
+.minsert {
+  display: none;
+  position: absolute;
+
+  &.is-shown {
+    display: block;
+  }
+}
+
+.minsert-toggle {
+  margin-right: 10px;
+
+  .fa {
+    margin-right: 0;
+  }
+}
+
+.minsert-actions {
+  display: none;
+
+  &.is-shown {
+    display: inline-block;
+  }
+
+  > li {
+    display: inline-block;
+
+    > button {
+
+      .fa {
+        margin-right: 0;
+      }
+    }
+  }
+}

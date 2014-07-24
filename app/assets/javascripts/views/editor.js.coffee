@@ -168,14 +168,7 @@ do (exports = Making) ->
       else
         @editor.activate()
 
-      @$body.mediumInsert
-        editor: @editor
-        addons:
-          images:
-            useDragAndDrop: false
-            domain: $('#file').data('domain')
-            templateFile: $('#file')
-          embeds: {}
+      @$body.minsert()
 
     deactivatePlugin: ->
       @editor.deactivate()
