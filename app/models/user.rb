@@ -332,6 +332,9 @@ class User
   # Draft
   has_many :drafts
 
+  # ThingList
+  has_many :thing_lists
+
   def balance
     BigDecimal.new(self.balance_cents) / 100
   end

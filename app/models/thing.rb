@@ -96,6 +96,10 @@ class Thing < Post
     end
   end
 
+  def lists
+    ThingList.where('thing_list_items.thing_id' => id)
+  end
+
   def categories_text
     (categories || []).join ','
   end
