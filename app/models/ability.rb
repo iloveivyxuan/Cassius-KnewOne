@@ -135,6 +135,16 @@ class Ability
     end
 
     can :subscribe_toggle, Category
+
+    can :create, ThingList
+    can [:update, :destroy], ThingList do |thing_list|
+      thing_list.user == user
+    end
+
+    can :create, ThingListItem
+    can [:update, :destroy], ThingListItem do |thing_list_item|
+      thing_list_item.list.user == user
+    end
   end
 
   def basic
@@ -152,6 +162,8 @@ class Ability
     can [:owns, :fancies, :things, :reviews, :feelings,
          :activities, :followings, :followers, :groups, :topics, :profile], User
     can [:buy, :groups, :comments, :wechat_qr, :random, :shop], Thing
+    can :read, ThingList
+    can :read, ThingListItem
   end
 
   def editor
