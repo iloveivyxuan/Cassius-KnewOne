@@ -5,11 +5,11 @@
   | “#{@thing.title}”可以购买了！。
 
 p
-  | 您之前参加过预售活动的 #{@thing.title}，现已开始正式销售。
+  | 您之前参加过预售活动的 #{@thing.title}，现已开始正式预购。
 
 p
-  | 您只需#{ link_to '点此链接', order_url(@order, from: :obd) }，即可享受 MINI X 带来的全新驾驶体验。
-  | 我们收到订单后，将会在5个工作日内发货，请耐心等待。
+  | 您只需在2014年8月2日前#{ link_to '点此链接', order_url(@order, event: :autobot) }完成付款，即可享受 #{@thing.title} 带来的全新驾驶体验。
+  | 我们收到订单后，将会在两周内发货，请耐心等待。
 
 p
-  | （若上文链接无法点击，请将URL复制到浏览器地址栏，然后点击转到或回车： #{order_url(@order, from: :obd)} ）
+  | （若上文链接无法点击，请将URL复制到浏览器地址栏： #{order_url(@order, event: :autobot)} ）
