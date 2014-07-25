@@ -198,6 +198,7 @@ do (exports = Making) ->
 
     initWidget: ->
       !@$rating && (@$rating = @$('.range-rating')).length && @$rating.rating()
+      Making.AtUser('#form-review-body')
 
     getBody: ->
       @$body.html(@$bodyField.val())
