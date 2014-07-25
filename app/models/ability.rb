@@ -140,6 +140,12 @@ class Ability
     can [:update, :destroy], ThingList do |thing_list|
       thing_list.user == user
     end
+    can :vote, ThingList do |thing_list|
+      !thing_list.voted?(user)
+    end
+    can :unvote, ThingList do |thing_list|
+      thing_list.voted?(user)
+    end
 
     can :create, ThingListItem
     can [:update, :destroy], ThingListItem do |thing_list_item|

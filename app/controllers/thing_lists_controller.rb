@@ -33,6 +33,16 @@ class ThingListsController < ApplicationController
     respond_with @thing_list
   end
 
+  def vote
+    @thing_list.vote(current_user)
+    head :no_content
+  end
+
+  def unvote
+    @thing_list.unvote(current_user)
+    head :no_content
+  end
+
   private
 
   def thing_list_params

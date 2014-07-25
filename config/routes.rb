@@ -94,6 +94,11 @@ Making::Application.routes.draw do
 
   resources :thing_lists, path: 'lists', except: [:new, :edit] do
     resources :thing_list_items, path: 'items', only: [:create, :update, :destroy]
+
+    member do
+      post 'vote'
+      post 'unvote'
+    end
   end
 
   resources :cart_items, only: [:index, :create, :update, :destroy]
