@@ -6,16 +6,27 @@ header.page-header
 table.table.table-striped
   thead
     tr
+      th 序号
       th 标题
       th 副标题
       th 操作
   tbody
-    - @things.each do |t|
-      tr
-        td = t.title
-        td = t.subtitle
-        td
-           = link_to "[管理关联]", haven_link_path(t)
-           = link_to "[删除关联]", haven_link_path(t), method: :delete
-
-= paginate @things
+    - @groups.each_with_index do |group, group_number|
+      - group.each_with_index do |link, link_number|
+        - thing = Thing.find(link)
+        - if link_number == 0
+          tr
+            th rowspan = group.size
+              = group_number + 1
+            td = thing.title
+            td = thing.subtitle
+            td
+              = link_to "[管理关联]", haven_thing_path(thing)
+              = link_to "[删除关联]", haven_thing_path(thing), method: :delete
+        - else
+          tr
+            td = thing.title
+            td = thing.subtitle
+            td
+              = link_to "[管理关联]", haven_thing_path(thing)
+              = link_to "[删除关联]", haven_thing_path(thing), method: :delete

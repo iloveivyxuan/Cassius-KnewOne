@@ -22,7 +22,7 @@ module Haven
     end
 
     def index
-      @things = Thing.linked.page params[:page]
+      @groups = Thing.linked.all.map { |t| t.link }.uniq
     end
 
     def show
