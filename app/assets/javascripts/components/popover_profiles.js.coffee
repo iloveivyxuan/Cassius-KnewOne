@@ -35,10 +35,12 @@ Making.PopoverProfiles = ->
       , 200)
     )
 
-  show = ($element, newContent) ->
-    $element.data('bs.popover').options.content = newContent
-
+  show = _.debounce(($element, newContent) ->
     $('.popover').remove()
+
+    return unless $element.is(':hover')
+
+    $element.data('bs.popover').options.content = newContent
     $element.popover('show')
 
     $('.popover')
@@ -47,6 +49,7 @@ Making.PopoverProfiles = ->
       userId = $element.attr('data-popover-profile')
       delete cache[userId]
     )
+  , 200)
 
   cache = Object.create({})
   selector = '[data-popover-profile]'

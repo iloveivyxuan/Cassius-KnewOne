@@ -23,3 +23,5 @@ table.table.table-strip
         = link_to '编辑', edit_haven_entry_path(e)
         span.separator |
         = link_to '删除', haven_entry_path(e), method: :delete, data: {confirm: 'are you sure?'}
+
+= paginate @entries

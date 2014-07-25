@@ -31,6 +31,7 @@ do (exports = Making) ->
       @placeholder = options.placeholder
       @$bodyField  = if options.bodyField? then $(options.bodyField) else
                       @$('[name$="[content]"]')
+      @$form       = $(@$bodyField[0].form)
       @draft       = new exports.Models.Draft
                       type: @type
                       id: exports.user + '+draft+' +
@@ -66,6 +67,7 @@ do (exports = Making) ->
             .always ->
               that.show()
               that.initWidget()
+              that.appendDraftId()
               that.initHelp()
 
         when 'complemental'
@@ -82,6 +84,7 @@ do (exports = Making) ->
               that.setBody(data[that.type + '[content]'])
             .always () ->
               that.$origin.html(that.$bodyField.val())
+              that.appendDraftId()
 
           @$origin
             .on 'keydown', _.bind (event) ->
@@ -122,7 +125,7 @@ do (exports = Making) ->
             $docbody.addClass('editor-open')
           , @
 
-          $(@$bodyField[0].form).on 'submit', _.bind(@submit, @)
+          @$form.on 'submit', _.bind(@submit, @)
 
       return this
 
@@ -153,7 +156,7 @@ do (exports = Making) ->
     activatePlugin: ->
       if !@editor
         @editor = new MediumEditor @$body,
-          buttons: ['anchor', 'bold', 'italic', 'header1', 'header2', 'quote']
+          buttons: ['anchor', 'bold', 'italic', 'strikethrough', 'header1', 'header2', 'quote']
           buttonLabels: 'fontawesome'
           firstHeader: 'h2'
           secondHeader: 'h3'
@@ -218,6 +221,13 @@ do (exports = Making) ->
       , @
 
       @getBody()
+
+    appendDraftId: ->
+      @$form.append($('<input>', {
+        type: 'hidden'
+        name: 'draft[key]'
+        value: @draft.get('id')
+      }))
 
     save: (callback) ->
       switch @mode
@@ -293,10 +303,6 @@ do (exports = Making) ->
 
           $window
             .off 'beforeunload'
-          @draft.destroy()
-
-        when 'complemental'
-          @draft.destroy()
 
       return true
 

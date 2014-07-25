@@ -1,5 +1,7 @@
 class ThingsController < ApplicationController
   include MarkReadable
+  include DestroyDraftAfterCreate
+
   load_and_authorize_resource
   before_action :set_categories, only: [:index]
   after_action :allow_iframe_load, only: [:show]

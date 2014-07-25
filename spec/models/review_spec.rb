@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Review, :type => :model do
+describe Review, type: :model do
   let(:review) { create(:review) }
   let(:author) { review.author }
   let(:user) { create(:user) }

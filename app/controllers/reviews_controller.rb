@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
   include MarkReadable
+  include DestroyDraftAfterCreate
+
   load_and_authorize_resource :thing, singleton: true
   load_and_authorize_resource :review, through: :thing
   layout 'thing'

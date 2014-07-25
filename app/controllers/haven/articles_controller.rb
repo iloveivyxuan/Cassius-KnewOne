@@ -4,7 +4,7 @@ module Haven
     before_action :set_article, except: [:index, :create, :new]
 
     def index
-      @articles = Article.all.page params[:page]
+      @articles = Article.all.desc(:created_at).page params[:page]
     end
 
     def edit

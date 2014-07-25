@@ -28,8 +28,8 @@ section.article
         = link_to s.thing, target: "_blank" do
           = image_tag s.thing.cover.url(:small), class: "image"
         .text
-          = link_to s.thing, target: "_blank" do
-            h3.title = s.title.present? ? s.title : s.thing.title
+          h3.title
+            = link_to s.title.present? ? s.title : s.thing.title, s.thing, target: "_blank"
           p = s.subtitle
       .content
         = sanitize s.content

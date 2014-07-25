@@ -15,3 +15,5 @@ table.table.table-strip
       td = date_time_text(a.created_at)
       td
         = link_to '编辑', edit_haven_article_path(a)
+
+= paginate @articles

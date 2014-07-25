@@ -122,6 +122,10 @@ html.landing {
   .modal-header {
     padding: 20px 40px;
     background: $blue;
+    .close {
+      position: relative;
+      z-index: 1;
+    }
     h5 {
       font-size: 1.5em;
       color: #000;
@@ -171,7 +175,6 @@ html.landing {
     }
     .form-control {
       height: 50px;
-      line-height: 50px;
       letter-spacing: 1px;
       border: 1px solid $gray-lighter;
       @include border-radius(0);

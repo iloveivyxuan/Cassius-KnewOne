@@ -80,10 +80,10 @@ module Haven
                                  [:orders_count, :desc])
       end
 
-      @users = @users.page params[:page]
-
       respond_to do |format|
-        format.html
+        format.html do
+          @users = @users.page params[:page]
+        end
         format.csv do
           lines = [%w(用户名 用户ID 分享产品 发表评测 成交订单 战斗力 邮箱 微博 Twitter 博客 网站 注册时间 备注)]
 
