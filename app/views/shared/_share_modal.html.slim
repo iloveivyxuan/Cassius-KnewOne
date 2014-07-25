@@ -32,6 +32,10 @@
                   = link_to '点此刷新', user_omniauth_authorize_path(auth.provider.to_sym, state: fullpath_with_modal('share_modal')), class: 'save_form_state'
                 - else
                   = hidden_field_tag 'providers[]', auth.provider, data: {'skip-deserialize' => true}
+              = link_to_with_icon "分享到微信", "fa fa-wechat", "#share_wechat",
+              title: "微信朋友圈分享", class: "track_event",
+              data: {toggle: 'modal', category: "share_internal_wechat", action: "share_internal_wechat", label: "share_internal_wechat+#{request.url}"}
+              = render 'shared/wechat'
 
             .modal-footer
               span class="words-check"

@@ -13,7 +13,6 @@
     aside#thing_actions
       = render "things/actions", tp: tp
 
-    = render 'things/wechat', tp: tp
     - if user_signed_in?
       = render 'things/supplier', tp: tp
       = render 'things/group_fancy', tp: tp
