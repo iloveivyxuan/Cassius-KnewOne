@@ -28,6 +28,8 @@ html.home_error {
     > h1 {
       margin-top: 0;
 
+      span {color: $gray-light;}
+
       @media screen and (min-width: $screen-sm-min) {
         background-color: #fff;
         display: inline-block;
