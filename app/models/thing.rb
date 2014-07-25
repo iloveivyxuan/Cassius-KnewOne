@@ -100,6 +100,12 @@ class Thing < Post
     ThingList.where('thing_list_items.thing_id' => id)
   end
 
+  after_destroy do
+    lists.each do |list|
+      list.items.where(thing_id: id).destroy
+    end
+  end
+
   def categories_text
     (categories || []).join ','
   end

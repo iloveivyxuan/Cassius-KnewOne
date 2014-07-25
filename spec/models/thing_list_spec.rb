@@ -21,5 +21,16 @@ describe ThingList, type: :model do
         expect(item3.order).to eq 3
       end
     end
+
+    context 'after thing destroy' do
+      before do
+        item.thing.destroy
+        thing_list.reload
+      end
+
+      it 'destroys' do
+        expect(thing_list.items).to_not include item
+      end
+    end
   end
 end
