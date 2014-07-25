@@ -18,14 +18,14 @@ table.table.table-striped
           tr
             th rowspan = group.size
               = group_number + 1
-            td = thing.title
+            td = link_to thing.title, thing_path(thing)
             td = thing.subtitle
             td
               = link_to "[管理关联]", haven_thing_path(thing)
               = link_to "[删除关联]", haven_thing_path(thing), method: :delete
         - else
           tr
-            td = thing.title
+            td = link_to thing.title, thing_path(thing)
             td = thing.subtitle
             td
               = link_to "[管理关联]", haven_thing_path(thing)
