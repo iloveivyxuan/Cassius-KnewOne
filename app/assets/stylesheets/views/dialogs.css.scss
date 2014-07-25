@@ -46,6 +46,8 @@ html.dialogs_index, html.dialogs_show {
   }
 
   section {
+    p {word-break: break-all;}
+
     > a {
       color: $text-color;
     }
