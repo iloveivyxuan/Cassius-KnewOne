@@ -1,6 +1,7 @@
 class ThingList
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Votable
 
   belongs_to :user, index: true
   embeds_many :thing_list_items
