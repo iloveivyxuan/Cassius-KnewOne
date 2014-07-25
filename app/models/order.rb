@@ -494,8 +494,10 @@ class Order
     end
 
     def cleanup_expired_orders
-      pending.where(:created_at.lt => 1.days.ago, :valid_period_days => 1).each(&:close!)
-      pending.where(:created_at.lt => 3.days.ago, :valid_period_days => 3).each(&:close!)
+      pending.each do |o|
+        o.created_at + o.valid_period_days.days < Date.today
+        o.close!
+      end
     end
   end
 end
