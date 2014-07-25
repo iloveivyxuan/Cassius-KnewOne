@@ -11,7 +11,7 @@ module Votable
     lovers.include?(user) or foes.include?(user)
   end
 
-  def vote(user, love)
+  def vote(user, love = true)
     return if voted?(user)
     if love
       lovers << user
@@ -23,7 +23,7 @@ module Votable
     self.update_attribute :lovers_count, lovers.count
   end
 
-  def unvote(user, love)
+  def unvote(user, love = true)
     return unless voted?(user)
     if love
       lovers.delete(user)
