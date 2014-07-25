@@ -4,7 +4,12 @@
       .modal-header
         button.close type="button" data-dismiss="modal"
           | &times;
-        h4.modal-title 绑定第三方账号
+        h4.modal-title
+          | 绑定第三方账号
+          | 或
+          = link_to "分享到微信", "#share_wechat",
+          title: "微信朋友圈分享", class: "track_event",
+            data: {toggle: 'modal', category: "share_internal_wechat", action: "share_internal_wechat", label: "share_internal_wechat+#{request.url}"}
       .modal-body.text-center
         = link_to user_omniauth_authorize_path(:twitter, state: request.fullpath), class: "oauth" do
           i.fa.fa-twitter.fa-4x

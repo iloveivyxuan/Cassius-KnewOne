@@ -35,8 +35,6 @@
               = link_to_with_icon "分享到微信", "fa fa-wechat", "#share_wechat",
               title: "微信朋友圈分享", class: "track_event",
               data: {toggle: 'modal', category: "share_internal_wechat", action: "share_internal_wechat", label: "share_internal_wechat+#{request.url}"}
-              = render 'shared/wechat'
-
             .modal-footer
               span class="words-check"
               = button_tag "取消", type: 'button', class: "btn btn-default", data: {dismiss: "modal"}
@@ -45,3 +43,4 @@
                 label: "share_internal_pub_#{auths.first.provider}+#{request.path}"}
   - else
     = render 'shared/binding', id: 'share_modal'
+  = render 'shared/wechat'
