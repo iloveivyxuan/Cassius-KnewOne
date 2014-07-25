@@ -33,3 +33,11 @@
     }
   }
 }
+
+.minsert-input {
+  display: none;
+
+  &.is-shown {
+    display: inline-block;
+  }
+}

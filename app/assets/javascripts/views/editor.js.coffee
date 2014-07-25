@@ -168,7 +168,10 @@ do (exports = Making) ->
       else
         @editor.activate()
 
-      @$body.minsert()
+      @$body.minsert
+        actions:
+          videos:
+            placeholder: '在这里插入视频代码（通用代码）'
 
     deactivatePlugin: ->
       @editor.deactivate()
