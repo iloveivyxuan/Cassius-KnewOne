@@ -31,6 +31,8 @@ do (exports = Making) ->
       @placeholder = options.placeholder
       @$bodyField  = if options.bodyField? then $(options.bodyField) else
                       @$('[name$="[content]"]')
+      @$help       = $('.editor-help')
+      @$helpToggle = @$('.editor-help-toggle')
       @$form       = $(@$bodyField[0].form)
       @draft       = new exports.Models.Draft
                       type: @type
@@ -181,9 +183,15 @@ do (exports = Making) ->
       @$body.off('.mediumInsert')
 
     initHelp: ->
+      that      = @
       key       = exports.user + '+hide-editor-help'
       isHide    = localStorage[key]
       $checkbox = $('#show-editor-help')
+
+      @$helpToggle.one 'click', ->
+        that.$help.find('img[data-src]').each ->
+          src = @getAttribute('data-src')
+          @setAttribute('src', src)
 
       if isHide is 'true'
         $checkbox.attr('checked', true)
@@ -191,7 +199,7 @@ do (exports = Making) ->
         $checkbox.removeAttr('checked')
 
       if $checkbox.prop('checked') isnt true
-        $('.editor-help').modal('show')
+        @$helpToggle.trigger('click')
 
       $checkbox.on 'change', ->
         localStorage[key] = $(@).prop('checked')
