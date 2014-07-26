@@ -1,44 +1,26 @@
 class HomeFeed
-  attr_accessor :thing, :reviews, :activities
+  attr_accessor :thing, :reviews, :activities, :updated_at
 
   class << self
     def create_from_activities(activities)
-      feed_from_thing = {}
-      feeds = []
-
-      activities.sort_by(&:created_at).each do |a|
-        thing = a.reference.is_a?(Thing) ? a.reference : a.reference.try(:thing)
-
-        next unless thing
-
-        if feed_from_thing[thing]
-          feed_from_thing[thing].add_activity a
-        else
-          feed = HomeFeed.new(thing)
-
-          if a.type != :new_thing
-            feed.add_activity(Activity.new(type: :new_thing,
-                                           user_id: thing.author_id,
-                                           reference_union: "Thing_#{thing.id}",
-                                           created_at: thing.created_at))
-          end
-
-          feed.add_activity(a)
-
-          feed_from_thing[thing] = feed
-          feeds << feed
+      activities.sort_by(&:created_at).reduce({}) do |feeds, a|
+        thing = a.relate_thing
+        if feeds[thing]
+          feeds[thing].add_activity a
+        elsif thing
+          feed = HomeFeed.new thing
+          feed.add_activity a
+          feeds[thing] = feed
         end
-      end
-
-      feeds
+        feeds
+      end.values.sort_by(&:updated_at).reverse
     end
   end
 
-  def initialize(thing, activities=[])
+  def initialize(thing)
     @thing = thing
     @reviews = []
     @activities = []
-    activities.each(&method(:add_activity))
   end
 
   def add_activity(activity)
@@ -48,6 +30,9 @@ class HomeFeed
     end
 
     @activities << activity
+    unless updated_at and activity.created_at < updated_at
+      self.updated_at = activity.created_at
+    end
   end
 
   def activities_not_from_reviews

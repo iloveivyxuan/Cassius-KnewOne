@@ -398,7 +398,8 @@ class User
   def relate_activities(types = %i(new_thing own_thing fancy_thing
                                   new_review love_review
                                   new_feeling love_feeling))
-    Activity.where(:user_id.in => following_ids.map(&:to_s), :type.in => types, visible: true)
+    user_ids = following_ids + [self.id]
+    Activity.where(:user_id.in => user_ids.map(&:to_s), :type.in => types, visible: true)
   end
 
   # category

@@ -13,9 +13,11 @@ class HomeController < ApplicationController
 
       @feeds = HomeFeed.create_from_activities @activities
 
-      return redirect_to hits_url if @feeds.empty?
-
-      render layout: 'home'
+      if @feeds.empty?
+        redirect_to hits_url
+      else
+        render layout: 'home'
+      end
     else
       respond_to do |format|
         format.html.mobile do

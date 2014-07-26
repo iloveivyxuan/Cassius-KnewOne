@@ -1,6 +1,6 @@
 li.feed
   .feed-latest-user
-    = present(feed.activities_not_from_reviews.last.user).as_author_with_profile
+    = present(feed.activities.last.user).as_author_with_profile
 
   = render 'hot_thing', hot_thing: feed.thing
 
