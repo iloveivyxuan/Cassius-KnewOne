@@ -32,3 +32,17 @@
     vertical-align: middle;
   }
 }
+
+.spinner-static {
+  display: block;
+  font-style: normal;
+  height: 20px;
+  line-height: 20px;
+  margin-bottom: -20px;
+  text-align: center;
+  width: 100%;
+
+  & + * {
+    min-height: 20px;
+  }
+}
