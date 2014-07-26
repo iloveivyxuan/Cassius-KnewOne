@@ -24,12 +24,12 @@ window.Making = do (exports = window.Making || {}) ->
         $self = $(@)
         keyword = $.trim @.value
 
-        if keyword.length >= 2
+        if keyword.length >= 1
           typing_time = new Date()
 
           setTimeout ->
             if new Date() - typing_time < delay  or
-              $.trim($input.val()).length < 2 then return
+              $.trim($input.val()).length < 1 then return
 
             $status.removeClass('fa-search').addClass('fa-spinner fa-spin')
 
