@@ -66,7 +66,8 @@
 @import "components/icons";
 
 // Views
-@import "views/landing";
+@import "views/*";
+/* @import "views/landing";
 @import "views/signed_in_homepage";
 @import "views/hits";
 @import "views/home_welcome";
@@ -92,3 +93,4 @@
 @import "views/help";
 @import "views/user_agreement";
 @import "views/other";
+ */

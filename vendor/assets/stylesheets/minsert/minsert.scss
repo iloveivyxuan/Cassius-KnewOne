@@ -1,3 +1,5 @@
+$colour: #777;
+
 .minsert {
   display: none;
   position: absolute;
@@ -8,7 +10,18 @@
 }
 
 .minsert-toggle {
-  margin-right: 10px;
+  background: none;
+  border: none;
+  color: $colour;
+  font-size: 22px;
+  height: 28px;
+  line-height: 22px;
+  padding: 3px 12px 3px 3px;
+  vertical-align: middle;
+
+  &:focus {
+    outline: none;
+  }
 
   .fa {
     margin-right: 0;
@@ -17,6 +30,7 @@
 
 .minsert-actions {
   display: none;
+  vertical-align: middle;
 
   &.is-shown {
     display: inline-block;
@@ -24,13 +38,41 @@
 
   > li {
     display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+}
 
-    > button {
+.minsert-action {
+  @include transition-property(background-color, color);
+  @include transition-duration(.2s);
+  background: none;
+  border: 1px solid $colour;
+  border-radius: 1em;
+  color: $colour;
+  font-size: 20px;
+  height: 22px;
+  line-height: 22px;
+  padding: 0;
+  vertical-align: middle;
+  width: 80px;
 
-      .fa {
-        margin-right: 0;
-      }
-    }
+  &:hover {
+    background-color: darken($colour, 25%);
+    color: #fff;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  .fa {
+    margin-right: 0;
+    vertical-align: 1px;
+  }
+
+  .fa-minus {
+    vertical-align: 0;
   }
 }
 
@@ -39,5 +81,12 @@
 
   &.is-shown {
     display: inline-block;
+  }
+
+  input {
+    border: 1px solid $colour;
+    border-radius: 1em;
+    padding: 0 1em;
+    width: 350px;
   }
 }

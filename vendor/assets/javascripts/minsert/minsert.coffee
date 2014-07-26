@@ -13,15 +13,17 @@ do ($ = jQuery) ->
         @initMenu()
 
         @$element
-          .on 'click', @toggle.bind(@)
-          .on 'keyup', @toggle.bind(@)
+          .on 'click.minsert', @toggle.bind(@)
+          .on 'keyup.minsert', @toggle.bind(@)
 
         @$minsert
-          .on 'click', '.minsert-toggle', @toggleActions.bind(@)
-          .on 'click', '[data-action="insert-image"]', @insertImage.bind(@)
-          .on 'click', '[data-action="insert-video"]', @insertVideo.bind(@)
-          .on 'click', '[data-action="insert-embed"]', @insertEmbed.bind(@)
-          .on 'click', '[data-action="insert-rule"]', @insertRule.bind(@)
+          .on 'click.minsert', '.minsert-toggle', @toggleActions.bind(@)
+          .on 'click.minsert', '[data-action="insert-image"]', @insertImage.bind(@)
+          .on 'click.minsert', '[data-action="insert-video"]', @insertVideo.bind(@)
+          .on 'click.minsert', '[data-action="insert-embed"]', @insertEmbed.bind(@)
+          .on 'click.minsert', '[data-action="insert-rule"]', @insertRule.bind(@)
+          .on 'done.minsert', '[data-action="insert-image"]', @insertImageDone.bind(@)
+          .on 'fail.minsert', '[data-action="insert-image"]', @insertImageFail.bind(@)
 
       initMenu: ->
         menu = '' +
@@ -55,9 +57,10 @@ do ($ = jQuery) ->
             '</div>'
         @$element.after(menu)
 
-        @$minsert        = @$element.next('.minsert')
-        @$minsertActions = @$minsert.children('.minsert-actions')
-        @$minsertInput   = @$minsert.children('.minsert-input')
+        @$minsert            = @$element.next('.minsert')
+        @$minsertActions     = @$minsert.children('.minsert-actions')
+        @$minsertActionImage = @$minsertActions.find('[data-action="insert-image"]')
+        @$minsertInput       = @$minsert.children('.minsert-input')
 
       toggle: (event) ->
         selection = window.getSelection()
@@ -87,7 +90,7 @@ do ($ = jQuery) ->
           return @getTopNode(node.parentNode)
 
       setPosition: (referenceNode) ->
-        left = (@$element.offset().left - 45) + 'px'
+        left = (@$element.offset().left - 34) + 'px'
         top  = $(referenceNode).position().top + 'px'
 
         @$minsert.css
@@ -99,7 +102,14 @@ do ($ = jQuery) ->
         @$minsertInput.removeClass('is-shown').empty()
 
       insertImage: ->
-        console.log '@TODO: Insert Image.'
+        @hide()
+
+      insertImageDone: (event, url)->
+        @insert("<img src=#{url}>")
+
+      insertImageFail: (event) ->
+        console.log 'Insert Image Fail.'
+        alert('图片上传失败了，请重试。')
 
       insertVideo: ->
         @insertRichMedia('videos').bind(@)
@@ -141,7 +151,7 @@ do ($ = jQuery) ->
               if /<("[^"]*"|'[^']*'|[^'">])*>/.test(html) then content = html
 
             @insert(content)
-        $input.on 'keydown', handler.bind(@)
+        $input.on 'keydown.minsert', handler.bind(@)
 
       insert: (html) ->
         selection = window.getSelection()

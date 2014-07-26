@@ -371,6 +371,10 @@ form.edit_post {
     ul,
     blockquote,
     iframe,
+    embed,
+    object,
+    video,
+    audio,
     .embed-responsive {
       margin-bottom: 1.5em;
     }
@@ -393,7 +397,16 @@ form.edit_post {
       color: $text-muted;
     }
 
+    figure {
+      margin-bottom: 1.5em;
+
+      img {
+        margin-bottom: 0;
+      }
+    }
+
     img {
+      display: block;
       margin:{
         bottom: 1.5em;
         left: auto;
@@ -430,10 +443,31 @@ form.edit_post {
       }
     }
 
+    hr {
+      border-top: $border-default;
+      font-size: 0;
+      height: 0;
+      line-height: 0;
+      margin: 48px auto;
+      width: 40%;
+    }
+
     iframe,
+    embed,
+    object,
     video {
       vertical-align: middle;
       width: 100%;
+    }
+
+    .embed-responsive {
+
+      iframe,
+      embed,
+      object,
+      video {
+        margin-bottom: 0;
+      }
     }
   }
 

@@ -33,6 +33,7 @@ do (exports = Making) ->
                       @$('[name$="[content]"]')
       @$help       = $('.editor-help')
       @$helpToggle = @$('.editor-help-toggle')
+      @$imageField = $('#file')
       @$form       = $(@$bodyField[0].form)
       @draft       = new exports.Models.Draft
                       type: @type
@@ -157,6 +158,8 @@ do (exports = Making) ->
 
     activatePlugin: ->
       if !@editor
+        that = @
+
         @editor = new MediumEditor @$body,
           buttons: ['anchor', 'bold', 'italic', 'strikethrough', 'header1', 'header2', 'quote']
           buttonLabels: 'fontawesome'
@@ -165,13 +168,38 @@ do (exports = Making) ->
           placeholder: @placeholder
           anchorInputPlaceholder: '在这里插入链接'
           targetBlank: true
+
+        @$body.minsert
+          actions:
+            videos:
+              placeholder: '在这里插入视频网址或代码（通用代码）'
+
+        @$insertImageButton = @$('.minsert [data-action="insert-image"]')
+          .on 'click', ->
+            that.$imageField.clone(true).click()
+
+        @$imageField
+          .removeAttr('id')
+          .attr('multiple', true)
+          .fileupload
+            dataType: 'json'
+            dropZone: null
+            formData: ->
+              return [{
+                name: 'policy'
+                value: that.$imageField.attr('data-policy')
+              }, {
+                name: 'signature'
+                value: that.$imageField.attr('data-signature')
+              }]
+            done: (e, data) ->
+              url = that.$imageField.data('domain') + data.jqXHR.responseJSON.url + '!review'
+              that.$insertImageButton.trigger('done.minsert', url)
+            fail: (e, data) ->
+              that.$insertImageButton.trigger('fail.minsert')
+
       else
         @editor.activate()
-
-      @$body.minsert
-        actions:
-          videos:
-            placeholder: '在这里插入视频代码（通用代码）'
 
     deactivatePlugin: ->
       @editor.deactivate()
