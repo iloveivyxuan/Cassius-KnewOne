@@ -88,7 +88,7 @@ class Notification
     Notification.where(:id.in => ids).set read: true
   end
 
-  after_create :push_to_apn
+  # after_create :push_to_apn
 
   private
 
