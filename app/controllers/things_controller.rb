@@ -202,7 +202,7 @@ class ThingsController < ApplicationController
 
   def coupon
     thing = Thing.find(params[:id])
-    if thing.title == "bong II"
+    if thing.id.to_s == "53d0bed731302d2c13b20000" # bong II
       @rebate_coupon = ThingRebateCoupon.find_or_create_by(
                                                            name: "bong II 10 元优惠券",
                                                            thing_id: thing.id.to_s,
@@ -213,6 +213,7 @@ class ThingsController < ApplicationController
         coupon_code = @rebate_coupon.generate_code!(
                                                     user: current_user,
                                                     expires_at: 1.year.since.to_date,
+                                                    admin_note: "通过领取 bong II 优惠券获得",
                                                     generator_id: current_user.id.to_s)
       else
         flash[:notice] = "优惠券已被领完或您已经领过"

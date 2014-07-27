@@ -2,7 +2,7 @@
   .shop
     - if tp.price.present?
       #price.price= tp.price
-      - if tp.thing.title == "bong II"
+      - if tp.thing.id.to_s == "53d0bed731302d2c13b20000"
         h5 = link_to "领取优惠券立减 10 元", coupon_thing_path(tp.thing)
 
     - if user_signed_in?
