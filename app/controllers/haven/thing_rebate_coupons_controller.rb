@@ -46,6 +46,12 @@ module Haven
       redirect_to haven_thing_rebate_coupon_path(@coupon)
     end
 
+    def modify_max_amount
+      coupon = Coupon.find(params[:id])
+      coupon.update_attributes(max_amount: params[:max_amount])
+      redirect_to haven_thing_rebate_coupon_url(coupon)
+    end
+
     private
     def thing_rebate_coupon_params
       params.require(:thing_rebate_coupon).permit!

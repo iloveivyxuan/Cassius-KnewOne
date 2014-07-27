@@ -24,6 +24,12 @@ hr
   br
   = submit_tag '生成、绑定', class: 'btn btn-primary'
 hr
+= form_tag modify_max_amount_haven_thing_rebate_coupon_path(@coupon), role: "form"
+  | 最大数量
+  = text_field_tag :max_amount, @coupon.max_amount, class: 'form-control'
+  br
+  = submit_tag '修改', class: 'btn btn-primary'
+hr
 table.table
   tr
     th 代码

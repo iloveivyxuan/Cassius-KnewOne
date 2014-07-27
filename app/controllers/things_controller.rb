@@ -200,6 +200,27 @@ class ThingsController < ApplicationController
     end
   end
 
+  def coupon
+    thing = Thing.find(params[:id])
+    if thing.title == "bong II"
+      @rebate_coupon = ThingRebateCoupon.find_or_create_by(
+                                                           name: "bong II 10 元优惠券",
+                                                           thing_id: thing.id.to_s,
+                                                           note: "结算时输入优惠券代码立减 10 元",
+                                                           price: 10.0)
+      @rebate_coupon.update_attributes(max_amount: 1000) if @rebate_coupon.max_amount.nil?
+      if !current_user_has_got_coupon_code? && @rebate_coupon.has_remaining?
+        coupon_code = @rebate_coupon.generate_code!(
+                                                    user: current_user,
+                                                    expires_at: 1.year.since.to_date,
+                                                    generator_id: current_user.id.to_s)
+      else
+        flash[:notice] = "优惠券已被领完或您已经领过"
+      end
+    end # bong II
+    redirect_to coupons_url
+  end
+
   private
 
   def thing_params
@@ -211,4 +232,9 @@ class ThingsController < ApplicationController
   def set_categories
     @categories = Category.gt(things_count: 10)
   end
+
+  def current_user_has_got_coupon_code?
+    current_user.coupon_codes.where(coupon_id: @rebate_coupon.id.to_s).exists?
+  end
+
 end
