@@ -181,6 +181,7 @@ do (exports = Making) ->
         @$imageField
           .removeAttr('id')
           .attr('multiple', true)
+          .attr('accept', 'image/*')
           .fileupload
             dataType: 'json'
             dropZone: null
@@ -191,12 +192,25 @@ do (exports = Making) ->
               }, {
                 name: 'signature'
                 value: that.$imageField.attr('data-signature')
+              }, {
+                name: 'requestId'
+                value: 'request-' + new Date().getTime()
               }]
-            done: (e, data) ->
+            beforeSend: (jqXHR, data)->
+              id = ''
+              for item in data.formData()
+                do (item) ->
+                  if item.name is 'requestId'
+                    return id = item.value
+              that.$body.trigger('loading.minsert', id)
+            done: (event, data) ->
               url = that.$imageField.data('domain') + data.jqXHR.responseJSON.url + '!review'
-              that.$insertImageButton.trigger('done.minsert', url)
-            fail: (e, data) ->
-              that.$insertImageButton.trigger('fail.minsert')
+              that.$body.trigger('insertImageDone.minsert', url)
+            fail: (event, data) ->
+              that.$body.trigger('insertImageFail.minsert', data.jqXHR.responseJSON.message)
+            always: (event, data) ->
+              id = data.jqXHR.responseJSON.requestId
+              that.$body.trigger('loaded.minsert', id)
 
       else
         @editor.activate()

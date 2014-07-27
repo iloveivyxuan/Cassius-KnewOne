@@ -15,6 +15,10 @@ do ($ = jQuery) ->
         @$element
           .on 'click.minsert', @toggle.bind(@)
           .on 'keyup.minsert', @toggle.bind(@)
+          .on 'loading.minsert', @loading.bind(@)
+          .on 'loaded.minsert', @loaded.bind(@)
+          .on 'insertImageDone.minsert', @insertImageDone.bind(@)
+          .on 'insertImageFail.minsert', @insertImageFail.bind(@)
 
         @$minsert
           .on 'click.minsert', '.minsert-toggle', @toggleActions.bind(@)
@@ -22,8 +26,6 @@ do ($ = jQuery) ->
           .on 'click.minsert', '[data-action="insert-video"]', @insertVideo.bind(@)
           .on 'click.minsert', '[data-action="insert-embed"]', @insertEmbed.bind(@)
           .on 'click.minsert', '[data-action="insert-rule"]', @insertRule.bind(@)
-          .on 'done.minsert', '[data-action="insert-image"]', @insertImageDone.bind(@)
-          .on 'fail.minsert', '[data-action="insert-image"]', @insertImageFail.bind(@)
 
       initMenu: ->
         menu = '' +
@@ -101,15 +103,20 @@ do ($ = jQuery) ->
         @$minsertActions.toggleClass('is-shown')
         @$minsertInput.removeClass('is-shown').empty()
 
+      loading: (event, id) ->
+        @insert("<progress id=#{id} class='minsert-progress'></progress>")
+
+      loaded: (event, id) ->
+        @$element.find("progress##{id}").remove()
+
       insertImage: ->
         @hide()
 
       insertImageDone: (event, url)->
         @insert("<img src=#{url}>")
 
-      insertImageFail: (event) ->
-        console.log 'Insert Image Fail.'
-        alert('图片上传失败了，请重试。')
+      insertImageFail: (event, message) ->
+        alert(message ? '图片上传失败了，请重试。')
 
       insertVideo: ->
         @insertRichMedia('videos').bind(@)
