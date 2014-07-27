@@ -13,6 +13,8 @@ do ($ = jQuery) ->
         @initMenu()
 
         @$element
+          .one 'click.minsert', @setMenuLeftPosition.bind(@)
+          .one 'keydown.minsert', @setMenuLeftPosition.bind(@)
           .on 'click.minsert', @toggle.bind(@)
           .on 'keyup.minsert', @toggle.bind(@)
           .on 'loading.minsert', @loading.bind(@)
@@ -77,7 +79,7 @@ do ($ = jQuery) ->
             @show(topNode)
 
       show: (referenceNode) ->
-        @setPosition(referenceNode)
+        @setMenuTopPosition(referenceNode)
         @$minsert.addClass('is-shown')
 
       hide: ->
@@ -91,13 +93,16 @@ do ($ = jQuery) ->
         else
           return @getTopNode(node.parentNode)
 
-      setPosition: (referenceNode) ->
+      setMenuLeftPosition: ->
         left = (@$element.offset().left - 34) + 'px'
-        top  = $(referenceNode).position().top + 'px'
+        @$minsert.css('left', left)
 
-        @$minsert.css
-          left: left
-          top : top
+      setMenuTopPosition: (referenceNode) ->
+        if @$element.css('position') isnt 'static'
+          top = $(referenceNode).offset().top + 'px'
+        else
+          top = $(referenceNode).position().top + 'px'
+        @$minsert.css('top', top)
 
       toggleActions: ->
         @$minsertActions.toggleClass('is-shown')
