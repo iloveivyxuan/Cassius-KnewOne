@@ -1,6 +1,9 @@
 - page_title '优惠券'
 - provide :nav, :coupon
 
+- if flash[:notice]
+  .notice = flash[:notice]
+
 header.page-header
   h2
     i.fa.fa-ticket
