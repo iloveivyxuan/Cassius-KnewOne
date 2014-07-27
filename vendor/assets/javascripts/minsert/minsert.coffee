@@ -158,14 +158,19 @@ do ($ = jQuery) ->
               if /<("[^"]*"|'[^']*'|[^'">])*>/.test(html) then content = html
 
             @insert(content)
+            @hide()
         $input.on 'keydown.minsert', handler.bind(@)
 
-      insert: (html) ->
-        selection = window.getSelection()
+      insert: (content) ->
+        $node = $('<p>').html(content)
 
-        selection.removeAllRanges()
-        selection.addRange(@insertPoint)
-        document.execCommand('insertHTML', false, html)
+        if $node.children().length > 0
+          $node = $node.contents().unwrap()
+          @insertPoint.insertNode($node[0])
+        else
+          p = document.createElement('p')
+          p.innerHTML = content
+          @insertPoint.insertNode(p)
 
     MInsert.DEFAULTS =
       actions:
