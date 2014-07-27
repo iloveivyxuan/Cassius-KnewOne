@@ -21,12 +21,12 @@ table.table.table-striped
             td = link_to thing.title, thing_path(thing)
             td = thing.subtitle
             td
-              = link_to "[管理关联]", haven_thing_path(thing)
-              = link_to "[删除关联]", haven_thing_path(thing), method: :delete
+              = link_to "[管理关联]", haven_link_path(thing)
+              = link_to "[删除关联]", haven_link_path(thing), method: :delete
         - else
           tr
             td = link_to thing.title, thing_path(thing)
             td = thing.subtitle
             td
-              = link_to "[管理关联]", haven_thing_path(thing)
-              = link_to "[删除关联]", haven_thing_path(thing), method: :delete
+              = link_to "[管理关联]", haven_link_path(thing)
+              = link_to "[删除关联]", haven_link_path(thing), method: :delete

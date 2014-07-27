@@ -8,11 +8,10 @@ class ReviewsController < ApplicationController
   after_action :allow_iframe_load, only: [:show]
 
   def index
-    @reviews = @thing.all_reviews
     @reviews = if params[:sort] == "created_at"
-                 @reviews.desc(:created_at)
+                 @thing.reviews.desc(:created_at)
                else
-                 @reviews.desc(:is_top, :lovers_count, :created_at)
+                 @thing.reviews.desc(:is_top, :lovers_count, :created_at)
                end
 
     @reviews = @reviews.page(params[:page]).per(params[:per])

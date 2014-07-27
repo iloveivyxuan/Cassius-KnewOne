@@ -11,6 +11,13 @@ class Thing < Post
   after_save :update_categories
   before_save :update_amazon_link
 
+  has_many :single_feelings, class_name: "Feeling", dependent: :destroy
+  field :feelings_count, type: Integer, default: 0
+  has_many :single_reviews, class_name: "Review", dependent: :destroy
+  field :reviews_count, type: Integer, default: 0
+
+  field :links, type: Array, default: []
+
   belongs_to :maker, class_name: "User", inverse_of: nil
 
   field :related_thing_ids, type: Array, default: []
@@ -49,8 +56,7 @@ class Thing < Post
 
   has_and_belongs_to_many :fancy_groups, class_name: "Group", inverse_of: :fancies
 
-  has_many :reviews, dependent: :destroy
-  field :reviews_count, type: Integer, default: 0
+
 
   has_many :feelings, dependent: :destroy
   field :feelings_count, type: Integer, default: 0
@@ -67,13 +73,11 @@ class Thing < Post
   scope :prior, -> { gt(priority: 0).desc(:priority, :created_at) }
   scope :self_run, -> { send :in, stage: [:dsell, :pre_order] }
   scope :price_between, ->(from, to) { where :price.gt => from, :price.lt => to }
-  scope :linked, -> { where :link.ne => nil }
+  scope :linked, -> { where :links.ne => nil }
 
   STAGES.each do |k, v|
     scope k, -> { where(stage: k) }
   end
-
-  field :link, type: Array, default: nil
 
   embeds_many :kinds
   accepts_nested_attributes_for :kinds, allow_destroy: true
@@ -249,44 +253,44 @@ class Thing < Post
   # eg. all_fanciers_count & all_owners_count
   %w(fanciers owners).each do |s|
     define_method "all_#{s}_count".to_sym do
-      if self.link.nil?
+      if self.links.blank?
         self.send("#{s}".to_sym).count
       else
-        things = self.link.map { |t| Thing.find(t) }
+        things = self.links.map { |t| Thing.find(t) }
         things.map(&"#{s}".to_sym).map(&:count).reduce(&:+)
       end
     end
   end
 
-  # get all reviews & feelings, including linked things.
-  # eg. all_reviews, all_feelings
-  %w(reviews feelings).each do |s|
-    define_method "all_#{s}".to_sym do
-      if self.link.nil?
-        self.send("#{s}".to_sym)
-      else
-        things = self.link.map { |t| Thing.find(t) }
-        content = []
-        things.each{ |t| content += t.send("#{s}".to_sym).to_a }
-        content_ids = content.map(&:id)
-        s.singularize.capitalize.constantize.where(:id.in => content_ids)
-      end
+  def feelings
+    if links.blank?
+      single_feelings
+    else
+      Feeling.in(thing_id: links)
+    end
+  end
+
+  def reviews
+    if links.blank?
+      single_reviews
+    else
+      Review.in(thing_id: links)
     end
   end
 
   # get all linked things of a specific thing.
   # return Array or empty Array.
   def all_links
-    if self.link.nil?
+    if self.links.blank?
       return []
     else
-      self.link.map { |l| Thing.find(l) }
+      self.links.map { |l| Thing.find(l) }
     end
   end
 
   # delete all linked things of a specific thing.
   def delete_links
-    self.all_links.each { |t| t.update_attributes(link: nil) }
+    self.all_links.each { |t| t.update_attributes(links: []) }
   end
 
   class << self

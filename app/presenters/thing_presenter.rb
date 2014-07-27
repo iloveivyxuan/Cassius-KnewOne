@@ -148,7 +148,7 @@ class ThingPresenter < PostPresenter
   end
 
   def reviews_count
-    show_count thing.all_reviews.count
+    show_count thing.reviews.count
   end
 
   def updates_count
@@ -160,15 +160,15 @@ class ThingPresenter < PostPresenter
   end
 
   def feelings_count
-    show_count thing.all_feelings.count
+    show_count thing.feelings.count
   end
 
   def reviews(limit)
-    thing.all_reviews.desc(:is_top, :lovers_count, :created_at).limit(limit)
+    thing.reviews.desc(:is_top, :lovers_count, :created_at).limit(limit)
   end
 
   def feelings(limit=10)
-    thing.all_feelings.desc(:lovers_count, :created_at).limit(limit)
+    thing.feelings.desc(:lovers_count, :created_at).limit(limit)
   end
 
   def stage

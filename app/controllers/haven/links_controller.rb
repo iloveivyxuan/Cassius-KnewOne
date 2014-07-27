@@ -16,17 +16,17 @@ module Haven
       # clear links may be created before
       things.each { |t| t.delete_links }
       # set linked
-      things.each { |t| t.update_attributes(link: thing_ids) }
+      things.each { |t| t.update_attributes(links: thing_ids) }
 
       redirect_to haven_links_path
     end
 
     def index
-      @groups = Thing.linked.all.map { |t| t.link }.uniq
+      @groups = Thing.linked.all.map { |t| t.links }.uniq
     end
 
     def show
-      @things = Thing.find(params[:id]).link.map { |t| Thing.find(t) }
+      @things = Thing.find(params[:id]).links.map { |t| Thing.find(t) }
     end
 
     def destroy
