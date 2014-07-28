@@ -493,7 +493,7 @@ class Order
   end
 
   def bong_amount
-    self.order_items.find_by(thing_title: bong.title).quantity
+    self.order_items.where(thing_id: bong.id).map(&:quantity).reduce(&:+)
   end
 
   def leave_note(notes)
