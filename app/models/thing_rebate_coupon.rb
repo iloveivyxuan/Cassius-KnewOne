@@ -1,7 +1,6 @@
 class ThingRebateCoupon < Coupon
   field :thing_id, type: String
   field :price, type: BigDecimal, default: 0
-  field :max_amount, type: Integer, default: nil
 
   validates :price, :presence => true
   validate do
@@ -32,10 +31,4 @@ class ThingRebateCoupon < Coupon
     r = order.rebates.select { |rebate| rebate.name == "#{self.name}" && rebate.price == -self.price }.first
     order.rebates.delete r
   end
-
-  def has_remaining?
-    return true if self.max_amount.nil?
-    self.coupon_codes.size < self.max_amount
-  end
-
 end
