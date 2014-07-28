@@ -123,7 +123,6 @@ Making::Application.routes.draw do
       get 'related'
       get 'groups'
       post 'group_fancy'
-      get 'coupon'
     end
 
     resources :reviews do
@@ -246,7 +245,6 @@ Making::Application.routes.draw do
       member do
         post 'generate_code'
         post 'batch_bind'
-        post 'modify_max_amount'
       end
     end
 
