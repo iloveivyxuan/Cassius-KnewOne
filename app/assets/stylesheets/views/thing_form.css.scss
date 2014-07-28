@@ -3,83 +3,110 @@ html.things_create,
 html.things_update,
 html.things_edit {
 
-  #wrapper {
-    @include wrapper(simple, $max-width: $screen-md-min);
-  }
+  #thing_candidate {
+    display: none;
+    background-color: $text-color;
+    border-radius: $border-radius-base;
+    margin: 0 -15px 2em;
+    min-width: 100%;
+    padding-bottom: 25px;
+    padding-top: 40px;
+    position: relative;
 
-  form.thing_form,
-  #thing_form_content,
-  #thing_form_submit {
-    margin: 0 10%;
-  }
-
-  form.thing_form {
-
-    .form-group {
-      margin: 0 0 2em;
-      label {@include make-sm-column(2);}
-      .controls {@include make-sm-column(8)};
+    @media screen and (min-width: $screen-sm-min) {
+      margin-left: auto;
+      margin-right: auto;
+      min-width: 0;
+      width: 100%;
     }
 
-    #thing_candidate {
+    > h5 {
+      color: #fff;
+      left: 15px;
+      position: absolute;
+      top: 0;
+    }
+
+    .close {
+      color: #fff;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
+
+    .slideshow_control {
+      bottom: 25px;
+      box-shadow: none;
+      color: #fff;
+      height: auto;
+      top: 40px;
+    }
+
+    .slideshow_inner {
+      margin: 0;
+
+      > li {
+        margin-bottom: 0;
+        opacity: 1;
+        padding: 0;
+        width: 160px;
+      }
+    }
+  }
+
+  .thing_form,
+  .uploader {
+    margin: {
+      left: auto;
+      right: auto;
+    }
+    max-width: 992px;
+    width: 55%;
+  }
+
+  .form-group {
+    margin: 0 0 2em;
+
+    label {
       display: none;
-      background-color: $text-color;
-      border-radius: $border-radius-base;
-      margin: 0 -15px 2em;
-      min-width: 100%;
-      padding-bottom: 25px;
-      padding-top: 40px;
-      position: relative;
+      visibility: hidden;
+    }
 
-      @media screen and (min-width: $screen-sm-min) {
-        margin-left: auto;
-        margin-right: auto;
-        min-width: 0;
-        width: 100%;
+    .form-control {
+      border: none;
+      border-bottom: $border-default;
+      border-radius: 0;
+      box-shadow: none;
+      font-size: 16px;
+      padding: {
+        left: 0;
+        right: 0;
       }
 
-      > h5 {
-        color: #fff;
-        left: 15px;
-        position: absolute;
-        top: 0;
-      }
-
-      .close {
-        color: #fff;
-        position: absolute;
-        right: 10px;
-        top: 10px;
-      }
-
-      .slideshow_control {
-        bottom: 25px;
-        box-shadow: none;
-        color: #fff;
-        height: auto;
-        top: 40px;
-      }
-
-      .slideshow_inner {
-        margin: 0;
-
-        > li {
-          margin-bottom: 0;
-          opacity: 1;
-          padding: 0;
-          width: 160px;
-        }
+      &:focus {
+        outline: none;
       }
     }
   }
 
-  #thing_title {
-    margin-bottom: 0;
-    text-align: left;
+  .uploader_label {
+    font-size: 16px;
+    border-bottom: $border-default;
+    color: $text-muted;
+    display: block;
+    margin-bottom: $padding-large-vertical;
+    padding: {
+      bottom: 6px;
+      top: 6px;
+    }
   }
 
-  #thing_form_submit {
-    margin-bottom: 1em;
+  .uploader_queue {
+    border-color: #eee;
+
+    .help-block {
+      font-style: normal;
+    }
   }
 
   form.pro_edit_thing_form {

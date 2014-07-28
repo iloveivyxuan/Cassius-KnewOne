@@ -181,6 +181,10 @@
     // @TODO
     min-height: 350px;
   }
+
+  input[type="file"] {
+    display: none;
+  }
 }
 
 .editor-metas {
