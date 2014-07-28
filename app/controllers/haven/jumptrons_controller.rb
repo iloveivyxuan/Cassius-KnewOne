@@ -16,7 +16,6 @@ module Haven
     def update
       @jumptron = Jumptron.find(params[:id])
       if @jumptron.update(jumptron_params)
-        set_other_jumptron_default_false(@jumptron) if @jumptron.default
         redirect_to haven_jumptrons_url
       else
         render 'edit'
@@ -26,7 +25,6 @@ module Haven
     def create
       jumptron = Jumptron.new(jumptron_params)
       if jumptron.save
-        set_other_jumptron_default_false(jumptron) if jumptron.default
         redirect_to haven_jumptrons_url
       else
         render 'new'
@@ -43,11 +41,5 @@ module Haven
     def jumptron_params
       params.require(:jumptron).permit(:image, :alt, :href, :default)
     end
-
-    def set_other_jumptron_default_false(j)
-      jumptrons = Jumptron.where(default: true)
-      jumptrons.each { |ju| ju.update_attributes(default: false) if ju != j }
-    end
-
   end
 end
