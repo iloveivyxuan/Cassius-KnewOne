@@ -33,6 +33,13 @@ module Haven
                     @things.order_by [:created_at, :desc]
                 end
 
+      if params[:from].present?
+        @things = @things.where(:created_at.gte => Date.parse(params[:from]))
+      end
+      if params[:to].present?
+        @things = @things.where(:created_at.lt => Date.parse(params[:to]).next_day)
+      end
+
       @things = @things.page params[:page]
     end
 
