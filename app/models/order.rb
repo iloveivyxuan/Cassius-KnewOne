@@ -477,7 +477,7 @@ class Order
   def after_confirm
     self.user.inc karma: Settings.karma.order
     # bong coupon
-    if bong_inside?
+    if bong && bong_inside?
       coupons = bong_coupon(bong_amount)
       order_note = coupons.map(&:code)
       leave_note(order_note)
@@ -485,7 +485,7 @@ class Order
   end
 
   def bong
-    Thing.find("53d0bed731302d2c13b20000")
+    @_bong ||= Thing.where(id: "53d0bed731302d2c13b20000").first
   end
 
   def bong_inside?
