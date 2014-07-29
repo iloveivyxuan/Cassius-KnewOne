@@ -167,7 +167,7 @@ article.thing {
   header.cover {
     position: relative;
     height: 0;
-    padding-bottom: (400 / 550 * 100%);
+    padding-bottom: (600 / 800 * 100%);
 
     img {width: 100%;}
   }
@@ -189,7 +189,10 @@ article.thing {
     }
 
     @media (min-width: $screen-sm-min) {
-      @include text-overflow;
+      .title,
+      .subtitle {
+        @include text-overflow;
+      }
     }
   }
 
@@ -254,6 +257,7 @@ article.thing {
         .fanciers_count {color: $gray-light;}
         background-color: #eee;
         color: $gray;
+        @include border-radius(3px);
       }
     }
 

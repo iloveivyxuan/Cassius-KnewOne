@@ -1,4 +1,6 @@
 article.review {
+  @include clearfix;
+
   background: white;
 
   header.cover {

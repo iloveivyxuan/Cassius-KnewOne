@@ -116,13 +116,13 @@ do (exports = Making) ->
           collection: collection
           el: el
 
-    InfiniteScroll: (container, item) ->
+    InfiniteScroll: (container, callback) ->
       $('.pagination').hide()
       $(container).infinitescroll
         navSelector: '.pagination'
         nextSelector: '.pagination a[rel="next"]'
-        contentSelector: container + ' ul.infinite'
-        itemSelector: 'ul.infinite > li'
+        contentSelector: container + ' .infinite'
+        itemSelector: '.infinite > li, .infinite > article'
         pixelsFromNavToBottom: 150
         loading:
           msg: $("<div class='loading-things'><i class='fa fa-spinner fa-spin fa-2x'></i></div>")
@@ -132,6 +132,7 @@ do (exports = Making) ->
           $('.loading-things').remove()
           $(data).find(".lazy").css("visibility", "visible").lazyload
             threshold: 400
+          callback() if callback?
 
     CalculatePrice: ($el) ->
       price = parseFloat($el.children('.price').attr('data-price'))

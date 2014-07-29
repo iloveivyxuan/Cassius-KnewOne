@@ -1,42 +1,34 @@
 window.Making = do (exports = window.Making || {}) ->
 
   exports.InitHome = ->
-    $container = $('#activities')
-    $spinner = $container.siblings('.spinner')
-    $no_content = $container.siblings('.nomore')
-    _lock = false
-    _page = 1
+    Making.InfiniteScroll("#wrapper")
 
-    exports.Feeling('#activities')
+    Making.Feeling("#feeds")
 
-    render_border = ->
-      $container
-        .find(".col-sm-6:odd").addClass('odd').end()
-        .find(".col-sm-6:even").addClass('even').end()
+    $(document)
+    .on('click', '.feed-feeling .feed-comments', ->
+      $(this).toggleClass('active')
+    )
+    .on('click', '.feed-feeling .feed-lovers', (event) ->
+      $this = $(this)
 
-    loading_timeline =  ->
-      $.ajax
-        url: '/?page=' + (++ _page)
-        dataType: 'html'
-        beforeSend: -> _lock = true and $spinner.removeClass('hide')
-      .done (data) ->
-        if data
-          $container.append(data)
-          render_border()
-          _lock = false
-        else
-          $no_content.removeClass('hide')
-      .always -> $spinner.addClass('hide')
+      event.preventDefault()
 
-    $ ->
-      if $container.children().length is 0
-        $no_content.removeClass('hide')
+      if $this.hasClass('active')
+        action = 'unvote'
+        increment = -1
       else
-        render_border()
+        action = 'vote'
+        increment = 1
 
-      $(window).on 'scroll', ->
-        if $(document).height() - $(window).scrollTop() - $(window).height() < 100 and !_lock
-          loading_timeline()
+      $.post("#{$(this).data('url')}/#{action}")
+      .done(->
+        $this
+        .toggleClass('active')
+        .find('.lovers-count')
+          .text(-> (parseInt($(this).text()) || 0) + increment)
+      )
+    )
 
   exports.InitHomeGuest = ->
     $ ->

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -394,14 +395,11 @@ class User
   # activity
   include Feedable
 
-  def relate_activities(type_from_users = %i(new_thing own_thing fancy_thing
-                                             new_review love_review new_feeling love_feeling new_topic),
-                        type_from_sources = %i(new_review new_topic))
-    user_ids = self.following_ids.map(&:to_s)
-    source_unions = (self.fancy_ids + self.own_ids).map { |id| "Thing_#{id.to_s}" } +
-        Group.find_by_user(self).map { |u| "Group_#{u.id.to_s}" }
-    Activity.visible.or({:user_id.in => user_ids, :type.in => type_from_users},
-                        {:source_union.in => source_unions, :user_id.ne => self.id.to_s, :type.in => type_from_sources})
+  def relate_activities(types = %i(new_thing own_thing fancy_thing
+                                  new_review love_review
+                                  new_feeling love_feeling))
+    user_ids = following_ids + [self.id]
+    Activity.where(:user_id.in => user_ids.map(&:to_s), :type.in => types, visible: true)
   end
 
   # category

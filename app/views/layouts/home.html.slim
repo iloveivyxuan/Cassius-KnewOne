@@ -11,48 +11,4 @@
   main role="main"
     = yield
 
-  aside role="complemental"
-    = link_to thing_path("bong-ii"), class: "side_section" do
-        img src="http://image.knewone.com/photos/4fcb90b36189a9fa675f39334a48d769.jpg" alt="bong II 优惠券"
-    section#choiceness.panel
-      header.panel-heading
-        h5.panel-title
-          span 编辑精选
-          = link_to_with_icon "", "fa fa-random", random_things_path(per: 1), remote: true
-      .panel-body
-        = @editor_choices.map { |t| render 'things/editor_choice', thing: t }.join.html_safe
-
-    nav.btn_block_group
-      a.btn_block href=rewards_path
-        i.fa.fa-gift
-        label 天天有礼
-      a.btn_block href=recommend_users_profile_path
-        i.fa.fa-smile-o
-        label 推荐用户
-
-    footer
-      = link_to jobs_path, class: "side_section" do
-        img src="http://image.knewone.com/photos/4edadfb2fa361193f56a1a7bcd07d4e1.jpg" alt="加入我们"
-
-      .btn_block_group
-        a.btn_block href="http://weibo.com/knewone" target="_blank"
-          label
-            i.fa.fa-weibo.fa-lg
-            | 微博
-          img alt="KnewOne 微博" src="http://image.knewone.com/photos/47b0872c5e90a8f8322b3ff70a2b1d9d.png!small"
-        span.btn_block.wechat
-          label
-            i.fa.fa-comments.fa-lg
-            | 微信
-          img alt="KnewOne 微信" src="http://image.knewone.com/photos/6f1d8c7a248bfb432708f4febe7a8ecf.png!small"
-
-      nav.nav_bottom
-        = link_to_with_icon "建议反馈", "fa fa-pencil-square-o", "/things/knewone"
-        = link_to_with_icon "联系我们", "fa fa-envelope-o", "mailto:hello@knewone.com"
-
-      small
-        | 粤ICP备13057487号
-        br
-        | &copy; 2014 KnewOne
-
 = render template: 'layouts/application'

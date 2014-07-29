@@ -203,8 +203,25 @@
   &:not(:last-child) {border-bottom: $border-dashed;}
 }
 
-// Media Query mixin
+// Media queries
 // -----------------------------------------------------------------------------
+
+@mixin breakpoint($class) {
+  @if $class == xs {
+    @media (min-width: 0px) { @content; }
+  } @else if $class == sm {
+    @media (min-width: $screen-sm-min) { @content; }
+  } @else if $class == md {
+    @media (min-width: $screen-md-min) { @content; }
+  } @else if $class == lg {
+    @media (min-width: $screen-lg-min) { @content; }
+  } @else if $class == xl {
+    @media (min-width: $screen-xl-min) { @content; }
+  } @else {
+    @warn "Not supported";
+  }
+}
+
 @mixin MQ($canvas) {
   $XS: 320px;
   $S:  480px;

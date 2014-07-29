@@ -1,0 +1,30 @@
+- user_presenter = present activity.user
+
+li.feed-activity
+  ul
+    li.feed-user
+      = user_presenter.link_to_with_avatar(:small)
+      = user_presenter.link_to_with_popoverable_name
+    li.feed-action
+      = time_ago_tag(activity.created_at)
+      = present(activity, FeedPresenter).action
+      - if activity.type == :new_feeling
+        - feeling = activity.reference
+        span.feed-operations
+          button.btn.btn-xs.feed-comments.comments_toggle data-id="feeling_#{feeling.id}_comments"
+            | 回复
+            - if feeling.has_comments?
+              span.comments_count= feeling.comments.size
+          button.btn.btn-xs.feed-lovers class=(feeling.voted?(current_user) ? 'active' : '') data-url=thing_feeling_path(feeling.thing, feeling)
+            | 赞
+            - if feeling.has_lovers?
+              span.lovers-count= feeling.lovers_count
+
+  - if activity.type == :new_feeling
+    .feed-feeling
+      p
+        i.fa.fa-quote-left
+        = feeling.content
+        i.fa.fa-quote-right
+      section.comments_wrap
+        = render 'shared/comments', post: feeling, id: "feeling_#{feeling.id}_comments", auth: true

@@ -1,0 +1,49 @@
+section.entries
+  ul
+    - Entry.published.where(category: '专题').desc(:created_at).limit(2).each do |entry|
+      li= link_to entry.external_link
+        = image_tag(entry.cover, alt: entry.title)
+
+- if current_user.drafts.present?
+  section.drafts
+    header
+      = link_to setting_drafts_path
+        h2
+          | 我的草稿
+          span.drafts-count= current_user.drafts.size
+
+section.tags
+  header
+    h2 热门标签
+  section
+    ul.list-inline.tag
+      - Category.prior.limit(6).each do |category|
+        li= link_to category_things_path(category: category)
+          span.label.label-default= category.name
+
+section.recommended-users
+  header
+    h2 推荐用户
+  section
+    ul
+      - User.desc(:recommend_priority).limit(10).each do |user|
+        li.recommended-user
+          = present(user).as_author_with_profile
+          ul.user-info.list-inline
+            li.fancies-count
+              = link_to fancies_user_path(user)
+                | 喜欢
+                b = user.fancies_count
+            li.reviews-count
+              = link_to reviews_user_path(user)
+                | 评测
+                b = user.reviews_count
+
+section.about
+  .contacts
+    = link_to "关于我们", help_path
+    = link_to "加入我们", jobs_path
+    = link_to "建议反馈", "/things/knewone"
+    = link_to "联系我们", "mailto:hello@knewone.com"
+  .icp
+    p 粤ICP备13057487号 © 2014 KnewOne

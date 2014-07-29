@@ -7,18 +7,28 @@ class FeedPresenter < ApplicationPresenter
   end
 
   def display=(style)
-    if [:half, :row].include? style
+    if [:third, :row].include? style
       @display = style
     end
   end
 
   def style
-    @display ||= (tmpl == "thing" ? :half : :row)
-    {half: "col-sm-6", row: "col-sm-12"}[@display]
+    ""
   end
 
   def render_to_html
     render "feeds/#{tmpl}", fp: self
+  end
+
+  def action
+    raw case activity.type
+        when :new_thing   then '发布'
+        when :own_thing   then '拥有'
+        when :fancy_thing then '喜欢'
+        when :new_review  then '发表'
+        when :love_review then '赞'
+        when :new_feeling then '发表了短评'
+        end
   end
 
   def render_action
