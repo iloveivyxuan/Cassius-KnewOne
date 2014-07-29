@@ -1,4 +1,6 @@
 html.signed_in_homepage {
+  #wrapper {margin: 0;}
+  
   .container {
     padding: 0;
 
@@ -21,7 +23,7 @@ html.signed_in_homepage {
           color: $gray-light;
         }
 
-        @include breakpoint(md) {
+        @include breakpoint(sm) {
           display: none;
         }
       }
@@ -176,7 +178,7 @@ html.signed_in_homepage {
         }
       }
 
-      @include breakpoint(sm) {
+      @include breakpoint(md) {
         position: relative;
         margin-left: 10em;
 
@@ -187,6 +189,7 @@ html.signed_in_homepage {
           right: 100%;
         }
       }
+
       .feed-review {
         margin-top: 20px;
         padding: 16px;
