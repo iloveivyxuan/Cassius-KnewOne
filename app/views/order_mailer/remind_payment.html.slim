@@ -1,0 +1,17 @@
+- content_for :username do
+  = @user.name
+
+- content_for :title do
+  | 订单 #{@order.order_no} 等待付款。
+
+p
+  | 您曾于过去的24小时内在 KnewOne 购物，目前 KnewOne 尚未收到此订单的款项。
+  | 为保证您能及时收到订单商品，请您尽快安排付款。
+
+p
+  | 您可以在#{link_to '订单详情', order_url(@order)}中复查订单，并选择付款方式进行支付。
+
+p
+  | 如果您需要进一步的帮助，可以直接回复此封邮件。
+  br
+  | 如果您已经完成支付，请忽略此邮件。
