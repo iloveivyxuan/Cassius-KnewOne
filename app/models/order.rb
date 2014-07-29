@@ -160,10 +160,10 @@ class Order
 
   after_create do
     self.user.cart_items.where(:thing.in => order_items.map(&:thing), :kind_id.in => order_items.map(&:kind).map(&:id)).destroy_all
-  end
 
-  after_create do
     confirm_free! if can_confirm_free?
+
+    OrderMailer.delay_for(1.hours, retry: false, queue: :mails).remind_payment(self.id.to_s)
   end
 
   after_save do
@@ -287,6 +287,8 @@ class Order
     own_things if auto_owning?
 
     order_histories.create from: :confirmed, to: :shipped
+
+    OrderMailer.delay(retry: false, queue: :mails).ship(self.id.to_s)
   end
 
   def cancel!(raw = {})
