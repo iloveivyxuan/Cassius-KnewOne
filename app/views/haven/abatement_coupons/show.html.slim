@@ -53,6 +53,8 @@ table.table
       td = link_to ([code.user.name, code.user.email, code.user.id.to_s].reject(&:blank?).first), code.user, target: '_blank' unless code.user.nil?
       td = link_to code.order.order_no, haven_order_path(code.order), target: '_blank' if code.used?
       td = code.generator.name if code.generator
-      td = link_to '作废', haven_coupon_code_path(code), method: :delete, data: {confirm: 'Sure?'}
+      td
+        - unless code.used?
+          = link_to '作废', haven_coupon_code_path(code), method: :delete, data: {confirm: 'Sure?'}
 
 = paginate @coupon_codes
