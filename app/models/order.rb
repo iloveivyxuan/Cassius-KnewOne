@@ -273,11 +273,12 @@ class Order
     true
   end
 
-  def ship!(deliver_no, admin_note = '')
+  def ship!(deliver_no, admin_note = '', deliver_by = self.deliver_by)
     return false unless can_ship?
 
     self.state = :shipped
     self.deliver_no = deliver_no
+    self.deliver_by = deliver_by
 
     if admin_note.present?
       if self.admin_note.present?
