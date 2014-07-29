@@ -73,10 +73,12 @@ html.things_edit {
     }
 
     .form-control {
+      @include placeholder-color($text-muted);
       border: none;
       border-bottom: $border-default;
       border-radius: 0;
       box-shadow: none;
+      color: $text-color;
       font-size: 16px;
       padding: {
         left: 0;
@@ -106,6 +108,8 @@ html.things_edit {
 
     .help-block {
       font-style: normal;
+      height: 60px;
+      line-height: 32px;
     }
   }
 

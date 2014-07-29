@@ -36,7 +36,7 @@
 
     = simple_form_for Photo.new, html: {class: "uploader"} do |f|
       label.uploader_label for="photo_image" title="请为产品上传图片" data-placement="right" 产品图片
-      = f.file_field :image, multiple: true, name: "photo[image]"
+      = f.file_field :image, multiple: true, name: "photo[image]", accept: "image/*"
       = content_tag :div, class: "uploader_queue", id: "photos", data: {photos: @photos} do
         p.help-block.uploader_toggle
           i.fa.fa-arrows

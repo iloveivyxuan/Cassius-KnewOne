@@ -14,8 +14,9 @@ class Making.Views.ThingsNew extends Backbone.View
     @photo_view.render()
     @$submit.on 'click', ->
       that.$el.submit()
-    @$('.uploader_toggle').on 'click', ->
-      that.$imageField.click()
+    $('.uploader_toggle').on 'click', ->
+      that.$imageField.trigger('click')
+    $('[name="file"]').prop('accept', 'image/*')
 
   validate_unicity: (event) ->
     if $('html').hasClass('things_new')

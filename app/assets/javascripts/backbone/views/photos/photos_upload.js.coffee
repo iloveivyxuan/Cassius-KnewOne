@@ -20,7 +20,7 @@ class Making.Views.PhotosUpload extends Backbone.View
 
   render: =>
     @collection.each @addPhoto
-    @$container.append @el
+    @$container.prepend @el
     this
 
   addFile: (e, data) =>
