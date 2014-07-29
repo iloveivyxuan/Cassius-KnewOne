@@ -525,6 +525,7 @@ class Order
     {
       name: "满 200 减 #{price} 优惠券",
       note: "购物满 200 元结算时输入优惠券代码立减 #{price} 元",
+      threshold_price: 200,
       price: price
     }
   end
