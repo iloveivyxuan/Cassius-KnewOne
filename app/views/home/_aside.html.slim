@@ -26,7 +26,7 @@ section.recommended-users
     h2 推荐用户
   section
     ul
-      - User.desc(:recommend_priority).limit(10).each do |user|
+      - current_user.recommend_new_users.limit(10).each do |user|
         li.recommended-user
           = present(user).as_author_with_profile
           ul.user-info.list-inline

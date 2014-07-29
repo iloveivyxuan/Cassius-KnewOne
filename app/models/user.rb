@@ -405,6 +405,12 @@ class User
   # category
   include CategoryReferable
 
+  # recommend users who not followed by self
+
+  def recommend_new_users
+    User.nin(id: following_ids).desc(:recommend_priority)
+  end
+
   # recommend users from oauth(only support weibo)
   def recommend_users(bilateral = false)
     if auth = auths.select { |a| a.provider == 'weibo' }.first
