@@ -9,7 +9,7 @@ window.Making = do (exports = window.Making || {}) ->
     .on('click', '.feed-feeling .feed-comments', ->
       $(this).toggleClass('active')
     )
-    .on('click', '.feed-feeling .feed-lovers', (event) ->
+    .on('click', '.feed-operations .feed-lovers', (event) ->
       $this = $(this)
 
       event.preventDefault()
