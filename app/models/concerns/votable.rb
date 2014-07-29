@@ -5,6 +5,7 @@ module Votable
     has_and_belongs_to_many :lovers, class_name: "User", inverse_of: nil
     has_and_belongs_to_many :foes, class_name: "User", inverse_of: nil
     field :lovers_count, type: Integer, default: 0
+    index lovers_count: -1
   end
 
   def voted?(user)
