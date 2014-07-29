@@ -42,4 +42,8 @@ class HomeFeed
   def activities_from(reference)
     @activities.select { |a| a.reference == reference }
   end
+
+  def has_new_thing_activities?
+    @activities.any? {|a| a.type == :new_thing}
+  end
 end

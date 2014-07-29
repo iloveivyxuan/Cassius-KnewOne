@@ -1,0 +1,9 @@
+- user_presenter = present author
+
+li.feed-activity
+  ul
+    li.feed-user
+      = user_presenter.link_to_with_avatar(:small)
+      = user_presenter.link_to_with_popoverable_name
+    li.feed-action
+      | 发布
