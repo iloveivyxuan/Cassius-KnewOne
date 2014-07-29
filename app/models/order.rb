@@ -63,8 +63,15 @@ class Order
       :unexpected => '订单异常，请联系客服'
   }
   DELIVER_METHODS = {
+      # Legacy code
       :sf => '顺丰',
-      :zt => '中通'
+      :zt => '中通',
+      # same as https://code.google.com/p/kuaidi-api/wiki/Open_API_API_URL
+      :yuantong => '圆通速递',
+      :debangwuliu => '德邦物流',
+      :huitongkuaidi => '百世汇通',
+      :shunfeng => '顺丰速递',
+      :zhongtong => '中通速递'
   }
   PAYMENT_METHOD = {
       :tenpay => '财付通',
@@ -266,11 +273,12 @@ class Order
     true
   end
 
-  def ship!(deliver_no, admin_note = '')
+  def ship!(deliver_no, admin_note = '', deliver_by = self.deliver_by)
     return false unless can_ship?
 
     self.state = :shipped
     self.deliver_no = deliver_no
+    self.deliver_by = deliver_by
 
     if admin_note.present?
       if self.admin_note.present?
