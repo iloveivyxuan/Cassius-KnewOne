@@ -4,7 +4,7 @@ class HomeFeed
   class << self
     def create_from_activities(activities)
       activities.uniq do |a|
-        [a.type, a.reference]
+        [a.type, a.reference, a.user]
       end.reduce({}) do |feeds, a|
         thing = a.relate_thing
         if feeds[thing]
