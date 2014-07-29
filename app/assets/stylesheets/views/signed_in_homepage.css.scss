@@ -245,9 +245,7 @@ html.signed_in_homepage {
         }
 
         .feed-user {
-          width: 45%;
-          @include text-overflow;
-
+          margin-right: .5em;
           vertical-align: middle;
 
           img {
@@ -262,8 +260,6 @@ html.signed_in_homepage {
         }
 
         .feed-action {
-          width: 55%;
-          text-align: right;
           vertical-align: middle;
 
           time {
@@ -276,19 +272,15 @@ html.signed_in_homepage {
           }
         }
 
-        @include breakpoint(sm) {
-          .feed-user {
-            width: auto;
-            margin-right: .5em;
-          }
+        .feed-operations {
+          margin-left: 1em;
 
-          .feed-action {
-            text-align: left;
-
-            time {
-              margin-right: .5em;
-              font-size: 12px;
-            }
+          > button {
+            margin-right: 1em;
+            background: $gray-lighter;
+            &.active { background: darken($gray-lighter, 10%); }
+            i {margin: 0;}
+            span {margin-left: .5em;}
           }
         }
 
@@ -297,19 +289,9 @@ html.signed_in_homepage {
             margin: 1em 0 0 0;
             font-size: 13px;
             color: $gray-light;
+            i {color: #ccc;}
             i.fa-quote-right {margin-left: .5em;}
             i.fa-quote-left {margin-right: .5em;}
-          }
-
-          .feed-counts {
-            margin-top: .5em;
-            > button {
-              margin-right: 1em;
-              background: $gray-lighter;
-              &.active { background: darken($gray-lighter, 10%); }
-              i {margin: 0;}
-              span {margin-left: .5em;}
-            }
           }
 
           .comments {
