@@ -248,6 +248,8 @@ Making::Application.routes.draw do
       end
     end
 
+    resources :coupon_codes, only: [:destroy]
+
     resources :promotions, except: [:show]
     resources :jumptrons
     resources :things, only: [:index, :update, :edit] do

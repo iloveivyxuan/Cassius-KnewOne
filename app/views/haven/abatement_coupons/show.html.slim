@@ -44,6 +44,7 @@ table.table
     th 绑定的用户
     th 绑定的订单
     th 生成者
+    th
   - @coupon_codes.order_by([:created_at, :desc]).each do |code|
     tr
       td = code.code
@@ -52,5 +53,6 @@ table.table
       td = link_to ([code.user.name, code.user.email, code.user.id.to_s].reject(&:blank?).first), code.user, target: '_blank' unless code.user.nil?
       td = link_to code.order.order_no, haven_order_path(code.order), target: '_blank' if code.used?
       td = code.generator.name if code.generator
+      td = link_to '作废', haven_coupon_code_path(code), method: :delete, data: {confirm: 'Sure?'}
 
 = paginate @coupon_codes
