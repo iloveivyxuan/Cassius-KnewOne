@@ -38,5 +38,8 @@
 //= require common
 //= require_tree ./components
 //= require_tree ./views
-//= require_tree ./backbone
+//= require_tree ./backbone/models
+//= require_tree ./backbone/collections
+//= require_tree ./backbone/views
+//= require_tree ./backbone/routers
 //= require main
