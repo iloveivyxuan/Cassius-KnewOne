@@ -35,7 +35,9 @@ class Making.Views.ThingsNew extends Backbone.View
         if xhr.status is 200
           $data = $(data)
 
-          if $data.children().length is 0 then return
+          if $data.children().length is 0
+            $close.trigger 'click'
+            return
 
           is_slideshow_hidden = $thing_candidate.is(':hidden')
           $slideshow_body.empty().append($data.addClass('slideshow_inner'))
