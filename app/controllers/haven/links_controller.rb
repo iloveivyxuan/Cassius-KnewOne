@@ -10,8 +10,7 @@ module Haven
 
     def update
       things = params["url"].select { |e| !e.blank? }.map { |u| Thing.find(u.split("/").last) }
-      thing_ids = things.map { |t| t.id }
-      thing_ids = nil if thing_ids.empty?
+      thing_ids = things.map { |t| t.id.to_s }
 
       # clear links may be created before
       things.each { |t| t.delete_links }

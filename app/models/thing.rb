@@ -249,24 +249,27 @@ class Thing < Post
     freezing_coefficient
   end
 
-  # get the count of all fanciers & owners, including linked things.
-  # eg. all_fanciers_count & all_owners_count
-  %w(fanciers owners).each do |s|
-    define_method "all_#{s}_count".to_sym do
-      if self.links.blank?
-        self.send("#{s}".to_sym).count
-      else
-        things = self.links.map { |t| Thing.find(t) }
-        things.map(&"#{s}".to_sym).map(&:count).reduce(&:+)
-      end
-    end
-  end
-
   def feelings
     if links.blank?
       single_feelings
     else
       Feeling.in(thing_id: links)
+    end
+  end
+
+  def fanciers_count
+    if links.blank?
+      fanciers.count
+    else
+      links.map { |l| Thing.find(l).fanciers.count }.reduce(&:+)
+    end
+  end
+
+  def owners_count
+    if links.blank?
+      owners.count
+    else
+      links.map { |l| Thing.find(l).owners.count }.reduce(&:+)
     end
   end
 

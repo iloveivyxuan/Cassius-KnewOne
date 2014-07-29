@@ -132,7 +132,7 @@ class ThingPresenter < PostPresenter
   end
 
   def owners_count
-    content_tag :span, thing.all_owners_count, class: "owners_count"
+    content_tag :span, thing.owners_count, class: "owners_count"
   end
 
   def owners
@@ -224,7 +224,7 @@ class ThingPresenter < PostPresenter
   end
 
   def fanciers_count
-    content_tag :span, thing.all_fanciers_count, class: "fanciers_count"
+    content_tag :span, thing.fanciers_count, class: "fanciers_count"
   end
 
   def groups_count
