@@ -11,7 +11,7 @@ class ThingList
   field :name, type: String
   field :description, type: String
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: { scope: :user }
 
   def items
     thing_list_items
