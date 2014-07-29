@@ -1,13 +1,17 @@
 .feed-feeling
-  p= feeling.content
-
-  .feed-counts
-    button.btn.btn-sm.feed-comments.comments_toggle data-id="feeling_#{feeling.id}_comments"
-      span.comments_count= feeling.has_comments? ? feeling.comments.size : ''
-      |  评论
-    button.btn.btn-sm.feed-lovers class=(feeling.voted?(current_user) ? 'active' : '') data-url=thing_feeling_path(feeling.thing, feeling)
-      span.lovers-count= feeling.has_lovers? ? feeling.lovers_count : ''
-      |  赞
+  p
+    i.fa.fa-quote-left
+    = feeling.content
+    i.fa.fa-quote-right
+    span.feed-counts
+      button.btn.btn-xs.feed-comments.comments_toggle data-id="feeling_#{feeling.id}_comments"
+        | 回复
+        - if feeling.has_comments?
+          span.comments_count= feeling.comments.size
+      button.btn.btn-xs.feed-lovers class=(feeling.voted?(current_user) ? 'active' : '') data-url=thing_feeling_path(feeling.thing, feeling)
+        | 赞
+        - if feeling.has_lovers?
+          span.lovers-count= feeling.lovers_count
 
   section.comments_wrap
     = render 'shared/comments', post: feeling, id: "feeling_#{feeling.id}_comments", auth: true

@@ -3,7 +3,9 @@ class HomeFeed
 
   class << self
     def create_from_activities(activities)
-      activities.sort_by(&:created_at).reduce({}) do |feeds, a|
+      activities.uniq do |a|
+        [a.type, a.reference]
+      end.reduce({}) do |feeds, a|
         thing = a.relate_thing
         if feeds[thing]
           feeds[thing].add_activity a
@@ -41,9 +43,5 @@ class HomeFeed
 
   def activities_from(reference)
     @activities.select { |a| a.reference == reference }
-  end
-
-  def has_new_thing_activities?
-    @activities.any? {|a| a.type == :new_thing}
   end
 end

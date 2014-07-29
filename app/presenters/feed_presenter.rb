@@ -21,14 +21,14 @@ class FeedPresenter < ApplicationPresenter
   end
 
   def action
-    case activity.type
-    when :new_thing   then '发布'
-    when :own_thing   then '拥有'
-    when :fancy_thing then '喜欢'
-    when :new_review  then '发布'
-    when :love_review then '赞'
-    when :new_feeling then '发布了短评'
-    end
+    raw case activity.type
+        when :new_thing   then '发布'
+        when :own_thing   then '拥有'
+        when :fancy_thing then '喜欢'
+        when :new_review  then '发表'
+        when :love_review then '赞'
+        when :new_feeling then '发表了短评'
+        end
   end
 
   def render_action
