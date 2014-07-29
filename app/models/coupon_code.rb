@@ -1,6 +1,7 @@
 class CouponCode
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Paranoia
 
   belongs_to :coupon
   belongs_to :order
