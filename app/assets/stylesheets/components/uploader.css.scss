@@ -71,6 +71,20 @@
         cursor: move;
       }
 
+      &.uploader_button {
+        @include square($size);
+        border: 2px dashed #eee;
+        cursor: pointer;
+        color: #eee;
+        font-size: 60px;
+        line-height: 60px;
+        margin: {
+          bottom: 14px;
+          right: 14px;
+        }
+        text-align: center;
+      }
+
       &.sortable-placeholder {
         @include square($size);
         background: #f8f8f8;

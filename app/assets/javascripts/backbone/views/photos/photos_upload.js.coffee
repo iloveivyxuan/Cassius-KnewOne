@@ -2,6 +2,9 @@ class Making.Views.PhotosUpload extends Backbone.View
 
   tagName: 'ul'
 
+  events:
+    "click .destroy": "checkQueue"
+
   initialize: ->
     @$container = $("#photos")
     @collection = new Making.Collections.Photos(@$container.data('photos'))
@@ -28,7 +31,7 @@ class Making.Views.PhotosUpload extends Backbone.View
     file = data.files[0]
     data.view = new Making.Views.PhotoPreview
       model: file
-    @$el.append data.view.render().el
+    @$el.prepend data.view.render().el
     if data.view.validate()
       data.submit()
 
@@ -50,6 +53,7 @@ class Making.Views.PhotosUpload extends Backbone.View
       .removeClass('uploading')
       .addClass('fail')
       .html('<p class="fail">出错了，再试试。<a class="destroy" title="删除" href="#"><i class="fa fa-trash-o"></i></a></p>')
+    @checkUploaderButton()
     false
 
   addPhoto: (photo) =>
@@ -57,10 +61,21 @@ class Making.Views.PhotosUpload extends Backbone.View
       model: photo
       attributes:
         'data-photo-id': photo.id
-    @$el.append view.render().el
+    @$el.prepend view.render().el
+    @checkQueue()
     @$el.sortable
       items: '.uploaded'
 
   removePhoto: =>
     if @$el.children('li').length is 0
       @$el.prev('.help-block').show()
+
+  checkQueue: =>
+    that = @
+    if @$el.children('li:not(.uploader_button)').length is 0
+      @$el.children('.uploader_button').remove()
+    else if @$el.children('.uploader_button').length is 0
+      $button = $('<li class="uploader_button">+</li>')
+      $button.on 'click', ->
+        that.$el.closest('.uploader').find('.uploader_label').click()
+      @$el.append($button)
