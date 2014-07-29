@@ -480,6 +480,10 @@ class Order
     h ? h.created_at : nil
   end
 
+  def bong_inside?
+    self.order_items.where(thing_title: bong.title).exists?
+  end
+
   need_aftermath :confirm_payment!, :refund_to_balance!, :refund!, :confirm_free!
 
   private
@@ -496,10 +500,6 @@ class Order
 
   def bong
     @_bong ||= Thing.where(id: "53d0bed731302d2c13b20000").first
-  end
-
-  def bong_inside?
-    self.order_items.where(thing_title: bong.title).exists?
   end
 
   def bong_amount

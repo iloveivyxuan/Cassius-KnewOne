@@ -5,7 +5,7 @@ class AbatementCoupon < Coupon
   validates :threshold_price, :price, :presence => true
 
   def use_condition(order)
-    order.receivable >= self.threshold_price && !bong_inside?
+    order.receivable >= self.threshold_price && !order.bong_inside?
   end
 
   def take_effect(order, code)
@@ -15,15 +15,5 @@ class AbatementCoupon < Coupon
   def undo_effect(order)
     r = order.rebates.select { |rebate| rebate.name == "#{self.name}" && rebate.price == -self.price }.first
     order.rebates.delete r
-  end
-
-  private
-
-  def bong
-    @_bong ||= Thing.where(id: "53d0bed731302d2c13b20000").first
-  end
-
-  def bong_inside?
-    order.order_items.where(thing_title: bong.title).exists?
   end
 end
