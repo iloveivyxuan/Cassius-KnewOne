@@ -15,8 +15,6 @@ class HomeController < ApplicationController
 
       if @feeds.empty?
         redirect_to hits_url
-      else
-        render layout: 'home'
       end
     else
       respond_to do |format|

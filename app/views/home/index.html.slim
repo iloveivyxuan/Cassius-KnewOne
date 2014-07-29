@@ -1,11 +1,15 @@
+- provide :page_class, 'signed_in_homepage'
+
 .container
-  ul#feeds.infinite
-    = render partial: 'feed', collection: @feeds
+  main role="main"
+    header
+      h2 我的关注
+    section#feeds.infinite
+      = render partial: 'feed', collection: @feeds
+    = paginate @activities
 
-  .aside-container
+  aside role="complemental"
     = render 'aside'
-
-  = paginate @activities
 
 - content_for :script do
   javascript:
