@@ -8,14 +8,11 @@ class Making.Views.ThingsNew extends Backbone.View
     that        = @
     @$title     = @$('[name="thing[title]"]')
     @$content   = @$('[name="thing[content]"]')
-    @$imageField = $('.uploader').find('[name="photo[image]"]')
     @$submit    = $('#form-thing-submit')
     @photo_view = new Making.Views.PhotosUpload
     @photo_view.render()
     @$submit.on 'click', ->
       that.$el.submit()
-    $('.uploader_toggle').on 'click', ->
-      that.$imageField.trigger('click')
     $('[name="file"]').prop('accept', 'image/*')
 
   validate_unicity: (event) ->

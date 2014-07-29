@@ -182,7 +182,7 @@
     min-height: 350px;
   }
 
-  input[type="file"] {
+  [data-edit="insertImage"] {
     @include mask;
   }
 }
