@@ -170,7 +170,7 @@ class Order
 
     confirm_free! if can_confirm_free?
 
-    OrderMailer.delay_for(1.hours, retry: false, queue: :mails).remind_payment(self.id.to_s)
+    OrderMailer.delay_for(3.hours, retry: false, queue: :mails).remind_payment(self.id.to_s)
   end
 
   after_save do
