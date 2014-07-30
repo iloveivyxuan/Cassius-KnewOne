@@ -297,6 +297,14 @@ html.signed_in_homepage {
             i.fa-quote-left {margin-right: .5em;}
           }
 
+          ul.feed-feeling-photos {
+            text-align: center;
+            li {
+              display: inline-block;
+              margin: 1em;
+            }
+          }
+
           .comments {
             .comment-form {
               display: none;

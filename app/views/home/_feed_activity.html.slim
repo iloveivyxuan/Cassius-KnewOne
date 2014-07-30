@@ -27,5 +27,10 @@ li.feed-activity
         i.fa.fa-quote-left
         = feeling.content
         i.fa.fa-quote-right
+      ul.feed-feeling-photos
+        - feeling.photos.take(4).each do |photo|
+          li
+            = link_to photo.url, data: {lightbox: "feeling_#{feeling.id}"} do
+              = image_tag photo.url(:small), alt: photo.name
       section.comments_wrap
         = render 'shared/comments', post: feeling, id: "feeling_#{feeling.id}_comments", auth: true
