@@ -408,7 +408,8 @@ class User
   # recommend users who not followed by self
 
   def recommend_new_users
-    User.nin(id: following_ids).desc(:recommend_priority)
+    user_ids = following_ids + [self.id]
+    User.nin(id: user_ids).desc(:recommend_priority)
   end
 
   # recommend users from oauth(only support weibo)
