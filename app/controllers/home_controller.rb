@@ -9,7 +9,7 @@ class HomeController < ApplicationController
         .relate_activities(%i(new_thing own_thing fancy_thing
                               new_review love_review
                               new_feeling))
-        .page(params[:page]).per(30)
+        .page(params[:page]).per(100)
 
       @feeds = HomeFeed.create_from_activities @activities
 
