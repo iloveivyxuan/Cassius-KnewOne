@@ -409,7 +409,7 @@ class User
 
   def recommend_new_users
     user_ids = following_ids + [self.id]
-    User.nin(id: user_ids).desc(:recommend_priority)
+    User.nin(id: user_ids).desc(:recommend_priority, :followers_count)
   end
 
   # recommend users from oauth(only support weibo)
