@@ -39,11 +39,11 @@
           = nav_tab :promotion do
             = link_to_with_icon '分类顶部封面', 'fa fa-fw fa-wrench', haven_promotions_path
           = nav_tab :article do
-            = link_to_with_icon '文章', 'fa fa-fw fa-wrench', haven_articles_path
+            = link_to_with_icon '管理文章', 'fa fa-fw fa-wrench', haven_articles_path
           = nav_tab :special do
-            = link_to_with_icon '专题', 'fa fa-fw fa-wrench', haven_specials_path
+            = link_to_with_icon '管理专题', 'fa fa-fw fa-wrench', haven_specials_path
           = nav_tab :entry do
-            = link_to_with_icon '博客', 'fa fa-fw fa-wrench', haven_entries_path
+            = link_to_with_icon '管理发现', 'fa fa-fw fa-wrench', haven_entries_path
           - if can? :manage, Review
             = nav_tab :review do
               = link_to_with_icon '管理评测', 'fa fa-fw fa-wrench', haven_reviews_path
