@@ -218,10 +218,6 @@ Making::Application.routes.draw do
     mount Sidekiq::Web => '/haven/sidekiq'
   end
 
-  get 'valentine', to: 'specials#valentine'
-  get 'womensday', to: 'specials#womensday'
-  get 'makerfaire', to: 'specials#makerfaire'
-
   namespace :haven do
     resources :orders, only: [:index, :show, :update] do
       member do

@@ -1,0 +1,17 @@
+body {
+	font-family: "Hiragino Sans GB", "Microsoft YaHei", "Orbitron-Bold", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	background: url('../images/pattern/pattern_1.png');
+}
+*,
+*:after,
+*::before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+a, a:hover, a:focus { text-decoration: none; }
+.container { overflow: hidden; }
+.container svg { display: block; }
+section { position: relative; text-align: center; }
+.row { margin-right: 0; margin-left: 0; }
+img { display: block; }
