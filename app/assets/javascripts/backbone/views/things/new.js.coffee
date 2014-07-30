@@ -2,11 +2,18 @@ class Making.Views.ThingsNew extends Backbone.View
 
   events:
     "submit": "validate"
-    "focusout #thing_title": "validate_unicity"
+    "focusout [name='thing[title]']": "validate_unicity"
 
   initialize: ->
+    that        = @
+    @$title     = @$('[name="thing[title]"]')
+    @$content   = @$('[name="thing[content]"]')
+    @$submit    = $('#form-thing-submit')
     @photo_view = new Making.Views.PhotosUpload
     @photo_view.render()
+    @$submit.on 'click', ->
+      that.$el.submit()
+    $('[name="file"]').prop('accept', 'image/*')
 
   validate_unicity: (event) ->
     if $('html').hasClass('things_new')
@@ -28,7 +35,9 @@ class Making.Views.ThingsNew extends Backbone.View
         if xhr.status is 200
           $data = $(data)
 
-          if $data.children().length is 0 then return
+          if $data.children().length is 0
+            $close.trigger 'click'
+            return
 
           is_slideshow_hidden = $thing_candidate.is(':hidden')
           $slideshow_body.empty().append($data.addClass('slideshow_inner'))
@@ -84,15 +93,16 @@ class Making.Views.ThingsNew extends Backbone.View
       ).appendTo @$el
 
   validate: ->
-    title       = $.trim($('#thing_title').val())
-    description = $.trim($('#thing_content').val())
-    $photos     = @photo_view.$('.uploaded')
+    $photos = @photo_view.$('.uploaded')
 
-    if title isnt '' and description isnt '' and $photos.length > 0
+    if $.trim(@$title.val()) isnt '' and
+      $.trim(@$content.val()) isnt '' and
+        $photos.length > 0
+
       @collect_photos()
-      $('#thing_form_submit').find('[type="submit"]').disable()
-      true
+      @$submit.disable()
+      return true
     else
       if $photos.length is 0
-        $('.fileinput-button').tooltip('show')
-      false
+        $('.uploader_label').tooltip('show')
+      return false

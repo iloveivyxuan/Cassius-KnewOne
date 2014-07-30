@@ -34,6 +34,8 @@
                 = hidden_field_tag 'review[author]', @review.author.id.to_s, id: 'author_id'
                 input#author_autocomplete.form-control placeholder="用户昵称" value="#{@review.author.name}"
       .body#form-review-body
+        p
+          br
       = f.hidden_field :content
   = attachment_tag target: "#pictureBtn", edit: "insertImage"
   = render "shared/editor_help"

@@ -14,5 +14,5 @@ class Making.Views.Photo extends Backbone.View
   destroy: (e) =>
     e.preventDefault()
 
-    @$el.fadeOut =>
-      @.remove()
+    @$el.remove()
+    @remove()

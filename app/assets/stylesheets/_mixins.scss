@@ -168,6 +168,16 @@
   }
 }
 
+@mixin mask {
+  font-size: 0;
+  height: 0;
+  line-height: 0;
+  margin: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
 
 // Effect
 // -----------------------------------------------------------------------------
