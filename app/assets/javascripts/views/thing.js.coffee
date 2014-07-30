@@ -10,7 +10,7 @@ window.Making = do (exports = window.Making || {}) ->
       mode: 'standalone'
       type: 'thing'
       bodyField: '[name="thing[content]"]'
-      excludeField: '[name="photo[image]"]'
+      excludeField: '[name="utf8"], [name="authenticity_token"], [name="photo[image]"]'
       placeholder: '产品详细信息'
 
     exports.FormLink('form.thing_form', '#thing_form_submit button')
