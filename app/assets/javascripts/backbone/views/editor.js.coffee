@@ -260,7 +260,7 @@ do (exports = Making) ->
       that = @
       @typingTime = new Date()
 
-      setTimeout ->
+      @timeout = setTimeout ->
         if (new Date() - that.typingTime) > that.delay
           that.save()
       , @delay
@@ -301,8 +301,8 @@ do (exports = Making) ->
 
     submit: (event) ->
       switch @mode
-
         when 'standalone'
+          clearTimeout(@timeout)
           @model.updateStatus('submit')
           @setBody()
 
