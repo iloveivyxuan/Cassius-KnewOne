@@ -16,6 +16,7 @@ do (exports = Making) ->
       'click .editor-drop'   : 'drop'
       'click .editor-save'   : 'save'
       'click .editor-submit' : 'submit'
+      'submit .editor-form'  : 'submit'
 
     initialize: (options) ->
       @mode        = options.mode

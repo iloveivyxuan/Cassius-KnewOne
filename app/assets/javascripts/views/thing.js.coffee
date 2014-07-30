@@ -13,8 +13,6 @@ window.Making = do (exports = window.Making || {}) ->
       excludeField: '[name="utf8"], [name="authenticity_token"], [name="photo[image]"]'
       placeholder: '产品详细信息'
 
-    exports.FormLink('form.thing_form', '#thing_form_submit button')
-
   exports.InitThing = ->
     exports.ReadMore('.post_content')
 

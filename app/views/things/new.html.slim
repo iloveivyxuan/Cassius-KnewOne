@@ -19,7 +19,7 @@
       button.editor-submit#form-thing-submit type="submit" 发布
 
   article.editor-content.article
-    = simple_form_for @thing, html: {class: "thing_form"} do |f|
+    = simple_form_for @thing, html: {class: "editor-form thing_form"} do |f|
       = f.input :title, placeholder: "产品名称", input_html: {maxlength: 40, autofocus: true}
       - unless @thing.persisted?
         section#thing_candidate.slideshow
