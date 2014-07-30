@@ -8,13 +8,11 @@ class ReviewsController < ApplicationController
   after_action :allow_iframe_load, only: [:show]
 
   def index
-    if params[:sort] == "created_at"
-      @reviews = @thing.reviews.desc(:created_at)
-    else
-      @reviews = @thing.reviews.desc(:is_top, :lovers_count, :created_at)
-    end
-
-    @reviews = @reviews.page(params[:page]).per(params[:per])
+    @reviews = if params[:sort] == "created_at"
+                 @thing.reviews.desc(:created_at)
+               else
+                 @thing.reviews.desc(:is_top, :lovers_count, :created_at)
+               end.page(params[:page]).per(params[:per])
 
     if request.xhr?
       render 'reviews/index_xhr', layout: false

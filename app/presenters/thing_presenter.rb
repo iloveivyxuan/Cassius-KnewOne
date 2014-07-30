@@ -132,7 +132,7 @@ class ThingPresenter < PostPresenter
   end
 
   def owners_count
-    content_tag :span, thing.owners.count, class: "owners_count"
+    content_tag :span, thing.owners_count, class: "owners_count"
   end
 
   def owners
@@ -167,7 +167,7 @@ class ThingPresenter < PostPresenter
     thing.reviews.desc(:is_top, :lovers_count, :created_at).limit(limit)
   end
 
-  def feelings(limit)
+  def feelings(limit=10)
     thing.feelings.desc(:lovers_count, :created_at).limit(limit)
   end
 

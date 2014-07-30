@@ -263,6 +263,8 @@ Making::Application.routes.draw do
       end
     end
 
+    resources :links
+
     resources :articles, except: [:show]
 
     resources :specials, except: [:show] do

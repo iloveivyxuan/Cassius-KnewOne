@@ -56,6 +56,10 @@
           - if can? :manage, Order
             = nav_tab :supplier do
               = link_to_with_icon '管理订单', 'fa fa-fw fa-wrench', haven_orders_path
+          - if can? :manage, :all
+            = nav_tab :thing do
+              = link_to_with_icon '管理产品', 'fa fa-fw fa-wrench', haven_things_path
+              = link_to_with_icon '关联产品', 'fa fa-fw fa-wrench', haven_links_path
           - if can? :manage, AbatementCoupon
             = nav_tab :coupon do
               = link_to_with_icon '管理足价减优惠券', 'fa fa-fw fa-wrench', haven_abatement_coupons_path

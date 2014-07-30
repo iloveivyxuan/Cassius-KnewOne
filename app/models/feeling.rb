@@ -5,9 +5,9 @@ class Feeling < Post
 
   field :photo_ids, type: Array, default: []
 
-  belongs_to :thing, counter_cache: true, index: true
-
   validates :content, presence: true, length: { maximum: 140 }
+
+  belongs_to :thing, inverse_of: :single_feelings, counter_cache: true, index: true
 
   def photos
     Photo.find_with_order photo_ids
