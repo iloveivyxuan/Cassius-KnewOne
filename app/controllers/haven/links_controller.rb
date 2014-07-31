@@ -12,10 +12,21 @@ module Haven
       things = params["url"].select { |e| !e.blank? }.map { |u| Thing.find(u.split("/").last) }
       thing_ids = things.map { |t| t.id.to_s }
 
+      # associate categories & shop url.
+      thing_categories = []
+      things.each { |t| thing_categories += t.categories }
+      thing_categories.uniq!
+      thing_shop = things.map(&:shop).select { |t| !t.blank? }.first
+
       # clear links may be created before
       things.each { |t| t.delete_links }
       # set linked
-      things.each { |t| t.update_attributes(links: thing_ids) }
+      things.each do |t|
+        t.links = thing_ids
+        t.categories = thing_categories
+        t.shop = thing_shop if t.shop.blank?
+        t.save!
+      end
 
       redirect_to haven_links_path
     end
