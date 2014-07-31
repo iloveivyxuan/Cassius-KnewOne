@@ -1,7 +1,7 @@
 body {
   font-family: "Hiragino Sans GB", "Microsoft YaHei", "Orbitron-Bold", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   /*background-color: #ebeced;*/
-  background: url('../images/bg/bg1.jpg');
+  background: url('/womensday/images/bg/bg1.jpg');
   background-size: 100% auto;
   border-top: 13px solid #ebdfd1;
   border-bottom: 13px solid #ebdfd1;

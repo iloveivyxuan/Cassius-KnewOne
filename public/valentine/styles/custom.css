@@ -1,7 +1,7 @@
 body {
   font-family: "Hiragino Sans GB", "Microsoft YaHei", Helvetica, Arial, sans-serif;
   /*background-color: #ebeced;*/
-  background: url('../images/pattern/geometryRed.png');
+  background: url('/valentine/images/pattern/geometryRed.png');
 }
 *,
 *:after,
