@@ -36,6 +36,7 @@
             = link_to_with_icon '管理 Jumptron', 'fa fa-fw fa-wrench', haven_jumptrons_path
           = nav_tab :things do
             = link_to_with_icon '批量修改产品', 'fa fa-fw fa-wrench', batch_edit_haven_things_path
+            = link_to_with_icon '关联产品', 'fa fa-fw fa-wrench', haven_links_path
           = nav_tab :promotion do
             = link_to_with_icon '分类顶部封面', 'fa fa-fw fa-wrench', haven_promotions_path
           = nav_tab :article do
@@ -59,7 +60,6 @@
           - if can? :manage, :all
             = nav_tab :thing do
               = link_to_with_icon '管理产品', 'fa fa-fw fa-wrench', haven_things_path
-              = link_to_with_icon '关联产品', 'fa fa-fw fa-wrench', haven_links_path
           - if can? :manage, AbatementCoupon
             = nav_tab :coupon do
               = link_to_with_icon '管理足价减优惠券', 'fa fa-fw fa-wrench', haven_abatement_coupons_path
