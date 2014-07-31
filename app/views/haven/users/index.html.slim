@@ -15,6 +15,7 @@ table.table.table-striped
   thead
     tr
       th 用户
+      th 推荐优先
       th 分享产品
       th 发表评测
       th 成交订单
@@ -29,6 +30,7 @@ table.table.table-striped
         td
           = link_to u.name, u, target: '_blank'
           = link_to '[内幕]', haven_user_path(u)
+        td= u.recommend_priority
         td = u.things_count
         td = u.reviews_count
         td

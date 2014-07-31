@@ -1,0 +1,6 @@
+li.recommended-user
+  .user_info
+    = present(user).as_author_with_profile(:tiny)
+    = render 'users/follow_btn', user: user
+  p.recommend_note
+    = user.recommend_note

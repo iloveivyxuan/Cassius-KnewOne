@@ -1,6 +1,6 @@
 html.signed_in_homepage {
   #wrapper {margin: 0;}
-  
+
   .container {
     padding: 0;
 
@@ -55,7 +55,7 @@ html.signed_in_homepage {
         padding: 0;
         .promotion {
           display: block;
-          margin-bottom: 30px; 
+          margin-bottom: 30px;
         }
       }
 
@@ -78,58 +78,46 @@ html.signed_in_homepage {
 
       .tags {
         background: white;
+        > section {margin: 0 1em;}
       }
 
       .recommended-users {
         background: white;
 
         .recommended-user {
-          margin-top: 1rem;
+          margin: 1em 1em 0;
+        }
+
+        .user_info {
+          @include clearfix;
         }
 
         .author_avatar {
-          display: inline-block;
-          width: 15%;
-
           img {
             @extend .img-circle;
-            width: 36px;
           }
         }
 
         .author_name {
-          @include text-overflow;
-          display: inline-block;
+          color: $gray;
           vertical-align: middle;
-          width: 35%;
-          color: black;
+          margin-left: 1em;
         }
 
-        .user-info {
-          display: inline-block;
-          width: 50%;
-          text-align: right;
+        .follow_btn {
+          float: right;
+          padding-top: 3px;
+          padding-bottom: 3px;
+          margin-top: 6px;
+          color: #666;
+          background: $gray-lighter;
+          &.active { background: darken($gray-lighter, 10%); }
+          border: none;
+        }
 
-          .reviews-count {
-            width: 40%;
-          }
-
-          .fancies-count {
-            width: 60%;
-          }
-
-          li {
-            display: inline-block;
-            text-align: left;
-
-            a {
-              color: $gray;
-            }
-
-            b {
-              margin-left: 0.5rem;
-            }
-          }
+        .recommend_note {
+          color: $text-muted;
+          padding-left: 54px;
         }
       }
 

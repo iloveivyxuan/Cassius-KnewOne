@@ -1,5 +1,12 @@
 dd
+  h2= @user.name
   = form_for @user, url: haven_user_path(@user) do |f|
+    .form-group
+      label 推荐优先级
+      = f.number_field :recommend_priority, default: 0
+    .form-group
+      label 推荐理由
+      = f.text_field :recommend_note
     .form-group
       label 管理员备注
       = f.text_area :admin_note, class: 'form-control', size: '20x3'
