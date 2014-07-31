@@ -4,23 +4,23 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="七夕, KnewOne, 探索分享新奇酷">
+    <meta name="keyword" content="七夕, KnewOne, 剁手网, 新奇酷">
+    <meta name="author" content="lilu.life@gmail.com">
     <link rel="shortcut icon" href="/tanabata/images/favicon.png">
 
     <title>KnewOne牛玩 七夕专题</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="http://cdn.staticfile.org/twitter-bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles -->
+    <link rel="stylesheet" href="/specials/common/styles/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/specials/common/styles/bootstrap/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="/specials/common/styles/common.css">
     <link href="/tanabata/css/styles.css" media="screen" rel="stylesheet" />
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lte IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+		<script src="/specials/common/scripts/modernizr.min.js"></script>
     <script>
       var _hmt = _hmt || [];
       (function() {
@@ -32,7 +32,9 @@
     </script>
   </head>
   <body>
-
+    <div id="sharing_cover">
+      <img src="/tanabata/images/sharing_cover.jpg">
+    </div>
     <div class="site-wrapper">
       <div class="site-wrapper-inner">
         <div class="container">
@@ -48,7 +50,7 @@
               </a>
             </li>
             <li class="share qrCode">
-              <a data-toggle="modal" href="#thing_share_wechat" title="微信朋友圈分享">
+              <a id="social_share_wechat" data-toggle="popover" data-trigger="hover" data-container="body" data-placement="bottom" title="微信朋友圈分享">
                 <i class="fa fa-qrcode"></i>
               </a>
             </li>
@@ -298,25 +300,18 @@
       <img src="/tanabata/images/footerImg.png" alt="" >
     </footer>
 
-    <aside>
-        <div class="modal fade" id="thing_share_wechat">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button class="close" data-dismiss="modal" type="button"><raw>&times;</raw></button><h5>请在微信中扫描以下二维码，然后您可以轻触屏幕右上角的 <i class="fa fa-share"></i>分享给朋友们</h5>
-              </div>
-              <div class="modal-body">
-                <div class="qr-field"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </aside>
-    <script src="http://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://cdn.staticfile.org/twitter-bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <script src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
-    <script type="text/javascript">
-      $('.qr-field').qrcode({render: 'image', ecLevel: 'L', text: document.URL});
-    </script>
+    <a
+      id="feedback"
+      href="#"
+      data-hint="fa-question"
+      data-url="/specials/common/scripts/olark.min.js">
+      <i class="fa fa-question"></i>
+      <label>选择困难</label>
+    </a>
+
+    <script src="/specials/common/scripts/jquery.min.js"></script>
+    <script src="/specials/common/scripts/bootstrap/bootstrap.min.js"></script>
+    <script src="/specials/common/scripts/jquery.qrcode.js"></script>
+    <script src="/specials/common/scripts/common.js"></script>
   </body>
 </html>

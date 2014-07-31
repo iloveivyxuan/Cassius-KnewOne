@@ -1,0 +1,45 @@
+body {
+  font-family: "Hiragino Sans GB", "Microsoft YaHei", "Orbitron-Bold", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  /*background-color: #ebeced;*/
+  background: url('/womensday/images/bg/bg1.jpg');
+  background-size: 100% auto;
+  border-top: 13px solid #ebdfd1;
+  border-bottom: 13px solid #ebdfd1;
+}
+
+@media (min-width: 768px) {
+  body {
+    border-top: 28px solid #ebdfd1;
+    border-bottom: 28px solid #ebdfd1;
+  }
+}
+
+*,
+*:after,
+*::before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+a, a:hover, a:focus {
+  text-decoration: none;
+}
+
+.container {
+  overflow: hidden;
+}
+
+.container svg {
+  display: block;
+}
+
+section {
+  position: relative;
+  text-align: center;
+}
+
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
