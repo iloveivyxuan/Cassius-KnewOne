@@ -17,7 +17,7 @@
 
         = link_to_with_icon '本地上传',
           'fa fa-cloud-upload fa-fw', new_thing_path,
-          class: 'btn btn-default'
+          class: 'btn btn-default', target: '_blank'
 
 #new-thing-from-url-modal.modal.fade data-keyboard="false"
   = form_tag extract_url_things_path, method: :get, id: 'extract_url_form', remote: true do
