@@ -302,6 +302,15 @@ Making::Application.routes.draw do
       get 'extract_url', to: 'utils#extract_url'
       get 'find_similar', to: 'utils#find_similar'
 
+      get 'explore/features', to: 'explore#features'
+
+      resources :entries, only: [:show]
+
+      resources :articles, only: [] do
+        resources :comments, controller: :article_comments, only: [:index, :show, :create, :destroy]
+        resource :vote, only: [:create, :destroy, :show]
+      end
+
       resources :things, only: [:index, :show, :create] do
         resources :reviews, only: [:index, :show] do
           resources :comments, controller: :review_comments, only: [:index, :show, :create, :destroy]
