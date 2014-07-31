@@ -10,7 +10,6 @@ do (exports = Making) ->
   exports.Views.Editor = Backbone.View.extend
 
     events:
-      'change [name]'        : 'save'
       'input'                : 'autoSave'
       'click .editor-close'  : 'close'
       'click .editor-drop'   : 'drop'
@@ -50,6 +49,7 @@ do (exports = Making) ->
         @$toggle = $(options.toggle)
 
       @listenTo @model, 'change:status', @showStatus
+      @listenTo @$bodyField, 'change', @autoSave
 
       @render()
 
@@ -261,6 +261,7 @@ do (exports = Making) ->
       that = @
       @typingTime = new Date()
 
+      @model.set('persisten', false)
       @timeout = setTimeout ->
         if (new Date() - that.typingTime) > that.delay
           that.save()
@@ -286,7 +287,6 @@ do (exports = Making) ->
         switch @mode
           when 'standalone'
             callback = ->
-              console.log 'drop callback'
               window.close()
           when 'complemental'
             callback = ->
@@ -317,5 +317,5 @@ do (exports = Making) ->
       return true
 
     beforeunload: ->
-      if !@model.get('persisten')
+      if @model.get('persisten') is false
         return '文档还未保存，确定要离开吗？'

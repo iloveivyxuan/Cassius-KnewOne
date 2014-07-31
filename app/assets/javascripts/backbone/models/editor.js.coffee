@@ -1,7 +1,7 @@
 Making.Models.Editor = Backbone.Model.extend
   defaults:
     status: ''
-    persisten: false
+    persisten: null
 
   updateStatus: (status) ->
 
