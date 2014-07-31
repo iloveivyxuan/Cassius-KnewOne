@@ -39,7 +39,7 @@
       = content_tag :div, class: "uploader_queue", id: "photos", data: {photos: @photos} do
         p.help-block.uploader_toggle
           i.fa.fa-arrows
-          | 拖拽图片到框里上传（建议图片宽度大于 1152 像素，光线充足并适当留白）
+          | 拖拽图片到框里上传
           = f.file_field :image, multiple: true, name: "photo[image]", accept: "image/*"
 
     .body#form-thing-body
