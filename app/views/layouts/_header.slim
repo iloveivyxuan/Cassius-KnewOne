@@ -23,9 +23,13 @@ header#header role="banner"
 
         li#nav_publish
           - if user_signed_in?
-            = link_to_with_icon "发布", "fa fa-plus", "#", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}
+            - data = {toggle: "modal", target: "#new-thing-from-url-modal"}
+            - data.merge!({category: "publish", action: "publish_thing", label: "publish_thing_logged"})
+            = link_to_with_icon "发布", "fa fa-plus", "#", id: "new_thing_trigger", data: data, class: "track_event"
           - else
-            = link_to_with_icon "发布", "fa fa-plus", "#", data: {toggle: "modal", target: "#login-modal"}
+            - data = {toggle: "modal", target: "#login-modal"}
+            - data.merge!({category: "publish", action: "publish_thing", label: "publish_thing_unlogged"})
+            = link_to_with_icon "发布", "fa fa-plus", "#", data: data, class: "track_event"
 
       - if user_signed_in?
         .user_links.login.navbar-right
