@@ -53,7 +53,7 @@ class Order
   STATES = {
       :pending => '等待付款',
       :freed => '无需支付，请用户确认',
-      :confirmed => '支付成功，系统正在受理',
+      :confirmed => '支付成功，等待发货',
       :shipped => '已发货',
       :canceled => '订单取消',
       :closed => '订单关闭',
