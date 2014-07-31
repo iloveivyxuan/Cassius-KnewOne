@@ -123,11 +123,7 @@ feature 'Walk around (Smoke test)', slow: true do
      dialogs_path,
      dialog_path(dialog),
      # rewards
-     rewards_path,
-     # specials
-     valentine_path,
-     womensday_path,
-     makerfaire_path
+     rewards_path
     ]
   end
 
