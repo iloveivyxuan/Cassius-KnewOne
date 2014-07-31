@@ -30,7 +30,7 @@ do (exports = Making) ->
     return title
 
   Handlebars.registerHelper 'draft_summary', ->
-    body = $(@[@type + '[content]']).text()
+    body = $('<div>' + @[@type + '[content]'] + '</div>').text()
     summary = ''
     if body.length > 140
       summary = body.slice(0, 140) + '......'
