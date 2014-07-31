@@ -23,18 +23,8 @@ section.recommended-users
     h2 推荐用户
   section
     ul
-      - current_user.recommend_new_users.limit(10).each do |user|
-        li.recommended-user
-          = present(user).as_author_with_profile
-          ul.user-info.list-inline
-            li.fancies-count
-              = link_to fancies_user_path(user)
-                | 喜欢
-                b = user.fancies_count
-            li.reviews-count
-              = link_to reviews_user_path(user)
-                | 评测
-                b = user.reviews_count
+      - recommend_users = current_user.recommend_new_users.limit(3)
+      = render partial: "recommend_user", collection: recommend_users, as: :user
 
 section.about
   .contacts

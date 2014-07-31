@@ -63,6 +63,7 @@ class User
 
   field :admin_note, type: String, default: ''
   field :recommend_priority, type: Integer, default: 0
+  field :recommend_note, type: String, default: ''
 
   index recommend_priority: -1, followers_count: -1
 
@@ -406,10 +407,9 @@ class User
   include CategoryReferable
 
   # recommend users who not followed by self
-
   def recommend_new_users
     user_ids = following_ids + [self.id]
-    User.nin(id: user_ids).desc(:recommend_priority, :followers_count)
+    User.nin(id: user_ids).desc(:recommend_priority, :karma)
   end
 
   # recommend users from oauth(only support weibo)
