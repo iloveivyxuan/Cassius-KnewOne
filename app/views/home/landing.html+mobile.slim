@@ -3,11 +3,8 @@
 header
   h2.slogan= slogan
 
-a.promotion#promotion_xs_md href="http://knewone.com/things/bong-ii" target="_blank"
-  span data-picture="true" data-alt="bong 优惠"
-    span data-src="http://image.knewone.com/photos/b6e754d72cd0d694546ca35f06c5fedd.jpg"
-    span data-src="http://image.knewone.com/photos/a9c9c424cd076e5eb23880f8a208ee58.jpg" data-media="(min-width: 768px)"
-/-- END .promotion --/
+section.promotions
+  = render Promotion.published.first
 
 section.hits
   = render 'hits_groups'

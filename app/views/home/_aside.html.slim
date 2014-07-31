@@ -1,8 +1,5 @@
-section.entries
-  ul
-    - Entry.published.where(category: '专题').desc(:created_at).limit(2).each do |entry|
-      li= link_to (entry.external_link.presence || entry)
-        = image_tag(entry.cover, alt: entry.title)
+section.promotions
+  = render Promotion.published.limit(2)
 
 - if current_user.drafts.present?
   section.drafts

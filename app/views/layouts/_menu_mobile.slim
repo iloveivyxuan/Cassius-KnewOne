@@ -91,7 +91,7 @@ section#menu
         li
           = link_to_with_icon '管理分类', 'fa fa-fw fa-wrench', haven_categories_path
         li
-          = link_to_with_icon '分类顶部封面', 'fa fa-fw fa-wrench', haven_promotions_path
+          = link_to_with_icon '管理广告位', 'fa fa-fw fa-wrench', haven_promotions_path
         - if can? :manage, Review
           li
             = link_to_with_icon '管理评测', 'fa fa-fw fa-wrench', haven_reviews_path
