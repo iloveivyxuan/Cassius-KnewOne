@@ -56,12 +56,15 @@ class Making.Views.PhotosUpload extends Backbone.View
     @checkUploaderButton()
     false
 
-  addPhoto: (photo) =>
+  addPhoto: (photo, collection, options) =>
     view = new Making.Views.Photo
       model: photo
       attributes:
         'data-photo-id': photo.id
-    @$el.prepend view.render().el
+    if options.add
+      @$el.prepend view.render().el
+    else
+      @$el.append view.render().el
     @checkQueue()
     @$el.sortable
       items: '.uploaded'
@@ -74,8 +77,12 @@ class Making.Views.PhotosUpload extends Backbone.View
     that = @
     if @$el.children('li:not(.uploader_button)').length is 0
       @$el.children('.uploader_button').remove()
-    else if @$el.children('.uploader_button').length is 0
-      $button = $('<li class="uploader_button">+</li>')
-      $button.on 'click', ->
-        that.$el.closest('.uploader').find('.uploader_label').click()
-      @$el.append($button)
+    else
+      $uploader_button = @$el.children('.uploader_button')
+      if $uploader_button.length is 0
+        $button = $('<li class="uploader_button">+</li>')
+        $button.on 'click', ->
+          that.$el.closest('.uploader').find('.uploader_label').click()
+        @$el.append($button)
+      else
+        @$el.append($uploader_button)
