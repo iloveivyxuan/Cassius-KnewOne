@@ -51,9 +51,12 @@ html.signed_in_homepage {
         font-weight: bold;
       }
 
-      .entries {
+      .promotions {
         padding: 0;
-        li {margin-bottom: 30px; }
+        .promotion {
+          display: block;
+          margin-bottom: 30px; 
+        }
       }
 
       .drafts {
