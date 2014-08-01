@@ -512,6 +512,13 @@ body.editor-open {
         background-color: transparent;
       }
 
+      > ul {
+
+        &:empty {
+          height: 0;
+        }
+      }
+
       .uploader_button {
         display: none;
       }
