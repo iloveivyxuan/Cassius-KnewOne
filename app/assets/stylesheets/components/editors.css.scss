@@ -507,6 +507,14 @@ body.editor-open {
         bottom: 0;
         top: -119px;
       }
+
+      &.dragover {
+        background-color: transparent;
+      }
+
+      .uploader_button {
+        display: none;
+      }
     }
   }
 
