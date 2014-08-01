@@ -19,7 +19,7 @@
         button.editor-submit type="submit" 发布
     article.editor-content.article
       header
-        = f.text_field :title, class: "title", required: true, autocomplete: "off", placeholder: "标题"
+        = f.text_field :title, class: "title", required: true, autocomplete: "off", autofocus: "true", placeholder: "标题"
         .editor-metas
           .form-group
             label 评分：
@@ -34,6 +34,8 @@
                 = hidden_field_tag 'review[author]', @review.author.id.to_s, id: 'author_id'
                 input#author_autocomplete.form-control placeholder="用户昵称" value="#{@review.author.name}"
       .body#form-review-body
+        p
+          br
       = f.hidden_field :content
   = attachment_tag target: "#pictureBtn", edit: "insertImage"
   = render "shared/editor_help"

@@ -1,101 +1,54 @@
 - page_title "分享产品"
 
-header.page-header
-  h2
-    i.fa.fa-magic
-    | 分享产品
-  p 感谢您分享您喜欢的新/奇/酷产品，一旦产品经过我们的编辑审核通过，将来有可能获得很大的优惠喔！
+.spinner-fullscreen
+  em 正在加载
 
-= simple_form_for @thing, html: {class: "thing_form form-horizontal"}, wrapper: :horizontal do |f|
-  = f.input :title, placeholder: "真实准确的品牌型号，40字以内", input_html: {maxlength: 40}
-  - unless @thing.persisted?
-    section#thing_candidate.slideshow
-      h5 您想分享的是以下产品吗？
-      button.close aria-hidden="true" &times;
-      button.slideshow_control.left
-        i.fa.fa-chevron-left
-      button.slideshow_control.right
-        i.fa.fa-chevron-right
-      .slideshow_body
-  = f.input :subtitle, placeholder: "此产品的一句话介绍，40字以内", input_html: {maxlength: 40}
-  = f.input :official_site, as: :url, placeholder: "品牌官方网站的该产品链接地址"
-  = f.input :content, as: :hidden
+.editor#form-thing
 
-#thing_form_content
-  = simple_form_for Photo.new, html: {class: "uploader"} do |f|
-    .form-group
-      span.btn.btn-info.fileinput-button title="请为产品上传图片" data-placement="right"
-        i.fa.fa-cloud-upload
-        span 上传产品照片
-        = f.file_field :image, multiple: true, name: "photo[image]"
-      span.help-block
-        | 产品至少需要上传一张照片（多张会更好），我们建议您的照片宽度至少大于1152像素，光线充足并适当留白
-    = content_tag :div, class: "uploader_queue", id: "photos", data: {photos: @photos} do
-      p.help-block
-        i.fa.fa-arrows
-        | 可以将照片文件直接从桌面拖拽进来
+  .editor-menu
+    p.editor-target
+      | 分享产品
+    output
+    .pull-right
+      button.editor-help-toggle type="button" data-toggle="modal" data-target="#editor-help"
+        i.fa.fa-question
+        | 帮助
+      button.editor-close type="button" 退出
+      button.editor-drop type="button" 舍弃
+      button.editor-save type="button" 保存
+      button.editor-submit#form-thing-submit type="submit" 发布
 
-  - if current_user.role?(:editor)
-    .editor-lite.article
-      .toolbar
-        = link_to_with_icon "全屏编辑", "fa fa-arrows-alt", "#",
-          class: "btn btn-default btn-sm",
-          id: "form-thing-toggle",
-          data: { toggle: "editor",
-                  mode: "complemental",
-                  target: "#form-thing",
-                  origin: "#form-thing-body-lite",
-                  field: "[name='thing[content]']",
-                  type: "thing",
-                  placeholder: "在这里填写产品的详细信息"}
-      .content.body#form-thing-body-lite contenteditable="true" placeholder="在这里填写产品的详细信息"
-        p
-          br
+  article.editor-content.article
+    = simple_form_for @thing, html: {class: "editor-form thing_form"} do |f|
+      = f.input :title, placeholder: "产品名称", input_html: {maxlength: 40, autofocus: true, autocomplete: "off"}
+      - unless @thing.persisted?
+        section#thing_candidate.slideshow
+          h5 您想分享的是以下产品吗？
+          button.close aria-hidden="true" &times;
+          button.slideshow_control.left
+            i.fa.fa-chevron-left
+          button.slideshow_control.right
+            i.fa.fa-chevron-right
+          .slideshow_body
+      = f.input :subtitle, placeholder: "一句话介绍", input_html: {maxlength: 40, autocomplete: "off"}
+      = f.input :official_site, as: :url, placeholder: "产品官方链接", input_html: {autocomplete: "off"}
+      = f.input :content, as: :hidden
 
-    .spinner-fullscreen.hidden
-      em 正在加载
+    = simple_form_for Photo.new, html: {class: "uploader"} do |f|
+      label.uploader_label for="photo_image" title="请为产品上传图片" data-placement="right" 产品图片
+      = content_tag :div, class: "uploader_queue", id: "photos", data: {photos: @photos} do
+        p.help-block.uploader_toggle
+          i.fa.fa-arrows
+          | 拖拽图片到框里上传（建议产品图尺寸为 800×600 px 或以上）
+          = f.file_field :image, multiple: true, name: "photo[image]", accept: "image/*"
 
-    .editor#form-thing
-      .editor-menu
-        output
-        .pull-right
-          button.editor-help-toggle type="button" data-toggle="modal" data-target="#editor-help"
-            i.fa.fa-question
-            | 帮助
-          button.editor-close type="button" 返回
-          button.editor-drop type="button" 舍弃
-          button.editor-save type="button" 保存
-          button.editor-submit type="submit" 发布
-      article.editor-content.article
-        .body#form-thing-body
+    .body#form-thing-body
+      p
+        br
     = attachment_tag target: "#pictureBtn", edit: "insertImage"
-    = render "shared/editor_help"
 
-  - else
-    .form-group
-      span.help-block
-        | 请填写产品的简要描述信息
-      = render 'shared/editor'
-
-#thing_form_submit
-  = button_tag "提交产品", class: "btn btn-primary btn-lg"
-  = provider_sync if @thing.new_record?
+= render "shared/editor_help"
 
 - content_for :script do
   javascript:
-    Making.ThingsNew();
-    if ($('#form-thing').length) {
-      new Making.Views.Editor({
-        el: '#form-thing',
-        model: new Making.Models.Editor(),
-        mode: 'complemental',
-        type: 'thing',
-        origin: '#form-thing-body-lite',
-        bodyField: '[name="thing[content]"]',
-        toggle: '#form-thing-toggle',
-        placeholder: '在这里填写产品的详细信息'
-      });
-    } else {
-      Making.Editor('#thing_content');
-    }
-    Making.FormLink('form.thing_form', '#thing_form_submit button');
+    Making.InitNewThing();

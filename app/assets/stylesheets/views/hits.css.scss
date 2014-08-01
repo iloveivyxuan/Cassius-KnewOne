@@ -5,7 +5,10 @@ html.home_hits body {
 }
 
 html.home_hits .container-fluid {
-  padding: {left: 20px; right: 20px;}
+  padding: 0;
+  @media (min-width: $screen-md-min) {
+    padding: 0 10%;
+  }
   @media (min-width: $screen-lg-min) {
     width: $container-large-desktop;
   }

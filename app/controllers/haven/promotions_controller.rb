@@ -8,7 +8,6 @@ module Haven
     end
 
     def show
-      render layout: 'home'
     end
 
     def new
@@ -43,12 +42,11 @@ module Haven
     end
 
     private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_promotion
       @promotion = Promotion.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def promotion_params
       params.require(:promotion).permit!
     end

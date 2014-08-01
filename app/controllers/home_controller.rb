@@ -1,33 +1,20 @@
 class HomeController < ApplicationController
   layout 'application'
   skip_after_action :store_location
-  before_action :set_editor_choices, only: [:index]
-  before_action :skip_follow_user, only: [:index]
   before_action :authenticate_user!, only: [:welcome]
 
   def index
     if user_signed_in?
-      session[:home_filter] = (params[:filter] or session[:home_filter])
+      @activities = current_user
+        .relate_activities(%i(new_thing own_thing fancy_thing
+                              new_review love_review
+                              new_feeling))
+        .page(params[:page]).per(30)
 
-      case session[:home_filter]
-      when "followings"
-        @activities = current_user.relate_activities
-          .visible.page(params[:page]).per(50)
-      when "things"
-        @activities = Activity.by_types(:new_thing)
-          .visible.page(params[:page]).per(30)
-      when "posts"
-        @activities = Activity.by_types(:new_review, :new_feeling, :new_topic)
-          .visible.page(params[:page]).per(30)
-      else
-        @activities = Activity.by_types(:new_thing, :new_review, :new_feeling, :new_topic)
-          .visible.page(params[:page]).per(30)
-      end
+      @feeds = HomeFeed.create_from_activities @activities
 
-      if request.xhr?
-        render 'home/index_xhr', layout: false
-      else
-        render layout: 'home'
+      if @feeds.empty?
+        redirect_to hits_url
       end
     else
       respond_to do |format|
@@ -69,7 +56,6 @@ class HomeController < ApplicationController
   def welcome
     @friends = current_user.recommend_users || []
     @recommend_users = User.active_users(42) - @friends
-
     @things = Thing.published.prior.limit(24)
   end
 
@@ -111,16 +97,5 @@ class HomeController < ApplicationController
   end
 
   def user_agreement
-  end
-
-  private
-
-  def set_editor_choices
-    #@editor_choices = Thing.rand_prior_records 1
-    @editor_choices = Thing.published.prior.limit(1)
-  end
-
-  def skip_follow_user
-    session[:skip] = true if params[:skip].present?
   end
 end

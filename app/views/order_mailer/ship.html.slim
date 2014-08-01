@@ -1,0 +1,19 @@
+- content_for :username do
+  = @user.name
+
+- content_for :title do
+  | 订单 #{@order.order_no} 已发货
+
+p
+  | 感谢您在 KnewOne 购物!
+  br
+  | 我们很高兴地通知您, 您订购的商品已经发货。
+p
+  | 物流方式：#{Order::DELIVER_METHODS[@order.deliver_by]}
+  br
+  | 运单号：#{@order.deliver_no}
+
+p
+  | 如果您需要查看物流状态或商品信息，请参考#{link_to '订单详情', order_url(@order)}。
+  br
+  | 如果您需要进一步的帮助，可以直接回复此封邮件。

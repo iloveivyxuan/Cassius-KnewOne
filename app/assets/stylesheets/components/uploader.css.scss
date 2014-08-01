@@ -27,11 +27,12 @@
   border: 1px dashed #ccc;
 
   &.dragover {
-    // background-color: lighten($green, 50%);
+    background-color: #f8f8f8;
   }
 
   .help-block {
-    margin: 1em 1.25em 0;
+    margin: 0;
+    padding: 1em 1.25em;
   }
 
   ul {
@@ -39,6 +40,16 @@
     padding: {
       left: 1em;
       top: 1em;
+    }
+
+    &:empty {
+      padding: {
+        top: 0;
+      }
+
+      & + p {
+        display: block !important;
+      }
     }
 
     li {
@@ -60,9 +71,23 @@
         cursor: move;
       }
 
+      &.uploader_button {
+        @include square($size);
+        border: 2px dashed #eee;
+        cursor: pointer;
+        color: #eee;
+        font-size: 60px;
+        line-height: 60px;
+        margin: {
+          bottom: 14px;
+          right: 14px;
+        }
+        text-align: center;
+      }
+
       &.sortable-placeholder {
         @include square($size);
-        background: lighten($green, 50%);
+        background: #f8f8f8;
         margin-bottom: 1em;
       }
 
@@ -112,6 +137,26 @@
     height: .5em;
     margin-bottom: 0;
     position: absolute;
+    width: 100%;
+  }
+}
+
+.uploader_toggle {
+  @include transition(background-color .2s);
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    background-color: #f8f8f8;
+  }
+
+  [type="file"] {
+    cursor: pointer;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
     width: 100%;
   }
 }

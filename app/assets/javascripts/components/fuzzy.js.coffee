@@ -52,13 +52,14 @@ Making.AtUser = (element) ->
     at: "@"
     callbacks:
       remote_filter: (query, callback) ->
-        $.getJSON "/users/fuzzy.json",
-          query: query
-        , (data) ->
-          usernames = []
-          data.forEach (e) ->
-            usernames.push name: e.value
+        if query.length > 0
+          $.getJSON "/users/fuzzy.json",
+            query: query
+          , (data) ->
+            usernames = []
+            data.forEach (e) ->
+              usernames.push name: e.value
+              return
+            callback usernames
             return
-          callback usernames
           return
-        return

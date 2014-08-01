@@ -11,6 +11,13 @@ class Thing < Post
   after_save :update_categories
   before_save :update_amazon_link
 
+  has_many :single_feelings, class_name: "Feeling", dependent: :destroy
+  field :feelings_count, type: Integer, default: 0
+  has_many :single_reviews, class_name: "Review", dependent: :destroy
+  field :reviews_count, type: Integer, default: 0
+
+  field :links, type: Array, default: []
+
   belongs_to :maker, class_name: "User", inverse_of: nil
 
   field :related_thing_ids, type: Array, default: []
@@ -49,8 +56,7 @@ class Thing < Post
 
   has_and_belongs_to_many :fancy_groups, class_name: "Group", inverse_of: :fancies
 
-  has_many :reviews, dependent: :destroy
-  field :reviews_count, type: Integer, default: 0
+
 
   has_many :feelings, dependent: :destroy
   field :feelings_count, type: Integer, default: 0
@@ -67,6 +73,7 @@ class Thing < Post
   scope :prior, -> { gt(priority: 0).desc(:priority, :created_at) }
   scope :self_run, -> { send :in, stage: [:dsell, :pre_order] }
   scope :price_between, ->(from, to) { where :price.gt => from, :price.lt => to }
+  scope :linked, -> { where :links.ne => nil }
 
   STAGES.each do |k, v|
     scope k, -> { where(stage: k) }
@@ -240,6 +247,53 @@ class Thing < Post
      fancier_ids.count +
      owner_ids.count) *
     freezing_coefficient
+  end
+
+  def feelings
+    if links.blank?
+      single_feelings
+    else
+      Feeling.in(thing_id: links)
+    end
+  end
+
+  def fanciers_count
+    if links.blank?
+      fanciers.count
+    else
+      links.map { |l| Thing.find(l).fanciers.count }.reduce(&:+)
+    end
+  end
+
+  def owners_count
+    if links.blank?
+      owners.count
+    else
+      links.map { |l| Thing.find(l).owners.count }.reduce(&:+)
+    end
+  end
+
+  def reviews
+    if links.blank?
+      single_reviews
+    else
+      Review.in(thing_id: links)
+    end
+  end
+
+  # get all linked things of a specific thing.
+  # return Array or empty Array.
+  def all_links
+    if self.links.blank?
+      return []
+    else
+      self.links.map { |l| Thing.find(l) }
+    end
+  end
+
+  # delete all linked things of a specific thing.
+  def delete_links
+    self.all_links.each { |t| t.update_attributes(links: []) }
   end
 
   class << self

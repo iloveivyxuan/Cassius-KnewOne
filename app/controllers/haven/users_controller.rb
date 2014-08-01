@@ -40,6 +40,9 @@ module Haven
         if params[:filter].include? 'role'
           @users = @users.staff
         end
+        if params[:filter].include? 'recommend'
+          @users = @users.where(:recommend_priority.gt => 0).order_by([:recommend_priority, :desc])
+        end
         if params[:filter].include? 'thing'
           @users = @users.where(:things_count.gt => 0).order_by([:things_count, :desc])
         end

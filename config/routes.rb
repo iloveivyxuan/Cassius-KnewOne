@@ -218,10 +218,6 @@ Making::Application.routes.draw do
     mount Sidekiq::Web => '/haven/sidekiq'
   end
 
-  get 'valentine', to: 'specials#valentine'
-  get 'womensday', to: 'specials#womensday'
-  get 'makerfaire', to: 'specials#makerfaire'
-
   namespace :haven do
     resources :orders, only: [:index, :show, :update] do
       member do
@@ -248,7 +244,9 @@ Making::Application.routes.draw do
       end
     end
 
-    resources :promotions, except: [:show]
+    resources :coupon_codes, only: [:destroy]
+
+    resources :promotions
     resources :jumptrons
     resources :things, only: [:index, :update, :edit] do
       member do
@@ -260,6 +258,8 @@ Making::Application.routes.draw do
         patch 'batch_update'
       end
     end
+
+    resources :links
 
     resources :articles, except: [:show]
 
@@ -301,6 +301,15 @@ Making::Application.routes.draw do
       get 'search', to: 'search#index'
       get 'extract_url', to: 'utils#extract_url'
       get 'find_similar', to: 'utils#find_similar'
+
+      get 'explore/features', to: 'explore#features'
+
+      resources :entries, only: [:show]
+
+      resources :articles, only: [] do
+        resources :comments, controller: :article_comments, only: [:index, :show, :create, :destroy]
+        resource :vote, only: [:create, :destroy, :show]
+      end
 
       resources :things, only: [:index, :show, :create] do
         resources :reviews, only: [:index, :show] do

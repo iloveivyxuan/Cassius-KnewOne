@@ -181,6 +181,10 @@
     // @TODO
     min-height: 350px;
   }
+
+  [data-edit="insertImage"] {
+    @include mask;
+  }
 }
 
 .editor-metas {

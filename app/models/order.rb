@@ -53,7 +53,7 @@ class Order
   STATES = {
       :pending => '等待付款',
       :freed => '无需支付，请用户确认',
-      :confirmed => '支付成功，系统正在受理',
+      :confirmed => '支付成功，等待发货',
       :shipped => '已发货',
       :canceled => '订单取消',
       :closed => '订单关闭',
@@ -63,8 +63,15 @@ class Order
       :unexpected => '订单异常，请联系客服'
   }
   DELIVER_METHODS = {
+      # Legacy code
       :sf => '顺丰',
-      :zt => '中通'
+      :zt => '中通',
+      # same as https://code.google.com/p/kuaidi-api/wiki/Open_API_API_URL
+      :yuantong => '圆通速递',
+      :debangwuliu => '德邦物流',
+      :huitongkuaidi => '百世汇通',
+      :shunfeng => '顺丰速递',
+      :zhongtong => '中通速递'
   }
   PAYMENT_METHOD = {
       :tenpay => '财付通',
@@ -160,10 +167,10 @@ class Order
 
   after_create do
     self.user.cart_items.where(:thing.in => order_items.map(&:thing), :kind_id.in => order_items.map(&:kind).map(&:id)).destroy_all
-  end
 
-  after_create do
     confirm_free! if can_confirm_free?
+
+    OrderMailer.delay_for(3.hours, retry: false, queue: :mails).remind_payment(self.id.to_s)
   end
 
   after_save do
@@ -266,11 +273,12 @@ class Order
     true
   end
 
-  def ship!(deliver_no, admin_note = '')
+  def ship!(deliver_no, admin_note = '', deliver_by = self.deliver_by)
     return false unless can_ship?
 
     self.state = :shipped
     self.deliver_no = deliver_no
+    self.deliver_by = deliver_by
 
     if admin_note.present?
       if self.admin_note.present?
@@ -287,6 +295,8 @@ class Order
     own_things if auto_owning?
 
     order_histories.create from: :confirmed, to: :shipped
+
+    OrderMailer.delay(retry: false, queue: :mails).ship(self.id.to_s)
   end
 
   def cancel!(raw = {})
@@ -470,12 +480,72 @@ class Order
     h ? h.created_at : nil
   end
 
+  def bong_inside?
+    self.order_items.where(thing_title: bong.title).exists?
+  end
+
   need_aftermath :confirm_payment!, :refund_to_balance!, :refund!, :confirm_free!
 
   private
 
   def after_confirm
     self.user.inc karma: Settings.karma.order
+    # bong coupon
+    if bong && bong_inside?
+      coupons = bong_coupon(bong_amount)
+      order_note = coupons.map(&:code)
+      leave_note(order_note)
+    end
+  end
+
+  def bong
+    @_bong ||= Thing.where(id: "53d0bed731302d2c13b20000").first
+  end
+
+  def bong_amount
+    self.order_items.where(thing_id: bong.id).map(&:quantity).reduce(&:+)
+  end
+
+  def leave_note(notes)
+    message = "您已经获得："
+    notes.each_with_index do |note, index|
+      if index.even?
+        message += "满 200 减 50 优惠券 #{note} ，"
+      else
+        message += "满 200 减 49 优惠券 #{note} ，"
+      end
+    end
+    message += "进入 控制面板-优惠券 页面绑定即可使用，有效期至 #{3.months.since.to_date}（三个月）。"
+    self.update_attributes(note: message)
+  end
+
+  def bong_coupon(amount)
+    coupons = []
+    @bong = Thing.find_by(title: bong.title)
+    rebate_coupon_50 = AbatementCoupon.find_or_create_by(bong_abatement_coupon_params 50)
+    rebate_coupon_49 = AbatementCoupon.find_or_create_by(bong_abatement_coupon_params 49)
+    amount.times do |time|
+      coupons << rebate_coupon_50.generate_code!(bong_coupon_code_params)
+      coupons << rebate_coupon_49.generate_code!(bong_coupon_code_params)
+    end
+    coupons
+  end
+
+  def bong_abatement_coupon_params(price)
+    {
+      name: "满 200 减 #{price} 优惠券",
+      note: "购物满 200 元结算时输入优惠券代码立减 #{price} 元",
+      threshold_price: 200,
+      price: price
+    }
+  end
+
+  def bong_coupon_code_params
+    {
+      expires_at: 3.months.since.to_date,
+      admin_note: "通过购买 bong II 获得",
+      generator_id: self.user.id.to_s
+    }
   end
 
   class<< self

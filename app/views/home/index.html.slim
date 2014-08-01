@@ -1,29 +1,15 @@
-header.page-header
-  h1
-    i.fa.fa-home
-    = current_user.name
-  .filter
-    = form_tag root_path, method: :get, class: 'form-inline', role: 'form' do
-      .form-group
-        i.fa.fa-filter.selectpicker_label
-        = select_tag :filter,
-        options_for_select([['最新动态', 'everything'],
-          ['我关注的', 'followings'],
-          ['最新产品', 'things'],
-          ['最新讨论', 'posts']],
-          selected: (params[:filter] or session[:home_filter])),
-          class: 'form-control selectpicker js_auto_submit'
+- provide :page_class, 'signed_in_homepage'
 
-#activities
-  = render_feeds @activities
+.container
+  main role="main"
+    header
+      h2 我的关注
+    section#feeds.infinite
+      = render partial: 'feed', collection: @feeds
+    = paginate @activities
 
-.spinner.hide
-  i.fa.fa-spinner.fa-spin.fa-2x
-
-.nomore.hide
-  i.fa.fa-smile-o
-  | 没有更多动态了，
-  = link_to '关注更多的小伙伴！', recommend_users_profile_path
+  aside role="complemental"
+    = render 'aside'
 
 - content_for :script do
   javascript:

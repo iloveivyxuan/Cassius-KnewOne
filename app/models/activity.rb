@@ -32,6 +32,10 @@ class Activity
   scope :from_date, ->(date) { where :created_at.gte => date.to_time.to_i }
   scope :to_date, ->(date) { where :created_at.lt => date.next_day.to_time.to_i }
 
+  def tmpl
+    self.type.to_s.split("_").last
+  end
+
   def reference(with_deleted = false)
     return if self.reference_union.blank?
 
@@ -54,12 +58,7 @@ class Activity
     self.source_union = "#{record.class.to_s}_#{record.id.to_s}"
   end
 
-  # after_create :push_to_apn
-
-  private
-
-  def push_to_apn
-    return unless user.apple_device_token && visible
-    APN.notify_async(user.apple_device_token, {})
+  def relate_thing
+    @_relate_thing ||= reference.is_a?(Thing) ? reference : reference.try(:thing)
   end
 end

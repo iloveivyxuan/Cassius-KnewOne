@@ -5,7 +5,7 @@ class AbatementCoupon < Coupon
   validates :threshold_price, :price, :presence => true
 
   def use_condition(order)
-    order.receivable >= self.threshold_price
+    order.receivable >= self.threshold_price && !order.bong_inside?
   end
 
   def take_effect(order, code)
