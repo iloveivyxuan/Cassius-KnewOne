@@ -417,8 +417,21 @@ class Order
     order_items.map(&:price).reduce(&:+) || 0
   end
 
+  def dyson_air # Dyson Air Multiplier
+    Thing.find("510689ef7373c2f82b000003")
+  end
+
   def rebates_price
-    rebates.map(&:price).reduce(&:+) || 0
+    if rebates.blank? || not_dyson_coupon(rebates)
+      rebates.map(&:price).reduce(&:+) || 0
+    else
+      amount = rebates.first.order.order_items.where(thing: dyson_air).map(&:quantity).reduce(&:+)
+      amount * (rebates.map(&:price).reduce(&:+)) || 0
+    end
+  end
+
+  def not_dyson_coupon(rebates)
+    rebates.first.order.order_items.where(thing: dyson_air).blank?
   end
 
   def receivable

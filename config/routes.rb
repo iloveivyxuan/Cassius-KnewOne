@@ -123,6 +123,7 @@ Making::Application.routes.draw do
       get 'related'
       get 'groups'
       post 'group_fancy'
+      get 'coupon'
     end
 
     resources :reviews do
