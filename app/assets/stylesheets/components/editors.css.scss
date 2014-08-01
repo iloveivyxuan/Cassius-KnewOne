@@ -517,6 +517,12 @@ body.editor-open {
         &:empty {
           height: 0;
         }
+
+        > li {
+          display: inline-block;
+          float: none;
+          vertical-align: middle;
+        }
       }
 
       .uploader_button {
