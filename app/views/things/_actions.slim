@@ -2,6 +2,12 @@
   .shop
     - if tp.price.present?
       #price.price= tp.price
+      - if tp.thing.id.to_s == "510689ef7373c2f82b000003"
+        h5 = link_to "领取优惠券立减 200 元", coupon_thing_path(tp.thing)
+        - rebate_coupon = ThingRebateCoupon.where(thing_id: "510689ef7373c2f82b000003").first
+        - amount = current_user.coupon_codes.where(coupon_id: rebate_coupon.id.to_s).all.size if rebate_coupon
+        - if amount
+          h5 = "您已领取 #{amount} 张"
     - if user_signed_in?
       = tp.render_shopping_desc
     - if tp.buy

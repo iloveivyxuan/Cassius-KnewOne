@@ -79,6 +79,7 @@ class Ability
     can :group_fancy, Thing
     can :create_by_extractor, Thing
     can :extract_url, Thing
+    can :coupon, Thing
 
     can :share, User
     can :bind, User

@@ -200,6 +200,23 @@ class ThingsController < ApplicationController
     end
   end
 
+  def coupon
+    thing = Thing.find(params[:id])
+    if thing.id.to_s == "510689ef7373c2f82b000003" # dyson-air-multiplier
+      @rebate_coupon = ThingRebateCoupon.find_or_create_by(
+                                                           name: "Dyson Air Multiplier 200 元优惠券",
+                                                           thing_id: thing.id.to_s,
+                                                           note: "结算时输入优惠券代码立减 200 元",
+                                                           price: 200.0)
+      coupon_code = @rebate_coupon.generate_code!(
+                                                  user: current_user,
+                                                  expires_at: 3.months.since.to_date,
+                                                  admin_note: "通过领取 Dyson Air Multiplier 优惠券获得",
+                                                  generator_id: current_user.id.to_s)
+    end
+    redirect_to :back
+  end
+
   private
 
   def thing_params
