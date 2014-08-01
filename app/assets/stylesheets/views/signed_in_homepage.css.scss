@@ -154,18 +154,9 @@ html.signed_in_homepage {
         width: 11em;
         text-align: center;
 
-        .author_avatar {
-          display: block;
-          img {
-            @extend .img-circle;
-            width: 60px;
-          }
-        }
-
-        .author_name {
-          display: block;
-          margin-top: 16px;
-          color: $black;
+        img {
+          @extend .img-circle;
+          width: 60px;
         }
       }
 
