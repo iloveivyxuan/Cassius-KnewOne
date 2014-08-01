@@ -1,8 +1,36 @@
-html.signed_in_homepage {
+html.home {
   #wrapper {margin: 0;}
 
   .container {
     padding: 0;
+
+    > nav {
+      margin: 15px 0;
+      .nav {
+        text-align: center;
+        li {
+          display: inline-block;
+          > a {
+            color: $gray;
+            font-size: 16px;
+            padding: 5px 10px;
+          }
+          &.active {
+            > a {
+              background: transparent;
+              color: $gray;
+            }
+            border-bottom: 1px solid $blue;
+          }
+        }
+      }
+
+      @include breakpoint(md) {
+        margin-top: 0;
+        margin-left: 10em;
+        .nav {text-align: left;}
+      }
+    }
 
     > main {
       width: 100%;
@@ -11,21 +39,6 @@ html.signed_in_homepage {
         float: left;
         width: percentage(2 / 3);
         padding-right: 30px;
-      }
-
-      > header {
-        margin: 15px 0;
-
-        h2 {
-          margin: 0;
-          text-align: center;
-          font-size: $font-size-h4;
-          color: $gray-light;
-        }
-
-        @include breakpoint(sm) {
-          display: none;
-        }
       }
     }
 
@@ -367,4 +380,8 @@ html.signed_in_homepage {
   .pagination {
     display: none;
   }
+}
+
+html.home_everything {
+  .feed-activities {display: none;}
 }

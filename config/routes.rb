@@ -8,8 +8,10 @@ Making::Application.routes.draw do
   use_doorkeeper
 
   root to: 'home#index'
-
   get 'page/:page', to: "home#index"
+  get 'following', to: "home#index", defaults: {source: "following"}
+  get 'everything', to: "home#index", defaults: {source: "everything"}
+
   get 'search', to: 'home#search', as: :search
   get 'hits/(:page)', to: 'home#hits', as: :hits
   get 'welcome', to: 'home#welcome'

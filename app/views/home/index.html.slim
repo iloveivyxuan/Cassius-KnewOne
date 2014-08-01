@@ -1,9 +1,14 @@
-- provide :page_class, 'signed_in_homepage'
+- provide :page_class, "home home_#{session[:source]} "
 
 .container
+  nav#feeds_nav
+    ul.nav
+      li class=("active" if session[:source] == "everything")
+        = link_to "最新内容", everything_path
+      li class=("active" unless session[:source] == "everything")
+        = link_to "我的关注", following_path
+
   main role="main"
-    header
-      h2 我的关注
     section#feeds.infinite
       = render partial: 'feed', collection: @feeds
     = paginate @activities
