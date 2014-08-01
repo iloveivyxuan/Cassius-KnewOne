@@ -26,7 +26,7 @@
 
   - if user_signed_in?
     = simple_form_for Photo.new, html: {class: "uploader"} do |f|
-      button.btn.btn-info.uploader_button.fileinput-button type="button"
+      span.btn.btn-info.uploader_button.fileinput-button
         i.fa.fa-cloud-upload
         | 上传图片
         = f.file_field :image, multiple: true, name: "photo[image]", label: "上传图片"
