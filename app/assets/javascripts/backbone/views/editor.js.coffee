@@ -193,24 +193,20 @@ do (exports = Making) ->
               }, {
                 name: 'signature'
                 value: that.$imageField.attr('data-signature')
-              }, {
-                name: 'requestId'
-                value: 'request-' + new Date().getTime()
               }]
-            beforeSend: (jqXHR, data)->
-              id = ''
-              for item in data.formData()
-                do (item) ->
-                  if item.name is 'requestId'
-                    return id = item.value
+            beforeSend: (jqXHR, settings) ->
+              # @TODO
+              id = jqXHR.requestid = new Date().getTime()
               that.$body.trigger('loading.minsert', id)
             done: (event, data) ->
               url = that.$imageField.data('domain') + data.jqXHR.responseJSON.url + '!review'
-              that.$body.trigger('insertImageDone.minsert', url)
+              that.$body
+                .trigger('done:image.minsert', url)
+                .trigger('input')
             fail: (event, data) ->
-              that.$body.trigger('insertImageFail.minsert', data.jqXHR.responseJSON.message)
+              that.$body.trigger('fail:image.minsert', data.jqXHR.responseJSON.message)
             always: (event, data) ->
-              id = data.jqXHR.responseJSON.requestId
+              id = data.jqXHR.requestid
               that.$body.trigger('loaded.minsert', id)
 
       else

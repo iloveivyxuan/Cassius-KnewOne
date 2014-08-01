@@ -19,8 +19,8 @@ do ($ = jQuery) ->
           .on 'keyup.minsert', @toggle.bind(@)
           .on 'loading.minsert', @loading.bind(@)
           .on 'loaded.minsert', @loaded.bind(@)
-          .on 'insertImageDone.minsert', @insertImageDone.bind(@)
-          .on 'insertImageFail.minsert', @insertImageFail.bind(@)
+          .on 'done:image.minsert', @insertImageDone.bind(@)
+          .on 'fail:image.minsert', @insertImageFail.bind(@)
 
         @$minsert
           .on 'click.minsert', '.minsert-toggle', @toggleActions.bind(@)
