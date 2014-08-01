@@ -177,7 +177,7 @@ html.signed_in_homepage {
         padding: 16px;
         background: white;
 
-        header {
+        .feed-review_title {
           @include clearfix;
 
           h4 {
@@ -202,10 +202,37 @@ html.signed_in_homepage {
           color: $gray-light;
         }
 
-        .feed-counts {
-          > a {
-            margin-left: 0.5em;
-            color: $gray-light;
+        .feed-review-info {
+          @include clearfix;
+          width: 100%;
+
+          .creator {
+            float: left;
+            max-width: 50%;
+            @include text-overflow;
+
+            > a {
+              vertical-align: bottom;
+              color: $gray;
+            }
+
+            img {
+              width: 26px;
+              margin-right: .5em;
+              @extend .img-circle;
+            }
+          }
+
+          .interactions {
+            float: right;
+            max-width: 50%;
+            @include text-overflow;
+            margin-top: 5px;
+
+            > * {
+              margin-left: 0.5em;
+              color: $gray-light;
+            }
           }
         }
       }
@@ -229,31 +256,30 @@ html.signed_in_homepage {
           border-top: 1px solid $gray-lighter;
         }
 
+        .feed-user, .feed-action {
+          vertical-align: bottom;
+
+          > * {
+            vertical-align: bottom;
+            color: $gray;
+          }
+        }
+
         .feed-user {
           margin-right: .5em;
-          vertical-align: middle;
-
           img {
             @extend .img-circle;
             width: 26px;
             margin-right: 0.5em;
           }
-
-          a {
-            color: $black;
-          }
         }
 
         .feed-action {
-          vertical-align: middle;
+          color: $gray;
 
           time {
             margin-right: .5em;
-          }
-
-          i {
-            color: $text-muted;
-            margin-left: .5em;
+            color: #999;
           }
         }
 
@@ -318,16 +344,6 @@ html.signed_in_homepage {
               }
             }
           }
-        }
-      }
-
-      .feed-reviews {
-        h5 + article.review {
-          margin-top: 0;
-        }
-
-        header.cover {
-          display: none;
         }
       }
     }

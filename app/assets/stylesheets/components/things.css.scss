@@ -212,7 +212,7 @@ article.thing {
       }
 
       img {
-        width: 32px;
+        width: 26px;
         margin-right: .5em;
         @extend .img-circle;
       }
@@ -222,7 +222,7 @@ article.thing {
       float: right;
       max-width: 50%;
       @include text-overflow;
-      margin-top: 12px;
+      margin-top: 5px;
 
       > * {
         margin-left: .5em;

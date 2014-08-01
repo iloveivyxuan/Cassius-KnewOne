@@ -8,8 +8,8 @@ article.feed
     = render partial: 'feed_activity', collection: feed.activities_not_from_reviews, as: :activity
 
   - if feed.reviews.present?
-    ul.feed-reviews
+    .feed-reviews
       - feed.reviews.each do |review|
         = render 'feed_review', review: review
-        .feed-activities
+        ul.feed-activities
           = render partial: 'feed_activity', collection: feed.activities_from(review), as: :activity
