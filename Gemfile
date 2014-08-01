@@ -77,7 +77,6 @@ gem 'doorkeeper', github: 'doorkeeper-gem/doorkeeper'
 # monitoring
 gem 'newrelic_rpm'
 gem 'airbrake'
-gem 'intercom-rails'
 
 # sitemap
 gem 'sitemap_generator'
