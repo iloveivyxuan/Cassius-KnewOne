@@ -115,7 +115,7 @@ class Thing < Post
   end
 
   def update_amazon_link
-    if self.shop_changed? && self.shop.include?("amazon.cn") && !self.shop.include?("kne09-23")
+    if self.shop_changed? && self.shop && self.shop.include?("amazon.cn") && !self.shop.include?("kne09-23")
       new_link = add_param(self.shop, "tag", "kne09-23")
       self.shop = new_link unless new_link.nil?
     end
