@@ -13,5 +13,8 @@
             = f.radio_button :coupon_code_id, c.id.to_s, \
                              :'data-href' => new_order_path_with_params(@order, coupon_code_id: c.id.to_s), \
                              :class => 'order_coupon_radio'
-            = "#{c.name}：#{c.note}"
+            - if c.note
+              = "#{c.name}：#{c.note}"
+            - else
+              = "#{c.name}"
   = link_to '+ 添加优惠券', coupons_path(redirect_from: request.url), class: "btn btn-link"

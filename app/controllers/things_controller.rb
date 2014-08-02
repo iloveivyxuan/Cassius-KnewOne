@@ -206,7 +206,6 @@ class ThingsController < ApplicationController
       @rebate_coupon = ThingRebateCoupon.find_or_create_by(
                                                            name: "Dyson Air Multiplier 200 元优惠券",
                                                            thing_id: thing.id.to_s,
-                                                           note: "结算时输入优惠券代码立减 200 元",
                                                            price: 200.0)
       coupon_code = @rebate_coupon.generate_code!(
                                                   user: current_user,
