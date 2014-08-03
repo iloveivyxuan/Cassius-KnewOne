@@ -201,7 +201,7 @@ class User
       self.name = (auth.name || auth.nickname).try(:gsub, ' ', '-') || 'KnewOne小伙伴'
     end
 
-    if (!persisted? && User.where(name: self.name).size > 0) || self.name.blank?
+    if (!persisted? && User.where(name: /^#{Regexp.escape(self.name)}$/i).size > 0) || self.name.blank?
       self.name += "x#{SecureRandom.uuid[0..4]}"
     end
 
