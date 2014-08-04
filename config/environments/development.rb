@@ -34,8 +34,4 @@ Making::Application.configure do
 
   # See everything in the log (default is :info)
   config.log_level = :info
-
-  config.action_mailer.delivery_method = :letter_opener
-
-  config.action_mailer.default_url_options = { :host => 'making.dev' }
 end

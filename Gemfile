@@ -84,6 +84,7 @@ gem 'sitemap_generator'
 # misc
 gem 'nokogiri'
 gem 'browser'
+gem 'dkim'
 
 # cache
 gem 'redis-rails'

@@ -212,6 +212,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    dkim (1.0.0)
     docile (1.1.5)
     eco (1.0.0)
       coffee-script
@@ -560,6 +561,7 @@ DEPENDENCIES
   compass-rails
   database_cleaner
   devise
+  dkim
   doorkeeper!
   factory_girl_rails
   faker
