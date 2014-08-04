@@ -15,9 +15,13 @@ class Ability
       can :send_stock_notification, Thing
       can :manage, AbatementCoupon
       can :manage, ThingRebateCoupon
+      can :manage, Supplier
     elsif user.role? :editor
       signed user
       editor
+    elsif user.role? :editor_volunteer
+      signed user
+      can :update, Thing
     else
       signed user
     end
@@ -162,7 +166,6 @@ class Ability
     can :manage, Review
     can :manage, Feeling
     can :manage, Lottery
-    can :manage, Supplier
   end
 
   def pay_callback

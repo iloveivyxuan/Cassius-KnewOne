@@ -220,7 +220,7 @@ class ThingsController < ApplicationController
 
   def thing_params
     params.require(:thing)
-    .permit(:title, :subtitle, :official_site,
+    .permit(:title, :subtitle, :official_site, :categories_text,
             :content, :description, photo_ids: [])
   end
 

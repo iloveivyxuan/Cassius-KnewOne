@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -220,11 +219,12 @@ class User
 
   ## Roles
   field :role, type: String, default: ""
-  ROLES = %w[vip editor sale admin]
+  ROLES = %w[vip editor_volunteer editor sale admin]
   scope :staff, -> { where :role.in => %i(editor sale admin) }
   scope :admin, -> { where role: "admin" }
   scope :editor, -> { where role: "editor" }
   scope :sale, -> { where role: "sale" }
+  scope :editor_volunteer, -> { where role: "editor_volunteer" }
 
   def role?(base_role)
     ROLES.index(base_role.to_s) <= (ROLES.index(role) || -1)

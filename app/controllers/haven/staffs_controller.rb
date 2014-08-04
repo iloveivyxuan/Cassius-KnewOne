@@ -20,6 +20,9 @@ module Haven
         if params[:filter].include? 'sale'
           @users = @users.sale
         end
+        if params[:filter].include? 'editor_volunteer'
+          @users = @users.editor_volunteer
+        end
       else
       @users = @users.order_by([:created_at, :desc],
                                [:things_count, :desc],

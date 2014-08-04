@@ -10,7 +10,8 @@ ul.nav.nav-pills
   - {'staff' => '员工',
      'admin' => '管理员',
      'editor' => '编辑',
-     'sale' => '销售'}.each do |k, v|
+     'sale' => '销售',
+     'editor_volunteer' => '编辑志愿者'}.each do |k, v|
     - conds = queries.deep_dup
     - if conds[:filter].include?(k)
       li.active
