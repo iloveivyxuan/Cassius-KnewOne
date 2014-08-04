@@ -1,0 +1,31 @@
+<div class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>添加到收藏列表</h4>
+        <p>{{title}}</p>
+      </div>
+
+      <div class="modal-body">
+        <img alt="{{title}}" src="{{cover_url}}">
+
+        <form class="new-thing-list-form form-inline" action="#">
+          <h5>选择该产品要添加进的列表</h5>
+          <ul class="thing-lists"></ul>
+
+          <fieldset>
+            <input class="form-control" name="name" type="text" placeholder="添加一个列表">
+            <button class="btn btn-default" type="submit">新建</button>
+          </fieldset>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <form class="new-thing-list-items-form form-inline" action="#">
+          <input class="form-control" name="description" type="text" placeholder="说点什么吧 （70字以内）" maxlength=70>
+          <button class="btn btn-primary" type="submit">完成添加</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

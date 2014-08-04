@@ -1,0 +1,145 @@
+.thing-list-popup {
+  .modal-content {
+    padding: 25px;
+    width: 565px;
+  }
+
+  .modal-header {
+    padding: 0;
+    border: none;
+
+    h4 {
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0;
+
+      color: $black;
+    }
+
+    p {
+      @include text-overflow;
+      width: 360px;
+
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 0 0 1em;
+
+      color: $gray-light;
+    }
+  }
+
+  .modal-body {
+    margin-top: 10px;
+    padding: 0;
+
+    > img {
+      display: inline-block;
+      width: 220px;
+      vertical-align: middle;
+    }
+
+    > form {
+      display: inline-block;
+      width: 269px;
+      vertical-align: middle;
+
+      margin-left: 20px;
+
+      h5 {
+        margin: 0;
+        padding: 5px 12px;
+        border-radius: 3px 3px 0 0;
+        color: white;
+        background: $blue;
+      }
+
+      ul {
+        height: 140px;
+        overflow: auto;
+
+        border: 1px solid $gray-lighter;
+        border-top: none;
+        background: #f9f9f9;
+
+        li {
+          position: relative;
+
+          color: $gray-light;
+
+          label {
+            width: 100%;
+            margin: 0;
+            padding: 4px 10px;
+
+            cursor: pointer;
+
+            &:hover {
+              background: #dcddde;
+              border-radius: 3px;
+            }
+          }
+
+          input {
+            height: 0;
+            width: 0;
+            visibility: hidden;
+
+            &:after {
+              content: '✔';
+
+              visibility: visible;
+
+              position: absolute;
+              top: 6px;
+              right: 6px;
+
+              color: #f1f1f1;
+            }
+
+            &:checked:after {
+              color: #a6a6a6;
+            }
+          }
+        }
+      }
+
+      > fieldset {
+        margin-top: 10px;
+
+        input,
+        button {
+          height: 32px;
+          font-size: 13px;
+        }
+
+        input {
+          width: 200px;
+        }
+
+        button {
+          margin-left: 1em;
+        }
+      }
+    }
+  }
+
+  .modal-footer {
+    margin-top: 20px;
+    padding: 0;
+    border: none;
+    text-align: left;
+
+    > form {
+      input {
+        width: 415px;
+        height: 34px;
+        padding: 7px 8px;
+      }
+
+      button {
+        width: 80px;
+        margin-left: 1em;
+      }
+    }
+  }
+}
