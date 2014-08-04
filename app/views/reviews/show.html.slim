@@ -8,6 +8,7 @@
       h3= rp.title
       = rp.score
       = rp.author_tag
+      = render 'users/follow_btn', user: @review.author
 
     section.body.post_content= rp.content
 

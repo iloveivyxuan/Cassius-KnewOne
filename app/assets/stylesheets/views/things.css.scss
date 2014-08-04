@@ -754,3 +754,48 @@ html.feelings_index {
     }
   }
 }
+
+html.reviews_index {
+
+  #thing_content {
+
+    & > section {
+
+      & > header {
+        @include clearfix;
+
+        form {
+          float: left;
+        }
+
+        .new_review {
+          @extend .btn;
+          @extend .btn-primary;
+
+          float: right;
+        }
+      }
+    }
+  }
+}
+html.reviews_show {
+
+  #thing_content {
+
+    .article {
+
+      header {
+
+        .author,
+        .follow_btn {
+          display: inline-block;
+          vertical-align: bottom;
+        }
+
+        .follow_btn {
+          @extend .btn-sm;
+        }
+      }
+    }
+  }
+}
