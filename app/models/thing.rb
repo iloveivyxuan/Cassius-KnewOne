@@ -27,7 +27,7 @@ class Thing < Post
   field :price_unit, type: String, default: "¥"
   field :shopping_desc, type: String, default: ""
   field :period, type: DateTime
-  CURRENCY_LIST = %w{¥ $ € £ JPY¥}
+  CURRENCY_LIST = %w{¥ $ € £ JPY¥ ₩}
 
   field :priority, type: Integer, default: 0
 
