@@ -20,5 +20,8 @@ dd
       select name='user[flags][]' multiple="true" data-role="tagsinput"
         - @user.flags.each do |i|
           option value="#{i}" selected="selected" = i
+    .form-group
+      label 状态
+      = f.select(:status, options_for_select(User::STATUS.invert, @user.status))
 
     = f.submit '修改', class: 'btn btn-default'
