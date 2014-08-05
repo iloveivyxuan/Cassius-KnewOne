@@ -3,15 +3,15 @@ header.page-header
   h2
     i.fa.fa-users
     | 用户权限管理
+
+.pull-left
+  = render 'filter'
+
 .pull-right
-
-= render 'filter'
-
-/ 快速搜索
-= form_tag(haven_staff_role_path(1), method: "get") do
-  = hidden_field_tag 'role[staff]', "", id: 'staff_id'
-  input#staff_autocomplete.form-control placeholder="用户昵称" value=""
-  = submit_tag("Search")
+  = form_tag(haven_staff_role_path(1), method: "get") do
+    = hidden_field_tag 'role[staff]', "", id: 'staff_id'
+    input#staff_autocomplete.form-control placeholder="用户昵称" value=""
+    = submit_tag("确定")
 
 table.table.table-striped
   thead
