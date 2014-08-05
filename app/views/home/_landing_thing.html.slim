@@ -1,14 +1,14 @@
 - thing_presenter = present thing
 section class="product_#{index == 0 ? 1 : 2}"
   figure.product
-    = link_or_login thing, class: "product_thumb"
+    = link_to "#", class: "product_thumb", data: {toggle: 'modal', target: '#login-modal', link: url_for(thing)}
       - if index == 0
         = thing_presenter.photo(:review)
       - else
         = thing_presenter.photo(:'thing.fixed')
     figcaption
       div
-        = link_or_login thing
+        = link_to "#", data: {toggle: 'modal', target: '#login-modal', link: url_for(thing)}
           hgroup
             h4
               span= thing.title
