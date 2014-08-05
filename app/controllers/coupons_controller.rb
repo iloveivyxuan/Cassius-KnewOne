@@ -1,6 +1,7 @@
 class CouponsController < ApplicationController
   prepend_before_action :require_signed_in
   layout 'settings', only: [:index]
+  skip_before_action :require_not_blocked, only: [:index]
 
   def index
     @coupons = current_user.coupon_codes

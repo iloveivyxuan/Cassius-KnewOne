@@ -1,0 +1,11 @@
+- page_title '账号锁定'
+
+header.error_header
+  h1
+    | 禁闭空间！
+    span  User Blocked
+main.error_content
+  .error_message
+    p.well.well-lg 你不幸因至高议会的禁锢术而被传送入禁闭空间，空气中弥漫的魔法力量令你的内疚感如排山倒海般增长，你可能要被永远的困在这里了。
+  .error_solution
+    = link_to_with_icon '辩护', "fa fa-exclamation", '#olark_chat', class: 'btn btn-block btn-lg btn-primary'

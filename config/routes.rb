@@ -21,6 +21,7 @@ Making::Application.routes.draw do
   get "404", to: "home#not_found"
   get "403", to: "home#forbidden"
   get "500", to: "home#error"
+  get 'blocked', to: 'home#blocked'
 
   get 'help', to: 'help#index'
   %w(how_to_share how_to_review terms knewone_for_user knewone_for_startup).each do |a|

@@ -1,5 +1,6 @@
 class SessionsController < Devise::SessionsController
   layout 'oauth'
+  skip_before_action :require_not_blocked
 
   before_action only: [:new] do
     session[:previous_url] = params[:redirect_from] if params[:redirect_from].present?
