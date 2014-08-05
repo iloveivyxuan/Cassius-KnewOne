@@ -6,6 +6,7 @@ hgroup
     = link_to "可购产品列表", haven_things_path(filter: "can_buy"), class: 'btn btn-default'
     = link_to "按分享时间排序", haven_things_path(sort_by: 'created_at'), class: 'btn btn-default'
     = link_to "按评测数量排序", haven_things_path(sort_by: 'reviews_count'), class: 'btn btn-default'
+    = link_to "按短评数量排序", haven_things_path(sort_by: 'feelings_count'), class: 'btn btn-default'
     = link_to "按优先级排序", haven_things_path(sort_by: 'priority'), class: 'btn btn-default'
     = link_to "按热度排序", haven_things_path(sort_by: 'heat'), class: 'btn btn-default'
 
@@ -21,6 +22,7 @@ table.table.table-striped.table-hover.table-bordered
     th 拥有
     th 优先级
     th 评测
+    th 短评
     th 热度
   - @things.each do |t|
     tr
@@ -36,6 +38,7 @@ table.table.table-striped.table-hover.table-bordered
       td= t.owners.count
       td= t.priority
       td= t.reviews_count
+      td= t.feelings_count
       td= t.heat.round(2)
 
 = paginate @things
