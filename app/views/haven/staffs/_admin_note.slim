@@ -1,15 +1,10 @@
 dd
   = form_for @user, url: haven_staff_path(@user) do |f|
-    
-    = @user.name
-
     .form-group
-      label 权限管理
+      label= "为#{@user.name}赋予权限"
       select name='user[role][]'
-        option value="admin" = "admin"
-        option value="editor" = "editor"
-        option value="sale" = "sale"
-        option value="editor_volunteer" = "editor_volunteer"
         option value="" = "none"
+        - User::ROLES.each do |role|
+          option value=role selected=(role==@user.role) = role
 
     = f.submit '修改', class: 'btn btn-default'

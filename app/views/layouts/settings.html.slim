@@ -30,7 +30,7 @@
             = link_to_with_icon '天天有礼', 'fa fa-fw fa-wrench', haven_rewards_path
           = nav_tab :user do
             = link_to_with_icon '管理用户', 'fa fa-fw fa-wrench', haven_users_path
-          - if current_user.role  == "editor"
+          - if current_user.role? :editor
             = nav_tab :category do
               = link_to_with_icon '管理分类', 'fa fa-fw fa-wrench', haven_categories_path
           - if current_user.role? :admin
@@ -39,7 +39,7 @@
           = nav_tab :things do
             = link_to_with_icon '批量修改产品', 'fa fa-fw fa-wrench', batch_edit_haven_things_path
             = link_to_with_icon '关联产品', 'fa fa-fw fa-wrench', haven_links_path
-          - if current_user.role == "editor"
+          - if current_user.role == :editor
             = nav_tab :promotion do
               = link_to_with_icon '管理广告位', 'fa fa-fw fa-wrench', haven_promotions_path
             = nav_tab :article do

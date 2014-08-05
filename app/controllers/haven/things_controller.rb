@@ -7,11 +7,11 @@ module Haven
     end
 
     def update
-      puts '---------------'
-      puts current_user.name
-      puts @thing.inspect
-      puts thing_params
-      puts '---------------'
+      logger.tagged("Haven-Thing-Update") do
+        logger.info current_user.name
+        logger.info @thing.id
+        logger.info thing_params
+      end
       if @thing.update thing_params
         redirect_to edit_haven_thing_path(@thing)
       else

@@ -32,7 +32,7 @@ header.page-header
   = f.input :shopping_desc do
     = render 'shared/editor'
     = f.input_field :shopping_desc, as: :hidden
-  - if current_user.role?(:sale)
+  - if current_user.role? :sale
     .kinds
       = f.simple_fields_for :kinds
       = f.link_to_add "新增型号", :kinds, class: "btn btn-default"

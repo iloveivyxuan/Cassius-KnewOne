@@ -19,7 +19,7 @@ class Ability
     elsif user.role? :editor
       signed user
       editor
-    elsif user.role? :editor_volunteer
+    elsif user.role? :volunteer
       signed user
       can :update, Thing
     else

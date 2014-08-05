@@ -218,20 +218,22 @@ class User
   end
 
   ## Roles
-  field :role, type: String, default: ""
-  ROLES = %w[vip editor_volunteer editor sale admin]
-  scope :staff, -> { where :role.in => %i(editor sale admin) }
+  field :role, type: Symbol, default: ""
+  ROLES_WITH_DESC = {vip: "大号", volunteer: "志愿者", editor: "编辑", sale: "销售", admin: "管理员"}
+  ROLES = ROLES_WITH_DESC.keys
+  STAFF = %i(editor sale admin)
 
   ROLES.each do |role|
-    scope :role, -> { where role: role.to_s }
+    scope role, -> { where role: role }
   end
 
   def role?(base_role)
-    ROLES.index(base_role.to_s) <= (ROLES.index(role) || -1)
+    ROLES.index(base_role) <= (ROLES.index(role) || -1)
   end
 
+  scope :staff, -> { where :role.in => STAFF }
   def staff?
-    %w(editor sale admin).include? self.role
+    STAFF.include? role
   end
 
   ## Photos
