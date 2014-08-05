@@ -151,6 +151,17 @@ module Haven
       redirect_back_or haven_user_path(user)
     end
 
+    def batch_show
+      @users = params[:names].lines.reduce([]) do |users, line|
+        user = User.where(name: line.chomp).first
+        users << user if user.present?
+        users
+      end
+    end
+
+    def batch_query
+    end
+
     private
 
     def user_params

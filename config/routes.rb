@@ -273,7 +273,12 @@ Making::Application.routes.draw do
 
     resources :entries, except: [:show]
 
-    resources :users, only: [:index, :update, :show]
+    resources :users, only: [:index, :update, :show] do
+      collection do
+        get 'batch_query'
+        post 'batch_show'
+      end
+    end
 
     resources :reviews, only: [:index]
 
