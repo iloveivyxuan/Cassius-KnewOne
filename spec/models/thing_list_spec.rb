@@ -22,6 +22,12 @@ describe ThingList, type: :model do
       end
     end
 
+    context 'after create' do
+      it 'gets fancied' do
+        expect(item.thing.fancied?(thing_list.user)).to be true
+      end
+    end
+
     context 'after thing destroy' do
       before do
         item.thing.destroy
