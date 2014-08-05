@@ -15,6 +15,10 @@ class AftermathHandler
 
     def thing_unfancy(thing, user)
       user.inc fancies_count: -1 if user.fancies_count > 0
+
+      user.thing_lists.each do |list|
+        list.items.where(thing: thing).destroy
+      end
     end
 
     def thing_own(thing, user)
