@@ -8,7 +8,7 @@ article.review class="review_#{index + 1}"
     section.review_wrap
       header.review_header
         hgroup.review_title
-          h4= link_to review.title, review_presenter.path
+          h4= link_or_login review.title, review_presenter.path
           h5= review.thing.title
           = review_presenter.score
         em.like

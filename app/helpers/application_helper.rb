@@ -22,6 +22,24 @@ module ApplicationHelper
     end
   end
 
+  def link_or_login(name = nil, url = nil, html_options = {}, &block)
+    if block_given?
+      html_options = url || {}
+      url = name
+    end
+
+    unless user_signed_in?
+      url = '#'
+      html_options.merge!(data: {toggle: 'modal', target: '#login-modal'})
+    end
+
+    if block_given?
+      link_to(url, html_options, &block)
+    else
+      link_to(name, url, html_options)
+    end
+  end
+
   def nav_tab_link_with_icon(tab, body, icon_class, options = {}, html_options = {})
     html_options[:class] ||= 'list-group-item'
     if content_for(:nav) == tab.to_s

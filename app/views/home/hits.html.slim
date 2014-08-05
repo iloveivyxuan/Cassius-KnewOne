@@ -11,4 +11,7 @@
         li.previous
           = link_to_previous_page @things, raw('&larr; 上一页')
         li.next
-          = link_to_next_page @things, raw('下一页 &rarr;')
+          - if user_signed_in?
+            = link_to_next_page @things, raw('下一页 &rarr;')
+          - else
+            = link_to raw('下一页 &rarr;'), '#', data: {toggle: "modal", target: "#login-modal"}

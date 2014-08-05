@@ -1,14 +1,14 @@
 - present hot_thing do |thing_presenter|
   article.thing
     header.cover
-      = link_to hot_thing do
+      = link_or_login hot_thing do
         = thing_presenter.photo :'thing.fixed.big'
       .fancy_thing
-        = link_to "", hot_thing, class: "fancy_backdrop"
+        = link_or_login "", hot_thing, class: "fancy_backdrop"
         .fancy_button= render "shared/fancy", p: thing_presenter, from: "hits"
     section.content
-      h4.title= link_to thing_presenter.title, hot_thing
-      p.subtitle= link_to thing_presenter.subtitle, hot_thing
+      h4.title= link_or_login thing_presenter.title, hot_thing
+      p.subtitle= link_or_login thing_presenter.subtitle, hot_thing
     footer.info
       .creator= thing_presenter.author
       .interactions
