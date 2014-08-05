@@ -57,6 +57,10 @@ class HomeController < ApplicationController
     end
   end
 
+  def blocked
+
+  end
+
   def welcome
     @friends = current_user.recommend_users || []
     @recommend_users = User.active_users(42) - @friends

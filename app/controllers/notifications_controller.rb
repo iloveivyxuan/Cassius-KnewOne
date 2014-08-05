@@ -1,6 +1,7 @@
 class NotificationsController < ApplicationController
   prepend_before_action :authenticate_user!
   after_action :mark_read, only: [:index]
+  skip_before_action :require_not_blocked
 
   def index
     @notifications = current_user.notifications.page params[:page]

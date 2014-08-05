@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   before_action :have_items_in_cart, only: [:new, :create]
   load_and_authorize_resource except: [:index, :new, :create]
   layout 'settings', only: [:index, :show]
+  skip_before_action :require_not_blocked
 
   def index
     @orders = current_user.orders.page(params[:page]).per(3)

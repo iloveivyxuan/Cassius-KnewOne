@@ -2,6 +2,7 @@ class ProfilesController < ApplicationController
   prepend_before_action :require_signed_in
   before_action :set_editor_choices, except: [:update, :edit, :follow_recommends]
   layout 'home', except: [:update, :edit, :drafts]
+  skip_before_action :require_not_blocked, only: [:update, :edit]
 
   def update
     params[:user][:auto_update_from_oauth] = false

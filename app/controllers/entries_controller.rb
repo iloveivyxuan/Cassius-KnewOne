@@ -1,5 +1,6 @@
 class EntriesController < ApplicationController
   layout 'explore'
+  skip_before_action :require_not_blocked
 
   def show
     @entry = Entry.find(params[:id])

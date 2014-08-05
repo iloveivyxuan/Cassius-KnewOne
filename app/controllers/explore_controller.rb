@@ -1,4 +1,6 @@
 class ExploreController < ApplicationController
+  skip_before_action :require_not_blocked
+
   def index
     @entries = Entry.published.desc(:created_at).page(params[:page]).per(6)
 

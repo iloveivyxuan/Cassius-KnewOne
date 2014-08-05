@@ -1,6 +1,7 @@
 class NotificationSettingsController < ApplicationController
   prepend_before_action :require_signed_in
   layout 'settings'
+  skip_before_action :require_not_blocked
 
   def update
     respond_to do |format|

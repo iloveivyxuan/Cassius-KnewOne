@@ -1,6 +1,7 @@
 class AddressesController < ApplicationController
   before_action :require_signed_in
   layout 'settings'
+  skip_before_action :require_not_blocked
 
   def index
     if current_user.role? :editor and params[:user]

@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_variant
   after_action :store_location, only: [:index, :show]
+  prepend_before_action :require_not_blocked, except: :blocked
 
   if Rails.env.production?
     # some bots using some *strange* format to request urls
@@ -106,6 +107,12 @@ class ApplicationController < ActionController::Base
 
   def allow_iframe_load
     response.headers['X-XSS-Protection'] = '0'
+  end
+
+  def require_not_blocked
+    if user_signed_in? && current_user.blocked?
+      redirect_to blocked_path
+    end
   end
 
   private

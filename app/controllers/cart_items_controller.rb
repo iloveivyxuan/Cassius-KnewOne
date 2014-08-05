@@ -1,6 +1,7 @@
 class CartItemsController < ApplicationController
   before_action :require_signed_in
   before_action :current_cart_item, only: [:destroy, :update]
+  skip_before_action :require_not_blocked
 
   def index
     current_user.cart_items.delete_if {|item| !item.legal?}
