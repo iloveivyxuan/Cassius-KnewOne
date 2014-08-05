@@ -23,14 +23,16 @@ module Haven
                 end
 
       @things = case params[:sort_by]
-                  when 'reviews_count'
-                    @things.order_by [:reviews_count, :desc]
-                  when 'priority'
-                    @things.order_by [:priority, :desc]
-                  when 'heat'
-                    @things.order_by [:heat, :desc]
-                  else
-                    @things.order_by [:created_at, :desc]
+                when 'reviews_count'
+                  @things.order_by [:reviews_count, :desc]
+                when 'feelings_count'
+                  @things.order_by [:feelings_count, :desc]
+                when 'priority'
+                  @things.order_by [:priority, :desc]
+                when 'heat'
+                  @things.order_by [:heat, :desc]
+                else
+                  @things.order_by [:created_at, :desc]
                 end
 
       if params[:from].present?
