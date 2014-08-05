@@ -1,6 +1,6 @@
 .related-lists
-  - if user_signed_in?
-    button.btn.btn-default data-toggle="modal" data-target=".thing-list-popup"
+  - if can?(:create, ThingList)
+    button.btn.btn-default data-thing-list-popup=thing.id
       i.fa.fa-plus
       | 添加到列表
 
@@ -18,28 +18,3 @@
             - list.items.limit(4).each do |item|
               = link_to thing_path(item.thing, from_id: thing.id), target: "_blank"
                 = present(item.thing).photo(:small)
-
-#add-to-thing-lists
-
-- if user_signed_in?
-  - content_for :script do
-    javascript:
-      $('.related-lists button').one('click', function () {
-        var thing = {
-          id: '#{thing.id}',
-          title: '#{thing.title}',
-          cover_url: '#{thing.cover.url(:normal)}'
-        }
-
-        new Making.Views.ThingListsPopup({
-          el: '#add-to-thing-lists',
-          model: new Backbone.Model(thing),
-          collection: new Making.Collections.ThingLists()
-        }).render()
-      })
-
-      $(document).on('click', '.unfancied[data-action="fancy_thing"]', function () {
-        setTimeout(function () {
-          $('.related-lists button').trigger('click')
-        }, 200)
-      })

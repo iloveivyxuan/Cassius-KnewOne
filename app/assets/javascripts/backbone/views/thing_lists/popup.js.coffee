@@ -38,6 +38,9 @@ class Making.Views.ThingListsPopup extends Backbone.Marionette.CompositeView
   childView: ThingListView
   childViewContainer: 'ul.thing-lists'
 
+  onShow: ->
+    @$('.modal').modal('show')
+
   reset: ->
     @collection.fetch({reset: true})
     @_changedLists = {}
