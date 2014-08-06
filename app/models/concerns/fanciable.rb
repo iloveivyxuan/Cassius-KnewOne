@@ -2,6 +2,7 @@ module Fanciable
   extend ActiveSupport::Concern
 
   included do
+    has_and_belongs_to_many :fanciers, class_name: "User", inverse_of: :fancies
     field :fanciers_count, type: Integer, default: 0
     index fanciers_count: -1
   end
