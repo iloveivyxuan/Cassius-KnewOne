@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @fancies = @user.fancies_sorted_by_ids(1, 3)
     @owns = @user.owns_sorted_by_ids(1, 3)
     @makings = @user.makings.desc(:created_at)
-    @activities = @user.activities.visible.limit(10)
+    @activities = @user.activities.visible.where(:type.ne => :login_user).limit(10)
   end
 
   def fancies
