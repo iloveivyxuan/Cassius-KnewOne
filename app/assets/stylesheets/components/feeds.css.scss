@@ -497,6 +497,10 @@ html.mobile {
           padding: 1px 5px;
         }
       }
+
+      > .btn-sm:first-child {
+         padding: 1px 5px;
+      }
     }
 
     .feed_target {
