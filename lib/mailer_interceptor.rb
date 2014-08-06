@@ -107,8 +107,7 @@ class MailerInterceptor
 
   EXCEPTIONAL = {
     'gmail.com' => :mailgun,
-    'ruby-china.org' => :mailgun,
-    'qq.com' => :sendcloud_fallback
+    'ruby-china.org' => :mailgun
   }
 end
 
