@@ -24,6 +24,12 @@ module Api
         @feeling.photo_ids.concat photos.map { |p| p.id.to_s }
 
         if @feeling.save
+          content_users = mentioned_users(@feeling.content)
+          content_users.each do |u|
+            u.notify :feeling, context: @feeling, sender: current_user, opened: false
+          end
+          current_user.log_activity :new_feeling, @feeling, source: @feeling.thing
+
           render action: 'show', status: :created, location: [:api, :v1, @thing, @feeling]
         else
           render json: @feeling.errors, status: :unprocessable_entity

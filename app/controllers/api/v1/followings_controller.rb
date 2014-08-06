@@ -12,7 +12,10 @@ module Api
       end
 
       def update
-        current_user.follow User.find(params[:id])
+        user = User.find(params[:id])
+        current_user.follow user
+        current_user.log_activity :follow_user, user, check_recent: true
+
         head :no_content
       end
 

@@ -12,7 +12,10 @@ module Api
       end
 
       def update
-        Thing.find(params[:id]).own(current_user)
+        thing = Thing.find(params[:id])
+        thing.own(current_user)
+        current_user.log_activity :own_thing, thing, check_recent: true
+
         head :no_content
       end
 

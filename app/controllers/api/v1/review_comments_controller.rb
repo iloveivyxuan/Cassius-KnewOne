@@ -18,6 +18,7 @@ module Api
         @comment = @review.comments.build(comment_params.merge(author: current_user))
 
         if @comment.save
+          @comment.author.log_activity :comment, @comment.post, check_recent: true
           render action: 'show', status: :created, location: [:api, :v1, @thing, @review, @comment]
         else
           render json: @comment.errors, status: :unprocessable_entity

@@ -6,6 +6,8 @@ module Api
 
       def create
         @post.vote(current_user, true)
+        log_user_activity @post, current_user
+
         head :no_content
       end
 
@@ -27,6 +29,19 @@ module Api
       def set_post
         @post = Post.or({id: params.values.last}, {_slugs: params.values.last}).first
         head(:not_found) unless @post
+      end
+
+      def log_user_activity(post, user)
+        case post.class
+        when Review
+          user.log_activity :love_review, post, source: post.thing
+        when Topic
+          user.log_activity :love_topic, post, source: post.group
+        when Feeling
+          user.log_activity :love_feeling, post, source: post.thing
+        else
+          nil
+        end
       end
     end
   end
