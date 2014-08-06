@@ -1,20 +1,42 @@
 hgroup
   h1
     | 批量修改产品
-  p
-    = link_to "无购买链接", batch_edit_haven_things_path(filter: "no_link"), class: 'btn btn-default'
-    = link_to "无分类", batch_edit_haven_things_path(filter: "no_category"), class: 'btn btn-default'
-    = link_to "无价格", batch_edit_haven_things_path(filter: "no_price"), class: 'btn btn-default'
-    = link_to "研发中", batch_edit_haven_things_path(filter: 'concept'), class: 'btn btn-default'
-    = link_to "众筹中", batch_edit_haven_things_path(filter: 'kick'), class: 'btn btn-default'
-    = link_to "预售", batch_edit_haven_things_path(filter: 'pre_order'), class: 'btn btn-default'
-    = link_to "国内导购", batch_edit_haven_things_path(filter: 'domestic'), class: 'btn btn-default'
-    = link_to "国外海淘", batch_edit_haven_things_path(filter: 'abroad'), class: 'btn btn-default'
-    = link_to "自销", batch_edit_haven_things_path(filter: 'dsell'), class: 'btn btn-default'
-    = link_to "国内导购", batch_edit_haven_things_path(filter: 'heat'), class: 'btn btn-default'
-    = link_to "国内导购", batch_edit_haven_things_path(filter: 'heat'), class: 'btn btn-default'
-    = link_to "优先度倒序", batch_edit_haven_things_path(order_by: 'priority_asc'), class: 'btn btn-default'
-    = link_to "优先度正序", batch_edit_haven_things_path(order_by: 'priority_desc'), class: 'btn btn-default'
+
+- queries = params.except(*request.path_parameters.keys)
+- queries[:filter] ||= []
+
+ul.nav.nav-pills
+  - if queries[:filter].any?
+    li
+      = link_to '全部', queries.reject! {|k, v| k == :filter}
+  - else
+    li.active
+      = link_to '全部', queries.reject! {|k, v| k == :filter}
+
+  - {'no_link' => '无购买链接',
+     'no_category' => '无分类',
+     'no_price' => '无价格',
+     'concept' => '研发中',
+     'kick' => '众筹中',
+     'pre_order' => '预售',
+     'domestic' => '国内导购',
+     'abroad' => '国外海淘',
+     'dsell' => '自销',
+     'feelings_count' => '按短评数排序',
+     'reviews_count' => '按评测数排序',
+     'heat' => '按热度排序',
+     'priority_asc' => '优先度倒序',
+     'priority_desc' => '优先度正序'}.each do |k, v|
+
+     - conds = queries.deep_dup
+     - if conds[:filter].include?(k)
+       li.active
+         - conds[:filter].reject! {|f| f == k}
+         = link_to v, batch_edit_haven_things_path(conds)
+     - else
+       li
+         - conds[:filter].push(k)
+         = link_to v, batch_edit_haven_things_path(conds)
 
 = form_tag batch_update_haven_things_path(redirect_from: request.fullpath), method: :patch do
   table.table.table-striped.table-hover.table-bordered
