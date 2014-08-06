@@ -1,4 +1,4 @@
-module Fancyable
+module Fanciable
   extend ActiveSupport::Concern
 
   included do
