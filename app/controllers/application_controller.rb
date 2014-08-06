@@ -38,11 +38,23 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    if request.format == Mime::HTML
-      session[:previous_url] = request.fullpath
-    end
+    respond_to do |format|
+      format.html do
+        if request.format == Mime::HTML
+          session[:previous_url] = request.fullpath
+        end
 
-    redirect_to '/403', alert: exception.message
+        redirect_to '/403', alert: exception.message
+      end
+
+      format.json do
+        head :forbidden
+      end
+
+      format.js do
+        head :forbidden
+      end
+    end
   end
 
   def redirect_stored_or(path, flash = {})

@@ -47,13 +47,18 @@ class HomeController < ApplicationController
   end
 
   def not_found
+    respond_to do |format|
+      format.js { head :not_found }
+      format.json { head :not_found }
+      format.html { render status: :not_found }
+    end
   end
 
   def forbidden
     if user_signed_in?
-      render 'home/forbidden_signed_in'
+      render 'home/forbidden_signed_in', status: :forbidden
     else
-      render 'home/forbidden'
+      render 'home/forbidden', status: :forbidden
     end
   end
 
@@ -68,6 +73,11 @@ class HomeController < ApplicationController
   end
 
   def error
+    respond_to do |format|
+      format.js { head :internal_server_error }
+      format.json { head :internal_server_error }
+      format.html { render status: :internal_server_error }
+    end
   end
 
   def search
