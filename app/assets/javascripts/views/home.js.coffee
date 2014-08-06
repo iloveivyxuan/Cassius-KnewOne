@@ -46,4 +46,13 @@ window.Making = do (exports = window.Making || {}) ->
           !$target.is('#search_thing input[type="search"]')
             $candidate.fadeOut('fast')
 
+      if localStorage.getItem('unlimited') isnt 'false'
+        $('a[data-target="#login-modal"]').each ->
+          $this = $(@)
+          $this
+            .attr('href': $this.attr('data-link'))
+            .removeAttr('data-toggle')
+        $window.on 'beforeunload', ->
+          localStorage.setItem('unlimited', 'false')
+
   exports
