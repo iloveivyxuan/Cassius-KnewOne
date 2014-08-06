@@ -16,3 +16,5 @@ Making.Models.Editor = Backbone.Model.extend
         @set 'status', '正在删除'
       when 'submit'
         @set 'status', '正在发布'
+      when 'error'
+        @set 'status', '遇到错误'

@@ -256,6 +256,10 @@ do (exports = Making) ->
           that.model.updateStatus('edit')
           that.model.set('persisten', true)
           if (typeof callback is 'function') then callback()
+        error: (model, response, options)->
+          if response.responseJSON.error?
+            that.model.updateStatus('error')
+            alert('杯具，出错了，请把内容保存到电脑后刷新页面再试试。给您带来的不便，我们深表歉意！')
 
     autoSave: (event) ->
       that = @
