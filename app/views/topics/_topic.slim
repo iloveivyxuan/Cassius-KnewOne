@@ -2,7 +2,7 @@ article.article_compact
   - present topic do |tp|
     header.article_header
       h4.article_title
-        = link_or_login tp.title, tp.path
+        = link_to tp.title, tp.path
         = tp.top
     section.article_body
       figure data-popover-profile=topic.author.id

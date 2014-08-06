@@ -1,14 +1,14 @@
 - present hot_review do |review_presenter|
   article.review
     header.cover
-      = link_or_login review_presenter.path do
+      = link_to review_presenter.path do
         - if browser.mobile?
           = review_presenter.cover(:'post.fixed')
         - else
           = review_presenter.cover(:square)
     section.content
       h4.title
-        = link_or_login review_presenter.title, review_presenter.path
+        = link_to review_presenter.title, review_presenter.path
       .summary
         = review_presenter.score
         p= review_presenter.summary(120)
