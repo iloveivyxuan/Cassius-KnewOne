@@ -1,4 +1,4 @@
-module Rateable
+module Ratable
   extend ActiveSupport::Concern
 
   included do

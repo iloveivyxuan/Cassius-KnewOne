@@ -1,5 +1,5 @@
 class Review < Post
-  include Rateable
+  include Ratable
   include Aftermath
 
   field :is_top, type: Boolean, default: false

@@ -1,5 +1,5 @@
 class Feeling < Post
-  include Rateable
+  include Ratable
   include Atable
   include Aftermath
 
