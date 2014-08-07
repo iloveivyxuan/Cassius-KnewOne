@@ -25,6 +25,7 @@ class FeelingsController < ApplicationController
   def create
     @feeling.author = current_user
     @feeling.content.gsub! /\r\n/, "\n"
+    @feeling.thing = Thing.find(params[:thing_id])
 
     if @feeling.save
       content_users = mentioned_users(@feeling.content)
