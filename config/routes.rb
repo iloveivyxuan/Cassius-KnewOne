@@ -96,8 +96,8 @@ Making::Application.routes.draw do
     resources :thing_list_items, path: 'items', only: [:create, :update, :destroy]
 
     member do
-      post 'vote'
-      post 'unvote'
+      post 'fancy'
+      post 'unfancy'
     end
   end
 

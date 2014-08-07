@@ -33,13 +33,13 @@ class ThingListsController < ApplicationController
     respond_with @thing_list
   end
 
-  def vote
-    @thing_list.vote(current_user)
+  def fancy
+    @thing_list.fancy(current_user)
     head :no_content
   end
 
-  def unvote
-    @thing_list.unvote(current_user)
+  def unfancy
+    @thing_list.unfancy(current_user)
     head :no_content
   end
 

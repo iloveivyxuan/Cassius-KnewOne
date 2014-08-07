@@ -140,11 +140,11 @@ class Ability
     can [:update, :destroy], ThingList do |thing_list|
       thing_list.user == user
     end
-    can :vote, ThingList do |thing_list|
-      !thing_list.voted?(user)
+    can :fancy, ThingList do |thing_list|
+      !thing_list.fancied?(user)
     end
-    can :unvote, ThingList do |thing_list|
-      thing_list.voted?(user)
+    can :unfancy, ThingList do |thing_list|
+      thing_list.fancied?(user)
     end
 
     can :create, ThingListItem
