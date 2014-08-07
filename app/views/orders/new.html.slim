@@ -16,11 +16,16 @@ header.page-header
     = f.input :note, as: :text, input_html: {placeholder: "在此可填写特殊要求、配送时间、发票信息等。",rows: 5}
     = render partial: 'coupon_select', locals: {f: f}
 
-    - if @order.items_price <= 500
+    - if (@order.items_price <= 500) && (!@order.bong_inside?)
       div
         label.checkbox.misc_option
           = f.check_box :use_sf, :class => 'use_sf', :'data-price' => Order::SF_PRICE
           | 使用顺丰速运（+10元）
+    - if @order.bong_inside?
+      div
+        label.checkbox.misc_option
+          = f.check_box :bong_delivery, :class => 'bong_delivery', :'data-price' => 10, checked: true, disabled: true
+          | bong 10 元运费
     - if current_user.has_balance?
       div
         label.checkbox.misc_option
