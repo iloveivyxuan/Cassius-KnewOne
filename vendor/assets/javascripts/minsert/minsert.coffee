@@ -70,7 +70,14 @@ do ($ = jQuery) ->
         selection = window.getSelection()
 
         @hide()
-        if selection.anchorOffset is 0
+        if event.target.nodeName is 'IMG' and
+          event.target.parentNode.nodeName is 'FIGURE'
+            @insertPoint = document.createRange()
+            @insertPoint.selectNode(event.target.parentNode)
+            @insertPoint.collapse(false)
+            selection.removeAllRanges()
+            selection.addRange(@insertPoint)
+        else if selection.anchorOffset is 0
           topNode = @getTopNode(selection.anchorNode)
           if $.trim($(topNode).text()) is ''
             @insertPoint = document.createRange()
@@ -118,7 +125,7 @@ do ($ = jQuery) ->
         @hide()
 
       insertImageDone: (event, url)->
-        @insert("<img src=#{url}>")
+        @insert("<figure><img src=#{url}></figure>")
 
       insertImageFail: (event, message) ->
         alert(message ? '图片上传失败了，请重试。')

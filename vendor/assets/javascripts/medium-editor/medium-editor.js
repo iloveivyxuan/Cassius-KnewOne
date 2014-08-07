@@ -250,7 +250,24 @@ if (typeof module === 'object') {
                     if (!(self.options.disableReturn || this.getAttribute('data-disable-return')) &&
                         tagName !== 'li' && !self.isListItemChild(node)) {
                         if (!e.shiftKey) {
-                            document.execCommand('formatBlock', false, 'p');
+                            var selection = window.getSelection(),
+                                anchorNode = selection.anchorNode;
+
+                            if (anchorNode.tagName.toLowerCase() == 'figure') {
+                              var range,
+                                  p = document.createElement('p');
+
+                              anchorNode.remove();
+                              p.innerHTML = '<br>';
+                              range = selection.getRangeAt(0);
+                              range.insertNode(p);
+                              range.selectNode(p);
+                              range.collapse(true);
+                              selection.removeAllRanges();
+                              selection.addRange(range);
+                            } else {
+                              document.execCommand('formatBlock', false, 'p');
+                            }
                         }
                         if (tagName === 'a') {
                             document.execCommand('unlink', false, null);
