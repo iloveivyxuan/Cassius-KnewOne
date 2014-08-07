@@ -2,7 +2,7 @@ class ThingList
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  belongs_to :user, index: true
+  belongs_to :user, inverse_of: :thing_list, index: true
   embeds_many :thing_list_items
 
   index 'thing_list_items.thing_id' => 1
