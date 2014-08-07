@@ -502,7 +502,7 @@ class Order
   end
 
   def bong_inside?
-    self.order_items.where(thing_title: bong.title).exists?
+    bong && self.order_items.where(thing_title: bong.title).exists?
   end
 
   need_aftermath :confirm_payment!, :refund_to_balance!, :refund!, :confirm_free!
@@ -512,7 +512,7 @@ class Order
   def after_confirm
     self.user.inc karma: Settings.karma.order
     # bong coupon
-    if bong && bong_inside?
+    if bong_inside?
       coupons = bong_coupon(bong_amount)
       order_note = coupons.map(&:code)
       leave_note(order_note)
