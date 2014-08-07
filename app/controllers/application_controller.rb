@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :logging
   before_action :trim_param_id
   protect_from_forgery
 
@@ -128,6 +129,11 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def logging
+    logger.info "Current user: #{user_signed_in? ? current_user.id : 'guest'}"
+    logger.info "Session: #{session.to_hash}"
+  end
 
   def trim_param_id
     params[:id] and params[:id].gsub! /[^\w]$/, ''
