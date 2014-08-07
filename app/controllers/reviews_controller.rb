@@ -59,6 +59,7 @@ class ReviewsController < ApplicationController
       end
     else
       @review.author = current_user
+      @review.thing = Thing.find(params[:thing_id])
       if @review.save
         content_users = mentioned_users(@review.content)
         content_users.each do |u|
