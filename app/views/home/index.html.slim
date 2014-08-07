@@ -1,17 +1,17 @@
-- provide :page_class, "home home_#{session[:source]} "
+- provide :page_class, "home home_#{@source} "
 
 .container
   nav#feeds_nav
     ul.nav
-      li class=("active" if session[:source] == "everything")
-        = link_to "最新内容", everything_path
-      li class=("active" unless session[:source] == "everything")
+      li class=("active" if @source == "recommended")
+        = link_to "最新推荐", recommended_path
+      li class=("active" if @source == "following")
         = link_to "我的关注", following_path
 
   main role="main"
     section#feeds.infinite
       = render partial: 'feed', collection: @feeds
-    = paginate @activities
+      = paginate @pager
 
   aside role="complemental"
     = render 'aside'
