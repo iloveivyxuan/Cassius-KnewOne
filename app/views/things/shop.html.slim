@@ -1,0 +1,23 @@
+- page_title "商店"
+- provide :page_class, 'shop'
+
+header
+  h1
+    i.fa.fa-cubes
+    | 商店
+  nav
+    select.selectpicker
+      = options_for_select [ \
+      %w(最新 hots), \
+      %w(最热 news), \
+      %w(价格高到低 price_h_l), \
+      %w(价格低到高 price_l_h) \
+      ], (params[:order_by] || 'news')
+
+section.things.infinite
+  = render partial: 'home/hot_thing', collection: @things
+  = paginate @things
+
+- content_for :script do
+  javascript:
+    Making.InfiniteScroll("#wrapper");

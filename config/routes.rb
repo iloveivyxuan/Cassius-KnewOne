@@ -23,6 +23,8 @@ Making::Application.routes.draw do
   get "500", to: "home#error"
   get 'blocked', to: 'home#blocked'
 
+  get 'shop', to: 'things#shop'
+
   get 'help', to: 'help#index'
   %w(how_to_share how_to_review terms knewone_for_user knewone_for_startup).each do |a|
     get "help/#{a}"

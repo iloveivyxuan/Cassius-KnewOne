@@ -149,7 +149,7 @@ class Ability
     can :read, User
     can [:owns, :fancies, :things, :reviews, :feelings,
          :activities, :followings, :followers, :groups, :topics, :profile], User
-    can [:buy, :groups, :comments, :wechat_qr, :random], Thing
+    can [:buy, :groups, :comments, :wechat_qr, :random, :shop], Thing
   end
 
   def editor
