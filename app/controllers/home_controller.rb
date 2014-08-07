@@ -5,21 +5,23 @@ class HomeController < ApplicationController
 
   def index
     if user_signed_in?
-      session[:source] = (params[:source] or session[:source])
-      session[:source] = "everything" if current_user.followings_count == 0
+      @source = (params[:source] or session[:source] or "following")
+      @source = "recommended" if current_user.followings_count == 0
+      session[:source] = @source
 
-      case session[:source]
-      when "everything"
-        @activities = Activity.by_types(:new_thing, :new_review)
-      else
-        @activities = current_user.relate_activities(%i(new_thing own_thing fancy_thing
+      if @source == "recommended"
+        things = Thing.hot.page(params[:page]).per(30)
+        reviews = Review.hot.page(params[:page]).per(5)
+        @feeds = HomeFeed.create_from_things_and_reviews(things, reviews)
+        @pager = things
+      elsif @source == "following"
+        activities = current_user.relate_activities(%i(new_thing own_thing fancy_thing
                                                         new_review love_review
                                                         new_feeling))
+        activities = activities.page(params[:page]).per(30)
+        @feeds = HomeFeed.create_from_activities activities
+        @pager = activities
       end
-
-      @activities = @activities.page(params[:page]).per(30)
-
-      @feeds = HomeFeed.create_from_activities @activities
     else
       respond_to do |format|
         format.html.mobile do
