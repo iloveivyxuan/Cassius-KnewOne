@@ -76,7 +76,7 @@ class Ability
       thing.author == user or thing.maker == user
     end
     can :destroy, Thing do |thing|
-      thing.author == user
+      thing.author == user && thing.feelings_count == 0 && thing.reviews_count == 0
     end
     can :fancy, Thing
     can :own, Thing
