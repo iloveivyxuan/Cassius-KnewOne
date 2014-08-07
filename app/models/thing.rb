@@ -15,6 +15,7 @@ class Thing < Post
   field :feelings_count, type: Integer, default: 0
   has_many :single_reviews, class_name: "Review", dependent: :destroy
   field :reviews_count, type: Integer, default: 0
+  before_save :update_counts
 
   field :links, type: Array, default: []
 
@@ -308,5 +309,12 @@ class Thing < Post
     def recal_all_related_things
       Thing.all.each {|t| t.update_related_thing_ids; t.save}
     end
+  end
+
+  private
+
+  def update_counts
+    self.feelings_count = feelings.size
+    self.reviews_count = reviews.size
   end
 end
