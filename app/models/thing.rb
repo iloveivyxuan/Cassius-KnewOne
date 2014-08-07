@@ -54,7 +54,7 @@ class Thing < Post
   end
 
   include Fanciable
-  has_and_belongs_to_many :fanciers, class_name: "User", inverse_of: :fancies
+  fancied_as :fancies
 
   has_and_belongs_to_many :fancy_groups, class_name: "Group", inverse_of: :fancies
 

@@ -6,26 +6,37 @@ module Fanciable
     index fanciers_count: -1
   end
 
-  def fancy(user)
-    return if fancied?(user)
+  module ClassMethods
+    def fancied_as(inverse_name)
+      has_and_belongs_to_many :fanciers, class_name: 'User', inverse_of: inverse_name
 
-    self.push(fancier_ids: user.id)
-    user.push(fancy_ids: self.id)
+      class_name = name
+      User.class_eval do
+        has_and_belongs_to_many inverse_name, class_name: class_name, inverse_of: :fanciers
+      end
 
-    update_attribute :fanciers_count, fanciers.count
+      define_method :fancy do |user|
+        return if fancied?(user)
 
-    reload
-    user.reload
+        self.push(fancier_ids: user.id)
+        user.push("#{inverse_name.to_s.singularize}_ids" => self.id)
 
-    user.inc karma: Settings.karma.fancy
-  end
+        update_attribute :fanciers_count, fanciers.count
 
-  def unfancy(user)
-    return unless fancied?(user)
-    fanciers.delete user
-    user.fancies.delete self
-    update_attribute :fanciers_count, fanciers.count
-    user.inc karma: -Settings.karma.fancy
+        reload
+        user.reload
+
+        user.inc karma: Settings.karma.fancy
+      end
+
+      define_method :unfancy do |user|
+        return unless fancied?(user)
+        fanciers.delete user
+        user.send(inverse_name).delete self
+        update_attribute :fanciers_count, fanciers.count
+        user.inc karma: -Settings.karma.fancy
+      end
+    end
   end
 
   def fancied?(user)
