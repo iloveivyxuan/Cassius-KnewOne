@@ -1,7 +1,7 @@
 - page_title "商店"
 - provide :page_class, 'shop'
 
-header
+header#shop_nav
   h1
     i.fa.fa-cubes
     | 商店
@@ -14,10 +14,12 @@ header
       %w(价格低到高 price_l_h) \
       ], (params[:order_by] || 'news')
 
-section.things.infinite
-  = render partial: 'home/hot_thing', collection: @things
-  = paginate @things
+section#shop_things
+  = render partial: 'shop_thing', collection: @things, as: :thing
 
-- content_for :script do
-  javascript:
-    Making.InfiniteScroll("#wrapper");
+footer#shop_pager
+  ul.pager
+    li.previous
+      = link_to_previous_page @things, raw('&larr;')
+    li.next
+      = link_to_next_page @things, raw('&rarr;')

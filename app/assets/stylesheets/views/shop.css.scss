@@ -1,11 +1,36 @@
 html.shop {
+  #shop_nav {
+    margin-bottom: 0px;
+    @include clearfix;
 
-  .thing {
+    h1 {
+      float: left;
+      margin-left: 1em;
+      font-size: $font-size-h3;
+      color: $gray;
+    }
 
-    .pre_ribbon {
+    nav {
+      float: right;
+      margin-right: 1em;
+      margin-top: 24px;
+    }
+  }
 
-      &.stock {
-        display: none;
+  #shop_things {
+    article {
+      margin-bottom: 20px;
+    }
+  }
+
+  #shop_pager {
+    ul.pager {
+      .previous {margin-right: 20px;}
+      .next {margin-left: 20px;}
+      li > a, li > span {
+        border-radius: 0;
+        color: $gray;
+        float: none;
       }
     }
   }
