@@ -116,10 +116,15 @@ do ($ = jQuery) ->
         @$minsertInput.removeClass('is-shown').empty()
 
       loading: (event, id) ->
-        @insert("<progress id=#{id} class='minsert-progress'></progress>")
+        # @insert("<progress id=#{id} class='minsert-progress'></progress>")
+        @insert("<div class='progress minsert-progress' id=#{id}>
+          <div class='progress-bar progress-bar-striped active' role='progressbar' aria-valuemin='0' aria-valuemax='100' style='width: 100%'>
+          </div>
+        </div>")
 
       loaded: (event, id) ->
-        @$element.find("progress##{id}").remove()
+        # @$element.find("progress##{id}").remove()
+        @$element.find("##{id}").remove()
 
       insertImage: ->
         @hide()
