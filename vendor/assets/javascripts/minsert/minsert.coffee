@@ -17,6 +17,9 @@ do ($ = jQuery) ->
           .one 'keydown.minsert', @setMenuLeftPosition.bind(@)
           .on 'click.minsert', @toggle.bind(@)
           .on 'keyup.minsert', @toggle.bind(@)
+          .on 'copy.minsert', @copy.bind(@)
+          .on 'cut.minsert', @cut.bind(@)
+          .on 'paste.minsert', @paste.bind(@)
           .on 'loading.minsert', @loading.bind(@)
           .on 'loaded.minsert', @loaded.bind(@)
           .on 'done:image.minsert', @insertImageDone.bind(@)
@@ -194,6 +197,39 @@ do ($ = jQuery) ->
           p = document.createElement('p')
           p.innerHTML = content
           @insertPoint.insertNode(p)
+
+      getClipboard: (event) ->
+        clipboard = event.originalEvent.clipboardData or window.clipboardData
+        return clipboard.getData('text')
+
+      clearClipboard: (event) ->
+        if event.originalEvent.clipboardData
+          event.originalEvent.clipboardData.setData('text/plain', '')
+        else if window.clipboardData
+          window.clipboardData.setData('text', '')
+
+      copy: (event) ->
+        event.preventDefault()
+        @clearClipboard(event)
+        selection  = window.getSelection()
+        range      = selection.getRangeAt(0)
+        @clipboard = range.cloneContents()
+
+      cut: (event) ->
+        event.preventDefault()
+        @clearClipboard(event)
+        selection  = window.getSelection()
+        range      = selection.getRangeAt(0)
+        @clipboard = range.extractContents()
+
+      paste: (event) ->
+        if @getClipboard(event) is '' and @clipboard?
+          event.preventDefault()
+          selection = window.getSelection()
+          range     = selection.getRangeAt(0)
+          range.insertNode(@clipboard)
+        else
+          @clipboard = null
 
     MInsert.DEFAULTS =
       actions:

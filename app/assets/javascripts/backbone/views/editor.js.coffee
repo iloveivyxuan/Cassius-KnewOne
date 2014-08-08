@@ -169,7 +169,6 @@ do (exports = Making) ->
           placeholder: @placeholder
           anchorInputPlaceholder: '在这里插入链接'
           targetBlank: true
-          cleanPastedHTML: true
 
         @$body.minsert
           actions:
