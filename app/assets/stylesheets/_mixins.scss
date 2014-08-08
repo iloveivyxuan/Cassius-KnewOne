@@ -119,7 +119,7 @@
   }
 }
 
-@mixin button_inverse($background-color, $color) {
+@mixin button-inverse($background-color, $color) {
   background-color: $background-color;
   color: $color;
 
