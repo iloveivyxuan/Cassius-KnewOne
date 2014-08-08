@@ -1,5 +1,9 @@
 - page_title '分析'
 
+= link_to "[昨天]", haven_stats_path(shortcut: "yesterday")
+= link_to "[上周]", haven_stats_path(shortcut: "last_week")
+= link_to "[上月]", haven_stats_path(shortcut: "last_month")
+
 = form_tag haven_stats_path, method: :get do
   | 开始日期
   = date_select("date", "from", start_year: 1995, default: @date_from)
