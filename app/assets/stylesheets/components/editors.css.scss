@@ -180,6 +180,10 @@
   > .body {
     // @TODO
     min-height: 350px;
+
+    img.is-focused {
+      outline: 3px solid $blue;
+    }
   }
 
   [data-edit="insertImage"] {

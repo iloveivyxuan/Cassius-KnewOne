@@ -210,6 +210,22 @@ do (exports = Making) ->
               id = data.jqXHR.requestid
               that.$body.trigger('loaded.minsert', id)
 
+        @$body.on 'click', 'img', ->
+          $img = $(@)
+          if !$img.hasClass('is-focused')
+            $img.addClass('is-focused')
+
+        $document
+          .on 'click', (event) ->
+            $target = $(event.target)
+              that.$body.find('img.is-focused').removeClass('is-focused')
+            if $target.closest('.editor-content').length and
+              $target.is('img') and
+              !$target.hasClass('is-focused')
+                $target.addClass('is-focused')
+          .on 'keypress', (event) ->
+            that.$body.find('img.is-focused').removeClass('is-focused')
+
       else
         @editor.activate()
 
