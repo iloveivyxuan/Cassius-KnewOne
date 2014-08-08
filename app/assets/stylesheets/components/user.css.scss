@@ -1,3 +1,58 @@
+.recommended-users {
+  background: white;
+
+  .recommended-user {
+    margin: 1em 1em 0;
+  }
+
+  .user_info {
+    @include clearfix;
+  }
+
+  .author_avatar {
+    img {
+      @extend .img-circle;
+      height: 40px;
+      width: 40px;
+    }
+  }
+
+  .author_name {
+    @include text-overflow;
+    color: $gray;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 1em;
+    max-width: 6em;
+
+    @media (min-width: $screen-md-min) {
+      max-width: none;
+    }
+  }
+
+  .follow_btn {
+    float: right;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-top: 6px;
+    color: #666;
+    background: $gray-lighter;
+    &.active { background: darken($gray-lighter, 10%); }
+    border: none;
+  }
+
+  .recommend_note {
+    @include text-overflow;
+    color: $text-muted;
+    padding-left: 54px;
+    max-width: 90%;
+
+    @media (min-width: $screen-md-min) {
+      max-width: none;
+    }
+  }
+}
+
 .author {
   .followers_count {
     display: none;
