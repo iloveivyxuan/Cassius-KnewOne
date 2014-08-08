@@ -25,7 +25,7 @@ module Haven
         @new_reviews = Activity.by_type(:new_review).from_date(@date_from).to_date(@date_to).all.size
         @new_feelings = Activity.by_type(:new_feeling).from_date(@date_from).to_date(@date_to).all.size
         login_activities = Activity.by_type(:login_user).from_date(@date_from).to_date(@date_to).all
-        unless login_activities
+        unless login_activities.empty?
           @login_times = login_activities.size
           @login_users = login_activities.map(&:user).uniq!.size
         end
