@@ -30,7 +30,13 @@ class ThingsController < ApplicationController
     @things = @things.page(params[:page]).per((params[:per] || 24).to_i)
 
     respond_to do |format|
-      format.html
+      format.html do
+        if request.xhr?
+          render partial: 'thing', collection: @things, locals: {img_lazy: false, size: :normal}
+        else
+          render
+        end
+      end
       format.atom
       format.json
     end
