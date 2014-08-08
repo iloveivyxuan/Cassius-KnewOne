@@ -6,6 +6,11 @@ class ThingListsController < ApplicationController
 
   def index
     unless @user
+      return respond_to do |format|
+        format.html { redirect_to '/403' }
+        format.json { head :forbidden }
+      end unless user_signed_in?
+
       @user = current_user
       @thing_lists = current_user.thing_lists
     end
