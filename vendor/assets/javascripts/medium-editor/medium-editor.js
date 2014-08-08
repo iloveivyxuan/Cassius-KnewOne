@@ -253,21 +253,31 @@ if (typeof module === 'object') {
                             var selection = window.getSelection(),
                                 anchorNode = selection.anchorNode;
 
-                            if (anchorNode.tagName.toLowerCase() == 'figure') {
-                              var range,
-                                  p = document.createElement('p');
-
-                              anchorNode.remove();
-                              p.innerHTML = '<br>';
-                              range = selection.getRangeAt(0);
-                              range.insertNode(p);
-                              range.selectNode(p);
-                              range.collapse(true);
-                              selection.removeAllRanges();
-                              selection.addRange(range);
-                            } else {
-                              document.execCommand('formatBlock', false, 'p');
-                            }
+                            // @TODO
+                            // if (anchorNode.tagName.toLowerCase() == 'figure') {
+                            //     var range,
+                            //         p = document.createElement('p');
+                            //
+                            //     p.innerHTML = '<br>';
+                            //     if (anchorNode.innerHTML == '<br>') {
+                            //         anchorNode.remove();
+                            //         range = selection.getRangeAt(0);
+                            //         range.insertNode(p);
+                            //         range.selectNode(p);
+                            //         range.collapse(true);
+                            //         selection.removeAllRanges();
+                            //         selection.addRange(range);
+                            //     } else {
+                            //         range = selection.getRangeAt(0);
+                            //         range.setStartBefore(anchorNode);
+                            //         range.setEndBefore(anchorNode);
+                            //         range.insertNode(p);
+                            //         e.preventDefault();
+                            //     }
+                            // } else {
+                            //   document.execCommand('formatBlock', false, 'p');
+                            // }
+                            document.execCommand('formatBlock', false, 'p');
                         }
                         if (tagName === 'a') {
                             document.execCommand('unlink', false, null);

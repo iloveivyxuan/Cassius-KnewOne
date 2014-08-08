@@ -68,12 +68,14 @@ do ($ = jQuery) ->
 
       toggle: (event) ->
         selection = window.getSelection()
+        target    = event.target
 
         @hide()
-        if event.target.nodeName is 'IMG' and
-          event.target.parentNode.nodeName is 'FIGURE'
+        if target.nodeName is 'IMG'
+          parentNode = target.parentNode
+          if parentNode.nodeName is 'FIGURE' or $(parentNode).css('display') is 'block'
             @insertPoint = document.createRange()
-            @insertPoint.selectNode(event.target.parentNode)
+            @insertPoint.selectNode(target.parentNode)
             @insertPoint.collapse(false)
             selection.removeAllRanges()
             selection.addRange(@insertPoint)
@@ -116,6 +118,7 @@ do ($ = jQuery) ->
         @$minsertInput.removeClass('is-shown').empty()
 
       loading: (event, id) ->
+        # @TODO
         # @insert("<progress id=#{id} class='minsert-progress'></progress>")
         @insert("<div class='progress minsert-progress' id=#{id}>
           <div class='progress-bar progress-bar-striped active' role='progressbar' aria-valuemin='0' aria-valuemax='100' style='width: 100%'>
@@ -123,6 +126,7 @@ do ($ = jQuery) ->
         </div>")
 
       loaded: (event, id) ->
+        # @TODO
         # @$element.find("progress##{id}").remove()
         @$element.find("##{id}").remove()
 
@@ -130,7 +134,9 @@ do ($ = jQuery) ->
         @hide()
 
       insertImageDone: (event, url)->
-        @insert("<figure><img src=#{url}></figure>")
+        # @TODO
+        # @insert("<figure><img src=#{url}></figure>")
+        @insert("<p><img src=#{url}></p>")
 
       insertImageFail: (event, message) ->
         alert(message ? '图片上传失败了，请重试。')
