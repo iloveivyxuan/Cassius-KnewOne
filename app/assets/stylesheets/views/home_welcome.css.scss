@@ -126,4 +126,11 @@ html.home_welcome {
       @include make-md-column(6);
     }
   }
+
+  .things {
+
+    .figure_detail {
+      display: none;
+    }
+  }
 }

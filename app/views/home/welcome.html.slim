@@ -51,6 +51,7 @@ section.step#step2
             = link_to category.name, '#', data: {slug: category.slug}
         - if !browser.mobile?
           ul.things
+            = render Thing.hot.limit(12), img_lazy: false, size: :normal
 
 /-- END #step2 --/
 
