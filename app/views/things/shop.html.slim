@@ -1,25 +1,26 @@
 - page_title "商店"
 - provide :page_class, 'shop'
 
-header#shop_nav
-  h1
-    i.fa.fa-cubes
-    | 商店
-  nav
-    select.selectpicker
-      = options_for_select [ \
-      %w(最新 hots), \
-      %w(最热 news), \
-      %w(价格高到低 price_h_l), \
-      %w(价格低到高 price_l_h) \
-      ], (params[:order_by] || 'news')
+.container-fluid
+  header#shop_nav
+    h1
+      i.fa.fa-cubes
+      | 商店
+    nav
+      select.selectpicker
+        = options_for_select [ \
+        %w(最新 hots), \
+        %w(最热 news), \
+        %w(价格高到低 price_h_l), \
+        %w(价格低到高 price_l_h) \
+        ], (params[:order_by] || 'news')
 
-section#shop_things
-  = render partial: 'shop_thing', collection: @things, as: :thing
+  section#shop_things
+    = render partial: 'shop_thing', collection: @things, as: :thing
 
-footer#shop_pager
-  ul.pager
-    li.previous
-      = link_to_previous_page @things, raw('&larr;')
-    li.next
-      = link_to_next_page @things, raw('&rarr;')
+  footer#shop_pager
+    ul.pager
+      li.previous
+        = link_to_previous_page @things, raw('&larr; 上一页')
+      li.next
+        = link_to_next_page @things, raw('下一页 &rarr;')

@@ -1,37 +1,66 @@
-html.shop {
-  #shop_nav {
-    margin-bottom: 0px;
-    @include clearfix;
+html.shop .container-fluid {
+  padding: 0;
+  @media (min-width: $screen-md-min) {
+    padding: 0 10%;
+  }
+  @media (min-width: $screen-lg-min) {
+    width: $container-large-desktop;
+  }
+}
 
-    h1 {
+
+html.shop #shop_nav {
+  margin-bottom: 0px;
+  @include clearfix;
+
+  h1 {
+    float: left;
+    margin-left: 1em;
+    font-size: $font-size-h3;
+    color: $gray;
+  }
+
+  nav {
+    float: right;
+    margin-right: 1em;
+    margin-top: 24px;
+  }
+}
+
+html.shop #shop_things {
+  @include clearfix;
+  $gutter: 20px;
+  margin-top: $gutter;
+
+  article.thing {
+    margin-bottom: $gutter;
+
+    @media (min-width: $screen-sm-min) {
       float: left;
-      margin-left: 1em;
-      font-size: $font-size-h3;
+    }
+
+    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+      &:nth-child(odd) {margin-right: $gutter;}
+      width: 350px;
+      width: calc((100% - #{$gutter})/2);
+    }
+
+    @media (min-width: $screen-md-min) {
+      &:nth-child(3n+1), &:nth-child(3n+2) {margin-right: $gutter;}
+      width: 306px;
+      width: calc((100% - #{$gutter}*2)/3);
+    }
+  }
+}
+
+html.shop #shop_pager {
+  ul.pager {
+    .previous {margin-right: 20px;}
+    .next {margin-left: 20px;}
+    li > a, li > span {
+      border-radius: 0;
       color: $gray;
-    }
-
-    nav {
-      float: right;
-      margin-right: 1em;
-      margin-top: 24px;
-    }
-  }
-
-  #shop_things {
-    article {
-      margin-bottom: 20px;
-    }
-  }
-
-  #shop_pager {
-    ul.pager {
-      .previous {margin-right: 20px;}
-      .next {margin-left: 20px;}
-      li > a, li > span {
-        border-radius: 0;
-        color: $gray;
-        float: none;
-      }
+      float: none;
     }
   }
 }
