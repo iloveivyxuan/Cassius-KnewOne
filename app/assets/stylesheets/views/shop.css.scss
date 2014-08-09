@@ -1,13 +1,16 @@
-html.shop .container-fluid {
-  padding: 0;
-  @media (min-width: $screen-md-min) {
-    padding: 0 10%;
-  }
-  @media (min-width: $screen-lg-min) {
-    width: $container-large-desktop;
+html.shop #wrapper {
+  margin: 0;
+
+  .container-fluid {
+    padding: 0;
+    @media (min-width: $screen-md-min) {
+      padding: 0 10%;
+    }
+    @media (min-width: $screen-lg-min) {
+      width: $container-large-desktop;
+    }
   }
 }
-
 
 html.shop #shop_nav {
   margin-bottom: 0px;
