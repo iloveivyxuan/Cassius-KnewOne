@@ -102,6 +102,7 @@ group :development do
   gem 'thin'
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'meta_request'
 
   # deploy
   gem 'capistrano', '~> 3.1', require: false
