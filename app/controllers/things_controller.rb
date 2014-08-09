@@ -39,11 +39,12 @@ class ThingsController < ApplicationController
   def shop
     params[:order_by] ||= "new"
     @sort = case params[:order_by]
+            when 'recommended' then {priority: :desc}
             when 'hits' then {fanciers_count: :desc}
             when 'news' then {created_at: :desc}
             when 'price_h_l' then {price: :desc}
             when 'price_l_h' then {price: :asc}
-            else {created_at: :desc}
+            else {priority: :desc}
             end
     @things = Thing.published.self_run.order_by(@sort).page(params[:page]).per(24)
   end
