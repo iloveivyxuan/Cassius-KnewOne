@@ -406,7 +406,7 @@ class User
   end
 
   # category
-  include CategoryReferable
+  has_and_belongs_to_many :categories, inverse_of: nil
 
   # recommend users who not followed by self
   def recommend_new_users
