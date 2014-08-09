@@ -15,7 +15,7 @@ html.shop #shop_nav {
 
   h1 {
     float: left;
-    margin-left: 1em;
+    margin: 1em 0 0 1em;
     font-size: $font-size-h3;
     color: $gray;
   }
@@ -23,7 +23,18 @@ html.shop #shop_nav {
   nav {
     float: right;
     margin-right: 1em;
-    margin-top: 24px;
+    margin-top: 30px;
+    .bootstrap-select {margin: 0;}
+  }
+
+  @media (min-width: $screen-sm-min) {
+    h1 {
+      margin-top: 0;
+    }
+
+    nav {
+      margin-top: 0;
+    }
   }
 }
 
