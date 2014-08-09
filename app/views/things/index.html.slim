@@ -6,6 +6,7 @@ header.page-header
     = link_to_with_icon '产品', 'fa fa-magic', things_path, class: 'breadcrumb'
     - if @category
       = link_to @category.name, things_path(category: @category), class: 'breadcrumb'
+      = render 'categories/subscribe_btn', category: @category
 
 = render 'things/filter'
 

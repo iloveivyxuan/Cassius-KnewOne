@@ -167,8 +167,8 @@ Making::Application.routes.draw do
   end
 
   resources :categories, only: [:index] do
-    collection do
-      get 'all'
+    member do
+      post 'subscribe_toggle', to: :subscribe_toggle
     end
   end
 

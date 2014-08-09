@@ -668,15 +668,17 @@ html.things_index {
     @include wrapper(simple, $max-width: $screen-lg-min);
 
     .page-header {
-
       h1 {
-
         a {
           color: $gray;
-
           &:hover {
             text-decoration: underline;
           }
+        }
+
+        .subscribe_category {
+          margin-left: 2em;
+          vertical-align: 3px;
         }
       }
     }

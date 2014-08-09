@@ -134,6 +134,7 @@ class Ability
       private_message.dialog.user == user
     end
 
+    can :subscribe_toggle, Category
   end
 
   def basic
@@ -147,6 +148,7 @@ class Ability
     can :read, Topic
     can :read, Lottery
     can :read, User
+    can :read, Category
     can [:owns, :fancies, :things, :reviews, :feelings,
          :activities, :followings, :followers, :groups, :topics, :profile], User
     can [:buy, :groups, :comments, :wechat_qr, :random, :shop], Thing

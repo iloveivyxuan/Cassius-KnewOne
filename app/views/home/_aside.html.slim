@@ -10,13 +10,16 @@ section.promotions
           span.drafts-count= current_user.drafts.size
 
 section.tags
-  header
-    h2 热门标签
-  section
-    ul.list-inline.tag
-      - Category.prior.limit(6).each do |category|
-        li= link_to category_things_path(category: category)
-          span.label.label-default= category.name
+  - if current_user.categories.any?
+    header
+      h2 已订阅的分类
+    section
+      = render current_user.categories
+  - else
+    header
+      h2 热门分类
+    section
+      = render Category.prior.limit(6)
 
 section.recommended-users
   header
