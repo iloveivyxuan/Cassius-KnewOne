@@ -1,0 +1,27 @@
+- present thing do |thing_presenter|
+  article.thing
+    header.cover
+      = link_to thing do
+        = thing_presenter.photo :'thing.fixed.big'
+      .fancy_thing
+        = link_to "", thing, class: "fancy_backdrop"
+        .fancy_button= render "shared/fancy", p: thing_presenter, from: "shop"
+    section.content
+      h4.title= link_to thing_presenter.title, thing
+      p.subtitle= link_to thing_presenter.subtitle, thing
+    footer.info
+      .shopping
+        = link_to thing_presenter.price, thing
+        = link_to thing_presenter.stage_text, thing
+      .interactions
+        = link_to thing, class: "fanciers_count" do
+          i.fa.fa-heart-o
+          = thing_presenter.fanciers_count
+        - if thing_presenter.has_owner?
+          = link_to thing do
+            i.fa.fa-check-circle-o
+            = thing_presenter.owners_count
+        - if thing_presenter.has_review?
+          = link_to thing_reviews_path(thing), class: "reviews_count" do
+            i.fa.fa-pencil
+            = thing_presenter.reviews_count

@@ -8,8 +8,9 @@ class Thing < Post
   field :official_site, type: String, default: ""
   field :photo_ids, type: Array, default: []
   field :categories, type: Array, default: []
-  after_save :update_categories
+  before_save :update_price
   before_save :update_amazon_link
+  after_save :update_categories
 
   has_many :single_feelings, class_name: "Feeling", dependent: :destroy
   field :feelings_count, type: Integer, default: 0
@@ -113,6 +114,11 @@ class Thing < Post
     new = categories_change.last || []
     (old - new).each { |c| Category.find_and_minus c }
     (new - old).each { |c| Category.find_and_plus c }
+  end
+
+  def update_price
+    kinds_price = valid_kinds.map(&:price).uniq
+    self.price = kinds_price.min if kinds_price.present?
   end
 
   def update_amazon_link
