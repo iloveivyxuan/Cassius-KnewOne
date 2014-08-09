@@ -48,8 +48,9 @@ class Making.Views.ThingListsPopup extends Backbone.Marionette.CompositeView
   initSelected: ->
     thing_id = @model.id
     @collection.each((list) ->
-      list.set('selected', _.any(list.get('items'), (x) -> x.thing_id == thing_id))
+      list.set('selected', _.any(list.get('items'), (x) -> x.thing_id == thing_id), {slient: true})
     )
+    @collection.sort()
 
   addThingList: (event) ->
     event.preventDefault()
@@ -59,9 +60,13 @@ class Making.Views.ThingListsPopup extends Backbone.Marionette.CompositeView
 
     list = @collection.findOrCreateBy({name}, {wait: true})
     if list.isNew()
-      @listenToOnce(@collection, 'sync', (list) -> list.set('selected', true))
+      @listenToOnce(@collection, 'sync', (list) ->
+        list.set('selected', true)
+        @collection.sort()
+      )
     else
       list.set('selected', true)
+      @collection.sort()
 
     @ui.name.val('')
 
