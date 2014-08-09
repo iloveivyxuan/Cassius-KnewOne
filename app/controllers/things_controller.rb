@@ -15,12 +15,6 @@ class ThingsController < ApplicationController
       @things = Thing.published
     end
 
-    if params[:stage].present?
-      @things = @things.where(stage: params[:stage])
-    end
-
-    @things = @things.self_run if params[:self_run].present?
-
     if params[:sort_by] == 'fanciers_count'
       @things = @things.desc(:fanciers_count)
     else

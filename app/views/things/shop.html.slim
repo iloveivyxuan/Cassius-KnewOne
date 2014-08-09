@@ -2,7 +2,7 @@
 - provide :page_class, 'shop'
 
 .container-fluid
-  header#shop_nav
+  header#things_nav
     h1
       i.fa.fa-cubes
       | 商店
@@ -17,15 +17,15 @@
         - options = navs.map { |nav| nav << {'data-url' => shop_path(order_by: nav[1])} }
         = options_for_select options, (params[:order_by] || 'news')
 
-  section#shop_things.infinite
+  section#things_list.infinite
     = render partial: 'shop_thing', collection: @things, as: :thing
 
-  footer#shop_pager
+  footer#things_pager
     = paginate @things
 
 - content_for :script do
   javascript:
-    $('#shop_nav select').on('change', function(event) {
+    $('#things_nav select').on('change', function(event) {
       window.location = $(this).find(':selected').data('url');
     });
     Making.InfiniteScroll("#wrapper");
