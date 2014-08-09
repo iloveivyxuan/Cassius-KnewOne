@@ -26,6 +26,7 @@ class Making.Views.ThingListsPopup extends Backbone.Marionette.CompositeView
   events: {
     'show.bs.modal': 'reset'
     'hide.bs.modal': 'destroy'
+    'keyup @ui.name': 'editName'
     'submit .new-thing-list-form': 'addThingList'
     'submit .new-thing-list-items-form': 'done'
   }
@@ -51,6 +52,12 @@ class Making.Views.ThingListsPopup extends Backbone.Marionette.CompositeView
       list.set('selected', _.any(list.get('items'), (x) -> x.thing_id == thing_id), {slient: true})
     )
     @collection.sort()
+
+  editName: (event) ->
+    if event.currentTarget.value.trim()
+      @$('.new-thing-list-form button').removeClass('disabled')
+    else
+      @$('.new-thing-list-form button').addClass('disabled')
 
   addThingList: (event) ->
     event.preventDefault()
