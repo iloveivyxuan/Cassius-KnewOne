@@ -6,6 +6,9 @@ header.page-header
     i.fa.fa-shopping-cart
     | 购物车
 
+p.alert.alert-warning
+  | KnewOne 要出去旅游了~ 所以8月10日周日以及8月11日周一的订单，要推迟到周二才能发货啦！不过不影响下单哟~
+
 = form_tag new_order_path, method: :get, authenticity_token: false
   fieldset
     - if @cart_items.any?
