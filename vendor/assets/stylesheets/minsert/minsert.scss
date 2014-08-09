@@ -46,7 +46,7 @@ $colour: #777;
 .minsert-action {
   @include transition-property(background-color, color);
   @include transition-duration(.2s);
-  background: none;
+  background-color: #fff;
   border: 1px solid $colour;
   border-radius: 1em;
   color: $colour;

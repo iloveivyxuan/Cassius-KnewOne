@@ -173,7 +173,7 @@ do (exports = Making) ->
         @$body.minsert
           actions:
             videos:
-              placeholder: '在这里插入视频网址或代码（通用代码）'
+              placeholder: '在这里输入视频网址或代码（通用代码）然后按回车'
 
         @$insertImageButton = @$('.minsert [data-action="insert-image"]')
           .on 'click', ->
@@ -217,7 +217,7 @@ do (exports = Making) ->
         $document
           .on 'click', (event) ->
             $target = $(event.target)
-              that.$body.find('img.is-focused').removeClass('is-focused')
+            that.$body.find('img.is-focused').removeClass('is-focused')
             if $target.closest('.editor-content').length and
               $target.is('img') and
               !$target.hasClass('is-focused')
