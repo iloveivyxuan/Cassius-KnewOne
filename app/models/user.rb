@@ -18,6 +18,9 @@ class User
 
   index name: 1
 
+  field :accept_edm, type: Boolean, default: true
+  scope :edm, -> { where accept_edm: true }
+
   STATUS = {blocked: '锁定', watching: '特别观照(贬)', normal: '正常'}
   validates :status, inclusion: {in: STATUS.keys, allow_blank: false}
   validates :gender, inclusion: {in: %w(男 女), allow_blank: true}
