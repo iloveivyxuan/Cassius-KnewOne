@@ -67,14 +67,3 @@ html.shop #shop_things {
   }
 }
 
-html.shop #shop_pager {
-  ul.pager {
-    .previous {margin-right: 20px;}
-    .next {margin-left: 20px;}
-    li > a, li > span {
-      border-radius: 0;
-      color: $gray;
-      float: none;
-    }
-  }
-}
