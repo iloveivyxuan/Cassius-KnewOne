@@ -15,7 +15,7 @@ class ThingListView extends Backbone.Marionette.ItemView
     @model.set('selected', event.currentTarget.checked)
 
 class Making.Views.ThingListsPopup extends Backbone.Marionette.CompositeView
-  className: 'thing-list-popup'
+  className: 'thing-list-popup modal fade'
   template: HandlebarsTemplates['thing_lists/popup']
 
   ui: {
@@ -39,7 +39,7 @@ class Making.Views.ThingListsPopup extends Backbone.Marionette.CompositeView
   childViewContainer: 'ul.thing-lists'
 
   onShow: ->
-    @$('.modal').modal('show')
+    @$el.modal('show')
 
   reset: ->
     @collection.fetch({reset: true})
@@ -86,7 +86,7 @@ class Making.Views.ThingListsPopup extends Backbone.Marionette.CompositeView
         items.create({thing_id, description})
     )
 
-    @$('.modal').modal('hide')
+    @$el.modal('hide')
 
   toggleSelected: (list) ->
     @_changedLists[list.cid] = list
