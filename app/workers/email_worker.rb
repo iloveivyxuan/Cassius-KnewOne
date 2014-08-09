@@ -3,6 +3,6 @@ class EmailWorker
   sidekiq_options :queue => :edm, :backtrace => true#, :retry => false
 
   def perform(email, name)
-    UserMailer.weloop(email, name).deliver
+    UserMailer.cuptime(email, name).deliver
   end
 end

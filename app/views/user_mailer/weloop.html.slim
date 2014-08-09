@@ -2,47 +2,37 @@
   = @name
 
 - content_for :title do
-  | 仲夏夜，免费领养智能手表。
+  | 免费领养「WeLoop」成功！
 
 p
-  = image_tag attachments['weloop.jpg'].url, alt: 'Weloop'
+  | 恭喜你在 KnewOne 免费领养【WeLoop】成功啦！请点击下面的链接，
+  | 完善你在 KnewOne.com 的收货信息，随后我们会安排试用品发放。
 
-p
-  | 苹果 iWatch 迟迟不能上市，MOTO 360 迟迟不能上市，Withings Activité 还是迟迟不能上市。摔！
-
-p
-  | 不要烦恼。空中扔下20支酷酷的智能手表，KnewOne 淡淡地对你说：免费送，少年，可劲儿造。
-
-p
-  | 这货，啊不，这款智能手表名叫 #{link_to 'Weloop', 'http://knewone.com/things/weloop?from=edm'}，由某国内团队开发，
-  | 他们号称其中有来自麻省理工的数学博士、国内技术大牛、骨骼清奇的设计师和有强迫症的产品经理。
-  | 不知道你们信不信，反正我是信了。
-
-p
-  | 与那些想取代手机、强迫你对着手腕说话的智能手表不同，Weloop 可以：
-
-ul
-  li 查看微信、短信、电话等消息；
-  li 遥控播放、选曲手机中的音乐；
-  li 遥控手机拍照；
-  li 室内寻找手机；
-  li 运动计步；
-
-p
-  | 废话少说，参加 Weloop 免费领养的步骤是：
+p = link_to 'http://knewone.com/settings/addresses', 'http://knewone.com/settings/addresses'
 
 ol
-  li 点击打开 #{link_to 'Weloop', 'http://knewone.com/things/weloop?from=edm'}，猛戳右边绿色的「加入购物车」按钮；
-  li 进入购物车，结算并填写完整的收货信息；
-  li 保存信息，提交订单（请勿勾选顺丰速运），静待佳音；
+  li
+    | 还未添加地址的新用户：
+    br
+    | 添加新地址→填写地址→勾选“设为首选”→保存地址
+
+  li
+    | 已有地址的老用户：
+    br
+    | 点击收货信息后面的“编辑”→编辑地址→勾选“设为首选”→更新地址
 
 p
-  | 写评测、短评数量越多的用户，免费领养的机会越高；
+  | 现邀请领养成功的你加入【WeLoop】的微信群，入群后发货。在群里，可以与该产品工作人员及其他的领养者交流！
   br
-  | 申请截止时间为8月7日 23:59；
+  = image_tag attachments['weloop_qr.jpg'].url, alt: 'Weloop微信群二维码'
+
+p
+  | 收到试用品之后，请在两周之内在 KnewOne 提交评测哦（不提交评测的同学，会取消随后三次参加领养活动的机会）。
+
+p
+  | 这里还有该产品支持的设备型号：
   br
-  | 最终免费领养用户名单于8月11日首先在官方微信发布。请关注微信公号“KnewOneCom”；
-  br
-  | 拿到智能手表后，请到 #{link_to 'Weloop 产品页', 'http://knewone.com/things/weloop?from=edm'} 分享开箱和使用体验；
-  br
-  | 关注微博 #{link_to '@KnewOne', 'http://weibo.com/knewone'}，获得更多免费领养活动通知。
+  = image_tag attachments['weloop_platform.jpg'].url, alt: 'Weloop支持平台'
+
+p
+  | 最后，再次感谢你的参与，请继续关注 KnewOne，多多分享新奇酷和你的体验！
