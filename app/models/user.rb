@@ -183,6 +183,9 @@ class User
       if self.auto_update_from_oauth?
         set_profiles_by_auth(auth)
         save
+
+        self.remote_avatar_url = auth.avatar_url
+        save rescue Exception
       end
     end
   end
@@ -194,6 +197,9 @@ class User
       if self.auto_update_from_oauth?
         set_profiles_by_auth(auth)
         save
+
+        self.remote_avatar_url = auth.avatar_url
+        save rescue Exception
       end
     end
   end
