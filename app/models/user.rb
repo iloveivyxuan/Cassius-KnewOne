@@ -209,7 +209,7 @@ class User
 
     self.location = auth.location
     self.description = auth.description
-    self.remote_avatar_url = auth.avatar_url
+    # self.remote_avatar_url = auth.avatar_url
     self.gender = case auth.gender
                     when 'm' then
                       '男'
