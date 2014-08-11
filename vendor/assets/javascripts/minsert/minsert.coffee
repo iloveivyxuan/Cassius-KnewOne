@@ -77,12 +77,14 @@ do ($ = jQuery) ->
         if target.nodeName is 'IMG'
           parentNode = target.parentNode
           if parentNode.nodeName is 'FIGURE' or $(parentNode).css('display') is 'block'
-            @insertPoint = document.createRange()
-            @insertPoint.selectNode(target.parentNode)
+            @preClipboard = parentNode
+            @insertPoint  = document.createRange()
+            @insertPoint.selectNode(parentNode)
             @insertPoint.collapse(false)
             selection.removeAllRanges()
             selection.addRange(@insertPoint)
         else if selection.anchorOffset is 0
+          if event.type is 'keyup' and event.which isnt 13 then return
           topNode = @getTopNode(selection.anchorNode)
           if $.trim($(topNode).text()) is ''
             @insertPoint = document.createRange()
@@ -103,7 +105,10 @@ do ($ = jQuery) ->
         if node.parentNode.getAttribute('data-medium-element') is 'true'
           return node
         else
-          return @getTopNode(node.parentNode)
+          if node.parentNode?
+            return @getTopNode(node.parentNode)
+          else
+            return false
 
       setMenuLeftPosition: ->
         left = (@$element.offset().left - 34) + 'px'
@@ -198,10 +203,7 @@ do ($ = jQuery) ->
           p.innerHTML = content
           @insertPoint.insertNode(p)
 
-      getClipboard: (event) ->
-        clipboard = event.originalEvent.clipboardData or window.clipboardData
-        return clipboard.getData('text')
-
+      # @TODO
       clearClipboard: (event) ->
         if event.originalEvent.clipboardData
           event.originalEvent.clipboardData.setData('text/plain', '')
@@ -209,27 +211,36 @@ do ($ = jQuery) ->
           window.clipboardData.setData('text', '')
 
       copy: (event) ->
-        event.preventDefault()
-        @clearClipboard(event)
-        selection  = window.getSelection()
-        range      = selection.getRangeAt(0)
-        @clipboard = range.cloneContents()
+        if @preClipboard?
+          event.preventDefault()
+          @clearClipboard(event)
+          @clipboard = @preClipboard
+          @preClipboard = null
+        else
+          @preClipboard = false
 
       cut: (event) ->
-        event.preventDefault()
-        @clearClipboard(event)
-        selection  = window.getSelection()
-        range      = selection.getRangeAt(0)
-        @clipboard = range.extractContents()
+        if @preClipboard?
+          event.preventDefault()
+          @clearClipboard(event)
+          @clipboard = @preClipboard.cloneNode(true)
+          $(@preClipboard).remove()
+          @preClipboard = null
+        else
+          @preClipboard = false
 
       paste: (event) ->
-        if @getClipboard(event) is '' and @clipboard?
+        if @preClipboard isnt false and @clipboard?
           event.preventDefault()
           selection = window.getSelection()
-          range     = selection.getRangeAt(0)
-          range.insertNode(@clipboard)
-        else
-          @clipboard = null
+          range     = document.createRange()
+          if selection.anchorOffset is 0
+            node = @getTopNode(selection.anchorNode)
+            range.setStartBefore(node)
+            range.setEndBefore(node)
+          range.insertNode(@clipboard.cloneNode(true))
+          selection.collapseToEnd()
+        @$element.trigger('input')
 
     MInsert.DEFAULTS =
       actions:
