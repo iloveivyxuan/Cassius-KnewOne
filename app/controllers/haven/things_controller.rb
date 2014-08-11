@@ -73,7 +73,11 @@ module Haven
         @things = @things.order_by([:heat, :desc]) if params[:filter].include? "heat"
         @things = @things.order_by([:priority, :asc]) if params[:filter].include? "priority_asc"
         @things = @things.order_by([:priority, :desc]) if params[:filter].include? "priority_desc"
-      else
+      end
+      if params[:categories]
+        @things = @things.in(categories: params[:categories])
+      end
+      unless params[:filter] || params[:categories]
         @things = @things.desc(:created_at)
       end
       @things = @things.page params[:page]
