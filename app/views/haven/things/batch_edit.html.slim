@@ -38,6 +38,10 @@ ul.nav.nav-pills
          - conds[:filter].push(k)
          = link_to v, batch_edit_haven_things_path(conds)
 
+= form_tag batch_edit_haven_things_path, method: :get do
+  = text_field_tag("categories", "")
+  = submit_tag "查询分类"
+
 = form_tag batch_update_haven_things_path(redirect_from: request.fullpath), method: :patch do
   table.table.table-striped.table-hover.table-bordered
     tr
