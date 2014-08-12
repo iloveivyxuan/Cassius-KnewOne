@@ -65,15 +65,16 @@ class Making.Views.ThingListsPopup extends Backbone.Marionette.CompositeView
     name = @ui.name.val().trim()
     return unless name
 
-    list = @collection.findOrCreateBy({name}, {wait: true})
-    if list.isNew()
+    list = @collection.findWhere({name})
+    if list
+      list.set('selected', true)
+      @collection.sort()
+    else
+      @collection.create({name}, {wait: true})
       @listenToOnce(@collection, 'sync', (list) ->
         list.set('selected', true)
         @collection.sort()
       )
-    else
-      list.set('selected', true)
-      @collection.sort()
 
     @ui.name.val('')
 

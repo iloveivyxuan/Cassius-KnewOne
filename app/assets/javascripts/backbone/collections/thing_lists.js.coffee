@@ -4,6 +4,3 @@ class Making.Collections.ThingLists extends Backbone.Collection
 
   comparator: (x) ->
     [(if x.get('selected') then 0 else 1), x.get('name')]
-
-  findOrCreateBy: (attributes) ->
-    @findWhere(attributes) || @create(arguments...)
