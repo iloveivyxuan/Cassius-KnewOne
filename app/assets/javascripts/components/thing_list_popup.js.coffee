@@ -2,9 +2,9 @@ $(->
   cache = Object.create({})
   selector = '[data-thing-list-popup]'
 
-  $('body').append('<div id="thing-list-popup-region"></div>')
+  $('body').append('<div id="thing-list-popup-container"></div>')
   region = new Backbone.Marionette.Region({
-    el: "#thing-list-popup-region"
+    el: "#thing-list-popup-container"
   })
 
   show = (thing) ->
