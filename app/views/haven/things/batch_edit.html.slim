@@ -72,6 +72,8 @@ ul.nav.nav-pills
           = select_tag 'things[][stage]', options_for_select(Thing::STAGES.invert, t.stage), style: 'width: 100%'
           | 购买链接
           = text_field_tag 'things[][shop]', t.shop, style: 'width: 100%'
+          | 分享文案
+          = text_field_tag 'things[][sharing_text]', t.sharing_text, style: 'width: 100%'
         td= text_field_tag 'things[][categories_text]', t.categories_text, hint: "用,分隔", style: 'width: 100%'
         td
           = link_to t, target: '_blank' do
