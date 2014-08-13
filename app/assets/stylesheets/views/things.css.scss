@@ -492,10 +492,10 @@ div#thing_title {
       .thing-list-items {
         > a {
           display: inline-block;
-          width: 25%;
+          width: 22%;
 
-          padding-left: 1em;
-          &:first-child { padding-left: 0; }
+          margin-left: 4%;
+          &:first-child { margin-left: 0; }
 
           img {
             width: 100%;
