@@ -67,7 +67,7 @@ module Haven
         @things = @things.where(stage: "pre_order") if params[:filter].include? "pre_order"
         @things = @things.where(stage: "domestic") if params[:filter].include? "domestic"
         @things = @things.where(stage: "abroad") if params[:filter].include? "abroad"
-        @things = @things.where(stage: "desell") if params[:filter].include? "dsell"
+        @things = @things.where(stage: "dsell") if params[:filter].include? "dsell"
         @things = @things.order_by([:feelings_count, :desc]) if params[:filter].include? "feelings_count"
         @things = @things.order_by([:reviews_count, :desc]) if params[:filter].include? "reviews_count"
         @things = @things.order_by([:heat, :desc]) if params[:filter].include? "heat"
