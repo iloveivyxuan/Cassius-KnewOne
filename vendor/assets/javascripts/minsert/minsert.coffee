@@ -17,6 +17,8 @@ do ($ = jQuery) ->
           .one 'keydown.minsert', @setMenuLeftPosition.bind(@)
           .on 'click.minsert', @toggle.bind(@)
           .on 'keyup.minsert', @toggle.bind(@)
+          .on 'click.minsert', 'img', @handleFigureFocus.bind(@)
+          .on 'keypress.minsert', @linefeed.bind(@)
           .on 'copy.minsert', @copy.bind(@)
           .on 'cut.minsert', @cut.bind(@)
           .on 'paste.minsert', @paste.bind(@)
@@ -31,6 +33,9 @@ do ($ = jQuery) ->
           .on 'click.minsert', '[data-action="insert-video"]', @insertVideo.bind(@)
           .on 'click.minsert', '[data-action="insert-embed"]', @insertEmbed.bind(@)
           .on 'click.minsert', '[data-action="insert-rule"]', @insertRule.bind(@)
+
+        $document
+          .on 'click.minsert keypress.minsert', @handleFigureBlur.bind(@)
 
       initMenu: ->
         menu = '' +
@@ -74,7 +79,6 @@ do ($ = jQuery) ->
           if parentNode.nodeName is 'FIGURE' or $(parentNode).css('display') is 'block'
             @insertPoint  = document.createRange()
             @insertPoint.selectNode(parentNode)
-            @insertPoint.collapse(false)
             selection.removeAllRanges()
             selection.addRange(@insertPoint)
             if event.type is 'click'
@@ -132,6 +136,37 @@ do ($ = jQuery) ->
         # @TODO
         # @$element.find("progress##{id}").remove()
         @$element.find("##{id}").remove()
+
+      handleFigureFocus: (event) ->
+        $figure = $(event.target).parent()
+        if !$figure.hasClass('is-focused')
+          $figure.addClass('is-focused')
+
+      handleFigureBlur: (event) ->
+        if event.type is 'click'
+          $target = $(event.target)
+          @$element.find('.is-focused').removeClass('is-focused')
+          # @TODO
+          if $target.closest('.editor-content').length and
+            $target.is('img') and
+            !$target.parent().hasClass('is-focused')
+              $target.parent().addClass('is-focused')
+        else if event.type is 'keypress' and !event.metaKey and !event.ctrlKey
+          @$element.find('.is-focused').removeClass('is-focused')
+          @preClipboard = null
+
+      linefeed: (event) ->
+        if event.which is 13
+          if @preClipboard
+            event.preventDefault()
+            selection = window.getSelection()
+            p         = document.createElement('p')
+            p.innerHTML = '<br>'
+            @insertPoint.collapse(false)
+            @insertPoint.insertNode(p)
+            selection.removeAllRanges()
+            selection.addRange(@insertPoint)
+            selection.collapseToStart()
 
       insertImage: ->
         @hide()

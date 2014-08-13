@@ -185,8 +185,21 @@
       outline: none;
     }
 
-    img.is-focused {
-      outline: 3px solid $text-color;
+    .is-focused {
+
+      &::selection {
+        background-color: transparent;
+      }
+
+      *::selection,
+      &~*::selection {
+        background-color: transparent;
+      }
+
+      img {
+        outline: 3px solid $text-color;
+
+      }
     }
   }
 
