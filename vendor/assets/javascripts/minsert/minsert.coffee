@@ -233,9 +233,9 @@ do ($ = jQuery) ->
         if @preClipboard isnt false and @clipboard?
           event.preventDefault()
           selection = window.getSelection()
-          range     = document.createRange()
-          if selection.anchorOffset is 0
-            node = @getTopNode(selection.anchorNode)
+          range     = selection.getRangeAt(0)
+          node      = @getTopNode(selection.anchorNode)
+          if $.trim(node.textContent).length is 0
             range.setStartBefore(node)
             range.setEndBefore(node)
           range.insertNode(@clipboard.cloneNode(true))
