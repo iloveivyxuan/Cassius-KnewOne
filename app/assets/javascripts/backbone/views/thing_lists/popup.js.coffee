@@ -39,6 +39,9 @@ class Making.Views.ThingListsPopup extends Backbone.Marionette.CompositeView
   childView: ThingListView
   childViewContainer: 'ul.thing-lists'
 
+  initialize: ->
+    @model.set('photo', @model.get('photo').replace(/!huge$/, '!square'))
+
   onShow: ->
     @$el.modal('show')
 

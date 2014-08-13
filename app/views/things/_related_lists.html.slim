@@ -17,4 +17,4 @@
           ul.thing-list-items
             - list.items.limit(4).each do |item|
               = link_to thing_path(item.thing, from_id: thing.id), target: "_blank"
-                = present(item.thing).photo(:small)
+                = present(item.thing).photo(:square)
