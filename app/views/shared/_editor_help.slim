@@ -9,16 +9,48 @@
       .modal-body
         ul.nav.nav-pills role="tablist"
           li.active
+            a href="#insert-media" role="tab" data-toggle="tab" 插入素材
+          li
             a href="#typography" role="tab" data-toggle="tab" 内容格式
           li
-            a href="#insert-image" role="tab" data-toggle="tab" 插入素材
+            a href="#copy-cut-paste" rale="tab" data-toggle="tab" 剪切粘贴
         .tab-content
-          .tab-pane.active#typography
+          .tab-pane.active#insert-media
+            .row.well
+              .col-md-6
+                h4 添加图片
+                ol.list-styled
+                  li 移动光标到空行
+                  li
+                    | 点击&nbsp;
+                    i.fa.fa-plus-circle
+                  li
+                    | 点击&nbsp;
+                    i.fa.fa-picture-o
+                  li 选择图片开始上传
+              .col-md-6
+                h4 删除图片
+                ol.list-styled
+                  li 点击图片，使图片处于选中状态（黑色边框）
+                  li 点击键盘上的删除键删除图片
             em.spinner-static 加载中
-            img data-src="http://image.knewone.com/photos/fddbad8d478b0dcb0472303f56d86cf1.gif"
-          .tab-pane#insert-image
+            img data-src=asset_path('help/editor-2.gif')
+          .tab-pane#typography
+            .well
+              ol.list-styled
+                li 选中需要处理的文本
+                li 在工具条出现后点击相应的格式化按钮
             em.spinner-static 加载中
-            img data-src="http://image.knewone.com/photos/991282381fe939b73960b9edef66b124.gif"
+            img data-src=asset_path('help/editor-1.gif')
+          .tab-pane#copy-cut-paste
+            .well
+              ol.list-styled
+                li 点击图片，使图片处于选中状态（黑色边框）
+                li 点击鼠标右键，点击“复制”或“剪切”
+                li 在待粘贴的地方回车新建空行
+                li 点击鼠标右键，点击“粘贴”
+            em.spinner-static 加载中
+            img data-src=asset_path('help/editor-3.gif')
       footer.modal-footer
         label
           input#show-editor-help type="checkbox"

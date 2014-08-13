@@ -216,7 +216,7 @@ do (exports = Making) ->
 
     initHelp: ->
       that      = @
-      key       = exports.user + '+hide-editor-help'
+      key       = exports.user + '+hide-editor-help+v1'
       isHide    = localStorage[key]
       $checkbox = $('#show-editor-help')
 

@@ -124,6 +124,18 @@
   .nav {
     padding-bottom: $padding-large-vertical;
   }
+
+  .well {
+    border-radius: 0;
+    margin: {
+      left: -15px;
+      right: -15px;
+    }
+
+    ol {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .editor-close,
