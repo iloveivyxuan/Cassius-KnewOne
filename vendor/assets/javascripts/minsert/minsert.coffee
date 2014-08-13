@@ -50,11 +50,6 @@ do ($ = jQuery) ->
                   '</button>' +
                 '</li>' +
                 '<li>' +
-                  '<button class="minsert-action" data-action="insert-embed" type="button">' +
-                    '<i class="fa fa-code"></i>' +
-                  '</button>' +
-                '</li>' +
-                '<li>' +
                   '<button class="minsert-action" data-action="insert-rule" type="button">' +
                     '<i class="fa fa-minus"></i>' +
                   '</button>' +
