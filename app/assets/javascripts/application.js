@@ -30,6 +30,8 @@
 //= require jquery.caret
 //= require jquery.atwho
 //= require lightbox
+//= require editable/bootstrap-editable
+//= require editable/rails
 //= require_tree ../templates
 //= require base
 //= require todo
