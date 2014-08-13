@@ -230,8 +230,6 @@ do (exports = Making) ->
 
     deactivatePlugin: ->
       @editor.deactivate()
-      # @TODO
-      @$body.off('.mediumInsert')
 
     initHelp: ->
       that      = @

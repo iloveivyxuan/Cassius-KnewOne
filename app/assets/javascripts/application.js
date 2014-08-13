@@ -21,9 +21,6 @@
 //= require bootstrap-tagsinput
 //= require medium-editor/medium-editor
 //= require minsert/minsert
-//= require medium-editor-insert-plugin/medium-editor-insert-plugin
-//= require medium-editor-insert-plugin/medium-editor-insert-images
-//= require medium-editor-insert-plugin/medium-editor-insert-embeds
 //= require bootstrap-wysiwyg
 //= require bootstrap-select
 //= require bootstrap-touch-carousel
