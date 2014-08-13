@@ -200,9 +200,8 @@ do (exports = Making) ->
               that.$body.trigger('loading.minsert', id)
             done: (event, data) ->
               url = that.$imageField.data('domain') + data.jqXHR.responseJSON.url + '!review'
-              that.$body
-                .trigger('done:image.minsert', url)
-                .trigger('input')
+              id  = data.jqXHR.requestid
+              that.$body.trigger('done:image.minsert', {url, id})
             fail: (event, data) ->
               that.$body.trigger('fail:image.minsert', data.jqXHR.responseJSON.message)
             always: (event, data) ->

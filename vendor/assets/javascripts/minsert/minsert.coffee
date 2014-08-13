@@ -127,7 +127,7 @@ do ($ = jQuery) ->
       loading: (event, id) ->
         # @TODO
         # @insert("<progress id=#{id} class='minsert-progress'></progress>")
-        @insert("<div class='progress minsert-progress' id=#{id}>
+        @insert("<div class='progress minsert-progress' id='minsert-progress-#{id}'>
           <div class='progress-bar progress-bar-striped active' role='progressbar' aria-valuemin='0' aria-valuemax='100' style='width: 100%'>
           </div>
         </div>")
@@ -135,7 +135,7 @@ do ($ = jQuery) ->
       loaded: (event, id) ->
         # @TODO
         # @$element.find("progress##{id}").remove()
-        @$element.find("##{id}").remove()
+        @$element.find("#minsert-progress-#{id}").remove()
 
       handleFigureFocus: (event) ->
         $figure = $(event.target).parent()
@@ -171,10 +171,12 @@ do ($ = jQuery) ->
       insertImage: ->
         @hide()
 
-      insertImageDone: (event, url)->
+      insertImageDone: (event, data)->
         # @TODO
         # @insert("<figure><img src=#{url}></figure>")
-        @insert("<p><img src=#{url}></p>")
+        url = data.url
+        id  = data.id
+        @insert("<p><img src=#{url}></p>", id)
 
       insertImageFail: (event, message) ->
         alert(message ? '图片上传失败了，请重试。')
@@ -222,16 +224,30 @@ do ($ = jQuery) ->
             @hide()
         $input.on 'keydown.minsert', handler.bind(@)
 
-      insert: (content) ->
+      insert: (content, id) ->
         $node = $('<p>').html(content)
 
         if $node.children().length > 0
           $node = $node.contents().unwrap()
-          @insertPoint.insertNode($node[0])
+          if id?
+            range = document.createRange()
+            range.selectNode(document.querySelector('#minsert-progress-' + id))
+            range.collapse(true)
+            range.insertNode($node[0])
+          else
+            @insertPoint.insertNode($node[0])
         else
           p = document.createElement('p')
           p.innerHTML = content
-          @insertPoint.insertNode(p)
+          console.log 'bar:' + id
+          if id?
+            range = document.createRange()
+            range.selectNode(document.querySelector('#minsert-progress-' + id))
+            range.collapse(true)
+            range.insertNode(p)
+          else
+            @insertPoint.insertNode(p)
+        @$element.trigger('input')
 
       # @TODO
       clearClipboard: (event) ->
