@@ -2,7 +2,7 @@ class ThingListsController < ApplicationController
   load_and_authorize_resource :user
   load_and_authorize_resource :thing_list, through: :user, shallow: true
 
-  respond_to :html, :json
+  respond_to :html, :json, :js
 
   def index
     unless @user
