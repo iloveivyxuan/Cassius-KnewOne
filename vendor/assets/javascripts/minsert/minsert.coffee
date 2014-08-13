@@ -77,14 +77,14 @@ do ($ = jQuery) ->
         if target.nodeName is 'IMG'
           parentNode = target.parentNode
           if parentNode.nodeName is 'FIGURE' or $(parentNode).css('display') is 'block'
-            @preClipboard = parentNode
             @insertPoint  = document.createRange()
             @insertPoint.selectNode(parentNode)
             @insertPoint.collapse(false)
             selection.removeAllRanges()
             selection.addRange(@insertPoint)
+            if event.type is 'click'
+              @preClipboard = parentNode
         else if selection.anchorOffset is 0
-          if event.type is 'keyup' and event.which isnt 13 then return
           topNode = @getTopNode(selection.anchorNode)
           if $.trim($(topNode).text()) is ''
             @insertPoint = document.createRange()
@@ -211,23 +211,27 @@ do ($ = jQuery) ->
           window.clipboardData.setData('text', '')
 
       copy: (event) ->
-        if @preClipboard?
+        if @preClipboard
           event.preventDefault()
           @clearClipboard(event)
           @clipboard = @preClipboard
           @preClipboard = null
+          return false
         else
           @preClipboard = false
+          return true
 
       cut: (event) ->
-        if @preClipboard?
+        if @preClipboard
           event.preventDefault()
           @clearClipboard(event)
           @clipboard = @preClipboard.cloneNode(true)
           $(@preClipboard).remove()
           @preClipboard = null
+          return false
         else
           @preClipboard = false
+          return true
 
       paste: (event) ->
         if @preClipboard isnt false and @clipboard?
