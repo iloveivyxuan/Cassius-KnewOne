@@ -79,10 +79,15 @@ html.thing_lists_show {
 
         @include breakpoint(md) {
           display: inline-block;
-          width: 23.5%;
+          border-top: 0;
+
+          width: 32%;
           margin: 0 0 0 2%;
           &:first-child { margin-left: 0; }
-          border-top: 0;
+        }
+
+        @include breakpoint(lg) {
+          width: 23.5%;
         }
 
         header {
