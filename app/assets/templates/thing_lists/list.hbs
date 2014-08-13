@@ -1,4 +1,4 @@
-<label>
+<label {{#if selected}}class="selected"{{/if}}>
   <span class="thing-list-name">{{name}} {{#if items.length}}({{items.length}}){{/if}}</span>
   <input type="checkbox" {{#if selected}}checked="checked"{{/if}}>
 </label>
