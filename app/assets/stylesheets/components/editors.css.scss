@@ -181,6 +181,10 @@
     // @TODO
     min-height: 350px;
 
+    &:focus {
+      outline: none;
+    }
+
     img.is-focused {
       outline: 3px solid $text-color;
     }
