@@ -222,7 +222,7 @@ do (exports = Making) ->
               $target.is('img') and
               !$target.hasClass('is-focused')
                 $target.addClass('is-focused')
-          .on 'keypress', (event) ->
+          .on 'keydown', (event) ->
             that.$body.find('img.is-focused').removeClass('is-focused')
 
       else
