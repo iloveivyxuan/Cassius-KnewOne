@@ -250,6 +250,33 @@ if (typeof module === 'object') {
                     if (!(self.options.disableReturn || this.getAttribute('data-disable-return')) &&
                         tagName !== 'li' && !self.isListItemChild(node)) {
                         if (!e.shiftKey) {
+                            var selection = window.getSelection(),
+                                anchorNode = selection.anchorNode;
+
+                            // @TODO
+                            // if (anchorNode.tagName.toLowerCase() == 'figure') {
+                            //     var range,
+                            //         p = document.createElement('p');
+                            //
+                            //     p.innerHTML = '<br>';
+                            //     if (anchorNode.innerHTML == '<br>') {
+                            //         anchorNode.remove();
+                            //         range = selection.getRangeAt(0);
+                            //         range.insertNode(p);
+                            //         range.selectNode(p);
+                            //         range.collapse(true);
+                            //         selection.removeAllRanges();
+                            //         selection.addRange(range);
+                            //     } else {
+                            //         range = selection.getRangeAt(0);
+                            //         range.setStartBefore(anchorNode);
+                            //         range.setEndBefore(anchorNode);
+                            //         range.insertNode(p);
+                            //         e.preventDefault();
+                            //     }
+                            // } else {
+                            //   document.execCommand('formatBlock', false, 'p');
+                            // }
                             document.execCommand('formatBlock', false, 'p');
                         }
                         if (tagName === 'a') {
@@ -1153,10 +1180,6 @@ if (typeof module === 'object') {
                 var paragraphs,
                     html = '',
                     p;
-
-                if (e.target.getAttribute('contenteditable') === 'false') {
-                  return true;
-                }
 
                 this.classList.remove('medium-editor-placeholder');
                 if (!self.options.forcePlainText && !self.options.cleanPastedHTML) {

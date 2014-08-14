@@ -1,0 +1,98 @@
+$colour: #777;
+
+.minsert {
+  display: none;
+  position: absolute;
+
+  &.is-shown {
+    display: block;
+  }
+}
+
+.minsert-toggle {
+  background: none;
+  border: none;
+  color: $colour;
+  font-size: 22px;
+  height: 28px;
+  line-height: 22px;
+  padding: 3px 12px 3px 3px;
+  vertical-align: middle;
+
+  &:focus {
+    outline: none;
+  }
+
+  .fa {
+    margin-right: 0;
+  }
+}
+
+.minsert-actions {
+  display: none;
+  vertical-align: middle;
+
+  &.is-shown {
+    display: inline-block;
+  }
+
+  > li {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+}
+
+.minsert-action {
+  @include transition-property(background-color, color);
+  @include transition-duration(.2s);
+  background-color: #fff;
+  border: 1px solid $colour;
+  border-radius: 1em;
+  color: $colour;
+  font-size: 20px;
+  height: 22px;
+  line-height: 22px;
+  padding: 0;
+  vertical-align: middle;
+  width: 80px;
+
+  &:hover {
+    background-color: darken($colour, 25%);
+    color: #fff;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  .fa {
+    margin-right: 0;
+    vertical-align: 1px;
+  }
+
+  .fa-minus {
+    vertical-align: 0;
+  }
+}
+
+.minsert-input {
+  display: none;
+
+  &.is-shown {
+    display: inline-block;
+  }
+
+  input {
+    border: 1px solid $colour;
+    border-radius: 1em;
+    padding: 0 1em;
+    width: 350px;
+  }
+}
+
+.minsert-progress {
+  display: block;
+  margin: 0 auto 1.5em;
+  width: 50%;
+}

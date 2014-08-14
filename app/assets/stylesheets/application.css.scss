@@ -1,7 +1,8 @@
 // =============================================================================
-// Library
+// Vendor
 // =============================================================================
 
+// Library
 @import "customize/variables";
 @import "bootstrap";
 @import "font-awesome";
@@ -14,8 +15,7 @@
 @import "lightbox";
 @import "medium-editor/medium-editor";
 @import "medium-editor/themes/bootstrap";
-@import "medium-editor-insert-plugin/medium-editor-insert-plugin";
-
+@import "minsert/minsert";
 @import "jquery.atwho";
 
 // =============================================================================
@@ -66,28 +66,4 @@
 @import "components/icons";
 
 // Views
-@import "views/landing";
-@import "views/home";
-@import "views/hits";
-@import "views/home_welcome";
-@import "views/profiles";
-@import "views/things";
-@import "views/things_mobile";
-@import "views/thing_form";
-@import "views/groups";
-@import "views/carts";
-@import "views/lottery";
-@import "views/settings";
-@import "views/orders";
-@import "views/notifications";
-@import "views/dialogs";
-@import "views/users";
-@import "views/categories";
-@import "views/explore";
-@import "views/jobs";
-@import "views/search";
-@import "views/errors";
-@import "views/rewards";
-@import "views/help";
-@import "views/user_agreement";
-@import "views/other";
+@import "views/*";
