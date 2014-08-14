@@ -25,7 +25,7 @@ class Making.Views.ThingListsPopup extends Backbone.Marionette.CompositeView
 
   events: {
     'show.bs.modal': 'reset'
-    'hide.bs.modal': 'destroy'
+    'hidden.bs.modal': 'destroy'
     'keyup @ui.name': 'editName'
     'submit .new-thing-list-form': 'addThingList'
     'submit .new-thing-list-items-form': 'done'
@@ -101,6 +101,10 @@ class Making.Views.ThingListsPopup extends Backbone.Marionette.CompositeView
       else
         items.create({thing_id, description})
     )
+
+    @$el.one('hidden.bs.modal', ->
+      Making.ShowMessageOnTop('操作成功')
+    ) if _.size(@_changedLists)
 
     @$el.modal('hide')
 
