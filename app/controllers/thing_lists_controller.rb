@@ -40,12 +40,14 @@ class ThingListsController < ApplicationController
 
   def fancy
     @thing_list.fancy(current_user)
-    head :no_content
+    respond_with @thing_list
   end
 
   def unfancy
     @thing_list.unfancy(current_user)
-    head :no_content
+    respond_with @thing_list do |format|
+      format.js { render 'fancy' }
+    end
   end
 
   private
