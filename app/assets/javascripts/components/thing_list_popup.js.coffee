@@ -16,6 +16,8 @@ $(->
 
   $(document).on('click', selector, (event) ->
     $target = $(this)
+    return if $target.is('.fancied')
+
     thingId = $target.data('thing-list-popup')
 
     return show(cache[thingId]) if cache[thingId]
