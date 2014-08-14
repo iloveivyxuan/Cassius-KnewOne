@@ -14,7 +14,6 @@
             h5.thing-list-title= "#{list.name} (#{list.items.size})"
             p.thing-list-creator= list.user.name
 
-          ul.thing-list-items
-            - list.items.limit(4).each do |item|
-              = link_to thing_path(item.thing, from_id: thing.id), target: "_blank"
+            ul.thing-list-items
+              - list.items.limit(4).each do |item|
                 = present(item.thing).photo(:square)

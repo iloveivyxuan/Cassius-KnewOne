@@ -490,16 +490,12 @@ div#thing_title {
       }
 
       .thing-list-items {
-        > a {
+        > img {
           display: inline-block;
           width: 22%;
 
           margin-left: 4%;
           &:first-child { margin-left: 0; }
-
-          img {
-            width: 100%;
-          }
         }
       }
     }
