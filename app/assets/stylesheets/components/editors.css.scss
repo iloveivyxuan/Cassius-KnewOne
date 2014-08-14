@@ -407,6 +407,27 @@ body.editor-open {
         bottom: 0;
         top: -119px;
       }
+
+      &.dragover {
+        background-color: transparent;
+      }
+
+      > ul {
+
+        &:empty {
+          height: 0;
+        }
+
+        > li {
+          display: inline-block;
+          float: none;
+          vertical-align: middle;
+        }
+      }
+
+      .uploader_button {
+        display: none;
+      }
     }
   }
 

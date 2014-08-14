@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -18,6 +17,9 @@ class User
   field :status, type: Symbol, default: :normal
 
   index name: 1
+
+  field :accept_edm, type: Boolean, default: true
+  scope :edm, -> { where accept_edm: true }
 
   STATUS = {blocked: '锁定', watching: '特别观照(贬)', normal: '正常'}
   validates :status, inclusion: {in: STATUS.keys, allow_blank: false}
@@ -181,6 +183,9 @@ class User
       if self.auto_update_from_oauth?
         set_profiles_by_auth(auth)
         save
+
+        self.remote_avatar_url = auth.avatar_url
+        save rescue Exception
       end
     end
   end
@@ -192,6 +197,9 @@ class User
       if self.auto_update_from_oauth?
         set_profiles_by_auth(auth)
         save
+
+        self.remote_avatar_url = auth.avatar_url
+        save rescue Exception
       end
     end
   end
@@ -201,13 +209,13 @@ class User
       self.name = (auth.name || auth.nickname).try(:gsub, ' ', '-') || 'KnewOne小伙伴'
     end
 
-    if (!persisted? && User.where(name: self.name).size > 0) || self.name.blank?
+    if (!persisted? && User.where(name: /^#{Regexp.escape(self.name)}$/i).size > 0) || self.name.blank?
       self.name += "x#{SecureRandom.uuid[0..4]}"
     end
 
     self.location = auth.location
     self.description = auth.description
-    self.remote_avatar_url = auth.avatar_url
+    # self.remote_avatar_url = auth.avatar_url
     self.gender = case auth.gender
                     when 'm' then
                       '男'
@@ -219,19 +227,22 @@ class User
   end
 
   ## Roles
-  field :role, type: String, default: ""
-  ROLES = %w[vip editor sale admin]
-  scope :staff, -> { where :role.in => %i(editor sale admin) }
-  scope :admin, -> { where role: "admin" }
-  scope :editor, -> { where role: "editor" }
-  scope :sale, -> { where role: "sale" }
+  field :role, type: Symbol, default: ""
+  ROLES_WITH_DESC = {vip: "大号", volunteer: "志愿者", editor: "编辑", sale: "销售", admin: "管理员"}
+  ROLES = ROLES_WITH_DESC.keys
+  STAFF = %i(editor sale admin)
 
-  def role?(base_role)
-    ROLES.index(base_role.to_s) <= (ROLES.index(role) || -1)
+  ROLES.each do |role|
+    scope role, -> { where role: role }
   end
 
+  def role?(base_role)
+    ROLES.index(base_role) <= (ROLES.index(role) || -1)
+  end
+
+  scope :staff, -> { where :role.in => STAFF }
   def staff?
-    %w(editor sale admin).include? self.role
+    STAFF.include? role
   end
 
   ## Photos
@@ -404,7 +415,11 @@ class User
   end
 
   # category
-  include CategoryReferable
+  has_and_belongs_to_many :categories do
+    def things
+      Thing.published.any_in(categories: @target.map(&:name))
+    end
+  end
 
   # recommend users who not followed by self
   def recommend_new_users

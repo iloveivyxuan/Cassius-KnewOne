@@ -17,6 +17,7 @@ module Api
         @topic = @group.topics.build topic_params.merge(author: current_user)
 
         if @topic.save
+          current_user.log_activity :new_topic, @topic, source: @topic.group
           render action: 'show', status: :created, location: [:api, :v1, @group, @topic]
         else
           render json: @topic.errors, status: :unprocessable_entity
@@ -33,6 +34,8 @@ module Api
 
       def destroy
         @topic.destroy
+        current_user.log_activity :delete_topic, @topic, visible: false
+
         head :no_content
       end
 

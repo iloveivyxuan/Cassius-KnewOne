@@ -5,16 +5,27 @@ class HomeController < ApplicationController
 
   def index
     if user_signed_in?
-      @activities = current_user
-        .relate_activities(%i(new_thing own_thing fancy_thing
-                              new_review love_review
-                              new_feeling))
-        .page(params[:page]).per(30)
+      @source = (params[:source] or session[:source] or "following")
 
-      @feeds = HomeFeed.create_from_activities @activities
-
-      if @feeds.empty?
-        redirect_to hits_url
+      if @source == "following" and current_user.followings_count > 0
+        session[:source] = @source
+        activities = current_user.relate_activities(%i(new_thing own_thing fancy_thing
+                                                       new_review love_review
+                                                       new_feeling))
+        activities = activities.page(params[:page]).per(30)
+        @feeds = HomeFeed.create_from_activities activities
+        @pager = activities
+      else
+        session[:source] = "recommended"
+        if current_user.categories.present?
+          things = current_user.categories.things.hot
+        else
+          things = Thing.hot
+        end
+        things = things.page(params[:page]).per(30)
+        reviews = Review.hot.page(params[:page]).per(5)
+        @feeds = HomeFeed.create_from_things_and_reviews(things, reviews)
+        @pager = things
       end
     else
       respond_to do |format|
@@ -43,14 +54,23 @@ class HomeController < ApplicationController
   end
 
   def not_found
+    respond_to do |format|
+      format.js { head :not_found }
+      format.json { head :not_found }
+      format.html { render status: :not_found }
+    end
   end
 
   def forbidden
     if user_signed_in?
-      render 'home/forbidden_signed_in'
+      render 'home/forbidden_signed_in', status: :forbidden
     else
-      render 'home/forbidden'
+      render 'home/forbidden', status: :forbidden
     end
+  end
+
+  def blocked
+
   end
 
   def welcome
@@ -60,6 +80,11 @@ class HomeController < ApplicationController
   end
 
   def error
+    respond_to do |format|
+      format.js { head :internal_server_error }
+      format.json { head :internal_server_error }
+      format.html { render status: :internal_server_error }
+    end
   end
 
   def search

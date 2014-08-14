@@ -1,10 +1,10 @@
 class Review < Post
-  include Rateable
+  include Ratable
   include Aftermath
 
   field :is_top, type: Boolean, default: false
 
-  belongs_to :thing, inverse_of: :single_reviews, counter_cache: true, index: true
+  belongs_to :thing, inverse_of: :single_reviews, index: true
 
   validates :title, presence: true
   validates :content, presence: true

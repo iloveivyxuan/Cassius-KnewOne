@@ -47,12 +47,12 @@
           = link_to "#feelings", data: {toggle: "tab"} do
             i.fa.fa-comments
             | 短评
-            span.badge #{@thing.feelings_count}
+            span.badge #{@thing.feelings.count}
         li
           = link_to "#reviews", data: {toggle: "tab"} do
             i.fa.fa-pencil
             | 评测
-            span.badge #{@thing.reviews_count}
+            span.badge #{@thing.reviews.count}
         - if @thing.shopping_desc.present?
           li
             = link_to "#shopping_desc", data: {toggle: "tab"} do

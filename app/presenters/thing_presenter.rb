@@ -29,14 +29,11 @@ class ThingPresenter < PostPresenter
   end
 
   def price
-    return @price if @price
-    kinds_price = thing.valid_kinds.map(&:price).uniq
-    p = if kinds_price.present?
-          kinds_price.min
-        elsif thing.price.present?
-          thing.price
-        end
-    @price = p ? price_format(p, thing.price_unit) : nil
+    if thing.price.present?
+      price_format thing.price, thing.price_unit
+    else
+      ""
+    end
   end
 
   def shopping_desc(length = 48)

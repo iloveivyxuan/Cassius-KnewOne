@@ -26,7 +26,7 @@
 
     .avatar {
       float: left;
-      margin-right: 1em;
+      margin-right: 10px;
       img {
         @include square(60px);
         @extend .img-circle;

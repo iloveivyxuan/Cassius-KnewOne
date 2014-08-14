@@ -140,6 +140,7 @@ GEM
     bson (2.3.0)
     buftok (0.2.0)
     builder (3.2.2)
+    callsite (0.0.11)
     cancancan (1.7.1)
     capistrano (3.2.1)
       i18n
@@ -212,6 +213,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    dkim (1.0.0)
     docile (1.1.5)
     eco (1.0.0)
       coffee-script
@@ -259,8 +261,6 @@ GEM
       http_parser.rb (~> 0.6.0)
     http_parser.rb (0.6.0)
     i18n (0.6.11)
-    intercom-rails (0.2.24)
-      activesupport (> 3.0)
     jbuilder (2.1.3)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -291,6 +291,10 @@ GEM
       treetop (~> 1.4.8)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
+    meta_request (0.3.4)
+      callsite (~> 0.0, >= 0.0.11)
+      rack-contrib (~> 1.1)
+      railties (>= 3.0.0, < 5.0.0)
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_magick (3.7.0)
@@ -363,6 +367,8 @@ GEM
     quiet_assets (1.0.3)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
+    rack-contrib (1.1.0)
+      rack (>= 0.9.1)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.2)
@@ -562,6 +568,7 @@ DEPENDENCIES
   compass-rails
   database_cleaner
   devise
+  dkim
   doorkeeper!
   factory_girl_rails
   faker
@@ -570,7 +577,6 @@ DEPENDENCIES
   guard-livereload!
   guard-rspec
   handlebars_assets
-  intercom-rails
   jasl_tenpay!
   jbuilder
   jquery-fileupload-rails
@@ -578,6 +584,7 @@ DEPENDENCIES
   kaminari
   letter_opener!
   libnotify
+  meta_request
   mini_magick
   modernizr-rails
   mongoid (>= 4.0.0.alpha1)

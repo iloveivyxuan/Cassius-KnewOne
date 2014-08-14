@@ -50,6 +50,8 @@ module Api
         @thing = Thing.new thing_params.merge(author: current_user, photo_ids: photo_ids)
 
         if @thing.save!
+          current_user.log_activity :new_thing, @thing
+
           render 'show', status: :created, location: [:api, :v1, @thing]
         else
           render json: @thing.errors, status: :unprocessable_entity

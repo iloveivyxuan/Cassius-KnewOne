@@ -1,0 +1,11 @@
+- if user_signed_in?
+  span.subscribe_category id="subscribe_category_#{category.id}"
+    = link_to subscribe_toggle_category_path(category), remote: true, method: :post,
+    class: 'btn btn-default', id: "subscribe_category_#{category.id}" do
+      - if current_user.categories.include? category
+        i.fa.fa-check
+        | 已订阅
+      - else
+        i.fa.fa-plus
+        | 订阅
+      = " #{category.users.count}"

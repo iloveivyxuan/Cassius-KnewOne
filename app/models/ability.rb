@@ -15,9 +15,13 @@ class Ability
       can :send_stock_notification, Thing
       can :manage, AbatementCoupon
       can :manage, ThingRebateCoupon
+      can :manage, Supplier
     elsif user.role? :editor
       signed user
       editor
+    elsif user.role? :volunteer
+      signed user
+      can :update, Thing
     else
       signed user
     end
@@ -72,13 +76,14 @@ class Ability
       thing.author == user or thing.maker == user
     end
     can :destroy, Thing do |thing|
-      thing.author == user
+      thing.author == user && thing.feelings_count == 0 && thing.reviews_count == 0
     end
     can :fancy, Thing
     can :own, Thing
     can :group_fancy, Thing
     can :create_by_extractor, Thing
     can :extract_url, Thing
+    can :coupon, Thing
 
     can :share, User
     can :bind, User
@@ -129,6 +134,7 @@ class Ability
       private_message.dialog.user == user
     end
 
+    can :subscribe_toggle, Category
   end
 
   def basic
@@ -142,9 +148,10 @@ class Ability
     can :read, Topic
     can :read, Lottery
     can :read, User
+    can :read, Category
     can [:owns, :fancies, :things, :reviews, :feelings,
          :activities, :followings, :followers, :groups, :topics, :profile], User
-    can [:buy, :groups, :comments, :wechat_qr, :random], Thing
+    can [:buy, :groups, :comments, :wechat_qr, :random, :shop], Thing
   end
 
   def editor
@@ -161,7 +168,6 @@ class Ability
     can :manage, Review
     can :manage, Feeling
     can :manage, Lottery
-    can :manage, Supplier
   end
 
   def pay_callback

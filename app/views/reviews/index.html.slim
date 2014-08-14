@@ -3,7 +3,9 @@
 
 - if @reviews.present?
   section
-    = render 'shared/sort', url: thing_reviews_path(@thing)
+    header
+      = render 'shared/sort', url: thing_reviews_path(@thing)
+      = render 'reviews/link_to_new'
 
     #reviews.list = render @reviews
     = paginate @reviews

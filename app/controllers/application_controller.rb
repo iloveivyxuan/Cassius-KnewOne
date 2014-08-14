@@ -1,10 +1,12 @@
 class ApplicationController < ActionController::Base
+  before_action :logging
   before_action :trim_param_id
   protect_from_forgery
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_variant
   after_action :store_location, only: [:index, :show]
+  prepend_before_action :require_not_blocked, except: :blocked
 
   if Rails.env.production?
     # some bots using some *strange* format to request urls
@@ -37,11 +39,23 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    if request.format == Mime::HTML
-      session[:previous_url] = request.fullpath
-    end
+    respond_to do |format|
+      format.html do
+        if request.format == Mime::HTML
+          session[:previous_url] = request.fullpath
+        end
 
-    redirect_to '/403', alert: exception.message
+        redirect_to '/403', alert: exception.message
+      end
+
+      format.json do
+        head :forbidden
+      end
+
+      format.js do
+        head :forbidden
+      end
+    end
   end
 
   def redirect_stored_or(path, flash = {})
@@ -108,7 +122,18 @@ class ApplicationController < ActionController::Base
     response.headers['X-XSS-Protection'] = '0'
   end
 
+  def require_not_blocked
+    if user_signed_in? && current_user.blocked?
+      redirect_to blocked_path
+    end
+  end
+
   private
+
+  def logging
+    logger.info "Current user: #{user_signed_in? ? current_user.id : 'guest'}"
+    logger.info "Session: #{session.to_hash}"
+  end
 
   def trim_param_id
     params[:id] and params[:id].gsub! /[^\w]$/, ''

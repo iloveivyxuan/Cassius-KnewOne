@@ -44,9 +44,14 @@ class Order
   end
 
   attr_accessor :use_sf
+  attr_accessor :bong_delivery
 
   def use_sf?
     !['0', false, 'false', nil].include?(self.use_sf) || self.deliver_by == :sf
+  end
+
+  def bong_delivery
+    self.deliver_by == :bong_delivery
   end
 
   SF_PRICE = 10.0
@@ -66,6 +71,7 @@ class Order
       # Legacy code
       :sf => '顺丰',
       :zt => '中通',
+      :bong_delivery => 'bong',
       # same as https://code.google.com/p/kuaidi-api/wiki/Open_API_API_URL
       :yuantong => '圆通速递',
       :debangwuliu => '德邦物流',
@@ -410,6 +416,8 @@ class Order
 
   def calculate_deliver_price
     return 0 if self.deliver_by.nil?
+    self.deliver_by = :bong_delivery if self.bong_inside?
+    return 10 if self.deliver_by == :bong_delivery
     (self.deliver_by == :zt || items_price > 500) ? 0 : SF_PRICE
   end
 
@@ -417,8 +425,21 @@ class Order
     order_items.map(&:price).reduce(&:+) || 0
   end
 
+  def dyson_air # Dyson Air Multiplier
+    Thing.find("510689ef7373c2f82b000003")
+  end
+
   def rebates_price
-    rebates.map(&:price).reduce(&:+) || 0
+    if rebates.blank? || not_dyson_coupon(rebates)
+      rebates.map(&:price).reduce(&:+) || 0
+    else
+      amount = rebates.first.order.order_items.where(thing: dyson_air).map(&:quantity).reduce(&:+)
+      amount * (rebates.map(&:price).reduce(&:+)) || 0
+    end
+  end
+
+  def not_dyson_coupon(rebates)
+    rebates.first.order.order_items.where(thing: dyson_air).blank?
   end
 
   def receivable
@@ -481,7 +502,7 @@ class Order
   end
 
   def bong_inside?
-    self.order_items.where(thing_title: bong.title).exists?
+    bong && self.order_items.where(thing_title: bong.title).exists?
   end
 
   need_aftermath :confirm_payment!, :refund_to_balance!, :refund!, :confirm_free!
@@ -491,7 +512,7 @@ class Order
   def after_confirm
     self.user.inc karma: Settings.karma.order
     # bong coupon
-    if bong && bong_inside?
+    if bong_inside?
       coupons = bong_coupon(bong_amount)
       order_note = coupons.map(&:code)
       leave_note(order_note)

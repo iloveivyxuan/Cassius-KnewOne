@@ -17,12 +17,33 @@ class HomeFeed
         feeds
       end.values.sort_by(&:updated_at).reverse
     end
+
+    def create_from_things_and_reviews(things, reviews)
+      feeds = things.map { |thing| HomeFeed.new thing }
+      reviews.each do |review|
+        feed = feeds.find { |f| f.thing == review.thing }
+        unless feed
+          feed = HomeFeed.new review.thing
+          feeds.insert rand(feeds.length), feed
+        end
+        feed.reviews << review
+      end
+      feeds
+    end
   end
 
   def initialize(thing)
     @thing = thing
     @reviews = []
     @activities = []
+  end
+
+  def author
+    @author ||= if @activities.present?
+                  @activities.first.user
+                else
+                  @thing.author
+                end
   end
 
   def add_activity(activity)

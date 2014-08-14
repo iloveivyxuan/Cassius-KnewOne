@@ -1,0 +1,45 @@
+- content_for :username do
+  = @name
+
+- content_for :title do
+  | 口干舌燥的你，免费领养智能水杯
+
+p
+  = image_tag attachments['cuptime.jpg'].url, alt: 'Cuptime'
+
+p
+  | #{ link_to 'Cuptime', 'http://knewone.com/things/cuptime?from=cuptime_edm' } 是个很特别的产品。
+  | 那些不知道也不关心自己每天饮水量的人，觉得它是一个没什么用的塑料杯子。
+  | 而那些在意保持身体水分、意识到自己饮水有问题的人，认为自己得到了一件神器。
+
+p
+  | 所以敬告参加本次免费领养的用户，请想清楚自己对这样一款智能水杯是否真的有需求。
+  | 我们把健康这样宏大得话题且放一边，只想告诉你，拿到一款不需要的产品，是无法享受其中乐趣的，甚至反而心生怨念。没必要！
+
+p
+  | 这货，啊不，这款智能水杯并非一个提醒喝水的闹钟。
+  | 它号称内置了3D加速度传感器等不明觉厉的部件和技术，可以监测你真实地饮水量，由此判断你是否需要补水，而不是简单根据时间振铃。
+
+p
+  | 那些因沉溺于游戏、视频可能还有工作而忘记喝水的同学，不用再恨自己了。KnewOne 掏出20个 Cuptime 在你们面前，淡淡地说：干杯！
+
+p
+  | 舔舔干裂的嘴唇，参加 Cuptime 免费领养的步骤就是这么简单：
+
+ol
+  li 点击打开 #{ link_to 'Cuptime', 'http://knewone.com/things/cuptime?from=cuptime_edm' }，猛戳右边绿色的「加入购物车」按钮；
+  li 进入购物车，结算并填写完整的收货信息；
+  li
+    | 保存信息，提交订单（请勿勾选顺丰速运），静待佳音；
+    strong
+      |（如用户不小心勾选并完成支付顺丰速运费用，活动结束后即08.16开始统一退款）
+
+ul
+  li 社区内评测、短评各类硬件数量越多的用户，免费领养的机会越高；
+  li 申请截止时间为8月15日 23:59；
+  li 拿到智能水杯后，请到 Cuptime 产品页 分享开箱和使用体验；
+  li 最终免费领养用户名单于8月18日首先在官方微信发布。请关注微信公号“KnewOneCom”：
+  li 关注新浪微博 #{ link_to '@KnewOne', 'http://weibo.com/knewone' }，第一时间获得牛玩活动资讯：
+
+p
+  = image_tag attachments['ko_wechat_qr.png'].url, alt: 'KnewOne订阅号'

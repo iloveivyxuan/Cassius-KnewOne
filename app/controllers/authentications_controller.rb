@@ -1,6 +1,7 @@
 class AuthenticationsController < ApplicationController
   prepend_before_action :require_signed_in
   layout 'settings'
+  skip_before_action :require_not_blocked
 
   def destroy
     if current_user.can_sign_in_by_password? || current_user.auths.size > 1

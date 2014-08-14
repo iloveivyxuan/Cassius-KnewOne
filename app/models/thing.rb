@@ -8,13 +8,15 @@ class Thing < Post
   field :official_site, type: String, default: ""
   field :photo_ids, type: Array, default: []
   field :categories, type: Array, default: []
-  after_save :update_categories
+  before_save :update_price
   before_save :update_amazon_link
+  after_save :update_categories
 
   has_many :single_feelings, class_name: "Feeling", dependent: :destroy
   field :feelings_count, type: Integer, default: 0
   has_many :single_reviews, class_name: "Review", dependent: :destroy
   field :reviews_count, type: Integer, default: 0
+  before_save :update_counts
 
   field :links, type: Array, default: []
 
@@ -27,7 +29,7 @@ class Thing < Post
   field :price_unit, type: String, default: "¥"
   field :shopping_desc, type: String, default: ""
   field :period, type: DateTime
-  CURRENCY_LIST = %w{¥ $ € £ JPY¥}
+  CURRENCY_LIST = %w{¥ $ € £ JPY¥ ₩}
 
   field :priority, type: Integer, default: 0
 
@@ -51,7 +53,7 @@ class Thing < Post
     !Order.where('order_items.thing_id' => self.id).exists?
   end
 
-  include Fancyable
+  include Fanciable
   has_and_belongs_to_many :fanciers, class_name: "User", inverse_of: :fancies
 
   has_and_belongs_to_many :fancy_groups, class_name: "Group", inverse_of: :fancies
@@ -114,8 +116,13 @@ class Thing < Post
     (new - old).each { |c| Category.find_and_plus c }
   end
 
+  def update_price
+    kinds_price = valid_kinds.map(&:price).uniq
+    self.price = kinds_price.min if kinds_price.present?
+  end
+
   def update_amazon_link
-    if self.shop_changed? && self.shop.include?("amazon.cn") && !self.shop.include?("kne09-23")
+    if self.shop_changed? && self.shop && self.shop.include?("amazon.cn") && !self.shop.include?("kne09-23")
       new_link = add_param(self.shop, "tag", "kne09-23")
       self.shop = new_link unless new_link.nil?
     end
@@ -308,5 +315,12 @@ class Thing < Post
     def recal_all_related_things
       Thing.all.each {|t| t.update_related_thing_ids; t.save}
     end
+  end
+
+  private
+
+  def update_counts
+    self.feelings_count = feelings.size
+    self.reviews_count = reviews.size
   end
 end

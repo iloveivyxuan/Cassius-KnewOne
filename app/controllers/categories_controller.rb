@@ -1,18 +1,19 @@
 class CategoriesController < ApplicationController
-  before_action :set_categories
+  load_and_authorize_resource
 
   def index
-    @categories = @categories.prior.limit(12)
-    @things = Thing.published.desc(:created_at).limit(12)
-  end
-
-  def all
     @categories = Category.prior.gt(things_count: 10)
   end
 
-  private
+  def subscribe_toggle
+    if current_user.categories.include? @category
+      current_user.categories.delete @category
+    else
+      current_user.categories << @category
+    end
 
-  def set_categories
-    @categories = Category.desc(:things_count).gt(things_count: 10)
+    respond_to do |format|
+      format.js
+    end
   end
 end

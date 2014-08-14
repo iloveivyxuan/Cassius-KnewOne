@@ -382,7 +382,6 @@ html.reviews_index {
   figure.review_thing {display: none;}
 }
 
-html.signed_in_homepage,
 html.users_show,
 html.users_feelings,
 html.users_reviews {
@@ -497,6 +496,10 @@ html.mobile {
         .btn {
           padding: 1px 5px;
         }
+      }
+
+      > .btn-sm:first-child {
+         padding: 1px 5px;
       }
     }
 

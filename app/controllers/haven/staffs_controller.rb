@@ -4,32 +4,12 @@ module Haven
     before_action :authenticate_admin
 
     def index
-      @users ||= ::User
-      if params[:name].present?
-        @users = @users.where(name: /^#{Regexp.escape(params[:name])}/i)
-      elsif params[:filter]
-        if params[:filter].include? 'staff'
-          @users = @users.staff
-        end
-        if params[:filter].include? 'admin'
-          @users = @users.admin
-        end
-        if params[:filter].include? 'editor'
-          @users = @users.editor
-        end
-        if params[:filter].include? 'sale'
-          @users = @users.sale
-        end
-      else
-      @users = @users.order_by([:created_at, :desc],
-                               [:things_count, :desc],
-                               [:reviews_count, :desc],
-                               [:orders_count, :desc])
-      end
-      @users = @users.page params[:page]
-      respond_to do |format|
-        format.html
-      end
+      role = params[:filter].try :to_sym
+      @users = if User::ROLES.include? role
+                 User.try role
+               else
+                 User.staff
+               end.page params[:page]
     end
 
     def show
@@ -56,7 +36,7 @@ module Haven
     end
 
     def authenticate_admin
-      raise ActionController::RoutingError.new('Not Found') unless current_user.try(:role) == "admin"
+      raise ActionController::RoutingError.new('Not Found') unless current_user.role? :admin
     end
 
   end

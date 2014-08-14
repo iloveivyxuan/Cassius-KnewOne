@@ -23,7 +23,7 @@ section.article
 
   - post.special_subjects.each do |s|
     article.article_thumb_special id="#subject_#{s.id.to_s}"
-      a name="subject_#{s.id.to_s}"
+      a.article_thumb_anchor name="subject_#{s.id.to_s}"
       header
         = link_to s.thing, target: "_blank" do
           = image_tag s.thing.cover.url(:small), class: "image"

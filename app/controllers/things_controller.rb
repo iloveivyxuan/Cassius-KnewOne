@@ -15,12 +15,6 @@ class ThingsController < ApplicationController
       @things = Thing.published
     end
 
-    if params[:stage].present?
-      @things = @things.where(stage: params[:stage])
-    end
-
-    @things = @things.self_run if params[:self_run].present?
-
     if params[:sort_by] == 'fanciers_count'
       @things = @things.desc(:fanciers_count)
     else
@@ -34,6 +28,19 @@ class ThingsController < ApplicationController
       format.atom
       format.json
     end
+  end
+
+  def shop
+    params[:order_by] ||= "new"
+    @sort = case params[:order_by]
+            when 'recommended' then {priority: :desc}
+            when 'hits' then {fanciers_count: :desc}
+            when 'news' then {created_at: :desc}
+            when 'price_h_l' then {price: :desc}
+            when 'price_l_h' then {price: :asc}
+            else {priority: :desc}
+            end
+    @things = Thing.published.self_run.order_by(@sort).page(params[:page]).per(24)
   end
 
   def random
@@ -164,14 +171,14 @@ class ThingsController < ApplicationController
     if @result
       @result[:title] ||= "请在这里输入产品名称"
       @thing = Thing.new official_site: @result[:url],
-                         title: @result[:title],
-                         content: @result[:content]
+      title: @result[:title],
+      content: @result[:content]
       title_regexp = /#{Regexp.escape(@result[:title])}/i
       @similar = Thing.published.or({slug: title_regexp},
                                     {title: title_regexp},
                                     {subtitle: title_regexp},
                                     {official_site: params[:url]}
-      ).desc(:fanciers_count).first
+                                    ).desc(:fanciers_count).first
     end
 
     respond_to do |format|
@@ -183,6 +190,7 @@ class ThingsController < ApplicationController
     return render 'things/create_by_extractor_without_photos' if params[:images].nil? || params[:images].empty?
 
     photos = params[:images].map do |i|
+      i.sub!(/!\w+$/, '')
       Photo.create! remote_image_url: i, user: current_user
     end
 
@@ -200,12 +208,28 @@ class ThingsController < ApplicationController
     end
   end
 
+  def coupon
+    thing = Thing.find(params[:id])
+    if thing.id.to_s == "510689ef7373c2f82b000003" # dyson-air-multiplier
+      @rebate_coupon = ThingRebateCoupon.find_or_create_by(
+                                                           name: "Dyson Air Multiplier 200 元优惠券",
+                                                           thing_id: thing.id.to_s,
+                                                           price: 200.0)
+      coupon_code = @rebate_coupon.generate_code!(
+                                                  user: current_user,
+                                                  expires_at: 3.months.since.to_date,
+                                                  admin_note: "通过领取 Dyson Air Multiplier 优惠券获得",
+                                                  generator_id: current_user.id.to_s)
+    end
+    redirect_to :back
+  end
+
   private
 
   def thing_params
     params.require(:thing)
-    .permit(:title, :subtitle, :official_site,
-            :content, :description, photo_ids: [])
+      .permit(:title, :subtitle, :official_site, :categories_text,
+              :content, :description, photo_ids: [])
   end
 
   def set_categories

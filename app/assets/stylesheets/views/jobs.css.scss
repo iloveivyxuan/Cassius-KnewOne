@@ -24,7 +24,13 @@ html.home_jobs {
       padding: 1em 1.5em 50px;
 
       > header {
+        border-bottom: $border-default;
         text-align: center;
+
+        @media (min-width: $screen-md-min) {
+          border-bottom: none;
+        }
+
         h1 {
           color: $navbar-default-brand-color;
           font-size: $font-size-h2;
@@ -70,6 +76,7 @@ html.home_jobs {
     @media screen and (min-width: $screen-sm-min) {
       @include clearfix;
 
+      padding: 5px 15px;
       text-align: left;
     }
 

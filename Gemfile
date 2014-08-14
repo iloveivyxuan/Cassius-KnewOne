@@ -77,7 +77,6 @@ gem 'doorkeeper', github: 'doorkeeper-gem/doorkeeper'
 # monitoring
 gem 'newrelic_rpm'
 gem 'airbrake'
-gem 'intercom-rails'
 
 # sitemap
 gem 'sitemap_generator'
@@ -85,6 +84,7 @@ gem 'sitemap_generator'
 # misc
 gem 'nokogiri'
 gem 'browser'
+gem 'dkim'
 
 # cache
 gem 'redis-rails'
@@ -102,6 +102,7 @@ group :development do
   gem 'thin'
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'meta_request'
 
   # deploy
   gem 'capistrano', '~> 3.1', require: false

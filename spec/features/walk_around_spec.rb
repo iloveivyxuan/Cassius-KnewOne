@@ -104,7 +104,6 @@ feature 'Walk around (Smoke test)', slow: true do
      edit_thing_story_path(thing, story),
      thing_story_path(thing, story),
      # categories
-     all_categories_path,
      categories_path,
      # groups
      all_groups_path,

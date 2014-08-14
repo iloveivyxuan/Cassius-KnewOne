@@ -1,5 +1,5 @@
 class Feeling < Post
-  include Rateable
+  include Ratable
   include Atable
   include Aftermath
 
@@ -7,7 +7,7 @@ class Feeling < Post
 
   validates :content, presence: true, length: { maximum: 140 }
 
-  belongs_to :thing, inverse_of: :single_feelings, counter_cache: true, index: true
+  belongs_to :thing, inverse_of: :single_feelings, index: true
 
   def photos
     Photo.find_with_order photo_ids

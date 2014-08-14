@@ -1,12 +1,16 @@
-$('#dialog_content').val("");
-$('#new_private_message_modal').modal('hide');
+<% if @message %>
+  $('#dialog_content').val("");
+  $('#new_private_message_modal').modal('hide');
 
-Making.ShowMessageOnTop('发送成功！');
+  Making.ShowMessageOnTop('发送成功！');
 
-if ($('html').is('.dialogs_index')) {
-  window.location.reload();
-}
+  if ($('html').is('.dialogs_index')) {
+    window.location.reload();
+  }
 
-if ($('html').is('.dialogs_show')) {
-  $('.private_message:first-of-type').before("<%=j render('private_message', message: @message) %>");
-}
+  if ($('html').is('.dialogs_show')) {
+    $('.private_message:first-of-type').before("<%=j render('private_message', message: @message) %>");
+  }
+<% else %>
+  Making.ShowMessageOnTop('发送失败，请检查接收者的昵称是否填写正确', 'danger');
+<% end %>

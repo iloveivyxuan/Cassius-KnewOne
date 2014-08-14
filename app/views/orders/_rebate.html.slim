@@ -4,4 +4,9 @@ li.rebate
     .note= rebate.note
   .price
     i.fa.fa-yen
-    = rebate.price
+    - dyson = @order.order_items.where(thing: Thing.find("510689ef7373c2f82b000003"))
+    - if dyson.blank?
+      = rebate.price
+    - else
+      - quantity = dyson.map(&:quantity).reduce(&:+)
+      = rebate.price * quantity

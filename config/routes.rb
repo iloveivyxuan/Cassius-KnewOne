@@ -8,8 +8,10 @@ Making::Application.routes.draw do
   use_doorkeeper
 
   root to: 'home#index'
-
   get 'page/:page', to: "home#index"
+  get 'following', to: "home#index", defaults: {source: "following"}
+  get 'recommended', to: "home#index", defaults: {source: "recommended"}
+
   get 'search', to: 'home#search', as: :search
   get 'hits/(:page)', to: 'home#hits', as: :hits
   get 'welcome', to: 'home#welcome'
@@ -19,6 +21,9 @@ Making::Application.routes.draw do
   get "404", to: "home#not_found"
   get "403", to: "home#forbidden"
   get "500", to: "home#error"
+  get 'blocked', to: 'home#blocked'
+
+  get 'shop(/:order_by)', to: 'things#shop', as: :shop
 
   get 'help', to: 'help#index'
   %w(how_to_share how_to_review terms knewone_for_user knewone_for_startup).each do |a|
@@ -123,6 +128,7 @@ Making::Application.routes.draw do
       get 'related'
       get 'groups'
       post 'group_fancy'
+      get 'coupon'
     end
 
     resources :reviews do
@@ -161,8 +167,8 @@ Making::Application.routes.draw do
   end
 
   resources :categories, only: [:index] do
-    collection do
-      get 'all'
+    member do
+      post 'subscribe_toggle', to: :subscribe_toggle
     end
   end
 
@@ -237,6 +243,8 @@ Making::Application.routes.draw do
       end
     end
 
+    resources :stats, only: [:index]
+
     resources :thing_rebate_coupons, only: [:show, :index, :new, :create, :update] do
       member do
         post 'generate_code'
@@ -269,7 +277,12 @@ Making::Application.routes.draw do
 
     resources :entries, except: [:show]
 
-    resources :users, only: [:index, :update, :show]
+    resources :users, only: [:index, :update, :show] do
+      collection do
+        get 'batch_query'
+        post 'batch_show'
+      end
+    end
 
     resources :reviews, only: [:index]
 

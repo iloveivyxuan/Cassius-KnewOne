@@ -1,19 +1,23 @@
 - review_presenter = present review
 
-.feed-review
-  = link_to review_presenter.path
-    header
+article.feed-review
+  header.feed-review-title
+    = link_to review_presenter.path do
       h4= review_presenter.title
       = review_presenter.score
 
-  p.feed-review-summary= review_presenter.summary(120)
+  section.feed-review-summary
+    p= review_presenter.summary(120)
 
-  .feed-counts
-    - if review_presenter.has_lover?
-      = link_to review_presenter.path
-        i.fa.fa-thumbs-o-up
-        span= review.lovers_count
-    - if review_presenter.has_comment?
-      = link_to review_presenter.path
-        i.fa.fa-comment-o
-        span= review.comments.count
+  footer.feed-review-info
+    .creator
+      = review_presenter.author
+    .interactions
+      - if review_presenter.has_lover?
+        = link_to review_presenter.path
+          i.fa.fa-thumbs-o-up
+          span= review.lovers_count
+      - if review_presenter.has_comment?
+        = link_to review_presenter.path
+          i.fa.fa-comment-o
+          span= review.comments.count

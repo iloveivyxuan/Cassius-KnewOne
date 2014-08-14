@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   before_action :have_items_in_cart, only: [:new, :create]
   load_and_authorize_resource except: [:index, :new, :create]
   layout 'settings', only: [:index, :show]
+  skip_before_action :require_not_blocked
 
   def index
     @orders = current_user.orders.page(params[:page]).per(3)
@@ -183,7 +184,7 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).
-        permit(:note, :address_id, :invoice_id, :auto_owning, :coupon_code_id, :use_balance, :use_sf,
+        permit(:note, :address_id, :invoice_id, :auto_owning, :coupon_code_id, :use_balance, :use_sf, :bong_delivery,
                address: [:province, :district, :street, :name, :phone, :zip_code, :default])
   end
 end
