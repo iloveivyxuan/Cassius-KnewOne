@@ -72,7 +72,7 @@ html.thing_lists_show {
         border-top: 1px solid $gray-lighter;
       }
 
-      .thing-list {
+      > section {
         margin: 0 20px;
         padding: 20px 0;
         border-top: 1px solid $gray-lighter;
@@ -89,43 +89,45 @@ html.thing_lists_show {
         @include breakpoint(lg) {
           width: 23.5%;
         }
+      }
+    }
+  }
 
-        header {
-          img {
-            width: 50%;
-            &:only-child { width: 100%; }
-          }
+  .thing-list {
+    header {
+      img {
+        width: 50%;
+        &:only-child { width: 100%; }
+      }
 
-          h4 {
-            margin: 10px 0;
-            color: $black;
-          }
+      h4 {
+        margin: 10px 0;
+        color: $black;
+      }
+    }
+
+    footer {
+      position: relative;
+
+      .thing-list-timestamp {
+        color: $gray-light;
+
+        time {
+          margin-right: .5em;
         }
+      }
 
-        footer {
-          position: relative;
+      .thing-list-destroy {
+        margin-left: .5em;
+      }
 
-          .thing-list-timestamp {
-            color: $gray-light;
+      .thing-list-fanciers-count {
+        position: absolute;
+        top: 0;
+        right: 0;
 
-            time {
-              margin-right: .5em;
-            }
-          }
-
-          .thing-list-destroy {
-            margin-left: .5em;
-          }
-
-          .thing-list-fanciers-count {
-            position: absolute;
-            top: 0;
-            right: 0;
-
-            i {
-              color: #ff4c53;
-            }
-          }
+        i {
+          color: #ff4c53;
         }
       }
     }
