@@ -1,0 +1,16 @@
+section.thing-list-item
+  header
+    = render 'home/hot_thing', hot_thing: thing_list_item.thing
+
+  footer
+    .thing-list-item-description
+      - if thing_list_item.description.present?
+        i.fa.fa-quote-left
+        = thing_list_item.description.truncate(40)
+        i.fa.fa-quote-right
+      - else
+        | 暂时没有评论 :(
+
+    .thing-list-item-timestamp
+      = time_ago_tag(thing_list_item.created_at)
+      | 收藏

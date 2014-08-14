@@ -47,7 +47,8 @@ html.thing_lists_show {
           height: 60px;
         }
 
-        .user-name {
+        .user-name,
+        .thing-list-name {
           padding-top: 6px;
           font-size: 16px;
         }
@@ -66,7 +67,8 @@ html.thing_lists_show {
       }
     }
 
-    .thing-lists {
+    .thing-lists,
+    .thing-list-items {
       @include breakpoint(md) {
         padding-top: 10px;
         border-top: 1px solid $gray-lighter;
@@ -76,6 +78,8 @@ html.thing_lists_show {
         margin: 0 20px;
         padding: 20px 0;
         border-top: 1px solid $gray-lighter;
+
+        vertical-align: top;
 
         @include breakpoint(md) {
           display: inline-block;
@@ -129,6 +133,48 @@ html.thing_lists_show {
         i {
           color: #ff4c53;
         }
+      }
+    }
+  }
+
+  .thing-list-item {
+    article.thing {
+      .title {
+        font-size: 18px;
+      }
+
+      .subtitle,
+      .interactions {
+        display: none;
+      }
+
+      .fancy_button a {
+        right: 0;
+        bottom: -3.1em;
+      }
+
+      .content {
+        padding-left: 0;
+      }
+
+      .info {
+        padding: 0;
+      }
+    }
+
+    .thing-list-item-description {
+      margin: 16px 0;
+      color: $gray;
+
+      .fa-quote-left { margin-right: .5em; }
+      .fa-quote-right { margin-left: .5em; }
+    }
+
+    .thing-list-item-timestamp {
+      color: $gray-light;
+
+      time {
+        margin-right: .5em;
       }
     }
   }
