@@ -1,5 +1,6 @@
 class ThingListItem
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   belongs_to :thing
   embedded_in :thing_list
