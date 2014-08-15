@@ -41,6 +41,16 @@ class Activity
 
     reference_type, reference_id = self.reference_union.split('_')
     @_reference ||= with_deleted ? reference_type.constantize.unscoped.where(id: reference_id).first : reference_type.constantize.where(id: reference_id).first
+
+    unless @_reference
+      children = source.try(reference_type.underscore.pluralize)
+      if children
+        children = children.unscoped if with_deleted
+        @_reference ||= children.where(id: reference_id).first
+      end
+    end
+
+    @_reference
   end
 
   def reference=(record)

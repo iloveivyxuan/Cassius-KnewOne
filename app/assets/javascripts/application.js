@@ -3,6 +3,7 @@
 //= require bootstrap
 //= require underscore
 //= require backbone
+//= require backbone.marionette
 //= require jquery_extend
 //= require handlebars.runtime
 //= require jquery_nested_form
@@ -29,6 +30,8 @@
 //= require jquery.caret
 //= require jquery.atwho
 //= require lightbox
+//= require editable/bootstrap-editable
+//= require editable/rails
 //= require_tree ../templates
 //= require base
 //= require todo

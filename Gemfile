@@ -54,9 +54,11 @@ gem 'therubyracer'
 gem 'jquery-rails'
 gem 'coffee-rails'
 gem 'backbone-on-rails'
+gem 'marionette-rails'
 gem 'modernizr-rails'
 gem 'jquery-fileupload-rails'
 gem 'handlebars_assets'
+gem 'x-editable-rails'
 
 # stylesheets
 gem 'sass-rails', '~> 4.0.3' # Resolve dependency with sprocket

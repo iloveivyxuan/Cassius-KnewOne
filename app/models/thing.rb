@@ -54,7 +54,7 @@ class Thing < Post
   end
 
   include Fanciable
-  has_and_belongs_to_many :fanciers, class_name: "User", inverse_of: :fancies
+  fancied_as :fancies
 
   has_and_belongs_to_many :fancy_groups, class_name: "Group", inverse_of: :fancies
 
@@ -93,6 +93,16 @@ class Thing < Post
       Photo.find photo_ids.first
     rescue Mongoid::Errors::DocumentNotFound, Mongoid::Errors::InvalidFind
       Photo.new
+    end
+  end
+
+  def lists
+    ThingList.where('thing_list_items.thing_id' => id)
+  end
+
+  after_destroy do
+    lists.each do |list|
+      list.items.where(thing_id: id).destroy
     end
   end
 

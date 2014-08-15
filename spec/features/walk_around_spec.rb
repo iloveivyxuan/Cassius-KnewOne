@@ -11,6 +11,7 @@ feature 'Walk around (Smoke test)', slow: true do
   given!(:topic) { create(:topic, author: user, group: group) }
   given!(:notification) { create(:notification, receiver: user) }
   given!(:dialog) { create(:dialog, sender: user) }
+  given!(:thing_list) { create(:thing_list, user: user) }
   given!(:paths) do
     [
      root_path,
@@ -122,7 +123,11 @@ feature 'Walk around (Smoke test)', slow: true do
      dialogs_path,
      dialog_path(dialog),
      # rewards
-     rewards_path
+     rewards_path,
+     # thing lists
+     user_thing_lists_path(user),
+     thing_lists_path,
+     thing_list_path(thing_list)
     ]
   end
 

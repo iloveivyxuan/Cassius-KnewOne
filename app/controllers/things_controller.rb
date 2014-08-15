@@ -77,6 +77,7 @@ class ThingsController < ApplicationController
       format.html.mobile
       format.html.tablet { render layout: 'thing' }
       format.html.desktop { render layout: 'thing' }
+      format.json
     end
   end
 

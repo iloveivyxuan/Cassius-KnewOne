@@ -1,0 +1,99 @@
+html.thing_lists_index,
+html.thing_lists_show {
+  #wrapper > .container {
+    background: white;
+    padding: 0;
+
+    @include breakpoint(md) {
+      padding: 20px 40px;
+      border-radius: 10px;
+    }
+
+    > nav {
+      padding: 10px 20px;
+      background: $gray-lighter;
+
+      @include breakpoint(md) {
+        padding: 0;
+        padding-bottom: 20px;
+        border-bottom: 1px solid $gray-lighter;
+        background: white;
+      }
+
+      a {
+        color: $black;
+      }
+    }
+
+    > header {
+      position: relative;
+      height: 70px;
+      margin: 20px 10px;
+      padding-left: 60px;
+
+      .info {
+        margin-left: 10px;
+
+        a {
+          color: $black;
+        }
+
+        img {
+          @extend .img-circle;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 60px;
+          height: 60px;
+        }
+
+        .user-name,
+        .thing-list-name {
+          padding-top: 6px;
+          font-size: 16px;
+        }
+
+        .stats {
+          margin-top: 8px;
+          color: $gray-light;
+          font-size: 14px;
+        }
+      }
+
+      .follow {
+        position: absolute;
+        top: 14px;
+        right: 0;
+      }
+    }
+
+    .thing-lists,
+    .thing-list-items {
+      @include breakpoint(md) {
+        padding-top: 10px;
+        border-top: 1px solid $gray-lighter;
+      }
+
+      > section {
+        margin: 0 20px;
+        padding: 20px 0;
+        border-top: 1px solid $gray-lighter;
+
+        vertical-align: top;
+
+        @include breakpoint(md) {
+          display: inline-block;
+          border-top: 0;
+
+          width: 32%;
+          margin: 0 0 0 2%;
+          &:first-child { margin-left: 0; }
+        }
+
+        @include breakpoint(lg) {
+          width: 23.5%;
+        }
+      }
+    }
+  }
+}
