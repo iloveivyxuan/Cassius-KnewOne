@@ -1,0 +1,8 @@
+- item = activity.reference
+- list = activity.source
+- thing = item.try(:thing)
+- if thing
+  | 将产品
+  = link_to thing.title, thing
+  | 加入了列表:
+  = link_to list.name, list
