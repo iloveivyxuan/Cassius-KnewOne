@@ -1,13 +1,14 @@
 class GroupsController < ApplicationController
   load_and_authorize_resource
+  before_action :forbidden_invisible, only: [:show]
 
   def index
-    @groups = Group.desc(:members_count).limit(10)
-    @topics = Topic.desc(:commented_at).page(params[:page]).per(20)
+    @groups = Group.visible.desc(:members_count).limit(10)
+    @topics = Topic.visible.desc(:commented_at).page(params[:page]).per(20)
   end
 
   def all
-    @groups = Group.desc(:members_count).page(params[:page]).per(24)
+    @groups = Group.visible.desc(:members_count).page(params[:page]).per(24)
   end
 
   def show
@@ -112,5 +113,14 @@ class GroupsController < ApplicationController
 
   def sign_invitation(group, user)
     Digest::MD5.hexdigest "#{group.id}#{Settings.invitation.secret}#{user.id}"
+  end
+
+  def forbidden_invisible
+    group = Group.find params[:id]
+    unless group.visible
+      if current_user.nil? || !group.members.where(user_id: current_user.id.to_s).exists?
+        raise ActionController::RoutingError.new('Not Found')
+      end
+    end
   end
 end

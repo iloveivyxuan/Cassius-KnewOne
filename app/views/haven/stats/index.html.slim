@@ -1,50 +1,8 @@
 - page_title '分析'
 
-= link_to "[昨天]", haven_stats_path(shortcut: "yesterday")
-= link_to "[上周]", haven_stats_path(shortcut: "last_week")
-= link_to "[上月]", haven_stats_path(shortcut: "last_month")
-
-= form_tag haven_stats_path, method: :get do
+= form_tag new_haven_stat_path, method: :get do
   | 开始日期
-  = date_select("date", "from", start_year: 1995, default: @date_from)
+  = date_select("date", "from", start_year: 1995, default: 1.day.ago)
   | 结束日期
-  = date_select("date", "to", start_year: 1995, default: @date_to)
-  = submit_tag "给我数据么么哒！"
-
-| 新产品数：
-= @new_things
-
-br
-
-| 新评测数：
-= @new_reviews
-
-br
-
-| 新短评数：
-= @new_feelings
-
-br
-
-| 新用户数：
-= @new_users
-
-br
-
-| 用户登录数：
-= @login_times
-
-br
-
-| 登录用户数：
-= @login_users
-
-br
-
-| 评论数（评测）：
-= @review_comments
-
-br
-
-| 评论数（短评）：
-= @feeling_comments
+  = date_select("date", "to", start_year: 1995, default: 1.day.ago)
+  = submit_tag "我要看数据！"
