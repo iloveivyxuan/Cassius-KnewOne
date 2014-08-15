@@ -453,6 +453,53 @@ div#thing_title {
       margin: 1em 2%;
     }
   }
+
+  .related-lists {
+    margin-top: 1em;
+    padding-top: 1em;
+    border-top: $border-default;
+
+    h4 {
+      margin: 1em 0;
+      color: $text-muted;
+    }
+
+    .thing-lists {
+      li {
+        margin-top: 1em;
+      }
+
+      .thing-list-title,
+      .thing-list-creator {
+        display: inline-block;
+        margin: 0;
+        @include text-overflow;
+      }
+
+      .thing-list-title {
+        width: 55%;
+        font-size: 16px;
+        color: $black;
+      }
+
+      .thing-list-creator {
+        width: 45%;
+        text-align: right;
+        font-size: 14px;
+        color: $gray-light;
+      }
+
+      .thing-list-items {
+        > img {
+          display: inline-block;
+          width: 22%;
+
+          margin-left: 4%;
+          &:first-child { margin-left: 0; }
+        }
+      }
+    }
+  }
 }
 
 #thing_actions_compact {

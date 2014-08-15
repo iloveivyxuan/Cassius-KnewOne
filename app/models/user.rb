@@ -268,7 +268,6 @@ class User
   end
 
   ## Things
-  has_and_belongs_to_many :fancies, class_name: "Thing", inverse_of: :fanciers
   has_and_belongs_to_many :owns, class_name: "Thing", inverse_of: :owners
 
   def makings
@@ -331,6 +330,9 @@ class User
 
   # Draft
   has_many :drafts
+
+  # ThingList
+  has_many :thing_lists
 
   def balance
     BigDecimal.new(self.balance_cents) / 100

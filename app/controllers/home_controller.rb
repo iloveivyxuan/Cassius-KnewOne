@@ -11,7 +11,8 @@ class HomeController < ApplicationController
         session[:source] = @source
         activities = current_user.relate_activities(%i(new_thing own_thing fancy_thing
                                                        new_review love_review
-                                                       new_feeling))
+                                                       new_feeling
+                                                       add_to_list))
         activities = activities.page(params[:page]).per(30)
         @feeds = HomeFeed.create_from_activities activities
         @pager = activities

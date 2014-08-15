@@ -28,6 +28,7 @@ class FeedPresenter < ApplicationPresenter
         when :new_review  then '发表'
         when :love_review then '赞'
         when :new_feeling then '发表了短评'
+        when :add_to_list then '加入列表'
         end
   end
 

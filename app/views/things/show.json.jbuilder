@@ -1,3 +1,4 @@
+json.id @thing.id.to_s
 json.title @thing.title
 json.subtitle @thing.subtitle
 json.url thing_url(@thing)
