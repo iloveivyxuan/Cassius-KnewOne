@@ -66,7 +66,7 @@
   .thing-list-item-description {
     @include text-overflow;
 
-    margin: 16px 0;
+    margin-top: 16px;
     color: $gray;
 
     .fa-quote-left { margin-right: .5em; }
@@ -74,6 +74,8 @@
   }
 
   .thing-list-item-timestamp {
+    display: inline-block;
+    margin-top: 16px;
     color: $gray-light;
 
     time {
@@ -82,6 +84,8 @@
   }
 
   .thing-list-item-destroy {
+    display: inline-block;
+    margin-top: 16px;
     margin-left: .5em;
   }
 }

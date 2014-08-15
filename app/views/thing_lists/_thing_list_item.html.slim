@@ -3,6 +3,15 @@ section.thing-list-item id="thing-list-item-#{thing_list_item.id}"
     = render 'home/hot_thing', hot_thing: thing_list_item.thing
 
   footer
+    .thing-list-item-timestamp
+      = time_ago_tag(thing_list_item.created_at)
+      | 收藏
+
+    - if can?(:destroy, thing_list_item)
+      .thing-list-item-destroy
+        = link_to [thing_list_item.list, thing_list_item], method: :delete, remote: true, data: {confirm: '您确定要删除吗?'}
+          i.fa.fa-trash-o
+
     .thing-list-item-description
       - if thing_list_item.description.present?
         i.fa.fa-quote-left
@@ -10,12 +19,3 @@ section.thing-list-item id="thing-list-item-#{thing_list_item.id}"
         i.fa.fa-quote-right
       - else
         | 暂时没有评论 :(
-
-    span.thing-list-item-timestamp
-      = time_ago_tag(thing_list_item.created_at)
-      | 收藏
-
-    - if can?(:destroy, thing_list_item)
-      span.thing-list-item-destroy
-        = link_to [thing_list_item.list, thing_list_item], method: :delete, remote: true, data: {confirm: '您确定要删除吗?'}
-          i.fa.fa-trash-o
