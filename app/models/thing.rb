@@ -58,8 +58,6 @@ class Thing < Post
 
   has_and_belongs_to_many :fancy_groups, class_name: "Group", inverse_of: :fancies
 
-
-
   has_many :feelings, dependent: :destroy
   field :feelings_count, type: Integer, default: 0
 
