@@ -52,6 +52,6 @@ every 10.minutes do
   runner 'Review.update_all_heat_since(20.days.ago)'
 end
 
-every 1.day, :at => '1:00 pm' do
+every 1.day, :at => '1:30 am' do
   runner 'Stat.generate_stats'
 end
