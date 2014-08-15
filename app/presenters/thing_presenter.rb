@@ -230,10 +230,10 @@ class ThingPresenter < PostPresenter
 
   def share_content
     if thing.author == current_user
-      "我在#{share_topic} 分享了一个酷产品: #{title} ! "
+      "#晒牛玩# 我在高大上的 #{share_topic} 分享了一个新奇酷产品 #{title}："
     else
-      "我在#{share_topic} 发现了一个酷产品: 由 #{share_author_name} 分享的 #{title} ! "
-    end + thing_url(thing, refer: 'weibo')
+      "刚刚去逛了下 #{share_topic} 发现了 #{share_author_name} 分享的新奇酷 #{title}："
+    end + thing_url(thing, refer: :share)
   end
 
   def share_pic(size)
