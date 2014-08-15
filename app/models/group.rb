@@ -16,6 +16,9 @@ class Group
   has_many :topics, dependent: :destroy
   field :topics_count, type: Integer, default: 0
 
+  field :visible, type: Boolean, default: true
+  scope :visible, -> { where visible: true }
+
   embeds_many :members do
     def add(user, role = :member)
       unless @base.has_member? user
