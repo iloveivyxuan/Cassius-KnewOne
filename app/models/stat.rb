@@ -69,11 +69,14 @@ class Stat
 
   field :note, type: String
 
-  def self.generate_stats(stat, date_from, date_to)
-    @@date_from = date_from
-    @@date_to = date_to
+  def self.generate_stats
+    @@date_from = @@date_to = 1.day.ago.to_date
+    stat = Stat.new(date_from: @@date_from, date_to: @@date_to)
     DATAS.keys.each { |key| stat[key] = stat.send(key) if stat.respond_to? key }
-    stat
+    group = Group.find("53ed7b6b31302d5e7b9d0900")
+    stat.save
+    user = User.find("526fd363b10be561d300001d")
+    topic = stat.to_topic(user, group)
   end
 
   def to_topic(user, group)
