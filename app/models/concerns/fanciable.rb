@@ -40,6 +40,6 @@ module Fanciable
   end
 
   def fancied?(user)
-    fanciers.include? user
+    user && fanciers.include?(user)
   end
 end
