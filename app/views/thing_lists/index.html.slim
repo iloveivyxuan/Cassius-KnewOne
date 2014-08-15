@@ -18,5 +18,5 @@ header
       = render 'users/follow_btn', user: @user
 
 section.thing-lists
-  - list = (@thing_lists + @user.fancied_thing_lists).sort_by(&:updated_at).reverse
+  - list = (@thing_lists + @user.fancied_thing_lists).uniq.sort_by(&:updated_at).reverse
   = render partial: 'thing_list', collection: list, locals: {user: @user}
