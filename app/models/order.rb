@@ -403,7 +403,7 @@ class Order
   end
 
   def has_pre_order_items?
-    order_items.all? {|i| i.kind.stage.to_s == "pre_order"}
+    order_items.any? {|i| i.kind.stage == :pre_order}
   end
 
   def all_products_have_stock?
