@@ -8,7 +8,7 @@
     h4 收藏该产品的列表
 
     ul.thing-lists
-      - thing.lists.desc(:lovers_count).limit(3).each do |list|
+      - thing.lists.desc(:fanciers_count).limit(3).each do |list|
         li
           = link_to list
             h5.thing-list-title= "#{list.name} (#{list.items.size})"
