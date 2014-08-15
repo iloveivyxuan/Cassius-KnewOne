@@ -1,8 +1,0 @@
-- page_title '分析'
-
-= form_tag new_haven_stat_path, method: :get do
-  | 开始日期
-  = date_select("date", "from", start_year: 1995, default: 1.day.ago)
-  | 结束日期
-  = date_select("date", "to", start_year: 1995, default: 1.day.ago)
-  = submit_tag "我要看数据！"
