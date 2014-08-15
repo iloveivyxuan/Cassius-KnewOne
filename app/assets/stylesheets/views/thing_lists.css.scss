@@ -1,19 +1,20 @@
 html.thing_lists_index,
 html.thing_lists_show {
-  #wrapper > .container {
+  #wrapper {
     background: white;
-    padding: 0;
+    padding: 0 10px;
 
-    @include breakpoint(md) {
+    @include breakpoint(sm) {
       padding: 20px 40px;
       border-radius: 10px;
     }
 
     > nav {
+      margin: 0 -10px;
       padding: 10px 20px;
       background: $gray-lighter;
 
-      @include breakpoint(md) {
+      @include breakpoint(sm) {
         padding: 0;
         padding-bottom: 20px;
         border-bottom: 1px solid $gray-lighter;
@@ -69,30 +70,20 @@ html.thing_lists_show {
 
     .thing-lists,
     .thing-list-items {
-      @include breakpoint(md) {
+      @include make-row;
+
+      @include breakpoint(sm) {
         padding-top: 10px;
         border-top: 1px solid $gray-lighter;
       }
 
       > section {
-        margin: 0 20px;
-        padding: 20px 0;
-        border-top: 1px solid $gray-lighter;
+        @include make-xs-column(12);
+        @include make-sm-column(6);
+        @include make-md-column(4);
+        @include make-lg-column(3);
 
-        vertical-align: top;
-
-        @include breakpoint(md) {
-          display: inline-block;
-          border-top: 0;
-
-          width: 32%;
-          margin: 0 0 0 2%;
-          &:first-child { margin-left: 0; }
-        }
-
-        @include breakpoint(lg) {
-          width: 23.5%;
-        }
+        margin: 20px 0;
       }
     }
   }
