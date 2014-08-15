@@ -7,6 +7,8 @@ class ThingListItemsController < ApplicationController
   def create
     @thing_list_item.save
     respond_with @thing_list, @thing_list_item
+
+    current_user.log_activity(:add_to_list, @thing_list_item, source: @thing_list)
   end
 
   def update
