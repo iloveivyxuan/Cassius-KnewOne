@@ -2,7 +2,7 @@ class ThingListItemsController < ApplicationController
   load_and_authorize_resource :thing_list
   load_and_authorize_resource :thing_list_item, through: :thing_list
 
-  respond_to :json
+  respond_to :json, :js
 
   def create
     @thing_list_item.save
