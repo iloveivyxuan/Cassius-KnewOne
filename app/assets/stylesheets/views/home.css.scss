@@ -275,6 +275,11 @@ html.home {
             vertical-align: bottom;
             color: $gray;
           }
+
+          > a {
+            margin: 0 .2em;
+            color: $link-color;
+          }
         }
 
         .feed-user {
@@ -380,4 +385,3 @@ html.home {
     display: none;
   }
 }
-
