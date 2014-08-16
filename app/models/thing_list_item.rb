@@ -17,6 +17,10 @@ class ThingListItem
     self.order = self.list.items.max(:order).to_i + 1
   end
 
+  before_save do
+    self.description = self.description.truncate(70)
+  end
+
   after_create do
     self.thing.fancy(list.user)
   end
