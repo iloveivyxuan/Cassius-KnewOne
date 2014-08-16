@@ -24,4 +24,14 @@ section.thing-list-items
 
 - content_for :script
   javascript:
-    $('.editable').editable()
+    $('.thing-list-name .editable').editable({
+      unsavedclass: null
+    })
+
+    $('.thing-list-item-description .editable').editable({
+      emptytext: '说点什么吧……',
+      unsavedclass: null,
+      success: function (response, newValue) {
+        $(this).siblings('.fa')[newValue.trim() ? 'removeClass' : 'addClass']('hidden')
+      }
+    })
