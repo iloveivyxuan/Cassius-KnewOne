@@ -49,6 +49,10 @@
   }
 }
 
+@mixin make-inline-block-column {
+  float: none !important;
+  display: inline-block;
+}
 
 // UI Component
 // -----------------------------------------------------------------------------
