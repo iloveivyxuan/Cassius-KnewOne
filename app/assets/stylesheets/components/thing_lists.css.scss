@@ -64,8 +64,6 @@
   }
 
   .thing-list-item-description {
-    @include text-overflow;
-
     margin-top: 16px;
     color: $gray;
 

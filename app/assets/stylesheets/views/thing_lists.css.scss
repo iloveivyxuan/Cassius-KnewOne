@@ -83,6 +83,9 @@ html.thing_lists_show {
         @include make-md-column(4);
         @include make-lg-column(3);
 
+        @include make-inline-block-column;
+        vertical-align: top;
+
         margin: 20px 0;
       }
     }
