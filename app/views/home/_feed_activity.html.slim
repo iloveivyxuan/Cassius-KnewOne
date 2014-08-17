@@ -34,3 +34,10 @@ li.feed-activity
               = image_tag photo.url(:small), alt: photo.name
       section.comments_wrap
         = render 'shared/comments', post: feeling, id: "feeling_#{feeling.id}_comments", auth: true
+
+  - if activity.type == :add_to_list && activity.reference.description.present?
+    .feed-thing-list
+      p
+        i.fa.fa-quote-left
+        = activity.reference.description
+        i.fa.fa-quote-right
