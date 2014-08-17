@@ -61,6 +61,7 @@ feature 'Walk around (Smoke test)', slow: true do
      # users
      fancies_user_path(user),
      owns_user_path(user),
+     lists_user_path(user),
      reviews_user_path(user),
      feelings_user_path(user),
      things_user_path(user),
@@ -127,8 +128,6 @@ feature 'Walk around (Smoke test)', slow: true do
      # rewards
      rewards_path,
      # thing lists
-     user_thing_lists_path(user),
-     thing_lists_path,
      thing_list_path(thing_list)
     ]
   end
