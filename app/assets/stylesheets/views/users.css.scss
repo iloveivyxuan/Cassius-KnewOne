@@ -1,6 +1,7 @@
 html.users_show,
 html.users_fancies,
 html.users_owns,
+html.users_lists,
 html.users_reviews,
 html.users_feelings,
 html.users_things,
@@ -75,6 +76,8 @@ html.users_activities {
 
     .thing-lists {
       > .thing-list {
+        padding: 1em;
+
         @media (min-width: $screen-sm-min) {
           @include make-sm-column(4);
         }
