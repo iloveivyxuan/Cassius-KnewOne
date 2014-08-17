@@ -11,6 +11,8 @@ header#header role="banner"
     #nav_main.collapse.navbar-collapse
       ul.nav.navbar-nav#nav_primary
         li
+          = link_to "精选", hits_path
+        li
           = link_to "商店", shop_path
         li
           = link_to "发现", explore_path
@@ -18,6 +20,7 @@ header#header role="banner"
           = link_to "小组", groups_path
         li
           = link_to "客服", "#olark_chat", data: {hint: "fa-comment", url: asset_path('olark.js')}
+
         li#nav_publish
           - if user_signed_in?
             - data = {toggle: "modal", target: "#new-thing-from-url-modal"}
