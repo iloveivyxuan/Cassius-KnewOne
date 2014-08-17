@@ -24,7 +24,7 @@ class HomeController < ApplicationController
           things = Thing.published.where(:priority.gte => 0).desc(:created_at)
         end
         things = things.page(params[:page]).per(30)
-        reviews = Review.hot.page(params[:page]).per(5)
+        reviews = []
         @feeds = HomeFeed.create_from_things_and_reviews(things, reviews)
         @pager = things
       end
