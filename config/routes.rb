@@ -88,8 +88,6 @@ Making::Application.routes.draw do
       delete 'followings', to: :unfollow
       get 'profile'
     end
-
-    resources :thing_lists, path: 'lists', only: [:index]
   end
 
   resources :thing_lists, path: 'lists', except: [:new, :edit] do
