@@ -255,6 +255,8 @@ class Thing < Post
   include Rankable
 
   def calculate_heat
+    return -1 if priority < 0
+
     (1 +
      (priority || 0) +
      50 * reviews_count +
