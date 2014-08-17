@@ -10,7 +10,7 @@ Making::Application.routes.draw do
   root to: 'home#index'
   get 'page/:page', to: "home#index"
   get 'following', to: "home#index", defaults: {source: "following"}
-  get 'recommended', to: "home#index", defaults: {source: "recommended"}
+  get 'latest', to: "home#index", defaults: {source: "latest"}
 
   get 'search', to: 'home#search', as: :search
   get 'hits/(:page)', to: 'home#hits', as: :hits

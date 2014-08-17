@@ -3,8 +3,8 @@
 .container
   nav#feeds_nav
     ul.nav
-      li class=("active" if @source == "recommended")
-        = link_to "最新产品", recommended_path
+      li class=("active" if @source == "latest")
+        = link_to "最新产品", latest_path
       - if current_user.followings_count > 0
         li class=("active" if @source == "following")
           = link_to "我的关注", following_path
