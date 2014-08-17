@@ -334,6 +334,10 @@ class User
   # ThingList
   has_many :thing_lists
 
+  def related_thing_lists
+    (thing_lists + fancied_thing_lists).uniq
+  end
+
   def balance
     BigDecimal.new(self.balance_cents) / 100
   end
