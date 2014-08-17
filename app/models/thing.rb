@@ -255,10 +255,12 @@ class Thing < Post
   include Rankable
 
   def calculate_heat
+    priority ||= 0
+
     return -1 if priority < 0
 
     (1 +
-     (priority || 0) +
+     priority +
      50 * reviews_count +
      5 * feelings_count +
      fancier_ids.count +
