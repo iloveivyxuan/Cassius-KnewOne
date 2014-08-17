@@ -72,6 +72,14 @@ html.users_activities {
         }
       }
     }
+
+    .thing-lists {
+      > .thing-list {
+        @media (min-width: $screen-sm-min) {
+          @include make-sm-column(4);
+        }
+      }
+    }
   }
 
   .nav_primary {

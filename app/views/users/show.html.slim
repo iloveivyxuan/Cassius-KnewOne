@@ -31,6 +31,16 @@
     .panel-body
       ul.things= render @fancies, size: :normal, img_lazy: false
 
+- if @lists.any?
+  section.panel.panel_compact.hidden-xs
+    header.panel-heading
+      h3.panel-title
+        i.fa.fa-list
+        | 列表
+      = link_to_with_icon '', 'fa fa-chevron-right fa_alone', lists_user_path(@user), class: 'more', title: '更多'
+    .panel-body.thing-lists
+      = render @lists, user: @user
+
 - if @feelings.any?
   section.panel.panel_compact.hidden-xs
     header.panel-heading
