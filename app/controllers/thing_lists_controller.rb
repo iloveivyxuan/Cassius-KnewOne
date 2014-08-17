@@ -1,8 +1,13 @@
 class ThingListsController < ApplicationController
-  load_and_authorize_resource :user
-  load_and_authorize_resource :thing_list, through: :user, shallow: true
+  prepend_before_action :require_signed_in, only: :index
+  load_and_authorize_resource except: :index
 
   respond_to :html, :json, :js
+
+  def index
+    @thing_lists = current_user.thing_lists
+    respond_with @thing_lists
+  end
 
   def show
     respond_with @thing_list
