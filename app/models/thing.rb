@@ -255,7 +255,7 @@ class Thing < Post
   include Rankable
 
   def calculate_heat
-    priority ||= 0
+    self.priority ||= 0
 
     return -1 if priority < 0
 
