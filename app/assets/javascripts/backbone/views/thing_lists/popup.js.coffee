@@ -49,8 +49,7 @@ class Making.Views.ThingListsPopup extends Backbone.Marionette.CompositeView
     @collection.fetch({
       reset: true
       success: => @model.get('categories').forEach((name) =>
-        list = @collection.findWhere({name}) || @collection.unshift({name})
-        list.set('selected', true)
+        @collection.findWhere({name}) || @collection.unshift({name})
       )
     })
     @_changedLists = {}
