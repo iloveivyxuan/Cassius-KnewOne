@@ -33,7 +33,7 @@ class Making.Views.ThingListsPopup extends Backbone.Marionette.CompositeView
 
   collectionEvents: {
     reset: 'initSelected'
-    'change:selected': 'toggleSelected'
+    'change:selected': 'addToChangedLists'
   }
 
   childView: ThingListView
@@ -68,16 +68,9 @@ class Making.Views.ThingListsPopup extends Backbone.Marionette.CompositeView
     name = @ui.name.val().trim()
     return unless name
 
-    list = @collection.findWhere({name})
-    if list
-      list.set('selected', true)
-      @collection.sort()
-    else
-      @collection.create({name}, {wait: true})
-      @listenToOnce(@collection, 'sync', (list) ->
-        list.set('selected', true)
-        @collection.sort()
-      )
+    list = @collection.findWhere({name}) || @collection.add({name}, {at: 0})
+    list.set('selected', true)
+    @addToChangedLists(list)
 
     @ui.name.val('')
 
@@ -94,12 +87,22 @@ class Making.Views.ThingListsPopup extends Backbone.Marionette.CompositeView
 
       item = items.findWhere({thing_id})
 
+      createItem = -> items.create({thing_id, description})
+
+      if list.isNew()
+        if list.get('selected')
+          list.save(null, {success: ->
+            items.url = "#{list.url()}/items"
+            items.create({thing_id, description})
+          })
+        return
+
       return item?.destroy() unless list.get('selected')
 
       if item
         item.save({description}) if description
       else
-        items.create({thing_id, description})
+        createItem()
     )
 
     @$el.one('hidden.bs.modal', ->
@@ -108,5 +111,5 @@ class Making.Views.ThingListsPopup extends Backbone.Marionette.CompositeView
 
     @$el.modal('hide')
 
-  toggleSelected: (list) ->
+  addToChangedLists: (list) ->
     @_changedLists[list.cid] = list
