@@ -70,8 +70,6 @@ class HomeController < ApplicationController
 
   def welcome
     @friends = current_user.recommend_users || []
-    @recommend_users = User.active_users(42) - @friends
-    @things = Thing.published.prior.limit(24)
   end
 
   def error

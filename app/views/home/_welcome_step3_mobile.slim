@@ -1,0 +1,33 @@
+- has_weibo = @friends.any?
+
+section.panel
+  header.panel-heading
+    h2.panel-title
+      | 绑定账号
+  .panel-body
+    .friendships.panel-group#friendship
+      .friendship.panel
+        - if has_weibo
+          = link_to_with_icon '绑定新浪微博', 'fa fa-weibo', "#friendship-weibo", class: 'friendship-button btn-weibo', data: {toggle: "collapse", parent: "#friendship"}
+          .box.collapse#friendship-weibo
+            header.clearfix
+              button.btn-weibo.pull-left type="button" disabled="true"
+                i.fa.fa-weibo
+                | 已绑定新浪微博
+              button.btn-inverse-blue.pull-right type="button"
+                i.fa.fa-plus
+                | 关注所有
+            section
+              ul.user_list = render @friends
+            footer
+              button.btn-inverse-blue.btn-block type="button"
+                i.fa.fa-refresh
+                | 换一组好友
+        - else
+          = link_to_with_icon '绑定新浪微博', 'fa fa-weibo', user_omniauth_authorize_path(:weibo, state: welcome_path(anchor: 'step3')), class: 'friendship-button btn-weibo'
+      .friendship.panel
+        = link_to_with_icon "绑定 Twitter（开发中）", "fa fa-twitter", "#friendship-twitter", class:"friendship-button btn-twitter", disable: true, data: {toggle: "collapse", parent: "#friendship"}
+      .friendship.panel
+        = link_to_with_icon "绑定 QQ（开发中）", "fa fa-qq", "#friendship-qq", class:"friendship-button btn-qq", disable: true, data: {toggle: "collapse", parent: "#friendship"}
+      .friendship.panel
+        = link_to_with_icon "绑定豆瓣（开发中）", "fa fa-douban", "#friendship-douban", class:"friendship-button btn-douban", disable: true, data: {toggle: "collapse", parent: "#friendship"}

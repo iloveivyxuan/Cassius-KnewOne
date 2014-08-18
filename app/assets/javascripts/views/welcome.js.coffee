@@ -19,21 +19,20 @@ do (exports = window.Making || {}) ->
         .on 'load', ->
           $window.trigger('hashchange')
 
-      if !$html.hasClass('mobile')
-        $tags.on 'click', 'a', (event) ->
-          $this = $(@)
+      $tags.on 'click', 'a', (event) ->
+        $this = $(@)
 
-          if !$this.hasClass('is-active')
-            keyword = $.trim($(@).data('slug'))
-            if !cache[keyword]
-              cache[keyword] = $.ajax
-                                url: "/things/category/#{keyword}"
-                                dataType: 'html'
-                                data:
-                                  per: 12
-            cache[keyword]
-              .done (data, status, jqXHR) ->
-                $things.empty().append(data)
+        if !$this.hasClass('is-active')
+          keyword = $.trim($(@).data('slug'))
+          if !cache[keyword]
+            cache[keyword] = $.ajax
+                              url: "/things/category/#{keyword}"
+                              dataType: 'html'
+                              data:
+                                per: 12
+          cache[keyword]
+            .done (data, status, jqXHR) ->
+              $things.empty().append(data)
 
   #exports
   exports

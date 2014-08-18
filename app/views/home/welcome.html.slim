@@ -12,18 +12,21 @@ section.step#step1
 
   .step-body
     section.panel
-      header.panel-heading.clearfix
-        h2.panel-title.pull-left
+      header.panel-heading
+        h2.panel-title
           strong.logo KnewOne
           |  达人
-        button.btn-inverse-blue.pull-right.js-user-follow-all type="button"
+        button.btn-inverse-blue.js-user-follow-all type="button"
           i.fa.fa-plus
           | 关注所有
+        button.btn-inverse-blue.hidden-xs.js-user-refresh type="button"
+          i.fa.fa-refresh
+          | 换一组
       .panel-body
         ul.recommended-users
           - recommend_users = current_user.recommend_new_users.limit(60)
           = render partial: "recommend_user", collection: recommend_users, as: :user
-      footer.panel-footer
+      footer.panel-footer.visible-xs-block
         button.btn-inverse-blue.js-user-refresh type="button"
           i.fa.fa-refresh
           | 换一组
@@ -49,9 +52,8 @@ section.step#step2
         .tags
           - Category.desc(:things_count).limit(10).each do |category|
             = link_to category.name, '#', data: {slug: category.slug}
-        - if !browser.mobile?
-          ul.things
-            = render Thing.hot.limit(12), img_lazy: false, size: :normal
+        ul.things
+          = render Thing.hot.limit(12), img_lazy: false, size: :normal
 
 /-- END #step2 --/
 
@@ -64,6 +66,10 @@ section.step#step3
       i.fa.fa-arrow-right
       | 完成
   .step-body
+    - if browser.mobile?
+      = render 'welcome_step3_mobile'
+    - else
+      = render 'welcome_step3'
 
 /-- END #step3 --/
 
