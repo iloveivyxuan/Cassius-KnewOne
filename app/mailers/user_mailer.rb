@@ -37,12 +37,11 @@ class UserMailer < BaseMailer
   end
 
   def chosen(email, name)
-    attachments.inline['weloop_qr.jpg'] = File.read(Rails.root.join('app/assets/images/mails/weloop_qr.jpg'))
-    attachments.inline['weloop_platform.jpg'] = File.read(Rails.root.join('app/assets/images/mails/weloop_platform.jpg'))
+    attachments.inline['cuptime_qr.jpg'] = File.read(Rails.root.join('app/assets/images/mails/cuptime_qr.jpg'))
     @name = name
 
     mail(to: email,
-         subject: '恭喜您在「KnewOne 牛玩」免费领养「WeLoop」成功！')
+         subject: '恭喜您在「KnewOne 牛玩」免费领养「Cuptime」成功！')
   end
 
   def adopt(email, name)
