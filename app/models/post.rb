@@ -22,6 +22,8 @@ class Post
   scope :from_date, ->(date) { where :created_at.gte => date.to_time.to_i }
   scope :to_date, ->(date) { where :created_at.lt => date.next_day.to_time.to_i }
 
+  before_save :format_title
+
   after_create :update_commented_at
 
   after_create do
@@ -56,6 +58,12 @@ class Post
 
   def self_changed?
     self.changed_attributes.reject { |k, v| v.nil? }.any?
+  end
+
+  def format_title
+    self.title
+      .gsub!(/(?<=[0-9a-z])(?=[\u4e00-\u9fa5])/i, ' ')
+      .gsub!(/(?=[0-9a-z])(?<=[\u4e00-\u9fa5])/i, ' ')
   end
 
   def update_relates_counter(author, step = 1)
