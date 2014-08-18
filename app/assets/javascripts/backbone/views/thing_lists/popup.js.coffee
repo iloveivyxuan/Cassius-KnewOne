@@ -46,7 +46,13 @@ class Making.Views.ThingListsPopup extends Backbone.Marionette.CompositeView
     @$el.modal('show')
 
   reset: ->
-    @collection.fetch({reset: true})
+    @collection.fetch({
+      reset: true
+      success: => @model.get('categories').forEach((name) =>
+        list = @collection.findWhere({name}) || @collection.add({name}, {at: 0})
+        list.set('selected', true)
+      )
+    })
     @_changedLists = {}
 
   initSelected: ->
