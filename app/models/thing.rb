@@ -40,12 +40,12 @@ class Thing < Post
 
   field :stage, type: Symbol, default: :concept
   STAGES = {
-      concept: "研发中",
-      kick: "众筹中",
-      pre_order: "预售",
-      domestic: "国内导购",
-      abroad: "国外海淘",
-      dsell: "自销"
+    concept: "研发中",
+    kick: "众筹中",
+    pre_order: "预售",
+    domestic: "国内导购",
+    abroad: "国外海淘",
+    dsell: "自销"
   }
   validates :stage, inclusion: {in: STAGES.keys}
 
