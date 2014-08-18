@@ -10,7 +10,7 @@ class Ability
       can :manage, :all
     elsif user.role? :sale
       signed user
-      editor user
+      editor
       can :manage, Order
       can :send_stock_notification, Thing
       can :manage, AbatementCoupon
@@ -18,7 +18,7 @@ class Ability
       can :manage, Supplier
     elsif user.role? :editor
       signed user
-      editor user
+      editor
     elsif user.role? :volunteer
       signed user
       can :update, Thing
@@ -135,6 +135,22 @@ class Ability
     end
 
     can :subscribe_toggle, Category
+
+    can :create, ThingList
+    can [:update, :destroy], ThingList do |thing_list|
+      thing_list.user == user
+    end
+    can :fancy, ThingList do |thing_list|
+      !thing_list.fancied?(user)
+    end
+    can :unfancy, ThingList do |thing_list|
+      thing_list.fancied?(user)
+    end
+
+    can :create, ThingListItem
+    can [:update, :destroy], ThingListItem do |thing_list_item|
+      thing_list_item.list.user == user
+    end
   end
 
   def basic
@@ -156,7 +172,7 @@ class Ability
     can :read, ThingListItem
   end
 
-  def editor(user)
+  def editor
     can :update, Post
     can :update, Story
     can :edit, Thing
@@ -170,22 +186,6 @@ class Ability
     can :manage, Review
     can :manage, Feeling
     can :manage, Lottery
-
-    can :create, ThingList
-    can [:update, :destroy], ThingList do |thing_list|
-      thing_list.user == user
-    end
-    can :fancy, ThingList do |thing_list|
-      !thing_list.fancied?(user)
-    end
-    can :unfancy, ThingList do |thing_list|
-      thing_list.fancied?(user)
-    end
-
-    can :create, ThingListItem
-    can [:update, :destroy], ThingListItem do |thing_list_item|
-      thing_list_item.list.user == user
-    end
   end
 
   def pay_callback
