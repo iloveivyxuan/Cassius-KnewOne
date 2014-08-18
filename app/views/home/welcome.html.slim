@@ -6,28 +6,28 @@ section.step#step1
     h1.pull-left
       | 欢迎来到&nbsp;
       strong.logo KnewOne
-    a.btn-inverse-white.pull-right.js-pager href="#step2"
+    a.btn-inverse-white.pull-right href="#step2"
       i.fa.fa-arrow-right
       | 下一步
 
   .step-body
-    section.panel
+    section.panel.js-friendship
       header.panel-heading
         h2.panel-title
           strong.logo KnewOne
           |  达人
-        button.btn-inverse-blue.js-user-follow-all type="button"
+        button.btn-inverse-blue.js-friendship-follow-all type="button"
           i.fa.fa-plus
           | 关注所有
-        button.btn-inverse-blue.hidden-xs.js-user-refresh type="button"
+        button.btn-inverse-blue.hidden-xs.js-friendship-refresh type="button"
           i.fa.fa-refresh
           | 换一组
       .panel-body
-        ul.recommended-users
+        ul.recommended-users.js-friendship-users
           - recommend_users = current_user.recommend_new_users.limit(60)
           = render partial: "recommend_user", collection: recommend_users, as: :user
       footer.panel-footer.visible-xs-block
-        button.btn-inverse-blue.js-user-refresh type="button"
+        button.btn-inverse-blue.js-friendship-refresh type="button"
           i.fa.fa-refresh
           | 换一组
 
@@ -38,7 +38,7 @@ section.step#step2
     h1.pull-left
       | 欢迎来到&nbsp;
       strong.logo KnewOne
-    a.btn-inverse-white.pull-right.js-pager href="#step3"
+    a.btn-inverse-white.pull-right href="#step3"
       i.fa.fa-arrow-right
       | 下一步
   .step-body
@@ -62,7 +62,7 @@ section.step#step3
     h1.pull-left
       | 欢迎来到&nbsp;
       strong.logo KnewOne
-    a.btn-inverse-white.pull-right.js-pager href="/"
+    a.btn-inverse-white.pull-right href="/"
       i.fa.fa-arrow-right
       | 完成
   .step-body

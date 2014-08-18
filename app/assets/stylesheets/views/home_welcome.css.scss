@@ -259,6 +259,14 @@ html.mobile {
   .hidden-xs {
     display: none;
   }
+
+  #step3 {
+
+    .user_list {
+      max-height: 750px;
+      overflow: hidden;
+    }
+  }
 }
 
 html.tablet,
