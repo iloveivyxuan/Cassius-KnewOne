@@ -138,7 +138,7 @@
             width: 0;
             visibility: hidden;
 
-            &:after {
+            &:checked:after {
               content: '✔';
 
               visibility: visible;
@@ -146,12 +146,6 @@
               position: absolute;
               top: 9px;
               right: 12px;
-
-              color: #f1f1f1;
-            }
-
-            &:checked:after {
-              color: #a6a6a6;
             }
           }
         }
