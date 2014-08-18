@@ -61,9 +61,11 @@ class Post
   end
 
   def format_title
-    self.title
+    if self.title.present?
+      self.title
       .gsub!(/(?<=[0-9a-z])(?=[\u4e00-\u9fa5])/i, ' ')
       .gsub!(/(?=[0-9a-z])(?<=[\u4e00-\u9fa5])/i, ' ')
+    end
   end
 
   def update_relates_counter(author, step = 1)
