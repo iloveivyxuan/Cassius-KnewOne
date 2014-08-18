@@ -139,7 +139,8 @@ class Order
   before_create do
     self.order_no = rand.to_s[2..11]
     self.deliver_price = calculate_deliver_price
-    self.pre_order = has_pre_order_items?
+    self.pre_order = order_items.all? {|i| i.kind.stage == :pre_order}
+
     # mongoid may not rollback when error occurred
     order_items.each &:claim_stock!
     sync_price
