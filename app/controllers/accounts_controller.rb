@@ -83,6 +83,6 @@ class AccountsController < Devise::RegistrationsController
   end
 
   def email_params
-    params.require(:user).permit(:email)
+    params.require(:user).permit(:email, :accept_edm)
   end
 end
