@@ -251,6 +251,9 @@ class User
   ## Posts
   has_many :posts, class_name: "Post", inverse_of: :author
 
+  # adoption
+  has_many :adoptions
+
   def things
     posts.where(_type: "Thing")
   end

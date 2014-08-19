@@ -1,0 +1,25 @@
+- page_title '认领管理'
+
+table.table.table-striped
+  thead
+    tr
+      th 用户
+      th 认领物品
+      th 申请时间
+      th 注册时间
+      th 状态
+      th 操作
+  tbody
+    - @adoptions.each do |a|
+      tr
+        td
+          = link_to a.user.name, a.user, target: '_blank'
+          = link_to '[内幕]', haven_user_path(a.user)
+        td = a.thing.title
+        td = a.created_at
+        td = a.user.created_at
+        td = a.status
+        td
+          - if a.status == :waiting
+            = link_to "【通过】", approve_haven_adoption_path(a), method: :post
+            = link_to "【拒绝】", deny_haven_adoption_path(a), method: :post

@@ -117,6 +117,12 @@ Making::Application.routes.draw do
     end
   end
 
+  resources :adoptions do
+    member do
+      get 'one_click'
+    end
+  end
+
   resource :profile, only: [] do
     get 'recommend_users'
     post 'follow_recommends'
@@ -243,6 +249,13 @@ Making::Application.routes.draw do
         patch 'refund_to_balance'
         patch 'refunded_balance_to_platform'
         get 'generate_waybill'
+      end
+    end
+
+    resources :adoptions do
+      member do
+        post 'approve'
+        post 'deny'
       end
     end
 

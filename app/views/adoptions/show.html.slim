@@ -1,0 +1,17 @@
+| 编号
+p = @adoption.adoption_no
+
+| 领养人
+p = link_to @adoption.user.name, @adoption.user
+
+| 领养物品
+p = link_to @adoption.thing.title, @adoption.thing
+
+| 备注
+p = @adoption.note
+
+| 状态
+p = @adoption.status
+
+| 领养时间
+p = @adoption.created_at

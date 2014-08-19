@@ -45,7 +45,8 @@ class Thing < Post
     pre_order: "预售",
     domestic: "国内导购",
     abroad: "国外海淘",
-    dsell: "自销"
+    dsell: "自销",
+    adoption: "领养"
   }
   validates :stage, inclusion: {in: STAGES.keys}
 
@@ -66,6 +67,8 @@ class Thing < Post
   has_many :stories, dependent: :destroy
 
   has_many :lotteries, dependent: :destroy
+
+  has_many :adoptions, dependent: :destroy
 
   scope :recent, -> { gt(created_at: 1.month.ago) }
   scope :published, -> { lt(created_at: Time.now) }
