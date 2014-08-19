@@ -347,6 +347,25 @@ class Order
     order_histories.create from: :pending, to: :closed
   end
 
+  def force_close!(revert_stock = true)
+    state = self.state
+
+    self.coupon_code.undo unless self.coupon_code.nil?
+
+    order_items.each &:revert_stock! if revert_stock
+    self.state = :closed
+    save!
+
+    if self.expense_balance > 0
+      self.user.recharge_balance!(self.expense_balance, "订单#{self.order_no}因关闭的退款")
+
+      self.expense_balance = 0
+      save!
+    end
+
+    order_histories.create from: state, to: :closed
+  end
+
   def refund!
     return false unless can_refund?
 
