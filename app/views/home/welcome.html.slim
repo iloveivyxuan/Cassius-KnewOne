@@ -51,7 +51,7 @@ section.step#step2
         p 选择你感兴趣的标签：
         .tags
           - Category.desc(:things_count).limit(10).each do |category|
-            = link_to category.name, interest_path(category.slug), data: {slug: category.slug}, method: :patch
+            = link_to category.name, "#", data: {slug: category.slug}
         ul.things
           = render Thing.hot.limit(12), img_lazy: false, size: :normal
 

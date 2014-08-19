@@ -24,16 +24,19 @@ do (exports = window.Making || {}) ->
         $this = $(@)
 
         if !$this.hasClass('is-active')
-          keyword = $.trim($(@).data('slug'))
-          if !cache[keyword]
-            cache[keyword] = $.ajax
-                              url: "/things/category/#{keyword}"
+          slug = $.trim($(@).data('slug'))
+          if !cache[slug]
+            cache[slug] = $.ajax
+                              url: "/things/category/#{slug}"
                               dataType: 'html'
                               data:
                                 per: 12
-          cache[keyword]
+          cache[slug]
             .done (data, status, jqXHR) ->
               $things.empty().append(data)
+          $.ajax
+            url: "/settings/interests/#{slug}"
+            method: 'patch'
 
       $('.js-friendship')
         .on 'click', '.js-friendship-follow-all', (event) ->
