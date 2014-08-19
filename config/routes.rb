@@ -10,7 +10,7 @@ Making::Application.routes.draw do
   root to: 'home#index'
   get 'page/:page', to: "home#index"
   get 'following', to: "home#index", defaults: {source: "following"}
-  get 'recommended', to: "home#index", defaults: {source: "recommended"}
+  get 'latest', to: "home#index", defaults: {source: "latest"}
 
   get 'search', to: 'home#search', as: :search
   get 'hits/(:page)', to: 'home#hits', as: :hits
@@ -22,6 +22,8 @@ Making::Application.routes.draw do
   get "403", to: "home#forbidden"
   get "500", to: "home#error"
   get 'blocked', to: 'home#blocked'
+
+  get 'shop(/:order_by)', to: 'things#shop', as: :shop
 
   get 'help', to: 'help#index'
   %w(how_to_share how_to_review terms knewone_for_user knewone_for_startup).each do |a|
@@ -75,6 +77,7 @@ Making::Application.routes.draw do
     member do
       get 'fancies'
       get 'owns'
+      get 'lists'
       get 'reviews'
       get 'feelings'
       get 'things'
@@ -86,6 +89,15 @@ Making::Application.routes.draw do
       post 'followings', to: :follow
       delete 'followings', to: :unfollow
       get 'profile'
+    end
+  end
+
+  resources :thing_lists, path: 'lists', except: [:new, :edit] do
+    resources :thing_list_items, path: 'items', only: [:create, :update, :destroy]
+
+    member do
+      post 'fancy'
+      post 'unfancy'
     end
   end
 
@@ -166,8 +178,8 @@ Making::Application.routes.draw do
   end
 
   resources :categories, only: [:index] do
-    collection do
-      get 'all'
+    member do
+      post 'subscribe_toggle', to: :subscribe_toggle
     end
   end
 
@@ -241,8 +253,6 @@ Making::Application.routes.draw do
         post 'batch_bind'
       end
     end
-
-    resources :stats, only: [:index]
 
     resources :thing_rebate_coupons, only: [:show, :index, :new, :create, :update] do
       member do

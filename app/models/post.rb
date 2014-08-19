@@ -2,6 +2,7 @@ class Post
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Paranoia
+  include Votable
 
   field :title, type: String
   field :content, type: String, default: ""
@@ -10,10 +11,6 @@ class Post
   belongs_to :author, class_name: "User", inverse_of: :posts
 
   has_many :comments
-
-  has_and_belongs_to_many :lovers, class_name: "User", inverse_of: nil
-  has_and_belongs_to_many :foes, class_name: "User", inverse_of: nil
-  field :lovers_count, type: Integer, default: 0
 
   has_many :related_lotteries, class_name: "Lottery",
            inverse_of: :contributions, dependent: :delete
@@ -24,6 +21,8 @@ class Post
 
   scope :from_date, ->(date) { where :created_at.gte => date.to_time.to_i }
   scope :to_date, ->(date) { where :created_at.lt => date.next_day.to_time.to_i }
+
+  before_save :format_title
 
   after_create :update_commented_at
 
@@ -40,34 +39,6 @@ class Post
 
   def update_commented_at
     update_attribute :commented_at, created_at
-  end
-
-  def vote(user, love)
-    return if voted?(user)
-    if love
-      lovers << user
-      author.inc karma: Settings.karma.post
-    else
-      foes << user
-      author.inc karma: -Settings.karma.post
-    end
-    self.update_attribute :lovers_count, lovers.count
-  end
-
-  def unvote(user, love)
-    return unless voted?(user)
-    if love
-      lovers.delete(user)
-      author.inc karma: -Settings.karma.post
-    else
-      foes.delete(user)
-      author.inc karma: Settings.karma.post
-    end
-    self.update_attribute :lovers_count, lovers.count
-  end
-
-  def voted?(user)
-    lovers.include?(user) or foes.include?(user)
   end
 
   def cover(version = :small)
@@ -87,6 +58,14 @@ class Post
 
   def self_changed?
     self.changed_attributes.reject { |k, v| v.nil? }.any?
+  end
+
+  def format_title
+    if self.title.present?
+      self.title = self.title.
+        gsub(/(?<=[0-9a-z])(?=[\u4e00-\u9fa5])/i, ' ').
+        gsub(/(?=[0-9a-z])(?<=[\u4e00-\u9fa5])/i, ' ')
+    end
   end
 
   def update_relates_counter(author, step = 1)

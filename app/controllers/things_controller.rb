@@ -6,6 +6,7 @@ class ThingsController < ApplicationController
   before_action :set_categories, only: [:index]
   after_action :allow_iframe_load, only: [:show]
   after_action :store_location, only: [:comments, :show]
+  before_action :delete_links, only: [:destroy]
 
   def index
     if params[:category].present? and params[:category] != 'all'
@@ -14,12 +15,6 @@ class ThingsController < ApplicationController
     else
       @things = Thing.published
     end
-
-    if params[:stage].present?
-      @things = @things.where(stage: params[:stage])
-    end
-
-    @things = @things.self_run if params[:self_run].present?
 
     if params[:sort_by] == 'fanciers_count'
       @things = @things.desc(:fanciers_count)
@@ -40,6 +35,19 @@ class ThingsController < ApplicationController
       format.atom
       format.json
     end
+  end
+
+  def shop
+    params[:order_by] ||= "new"
+    @sort = case params[:order_by]
+            when 'recommended' then {priority: :desc}
+            when 'hits' then {fanciers_count: :desc}
+            when 'news' then {created_at: :desc}
+            when 'price_h_l' then {price: :desc}
+            when 'price_l_h' then {price: :asc}
+            else {priority: :desc}
+            end
+    @things = Thing.published.self_run.order_by(@sort).page(params[:page]).per(24)
   end
 
   def random
@@ -75,6 +83,7 @@ class ThingsController < ApplicationController
       format.html.mobile
       format.html.tablet { render layout: 'thing' }
       format.html.desktop { render layout: 'thing' }
+      format.json
     end
   end
 
@@ -170,14 +179,14 @@ class ThingsController < ApplicationController
     if @result
       @result[:title] ||= "请在这里输入产品名称"
       @thing = Thing.new official_site: @result[:url],
-                         title: @result[:title],
-                         content: @result[:content]
+      title: @result[:title],
+      content: @result[:content]
       title_regexp = /#{Regexp.escape(@result[:title])}/i
       @similar = Thing.published.or({slug: title_regexp},
                                     {title: title_regexp},
                                     {subtitle: title_regexp},
                                     {official_site: params[:url]}
-      ).desc(:fanciers_count).first
+                                    ).desc(:fanciers_count).first
     end
 
     respond_to do |format|
@@ -223,12 +232,22 @@ class ThingsController < ApplicationController
     redirect_to :back
   end
 
+  def delete_links
+    thing = Thing.find(params[:id])
+    unless thing.links.blank?
+      link = thing.links
+      link.delete(thing.id.to_s)
+      link = [] if link.size < 2
+      thing.links.each { |l| Thing.find(l).update_attributes(links: link) }
+    end
+  end
+
   private
 
   def thing_params
     params.require(:thing)
-    .permit(:title, :subtitle, :official_site, :categories_text,
-            :content, :description, photo_ids: [])
+      .permit(:title, :subtitle, :official_site, :categories_text,
+              :content, :description, photo_ids: [])
   end
 
   def set_categories

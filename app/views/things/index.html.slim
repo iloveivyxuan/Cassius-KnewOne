@@ -1,22 +1,31 @@
-- title = @category.present? ? "【#{@category.name}|#{@category.name}产品】" : '产品'
-- title += (params[:self_run] ? ' - 商店' : '')
-- provide :page_class, 'shop' if params[:self_run]
+- title = @category.present? ? "#{@category.name}|#{@category.name}产品" : '产品'
 - page_title title
 
-header.page-header
-  h1
-    - if params[:self_run]
-      = link_to_with_icon '商店', 'fa fa-smile-o', things_path(self_run: true), class: 'breadcrumb'
-    - else
-      = link_to_with_icon '产品', 'fa fa-magic', things_path, class: 'breadcrumb'
-    - if @category
-      = link_to @category.name, things_path(category: @category), class: 'breadcrumb'
+.container-fluid
 
-= render 'things/filter'
+  header#things_nav
+    h1
+      = link_to '产品', things_path, class: 'breadcrumb'
+      - if @category
+        = link_to @category.name, things_path(category: @category), class: 'breadcrumb'
+        = render 'categories/subscribe_btn', category: @category
+    nav
+      = form_tag things_path, method: :get, class: 'form-inline' do
+        = select_tag :category, \
+        options_for_select([%w(全部 all)]+@categories.map {|c| [c.name, c.slug]},  \
+          (params[:category] || 'all')), \
+          class: 'selectpicker js_auto_submit'
+        = select_tag :sort_by, \
+        options_for_select([%w(最新 created_at), %w(热门 fanciers_count)], \
+          (params[:sort_by] || 'created_at')), \
+          include_blank: false, \
+            class: 'selectpicker js_auto_submit'
 
-- cache_unless user_signed_in?, ['things', 'index', @things.first, request.query_string]
-  ul.things.infinite#things= render @things, size: :normal, img_lazy: true
-  = paginate @things
+  section#things_list.infinite
+    = render partial: 'home/hot_thing', collection: @things, as: :hot_thing
+
+  footer#things_pager
+    = paginate @things
 
 - content_for :script do
   javascript:

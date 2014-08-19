@@ -855,6 +855,7 @@
                             <tr>
                               <td valign="top" class="mcnTextContent" style="padding-top:9px; padding-right: 18px; padding-bottom: 9px; padding-left: 18px;">
                                 <br>
+
                                 <h3>您好，<%= yield :username %></h3>
 
                                 <%= yield %>
@@ -897,9 +898,10 @@
                             <tbody>
                             <tr>
                               <td valign="top" class="mcnTextContent" style="padding-top:9px; padding-right: 18px; padding-bottom: 9px; padding-left: 18px;">
-
                                 <div style="padding-top:10px;text-align: right;">
-                                  <!--<a class="utilityLink" href="*|UNSUB|*"><span style="color:#FFFFFF">取消邮件通知</span></a>-->
+                                  <% if message['edm'] %>
+                                    <a class="utilityLink" href="<%= edit_account_url %>"><span style="color:#FFFFFF">取消推送邮件订阅？</span></a>
+                                  <% end %>
                                 </div>
                               </td>
                             </tr>

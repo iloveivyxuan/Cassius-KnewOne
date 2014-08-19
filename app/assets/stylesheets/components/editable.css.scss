@@ -1,0 +1,7 @@
+.editable-buttons i {
+  margin-right: 0;
+
+  @extend .fa;
+  &.glyphicon-ok { @extend .fa-check; }
+  &.glyphicon-remove { @extend .fa-times; }
+}

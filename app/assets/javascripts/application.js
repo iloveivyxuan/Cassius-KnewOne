@@ -3,6 +3,7 @@
 //= require bootstrap
 //= require underscore
 //= require backbone
+//= require backbone.marionette
 //= require jquery_extend
 //= require handlebars.runtime
 //= require jquery_nested_form
@@ -20,9 +21,7 @@
 //= require jquery.deserialize
 //= require bootstrap-tagsinput
 //= require medium-editor/medium-editor
-//= require medium-editor-insert-plugin/medium-editor-insert-plugin
-//= require medium-editor-insert-plugin/medium-editor-insert-images
-//= require medium-editor-insert-plugin/medium-editor-insert-embeds
+//= require minsert/minsert
 //= require bootstrap-wysiwyg
 //= require bootstrap-select
 //= require bootstrap-touch-carousel
@@ -31,6 +30,8 @@
 //= require jquery.caret
 //= require jquery.atwho
 //= require lightbox
+//= require editable/bootstrap-editable
+//= require editable/rails
 //= require_tree ../templates
 //= require base
 //= require todo

@@ -1,0 +1,31 @@
+- page_title "商店"
+- provide :page_class, 'shop'
+
+.container-fluid
+  header#things_nav
+    h1
+      i.fa.fa-cubes
+      | 商店
+    nav
+      select.selectpicker
+        - navs = [ \
+        %w(推荐 recommended), \
+        %w(最新 news), \
+        %w(最热 hits), \
+        %w(价格高到低 price_h_l), \
+        %w(价格低到高 price_l_h)]
+        - options = navs.map { |nav| nav << {'data-url' => shop_path(order_by: nav[1])} }
+        = options_for_select options, (params[:order_by] || 'news')
+
+  section#things_list.infinite
+    = render partial: 'shop_thing', collection: @things, as: :thing
+
+  footer#things_pager
+    = paginate @things
+
+- content_for :script do
+  javascript:
+    $('#things_nav select').on('change', function(event) {
+      window.location = $(this).find(':selected').data('url');
+    });
+    Making.InfiniteScroll("#wrapper");

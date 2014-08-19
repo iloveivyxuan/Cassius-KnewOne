@@ -201,21 +201,25 @@ article.thing {
     padding: 0 1em 1em;
     width: 100%;
 
-    .creator {
+    .creator, .shopping {
       float: left;
       max-width: 50%;
       @include text-overflow;
+      > a {color: $gray;}
+    }
 
-      > a {
-        vertical-align: bottom;
-        color: $gray;
-      }
-
+    .creator {
+      > a {vertical-align: bottom;}
       img {
         width: 26px;
         margin-right: .5em;
         @extend .img-circle;
       }
+    }
+
+    .shopping {
+      margin-top: 5px;
+      > a {margin-right: 1em;}
     }
 
     .interactions {

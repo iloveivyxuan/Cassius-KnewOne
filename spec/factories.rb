@@ -159,4 +159,18 @@ FactoryGirl.define do
   factory :private_message do
     content { Faker::Lorem.sentences }
   end
+
+  factory :thing_list do
+    user
+    name { Faker::Lorem.word }
+    description { Faker::Lorem.paragraph }
+
+    after(:create) { |l| create_list(:thing_list_item, 1, thing_list: l) }
+  end
+
+  factory :thing_list_item do
+    thing
+    thing_list
+    description { Faker::Lorem.paragraph }
+  end
 end

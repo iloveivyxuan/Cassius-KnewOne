@@ -4,6 +4,7 @@ class TopicsController < ApplicationController
   load_and_authorize_resource :topic, through: :group
   layout 'group'
   after_action :allow_iframe_load, only: [:show]
+  before_action :forbidden_invisible, only: [:show]
 
   def show
     mark_read @topic
@@ -70,5 +71,14 @@ class TopicsController < ApplicationController
     permit_attrs = [:title, :content]
     permit_attrs << :is_top if current_user.role? :editor
     params.require(:topic).permit permit_attrs
+  end
+
+  def forbidden_invisible
+    group = Group.find params[:group_id]
+    unless group.visible
+      if current_user.nil? || !group.members.where(user_id: current_user.id.to_s).exists?
+        raise ActionController::RoutingError.new('Not Found')
+      end
+    end
   end
 end

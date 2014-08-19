@@ -18,6 +18,9 @@ class User
 
   index name: 1
 
+  field :accept_edm, type: Boolean, default: true
+  scope :edm, -> { where accept_edm: true }
+
   STATUS = {blocked: '锁定', watching: '特别观照(贬)', normal: '正常'}
   validates :status, inclusion: {in: STATUS.keys, allow_blank: false}
   validates :gender, inclusion: {in: %w(男 女), allow_blank: true}
@@ -180,6 +183,9 @@ class User
       if self.auto_update_from_oauth?
         set_profiles_by_auth(auth)
         save
+
+        self.remote_avatar_url = auth.avatar_url
+        save rescue Exception
       end
     end
   end
@@ -191,6 +197,9 @@ class User
       if self.auto_update_from_oauth?
         set_profiles_by_auth(auth)
         save
+
+        self.remote_avatar_url = auth.avatar_url
+        save rescue Exception
       end
     end
   end
@@ -206,7 +215,7 @@ class User
 
     self.location = auth.location
     self.description = auth.description
-    self.remote_avatar_url = auth.avatar_url
+    # self.remote_avatar_url = auth.avatar_url
     self.gender = case auth.gender
                     when 'm' then
                       '男'
@@ -259,7 +268,6 @@ class User
   end
 
   ## Things
-  has_and_belongs_to_many :fancies, class_name: "Thing", inverse_of: :fanciers
   has_and_belongs_to_many :owns, class_name: "Thing", inverse_of: :owners
 
   def makings
@@ -322,6 +330,13 @@ class User
 
   # Draft
   has_many :drafts
+
+  # ThingList
+  has_many :thing_lists
+
+  def related_thing_lists
+    (thing_lists + fancied_thing_lists).uniq
+  end
 
   def balance
     BigDecimal.new(self.balance_cents) / 100
@@ -406,7 +421,11 @@ class User
   end
 
   # category
-  include CategoryReferable
+  has_and_belongs_to_many :categories do
+    def things
+      Thing.published.any_in(categories: @target.map(&:name))
+    end
+  end
 
   # recommend users who not followed by self
   def recommend_new_users

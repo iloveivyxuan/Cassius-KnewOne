@@ -176,7 +176,7 @@
                 },
                 done: function(e, data) {
                     var url = data.result.url;
-                    var src = $file.attr('data-domain') + url + "!review"
+                    var src = $file.attr('data-domain') + url + "!huge"
                     restoreSelection();
                     editor.focus();
                     execCommand('insertImage', src);

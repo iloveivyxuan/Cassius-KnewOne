@@ -33,6 +33,9 @@ class Order
   scope :by_thing_kind, ->(kind) { where 'order_items.thing_id' => kind.thing.id, 'order_items.kind_id' => kind.id.to_s }
   scope :by_thing, ->(thing) { where 'order_items.thing_id' => thing.id }
 
+  scope :from_date, ->(date) { where :created_at.gte => date.to_time.to_i }
+  scope :to_date, ->(date) { where :created_at.lt => date.next_day.to_time.to_i }
+
   embeds_many :rebates
 
   has_one :coupon_code, autosave: true
@@ -136,7 +139,8 @@ class Order
   before_create do
     self.order_no = rand.to_s[2..11]
     self.deliver_price = calculate_deliver_price
-    self.pre_order = is_order_allpresale
+    self.pre_order = order_items.all? {|i| i.kind.stage == :pre_order}
+
     # mongoid may not rollback when error occurred
     order_items.each &:claim_stock!
     sync_price
@@ -402,8 +406,8 @@ class Order
     order_histories.create from: state, to: :unexpected, raw: raw
   end
 
-  def is_order_allpresale
-    order_items.all? {|i| i.kind.stage.to_s == "pre_order"}
+  def has_pre_order_items?
+    order_items.any? {|i| i.kind.stage == :pre_order}
   end
 
   def all_products_have_stock?

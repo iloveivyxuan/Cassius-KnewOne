@@ -1,0 +1,37 @@
+- user = @thing_list.user
+
+nav
+  = link_to lists_user_path(user)
+    i.fa.fa-undo
+    | 查看该用户的所有列表
+
+header
+  .info
+    = link_to user
+      .user-avatar
+        = user_avatar(user)
+    .thing-list-name
+      = editable @thing_list, :name, title: '新的列表名称'
+    .stats
+      | 创建于
+      = time_ago_tag(@thing_list.created_at)
+
+  .follow
+    = render 'fancy_button', thing_list: @thing_list
+
+section.thing-list-items
+  = render partial: 'thing_list_item', collection: @thing_list.items.desc(:updated_at)
+
+- content_for :script
+  javascript:
+    $('.thing-list-name .editable').editable({
+      unsavedclass: null
+    })
+
+    $('.thing-list-item-description .editable').editable({
+      emptytext: '说点什么吧……',
+      unsavedclass: null,
+      success: function (response, newValue) {
+        $(this).siblings('.fa')[newValue.trim() ? 'removeClass' : 'addClass']('hidden')
+      }
+    })

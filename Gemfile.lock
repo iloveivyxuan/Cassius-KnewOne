@@ -81,6 +81,13 @@ GIT
       omniauth (~> 1.0)
       omniauth-oauth2
 
+GIT
+  remote: git://github.com/werein/x-editable-rails.git
+  revision: 9683170da75f9afb9fc6a4ce48aaf798708c845c
+  specs:
+    x-editable-rails (1.5.3)
+      railties
+
 GEM
   remote: https://ruby.taobao.org/
   specs:
@@ -140,6 +147,7 @@ GEM
     bson (2.3.0)
     buftok (0.2.0)
     builder (3.2.2)
+    callsite (0.0.11)
     cancancan (1.7.1)
     capistrano (3.2.1)
       i18n
@@ -288,8 +296,14 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    marionette-rails (2.0.0)
+      railties (>= 3.1)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
+    meta_request (0.3.4)
+      callsite (~> 0.0, >= 0.0.11)
+      rack-contrib (~> 1.1)
+      railties (>= 3.0.0, < 5.0.0)
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_magick (3.7.0)
@@ -362,6 +376,8 @@ GEM
     quiet_assets (1.0.3)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
+    rack-contrib (1.1.0)
+      rack (>= 0.9.1)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.2)
@@ -516,7 +532,7 @@ GEM
       memoizable (~> 0.4.0)
       naught (~> 1.0)
       simple_oauth (~> 0.2.0)
-    tzinfo (1.2.1)
+    tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.5.1)
       execjs (>= 0.3.0)
@@ -577,6 +593,8 @@ DEPENDENCIES
   kaminari
   letter_opener!
   libnotify
+  marionette-rails
+  meta_request
   mini_magick
   modernizr-rails
   mongoid (>= 4.0.0.alpha1)
@@ -618,3 +636,4 @@ DEPENDENCIES
   utf8-cleaner
   weibo_2!
   whenever
+  x-editable-rails!

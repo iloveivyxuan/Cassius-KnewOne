@@ -6,8 +6,9 @@ class Category
   slug :name, history: true
   field :things_count, type: Integer, default: 0
   field :priority, type: Integer, default: 0
-
   mount_uploader :cover, CoverUploader
+
+  has_and_belongs_to_many :users
 
   validates :name, presence: true, uniqueness: true
 

@@ -100,18 +100,13 @@ module OrdersHelper
       if popularize_items.empty?
         item = items.first
 
-        multi_items_str = ""
-        if items.size > 1
-          multi_items_str = "等#{items.size}种产品 "
-        end
-
-        str = "#KnewOne晒订单# 我在剁手网站 @KnewOne 买了“#{item.thing.title} - #{item.kind.title}”（价格￥#{item.single_price}）#{multi_items_str} 瞬间变身土豪，高端大气上档次的感觉你们是不会知道的！小伙伴们要不要来围观一下？围观地址： #{thing_url item.thing}"
+        str = "#晒牛玩# 我在剁手站 @KnewOne 上入了#{item.kind.title}的 #{item.thing.title}，我喜欢这种提升逼格的调调。你们就随意感受下：#{thing_url(item.thing, refer: :order_share)}"
       else
         item = popularize_items.first
 
         str = item.thing.sharing_text.
-            gsub('{{item}}', "“#{item.thing.title} - #{item.kind.title}”（价格￥#{item.single_price}）").
-            gsub('{{url}}', thing_url(item.thing))
+            gsub('{{item}}', "#{item.kind.title}的#{item.thing.title}").
+            gsub('{{url}}', thing_url(item.thing, refer: :order_share))
       end
 
       content_tag :div, class: 'btn-group' do

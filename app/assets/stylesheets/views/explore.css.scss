@@ -293,8 +293,12 @@ html.explore {
 
   .article_thumb_special {
     border-bottom: 1px solid #d9d9d9;
-    margin-bottom: 3rem;
     padding-bottom: 3rem;
+
+    > .article_thumb_anchor {
+      display: block;
+      padding-bottom: 55px;
+    }
 
     > header {
       @include clearfix;

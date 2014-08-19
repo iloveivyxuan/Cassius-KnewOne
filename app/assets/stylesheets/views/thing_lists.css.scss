@@ -1,0 +1,90 @@
+html.thing_lists_show {
+  #wrapper {
+    background: white;
+    padding: 0 10px;
+
+    @include breakpoint(sm) {
+      padding: 20px 40px;
+      border-radius: 10px;
+    }
+
+    > nav {
+      margin: 0 -10px;
+      padding: 10px 20px;
+      background: $gray-lighter;
+
+      @include breakpoint(sm) {
+        padding: 0;
+        padding-bottom: 20px;
+        border-bottom: 1px solid $gray-lighter;
+        background: white;
+      }
+
+      a {
+        color: $black;
+      }
+    }
+
+    > header {
+      position: relative;
+      height: 70px;
+      margin: 20px 10px;
+      padding-left: 60px;
+
+      .info {
+        margin-left: 10px;
+
+        a {
+          color: $black;
+        }
+
+        img {
+          @extend .img-circle;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 60px;
+          height: 60px;
+        }
+
+        .thing-list-name {
+          padding-top: 6px;
+          font-size: 16px;
+        }
+
+        .stats {
+          margin-top: 8px;
+          color: $gray-light;
+          font-size: 14px;
+        }
+      }
+
+      .follow {
+        position: absolute;
+        top: 14px;
+        right: 0;
+      }
+    }
+
+    .thing-list-items {
+      @include make-row;
+
+      @include breakpoint(sm) {
+        padding-top: 10px;
+        border-top: 1px solid $gray-lighter;
+      }
+
+      > section {
+        @include make-xs-column(12);
+        @include make-sm-column(6);
+        @include make-md-column(4);
+        @include make-lg-column(3);
+
+        @include make-inline-block-column;
+        vertical-align: top;
+
+        margin: 20px 0;
+      }
+    }
+  }
+}

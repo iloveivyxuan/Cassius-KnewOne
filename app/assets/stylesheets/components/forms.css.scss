@@ -4,6 +4,10 @@
 
 .form-group {
 
+  .controls label.radio {
+    margin-left: 20px;
+  }
+
   @media (min-width: $screen-md-min) {
     position: relative;
   }

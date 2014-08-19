@@ -16,6 +16,12 @@ class WayBillWorker
                     ::ZtoWayBill.new
                   when :sf_hongkong then
                     ::SfWayBill.new
+                  when :shunfeng then
+                    ::SfWayBill.new
+                  when :zhongtong then
+                    ::ZtoWayBill.new
+                  else
+                    return
                 end
     tmp = Tempfile.new ["waybill_#{order.id.to_s}", '.gif'], [tmpdir = Dir.tmpdir], :encoding => 'ascii-8bit'
     tmp.write generator.draw_body_from_order(order).to_io_stream

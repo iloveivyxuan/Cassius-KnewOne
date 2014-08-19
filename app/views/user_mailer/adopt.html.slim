@@ -1,0 +1,56 @@
+- content_for :username do
+  = @name
+
+- content_for :title do
+  | 立秋过了，雾霾还会远吗？
+
+p
+  = image_tag attachments['mybreath.jpg'].url, alt: 'MyBreath'
+
+p
+  | 当你吹着夏日晚风，感慨着最近秋膘贴得有点多，有没有考虑到一个很现实的哲学问题：雾霾天又快来了！
+
+p
+  | 牛玩未雨绸缪地给你带来了
+  strong 20
+  | 个 #{link_to 'MyBreath', 'http://knewone.com/things/mybreath-pm2-dot-5-kong-qi-jian-ce-yi?from=cuptime_edm'}。
+  | 咱们不说什么智能联动，更别提什么智能家居，#{link_to 'MyBreath', 'http://knewone.com/things/mybreath-pm2-dot-5-kong-qi-jian-ce-yi?from=cuptime_edm'} 就是一个简洁、专用的 PM 2.5 检测仪。
+  | 哦，还是个便携的。
+
+p
+  | 这货看起来就像个手机壳，白蓝配色相貌倒也清爽。
+  | 轻便体型带来的好处是，可放在爱车里检测车内 PM 2.5。
+  | 具体检测数据精准度如何，是不是好用，等你们告诉牛玩喽。
+
+p
+  | 注意，
+  strong iPhone 用户请回避！
+  | 这货目前只支持安卓手机。你们终于等到这一天了，对不对？
+
+p
+  | 望望窗外模糊不清的天空，赶紧看清楚 Mybreath 免费领养的步骤：
+
+ol
+  li 点击打开 #{link_to 'MyBreath', 'http://knewone.com/things/mybreath-pm2-dot-5-kong-qi-jian-ce-yi?from=cuptime_edm'}，猛戳右边绿色的「加入购物车」按钮；
+  li 进入购物车，结算并填写完整的收货信息；
+  li
+    | 保存信息，提交订单（千万不要勾选顺丰速运），静待佳音；
+
+p
+  | 不论新、老用户，在社区内多短评、多互动的用户，免费领养几率越高；
+  br
+  | 申请截止时间为8月22日 AM 11:59；
+  br
+  | 拿到
+  = link_to 'MyBreath', 'http://knewone.com/things/mybreath-pm2-dot-5-kong-qi-jian-ce-yi?from=cuptime_edm'
+  | 后，请到
+  = link_to '这里', 'http://knewone.com/things/mybreath-pm2-dot-5-kong-qi-jian-ce-yi?from=cuptime_edm'
+  | 分享开箱、使用体验；
+  br
+  | 最终免费领养用户名单于8月25日首先在官方微信发布。请关注微信公号“
+  strong KnewOneCom
+  | ”；
+  br
+  | 关浪微博 #{link_to '@KnewOne', 'http://weibo.com/knewone'}，获得各种福利活动通知。
+p
+  = image_tag attachments['ko_wechat_qr.png'].url, alt: 'KnewOne订阅号'

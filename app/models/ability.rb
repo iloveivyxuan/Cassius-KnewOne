@@ -134,6 +134,23 @@ class Ability
       private_message.dialog.user == user
     end
 
+    can :subscribe_toggle, Category
+
+    can :create, ThingList
+    can [:update, :destroy], ThingList do |thing_list|
+      thing_list.user == user
+    end
+    can :fancy, ThingList do |thing_list|
+      !thing_list.fancied?(user)
+    end
+    can :unfancy, ThingList do |thing_list|
+      thing_list.fancied?(user)
+    end
+
+    can :create, ThingListItem
+    can [:update, :destroy], ThingListItem do |thing_list_item|
+      thing_list_item.list.user == user
+    end
   end
 
   def basic
@@ -147,9 +164,12 @@ class Ability
     can :read, Topic
     can :read, Lottery
     can :read, User
-    can [:owns, :fancies, :things, :reviews, :feelings,
+    can :read, Category
+    can [:owns, :fancies, :things, :lists, :reviews, :feelings,
          :activities, :followings, :followers, :groups, :topics, :profile], User
-    can [:buy, :groups, :comments, :wechat_qr, :random], Thing
+    can [:buy, :groups, :comments, :wechat_qr, :random, :shop], Thing
+    can :read, ThingList
+    can :read, ThingListItem
   end
 
   def editor

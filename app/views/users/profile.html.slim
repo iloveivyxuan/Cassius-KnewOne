@@ -42,6 +42,11 @@
         | 喜欢
         b = @user.fancies_count
     | &nbsp;
+    li.profile_thing_lists
+      = link_to lists_user_path(@user)
+        | 列表
+        b = @user.thing_lists.count
+    | &nbsp;
     li.profile_things
       = link_to things_user_path(@user)
         | 分享

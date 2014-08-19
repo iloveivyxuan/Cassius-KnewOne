@@ -33,6 +33,7 @@ do (exports = Making) ->
                       @$('[name$="[content]"]')
       @$help       = $('.editor-help')
       @$helpToggle = @$('.editor-help-toggle')
+      @$imageField = $('#file')
       @$form       = $(@$bodyField[0].form)
       @draft       = new exports.Models.Draft
                       type: @type
@@ -158,6 +159,8 @@ do (exports = Making) ->
 
     activatePlugin: ->
       if !@editor
+        that = @
+
         @editor = new MediumEditor @$body,
           buttons: ['anchor', 'bold', 'italic', 'strikethrough', 'header1', 'header2', 'quote']
           buttonLabels: 'fontawesome'
@@ -166,26 +169,54 @@ do (exports = Making) ->
           placeholder: @placeholder
           anchorInputPlaceholder: '在这里插入链接'
           targetBlank: true
+
+        @$body.minsert
+          actions:
+            videos:
+              placeholder: '在这里输入视频网址或代码（通用代码）然后按回车'
+
+        @$insertImageButton = @$('.minsert [data-action="insert-image"]')
+          .on 'click', ->
+            that.$imageField.clone(true).click()
+
+        @$imageField
+          .removeAttr('id')
+          .attr('multiple', true)
+          .attr('accept', 'image/*')
+          .fileupload
+            dataType: 'json'
+            dropZone: null
+            formData: ->
+              return [{
+                name: 'policy'
+                value: that.$imageField.attr('data-policy')
+              }, {
+                name: 'signature'
+                value: that.$imageField.attr('data-signature')
+              }]
+            beforeSend: (jqXHR, settings) ->
+              # @TODO
+              id = jqXHR.requestid = new Date().getTime()
+              that.$body.trigger('loading.minsert', id)
+            done: (event, data) ->
+              url = that.$imageField.data('domain') + data.jqXHR.responseJSON.url + '!review'
+              id  = data.jqXHR.requestid
+              that.$body.trigger('done:image.minsert', {url, id})
+            fail: (event, data) ->
+              that.$body.trigger('fail:image.minsert', data.jqXHR.responseJSON.message)
+            always: (event, data) ->
+              id = data.jqXHR.requestid
+              that.$body.trigger('loaded.minsert', id)
+
       else
         @editor.activate()
 
-      @$body.mediumInsert
-        editor: @editor
-        addons:
-          images:
-            useDragAndDrop: false
-            domain: $('#file').data('domain')
-            templateFile: $('#file')
-          embeds: {}
-
     deactivatePlugin: ->
       @editor.deactivate()
-      # @TODO
-      @$body.off('.mediumInsert')
 
     initHelp: ->
       that      = @
-      key       = exports.user + '+hide-editor-help'
+      key       = exports.user + '+hide-editor-help+v1'
       isHide    = localStorage[key]
       $checkbox = $('#show-editor-help')
 

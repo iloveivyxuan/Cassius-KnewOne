@@ -54,9 +54,11 @@ gem 'therubyracer'
 gem 'jquery-rails'
 gem 'coffee-rails'
 gem 'backbone-on-rails'
+gem 'marionette-rails'
 gem 'modernizr-rails'
 gem 'jquery-fileupload-rails'
 gem 'handlebars_assets'
+gem 'x-editable-rails', github: 'werein/x-editable-rails'
 
 # stylesheets
 gem 'sass-rails', '~> 4.0.3' # Resolve dependency with sprocket
@@ -102,6 +104,7 @@ group :development do
   gem 'thin'
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'meta_request'
 
   # deploy
   gem 'capistrano', '~> 3.1', require: false

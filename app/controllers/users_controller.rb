@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @owns = @user.owns_sorted_by_ids(1, 3)
     @makings = @user.makings.desc(:created_at)
     @activities = @user.activities.visible.limit(10)
+    @lists = @user.thing_lists.desc(:updated_at).limit(3)
   end
 
   def fancies
@@ -16,6 +17,11 @@ class UsersController < ApplicationController
 
   def owns
     @owns = @user.owns_sorted_by_ids(params[:page], 24)
+  end
+
+  def lists
+    @lists = @user.related_thing_lists.sort_by(&:updated_at).reverse
+    @lists = Kaminari.paginate_array(@lists).page(params[:page]).per(24)
   end
 
   def reviews

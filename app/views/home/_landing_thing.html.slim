@@ -3,7 +3,7 @@ section class="product_#{index == 0 ? 1 : 2}"
   figure.product
     = link_to "#", class: "product_thumb", data: {toggle: 'modal', target: '#login-modal', link: url_for(thing)}
       - if index == 0
-        = thing_presenter.photo(:review)
+        = thing_presenter.photo(:'thing.fixed.big')
       - else
         = thing_presenter.photo(:'thing.fixed')
     figcaption

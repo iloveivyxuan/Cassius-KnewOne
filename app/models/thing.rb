@@ -8,8 +8,9 @@ class Thing < Post
   field :official_site, type: String, default: ""
   field :photo_ids, type: Array, default: []
   field :categories, type: Array, default: []
-  after_save :update_categories
+  before_save :update_price
   before_save :update_amazon_link
+  after_save :update_categories
 
   has_many :single_feelings, class_name: "Feeling", dependent: :destroy
   field :feelings_count, type: Integer, default: 0
@@ -53,11 +54,9 @@ class Thing < Post
   end
 
   include Fanciable
-  has_and_belongs_to_many :fanciers, class_name: "User", inverse_of: :fancies
+  fancied_as :fancies
 
   has_and_belongs_to_many :fancy_groups, class_name: "Group", inverse_of: :fancies
-
-
 
   has_many :feelings, dependent: :destroy
   field :feelings_count, type: Integer, default: 0
@@ -95,6 +94,16 @@ class Thing < Post
     end
   end
 
+  def lists
+    ThingList.where('thing_list_items.thing_id' => id)
+  end
+
+  after_destroy do
+    lists.each do |list|
+      list.items.where(thing_id: id).destroy
+    end
+  end
+
   def categories_text
     (categories || []).join ','
   end
@@ -113,6 +122,11 @@ class Thing < Post
     new = categories_change.last || []
     (old - new).each { |c| Category.find_and_minus c }
     (new - old).each { |c| Category.find_and_plus c }
+  end
+
+  def update_price
+    kinds_price = valid_kinds.map(&:price).uniq
+    self.price = kinds_price.min if kinds_price.present?
   end
 
   def update_amazon_link
@@ -241,8 +255,12 @@ class Thing < Post
   include Rankable
 
   def calculate_heat
+    self.priority ||= 0
+
+    return -1 if priority < 0
+
     (1 +
-     (priority || 0) +
+     priority +
      50 * reviews_count +
      5 * feelings_count +
      fancier_ids.count +

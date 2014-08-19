@@ -1,0 +1,10 @@
+.fancy-button {
+  @extend .btn;
+
+  background: $gray-lighter;
+  color: $gray;
+
+  i {
+    color: #ff3b3b;
+  }
+}

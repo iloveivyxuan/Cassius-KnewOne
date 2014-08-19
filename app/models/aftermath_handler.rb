@@ -10,28 +10,23 @@ class AftermathHandler
     def thing_fancy(thing, user)
       user.inc fancies_count: 1
 
-      user.category_references<< thing.categories
-
-      # notify thing's author
       thing.author.notify :fancy_thing, context: thing, sender: user, opened: false
     end
 
     def thing_unfancy(thing, user)
       user.inc fancies_count: -1 if user.fancies_count > 0
 
-      user.category_references>> thing.categories
+      user.thing_lists.each do |list|
+        list.items.where(thing: thing).destroy
+      end
     end
 
     def thing_own(thing, user)
       user.inc owns_count: 1
-
-      user.category_references<< thing.categories
     end
 
     def thing_unown(thing, user)
       user.inc owns_count: -1 if user.owns_count > 0
-
-      user.category_references>> thing.categories
     end
 
     def review_create(review)

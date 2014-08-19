@@ -174,4 +174,8 @@ module ApplicationHelper
   def alpha_pay?
     cookies[:alpha] == "pay" || params[:alpha] == "pay"
   end
+
+  def xeditable?(object)
+    can?(:update, object)
+  end
 end

@@ -91,7 +91,6 @@ html.home {
 
       .tags {
         background: white;
-        > section {margin: 0 1em;}
       }
 
       .about {
@@ -254,6 +253,11 @@ html.home {
             margin-right: .5em;
             color: #999;
           }
+
+          a {
+            margin: 0 .2em;
+            color: $link-color;
+          }
         }
 
         .feed-operations {
@@ -268,7 +272,8 @@ html.home {
           }
         }
 
-        .feed-feeling {
+        .feed-feeling,
+        .feed-thing-list {
           p {
             margin: 1em 0 0 0;
             font-size: 13px;
@@ -277,9 +282,11 @@ html.home {
             i.fa-quote-right {margin-left: .5em;}
             i.fa-quote-left {margin-right: .5em;}
           }
+        }
 
+        .feed-feeling {
           ul.feed-feeling-photos {
-            text-align: center;
+            text-align: left;
             li {
               display: inline-block;
               margin: 1em;
@@ -341,4 +348,3 @@ html.home {
     display: none;
   }
 }
-

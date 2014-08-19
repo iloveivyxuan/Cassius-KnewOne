@@ -11,14 +11,20 @@ class HomeController < ApplicationController
         session[:source] = @source
         activities = current_user.relate_activities(%i(new_thing own_thing fancy_thing
                                                        new_review love_review
-                                                       new_feeling))
+                                                       new_feeling
+                                                       add_to_list))
         activities = activities.page(params[:page]).per(30)
         @feeds = HomeFeed.create_from_activities activities
         @pager = activities
       else
-        session[:source] = "recommended"
-        things = Thing.hot.page(params[:page]).per(30)
-        reviews = Review.hot.page(params[:page]).per(5)
+        session[:source] = "latest"
+        if current_user.categories.present?
+          things = current_user.categories.things.published.where(:priority.gte => 0).desc(:created_at)
+        else
+          things = Thing.published.where(:priority.gte => 0).desc(:created_at)
+        end
+        things = things.page(params[:page]).per(30)
+        reviews = []
         @feeds = HomeFeed.create_from_things_and_reviews(things, reviews)
         @pager = things
       end
