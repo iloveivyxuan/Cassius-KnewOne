@@ -5,10 +5,10 @@ class InterestsController < ApplicationController
   def update
     category = Category.find(params[:id])
 
-    if current_user.categories_text.include? category.name
-      current_user.category_references >> category
+    if current_user.categories.include? category
+      current_user.categories.delete category
     else
-      current_user.category_references << category
+      current_user.categories << category
     end
 
     head :no_content

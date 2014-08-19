@@ -23,8 +23,13 @@ do (exports = window.Making || {}) ->
       $tags.on 'click', 'a', (event) ->
         $this = $(@)
 
+        slug = $.trim($(@).data('slug'))
+
+        $.ajax
+          url: "/settings/interests/#{slug}"
+          method: 'patch'
+
         if !$this.hasClass('is-active')
-          slug = $.trim($(@).data('slug'))
           if !cache[slug]
             cache[slug] = $.ajax
                               url: "/things/category/#{slug}?sort_by=fanciers_count"
@@ -34,9 +39,6 @@ do (exports = window.Making || {}) ->
           cache[slug]
             .done (data, status, jqXHR) ->
               $things.empty().append(data)
-          $.ajax
-            url: "/settings/interests/#{slug}"
-            method: 'patch'
 
       $('.js-friendship')
         .on 'click', '.js-friendship-follow-all', (event) ->
