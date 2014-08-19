@@ -179,6 +179,12 @@ html.home_welcome {
       margin-bottom: 0;
     }
 
+    output {
+      color: $green;
+      line-height: 34px;
+      padding-top: 0;
+    }
+
     @media (min-width: $screen-md-min) {
       @include make-md-column(3);
       border: {
@@ -257,14 +263,6 @@ html.home_welcome {
 
     .recommended-user {
       min-height: 60px;
-    }
-
-    #step3 {
-
-      .user_list {
-        max-height: 750px;
-        overflow: hidden;
-      }
     }
   }
 
