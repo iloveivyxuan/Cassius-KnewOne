@@ -20,8 +20,17 @@ class UsersController < ApplicationController
   end
 
   def lists
-    @lists = @user.related_thing_lists.sort_by(&:updated_at).reverse
-    @lists = Kaminari.paginate_array(@lists).page(params[:page]).per(24)
+    @show_nav = @user.thing_lists.size > 0 && @user.fancied_thing_lists.size > 0
+
+    if !params[:filter] || params[:filter] == 'owned'
+      @lists = @user.thing_lists
+      @filter = 'owned'
+    else
+      @lists = @user.fancied_thing_lists
+      @filter = 'fancied'
+    end
+
+    @lists = @lists.page(params[:page]).per(24)
   end
 
   def reviews
