@@ -1,0 +1,27 @@
+= simple_form_for Adoption.new, html: {class: "modal fade", id: "adoption-modal", tabIndex:"-1", role: "dialog"} do |f|
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal"
+          span aria-hidden="true" &times;
+          span.sr-only Close
+        h4.modal-title 申请领养
+      .modal-body
+        .adoption-result
+          p.help-block
+            | 目前已有&nbsp;
+            strong 100
+            | 人领养
+          ul
+            li
+              img src="http://image.knewone.com/users/f10c7887936632df04d70577ff850c1c.jpg!tiny" height="30" width="30"
+            li
+              img src="http://image.knewone.com/users/f10c7887936632df04d70577ff850c1c.jpg!tiny" height="30" width="30"
+            li
+              img src="http://image.knewone.com/users/f10c7887936632df04d70577ff850c1c.jpg!tiny" height="30" width="30"
+            li
+              img src="http://image.knewone.com/users/f10c7887936632df04d70577ff850c1c.jpg!tiny" height="30" width="30"
+      .modal-footer
+        button.btn.btn-primary type="submit"
+          i.fa.fa-check
+          | 确认领养
