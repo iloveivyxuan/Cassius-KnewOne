@@ -259,10 +259,30 @@ html.home_welcome {
     }
   }
 
+  #step2 {
+
+    .step-body {
+
+      > .panel {
+
+        > .panel-body {
+
+          > p {
+            margin-bottom: 15px;
+          }
+        }
+      }
+    }
+  }
+
   &.mobile {
 
     .recommended-user {
       min-height: 60px;
+    }
+
+    .tags {
+      text-align: center;
     }
   }
 
