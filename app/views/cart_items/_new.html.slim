@@ -54,7 +54,7 @@ class: "btn btn-info buy_button cart_login", data: {toggle: "modal", target: "#l
       = button_tag type: "button", class: "btn btn-success", data: {toggle: "modal", target: "#adoption-modal"} do
         i.fa.fa-shopping-cart.fa-lg
         | 领养
-      = render 'shared/adoption_modal'
     - else
       = link_to_login
     = link_to_with_icon "帮助", "fa fa-question", '#olark_chat', class: "support"
+= render 'shared/adoption_modal'
