@@ -33,6 +33,10 @@ header.page-header
           | 使用余额支付(现有￥#{current_user.balance})
     div
       label.checkbox.misc_option
+        = f.check_box :buy_as_gift, :class => 'buy_as_gift'
+        | 作为礼物，价格和发货信息向收货人保密
+    div
+      label.checkbox.misc_option
         = f.check_box :auto_owning
         | 帮我标记产品为拥有
     = provider_sync

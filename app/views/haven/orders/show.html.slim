@@ -55,6 +55,10 @@ section.orders_wrapper
         li
           strong.field 管理员备注：
           span.warning = @order.admin_note
+      - if @order.buy_as_gift?
+        li
+          strong.field 送礼用途：
+          span.warning 是
       - if @order.shipped?
         li
           strong.field 物流信息：
