@@ -76,10 +76,9 @@ html.users_activities {
 
     .thing-lists {
       > .thing-list {
-        padding: 1em;
-
         @media (min-width: $screen-sm-min) {
           @include make-sm-column(4);
+          padding: 2em;
         }
       }
     }
