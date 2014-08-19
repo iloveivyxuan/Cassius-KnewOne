@@ -54,5 +54,16 @@ do (exports = window.Making || {}) ->
                     .slice(visibleCount)
           $list.prepend(_.sample($rest, visibleCount))
 
+      if $html.hasClass('mobile')
+        $('#step2')
+          .find('.things')
+            .find('.thing_fancy_backdrop')
+            .removeAttr('href')
+            .removeAttr('target')
+          .end()
+            .find('figcaption h5 a')
+            .removeAttr('href')
+            .removeAttr('target')
+
   #exports
   exports
