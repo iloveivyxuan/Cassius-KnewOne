@@ -27,7 +27,7 @@ do (exports = window.Making || {}) ->
           slug = $.trim($(@).data('slug'))
           if !cache[slug]
             cache[slug] = $.ajax
-                              url: "/things/category/#{slug}"
+                              url: "/things/category/#{slug}?sort_by=fanciers_count"
                               dataType: 'html'
                               data:
                                 per: 12
