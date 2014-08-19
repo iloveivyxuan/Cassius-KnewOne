@@ -1,0 +1,61 @@
+- has_weibo = @friends.any?
+
+section.panel
+  header.panel-heading
+    h2.panel-title
+      | 绑定账号
+      small
+        | 在
+        strong.logo KnewOne
+        | 找到你的好友
+  .panel-body.row
+    nav.col-sm-3
+      ul.friendship-buttons
+        li.active
+          - if has_weibo
+            = link_to_with_icon '绑定新浪微博', 'fa fa-weibo', "#friendship-weibo", class: 'friendship-button btn-weibo', data: {toggle: "tab"}, role: "tab"
+          - else
+            = link_to_with_icon '绑定新浪微博', 'fa fa-weibo', user_omniauth_authorize_path(:weibo, state: welcome_path(anchor: 'step3')), class: 'friendship-button btn-weibo'
+        li
+          = link_to_with_icon '绑定 Twitter（开发中）', 'fa fa-twitter', "#friendship-twitter", disabled: true, class: 'friendship-button btn-twitter disabled', data: {toggle: "tab"}
+        li
+          = link_to_with_icon '绑定 QQ（开发中）', 'fa fa-qq', "#friendship-qq", disabled: true, class: 'friendship-button btn-qq disabled', data: {toggle: "tab"}
+        li
+          = link_to_with_icon '绑定豆瓣（开发中）', 'fa fa-douban', "#friendship-douban", disabled: true, class: 'friendship-button btn-douban disabled', data: {toggle: "tab"}
+    section.tab-content.col-sm-9
+      .friendship-pane.tab-pane.fade.js-friendship#friendship-weibo.active.in
+        - if has_weibo
+          header
+            h3 你在新浪微博上的好友
+            button.btn-inverse-blue.js-friendship-follow-all type="button"
+              i.fa.fa-plus
+              | 关注所有
+          ul.user_list.js-friendship-users = render @friends
+        - else
+          header
+            h3 你在新浪微博上的好友
+          .nothing
+            i.fa.fa-smile-o
+            br
+            | 什么都没有
+      .friendship-pane.tab-pane.fade#friendship-twitter
+        header
+          h3 你在 Twitter 上的好友
+        .nothing
+          i.fa.fa-smile-o
+          br
+          | 什么都没有
+      .friendship-pane.tab-pane.fade#friendship-qq
+        header
+          h3 你在 QQ 上的好友
+        .nothing
+          i.fa.fa-smile-o
+          br
+          | 什么都没有
+      .friendship-pane.tab-pane.fade#friendship-douban
+        header
+          h3 你在豆瓣上的好友
+        .nothing
+          i.fa.fa-smile-o
+          br
+          | 什么都没有

@@ -93,46 +93,6 @@ html.home {
         background: white;
       }
 
-      .recommended-users {
-        background: white;
-
-        .recommended-user {
-          margin: 1em 1em 0;
-        }
-
-        .user_info {
-          @include clearfix;
-        }
-
-        .author_avatar {
-          img {
-            @extend .img-circle;
-          }
-        }
-
-        .author_name {
-          color: $gray;
-          vertical-align: middle;
-          margin-left: 1em;
-        }
-
-        .follow_btn {
-          float: right;
-          padding-top: 3px;
-          padding-bottom: 3px;
-          margin-top: 6px;
-          color: #666;
-          background: $gray-lighter;
-          &.active { background: darken($gray-lighter, 10%); }
-          border: none;
-        }
-
-        .recommend_note {
-          color: $text-muted;
-          padding-left: 54px;
-        }
-      }
-
       .about {
         .contacts {
           text-align: center;

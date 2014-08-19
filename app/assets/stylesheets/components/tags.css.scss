@@ -1,7 +1,51 @@
 // Tags.
 //
 
+.tags {
+  $color-active: #91cded;
+
+  > a:not(.label) {
+    background-color: #eee;
+    border: $border-default;
+    border-radius: 1em;
+    color: $gray;
+    cursor: pointer;
+    display: inline-block;
+    margin: {
+      bottom: 10px;
+      right: 10px;
+    }
+    padding: 5px 20px;
+    position: relative;
+    text-align: center;
+
+    &:hover,
+    &.is-active {
+      background-color: $color-active;
+      border-color: $color-active;
+      color: #fff;
+    }
+
+    &.is-active {
+      padding: {
+        left: 14px;
+        right: 14px;
+      }
+
+      &:after {
+        content: '\002717';
+        font-size: 12px;
+        line-height: 20px;
+        padding-left: 5px;
+        vertical-align: 1px;
+      }
+    }
+  }
+}
+
+// Deprecated.
 .tag, .tags {
+
   .label {
     background-color: #ededed;
     border-radius: 4px;

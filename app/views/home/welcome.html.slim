@@ -1,80 +1,77 @@
 - page_title '欢迎'
 
 section.step#step1
-  header.step_header
-    h1
+
+  header.step-header.clearfix
+    h1.pull-left
+      | 欢迎来到&nbsp;
       strong.logo KnewOne
-      | &nbsp;有你感兴趣的人吗？
-    p 关注他们，就可以看到他们对新奇酷的讨论动态，和他们交流！
-    footer.actions
-      - data = { category: "follow", action: "follow_all", label: "follow+all+#{current_user.name}" }
-      = link_to_with_icon "关注所有", "fa fa-plus",
-                          follow_recommends_profile_url(redirect_from: welcome_url(anchor: 'step2')),
-                          class: 'btn btn_compact_inverse track_event', data: data, method: :post
-      = link_to_with_icon "下一步", "fa fa-forward", "#step2", class: 'btn btn_compact_inverse'
+    a.btn-inverse-white.pull-right href="#step2"
+      i.fa.fa-arrow-right
+      | 下一步
 
-  - has_weibo = @friends.any?
+  .step-body
+    section.panel.js-friendship
+      header.panel-heading
+        h2.panel-title
+          strong.logo KnewOne
+          |  达人
+        button.btn-inverse-blue.js-friendship-follow-all type="button"
+          i.fa.fa-plus
+          | 关注所有
+        button.btn-inverse-blue.hidden-xs.js-friendship-refresh type="button"
+          i.fa.fa-refresh
+          | 换一组
+      .panel-body
+        ul.recommended-users.js-friendship-users
+          - recommend_users = current_user.recommend_new_users.limit(60)
+          = render partial: "recommend_user", collection: recommend_users, as: :user
+      footer.panel-footer.visible-xs-block
+        button.btn-inverse-blue.js-friendship-refresh type="button"
+          i.fa.fa-refresh
+          | 换一组
 
-  section.step_body
-    section.section
-      h2 新浪微博好友
-      - if has_weibo
-        p
-          | 关注好友，
-          span.logo KnewOne
-          | &nbsp;之旅更精彩！
-        ul.user_list = render @friends
-      - else
-        p
-          | 绑定微博，找到在&nbsp;
-          span.logo KnewOne
-          | &nbsp;上安家的伙伴！
-        footer.actions
-          = link_to_with_icon '绑定新浪微博', 'fa fa-weibo', user_omniauth_authorize_path(:weibo, state: welcome_path(anchor: 'step1')), class: 'btn btn_compact'
-
-    section.section
-      h2
-        strong.logo KnewOne
-        | &nbsp;达人
-      p
-        | 关注达人，
-        span.logo KnewOne
-        | &nbsp;之旅更精彩！
-      ul.user_list = render @recommend_users
-
-  footer.step_footer.actions
-    = link_to_with_icon "关注所有", "fa fa-plus",
-                        follow_recommends_profile_path(redirect_from: welcome_url(anchor: 'step2')),
-                        class: 'btn btn_compact', method: :post
-    = link_to_with_icon "下一步", "fa fa-forward", "#step2", class: 'btn btn_compact'
+/-- END #step1 --/
 
 section.step#step2
-  header.step_header
-    h1
-      | 从这些新奇酷产品开始你的&nbsp;
-      span.logo KnewOne
-      | &nbsp;之旅吧！
-    footer.actions
-      = link_to_with_icon "完成", "fa fa-home", root_url, class: 'btn btn_compact_inverse js_finish'
+  header.step-header.clearfix
+    h1.pull-left
+      | 欢迎来到&nbsp;
+      strong.logo KnewOne
+    a.btn-inverse-white.pull-right href="#step3"
+      i.fa.fa-arrow-right
+      | 下一步
+  .step-body
+    section.panel
+      header.panel-heading.hidden-xs
+        h2.panel-title
+          strong.logo KnewOne
+          |  正在流行的新奇酷
+      .panel-body
+        p 选择你感兴趣的标签：
+        .tags
+          - Category.desc(:things_count).limit(9).each do |category|
+            = link_to category.name, "#", data: {slug: category.slug}
+        ul.things
+          = render Thing.hot.limit(12), img_lazy: false, size: :normal
 
-      - unless current_user.has_fulfilled_email?
-        = simple_form_for current_user, url: email_account_path(redirect_from: root_path), html: {class: "form-inline", id: "fill_info"} do |f|
-          .form-group
-            .input-group
-              span.input-group-addon
-                i.fa.fa-envelope
-              input.form-control name="user[email]" type="email"
-          button.btn type="submit"
-            i.fa.fa-chevron-right.fa_alone
-          p.help-block
-            | 只要绑定邮箱，就能接收更多新奇酷信息。
+/-- END #step2 --/
 
-  section.step_body
-    section.section
-      ul.things = render @things, size: :normal, img_lazy: false
+section.step#step3
+  header.step-header.clearfix
+    h1.pull-left
+      | 欢迎来到&nbsp;
+      strong.logo KnewOne
+    a.btn-inverse-white.pull-right href="/"
+      i.fa.fa-arrow-right
+      | 完成
+  .step-body
+    - if browser.mobile?
+      = render 'welcome_step3_mobile'
+    - else
+      = render 'welcome_step3'
 
-  footer.step_footer.actions
-    = link_to_with_icon "完成", "fa fa-home", root_url, class: 'btn btn_compact js_finish'
+/-- END #step3 --/
 
 - content_for :script do
   javascript:

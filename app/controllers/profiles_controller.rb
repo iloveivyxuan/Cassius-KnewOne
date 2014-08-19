@@ -1,8 +1,7 @@
 class ProfilesController < ApplicationController
   prepend_before_action :require_signed_in
-  before_action :set_editor_choices, except: [:update, :edit, :follow_recommends]
-  layout 'home', except: [:update, :edit, :drafts]
   skip_before_action :require_not_blocked, only: [:update, :edit]
+  layout 'settings'
 
   def update
     params[:user][:auto_update_from_oauth] = false
@@ -19,7 +18,6 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    render layout: 'settings'
   end
 
   def recommend_users
@@ -45,7 +43,6 @@ class ProfilesController < ApplicationController
   end
 
   def drafts
-    render layout: 'settings'
   end
 
   private
@@ -53,9 +50,5 @@ class ProfilesController < ApplicationController
   def user_params
     params.require(:user).
         permit :avatar, :avatar_cache, :name, :gender, :description, :location, :site, :auto_update_from_oauth
-  end
-
-  def set_editor_choices
-    @editor_choices = Thing.rand_prior_records 1
   end
 end

@@ -342,6 +342,10 @@ do (exports = Making) ->
       .on 'click', 'a.disabled', (event) ->
         false
 
+      .on 'click', '.tags > a', (event) ->
+        event.preventDefault()
+        $(@).toggleClass('is-active')
+
       .on 'click', '.fanciers > a, .fancy-button > a, .fancy_button > a', (event) ->
         event.preventDefault()
 

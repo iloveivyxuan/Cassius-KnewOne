@@ -54,6 +54,7 @@ Making::Application.routes.draw do
       resource :account do
         patch 'email'
       end
+      resources :interests, only: [:update]
       resources :addresses, except: [:show]
       resources :invoices, except: [:show]
       resources :balances, only: [:index]

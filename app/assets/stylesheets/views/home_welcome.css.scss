@@ -1,235 +1,301 @@
 html.home_welcome {
-  $color_primary: #009ade;
-  $gap: 30px;
-  $gap_lg: 60px;
 
   // Layout
   // ---------------------------------------------------------------------------
 
   #wrapper {
-    @include wrapper(simple, $max-width: $screen-lg-min);
-
-    min-height: 380px;
+    @include wrapper(simple, $max-width: $screen-md-min);
+    border-radius: 10px;
+    margin: 1rem;
     overflow: hidden;
     padding: 0;
-    position: relative;
+
+    @media (min-width: $screen-md-min) {
+      margin: {
+        bottom: 0;
+        top: 0;
+      }
+    }
   }
 
   // Section
   // ---------------------------------------------------------------------------
 
-  .logo {
-    font-family: "orbitron-bold";
-    font-weight: normal;
+  .btn-inverse-white {
+    @include button-variant(#fff, $brand-color, #fff);
+    @include button-size($padding-base-vertical,
+                          $padding-base-horizontal,
+                          $font-size-base,
+                          $line-height-base,
+                          $border-radius-base);
+    @include button-inverse($brand-color, #fff);
+    background-image: none;
+    border-style: solid;
+    border-width: 1px;
   }
 
-  .btn_compact {
-    @include button_compact(#fff, $color_primary);
-    @include transition(all .2s ease);
+  .btn-inverse-blue {
+    @include button-variant($brand-color, #fff, $brand-color);
+    @include button-size($padding-base-vertical,
+                          $padding-base-horizontal,
+                          $font-size-base,
+                          $line-height-base,
+                          $border-radius-base);
+    @include button-inverse(#fff, $brand-color);
+    background-image: none;
+    border-style: solid;
+    border-width: 1px;
   }
 
-  .btn_compact_inverse {
-    @include button_compact($color_primary, #fff);
-    @include transition(all .2s ease);
+  .btn-weibo,
+  .btn-twitter,
+  .btn-qq,
+  .btn-douban {
+    @extend .btn;
   }
-
-  .actions {
-    min-height: 34px;
-    padding: 0 $gap;
-    text-align: center;
-
-    .btn {
-      margin-bottom: 10px;
-      width: 100%;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-
-      @media (min-width: $screen-md-min) {
-        margin: {
-          bottom: 0;
-          left: 10px;
-          right: 10px;
-        }
-        width: auto;
-      }
-    }
-  }
-
-  .section {
-    margin-bottom: $gap;
-    text-align: center;
-
-    @media (min-width: $screen-sm-min) {
-      margin-bottom: $gap_lg;
-      padding: {
-        left: 20px;
-        right: 20px;
-      }
-    }
-
-    > h2 {
-      font-size: 28px;
-      margin-top: 0;
-
-      @media (min-width: $screen-sm-min) {
-        font-size: 40px;
-      }
-    }
-
-    > p {
-      font-size: 16px;
-      margin-bottom: 20px;
-
-      @media (min-width: $screen-sm-min) {
-        font-size: 22px;
-        margin-bottom: 40px;
-      }
-    }
-  }
+  .btn-weibo   {@include button-variant(#fff, #db564d, #db564d);}
+  .btn-twitter {@include button-variant(#fff, #55acee, #55acee);}
+  .btn-qq      {@include button-variant(#fff, #3e8aca, #3e8aca);}
+  .btn-douban  {@include button-variant(#fff, #007d1d, #007d1d);}
 
   .step {
     display: none;
 
-    &.active {
+    &.is-active {
       display: block;
     }
   }
 
-  .step_header {
-    @extend .section;
+  .step-header {
+    @include clearfix;
+    background-color: $brand-color;
+    color: #fff;
+    padding: 15px;
 
-    background-color: $color_primary;
-    padding: {
-      bottom: $gap_lg;
-      left: 0;
-      right: 0;
-      top: 10%;
+    @media (min-width: $screen-md-min) {
+      background: $brand-color image-url("face.png") 30px 20px no-repeat;
+      padding-left: 128px;
     }
 
     h1 {
-      background-color: #fff;
-      color: $color_primary;
-      font-size: 32px;
-      font-weight: bold;
-      margin: {
-        bottom: 20px;
-        top: 0;
-      }
-      padding: $gap;
-
-      @media (min-width: $screen-sm-min) {
-        font-size: 50px;
-      }
+      font-size: 16px;
+      line-height: 34px;
+      margin: 0;
     }
 
-    p {
+    .logo {
       color: #fff;
-      padding: 0 $gap;
     }
   }
 
-  .step_body {
-    padding: {
-      left: $gap;
-      right: $gap;
+  .step-body {
+
+    @media (min-width: $screen-md-min) {
+      padding: 0 15px;
     }
-  }
 
-  .step_footer {
-    border-top: $border-default;
-    padding: $gap_lg $gap;
-    text-align: center;
-  }
+    .panel {
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
 
-  #step1 {
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
 
-    .step_body {
+    .panel-heading {
+      @include clearfix;
+      padding: 15px;
 
-      @media (min-width: $screen-md-min) {
-        @include make-row;
+      button {
+        float: right;
+        margin-left: 1em;
+      }
+    }
 
-        > .section {
-          @include make-md-column(6);
+    .panel-title {
+      line-height: 34px;
+      float: left;
+
+      small {
+        color: #a5a5a5;
+        font-size: 14px;
+        padding-left: 1em;
+
+        .logo {
+          color: #a5a5a5;
         }
       }
+    }
+
+    .panel-footer {
+      background-color: transparent;
+      border: none;
+      padding: 15px;
+
+      button {
+        display: block;
+        width: 100%;
+
+        @media (min-width: $screen-md-min) {
+          display: block;
+          margin: 0 auto;
+          width: auto;
+        }
+      }
+    }
+  }
+
+  .box {
+
+    > footer {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .friendships {
+    margin-bottom: 0;
+  }
+
+  .friendship-group {
+
+    @media (min-width: $screen-sm-min) {
+      @include make-row;
+    }
+  }
+
+  .friendship {
+    border-bottom: $border-default !important;
+    border-radius: 0;
+    box-shadow: none;
+    margin: {
+      bottom: 1rem;
+      top: 0 !important;
+    }
+
+    &:last-child {
+      border-bottom: none !important;
+      margin-bottom: 0;
+    }
+
+    output {
+      color: $green;
+      line-height: 34px;
+      padding-top: 0;
+    }
+
+    @media (min-width: $screen-md-min) {
+      @include make-md-column(3);
+      border: {
+        bottom: none !important;
+        right: $border-default !important;
+      }
+      &:last-child {
+        border-right: none;
+      }
+
+      .box {
+        display: block !important;
+      }
+    }
+  }
+
+  .friendship-buttons {
+    border-right: $border-default;
+    padding-right: 30px;
+  }
+
+  .friendship-button {
+    box-shadow: none;
+    margin-bottom: 1rem;
+    width: 100%;
+
+    &:active {
+      box-shadow: none;
+    }
+  }
+
+  .friendship-pane {
+
+    > header {
+      @include clearfix;
+
+      h3 {
+        color: $gray;
+        float: left;
+        font-size: 14px;
+        margin: 0;
+      }
+
+      button {
+        float: right;
+      }
+    }
+  }
+
+  .recommended-users {
+    height: 420px;
+    overflow: hidden;
+    padding: 0 1em;
+
+    @media (min-width: $screen-md-min) {
+      @include make-row;
+    }
+  }
+
+  .recommended-user {
+    margin: 0;
+
+    @media (min-width: $screen-md-min) {
+      @include make-md-column(6);
+    }
+  }
+
+  .things {
+
+    .figure_detail {
+      display: none;
     }
   }
 
   #step2 {
 
-    h1 {
-      margin-bottom: 60px;
-    }
+    .step-body {
 
-    .pre_ribbon {
-      display: none;
-    }
+      > .panel {
 
-    @media (min-width: $screen-md-min) {
+        > .panel-body {
 
-      ul.things > li {
-        width: percentage(1/3);
+          > p {
+            margin-bottom: 15px;
+          }
+        }
       }
     }
   }
 
-  #fill_info {
-    display: none;
+  &.mobile {
 
-    .form-group {
-      display: inline-block;
-      min-width: 200px;
-      vertical-align: middle;
-      width: 25%;
+    .recommended-user {
+      min-height: 60px;
     }
 
-    .form-control {
-      @include transition(all .2s ease);
-
-      background: transparent;
-      border-color: #fff;
-      color: #fff;
-
-      &:focus {
-        background-color: #fff;
-        color: $text-color;
-      }
+    .tags {
+      text-align: center;
     }
+  }
 
-    .input-group-addon {
-      background: transparent;
-      border-color: #fff;
-      color: #fff;
-    }
+  &.tablet,
+  &.desktop {
 
-    .btn {
-      @include transition(all .2s ease);
+    .recommended-user {
+      min-height: 70px;
+      padding: 0 50px;
 
-      background: transparent;
-      border: 1px solid #fff;
-      color: #fff;
-      margin: {
-        bottom: 15px;
-        left: 10px;
+      &:nth-child(odd) {
+        border-right: $border-default;
       }
-      width: auto;
-
-      &:hover {
-        background-color: #fff;
-        color: $color_primary;
-      }
-
-      @media (min-width: $screen-sm-min) {
-        margin-bottom: 0;
-      }
-    }
-
-    .help-block {
-      color: #fff;
-      font-style: normal;
-      margin-top: 10px;
     }
   }
 }

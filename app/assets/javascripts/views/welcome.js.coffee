@@ -1,36 +1,69 @@
-window.Making = do (exports = window.Making || {}) ->
+do (exports = window.Making || {}) ->
   _hash = ''
 
   exports.InitWelcome = ->
     $ ->
-      $window = $(window)
-      step = location.hash
-      $button_finish = $('.js_finish')
-      $form_fill = $('#fill_info')
+      step  = location.hash
+      $tags = $('#step2').find('.tags')
+      cache = {}
+      $things = $('#step2 ul.things')
+      visibleCount = if $html.hasClass('mobile') then 6 else 12
 
       if step is '' then step = '#step1'
-      $(step).addClass('active')
+      $(step).addClass('is-active')
 
       $window
         .on 'hashchange', ->
           _hash = location.hash
-          $(_hash).addClass('active').siblings().removeClass('active')
-          $(@).scrollTop(0);
+          $(_hash).addClass('is-active').siblings().removeClass('is-active')
+          $window.scrollTop(0)
         .on 'load', ->
-          $(@).trigger('hashchange')
+          $window.trigger('hashchange')
 
-      $('#step3').children('form').find('.close').on 'click', ->
-        $(@).parents('form').slideUp(200)
+      $tags.on 'click', 'a', (event) ->
+        $this = $(@)
 
-      $button_finish.on 'click', (event) ->
-        if $form_fill.length > 0
+        if !$this.hasClass('is-active')
+          slug = $.trim($(@).data('slug'))
+          if !cache[slug]
+            cache[slug] = $.ajax
+                              url: "/things/category/#{slug}"
+                              dataType: 'html'
+                              data:
+                                per: 12
+          cache[slug]
+            .done (data, status, jqXHR) ->
+              $things.empty().append(data)
+          $.ajax
+            url: "/settings/interests/#{slug}"
+            method: 'patch'
+
+      $('.js-friendship')
+        .on 'click', '.js-friendship-follow-all', (event) ->
           event.preventDefault()
-          if $(@).parents('.step_header').length is 0
-            $window.scrollTop(0)
-          $button_finish.hide()
-          $form_fill.show()
+          $(event.delegateTarget)
+            .find('.js-friendship-users')
+            .find('.follow_btn[data-method="post"]')
+            .slice(0, if location.hash is 'step3' and !$html.hasClass('mobile') then undefined else visibleCount)
+            .click()
+        .on 'click', '.js-friendship-refresh', (event) ->
+          event.preventDefault()
+          $list = $(event.delegateTarget).find('.js-friendship-users')
+          $rest = $list
+                    .children()
+                    .slice(visibleCount)
+          $list.prepend(_.sample($rest, visibleCount))
 
-        true
+      if $html.hasClass('mobile')
+        $('#step2')
+          .find('.things')
+            .find('.thing_fancy_backdrop')
+            .removeAttr('href')
+            .removeAttr('target')
+          .end()
+            .find('figcaption h5 a')
+            .removeAttr('href')
+            .removeAttr('target')
 
   #exports
   exports
