@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   layout 'application'
-  skip_after_action :store_location
+  skip_after_action :store_location, except: :index
   before_action :authenticate_user!, only: [:welcome]
 
   def index

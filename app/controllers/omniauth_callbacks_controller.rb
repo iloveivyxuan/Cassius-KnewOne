@@ -20,9 +20,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
       params[:redirect_from] = params[:state] if params[:state].present? && params[:state][0] == '/'
 
-      redirect_to after_sign_in_path_for(user),
-                  :notice => t('devise.omniauth_callbacks.success', kind: omniauth.provider),
-                  :flash => {:show_set_email_modal => !user.has_fulfilled_email?}
+      redirect_back_or after_sign_in_path_for(user),
+                       :notice => t('devise.omniauth_callbacks.success', kind: omniauth.provider),
+                       :flash => {:show_set_email_modal => !user.has_fulfilled_email?}
     elsif user_signed_in?
       # must be
       current_user.auths<< Auth.from_omniauth(omniauth)
