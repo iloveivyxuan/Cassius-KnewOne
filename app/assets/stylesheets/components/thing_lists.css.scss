@@ -68,6 +68,7 @@
   }
 
   .thing-list-item-description {
+    width: 95%;
     margin-top: 16px;
     color: $gray;
 
@@ -80,8 +81,8 @@
   }
 
   .thing-list-item-destroy {
-    display: inline-block;
-    margin-top: 16px;
-    margin-left: .5em;
+    position: absolute;
+    right: 15px;
+    bottom: 0;
   }
 }
