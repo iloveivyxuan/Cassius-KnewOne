@@ -94,6 +94,7 @@ class Order
   field :order_no, type: String
   field :deliver_by, type: Symbol
   field :deliver_no, type: String
+  field :buy_as_gift, type: Boolean, default: false
   field :note, type: String
   field :admin_note, type: String, default: ''
   field :system_note, type: String, default: ''
