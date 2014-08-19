@@ -1,3 +1,13 @@
+- if @show_nav
+  nav.thing-list-filter
+    .btn-group
+      = link_to({filter: 'owned'}, class: "btn btn-default #{@filter == 'owned' ? 'active' : ''}")
+        i.fa.fa-eye
+        | 创建
+      = link_to({filter: 'fancied'}, class: "btn btn-default #{@filter == 'fancied' ? 'active' : ''}")
+        i.fa.fa-star-o
+        | 喜欢
+
 .thing-lists= render @lists, user: @user
 
 = paginate @lists
