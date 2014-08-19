@@ -11,6 +11,8 @@
     }
 
     h4 {
+      @include text-overflow;
+
       margin: 10px 0;
       color: $black;
     }
