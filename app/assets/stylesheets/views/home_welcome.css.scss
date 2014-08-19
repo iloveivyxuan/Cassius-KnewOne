@@ -252,35 +252,27 @@ html.home_welcome {
       display: none;
     }
   }
-}
 
-html.mobile {
+  &.mobile {
 
-  .hidden-xs {
-    display: none;
-  }
+    #step3 {
 
-  #step3 {
-
-    .user_list {
-      max-height: 750px;
-      overflow: hidden;
+      .user_list {
+        max-height: 750px;
+        overflow: hidden;
+      }
     }
   }
-}
 
-html.tablet,
-html.desktop {
+  &.tablet,
+  &.desktop {
 
-  .visible-xs-block {
-    display: none;
-  }
+    .recommended-user {
+      padding: 0 50px;
 
-  .recommended-user {
-    padding: 0 50px;
-
-    &:nth-child(odd) {
-      border-right: $border-default;
+      &:nth-child(odd) {
+        border-right: $border-default;
+      }
     }
   }
 }
