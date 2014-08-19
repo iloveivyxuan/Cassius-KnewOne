@@ -255,6 +255,10 @@ html.home_welcome {
 
   &.mobile {
 
+    .recommended-user {
+      min-height: 60px;
+    }
+
     #step3 {
 
       .user_list {
@@ -268,6 +272,7 @@ html.home_welcome {
   &.desktop {
 
     .recommended-user {
+      min-height: 70px;
       padding: 0 50px;
 
       &:nth-child(odd) {
