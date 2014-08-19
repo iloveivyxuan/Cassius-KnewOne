@@ -241,6 +241,21 @@ a.btn_block {
   }
 }
 
+html.mobile {
+
+  .hidden-xs {
+    display: none;
+  }
+}
+
+html.tablet,
+html.desktop {
+
+  .visible-xs-block {
+    display: none;
+  }
+}
+
 /* fucking baidu analystics */
 a[href^='http://tongji.baidu.com'] {
   display: none;
