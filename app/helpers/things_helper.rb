@@ -43,8 +43,24 @@ module ThingsHelper
           label: "buy+abroad+#{thing.title}"
         }
       end
+    when :adoption
+      if user_signed_in?
+        link_to_with_icon "领养", "fa fa-shopping-cart fa-lg", "#",
+        title: thing.title,
+        class: "btn btn-success btn-block track_event",
+        data: {
+          action: "buy",
+          category: "adoption",
+          label: "buy+adoption+#{thing.title}",
+          target: "#adoption-modal",
+          toggle: "modal"
+        }
+      else
+        link_to_with_icon "请登录后领养", "fa fa-sign-in", "#", class: "btn btn-danger btn-block", data: {toggle: "modal", target: "#login-modal"}
+      end
     else
       nil
     end
   end
+
 end

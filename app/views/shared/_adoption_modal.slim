@@ -1,7 +1,8 @@
+- thing = Thing.find(request.path.split("/").last)
+- thing_adopoted_count = thing.adoptions.map(&:user).uniq.size
+- thing_adopted_users = thing.adoptions.map(&:user).uniq.take(15)
+
 = simple_form_for Adoption.new, html: {class: "modal fade", id: "adoption-modal", tabIndex:"-1", role: "dialog"}, remote: true do |f|
-  - thing = Thing.find(request.path.split("/").last)
-  - thing_adopoted_count = thing.adoptions.map(&:user).uniq.size
-  - thing_adopted_users = thing.adoptions.map(&:user).uniq.take(15)
   .modal-dialog
     .modal-content
       .modal-header
@@ -18,7 +19,8 @@
           ul
             - thing_adopted_users.each do |user|
               li
-                img src=user.avatar.url height="30" width="30"
+                - if user
+                  img src=user.avatar.url height="30" width="30"
         .address
           = render partial: 'orders/address_select', locals: {f: f}
         .form-group
@@ -47,4 +49,6 @@
           | 申请领养成功
       .modal-footer
         button.btn.btn-default type="button" 关闭
-        = link_to "查看详情", "#", class: "btn btn-success"
+        - str = "#晒牛玩#"
+        = link_to '分享', '#share_modal', id: 'share_order_btn', class: "share_btn btn btn-default", data: { toggle: 'modal', content: str, pic: thing.cover.url(:review) }
+        = link_to "查看详情", adoptions_path, class: "btn btn-success"

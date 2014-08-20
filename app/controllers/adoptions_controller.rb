@@ -38,7 +38,7 @@ class AdoptionsController < ApplicationController
   def one_click
     adoption = Adoption.find params[:id]
     thing = adoption.thing
-    kind = thing.kinds.find(adoption.kind_id)
+    kind = thing.kinds.find(adoption.kind)
     cart_item = CartItem.new(thing: thing, kind_id: kind.id.to_s, quantity: 1)
     current_user.cart_items << cart_item
     order = Order.build_order(current_user, nil)

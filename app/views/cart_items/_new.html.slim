@@ -53,12 +53,13 @@ class: "btn btn-info buy_button cart_login", data: {toggle: "modal", target: "#l
           i.fa.fa-shopping-cart.fa-lg
           | 加入购物车
       - elsif tp.thing.stage == :adoption
-        = button_tag type: "button", class: "btn btn-success adoption_button", data: {toggle: "modal", target: "#adoption-modal"} do
+        - adopted = Adoption.where(thing: tp.thing, user: current_user).exists?
+        = button_tag type: "button", class: "btn btn-success adoption_button", disabled: adopted, data: {toggle: "modal", target: "#adoption-modal"} do
           i.fa.fa-shopping-cart.fa-lg
-          | 领养
+          = !adopted ? "领养" : "已领养"
     - else
       = link_to_login
     = link_to_with_icon "帮助", "fa fa-question", '#olark_chat', class: "support"
 
-- if (tp.thing.stage == :adoption) && !(Adoption.where(thing: tp.thing, user: current_user).exists?)
+- if (tp.thing.stage == :adoption) && !Adoption.where(thing: tp.thing, user: current_user).exists?
   = render 'shared/adoption_modal'
