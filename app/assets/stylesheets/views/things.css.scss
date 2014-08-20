@@ -469,23 +469,10 @@ div#thing_title {
         margin-top: 1em;
       }
 
-      .thing-list-title,
-      .thing-list-creator {
-        display: inline-block;
-        margin: 0;
-        @include text-overflow;
-      }
-
       .thing-list-title {
+        @include text-overflow;
         font-size: 16px;
         color: $black;
-      }
-
-      .thing-list-creator {
-        width: 45%;
-        text-align: right;
-        font-size: 14px;
-        color: $gray-light;
       }
 
       .thing-list-items {
