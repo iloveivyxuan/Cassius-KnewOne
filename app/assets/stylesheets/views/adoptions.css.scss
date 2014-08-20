@@ -60,3 +60,29 @@
     }
   }
 }
+
+.adoption-result {
+
+  .help-block {
+    font-size: 12px;
+    font-style: normal;
+    margin-top: 0;
+  }
+
+  > ul {
+    text-align: center;
+
+    li {
+      display: inline-block;
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      img {
+        @extend .img-circle;
+      }
+    }
+  }
+}

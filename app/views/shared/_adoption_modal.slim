@@ -21,13 +21,18 @@
               li
                 - if user
                   img src=user.avatar.url height="30" width="30"
+        - if browser.mobile?
+          = f.input :kind, as: :select, required: true do
+            = select_tag "adoption[kind]", tp.options_for_kinds,
+            class: "select required form-control", prompt: "请选择型号"
+        - else
+          = f.input :kind, as: :hidden
         .address
           = render partial: 'orders/address_select', locals: {f: f}
         .form-group
           label 说几句
           = text_area(:adoption, :note, rows: 3, class: 'form-control', required: true)
-        = f.input :thing, as: :hidden
-        = f.input :kind, as: :hidden
+        = f.input :thing, as: :hidden, input_html: { value: tp.thing.id.to_s }
 
       .modal-footer
         button.btn.btn-primary type="submit"

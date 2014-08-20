@@ -120,6 +120,7 @@ Making::Application.routes.draw do
   resources :adoptions do
     member do
       get 'one_click'
+      post 'add_to_cart'
     end
   end
 

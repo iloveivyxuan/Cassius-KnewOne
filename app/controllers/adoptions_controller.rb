@@ -48,6 +48,14 @@ class AdoptionsController < ApplicationController
     redirect_to order
   end
 
+  def add_to_cart
+    a = Adoption.find(params[:id])
+    kind = a.thing.kinds.find(a.kind)
+    cart_item = CartItem.new(thing: a.thing, kind_id: kind.id.to_s)
+    current_user.cart_items << cart_item
+    redirect_to cart_items_url
+  end
+
   private
 
   def adoption_params
