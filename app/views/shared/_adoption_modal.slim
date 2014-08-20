@@ -31,3 +31,20 @@
         button.btn.btn-primary type="submit"
           i.fa.fa-check
           | 确认领养
+
+.modal.fade#adoption-success tabIndex="-1" role="dialog" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal"
+          span aria-hidden="true" &times;
+          span.sr-only Close
+        h4.modal-title 申请领养成功
+      .modal-body
+        p.tip-block.success.small
+          i.fa.fa-smile-o
+          br
+          | 申请领养成功
+      .modal-footer
+        button.btn.btn-default type="button" 关闭
+        = link_to "查看详情", "#", class: "btn btn-success"

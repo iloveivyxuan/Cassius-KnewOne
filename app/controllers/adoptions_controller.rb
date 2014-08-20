@@ -29,8 +29,6 @@ class AdoptionsController < ApplicationController
     @adoption.address = current_user.addresses.find_by(id: params[:adoption][:address_id])
     @adoption.adoption_no = rand.to_s[2..11]
     @adoption.save!
-
-    render text: 'success'
   end
 
   def show

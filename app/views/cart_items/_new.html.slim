@@ -53,7 +53,7 @@ class: "btn btn-info buy_button cart_login", data: {toggle: "modal", target: "#l
           i.fa.fa-shopping-cart.fa-lg
           | 加入购物车
       - elsif tp.thing.stage == :adoption
-        = button_tag type: "button", class: "btn btn-success", data: {toggle: "modal", target: "#adoption-modal"} do
+        = button_tag type: "button", class: "btn btn-success adoption_button", data: {toggle: "modal", target: "#adoption-modal"} do
           i.fa.fa-shopping-cart.fa-lg
           | 领养
     - else
