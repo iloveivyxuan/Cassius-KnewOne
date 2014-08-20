@@ -22,6 +22,10 @@ html.no-touch {
   }
 }
 
+p {
+  word-wrap: break-word;
+}
+
 ul, ol {
   list-style: none;
   margin: 0;
@@ -38,6 +42,8 @@ video {
 }
 
 a {
+  word-wrap: break-word;
+
   &:focus {outline: none;}
   &:hover {text-decoration: none;}
 }
