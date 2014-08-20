@@ -48,6 +48,9 @@ html.thing_lists_show {
         }
 
         .thing-list-name {
+          @include text-overflow;
+
+          margin-right: 60px;
           padding-top: 6px;
           font-size: 16px;
         }
