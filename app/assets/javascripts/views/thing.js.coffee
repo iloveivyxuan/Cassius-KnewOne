@@ -66,7 +66,7 @@ window.Making = do (exports = window.Making || {}) ->
               .hide()
 
   exports.InitAdoption = ->
-    $adoption      = $('#adoption-modal')
+    $adoption      = $('#thing_actions #adoption-modal')
     $adoptionThing = $adoption.find('[name="adoption[thing]"]')
     $adoptionKind  = $adoption.find('[name="adoption[kind]"]')
 

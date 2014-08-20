@@ -12,6 +12,7 @@ table.table.table-striped
       th 评测
       th 短评
       th 被关注
+      th 领养次数（成功次数）
       th 爱
   tbody
     - @users.each do |u|
@@ -25,4 +26,5 @@ table.table.table-striped
         td= u.reviews_count
         td= u.feelings_count
         td= u.followers_count
+        td =
         td= user_links(u)

@@ -106,6 +106,14 @@ class ThingPresenter < PostPresenter
     end
   end
 
+  def adoption
+    if thing.valid_kinds.blank?
+      concept
+    else
+      render partial: 'cart_items/new', locals: {tp: self}
+    end
+  end
+
   def buy
     @buy ||= respond_to?(thing.stage) ? send(thing.stage) : concept
   end

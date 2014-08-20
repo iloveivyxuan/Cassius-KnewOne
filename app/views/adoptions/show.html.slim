@@ -14,4 +14,4 @@ p = @adoption.note
 p = @adoption.status
 
 | 领养时间
-p = @adoption.created_at
+p = @adoption.created_at.strftime '%Y-%m-%d %H:%M:%S'

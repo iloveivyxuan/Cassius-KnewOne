@@ -48,13 +48,17 @@ class: "btn btn-info buy_button cart_login", data: {toggle: "modal", target: "#l
     | 已加入购物车
   .submit
     - if user_signed_in?
-      = button_tag type: "submit", class: "btn btn-success buy_button track_event", data: data, disabled: true do
-        i.fa.fa-shopping-cart.fa-lg
-        | 加入购物车
-      = button_tag type: "button", class: "btn btn-success", data: {toggle: "modal", target: "#adoption-modal"} do
-        i.fa.fa-shopping-cart.fa-lg
-        | 领养
+      - if tp.thing.stage == :dsell
+        = button_tag type: "submit", class: "btn btn-success buy_button track_event", data: data, disabled: true do
+          i.fa.fa-shopping-cart.fa-lg
+          | 加入购物车
+      - elsif tp.thing.stage == :adoption
+        = button_tag type: "button", class: "btn btn-success", data: {toggle: "modal", target: "#adoption-modal"} do
+          i.fa.fa-shopping-cart.fa-lg
+          | 领养
     - else
       = link_to_login
     = link_to_with_icon "帮助", "fa fa-question", '#olark_chat', class: "support"
-= render 'shared/adoption_modal'
+
+- if (tp.thing.stage == :adoption) && !(Adoption.where(thing: tp.thing, user: current_user).exists?)
+  = render 'shared/adoption_modal'

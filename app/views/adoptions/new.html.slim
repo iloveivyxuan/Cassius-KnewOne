@@ -2,10 +2,5 @@
 
 = "目前已有 #{@adoption_users_size} 人申请领养"
 
-= simple_form_for Adoption.new, html: {class: 'form'} do |f|
-  = render partial: 'orders/address_select', locals: {f: f}
-
-  = f.text_area :note
-  = f.hidden_field :thing_id, :value => params[:id]
-
+= form_for Adoption.new, html: {class: 'form'}, remote: true do |f|
   = f.submit

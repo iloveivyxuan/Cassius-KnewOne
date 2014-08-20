@@ -1,8 +1,8 @@
 class AdoptionsController < ApplicationController
   before_action :require_signed_in
+  layout 'settings'
 
   def new
-    binding.pry
     @thing = Thing.find params[:id]
     @adoptions = @thing.adoptions
     @adoption_users_size = @adoptions.map(&:user).uniq.size
@@ -26,24 +26,15 @@ class AdoptionsController < ApplicationController
     end
 
     @adoption = Adoption.build_adoption(current_user, adoption_params)
-    thing = @adoption.thing
-    @adoption.kind_id = params[:cart_item][:kind_id]
     @adoption.address = current_user.addresses.find_by(id: params[:adoption][:address_id])
     @adoption.adoption_no = rand.to_s[2..11]
-    if @adoption.save
-      redirect_to adoptions_url
-    end
+    @adoption.save!
 
+    render text: 'success'
   end
 
   def show
     @adoption = Adoption.find params[:id]
-  end
-
-  def update
-  end
-
-  def destroy
   end
 
   def one_click
@@ -62,6 +53,6 @@ class AdoptionsController < ApplicationController
   private
 
   def adoption_params
-    params.require(:adoption).permit(:note, :thing, :address_id, address: [:province, :district, :street, :name, :phone, :zip_code, :default])
+    params.require(:adoption).permit(:kind, :note, :thing, :address_id, address: [:province, :district, :street, :name, :phone, :zip_code, :default])
   end
 end

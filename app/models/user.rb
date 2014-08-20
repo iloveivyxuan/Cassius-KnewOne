@@ -57,6 +57,7 @@ class User
   field :topics_count, type: Integer, default: 0
   field :orders_count, type: Integer, default: 0
   field :expenses_count, type: Integer, default: 0
+  field :adoptions_count, type: Integer, default: 0
 
   # Last contents product timestamp
   field :last_review_created_at, type: Time

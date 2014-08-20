@@ -1,4 +1,7 @@
-form.modal.fade#adoption-modal tabIndex="-1" role="dialog"
+= simple_form_for Adoption.new, html: {class: "modal fade", id: "adoption-modal", tabIndex:"-1", role: "dialog"}, remote: true do |f|
+  - thing = Thing.find(request.path.split("/").last)
+  - thing_adopoted_count = thing.adoptions.map(&:user).uniq.size
+  - thing_adopted_users = thing.adoptions.map(&:user).uniq.take(15)
   .modal-dialog
     .modal-content
       .modal-header
@@ -10,22 +13,20 @@ form.modal.fade#adoption-modal tabIndex="-1" role="dialog"
         .adoption-result
           p.help-block
             | 目前已有&nbsp;
-            strong 100
-            | 人领养
+            strong #{thing_adopoted_count}
+            | &nbsp;人领养
           ul
-            li
-              img src="http://image.knewone.com/users/f10c7887936632df04d70577ff850c1c.jpg!tiny" height="30" width="30"
-            li
-              img src="http://image.knewone.com/users/f10c7887936632df04d70577ff850c1c.jpg!tiny" height="30" width="30"
-            li
-              img src="http://image.knewone.com/users/f10c7887936632df04d70577ff850c1c.jpg!tiny" height="30" width="30"
-            li
-              img src="http://image.knewone.com/users/f10c7887936632df04d70577ff850c1c.jpg!tiny" height="30" width="30"
+            - thing_adopted_users.each do |user|
+              li
+                img src=user.avatar.url height="30" width="30"
+        .address
+          = render partial: 'orders/address_select', locals: {f: f}
         .form-group
           label 说几句
-          textarea.form-control rows="3"
-        input name="adoption[thing]" type="hidden"
-        input name="adoption[kind]" type="hidden"
+          = text_area(:adoption, :note, rows: 3, class: 'form-control', required: true)
+        = f.input :thing, as: :hidden
+        = f.input :kind, as: :hidden
+
       .modal-footer
         button.btn.btn-primary type="submit"
           i.fa.fa-check

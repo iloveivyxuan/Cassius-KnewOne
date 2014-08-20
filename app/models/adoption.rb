@@ -4,10 +4,15 @@ class Adoption
 
   field :note, type: String
   field :status, type: Symbol, default: :waiting
-  field :kind_id, type: String
+  field :kind, type: String
   field :adoption_no, type: String
 
+  validates :note, presence: true
+  validates :kind, presence: true
+
   validates :status, inclusion: { in: [:waiting, :approved, :denied] }
+
+  after_save :inc_adoptions_count
 
   belongs_to :user
   belongs_to :thing
@@ -28,6 +33,14 @@ class Adoption
     params ||= {}
     adoption = user.adoptions.build params
     adoption
+  end
+
+  def has_adopted_by? user
+    user.adoptions.where(id: self.id).exists?
+  end
+
+  def inc_adoptions_count
+    self.user.update_attributes(adoptions_count: self.user.adoptions_count + 1)
   end
 
 end
