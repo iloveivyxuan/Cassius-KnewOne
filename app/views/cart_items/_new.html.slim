@@ -37,7 +37,10 @@ class: "btn btn-info buy_button cart_login", data: {toggle: "modal", target: "#l
   = f.input :kind_id, as: :select, required: true do
     = select_tag "cart_item[kind_id]", tp.options_for_kinds,
     class: "select required form-control", prompt: "请选择型号"
-  = f.input :quantity, as: :integer, required: true, disabled: true,
+  - if tp.thing.adoption?
+    = f.input :quantity, required: true, input_html: { value: '1', disabled: true }
+  - else
+    = f.input :quantity, as: :integer, required: true, disabled: true,
     input_html: {min: 1, max: 100}, hint: "最多可购<strong>100</strong>件".html_safe
   .cart_estimated_prompt
     | 此产品将在

@@ -318,6 +318,10 @@ class Thing < Post
     self.all_links.each { |t| t.update_attributes(links: []) }
   end
 
+  def adoption?
+    self.stage == :adoption
+  end
+
   class << self
     def rand_records(per = 1)
       (0...Thing.published.count).to_a.shuffle.slice(0, per).map { |i| Thing.published.desc(:created_at).skip(i).first }
