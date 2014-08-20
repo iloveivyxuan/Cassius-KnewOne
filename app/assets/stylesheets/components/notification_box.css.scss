@@ -9,6 +9,7 @@
 
     border-bottom: $border-dashed;
     padding: 10px;
+    word-wrap: break-word;
 
     &:last-child {
       border-bottom: none;
