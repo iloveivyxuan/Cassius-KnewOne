@@ -1,0 +1,62 @@
+.adoption {
+  margin-bottom: 1rem;
+
+  @media (min-width: $screen-md-min) {
+    padding-right: 120px;
+    position: relative;
+  }
+}
+
+.adoption-details {
+  margin-bottom: $padding-large-vertical;
+}
+
+.adoption-thing {
+  @include imgtxt(left, $padding-large-horizontal, '.foo');
+  margin-bottom: $padding-large-vertical;
+
+  .foo {
+
+    .title {
+      font-size: 18px;
+    }
+
+    > output {
+      @extend .label;
+      @extend .label-default;
+      background-color: transparent;
+      border-color: #ccc;
+      border-style: solid;
+      border-width: 1px;
+      color: #ccc;
+      display: inline-block;
+      font-size: 16px;
+      font-weight: 200;
+      padding: 6px 12px;
+
+      .success {
+        border-color: $blue;
+        color: $blue;
+      }
+    }
+  }
+}
+
+.adoption-actions {
+
+  @media (min-width: $screen-md-min) {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .btn {
+    display: block;
+    margin-bottom: $padding-large-vertical;
+    width: 100%;
+
+    @media (min-width: $screen-md-min) {
+      width: 120px;
+    }
+  }
+}
