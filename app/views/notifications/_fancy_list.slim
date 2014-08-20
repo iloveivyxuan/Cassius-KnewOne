@@ -1,0 +1,6 @@
+- if user = notification.context.user
+  = senders(notification)
+  - if user == current_user
+    | 喜欢了我的列表
+    | &nbsp;
+    = link_to notification.context.name, notification.context, target: '_blank'
