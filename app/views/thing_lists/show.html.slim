@@ -15,6 +15,7 @@ header
     .stats
       | 创建于
       = time_ago_tag(@thing_list.created_at)
+      = render 'share_link', thing_list: @thing_list
 
   .follow
     = render 'fancy_button', thing_list: @thing_list

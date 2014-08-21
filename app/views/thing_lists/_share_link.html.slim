@@ -1,0 +1,11 @@
+- path = user_signed_in? ? "#share_modal" : "#login-modal"
+- presenter = present(thing_list)
+- data = { \
+   toggle: 'modal', \
+   content: presenter.share_content, \
+   pic: presenter.cover(:huge), \
+   preview_pic: presenter.cover(:small) \
+ }
+
+= link_to path, title: '分享', class: 'thing-list-share share_btn', data: data
+  i.fa.fa-share-alt
