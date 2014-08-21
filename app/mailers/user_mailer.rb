@@ -45,12 +45,12 @@ class UserMailer < BaseMailer
   end
 
   def adopt(email, name)
-    attachments.inline['mybreath.jpg'] = File.read(Rails.root.join('app/assets/images/mails/mybreath.jpg'))
+    attachments.inline['solo_one.jpg'] = File.read(Rails.root.join('app/assets/images/mails/solo_one.jpg'))
     attachments.inline['ko_wechat_qr.png'] = File.read(Rails.root.join('app/assets/images/mails/ko_wechat_qr.png'))
     @name = name
 
     mail(to: email,
-         subject: '立秋过了，雾霾还会远吗？',
+         subject: '【免费领养】让季节动听，只有这一个',
          edm: true)
   end
 
