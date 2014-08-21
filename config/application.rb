@@ -45,7 +45,7 @@ module Making
     config.encoding = "utf-8"
 
     # Configure exception handling via route
-    config.exceptions_app = self.routes if Rails.env.production?
+    config.exceptions_app = self.routes
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
