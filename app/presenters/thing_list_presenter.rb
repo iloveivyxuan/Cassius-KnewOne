@@ -2,7 +2,11 @@ class ThingListPresenter < ApplicationPresenter
   presents :thing_list
 
   def cover(size)
-    thing_list.items.first.thing.cover.url(size)
+    if thing_list.items.empty?
+      image_url('blank-list-cover.png')
+    else
+      thing_list.items.first.thing.cover.url(size)
+    end
   end
 
   def share_content
