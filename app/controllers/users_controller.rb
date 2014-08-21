@@ -21,7 +21,6 @@ class UsersController < ApplicationController
 
   def lists
     @filter = params[:filter] || 'owned'
-    @filter = 'fancied' if @user.thing_lists.empty?
 
     if @filter == 'fancied'
       @lists = @user.fancied_thing_lists

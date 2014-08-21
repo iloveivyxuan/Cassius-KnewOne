@@ -7,6 +7,8 @@ nav.thing-list-filter
       i.fa.fa-star-o
       | 喜欢
 
-.thing-lists= render @lists
-
-= paginate @lists
+- if @lists.present?
+  .thing-lists= render @lists
+  = paginate @lists
+- else
+  = render 'shared/nothing'
