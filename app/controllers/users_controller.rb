@@ -20,13 +20,13 @@ class UsersController < ApplicationController
   end
 
   def lists
+    @filter = params[:filter] || 'owned'
+    @filter = 'fancied' if @user.thing_lists.empty?
 
-    if !params[:filter] || params[:filter] == 'owned'
-      @lists = @user.thing_lists
-      @filter = 'owned'
-    else
+    if @filter == 'fancied'
       @lists = @user.fancied_thing_lists
-      @filter = 'fancied'
+    else
+      @lists = @user.thing_lists
     end
 
     @lists = @lists.page(params[:page]).per(24)
