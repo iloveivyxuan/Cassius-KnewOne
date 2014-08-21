@@ -11,6 +11,6 @@ module AdoptionsHelper
   end
 
   def adopted_by(thing, user)
-    @_is_adopted ||= Adoption.where(thing: thing, user: user).exists?
+    Adoption.where(thing: thing, user: user).exists?
   end
 end
