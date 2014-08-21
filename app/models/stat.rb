@@ -106,7 +106,7 @@ class Stat
   end
 
   def users_count
-    User.all.size
+    User.where(:created_at.gte => date_from).where(:created_at.lte => date_to.next_day).size
   end
 
   def login_activities
