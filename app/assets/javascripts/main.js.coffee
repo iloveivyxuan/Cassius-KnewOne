@@ -61,6 +61,8 @@ do (exports = Making) ->
       $carousel_inner = $('#new-thing-edit-modal-images .carousel-inner')
       $slideshow_inner = $('#new-thing-edit-modal-sortable')
 
+      $slideshow_inner.sortable()
+
       i = 0
       loaded = 0
       flag = true
@@ -165,8 +167,6 @@ do (exports = Making) ->
         $value = $(value)
         $value.attr('data-slide-to', index)
       )
-
-      $("#new-thing-edit-modal-sortable").sortable();
 
       $('.select_btn_container > a')
       .on 'click', (event) ->
