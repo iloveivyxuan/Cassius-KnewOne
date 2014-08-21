@@ -78,7 +78,6 @@ window.Making = do (exports = window.Making || {}) ->
     $adoptionKind  = $adoption.find('[name="adoption[kind]"]')
 
     $('[data-target="#adoption-modal"]').on 'click', (event) ->
-      # @FIXME
       $cartKind  = $('[name="cart_item[kind_id]"]')
       $adoptionKind.val($cartKind.val())
 

@@ -52,7 +52,6 @@ do (root = @, exports = Making) ->
                 "<i class='fa fa-spinner fa-spin fa-2x'></i>" +
               "</div>")
         .done (data, status, xhr) ->
-          console.log status
           $container
             .children('.loading-things')
             .remove()
