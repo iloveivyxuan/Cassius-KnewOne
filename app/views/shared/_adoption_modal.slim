@@ -1,4 +1,4 @@
-- thing = Thing.find(request.path.split("/").last)
+- thing = tp.thing
 - thing_adopoted_count = thing.adoptions.map(&:user).uniq.size
 - thing_adopted_users = thing.adoptions.map(&:user).uniq.take(15)
 
