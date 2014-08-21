@@ -40,6 +40,8 @@
           = nav_tab :things do
             = link_to_with_icon '批量修改产品', 'fa fa-fw fa-wrench', batch_edit_haven_things_path
             = link_to_with_icon '关联产品', 'fa fa-fw fa-wrench', haven_links_path
+          = nav_tab :thing_lists do
+            = link_to_with_icon '管理列表', 'fa fa-fw fa-wrench', haven_thing_lists_path
           = nav_tab :promotion do
             = link_to_with_icon '管理广告位', 'fa fa-fw fa-wrench', haven_promotions_path
           = nav_tab :article do
