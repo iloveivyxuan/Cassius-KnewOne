@@ -20,7 +20,6 @@ class UsersController < ApplicationController
   end
 
   def lists
-    @show_nav = @user.thing_lists.size > 0 && @user.fancied_thing_lists.size > 0
 
     if !params[:filter] || params[:filter] == 'owned'
       @lists = @user.thing_lists
