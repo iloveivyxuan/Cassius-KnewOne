@@ -20,7 +20,7 @@ header
     = render 'fancy_button', thing_list: @thing_list
 
 section.thing-list-items
-  = render partial: 'thing_list_item', collection: @thing_list.items.desc(:updated_at)
+  = render @thing_list.items.desc(:updated_at)
 
 - content_for :script
   javascript:
