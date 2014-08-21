@@ -43,22 +43,24 @@ header
         }
       })
 
-      $('.thing-list-items').sortable({
-        update: function (event, ui) {
-          var $el = ui.item
+      if (!Modernizr.touch) {
+        $('.thing-list-items').sortable({
+          update: function (event, ui) {
+            var $el = ui.item
 
-          var prevOrder = $el.prev().length ? parseFloat($el.prev().data('order')) : null
-          var nextOrder = $el.next().length ? parseFloat($el.next().data('order')) : null
-          if (prevOrder === null) prevOrder = nextOrder + 1
-          if (nextOrder === null) nextOrder = prevOrder - 1
+            var prevOrder = $el.prev().length ? parseFloat($el.prev().data('order')) : null
+            var nextOrder = $el.next().length ? parseFloat($el.next().data('order')) : null
+            if (prevOrder === null) prevOrder = nextOrder + 1
+            if (nextOrder === null) nextOrder = prevOrder - 1
 
-          var newOrder = (prevOrder + nextOrder) / 2
+            var newOrder = (prevOrder + nextOrder) / 2
 
-          $el.data('order', newOrder)
-          $.ajax({
-            url: $el.data('url'),
-            type: 'PATCH',
-            data: {thing_list_item: {order: newOrder}}
-          })
-        }
-      })
+            $el.data('order', newOrder)
+            $.ajax({
+              url: $el.data('url'),
+              type: 'PATCH',
+              data: {thing_list_item: {order: newOrder}}
+            })
+          }
+        })
+      }
