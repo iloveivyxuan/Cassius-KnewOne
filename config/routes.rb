@@ -293,6 +293,8 @@ Making::Application.routes.draw do
       end
     end
 
+    resources :thing_lists, only: [:index]
+
     resources :reviews, only: [:index]
 
     resources :feelings, only: [:index]
