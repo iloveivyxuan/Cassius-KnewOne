@@ -19,8 +19,11 @@ header
   .follow
     = render 'fancy_button', thing_list: @thing_list
 
-section.thing-list-items
-  = render @thing_list.items.desc(:updated_at)
+- if @thing_list.items.present?
+  section.thing-list-items
+    = render @thing_list.items.desc(:updated_at)
+- else
+    = render 'shared/nothing'
 
 - content_for :script
   javascript:
