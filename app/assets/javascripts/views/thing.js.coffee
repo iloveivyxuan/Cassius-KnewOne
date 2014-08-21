@@ -15,6 +15,8 @@ window.Making = do (exports = window.Making || {}) ->
 
   exports.InitThing = ->
     exports.ReadMore('.post_content')
+    if !$html.hasClass('mobile')
+      exports.InitAdoption()
 
     # TODO
     if $html.hasClass('touch')
@@ -63,6 +65,15 @@ window.Making = do (exports = window.Making || {}) ->
               .next('.stream_content')
               .next('.nomore')
               .hide()
+
+  exports.InitAdoption = ->
+    $adoption      = $('#thing_actions #adoption-modal')
+    $adoptionKind  = $adoption.find('[name="adoption[kind]"]')
+
+    $('[data-target="#adoption-modal"]').on 'click', (event) ->
+      # @FIXME
+      $cartKind  = $('[name="cart_item[kind_id]"]')
+      $adoptionKind.val($cartKind.val())
 
   exports.InitFeelings = ->
     exports.EditorCompact('.feeling_form')

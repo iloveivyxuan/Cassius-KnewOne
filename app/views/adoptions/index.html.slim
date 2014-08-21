@@ -1,0 +1,28 @@
+header.page-header
+  h2
+    i.fa.fa-shopping-cart
+    | 我的领养
+
+- @adoptions.each do |a|
+  section.adoption
+    table.adoption-details
+      tobdy
+        tr
+          th 领养时间：
+          td = a.created_at.strftime '%Y-%m-%d %H:%M:%S'
+        tr
+          th 领养编号：
+          td = a.adoption_no
+    .adoption-thing
+      img alt=a.thing.title src="#{a.thing.photos.first.url}!small"
+      .foo
+        = link_to a.thing.title, a.thing, class: "title"
+        p
+          label 销售价格：
+          span = a.thing.price
+        output = adoption_status(a.status)
+    footer.adoption-actions
+      - if a.status == :denied
+        = link_to "加入购物车", add_to_cart_adoption_path(a), method: :post, class: "btn btn-success"
+        = link_to "一键生成订单", one_click_adoption_path(a), class: "btn btn-success"
+      = link_to "领养详情", adoption_path(a), class: "btn btn-default"

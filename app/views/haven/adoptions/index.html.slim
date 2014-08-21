@@ -1,0 +1,40 @@
+- page_title '领养管理'
+
+= form_for :adoption, url: one_click_deny_haven_adoption_path(1), method: :post do |f|
+  = select_tag "adoption", options_from_collection_for_select(@adoptions.map(&:thing).uniq, "id", "title")
+  = f.submit "一键拒绝"
+
+header.page-header
+  h2
+    i.fa.fa-users
+    | 领养管理
+    small 当前条件 #{ @adoptions.size }
+
+table.table.table-striped
+  thead
+    tr
+      th 用户
+      th 产品
+      th 拥有/喜欢/短评/评测
+      th 战斗力
+      th 地址
+      th 记录
+      th 备注
+      th 状态
+      th 操作
+  tbody
+    - @adoptions.each do |a|
+      - u = a.user
+      tr
+        td = link_to u.name, u, target: '_blank'
+        td = link_to a.thing.title, haven_adoptions_path(thing: a.thing)
+        td = "#{u.owns_count}/#{u.fancies_count}/#{u.feelings_count}/#{u.reviews_count}"
+        td = link_to u.expenses_count, haven_orders_path(find_by: 'user_id', find_cond: u.id.to_s), title: '他为何如此屌？', target: '_blank'
+        td = content_for_address(a.address)
+        td = link_to '[内幕]', haven_user_path(u)
+        td = a.note
+        td = link_to a.status, haven_adoptions_path(status: a.status)
+        td
+          - if a.status == :waiting
+            = link_to "[通过]", approve_haven_adoption_path(a), method: :post
+            = link_to "[拒绝]", deny_haven_adoption_path(a), method: :post

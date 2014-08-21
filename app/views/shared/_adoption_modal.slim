@@ -1,0 +1,59 @@
+- thing = Thing.find(request.path.split("/").last)
+- thing_adopoted_count = thing.adoptions.map(&:user).uniq.size
+- thing_adopted_users = thing.adoptions.map(&:user).uniq.take(15)
+
+= simple_form_for Adoption.new, html: {class: "modal fade", id: "adoption-modal", tabIndex:"-1", role: "dialog"}, remote: true do |f|
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal"
+          span aria-hidden="true" &times;
+          span.sr-only Close
+        h4.modal-title 申请领养
+      .modal-body
+        .adoption-result
+          p.help-block
+            | 目前已有&nbsp;
+            strong #{thing_adopoted_count}
+            | &nbsp;人领养
+          ul
+            - thing_adopted_users.each do |user|
+              li
+                - if user
+                  img src=user.avatar.url height="30" width="30"
+        - if browser.mobile?
+          = f.input :kind, as: :select, required: true do
+            = select_tag "adoption[kind]", tp.options_for_kinds,
+            class: "select required form-control", prompt: "请选择型号"
+        - else
+          = f.input :kind, as: :hidden
+        .address
+          = render partial: 'orders/address_select', locals: {f: f}
+        .form-group
+          label 申请理由
+          = text_area(:adoption, :note, rows: 3, class: 'form-control')
+        = f.input :thing, as: :hidden, input_html: { value: tp.thing.id.to_s }
+
+      .modal-footer
+        button.btn.btn-primary type="submit"
+          i.fa.fa-check
+          | 确认领养
+
+.modal.fade#adoption-success tabIndex="-1" role="dialog" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal"
+          span aria-hidden="true" &times;
+          span.sr-only Close
+        h4.modal-title 申请领养成功
+      .modal-body
+        p.tip-block.success.small
+          i.fa.fa-smile-o
+          br
+          | 申请领养成功
+      .modal-footer
+        button.btn.btn-default type="button" 关闭
+        - str = "#晒牛玩# 我在剁手站 @KnewOne 上入了 #{thing.title}，提升逼格的feel！反正是免费领养，随意感受下：http://knewone.com#{url_for(thing)}"
+        = link_to '分享', '#share_modal', id: 'share_order_btn', class: "share_btn btn btn-default", data: { toggle: 'modal', content: str, pic: thing.cover.url(:review) }
+        = link_to "查看详情", adoptions_path, class: "btn btn-success"

@@ -1,0 +1,5 @@
+<% if @adoption.persisted? %>
+  $('#adoption-modal').modal('hide');
+  $('#adoption-success').modal('show');
+  $('[data-target="#adoption-modal"]').disable();
+<% end %>

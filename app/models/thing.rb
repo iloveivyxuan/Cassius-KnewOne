@@ -40,12 +40,13 @@ class Thing < Post
 
   field :stage, type: Symbol, default: :concept
   STAGES = {
-      concept: "研发中",
-      kick: "众筹中",
-      pre_order: "预售",
-      domestic: "国内导购",
-      abroad: "国外海淘",
-      dsell: "自销"
+    concept: "研发中",
+    kick: "众筹中",
+    pre_order: "预售",
+    domestic: "国内导购",
+    abroad: "国外海淘",
+    dsell: "自销",
+    adoption: "领养"
   }
   validates :stage, inclusion: {in: STAGES.keys}
 
@@ -66,6 +67,8 @@ class Thing < Post
   has_many :stories, dependent: :destroy
 
   has_many :lotteries, dependent: :destroy
+
+  has_many :adoptions, dependent: :destroy
 
   scope :recent, -> { gt(created_at: 1.month.ago) }
   scope :published, -> { lt(created_at: Time.now) }
@@ -313,6 +316,10 @@ class Thing < Post
   # delete all linked things of a specific thing.
   def delete_links
     self.all_links.each { |t| t.update_attributes(links: []) }
+  end
+
+  def adoption?
+    self.stage == :adoption
   end
 
   class << self

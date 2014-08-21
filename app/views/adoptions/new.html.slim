@@ -1,0 +1,6 @@
+| 申请领养
+
+= "目前已有 #{@adoption_users_size} 人申请领养"
+
+= form_for Adoption.new, html: {class: 'form'}, remote: true do |f|
+  = f.submit

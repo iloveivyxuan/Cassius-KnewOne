@@ -10,6 +10,7 @@ class Address
 
   embedded_in :user
   embedded_in :order
+  embedded_in :adoption
 
   validates :province, :district, :street, :name, :phone, presence: true
   validates_inclusion_of :province, in: Province.keys
