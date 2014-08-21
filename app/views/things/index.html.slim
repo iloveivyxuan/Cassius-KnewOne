@@ -24,9 +24,6 @@
   section#things_list.infinite
     = render partial: 'home/hot_thing', collection: @things, as: :hot_thing
 
-  footer#things_pager
-    = paginate @things
-
 - content_for :script do
   javascript:
-    Making.InfiniteScroll("#wrapper");
+    Making.InitThings();
