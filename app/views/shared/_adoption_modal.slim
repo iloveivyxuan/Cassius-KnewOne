@@ -28,7 +28,8 @@
         - else
           = f.input :kind, as: :hidden
         .address
-          = render partial: 'orders/address_select', locals: {f: f}
+          - if current_user
+            = render partial: 'orders/address_select', locals: {f: f}
         .form-group
           label 申请理由
           = text_area(:adoption, :note, rows: 3, class: 'form-control')
