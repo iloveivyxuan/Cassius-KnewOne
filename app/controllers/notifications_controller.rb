@@ -17,7 +17,7 @@ class NotificationsController < ApplicationController
       @tabs = {
           importants: @notifications.by_types(%w(stock weibo_friend_joined comment new_review topic feeling review)),
           relations: @notifications.by_types(%w(following)),
-          things: @notifications.by_types(%w(love_feeling love_review love_topic fancy_thing))
+          things: @notifications.by_types(%w(love_feeling love_review love_topic fancy_thing fancy_list))
       }
       @active_tab_key = @tabs.map {|pair| pair[1].select {|i| !i.read?}.any? ? pair[0] : nil}.compact.first || :importants
 
