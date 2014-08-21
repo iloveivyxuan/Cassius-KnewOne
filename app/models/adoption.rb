@@ -7,7 +7,6 @@ class Adoption
   field :kind, type: String
   field :adoption_no, type: String
 
-  validates :note, presence: true
   validates :kind, presence: true
 
   validates :status, inclusion: { in: [:waiting, :approved, :denied] }

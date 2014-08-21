@@ -30,8 +30,8 @@
         .address
           = render partial: 'orders/address_select', locals: {f: f}
         .form-group
-          label 说几句
-          = text_area(:adoption, :note, rows: 3, class: 'form-control', required: true)
+          label 申请理由
+          = text_area(:adoption, :note, rows: 3, class: 'form-control')
         = f.input :thing, as: :hidden, input_html: { value: tp.thing.id.to_s }
 
       .modal-footer
@@ -54,6 +54,6 @@
           | 申请领养成功
       .modal-footer
         button.btn.btn-default type="button" 关闭
-        - str = "#晒牛玩#"
+        - str = "#晒牛玩# 我在剁手站 @KnewOne 上入了 #{thing.title}，提升逼格的feel！反正是免费领养，随意感受下：http://knewone.com#{url_for(thing)}"
         = link_to '分享', '#share_modal', id: 'share_order_btn', class: "share_btn btn btn-default", data: { toggle: 'modal', content: str, pic: thing.cover.url(:review) }
         = link_to "查看详情", adoptions_path, class: "btn btn-success"
