@@ -13,6 +13,13 @@ window.Making = do (exports = window.Making || {}) ->
       excludeField: '[name="utf8"], [name="authenticity_token"], [name="photo[image]"]'
       placeholder: '产品详细信息'
 
+  exports.InitThings = ->
+    exports.infiniteScroll '.infinite', window.location.href, (data, xhr) ->
+      $(data).find(".lazy").css("visibility", "visible").lazyload
+        threshold: 400
+      return
+    return
+
   exports.InitThing = ->
     exports.ReadMore('.post_content')
     if !$html.hasClass('mobile')

@@ -27,7 +27,11 @@ class ThingsController < ApplicationController
     respond_to do |format|
       format.html do
         if request.xhr?
-          render partial: 'thing', collection: @things, locals: {img_lazy: false, size: :normal}
+          if @things.any?
+            render partial: 'home/hot_thing', collection: @things, as: :hot_thing, locals: {img_lazy: false, size: :normal}
+          else
+            head :no_content
+          end          
         else
           render
         end
