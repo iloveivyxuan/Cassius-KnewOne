@@ -13,3 +13,18 @@ table.table.table-striped
       tr
         td = b.note
         td = b.amount / 100.0
+
+h2
+  | 领养记录
+table.table.table-striped
+  thead
+    tr
+      th 领养编号
+      th 领养产品
+      th 状态
+  tbody
+    - @user.adoptions.each do |a|
+      tr
+        td = a.adoption_no
+        td = a.thing.title
+        td = a.status

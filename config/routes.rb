@@ -257,6 +257,7 @@ Making::Application.routes.draw do
       member do
         post 'approve'
         post 'deny'
+        post 'one_click_deny'
       end
     end
 
