@@ -29,3 +29,49 @@ do (root = @, exports = Making) ->
     exports.device = 'tablet'
   else if $html.hasClass('desktop')
     exports.device = 'desktop'
+
+  exports.infiniteScroll = (container, url, callback) ->
+    $container = $(container)
+    _page = 1
+    _lock = false
+
+    $window.on 'scroll.infiniteScroll', (event) ->
+      if _lock or
+        $document.height() - $window.scrollTop() - $window.height() > 200 then return
+
+      $
+        .ajax
+          url: url
+          data:
+            page: ++_page
+          dataType: 'html'
+          beforeSend: (xhr, settings) ->
+            _lock = true
+            $container.append("" +
+              "<div class='loading-things'>" +
+                "<i class='fa fa-spinner fa-spin fa-2x'></i>" +
+              "</div>")
+        .done (data, status, xhr) ->
+          console.log status
+          $container
+            .children('.loading-things')
+            .remove()
+          switch status
+            when 'success'
+              $container.append(data)
+            when 'nocontent'
+              $container.append('<em class="nomore">没有更多了。</em>')
+              $window.off('scroll.infiniteScroll')
+          callback.call($container, data, xhr) if callback?
+        .fail (xhr, status, error) ->
+          $container
+            .children('.loading-things')
+            .remove()
+          .end()
+            .append('<em class="nomore">出错了，请刷新后重试。</em>')
+        .always ->
+          _lock = false
+      return
+    return
+
+  return exports
