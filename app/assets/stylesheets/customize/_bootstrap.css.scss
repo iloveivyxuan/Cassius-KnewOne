@@ -254,7 +254,7 @@ input[type="number"] {
 .modal-dialog {
   margin: 50px 10px;
 
-  @media (min-width: $screen-md-min) {
+  @media (min-width: $screen-sm-min) {
     margin: 50px auto;
   }
 }
