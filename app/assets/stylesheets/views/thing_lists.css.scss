@@ -81,6 +81,12 @@ html.thing_lists_show {
         border-top: 1px solid $gray-lighter;
       }
 
+      &.ui-sortable {
+        > section {
+          cursor: move;
+        }
+      }
+
       > section {
         @include make-xs-column(12);
         @include make-sm-column(6);
@@ -90,7 +96,14 @@ html.thing_lists_show {
         @include make-inline-block-column;
         vertical-align: top;
 
-        margin: 20px 0;
+        &.ui-sortable-helper {
+          @include box-shadow(0 0 10px $gray);
+        }
+
+        &.ui-sortable-placeholder {
+          visibility: visible !important;
+          border: 5px dashed $gray-lighter;
+        }
       }
     }
   }

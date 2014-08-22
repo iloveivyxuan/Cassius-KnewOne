@@ -24,20 +24,43 @@ header
 
 - if @thing_list.items.present?
   section.thing-list-items
-    = render @thing_list.items.desc(:updated_at)
+    = render @thing_list.items.desc(:order)
 - else
     = render 'shared/nothing'
 
-- content_for :script
-  javascript:
-    $('.thing-list-name .editable').editable({
-      unsavedclass: null
-    })
+- if can?(:update, @thing_list)
+  - content_for :script
+    javascript:
+      $('.thing-list-name .editable').editable({
+        unsavedclass: null
+      })
 
-    $('.thing-list-item-description .editable').editable({
-      emptytext: '说点什么吧……',
-      unsavedclass: null,
-      success: function (response, newValue) {
-        $(this).siblings('.fa')[newValue.trim() ? 'removeClass' : 'addClass']('hidden')
+      $('.thing-list-item-description .editable').editable({
+        emptytext: '说点什么吧……',
+        unsavedclass: null,
+        success: function (response, newValue) {
+          $(this).siblings('.fa')[newValue.trim() ? 'removeClass' : 'addClass']('hidden')
+        }
+      })
+
+      if (!Modernizr.touch) {
+        $('.thing-list-items').sortable({
+          update: function (event, ui) {
+            var $el = ui.item
+
+            var prevOrder = $el.prev().length ? parseFloat($el.prev().data('order')) : null
+            var nextOrder = $el.next().length ? parseFloat($el.next().data('order')) : null
+            if (prevOrder === null) prevOrder = nextOrder + 1
+            if (nextOrder === null) nextOrder = prevOrder - 1
+
+            var newOrder = (prevOrder + nextOrder) / 2
+
+            $el.data('order', newOrder)
+            $.ajax({
+              url: $el.data('url'),
+              type: 'PATCH',
+              data: {thing_list_item: {order: newOrder}}
+            })
+          }
+        })
       }
-    })

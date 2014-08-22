@@ -24,6 +24,6 @@ class ThingListItemsController < ApplicationController
   private
 
   def thing_list_item_params
-    params.require(:thing_list_item).permit(:thing_id, :description)
+    params.require(:thing_list_item).permit(:thing_id, :description, :order)
   end
 end

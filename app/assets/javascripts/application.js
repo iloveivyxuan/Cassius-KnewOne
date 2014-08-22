@@ -13,7 +13,7 @@
 //= require matchmedia
 //= require picturefill
 //= require jquery.lazyload
-//= require jquery.sortable
+//= require jquery.ui.sortable
 //= require jquery.infinitescroll
 //= require jquery.hotkeys
 //= require jquery.cookie
