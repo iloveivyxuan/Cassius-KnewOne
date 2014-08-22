@@ -32,6 +32,8 @@ Making::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
+  config.action_dispatch.show_exceptions = true
+
   # See everything in the log (default is :info)
   config.log_level = :info
 end
