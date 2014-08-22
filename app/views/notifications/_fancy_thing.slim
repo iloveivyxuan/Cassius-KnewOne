@@ -1,5 +1,4 @@
 - if author = notification.context.author
   = senders(notification)
-  - if author == current_user
-    | 喜欢了我分享的
-    = notification_post(notification.context, '_blank')
+  | 喜欢了我分享的
+  = notification_post(notification.context, '_blank')
