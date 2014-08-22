@@ -1,6 +1,8 @@
 li.radio
   label
     - checked = address.default ? true : false
+    - if has_not_default_address?(current_user) && first_address?(current_user, address)
+      - checked = true
     = f.radio_button :address_id, address.id, class: 'order_address_radio', checked: checked
     = content_for_address address
   = link_to '[编辑]', edit_address_path(address, redirect_from: request.url)
