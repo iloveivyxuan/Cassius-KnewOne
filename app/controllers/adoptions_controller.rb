@@ -28,6 +28,7 @@ class AdoptionsController < ApplicationController
     @adoption = Adoption.build_adoption(current_user, adoption_params)
     @adoption.address = current_user.addresses.find_by(id: params[:adoption][:address_id])
     @adoption.adoption_no = rand.to_s[2..11]
+    @adoption.kind = @adoption.thing.kinds.first if @adoption.kind.empty?
     unless Adoption.where(thing: @adoption.thing, user: current_user).exists?
       @adoption.save!
     end
