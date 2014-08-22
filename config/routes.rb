@@ -118,12 +118,7 @@ Making::Application.routes.draw do
     end
   end
 
-  resources :adoptions do
-    member do
-      get 'one_click'
-      post 'add_to_cart'
-    end
-  end
+  resources :adoptions
 
   resource :profile, only: [] do
     get 'recommend_users'
