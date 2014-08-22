@@ -45,7 +45,7 @@ module ThingsHelper
       end
     when :adoption
       if user_signed_in?
-        link_to_with_icon "领养", "fa fa-shopping-cart fa-lg", "#",
+        link_to_with_icon adopted_by(thing, current_user) ? "已领养" : "领养", "fa fa-shopping-cart fa-lg", "#",
         title: thing.title,
         class: "btn btn-success btn-block track_event",
         data: {
