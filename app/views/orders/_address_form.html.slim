@@ -7,8 +7,8 @@ li.radio
     = f.fields_for :address do |address_form|
       .row
         .col-xs-12.col-md-3
-          .form-group.select.required.address_province
-            = address_form.select :province, options_for_select(Province.keys, '北京市'), {}, class: 'select required form-control'
+          .form-group.select.address_province
+            = address_form.select :province, options_for_select(Province.keys), {prompt: '请选择所在省/市'}, class: 'select form-control'
         .col-xs-12.col-md-3
           = address_form.input :district, required: false, label: false, placeholder: '地区'
         .col-xs-12.col-md-5
