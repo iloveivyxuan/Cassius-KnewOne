@@ -163,4 +163,16 @@ module OrdersHelper
         address_id: (options.has_key?(:address_id) ? options[:address_id] : order.address.try(:id))
     })
   end
+
+  def has_not_default_address?(user)
+    if user
+      !user.addresses.empty? && !user.addresses.where(default: true).exists?
+    end
+  end
+
+  def first_address?(user, address)
+    if user && address
+      user.addresses.index(address) == 0
+    end
+  end
 end
