@@ -1,6 +1,6 @@
 - thing = tp.thing
-- thing_adopoted_count = thing.adoptions.map(&:user).uniq.size
-- thing_adopted_users = thing.adoptions.map(&:user).uniq.take(15)
+- thing_adopted_count = thing.adoptions.size
+- thing_adopted_users = User.where(:id.in => thing.adoptions.limit(15).map(&:user_id))
 
 = simple_form_for Adoption.new, html: {class: "modal fade", id: "adoption-modal", tabIndex:"-1", role: "dialog"}, remote: true do |f|
   .modal-dialog
@@ -14,7 +14,7 @@
         .adoption-result
           p.help-block
             | 目前已有&nbsp;
-            strong #{thing_adopoted_count}
+            strong #{thing_adopted_count}
             | &nbsp;人领养
           ul
             - thing_adopted_users.each do |user|
