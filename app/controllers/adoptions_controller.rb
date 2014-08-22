@@ -19,7 +19,7 @@ class AdoptionsController < ApplicationController
         params[:adoption][:address_id] = address.id.to_s
       else
         current_user.addresses.delete(address)
-        @adoption = Adoption.build_order(current_user, nil)
+        @adoption = Adoption.build_adoption(current_user, nil)
         render 'new'
         return
       end
