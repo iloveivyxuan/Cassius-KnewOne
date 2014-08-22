@@ -9,8 +9,4 @@ module AdoptionsHelper
       "领养成功"
     end
   end
-
-  def adopted_by(thing, user)
-    Adoption.where(thing: thing, user: user).exists?
-  end
 end
