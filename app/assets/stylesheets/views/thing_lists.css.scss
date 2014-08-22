@@ -97,12 +97,12 @@ html.thing_lists_show {
         vertical-align: top;
 
         &.ui-sortable-helper {
-          @include box-shadow(0 0 5px $gray);
+          @include box-shadow(0 0 10px $gray);
         }
 
         &.ui-sortable-placeholder {
           visibility: visible !important;
-          border: 2px dashed $gray-light;
+          border: 5px dashed $gray-lighter;
         }
       }
     }
