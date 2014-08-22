@@ -5,7 +5,16 @@ class: "btn btn-info buy_button cart_login", data: {toggle: "modal", target: "#l
 
 .mobile_buy
   - if user_signed_in?
-    = link_to_with_icon "现在购买", "fa fa-shopping-cart", "#",
+    - if tp.thing.stage == :adoption
+      - adopted = adopted_by(tp.thing, current_user)
+      - if adopted
+        = link_to_with_icon "已领养", "fa fa-shopping-cart", "#",
+        class: "btn btn-success btn-block adoption_button mobile_adoption disabled", disabled: true
+      - else
+        = link_to_with_icon "领养", "fa fa-shopping-cart", "#",
+        class: "btn btn-success btn-block adoption_button mobile_adoption", data: { toggle: "modal", target: "#adoption-modal" }
+    - else
+      = link_to_with_icon "现在购买", "fa fa-shopping-cart", "#",
       class: "btn btn-success btn-block buy_button mobile_buy", data: { toggle: "modal", target: "#mobile_buy_modal" }
     #mobile_buy_modal.modal.fade
       .modal-dialog
