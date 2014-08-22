@@ -48,6 +48,9 @@
 }
 
 .thing-list-item {
+  padding: 15px;
+  background: white;
+
   article.thing {
     .title {
       font-size: 18px;
@@ -87,6 +90,6 @@
   .thing-list-item-destroy {
     position: absolute;
     right: 15px;
-    bottom: 0;
+    bottom: 15px;
   }
 }

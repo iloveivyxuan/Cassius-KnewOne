@@ -186,6 +186,8 @@ class Ability
     can :manage, Review
     can :manage, Feeling
     can :manage, Lottery
+    can :manage, ThingList
+    can :manage, ThingListItem
   end
 
   def pay_callback

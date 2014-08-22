@@ -52,6 +52,7 @@ gem 'therubyracer'
 
 # javascripts
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'coffee-rails'
 gem 'backbone-on-rails'
 gem 'marionette-rails'
