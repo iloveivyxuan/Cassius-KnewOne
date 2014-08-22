@@ -91,7 +91,7 @@ class ApplicationController < ActionController::Base
 
       redirect_to '/403'
     else
-      authenticate_user!
+      head :forbidden
     end
   end
 
