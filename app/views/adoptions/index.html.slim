@@ -24,7 +24,4 @@ header.page-header
           span = a.thing.price
         output = adoption_status(a.status)
     footer.adoption-actions
-      - if a.status == :denied
-        = link_to "加入购物车", add_to_cart_adoption_path(a), method: :post, class: "btn btn-success"
-        = link_to "一键生成订单", one_click_adoption_path(a), class: "btn btn-success"
       = link_to "领养详情", adoption_path(a), class: "btn btn-default"

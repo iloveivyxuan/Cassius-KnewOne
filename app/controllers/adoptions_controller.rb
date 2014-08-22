@@ -38,27 +38,6 @@ class AdoptionsController < ApplicationController
     @adoption = Adoption.find params[:id]
   end
 
-  def one_click
-    adoption = Adoption.find params[:id]
-    thing = adoption.thing
-    kind = thing.kinds.find(adoption.kind)
-    cart_item = CartItem.new(thing: thing, kind_id: kind.id.to_s, quantity: 1)
-    current_user.cart_items << cart_item
-    order = Order.build_order(current_user, nil)
-    order.address ||= current_user.addresses.first
-    order.use_balance = true
-    order.save
-    redirect_to order
-  end
-
-  def add_to_cart
-    a = Adoption.find(params[:id])
-    kind = a.thing.kinds.find(a.kind)
-    cart_item = CartItem.new(thing: a.thing, kind_id: kind.id.to_s)
-    current_user.cart_items << cart_item
-    redirect_to cart_items_url
-  end
-
   private
 
   def adoption_params
