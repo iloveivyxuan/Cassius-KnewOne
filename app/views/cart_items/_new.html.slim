@@ -5,16 +5,7 @@ class: "btn btn-info buy_button cart_login", data: {toggle: "modal", target: "#l
 
 .mobile_buy
   - if user_signed_in?
-    - if tp.thing.stage == :adoption
-      - adopted = adopted_by(tp.thing, current_user)
-      - if adopted
-        = link_to_with_icon "已领养", "fa fa-shopping-cart", "#",
-        class: "btn btn-success btn-block adoption_button mobile_adoption disabled", disabled: true
-      - else
-        = link_to_with_icon "领养", "fa fa-shopping-cart", "#",
-        class: "btn btn-success btn-block adoption_button mobile_adoption", data: { toggle: "modal", target: "#adoption-modal" }
-    - else
-      = link_to_with_icon "现在购买", "fa fa-shopping-cart", "#",
+    = link_to_with_icon "现在购买", "fa fa-shopping-cart", "#",
       class: "btn btn-success btn-block buy_button mobile_buy", data: { toggle: "modal", target: "#mobile_buy_modal" }
     #mobile_buy_modal.modal.fade
       .modal-dialog
@@ -46,10 +37,7 @@ class: "btn btn-info buy_button cart_login", data: {toggle: "modal", target: "#l
   = f.input :kind_id, as: :select, required: true do
     = select_tag "cart_item[kind_id]", tp.options_for_kinds,
     class: "select required form-control", prompt: "请选择型号"
-  - if tp.thing.adoption?
-    = f.input :quantity, required: true, input_html: { value: '1', disabled: true }
-  - else
-    = f.input :quantity, as: :integer, required: true, disabled: true,
+  = f.input :quantity, as: :integer, required: true, disabled: true,
     input_html: {min: 1, max: 100}, hint: "最多可购<strong>100</strong>件".html_safe
   .cart_estimated_prompt
     | 此产品将在
@@ -60,18 +48,9 @@ class: "btn btn-info buy_button cart_login", data: {toggle: "modal", target: "#l
     | 已加入购物车
   .submit
     - if user_signed_in?
-      - if tp.thing.stage == :dsell
-        = button_tag type: "submit", class: "btn btn-success buy_button track_event", data: data, disabled: true do
-          i.fa.fa-shopping-cart.fa-lg
-          | 加入购物车
-      - elsif tp.thing.stage == :adoption
-        - adopted = adopted_by(tp.thing, current_user)
-        = button_tag type: "button", class: "btn btn-success adoption_button", disabled: adopted, data: {toggle: "modal", target: "#adoption-modal"} do
-          i.fa.fa-shopping-cart.fa-lg
-          = !adopted ? "领养" : "已领养"
+      = button_tag type: "submit", class: "btn btn-success buy_button track_event", data: data, disabled: true do
+        i.fa.fa-shopping-cart.fa-lg
+        | 加入购物车
     - else
       = link_to_login
     = link_to_with_icon "帮助", "fa fa-question", '#olark_chat', class: "support"
-
-- if (tp.thing.stage == :adoption) && !adopted_by(tp.thing, current_user)
-  = render 'shared/adoption_modal', tp: tp

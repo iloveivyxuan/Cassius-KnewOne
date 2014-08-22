@@ -107,11 +107,7 @@ class ThingPresenter < PostPresenter
   end
 
   def adoption
-    if thing.valid_kinds.blank?
-      concept
-    else
-      render partial: 'cart_items/new', locals: {tp: self}
-    end
+    render 'things/adopt', tp: self
   end
 
   def buy

@@ -1,0 +1,19 @@
+section.adoption
+  table.adoption-details
+    tbody
+      tr
+        th 领养时间：
+        td= date_time_text adoption.created_at
+      tr
+        th 领养编号：
+        td= adoption.id
+  .adoption-thing
+    - present adoption.thing do |thing_presenter|
+      = thing_presenter.photo :small
+    .foo
+      = link_to adoption.thing.title, adoption.thing, class: "title"
+      p
+        label 销售价格：
+        span= adoption.thing.price
+      output class=adoption.status
+        = adoption_status(adoption.status)

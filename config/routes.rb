@@ -118,7 +118,7 @@ Making::Application.routes.draw do
     end
   end
 
-  resources :adoptions
+  resources :adoptions, only: [:index, :create]
 
   resource :profile, only: [] do
     get 'recommend_users'

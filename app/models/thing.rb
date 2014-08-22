@@ -45,8 +45,8 @@ class Thing < Post
     pre_order: "预售",
     domestic: "国内导购",
     abroad: "国外海淘",
-    dsell: "自销",
-    adoption: "领养"
+    adoption: "领养",
+    dsell: "自销"
   }
   validates :stage, inclusion: {in: STAGES.keys}
 
@@ -318,8 +318,8 @@ class Thing < Post
     self.all_links.each { |t| t.update_attributes(links: []) }
   end
 
-  def adoption?
-    self.stage == :adoption
+  def adopted_by? user
+    adoptions.where(user: user).exists?
   end
 
   class << self

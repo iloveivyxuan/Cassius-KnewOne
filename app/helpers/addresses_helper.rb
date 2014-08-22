@@ -7,4 +7,8 @@ module AddressesHelper
     content += ", #{address.phone}"
     content
   end
+
+  def has_default_address?(user)
+    user.addresses.where(default: true).exists? if user
+  end
 end
