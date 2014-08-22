@@ -22,21 +22,22 @@
     }
 
     > output {
-      @extend .label;
-      @extend .label-default;
-      background-color: transparent;
-      border-color: #ccc;
-      border-style: solid;
-      border-width: 1px;
-      color: #ccc;
       display: inline-block;
       font-size: 16px;
       font-weight: 200;
       padding: 6px 12px;
+      background-color: transparent;
+      border-style: solid;
+      border-width: 1px;
 
-      .success {
-        border-color: $blue;
+      &.waiting, &.denied {
+        color: #ccc;
+        border-color: #ccc;
+      }
+
+      &.approved {
         color: $blue;
+        border-color: $blue;
       }
     }
   }
