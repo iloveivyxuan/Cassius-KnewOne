@@ -25,6 +25,6 @@ table.table.table-striped
   tbody
     - @user.adoptions.each do |a|
       tr
-        td = a.adoption_no
+        td = a.id
         td = a.thing.title
         td = a.status
