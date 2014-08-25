@@ -1,5 +1,5 @@
 module Haven
-  class SpecialsController < ApplicationController
+  class SpecialsController < Haven::ApplicationController
     layout 'settings'
     before_action :set_special, except: [:index, :create, :new]
 

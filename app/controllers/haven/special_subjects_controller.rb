@@ -1,5 +1,5 @@
 module Haven
-  class SpecialSubjectsController < ApplicationController
+  class SpecialSubjectsController < Haven::ApplicationController
     layout 'settings'
     before_action :set_special
     before_action :set_special_subject, except: [:create, :new]

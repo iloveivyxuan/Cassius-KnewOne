@@ -1,5 +1,5 @@
 module Haven
-  class ThingListsController < ApplicationController
+  class ThingListsController < Haven::ApplicationController
     layout 'settings'
 
     def index

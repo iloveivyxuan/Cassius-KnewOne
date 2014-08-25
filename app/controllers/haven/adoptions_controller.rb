@@ -1,5 +1,5 @@
 module Haven
-  class AdoptionsController < ApplicationController
+  class AdoptionsController < Haven::ApplicationController
     layout 'settings'
 
     def index
@@ -36,6 +36,5 @@ module Haven
       end
       redirect_to :back
     end
-
   end
 end

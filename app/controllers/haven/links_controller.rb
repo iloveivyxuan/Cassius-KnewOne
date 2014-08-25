@@ -1,5 +1,5 @@
 module Haven
-  class LinksController < ApplicationController
+  class LinksController < Haven::ApplicationController
     layout 'settings'
 
     def new

@@ -1,5 +1,5 @@
 module Haven
-  class ReviewsController < ApplicationController
+  class ReviewsController < Haven::ApplicationController
     layout 'settings'
 
     def index

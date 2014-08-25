@@ -249,7 +249,7 @@ Making::Application.routes.draw do
       end
     end
 
-    resources :adoptions do
+    resources :adoptions, only: [:index] do
       member do
         post 'approve'
         post 'deny'

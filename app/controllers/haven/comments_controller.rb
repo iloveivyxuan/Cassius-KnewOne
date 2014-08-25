@@ -1,5 +1,5 @@
 module Haven
-  class CommentsController < ApplicationController
+  class CommentsController < Haven::ApplicationController
     layout 'settings'
 
     def index

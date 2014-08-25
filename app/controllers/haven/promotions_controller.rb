@@ -1,5 +1,5 @@
 module Haven
-  class PromotionsController < ApplicationController
+  class PromotionsController < Haven::ApplicationController
     before_action :set_promotion, only: [:show, :edit, :update, :destroy]
     layout 'settings'
 

@@ -1,5 +1,5 @@
 module Haven
-  class RewardsController < ApplicationController
+  class RewardsController < Haven::ApplicationController
     before_action :set_reward, only: [:edit, :update, :destroy, :award]
     layout 'settings'
 

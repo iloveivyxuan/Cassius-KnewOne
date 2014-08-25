@@ -1,5 +1,5 @@
 module Haven
-  class CategoriesController < ApplicationController
+  class CategoriesController < Haven::ApplicationController
     before_action :set_category, except: [:index]
     layout 'settings'
 

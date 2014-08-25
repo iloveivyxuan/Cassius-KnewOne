@@ -1,5 +1,5 @@
 module Haven
-  class JumptronsController < ApplicationController
+  class JumptronsController < Haven::ApplicationController
     layout 'settings'
 
     def new

@@ -1,5 +1,5 @@
 module Haven
-  class CouponCodesController < ApplicationController
+  class CouponCodesController < Haven::ApplicationController
     before_action :set_coupon_code
 
     def destroy

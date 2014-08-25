@@ -1,5 +1,5 @@
 module Haven
-  class ThingsController < ApplicationController
+  class ThingsController < Haven::ApplicationController
     load_and_authorize_resource :thing, class: ::Thing
     layout 'settings'
 

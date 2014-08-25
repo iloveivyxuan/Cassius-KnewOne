@@ -1,5 +1,5 @@
 module Haven
-  class StaffsController < ApplicationController
+  class StaffsController < Haven::ApplicationController
     layout 'settings'
     before_action :authenticate_admin
 

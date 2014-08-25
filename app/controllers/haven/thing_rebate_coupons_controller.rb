@@ -1,5 +1,5 @@
 module Haven
-  class ThingRebateCouponsController < ApplicationController
+  class ThingRebateCouponsController < Haven::ApplicationController
     load_and_authorize_resource instance_name: :coupon, class: ::ThingRebateCoupon, params: :thing_rebate_coupon_params
     layout 'settings'
 

@@ -1,5 +1,5 @@
 module Haven
-  class ArticlesController < ApplicationController
+  class ArticlesController < Haven::ApplicationController
     layout 'settings'
     before_action :set_article, except: [:index, :create, :new]
 

@@ -1,5 +1,5 @@
 module Haven
-  class FeelingsController < ApplicationController
+  class FeelingsController < Haven::ApplicationController
     layout 'settings'
 
     def index

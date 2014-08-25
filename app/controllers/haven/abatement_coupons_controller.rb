@@ -1,5 +1,5 @@
 module Haven
-  class AbatementCouponsController < ApplicationController
+  class AbatementCouponsController < Haven::ApplicationController
     load_and_authorize_resource instance_name: :coupon, class: ::AbatementCoupon, params: :abatement_coupon_params
     layout 'settings'
 

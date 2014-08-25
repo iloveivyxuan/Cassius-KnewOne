@@ -1,5 +1,5 @@
 module Haven
-  class EntriesController < ApplicationController
+  class EntriesController < Haven::ApplicationController
     layout 'settings'
     before_action :set_entry, except: [:index, :create, :new]
 

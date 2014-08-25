@@ -1,5 +1,5 @@
 module Haven
-  class UsersController < ApplicationController
+  class UsersController < Haven::ApplicationController
     layout 'settings'
 
     def index
