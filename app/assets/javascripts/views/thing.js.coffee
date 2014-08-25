@@ -22,8 +22,7 @@ window.Making = do (exports = window.Making || {}) ->
 
   exports.InitThing = ->
     exports.ReadMore('.post_content')
-    if !$html.hasClass('mobile')
-      exports.InitAdoption()
+    exports.InitAdoption()
 
     # TODO
     if $html.hasClass('touch')
@@ -74,12 +73,30 @@ window.Making = do (exports = window.Making || {}) ->
               .hide()
 
   exports.InitAdoption = ->
-    $adoption      = $('#thing_actions #adoption-modal')
-    $adoptionKind  = $adoption.find('[name="adoption[kind]"]')
+    if !$html.hasClass('mobile')
+      $adoption      = $('#thing_actions #adoption-modal')
+      $adoptionKind  = $adoption.find('[name="adoption[kind]"]')
 
-    $('[data-target="#adoption-modal"]').on 'click', (event) ->
-      $cartKind  = $('[name="cart_item[kind_id]"]')
-      $adoptionKind.val($cartKind.val())
+      $('[data-target="#adoption-modal"]').on 'click', (event) ->
+        $cartKind  = $('[name="cart_item[kind_id]"]')
+        $adoptionKind.val($cartKind.val())
+
+    requireAddress = (required) ->
+      $(['#adoption_address_province'
+         '#adoption_address_district'
+         '#adoption_address_street'
+         '#adoption_address_name'
+         '#adoption_address_phone'].join(', ')).prop('required', required)
+
+    $('[name="adoption[address_id]"]').on('change', ->
+      required = $('#adoption_address_id_new').prop('checked')
+      requireAddress(required)
+    )
+
+    $('[name^="adoption[address]"').on('focus', ->
+      $('#adoption_address_id_new').prop('checked', true)
+      requireAddress(true)
+    )
 
   exports.InitFeelings = ->
     exports.EditorCompact('.feeling_form')
