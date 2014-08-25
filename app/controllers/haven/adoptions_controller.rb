@@ -12,7 +12,7 @@ module Haven
       if params[:status]
         @adoptions = @adoptions.where(:status => params[:status].to_sym)
       end
-      @adoptions
+      @adoptions = @adoptions.page(params[:page]).per(params[:per] || 50)
     end
 
     def approve
