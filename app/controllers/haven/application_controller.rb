@@ -6,7 +6,9 @@ module Haven
     protected
 
     def require_admin_signed_in
-      raise ActionController::RoutingError.new('Not Found') unless user_signed_in? && current_user.staff?
+      if !user_signed_in? || !current_user.staff?
+        raise ActionController::RoutingError.new('Not Found')
+      end
     end
 
     def redirect_back_or(path, flash = {})
