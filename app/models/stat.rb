@@ -6,15 +6,13 @@ class Stat
 
   DATAS = {
     # 用户相关
-    :users_count => '总用户数',
+    :users_count => '当天用户数',
+    :users_total_count => '总用户数',
     :login_users => '登录用户数量',
     :user_logins => '用户登录次数',
     :activities_users => '有交互用户数',
     :ave_follows_count => '用户平均关注数量',
     :ave_followers_count => '用户平均被关注数量',
-    :one_page_users_count => '只看一个页面的用户数量',
-    :most_bounce_pages => '跳出率最高的页面',
-    :less_bounce_pages => '跳出率最少的页面',
     :top_10_sources => '用户来源前 10',
     # 交互数据
     :likes_count => '总 like 数',
@@ -30,7 +28,7 @@ class Stat
     :buy_clicks => '购买按钮点击数量',
     :product_buy_clicks_tops => '分产品购买按钮点击数前 10',
     # 产品相关
-    :products_count => '总产品数',
+    :products_count => '产品数',
     :has_link_products_count => '有购买链接产品数',
     :dsell_products_count => '自营产品数',
     :has_reviews_products_count => '有评测的产品数',
@@ -55,8 +53,6 @@ class Stat
 
   # datas which need manual input
   MANUAL_INPUT_DATAS = [
-                        :most_bounce_pages,
-                        :less_bounce_pages,
                         :top_10_sources,
                         :product_shares_tops,
                         :product_buy_clicks_tops
@@ -107,6 +103,10 @@ class Stat
 
   def users_count
     User.where(:created_at.gte => date_from).where(:created_at.lte => date_to.next_day).size
+  end
+
+  def users_total_count
+    User.where(:created_at.lte => date_to.next_day).size
   end
 
   def login_activities
