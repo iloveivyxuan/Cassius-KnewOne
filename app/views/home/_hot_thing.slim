@@ -1,7 +1,7 @@
 - present hot_thing do |thing_presenter|
   article.thing
     header.cover
-      = link_to hot_thing do
+      = link_to "#", data: {toggle: "modal", target: "#login-modal",link: thing_url(hot_thing)} do
         = thing_presenter.photo :'thing.fixed.big'
       .fancy_thing
         = link_to "", hot_thing, class: "fancy_backdrop"
