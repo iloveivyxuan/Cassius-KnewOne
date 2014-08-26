@@ -7,4 +7,5 @@ require 'capistrano3/unicorn'
 require 'capistrano/sidekiq'
 require 'capistrano/sidekiq/monit'
 require 'whenever/capistrano'
+require 'airbrake/capistrano3'
 Dir.glob('lib/capistrano/tasks/*.cap').each { |r| import r }
