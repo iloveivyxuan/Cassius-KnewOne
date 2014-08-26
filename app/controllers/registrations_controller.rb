@@ -2,6 +2,10 @@ class RegistrationsController < Devise::RegistrationsController
   skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
   layout 'oauth'
 
+  before_action only: [:create] do
+    session[:previous_url] = params[:redirect_from] if params[:redirect_from].present?
+  end
+
   def update
     @user = User.find(current_user.id)
     successfully_updated = if needs_password?(@user, user_params)
@@ -83,4 +87,5 @@ class RegistrationsController < Devise::RegistrationsController
   def user_params
     params.require(:user).permit(:location, :name, :site, :description, :email, :password, :password_confirmation)
   end
+
 end
