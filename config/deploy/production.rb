@@ -10,6 +10,7 @@ set :unicorn_config_path, File.join(current_path, "config", "unicorn", "#{fetch(
 
 namespace :deploy do
   before :updating, :test
+  after :finished, 'airbrake:deploy'
 
   task :restart do
     invoke 'unicorn:reload'
