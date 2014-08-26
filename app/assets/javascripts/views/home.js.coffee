@@ -55,9 +55,9 @@ window.Making = do (exports = window.Making || {}) ->
         $window.on 'beforeunload', ->
           localStorage.setItem('unlimited', 'false')
 
-      exports.setRedirection()
+      exports.SetRedirection()
 
-  exports.setRedirection = ->
+  exports.SetRedirection = ->
     $('#login-modal').on 'shown.bs.modal', (event) ->
       click_from = event.relatedTarget.getAttribute('data-link')
       rf.setAttribute('value', click_from) for rf in $('[id="redirect_from"]')
