@@ -29,7 +29,7 @@ module ApplicationHelper
     end
 
     unless user_signed_in?
-      html_options.merge!(data: {toggle: 'modal', target: '#login-modal', link: thing_url(url)})
+      html_options.merge!(data: {toggle: 'modal', target: '#login-modal', link: url_for(url)})
       url = '#'
     end
 
