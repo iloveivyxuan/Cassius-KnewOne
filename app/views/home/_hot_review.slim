@@ -8,7 +8,7 @@
           = review_presenter.cover(:square)
     section.content
       h4.title
-        = link_to review_presenter.title, "#", data: {toggle: "modal", target: "#login-modal", link: review_presenter.path}
+        = link_to review_presenter.title, review_presenter.path
       .summary
         = review_presenter.score
         p= review_presenter.summary(120)

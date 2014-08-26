@@ -31,7 +31,9 @@ window.Making = do (exports = window.Making || {}) ->
     )
 
   exports.InitHomeGuest = ->
-    if $html.hasClass('desktop')
+    $ ->
+      $('.entry_email_toggle').addClass(if $('.entry_email').is(':visible') then 'active')
+
       $candidate   = $('.search_candidate')
       $('#header').find('[class^="search_"]').remove()
       exports.SearchThing('#search_form')
@@ -44,13 +46,13 @@ window.Making = do (exports = window.Making || {}) ->
           !$target.is('#search_thing input[type="search"]')
             $candidate.fadeOut('fast')
 
-    if localStorage.getItem('unlimited') isnt 'false'
-      $('a[data-target="#login-modal"]').each ->
-        $this = $(@)
-        $this
-          .attr('href': $this.attr('data-link'))
-          .removeAttr('data-toggle')
-      $window.on 'beforeunload', ->
-        localStorage.setItem('unlimited', 'false')
+      if localStorage.getItem('unlimited') isnt 'false'
+        $('a[data-target="#login-modal"]').each ->
+          $this = $(@)
+          $this
+            .attr('href': $this.attr('data-link'))
+            .removeAttr('data-toggle')
+        $window.on 'beforeunload', ->
+          localStorage.setItem('unlimited', 'false')
 
   exports
