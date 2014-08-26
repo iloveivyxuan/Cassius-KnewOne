@@ -37,7 +37,7 @@ Making.OrderPage =
         requireAddress(required)
       )
 
-      $('[name^="order[address]"').on('focus', ->
+      $('[name^="order[address]"]').on('focus', ->
         $('#order_address_id_new').prop('checked', true)
         requireAddress(true)
       )

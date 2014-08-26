@@ -93,7 +93,7 @@ window.Making = do (exports = window.Making || {}) ->
       requireAddress(required)
     )
 
-    $('[name^="adoption[address]"').on('focus', ->
+    $('[name^="adoption[address]"]').on('focus', ->
       $('#adoption_address_id_new').prop('checked', true)
       requireAddress(true)
     )
