@@ -1,7 +1,7 @@
 - present hot_review do |review_presenter|
   article.review
     header.cover
-      = link_to review_presenter.path do
+      = link_to "#", data: {toggle: "modal", target: "#login-modal", link: review_presenter.path} do
         - if browser.mobile?
           = review_presenter.cover(:'post.fixed')
         - else
