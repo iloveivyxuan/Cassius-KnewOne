@@ -8,3 +8,7 @@ section.promotions
 
 section.hits
   = render 'hits_groups'
+
+- content_for :script do
+  javascript:
+    Making.InitHomeGuest();
