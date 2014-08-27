@@ -6,7 +6,7 @@ class Stat
 
   DATAS = {
     # 用户相关
-    :users_count => '当天用户数',
+    :users_count => '新增用户',
     :users_total_count => '总用户数',
     :login_users => '登录用户数量',
     :user_logins => '用户登录次数',
@@ -126,7 +126,7 @@ class Stat
   end
 
   def all_follows
-    Activity.by_type(:follow_user).from_date(@@date_from).to_date(@@date_to)
+    @_all_follows ||= Activity.by_type(:follow_user).from_date(@@date_from).to_date(@@date_to)
   end
 
   def ave_follows_count
@@ -140,7 +140,7 @@ class Stat
   end
 
   def all_likes
-    Activity.by_type(:fancy_thing).from_date(@@date_from).to_date(@@date_to)
+    @_all_likes ||= Activity.by_type(:fancy_thing).from_date(@@date_from).to_date(@@date_to)
   end
 
   def likes_count
@@ -154,7 +154,7 @@ class Stat
   end
 
   def all_plus_one
-    Activity.where(:type.in => [:love_review, :love_feeling, :love_topic]).from_date(@@date_from).to_date(@@date_to)
+    @_all_plus_one ||= Activity.where(:type.in => [:love_review, :love_feeling, :love_topic]).from_date(@@date_from).to_date(@@date_to)
   end
 
   def plus_one_count
@@ -168,7 +168,7 @@ class Stat
   end
 
   def all_feelings
-    Activity.by_type(:new_feeling).from_date(@@date_from).to_date(@@date_to)
+    @_all_feelings ||= Activity.by_type(:new_feeling).from_date(@@date_from).to_date(@@date_to)
   end
 
   def feelings_count
@@ -182,7 +182,7 @@ class Stat
   end
 
   def all_reviews
-    Activity.by_type(:new_review).from_date(@@date_from).to_date(@@date_to)
+    @_all_reviews ||= Activity.by_type(:new_review).from_date(@@date_from).to_date(@@date_to)
   end
 
   def reviews_count
@@ -196,7 +196,7 @@ class Stat
   end
 
   def new_things
-    Activity.by_type(:new_thing).from_date(@@date_from).to_date(@@date_to).map(&:reference)
+    @_new_things ||= Activity.by_type(:new_thing).from_date(@@date_from).to_date(@@date_to).map(&:reference).compact
   end
 
   def products_count
@@ -204,19 +204,19 @@ class Stat
   end
 
   def has_link_products_count
-    new_things.compact.select { |t| t.shop != "" }.size
+    new_things.select { |t| !t.shop.blank? }.size
   end
 
   def dsell_products_count
-    new_things.compact.select { |t| t.shop != "" }.size
+    new_things.select { |t| t.stage == :dsell }.size
   end
 
   def has_reviews_products_count
-    new_things.compact.select { |t| t.reviews != [] }.size
+    new_things.select { |t| !t.reviews.blank? }.size
   end
 
   def all_orders
-    Order.where(:state.in => [:confirmed, :shipped]).from_date(@@date_from).to_date(@@date_to)
+    @_all_orders ||= Order.where(:state.in => [:confirmed, :shipped]).from_date(@@date_from).to_date(@@date_to)
   end
 
   def sale_sum
