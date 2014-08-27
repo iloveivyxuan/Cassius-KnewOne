@@ -1,5 +1,5 @@
 class DialogsController < ApplicationController
-  before_action :set_dialog, except: [:index, :create]
+  before_action :set_dialog, except: [:index, :create, :readall]
 
   def index
     @dialogs = current_user.dialogs.page(params[:page]).per(20)
