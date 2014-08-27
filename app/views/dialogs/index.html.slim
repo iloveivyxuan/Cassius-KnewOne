@@ -1,18 +1,12 @@
 - page_title '我的私信'
 
-header.page-header
-  button.btn.btn-primary data-toggle="modal" data-target="#new_private_message_modal"
-    | 写私信
-  h1
-    i.fa.fa-envelope-o
-    span 我的私信
-
-section#dialogs
-  = render @dialogs
-
-footer
-  = paginate @dialogs
-
-- content_for :script do
-  javascript:
-    Making.DialogPage.InitIndex();
+.container
+  nav
+    h1 我的私信
+    = link_to_with_icon "写新私信", "fa fa-pencil", "#", class: "btn btn-default btn-sm new_private_message",
+    data: {toggle: "modal", target: "#new_private_message_modal"}
+    = link_to_with_icon "标记全部已读", "fa fa-check", readall_dialogs_path, method: :post,
+    class: "btn btn-default btn-sm readall"
+  main
+    = render @dialogs
+    = paginate @dialogs

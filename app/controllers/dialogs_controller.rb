@@ -15,6 +15,16 @@ class DialogsController < ApplicationController
     @dialog.reset
   end
 
+  def readall
+    current_user.dialogs.gt(unread_count: 0).each do |dialog|
+      dialog.private_messages.where(is_new: true).each do |m|
+        m.update_attribute :is_new, false
+      end
+      dialog.reset
+    end
+    redirect_to dialogs_path
+  end
+
   def create
     receiver = if params[:dialog_user_id].present?
                  User.find params[:dialog_user_id]
