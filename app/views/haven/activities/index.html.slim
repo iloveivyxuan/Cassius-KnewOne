@@ -1,0 +1,13 @@
+= form_tag haven_activities_path, method: :get do
+  - Activity::TYPES.each_with_index do |type, index|
+    = check_box_tag "types[#{type}]", "", params[:types].blank? || params[:types].keys.include?(type.to_s)
+    = type
+  = submit_tag "Search"
+
+- @activities.each do |a|
+  = link_to a.user.name, a.user
+  = render_activity(a)
+  = time_ago_tag a.created_at
+  br
+
+= paginate @activities    
