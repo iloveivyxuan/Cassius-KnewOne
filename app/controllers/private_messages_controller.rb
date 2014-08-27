@@ -1,4 +1,5 @@
 class PrivateMessagesController < ApplicationController
+  prepend_before_action :require_signed_in
   respond_to :json
 
   before_action :set_private_message
