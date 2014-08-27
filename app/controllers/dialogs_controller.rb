@@ -1,5 +1,5 @@
 class DialogsController < ApplicationController
-  load_and_authorize_resource
+  before_action :set_dialog, except: [:index, :create]
 
   def index
     @dialogs = current_user.dialogs.page(params[:page]).per(20)
@@ -29,5 +29,11 @@ class DialogsController < ApplicationController
 
   def destroy
     @dialog.destroy
+  end
+
+  private
+
+  def set_dialog
+    @dialog = current_user.dialogs.find(params[:id])
   end
 end

@@ -1,9 +1,16 @@
 class PrivateMessagesController < ApplicationController
   respond_to :json
-  load_and_authorize_resource :dialog
-  load_and_authorize_resource :private_message, through: :dialog
+
+  before_action :set_private_message
 
   def destroy
     @private_message.destroy
+  end
+
+  private
+
+  def set_private_message
+    @dialog = current_user.dialogs.find(params[:dialog_id])
+    @private_message = @dialog.private_messages.find(params[:id])
   end
 end

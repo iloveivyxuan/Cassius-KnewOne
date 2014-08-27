@@ -126,14 +126,6 @@ class Ability
       topic.voted?(user)
     end
 
-    can :create, Dialog
-    can [:read, :destroy], Dialog do |dialog|
-      dialog.user == user
-    end
-    can :destroy, PrivateMessage do |private_message|
-      private_message.dialog.user == user
-    end
-
     can :subscribe_toggle, Category
 
     can :create, ThingList
