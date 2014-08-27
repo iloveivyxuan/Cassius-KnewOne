@@ -5,6 +5,8 @@
     h1 我的私信
     = link_to_with_icon "写新私信", "fa fa-pencil", "#", class: "btn btn-default btn-sm new_private_message",
     data: {toggle: "modal", target: "#new_private_message_modal"}
+    = link_to_with_icon "标记全部已读", "fa fa-check", readall_dialogs_path, method: :post,
+    class: "btn btn-default btn-sm readall"
   main
     = render @dialogs
     = paginate @dialogs

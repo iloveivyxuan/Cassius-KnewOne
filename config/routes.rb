@@ -220,6 +220,7 @@ Making::Application.routes.draw do
 
   resources :dialogs, except: [:new, :edit, :update] do
     resources :private_messages, only: [:destroy]
+    collection {post 'readall'}
   end
 
   resources :drafts, only: [:index, :show, :update, :destroy]

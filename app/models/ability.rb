@@ -127,6 +127,7 @@ class Ability
     end
 
     can :create, Dialog
+    can :readall, Dialog
     can [:read, :destroy], Dialog do |dialog|
       dialog.user == user
     end

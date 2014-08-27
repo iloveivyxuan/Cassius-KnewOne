@@ -13,15 +13,19 @@ html.dialogs_index, html.dialogs_show {
         display: inline;
         font-size: $font-size-h4;
         color: $gray;
+        vertical-align: middle;
       }
 
-      .new_private_message {margin-left: 1em;}
+      .new_private_message, .readall {margin-left: 1em;}
 
       @include breakpoint(md) {
         @include clearfix;
         margin: 0 0 0 10em;
-        h1 {margin: 0;}
-        .new_private_message {float: right;}
+        h1 {
+          float: left;
+          margin: 0;
+        }
+        .new_private_message, .readall {float: right;}
       }
     }
 
