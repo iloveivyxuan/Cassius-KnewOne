@@ -56,7 +56,7 @@ class GroupsController < ApplicationController
     end
 
     @group.members.add current_user
-    redirect_to :back
+    redirect_to @group
   end
 
   def leave
