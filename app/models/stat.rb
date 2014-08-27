@@ -23,8 +23,7 @@ class Stat
     :product_feelings_tops => '分产品短评数前 10',
     :reviews_count => '评测数',
     :product_reviews_tops => '分产品评测数前 10',
-    :shares_count => '分享数',
-    :product_shares_tops => '分产品分享数前 10',
+    :new_products_count => '新产品数',
     :buy_clicks => '购买按钮点击数量',
     :product_buy_clicks_tops => '分产品购买按钮点击数前 10',
     # 产品相关
@@ -199,20 +198,28 @@ class Stat
     @_new_things ||= Activity.by_type(:new_thing).from_date(@@date_from).to_date(@@date_to).map(&:reference).compact
   end
 
-  def products_count
+  def all_things
+    @_all_things ||= Thing.where(:created_at.lte => @@date_to)
+  end
+
+  def new_products_count
     new_things.size
   end
 
+  def products_count
+    all_things.size
+  end
+
   def has_link_products_count
-    new_things.select { |t| !t.shop.blank? }.size
+    all_things.where(:shop.ne => "").size
   end
 
   def dsell_products_count
-    new_things.select { |t| t.stage == :dsell }.size
+    all_things.where(:stage => :dsell).size
   end
 
   def has_reviews_products_count
-    new_things.select { |t| !t.reviews.blank? }.size
+    all_things.select { |t| !t.reviews.blank? }.size
   end
 
   def all_orders
