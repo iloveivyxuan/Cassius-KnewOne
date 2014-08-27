@@ -1,11 +1,13 @@
-article.private_message id="private_message_#{message.id}"
-  - present message do |mp|
-    header
-      .sender_avatar= mp.avatar
-      .sender_name= mp.sender_name
-    section
-      = mp.content
-    footer
-      = mp.created_at
-      .operations
-        = mp.destroy
+- present message do |mp|
+  .private_message id="private_message_#{message.id}"
+    figure
+      = mp.avatar :small
+    article
+      header
+        = mp.sender_name
+      section
+        = mp.content
+      footer
+        = mp.created_at
+        span.operations
+          = mp.destroy

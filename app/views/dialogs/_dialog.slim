@@ -1,13 +1,13 @@
 - present dialog do |dp|
-  article.private_message id="dialog_#{dialog.id}"
-    header
-      .sender_avatar= dp.sender_avatar
-      .sender_name= dp.sender_name
-      .messages_count= dp.messages_count
-    section
-      = dp.newest_message_content
-    footer
-      = dp.updated_at
-      span.operations
-        = dp.reply
-        = dp.destroy
+  .private_message id="dialog_#{dialog.id}" class=dp.unread_class
+    figure
+      = dp.sender_avatar :small
+    article
+      header= dp.sender_name
+      section= dp.newest_message_content
+      footer
+        = dp.updated_at
+        = dp.messages_count
+        span.operations
+          = dp.reply
+          = dp.destroy

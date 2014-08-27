@@ -1,19 +1,18 @@
 - page_title "与#{@dialog.sender.name}的会话"
 
-header.page-header
-  ol.breadcrumb
-    li= link_to_with_icon "我的私信", 'fa fa-envelope-o', dialogs_path
-    li.active 与#{@dialog.sender.name}的会话
+.container
+  nav
+    ol.breadcrumb
+      li= link_to_with_icon "我的私信", 'fa fa-envelope-o', dialogs_path
+      li.active 与#{@dialog.sender.name}的会话
 
-section#private_messages
-  = form_tag dialogs_path, method: :post, remote: true, role: "form" do
-    = hidden_field_tag :dialog_user_id, @dialog.sender.id
-    = text_area_tag 'dialog_content', nil, rows: 5,
-    class: 'form-control', required: true, autofocus: true
-    button.btn.btn-primary type="submit"
-      i.fa.fa-reply
-      | 回复
-  = render partial: 'private_message', collection: @messages, as: :message
-
-footer
-  = paginate @messages
+  main#private_messages
+    = form_tag dialogs_path, method: :post, remote: true, role: "form" do
+      = hidden_field_tag :dialog_user_id, @dialog.sender.id
+      = text_area_tag 'dialog_content', nil, rows: 5,
+      class: 'form-control', required: true, autofocus: true
+      button.btn.btn-primary type="submit"
+        i.fa.fa-reply
+        | 回复
+    = render partial: 'private_message', collection: @messages, as: :message
+    = paginate @messages

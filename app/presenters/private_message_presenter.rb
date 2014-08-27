@@ -9,8 +9,8 @@ class PrivateMessagePresenter < ApplicationPresenter
                 end
   end
 
-  def avatar
-    present(sender).link_to_with_avatar(:tiny)
+  def avatar(size=:small)
+    present(sender).link_to_with_avatar(size)
   end
 
   def sender_name
@@ -18,7 +18,7 @@ class PrivateMessagePresenter < ApplicationPresenter
   end
 
   def content
-    simple_format private_message.content
+    auto_link simple_format(private_message.content), :all, target: '_blank'
   end
 
   def created_at
