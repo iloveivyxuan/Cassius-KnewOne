@@ -115,7 +115,10 @@ html.landing {
           letter-spacing: 2px;
           @include MQ(Lplus) { font-size: 0.95em }
           &:hover { color: #727272 }
-          span { color: $blue }
+          span {
+            color: $blue;
+            font-family: "orbitron-bold";
+          }
         }
       }
     }
