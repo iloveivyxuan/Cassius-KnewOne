@@ -1,4 +1,5 @@
 class DialogsController < ApplicationController
+  prepend_before_action :require_signed_in
   before_action :set_dialog, except: [:index, :create, :readall]
 
   def index

@@ -25,13 +25,6 @@ feature 'Walk around (Smoke test)', slow: true do
      maps_groups_path,
      maps_categories_path,
      maps_entries_path,
-     # help
-     help_path,
-     help_how_to_share_path,
-     help_how_to_review_path,
-     help_terms_path,
-     help_knewone_for_user_path,
-     help_knewone_for_startup_path,
      # devise
      new_user_session_path,
      edit_user_password_path,
@@ -124,7 +117,7 @@ feature 'Walk around (Smoke test)', slow: true do
      notifications_path,
      # dialogs
      dialogs_path,
-     dialog_path(dialog),
+     # dialog_path(dialog),
      # rewards
      rewards_path,
      # thing lists

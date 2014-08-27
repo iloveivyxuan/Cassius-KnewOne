@@ -25,11 +25,6 @@ Making::Application.routes.draw do
 
   get 'shop(/:order_by)', to: 'things#shop', as: :shop
 
-  get 'help', to: 'help#index'
-  %w(how_to_share how_to_review terms knewone_for_user knewone_for_startup).each do |a|
-    get "help/#{a}"
-  end
-
   get 'explore', to: 'explore#index'
   %w(features reviews specials events).each do |a|
     get "explore/#{a}", to: "explore##{a}", as: "explore_#{a}"
