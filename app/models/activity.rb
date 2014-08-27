@@ -32,6 +32,13 @@ class Activity
   scope :from_date, ->(date) { where :created_at.gte => date.to_time.to_i }
   scope :to_date, ->(date) { where :created_at.lt => date.next_day.to_time.to_i }
 
+  TYPES = %i(fancy_thing own_thing new_thing
+             new_feeling love_feeling
+             new_review love_review
+             love_topic new_topic
+             fancy_list add_to_list
+             comment follow_user)
+
   def tmpl
     self.type.to_s.split("_").last
   end

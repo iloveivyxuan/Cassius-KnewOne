@@ -238,6 +238,8 @@ Making::Application.routes.draw do
   end
 
   namespace :haven do
+    resources :activities, only: [:index]
+
     resources :orders, only: [:index, :show, :update] do
       member do
         patch 'ship'
