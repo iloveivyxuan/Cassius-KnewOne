@@ -191,9 +191,9 @@
       }
       @include MQ(Mplus) {
         margin-top: 40px;
+        @include clearfix;
         > span {
-          display: inline-block;
-          text-align: left;
+          float: left;
         }
         div {
           float: right;
@@ -211,6 +211,7 @@
     position: relative;
     width: 100%;
     padding: 0 30px 20px 30px;
+    @include MQ(Mneg) { padding-top: 20px }
     border: none;
     text-align: right;
     button {
