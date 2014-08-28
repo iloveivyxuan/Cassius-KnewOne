@@ -124,183 +124,6 @@ html.landing {
     }
   }
 
-  #email_sign_in_pop_up,
-  #email_sign_up_pop_up {
-    .modal-dialog {
-      margin-top: -1px;
-    }
-    .modal-header {
-      padding: 20px 40px;
-      background: $blue;
-      .close {
-        position: relative;
-        z-index: 1;
-      }
-      h5 {
-        font-size: 1.5em;
-        color: #000;
-        line-height: 1;
-        font-weight: bold;
-        text-shadow: 0 1px 0 #fff;
-        letter-spacing: 2px;
-        filter: alpha(opacity=30);
-        opacity: .3;
-        span {
-          margin-left: 10px;
-          font-family: "Helvetica Neue";
-          font-weight: lighter !important;
-          text-transform: uppercase;
-        }
-      }
-    }
-    .modal-body {
-      padding: 40px;
-      .form-group {
-        margin-bottom: 20px;
-        .form-action {
-          margin-top: 20px;
-        }
-      }
-      .input-group {
-        width: 100%;
-        height: 50px;
-      }
-      .input-group-addon {
-        width: 50px;
-        height: 50px;
-        padding: 0;
-        line-height: 50px;
-        color: #fff;
-        text-align: center;
-        background-color: $blue;
-        border: none;
-        @include border-radius(0);
-        @include border-corner-radius(top,left,5px);
-        @include border-corner-radius(bottom,left,5px);
-        i {
-          display: block;
-          margin: 0;
-          padding: 0;
-        }
-      }
-      .form-control {
-        height: 50px;
-        line-height: 50px;
-        letter-spacing: 1px;
-        border: 1px solid $gray-lighter;
-        @include border-radius(0);
-        @include border-corner-radius(top,right,5px);
-        @include border-corner-radius(bottom,right,5px);
-        &:focus {
-          background: #f7f7f7;
-          border-color: $blue;
-          outline: 0;
-          -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05), 0 0 8px rgba(102, 175, 233, .6);
-          box-shadow: inset 0 1px 1px rgba(0,0,0,.05), 0 0 8px rgba(102, 175, 233, .6);
-        }
-      }
-      .form-group.addon {
-        &:before {
-          content:" ";
-          display:table;
-        }
-        &:after {
-          content:" ";
-          display:table;
-          clear:both;
-        }
-        > div {
-          float: right;
-        }
-        a {
-          margin-left: 20px;
-          i {
-            margin: 0;
-            margin-right: 5px;
-          }
-        }
-      }
-      .checkbox {
-        display: inline-block;
-        min-height: 20px;
-        margin-top: 0;
-        margin-bottom: 10px;
-        padding: 0;
-        label {
-          color: #949494;
-        }
-      }
-      .user_agreement {
-        text-align: right;
-        a {
-          i { margin: 0 5px }
-          span {
-            margin-right: 5px;
-            font-family: "Orbitron-Bold";
-          }
-        }
-      }
-      .alert {
-        color: #ddd;
-        background-color: #404b53;
-        border-color: #181818;
-      }
-      .social_sign_in {
-        > span {
-          display: block;
-          color: $blue;
-          line-height: 30px;
-          margin-right: 20px;
-          i {
-            margin-left: 10px;
-          }
-        }
-        div {
-          margin: 0 auto;
-          margin-top: 10px;
-          text-align: center;
-          a {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            margin-right: 10px;
-            text-align: center;
-            background: $blue;
-            @include border-radius(4px);
-            &:hover {
-              background: $link-hover-color;
-            }
-            i {
-              display: block;
-              margin: 0 auto;
-              font-size: 1.5em;
-              line-height: 50px;
-              color: #fff;
-            }
-          }
-        }
-        @include MQ(Mplus) {
-          margin-top: 40px;
-          > span {
-            display: inline-block;
-          }
-          div {
-            display: inline-block;
-            margin-top: 0;
-            a {
-              width: 40px;
-              height: 40px;
-              i {
-                font-size: 1.5em;
-                line-height: 40px;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
   /**************************Landing**************************/
 
   .landing {
@@ -395,8 +218,6 @@ html.landing {
 
     /******************entry******************/
 
-    .entry .entry_email { margin-top: 0 }
-
     .entry.entry_compact {
       position: relative;
       margin-bottom: 50px;
@@ -404,60 +225,49 @@ html.landing {
       background-color: transparent;
       border: none;
       box-shadow: none;
-      .entry_email {
-        display: block;
-      }
       @include MQ(Mneg) { width: 70% }
       @include MQ(M) { width: 40% }
       @include MQ(Lplus) {
         position: absolute;
+        top: 42%;
         right: 10%;
-        top: 30%;
         width: auto;
         margin-bottom: 0;
         z-index: 1;
       }
-      .nav-justified {
-        margin-top: 30px;
-        @include MQ(Lplus) { margin-top: 0 }
-        > li {
+      .entry_email {
+        display: block;
+        width: 90%;
+        @include MQ(M) { width: 300px }
+        @include MQ(Lplus) { width: 250px }
+        height: 50px;
+        margin: 0 auto;
+        padding: 0;
+        a {
           display: block;
-          width: 230px;
-          margin: 0 auto;
-          padding: 0;
-          &:first-child { margin-bottom: 20px }
-          a {
-            display: block;
-            font-size: 1em;
-            line-height: 2.4;
-            color: #fff;
-            background: $blue;
-            @include border-radius(2px);
-            @include transition-property(all);
-            @include transition-duration(0.2s);
-            @include transition-timing-function(ease);
-            @include box-shadow(rgb(0,0,0) 0 0 8px);
-            @include box-shadow(rgba(0,0,0,.4) 0 0 8px);
-            &:hover {
-              background: $link-hover-color;
-            }
-            i {
-              margin-right: 20px;
-            }
-            span {
-              margin-left: 10px;
-              font-family: "Helvetica Neue";
-              font-size: 0.9em;
-              color: $gray-lighter;
-              font-weight: lighter;
-              letter-spacing: 2px;
-              text-transform: uppercase;
-            }
+          font-size: 1em;
+          line-height: 50px;
+          color: #fff;
+          background: $blue;
+          text-align: center;
+          @include border-radius(2px);
+          @include transition-property(all);
+          @include transition-duration(0.2s);
+          @include transition-timing-function(ease);
+          @include box-shadow(rgb(0,0,0) 0 0 8px);
+          @include box-shadow(rgba(0,0,0,.4) 0 0 8px);
+          &:hover {
+            background: $link-hover-color;
+          }
+          i {
+            margin-right: 15px;
+          }
+          span {
+            margin-left: 10px;
+            margin-right: 10px;
           }
         }
-
       }
-
     }
 
     /******************landing_image_wrap******************/

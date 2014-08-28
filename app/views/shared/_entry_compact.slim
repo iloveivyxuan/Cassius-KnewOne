@@ -1,41 +1,7 @@
 section.entry.entry_compact
   .entry_email
-    ul.nav.nav-pills.nav-pills-list.nav-justified
-      li
-        = link_to '#email_sign_in_pop_up', data: {toggle: 'modal'}
-          i.fa.fa-sign-in
-          | 登录
-          span Sign In
-      li
-        = link_to '#email_sign_up_pop_up', data: {toggle: 'modal'}
-          i.fa.fa-magic
-          | 注册
-          span Sign Up
-
-aside
-  #email_sign_in_pop_up.modal.fade
-    .modal-dialog
-      .modal-content
-        .modal-header
-          button.close data-dismiss="modal" type="button"
-            | &times;
-          h5
-            | 登录
-            span Sign In
-        .modal-body
-          = render 'devise/sessions/sign_in'
-          = render 'shared/social_sign_in'
-
-aside
-  #email_sign_up_pop_up.modal.fade
-    .modal-dialog
-      .modal-content
-        .modal-header
-          button.close data-dismiss="modal" type="button"
-            | &times;
-          h5
-            | 注册
-            span Sign Up
-        .modal-body
-          = render 'devise/registrations/sign_up'
-          = render 'shared/social_sign_in'
+    = link_to '#', data: {toggle: 'modal', target: '#login-modal'}
+      i.fa.fa-sign-in
+      | 登录
+      span |
+      | 注册

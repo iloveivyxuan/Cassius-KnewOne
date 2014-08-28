@@ -46,7 +46,6 @@
 @import "components/header";
 @import "components/search_candidate";
 @import "components/panels";
-@import "components/entry";
 @import "components/metas";
 @import "components/things";
 @import "components/reviews";
@@ -69,6 +68,7 @@
 @import "components/icons";
 @import "components/editable";
 @import "components/fancy_button";
+@import "components/login_modal";
 
 // Views
 @import "views/*";
