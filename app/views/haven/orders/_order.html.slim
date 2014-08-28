@@ -10,6 +10,12 @@ li.order
           = link_to order.user.name, order.user, target: '_blank'
           | &nbsp;&nbsp;
           = link_to '[订单记录]', haven_orders_path(find_by: :user_id, find_cond: order.user.id)
+        span
+          | 战斗力
+          = order.user.expenses_count
+        span
+          | 购买次数
+          = order.user.orders_count
       li
         strong.field 订单编号：
         span = link_to order.order_no, haven_order_path(order)
