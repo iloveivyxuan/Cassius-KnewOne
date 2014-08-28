@@ -73,4 +73,10 @@ do (root = @, exports = Making) ->
       return
     return
 
+  exports.scrollSpyPopupLogin = ->
+    $window.on 'scroll.login', ->
+      if $document.height() - $window.scrollTop() - $window.height() < 100
+        $('#header [data-target="#login-modal"]').trigger('click.scrollSpyPopupLogin')
+        $window.off 'scroll.login'
+
   return exports
