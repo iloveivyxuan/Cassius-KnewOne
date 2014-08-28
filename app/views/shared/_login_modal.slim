@@ -18,14 +18,15 @@
             = render 'devise/sessions/sign_in'
           #email_sign_up_tab.tab-pane
             = render 'devise/registrations/sign_up'
-        .oauth
-          table
-            tr
-              td = link_to_with_icon "微博登录", "fa fa-weibo", user_omniauth_authorize_path(:weibo), class: "btn btn-danger", title: "用微博登录"
-              td = link_to_with_icon "Twitter 登录", "fa fa-twitter", user_omniauth_authorize_path(:twitter), class: "btn btn-info", title: "用 Twitter 登录"
-            tr
-              td = link_to_with_icon "QQ 登录", "fa fa-qq", user_omniauth_authorize_path(:qq_connect), class: "btn btn-primary", title: "用 QQ 登录"
-              td = link_to_with_icon "豆瓣登录", "fa fa-douban", user_omniauth_authorize_path(:douban), class: "btn btn-success", title: "用豆瓣登录"
+        .social_sign_in
+          span
+            | 社交网络账号直接登陆
+            i.fa.fa-caret-right
+          div
+            = link_to_with_icon '', 'fa fa-weibo', user_omniauth_authorize_path(:weibo), title: '用微博登录'
+            = link_to_with_icon '', 'fa fa-twitter', user_omniauth_authorize_path(:twitter), title: '用 Twitter 登录'
+            = link_to_with_icon '', 'fa fa-qq', user_omniauth_authorize_path(:qq_connect), title: '用 QQ 登录'
+            = link_to_with_icon '', 'fa fa-douban', user_omniauth_authorize_path(:douban), title: '用豆瓣登录'
 
       .modal-footer
         button data-dismiss='modal' type='button'
