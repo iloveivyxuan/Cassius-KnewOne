@@ -31,7 +31,17 @@ window.Making = do (exports = window.Making || {}) ->
     )
 
   exports.InitHomeGuest = ->
-    if $html.hasClass('desktop')
+    popupLogin = ->
+      $window.on 'scroll.login', ->
+        if $document.height() - $window.scrollTop() - $window.height() < 100
+          $('#header [data-target="#login-modal"]').trigger('click')
+          $window.off 'scroll.login'
+
+    if $html.hasClass('mobile')
+      popupLogin()
+    else if $html.hasClass('tablet')
+      popupLogin()
+    else if $html.hasClass('desktop')
       $candidate   = $('.search_candidate')
       $('#header').find('[class^="search_"]').remove()
       exports.SearchThing('#search_form')
