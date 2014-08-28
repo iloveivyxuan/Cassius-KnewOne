@@ -37,6 +37,7 @@
           background: #588cc7;
         }
         span {
+          @include MQ(Sneg) { display: none }
           margin-left: 10px;
           font-family: "Helvetica Neue";
           font-weight: lighter;
