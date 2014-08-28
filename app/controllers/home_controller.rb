@@ -32,12 +32,12 @@ class HomeController < ApplicationController
       respond_to do |format|
         format.html.mobile do
           hits
-          render 'home/landing.html+mobile'
+          render 'home/landing.html+mobile' unless request.xhr?
         end
 
         format.html.tablet do
           hits
-          render 'home/landing.html+mobile'
+          render 'home/landing.html+mobile' unless request.xhr?
         end
 
         format.html.desktop do
@@ -52,6 +52,10 @@ class HomeController < ApplicationController
     @batch = 5
     @things = Thing.hot.page(params[:page]).per(6*@batch)
     @reviews = Review.hot.page(params[:page]).per(@batch)
+
+    if request.xhr?
+      render 'hits_xhr', layout: false
+    end
   end
 
   def not_found
