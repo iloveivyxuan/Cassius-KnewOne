@@ -31,9 +31,7 @@ window.Making = do (exports = window.Making || {}) ->
     )
 
   exports.InitHomeGuest = ->
-    $ ->
-      $('.entry_email_toggle').addClass(if $('.entry_email').is(':visible') then 'active')
-
+    if $html.hasClass('desktop')
       $candidate   = $('.search_candidate')
       $('#header').find('[class^="search_"]').remove()
       exports.SearchThing('#search_form')
@@ -45,21 +43,5 @@ window.Making = do (exports = window.Making || {}) ->
           $target.parents('.search_candidate').length is 0 and
           !$target.is('#search_thing input[type="search"]')
             $candidate.fadeOut('fast')
-
-      if localStorage.getItem('unlimited') isnt 'false'
-        $('a[data-target="#login-modal"]').each ->
-          $this = $(@)
-          $this
-            .attr('href': $this.attr('data-link'))
-            .removeAttr('data-toggle')
-        $window.on 'beforeunload', ->
-          localStorage.setItem('unlimited', 'false')
-
-      exports.SetRedirection()
-
-  exports.SetRedirection = ->
-    $('#login-modal').on 'shown.bs.modal', (event) ->
-      click_from = event.relatedTarget.getAttribute('data-link')
-      rf.setAttribute('value', click_from) for rf in $('[id="redirect_from"]')
 
   exports

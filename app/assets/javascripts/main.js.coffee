@@ -301,6 +301,12 @@ do (exports = Making) ->
     )
     delete window.localStorage["saved|#{window.location.pathname}|#{id}"]
 
+  exports.popupLogin = ->
+    if exports.user? then return
+    for klass in ['things_show', 'reviews_show', 'users_show']
+      if $html.hasClass(klass)
+        $('#login-modal').modal('show')
+
   $ ->
     $user = $('#user')
     $nav_group = $('.nav_group.dropdown')
@@ -318,6 +324,7 @@ do (exports = Making) ->
     exports.PopoverProfiles()
     exports.PrivateMessage()
     exports.AtUser('textarea')
+    exports.popupLogin()
 
     # TODO
     ($popovertoggle = $(".popover-toggle")).length && $popovertoggle.popover()
