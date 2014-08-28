@@ -302,6 +302,14 @@ class User
   ##Dialogs
   include UserDialogs
 
+  def receive_welcome_message_from_ceo
+    ceo = User.where(id: '50ffdd447373c2f015000001').first
+    ceo.send_private_message_to(self, 'Welcome to KnewOne!') if ceo
+  end
+  private :receive_welcome_message_from_ceo
+
+  after_create :receive_welcome_message_from_ceo
+
   # Payment
   embeds_many :addresses
   embeds_many :invoices
