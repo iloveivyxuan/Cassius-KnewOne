@@ -263,6 +263,21 @@ input[type="number"] {
   margin-top: 0;
 }
 
+html.touch {
+
+  .modal {
+    bottom: -300px;
+  }
+
+  .modal-dialog {
+    margin-bottom: 350px;
+  }
+
+  .modal-backdrop {
+    bottom: -300px;
+  }
+}
+
 // Tooltip
 // -----------------------------------------------------------------------------
 
