@@ -366,6 +366,22 @@ class Order
     order_histories.create from: state, to: :closed
   end
 
+  def force_confirm_payment!(trade_no, price, method)
+    state = self.state
+
+    self.state = :confirmed
+    self.payment_method = method
+    self.trade_no = trade_no
+    self.trade_price = price
+    save!
+
+    order_histories.create from: state, to: :confirmed
+
+    after_confirm
+
+    true
+  end
+
   def refund!
     return false unless can_refund?
 
