@@ -1,8 +1,9 @@
 module NotificationsHelper
   NOTIFICATION_TAB_ICONS_MAPPING = {
-      importants: 'fa-info',
-      relations: 'fa-user',
-      things: 'fa-heart'
+      thing: 'fa-pencil',
+      reply: 'fa-comment-o',
+      friend: 'fa-eye',
+      fancy: 'fa-heart-o'
   }
 
   def senders(message, target = '_self')
