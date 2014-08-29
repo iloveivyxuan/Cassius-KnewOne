@@ -13,9 +13,9 @@
 
   var LightboxOptions = (function() {
     function LightboxOptions() {
-      this.fadeDuration                = 500;
+      this.fadeDuration                = 300;
       this.fitImagesInViewport         = true;
-      this.resizeDuration              = 700;
+      this.resizeDuration              = 500;
       this.positionFromTop             = 50;
       this.showImageNumberLabel        = true;
       this.alwaysShowNavOnTouchDevices = false;
@@ -187,7 +187,7 @@
 
       this.$overlay.fadeIn(this.options.fadeDuration);
 
-      $('.lb-loader').fadeIn('slow');
+      $('.lb-loader').fadeIn('fast');
       this.$lightbox.find('.lb-image, .lb-nav, .lb-prev, .lb-next, .lb-dataContainer, .lb-numbers, .lb-caption').hide();
 
       this.$outerContainer.addClass('animating');
@@ -272,8 +272,8 @@
     // Display the image and it's details and begin preload neighboring images.
     Lightbox.prototype.showImage = function() {
       this.$lightbox.find('.lb-loader').hide();
-      this.$lightbox.find('.lb-image').fadeIn('slow');
-    
+      this.$lightbox.find('.lb-image').fadeIn('fast');
+
       this.updateNav();
       this.updateDetails();
       this.preloadNeighboringImages();
