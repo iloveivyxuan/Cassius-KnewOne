@@ -7377,6 +7377,14 @@ ul.socialShare {
       line-height: 1.4;
       color: #fafafa;
       line-height: 25px; }
+    .share-slide-in .share-content a {
+      background-color: #fafafa;
+      border-radius: 4px;
+      color: #8cadca;
+      padding: 4px; }
+    .share-slide-in .share-content a:hover {
+      text-decoration: underline;
+    }
     .share-slide-in .share-content ul li {
       margin: 1em 0;
       font-size: 14px;
@@ -7552,3 +7560,5 @@ xkeyframes
     float: left; }
   .modal-footer .btn-wechat-share {
     float: left; }
+
+#feedback .fa {margin-right: 0;}
