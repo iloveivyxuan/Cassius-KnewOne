@@ -2,7 +2,10 @@
   .modal-dialog {
     width: 85%;
     @include MQ(Mplus) { width: 500px }
-    margin: 0 auto;
+    margin: {
+      left: auto;
+      right: auto;
+    }
     margin-top: -1px;
   }
   .modal-content {
