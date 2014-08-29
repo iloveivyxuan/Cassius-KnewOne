@@ -76,7 +76,7 @@ class PostPresenter < ApplicationPresenter
   end
 
   def videos
-    @object.content.scan(%r{<iframe .+?></iframe>}).map(&:html_safe)
+    @object.content.scan(%r{<iframe .+?></iframe>}).map { |s| sanitize(s) }
   end
 
   def score
