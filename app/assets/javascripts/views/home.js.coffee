@@ -33,10 +33,8 @@ window.Making = do (exports = window.Making || {}) ->
   exports.InitHomeGuest = ->
     switch exports.device
       when 'mobile', 'tablet'
-        exports.scrollSpyPopupLogin()
+        exports.scrollSpyPopupLogin('/hits/2')
         exports.infiniteScroll('#wrapper > .hits', '/hits')
-        $document.on 'click.scrollSpyPopupLogin', ->
-          $('[name="redirect_from"]').val('/hits/2')
       when 'desktop'
         $candidate = $('.search_candidate')
         $('#header').find('[class^="search_"]').remove()

@@ -73,10 +73,11 @@ do (root = @, exports = Making) ->
       return
     return
 
-  exports.scrollSpyPopupLogin = ->
+  exports.scrollSpyPopupLogin = (redirectFrom) ->
     $window.on 'scroll.login', ->
       if $document.height() - $window.scrollTop() - $window.height() < 100
-        $('#header [data-target="#login-modal"]').trigger('click.scrollSpyPopupLogin')
+        $('#header [data-target="#login-modal"]').trigger('click')
+        $('#login-modal').find('[name="redirect_from"]').val(redirectFrom)
         $window.off 'scroll.login'
 
   return exports
