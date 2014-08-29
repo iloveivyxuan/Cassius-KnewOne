@@ -32,6 +32,9 @@ class FeelingsController < ApplicationController
       content_users.each do |u|
         u.notify :feeling, context: @feeling, sender: current_user, opened: false
       end
+
+      @feeling.thing.author.notify :new_feeling, context: @feeling, sender: current_user, opened: false
+
       current_user.log_activity :new_feeling, @feeling, source: @feeling.thing
       respond_to do |format|
         format.js

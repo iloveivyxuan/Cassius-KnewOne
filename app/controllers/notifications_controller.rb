@@ -15,7 +15,7 @@ class NotificationsController < ApplicationController
 
     if request.xhr?
       @tabs = {
-          importants: @notifications.by_types(%w(stock weibo_friend_joined comment new_review topic feeling review)),
+          importants: @notifications.by_types(%w(stock weibo_friend_joined comment new_review new_feeling topic feeling review)),
           relations: @notifications.by_types(%w(following)),
           things: @notifications.by_types(%w(love_feeling love_review love_topic fancy_thing fancy_list))
       }

@@ -1,0 +1,7 @@
+- feeling = notification.context
+- thing = feeling.thing
+= senders(notification)
+| 为我分享的产品
+= link_to " #{thing.title} ", thing
+| 编写了短评
+= link_to " #{truncate(feeling.content)} ", [thing, feeling]
