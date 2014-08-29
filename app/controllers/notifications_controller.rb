@@ -15,11 +15,12 @@ class NotificationsController < ApplicationController
 
     if request.xhr?
       @tabs = {
-          importants: @notifications.by_types(%w(stock weibo_friend_joined comment new_review new_feeling topic feeling review)),
-          relations: @notifications.by_types(%w(following)),
-          things: @notifications.by_types(%w(love_feeling love_review love_topic fancy_thing fancy_list))
+          thing: @notifications.by_types(%w(stock new_review new_feeling)),
+          reply: @notifications.by_types(%w(comment topic review feeling)),
+          friend: @notifications.by_types(%w(following weibo_friend_joined)),
+          fancy: @notifications.by_types(%w(love_feeling love_review love_topic fancy_thing fancy_list))
       }
-      @active_tab_key = @tabs.map {|pair| pair[1].select {|i| !i.read?}.any? ? pair[0] : nil}.compact.first || :importants
+      @active_tab_key = @tabs.map {|pair| pair[1].select {|i| !i.read?}.any? ? pair[0] : nil}.compact.first || :thing
 
       render 'notifications/index_xhr', layout: false
     else
