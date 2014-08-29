@@ -84,7 +84,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def require_signed_in
-    return if user_signed_in?
+    return if current_user
 
     if request.format == Mime::HTML
       session[:previous_url] = request.fullpath
