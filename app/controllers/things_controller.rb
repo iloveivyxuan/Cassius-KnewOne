@@ -52,6 +52,14 @@ class ThingsController < ApplicationController
             else {priority: :desc}
             end
     @things = Thing.published.self_run.order_by(@sort).page(params[:page]).per(24)
+
+    if request.xhr?
+      if @things.any?
+        render partial: 'shop_thing', collection: @things, as: :thing
+      else
+        head :no_content
+      end
+    end
   end
 
   def random
