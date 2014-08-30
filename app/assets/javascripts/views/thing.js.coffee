@@ -72,6 +72,12 @@ window.Making = do (exports = window.Making || {}) ->
               .next('.nomore')
               .hide()
 
+  exports.InitShop = ->
+    exports.scrollSpyPopupLogin(window.location.pathname + '/page/2')
+    exports.infiniteScroll('.js-infinite', window.location.pathname)
+    $('#things_nav select').on 'change', (event) ->
+      window.location = $(this).find(':selected').data('url')
+
   exports.InitAdoption = ->
     if !$html.hasClass('mobile')
       $adoption      = $('#thing_actions #adoption-modal')
