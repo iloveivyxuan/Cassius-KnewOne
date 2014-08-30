@@ -33,7 +33,7 @@ window.Making = do (exports = window.Making || {}) ->
   exports.InitHomeGuest = ->
     switch exports.device
       when 'mobile', 'tablet'
-        exports.scrollSpyPopupLogin('/hits/2')
+        exports.scrollSpyPopupLogin('/hits/page/2')
         exports.infiniteScroll('#wrapper > .hits', '/hits')
       when 'desktop'
         $candidate = $('.search_candidate')
