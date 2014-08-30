@@ -52,8 +52,8 @@ zh-CN:
         price: '应付价格'
         alteration: '变更信息'
       address:
-        province: '省'
-        district: '地区'
+        province: '省/直辖市'
+        district: '市/区'
         street: '街道地址'
         name: '联系人'
         phone: '电话'

@@ -3,8 +3,8 @@
   .form-group.select.required.address_province
     label.select.required.control-label for="address_province"
       abbr title="required" *
-      | 省/市
-    = f.select :province, options_for_select(Province.keys), {prompt: '请选择所在省/市'}, class: 'select form-control'
+      | 省/直辖市
+    = f.select :province, options_for_select(Province.keys), {prompt: '请选择所在省/直辖市'}, class: 'select form-control'
     p.help-block
       small * 我们暂不能为港澳台用户提供服务。
   = f.input :district, required: true
