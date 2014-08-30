@@ -13,7 +13,7 @@ Making::Application.routes.draw do
   get 'latest', to: "home#index", defaults: {source: "latest"}
 
   get 'search', to: 'home#search', as: :search
-  get 'hits/page/(:page)', to: 'home#hits', as: :hits
+  get 'hits/(page/:page)', to: 'home#hits', as: :hits
   get 'welcome', to: 'home#welcome'
   get 'jobs', to: 'home#jobs'
   get 'user_agreement', to: 'home#user_agreement'
