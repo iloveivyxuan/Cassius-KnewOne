@@ -163,6 +163,10 @@ html.no-touch {
   .logo {
     text-shadow: 0 1px 1px #111;
   }
+
+  .logo-full {
+    display: none;
+  }
 }
 
 .navbar-nav {
@@ -511,6 +515,21 @@ html.no-touch {
 
       @include icon;
       @include badge;
+    }
+  }
+}
+
+html.home_index.landing.desktop {
+  .navbar-brand {
+    .logo {
+      display: none;
+    }
+    .logo-full {
+      display: inline-block !important;
+      height: 12px;
+      position: static;
+      vertical-align: 0;
+      width: auto;
     }
   }
 }

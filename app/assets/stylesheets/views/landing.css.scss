@@ -170,7 +170,7 @@ html.landing {
         padding-top: 0;
         text-align: left;
       }
-      img {
+      > img {
         &:first-child{
           width:48px;
           height:48px;
@@ -212,6 +212,12 @@ html.landing {
         }
         @include MQ(Lplus) {
           line-height: 60px;
+        }
+        img {
+          height: 34px;
+          margin: 0;
+          vertical-align: 2px;
+          width: auto;
         }
       }
     }
