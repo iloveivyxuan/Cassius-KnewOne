@@ -36,7 +36,10 @@
         article
           = tp.content
           .more
-            = link_to_with_icon "查看全部", "fa fa-angle-double-down", "#"
+            - if user_signed_in?
+              = link_to_with_icon "查看全部", "fa fa-angle-double-down", "#"
+            - else
+              = link_to_with_icon "查看全部", "fa fa-angle-double-down", "#", data: {toggle: "modal", target: "#login-modal"}
     footer
       = render_mobile_buy(@thing)
 
@@ -68,14 +71,19 @@
               = link_to_with_icon "我要写短评", "fa fa-comments", "#", class: "btn btn-success btn-block", data: {toggle: "modal", target: "#login-modal"}
           section
             = render "feelings/form"
-            .stream_content.feelings
+            .stream_content.feelings data-url=thing_feelings_path(tp.thing)
             .nomore.hidden
               i.fa.fa-meh-o
               | 什么都没有。
           footer
-            button.btn.btn-default.btn-block.btn-xs.hidden.stream_more type="button" data-url=thing_feelings_path(tp.thing)
-              i.fa.fa-refresh
-              | 继续加载
+            - if user_signed_in?
+              button.btn.btn-default.btn-block.btn-xs.hidden.stream_more type="button" data-url=thing_feelings_path(tp.thing)
+                i.fa.fa-refresh
+                | 继续加载
+            - else
+              button.btn.btn-default.btn-block.btn-xs type="button" data-toggle="modal" data-target="#login-modal"
+                i.fa.fa-refresh
+                | 继续加载
       .tab-pane.stream.fade#reviews
         .box
           header
@@ -84,12 +92,12 @@
             - else
               = link_to_with_icon "我要写评测", "fa fa-comments", "#", class: "btn btn-success btn-block", data: {toggle: "modal", target: "#login-modal"}
           section
-            .stream_content
+            .stream_content data-url=thing_reviews_path(tp.thing)
             .nomore.hidden
               i.fa.fa-meh-o
               | 什么都没有。
           footer
-            button.btn.btn-default.btn-block.btn-xs.hidden.stream_more type="button" data-url=thing_reviews_path(tp.thing)
+            button.btn.btn-default.btn-block.btn-xs.hidden.stream_more type="button"
               i.fa.fa-refresh
               | 继续加载
       - if @thing.shopping_desc.present?

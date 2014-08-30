@@ -21,7 +21,7 @@ window.Making = do (exports = window.Making || {}) ->
     return
 
   exports.InitThing = ->
-    exports.ReadMore('.post_content')
+    if exports.user? then exports.ReadMore('.post_content')
     exports.InitAdoption()
 
     # TODO
