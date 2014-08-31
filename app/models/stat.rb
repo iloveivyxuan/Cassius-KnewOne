@@ -112,11 +112,11 @@ class Stat
   end
 
   def activities_users
-    Activity.from_date(@@date_from).to_date(@@date_to).map(&:user).uniq.size
+    User.where(:id.in => Activity.from_date(@@date_from).to_date(@@date_to).map(&:user_id)).size
   end
 
   def ave_follows_count
-    all_uniq_users = all_follows_activities.map(&:user).uniq
+    all_uniq_users = User.where(:id.in => all_follows_activities.map(&:user_id))
     all_follows_activities.size / all_uniq_users.size
   end
 
