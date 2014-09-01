@@ -27,7 +27,7 @@ class FeedPresenter < ApplicationPresenter
         when :fancy_thing then '喜欢'
         when :new_review  then '发表'
         when :love_review then '赞'
-        when :new_feeling then '发表了短评'
+        when :new_feeling then '发表了' + link_to('短评', [activity.reference.thing, activity.reference])
         when :add_to_list then '加入' + link_to(activity.source.name, activity.source) + '列表'
         end
   end
