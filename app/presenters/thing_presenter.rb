@@ -67,35 +67,50 @@ class ThingPresenter < PostPresenter
 
   def domestic
     return concept unless thing.shop.present?
-    link_to_with_icon "网购", "fa fa-location-arrow fa-lg", buy_thing_path(thing),
-    title: title, class: "btn btn-info btn-block buy_button track_event", target: "_blank", rel: '_nofollow',
-    data: {
-      action: "buy",
-      category: "domestic",
-      label: "buy+domestic+#{title}"
-    }
+
+    if user_signed_in?
+      link_to_with_icon "网购", "fa fa-location-arrow fa-lg", buy_thing_path(thing),
+      title: title, class: "btn btn-info btn-block buy_button track_event", target: "_blank", rel: '_nofollow',
+      data: {
+        action: "buy",
+        category: "domestic",
+        label: "buy+domestic+#{title}"
+      }
+    else
+      link_to_with_icon "请登录后网购", "fa fa-sign-in", "#", class: "btn btn-info btn-block buy_button", data: {toggle: "modal", target: "#login-modal"}
+    end
   end
 
   def kick
     return concept unless thing.shop.present?
-    link_to_with_icon "众筹", "fa fa-fire fa-lg", buy_thing_path(thing),
-    title: title, class: "btn btn-warning btn-block buy_button track_event", target: "_blank", rel: '_nofollow',
-    data: {
-      action: "buy",
-      category: "kick",
-      label: "buy+kick+#{title}"
-    }
+
+    if user_signed_in?
+      link_to_with_icon "众筹", "fa fa-fire fa-lg", buy_thing_path(thing),
+      title: title, class: "btn btn-warning btn-block buy_button track_event", target: "_blank", rel: '_nofollow',
+      data: {
+        action: "buy",
+        category: "kick",
+        label: "buy+kick+#{title}"
+      }
+    else
+      link_to_with_icon "请登录后众筹", "fa fa-sign-in", "#", class: "btn btn-warning btn-block buy_button", data: {toggle: "modal", target: "#login-modal"}
+    end
   end
 
   def abroad
     return concept unless thing.shop.present?
-    link_to_with_icon "海淘", "fa fa-plane fa-lg", buy_thing_path(thing),
-    title: title, class: "btn btn-info btn-block buy_button track_event", target: "_blank", rel: '_nofollow',
-    data: {
-      action: "buy",
-      category: "abroad",
-      label: "buy+abroad+#{title}"
-    }
+
+    if user_signed_in?
+      link_to_with_icon "海淘", "fa fa-plane fa-lg", buy_thing_path(thing),
+      title: title, class: "btn btn-info btn-block buy_button track_event", target: "_blank", rel: '_nofollow',
+      data: {
+        action: "buy",
+        category: "abroad",
+        label: "buy+abroad+#{title}"
+      }
+    else
+      link_to_with_icon "请登录后海淘", "fa fa-sign-in", "#", class: "btn btn-info btn-block buy_button", data: {toggle: "modal", target: "#login-modal"}
+    end
   end
 
   def dsell
