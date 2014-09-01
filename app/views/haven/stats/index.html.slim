@@ -21,7 +21,7 @@
   - Stat::DATAS.keys.each do |key|
     h4 = label_tag Stat::DATAS[key]
     - if Stat::BUNCH_DATAS.include?(key) && @stat[key] && !@stat[key].blank?
-      - JSON.parse(@stat[key]).each do |s|
+      - @stat[key].each do |s|
         p = label_tag "#{s.first} | #{s.last}"
       = f.hidden_field key, value: @stat[key]
     - elsif Stat::MANUAL_INPUT_DATAS.include? key

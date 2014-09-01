@@ -29,6 +29,7 @@ class Stat
     :has_link_products_count => '有购买链接产品数',
     :dsell_products_count => '自营产品数',
     :has_reviews_products_count => '有评测的产品数',
+    :groundbreaking_reviews_products_count => '突破 0 评测的产品数',
     # 销售
     :sale_sum => '销售额',
     :orders_count => '订单数',
@@ -36,8 +37,7 @@ class Stat
     :per_customer_sales => '客单价',
     :most_sales_product => '销售最多的产品',
     :less_sales_product => '销售最少的产品',
-    :has_purchased_users_count => '消费过的用户数',
-    :ave_purchased_price => '平均消费金额'
+    :has_purchased_users_count => '消费过的用户数'
   }
 
   # datas with text_area
@@ -55,7 +55,13 @@ class Stat
                         :product_buy_clicks_tops
                        ]
 
-  DATAS.keys.each { |key| field key, type: String }
+  DATAS.keys.each do |key|
+    if key.to_s.split("_").last == "tops"
+      field key, type: Hash
+    else
+      field key, type: String
+    end
+  end
 
   field :status, type: Symbol
   field :date_from, type: Date
@@ -112,16 +118,16 @@ class Stat
   end
 
   def activities_users
-    User.where(:id.in => Activity.from_date(@@date_from).to_date(@@date_to).map(&:user_id)).size
+    Activity.from_date(@@date_from).to_date(@@date_to).distinct(:user_id).size
   end
 
   def ave_follows_count
-    all_uniq_users = User.where(:id.in => all_follows_activities.map(&:user_id))
+    all_uniq_users = all_follows_activities.distinct(:user_id)
     all_follows_activities.size / all_uniq_users.size
   end
 
   def ave_followers_count
-    all_uniq_users = all_follows_activities.map(&:reference).uniq
+    all_uniq_users = all_follows_activities.distinct(:reference_union)
     all_follows_activities.size / all_uniq_users.size
   end
 
@@ -130,9 +136,12 @@ class Stat
   end
 
   def product_likes_tops
-    things = all_likes.map(&:reference)
-    uniqs = things.uniq.compact
-    Hash[uniqs.map { |v| [v.title, things.count(v)] }].sort_by { |_, value| value }.reverse.take(10)
+    all_likes_groups = all_likes.group_by(&:reference_union)
+    result = {}
+    all_likes_groups.sort_by { |k, v| v.count }.reverse.take(10).each do |thing|
+      result[Thing.find(thing[0].split("_").last).title] = thing[1].size
+    end
+    result
   end
 
   def plus_one_count
@@ -142,7 +151,8 @@ class Stat
   def plus_one_tops
     plus_ones = all_plus_one.map(&:reference)
     uniqs = plus_ones.uniq.compact
-    Hash[uniqs.map { |v| [v.title, plus_ones.count(v)] }].sort_by { |_, value| value }.reverse.take(10)
+    result = Hash[uniqs.map { |v| [v.title, plus_ones.count(v)] }].sort_by { |_, value| value }.reverse.take(10)
+    Hash[result.map { |item| [item[0], item[1]] }]
   end
 
   def feelings_count
@@ -150,9 +160,7 @@ class Stat
   end
 
   def product_feelings_tops
-    things = all_feelings.map(&:source)
-    uniq_things = things.uniq.compact
-    Hash[uniq_things.map { |v| [v.title, things.count(v)] }].sort_by { |_, value| value }.reverse.take(10)
+    product_something_tops(Feeling)
   end
 
   def reviews_count
@@ -160,9 +168,7 @@ class Stat
   end
 
   def product_reviews_tops
-    things = all_reviews.map(&:source)
-    uniq_things = things.uniq.compact
-    Hash[uniq_things.map { |v| [v.title, things.count(v)] }].sort_by { |_, value| value }.reverse.take(10)
+    product_something_tops(Review)
   end
 
   def new_products_count
@@ -182,7 +188,18 @@ class Stat
   end
 
   def has_reviews_products_count
-    all_things.select { |t| !t.reviews.blank? }.size
+    all_things.where(:reviews_count.gt => 0).size
+  end
+
+  def groundbreaking_reviews_products_count
+    all_uniq_things = Thing.where(:id.in => all_reviews.map(&:thing_id))
+    things_count = 0
+    all_uniq_things.each do |t|
+      if t.reviews.where(:created_at.gte => @@date_from).where(:created_at.lte => @@date_to.next_day).exists?
+        things_count += 1
+      end
+    end
+    things_count
   end
 
   def sale_sum
@@ -194,7 +211,7 @@ class Stat
   end
 
   def orders_users_count
-    Order.from_date(@@date_from).to_date(@@date_to).map(&:user).uniq.size
+    User.where(:id.in => Order.from_date(@@date_from).to_date(@@date_to).map(&:user_id)).size
   end
 
   def per_customer_sales
@@ -228,10 +245,6 @@ class Stat
     all_orders.map(&:user).uniq.size
   end
 
-  def ave_purchased_price
-    # todo
-  end
-
   private
 
   def all_likes
@@ -255,7 +268,7 @@ class Stat
   end
 
   def all_reviews
-    @_all_reviews ||= Activity.by_type(:new_review).from_date(@@date_from).to_date(@@date_to)
+    @_all_reviews ||= Review.where(:created_at.gte => @@date_from).where(:created_at.lte => @@date_to.next_day)
   end
 
   def new_things
@@ -263,7 +276,16 @@ class Stat
   end
 
   def all_things
-    @_all_things ||= Thing.where(:created_at.lte => @@date_to)
+    @_all_things ||= Thing.where(:created_at.lte => @@date_to.next_day)
+  end
+
+  def product_something_tops(klass)
+    result = {}
+    klass.where(:created_at.gte => @@date_from).where(:created_at.lte => @@date_to.next_day)
+      .group_by(&:thing_id).sort_by{ |k, v| v.count }.reverse.take(10).each do |thing|
+      result[Thing.find(thing[0]).title] = thing[1].size
+    end
+    result
   end
 
 end
