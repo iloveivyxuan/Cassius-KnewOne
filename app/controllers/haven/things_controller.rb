@@ -77,6 +77,9 @@ module Haven
       if params[:categories]
         @things = @things.in(categories: params[:categories])
       end
+      if params[:shop]
+        @things = @things.where(shop: Regexp.new(params[:shop]))
+      end
       unless params[:filter] || params[:categories]
         @things = @things.desc(:created_at)
       end
