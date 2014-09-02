@@ -311,7 +311,10 @@ class User
                '点这里看看我们为你做的 <a href="http://knewone.com/about?from_ceo">KnewOne 牛玩上手指南</a>',
                '祝你玩儿的开心！'
               ].join("\n\n")
-    ceo.send_private_message_to(self, content) if ceo
+    if ceo
+      ceo.send_private_message_to(self, content)
+      ceo.dialog_with(self).destroy
+    end
   end
   private :receive_welcome_message_from_ceo
 
