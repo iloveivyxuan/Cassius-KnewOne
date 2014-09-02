@@ -262,7 +262,7 @@ Making::Application.routes.draw do
       end
     end
 
-    resources :stats, only: [:index, :update]
+    resources :stats, only: [:index, :update, :edit]
 
     resources :thing_rebate_coupons, only: [:show, :index, :new, :create, :update] do
       member do

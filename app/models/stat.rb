@@ -56,7 +56,8 @@ class Stat
                        ]
 
   DATAS.keys.each do |key|
-    if key.to_s.split("_").last == "tops"
+    case key
+    when [:product_likes_tops, :plus_one_tops, :product_feelings_tops, :product_reviews_tops]
       field key, type: Hash
     else
       field key, type: String
