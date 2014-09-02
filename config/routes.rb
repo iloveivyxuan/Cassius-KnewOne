@@ -262,6 +262,8 @@ Making::Application.routes.draw do
       end
     end
 
+    resources :stats, only: [:index, :update]
+
     resources :thing_rebate_coupons, only: [:show, :index, :new, :create, :update] do
       member do
         post 'generate_code'

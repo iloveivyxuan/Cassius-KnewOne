@@ -53,5 +53,13 @@ every 10.minutes do
 end
 
 every 1.day, :at => '1:30 am' do
-  runner 'Stat.generate_stats'
+  runner 'Stat.generate_day_stats'
+end
+
+every :monday, :at => '2:00 am' do
+  runner "Stat.generate_week_stats"
+end
+
+every '0 3 1 * *' do
+  runner "Stat.generate_month_stats"
 end

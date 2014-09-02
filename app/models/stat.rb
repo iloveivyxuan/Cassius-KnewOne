@@ -2,8 +2,6 @@ class Stat
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  has_many :feelings, dependent: :destroy
-
   DATAS = {
     # 用户相关
     :users_count => '新增用户',
@@ -31,6 +29,7 @@ class Stat
     :has_link_products_count => '有购买链接产品数',
     :dsell_products_count => '自营产品数',
     :has_reviews_products_count => '有评测的产品数',
+    :groundbreaking_reviews_products_count => '突破 0 评测的产品数',
     # 销售
     :sale_sum => '销售额',
     :orders_count => '订单数',
@@ -38,8 +37,7 @@ class Stat
     :per_customer_sales => '客单价',
     :most_sales_product => '销售最多的产品',
     :less_sales_product => '销售最少的产品',
-    :has_purchased_users_count => '消费过的用户数',
-    :ave_purchased_price => '平均消费金额'
+    :has_purchased_users_count => '消费过的用户数'
   }
 
   # datas with text_area
@@ -57,55 +55,54 @@ class Stat
                         :product_buy_clicks_tops
                        ]
 
-  DATAS.keys.each { |key| field key, type: String }
+  DATAS.keys.each do |key|
+    if key.to_s.split("_").last == "tops"
+      field key, type: Hash
+    else
+      field key, type: String
+    end
+  end
 
+  field :status, type: Symbol
   field :date_from, type: Date
   field :date_to, type: Date
 
-  field :note, type: String
-
-  def self.generate_stats
-    @@date_from = @@date_to = 1.day.ago.to_date
-    stat = Stat.new(date_from: @@date_from, date_to: @@date_to)
-    DATAS.keys.each { |key| stat[key] = stat.send(key) if stat.respond_to? key }
-    group = Group.find("53ed7b6b31302d5e7b9d0900")
+  def self.generate_stats(date_from, date_to)
+    @@date_from = date_from
+    @@date_to = date_to
+    stat = Stat.new
+    stat.status = case date_to - date_from
+                  when 0
+                    :day
+                  when 6
+                    :week
+                  else
+                    :month
+                  end
+    stat.date_from = date_from
+    stat.date_to = date_to
+    DATAS.keys.each { |key| stat[key] = stat.send(key) if stat.respond_to?(key) }
     stat.save
-    user = User.find("526fd363b10be561d300001d")
-    topic = stat.to_topic(user, group)
   end
 
-  def to_topic(user, group)
-    content = ""
-    DATAS.keys.each do |key|
-      content += "<b>#{DATAS[key]}</b>"
-      if BUNCH_DATAS.include? key
-        JSON.parse(self[key]).each do |s|
-          content += "<div>#{s.first} | #{s.last} </div>"
-        end
-      else
-        content += "<div>#{self[key]}</div>"
-      end
-    end
-    if self.date_from == self.date_to
-      title = "#{self.date_to} 数据"
-    else
-      title = "#{self.date_from} - #{self.date_to} 数据"
-    end
-    topic = Topic.create(
-                         title: title,
-                         content: content,
-                         author: user,
-                         group: group,
-                         visible: false)
-    topic
+  def self.generate_day_stats(date = Date.yesterday)
+    Stat.generate_stats(date, date)
+  end
+
+  def self.generate_week_stats(date = Date.yesterday)
+    Stat.generate_stats(date.beginning_of_week, date.end_of_week)
+  end
+
+  def self.generate_month_stats(date = Date.yesterday)
+    Stat.generate_stats(date.beginning_of_month, date.end_of_month)
   end
 
   def users_count
-    User.where(:created_at.gte => date_from).where(:created_at.lte => date_to.next_day).size
+    User.where(:created_at.gte => @@date_from).where(:created_at.lte => @@date_to.next_day).size
   end
 
   def users_total_count
-    User.where(:created_at.lte => date_to.next_day).size
+    User.where(:created_at.lte => @@date_to.next_day).size
   end
 
   def login_activities
@@ -121,25 +118,17 @@ class Stat
   end
 
   def activities_users
-    Activity.from_date(@@date_from).to_date(@@date_to).all.map(&:user).uniq!.size
-  end
-
-  def all_follows
-    @_all_follows ||= Activity.by_type(:follow_user).from_date(@@date_from).to_date(@@date_to)
+    Activity.from_date(@@date_from).to_date(@@date_to).distinct(:user_id).size
   end
 
   def ave_follows_count
-    all_uniq_users = all_follows.map(&:user).uniq!
-    all_follows.size / all_uniq_users.size
+    all_uniq_users = all_follows_activities.distinct(:user_id)
+    all_follows_activities.size / all_uniq_users.size
   end
 
   def ave_followers_count
-    all_uniq_users = all_follows.map(&:reference).uniq!
-    all_follows.size / all_uniq_users.size
-  end
-
-  def all_likes
-    @_all_likes ||= Activity.by_type(:fancy_thing).from_date(@@date_from).to_date(@@date_to)
+    all_uniq_users = all_follows_activities.distinct(:reference_union)
+    all_follows_activities.size / all_uniq_users.size
   end
 
   def likes_count
@@ -147,13 +136,12 @@ class Stat
   end
 
   def product_likes_tops
-    things = all_likes.map(&:reference)
-    uniqs = things.uniq.compact
-    Hash[uniqs.map { |v| [v.title, things.count(v)] }].sort_by { |_, value| value }.reverse.take(10)
-  end
-
-  def all_plus_one
-    @_all_plus_one ||= Activity.where(:type.in => [:love_review, :love_feeling, :love_topic]).from_date(@@date_from).to_date(@@date_to)
+    all_likes_groups = all_likes.group_by(&:reference_union)
+    result = {}
+    all_likes_groups.sort_by { |k, v| v.count }.reverse.take(10).each do |thing|
+      result[Thing.find(thing[0].split("_").last).title] = thing[1].size
+    end
+    result
   end
 
   def plus_one_count
@@ -163,11 +151,8 @@ class Stat
   def plus_one_tops
     plus_ones = all_plus_one.map(&:reference)
     uniqs = plus_ones.uniq.compact
-    Hash[uniqs.map { |v| [v.title, plus_ones.count(v)] }].sort_by { |_, value| value }.reverse.take(10)
-  end
-
-  def all_feelings
-    @_all_feelings ||= Activity.by_type(:new_feeling).from_date(@@date_from).to_date(@@date_to)
+    result = Hash[uniqs.map { |v| [v.title, plus_ones.count(v)] }].sort_by { |_, value| value }.reverse.take(10)
+    Hash[result.map { |item| [item[0], item[1]] }]
   end
 
   def feelings_count
@@ -175,13 +160,7 @@ class Stat
   end
 
   def product_feelings_tops
-    things = all_feelings.map(&:source)
-    uniq_things = things.uniq.compact
-    Hash[uniq_things.map { |v| [v.title, things.count(v)] }].sort_by { |_, value| value }.reverse.take(10)
-  end
-
-  def all_reviews
-    @_all_reviews ||= Activity.by_type(:new_review).from_date(@@date_from).to_date(@@date_to)
+    product_something_tops(Feeling)
   end
 
   def reviews_count
@@ -189,17 +168,7 @@ class Stat
   end
 
   def product_reviews_tops
-    things = all_reviews.map(&:source)
-    uniq_things = things.uniq.compact
-    Hash[uniq_things.map { |v| [v.title, things.count(v)] }].sort_by { |_, value| value }.reverse.take(10)
-  end
-
-  def new_things
-    @_new_things ||= Activity.by_type(:new_thing).from_date(@@date_from).to_date(@@date_to).map(&:reference).compact
-  end
-
-  def all_things
-    @_all_things ||= Thing.where(:created_at.lte => @@date_to)
+    product_something_tops(Review)
   end
 
   def new_products_count
@@ -219,11 +188,18 @@ class Stat
   end
 
   def has_reviews_products_count
-    all_things.select { |t| !t.reviews.blank? }.size
+    all_things.where(:reviews_count.gt => 0).size
   end
 
-  def all_orders
-    @_all_orders ||= Order.where(:state.in => [:confirmed, :shipped]).from_date(@@date_from).to_date(@@date_to)
+  def groundbreaking_reviews_products_count
+    all_uniq_things = Thing.where(:id.in => all_reviews.map(&:thing_id))
+    things_count = 0
+    all_uniq_things.each do |t|
+      if t.reviews.where(:created_at.gte => @@date_from).where(:created_at.lte => @@date_to.next_day).exists?
+        things_count += 1
+      end
+    end
+    things_count
   end
 
   def sale_sum
@@ -235,7 +211,7 @@ class Stat
   end
 
   def orders_users_count
-    Order.from_date(@@date_from).to_date(@@date_to).map(&:user).uniq.size
+    User.where(:id.in => Order.from_date(@@date_from).to_date(@@date_to).map(&:user_id)).size
   end
 
   def per_customer_sales
@@ -269,8 +245,47 @@ class Stat
     all_orders.map(&:user).uniq.size
   end
 
-  def ave_purchased_price
-    # todo
+  private
+
+  def all_likes
+    @_all_likes ||= Activity.by_type(:fancy_thing).from_date(@@date_from).to_date(@@date_to)
+  end
+
+  def all_plus_one
+    @_all_plus_one ||= Activity.where(:type.in => [:love_review, :love_feeling, :love_topic]).from_date(@@date_from).to_date(@@date_to)
+  end
+
+  def all_follows_activities
+    @_all_follows_activities ||= Activity.by_type(:follow_user).from_date(@@date_from).to_date(@@date_to)
+  end
+
+  def all_orders
+    @_all_orders ||= Order.where(:state.in => [:confirmed, :shipped]).from_date(@@date_from).to_date(@@date_to)
+  end
+
+  def all_feelings
+    @_all_feelings ||= Activity.by_type(:new_feeling).from_date(@@date_from).to_date(@@date_to)
+  end
+
+  def all_reviews
+    @_all_reviews ||= Review.where(:created_at.gte => @@date_from).where(:created_at.lte => @@date_to.next_day)
+  end
+
+  def new_things
+    @_new_things ||= Thing.where(:created_at.gte => @@date_from).where(:created_at.lte => @@date_to.next_day)
+  end
+
+  def all_things
+    @_all_things ||= Thing.where(:created_at.lte => @@date_to.next_day)
+  end
+
+  def product_something_tops(klass)
+    result = {}
+    klass.where(:created_at.gte => @@date_from).where(:created_at.lte => @@date_to.next_day)
+      .group_by(&:thing_id).sort_by{ |k, v| v.count }.reverse.take(10).each do |thing|
+      result[Thing.find(thing[0]).title] = thing[1].size
+    end
+    result
   end
 
 end

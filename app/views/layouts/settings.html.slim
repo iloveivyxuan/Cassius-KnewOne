@@ -82,6 +82,8 @@
         - if current_user.role? :admin
           = nav_tab :role do
             = link_to_with_icon '管理用户权限', 'fa fa-fw fa-wrench', haven_staffs_path
+          = nav_tab :stat do
+            = link_to_with_icon '统计数据', 'fa fa-fw fa-wrench', haven_stats_path
           = nav_tab :oauth do
             = link_to_with_icon 'OAuth App', 'fa fa-fw fa-wrench', oauth_applications_path, target: '_blank'
           = nav_tab :sidekiq do
