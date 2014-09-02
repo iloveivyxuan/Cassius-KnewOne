@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   include MarkReadable
-  include DestroyDraftAfterCreate
+  include DestroyDraft
 
   load_and_authorize_resource :thing, singleton: true
   load_and_authorize_resource :review, through: :thing

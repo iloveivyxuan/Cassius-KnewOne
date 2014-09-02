@@ -1,8 +1,8 @@
-module DestroyDraftAfterCreate
+module DestroyDraft
   extend ActiveSupport::Concern
 
   included do
-    after_action :destroy_draft, only: :create
+    after_action :destroy_draft, only: [:create, :update]
   end
 
   private

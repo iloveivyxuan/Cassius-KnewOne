@@ -1,6 +1,6 @@
 class ThingsController < ApplicationController
   include MarkReadable
-  include DestroyDraftAfterCreate
+  include DestroyDraft
 
   load_and_authorize_resource
   before_action :set_categories, only: [:index]
