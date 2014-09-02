@@ -3,17 +3,17 @@ module Haven
     layout 'settings'
 
     def index
-      if params[:query]
-        @stat = Stat.find_by(date_from: params[:query], status: params[:status])
-      else
-        @stat = Stat.last
-      end
+      @stat = Stat.where(:status => :day).last
     end
 
     def update
       stat = Stat.find params[:id]
       stat.update(stat_params)
       redirect_to haven_stats_path
+    end
+
+    def edit
+      @stat = Stat.find_by(date_from: params[:query], status: params[:status])
     end
 
     private
