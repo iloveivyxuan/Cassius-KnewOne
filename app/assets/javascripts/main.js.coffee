@@ -305,7 +305,11 @@ do (exports = Making) ->
     if exports.user? then return
     for klass in ['things_show', 'reviews_show', 'users_show']
       if $html.hasClass(klass)
-        $('#login-modal').modal('show')
+        switch exports.device
+          when 'mobile', 'tablet'
+            $('#header [data-target="#login-modal"]').trigger('click')
+          when 'desktop'
+            $('#header .user_link[data-target="#login-modal"]').trigger('click')
 
   $ ->
     $user = $('#user')
