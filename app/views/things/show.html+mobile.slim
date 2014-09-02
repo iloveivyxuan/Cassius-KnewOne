@@ -39,7 +39,8 @@
             - if user_signed_in?
               = link_to_with_icon "查看全部", "fa fa-angle-double-down", "#"
             - else
-              = link_to_with_icon "查看全部", "fa fa-angle-double-down", "#", data: {toggle: "modal", target: "#login-modal"}
+              = link_to_with_icon "查看全部", "fa fa-angle-double-down track_event", "#",
+              data: data_with_login_tracker("showmobile", @thing.title)
     footer
       = render_mobile_buy(@thing)
 
@@ -81,7 +82,7 @@
                 i.fa.fa-refresh
                 | 继续加载
             - else
-              button.btn.btn-default.btn-block.btn-xs type="button" data-toggle="modal" data-target="#login-modal"
+              button.btn.btn-default.btn-block.btn-xs type="button" data-toggle="modal" data-target="#login-modal" data-action="login" data-category="login+loading+#{tp.thing.title}"
                 i.fa.fa-refresh
                 | 继续加载
       .tab-pane.stream.fade#reviews
@@ -90,7 +91,9 @@
             - if user_signed_in?
               = link_to_with_icon "我要写评测", "fa fa-comments", new_thing_review_path(tp.thing), class: "btn btn-success btn-block"
             - else
-              = link_to_with_icon "我要写评测", "fa fa-comments", "#", class: "btn btn-success btn-block", data: {toggle: "modal", target: "#login-modal"}
+              = link_to_with_icon "我要写评测", "fa fa-comments", "#",
+              class: "btn btn-success btn-block track_event",
+              data: data_with_login_tracker("review", tp.thing.title)
           section
             .stream_content data-url=thing_reviews_path(tp.thing)
             .nomore.hidden

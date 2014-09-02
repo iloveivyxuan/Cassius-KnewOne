@@ -13,7 +13,9 @@
         = link_to_with_icon "更多", "fa fa-ellipsis-h", thing_feelings_path(tp.thing),
                             class: "btn btn-info pull-right"
       - else
-        = link_to_with_icon "更多", "fa fa-ellipsis-h", "#", class: "btn btn-info pull-right", data: {toggle: "modal", target: "#login-modal"}
+        = link_to_with_icon "更多", "fa fa-ellipsis-h", "#",
+        class: "btn btn-info pull-right track_event",
+        data: data_with_login_tracker("feeling", tp.thing.title)
 
 - content_for :script do
   javascript:
