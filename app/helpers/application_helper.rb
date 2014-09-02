@@ -178,4 +178,25 @@ module ApplicationHelper
   def xeditable?(object)
     can?(:update, object)
   end
+
+    def data_with_buy_tracker(category, label, data=nil)
+    tracker = {
+      action: "buy",
+      category: "buy+#{category}",
+      label: "buy+#{category}+#{label}"
+    }
+
+    data ? tracker.merge(data) : tracker
+  end
+
+  def data_with_login_tracker(category, label)
+    {
+      action: "login",
+      category: "login+#{category}",
+      label: "login+#{category}+#{label}",
+
+      toggle: "modal",
+      target: "#login-modal"
+    }
+  end
 end

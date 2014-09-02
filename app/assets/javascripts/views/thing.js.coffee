@@ -21,7 +21,7 @@ window.Making = do (exports = window.Making || {}) ->
     return
 
   exports.InitThing = ->
-    exports.ReadMore('.post_content')
+    if exports.user? then exports.ReadMore('.post_content')
     exports.InitAdoption()
 
     # TODO
@@ -71,6 +71,12 @@ window.Making = do (exports = window.Making || {}) ->
               .next('.stream_content')
               .next('.nomore')
               .hide()
+
+  exports.InitShop = ->
+    exports.scrollSpyPopupLogin(window.location.pathname + '/page/2')
+    exports.infiniteScroll('.js-infinite', window.location.pathname)
+    $('#things_nav select').on 'change', (event) ->
+      window.location = $(this).find(':selected').data('url')
 
   exports.InitAdoption = ->
     if !$html.hasClass('mobile')

@@ -13,7 +13,7 @@ Making::Application.routes.draw do
   get 'latest', to: "home#index", defaults: {source: "latest"}
 
   get 'search', to: 'home#search', as: :search
-  get 'hits/(:page)', to: 'home#hits', as: :hits
+  get 'hits/(page/:page)', to: 'home#hits', as: :hits
   get 'welcome', to: 'home#welcome'
   get 'jobs', to: 'home#jobs'
   get 'user_agreement', to: 'home#user_agreement'
@@ -23,7 +23,7 @@ Making::Application.routes.draw do
   get "500", to: "home#error"
   get 'blocked', to: 'home#blocked'
 
-  get 'shop(/:order_by)', to: 'things#shop', as: :shop
+  get 'shop(/:order_by)(/page/:page)', to: 'things#shop', as: :shop
 
   get 'explore', to: 'explore#index'
   %w(features reviews specials events).each do |a|

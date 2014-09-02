@@ -9,6 +9,10 @@
     - if tp.summary.present?
       = tp.content
       .more
-        = link_to_with_icon "查看全部", "fa fa-angle-double-down"
+        - if user_signed_in?
+          = link_to_with_icon "查看全部", "fa fa-angle-double-down", "#"
+        - else
+          = link_to_with_icon "查看全部", "fa fa-angle-double-down track_event", "#",
+          data: data_with_login_tracker("summary", @thing.title)
     - else
       = tp.content(false)

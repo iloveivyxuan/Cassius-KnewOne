@@ -37,7 +37,7 @@ do (exports = Making) ->
 
       $
         .ajax
-          url: @$btn_load.data('url')
+          url: @$content.data('url')
           data:
             page: @page + 1
             per: 3

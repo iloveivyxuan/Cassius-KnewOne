@@ -73,4 +73,15 @@ do (root = @, exports = Making) ->
       return
     return
 
+  exports.scrollSpyPopupLogin = (redirectFrom) ->
+    $window.on 'scroll.login', ->
+      if $document.height() - $window.scrollTop() - $window.height() < 100
+        switch exports.device
+          when 'mobile', 'tablet'
+            $('#header [data-target="#login-modal"]').trigger('click')
+          when 'desktop'
+            $('#header .user_link[data-target="#login-modal"]').trigger('click')
+        $('#login-modal').find('[name="redirect_from"]').val(redirectFrom)
+        $window.off 'scroll.login'
+
   return exports
