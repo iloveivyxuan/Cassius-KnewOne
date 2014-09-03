@@ -20,9 +20,6 @@ $screen-lg: 1440px;
 $screen-lg-min: $screen-lg;
 $container-large-desktop: 1380px;
 
-$screen-xl: 1920px;
-$screen-xl-min: $screen-xl;
-$screen-lg-max: ($screen-xl-min - 1) !default;
 $grid-float-breakpoint    : 992px;
 $grid-float-breakpoint-max: $grid-float-breakpoint - 1;
 
