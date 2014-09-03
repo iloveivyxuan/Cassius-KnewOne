@@ -11,12 +11,11 @@ class Stat
     :activities_users => '有交互用户数',
     :ave_follows_count => '用户平均关注数量',
     :ave_followers_count => '用户平均被关注数量',
-    :top_10_sources => '用户来源前 10',
     # 交互数据
     :likes_count => '总 like 数',
     :product_likes_tops => '分产品 like 数前 10',
     :plus_one_count => '总赞数',
-    :plus_one_tops => '分产品赞数前 10',
+    :reviews_plus_tops => '评测赞数前 10',
     :feelings_count => '短评数',
     :product_feelings_tops => '分产品短评数前 10',
     :reviews_count => '评测数',
@@ -43,21 +42,20 @@ class Stat
   # datas with text_area
   BUNCH_DATAS = [
                  :product_likes_tops,
-                 :plus_one_tops,
+                 :reviews_plus_tops,
                  :product_feelings_tops,
                  :product_reviews_tops
                 ]
 
   # datas which need manual input
   MANUAL_INPUT_DATAS = [
-                        :top_10_sources,
                         :product_shares_tops,
                         :product_buy_clicks_tops
                        ]
 
   DATAS.keys.each do |key|
     case key
-    when [:product_likes_tops, :plus_one_tops, :product_feelings_tops, :product_reviews_tops]
+    when [:product_likes_tops, :reviews_plus_tops, :product_feelings_tops, :product_reviews_tops]
       field key, type: Hash
     else
       field key, type: String
@@ -149,8 +147,9 @@ class Stat
     all_plus_one.size
   end
 
-  def plus_one_tops
-    plus_ones = all_plus_one.map(&:reference)
+  def reviews_plus_tops
+    reviews_plus = Activity.where(:type => :love_review).from_date(@@date_from).to_date(@@date_to)
+    plus_ones = reviews_plus.map(&:reference)
     uniqs = plus_ones.uniq.compact
     result = Hash[uniqs.map { |v| [v.title, plus_ones.count(v)] }].sort_by { |_, value| value }.reverse.take(10)
     Hash[result.map { |item| [item[0], item[1]] }]
