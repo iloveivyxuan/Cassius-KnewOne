@@ -21,8 +21,7 @@
   - Stat::DATAS.keys.each do |key|
     h4 = label_tag Stat::DATAS[key]
     - if Stat::BUNCH_DATAS.include?(key) && @stat[key] && !@stat[key].blank?
-      - @stat[key].each do |s|
-        p = label_tag "#{s.first} | #{s.last}"
+      p = label_tag @stat[key]
     - elsif Stat::MANUAL_INPUT_DATAS.include? key
       p = f.text_area key, cols: 70, rows: 20, disabled: from == "index"
     - else
