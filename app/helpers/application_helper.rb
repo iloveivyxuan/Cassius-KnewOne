@@ -184,7 +184,7 @@ module ApplicationHelper
     can?(:update, object)
   end
 
-    def data_with_buy_tracker(category, label, data=nil)
+  def data_with_buy_tracker(category, label, data=nil)
     tracker = {
       action: "buy",
       category: "buy+#{category}",
