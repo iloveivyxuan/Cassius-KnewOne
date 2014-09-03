@@ -9,6 +9,11 @@ module ApplicationHelper
     (size > num) ? (size - num) : 0
   end
 
+  def sanitize(html, options = {})
+    html = Nokogiri::HTML::DocumentFragment.parse(html).to_html
+    ActionController::Base.helpers.sanitize(html, options)
+  end
+
   def present(object, klass = nil)
     klass ||= "#{object.class}Presenter".constantize
     presenter = klass.new(object, self)
