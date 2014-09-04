@@ -195,7 +195,7 @@ class Stat
     all_uniq_things = Thing.where(:id.in => all_reviews.map(&:thing_id))
     things_count = 0
     all_uniq_things.each do |t|
-      if t.reviews.where(:created_at.gte => @@date_from).where(:created_at.lte => @@date_to.next_day).exists?
+      if !t.reviews.where(:created_at.lt => @@date_from).exists?
         things_count += 1
       end
     end
