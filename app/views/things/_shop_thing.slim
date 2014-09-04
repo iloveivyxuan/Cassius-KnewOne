@@ -1,27 +1,27 @@
 - present thing do |thing_presenter|
   article.thing
     header.cover
-      = link_to thing do
+      = link_to thing, target: "_blank" do
         = thing_presenter.photo :'thing.fixed.big'
       .fancy_thing
-        = link_to "", thing, class: "fancy_backdrop"
+        = link_to "", thing, class: "fancy_backdrop", target: "_blank"
         .fancy_button= render "shared/fancy", p: thing_presenter, from: "shop"
     section.content
-      h4.title= link_to thing_presenter.title, thing
-      p.subtitle= link_to thing_presenter.subtitle, thing
+      h4.title= link_to thing_presenter.title, thing, target: "_blank"
+      p.subtitle= link_to thing_presenter.subtitle, thing, target: "_blank"
     footer.info
       .shopping
-        = link_to thing_presenter.price, thing
-        = link_to thing_presenter.stage_text, thing
+        = link_to thing_presenter.price, thing, target: "_blank"
+        = link_to thing_presenter.stage_text, thing, target: "_blank"
       .interactions
-        = link_to thing, class: "fanciers_count" do
+        = link_to thing, class: "fanciers_count", target: "_blank" do
           i.fa.fa-heart-o
           = thing_presenter.fanciers_count
         - if thing_presenter.has_owner?
-          = link_to thing do
+          = link_to thing, target: "_blank" do
             i.fa.fa-check-circle-o
             = thing_presenter.owners_count
         - if thing_presenter.has_review?
-          = link_to thing_reviews_path(thing), class: "reviews_count" do
+          = link_to thing_reviews_path(thing), class: "reviews_count", target: "_blank" do
             i.fa.fa-pencil
             = thing_presenter.reviews_count

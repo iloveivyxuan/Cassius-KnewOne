@@ -2,7 +2,7 @@
 
 article.feed-review
   header.feed-review-title
-    = link_to review_presenter.path do
+    = link_to review_presenter.path, target: "_blank" do
       h4= review_presenter.title
       = review_presenter.score
 
@@ -14,10 +14,10 @@ article.feed-review
       = review_presenter.author
     .interactions
       - if review_presenter.has_lover?
-        = link_to review_presenter.path
+        = link_to review_presenter.path, target: "_blank"
           i.fa.fa-thumbs-o-up
           span= review.lovers_count
       - if review_presenter.has_comment?
-        = link_to review_presenter.path
+        = link_to review_presenter.path, target: "_blank"
           i.fa.fa-comment-o
           span= review.comments.count
