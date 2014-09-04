@@ -12,15 +12,13 @@ class DialogsController < ApplicationController
 
   def show
     @messages = @dialog.private_messages.page(params[:page]).per(50)
-    @messages.where(is_new: true).each {|m| m.update_attribute :is_new, false}
+    @messages.update_all(is_new: false)
     @dialog.reset
   end
 
   def readall
     current_user.dialogs.gt(unread_count: 0).each do |dialog|
-      dialog.private_messages.where(is_new: true).each do |m|
-        m.update_attribute :is_new, false
-      end
+      dialog.private_messages.update_all(is_new: false)
       dialog.reset
     end
     redirect_to dialogs_path
