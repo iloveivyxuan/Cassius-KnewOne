@@ -708,6 +708,7 @@ html.shop, html.things_index {
       }
       @media (min-width: $screen-lg-min) {
         width: $container-large-desktop;
+        padding: 0 $screen-lg-min * 0.1;
       }
     }
   }
