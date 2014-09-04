@@ -110,6 +110,15 @@ img.lazy {
   visibility: hidden;
 }
 
+.anchor--hidden {
+  display: block;
+  height: 0;
+  line-height: 0;
+  position: relative;
+  top: -40px;
+  width: 0;
+}
+
 #check_provider_sync {
   color: $text-muted;
   margin: {left: 2em; right: 2em;}
