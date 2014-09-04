@@ -133,6 +133,7 @@ class ApplicationController < ActionController::Base
   def logging
     logger.info "Current user: #{user_signed_in? ? current_user.id : 'guest'}"
     logger.info "Session: #{session.to_hash}"
+    logger.info "> IP #{@_request.env['REMOTE_ADDR']} Who #{user_signed_in? ? current_user.id : 'guest'} By #{@_request.env['REQUEST_METHOD']} What #{@_request.env['REQUEST_PATH']} When #{Time.now} From #{@_request.env['action_dispatch.request.unsigned_session_cookie']['previous_url']}"
   end
 
   def trim_param_id
