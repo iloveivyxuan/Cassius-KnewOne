@@ -66,6 +66,7 @@ gem 'sass-rails', '~> 4.0.3' # Resolve dependency with sprocket
 gem 'compass-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails', github: 'bokmann/font-awesome-rails'
+gem "autoprefixer-rails"
 
 # services
 gem 'whenever', require: false
