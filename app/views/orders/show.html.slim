@@ -2,11 +2,11 @@
 - provide :nav, :order
 
 section.orders_wrapper
-  = render 'shared/sell_notice'
   header.page-header
     h2
       i.fa.fa-shopping-cart
       | 订单信息
+  = render 'shared/sell_notice'
   = notification
   table.table.table-bordered.order_detail
     tbody

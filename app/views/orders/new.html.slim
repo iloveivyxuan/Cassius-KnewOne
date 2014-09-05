@@ -1,10 +1,10 @@
 - page_title '提交订单'
 
-= render 'shared/sell_notice'
 header.page-header
   h2
     i.fa.fa-shopping-cart
     | 提交订单
+= render 'shared/sell_notice'
 = simple_form_for @order, html: {class: 'form'} do |f|
   fieldset
     ul.order_items = render partial: 'orders/order_item', collection: @order.order_items

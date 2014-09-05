@@ -1,10 +1,11 @@
 - page_title '购物车'
 
-= render 'shared/sell_notice'
 header.page-header
   h2
     i.fa.fa-shopping-cart
     | 购物车
+
+= render 'shared/sell_notice'
 
 = form_tag new_order_path, method: :get, authenticity_token: false
   fieldset
