@@ -7,26 +7,34 @@ class Making.Views.CommentsIndex extends Backbone.View
     'click .comments_more': 'fetch'
 
   initialize: ->
-    @page = 1
+    @page     = 1
+    @anchor   = @getAnchor()
+    @anchorId = @getAnchorId()
     @render()
     @collection.on
       add: @prepend
       reset: (comments) =>
         comments.each @append
-    @fetch()
+        if @anchor.length > 0
+          @jumpToAnchor()
+    @fetch(@anchorId)
 
-  fetch: =>
+  fetch: (endId) =>
+    if endId?
+      data = {id: endId}
+    else
+      data = {page: @page++}
     @collection.fetch
       reset: true
-      data: {page: @page++}
+      data: data
       beforeSend: =>
         @$('ul').append(HandlebarsTemplates['shared/loading'])
 
   render: =>
     @$el.html @template
-      title: @$el.data('title'),
-      signin: @$el.data('signin'),
-      auth: @$el.data('auth'),
+      title: @$el.data('title')
+      signin: @$el.data('signin')
+      auth: @$el.data('auth')
       more: @$el.data('count') > @$el.data('per')
 
     Making.AtUser('.comments textarea')
@@ -63,3 +71,20 @@ class Making.Views.CommentsIndex extends Backbone.View
   prepend: (comment) =>
     view = new Making.Views.Comment(model: comment)
     view.render().$el.hide().prependTo(@$('ul')).fadeIn()
+
+  getAnchor: =>
+    hash = location.hash
+    if hash.length is 0 then return ''
+    endpoint = hash.indexOf('?')
+    if endpoint < 0
+      return hash.slice(1)
+    else
+      return hash.slice(1, endpoint)
+
+  getAnchorId: =>
+    return @anchor.replace('comment-', '')
+
+  jumpToAnchor: =>
+    $anchor = $("[name='#{@anchor}']")
+    $window.scrollTop($anchor.offset().top - 55)
+    $anchor.parent().addClass('is-targeted')
