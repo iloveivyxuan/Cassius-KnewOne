@@ -281,9 +281,9 @@ class Stat
 
   def product_something_tops(klass)
     result = {}
-    klass.where(:created_at.gte => @@date_from).where(:created_at.lte => @@date_to.next_day)
-      .group_by(&:thing_id).sort_by{ |k, v| v.count }.reverse.take(10).each do |thing|
-      result[Thing.find(thing[0]).title] = thing[1].size
+    grouped = klass.where(:created_at.gte => @@date_from).where(:created_at.lte => @@date_to.next_day).group_by(&:thing_id)
+    grouped.sort_by{ |k, v| v.count }.reverse.take(10).each do |thing|
+      result[Thing.find(thing[0]).title] = thing[1].size if thing[0]
     end
     result
   end
