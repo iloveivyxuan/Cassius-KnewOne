@@ -1,13 +1,9 @@
-// =============================================================================
-// Vendor
-// =============================================================================
+// Base
+@import "base";
 
 // Library
-@import "customize/variables";
 @import "bootstrap";
 @import "font-awesome";
-@import "customize/reset";
-@import "customize/bootstrap";
 
 // Plugin
 @import "bootstrap-select";
@@ -20,13 +16,9 @@
 @import "editable/bootstrap-editable";
 @import "jquery.atwho";
 
-// =============================================================================
-// Application
-// =============================================================================
-
-// Base
-@import "variables";
-@import "mixins";
+// Reset
+@import "customize/reset";
+@import "customize/bootstrap";
 
 // Components
 @import "components/*";
