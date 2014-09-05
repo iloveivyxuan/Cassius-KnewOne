@@ -23,6 +23,7 @@ class Making.Views.CommentsIndex extends Backbone.View
   fetch: (fromId) =>
     if typeof fromId is 'string'
       data = {from_id: fromId}
+      @page++
     else
       data = {page: @page++}
     @collection.fetch
