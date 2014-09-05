@@ -16,13 +16,15 @@
 
     li:not(:last-child) {
       border-bottom: $border-dashed;
-      padding-bottom: 1em;
-      margin-bottom: 1em;
     }
   }
 
   .comment {
     @include clearfix();
+    padding: {
+      bottom: 1em;
+      top: 1em;
+    }
     position: relative;
 
     .anchor--hidden {
