@@ -110,6 +110,10 @@ img.lazy {
   visibility: hidden;
 }
 
+.is-hidden {
+  @extend .hidden;
+}
+
 .anchor--hidden {
   display: block;
   height: 0;

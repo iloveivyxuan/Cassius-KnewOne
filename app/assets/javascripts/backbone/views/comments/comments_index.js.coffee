@@ -36,7 +36,6 @@ class Making.Views.CommentsIndex extends Backbone.View
       title: @$el.data('title')
       signin: @$el.data('signin')
       auth: @$el.data('auth')
-      more: @$el.data('count') > @$el.data('per')
 
     Making.AtUser('.comments textarea')
     @$submit = @$('[type="submit"]')
@@ -66,8 +65,11 @@ class Making.Views.CommentsIndex extends Backbone.View
   append: (comment) =>
     view = new Making.Views.Comment(model: comment)
     view.render().$el.hide().appendTo(@$('ul')).fadeIn()
-    if @$('ul li').length >= @$el.data('count')
-      @$('.comments_more').hide()
+    @$more = @$('.comments_more')
+    if @$('ul li').length < @$el.data('count')
+      @$more.removeClass('is-hidden')
+    else
+      @$more.remove()
 
   prepend: (comment) =>
     view = new Making.Views.Comment(model: comment)
