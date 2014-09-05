@@ -1,10 +1,12 @@
+- comment_id = notification.data[:comment_id]
+- anchor = comment_id ? "comment-#{comment_id}" : nil
 - if author = notification.context.author
   = senders(notification)
   - if author == current_user
     | 回复了我发布的
-    = notification_post(notification.context, '_blank')
+    = notification_post(notification.context, '_blank', anchor)
   - else
     | 在对
-    = notification_post(notification.context, '_blank')
+    = notification_post(notification.context, '_blank', anchor)
     | &nbsp;
     | 的回复中提到了我
