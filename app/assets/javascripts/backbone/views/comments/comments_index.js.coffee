@@ -77,14 +77,14 @@ class Making.Views.CommentsIndex extends Backbone.View
     if hash.length is 0 then return ''
     endpoint = hash.indexOf('?')
     if endpoint < 0
-      return hash.slice(1)
+      return hash
     else
-      return hash.slice(1, endpoint)
+      return hash.slice(0, endpoint)
 
   getAnchorId: =>
-    return @anchor.replace('comment-', '')
+    return @anchor.replace('#comment-', '')
 
   jumpToAnchor: =>
-    $anchor = $("[name='#{@anchor}']")
+    $anchor = $("#{@anchor}")
     $window.scrollTop($anchor.offset().top - 55)
     $anchor.parent().addClass('is-targeted')
