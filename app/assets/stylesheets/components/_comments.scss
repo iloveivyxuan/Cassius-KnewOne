@@ -23,6 +23,11 @@
 
   .comment {
     @include clearfix();
+    position: relative;
+
+    .anchor--hidden {
+      top: -55px;
+    }
 
     .avatar {
       float: left;

@@ -7,27 +7,36 @@ class Making.Views.CommentsIndex extends Backbone.View
     'click .comments_more': 'fetch'
 
   initialize: ->
-    @page = 1
+    @page      = 1
+    @anchor    = @getAnchor()
+    @commentId = @getCommentId()
     @render()
     @collection.on
       add: @prepend
       reset: (comments) =>
         comments.each @append
-    @fetch()
+        if @anchor.length > 0
+          @jumpToAnchor()
+          @anchor = ''
+    @fetch(@commentId)
 
-  fetch: =>
+  fetch: (fromId) =>
+    if typeof fromId is 'string'
+      data = {from_id: fromId}
+      @page++
+    else
+      data = {page: @page++}
     @collection.fetch
       reset: true
-      data: {page: @page++}
+      data: data
       beforeSend: =>
         @$('ul').append(HandlebarsTemplates['shared/loading'])
 
   render: =>
     @$el.html @template
-      title: @$el.data('title'),
-      signin: @$el.data('signin'),
-      auth: @$el.data('auth'),
-      more: @$el.data('count') > @$el.data('per')
+      title: @$el.data('title')
+      signin: @$el.data('signin')
+      auth: @$el.data('auth')
 
     Making.AtUser('.comments textarea')
     @$submit = @$('[type="submit"]')
@@ -57,9 +66,29 @@ class Making.Views.CommentsIndex extends Backbone.View
   append: (comment) =>
     view = new Making.Views.Comment(model: comment)
     view.render().$el.hide().appendTo(@$('ul')).fadeIn()
-    if @$('ul li').length >= @$el.data('count')
-      @$('.comments_more').hide()
+    @$more = @$('.comments_more')
+    if @$('ul li').length < @$el.data('count')
+      @$more.removeClass('is-hidden')
+    else
+      @$more.remove()
 
   prepend: (comment) =>
     view = new Making.Views.Comment(model: comment)
     view.render().$el.hide().prependTo(@$('ul')).fadeIn()
+
+  getAnchor: =>
+    hash = location.hash
+    if hash.length is 0 then return ''
+    endpoint = hash.indexOf('?')
+    if endpoint < 0
+      return hash
+    else
+      return hash.slice(0, endpoint)
+
+  getCommentId: =>
+    return @anchor.replace('#comment-', '')
+
+  jumpToAnchor: =>
+    $anchor = $("#{@anchor}")
+    $window.scrollTop($anchor.offset().top - 55)
+    $anchor.parent().addClass('is-targeted')

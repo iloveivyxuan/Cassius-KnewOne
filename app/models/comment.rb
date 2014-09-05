@@ -13,6 +13,7 @@ class Comment
   validates :content, presence: true, length: {maximum: 300}
 
   default_scope -> { desc(:created_at) }
+  index created_at: -1
 
   after_create :update_commented_at
   after_destroy :update_commented_at
