@@ -1,3 +1,5 @@
+@import '../base';
+
 html.notifications_index {
   #wrapper {
     @include wrapper(simple, $max-width: $screen-md-min);
