@@ -19,9 +19,9 @@ class Making.Views.CommentsIndex extends Backbone.View
           @jumpToAnchor()
     @fetch(@anchorId)
 
-  fetch: (endId) =>
-    if endId?
-      data = {id: endId}
+  fetch: (fromId) =>
+    if fromId?
+      data = {from_id: fromId}
     else
       data = {page: @page++}
     @collection.fetch
