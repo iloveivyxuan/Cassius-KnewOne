@@ -119,6 +119,16 @@ img.lazy {
   width: 0;
 }
 
+.is-targeted {
+  @include animation-name(glint);
+  @include animation-duration(2s);
+}
+
+@include keyframes(glint) {
+  0% {background-color: #fbf0b9;}
+  100% {background-color: transparent;}
+}
+
 #check_provider_sync {
   color: $text-muted;
   margin: {left: 2em; right: 2em;}
