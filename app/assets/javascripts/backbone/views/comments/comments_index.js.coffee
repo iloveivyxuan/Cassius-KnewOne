@@ -17,10 +17,11 @@ class Making.Views.CommentsIndex extends Backbone.View
         comments.each @append
         if @anchor.length > 0
           @jumpToAnchor()
+          @anchor = ''
     @fetch(@commentId)
 
   fetch: (fromId) =>
-    if fromId?
+    if typeof fromId is 'string'
       data = {from_id: fromId}
     else
       data = {page: @page++}
