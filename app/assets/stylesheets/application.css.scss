@@ -1,27 +1,7 @@
-// Base
 @import "base";
 
-// Library
-@import "bootstrap";
-@import "font-awesome";
-
-// Plugin
-@import "bootstrap-select";
-@import "bootstrap-tagsinput";
-@import "bootstrap-touch-carousel";
-@import "lightbox";
-@import "medium-editor/medium-editor";
-@import "medium-editor/themes/bootstrap";
-@import "minsert/minsert";
-@import "editable/bootstrap-editable";
-@import "jquery.atwho";
-
-// Reset
 @import "customize/reset";
 @import "customize/bootstrap";
 
-// Components
 @import "components/*";
-
-// Views
 @import "views/*";
