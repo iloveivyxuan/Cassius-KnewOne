@@ -9,7 +9,9 @@ class CommentsController < ApplicationController
     comment = @post.comments.where(id: params[:from_id]).first
     if comment
       @comments = @post.comments.gte(created_at: comment.created_at)
-    else
+    end
+
+    if !@comments || @comments.size < Settings.comments.per_page
       @comments = @post.comments.page(params[:page]).per(Settings.comments.per_page)
     end
 
