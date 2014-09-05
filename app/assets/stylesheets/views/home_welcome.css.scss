@@ -22,26 +22,26 @@ html.home_welcome {
   // ---------------------------------------------------------------------------
 
   .btn-inverse-white {
-    @include button-variant(#fff, $brand-color, #fff);
+    @include button-variant(#fff, $brand-primary, #fff);
     @include button-size($padding-base-vertical,
                           $padding-base-horizontal,
                           $font-size-base,
                           $line-height-base,
                           $border-radius-base);
-    @include button-inverse($brand-color, #fff);
+    @include button-inverse($brand-primary, #fff);
     background-image: none;
     border-style: solid;
     border-width: 1px;
   }
 
   .btn-inverse-blue {
-    @include button-variant($brand-color, #fff, $brand-color);
+    @include button-variant($brand-primary, #fff, $brand-primary);
     @include button-size($padding-base-vertical,
                           $padding-base-horizontal,
                           $font-size-base,
                           $line-height-base,
                           $border-radius-base);
-    @include button-inverse(#fff, $brand-color);
+    @include button-inverse(#fff, $brand-primary);
     background-image: none;
     border-style: solid;
     border-width: 1px;
@@ -68,12 +68,12 @@ html.home_welcome {
 
   .step-header {
     @include clearfix;
-    background-color: $brand-color;
+    background-color: $brand-primary;
     color: #fff;
     padding: 15px;
 
     @media (min-width: $screen-md-min) {
-      background: $brand-color image-url("face.png") 30px 20px no-repeat;
+      background: $brand-primary image-url("face.png") 30px 20px no-repeat;
       padding-left: 128px;
     }
 
