@@ -7,9 +7,9 @@ class Making.Views.CommentsIndex extends Backbone.View
     'click .comments_more': 'fetch'
 
   initialize: ->
-    @page     = 1
-    @anchor   = @getAnchor()
-    @anchorId = @getAnchorId()
+    @page      = 1
+    @anchor    = @getAnchor()
+    @commentId = @getCommentId()
     @render()
     @collection.on
       add: @prepend
@@ -17,7 +17,7 @@ class Making.Views.CommentsIndex extends Backbone.View
         comments.each @append
         if @anchor.length > 0
           @jumpToAnchor()
-    @fetch(@anchorId)
+    @fetch(@commentId)
 
   fetch: (fromId) =>
     if fromId?
@@ -81,7 +81,7 @@ class Making.Views.CommentsIndex extends Backbone.View
     else
       return hash.slice(0, endpoint)
 
-  getAnchorId: =>
+  getCommentId: =>
     return @anchor.replace('#comment-', '')
 
   jumpToAnchor: =>
