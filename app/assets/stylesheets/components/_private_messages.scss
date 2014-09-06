@@ -1,0 +1,64 @@
+.private_message {
+  margin-bottom: 30px;
+  position: relative;
+
+  @include breakpoint(md) {
+    margin-left: 10em;
+  }
+
+  > figure {
+    display: none;
+
+    width: 11em;
+    text-align: center;
+
+    img {
+      @extend .img-circle;
+      width: 60px;
+    }
+
+    @include breakpoint(md) {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 100%;
+    }
+  }
+
+  > article {
+    background: white;
+    padding: 1em;
+    @include border-radius(8px);
+
+    header {
+      i {color: #ccc;}
+    }
+
+    section {
+      margin: 1em 0;
+      p {word-break: break-all;}
+    }
+
+    footer {
+      font-size: $font-size-small;
+
+      a.messages_count {
+        margin-left: 1em;
+        color: $text-muted;
+        &:hover {color: $link-color;}
+      }
+
+      .operations {
+        float: right;
+        margin-right: 1em;
+        > a {
+          margin-left: 1em;
+          color: $text-muted;
+          &:hover {color: $link-color;}
+        }
+      }
+    }
+  }
+
+  &.unread > article {background-color: #f7fbff;}
+}
