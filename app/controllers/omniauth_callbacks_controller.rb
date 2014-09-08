@@ -89,4 +89,5 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   alias_method :twitter, :callback
   alias_method :qq_connect, :callback
   alias_method :douban, :callback
+  alias_method :bong, :callback
 end

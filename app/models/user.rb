@@ -190,8 +190,10 @@ class User
         set_profiles_by_auth(auth)
         save
 
-        self.remote_avatar_url = auth.avatar_url
-        save rescue Exception
+        if auth.avatar_url.present?
+          self.remote_avatar_url = auth.avatar_url
+          save rescue Exception
+        end
       end
     end
   end

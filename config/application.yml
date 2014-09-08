@@ -23,6 +23,9 @@ defaults: &defaults
   douban:
     consumer_key: '0e15780d13b4f5832a4068273b1ee089'
     consumer_secret: '2231d26bdaf58224'
+  bong:
+    consumer_key: '1409808185075'
+    consumer_secret: '69cdc295f4224ed4898e29f4e6ac2666'
   kexue:
     enable: false
   karma:

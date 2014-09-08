@@ -1,6 +1,6 @@
 .clearfix
   = render partial: 'accounts/result', locals: {type: :oauth}
-  - oauths = {'twitter' => nil, 'weibo' => nil, 'qq_connect' => nil, 'douban' => nil}.merge(current_user.auths.map {|a| {a.provider => a}}.reduce(&:merge) || {})
+  - oauths = {'twitter' => nil, 'weibo' => nil, 'qq_connect' => nil, 'douban' => nil, 'bong' => nil}.merge(current_user.auths.map {|a| {a.provider => a}}.reduce(&:merge) || {})
   table#table_oauth
     thead
       tr
