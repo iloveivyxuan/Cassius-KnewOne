@@ -218,7 +218,12 @@ html.topics_show {
       .article_title {
         text-align: left;
         font-size: $font-size-h4;
-        @include text-overflow;
+        a {
+          @include text-overflow;
+          display: inline-block;
+          max-width: 80%;
+          vertical-align: middle;
+        }
         i {
           font-size: $font-size-base;
           margin-left: 1em;
