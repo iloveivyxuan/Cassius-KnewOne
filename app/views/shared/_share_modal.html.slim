@@ -1,7 +1,7 @@
 - if user_signed_in?
   - auths = current_user.auths.reject {|a| %w(wechat qq_connect douban).include?(a.provider)}
   - if auths.any?
-    #share_modal.modal.fade.share_modal
+    #share_modal.modal.fade.share-modal.share_modal
       .modal-dialog
         .modal-content
           = simple_form_for :share, url: share_users_path, \
@@ -13,7 +13,7 @@
             .modal-body
               = f.input :content, as: :text, label: false, input_html: {rows: 5, value: ''}
               = f.input :pic, as: :hidden, input_html: {value: ''}
-              .pic_preview.hide= image_tag ""
+              p.pic_preview.hide= image_tag ""
               - if auths.size > 1
                 = content_tag :div, class: "checkbox" do
                   - auths.each do |auth|
@@ -32,9 +32,12 @@
                   = link_to '点此刷新', user_omniauth_authorize_path(auth.provider.to_sym, state: fullpath_with_modal('share_modal')), class: 'save_form_state'
                 - else
                   = hidden_field_tag 'providers[]', auth.provider, data: {'skip-deserialize' => true}
-              = link_to_with_icon "分享到微信", "fa fa-wechat", "#share_wechat",
-              title: "微信朋友圈分享", class: "track_event",
-              data: {toggle: 'modal', category: "share_internal_wechat", action: "share_internal_wechat", label: "share_internal_wechat+#{request.url}"}
+              div
+                = link_to_with_icon "分享到微信", "fa fa-wechat", "#share_wechat",
+                title: "微信朋友圈分享", class: "share-button track_event",
+                data: {toggle: 'modal', category: "share_internal_wechat", action: "share_internal_wechat", label: "share_internal_wechat+#{request.url}"}
+                span.separator |
+                = link_to_with_icon "分享到人人网", "fa fa-renren", "http://widget.renren.com/dialog/share?link=#{request.url}", class: "share-button", target: "_blank"
             .modal-footer
               span class="words-check"
               = button_tag "取消", type: 'button', class: "btn btn-default", data: {dismiss: "modal"}
