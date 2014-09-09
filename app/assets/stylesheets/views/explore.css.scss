@@ -422,7 +422,7 @@ html.explore {
       float: right;
 
       .fa {
-        @extend .fa-2x;
+        font-size: 2em; // @extend .fa-2x;
       }
     }
   }

@@ -6,7 +6,7 @@ html.home_user_agreement {
     @include wrapper(simple, $max-width: $screen-md-min);
 
     article {
-      @extend .text-justify;
+      text-align: justify;
       margin-bottom: 1rem;
       padding: 0 1rem;
     }
