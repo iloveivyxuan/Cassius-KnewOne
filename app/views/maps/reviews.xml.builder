@@ -7,7 +7,7 @@ xml.rss :version => "2.0" do
     @reviews.each do |review|
       xml.item do
         xml.cover review.cover(:normal)
-        xml.title review.title
+        xml.title review.thing.title
         xml.description review.title
         xml.author review.author.name
         present review do |rp|
