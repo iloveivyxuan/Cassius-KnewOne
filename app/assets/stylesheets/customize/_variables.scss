@@ -1,16 +1,15 @@
 $site-margin: 5%;
-$wrapper_margin: 5%;
+$wrapper-margin: 5%;
 $border-default: 1px solid #eee;
 $border-dashed: 1px dashed #eee;
 $border-default-active: 1px solid $red;
 $background-default-active: #f8f8fa;
 $background-text: #eee;
 
-
 // z-index
-$zindex_menu: $zindex-modal-background + 1;
-$zindex_search_candidate: $zindex-navbar-fixed;
-$zindex_backdrop: $zindex_search_candidate - 1;
-$zindex_selectpicker: $zindex-navbar-fixed - 1;
-$zindex_editor: $zindex-navbar-fixed + 1;
-$zindex_go_top: 500;
+$zindex-menu: $zindex-modal-background + 1;
+$zindex-search-candidate: $zindex-navbar-fixed;
+$zindex-backdrop: $zindex-search-candidate - 1;
+$zindex-selectpicker: $zindex-navbar-fixed - 1;
+$zindex-editor: $zindex-navbar-fixed + 1;
+$zindex-go-top: 500;
