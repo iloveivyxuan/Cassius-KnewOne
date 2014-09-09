@@ -12,7 +12,7 @@ atom_feed do |feed|
     else
       post = Post.find(e.post_id)
     end
-    url = url_for(:action => 'show', :controller => 'entries', :id => e.id)
+    url = entry_url(e.id)
     feed.entry(post, :url => "#{url}?source=atom") do |entry|
       entry.title(post.title)
       entry.content(post.content, type: 'html')

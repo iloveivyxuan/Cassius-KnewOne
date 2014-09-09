@@ -14,11 +14,7 @@ xml.rss :version => "2.0" do
           xml.content rp.content_with_original_photos, :type => 'html'
         end
         xml.pubDate review.created_at.to_s(:rfc822)
-        link = url_for(
-                       :action => 'show',
-                       :controller => 'reviews',
-                       :thing_id => review.thing.id,
-                       :id => review.id)
+        link = thing_review_url(review.thing.id, review.id)
         xml.link "#{link}?source=xml"
       end
 
