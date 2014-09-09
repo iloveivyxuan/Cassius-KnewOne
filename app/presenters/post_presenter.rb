@@ -34,6 +34,11 @@ class PostPresenter < ApplicationPresenter
     sanitize c
   end
 
+  def content_with_original_photos
+    c = @object.content.gsub("!review", "")
+    sanitize c
+  end
+
   def summary(length = 512)
     strip_tags(@object.content).truncate(length).html_safe
   end

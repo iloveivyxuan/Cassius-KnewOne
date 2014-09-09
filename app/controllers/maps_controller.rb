@@ -5,6 +5,10 @@ class MapsController < ApplicationController
 
   def reviews
     @reviews = Review.living.desc(:created_at).page(params[:page]).per(200)
+    respond_to do |format|
+      format.html
+      format.xml { render :layout => false }
+    end
   end
 
   def stories
