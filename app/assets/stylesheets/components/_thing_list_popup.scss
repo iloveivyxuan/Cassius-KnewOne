@@ -140,15 +140,13 @@
             width: 0;
             visibility: hidden;
 
-            &:checked:after {
-              content: '✔';
+          }
 
-              visibility: visible;
-
-              position: absolute;
-              top: 9px;
-              right: 12px;
-            }
+          .fa-check {
+            margin-right: 0;
+            position: absolute;
+            top: 9px;
+            right: 12px;
           }
         }
       }
