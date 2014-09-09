@@ -6,6 +6,8 @@
   data: {category: "share_external", action: "share_external_weibo_#{type}", label: "share_external_weibo_#{type}+#{title}"}
   = link_to_with_icon "", "fa fa-twitter", "#", class: "twitter track_event", title: "分享到 Twitter",
   data: {category: "share_external", action: "share_external_twitter_#{type}", label: "share_external_twitter_#{type}+#{title}"}
+  = link_to_with_icon "", "fa fa-renren", "http://widget.renren.com/dialog/share?link=#{request.url}", class: "renren track_event", target: "_blank", title: "分享到人人网",
+  data: {category: "share_external", action: "share_external_renren_#{type}", label: "share_external_renren_#{type}+#{title}"}
 
 - content_for :script do
   javascript:
