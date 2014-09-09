@@ -9,6 +9,7 @@ set :ssh_options, { port: 22222, forward_agent: true }
 set :unicorn_config_path, File.join(current_path, "config", "unicorn", "#{fetch(:rails_env)}.rb")
 
 namespace :deploy do
+  before :starting, :deploy_msg
   before :updating, :test
   after :finished, 'airbrake:deploy'
 
