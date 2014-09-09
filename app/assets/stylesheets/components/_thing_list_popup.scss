@@ -101,6 +101,8 @@
       }
 
       ul {
+        @include always-show-scrollbar;
+
         height: 170px;
         overflow: auto;
 
