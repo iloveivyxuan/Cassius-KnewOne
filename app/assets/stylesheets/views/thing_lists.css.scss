@@ -41,7 +41,7 @@ html.thing_lists_show {
         }
 
         img {
-          @extend .img-circle;
+          @extend %img-circle;
           position: absolute;
           top: 0;
           left: 0;

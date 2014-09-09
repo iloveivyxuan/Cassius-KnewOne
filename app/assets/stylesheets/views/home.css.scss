@@ -129,7 +129,7 @@ html.home {
         text-align: center;
 
         img {
-          @extend .img-circle;
+          @extend %img-circle;
           width: 60px;
         }
       }
@@ -193,7 +193,7 @@ html.home {
             img {
               width: 26px;
               margin-right: .5em;
-              @extend .img-circle;
+              @extend %img-circle;
             }
           }
 
@@ -242,7 +242,7 @@ html.home {
         .feed-user {
           margin-right: .5em;
           img {
-            @extend .img-circle;
+            @extend %img-circle;
             width: 26px;
             margin-right: 0.5em;
           }

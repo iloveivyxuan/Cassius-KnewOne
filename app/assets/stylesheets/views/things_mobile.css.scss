@@ -17,7 +17,7 @@ html.things_show {
 
     // TODO
     a.avatar {
-      @extend label.avatar;
+      @extend %avatar;
     }
 
     article {
