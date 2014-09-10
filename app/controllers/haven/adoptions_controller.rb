@@ -16,6 +16,7 @@ module Haven
         user = User.where(name: params[:user][:name]).first
         @adoptions = @adoptions.where(:user_id => user.id) if user
       end
+      @adoptions = @adoptions.order_by [:created_at, :desc]
       @adoptions = @adoptions.page(params[:page]).per(params[:per] || 50)
     end
 
