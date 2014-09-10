@@ -86,14 +86,35 @@ class Stat
 
   def self.generate_day_stats(date = Date.yesterday)
     Stat.generate_stats(date, date)
+    Stat.last.to_topic
   end
 
   def self.generate_week_stats(date = Date.yesterday)
     Stat.generate_stats(date.beginning_of_week, date.end_of_week)
+    Stat.last.to_topic
   end
 
   def self.generate_month_stats(date = Date.yesterday)
     Stat.generate_stats(date.beginning_of_month, date.end_of_month)
+    Stat.last.to_topic
+  end
+
+  def to_topic
+    user = User.find "526fd363b10be561d300001d"
+    group = Group.find "53ed7b6b31302d5e7b9d0900"
+    content = ""
+    DATAS.keys.each { |key| content += "<b>#{DATAS[key]}</b><div>#{self[key]}</div>" }
+    if self.date_from == self.date_to
+      title = "#{self.date_to} 数据"
+    else
+      title = "#{self.date_from} - #{self.date_to} 数据"
+    end
+    Topic.create(
+                 title: title,
+                 content: content,
+                 author: user,
+                 group: group,
+                 visible: false)
   end
 
   def users_count
