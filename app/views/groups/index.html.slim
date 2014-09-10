@@ -21,5 +21,8 @@ section.flash_topics
           = link_to('全站话题', {filter: 'all'})
 
   section
-    .topics= render @topics, show_group: true
-    = paginate @topics
+    - if @topics.present?
+      .topics= render @topics, show_group: true
+      = paginate @topics
+    - else
+      = render 'shared/nothing'
