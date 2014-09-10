@@ -302,23 +302,28 @@ class User
   ##Dialogs
   include UserDialogs
 
-  def receive_welcome_message_from_ceo
+  def self.receive_welcome_message_from_ceo(user_id)
+    user = User.where(id: user_id).first
+    return unless user
+
     ceo = User.where(id: '50ffdd447373c2f015000001').first
+    return unless ceo
+
     content = [
-               "#{self.name} ，欢迎你加入 KnewOne 牛玩！",
+               "#{user.name} ，欢迎你加入 KnewOne 牛玩！",
                '我是沙沙，KnewOne 的 CEO。',
                'KnewOne 牛玩是一个分享高品质消费品和使用体验的社区。在这里，你可以发现和分享提高生活品质的新奇酷产品，结识更多品位相似的朋友，共同探索未来世界。当你看到喜欢的东西时候记得点<i class="fancy_icon"></i>标记下来，这样你会获得关于这个产品更多的信息，也可以将它加入你喜欢的列表，当你参与的越多，你从 KnewOne 收获的也会越多！',
                '点这里看看我们为你做的 <a href="http://knewone.com/about?from_ceo">KnewOne 牛玩上手指南</a>',
                '祝你玩儿的开心！'
               ].join("\n\n")
-    if ceo
-      ceo.send_private_message_to(self, content)
-      ceo.dialog_with(self).destroy
-    end
-  end
-  private :receive_welcome_message_from_ceo
 
-  after_create :receive_welcome_message_from_ceo
+    ceo.send_private_message_to(user, content)
+    ceo.dialog_with(user).destroy
+  end
+
+  after_create do
+    User.delay_for(30.minutes).receive_welcome_message_from_ceo(self.id)
+  end
 
   # Payment
   embeds_many :addresses
