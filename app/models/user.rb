@@ -302,7 +302,7 @@ class User
   ##Dialogs
   include UserDialogs
 
-  def self.receive_welcome_message_from_ceo(user_id)
+  def self.send_welcome_message_to(user_id)
     user = User.where(id: user_id).first
     return unless user
 
@@ -322,7 +322,7 @@ class User
   end
 
   after_create do
-    User.delay_for(30.minutes).receive_welcome_message_from_ceo(self.id)
+    User.delay_for(30.minutes).send_welcome_message_to(self.id)
   end
 
   # Payment
