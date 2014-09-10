@@ -16,7 +16,7 @@ section.flash_topics
     nav
       ul.nav.nav--underline
         li class=(session[:topic_filter] == 'joined' ? 'active' : '')
-          = link_or_login('我关注的', {filter: 'joined'})
+          = link_or_login('我参与的', {filter: 'joined'})
         li class=(session[:topic_filter] == 'all' ? 'active' : '')
           = link_to('全站话题', {filter: 'all'})
 
