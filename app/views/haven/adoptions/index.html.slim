@@ -4,6 +4,10 @@
   = select_tag "adoption", options_from_collection_for_select(@adoptions.map(&:thing).uniq, "id", "title")
   = f.submit "一键拒绝"
 
+= form_for :user, url: haven_adoptions_path, method: :get do |f|
+  = f.text_field :name
+  = f.submit "查找用户名"
+
 header.page-header
   h2
     i.fa.fa-users

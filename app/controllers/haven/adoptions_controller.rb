@@ -12,6 +12,10 @@ module Haven
       if params[:status]
         @adoptions = @adoptions.where(:status => params[:status].to_sym)
       end
+      if params[:user]
+        user = User.where(name: params[:user][:name]).first
+        @adoptions = @adoptions.where(:user_id => user.id) if user
+      end
       @adoptions = @adoptions.page(params[:page]).per(params[:per] || 50)
     end
 
