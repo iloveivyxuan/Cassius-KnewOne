@@ -1,0 +1,13 @@
+@import "compass/css3/font-face";
+
+@include font-face("orbitron-bold", font-files(
+                     "orbitron-bold.woff", woff,
+                     "orbitron-bold.ttf", truetype,
+                     "orbitron-bold.svg", svg),
+                   "orbitron-bold.eot");
+
+@include font-face("orbitron-medium", font-files(
+                     "orbitron-medium.woff", woff,
+                     "orbitron-medium.ttf", truetype,
+                     "orbitron-medium.svg", svg),
+                   "orbitron-medium.eot");

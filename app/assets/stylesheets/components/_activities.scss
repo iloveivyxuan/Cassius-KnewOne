@@ -1,0 +1,23 @@
+ul.activities {
+  li {
+    @include clearfix;
+
+    border-bottom: $border-dashed;
+    padding: 10px;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    a {
+      padding-left: .5em;
+      padding-right: .5em;
+    }
+
+    time {
+      line-height: 20px;
+      float: right;
+      padding-left: 2em;
+    }
+  }
+}

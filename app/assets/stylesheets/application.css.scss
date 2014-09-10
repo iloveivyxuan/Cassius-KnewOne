@@ -1,35 +1,6 @@
-// =============================================================================
-// Vendor
-// =============================================================================
+@import "base";
 
-// Library
-@import "customize/variables";
-@import "bootstrap";
-@import "font-awesome";
-@import "customize/reset";
-@import "customize/bootstrap";
+@import "vendor";
+@import "customize/override";
 
-// Plugin
-@import "bootstrap-select";
-@import "bootstrap-tagsinput";
-@import "bootstrap-touch-carousel";
-@import "lightbox";
-@import "medium-editor/medium-editor";
-@import "medium-editor/themes/bootstrap";
-@import "minsert/minsert";
-@import "editable/bootstrap-editable";
-@import "jquery.atwho";
-
-// =============================================================================
-// Application
-// =============================================================================
-
-// Base
-@import "variables";
-@import "mixins";
-
-// Components
 @import "components/*";
-
-// Views
-@import "views/*";

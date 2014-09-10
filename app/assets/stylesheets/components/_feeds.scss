@@ -161,7 +161,7 @@ html.desktop {
       figcaption {
 
         @media (max-width: $screen-xs-max) {
-          @include translate(0, -50%, 0);
+          @include translate3d(0, -50%, 0);
 
           position: absolute;
           top: 50%;

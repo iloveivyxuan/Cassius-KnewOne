@@ -58,3 +58,59 @@
     display: none;
   }
 }
+
+#users_index {
+  @include clearfix;
+  li {
+    background-color: #fff;
+    border-radius: 8px;
+    float: left;
+    height: 97px;
+    padding: 1em 1em 0;
+    margin: 1em;
+    overflow: hidden;
+    width: 102px;
+    a {
+      display: block;
+    }
+  }
+}
+
+.user_list,
+.users {
+  text-align: center;
+
+  li {
+    display: inline-block;
+    margin: 1.5em;
+    width: 80px;
+    text-align: center;
+    img {
+      @extend .img-circle;
+    }
+    > * {
+      display: block;
+      margin-bottom: .5em;
+      color: $text-muted;
+      @include text-overflow;
+    }
+    &.author {
+
+      > * {
+        margin-right: 0;
+      }
+
+      .btn {
+        @extend .btn-xs;
+      }
+
+      .btn-primary {
+        color: #fff;
+
+        i {
+          color: #fff;
+        }
+      }
+    }
+  }
+}

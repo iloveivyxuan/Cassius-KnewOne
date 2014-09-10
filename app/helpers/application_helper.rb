@@ -5,6 +5,10 @@ module ApplicationHelper
     obj.class.to_s.demodulize.underscore
   end
 
+  def page_css(file)
+    content_for(:stylesheet, stylesheet_link_tag("views/#{file}"))
+  end
+
   def calc_skip(size, num)
     (size > num) ? (size - num) : 0
   end

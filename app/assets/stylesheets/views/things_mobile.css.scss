@@ -1,3 +1,5 @@
+@import '../base';
+
 html.things_show {
 
   &.mobile {
@@ -15,7 +17,7 @@ html.things_show {
 
     // TODO
     a.avatar {
-      @extend label.avatar;
+      @extend %avatar;
     }
 
     article {
@@ -110,7 +112,9 @@ html.things_show {
         }
 
         button[type="submit"] {
-          @extend .btn-block;
+          // @extend .btn-block;
+          display: block;
+          width: 100%;
         }
       }
     }

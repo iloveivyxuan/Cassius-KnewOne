@@ -1,3 +1,5 @@
+@import '../base';
+
 html.users_show,
 html.users_fancies,
 html.users_owns,
@@ -383,87 +385,6 @@ html.users_activities {
       .tag {
         margin-top: 10px;
       }
-    }
-  }
-}
-
-#users_index {
-  @include clearfix;
-  li {
-    background-color: #fff;
-    border-radius: 8px;
-    float: left;
-    height: 97px;
-    padding: 1em 1em 0;
-    margin: 1em;
-    overflow: hidden;
-    width: 102px;
-    a {
-      display: block;
-    }
-  }
-}
-
-.user_list,
-.users {
-  text-align: center;
-
-  li {
-    display: inline-block;
-    margin: 1.5em;
-    width: 80px;
-    text-align: center;
-    img {
-      @extend .img-circle;
-    }
-    > * {
-      display: block;
-      margin-bottom: .5em;
-      color: $text-muted;
-      @include text-overflow;
-    }
-    &.author {
-
-      > * {
-        margin-right: 0;
-      }
-
-      .btn {
-        @extend .btn-xs;
-      }
-
-      .btn-primary {
-        color: #fff;
-
-        i {
-          color: #fff;
-        }
-      }
-    }
-  }
-}
-
-ul.activities {
-
-  li {
-    @include clearfix;
-
-    border-bottom: $border-dashed;
-    padding: 10px;
-
-    &:last-child {
-      border-bottom: none;
-    }
-
-    a {
-      padding-left: .5em;
-      padding-right: .5em;
-    }
-
-    time {
-      line-height: 20px;
-      float: right;
-      padding-left: 2em;
     }
   }
 }

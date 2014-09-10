@@ -1,18 +1,7 @@
+@import '../base';
+
 html.notifications_index {
   #wrapper {
     @include wrapper(simple, $max-width: $screen-md-min);
-  }
-}
-
-.page-header {
-  @include clearfix;
-
-  h1 {
-    float: left;
-
-    small {
-      font-size: 14px;
-      margin-left: 1em;
-    }
   }
 }

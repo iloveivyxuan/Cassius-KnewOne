@@ -1,0 +1,23 @@
+.groups {
+  @include make-row;
+  padding-top: 1em;
+
+  > li {
+    @media (min-width: $screen-sm-min) {
+      @include make-sm-column(6);
+      @include make-md-column(4);
+      @include make-lg-column(3);
+    }
+  }
+}
+
+.group {
+  .card_compact {
+    img {width: 80px; height: 80px; }
+    h5 {
+      color: $gray;
+      @include text-overflow;
+    }
+    .members_count {color: $text-muted;}
+  }
+}

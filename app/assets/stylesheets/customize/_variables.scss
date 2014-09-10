@@ -1,37 +1,15 @@
-// ==========================================================================
-// Bootstrap
-// ==========================================================================
+$site-margin: 5%;
+$wrapper-margin: 5%;
+$border-default: 1px solid #eee;
+$border-dashed: 1px dashed #eee;
+$border-default-active: 1px solid $red;
+$background-default-active: #f8f8fa;
+$background-text: #eee;
 
-$blue  : #049cdb;
-$green : #46a546;
-$red   : #9d261d;
-$yellow: #ffc40d;
-$orange: #f89406;
-$pink  : #c3325f;
-$purple: #7a43b6;
-$gray  : #666666;
-$black : #333333;
-
-$font-family-base    : "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-$headings-font-weight: normal;
-$headings-line-height: 1.5;
-
-$grid-float-breakpoint    : 992px;
-$grid-float-breakpoint-max: $grid-float-breakpoint - 1;
-
-$body-bg       : #ebeced;
-$link-color    : #588cc7;
-$btn-primary-bg: #049cdb;
-
-$navbar-height                  : 40px;
-$navbar-default-brand-color     : #049cdb;
-$navbar-inverse-bg              : #363d48;
-$navbar-inverse-link-color      : #ccc;
-$navbar-inverse-link-hover-color: #fff;
-$navbar-inverse-link-active-bg  : #333;
-
-$thumbnail-bg: #fff;
-
-$zindex-tooltip: 1029;
-
-$popover-max-width: none;
+// z-index
+$zindex-menu: $zindex-modal-background + 1;
+$zindex-search-candidate: $zindex-navbar-fixed;
+$zindex-backdrop: $zindex-search-candidate - 1;
+$zindex-selectpicker: $zindex-navbar-fixed - 1;
+$zindex-editor: $zindex-navbar-fixed + 1;
+$zindex-go-top: 500;

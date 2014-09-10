@@ -1,0 +1,42 @@
+%img-rounded {
+  border-radius: $border-radius-large;
+}
+
+%img-circle {
+  border-radius: 50%;
+}
+
+%avatar {
+  color: $gray;
+  display: inline-block;
+  font-weight: normal;
+  margin-bottom: 0;
+
+  a {
+    color: $text-color;
+  }
+
+  img {
+    height: 30px;
+    margin-right: 5px;
+    width: 30px;
+  }
+
+  .name {
+    @include text-overflow;
+
+    color: $text-color;
+    display: inline-block;
+    font-weight: normal;
+    font-size: .8em;
+    line-height: 30px;
+    margin-bottom: 0;
+    max-width: 6em;
+    vertical-align: middle;
+  }
+
+  small {
+    color: #bbb;
+    font-size: .8em;
+  }
+}

@@ -1,3 +1,5 @@
+@import '../base';
+
 html.groups_index,
 html.groups_show,
 html.groups_edit,
@@ -68,7 +70,7 @@ html.topics_show {
 
       img {
         @include square(40px);
-        @extend .img-rounded;
+        @extend %img-rounded;
         margin-right: 1em;
       }
 
@@ -242,7 +244,7 @@ html.topics_show {
         margin-top: 0 - $font-size-h4 * $line-height-base;
         img {
           @include square(60px);
-          @extend .img-circle;
+          @extend %img-circle;
         }
       }
     }
@@ -263,7 +265,8 @@ html.topics_show {
       }
 
       .topic_commented_at {
-        @extend .hidden-xs;
+        // @extend .hidden-xs;
+        @media (max-width: $screen-xs-max) { display: none; }
       }
     }
   }
@@ -284,29 +287,5 @@ html.groups_all {
 html.groups_new {
   #wrapper {
     @include wrapper(simple, $max-width: $screen-md-min);
-  }
-}
-
-.groups {
-  @include make-row;
-  padding-top: 1em;
-
-  > li {
-    @media (min-width: $screen-sm-min) {
-      @include make-sm-column(6);
-      @include make-md-column(4);
-      @include make-lg-column(3);
-    }
-  }
-}
-
-.group {
-  .card_compact {
-    img {width: 80px; height: 80px; }
-    h5 {
-      color: $gray;
-      @include text-overflow;
-    }
-    .members_count {color: $text-muted;}
   }
 }
