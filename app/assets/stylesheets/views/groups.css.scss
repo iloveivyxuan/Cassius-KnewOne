@@ -276,6 +276,12 @@ html.topics_show {
   }
 }
 
+html.groups_index {
+  .topics {
+    margin-top: $padding-large-vertical;
+  }
+}
+
 html.groups_all {
   #wrapper {
     @include wrapper(simple, $max-width: $screen-lg-min);
