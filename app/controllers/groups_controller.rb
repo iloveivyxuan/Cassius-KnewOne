@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
   def index
     @groups = Group.visible.desc(:members_count).limit(10)
 
-    params[:filter] ||= session[:topic_filter] || 'joined'
+    params[:filter] ||= session[:topic_filter] || 'all'
 
     if user_signed_in? && params[:filter] == 'joined'
       session[:topic_filter] = 'joined'
