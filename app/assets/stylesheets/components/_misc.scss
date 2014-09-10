@@ -165,7 +165,7 @@ label.avatar {
   @extend %avatar;
 }
 
-.share {
+.tiny_share {
 
   a {
     color: $text-muted;
@@ -190,7 +190,7 @@ label.avatar {
 
 html.desktop {
 
-  .share {
+  .tiny_share {
 
     a.weixin {
       display: inline-block;

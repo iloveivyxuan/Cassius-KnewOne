@@ -1,17 +1,26 @@
-.modal.fade id="#{id}"
+.modal.fade.share-modal id="#{id}"
   .modal-dialog.modal-sm
     .modal-content
       .modal-header
         button.close type="button" data-dismiss="modal"
           | &times;
         h4.modal-title
-          | 绑定第三方账号
-          | 或
-          = link_to "分享到微信", "#share_wechat",
-          title: "微信朋友圈分享", class: "track_event",
-            data: {toggle: 'modal', category: "share_internal_wechat", action: "share_internal_wechat", label: "share_internal_wechat+#{request.url}"}
-      .modal-body.text-center
-        = link_to user_omniauth_authorize_path(:twitter, state: request.fullpath), class: "oauth" do
-          i.fa.fa-twitter.fa-4x
-        = link_to user_omniauth_authorize_path(:weibo, state: request.fullpath), class: "oauth" do
-          i.fa.fa-weibo.fa-4x
+          | 分享
+      .modal-body
+        section.box
+          h5 绑定第三方账号
+          p
+            = link_to user_omniauth_authorize_path(:twitter, state: request.fullpath), class: "share-button oauth" do
+              i.fa.fa-twitter.fa-4x
+            = link_to user_omniauth_authorize_path(:weibo, state: request.fullpath), class: "share-button oauth" do
+              i.fa.fa-weibo.fa-4x
+        section.box
+          h5 直接分享
+          p
+            = link_to "#share_wechat",
+              title: "微信朋友圈分享", class: "share-button track_event",
+              data: {toggle: 'modal', category: "share_internal_wechat", action: "share_internal_wechat", label: "share_internal_wechat+#{request.url}"} do
+              i.fa.fa-weixin.fa-4x
+            = link_to "http://widget.renren.com/dialog/share?link=#{request.url}", class: "share-button", target: "_blank", title: "分享到人人网" do
+              i.fa.fa-renren.fa-4x
+

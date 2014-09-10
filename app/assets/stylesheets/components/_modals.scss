@@ -25,23 +25,45 @@
   }
 }
 
-.share_modal {
-  .words-check {
-    margin-right: 5px;
+.share-modal {
+
+  .box {
+    margin-bottom: 10px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+ 
+    h5 {
+      background-color: $panel-default-heading-bg;
+      color: $panel-default-text;
+      margin: 0 0 10px;
+      text-align: center;
+      padding: 5px;
+    }
+
+    p {
+      margin-bottom: 0;
+      text-align: center;
+
+      .share-button {
+        &:last-child {
+          .fa {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .share-button {
+    color: $gray;
   }
 }
 
-#share_modal {
-
-  .oauth {
-    color: $gray;
-
-    &:last-child {
-
-      .fa {
-        margin-right: 0;
-      }
-    }
+// Deprecated
+.share_modal {
+  .words-check {
+    margin-right: 5px;
   }
 }
 
