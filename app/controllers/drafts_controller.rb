@@ -4,7 +4,7 @@ class DraftsController < ApplicationController
   respond_to :json
 
   def index
-    @drafts = current_user.drafts
+    @drafts = current_user.drafts.desc(:updated_at)
     respond_with @drafts.map(&:hoist_content)
   end
 
