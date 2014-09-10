@@ -8,23 +8,9 @@ html.home {
 
     > nav {
       margin: 15px 0;
+
       .nav {
         text-align: center;
-        li {
-          display: inline-block;
-          > a {
-            color: $gray;
-            font-size: 16px;
-            padding: 5px 10px;
-          }
-          &.active {
-            > a {
-              background: transparent;
-              color: $gray;
-            }
-            border-bottom: 1px solid $blue;
-          }
-        }
       }
 
       @include breakpoint(md) {

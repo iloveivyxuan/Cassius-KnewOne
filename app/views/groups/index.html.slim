@@ -13,9 +13,13 @@ header.hot_groups
 
 section.flash_topics
   header
-    h4
-      i.fa.fa-leaf
-      | 话题
+    nav
+      ul.nav.nav--underline
+        li class=(session[:topic_filter] == 'joined' ? 'active' : '')
+          = link_or_login('我关注的', {filter: 'joined'})
+        li class=(session[:topic_filter] == 'all' ? 'active' : '')
+          = link_to('全站话题', {filter: 'all'})
+
   section
     .topics= render @topics, show_group: true
     = paginate @topics

@@ -122,3 +122,24 @@
     }
   }
 }
+
+.nav--underline {
+  > li {
+    display: inline-block;
+    font-size: 16px;
+
+    > a {
+      color: $gray;
+      padding: $padding-small-vertical $padding-small-horizontal;
+
+      &:hover,
+      &:focus {
+        background: transparent;
+      }
+    }
+
+    &.active {
+      border-bottom: 1px solid $blue;
+    }
+  }
+}
