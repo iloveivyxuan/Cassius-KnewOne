@@ -11,6 +11,15 @@ ul.things {
   }
 }
 
+.things {
+  @include make-row;
+  > article.thing {
+    margin-bottom: 20px; 
+    @media (min-width: $screen-sm-min) { @include make-sm-column(6); }
+    @media (min-width: $screen-md-min) { @include make-md-column(4); }
+  }
+}
+
 figure.thing {
   $zindex_ribbon: 100;
 

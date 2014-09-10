@@ -255,10 +255,24 @@ html.home_welcome {
     }
   }
 
-  .things {
-
-    .figure_detail {
+  .thing {
+    .title {
+      text-align: center;
+    }
+ 
+    .subtitle,
+    footer.info {
       display: none;
+    }
+
+    @media (max-width: $screen-sm-max) {
+      .fancy_button  {
+        display: none;
+      }
+
+      section.content {
+        width: 100%;
+      }
     }
   }
 
