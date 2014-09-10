@@ -322,7 +322,7 @@ class User
   end
 
   after_create do
-    User.receive_welcome_message_from_ceo(self.id)
+    User.delay_for(30.minutes).receive_welcome_message_from_ceo(self.id)
   end
 
   # Payment
