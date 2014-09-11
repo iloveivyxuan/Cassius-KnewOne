@@ -1,13 +1,8 @@
 .user_avatar {
   @include text-overflow;
+  @include plain-link;
 
   vertical-align: middle;
-
-  &,
-  &:focus,
-  &:hover {
-    color: $gray;
-  }
 
   > .user_avatar-name,
   > img {
