@@ -12,7 +12,7 @@ class HomeController < ApplicationController
         activities = current_user.related_activities(%i(new_thing own_thing fancy_thing
                                                         new_review love_review
                                                         new_feeling
-                                                        add_to_list))
+                                                        add_to_list fancy_list))
         activities = activities.page(params[:page]).per(30)
         @feeds = HomeFeed.create_from_activities activities
         @pager = activities
