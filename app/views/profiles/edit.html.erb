@@ -7,7 +7,7 @@
 
 <%= simple_form_for(current_user, url: profile_path, wrapper: :horizontal, html: { method: :patch, class: 'form-horizontal' }) do |f| %>
   <%= f.input :name, required: true %>
-  <div class="form-group file optional user_avatar">
+  <div class="form-group file optional">
     <label class="file optional control-label" for="user_avatar">头像</label>
     <div class="controls">
       <p>
