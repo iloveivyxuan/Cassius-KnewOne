@@ -6,13 +6,13 @@ class HomeFeed
       activities.uniq do |a|
         [a.type, a.related_thing, a.user]
       end.reduce({}) do |feeds, a|
-        thing = a.related_thing
-        if feeds[thing]
-          feeds[thing].add_activity a
-        elsif thing
-          feed = HomeFeed.new thing
+        subject = a.related_thing || a.related_thing_list
+        if feeds[subject]
+          feeds[subject].add_activity a
+        elsif subject
+          feed = HomeFeed.new subject
           feed.add_activity a
-          feeds[thing] = feed
+          feeds[subject] = feed
         end
         feeds
       end.values.sort_by(&:updated_at).reverse
