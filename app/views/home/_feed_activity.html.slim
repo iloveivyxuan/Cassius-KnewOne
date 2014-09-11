@@ -3,8 +3,7 @@
 li.feed-activity
   ul
     li.feed-user
-      = user_presenter.link_to_with_avatar(:small)
-      = user_presenter.link_to_with_popoverable_name
+      = render 'shared/user_avatar', user: activity.user
     li.feed-action
       = time_ago_tag(activity.created_at)
       = present(activity, FeedPresenter).action

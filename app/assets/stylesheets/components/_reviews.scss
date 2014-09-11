@@ -44,21 +44,9 @@ article.review {
       padding-right: 30px;
     }
 
-    .creator {
+    .user_avatar {
       float: left;
       max-width: 50%;
-      @include text-overflow;
-
-      > a {
-        vertical-align: bottom;
-        color: $gray;
-      }
-
-      img {
-        width: 32px;
-        margin-right: .5em;
-        @extend .img-circle;
-      }
     }
 
     .interactions {

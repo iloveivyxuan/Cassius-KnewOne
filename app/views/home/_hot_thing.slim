@@ -10,7 +10,7 @@
       h4.title= link_to thing_presenter.title, hot_thing, target: "_blank"
       p.subtitle= link_to thing_presenter.subtitle, hot_thing, target: "_blank"
     footer.info
-      .creator= thing_presenter.author
+      = render 'shared/user_avatar', user: hot_thing.author
       .interactions
         = link_to hot_thing, class: "fanciers_count", target: "_blank" do
           i.fa.fa-heart-o

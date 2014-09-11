@@ -166,21 +166,9 @@ html.home {
           @include clearfix;
           width: 100%;
 
-          .creator {
+          .user_avatar {
             float: left;
             max-width: 50%;
-            @include text-overflow;
-
-            > a {
-              vertical-align: bottom;
-              color: $gray;
-            }
-
-            img {
-              width: 26px;
-              margin-right: .5em;
-              @extend %img-circle;
-            }
           }
 
           .interactions {

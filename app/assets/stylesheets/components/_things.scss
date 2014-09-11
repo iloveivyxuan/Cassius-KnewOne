@@ -210,20 +210,12 @@ article.thing {
     padding: 0 1em 1em;
     width: 100%;
 
-    .creator, .shopping {
+    .user_avatar,
+    .shopping {
       float: left;
       max-width: 50%;
       @include text-overflow;
       > a {color: $gray;}
-    }
-
-    .creator {
-      > a {vertical-align: bottom;}
-      img {
-        width: 26px;
-        margin-right: .5em;
-        @extend .img-circle;
-      }
     }
 
     .shopping {
