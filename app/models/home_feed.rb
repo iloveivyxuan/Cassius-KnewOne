@@ -3,7 +3,7 @@ class HomeFeed
 
   class << self
     def create_from_activities(activities)
-      activities.uniq do |a|
+      activities.select(&:reference).uniq do |a|
         [a.type, a.related_thing, a.user]
       end.reduce({}) do |feeds, a|
         subject = a.related_thing || a.related_thing_list
