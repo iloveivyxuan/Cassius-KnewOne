@@ -1,0 +1,33 @@
+.user_avatar {
+  @include text-overflow;
+
+  vertical-align: middle;
+
+  &,
+  &:focus,
+  &:hover {
+    color: $gray;
+  }
+
+  > .user_avatar-name,
+  > img {
+    vertical-align: bottom;
+  }
+
+  img {
+    @extend %img-circle;
+
+    width: 26px;
+    margin-right: .5em;
+  }
+}
+
+.user_avatar--without_name {
+  .user_avatar-name {
+    display: none;
+  }
+
+  img {
+    margin-right: 0;
+  }
+}
