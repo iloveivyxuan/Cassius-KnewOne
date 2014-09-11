@@ -9,7 +9,7 @@ module Api
       def feeds
         @feeds = case params[:scope]
           when "followings"
-            current_user.relate_activities
+            current_user.related_activities
           when "things"
             Activity.by_types(:new_thing).visible
           when "posts"

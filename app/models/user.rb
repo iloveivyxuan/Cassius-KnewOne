@@ -439,9 +439,9 @@ class User
   # activity
   include Feedable
 
-  def relate_activities(types = %i(new_thing own_thing fancy_thing
-                                  new_review love_review
-                                  new_feeling love_feeling))
+  def related_activities(types = %i(new_thing own_thing fancy_thing
+                                    new_review love_review
+                                    new_feeling love_feeling))
     user_ids = following_ids + [self.id]
     Activity.where(:user_id.in => user_ids.map(&:to_s), :type.in => types, visible: true)
   end

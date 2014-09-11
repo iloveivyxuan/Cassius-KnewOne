@@ -19,7 +19,7 @@ article.article
           | 评论
 
   - if Entry::CATEGORIES[entry.category] == 'events'
-    = render 'entries/relate_things', entry: entry, title: '相关产品'
+    = render 'entries/related_things', entry: entry, title: '相关产品'
 
   .content = sanitize post.content
 
@@ -29,7 +29,7 @@ article.article
     = render "shared/share_external", type: entry.category, title: entry_title(entry)
 
   - if Entry::CATEGORIES[entry.category] != 'events'
-    = render 'entries/relate_things', entry: entry
+    = render 'entries/related_things', entry: entry
 
   ul.pager
     - if previous_entry = entry.previous

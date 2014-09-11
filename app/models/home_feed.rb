@@ -1,18 +1,18 @@
 class HomeFeed
-  attr_accessor :thing, :reviews, :activities, :updated_at
+  attr_accessor :subject, :thing, :thing_list, :reviews, :activities, :updated_at
 
   class << self
     def create_from_activities(activities)
       activities.uniq do |a|
-        [a.type, a.relate_thing, a.user]
+        [a.type, a.related_thing, a.user]
       end.reduce({}) do |feeds, a|
-        thing = a.relate_thing
-        if feeds[thing]
-          feeds[thing].add_activity a
-        elsif thing
-          feed = HomeFeed.new thing
+        subject = a.related_thing || a.related_thing_list
+        if feeds[subject]
+          feeds[subject].add_activity a
+        elsif subject
+          feed = HomeFeed.new subject
           feed.add_activity a
-          feeds[thing] = feed
+          feeds[subject] = feed
         end
         feeds
       end.values.sort_by(&:updated_at).reverse
@@ -32,8 +32,17 @@ class HomeFeed
     end
   end
 
-  def initialize(thing)
-    @thing = thing
+  def initialize(subject)
+    case subject
+    when Thing
+      @thing = subject
+    when ThingList
+      @thing_list = subject
+    else
+      raise "Unknown subject: #{subject}"
+    end
+
+    @subject = subject
     @reviews = []
     @activities = []
   end

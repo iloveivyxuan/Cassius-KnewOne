@@ -1,5 +1,13 @@
 @import "compass/css3";
 
+@mixin plain-link($color: $gray) {
+  &,
+  &:focus,
+  &:hover {
+    color: $color;
+  }
+}
+
 // Layout
 // -----------------------------------------------------------------------------
 
