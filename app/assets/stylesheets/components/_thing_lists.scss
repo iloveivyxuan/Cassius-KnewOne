@@ -1,4 +1,6 @@
 .thing-list {
+  background: white;
+
   header {
     position: relative;
 
@@ -9,23 +11,38 @@
       img {
         width: 50%;
         &:only-child { width: 100%; }
+
+        padding: 2px;
+        background: white;
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
       }
     }
 
-    h4 {
-      @include text-overflow;
+    .thing-list-info {
+      position: relative;
+      padding: 1em 0;
 
-      margin: 10px 50px 10px 0;
-      font-size: 14px;
-      color: $black;
-    }
+      > li {
+        vertical-align: middle;
+      }
 
-    .fancy-button {
-      @extend .btn-sm;
+      .thing-list-create,
+      .thing-list-name {
+        @include text-overflow;
+        max-width: 50%;
+      }
 
-      position: absolute;
-      right: 0;
-      bottom: -3px;
+      .thing-list-fancy {
+        position: absolute;
+        top: 16px;
+        right: 0;
+        padding: 0;
+      }
+
+      color: $gray-light;
+      a {
+        @include plain-link($gray-light);
+      }
     }
   }
 

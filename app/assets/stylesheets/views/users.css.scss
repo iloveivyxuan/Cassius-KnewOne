@@ -82,6 +82,23 @@ html.users_activities {
           @include make-sm-column(4);
           padding: 2em;
         }
+
+
+        .thing-list-info {
+          > li,
+          .fa-list {
+            display: none;
+          }
+
+          .thing-list-name {
+            display: inline-block;
+            max-width: 80%;
+          }
+
+          .thing-list-fancy {
+            display: block;
+          }
+        }
       }
     }
   }

@@ -10,10 +10,16 @@ section.thing-list id="thing-list-#{thing_list.id}"
           - thing_list.items.limit(4).each do |item|
             = image_tag(item.thing.cover.url(:square))
 
-      h4.thing-list-name
-        = thing_list.name
+    ul.thing-list-info.list-inline
+      li.thing-list-creator= render 'shared/user_avatar', user: thing_list.user
 
-      = render 'thing_lists/fancy_button', thing_list: thing_list
+      li.thing-list-name= link_to thing_list
+        i.fa.fa-list
+        = "#{thing_list.name} (#{thing_list.items.size})"
+
+      li.thing-list-fancy= link_to thing_list
+          i.fa.fa-heart-o
+          = thing_list.fanciers_count
 
   footer
     span.thing-list-timestamp
