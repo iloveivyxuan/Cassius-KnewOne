@@ -2,67 +2,40 @@
   = @name
 
 - content_for :title do
-  | 月圆之际，「家」是最明亮的主题
+  | 专治强迫症的神器，别处买不到
 
 p
-  = image_tag attachments['adoption.jpg'].url, alt: '月圆之际，「家」是最明亮的主题'
+  = image_tag attachments['adoption.jpg'].url, alt: '专治强迫症的神器，别处买不到'
 
 p
-  | 中秋来临之际，牛玩希望能帮你把「家」变得更好。为了这个感情满满的节日，
-  | 牛玩掏出一个包括欧瑞博智能遥控器、智能开关和智能插座的大礼包，
-  strong 每款
-  | 产品都有
-  strong 10个
-  | 免费领养机会哦。
+  | 几乎每个人身边都有几枚强迫症患者，他们总是担心忘了锁门，或者没有关窗。别回头，说你呢！
 
 p
-  | 希望它们能撑圆你和家人的笑脸，并在以后的日子里，帮你把家安排得井井有条，不管身在何方。
+  | 别捉急，药来了。
 
 p
-  | 请掏出手机，记清楚欧瑞博智能家居系列产品的免费领养步骤：
+  = link_to '丁盯智能门磁', 'http://knewone.com/things/ding-cheng-zhi-neng-men-ci?edm'
+  | ，刚从生产线滚出来的智能硬件，新鲜热辣、足斤足两、童叟无欺、丰俭由人。。。
 
 p
-  | 点击打开欧瑞博
-  | #{link_to '智能遥控器', 'http://knewone.com/things/ou-rui-bo-allone?edm'}、
-  | #{link_to '智能开关', 'http://knewone.com/things/ou-rui-bo-yi-zhu-zhi-neng-kai-guan?edm'}和
-  | #{link_to '智能插座', 'http://knewone.com/things/ou-rui-bo-s20?edm'}
-  | ，猛戳右边绿色「领养」按钮；
-  br
-  | 填写完整的收货信息，点「确认领养」；
-  br
-  | 用微博、微信愉快地分享给朋友们；
-  br
-  | 添加微信公号「
-  strong KnewOneCom
-  | 」静候公布领养名单；
-  br
-  | 不论新、老用户，在社区内更多短评、更多互动的用户，免费领养几率越高；
-  br
-  | 申请截止时间为9月9日 AM 12:00；
-  br
-  | 拿到产品后，请到相应的产品页分享开箱、使用体验；
+  | 来试试丁盯吧，它号称能在你忘关门窗时自动提醒。一旦拥有， 你的生活 bigger than bigger！
 
 p
-  | 最终免费领养用户名单，于9月10日下午优先在微信公号“KnewOneCom”发布；
-  br
-  | 关注微博 #{link_to '@KnewOne', 'http://weibo.com/knewone'}，获得各种福利活动通知。
+  | 让我们安心放心的来看看和以往不同的领养步骤。特别提醒，微博专场
 
-hr
-
-p
-  | 一并奉上 KnewOne 中秋新奇酷专题，戳下面图进入。
-
-p
-  = link_to 'http://knewone.com/entries/5407023c31302d355f860000?edm' do
-    = image_tag attachments['mid_autumn_1.jpg'].url, alt: 'KnewOne专题——人未归，心已至'
-  br
-  | ( http://knewone.com/entries/5407023c31302d355f860000 )
-
-p
-  = link_to 'http://knewone.com/entries/5406edf131302d356d0c0000?edm' do
-    = image_tag attachments['mid_autumn_2.jpg'].url, alt: 'KnewOne专题——尽享团圆之美'
-  br
-  | ( http://knewone.com/entries/5406edf131302d356d0c0000 )
+ul
+  li 点击「丁盯智能门磁」戳右边红心「喜欢」；
+  li 在弹出的收藏列表，添加丁盯到现有列表，或建新列表（起个有趣的列表名字）；
+  li 丁盯所在的列表中，至少还要添加2件其他产品；
+  li 点击右上角自己的头像，进入个人主页；
+  li 点顶部栏目中「列表」按钮；
+  li 进入「丁盯」所属的列表；
+  li 在页面顶部列表名字旁边找到分享按钮，将列表分享到微博；
+  li 牛玩将从微博转发列表用户中挑选免费领养；
+  li 添加微博账号#{link_to '@KnewOne', 'http://weibo.com/knewone'}，便于接收私信领养通知；
+  li 不论新、老用户，在社区内更多短评、更多互动的用户，免费领养几率越高；
+  li 申请截止时间为9月12日 20:00；
+  li 关注微信「KnewOneCom」，获得各种福利活动通知。
 
 p
   = image_tag attachments['ko_wechat_qr.png'].url, alt: 'KnewOne订阅号'

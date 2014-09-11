@@ -37,7 +37,7 @@ class UserMailer < BaseMailer
   end
 
   def chosen(email, name)
-    attachments.inline['cuptime_qr.jpg'] = File.read(Rails.root.join('app/assets/images/mails/cuptime_qr.jpg'))
+    attachments.inline['chosen_qr.jpg'] = File.read(Rails.root.join('app/assets/images/mails/chosen_qr.jpg'))
     @name = name
 
     mail(to: email,
@@ -46,13 +46,11 @@ class UserMailer < BaseMailer
 
   def adopt(email, name)
     attachments.inline['adoption.jpg'] = File.read(Rails.root.join('app/assets/images/mails/adoption.jpg'))
-    attachments.inline['mid_autumn_1.jpg'] = File.read(Rails.root.join('app/assets/images/mails/mid_autumn_1.jpg'))
-    attachments.inline['mid_autumn_2.jpg'] = File.read(Rails.root.join('app/assets/images/mails/mid_autumn_2.jpg'))
     attachments.inline['ko_wechat_qr.png'] = File.read(Rails.root.join('app/assets/images/mails/ko_wechat_qr.png'))
     @name = name
 
     mail(to: email,
-         subject: '【免费领养】月圆之际，「家」是最明亮的主题',
+         subject: '【免费领养 微博专场】专治强迫症的神器，别处买不到',
          edm: true)
   end
 
