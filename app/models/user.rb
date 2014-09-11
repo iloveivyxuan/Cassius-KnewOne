@@ -132,9 +132,10 @@ class User
     def create_from_omniauth(data)
       create! do |user|
         auth = Auth.from_omniauth(data)
-        user.auths << auth
 
         user.set_profiles_by_auth(auth)
+
+        user.auths << auth
       end
     end
 
