@@ -205,10 +205,9 @@ html.home {
         }
 
         .feed-user, .feed-action {
-          vertical-align: bottom;
+          vertical-align: middle;
 
           > * {
-            vertical-align: bottom;
             color: $gray;
           }
         }
