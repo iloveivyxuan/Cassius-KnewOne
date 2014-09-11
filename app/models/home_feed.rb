@@ -1,5 +1,5 @@
 class HomeFeed
-  attr_accessor :thing, :reviews, :activities, :updated_at
+  attr_accessor :subject, :thing, :thing_list, :reviews, :activities, :updated_at
 
   class << self
     def create_from_activities(activities)
@@ -32,8 +32,17 @@ class HomeFeed
     end
   end
 
-  def initialize(thing)
-    @thing = thing
+  def initialize(subject)
+    case subject
+    when Thing
+      @thing = subject
+    when ThingList
+      @thing_list = subject
+    else
+      raise "Unknown subject: #{subject}"
+    end
+
+    @subject = subject
     @reviews = []
     @activities = []
   end
