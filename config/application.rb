@@ -76,6 +76,8 @@ module Making
 
     I18n.enforce_available_locales = false
 
+    config.middleware.insert 0, Rack::UTF8Sanitizer
+
     config.to_prepare do
       Doorkeeper::ApplicationController.send :include, ApplicationHelper
       # Base layout. Uses app/views/layouts/my_layout.html.erb

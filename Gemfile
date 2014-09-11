@@ -94,7 +94,7 @@ gem 'dkim'
 gem 'redis-rails'
 
 # resolve error like ArgumentError: invalid byte sequence in UTF-8
-gem 'utf8-cleaner'
+gem 'rack-utf8_sanitizer'
 
 # servers
 group :production do

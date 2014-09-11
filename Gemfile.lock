@@ -387,6 +387,8 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    rack-utf8_sanitizer (1.2.2)
+      rack (~> 1.0)
     rails (4.1.4)
       actionmailer (= 4.1.4)
       actionpack (= 4.1.4)
@@ -546,7 +548,6 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    utf8-cleaner (0.0.9)
     warden (1.2.3)
       rack (>= 1.0)
     whenever (0.9.2)
@@ -620,6 +621,7 @@ DEPENDENCIES
   omniauth-weibo-oauth2
   pry-rails
   quiet_assets
+  rack-utf8_sanitizer
   rails (~> 4.1.0)
   rails-i18n
   redis-rails
@@ -640,7 +642,6 @@ DEPENDENCIES
   twitter (>= 5.8.0)
   uglifier
   unicorn
-  utf8-cleaner
   weibo_2!
   whenever
   x-editable-rails!
