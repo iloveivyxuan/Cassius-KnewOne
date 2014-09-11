@@ -78,4 +78,12 @@ class Activity
   def related_thing
     @_related_thing ||= reference.is_a?(Thing) ? reference : reference.try(:thing)
   end
+
+  def related_thing_list
+    case self.type
+    when :fancy_list then self.reference
+    when :add_to_list then self.source
+    else nil
+    end
+  end
 end
