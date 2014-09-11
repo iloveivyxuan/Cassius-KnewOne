@@ -75,7 +75,7 @@ class Activity
     self.source_union = "#{record.class.to_s}_#{record.id.to_s}"
   end
 
-  def relate_thing
-    @_relate_thing ||= reference.is_a?(Thing) ? reference : reference.try(:thing)
+  def related_thing
+    @_related_thing ||= reference.is_a?(Thing) ? reference : reference.try(:thing)
   end
 end

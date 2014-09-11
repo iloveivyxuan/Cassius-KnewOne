@@ -69,7 +69,7 @@ class UserMailer < BaseMailer
   def recall(user_id, items = {})
     @user = User.find(user_id)
     @items = items
-    @items[:activities_count] ||= @user.relate_activities.from_date(30.days.ago).to_date(Date.today).size
+    @items[:activities_count] ||= @user.related_activities.from_date(30.days.ago).to_date(Date.today).size
     @items[:global_things_count] ||= Thing.recent.size
     @items[:global_reviews_count] ||= Review.recent.size
     @items[:things] ||= @user.things.recent
