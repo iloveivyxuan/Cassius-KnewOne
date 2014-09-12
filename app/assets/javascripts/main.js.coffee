@@ -303,7 +303,7 @@ do (exports = Making) ->
 
   exports.popupLogin = ->
     if exports.user? then return
-    for klass in ['reviews_show', 'users_show']
+    for klass in ['users_show']
       if $html.hasClass(klass)
         switch exports.device
           when 'mobile', 'tablet'
