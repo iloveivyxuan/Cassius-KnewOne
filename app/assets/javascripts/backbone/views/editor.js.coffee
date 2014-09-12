@@ -114,7 +114,7 @@ do (exports = Making) ->
                   else
                     html += '<p>' + exports.htmlEntities(paragraph) + '</p>'
 
-              document.execCommand('insertHTML', false, html);
+              document.execCommand('insertHTML', false, html)
             , @
 
             .on 'blur', _.bind (event) ->
@@ -251,14 +251,22 @@ do (exports = Making) ->
 
       _.each @$fields, (element, index, list) ->
         $field = $(element)
-        @draft.set($field.attr('name'), $field.prop('value'))
+        switch $field.attr('type')
+          when 'checkbox', 'radio'
+            @draft.set($field.attr('name') + $field.val(), $field.prop('checked'))
+          else
+            @draft.set($field.attr('name'), $field.prop('value'))
       , @
 
     getContent: (content) ->
       _.each @$fields, (element, index, list) ->
         $field = $(element)
         key    = $field.prop('name')
-        $field.prop('value', content[key])
+        switch $field.attr('type')
+          when 'checkbox', 'radio'
+            $field.prop('checked', content[key + $field.val()])
+          else
+            $field.prop('value', content[key])
       , @
 
       @getBody()
