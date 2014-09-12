@@ -283,6 +283,7 @@ Making::Application.routes.draw do
       collection do
         get 'batch_edit'
         patch 'batch_update'
+        post 'send_hits_message'
       end
     end
 
