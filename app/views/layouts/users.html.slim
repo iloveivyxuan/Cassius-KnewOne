@@ -60,7 +60,7 @@
         = link_to lists_user_path(@user) do
           i.fa.fa-list
           | 列表
-          em = @user.related_thing_lists.size
+          em = @user.thing_lists.size
       = li (action_name == 'things') do
         = link_to things_user_path(@user) do
           i.fa.fa-magic
