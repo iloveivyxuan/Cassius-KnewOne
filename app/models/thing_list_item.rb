@@ -23,7 +23,7 @@ class ThingListItem
   end
 
   after_create do
-    self.thing.fancy(list.user)
+    self.thing.fancy(list.author)
   end
 
   alias_method :list, :thing_list

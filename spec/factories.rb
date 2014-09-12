@@ -161,7 +161,7 @@ FactoryGirl.define do
   end
 
   factory :thing_list do
-    user
+    author
     name { Faker::Lorem.word }
     description { Faker::Lorem.paragraph }
 

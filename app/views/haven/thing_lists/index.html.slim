@@ -17,7 +17,7 @@ table.table.table-striped.table-hover
       td= link_to list.name, list
       td= list.created_at.to_s(:db)
       td= list.updated_at.to_s(:db)
-      td= link_to list.user.name, list.user
+      td= link_to list.author.name, list.author
       td= list.fanciers_count
 
 = paginate @thing_lists

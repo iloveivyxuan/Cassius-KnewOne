@@ -11,7 +11,7 @@ section.thing-list id="thing-list-#{thing_list.id}"
             = image_tag(item.thing.cover.url(:square))
 
     ul.thing-list-info.list-inline
-      li.thing-list-creator= render 'shared/user_avatar', user: thing_list.user
+      li.thing-list-creator= render 'shared/user_avatar', user: thing_list.author
 
       li.thing-list-name= link_to thing_list
         i.fa.fa-list
