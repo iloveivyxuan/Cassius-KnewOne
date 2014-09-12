@@ -13,9 +13,7 @@ class ThingList
 
   validates :name, presence: true, uniqueness: { scope: :user }
 
-  def items
-    thing_list_items
-  end
+  alias_method :items, :thing_list_items
 
   include Fanciable
   fancied_as :fancied_thing_lists

@@ -26,7 +26,5 @@ class ThingListItem
     self.thing.fancy(list.user)
   end
 
-  def list
-    thing_list
-  end
+  alias_method :list, :thing_list
 end
