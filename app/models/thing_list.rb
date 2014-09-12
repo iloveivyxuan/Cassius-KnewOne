@@ -1,6 +1,7 @@
 class ThingList
   include Mongoid::Document
   include Mongoid::Timestamps
+  include AutoCleanup
 
   belongs_to :user, inverse_of: :thing_list, index: true
   embeds_many :thing_list_items
