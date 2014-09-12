@@ -37,6 +37,7 @@ header.page-header
     = link_to '查看', @thing, class: "btn btn-default btn-lg"
     = link_to '发送到货通知给标记喜欢的用户', send_stock_notification_haven_thing_path(@thing), \
     class: "btn btn-default btn-lg", data: { confirm: 'are you sure?' }
+    = link_to '通知用户通过审核', send_hits_message_haven_things_path(thing: @thing), method: :post, class: 'btn btn-default btn-lg'
   - if current_user.role? :sale
     .kinds
       = f.simple_fields_for :kinds

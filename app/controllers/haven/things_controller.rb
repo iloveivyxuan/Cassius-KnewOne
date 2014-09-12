@@ -94,6 +94,19 @@ module Haven
       redirect_back_or batch_edit_haven_things_path
     end
 
+    # notify user that his thing has been into hits
+    def send_hits_message
+      thing = Thing.find params[:thing]
+      user = thing.author
+      knewone = User.where(id: '511114fa7373c2e3180000b4').first
+
+      return unless user && knewone && thing
+      content = "#{user.name}，我们很高兴地通知您，您分享的 <a href='#{thing_url(thing)}'>#{thing.title}</a> 已经通过审核，被放入<a href='#{latest_path}'>「最新推荐」</a>啦！谢谢您的分享~"
+      knewone.send_private_message_to(user, content)
+      knewone.dialog_with(user).destroy
+      redirect_to :back
+    end
+
     private
 
     def thing_params
