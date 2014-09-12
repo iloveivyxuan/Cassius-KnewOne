@@ -11,7 +11,7 @@ feature 'Walk around (Smoke test)', slow: true do
   given!(:topic) { create(:topic, author: user, group: group) }
   given!(:notification) { create(:notification, receiver: user) }
   given!(:dialog) { create(:dialog, sender: user) }
-  given!(:thing_list) { create(:thing_list, user: user) }
+  given!(:thing_list) { create(:thing_list, author: user) }
   given!(:paths) do
     [
      root_path,

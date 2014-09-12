@@ -130,7 +130,7 @@ class Ability
 
     can :create, ThingList
     can [:update, :destroy], ThingList do |thing_list|
-      thing_list.user == user
+      thing_list.author == user
     end
     can :fancy, ThingList do |thing_list|
       !thing_list.fancied?(user)
@@ -141,7 +141,7 @@ class Ability
 
     can :create, ThingListItem
     can [:update, :destroy], ThingListItem do |thing_list_item|
-      thing_list_item.list.user == user
+      thing_list_item.list.author == user
     end
   end
 

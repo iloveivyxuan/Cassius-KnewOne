@@ -1,6 +1,7 @@
 class ThingListItem
   include Mongoid::Document
   include Mongoid::Timestamps
+  include AutoCleanup
 
   belongs_to :thing
   embedded_in :thing_list
@@ -22,10 +23,8 @@ class ThingListItem
   end
 
   after_create do
-    self.thing.fancy(list.user)
+    self.thing.fancy(list.author)
   end
 
-  def list
-    thing_list
-  end
+  alias_method :list, :thing_list
 end

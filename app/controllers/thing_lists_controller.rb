@@ -14,7 +14,7 @@ class ThingListsController < ApplicationController
   end
 
   def create
-    @thing_list.user = current_user
+    @thing_list.author = current_user
     @thing_list.save
     respond_with @thing_list
   end

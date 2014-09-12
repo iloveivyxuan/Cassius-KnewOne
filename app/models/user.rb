@@ -359,7 +359,7 @@ class User
   has_many :drafts
 
   # ThingList
-  has_many :thing_lists
+  has_many :thing_lists, inverse_of: :author, foreign_key: :user_id
 
   def related_thing_lists
     (thing_lists + fancied_thing_lists).uniq

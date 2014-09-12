@@ -24,7 +24,7 @@ describe ThingList, type: :model do
 
     context 'after create' do
       it 'gets fancied' do
-        expect(item.thing.fancied?(thing_list.user)).to be true
+        expect(item.thing.fancied?(thing_list.author)).to be true
       end
     end
 
@@ -41,7 +41,7 @@ describe ThingList, type: :model do
 
     context 'after unfancy thing' do
       before do
-        item.thing.unfancy(thing_list.user)
+        item.thing.unfancy(thing_list.author)
         thing_list.reload
       end
 
