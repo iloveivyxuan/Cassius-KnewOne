@@ -84,12 +84,12 @@ do ($ = jQuery) ->
             if event.type is 'click'
               @preClipboard = parentNode
         else if selection.anchorOffset is 0
-          topNode = @getTopNode(selection.anchorNode)
-          if $.trim($(topNode).text()) is ''
+          anchorNode = selection.anchorNode
+          if anchorNode.textContent.trim() is ''
             @insertPoint = document.createRange()
-            @insertPoint.selectNode(topNode)
+            @insertPoint.selectNode(anchorNode)
             @insertPoint.collapse(true)
-            @show(topNode)
+            @show(anchorNode)
 
       show: (referenceNode) ->
         @setMenuTopPosition(referenceNode)
