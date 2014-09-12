@@ -3,7 +3,7 @@ class ThingList
   include Mongoid::Timestamps
   include AutoCleanup
 
-  belongs_to :author, foreign_key: :user_id, class_name: 'User', inverse_of: :thing_lists, index: true
+  belongs_to :author, class_name: 'User', inverse_of: :thing_lists, index: true
   embeds_many :thing_list_items
 
   index 'thing_list_items.thing_id' => 1
