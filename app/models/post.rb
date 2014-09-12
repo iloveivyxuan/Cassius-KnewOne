@@ -3,6 +3,7 @@ class Post
   include Mongoid::Timestamps
   include Mongoid::Paranoia
   include Votable
+  include AutoCleanup
 
   field :title, type: String
   field :content, type: String, default: ""
@@ -50,9 +51,6 @@ class Post
       src.sub(/!.*$/, "") + "!#{version}"
     end
   end
-
-  after_destroy :cleanup_relevant_activities
-  after_destroy :cleanup_relevant_notifications
 
   private
 
@@ -106,15 +104,5 @@ class Post
     else
       yield
     end
-  end
-
-  def cleanup_relevant_activities
-    union = "#{self.class.to_s}_#{id.to_s}"
-    Activity.where(reference_union: union).update_all(visible: false)
-    Activity.where(source_union: union).update_all(visible: false)
-  end
-
-  def cleanup_relevant_notifications
-    Notification.where(context_type: self.class.to_s, context_id: id.to_s).destroy
   end
 end
