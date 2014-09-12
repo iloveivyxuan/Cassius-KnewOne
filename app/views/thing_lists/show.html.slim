@@ -25,7 +25,7 @@ header
 
 - if @thing_list.items.present?
   section.thing-list-items
-    = render @thing_list.items.desc(:order)
+    = render @thing_list.items
 - else
     = render 'shared/nothing'
 

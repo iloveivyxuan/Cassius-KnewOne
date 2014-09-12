@@ -9,7 +9,7 @@ class ThingListItem
   field :description, type: String
   field :order, type: Float, default: 0
 
-  scope :by_order, -> { order_by(:order.asc, :created_at.desc) }
+  default_scope -> { desc(:order, :created_at) }
 
   validates :list, presence: true
   validates :thing, presence: true, uniqueness: { scope: :list }
