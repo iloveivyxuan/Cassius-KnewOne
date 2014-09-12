@@ -319,6 +319,8 @@ Making::Application.routes.draw do
 
     resources :categories, only: [:index, :edit, :update]
 
+    resources :tags
+
     resources :staffs do
       get 'role', to: 'staffs#role'
     end

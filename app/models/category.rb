@@ -14,6 +14,8 @@ class Category
 
   scope :prior, -> { desc(:priority, :things_count) }
 
+  has_many :tags
+
   def things
     Thing.published.any_in(categories: [name])
   end

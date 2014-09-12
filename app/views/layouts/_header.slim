@@ -99,7 +99,9 @@ header#header role="banner"
           .dropdown-menu
             ul.categories
               - Category.prior.gt(things_count: 10).limit(42).each do |c|
-                li= link_to c.name, category_things_path(category: c)
+                li
+                  = link_to c.name, category_things_path(category: c)
+                  em= c.things_count
             .category_more
               = link_to "查看全部>>", categories_path
 

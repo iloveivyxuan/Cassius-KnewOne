@@ -1,0 +1,18 @@
+table.table
+  thead
+    tr
+      th 标签
+      th 所属分类
+      th 产品数
+      th 操作
+  tbody
+    - @tags.each do |t|
+      tr
+        th= link_to t.name, things_path(tag: t)
+        th= t.category.name
+        th= t.things.size
+        th
+          = link_to '[编辑]', edit_haven_tag_path(t)
+          = link_to '[删除]', haven_tag_path(t), method: :delete
+
+= link_to "添加新标签", new_haven_tag_path

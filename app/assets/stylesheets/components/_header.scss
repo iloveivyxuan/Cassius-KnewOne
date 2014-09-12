@@ -290,9 +290,9 @@ html.no-touch {
   }
 
   .dropdown-menu {
-    width: 480px;
+    width: 240px;
     padding: 1em 2em 0;
-    right: -222px;
+    right: -100px;
   }
 
   .categories {
@@ -300,11 +300,18 @@ html.no-touch {
     li {
       float: left;
       padding: .5em 0;
-      width: 14.2851%;
+      width: 100%;
       text-align: center;
       &:hover {background-color: $gray;}
       a {
         color: white;
+        float: left;
+        width: 50%;
+      }
+      em {
+        float: right;
+        font-style: normal;
+        width: 50%;
       }
     }
   }
