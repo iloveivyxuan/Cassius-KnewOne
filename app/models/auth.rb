@@ -45,10 +45,6 @@ class Auth
     User.where(:'auths.provider' => self.provider, :'auths.uid'.in => friend_ids(self.uid, bilateral).map(&:to_s))
   end
 
-  def update_profile
-
-  end
-
   class << self
     def from_omniauth(data)
       new omniauth_to_auth(data)
