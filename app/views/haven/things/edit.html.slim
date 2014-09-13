@@ -1,5 +1,7 @@
 header.page-header
   h2 购买信息编辑
+  h3 = flash[:msg]
+
 = simple_nested_form_for @thing, url: haven_thing_path(@thing), html: {multipart: true, class: "pro_edit_thing_form"} do |f|
   .form-group
     label.control-label 分享者
