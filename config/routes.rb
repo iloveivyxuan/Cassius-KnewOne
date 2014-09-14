@@ -342,6 +342,8 @@ Making::Application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
+      post 'bong_connect', to: 'bong_connect#create'
+
       get 'search', to: 'search#index'
       get 'extract_url', to: 'utils#extract_url'
       get 'find_similar', to: 'utils#find_similar'
