@@ -345,6 +345,7 @@ class Thing < Post
   end
 
   def update_priority
+    self.priority ||= 0
     self.priority = 1 if self.priority < 1 && self.categories.size > 0
   end
 end
