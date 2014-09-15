@@ -163,4 +163,17 @@ module OrdersHelper
         address_id: (options.has_key?(:address_id) ? options[:address_id] : order.address.try(:id))
     })
   end
+
+  def coupon_text order
+    unless order.coupon_code.nil?
+      coupon = order.coupon_code.coupon
+      "#{coupon.price} -> #{coupon.name} #{coupon.note}"
+    end
+  end
+
+  # 付款时间
+  def payment_time order
+    payment = order.order_histories.where(from: :pending).where(to: :confirmed).first
+    date_time_text(payment.created_at) if payment
+  end
 end

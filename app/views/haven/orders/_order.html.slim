@@ -1,6 +1,8 @@
 li.order
   .pull-right
     = link_to '订单详情', haven_order_path(order), class: 'btn btn-primary'
+    = way_bill_link(order)
+    = deliver_bill_link(order)
 
   .summary
     ul
@@ -25,6 +27,16 @@ li.order
       li
         strong.field 更新时间：
         span = date_time_text order.updated_at
+      li
+        strong.field 付款时间：
+        span= payment_time order
+      li
+        strong.field 运费：
+        span= order.deliver_price
+      li
+        strong.field 使用的优惠券：
+        - if coupon_text(order)
+          span.warning= coupon_text(order)
       li
         strong.field 订单状态：
         span = state_text order
@@ -57,4 +69,7 @@ li.order
            td
              i.fa.fa-yen
              = i.price
+      li
+        span
+          = ship_link(order)
   hr
