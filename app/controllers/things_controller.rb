@@ -12,6 +12,9 @@ class ThingsController < ApplicationController
     if params[:category].present? and params[:category] != 'all'
       @category = Category.find(params[:category])
       @things = @category.things.published
+    elsif params[:tag].present?
+      @tag = Tag.find(params[:tag])
+      @things = @tag.things.published
     else
       @things = Thing.published
     end
@@ -31,7 +34,7 @@ class ThingsController < ApplicationController
             render partial: 'home/hot_thing', collection: @things, as: :hot_thing, locals: {img_lazy: false, size: :normal}
           else
             head :no_content
-          end          
+          end
         else
           render
         end

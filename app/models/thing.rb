@@ -71,6 +71,8 @@ class Thing < Post
 
   has_many :adoptions, dependent: :destroy
 
+  has_and_belongs_to_many :tags
+
   scope :recent, -> { gt(created_at: 1.month.ago) }
   scope :published, -> { lt(created_at: Time.now) }
   scope :reviewed, -> { gt(reviews_count: 0).desc(:priority, :created_at) }

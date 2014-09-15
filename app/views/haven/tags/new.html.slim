@@ -1,0 +1,14 @@
+- page_title "标签"
+
+header.page-header
+  h1
+    i.fa.fa-tag
+    | 新标签
+
+section
+  = form_for Tag.new, url: haven_tags_path, method: :post do |f|
+    p = f.label "标签"
+    p = f.text_field :name
+    p = f.label "所属分类"
+    p = f.text_field :category
+    p = f.submit
