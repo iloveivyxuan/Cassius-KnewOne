@@ -103,7 +103,6 @@ module Haven
       return unless user && knewone && thing
       content = "#{user.name}，我们很高兴地通知您，您分享的 <a href='#{thing_url(thing)}'>#{thing.title}</a> 已经通过审核，被放入<a href='#{latest_path}'>「最新推荐」</a>啦！谢谢您的分享~"
       knewone.send_private_message_to(user, content)
-      knewone.dialog_with(user).destroy
       redirect_to :back, flash: { msg: "已成功向用户发送私信" }
     end
 
