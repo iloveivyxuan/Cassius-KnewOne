@@ -9,7 +9,5 @@ class Tag
 
   validates :name, presence: true, uniqueness: true
 
-  def things
-    Thing.published.any_in(tags: [name])
-  end
+  has_and_belongs_to_many :things
 end
