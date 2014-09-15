@@ -18,6 +18,7 @@
 //
 
 .editor {
+  background-color: #fff;
   bottom: 0;
   display: none;
   left: 0;
@@ -161,18 +162,18 @@
 
 .editor-content {
   background-color: #fff;
-  min-height: 100%;
+  bottom: 40px;
   left: 0;
+  overflow: scroll;
   padding-top: $navbar-height + $padding-large-vertical * 3;
   position: absolute;
+  right: 0;
   top: 0;
-  width: 100%;
   z-index: 1;
 
   > header,
   > .body {
     margin: {
-      bottom: $padding-large-vertical * 3;
       left: auto;
       right: auto;
     }
@@ -182,6 +183,7 @@
   }
 
   > header {
+    margin-bottom: $padding-large-vertical * 3;
 
     .title {
       border: none;
@@ -196,11 +198,16 @@
   }
 
   > .body {
+    margin-bottom: 0;
     // @TODO
     min-height: 350px;
 
     &:focus {
       outline: none;
+    }
+
+    *:last-child {
+      margin-bottom: 0;
     }
 
     .is-focused {
