@@ -8,7 +8,6 @@ class Thing < Post
   field :official_site, type: String, default: ""
   field :photo_ids, type: Array, default: []
   field :categories, type: Array, default: []
-  field :tags, type: Array, default: []
   before_save :update_price
   before_save :update_amazon_link
   before_save :update_priority
