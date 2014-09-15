@@ -275,6 +275,11 @@ Making::Application.routes.draw do
     mount Sidekiq::Web => '/haven/sidekiq'
   end
 
+  resource :styleguide, only: [:show] do
+    get 'foo'
+    get 'bar'
+  end
+
   namespace :haven do
     resources :activities, only: [:index]
 
