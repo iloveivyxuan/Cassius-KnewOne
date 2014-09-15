@@ -6,7 +6,6 @@ class Tag
 
   field :name, type: String
   slug :name, history: true
-  field :priority, type: Integer, default: 0
 
   validates :name, presence: true, uniqueness: true
 
