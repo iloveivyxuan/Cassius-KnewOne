@@ -23,7 +23,7 @@ module Haven
 
     def update
       new_category = Category.where(name: tag_params.values.first).first
-      @tag.category = new_category
+      @tag.category = new_category if new_category
       @tag.name = params[:tag][:name]
       if @tag.save
         redirect_to haven_tags_path
