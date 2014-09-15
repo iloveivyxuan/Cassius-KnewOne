@@ -66,7 +66,7 @@ window.Making = (function(module) {
       content: $('<div />').qrcode({
         render: 'image',
         ecLevel: 'L',
-        text: document.URL
+        text: document.URL.slice(0, document.URL.indexOf('#') > 0 ? document.URL.indexOf('#') : undefined)
       })
     });
   }

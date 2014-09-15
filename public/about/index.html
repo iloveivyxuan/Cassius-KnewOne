@@ -377,7 +377,11 @@
 <script type="text/javascript" src="/about/js/jquery.qrcode.min.js"></script>
 <script type="text/javascript" src="/common/scripts/setup_olark.js"></script>
 <script type="text/javascript">
-  $('.qr-field').qrcode({render: 'image', ecLevel: 'L', text: document.URL});
+  $('.qr-field').qrcode({
+    render: 'image',
+    ecLevel: 'L',
+    text: document.URL.slice(0, document.URL.indexOf('#') > 0 ? document.URL.indexOf('#') : undefined)
+  });
 </script>
 
 </body>

@@ -13,4 +13,5 @@
 
 - content_for :script do
   javascript:
-    $('.qr-field').qrcode({render: 'image', ecLevel: 'L', text: document.URL});
+    var url = document.URL.indexOf('#') > 0 ? Making.url : document.URL;
+    $('.qr-field').qrcode({render: 'image', ecLevel: 'L', text: url});

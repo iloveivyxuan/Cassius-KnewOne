@@ -16,7 +16,7 @@ Making.Views.Share = Backbone.View.extend
       content: $('<div />').qrcode
         render: 'image'
         ecLevel: 'L'
-        text: document.URL
+        text: if document.URL.indexOf('#') > 0 then Making.url else document.URL
 
   prevent_default: (event) ->
     event.preventDefault()

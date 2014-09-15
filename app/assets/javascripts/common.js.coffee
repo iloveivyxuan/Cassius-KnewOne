@@ -7,6 +7,7 @@ do (root = @, exports = Making) ->
       window.location.hostname +
       (if window.location.port then ':' + window.location.port else '')
 
+  exports.url  = window.location.origin + window.location.pathname
   exports.user = $('#user').data('id')
 
   exports.Breakpoints =
