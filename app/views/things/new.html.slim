@@ -34,10 +34,6 @@
       = f.input :subtitle, placeholder: "一句话介绍", input_html: {maxlength: 40, autocomplete: "off"}
       - if current_user.role? :volunteer
         = f.input :categories_text, placeholder: "分类", input_html: {maxlength: 40, autocomplete: "off"}
-      .btn-group data-toggle="buttons"
-        = f.collection_check_boxes :tags, Tag.all, :name, :name, :item_wrapper_tag => nil do |tag|
-          - included = @thing.tags.include?(tag.text) ? "btn btn-default active" : "btn btn-default"
-          = tag.label(class: included) { tag.check_box(id: tag.text) + tag.text }
       = f.input :official_site, as: :url, placeholder: "产品官方链接", input_html: {autocomplete: "off"}
       = f.input :content, as: :hidden
 
