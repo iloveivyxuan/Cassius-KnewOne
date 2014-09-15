@@ -81,7 +81,7 @@ module Haven
 
     def ship
       @order.ship!(params[:order][:deliver_no], params[:order][:admin_note], params[:order][:deliver_by])
-      redirect_to haven_order_path(@order)
+      redirect_to :back
     end
 
     def close
