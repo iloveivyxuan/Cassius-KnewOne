@@ -5,7 +5,8 @@ module UpyunHelper
       "expiration" => 3.hours.since.to_i,
       "save-key" => "/review_photos/{filemd5}{.suffix}",
       "allow-file-type" => "jpg,jpeg,gif,png",
-      "content-length-range" => "0, #{4.megabyte}"
+      "content-length-range" => "0, #{4.megabyte}",
+      "x-gmkerl-rotate" => "auto"
     }
     Base64.strict_encode64(raw.to_json)
   end
