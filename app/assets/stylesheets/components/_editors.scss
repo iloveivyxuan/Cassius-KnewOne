@@ -18,6 +18,7 @@
 //
 
 .editor {
+  background-color: #fff;
   bottom: 0;
   display: none;
   left: 0;
@@ -160,10 +161,8 @@
 }
 
 .editor-content {
-  background-color: #fff;
   bottom: 0;
   left: 0;
-  overflow: scroll;
   padding-top: $navbar-height + $padding-large-vertical * 3;
   position: absolute;
   right: 0;
@@ -199,6 +198,7 @@
   > .body {
     margin-bottom: 0;
     min-height: 350px;
+    overflow: scroll;
     padding-bottom: 100px;
 
     &:focus {
