@@ -45,11 +45,7 @@ module ThingsHelper
       if user_signed_in? && thing.shop.present?
         link_to_with_icon "海淘", "fa fa-plane fa-lg", buy_thing_path(thing),
         title: thing.title, class: "btn btn-info btn-block buy_button track_event", target: "_blank", rel: '_nofollow',
-        data: {
-          action: "buy",
-          category: "abroad",
-          label: "buy+abroad+#{thing.title}"
-        }
+        data: data_with_buy_tracker("abroad", thing.title)
       else
         link_to_with_icon "请登录后海淘", "fa fa-sign-in", "#",
         class: "btn btn-danger btn-block track_event",
