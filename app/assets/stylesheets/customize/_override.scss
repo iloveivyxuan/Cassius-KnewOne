@@ -208,6 +208,21 @@ input[type="number"] {
   }
 }
 
+.carousel-control {
+  .fa {
+    font-size: 60px;
+    font-weight: bold;
+    margin-top: -30px;
+
+    &.icon-prev {
+      margin-left: -30px;
+    }
+    &.icon-next {
+      margin-right: -30px;
+    }
+  }
+}
+
 // Input Groups
 // -----------------------------------------------------------------------------
 
