@@ -2,9 +2,6 @@ Making.Views.Notification = Backbone.View.extend
 
   el: '#notification_box'
 
-  events:
-    'click #notification_trigger': 'fetch'
-
   initialize: ->
     @url = '/notifications'
     @spinner_template = $('#notification_box .dropdown_box').html()
@@ -13,6 +10,8 @@ Making.Views.Notification = Backbone.View.extend
 
     Making.Events
     .on('notifications:loaded', @loaded, @)
+
+    @fetch()
 
   fetch: ->
     @$content.html(@spinner_template)
