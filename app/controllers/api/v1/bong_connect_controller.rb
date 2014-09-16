@@ -36,7 +36,7 @@ module Api
       private
 
       def check_fields
-        if [:name, :uid, :email, :password, :timestamp, :sign].map { |i| params[i].present? }.reduce &:&
+        unless [:name, :uid, :email, :password, :timestamp, :sign].map { |i| params[i].present? }.reduce &:&
           render :status => :not_acceptable, :json => {:message => 'field missing'}
         end
       end
