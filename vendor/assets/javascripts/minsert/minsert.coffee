@@ -83,7 +83,7 @@ do ($ = jQuery) ->
             selection.addRange(@insertPoint)
             if event.type is 'click'
               @preClipboard = parentNode
-        else if selection.anchorOffset is 0
+        else if selection.anchorOffset is 0 and @$element.text().trim().length > 0
           anchorNode = selection.anchorNode
           if anchorNode.textContent.trim() is ''
             @insertPoint = document.createRange()
