@@ -235,14 +235,14 @@ input[type="number"] {
     .fa {
       font-size: 30px;
       height: 30px;
-      margin-top: -15px;
+      margin-top: -13px;
       width: 30px;
     }
     &[data-slide="prev"] .fa {
-      margin-left: -15px;
+      margin-left: -13px;
     }
     &[data-slide="next"] .fa {
-      margin-right: -15px;
+      margin-right: -13px;
     }
   }
 }
