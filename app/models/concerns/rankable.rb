@@ -14,7 +14,7 @@ module Rankable
 
   def freezing_coefficient
     days_after_created = 1.0 * (Time.now - created_at) / 1.day
-    (days_after_created + 2) ** -2
+    (days_after_created + 1) ** -2
   end
 
   def calculate_heat
