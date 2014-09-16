@@ -29,6 +29,10 @@ class Stat
     :dsell_products_count => '自营产品数',
     :has_reviews_products_count => '有评测的产品数',
     :groundbreaking_reviews_products_count => '突破 0 评测的产品数',
+    # 列表
+    :new_things_added_to_lists => '新加入列表的产品',
+    :things_added_to_lists => '被加入到列表的总产品数',
+    :lists_fancied_tops => '被喜欢最多的列表',
     # 销售
     :sale_sum => '销售额',
     :orders_count => '订单数',
@@ -264,6 +268,29 @@ class Stat
 
   def has_purchased_users_count
     all_orders.map(&:user).uniq.size
+  end
+
+  def new_things_added_to_lists
+    activities = Activity.by_type(:add_to_list).from_date(@@date_from).to_date(@@date_to)
+    things = activities.map(&:reference).compact.map(&:thing)
+    things.size
+  end
+
+  def things_added_to_lists
+    items = []
+    ThingList.each { |tl| items += tl.items }
+    things = items.map(&:thing_id).uniq
+    things.size
+  end
+
+  def lists_fancied_tops
+    activities = Activity.by_type(:fancy_list).from_date(@@date_from).to_date(@@date_to)
+    grouped = activities.group_by(&:reference)
+    result = {}
+    grouped.sort_by { |k, v| v.count }.reverse.take(10).each do |list|
+      result[list[0].name] = list[1].size if list[0]
+    end
+    result
   end
 
   private
