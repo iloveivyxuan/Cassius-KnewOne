@@ -263,12 +263,11 @@ class Thing < Post
   def calculate_heat
     self.priority ||= 0
 
-    return -1 if priority < 0
-
     (1 +
      priority +
-     50 * reviews_count +
+     25 * reviews_count +
      5 * feelings_count +
+     lists.count +
      fancier_ids.count +
      owner_ids.count) *
     freezing_coefficient
