@@ -210,15 +210,39 @@ input[type="number"] {
 
 .carousel-control {
   .fa {
-    font-size: 60px;
-    font-weight: bold;
-    margin-top: -30px;
-
-    &.icon-prev {
-      margin-left: -30px;
+    display: inline-block;
+    font-size: 20px;
+    height: 20px;
+    margin: {
+      right: 0;
+      top: -10px;
     }
-    &.icon-next {
-      margin-right: -30px;
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    z-index: 5;
+  }
+  &[data-slide="prev"] .fa {
+    left: 50%;
+    margin-left: -10px;
+  }
+  &[data-slide="next"] .fa {
+    margin-right: -10px;
+    right: 50%;
+  }
+
+  @media (min-width: $screen-sm-min) {
+    .fa {
+      font-size: 30px;
+      height: 30px;
+      margin-top: -15px;
+      width: 30px;
+    }
+    &[data-slide="prev"] .fa {
+      margin-left: -15px;
+    }
+    &[data-slide="next"] .fa {
+      margin-right: -15px;
     }
   }
 }
