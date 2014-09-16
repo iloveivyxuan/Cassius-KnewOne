@@ -1,4 +1,5 @@
-- if content = render_notification(notification)
+- unless notification.orphan?
   li class="#{notification.read? ? "read" : "unread"} #{"unopened" unless notification.opened?}"
-    = content
-    = time_ago_tag notification.created_at
+    - cache notification
+      = render_notification(notification)
+      = time_ago_tag notification.created_at
