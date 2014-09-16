@@ -133,20 +133,20 @@ do (exports = Making) ->
           threshold: 0
 
     ExtendCarousel: ->
-      $('.carousel').each ->
+      $('.carousel--extend').each ->
         $carousel      = $(@)
         $inner         = $carousel.find('.carousel-inner')
         $item          = $inner.children('.item')
         default_height = parseInt($item.css('max-height'))
         height         = _.min([default_height, $inner.width() * 0.75]) + 'px'
+        $overview      = $carousel.next('.carousel_overview')
 
         if !$html.hasClass('mobile')
           $item.css
             height: height
             lineHeight: height
 
-        if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ')')
-          $overview      = $carousel.next('.carousel_overview')
+        if $overview.length and Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ')')
           $overview_body = $overview.children('.slideshow_body')
 
           if $overview_body.length and $overview_body.is(':visible')

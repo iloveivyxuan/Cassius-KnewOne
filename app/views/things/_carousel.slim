@@ -1,6 +1,6 @@
 - cache ['things', 'carousel', tp.thing]
   #thing_photos
-    .carousel.slide
+    .carousel.carousel--extend.slide
       .carousel-inner
         - tp.photos.each_with_index do |photo, index|
           div class="item #{'active' if index == 0}"
