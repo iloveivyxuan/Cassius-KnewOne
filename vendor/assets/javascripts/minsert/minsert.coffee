@@ -201,7 +201,7 @@ do ($ = jQuery) ->
 
         handler = (event) ->
           if event.which is 13
-            content = event.target.value
+            content = event.target.value.trim()
 
             event.preventDefault()
 
@@ -219,6 +219,8 @@ do ($ = jQuery) ->
                 .replace(/https:\/\/www\.facebook\.com\/(\w+)\/posts\/(\d+)$/, '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/all.js#xfbml=1"; fjs.parentNode.insertBefore(js, fjs); }(document, "script", "facebook-jssdk"));</script><div class="fb-post" data-href="https://www.facebook.com/$1/posts/$2"></div>')
                 .replace(/http:\/\/instagram\.com\/p\/(.+)\/?$/, '<span class="instagram"><iframe src="//instagram.com/p/$1/embed/" width="612" height="710" frameborder="0" scrolling="no" allowtransparency="true"></iframe></span>')
               if /<("[^"]*"|'[^']*'|[^'">])*>/.test(html) then content = html
+            else if content.indexOf('<iframe') is 0 and !$(content).attr('src')
+              content = ''
 
             @insert(content)
             @hide()
