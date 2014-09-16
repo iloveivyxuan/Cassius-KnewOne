@@ -2,37 +2,37 @@
 - page_css 'jobs'
 
 main role="main"
-  header
-    span data-picture="true" data-alt="加入我们"
-      span data-src=asset_path("jobs/banner-xs.png")
-      span data-src=asset_path("jobs/banner-lg.png") data-media="(min-width: 768px)"
+  header.page-header
+    h1
+      | 加入&nbsp;
+      span.logo KnewOne
 
   .carousel.slide#office data-ride="carousel"
     .carousel-inner
       .item.active
-        img src="http://image.knewone.com/review_photos/4bd73282fe0d4ad43ae9d4c66464b447.png!huge" alt="KnewOne Office"
+        img src="http://image.knewone.com/review_photos/6c4e3a58753f600a10985de63f9aca3f.jpg" alt="KnewOne Office"
       .item
-        img src="http://image.knewone.com/review_photos/0475cdc3aa9f2904db04d8f2c61cbee3.png!huge" alt="KnewOne Office"
+        img src="http://image.knewone.com/review_photos/c3b82470dd72c7d4a745a24b970c0ecd.jpg" alt="KnewOne Office"
       .item
-        img src="http://image.knewone.com/review_photos/61b5d84f3787b725d68a1e1b00ebfc9a.png!huge" alt="KnewOne Office"
+        img src="http://image.knewone.com/review_photos/d58227177953c687bbb6923253867179.jpg" alt="KnewOne Office"
       .item
-        img src="http://image.knewone.com/review_photos/867f12d4cb7529d9971dc65cf5ce9604.png!huge" alt="KnewOne Office"
+        img src="http://image.knewone.com/review_photos/0e16b5ea0c392ba7a5488d47eac93fa0.jpg" alt="KnewOne Office"
       .item
-        img src="http://image.knewone.com/review_photos/28db925a8c23317700f6a98751a7541e.png!huge" alt="KnewOne Office"
+        img src="http://image.knewone.com/review_photos/7a9c9ef003f65d7c1461419a802cfe63.jpg" alt="KnewOne Office"
       .item
-        img src="http://image.knewone.com/review_photos/5fec3b8bf6e0646b8af7a9012536451d.png!huge" alt="KnewOne Office"
+        img src="http://image.knewone.com/review_photos/ffb5ec0f2b99fc9930585b4c7db06d09.jpg" alt="KnewOne Office"
       .item
-        img src="http://image.knewone.com/review_photos/1677c5e820c0fb2fe9a6b0bbcff0f73b.png!huge" alt="KnewOne Office"
+        img src="http://image.knewone.com/review_photos/29e62565423b2f2a5e5433a8f1ab690a.jpg" alt="KnewOne Office"
       .item
-        img src="http://image.knewone.com/review_photos/f4cd4e18b6f5c93e11391e895a40b97c.png!huge" alt="KnewOne Office"
+        img src="http://image.knewone.com/review_photos/c8dfd0b74ed1e3e60950860b98cd9733.jpg" alt="KnewOne Office"
       .item
-        img src="http://image.knewone.com/review_photos/00282fe9ea249b6dd7522649063e0cce.png!huge" alt="KnewOne Office"
+        img src="http://image.knewone.com/review_photos/6f8d1d8268bf203573962f7cd835b811.jpg" alt="KnewOne Office"
       .item
-        img src="http://image.knewone.com/review_photos/327a664633d1e1537e95a77cc4f88334.png!huge" alt="KnewOne Office"
+        img src="http://image.knewone.com/review_photos/fa2488037b8a2fdb31dc9d7a87616fc9.jpg" alt="KnewOne Office"
       .item
-        img src="http://image.knewone.com/review_photos/7e921280dce4e01a3379cb988c3fffad.png!huge" alt="KnewOne Office"
+        img src="http://image.knewone.com/review_photos/b5ae9720cfde41a384d8dc28793c0910.jpg" alt="KnewOne Office"
       .item
-        img src="http://image.knewone.com/review_photos/7b1f7077c46d40ed19e5d5ae8b86d826.png!huge" alt="KnewOne Office"
+        img src="http://image.knewone.com/review_photos/48624298950f865aa462219b4260a554.jpg" alt="KnewOne Office"
     a.carousel-control.left href="#office" role="button" data-slide="prev"
       span.glyphicon.glyphicon-chevron-left
     a.carousel-control.right href="#office" role="button" data-slide="next"
@@ -44,8 +44,6 @@ main role="main"
         | 社区产品经理
         = link_to "我要应聘", "mailto:job@knewone.com?subject=应聘－社区产品经理", class: "btn btn-primary"
       .section_content
-        figure
-          = image_tag "jobs/product-manager.jpg", alt: "社区运营 - 深圳"
         .body
           h4 描述
           p KnewOne 产品、功能设计，开发、运营协调。
@@ -59,32 +57,11 @@ main role="main"
           h5 备注
           p 请提供 SNS 帐号以及一切有亮点的东西。
 
-    section.section#salesman
-      h3.section_header
-        | 电商负责人
-        = link_to "我要应聘", "mailto:job@knewone.com?subject=应聘－电商负责人", class: "btn btn-primary"
-      .section_content
-        figure
-          = image_tag "jobs/salesman.jpg", alt: "电商负责人"
-        .body
-          h4 描述
-          p KnewOne 产品采购、物流规划、销售优化。
-          h4 要求
-          ol
-            li 一年以上相关工作经验
-            li 精通电子商务平台运营流程，网络营销，网上业务拓展和客户管理等
-            li 对线上品牌推广有深刻理解，熟悉网络营销活动策划
-            li 具有较强的市场洞察力与判断力，具有团队管理能力以及创新精神
-          h5 备注
-          p 提供 SNS 帐号以及一切有亮点的东西，让我们更了解你。
-
     section.section#data_analyst
       h3.section_header
         | 数据运营（用户社区方向）
         = link_to "我要应聘", "mailto:job@knewone.com?subject=应聘－数据运营（用户社区方向）", class: "btn btn-primary"
       .section_content
-        figure
-          = image_tag "jobs/data-analyst.jpg", alt: "数据运营（用户社区方向）"
         .body
           h4 描述
           p 整合 KnewOne 数据，优化运营方案。
@@ -98,30 +75,11 @@ main role="main"
           h5 备注
           p 请提供 SNS 帐号以及一切有亮点的东西。
 
-    section.section#content_strategist
-      h3.section_header
-        | 内容编辑 - 北京
-        = link_to "我要应聘", "mailto:job@knewone.com?subject=应聘－内容编辑（北京）", class: "btn btn-primary"
-      .section_content
-        figure
-          = image_tag "jobs/content-strategist.jpg", alt: "内容编辑 - 北京"
-        .body
-          h4 描述
-          p 编辑、采写 UGC 内容和原创报道。
-          h4 要求
-          ol
-            li 至少1年、最多3年媒体工作经验
-            li 有互联网、数码、汽车报道经验者优先
-          h5 备注
-          p 办公地点在北京，需发送三篇以上个人作品。
-
     section.section#art_editor
       h3.section_header
         | 美术编辑 - 深圳/北京
         = link_to "我要应聘", "mailto:job@knewone.com?subject=应聘－美术编辑", class: "btn btn-primary"
       .section_content
-        figure
-          = image_tag "jobs/art-editor.jpg", alt: "美术编辑 - 深圳/北京"
         .body
           h4 描述
           p 为 KnewOne 上的产品，内容与专题，创作好看的图片与视频。
@@ -137,8 +95,6 @@ main role="main"
         | UX 设计师 - 深圳
         = link_to "我要应聘", "mailto:job@knewone.com?subject=应聘－UX 设计师 - 深圳", class: "btn btn-primary"
       .section_content
-        figure
-          = image_tag "jobs/designer.jpg", alt: "UX 设计师 - 深圳"
         .body
           h4 描述
           p 将会负责 KnewOne 网站和移动 App 的用户体验与视觉设计。
@@ -155,8 +111,6 @@ main role="main"
         | 前端程序员 - 深圳/北京
         = link_to "我要应聘", "mailto:job@knewone.com?subject=应聘－前端程序员", class: "btn btn-primary"
       .section_content
-        figure
-          = image_tag "jobs/front-end-developer.jpg", alt: "前端程序员 - 深圳/北京"
         .body
           h4 描述
           p KnewOne 网站的前端开发。
@@ -176,8 +130,6 @@ main role="main"
         | 后端 RoR 程序员 - 深圳/北京
         = link_to "我要应聘", "mailto:job@knewone.com?subject=应聘－后端 RoR 程序员", class: "btn btn-primary"
       .section_content
-        figure
-          = image_tag "jobs/web-developer.jpg", alt: "后端 RoR 程序员 - 深圳/北京"
         .body
           h4 描述
           p 开发 KnewOne。
@@ -195,8 +147,6 @@ main role="main"
         | iOS 程序员 - 深圳
         = link_to "我要应聘", "mailto:job@knewone.com?subject=应聘－iOS 程序员 - 深圳", class: "btn btn-primary"
       .section_content
-        figure
-          = image_tag "jobs/ios-developer.jpg", alt: "iOS 程序员 - 深圳"
         .body
           h4 描述
           p 开发 KnewOne。
@@ -213,9 +163,7 @@ aside.hidden-print role="complementary"
   nav#navigation data-spy="affix" data-offset-top="80" data-offset-bottom="200" role="navigation"
     ul.nav
       li = link_to "社区产品经理", "#product_manager"
-      li = link_to "电商负责人", "#salesman"
       li = link_to "数据运营（用户社区方向）", "#data_analyst"
-      li = link_to "内容编辑", "#content_strategist"
       li = link_to "美术编辑", "#art_editor"
       li = link_to "UX 设计师", "#designer"
       li = link_to "前端程序员", "#front_end_developer"

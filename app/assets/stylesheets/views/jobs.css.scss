@@ -22,22 +22,10 @@ html.home_jobs {
     > main {
       @include make-md-column(9);
       @include decoration;
-
       padding: 1em 1.5em 50px;
 
       > header {
-        border-bottom: $border-default;
         text-align: center;
-
-        @media (min-width: $screen-md-min) {
-          border-bottom: none;
-        }
-
-        h1 {
-          color: $navbar-default-brand-color;
-          font-size: $font-size-h2;
-          font-family: "orbitron-medium";
-        }
         margin-bottom: 2em;
       }
 
@@ -102,29 +90,11 @@ html.home_jobs {
     @include clearfix;
     padding: 15px;
 
-    > figure {
-      margin: 0 auto 1em;
-      text-align: center;
-
-      @media screen and (min-width: $screen-md-min) {
-        float: left;
-        margin-bottom: 0;
-        width: 40%;
-      }
-
-      img {
-        height: auto;
-        min-width: 200px;
-        width: 60%;
-      }
-    }
-
     > .body {
 
       @media screen and (min-width: $screen-md-min) {
         overflow: hidden;
-        padding-left: 30px;
-        width: 60%;
+        padding-left: 20px;
       }
 
       h1, h2, h3,
