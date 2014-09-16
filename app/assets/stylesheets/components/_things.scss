@@ -14,7 +14,7 @@ ul.things {
 .things {
   @include make-row;
   > article.thing {
-    margin-bottom: 20px;
+    margin-bottom: 20px; 
     @media (min-width: $screen-sm-min) { @include make-sm-column(6); }
     @media (min-width: $screen-md-min) { @include make-md-column(4); }
   }
@@ -400,6 +400,9 @@ div#thing_title {
         &.right {
           text-align: right;
           padding-right: 8px;
+        }
+        i {
+          margin: 8px 0 0;
         }
       }
       &:hover .carousel-control {display: block;}
