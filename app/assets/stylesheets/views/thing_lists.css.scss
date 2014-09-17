@@ -2,8 +2,9 @@
 
 html.thing_lists_show {
   #wrapper {
+    @extend %container;
+
     background: white;
-    padding: 0 10px;
 
     @include breakpoint(sm) {
       padding: 20px 40px;
