@@ -118,6 +118,19 @@ class Thing < Post
     self.categories = text.split(',').map(&:strip).reject(&:blank?).uniq
   end
 
+  def tags_text
+    (tags.map(&:name) || []).join ','
+  end
+
+  def tags_text=(text)
+    new_tags = []
+    text.split(",").each do |tag_name|
+      tag = Tag.where(name: tag_name).first
+      new_tags << tag if tag
+    end
+    self.tags = new_tags
+  end
+
   def category_records
     Category.any_in(name: self.categories)
   end

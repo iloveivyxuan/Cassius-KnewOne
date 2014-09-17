@@ -16,6 +16,7 @@ header.page-header
     = hidden_field_tag 'thing[maker]', maker_id, id: 'maker_id'
     input#maker_autocomplete.form-control placeholder="用户昵称" value="#{maker_name}"
   = f.input :categories_text, hint: "用,分隔"
+  = f.input :tags_text, hint: "用,分隔"
   = f.input :shop, as: :url
   = f.input :price do
     = f.input_field :price_unit, collection: Thing.const_get(:CURRENCY_LIST)

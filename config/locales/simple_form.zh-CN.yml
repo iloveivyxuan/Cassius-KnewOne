@@ -24,6 +24,7 @@ zh-CN:
         title: '名称'
         subtitle: '一句话介绍'
         categories_text: '分类'
+        tags_text: '标签'
         shop: '购买链接'
         shopping_desc: '购买详情'
         period: '到期时间'
