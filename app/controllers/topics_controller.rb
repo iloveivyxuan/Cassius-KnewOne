@@ -69,7 +69,7 @@ class TopicsController < ApplicationController
 
   def topic_params
     permit_attrs = [:title, :content]
-    permit_attrs << :is_top if current_user.role? :editor
+    permit_attrs << :is_top if current_user && current_user.role?(:editor)
     params.require(:topic).permit permit_attrs
   end
 
