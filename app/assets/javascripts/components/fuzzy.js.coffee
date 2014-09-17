@@ -47,6 +47,30 @@ Making.GroupFuzzy = (source, target, current_user=true) ->
   .on 'typeahead:selected', (event, suggestion, name) ->
     $(target).val suggestion.data
 
+Making.TagFuzzy = (source, target) ->
+  tags = new Bloodhound
+    datumTokenizer: (datums) -> Bloodhound.tokenizers.whitespace(datums.value)
+    queryTokenizer: Bloodhound.tokenizers.whitespace
+    limit: 10
+    remote:
+      url: '/tags/fuzzy.json?query=%QUERY'
+
+  tags.initialize()
+
+  $(source).typeahead
+    autoselect: true
+    highlight: true
+    minLength: 2
+  ,
+    name: 'tags'
+    displayKey: 'value',
+    source: tags.ttAdapter()
+    templates:
+      suggestion: HandlebarsTemplates['tags/tag']
+      empty: '<em class="tt-no-suggestion">没有结果</em>'
+  .on 'typeahead:selected', (event, suggestion, name) ->
+    $(target).val suggestion.data
+
 Making.AtUser = (element) ->
   $(element).atwho
     at: "@"

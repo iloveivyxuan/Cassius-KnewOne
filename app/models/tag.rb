@@ -10,4 +10,10 @@ class Tag
   validates :name, presence: true, uniqueness: true
 
   has_and_belongs_to_many :things
+
+  def self.find_by_sequence(name)
+    return all if name.blank?
+    str = Regexp.escape(name.gsub(/[^\u4e00-\u9fa5a-zA-Z0-9_-]+/, ''))
+    where(name: /^#{str}/i)
+  end
 end
