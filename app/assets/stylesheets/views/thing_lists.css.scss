@@ -12,7 +12,7 @@ html.thing_lists_show {
     }
 
     > nav {
-      margin: 0 -10px;
+      margin: 0 (-$grid-gutter-width / 2);
       padding: 10px 20px;
       background: $gray-lighter;
 
