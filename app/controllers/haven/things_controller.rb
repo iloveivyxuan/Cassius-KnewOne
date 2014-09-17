@@ -80,6 +80,9 @@ module Haven
       if params[:shop]
         @things = @things.where(shop: Regexp.new(params[:shop]))
       end
+      if params[:title]
+        @things = @things.where(title: Regexp.new(params[:title])).union.where(subtitle: Regexp.new(params[:title]))
+      end
       unless params[:filter] || params[:categories]
         @things = @things.desc(:created_at)
       end

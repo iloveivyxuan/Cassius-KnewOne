@@ -46,6 +46,10 @@ ul.nav.nav-pills
   = text_field_tag("shop", "")
   = submit_tag "查询链接"
 
+= form_tag batch_edit_haven_things_path, method: :get do
+  = text_field_tag("title", "")
+  = submit_tag "查询标题 & 副标题"
+
 = form_tag batch_update_haven_things_path(redirect_from: request.fullpath), method: :patch do
   table.table.table-striped.table-hover.table-bordered
     tr
