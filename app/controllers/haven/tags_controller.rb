@@ -12,9 +12,11 @@ module Haven
 
     def create
       category = Category.where(name: params[:tag][:category]).first
-      tag = Tag.new(name: params[:tag][:name], category: category)
-      if tag.save
+      tag = Tag.new(name: params[:tag][:name], category: category) if category
+      if tag && tag.save
         redirect_to haven_tags_path
+      else
+        render 'new'
       end
     end
 
