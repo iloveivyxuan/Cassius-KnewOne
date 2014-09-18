@@ -62,6 +62,7 @@ module Haven
         @things = @things.where(shop: "") if params[:filter].include? "no_link"
         @things = @things.where(categories: []) if params[:filter].include? "no_category"
         @things = @things.where(price: nil) if params[:filter].include? "no_price"
+        @things = @things.any_in(:tag_ids => nil) if params[:filter].include? "no_tag"
         @things = @things.where(stage: "concept") if params[:filter].include? "concept"
         @things = @things.where(stage: "kick") if params[:filter].include? "kick"
         @things = @things.where(stage: "pre_order") if params[:filter].include? "pre_order"
@@ -79,6 +80,10 @@ module Haven
       end
       if params[:shop]
         @things = @things.where(shop: Regexp.new(params[:shop]))
+      end
+      if params[:tag]
+        tag = Tag.where(name: params[:tag]).first
+        @things = @things.any_in(:tag_ids => tag) if tag
       end
       if params[:title]
         q = (params[:title] || '')

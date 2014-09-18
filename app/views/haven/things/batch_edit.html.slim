@@ -16,6 +16,7 @@ ul.nav.nav-pills
   - {'no_link' => '无购买链接',
      'no_category' => '无分类',
      'no_price' => '无价格',
+     'no_tag' => '无标签',
      'concept' => '研发中',
      'kick' => '众筹中',
      'pre_order' => '预售',
@@ -53,6 +54,10 @@ ul.nav.nav-pills
 = form_tag batch_edit_haven_things_path, method: :get do
   = text_field_tag("brand", "")
   = submit_tag "查询品牌"
+
+= form_tag batch_edit_haven_things_path, method: :get do
+  = text_field_tag("tag", "")
+  = submit_tag "查询分类"
 
 = form_tag batch_update_haven_things_path(redirect_from: request.fullpath), method: :patch do
   table.table.table-striped.table-hover.table-bordered
