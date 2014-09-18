@@ -1,3 +1,18 @@
+# Dropdown Menu
+do (exports = Making, $ = jQuery) ->
+  $menu = $('.dropdown-menu')
+  if $menu.find('.dropdown-submenu').length
+    $menu.menuAim
+      activate: (row) ->
+        $(row).addClass('is-active')
+      deactivate: (row) ->
+        $(row).removeClass('is-active')
+      exitMenu: ->
+        return true
+
+  return
+
+# Dropdown Box
 do (exports = Making, $ = jQuery) ->
 
   toggle = '[data-toggle="dropdown_box"]'

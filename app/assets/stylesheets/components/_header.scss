@@ -56,7 +56,7 @@ html.no-touch {
 }
 
 .navbar {
-  $navbar-inverse-link-active-bg: #3e4653;
+  $navbar-inverse-link-active-bg: #3d485d;
 
   border: none;
   box-shadow: 0 1px 3px #555;
@@ -81,41 +81,6 @@ html.no-touch {
     }
   }
 
-  .nav {
-    > li {
-      &.nav_group {
-        @include clearfix;
-        > a {
-          float: left;
-          padding: {
-            left: 15px;
-            right: 0;
-          }
-
-          @media (min-width: $grid-float-breakpoint) and (max-width: $screen-md-max) {
-            padding: {
-              left: 8px;
-            }
-          }
-
-          + a {
-            padding: {
-              left: 10px;
-              right: 15px;
-            }
-
-            @media (min-width: $grid-float-breakpoint) and (max-width: $screen-md-max) {
-              padding: {
-                left: 8px;
-                right: 8px;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
   #nav_publish {
     a {color: white;}
     background-color: $blue;
@@ -127,12 +92,23 @@ html.no-touch {
     @media (min-width: $grid-float-breakpoint) {
       background-color: $navbar-inverse-link-active-bg;
       border-color: $navbar-inverse-link-active-bg;
-      border-radius: 0 0 2px 2px;
+      border-radius: 0 0 4px 4px;
       box-shadow: none;
       margin-top: 0;
     }
 
     > li {
+      overflow: hidden;
+
+      &:last-child {
+        border-radius: 0 0 4px 4px;
+      }
+      
+      &.is-active {
+        > a + .dropdown-submenu {
+          display: block;
+        }
+      }
 
       > a {
         color: $navbar-inverse-link-color;
@@ -141,6 +117,41 @@ html.no-touch {
         &:focus {
           color: $navbar-inverse-link-hover-color;
           background-color: $navbar-inverse-link-hover-bg;
+        }
+      }
+    }
+  }
+
+  .dropdown-submenu {
+    @media (min-width: $grid-float-breakpoint) {
+      background-color: $navbar-inverse-link-active-bg;
+      border-radius: 4px;
+      display: none;
+      left: calc(100% + 5px);
+      position: absolute;
+      top: 5px;
+      width: 175px;
+
+      > li {
+        overflow: hidden;
+
+        &:first-child {
+          border-radius: 4px 4px 0 0;
+        }
+
+        &:last-child {
+          border-radius: 0 0 4px 4px;
+        }
+
+        > a {
+          color: $navbar-inverse-link-color;
+          display: block;
+          line-height: 50px;
+          padding: 0 20px;
+
+          &:hover {
+            color: $navbar-inverse-link-hover-color;
+          }
         }
       }
     }
@@ -270,6 +281,34 @@ html.no-touch {
       width: 33.333333%;
 
       &.nav_group {
+        @include clearfix;
+        > a {
+          float: left;
+          padding: {
+            left: 15px;
+            right: 0;
+          }
+
+          @media (min-width: $grid-float-breakpoint) and (max-width: $screen-md-max) {
+            padding: {
+              left: 8px;
+            }
+          }
+
+          + a {
+            padding: {
+              left: 10px;
+              right: 15px;
+            }
+
+            @media (min-width: $grid-float-breakpoint) and (max-width: $screen-md-max) {
+              padding: {
+                left: 8px;
+                right: 8px;
+              }
+            }
+          }
+        }
 
         > .dropdown-menu {
           clear: both;
@@ -281,39 +320,109 @@ html.no-touch {
 }
 
 #nav_secondary {
-  margin-right: 15px;
-  > li > a {
-    padding-left: 15px;
-    padding-right: 15px;
-    i {margin-right: 0;}
-    color: white;
+  margin-right: 10px;
+  // .dropdown.open { background: $navbar-color--dropdown_bg }
+  a.nav_group_more {
+    margin: 0;
+    padding: 0 18px;
+    @include MQ(XLplus) { padding: 0 24px }
+    // line-height: 45px;
+    line-height: 40px;
+    color: #fff;
+    // background: none;
+    // &:hover { 
+    //   color: $light_blue;
+    //   background: $navbar-color--dropdown_bg;
+    // }
   }
-
   .dropdown-menu {
-    width: 480px;
-    padding: 1em 2em 0;
-    right: -222px;
-  }
-
-  .categories {
-    @include clearfix;
-    li {
-      float: left;
-      padding: .5em 0;
-      width: 14.2851%;
-      text-align: center;
-      &:hover {background-color: $gray;}
-      a {
-        color: white;
+    @include MQ(L) { right: 0; }
+    width: 220px;
+    margin: 0;
+    padding: 0;
+    // background: $navbar-color--dropdown_bg;
+    // background: rgba($navbar-color--dropdown_bg,.99);
+    border: none;
+    @include box-shadow(0 2px 5px rgba(0,0,0,.1));
+    > li {
+      > a {
+        display: block;
+        padding: 0;
+        padding-left: 4px;
+        line-height: 50px;
+        color: $light_grey;
+        text-align: left;
+        border-left: 4px solid transparent;
+        i {
+          width: 20%;
+          color: $light_grey;
+          text-align: center;
+        }
+        span {
+          float: right;
+          margin-right: 24px;
+          font-size: 12px;
+          line-height: 50px;
+          color: $light_blue;
+          text-align: right;
+        }
+      }
+      &:hover,
+      &.is-active {
+        background: $navbar-color--bg;
+        > a {
+          color: $light_blue;
+          i, span { color: #fff }
+        }
+      }
+      &.is-active {
+        > a {
+          border-left-color: $brand-color;
+        }
       }
     }
   }
+  .dropdown-submenu {
+    > li {
+      overflow: hidden;
 
-  .category_more {
-    margin: .5em 0 1em;
-    text-align: right;
-    > a {
-      color: white;
+      > a {
+        @include clearfix;
+
+        > em {
+          @include text-overflow;
+          float: left;
+          font-style: normal;
+          width: 5em;
+        }
+
+        > span {
+          @include text-overflow;
+          color: $light_blue;
+          float: right;
+          font-size: 12px;
+          text-align: right;
+          width: 40px;
+        }
+
+        &:hover {
+          background: $navbar-color--bg;
+
+          > em {
+            color: $light_blue;
+          }
+
+          > span {
+            color: #fff;
+          }
+        }
+      }
+
+      &:last-child {
+        > a {
+          background: $navbar-color--bg;
+        }
+      }
     }
   }
 }

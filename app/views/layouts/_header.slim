@@ -95,15 +95,22 @@ header#header role="banner"
 
       ul.nav.navbar-nav.navbar-right#nav_secondary
         li.nav_group.dropdown
-          = link_to_with_icon "", "fa fa-bars", "#",
-          class: 'nav_group_more', data: {toggle: "dropdown"}
-          .dropdown-menu
-            ul.categories
-              - Category.prior.gt(things_count: 10).limit(42).each do |c|
-                li= link_to c.name, category_things_path(category: c)
-            .category_more
-              = link_to "查看全部>>", categories_path
-
+          = link_to_with_icon "分类", "fa fa-bars", "#",
+            class: 'nav_group_more', data: {toggle: "dropdown"}
+          ul.dropdown-menu
+            - Category.prior.gt(things_count: 10).limit(42).each do |c|
+              li
+                = link_to category_things_path(category: c) do
+                  i.fa.fa-gears
+                  = c.name
+                  span 1000 
+                ul.dropdown-submenu
+                  li
+                    = link_to "#" do
+                      em 子分类一
+                      span 9999
+                  li
+                    = link_to_with_icon "查看全部分类", "fa fa-list", categories_path
   /-- Navbar --/
 
   .search_backdrop
