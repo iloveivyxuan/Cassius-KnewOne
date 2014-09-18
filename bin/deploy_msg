@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-curl -X POST --data-urlencode 'payload={"channel": "#dev", "username": "webhookbot", "text": "I am deploying.", "icon_emoji": ":ghost:"}' https://knewone.slack.com/services/hooks/incoming-webhook?token=JZzDMuRAdFIQQULJUadI4Yke
+curl -X POST --data-urlencode "payload={\"channel\": \"#dev\", \"username\": \"webhookbot\", \"text\": \"Deploying by $(git config --global user.name)\", \"icon_emoji\": \":ghost:\"}" https://knewone.slack.com/services/hooks/incoming-webhook?token=JZzDMuRAdFIQQULJUadI4Yke
