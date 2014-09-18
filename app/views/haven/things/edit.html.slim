@@ -17,7 +17,7 @@ header.page-header
     input#maker_autocomplete.form-control placeholder="用户昵称" value="#{maker_name}"
   = f.input :categories_text, hint: "用,分隔"
   = f.input :tags_text, hint: "用,分隔"
-  = f.input :brand_text, input_html: { value: @thing.brand.name }
+  = f.input :brand_text, input_html: { value: @thing.brand.try(:name) }
   = f.input :shop, as: :url
   = f.input :price do
     = f.input_field :price_unit, collection: Thing.const_get(:CURRENCY_LIST)
