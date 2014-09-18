@@ -14,10 +14,12 @@ module ApplicationHelper
   end
 
   def sanitize(html, options = {})
+    html = ActionController::Base.helpers.sanitize(html, options)
+
     fragment = Nokogiri::HTML::DocumentFragment.parse(html)
     fragment.css('iframe:not([src])').remove
 
-    ActionController::Base.helpers.sanitize(fragment.to_html, options)
+    fragment.to_html.html_safe
   end
 
   def present(object, klass = nil)
