@@ -13,8 +13,8 @@ class ThingsController < ApplicationController
       @category = Category.find(params[:category])
       @things = @category.things.published
     elsif params[:tag].present?
-      @tag = Tag.find(params[:tag])
-      @things = @tag.things.published
+      @tag = Tag.where(slugs: params[:tag]).first
+      @things = @tag.things.published if @tag
     else
       @things = Thing.published
     end

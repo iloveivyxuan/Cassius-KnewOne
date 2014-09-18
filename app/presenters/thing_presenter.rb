@@ -225,6 +225,10 @@ class ThingPresenter < PostPresenter
     Category.any_in(name: thing.categories)
   end
 
+  def tags
+    Tag.any_in name: thing.tags.map(&:name)
+  end
+
   def related_things(size = 10)
     @_related_things ||= thing.related_things(size).map {|t| present(t)}
   end

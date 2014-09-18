@@ -14,7 +14,7 @@
     .new_review= render 'reviews/link_to_new'
 
   .categories
-    = render partial: "things/category", collection: tp.categories
+    = render partial: "things/tag", collection: tp.tags
 
   ul.operations.fa-ul
     li= link_to_with_icon "RSS", "fa-li fa fa-rss", thing_url(tp.thing, format: "atom")
