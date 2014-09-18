@@ -81,7 +81,10 @@ module Haven
         @things = @things.where(shop: Regexp.new(params[:shop]))
       end
       if params[:title]
-        @things = @things.where(title: Regexp.new(params[:title])).union.where(subtitle: Regexp.new(params[:title]))
+        q = (params[:title] || '')
+        q.gsub!(/[^\u4e00-\u9fa5a-zA-Z0-9[:blank:].-_]+/, '')
+        q = Regexp.escape(q)
+        @things = @things.published.or({slug: /#{q}/i}, {title: /#{q}/i}, {subtitle: /#{q}/i})
       end
       if params[:brand]
         brand = Brand.where(name: Regexp.new(params[:brand], Regexp::IGNORECASE)).first
