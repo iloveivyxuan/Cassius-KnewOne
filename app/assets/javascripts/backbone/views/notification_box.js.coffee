@@ -3,7 +3,7 @@ Making.Views.Notification = Backbone.View.extend
   el: '#notification_box'
 
   events:
-    'click #notification_trigger': 'fetch'
+    'click #notification_trigger': 'markRead'
 
   initialize: ->
     @url = '/notifications'
@@ -14,6 +14,8 @@ Making.Views.Notification = Backbone.View.extend
     Making.Events
     .on('notifications:loaded', @loaded, @)
 
+    @fetch()
+
   fetch: ->
     @$content.html(@spinner_template)
 
@@ -22,10 +24,16 @@ Making.Views.Notification = Backbone.View.extend
         url: @url
         dataType: 'html'
         contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
-    .done (data, status, xhr) ->
-      Making.Events.trigger('notifications:loaded', data, xhr)
-
-  loaded: (data, xhr) ->
-    if xhr.status is 200
+    .success (data) =>
       @$content.html(data)
+
+  markRead: ->
+    return unless @$count.text()
+
+    $
+    .ajax
+      type: 'POST'
+      url: "#{@url}/mark"
+      dataType: 'json'
+    .success =>
       @$count.text('')

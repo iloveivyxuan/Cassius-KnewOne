@@ -1,6 +1,5 @@
 class NotificationsController < ApplicationController
   prepend_before_action :authenticate_user!
-  after_action :mark_read, only: [:index]
   skip_before_action :require_not_blocked
 
   def index
@@ -26,6 +25,7 @@ class NotificationsController < ApplicationController
     else
       @unread_count = current_user.notifications.unread.count
       render 'notifications/index'
+      mark_read
     end
   end
 
