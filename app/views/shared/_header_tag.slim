@@ -1,0 +1,6 @@
+li
+  = link_to things_path(tag: header_tag) do
+    em
+      = header_tag.name
+    span
+      = header_tag.things.size
