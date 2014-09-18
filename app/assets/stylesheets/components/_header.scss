@@ -127,9 +127,9 @@ html.no-touch {
       background-color: $navbar-inverse-link-active-bg;
       border-radius: 4px;
       display: none;
-      left: calc(100% + 5px);
+      left: calc(100% + 1px);
       position: absolute;
-      top: 5px;
+      top: 1px;
       width: 175px;
 
       > li {
