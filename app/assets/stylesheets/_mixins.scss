@@ -301,7 +301,7 @@
   $S:  480px;
   $M:  768px;
   $L:  992px;
-  $XL: 1441px;
+  $XL: 1200px;
 
   @if $canvas == XS {
     @media only screen and (min-width: $XS) and (max-width: $S - 1) { @content; }
