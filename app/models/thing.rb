@@ -87,6 +87,7 @@ class Thing < Post
 
   embeds_many :kinds
   accepts_nested_attributes_for :kinds, allow_destroy: true
+  belongs_to :brand
 
   def photos
     Photo.find_with_order photo_ids
@@ -129,6 +130,11 @@ class Thing < Post
       new_tags << tag if tag
     end
     self.tags = new_tags
+  end
+
+  def brand_text=(text)
+    self.brand = Brand.find_or_create_by(name: text)
+    self.save
   end
 
   def category_records

@@ -50,6 +50,10 @@ ul.nav.nav-pills
   = text_field_tag("title", "")
   = submit_tag "查询标题 & 副标题"
 
+= form_tag batch_edit_haven_things_path, method: :get do
+  = text_field_tag("brand", "")
+  = submit_tag "查询品牌"
+
 = form_tag batch_update_haven_things_path(redirect_from: request.fullpath), method: :patch do
   table.table.table-striped.table-hover.table-bordered
     tr
@@ -87,6 +91,8 @@ ul.nav.nav-pills
           = text_field_tag 'things[][categories_text]', t.categories_text, hint: "用,分隔", style: 'width: 100%'
           | 标签
           = text_field_tag 'things[][tags_text]', t.tags_text, hint: "用,分隔", style: 'width: 100%'
+          | 品牌
+          = text_field_tag 'things[][brand_text]', t.brand.try(:name), style: 'width: 100%'
         td
           = link_to t, target: '_blank' do
             = image_tag(t.cover.url(:small))

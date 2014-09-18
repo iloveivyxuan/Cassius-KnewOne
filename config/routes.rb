@@ -322,6 +322,8 @@ Making::Application.routes.draw do
 
     resources :tags
 
+    resources :brands, only: [:index, :destroy]
+
     resources :staffs do
       get 'role', to: 'staffs#role'
     end

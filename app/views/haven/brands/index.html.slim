@@ -1,0 +1,15 @@
+table.table
+  thead
+    tr
+      th 标签
+      th 所属分类
+      th 产品数
+      th 操作
+  tbody
+    - @brands.each do |t|
+      tr
+        th= link_to t.name, things_path(brand: t)
+        th= t.name
+        th= t.things.size
+        th
+          = link_to '[删除]', haven_brand_path(t), method: :delete

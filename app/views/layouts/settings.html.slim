@@ -43,6 +43,8 @@
             = link_to_with_icon '管理分类', 'fa fa-fw fa-wrench', haven_categories_path
           = nav_tab :tag do
             = link_to_with_icon '管理标签', 'fa fa-fw fa-wrench', haven_tags_path
+          = nav_tab :brand do
+            = link_to_with_icon '管理品牌', 'fa fa-fw fa-wrench', haven_brands_path
           = nav_tab :things do
             = link_to_with_icon '批量修改产品', 'fa fa-fw fa-wrench', batch_edit_haven_things_path
             = link_to_with_icon '关联产品', 'fa fa-fw fa-wrench', haven_links_path

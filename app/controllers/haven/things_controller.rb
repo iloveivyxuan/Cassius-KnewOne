@@ -83,6 +83,10 @@ module Haven
       if params[:title]
         @things = @things.where(title: Regexp.new(params[:title])).union.where(subtitle: Regexp.new(params[:title]))
       end
+      if params[:brand]
+        brand = Brand.where(name: Regexp.new(params[:brand], Regexp::IGNORECASE)).first
+        @things = @things.where(brand: brand) if brand
+      end
       unless params[:filter] || params[:categories]
         @things = @things.desc(:created_at)
       end
