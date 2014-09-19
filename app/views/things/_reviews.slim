@@ -2,13 +2,12 @@
   - reviews = tp.reviews(5)
   - if reviews.present?
     #thing_reviews.clearfix
-      .new_review
-        - if user_signed_in?
-          - data = { category: "review", action: "review_write", label: "review_write+#{request.path}" }
-          = link_to_with_icon "我要写评测", "fa fa-pencil", new_thing_review_path(tp.thing),
-          class: "pull-left btn btn-default track_event", data: data
       .reviews.list = render reviews
 
       - if tp.thing.reviews.count > 5
-        = link_to_with_icon "更多", "fa fa-ellipsis-h", thing_reviews_path(tp.thing),
-        class: "btn btn-info pull-right"
+        .thing_reviews_action.clearfix
+          ul
+            li= render 'reviews/link_to_new', klass: 'btn btn--transition btn--square btn--tall btn-write-review btn--blue'
+            li= link_to [tp.thing, :reviews], class: 'btn btn--transition btn--square btn--tall btn--blue'
+              i.fa.fa-ellipsis-h
+              span 更多评测

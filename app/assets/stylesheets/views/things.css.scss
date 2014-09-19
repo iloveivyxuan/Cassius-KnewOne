@@ -874,7 +874,7 @@ body {
     border-bottom: 1px dashed $gray-lighter;
     &:last-child { border-bottom: none }
   }
-  .feed_article--review {
+  .feed_article.review {
     header {
       width: 100%;
       margin-bottom: 10px;
