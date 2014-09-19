@@ -109,7 +109,6 @@ class Post
 
   # remove multiple <p><br></p>
   def remove_ending_blanks
-    binding.pry
     self.content.gsub!(/(<p><br><\/p>)+\z/, "")
   end
 
