@@ -8,8 +8,13 @@
         .modal-body
           .form-group
             i.fa.fa-tint.selectpicker_label
-            = select_tag 'group_id', options_from_collection_for_select(current_user.joined_groups, "id", "name"),
-                         class: 'form-control selectpicker', required: true, prompt: '选择一个小组'
+            - joined_groups = current_user.joined_groups
+            - if joined_groups.empty?
+              = select_tag 'group_id', options_from_collection_for_select(joined_groups, "id", "name"),
+              class: 'form-control selectpicker', required: true, prompt: '选择一个小组'
+            - else
+              = select_tag 'group_id', options_from_collection_for_select(joined_groups, "id", "name", joined_groups.first),
+              class: 'form-control selectpicker', required: true
           .alert.alert-success.hide
             | 已收藏成功
         .modal-footer

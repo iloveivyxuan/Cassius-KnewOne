@@ -473,7 +473,7 @@ HERE
 
   # groups
   def joined_groups
-    Group.find_by_user self
+    Group.find_by_user(self).sort_by { |g| g.members.find_by(user_id: self.id).created_at || Time.at(0) }.reverse
   end
 
   def managed_groups
