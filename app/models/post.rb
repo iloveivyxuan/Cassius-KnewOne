@@ -24,6 +24,7 @@ class Post
   scope :to_date, ->(date) { where :created_at.lt => date.next_day.to_time.to_i }
 
   before_save :format_title
+  before_save :remove_ending_blanks
 
   after_create :update_commented_at
 
@@ -105,4 +106,11 @@ class Post
       yield
     end
   end
+
+  # remove multiple <p><br></p>
+  def remove_ending_blanks
+    binding.pry
+    self.content.gsub!(/(<p><br><\/p>)+\z/, "")
+  end
+
 end

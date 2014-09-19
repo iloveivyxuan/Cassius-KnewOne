@@ -18,12 +18,4 @@ class Review < Post
   end
 
   need_aftermath :create, :vote
-
-  before_save :remove_blanks
-
-  # remove multiple <p><br></p>
-  def remove_blanks
-    self.content.gsub!(/(<p><br><\/p>)+\z/, "")
-  end
-
 end
