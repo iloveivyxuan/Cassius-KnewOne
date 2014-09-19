@@ -6,7 +6,7 @@
         span.author_name
           label 分享者
           = link_to @thing.author.name, @thing.author, data: {"popover-profile" => @thing.author.id.to_s}
-        = tp.link_to_share('btn btn--square btn--share btn--orange hidden-xs hidden-sm')
+        = tp.link_to_share('btn btn--square btn--share btn--orange hidden-xs hidden-sm', '')
 
       - if tp.summary.present?
         = tp.content
