@@ -346,6 +346,7 @@ html.no-touch {
     @include box-shadow(0 2px 5px rgba(0,0,0,.1));
     > li {
       > a {
+        @include clearfix;
         display: block;
         padding: 0;
         padding-left: 4px;
@@ -357,6 +358,12 @@ html.no-touch {
           width: 20%;
           color: $light_grey;
           text-align: center;
+          line-height: 50px;
+          float: left;
+        }
+        em {
+          float: left;
+          font-style: normal;
         }
         span {
           float: right;
