@@ -678,15 +678,16 @@ body {
     p {
       font-size: 14px;
     }
-    a {
+    a:not(.btn) {
       color: $blue-dark;
       &:hover { color: $blue-bright }
     }
     footer {
-      button {
+      > .btn {
         float: right;
         height: 40px;
         line-height: 40px;
+        text-decoration: none;
       }
     }
   }
