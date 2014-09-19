@@ -106,7 +106,7 @@ class PostPresenter < ApplicationPresenter
   end
 
   def link_to_share(klass = '')
-    link_to_with_icon "分享", "fa fa-share-alt",
+    link_to_with_icon "", "fa fa-share-alt",
     user_signed_in? ? "#share_modal" : "#login-modal",
     title: "分享", class: "#{klass} share_btn track_event",
     data: {
