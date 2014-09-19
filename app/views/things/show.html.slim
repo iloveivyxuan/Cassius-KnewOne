@@ -8,6 +8,7 @@
   = render "mobile_buy", tp: tp
   = render 'reviews', tp: tp
   = render 'feelings', tp: tp
+  = render 'feelings/form', thing: tp.thing, id: 'thing_feeling_form'
 
 - content_for :script do
   javascript:

@@ -231,7 +231,7 @@ body {
   &.comment_form_wrapper {
     padding: 2em 0;
   }
-  .form_avatar {
+  .user_avatar {
     position: absolute;
     top: 0;
     left: 0;
@@ -246,27 +246,8 @@ body {
       left: 2em;
       margin-left: 0;
     }
-    > a img {
-      width: 60px;
-    }
-    figcaption {
-      display: block;
-      height: 20px;
-      line-height: 20px;
-      margin-top: 10px;
-      text-align: center;
-      a {
-        display: block;
-        padding: 0 5px;
-        font-size: 13px;
-        color: $gray;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-        &:hover { color: $blue-light }
-      }
-    }
   }
+
   .feeling_form {
     padding-left: 20%;
     padding-right: 2em;
@@ -295,6 +276,14 @@ body {
       border: none;
       ul { padding-top: .5em }
       .help-block { margin: .5em 1em }
+    }
+
+    &.disabled {
+      padding-left: 2em;
+
+      textarea {
+        background-color: $gray-lighter;
+      }
     }
   }
 }
@@ -958,12 +947,16 @@ body {
   padding: 3em 0;
   background: #fff;
   border: 2px solid $gray-lighter;
-  .form_avatar {
+  .user_avatar {
     top: 3em;
   }
   textarea {
     background: #fff;
     border-bottom-style: dashed;
+
+    &:disabled {
+      background-color: $gray-lighter;
+    }
   }
 }
 
