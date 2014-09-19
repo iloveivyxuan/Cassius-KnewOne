@@ -1,0 +1,5 @@
+.mobile_buy.visible-xs.visible-sm
+  .mobile_shop.clearfix
+    - if tp.price.present?
+      #mobile_price.mobile_price= tp.price
+    = render_mobile_buy(tp.thing)

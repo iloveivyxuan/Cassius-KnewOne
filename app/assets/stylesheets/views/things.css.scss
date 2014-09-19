@@ -794,6 +794,10 @@ body {
     height: 40px;
     line-height: 40px;
     border: none;
+
+    &:only-child {
+      width: 100%;
+    }
   }
   .mobile_buy {
     #cart_item_kind_id {
