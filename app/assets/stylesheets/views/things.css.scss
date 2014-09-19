@@ -1,5 +1,10 @@
 @import '../base';
 
+$gray:         lighten(#000, 60%);
+$gray-light:   lighten(#000, 85%);
+$gray-lighter: lighten(#000, 93.5%);
+$text-color:   #777;
+
 body {
   font-family: "latoregular", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Microsoft YaHei", "Orbitron-Bold", sans-serif;
 }
