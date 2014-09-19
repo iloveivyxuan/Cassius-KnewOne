@@ -19,25 +19,3 @@
     width: 100px;
   }
 }
-
-.category {
-
-  .category_name {
-    line-height: 20px;
-    margin-bottom: 0;
-    vertical-align: -80px;
-  }
-}
-
-ul.categories {
-  @include make-row;
-
-  > li {
-
-    @media (min-width: $screen-sm-min) {
-      @include make-sm-column(6);
-      @include make-md-column(4);
-      @include make-lg-column(3);
-    }
-  }
-}

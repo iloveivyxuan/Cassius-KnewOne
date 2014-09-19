@@ -6,5 +6,9 @@ header.page-header
     | 产品分类
 
 section
-  ul.categories
-    = render partial: 'categories/category_big', collection: @categories, as: :category
+  .categories
+    = render partial: 'categories/category_block', collection: @categories, as: :category
+
+- content_for :script do
+  javascript:
+    Making.InitCategories();
