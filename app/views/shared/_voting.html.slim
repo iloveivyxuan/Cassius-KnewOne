@@ -3,12 +3,12 @@
   - url = polymorphic_path([action, object.try(:thing) || object.try(:group), object])
   = form_tag url, remote: true, class: 'voting' do
     - if object.voted?(current_user)
-      = button_tag title: "取消赞", class: "btn btn-sm done" do
+      = button_tag title: "取消赞", class: "btn btn--like done" do
         = present(object).lovers_count
     - else
       - klass = object.class.to_s.downcase
       - data = { category: "like", action: "like_#{klass}", label: "like_#{klass}+#{request.path}" }
-      = button_tag title: "赞", class: "btn btn-sm track_event", data: data do
+      = button_tag title: "赞", class: "btn btn--like track_event", data: data do
         = present(object).lovers_count
 - else
   = link_to '#', data: {target: '#login-modal', toggle: 'modal'}, class: 'btn btn-sm' do
