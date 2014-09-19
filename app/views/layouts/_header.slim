@@ -41,10 +41,11 @@ header#header role="banner"
               = link_to "#", class: 'dropdown-toggle', data: {toggle: "dropdown"} do
                 i.fa.fa-caret-down.fa_alone
               ul.dropdown-menu role="menu"
+                li = link_to_with_icon '个人主页', 'fa fa-user fa-fw', current_user
+                li = link_to_with_icon "账户设置", "fa fa-tachometer fa-fw", setting_root_path
                 li = link_to_with_icon '我的订单', 'fa fa-truck fa-fw', orders_path
                 li = link_to_with_icon '我的草稿', 'fa fa-pencil-square-o fa-fw', setting_drafts_path
-                li = link_to_with_icon "控制面板", "fa fa-tachometer fa-fw", setting_root_path
-                li = link_to_with_icon "安全登出", "fa fa-sign-out fa-fw", destroy_user_session_path, method: :delete
+                li = link_to_with_icon "安全退出", "fa fa-sign-out fa-fw", destroy_user_session_path, method: :delete
 
           = link_to cart_items_path, class: "user_link cart", title: "购物车" do
             i.fa.fa-shopping-cart.fa-fw

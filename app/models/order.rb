@@ -576,7 +576,7 @@ class Order
         message += "满 200 减 49 优惠券 #{note} ，"
       end
     end
-    message += "进入 控制面板-优惠券 页面绑定即可使用，有效期至 #{3.months.since.to_date}（三个月）。"
+    message += "进入 账户设置-优惠券 页面绑定即可使用，有效期至 #{3.months.since.to_date}（三个月）。"
     self.update_attributes(note: message)
   end
 
