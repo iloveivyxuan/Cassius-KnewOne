@@ -48,10 +48,9 @@ window.Making = do (exports = window.Making || {}) ->
       event.preventDefault()
 
       $(@)
+        .toggleClass('shown')
         .prev('.post_content')
-          .removeClass('is_folded')
-        .end()
-        .remove()
+          .toggleClass('is_folded')
 
   # converts special characters (like <) into their escaped/encoded values (like &lt;).
   # This allows you to show to display the string without the browser reading it as HTML.
