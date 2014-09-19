@@ -34,9 +34,12 @@ li.feed-activity
       section.comments_wrap
         = render 'shared/comments', post: feeling, id: "feeling_#{feeling.id}_comments", auth: true
 
-  - if activity.type == :add_to_list && activity.reference.description.present?
-    .feed-thing-list
-      p
-        i.fa.fa-quote-left
-        = activity.reference.description
-        i.fa.fa-quote-right
+  - if activity.type == :add_to_list
+    - list = activity.source
+    - item = list.items.where(thing: activity.related_thing).first
+    - if item && item.description.present?
+      .feed-thing-list
+        p
+          i.fa.fa-quote-left
+          = item.description
+          i.fa.fa-quote-right
