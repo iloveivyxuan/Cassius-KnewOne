@@ -203,7 +203,11 @@ do (exports = Making) ->
               id  = data.jqXHR.requestid
               that.$body.trigger('done:image.minsert', {url, id})
             fail: (event, data) ->
-              that.$body.trigger('fail:image.minsert', data.jqXHR.responseJSON.message)
+              message = data.jqXHR.responseJSON.message.trim()
+              switch message
+                when 'Authorize has expired'
+                  message = 'Authorize has expired. 请保存草稿后刷新一下页面，然后重试下。'
+              that.$body.trigger('fail:image.minsert', message)
             always: (event, data) ->
               id = data.jqXHR.requestid
               that.$body.trigger('loaded.minsert', id)
