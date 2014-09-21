@@ -41,7 +41,8 @@ header
         unsavedclass: null,
         success: function (response, newValue) {
           $(this).siblings('.fa')[newValue.trim() ? 'removeClass' : 'addClass']('hidden')
-        }
+        },
+        tpl: '<input type="text" maxlength="70">'
       })
 
       if (!Modernizr.touch) {
