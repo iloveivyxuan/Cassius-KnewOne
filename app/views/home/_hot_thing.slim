@@ -1,11 +1,14 @@
+- fanciable = true if fanciable.nil?
+
 - present hot_thing do |thing_presenter|
   article.thing
     header.cover
       = link_to hot_thing, target: "_blank" do
         = thing_presenter.photo :'thing.fixed.big'
-      .fancy_thing
-        = link_to "", hot_thing, class: "fancy_backdrop", target: "_blank"
-        .fancy_button= render "shared/fancy", p: thing_presenter, from: "hits"
+      - if fanciable
+        .fancy_thing
+          = link_to "", hot_thing, class: "fancy_backdrop", target: "_blank"
+          .fancy_button= render "shared/fancy", p: thing_presenter, from: "hits"
     section.content
       h4.title= link_to thing_presenter.title, hot_thing, target: "_blank"
       p.subtitle= link_to thing_presenter.subtitle, hot_thing, target: "_blank"

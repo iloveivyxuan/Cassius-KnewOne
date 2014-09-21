@@ -1,6 +1,6 @@
 section.thing-list-item id="thing-list-item-#{thing_list_item.id}" data-url=url_for([thing_list_item.list, thing_list_item]) data-order=thing_list_item.order
   header
-    = render 'home/hot_thing', hot_thing: thing_list_item.thing
+    = render 'home/hot_thing', hot_thing: thing_list_item.thing, fanciable: fanciable
 
   footer
     - if can?(:destroy, thing_list_item)
