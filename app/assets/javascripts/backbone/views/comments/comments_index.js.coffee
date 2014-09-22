@@ -78,7 +78,7 @@ class Making.Views.CommentsIndex extends Backbone.View
 
   getAnchor: =>
     hash = location.hash
-    if hash.length is 0 then return ''
+    return '' if hash.indexOf('#comment-') == -1
     endpoint = hash.indexOf('?')
     if endpoint < 0
       return hash
