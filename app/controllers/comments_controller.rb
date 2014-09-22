@@ -1,34 +1,39 @@
 class CommentsController < ApplicationController
   include MarkReadable
-  respond_to :json
+
   load_and_authorize_resource :post
+  load_and_authorize_resource :comment, through: :post
+
+  respond_to :json
 
   def index
     mark_read @post
 
-    comment = @post.comments.where(id: params[:from_id]).first
+    comment = @comments.where(id: params[:from_id]).first
     if comment
-      @comments = @post.comments.gte(created_at: comment.created_at)
+      comments_from_created_at = @comments.gte(created_at: comment.created_at)
     end
 
-    if !@comments || @comments.size < Settings.comments.per_page
-      @comments = @post.comments.page(params[:page]).per(Settings.comments.per_page)
+    if !comment || comments_from_created_at.size < Settings.comments.per_page
+      @comments = @comments.page(params[:page]).per(Settings.comments.per_page)
+    else
+      @comments = comments_from_created_at
     end
 
     respond_with @comments
   end
 
   def create
-    authorize! :create, Comment
-    authorize! :create, @post if @post.class == Topic
-    @comment = @post.comments.create(comment_params.merge(author: current_user))
-    @comment.author.log_activity :comment, @comment.post, check_recent: true
+    @comment.author = current_user
+    @comment.save
     respond_with @comment
+
+    @comment.author.log_activity :comment, @comment.post, check_recent: true
   end
 
   def destroy
-    @comment = @post.comments.find params[:id]
-    respond_with @comment.destroy
+    @comment.destroy
+    respond_with @comment
   end
 
   private
