@@ -92,17 +92,14 @@ class Stat
 
   def self.generate_day_stats(date = Date.yesterday)
     Stat.generate_stats(date, date)
-    Stat.last.to_topic
   end
 
   def self.generate_week_stats(date = Date.yesterday)
     Stat.generate_stats(date.beginning_of_week, date.end_of_week)
-    Stat.last.to_topic
   end
 
   def self.generate_month_stats(date = Date.yesterday)
     Stat.generate_stats(date.beginning_of_month, date.end_of_month)
-    Stat.last.to_topic
   end
 
   def to_topic
