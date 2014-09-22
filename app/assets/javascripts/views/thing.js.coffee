@@ -128,7 +128,8 @@ window.Making = do (exports = window.Making || {}) ->
         $wrapper = $element.parents('.comments_wrap')
 
         if $wrapper.is(':hidden')
-          exports.Comments(id)
+          if $element.data('comments') is undefined
+            exports.Comments(id)
           $element.show()
           $wrapper.show()
         else

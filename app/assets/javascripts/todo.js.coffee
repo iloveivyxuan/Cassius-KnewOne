@@ -94,12 +94,14 @@ do (exports = Making) ->
 
     Comments: (el) ->
       $ ->
-        post_id = $(el).data('postid')
+        $el = $(el)
+        post_id = $el.data('postid')
         collection = new Making.Collections.Comments
         collection.url = "/posts/#{post_id}/comments"
         view = new Making.Views.CommentsIndex
           collection: collection
           el: el
+        $el.data('comments', view)
 
     InfiniteScroll: (container, callback) ->
       $('.pagination').hide()
