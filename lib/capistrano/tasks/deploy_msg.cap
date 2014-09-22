@@ -1,5 +1,9 @@
 namespace :deploy do
-  task :deploy_msg do
-    sh './bin/deploy_msg'
+  task :before_start_deploy do
+    sh './bin/before_start_deploy'
+  end
+
+  task :after_finish_deploy do
+    sh './bin/after_finish_deploy'
   end
 end
