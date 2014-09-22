@@ -14,7 +14,7 @@ header
       .user-avatar
         = user_avatar(user)
     .thing-list-name
-      = editable @thing_list, :name, title: '新的列表名称'
+      = editable @thing_list, :name, title: '列表名称'
     .stats
       | 创建于
       = time_ago_tag(@thing_list.created_at)
