@@ -66,6 +66,8 @@
             = link_to_with_icon '管理 Jumptron', 'fa fa-fw fa-wrench', haven_jumptrons_path
           = nav_tab :review do
             = link_to_with_icon '管理评测', 'fa fa-fw fa-wrench', haven_reviews_path
+          = nav_tab :stat do
+            = link_to_with_icon '统计数据', 'fa fa-fw fa-wrench', haven_stats_path
           - if can? :manage, Feeling
             = nav_tab :feeling do
               = link_to_with_icon '管理短评', 'fa fa-fw fa-wrench', haven_feelings_path
@@ -88,8 +90,6 @@
         - if current_user.role? :admin
           = nav_tab :role do
             = link_to_with_icon '管理用户权限', 'fa fa-fw fa-wrench', haven_staffs_path
-          = nav_tab :stat do
-            = link_to_with_icon '统计数据', 'fa fa-fw fa-wrench', haven_stats_path
           = nav_tab :oauth do
             = link_to_with_icon 'OAuth App', 'fa fa-fw fa-wrench', oauth_applications_path, target: '_blank'
           = nav_tab :sidekiq do
