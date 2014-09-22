@@ -30,6 +30,8 @@ module Api
           end
           current_user.log_activity :new_feeling, @feeling, source: @feeling.thing
 
+          @feeling.thing.author.notify :new_feeling, context: @feeling, sender: current_user, opened: false
+
           render action: 'show', status: :created, location: [:api, :v1, @thing, @feeling]
         else
           render json: @feeling.errors, status: :unprocessable_entity
