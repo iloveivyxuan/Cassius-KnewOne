@@ -60,7 +60,7 @@ html.thing_lists_show {
 
         .thing-list-description {
           @include text-overflow;
-          padding-top: 3px;
+          padding: 3px 0 2px;
         }
 
         .stats {
@@ -69,9 +69,24 @@ html.thing_lists_show {
           font-size: 14px;
         }
 
-        .comments_toggle,
+        .comments_toggle {
+          margin-left: .5em;
+          @include breakpoint(sm) {
+            margin-left: 1em;
+          }
+
+          .comments_count {
+            display: none;
+            @include breakpoint(sm) {
+              display: inline;
+            }
+          }
+        }
+
         .thing-list-share {
-          margin-left: 1em;
+          @include breakpoint(sm) {
+            margin-left: 1em;
+          }
         }
       }
 
