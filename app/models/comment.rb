@@ -7,6 +7,7 @@ class Comment
   field :content, type: String
 
   belongs_to :post, index: true
+  belongs_to :thing_list, index: true
   belongs_to :author, class_name: 'User'
   validates :author, presence: true
 
@@ -19,10 +20,14 @@ class Comment
   after_destroy :update_commented_at
 
   def related_users
-    content_users
-    .push(post.author)
-    .reject { |user| !user || user == author }
-    .uniq
+    if post
+      content_users
+      .push(post.author)
+      .reject { |user| !user || user == author }
+      .uniq
+    elsif thing_list
+      [thing_list.author]
+    end
   end
 
   need_aftermath :create
@@ -30,6 +35,8 @@ class Comment
   private
 
   def update_commented_at
+    return unless post
+
     post.reload
     if post.comments.present?
       post.update_attribute :commented_at, post.comments.first.created_at
