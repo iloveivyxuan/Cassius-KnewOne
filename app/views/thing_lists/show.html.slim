@@ -37,12 +37,12 @@ header
       })
 
       $('.thing-list-item-description .editable').editable({
-        emptytext: '说点什么吧……',
+        emptytext: '说点什么吧（50字以内哦）',
         unsavedclass: null,
         success: function (response, newValue) {
           $(this).siblings('.fa')[newValue.trim() ? 'removeClass' : 'addClass']('hidden')
         },
-        tpl: '<input type="text" maxlength="70">'
+        tpl: '<input type="text" maxlength="50">'
       })
 
       if (!Modernizr.touch) {
