@@ -82,6 +82,8 @@ class Making.Views.ThingListsPopup extends Backbone.Marionette.CompositeView
   done: (event) ->
     event.preventDefault()
 
+    @addThingList(event)
+
     thing_id = @model.id
     description = @ui.description.val().trim()
     @ui.description.val('')
