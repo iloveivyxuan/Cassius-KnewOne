@@ -106,9 +106,6 @@ window.Making = do (exports = window.Making || {}) ->
 
   exports.InitReview = ->
     exports.Comments('#comments')
-    $window.on 'load', ->
-      $review = $('.article > .body')
-      exports.scrollSpyPopupLogin(window.location.href, $review.offset().top + $review.height())
 
   exports.InitFeelings = ->
     exports.EditorCompact('.feeling_form')
