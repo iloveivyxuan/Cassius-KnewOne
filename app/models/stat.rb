@@ -271,9 +271,8 @@ class Stat
   end
 
   def new_things_added_to_lists
-    activities = Activity.by_type(:add_to_list).from_date(@@date_from).to_date(@@date_to)
-    things = activities.map(&:reference).compact.map(&:thing)
-    things.size
+    activities = Activity.by_type(:add_to_list).where(visible: true).from_date(@@date_from).to_date(@@date_to)
+    activities.map(&:reference).compact.uniq.size
   end
 
   def things_added_to_lists
