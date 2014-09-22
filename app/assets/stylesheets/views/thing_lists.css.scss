@@ -77,16 +77,13 @@ html.thing_lists_show {
       }
     }
 
-    .comments_wrap {
-      display: none;
-    }
-
     .thing-list-items {
       @include make-row;
 
       @include breakpoint(sm) {
-        padding-top: 10px;
-        border-top: 1px solid $gray-lighter;
+        padding: 10px 0;
+        border: solid $gray-lighter;
+        border-width: 1px 0;
       }
 
       &.ui-sortable {
@@ -113,6 +110,10 @@ html.thing_lists_show {
           border: 5px dashed $gray-lighter;
         }
       }
+    }
+
+    #comments {
+      margin-top: 10px;
     }
   }
 }
