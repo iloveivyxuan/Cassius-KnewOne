@@ -64,8 +64,9 @@ html.thing_lists_show {
           font-size: 14px;
         }
 
+        .comments_toggle,
         .thing-list-share {
-          margin-left: .5em;
+          margin-left: 1em;
         }
       }
 
@@ -74,6 +75,10 @@ html.thing_lists_show {
         top: 14px;
         right: 0;
       }
+    }
+
+    .comments_wrap {
+      display: none;
     }
 
     .thing-list-items {

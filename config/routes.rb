@@ -89,6 +89,7 @@ Making::Application.routes.draw do
 
   resources :thing_lists, path: 'lists', except: [:new, :edit] do
     resources :thing_list_items, path: 'items', only: [:create, :update, :destroy]
+    resources :comments, only: [:index, :create, :destroy]
 
     member do
       post 'fancy'

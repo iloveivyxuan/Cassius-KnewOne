@@ -56,6 +56,10 @@ module NotificationsHelper
     when Story then
       content += "动态 "
       content += link_to post.title, thing_story_path(post.thing, post, anchor: anchor), target: target
+    when ThingList then
+      list = post
+      content += "列表 "
+      content += link_to list.name, thing_list_path(list, anchor: anchor), target: target
     else
       content += ' 失效的资源'
     end

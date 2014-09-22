@@ -66,7 +66,14 @@ class Ability
       feeling.voted?(user)
     end
 
-    can :create, Comment
+    can :create, Comment do |comment|
+      if comment.post.is_a? Topic
+        topic = comment.post
+        topic.group.has_member? user
+      else
+        true
+      end
+    end
     can :destroy, Comment do |comment|
       comment.author == user
     end

@@ -3,7 +3,8 @@ class AftermathHandler
   class<< self
     def comment_create(comment)
       comment.related_users.each do |receiver|
-        receiver.notify :comment, context: comment.post, sender: comment.author, opened: false, data: {comment_id: comment.id}
+        context = comment.post || comment.thing_list
+        receiver.notify :comment, context: context, sender: comment.author, opened: false, data: {comment_id: comment.id}
       end
     end
 

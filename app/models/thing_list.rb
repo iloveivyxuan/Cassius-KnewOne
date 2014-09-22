@@ -5,6 +5,7 @@ class ThingList
 
   belongs_to :author, class_name: 'User', inverse_of: :thing_lists, index: true
   embeds_many :thing_list_items
+  has_many :comments
 
   index 'thing_list_items.thing_id' => 1
 
