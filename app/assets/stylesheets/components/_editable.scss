@@ -9,3 +9,7 @@
 .editable-click {
   cursor: pointer;
 }
+
+.editable-empty {
+  @include plain-link($gray-light);
+}
