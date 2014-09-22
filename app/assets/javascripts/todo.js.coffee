@@ -95,9 +95,10 @@ do (exports = Making) ->
     Comments: (el) ->
       $ ->
         $el = $(el)
-        post_id = $el.data('postid')
+        type = $el.data('type')
+        id = $el.data('id')
         collection = new Making.Collections.Comments
-        collection.url = "/posts/#{post_id}/comments"
+        collection.url = "/#{type}/#{id}/comments"
         view = new Making.Views.CommentsIndex
           collection: collection
           el: el
