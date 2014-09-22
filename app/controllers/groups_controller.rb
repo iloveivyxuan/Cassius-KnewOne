@@ -9,7 +9,7 @@ class GroupsController < ApplicationController
 
     if user_signed_in? && params[:filter] == 'joined'
       session[:topic_filter] = 'joined'
-      @topics = Topic.visible.in(group_id: current_user.joined_groups.pluck(:id)).desc(:commented_at)
+      @topics = Topic.visible.in(group_id: current_user.joined_groups.map(&:id)).desc(:commented_at)
     else
       session[:topic_filter] = 'all'
       @topics = Topic.visible.desc(:commented_at)
