@@ -39,25 +39,11 @@ ul.nav.nav-pills
          - conds[:filter].push(k)
          = link_to v, batch_edit_haven_things_path(conds)
 
-= form_tag batch_edit_haven_things_path, method: :get do
-  = text_field_tag("categories", "")
-  = submit_tag "查询分类"
-
-= form_tag batch_edit_haven_things_path, method: :get do
-  = text_field_tag("shop", "")
-  = submit_tag "查询链接"
-
-= form_tag batch_edit_haven_things_path, method: :get do
-  = text_field_tag("title", "")
-  = submit_tag "查询标题 & 副标题"
-
-= form_tag batch_edit_haven_things_path, method: :get do
-  = text_field_tag("brand", "")
-  = submit_tag "查询品牌"
-
-= form_tag batch_edit_haven_things_path, method: :get do
-  = text_field_tag("tag", "")
-  = submit_tag "查询标签"
+- queries = {"categories" => "分类", "shop" => "链接", "title" => "标题 & 副标题", "brand" => "品牌", "tag" => "标签"}
+- queries.each do |query, tag_text|
+  = form_tag batch_edit_haven_things_path, method: :get do
+    = text_field_tag(query, "")
+    = submit_tag "查询#{tag_text}"
 
 = form_tag batch_update_haven_things_path(redirect_from: request.fullpath), method: :patch do
   table.table.table-striped.table-hover.table-bordered
