@@ -58,6 +58,11 @@ html.thing_lists_show {
           font-size: 16px;
         }
 
+        .thing-list-description {
+          @include text-overflow;
+          padding-top: 3px;
+        }
+
         .stats {
           margin-top: 8px;
           color: $gray-light;
