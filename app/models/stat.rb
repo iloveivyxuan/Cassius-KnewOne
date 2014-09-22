@@ -32,7 +32,8 @@ class Stat
     # 列表
     :new_things_added_to_lists => '新加入列表的产品',
     :things_added_to_lists => '被加入到列表的总产品数',
-    :lists_fancied_tops => '被喜欢最多的列表',
+    :lists_fancies_tops => '被喜欢最多的列表',
+    :lists_fancies_count => '列表被赞总数',
     :lists_count => '列表总数',
     # 销售
     :sale_sum => '销售额',
@@ -283,7 +284,7 @@ class Stat
     things.size
   end
 
-  def lists_fancied_tops
+  def lists_fancies_tops
     activities = Activity.by_type(:fancy_list).from_date(@@date_from).to_date(@@date_to)
     grouped = activities.group_by(&:reference)
     result = {}
@@ -291,6 +292,10 @@ class Stat
       result[list[0].name] = list[1].size if list[0]
     end
     result
+  end
+
+  def lists_fancies_count
+    Activity.by_type(:fancy_list).from_date(@@date_from).to_date(@@date_to).size
   end
 
   def lists_count
