@@ -33,6 +33,7 @@ class Stat
     :new_things_added_to_lists => '新加入列表的产品',
     :things_added_to_lists => '被加入到列表的总产品数',
     :lists_fancied_tops => '被喜欢最多的列表',
+    :lists_count => '列表总数',
     # 销售
     :sale_sum => '销售额',
     :orders_count => '订单数',
@@ -277,7 +278,7 @@ class Stat
 
   def things_added_to_lists
     items = []
-    ThingList.each { |tl| items += tl.items }
+    ThingList.where(:created_at.lte => @@date_to).each { |tl| items += tl.items }
     things = items.map(&:thing_id).uniq
     things.size
   end
@@ -290,6 +291,10 @@ class Stat
       result[list[0].name] = list[1].size if list[0]
     end
     result
+  end
+
+  def lists_count
+    ThingList.where(:created_at.lte => @@date_to.next_day).size
   end
 
   private
