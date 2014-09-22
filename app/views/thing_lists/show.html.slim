@@ -15,6 +15,9 @@ header
         = user_avatar(user)
     .thing-list-name
       = editable @thing_list, :name, title: '列表名称'
+    - if can?(:update, @thing_list) || @thing_list.description.present?
+      .thing-list-description
+        = editable @thing_list, :description, title: '列表描述'
     .stats
       | 创建于
       = time_ago_tag(@thing_list.created_at)
@@ -45,6 +48,11 @@ header
   - content_for :script
     javascript:
       $('.thing-list-name .editable').editable({
+        unsavedclass: null
+      })
+
+      $('.thing-list-description .editable').editable({
+        emptytext: '描述一下吧',
         unsavedclass: null
       })
 
