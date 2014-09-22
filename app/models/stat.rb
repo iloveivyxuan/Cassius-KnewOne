@@ -285,8 +285,7 @@ class Stat
   end
 
   def lists_fancies_tops
-    activities = Activity.by_type(:fancy_list).from_date(@@date_from).to_date(@@date_to)
-    grouped = activities.group_by(&:reference)
+    grouped = all_lists_fancies.group_by(&:reference)
     result = {}
     grouped.sort_by { |k, v| v.count }.reverse.take(10).each do |list|
       result[list[0].name] = list[1].size if list[0]
@@ -295,7 +294,7 @@ class Stat
   end
 
   def lists_fancies_count
-    Activity.by_type(:fancy_list).from_date(@@date_from).to_date(@@date_to).size
+    all_lists_fancies.size
   end
 
   def lists_count
@@ -334,6 +333,10 @@ class Stat
 
   def all_things
     @_all_things ||= Thing.where(:created_at.lte => @@date_to.next_day)
+  end
+
+  def all_lists_fancies
+    @_all_lists_fancies ||= Activity.by_type(:fancy_list).from_date(@@date_from).to_date(@@date_to)
   end
 
   def product_something_tops(klass)
