@@ -29,6 +29,9 @@ class Activity
   scope :by_reference, ->(record) do
     where reference_union: "#{record.class.name}_#{record.id.to_s}"
   end
+  scope :by_source, ->(record) do
+    where source_union: "#{record.class.name}_#{record.id.to_s}"
+  end
   scope :from_date, ->(date) { where :created_at.gte => date.to_time.to_i }
   scope :to_date, ->(date) { where :created_at.lt => date.next_day.to_time.to_i }
 
