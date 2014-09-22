@@ -19,7 +19,7 @@ header
       | 创建于
       = time_ago_tag(@thing_list.created_at)
 
-      a.comments_toggle href="#" data-id="list_#{@thing_list.id}_comments" title="评论"
+      a.comments_toggle href="#comments" title="评论"
         i.fa.fa-comments-o
         - if @thing_list.has_comments?
           span.comments_count= @thing_list.comments.size
@@ -29,18 +29,17 @@ header
   .follow
     = render 'fancy_button', thing_list: @thing_list
 
-section.comments_wrap
-  = render 'shared/comments', post: @thing_list, id: "list_#{@thing_list.id}_comments", auth: true
-
 - if @thing_list.items.present?
   section.thing-list-items
     = render @thing_list.items, fanciable: current_user != user
 - else
     = render 'shared/nothing'
 
+= render 'shared/comments', post: @thing_list, id: 'comments', auth: true
+
 - content_for :script
   javascript:
-    Making.Feeling('body')
+    Making.Comments('#comments')
 
 - if can?(:update, @thing_list)
   - content_for :script
