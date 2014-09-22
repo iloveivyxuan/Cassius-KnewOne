@@ -2,6 +2,6 @@
   auth: auth,
   type: post.is_a?(Post) ? 'posts' : 'lists',
   id: post.id.to_s,
-  title: "回复",
+  title: post.is_a?(Post) ? '回复' : '评论',
   count: post.comments.count,
   per: Settings.comments.per_page}
