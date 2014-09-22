@@ -5,3 +5,7 @@
   &.glyphicon-ok { @extend .fa-check; }
   &.glyphicon-remove { @extend .fa-times; }
 }
+
+.editable-click {
+  cursor: pointer;
+}
