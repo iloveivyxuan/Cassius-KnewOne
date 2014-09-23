@@ -1,5 +1,7 @@
+- user = activity.user
+
 article.activity_feed
-  = render 'shared/user_avatar', user: activity.user
+  = render 'shared/user_avatar', user: user
 
   section
     p
@@ -22,3 +24,11 @@ article.activity_feed
           - fail "Unsupported type: #{activity.type}"
 
     aside= time_ago_tag activity.created_at
+
+    - if activity.type == :own_thing && current_user != user
+      - if user_signed_in?
+        = button_tag class: "btn btn-invite-review", data: {'private-message' => true, 'user-id' => user.id.to_s, 'user-name' => user.name, title: '请TA写评测'}
+          i.fa.fa-hand-o-left
+      - else
+        = button_tag class: "btn btn-invite-review", data: {toggle: 'modal', target: '#login-modal', title: '请TA写评测'}
+          i.fa.fa-hand-o-left
