@@ -8,14 +8,20 @@
 
 - content_for :content do
   - present @thing do |tp|
-    #thing_title
-      h1= link_to(tp.title, tp.thing)
-      p= tp.subtitle
-    main
-      nav= render "things/nav", tp: tp
-      #thing_content= yield
-    aside#thing_actions
-      = render "things/actions", tp: tp
+    .container
+      main
+        #thing_content
+          #thing_title
+            h1= link_to(tp.title, tp.thing)
+            h2= tp.subtitle
+
+          nav#thing-top_nav.hidden-xs
+            = render "things/nav", tp: tp
+
+          = yield
+
+      aside
+        = render "things/aside", tp: tp
 
     - if user_signed_in?
       = render 'things/supplier', tp: tp
