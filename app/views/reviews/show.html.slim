@@ -7,6 +7,9 @@
     header
       h3= rp.title
       = rp.score
+      - if browser.mobile?
+        - present @thing do |tp|
+          = tp.buy
       = rp.author_tag
       = render 'users/follow_btn', user: @review.author
 

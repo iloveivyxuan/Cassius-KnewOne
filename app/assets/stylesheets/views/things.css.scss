@@ -322,4 +322,19 @@ html.reviews_show {
       }
     }
   }
+
+  &.mobile {
+    .mobile_buy {
+      margin: 15px 0;
+
+      & + .new_cart_item {
+        display: none;
+      }
+    }
+
+    .buy_button {
+      display: block;
+      width: 100%;
+    }
+  }
 }

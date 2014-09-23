@@ -51,4 +51,5 @@
 
   - content_for :script do
     javascript:
-      Making.CartItemNew();
+      if(Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')'))
+        Making.CartItemNew();
