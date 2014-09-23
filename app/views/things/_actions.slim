@@ -5,7 +5,7 @@
     - if user_signed_in?
       = tp.render_shopping_desc
     - if tp.buy
-      .buy= tp.buy
+      .buy.clearfix= tp.buy
 
   .actions
     .fanciers= render "shared/fancy", p: tp, from: "thing"
