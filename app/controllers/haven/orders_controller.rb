@@ -38,21 +38,21 @@ module Haven
 
           @orders.each do |order|
             cols = [
-                order.order_no,
-                order.created_at.strftime('%Y-%m-%d %H:%M:%S'),
-                ::Order::STATES[order.state],
-                (order.order_items.map { |i| "{{ #{i.name} x #{i.quantity} }} " }.reduce &:+),
-                "￥#{order.total_price}",
-                ::Order::DELIVER_METHODS[order.deliver_by],
-                order.deliver_no,
-                content_for_address(order.address),
-                order.note,
-                order.admin_note,
-                order.system_note,
-                order.user_id,
-                order.user.name,
-                order.user.email
-            ]
+                    order.order_no,
+                    order.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+                    ::Order::STATES[order.state],
+                    (order.order_items.map { |i| "{{ #{i.name} x #{i.quantity} }} " }.reduce &:+),
+                    "￥#{order.total_price}",
+                    ::Order::DELIVER_METHODS[order.deliver_by],
+                    order.deliver_no,
+                    content_for_address(order.address),
+                    order.note,
+                    order.admin_note,
+                    order.system_note,
+                    order.user_id,
+                    order.user.name,
+                    order.user.email
+                   ]
             lines<< cols
           end
 
