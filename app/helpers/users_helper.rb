@@ -19,16 +19,16 @@ module UsersHelper
       case k
         when 'Website'
           html<< link_to_with_icon(nil, 'fa fa-globe', v,
-                                   title: "个人网站", target: "_blank", class: 'website', rel: '_nofollow')
+                                   title: "个人网站", target: "_blank", class: 'website', rel: 'nofollow')
         when 'Twitter'
           html<< link_to_with_icon(nil, 'fa fa-twitter', v,
-                                   title: "Twitter", target: "_blank", class: 'provider', rel: '_nofollow')
+                                   title: "Twitter", target: "_blank", class: 'provider', rel: 'nofollow')
         when 'Weibo'
           html<< link_to_with_icon(nil, 'fa fa-weibo', v,
-                                   title: "新浪微博", target: "_blank", class: 'provider', rel: '_nofollow')
+                                   title: "新浪微博", target: "_blank", class: 'provider', rel: 'nofollow')
         when 'Blog'
           html<< link_to_with_icon(nil, 'fa fa-rss', v,
-                                   title: "博客", target: "_blank", class: 'website', rel: '_nofollow')
+                                   title: "博客", target: "_blank", class: 'website', rel: 'nofollow')
       end
     end
 
