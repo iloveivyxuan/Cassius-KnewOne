@@ -1,0 +1,24 @@
+article.activity_feed
+  = render 'shared/user_avatar', user: activity.user
+
+  section
+    p
+      - case activity.type
+        - when :add_to_list
+          | 加入列表
+          - list = activity.source
+          = link_to list.name, list, class: 'user_list_name'
+        - when :fancy_thing
+          span.fancied
+            i.fa.fa-heart
+            | 喜欢
+          | 此产品
+        - when :own_thing
+          span.owned
+            i.fa.fa-circle-o
+            | 拥有
+          | 此产品
+        - else
+          - fail "Unsupported type: #{activity.type}"
+
+    aside= time_ago_tag activity.created_at
