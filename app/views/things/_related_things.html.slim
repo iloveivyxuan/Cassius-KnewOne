@@ -1,0 +1,4 @@
+- if tp.related_things.present?
+  .related_things
+    h4 您可能也喜欢
+    ul= render partial: "things/related_thing", collection: tp.related_things, as: :tp, locals: {from_id: tp.thing.id.to_s}
