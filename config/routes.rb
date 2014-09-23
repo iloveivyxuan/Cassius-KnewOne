@@ -136,6 +136,7 @@ Making::Application.routes.draw do
     end
 
     member do
+      get 'activities'
       post 'fancy'
       post 'own'
       get 'buy'
