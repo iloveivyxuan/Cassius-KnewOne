@@ -203,26 +203,31 @@ body {
 
 /**********************************************.feed_article**********************************************/
 
-.feed_article {
-  width: 100%;
-  padding-left: 20%;
-  padding-right: calc(10% + 2em);
-  background: #fff;
-  footer {
-    .metas {
-      li a {
-        &:hover {
-          text-decoration: none;
-          * { color: $text-color }
+#thing_reviews,
+#thing-feeds,
+.reviews.list,
+.feelings.list {
+  .feed_article {
+    width: 100%;
+    padding-left: 20%;
+    padding-right: calc(10% + 2em);
+    background: #fff;
+    footer {
+      .metas {
+        li a {
+          &:hover {
+            text-decoration: none;
+            * { color: $text-color }
+          }
         }
       }
-    }
-    .feed_action {
-      position: absolute;
-      top: 2em;
-      right: 0;
-      width: calc(10% - 1em);
-      margin-right: 2em;
+      .feed_action {
+        position: absolute;
+        top: 2em;
+        right: 0;
+        width: calc(10% - 1em);
+        margin-right: 2em;
+      }
     }
   }
 }
