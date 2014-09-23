@@ -1470,6 +1470,10 @@ body {
           color: $text-color;
           background: #fff;
         }
+
+        &:only-child {
+          width: 100%;
+        }
       }
     }
   }

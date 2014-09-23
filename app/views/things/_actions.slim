@@ -13,41 +13,15 @@
     li.write_feeling= link_to_with_icon '说点什么', 'fa fa-comments-o', '#thing_feeling_form'
     li.add_to_list= render 'thing_lists/link_to_add_list', thing_id: tp.thing.id.to_s
 
-  .categories
-    = render partial: "things/tag", collection: tp.tags
+  .others.clearfix
+    ul.tags.clearfix
+      = render partial: 'tag', collection: tp.tags
 
-  ul.operations.fa-ul
-    li= link_to_with_icon "RSS", "fa-li fa fa-rss", thing_url(tp.thing, format: "atom")
-    - if can? :fancy, Group
-      li= link_to_with_icon "收藏进小组", "fa-li fa fa-bookmark", "#group_fancy_thing", title: "收藏进小组",
-        data: {toggle: "modal"}
-    - if tp.thing.official_site.present?
-      li= tp.official_site
-    - if can? :create, Supplier
-      li= link_to_with_icon "我想供货", "fa-li fa fa-beer", "#thing_supplier", title: "提供产品", \
-                            data: {toggle: "modal", keyboard: false}
-    - else
-      li= link_to_with_icon "我想供货", "fa-li fa fa-beer", "#login-modal", title: "提供产品", \
-                            data: {toggle: "modal", keyboard: false}
-    - if can? :update, tp.thing
-      li= link_to_with_icon "编辑", "fa-li fa fa-edit", edit_thing_path(tp.thing), title: "编辑"
-    - if can? :pro_edit, tp.thing
-      li= link_to_with_icon "高级", "fa-li fa fa-cogs", edit_haven_thing_path(tp.thing), title: "销售管理"
-    - if can? :destroy, tp.thing
-      li= link_to_with_icon "删除", "fa-li fa fa-trash-o", thing_path(tp.thing), title: "删除产品",
-        method: :delete, data: {confirm: "您确定要删除这个产品吗?"}
-
-  = render 'things/related_lists', thing: @thing
-
-  - if tp.thing.fancy_groups.present?
-    .fancy_groups
-      h4 收藏此产品的小组
-      ul.groups = render tp.thing.fancy_groups(5)
-
-  - if tp.related_things.present?
-    .related_things
-      h4 您可能也喜欢
-      ul= render partial: "things/related_thing", collection: tp.related_things, as: :tp, locals: {from_id: tp.thing.id.to_s}
+    .related.clearfix
+      - if tp.thing.official_site.present?
+        = tp.official_site
+      - if tp.thing.has_brand?
+        = link_to_with_icon tp.thing.brand.name, 'fa fa-folder-open', things_path(brand: tp.thing.brand.name)
 
   - content_for :script do
     javascript:
