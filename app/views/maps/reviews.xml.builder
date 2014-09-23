@@ -8,10 +8,9 @@ xml.rss :version => "2.0" do
       xml.item do
         xml.cover review.cover(:normal)
         xml.title review.thing.title
-        xml.description review.title
         xml.author review.author.name
         present review do |rp|
-          xml.content rp.content_with_original_photos, :type => 'html'
+          xml.description "<h1>#{review.title}</h1>" + rp.content_with_original_photos, :type => 'html'
         end
         xml.pubDate review.created_at.to_s(:rfc822)
         link = thing_review_url(review.thing.id, review.id)
