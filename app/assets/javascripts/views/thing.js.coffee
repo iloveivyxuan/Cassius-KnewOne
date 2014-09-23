@@ -27,7 +27,7 @@ window.Making = do (exports = window.Making || {}) ->
     # TODO
     if $html.hasClass('touch')
       $window.on 'load', ->
-        $player = $('.is_folded .fluid-width-video-wrapper')
+        $player = $('.is_folded .embed-responsive')
 
         $player
           .css
