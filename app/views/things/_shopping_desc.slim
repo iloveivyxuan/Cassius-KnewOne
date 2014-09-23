@@ -1,4 +1,5 @@
 .shopping_desc
-  span= summary
-  = link_to "购买详情", "#", data: {toggle: "modal", target: "#shopping_modal"}
+  = link_to "#", data: {toggle: "modal", target: "#shopping_modal"}
+    span= summary
+    i 点击查看购买详情
   = tp.render_shopping_desc_modal
