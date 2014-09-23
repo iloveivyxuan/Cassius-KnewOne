@@ -1512,7 +1512,7 @@ body {
       width: 100%;
       background: #fafafa;
       border-bottom: 1px solid $gray-lighter;
-      > a {
+      > .user_avatar {
         position: absolute;
         left: 0;
         width: 15%;
@@ -1576,30 +1576,15 @@ body {
         i { line-height: 60px }
       }
     }
-    ul {
-      width: 100%;
-      &:before,
-      &:after {
-        content: " ";
-        display: table;
-      }
-      &:after { clear: both }
-      li {
-        float: left;
+
+    .thing-list-cover {
+      img {
+        display: inline-block;
         width: 33.3333333%;
-        height: 90px;
-        @include MQ(XLplus) { height: 100px }
-        overflow: hidden;
+
         &:first-child {
           width: 100%;
           height: auto;
-        }
-        img {
-          width: 100%;
-          height: auto;
-          line-height: 90px;
-          @include MQ(XLplus) { line-height: 100px }
-          @include border-radius(0);
         }
       }
     }
