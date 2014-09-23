@@ -7,11 +7,11 @@
     - if tp.buy
       .buy.clearfix= tp.buy
 
-  .actions
-    .fanciers= render "shared/fancy", p: tp, from: "thing"
-    .owners= render "things/own", tp: tp
-    .share= tp.link_to_share
-    .new_review= render 'reviews/link_to_new'
+  ul.actions.clearfix
+    li.fanciers= render "shared/fancy", p: tp, from: "thing"
+    li.owners= render "things/own", tp: tp
+    li.write_feeling= link_to_with_icon '说点什么', 'fa fa-comments-o', '#thing_feeling_form'
+    li.add_to_list= render 'thing_lists/link_to_add_list', thing_id: tp.thing.id.to_s
 
   .categories
     = render partial: "things/tag", collection: tp.tags
