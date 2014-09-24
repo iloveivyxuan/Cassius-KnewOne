@@ -1745,40 +1745,23 @@ body {
         i { line-height: 60px }
       }
     }
-    ul {
-      width: 100%;
-      li {
-        float: left;
+
+    .thing-list-cover {
+      height: 0;
+      padding-bottom: 100%;
+
+      img {
+        display: inline-block;
         width: 50%;
-        height: auto;
-        max-height: 120px;
-        @include MQ(Splus) {
-          max-height: 170px;
-        }
-        @include MQ(Mplus) {
-          width: 25%;
-          height: 115px;
-        }
-        @include MQ(Lplus) {
-          width: 50%;
-          height: 90px;
-        }
-        @include MQ(XLplus) { height: 105px }
-        overflow: hidden;
-        a {
-          display: table;
-          vertical-align: middle;
-          text-align: center;
-          img {
-            display: table-cell;
-            width: 100%;
-            line-height: 150px;
-            @include MQ(Mplus) { line-height: 115px }
-          }
+
+        &:only-child {
+          width: 100%;
+          height: auto;
         }
       }
     }
   }
+
   .show_all_lists {
     display: none;
     a {
