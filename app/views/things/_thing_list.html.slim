@@ -1,0 +1,14 @@
+- author = thing_list.author
+
+figure
+  figcaption.clearfix
+    = render 'shared/user_avatar', user: author, options: {class: 'user_avatar user_avatar--without_name'}
+    div
+      h4
+        | 发布者
+        = link_to author.name, author
+        | 的列表
+      h5= link_to thing_list.name, thing_list
+    = render 'thing_lists/fancy_button', thing_list: thing_list
+  div= link_to thing_list
+    = render 'thing_lists/cover', thing_list: thing_list, layout: layout
