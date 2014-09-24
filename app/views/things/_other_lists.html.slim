@@ -5,4 +5,4 @@
       - break if names.size == 2
       - next if names.include?(list.name) || list.author == thing.author
       - names << list.name
-      = render partial: 'thing_list', locals: {thing_list: list, thing: thing, layout: :grid}
+      = render partial: 'things/thing_list', locals: {thing_list: list, thing: thing, layout: :grid}

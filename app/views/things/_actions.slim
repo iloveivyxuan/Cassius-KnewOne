@@ -15,7 +15,7 @@
 
   .others.clearfix
     ul.tags.clearfix
-      = render partial: 'tag', collection: tp.tags
+      = render partial: 'things/tag', collection: tp.tags
 
     .related.clearfix
       - if tp.thing.official_site.present?
