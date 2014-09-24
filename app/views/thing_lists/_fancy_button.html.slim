@@ -3,7 +3,7 @@
 - data = user_signed_in? ? {} : {toggle: 'modal', target: '#login-modal'}
 - title = fancied ? '取消喜欢' : '喜欢'
 - id = "fancy-list-button-#{thing_list.id}"
-- klass = "fancy-button"
+- klass = "fancy-button #{'fancied' if fancied}"
 - icon_class = fancied ? 'fa-heart' : 'fa-heart-o'
 - icon_class += ' heartbeat' if defined?(heartbeat) && heartbeat
 

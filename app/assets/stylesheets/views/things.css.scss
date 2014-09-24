@@ -129,29 +129,37 @@ body {
   &:focus {
     outline: none;
   }
+
   i {
     margin: 0;
     font-size: 18px;
-    &:before {
-      content:"\f08a";
-      -webkit-font-smoothing: auto;
-    }
+    color: $gray;
   }
+
   &:hover {
-    color: $red;
     background: #fff;
+
     i {
+      color: $red;
       &:before {  content:"\f004" }
     }
   }
-  &.done {
-    color: $red;
+
+  &.fancied {
     background: none;
-    i { &:before {  content:"\f004" } }
-    &:hover {
+
+    i {
       color: $red;
+      &:before {  content:"\f004" }
+    }
+
+    &:hover {
       background: #fff;
-      i { &:before {  content:"\f08a" } }
+
+      i {
+        color: $red;
+        &:before {  content:"\f08a" }
+      }
     }
   }
 }
