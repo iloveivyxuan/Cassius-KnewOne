@@ -1,0 +1,108 @@
+@import '../base';
+
+html.shop, html.things_index {
+  #wrapper {
+    margin: 0;
+
+    .container-fluid {
+      padding: 0;
+      @media (min-width: $screen-md-min) {
+        padding: 0 10%;
+      }
+      @media (min-width: $screen-lg-min) {
+        width: $container-large-desktop;
+        padding: 0 $screen-lg-min * 0.1;
+      }
+    }
+  }
+
+  #things_nav {
+    margin-bottom: 0px;
+    @include clearfix;
+
+    h1 {
+      margin: 1em 0 0 0;
+      font-size: $font-size-h3;
+      color: $gray;
+      > a {color: $gray;}
+    }
+
+    nav {
+      .bootstrap-select {margin: 0;}
+    }
+
+    @media (min-width: $screen-sm-min) {
+      h1 {margin-top: 0;}
+    }
+  }
+
+  #things_list {
+    @include clearfix;
+    $gutter: 20px;
+    margin-top: $gutter;
+
+    article.thing {
+      margin-bottom: $gutter;
+
+      @media (min-width: $screen-sm-min) {
+        float: left;
+      }
+
+      @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+        &:nth-child(odd) {margin-right: $gutter;}
+        width: 350px;
+        width: calc((100% - #{$gutter})/2);
+      }
+
+      @media (min-width: $screen-md-min) {
+        &:nth-child(3n+1), &:nth-child(3n+2) {margin-right: $gutter;}
+        width: 306px;
+        width: calc((100% - #{$gutter}*2)/3);
+      }
+    }
+  }
+}
+
+html.things_index #things_nav {
+  h1 {
+    margin-left: 1em;
+    .subscribe_category {
+      margin-left: 2em;
+      vertical-align: 3px;
+    }
+  }
+
+  nav {
+    margin-top: 1em;
+    .bootstrap-select, select {margin-left: 1em;}
+    .bootstrap-select {width: 150px;}
+  }
+
+  @media (min-width: $screen-sm-min) {
+    h1 {
+      float: left;
+      margin-left: 0;
+    }
+    nav {
+      float: right;
+      margin-top: 2px;
+    }
+  }
+}
+
+html.shop #things_nav {
+  h1 {
+    float: left;
+    margin-left: 1em;
+  }
+
+  nav {
+    float: right;
+    margin-right: 1em;
+    margin-top: 30px;
+  }
+
+  @media (min-width: $screen-sm-min) {
+    nav {margin-top: 0;}
+  }
+}
