@@ -19,6 +19,9 @@ class Thing < Post
   field :reviews_count, type: Integer, default: 0
   before_save :update_counts
 
+  field :brand_name, type: String, default: ""
+  before_save :update_brand
+
   field :links, type: Array, default: []
 
   belongs_to :maker, class_name: "User", inverse_of: nil
@@ -133,7 +136,11 @@ class Thing < Post
   end
 
   def brand_text=(text)
-    self.brand = Brand.find_or_create_by(name: text)
+    if /[a-zA-Z0-9]/ =~ text
+      self.brand = Brand.find_or_create_by(en_name: text)
+    else
+      self.brand = Brand.find_or_create_by(zh_name: text)
+    end
     self.save
   end
 
@@ -367,5 +374,9 @@ class Thing < Post
   def update_priority
     self.priority ||= 0
     self.priority = 1 if self.priority == 0 && self.tags.size > 0
+  end
+
+  def update_brand
+    self.brand_name = self.brand.brand_text if self.brand
   end
 end
