@@ -6,7 +6,7 @@ $gray-lighter: lighten(#000, 93.5%);
 $text-color:   #777;
 
 body {
-  font-family: "latoregular", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Microsoft YaHei", "Orbitron-Bold", sans-serif;
+  font-family: "lato-regular", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Microsoft YaHei", "Orbitron-Bold", sans-serif;
 }
 
 /**********************************************.btn**********************************************/
@@ -471,7 +471,7 @@ body {
   h1, h2 { margin: 0 }
   h1 {
     a {
-      font-family: "latobold", sans-serif;
+      font-family: "lato-bold", sans-serif;
       font-size: 21px;
       line-height: 1.5;
       color: $text-color;
