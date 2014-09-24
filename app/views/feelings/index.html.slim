@@ -1,12 +1,13 @@
 - provide :nav, :thing_feelings unless content_for? :nav
 - page_title "【#{[@thing.title, @thing.subtitle].reject(&:blank?).join(' - ')} 短评】"
 
-= render 'feelings/form'
+section.things_subpage
+  = render 'feelings/form'
 
-- cache_unless user_signed_in?, ['feelings', 'index', @thing, @feelings.first, request.query_string]
-  = render 'feelings/sort', {thing: @thing}
-  .feelings.list = render @feelings
-  = paginate @feelings
+  - cache_unless user_signed_in?, ['feelings', 'index', @thing, @feelings.first, request.query_string]
+    header.feelings_page_header.clearfix= render 'feelings/sort', {thing: @thing}
+    .feelings.list = render @feelings
+= paginate @feelings
 
 - content_for :script do
   javascript:

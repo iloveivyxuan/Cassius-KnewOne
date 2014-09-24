@@ -2,7 +2,7 @@
 - cache_unless user_signed_in?, [feeling, in_feeds]
   - if feeling.thing
     - present feeling do |feeling_presenter|
-      - klass = 'feed_article feeling'
+      - klass = 'feed_article feeling feed_article--feeling'
       - klass += " #{feed_presenter.style}" if in_feeds
       article class=klass id="feeling_#{feeling.id}"
         figure.feeling_author data-popover-profile=feeling.author.id
