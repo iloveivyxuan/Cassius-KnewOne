@@ -1,12 +1,4 @@
 - cache_unless user_signed_in?, ['things', 'actions', @thing]
-  .shop
-    - if tp.price.present?
-      #price.price= tp.price
-    - if user_signed_in?
-      = tp.render_shopping_desc
-    - if tp.buy
-      .buy.clearfix= tp.buy
-
   ul.actions.clearfix
     li.fanciers= render "shared/fancy", p: tp, from: "thing"
     li.owners= render "things/own", tp: tp

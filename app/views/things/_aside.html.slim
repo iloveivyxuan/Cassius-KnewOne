@@ -4,6 +4,7 @@
       = link_to tp.thing
         = tp.photo('thing.fixed')
 
+  = render 'things/buy', tp: tp
   = render 'things/actions', tp: tp
   = render 'things/author_list', thing: tp.thing
   = render 'things/related_things', tp: tp
