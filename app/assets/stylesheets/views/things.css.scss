@@ -31,6 +31,7 @@ body {
   i { margin: 0 }
 }
 .btn--transition {
+  overflow: hidden;
   min-width: 80px;
   @include transition-property(all);
   @include transition-duration(0.2s);
