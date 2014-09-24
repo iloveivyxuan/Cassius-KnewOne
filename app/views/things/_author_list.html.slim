@@ -13,4 +13,4 @@
           h5= link_to list.name, list
         = render 'thing_lists/fancy_button', thing_list: list
       div= link_to list
-        = render 'thing_lists/cover', thing_list: list
+        = render 'thing_lists/cover', thing_list: list, layout: :bottom_stack
