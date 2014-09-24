@@ -37,6 +37,28 @@ module Api
           head :no_content
         end
       end
+
+      def test_email
+        u = User.new email: params[:email]
+        u.valid?
+
+        if u.errors[:email].empty?
+          head :no_content
+        else
+          head json: u.errors[:email], status: :conflict
+        end
+      end
+
+      def test_name
+        u = User.new name: params[:name]
+        u.valid?
+
+        if u.errors[:name].empty?
+          head :no_content
+        else
+          render json: u.errors[:name], status: :conflict
+        end
+      end
     end
   end
 end

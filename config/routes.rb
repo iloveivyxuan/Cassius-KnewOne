@@ -341,6 +341,8 @@ Making::Application.routes.draw do
       get 'search', to: 'search#index'
       get 'extract_url', to: 'utils#extract_url'
       get 'find_similar', to: 'utils#find_similar'
+      get 'test_name', to: 'utils#test_name'
+      get 'test_email', to: 'utils#test_email'
 
       get 'explore/features', to: 'explore#features'
 
@@ -394,6 +396,10 @@ Making::Application.routes.draw do
           get 'followers'
           get 'activities'
         end
+
+        collection do
+          post 'password'
+        end
       end
 
       resources :groups, only: [:index, :show] do
@@ -405,7 +411,7 @@ Making::Application.routes.draw do
         end
       end
 
-      resource :account, only: [:show] do
+      resource :account, only: [:show, :update] do
         resources :fancies, only: [:show, :update, :destroy]
         resources :owns, only: [:show, :update, :destroy]
         resources :followings, only: [:show, :update, :destroy]
