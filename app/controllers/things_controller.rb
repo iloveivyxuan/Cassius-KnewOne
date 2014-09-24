@@ -15,6 +15,9 @@ class ThingsController < ApplicationController
     elsif params[:tag].present?
       @tag = Tag.where(slugs: params[:tag]).first
       @things = @tag.things.published if @tag
+    elsif params[:brand].present?
+      @brand = Brand.where(slugs: params[:brand]).first
+      @things = @brand.things.published if @brand
     else
       @things = Thing.published
     end
