@@ -1,0 +1,22 @@
+- page_title 'KnewOne Styleguide'
+- provide :page_class, 'styleguide'
+- page_css 'styleguide'
+
+- content_for :content do
+
+  header.page-header
+    h1 Styleguide
+
+  nav
+    ul.nav.nav-pills
+      = nav_tab :overview do
+        = link_to "Overview", styleguide_path
+      = nav_tab :scaffolds do
+        = link_to "Scaffolds", scaffolds_styleguide_path
+      = nav_tab :components do
+        = link_to "Components", components_styleguide_path
+
+  main
+    = yield
+
+= render template: 'layouts/application'

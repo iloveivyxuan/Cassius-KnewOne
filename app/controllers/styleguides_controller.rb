@@ -1,10 +1,12 @@
 class StyleguidesController < ApplicationController
+  layout 'styleguide'
+
   def show
   end
 
-  def foo
+  def scaffolds
   end
 
-  def bar
+  def components
   end
 end

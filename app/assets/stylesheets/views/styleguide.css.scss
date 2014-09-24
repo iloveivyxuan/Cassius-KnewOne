@@ -1,1 +1,7 @@
 @import '../base';
+
+html.styleguide {
+  #wrapper {
+    @include wrapper(simple, $screen-lg-min);
+  }
+}
