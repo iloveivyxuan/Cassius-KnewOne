@@ -129,8 +129,7 @@ class Thing < Post
   def tags_text=(text)
     new_tags = []
     text.split(",").each do |tag_name|
-      tag = Tag.where(name: tag_name).first
-      new_tags << tag if tag
+      new_tags <<  Tag.find_or_create_by(name: tag_name)
     end
     self.tags = new_tags
   end
