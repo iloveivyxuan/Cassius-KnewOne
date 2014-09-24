@@ -230,7 +230,11 @@ class ThingPresenter < PostPresenter
   end
 
   def related_things(size = 10)
-    @_related_things ||= thing.related_things(size).map {|t| present(t)}
+    if @_related_things && @_related_things.size >= size
+      return @_related_things.take(size)
+    end
+
+    @_related_things = thing.related_things(size).map {|t| present(t)}
   end
 
   def fancied?
