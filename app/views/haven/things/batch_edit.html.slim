@@ -83,7 +83,7 @@ ul.nav.nav-pills
           | 标签
           = text_field_tag 'things[][tags_text]', t.tags_text, hint: "用,分隔", style: 'width: 100%'
           | 品牌
-          = text_field_tag 'things[][brand_text]', t.brand.try(:name), style: 'width: 100%'
+          = text_field_tag 'things[][brand_text]', t.brand.try(:brand_text), style: 'width: 100%'
         td
           = link_to t, target: '_blank' do
             = image_tag(t.cover.url(:small))
