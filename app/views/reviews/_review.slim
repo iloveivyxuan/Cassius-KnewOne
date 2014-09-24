@@ -2,7 +2,7 @@
 - cache_unless user_signed_in?, [review, in_feeds]
   - if review.thing
     - present review do |review_presenter|
-      - klass = 'feed_article review'
+      - klass = 'feed_article review feed_article--review'
       - klass += " #{feed_presenter.style}" if in_feeds
       article class=klass id="review_#{review.id}"
         header
