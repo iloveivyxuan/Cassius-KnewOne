@@ -2,4 +2,4 @@
   li class="#{notification.read? ? "read" : "unread"} #{"unopened" unless notification.opened?}"
     - cache notification
       = render_notification(notification)
-      = time_ago_tag notification.created_at
+    = time_ago_tag notification.created_at
