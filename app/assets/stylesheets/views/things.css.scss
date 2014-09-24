@@ -118,13 +118,18 @@ body {
     }
   }
 }
-.btn--save_list {
-  color: $gray;
+
+.fancy-button {
   background: #fafafa;
+
+  .fanciers_count {
+    display: none;
+  }
+
   &:focus {
     outline: none;
   }
-  i.fa-save-list {
+  i {
     margin: 0;
     font-size: 18px;
     &:before {
@@ -135,7 +140,7 @@ body {
   &:hover {
     color: $red;
     background: #fff;
-    i.fa-save-list {
+    i {
       &:before {  content:"\f004" }
     }
   }
@@ -1551,7 +1556,7 @@ body {
           }
         }
       }
-      .btn--save_list {
+      .fancy-button {
         float: right;
         width: calc(30% - 30px);
         @include MQ(XLplus) { width: calc(25% - 30px) }
@@ -1730,7 +1735,7 @@ body {
           }
         }
       }
-      .btn--save_list {
+      .fancy-button {
         float: right;
         width: calc(25% - 30px);
         @include MQ(Mplus) { width: calc(15% - 30px) }
