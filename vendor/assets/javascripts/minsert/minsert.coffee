@@ -238,10 +238,10 @@ do ($ = jQuery) ->
             range.insertNode($node[0])
           else
             @insertPoint.insertNode($node[0])
+            @insertPoint.collapse(false)
         else
           p = document.createElement('p')
           p.innerHTML = content
-          console.log 'bar:' + id
           if id?
             range = document.createRange()
             range.selectNode(document.querySelector('#minsert-progress-' + id))
@@ -249,6 +249,7 @@ do ($ = jQuery) ->
             range.insertNode(p)
           else
             @insertPoint.insertNode(p)
+            @insertPoint.collapse(false)
         @$element.trigger('input')
 
       # @TODO
