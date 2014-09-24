@@ -12,7 +12,7 @@ header
   .info
     = link_to user
       .user-avatar
-        = user_avatar(user)
+        = user_avatar(user, :small)
     .thing-list-name
       = editable @thing_list, :name, title: '列表名称'
     - if can?(:update, @thing_list) || @thing_list.description.present?
