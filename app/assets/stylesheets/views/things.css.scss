@@ -1297,6 +1297,7 @@ body {
     }
     .buy {
       .form-group {
+        @include clearfix;
         .form-control {
           height: 35px;
           font-size: 14px;
@@ -1310,6 +1311,7 @@ body {
           width: 50%;
         }
         .help-block {
+          float: left;
           height: 35px;
           margin: 0;
           margin-left: 15px;
