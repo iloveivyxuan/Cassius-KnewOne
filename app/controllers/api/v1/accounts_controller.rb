@@ -6,6 +6,14 @@ module Api
       def show
       end
 
+      def update
+        if current_user.update_without_password(user_params)
+          head :no_content
+        else
+          render json: current_user.errors, status: :unprocessable_entity
+        end
+      end
+
       def feeds
         @feeds = case params[:scope]
           when "followings"
@@ -43,6 +51,12 @@ module Api
         current_user.apple_device_token = params.require(:token)
         current_user.save!
         head :no_content
+      end
+
+      private
+
+      def user_params
+        params.require(:user).permit :name, :email, :password, :avatar
       end
     end
   end

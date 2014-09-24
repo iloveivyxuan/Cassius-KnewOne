@@ -1,8 +1,8 @@
 module Api
   module V1
     class UsersController < ApiController
-      before_action :set_user, except: [:index, :create]
-      doorkeeper_for :all, except: [:create]
+      before_action :set_user, except: [:index, :create, :password]
+      doorkeeper_for :all, except: [:create, :password]
       APP_NAME = 'KnewOne APP'
 
       def index
@@ -20,9 +20,17 @@ module Api
                                             scopes: 'public official',
                                             expires_in: Doorkeeper.configuration.access_token_expires_in,
                                             use_refresh_token: Doorkeeper.configuration.refresh_token_enabled?
-          render :json => {:access_token => token.token, :user_id => user.id.to_s}
+          render :json => { :access_token => token.token, :user_id => user.id.to_s }
         else
           render json: user.errors, status: :unprocessable_entity
+        end
+      end
+
+      def password
+        if User.send_reset_password_instructions(user_params)
+          head :no_content
+        else
+          head :not_found
         end
       end
 
@@ -92,7 +100,7 @@ module Api
       end
 
       def user_params
-        params.require(:user).permit :name, :email, :password
+        params.require(:user).permit :name, :email, :password, :avatar
       end
     end
   end

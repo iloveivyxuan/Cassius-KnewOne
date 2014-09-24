@@ -38,6 +38,8 @@ class User
   validate :name_cannot_include_reserved_words
 
   def name_cannot_include_reserved_words
+    return if self.name.blank?
+
     if !staff? && RESERVED_WORDS.any? { |word| name.downcase.include? word }
       errors.add(:name, '名字不和谐')
     end
