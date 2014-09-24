@@ -87,7 +87,6 @@ class Ability
     end
     can :fancy, Thing
     can :own, Thing
-    can :group_fancy, Thing
     can :create_by_extractor, Thing
     can :extract_url, Thing
     can :coupon, Thing
@@ -166,7 +165,7 @@ class Ability
     can :read, Category
     can [:owns, :fancies, :things, :lists, :reviews, :feelings,
          :activities, :followings, :followers, :groups, :topics, :profile], User
-    can [:buy, :groups, :comments, :wechat_qr, :random, :shop], Thing
+    can [:buy, :wechat_qr, :random, :shop], Thing
     can :read, ThingList
     can :read, ThingListItem
   end

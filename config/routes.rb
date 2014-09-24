@@ -140,10 +140,7 @@ Making::Application.routes.draw do
       post 'fancy'
       post 'own'
       get 'buy'
-      get 'comments'
       get 'related'
-      get 'groups'
-      post 'group_fancy'
       get 'coupon'
     end
 

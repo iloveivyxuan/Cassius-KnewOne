@@ -163,30 +163,8 @@ class ThingsController < ApplicationController
     end
   end
 
-  def comments
-    mark_read @thing
-    render layout: 'thing'
-  end
-
   def related
     @things = @thing.related_things
-  end
-
-  def group_fancy
-    @group = if params[:group_id].present?
-               Group.find params[:group_id]
-             else
-               Group.where(name: params[:group_name]).first
-             end
-
-    @group and @group.has_member? current_user and @group.fancy @thing
-
-    respond_to { |format| format.js }
-  end
-
-  def groups
-    @groups = @thing.fancy_groups.page(params[:page]).per(24)
-    render layout: 'thing'
   end
 
   def extract_url
