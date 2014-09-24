@@ -33,7 +33,7 @@ class ThingListsController < ApplicationController
     @thing_list.fancy(current_user)
     respond_with @thing_list
 
-    current_user.log_activity(:fancy_list, @thing_list)
+    current_user.log_activity(:fancy_list, @thing_list, check_recent: true)
   end
 
   def unfancy
