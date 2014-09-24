@@ -45,7 +45,7 @@ module Api
         if u.errors[:email].empty?
           head :no_content
         else
-          head json: u.errors[:email], status: :conflict
+          render json: u.errors[:email], status: :conflict
         end
       end
 
