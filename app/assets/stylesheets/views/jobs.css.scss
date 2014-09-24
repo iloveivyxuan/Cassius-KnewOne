@@ -84,6 +84,12 @@ html.home_jobs {
         width: auto;
       }
     }
+
+    > small {
+      @media screen and (min-width: $screen-sm-min) {
+        display: none;
+      }
+    }
   }
 
   .section_content {
