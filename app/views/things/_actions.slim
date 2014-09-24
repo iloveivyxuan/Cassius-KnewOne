@@ -23,15 +23,15 @@
       - if tp.thing.has_brand?
         = link_to_with_icon tp.thing.brand.name, 'fa fa-folder-open', things_path(brand: tp.thing.brand.name)
 
-  - content_for :script do
-    javascript:
-      if(Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')'))
-        Making.CartItemNew();
+- content_for :script do
+  javascript:
+    if(Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')'))
+      Making.CartItemNew();
 
-      $('.write_feeling > a').on('click', function (event) {
-        event.preventDefault();
+    $('.write_feeling > a').on('click', function (event) {
+      event.preventDefault();
 
-        $('html, body').animate({
-          scrollTop: $($.attr(this, 'href')).offset().top - 108
-        }, 500);
-      });
+      $('html, body').animate({
+        scrollTop: $($.attr(this, 'href')).offset().top - 108
+      }, 500);
+    });
