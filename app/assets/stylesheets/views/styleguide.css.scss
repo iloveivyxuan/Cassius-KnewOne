@@ -2,6 +2,19 @@
 
 html.styleguide {
   #wrapper {
-    @include wrapper(simple, $screen-lg-min);
+    @include wrapper(simple, $max-width: $screen-md-min);
+
+    > nav {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .table {
+    &.text-center {
+      th {
+        text-align: center;
+      }
+    }
+  }
   }
 }

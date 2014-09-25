@@ -1,6 +1,6 @@
 - page_title 'KnewOne Styleguide'
-- provide :page_class, 'styleguide'
 - page_css 'styleguide'
+- provide :page_class, 'styleguide'
 
 - content_for :content do
 
@@ -8,9 +8,11 @@
     h1 Styleguide
 
   nav
-    ul.nav.nav-pills
+    ul.nav.nav-pills.nav-justified
       = nav_tab :overview do
         = link_to "Overview", styleguide_path
+      = nav_tab :codingstyle do
+        = link_to "Coding Style", "#"
       = nav_tab :scaffolds do
         = link_to "Scaffolds", scaffolds_styleguide_path
       = nav_tab :components do
@@ -18,5 +20,9 @@
 
   main
     = yield
+
+- content_for :script do
+  javascript:
+    Making.InitStyleguide();
 
 = render template: 'layouts/application'
