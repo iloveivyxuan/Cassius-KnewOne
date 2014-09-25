@@ -7,6 +7,7 @@
       article class=klass id="review_#{review.id}"
         header
           h5 = link_to review_presenter.title, review_presenter.path
+          = review_presenter.score
 
         figure.review_author data-popover-profile=review.author.id
           = review_presenter.author_avatar(:small, class: "img-circle")
@@ -46,7 +47,6 @@
                 = link_to review_presenter.path do
                   i.fa.fa-comments-o
                   span.comments_count = review.comments.count > 0 ? review.comments.count : ''
-              li = review_presenter.score
 
             .feed_action
               = render partial: 'shared/voting', locals: {object: review}
