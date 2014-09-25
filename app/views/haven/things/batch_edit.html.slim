@@ -42,7 +42,9 @@ ul.nav.nav-pills
 - queries = {"categories" => "分类", "shop" => "链接", "title" => "标题 & 副标题", "brand" => "品牌", "tag" => "标签"}
 - queries.each do |query, tag_text|
   = form_tag batch_edit_haven_things_path, method: :get do
-    = text_field_tag(query, "")
+    - queries.each do |k, _|
+      = hidden_field_tag k, params[k] if params[k]
+    = text_field_tag(query, params[query])
     = submit_tag "查询#{tag_text}"
 
 = form_tag batch_update_haven_things_path(redirect_from: request.fullpath), method: :patch do
