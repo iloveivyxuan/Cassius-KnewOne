@@ -95,8 +95,10 @@ module Haven
     end
 
     def batch_update
-      params[:things].each do |t|
-        Thing.find(t.delete(:id)).update_attributes! t.permit!
+      if params[:things]
+        params[:things].each do |t|
+          Thing.find(t.delete(:id)).update_attributes! t.permit!
+        end
       end
 
       redirect_back_or batch_edit_haven_things_path
