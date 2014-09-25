@@ -165,7 +165,7 @@ class Ability
     can :read, Category
     can [:owns, :fancies, :things, :lists, :reviews, :feelings,
          :activities, :followings, :followers, :groups, :topics, :profile], User
-    can [:buy, :wechat_qr, :random, :shop], Thing
+    can [:buy, :wechat_qr, :random, :shop, :activities], Thing
     can :read, ThingList
     can :read, ThingListItem
   end

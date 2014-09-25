@@ -167,6 +167,23 @@ class ThingsController < ApplicationController
     @things = @thing.related_things
   end
 
+  ACTIVITY_TYPES = ['fancy_thing', 'own_thing', 'add_to_list']
+  def activities
+    @activities = Activity.visible.by_reference(@thing)
+
+    if ACTIVITY_TYPES.include?(params[:type])
+      @activities = @activities.by_types(params[:type])
+    else
+      @activities = @activities.by_types(*ACTIVITY_TYPES)
+    end
+
+    @activities = @activities.page(params[:page]).per(params[:per] || 24)
+
+    respond_to do |format|
+      format.html { render layout: 'thing' }
+    end
+  end
+
   def extract_url
     return head :not_accepted if params[:url].blank?
 
