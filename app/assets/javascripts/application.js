@@ -33,6 +33,7 @@
 //= require jquery.atwho
 //= require lightbox
 //= require jquery.menu-aim
+//= require highlight.pack
 //= require editable/bootstrap-editable
 //= require editable/rails
 //= require jquery.china_city
