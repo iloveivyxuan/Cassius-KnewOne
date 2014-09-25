@@ -52,7 +52,7 @@ class ThingsController < ApplicationController
     @sort = case params[:order_by]
             when 'recommended' then {priority: :desc}
             when 'hits' then {fanciers_count: :desc}
-            when 'news' then {created_at: :desc}
+            when 'new' then {created_at: :desc}
             when 'price_h_l' then {price: :desc}
             when 'price_l_h' then {price: :asc}
             else {priority: :desc}
