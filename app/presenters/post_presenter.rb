@@ -40,7 +40,8 @@ class PostPresenter < ApplicationPresenter
   end
 
   def summary(length = 512)
-    strip_tags(@object.content).truncate(length).html_safe
+    html = @object.content.gsub(/(&nbsp;| )+/, ' ')
+    strip_tags(html).truncate(length).html_safe
   end
 
   def thing_photo_url(size)
