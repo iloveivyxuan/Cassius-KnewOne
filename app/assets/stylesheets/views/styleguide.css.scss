@@ -16,5 +16,18 @@ html.styleguide {
       }
     }
   }
+
+  #gbs {
+    & + .dl-horizontal {
+      @media (min-width: $screen-md-min) {
+        dt {
+          width: 80px;
+        }
+
+        dd {
+          margin-left: 100px;
+        }
+      }
+    }
   }
 }

@@ -1,1 +1,175 @@
 - provide :nav, :scaffolds
+
+article.article
+  .body
+    h2 浏览器支持分级
+    .table-responsive#gbs
+      table.table.table-bordered.table-hover.text-center
+        thead
+          tr
+            th width="200" #
+            th OS X
+            th Windows
+            th Linux
+            th iOS
+            th Android
+        tbody
+          tr
+            th Chrome
+            td A
+            td A
+            td A
+            td -
+            td -
+          tr
+            th Safari
+            td A
+            td A
+            td -
+            td -
+            td -
+          tr
+            th Firefox
+            td A
+            td A
+            td A
+            td -
+            td -
+          tr
+            th Opera
+            td A
+            td A
+            td A
+            td -
+            td -
+          tr
+            th IE
+            td -
+            td
+            td -
+            td -
+            td -
+          tr
+            th iOS Safari
+            td -
+            td -
+            td -
+            td A
+            td -
+          tr
+            th Android Browser
+            td -
+            td -
+            td -
+            td -
+            td A
+          tr
+            th Chrome for Mobile
+            td -
+            td -
+            td -
+            td A
+            td A
+          tr
+            th 微信内置浏览器
+            td -
+            td -
+            td -
+            td A
+            td A
+          tr
+            th UC 浏览器
+            td -
+            td -
+            td -
+            td
+            td
+
+    dl.dl-horizontal
+      dt C
+      dd 最基本的支持，提供核心内容和功能，不要求精美的样式或高级功能。
+      dt A
+      dd 最高级别的支持，提供先进的功能和高保真的可视化效果。
+      dt X
+      dd 无法预测的、很少使用的、实验性的浏览器。QA 不做测试。
+
+    h2 模块分组
+    h3 CSS
+    pre
+      code.nohighlight
+        | Base ---------------- 
+            ├── Variable ------ 全局变量
+            └── Mixin --------- 混合宏
+          Vendor -------------- 第三方框架、库、插件
+          Customize ----------- 重置第三方代码
+          Util ---------------- 工具
+          Component ----------- UI 组件(app/assets/stylesheets/components/*)
+          [Page] -------------- 页面专属样式(app/assets/stylesheets/views/*)
+          [Print] ------------- 打印样式
+          [Shame] ------------- 补丁
+    h3 JavaScript
+    pre
+      code.nohighlight
+        | Vendor -------------- 第三方框架、库、插件(vendor/*)
+          Base ---------------- 应用初始化(app/assets/javascripts/base.js.coffee)
+          Common -------------- 全局属性与方法(app/assets/javascripts/common.js.coffee)
+          Util ---------------- 通用工具(app/assets/javascripts/util.js.coffee)
+          Component ----------- 组件(@TODO)
+          Main ---------------- 各页面的主入口(app/assets/javascripts/views/*)
+
+    h2 构建 UI 组件
+    h3 CSS 命名
+    pre
+      code.nohighlight
+        | .component ------------------------------- 组件
+          .component_name -------------------------- 组件
+          .component-part -------------------------- 组件子模块
+          .component--modifier --------------------- 组件派生类
+          .is-state -------------------------------- 组件状态
+          .u-util ---------------------------------- 工具
+          .js-hook --------------------------------- JavaScript 专属钩子
+          .shame-classname ------------------------- 补丁
+    h3 JavaScript
+    p @TODO
+
+    h2 构建页面
+    h4 page.slim
+    pre
+      code.nohighlight
+        | - page_title 'title'              / 页面标题
+          - page_css 'css'                  / 页面专属样式表，见 page.scss
+          - provide :page_class, 'class'    / 添加到页面 html 元素上的 class， 一般是布局模版对应的 Rails Controller 名称
+
+          ...
+
+          - content_for :script do
+            javascript:
+              Making.InitPage();            / 页面主入口 JavaScript，见 page.coffee
+
+    h4 page.scss
+    pre
+      code.scss
+        | html.page {
+            // Layout
+            #wrapper {
+              // ...
+            }
+
+            // Block
+            .block {
+              // ...
+            }
+          }
+    p
+      | 每个 page.scss 将各自加载到对应的页面里。
+
+    h4 page.coffee
+    pre
+      code.coffee
+        | do (exports = Making) ->
+
+            exports.InitPage = ->
+              # ...
+
+            return exports
+
