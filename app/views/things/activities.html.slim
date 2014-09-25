@@ -14,5 +14,6 @@ section.things_subpage
                      selected: params[:type]),
                      class: 'form-control selectpicker js_auto_submit')
 
-  .activities.list= render partial: 'activity', collection: @activities
+  - cache_unless user_signed_in?, ['thing-activities', @activities.first, request.query_string]
+    .activities.list= render partial: 'activity', collection: @activities
 = paginate @activities
