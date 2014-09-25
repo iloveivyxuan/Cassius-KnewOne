@@ -63,24 +63,17 @@ module Haven
         @things = @things.where(categories: []) if params[:filter].include? "no_category"
         @things = @things.where(price: nil) if params[:filter].include? "no_price"
         @things = @things.any_in(:tag_ids => nil) if params[:filter].include? "no_tag"
-        @things = @things.where(stage: "concept") if params[:filter].include? "concept"
-        @things = @things.where(stage: "kick") if params[:filter].include? "kick"
-        @things = @things.where(stage: "pre_order") if params[:filter].include? "pre_order"
-        @things = @things.where(stage: "domestic") if params[:filter].include? "domestic"
-        @things = @things.where(stage: "abroad") if params[:filter].include? "abroad"
-        @things = @things.where(stage: "dsell") if params[:filter].include? "dsell"
+        Thing::STAGES.keys.each do |stage|
+          @things = @things.where(stage: stage) if params[:filter].include? stage.to_s
+        end
         @things = @things.order_by([:feelings_count, :desc]) if params[:filter].include? "feelings_count"
         @things = @things.order_by([:reviews_count, :desc]) if params[:filter].include? "reviews_count"
         @things = @things.order_by([:heat, :desc]) if params[:filter].include? "heat"
         @things = @things.order_by([:priority, :asc]) if params[:filter].include? "priority_asc"
         @things = @things.order_by([:priority, :desc]) if params[:filter].include? "priority_desc"
       end
-      if params[:categories]
-        @things = @things.in(categories: params[:categories])
-      end
-      if params[:shop]
-        @things = @things.where(shop: Regexp.new(params[:shop]))
-      end
+      @things = @things.in(categories: params[:categories]) if params[:categories]
+      @things = @things.where(shop: Regexp.new(params[:shop])) if params[:shop]
       if params[:tag]
         tag = Tag.where(name: params[:tag]).first
         @things = @things.any_in(:tag_ids => tag) if tag
