@@ -727,7 +727,7 @@ html.no-touch {
   .dropdown-menu {
     @include MQ(L) { left: -4px }
     @include MQ(XLplus) { right: 0 }
-    width: 220px;
+    width: 180px;
     margin: 0;
     padding: 0;
     background: $navbar-dropdown-bg;
@@ -807,6 +807,7 @@ html.no-touch {
     }
   }
   .fa {
+    color: #999;
     top: 8px;
     line-height: 29px;
   }
@@ -836,7 +837,6 @@ html.no-touch {
       &:hover { color: #fff }
     }
     .fa {
-      margin: 0;
       padding: 0;
       line-height: 45px;
     }
