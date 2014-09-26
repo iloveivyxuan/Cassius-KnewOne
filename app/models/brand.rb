@@ -5,8 +5,6 @@ class Brand
   field :name, type: String
   field :zh_name, type: String
   field :en_name, type: String
-  slug :zh_name, history: true
-  slug :en_name, history: true
 
   field :things_size, type: Integer, default: 0
   before_save :update_count

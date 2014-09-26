@@ -15,7 +15,7 @@
         = tp.official_site
       - brand_text = tp.thing.try(:brand).try(:brand_text)
       - if brand_text.present?
-        = link_to_with_icon brand_text, 'fa fa-folder-open', things_path(brand: brand_text)
+        = link_to_with_icon brand_text, 'fa fa-folder-open', things_path(brand: tp.thing.brand.id)
 
 - content_for :script do
   javascript:
