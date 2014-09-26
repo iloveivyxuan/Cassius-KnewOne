@@ -50,8 +50,8 @@
     overflow: hidden;
 
     & + footer {
-      @include clearfix;
       height: 20px;
+      overflow: hidden;
 
       a {
         color: $gray;
