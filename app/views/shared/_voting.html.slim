@@ -11,5 +11,5 @@
       = button_tag title: "赞", class: "btn btn--like track_event", data: data do
         = present(object).lovers_count
 - else
-  = link_to '#', data: {target: '#login-modal', toggle: 'modal'}, class: 'btn btn-sm' do
+  = link_to '#', data: {target: '#login-modal', toggle: 'modal'}, class: 'btn btn--like' do
     = present(object).lovers_count
