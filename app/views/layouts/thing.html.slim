@@ -3,7 +3,8 @@
 - provide :feed, thing_url(@thing, format: "atom")
 
 - page_css 'things'
-- page_css 'things_mobile'
+- if browser.mobile? || browser.tablet?
+  - page_css 'things_mobile'
 
 - content_for :content do
   - present @thing do |tp|
