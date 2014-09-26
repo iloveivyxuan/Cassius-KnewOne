@@ -6,7 +6,8 @@
       = link_to tp.thing
         = tp.photo('thing.fixed')
 
-  = render 'things/buy', tp: tp
+  - unless browser.mobile || browser.tablet
+    = render 'things/buy', tp: tp
 
   - if show_action
     = render 'things/actions', tp: tp
