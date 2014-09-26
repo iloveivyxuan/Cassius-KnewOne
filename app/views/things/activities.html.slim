@@ -1,0 +1,19 @@
+- provide :nav, :activities
+- page_title "【#{[@thing.title, @thing.subtitle].reject(&:blank?).join(' - ')} 动态】"
+
+section.things_subpage
+  header.clearfix
+    = form_tag [:activities, @thing], method: :get, class: 'form-inline'
+      .form-group
+        i.fa.fa-eye.selectpicker_label
+        = select_tag(:type,
+                     options_for_select([['显示全部', ''],
+                                         ['显示喜欢', 'fancy_thing'],
+                                         ['显示拥有', 'own_thing'],
+                                         ['显示加入列表', 'add_to_list']],
+                     selected: params[:type]),
+                     class: 'form-control selectpicker js_auto_submit')
+
+  - cache_unless user_signed_in?, ['thing-activities', @activities.first, request.query_string]
+    .activities.list= render partial: 'activity', collection: @activities
+= paginate @activities

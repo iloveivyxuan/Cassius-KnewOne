@@ -21,19 +21,6 @@
 //     a.btn
 //
 
-.feed_action {
-
-  .btn {
-    @include button_inverse(#ececec, #6e6e6e);
-
-    &.done {
-      background-color: #6e6e6e;
-      color: #ececec;
-      opacity: 1;
-    }
-  }
-}
-
 .feed_type {
   display: inline-block;
 

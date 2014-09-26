@@ -23,8 +23,18 @@ class ThingPresenter < PostPresenter
   end
 
   def content(is_fold = true)
+    footer = ''
+    if can?(:edit, thing) || can?(:destroy, thing)
+      footer = content_tag(:footer, class: 'clearfix') do
+        (can?(:destroy, thing) ? link_to('删除', thing, method: :delete,
+                                         class: 'btn btn--square btn--cancel btn--delete',
+                                         data: {confirm: '您确定要删除这个产品吗?'}) : '') +
+        (can?(:edit, thing) ? link_to('编辑', [:edit, thing], class: 'btn btn--square btn--blue') : '')
+      end
+    end
+
     content_tag :div, class: "body post_content #{is_fold ? 'is_folded' : ''}" do
-      sanitize(thing.content)
+      sanitize(thing.content).concat(footer)
     end
   end
 
@@ -128,7 +138,7 @@ class ThingPresenter < PostPresenter
       if thing.official_site !~ /^https?:\/\//
         thing.official_site = "http://#{thing.official_site}"
       end
-      link_to_with_icon "来源网站", "fa-li fa fa-globe", thing.official_site,
+      link_to_with_icon "来源网站", "fa fa-globe", thing.official_site,
       target: "_blank", title: "来源信息", rel: 'nofollow'
     end
   end

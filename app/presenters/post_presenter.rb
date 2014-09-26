@@ -70,7 +70,7 @@ class PostPresenter < ApplicationPresenter
   end
 
   def lovers_count
-    i = content_tag :i, "", class: "fa fa-plus"
+    i = content_tag :i, "", class: "fa fa-like"
     count = content_tag :span, @object.lovers_count
     i.concat count
   end
@@ -105,8 +105,8 @@ class PostPresenter < ApplicationPresenter
     end
   end
 
-  def link_to_share(klass = '')
-    link_to_with_icon "分享", "fa fa-share-alt",
+  def link_to_share(klass = '', text = '分享')
+    link_to_with_icon text, "fa fa-share-alt",
     user_signed_in? ? "#share_modal" : "#login-modal",
     title: "分享", class: "#{klass} share_btn track_event",
     data: {

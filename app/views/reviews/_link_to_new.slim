@@ -1,6 +1,12 @@
+- klass ||= ''
+
 - if user_signed_in?
   - data = { toggle: 'tooltip', title: '把你的使用心得分享给大家吧～', trigger: 'manual', placement: 'bottom' }
   - data.merge!({ category: "review", action: "review_write", label: "review+review_write+#{request.path}" })
-  = link_to_with_icon "写评测", "fa fa-pencil", new_thing_review_path(@thing), target: "_blank", class: 'track_event new_review', data: data
+  = link_to new_thing_review_path(@thing), target: "_blank", class: "track_event new_review #{klass}", data: data
+    i.fa.fa-pencil
+    span 写评测
 - else
-  = link_to_with_icon "写评测", "fa fa-pencil", '#', class: 'new_review', data: {toggle: "modal", target: "#login-modal"}
+  = link_to '#', class: "new_review #{klass}", data: {toggle: "modal", target: "#login-modal"}
+    i.fa.fa-pencil
+    span 写评测

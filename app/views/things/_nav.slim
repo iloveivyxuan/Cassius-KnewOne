@@ -1,26 +1,19 @@
-ul.nav.nav-pills.nav-pills-list.nav-justified.nav-layout
+ul.nav.nav-justified
   = nav_tab :thing do
     = link_to tp.thing do
       i.fa.fa-home
-      span 产品
-  = nav_tab :thing_feelings do
-    = link_to thing_feelings_path(tp.thing) do
-      i.fa.fa-comments
-      span 短评
-      span.feelings_count= tp.feelings_count
+      | 产品
   = nav_tab :reviews do
     = link_to thing_reviews_path(tp.thing) do
       i.fa.fa-pencil
-      span 评测
+      | 评测
       span= tp.reviews_count
-  = nav_tab :thing_groups do
-    = link_to groups_thing_path(tp.thing) do
-      i.fa.fa-tint
-      span 小组
-      span= tp.groups_count
-  - if tp.thing.stories.present?
-    = nav_tab :stories do
-      = link_to thing_stories_path(tp.thing) do
-        i.fa.fa-clock-o
-        span 时间线
-        span= tp.thing.stories.count
+  = nav_tab :thing_feelings do
+    = link_to thing_feelings_path(tp.thing) do
+      i.fa.fa-comments
+      | 短评
+      span.feelings_count= tp.feelings_count
+  = nav_tab :activities do
+    = link_to [:activities, tp.thing] do
+      i.fa.fa-pencil
+      | 动态

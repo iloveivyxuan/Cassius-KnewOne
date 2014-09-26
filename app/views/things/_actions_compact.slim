@@ -1,14 +1,6 @@
-#thing_actions_compact
-  .shop
-    - if tp.price.present?
-      #price.price= tp.price
-    - if tp.buy
-      .buy= tp.buy
-    - if user_signed_in?
-      = tp.render_shopping_desc
-
-  .actions
-    .fanciers= render "shared/fancy", p: tp, from: "thing"
-    .new_review= render 'reviews/link_to_new'
-    .owners= render "things/own", tp: tp
-    .share= tp.link_to_share
+.thing_actions.hidden-md.hidden-lg
+  ul.actions.clearfix.mobile_actions
+    li.fanciers= render "shared/fancy", p: tp, from: "thing"
+    li.owners= render "things/own", tp: tp
+    li.add_to_list= render 'thing_lists/link_to_add_list', thing_id: tp.thing.id.to_s
+    li.share= tp.link_to_share

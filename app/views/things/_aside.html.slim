@@ -1,0 +1,16 @@
+- show_action = controller_name == 'things' && action_name == 'show'
+
+#thing_actions.thing_actions.visible-md.visible-lg
+  - unless show_action
+    .subpage_product_image
+      = link_to tp.thing
+        = tp.photo('thing.fixed')
+
+  = render 'things/buy', tp: tp
+
+  - if show_action
+    = render 'things/actions', tp: tp
+
+  = render 'things/author_list', thing: tp.thing
+  = render 'things/related_things', tp: tp
+  = render 'things/other_lists', thing: tp.thing

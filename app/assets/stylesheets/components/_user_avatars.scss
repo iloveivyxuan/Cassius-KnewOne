@@ -17,12 +17,27 @@
   }
 }
 
+.user_avatar--vertical {
+  img,
+  .user_avatar-name {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  img {
+    width: 60px;
+    margin-bottom: $padding-large-vertical;
+  }
+}
+
 .user_avatar--without_name {
   .user_avatar-name {
     display: none;
   }
 
   img {
+    width: auto;
     margin-right: 0;
   }
 }

@@ -1,18 +1,20 @@
 - cache ['things', 'summary', @thing, user_signed_in?]
-  article.article
-    #thing_author
-      = present(@thing.author).link_to_with_avatar(:small, {}, {class: "img-circle", data: {"popover-profile" => @thing.author.id.to_s}})
-      label
-        | 分享者：
-      = link_to @thing.author.name, @thing.author, data: {"popover-profile" => @thing.author.id.to_s}
+  #thing_description
+    article.article
+      #thing_author.clearfix
+        = present(@thing.author).link_to_with_avatar(:small, {}, {class: "img-circle", data: {"popover-profile" => @thing.author.id.to_s}})
+        span.author_name
+          label 分享者
+          = link_to @thing.author.name, @thing.author, data: {"popover-profile" => @thing.author.id.to_s}
+        = tp.link_to_share('btn btn--square btn--share btn--orange hidden-xs hidden-sm', '')
 
-    - if tp.summary.present?
-      = tp.content
-      .more
-        - if user_signed_in?
-          = link_to_with_icon "查看全部", "fa fa-angle-double-down", "#"
-        - else
-          = link_to_with_icon "查看全部", "fa fa-angle-double-down track_event", "#",
-          data: data_with_login_tracker("summary", @thing.title)
-    - else
-      = tp.content(false)
+      - if tp.summary.present?
+        = tp.content
+        .more
+          - if user_signed_in?
+            = link_to_with_icon "", "fa fa-angle-double-down", "#"
+          - else
+            = link_to_with_icon "", "fa fa-angle-double-down track_event", "#",
+            data: data_with_login_tracker("summary", @thing.title)
+      - else
+        = tp.content(false)

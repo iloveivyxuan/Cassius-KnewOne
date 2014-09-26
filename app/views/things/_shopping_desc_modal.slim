@@ -4,7 +4,9 @@
       .modal-header
         button.close type="button" data-dismiss="modal"
           | &times;
-        h4.modal-title = title
+        h4.modal-title
+          i.fa.fa-lg.fa-info-circle
+          = title
       .modal-body
         = details
         - if tp.thing.valid_kinds.present?

@@ -1,0 +1,33 @@
+#thing_feeling_form.form_wrapper.clearfix
+  - if user_signed_in?
+    = render 'shared/user_avatar', user: current_user, options: {class: 'user_avatar user_avatar--vertical'}
+
+  .feeling_form
+    = simple_form_for [@thing, Feeling.new], remote: true, html: {class: "editor_compact"} do |f|
+      = f.input :content, as: :text, label: false, disabled: !user_signed_in?,
+          wrapper_html: {class: "editor_content form_content"},
+          input_html: {class: "form-control", placeholder: "说点什么吧", rows: 4, maxlength: 200, data: {maxlength: 140}}
+      footer
+        - if user_signed_in?
+          span.separator |
+          = f.input :score, as: :range, label: false, input_html: {class:'range_rating', max: 5, min: 0}
+
+        .submit
+          span.counter 140
+          - data = { category: "feeling", action: "feeling_submit", label: "feeling+feeling_submit+#{request.path}" }
+          - data.merge!({"loading-text" => "提交中...", "toggle" => "tooltip", "placement" => "bottom"})
+          = button_tag type: "submit", class: "btn btn--transition btn--blue_light btn--short track_event",
+            title: "按 Command + Enter 或 Control + Enter 键发布回复", "data" => data do
+            i.fa.fa-comments-o
+            | 发布
+
+    - if user_signed_in?
+      = simple_form_for Photo.new, html: {class: "uploader"} do |f|
+        span.btn.btn--transition.uploader_button.btn--blue.btn--short
+          i.fa.fa-cloud-upload
+          | 上传图片
+          = f.file_field :image, multiple: true, name: "photo[image]", label: "上传图片"
+        = content_tag :div, class: "uploader_queue", id: "photos", data: {photos: @photos} do
+          p.help-block
+            i.fa.fa-arrows
+            | 可以将照片文件直接从桌面拖拽进来

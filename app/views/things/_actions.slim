@@ -1,55 +1,30 @@
 - cache_unless user_signed_in?, ['things', 'actions', @thing]
-  .shop
-    - if tp.price.present?
-      #price.price= tp.price
-    - if user_signed_in?
-      = tp.render_shopping_desc
-    - if tp.buy
-      .buy= tp.buy
+  ul.actions.clearfix
+    li.fanciers= render "shared/fancy", p: tp, from: "thing"
+    li.owners= render "things/own", tp: tp
+    li.write_feeling= link_to_with_icon '说点什么', 'fa fa-comments-o', '#thing_feeling_form', title: '说点什么'
+    li.add_to_list= render 'thing_lists/link_to_add_list', thing_id: tp.thing.id.to_s
 
-  .actions
-    .fanciers= render "shared/fancy", p: tp, from: "thing"
-    .owners= render "things/own", tp: tp
-    .share= tp.link_to_share
-    .new_review= render 'reviews/link_to_new'
+  .others.clearfix
+    ul.tags.clearfix
+      = render partial: 'things/tag', collection: tp.tags
 
-  .categories
-    = render partial: "things/tag", collection: tp.tags
+    .related.clearfix
+      - if tp.thing.official_site.present?
+        = tp.official_site
+      - brand_text = tp.thing.try(:brand).try(:brand_text)
+      - if brand_text.present?
+        = link_to_with_icon brand_text, 'fa fa-folder-open', things_path(brand: brand_text)
 
-  ul.operations.fa-ul
-    li= link_to_with_icon "RSS", "fa-li fa fa-rss", thing_url(tp.thing, format: "atom")
-    - if can? :fancy, Group
-      li= link_to_with_icon "收藏进小组", "fa-li fa fa-bookmark", "#group_fancy_thing", title: "收藏进小组",
-        data: {toggle: "modal"}
-    - if tp.thing.official_site.present?
-      li= tp.official_site
-    - if can? :create, Supplier
-      li= link_to_with_icon "我想供货", "fa-li fa fa-beer", "#thing_supplier", title: "提供产品", \
-                            data: {toggle: "modal", keyboard: false}
-    - else
-      li= link_to_with_icon "我想供货", "fa-li fa fa-beer", "#login-modal", title: "提供产品", \
-                            data: {toggle: "modal", keyboard: false}
-    - if can? :update, tp.thing
-      li= link_to_with_icon "编辑", "fa-li fa fa-edit", edit_thing_path(tp.thing), title: "编辑"
-    - if can? :pro_edit, tp.thing
-      li= link_to_with_icon "高级", "fa-li fa fa-cogs", edit_haven_thing_path(tp.thing), title: "销售管理"
-    - if can? :destroy, tp.thing
-      li= link_to_with_icon "删除", "fa-li fa fa-trash-o", thing_path(tp.thing), title: "删除产品",
-        method: :delete, data: {confirm: "您确定要删除这个产品吗?"}
+- content_for :script do
+  javascript:
+    if(Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')'))
+      Making.CartItemNew();
 
-  = render 'things/related_lists', thing: @thing
+    $('.write_feeling > a').on('click', function (event) {
+      event.preventDefault();
 
-  - if tp.thing.fancy_groups.present?
-    .fancy_groups
-      h4 收藏此产品的小组
-      ul.groups = render tp.thing.fancy_groups(5)
-
-  - if tp.related_things.present?
-    .related_things
-      h4 您可能也喜欢
-      ul= render partial: "things/related_thing", collection: tp.related_things, as: :tp, locals: {from_id: tp.thing.id.to_s}
-
-  - content_for :script do
-    javascript:
-      if(Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')'))
-        Making.CartItemNew();
+      $('html, body').animate({
+        scrollTop: $($.attr(this, 'href')).offset().top - 108
+      }, 500);
+    });

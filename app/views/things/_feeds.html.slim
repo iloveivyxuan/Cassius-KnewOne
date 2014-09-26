@@ -1,0 +1,24 @@
+- activities = Activity.visible.by_reference(thing).by_types(:fancy_thing, :own_thing, :add_to_list).limit(20)
+
+- if thing.has_feelings? || activities.present?
+  #thing-feeds.clearfix
+    nav#thing-feeds_tab
+      ul.nav.nav-pills.nav-justified.nav-layout.nav--thing_tab
+        - if thing.has_feelings?
+          li.active
+            = link_to '#tab-feelings', data: {toggle: 'tab'}
+              i.fa.fa-comments
+              span 短评
+        - if activities.present?
+          li class=('active' unless thing.has_feelings?)
+            = link_to '#tab-activities', data: {toggle: 'tab'}
+              i.fa.fa-group
+              span 动态
+
+    .tab-content
+      - if thing.has_feelings?
+        #tab-feelings.tab-pane.active
+          = render 'feelings', thing: thing
+      - if activities.present?
+        #tab-activities.tab-pane class=('active' unless thing.has_feelings?)
+          = render 'activities', thing: thing, activities: activities

@@ -1,23 +1,24 @@
 - cache ['things', 'carousel', tp.thing]
-  #thing_photos
-    .carousel.carousel--extend.slide
-      .carousel-inner
-        - tp.photos.each_with_index do |photo, index|
-          div class="item #{'active' if index == 0}"
-            = image_tag photo.url(:huge), alt: photo.name
+  #thing_cover_wrapper
+    #thing_photos
+      .carousel.carousel--extend.slide
+        .carousel-inner
+          - tp.photos.each_with_index do |photo, index|
+            div class="item #{'active' if index == 0}"
+              = image_tag photo.url(:huge), alt: photo.name
+        - if tp.photos.count > 1
+          = link_to_with_icon "", "fa fa-angle-left", "#thing_photos .carousel", data: {slide: "prev"},
+          class: "carousel-control left"
+          = link_to_with_icon "", "fa fa-angle-right", "#thing_photos .carousel", data: {slide: "next"},
+          class: "carousel-control right"
       - if tp.photos.count > 1
-        = link_to_with_icon "", "fa fa-chevron-left", "#thing_photos .carousel", data: {slide: "prev"},
-        class: "carousel-control left"
-        = link_to_with_icon "", "fa fa-chevron-right", "#thing_photos .carousel", data: {slide: "next"},
-        class: "carousel-control right"
-    - if tp.photos.count > 1
-      .carousel_overview.slideshow
-        button.slideshow_control.left
-          i.fa.fa-chevron-left
-        button.slideshow_control.right
-          i.fa.fa-chevron-right
-        .slideshow_body
-          ol.slideshow_inner
-            - tp.photos.each_with_index do |photo, index|
-              = content_tag :li, data: {target: "#thing_photos .carousel", "slide-to" => index} do
-                = image_tag photo.url(:small), alt: photo.name, class: "img-rounded"
+        .carousel_overview.slideshow
+          button.slideshow_control.left
+            i.fa.fa-angle-left
+          button.slideshow_control.right
+            i.fa.fa-angle-right
+          .slideshow_body
+            ol.slideshow_inner
+              - tp.photos.each_with_index do |photo, index|
+                = content_tag :li, data: {target: "#thing_photos .carousel", "slide-to" => index} do
+                  = image_tag photo.url(:small), alt: photo.name, class: "img-rounded"

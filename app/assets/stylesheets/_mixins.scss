@@ -32,12 +32,15 @@
 
 // Page main section wrapper.
 //
+// @mixin wrapper(empty)  - No style.
 // @mixin wrapper(grid)   - Bootstrap grid system, none style.
 // @mixin wrapper(simple) - Single column, max-width: $screen-md-min.
 //
 
 @mixin wrapper($layout, $columns: -1, $max-width: none) {
-  @if $layout == grid {
+  @if $layout == empty {
+    margin: 0;
+  } @else if $layout == grid {
     @include make-row;
 
     margin: 0;
@@ -298,7 +301,7 @@
   $S:  480px;
   $M:  768px;
   $L:  992px;
-  $XL: 1441px;
+  $XL: 1200px;
 
   @if $canvas == XS {
     @media only screen and (min-width: $XS) and (max-width: $S - 1) { @content; }

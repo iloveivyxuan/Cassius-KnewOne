@@ -1,0 +1,12 @@
+- cache_unless user_signed_in?, ['things', 'activities', activities.first]
+  .activities.list= render partial: 'activity', collection: activities
+
+.clearfix.thing_activities_action
+  - if activities.count > 10
+    - if user_signed_in?
+      = link_to "更多动态", [:activities, thing],
+      class: "btn btn--transition btn--square btn--tall btn--blue pull-right"
+    - else
+      = link_to "更多动态", "#",
+      class: "btn btn--transition btn--square btn--tall btn--blue pull-right track_event",
+      data: data_with_login_tracker("activities", thing.title)

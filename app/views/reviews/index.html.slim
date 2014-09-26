@@ -2,13 +2,13 @@
 - page_title "【#{[@thing.title, @thing.subtitle].reject(&:blank?).join(' - ')} 评测|怎么用|评价】"
 
 - if @reviews.present?
-  section
-    header
+  section.things_subpage
+    header.reviews_page_header.clearfix
       = render 'shared/sort', url: thing_reviews_path(@thing)
-      = render 'reviews/link_to_new'
+      = render 'reviews/link_to_new', klass: 'btn btn--transition btn-new-review btn--blue btn--short'
 
-    #reviews.list = render @reviews
-    = paginate @reviews
+    .reviews.list = render @reviews
+  = paginate @reviews
 - else
   .jumbotron
     p 还没有人为 #{@thing.title} 撰写评测，你想做第一个为它写评测的人么？

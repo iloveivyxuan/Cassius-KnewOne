@@ -6,25 +6,26 @@
   <form id="create_comment" class="comment_form">
     {{#if signin}}
       {{#unless auth}}
-        <p class="auth_tip">只有小组成员才能回复</p>
+        <p class="auth_tip">只有小组成员才能{{title}}</p>
       {{/unless}}
     {{else}}
       <p class="auth_tip">
         需要您
         <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#login-modal">登录</a>
-        之后才可以进行回复
+        之后才可以进行{{title}}
       </p>
     {{/if}}
     <div class="controls">
-      <textarea class="form-control" name="comment_content" rows="3" maxlength="300" placeholder="不超过 300 字" required></textarea>
+      <textarea class="form-control" name="comment_content" rows="3" maxlength="300" placeholder="{{title}}（不超过300字）" required></textarea>
     </div>
-    <button type="submit" class="btn btn-success pull-right" data-toggle="tooltip" data-placement="bottom" title="按 Command + Enter 或 Control + Enter 键发布回复">
+    <button type="submit" class="btn btn-success btn--blue btn--short pull-right" data-toggle="tooltip" data-placement="bottom" title="按 Command + Enter 或 Control + Enter 键发布回复">
       <i class="fa fa-comments-o"></i>
-      发布
+      {{title}}
     </button>
   </form>
   <ul></ul>
   <button type="button" class="btn btn-info comments_more is-hidden pull-right">
+    <i class="fa"></i>
     更早的{{title}}...
   </button>
 </div>

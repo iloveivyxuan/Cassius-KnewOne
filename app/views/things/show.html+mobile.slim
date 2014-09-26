@@ -125,55 +125,7 @@
 
   = tp.render_shopping_desc_modal
 
-  - if user_signed_in?
-    #mobile_buy_modal.modal.fade
-      .modal-dialog
-        .modal-content
-          .modal-header
-            h4.modal-title= "购买#{tp.title}"
-          .modal-body
-          .modal-footer
-            = button_tag "取消", type: "button", class: "btn btn-default", data: {dismiss: "modal"}
-            = button_tag type: "button", class: "btn btn-success buy_button", data: {toggle: "modal", target: "#mobile_buy_success", dismiss: "modal"} do
-              i.fa.fa-shopping-cart.fa-lg
-              | 加入购物车
-
-    #mobile_buy_success.modal.fade
-      .modal-dialog
-        .modal-content
-          .modal-header
-            h4.modal-title= "购买#{tp.title}"
-          .modal-body.text-center
-            | 已加入购物车。
-          .modal-footer
-            = link_to_with_icon "继续逛逛", "fa fa-smile-o", "#", class: "btn btn-primary", data: {dismiss: "modal"}
-            = link_to_with_icon "结算", "fa fa-credit-card", cart_items_path, class: "btn btn-success"
-
-    = simple_form_for CartItem.new(thing: tp.thing), remote: true, html: {method: :post, class: "hidden"} do |f|
-      = f.input :thing, as: :hidden, input_html: {value: tp.id}
-      = f.input :kind_id, as: :select, required: true do
-        = select_tag "cart_item[kind_id]", tp.options_for_kinds,
-        class: "select required form-control", prompt: "请选择型号"
-      = f.input :quantity, as: :integer, required: true, disabled: true,
-        input_html: {min: 1, max: 100}, hint: "最多可购<strong>100</strong>件".html_safe
-      .cart_estimated_prompt
-        | 此产品将在
-        time
-        | 后到货
-      .cart_success
-        i.fa.fa-check.fa-lg
-        | 已加入购物车
-      .submit
-        - if user_signed_in?
-          = button_tag type: "submit", class: "btn btn-success buy_button", disabled: true do
-            i.fa.fa-shopping-cart.fa-lg
-            | 加入购物车
-        - else
-          = link_to_login
-        = link_to_with_icon "帮助", "fa fa-question", '#olark_chat', class: "support", data: {hint: "fa-question", url: asset_path('olark.js')}
-
-    - if (tp.thing.stage == :adoption) && !Adoption.where(thing: tp.thing, user: current_user).exists?
-      = render 'shared/adoption_modal', tp: tp
+  = render 'mobile_buy_modals', tp: tp
 
 - content_for :script do
   javascript:

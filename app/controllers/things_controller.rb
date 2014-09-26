@@ -163,30 +163,25 @@ class ThingsController < ApplicationController
     end
   end
 
-  def comments
-    mark_read @thing
-    render layout: 'thing'
-  end
-
   def related
     @things = @thing.related_things
   end
 
-  def group_fancy
-    @group = if params[:group_id].present?
-               Group.find params[:group_id]
-             else
-               Group.where(name: params[:group_name]).first
-             end
+  ACTIVITY_TYPES = ['fancy_thing', 'own_thing', 'add_to_list']
+  def activities
+    @activities = Activity.visible.by_reference(@thing)
 
-    @group and @group.has_member? current_user and @group.fancy @thing
+    if ACTIVITY_TYPES.include?(params[:type])
+      @activities = @activities.by_types(params[:type])
+    else
+      @activities = @activities.by_types(*ACTIVITY_TYPES)
+    end
 
-    respond_to { |format| format.js }
-  end
+    @activities = @activities.page(params[:page]).per(params[:per] || 24)
 
-  def groups
-    @groups = @thing.fancy_groups.page(params[:page]).per(24)
-    render layout: 'thing'
+    respond_to do |format|
+      format.html { render layout: 'thing' }
+    end
   end
 
   def extract_url
