@@ -5,7 +5,7 @@
         .carousel-inner
           - tp.photos.each_with_index do |photo, index|
             div class="item #{'active' if index == 0}"
-              = image_tag photo.url(:huge), alt: photo.name
+              = image_tag photo.url('thing.fixed.big'), alt: photo.name
         - if tp.photos.count > 1
           = link_to_with_icon "", "fa fa-angle-left", "#thing_photos .carousel", data: {slide: "prev"},
           class: "carousel-control left"
