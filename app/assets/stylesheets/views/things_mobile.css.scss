@@ -96,8 +96,11 @@ html.things_show {
       }
     }
 
-    .feeling_form {
+    .form_wrapper {
       display: none;
+    }
+
+    .feeling_form {
       margin-bottom: 2rem;
 
       .feeling_score {
