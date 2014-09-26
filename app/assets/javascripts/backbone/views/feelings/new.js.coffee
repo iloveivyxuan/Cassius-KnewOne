@@ -1,7 +1,7 @@
 class Making.Views.FeelingNew extends Backbone.View
 
   events:
-    'keyup textarea': 'count'
+    'input textarea': 'count'
     'submit': 'on_submit'
 
   initialize: ->
