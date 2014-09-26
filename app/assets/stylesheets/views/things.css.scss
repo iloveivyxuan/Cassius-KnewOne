@@ -1863,13 +1863,15 @@ body {
 .single_review {
   @include box-shadow(0 5px 5px rgba(#000,.1));
   > header {
+    position: relative;
     margin-top: -3em;
+    margin-bottom: 0;
     padding: 3em 0;
     @include box-shadow(inset 0 0 8px rgba(#000,.1));
     background: #f7f7f7;
     .author {
       position: absolute;
-      width: 15%;
+      width: 20%;
       margin: 0 auto;
       margin-top: -15px;
       padding: 0;
@@ -1893,27 +1895,63 @@ body {
       }
     }
     h3 {
-      position: relative;
       display: inline-block;
-      max-width: 45%;
       margin: 0;
-      margin-left: 15%;
+      margin-left: 20%;
       font-size: 20px;
-      line-height: 40px;
       color: $gray;
       text-align: left;
       font-weight: normal;
     }
-    .btns {
-      float: right;
-      margin-right: 2em;
-    }
 
+    .score {
+      margin: 0;
+      margin-left: 20%;
+      > .rate {
+        padding: 0;
+      }
+    }
   }
   .post_content {
-    padding-top: 3em;
+    padding: 3em 2.5em 0;
+
+    > header {
+      margin-bottom: 1.5em;
+
+      a {
+        text-decoration: none;
+      }
+
+      .btn > i {
+        margin-right: .5em;
+      }
+
+      .btn-primary {
+        padding: 0 20px;
+        @extend .btn--blue_light;
+        @extend .btn--short;
+      }
+
+      .btn-default {
+        padding-top: 0;
+        padding-bottom: 0;
+        line-height: 35px;
+        color: $text-color;
+        border: none;
+        border: 1px solid $gray-lighter;
+        @include box-shadow(none);
+      }
+
+      .follow_btn {
+        margin-right: .5em;
+
+        &:after {
+          content: '作者';
+        }
+      }
+    }
+
     p {
-      padding: 0 2.5em;
       color: $text-color;
     }
     > img {
@@ -1923,9 +1961,22 @@ body {
   }
   > footer {
     padding: 2em;
+
+    .share_btn {
+      vertical-align: middle;
+    }
+
+    > time {
+      color: #999999;
+      font-size: .8em;
+    }
   }
   aside {
     .comments {
+      h4 {
+        display: none;
+      }
+
       ul {
         margin: 0;
         padding: 0;
@@ -1947,6 +1998,11 @@ body {
           }
         }
       }
+
+      .comment_form {
+        padding: 0 2em;
+      }
+
       .comments_more {
         width: 100%;
         height: 50px;
