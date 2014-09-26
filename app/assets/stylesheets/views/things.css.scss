@@ -686,6 +686,8 @@ body {
       &:hover { color: $blue-bright }
     }
     footer {
+      margin-top: 1em;
+
       > .btn {
         float: right;
         height: 40px;
