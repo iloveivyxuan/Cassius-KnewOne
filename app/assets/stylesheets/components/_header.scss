@@ -434,6 +434,7 @@ html.touch {
       width: auto;
 
       @media (min-width: $grid-float-breakpoint) {
+        margin-left: 20px;
         padding-right: 20px;
       }
     }
