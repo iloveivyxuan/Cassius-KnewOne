@@ -6,8 +6,9 @@
     li.add_to_list= render 'thing_lists/link_to_add_list', thing_id: tp.thing.id.to_s
 
   .others.clearfix
-    ul.tags.clearfix
-      = render partial: 'things/tag', collection: tp.tags
+    - if tp.tags.present?
+      ul.tags.clearfix
+        = render partial: 'things/tag', collection: tp.tags
 
     .related.clearfix
       - if tp.thing.official_site.present?
