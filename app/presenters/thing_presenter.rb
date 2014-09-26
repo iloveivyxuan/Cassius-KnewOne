@@ -24,15 +24,11 @@ class ThingPresenter < PostPresenter
 
   def content(is_fold = true)
     footer = ''
-    if can?(:edit, thing) || can?(:destroy, thing)
-      footer = content_tag(:footer, class: 'clearfix') do
-        (can?(:destroy, thing) ? link_to('删除', thing, method: :delete,
-                                         class: 'btn btn--square btn--cancel btn--delete',
-                                         data: {confirm: '您确定要删除这个产品吗?'}) : '') +
-        (can?(:edit, thing) ? link_to('编辑', [:edit, thing], class: 'btn btn--square btn--blue') : '') +
-        (can?(:pro_edit, thing) ? link_to('高级编辑', edit_haven_thing_path(thing), class: 'btn btn--square btn--blue_light') : '')
-      end
-    end
+    footer = content_tag(:footer, class: 'clearfix') do
+      link_to('删除', thing, method: :delete,
+              class: 'btn btn--square btn--cancel btn--delete',
+              data: {confirm: '您确定要删除这个产品吗?'})
+    end if can?(:destroy, thing)
 
     content_tag :div, class: "body post_content #{is_fold ? 'is_folded' : ''}" do
       sanitize(thing.content).concat(footer)

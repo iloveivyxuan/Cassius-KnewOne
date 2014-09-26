@@ -1,4 +1,4 @@
-- cache ['things', 'summary', @thing, user_signed_in?]
+- cache_unless user_signed_in?, ['things', 'summary', @thing]
   #thing_description
     article.article
       #thing_author.clearfix
@@ -6,7 +6,12 @@
         span.author_name
           label 分享者
           = link_to @thing.author.name, @thing.author, data: {"popover-profile" => @thing.author.id.to_s}
+
         = tp.link_to_share('btn btn--square btn--share btn--orange hidden-xs hidden-sm', '')
+        - if can?(:edit, @thing)
+          = link_to('编辑', [:edit, @thing], class: 'btn btn--square btn--blue_light')
+        - if can?(:pro_edit, @thing)
+          = link_to('高级编辑', edit_haven_thing_path(@thing), class: 'btn btn--square btn--blue')
 
       - if tp.summary.present?
         = tp.content
