@@ -15,6 +15,17 @@ $zindex-editor: $zindex-navbar-fixed + 1;
 $zindex-go-top: 500;
 
 $brand-color: #049cdb;
-$light_blue: #97ceec;
+$blue-light: #97ceec;
+$blue-bright: #50c0ed;
+$light_blue: $blue-light;
+$navbar-bg: #36383a;
+$navbar-dropdown-bg: #3d3f40;
+$navbar-search-bg: #5e6775;
 $navbar-color--bg: #36383a;
 $light_grey: #e7e7e7;
+
+$XS: 320px;
+$S: 480px;
+$M: 768px;
+$L: 992px;
+$XL: 1200px;

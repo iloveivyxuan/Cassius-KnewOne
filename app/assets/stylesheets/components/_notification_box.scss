@@ -46,53 +46,6 @@
 }
 
 #notification_box {
-  display: inline-block;
-
-  #notification_trigger {
-    display: inline-block;
-  }
-
-  .dropdown_box {
-    right: -20px;
-
-    &:before {
-      right: 54px;
-    }
-
-    > header {
-      overflow: hidden;
-      padding: 0;
-    }
-  }
-
-  .nav {
-
-    > li {
-
-      border-right: 1px solid #eee;
-
-      > a {
-        color: $text-muted;
-        padding: {
-          bottom: 8px;
-          top: 8px;
-        }
-      }
-
-      &.active {
-
-        > a {
-          background-color: darken($nav-link-hover-bg, 5%);
-          color: $text-color;
-        }
-      }
-
-      &:last-child {
-        border-right: none;
-      }
-    }
-  }
-
   .spinner {
     bottom: 0;
     height: 28px;
@@ -102,15 +55,5 @@
     right: 0;
     top: 0;
     width: 25px;
-  }
-
-  .notifications {
-
-    > li {
-
-      time {
-        display: none;
-      }
-    }
   }
 }
