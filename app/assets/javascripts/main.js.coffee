@@ -303,7 +303,7 @@ do (exports = Making) ->
 
   exports.popupLogin = ->
     if exports.user? then return
-    for klass in ['users_show']
+    for klass in ['']
       if $html.hasClass(klass)
         switch exports.device
           when 'mobile', 'tablet'
@@ -328,7 +328,6 @@ do (exports = Making) ->
     exports.PopoverProfiles()
     exports.PrivateMessage()
     exports.AtUser('textarea')
-    exports.popupLogin()
 
     # TODO
     ($popovertoggle = $(".popover-toggle")).length && $popovertoggle.popover()
