@@ -29,7 +29,8 @@ class ThingPresenter < PostPresenter
         (can?(:destroy, thing) ? link_to('删除', thing, method: :delete,
                                          class: 'btn btn--square btn--cancel btn--delete',
                                          data: {confirm: '您确定要删除这个产品吗?'}) : '') +
-        (can?(:edit, thing) ? link_to('编辑', [:edit, thing], class: 'btn btn--square btn--blue') : '')
+        (can?(:edit, thing) ? link_to('编辑', [:edit, thing], class: 'btn btn--square btn--blue') : '') +
+        (can?(:pro_edit, thing) ? link_to('高级编辑', edit_haven_thing_path(thing), class: 'btn btn--square btn--blue_light') : '')
       end
     end
 
