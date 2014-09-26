@@ -392,7 +392,7 @@ class Thing < Post
   end
 
   def update_categories_by_tags
-    self.categories = self.tags.map(&:category).map(&:name)
+    self.categories = self.tags.map(&:category).map(&:name) unless self.tags.empty?
   end
 
 end
