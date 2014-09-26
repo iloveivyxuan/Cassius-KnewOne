@@ -121,7 +121,8 @@ html.touch {
   .dropdown-submenu {
     @media (min-width: $grid-float-breakpoint) {
       background-color: $navbar-dropdown-bg;
-      border-radius: 4px;
+      border-radius: 0 4px 4px 0;
+      box-shadow: inset 5px -5px 25px 1px rgba(0, 0, 0, .1); 
 
       > li {
         overflow: hidden;
@@ -131,7 +132,7 @@ html.touch {
         }
 
         &:last-child {
-          border-radius: 0 0 4px 4px;
+          border-radius: 0 0 4px 0;
         }
 
         > a {
@@ -754,7 +755,7 @@ html.no-touch {
         }
         em {
           float: right;
-          margin-right: 20px;
+          margin-right: 24px;
         }
         span {
           float: right;
@@ -1023,7 +1024,7 @@ html.home_index.landing.desktop {
 
 .dropdown-submenu-wrapper {
   display: none;
-  left: calc(100% + 1px);
+  left: 100%;
   position: absolute;
   top: 1px;
   width: 175px;
