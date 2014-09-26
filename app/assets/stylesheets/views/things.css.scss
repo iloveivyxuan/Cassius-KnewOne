@@ -485,8 +485,9 @@ body {
         color: $gray;
         border-bottom: 2px solid transparent;
         &:hover {
-          background: none;
+          background: $blue-dark;
           border-bottom-color: $blue-dark;
+          color: #fff;
         }
         i { display: none }
         span {
