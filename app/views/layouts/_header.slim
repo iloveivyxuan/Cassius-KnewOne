@@ -105,7 +105,7 @@ header#header role="banner"
                   em= c.name
                   span= c.things_count
                 ul.dropdown-submenu
-                  = render partial: "shared/header_tag", collection: c.tags
+                  = render partial: "shared/header_tag", collection: c.tags.where(:things_count.gt => 0)
                   li
                     = link_to_with_icon "查看全部分类", "fa fa-list", categories_path
   /-- Navbar --/
