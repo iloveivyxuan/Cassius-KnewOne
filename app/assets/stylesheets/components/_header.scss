@@ -101,7 +101,7 @@ html.touch {
       }
       
       &.is-active {
-        > a + .dropdown-submenu {
+        > a + .dropdown-submenu-wrapper {
           display: block;
         }
       }
@@ -122,11 +122,6 @@ html.touch {
     @media (min-width: $grid-float-breakpoint) {
       background-color: $navbar-dropdown-bg;
       border-radius: 4px;
-      display: none;
-      left: calc(100% + 1px);
-      position: absolute;
-      top: 1px;
-      width: 175px;
 
       > li {
         overflow: hidden;
@@ -1017,4 +1012,13 @@ html.home_index.landing.desktop {
       width: auto;
     }
   }
+}
+
+.dropdown-submenu-wrapper {
+  display: none;
+  left: calc(100% + 1px);
+  position: absolute;
+  top: 1px;
+  width: 175px;
+  height: 100%;
 }

@@ -101,10 +101,11 @@ header#header role="banner"
                 = link_to category_things_path(category: c) do
                   i class="fa fa-fw #{c.icon}"
                   em= c.name
-                ul.dropdown-submenu
-                  = render partial: "shared/header_tag", collection: c.tags.desc(:things_count).gt(things_count: 0).limit(11)
-                  li
-                    = link_to_with_icon "查看全部分类", "fa fa-list", categories_path
+                .dropdown-submenu-wrapper
+                  ul.dropdown-submenu
+                    = render partial: "shared/header_tag", collection: c.tags.desc(:things_count).gt(things_count: 0).limit(11)
+                    li
+                      = link_to_with_icon "查看全部分类", "fa fa-list", categories_path
   /-- Navbar --/
 
   .search_backdrop
