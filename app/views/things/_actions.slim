@@ -19,9 +19,6 @@
 
 - content_for :script do
   javascript:
-    if(Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')'))
-      Making.CartItemNew();
-
     $('.write_feeling > a').on('click', function (event) {
       event.preventDefault();
 

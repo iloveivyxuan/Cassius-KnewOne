@@ -5,3 +5,8 @@
     - if user_signed_in?
       = tp.render_shopping_desc
     .buy.clearfix= tp.buy
+
+- content_for :script
+  javascript:
+    if (Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')'))
+      Making.CartItemNew();
