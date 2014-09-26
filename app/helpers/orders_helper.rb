@@ -100,7 +100,7 @@ module OrdersHelper
       if popularize_items.empty?
         item = items.first
 
-        str = "#晒牛玩# 我在剁手站 @KnewOne 上入了#{item.kind.title}的 #{item.thing.title}，我喜欢这种提升逼格的调调。你们就随意感受下：#{thing_url(item.thing, refer: :order_share)}"
+        str = "#晒牛玩# 我在剁手站 @KnewOne 上入了#{item.kind.title}的 #{item.thing.title}，我喜欢这种调调。你们就随意感受下：#{thing_url(item.thing, refer: :order_share)}"
       else
         item = popularize_items.first
 
