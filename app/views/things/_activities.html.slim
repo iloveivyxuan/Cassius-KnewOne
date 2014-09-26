@@ -1,5 +1,5 @@
 - activities = Activity.visible.by_reference(thing).by_types(:fancy_thing, :own_thing, :add_to_list).limit(20)
-- cache_unless user_signed_in?, ['things', 'activities', thing]
+- cache_unless user_signed_in?, ['things', 'activities', activities.first]
   .activities.list= render partial: 'activity', collection: activities
 
 .clearfix.thing_activities_action
