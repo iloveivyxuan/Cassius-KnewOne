@@ -31,8 +31,10 @@ class User
       end
     EVAL
   end
+
   validates :name, presence: true, uniqueness: {case_sensitive: false},
-            format: {with: /\A[^\s]+\z/, multiline: false, message: '不能包含空格'}
+            format: {with: /\A[^\s]+\z/, multiline: false, message: '不能包含空格'},
+            length: {in: 4..20}
 
   RESERVED_WORDS = ['knewone', '知新创想', '牛玩']
   validate :name_cannot_include_reserved_words
