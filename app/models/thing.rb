@@ -76,6 +76,7 @@ class Thing < Post
 
   has_and_belongs_to_many :tags
   before_save :ensure_corresponding_tags
+  before_save :update_categories_by_tags
 
   scope :recent, -> { gt(created_at: 1.month.ago) }
   scope :published, -> { lt(created_at: Time.now) }
@@ -388,6 +389,10 @@ class Thing < Post
         tag.save
       end
     end
+  end
+
+  def update_categories_by_tags
+    self.categories = self.tags.map(&:category).map(&:name)
   end
 
 end
