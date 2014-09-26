@@ -8,7 +8,3 @@ section.things_subpage
     header.feelings_page_header.clearfix= render 'feelings/sort', {thing: @thing}
     .feelings.list = render @feelings
 = paginate @feelings
-
-- content_for :script do
-  javascript:
-    Making.InitFeelings();
