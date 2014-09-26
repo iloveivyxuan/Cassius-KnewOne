@@ -11,7 +11,10 @@ body {
 
 /**********************************************.btn**********************************************/
 
-.btn {
+// FIXME
+[class^="btn--"],
+[class*=" btn--"] {
+  padding: 0 20px;
   color: $btn-primary-color;
   text-align: center;
   border: none;
@@ -19,12 +22,6 @@ body {
   &:hover {
     color: $btn-primary-color;
   }
-}
-
-// FIXME
-[class^="btn--"],
-[class*=" btn--"] {
-  padding: 0 20px;
 }
 
 .btn--share {
