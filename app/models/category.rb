@@ -24,7 +24,7 @@ class Category
   class << self
     def find_and_minus(name)
       c = where(name: name).first
-      if c && c.present? && c.things_count > 0
+      if c.present? && c.things_count.try(:>, 0)
         c.inc things_count: -1
       end
     end
