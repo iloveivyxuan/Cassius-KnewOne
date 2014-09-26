@@ -12,8 +12,9 @@
     .related.clearfix
       - if tp.thing.official_site.present?
         = tp.official_site
-      - if tp.thing.has_brand?
-        = link_to_with_icon tp.thing.brand.name, 'fa fa-folder-open', things_path(brand: tp.thing.brand.name)
+      - brand_text = tp.thing.try(:brand).try(:brand_text)
+      - if brand_text.present?
+        = link_to_with_icon brand_text, 'fa fa-folder-open', things_path(brand: brand_text)
 
 - content_for :script do
   javascript:
