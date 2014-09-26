@@ -737,6 +737,7 @@ html.no-touch {
       height: 40px;
 
       > a {
+        @include clearfix;
         display: block;
         padding: 0;
         padding-left: 4px;
@@ -748,6 +749,11 @@ html.no-touch {
           width: 20%;
           color: $gray-lighter;
           text-align: center;
+          float: left;
+        }
+        em {
+          float: right;
+          margin-right: 20px;
         }
         span {
           float: right;
