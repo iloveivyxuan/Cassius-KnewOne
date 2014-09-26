@@ -1160,6 +1160,10 @@ body {
         color: $gray;
         background: none;
         &:hover { color: $blue-light }
+        &:active {
+          outline: none;
+          box-shadow: none;
+        }
       }
       .tooltip-inner {
         padding: 5px 8px;
