@@ -98,17 +98,16 @@ header#header role="banner"
           = link_to_with_icon "分类", "fa fa-bars", "#",
             class: 'nav_group_more', data: {toggle: "dropdown"}
           ul.dropdown-menu
-            - cache do
-              - Category.where(:name.in => %w(手机通信 音乐 摄影 电脑 文具 个人配饰 个护 生活)).desc(:things_count).each do |c|
-                li
-                  = link_to category_things_path(category: c) do
-                    i class="fa fa-fw #{c.icon}"
-                    em= c.name
-                    span= c.things_count
-                  ul.dropdown-submenu
-                    = render partial: "shared/header_tag", collection: c.tags
-                    li
-                      = link_to_with_icon "查看全部分类", "fa fa-list", categories_path
+            - Category.where(:name.in => %w(手机通信 音乐 摄影 电脑 文具 个人配饰 个护 生活)).desc(:things_count).each do |c|
+              li
+                = link_to category_things_path(category: c) do
+                  i class="fa fa-fw #{c.icon}"
+                  em= c.name
+                  span= c.things_count
+                ul.dropdown-submenu
+                  = render partial: "shared/header_tag", collection: c.tags
+                  li
+                    = link_to_with_icon "查看全部分类", "fa fa-list", categories_path
   /-- Navbar --/
 
   .search_backdrop
