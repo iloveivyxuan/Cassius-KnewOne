@@ -75,6 +75,7 @@ class Thing < Post
   has_many :adoptions, dependent: :destroy
 
   has_and_belongs_to_many :tags
+  before_save :ensure_corresponding_tags
 
   scope :recent, -> { gt(created_at: 1.month.ago) }
   scope :published, -> { lt(created_at: Time.now) }
@@ -378,4 +379,15 @@ class Thing < Post
   def update_brand
     self.brand_name = self.brand.brand_text if self.brand
   end
+
+  # hotfix
+  def ensure_corresponding_tags
+    self.tags.each do |tag|
+      unless tag.things.include?(self)
+        tag.things << self
+        tag.save
+      end
+    end
+  end
+
 end
