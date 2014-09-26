@@ -5,10 +5,7 @@
   = render "carousel", tp: tp
   = render 'actions_compact', tp: tp
   = render "summary", tp: tp
-
-  - if browser.mobile? || browser.tablet?
-    = render "mobile_buy", tp: tp
-
+  = render "mobile_buy", tp: tp
   = render 'reviews', tp: tp
   = render 'feelings/form', thing: tp.thing, id: 'thing_feeling_form'
   = render 'feeds', thing: tp.thing
