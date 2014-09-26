@@ -866,7 +866,32 @@ body {
 
 /**********************************************#thing_reviews**********************************************/
 
-#thing_reviews { margin-bottom: 2em }
+#thing_reviews {
+  margin-bottom: 2em;
+
+  header {
+    @include clearfix;
+
+    > h4 {
+      margin: 0;
+      font-size: 16px;
+      color: $gray;
+      text-align: center;
+      background: #f7f7f7;
+    }
+
+    > .btn {
+      float: right;
+    }
+
+    > h4,
+    > .btn,
+    > .btn:hover i {
+      height: 50px;
+      line-height: 50px;
+    }
+  }
+}
 
 .reviews.list {
   > * {
