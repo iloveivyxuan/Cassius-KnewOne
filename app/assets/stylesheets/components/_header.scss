@@ -120,7 +120,7 @@ html.touch {
 
   .dropdown-submenu {
     @media (min-width: $grid-float-breakpoint) {
-      background-color: $navbar-inverse-link-active-bg;
+      background-color: $navbar-dropdown-bg;
       border-radius: 4px;
       display: none;
       left: calc(100% + 1px);
@@ -142,7 +142,7 @@ html.touch {
         > a {
           color: $navbar-inverse-link-color;
           display: block;
-          line-height: 50px;
+          line-height: 40px;
           padding: 0 20px;
 
           &:hover {
@@ -337,7 +337,7 @@ html.touch {
         display: block;
         padding: 0;
         padding-left: 4px;
-        line-height: 50px;
+        line-height: 40px;
         color: $light_grey;
         text-align: left;
         border-left: 4px solid transparent;
@@ -345,7 +345,7 @@ html.touch {
           width: 20%;
           color: $light_grey;
           text-align: center;
-          line-height: 50px;
+          line-height: 40px;
           float: left;
         }
         em {
@@ -738,10 +738,10 @@ html.no-touch {
     background: rgba($navbar-dropdown-bg,.99);
     border: none;
     @include box-shadow(0 2px 5px rgba(0,0,0,.1));
-    li {
+    > li {
       height: 40px;
 
-      a {
+      > a {
         display: block;
         padding: 0;
         padding-left: 4px;
@@ -765,7 +765,7 @@ html.no-touch {
       }
       &:hover {
         background: $navbar-bg;
-        a {
+        > a {
           color: $blue-light;
           border-left-color: $brand-primary;
           i, span { color: #fff }
