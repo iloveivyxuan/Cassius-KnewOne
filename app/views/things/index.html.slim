@@ -10,6 +10,8 @@
       - if @category
         = link_to @category.name, things_path(category: @category), class: 'breadcrumb'
         = render 'categories/subscribe_btn', category: @category
+      - if @tag
+        = link_to @tag.name, things_path(tag: @tag), class: 'breadcrumb'
     nav
       = form_tag things_path, method: :get, class: 'form-inline' do
         = select_tag :category, \
