@@ -201,20 +201,6 @@ body {
   }
 }
 
-/**********************************************#go_top**********************************************/
-
-#go_top {
-  bottom: 0;
-  .fa {
-    margin: 0;
-    padding: .25em .5em;
-    color: #fff;
-    background: $blue-dark;
-  }
-  &:hover .fa { background: $brand-primary }
-}
-
-
 /**********************************************.feed_article**********************************************/
 
 #thing_reviews,
