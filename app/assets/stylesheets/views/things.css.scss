@@ -88,7 +88,7 @@ body {
   color: $gray;
   background: none;
   @include border-radius(4px);
-  i.fa-like {
+  i {
     margin: 0;
     &:before {
       content:"\f087";

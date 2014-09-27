@@ -70,7 +70,7 @@ class PostPresenter < ApplicationPresenter
   end
 
   def lovers_count
-    i = content_tag :i, "", class: "fa fa-like"
+    i = content_tag :i, "", class: "fa fa-thumbs-up"
     count = content_tag :span, @object.lovers_count
     i.concat count
   end
