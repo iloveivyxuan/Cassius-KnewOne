@@ -1,5 +1,5 @@
 - cache_unless user_signed_in?, ['things', 'feelings', thing]
-  .feelings.list = render thing.feelings.limit(10)
+  .feelings.list = render thing.feelings.desc(:lovers_count, :created_at).limit(10)
 
 .clearfix.thing_feelings_action
   - if thing.feelings.count > 10
