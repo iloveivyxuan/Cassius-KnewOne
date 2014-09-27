@@ -21,6 +21,18 @@
 //     a.btn
 //
 
+.feed_action {
+  .btn {
+    background: transparent;
+
+    &.done {
+      background-color: #6e6e6e;
+      color: #ececec;
+      opacity: 1;
+    }
+  }
+}
+
 .feed_type {
   display: inline-block;
 
