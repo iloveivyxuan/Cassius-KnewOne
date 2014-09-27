@@ -22,8 +22,8 @@ section class="product_#{index == 0 ? 1 : 2}"
             i.fa.fa-check-circle-o
             = thing_presenter.owners_count
           span
-            i.fa.fa-comment-o
-            = thing_presenter.comments_count
+            i.fa.fa-pencil
+            = thing_presenter.reviews_count
   section.reviews
     - reviews = thing.reviews.desc(:is_top, :lovers_count).limit(index == 0 ? 2 : 1).reverse
     - reviews.each_with_index do |review, j|
