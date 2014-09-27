@@ -16,11 +16,11 @@
     }
 
     &.unread {
-      background-color: #5d5d5d;
+      background-color: #eff7fd;      
     }
 
     &.unopened {
-      background-color: #5d5d5d !important;
+      background-color: #eff7fd !important;
     }
 
     &.read,
@@ -46,6 +46,18 @@
 }
 
 #notification_box {
+  .notifications {
+    > li {
+      &.unread {
+        background-color: #5d5d5d;
+      }
+
+      &.unopened {
+        background-color: #5d5d5d !important;
+      }
+    }
+  }
+
   .spinner {
     bottom: 0;
     height: 28px;
