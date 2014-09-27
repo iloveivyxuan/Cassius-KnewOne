@@ -3,7 +3,7 @@ li
   figure class="thing"
     .thing_thumb
       = link_to thing_path(tp.thing), target: "_blank"
-        = tp.photo(:normal)
+        = tp.photo(:square)
     figcaption
       h5
         = link_to tp.title, tp.thing
