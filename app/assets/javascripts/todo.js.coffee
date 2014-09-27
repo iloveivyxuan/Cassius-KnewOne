@@ -147,7 +147,7 @@ do (exports = Making) ->
         if !$html.hasClass('mobile')
           $item.css
             height: height
-            # lineHeight: height
+            lineHeight: height
 
         if $overview.length and Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ')')
           $overview_body = $overview.children('.slideshow_body')
