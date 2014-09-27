@@ -17,3 +17,7 @@ section.things_subpage
   - cache_unless user_signed_in?, ['thing-activities', @activities.first, request.query_string]
     .activities.list= render partial: 'activity', collection: @activities
 = paginate @activities
+
+- content_for :script
+  javascript:
+    $('[data-title]').tooltip()
