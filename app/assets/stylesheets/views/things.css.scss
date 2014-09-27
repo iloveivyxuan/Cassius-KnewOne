@@ -2069,3 +2069,18 @@ body {
     }
   }
 }
+
+html.reviews_index {
+  .jumbotron {
+    @include clearfix;
+
+    color: $gray;
+    background: white;
+
+    > img {
+      float: right;
+      width: 20%;
+      margin-left: 10%;
+    }
+  }
+}

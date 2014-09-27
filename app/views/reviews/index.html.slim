@@ -5,12 +5,13 @@
   section.things_subpage
     header.reviews_page_header.clearfix
       = render 'shared/sort', url: thing_reviews_path(@thing)
-      = render 'reviews/link_to_new', klass: 'btn btn--transition btn-new-review btn--blue btn--short'
+      = render 'link_to_new', klass: 'btn btn--transition btn-new-review btn--blue btn--short'
 
     .reviews.list = render @reviews
   = paginate @reviews
 - else
   .jumbotron
+    = image_tag image_path('writing.png'), title: '快来写评测！'
     p 还没有人为 #{@thing.title} 撰写评测，你想做第一个为它写评测的人么？
     #new_review_link
-      = render 'link_to_new'
+      = render 'link_to_new', klass: 'btn btn--transition btn-new-review btn--blue btn--short'
