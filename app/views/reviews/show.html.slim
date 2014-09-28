@@ -20,7 +20,7 @@
         = rp.link_to_share('', '')
         = render 'shared/post_actions', post: rp.review,
           edit_post_path: rp.edit_path, post_path: rp.path
-        = time_ago_tag @review.created_at, 'pull-right'
+        = time_ago_tag @review.created_at
 
       = render 'shared/comments', post: rp.review, id: "comments", auth: true
 

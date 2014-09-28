@@ -1990,15 +1990,42 @@ html.feelings_show {
       }
     }
     > footer {
+      position: relative;
       padding: 2em;
 
+      .btn--like {
+        height: 40px;
+        width: auto;
+        margin-left: -2em;
+        padding-left: 2em;
+        padding-right: 1em;
+
+        @extend .btn--blue;
+        @extend .btn--square;
+        color: white;
+      }
+
       .share_btn {
+        display: inline-block;
+        width: 60px;
+        line-height: 40px;
+        text-align: center;
         vertical-align: middle;
+
+        @extend .btn--blue_light;
+        @extend .btn--square;
+        color: white;
+
+        i {
+          margin: 0;
+        }
       }
 
       > time {
+        position: absolute;
+        right: 2em;
+        margin-top: .5em;
         color: #999999;
-        font-size: .8em;
       }
     }
   }
