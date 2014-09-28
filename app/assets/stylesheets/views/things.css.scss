@@ -578,7 +578,7 @@ html.feelings_show {
     .carousel_overview.slideshow {
       position: relative;
       margin: 0;
-      padding: 1.5em 0;
+      padding-top: 1.5em;
       overflow: hidden;
       @include MQ(Mneg) { display: none }
       .slideshow_body  {
@@ -615,7 +615,7 @@ html.feelings_show {
     padding-top: 2em;
     @include MQ(Lplus) {
       margin-bottom: 2.5em;
-      padding-top: 1em;
+      padding-top: 2.5em;
     }
     background-color: #fff;
     #thing_author {
