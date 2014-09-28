@@ -583,6 +583,7 @@ html.feelings_show {
       @include MQ(Mneg) { display: none }
       .slideshow_body  {
         position: relative;
+        margin: 0 3em;
         .slideshow_inner {
           min-width: 100%;
           height: 60px;
