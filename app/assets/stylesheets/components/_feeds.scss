@@ -76,7 +76,7 @@ html.desktop {
     position: relative;
 
     @media (min-width: $screen-sm-min) {
-      min-height: 10em;
+      min-height: calc(4em + 110px);
       padding: {
         left: $part_left;
         right: $part_right;
