@@ -46,7 +46,6 @@ html.landing {
 
   #go_top {
     display: none;
-    bottom: 85px;
     @include MQ(Lplus) { display:block }
   }
 
