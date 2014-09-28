@@ -2086,6 +2086,8 @@ html.reviews_index {
     background: white;
 
     > img {
+      @extend %disable-image-smoothing;
+
       float: right;
       width: 20%;
       margin-left: 10%;
