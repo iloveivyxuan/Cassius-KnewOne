@@ -1036,3 +1036,11 @@ html.home_index.landing.desktop {
   width: 175px;
   height: 100%;
 }
+
+#navbar_search {
+  &.focus {
+    @include MQ(XLplus) {
+      width: 50%;
+    }
+  }
+}
