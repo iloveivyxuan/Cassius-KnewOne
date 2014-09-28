@@ -10,14 +10,14 @@
       | 商店
     nav
       select.selectpicker
-        - navs = [ \
-        %w(最新 news), \
-        %w(推荐 recommended), \
-        %w(最热 hits), \
-        %w(价格高到低 price_h_l), \
-        %w(价格低到高 price_l_h)]
-        - options = navs.map { |nav| nav << {'data-url' => shop_path(order_by: nav[1])} }
-        = options_for_select options, (params[:order_by] || 'news')
+        - options = categories_options
+        = options_for_select options.last, (params[:categories] || options.first.first)
+      select.selectpicker
+        - options = price_options
+        = options_for_select options.last, (options.first.assoc(price_format(params[:price_l], params[:price_h])) || options.first.first)
+      select.selectpicker
+        - options = order_options
+        = options_for_select options.last, (params[:order_by] || options.first.first)
 
   section#things_list.js-infinite
     = render partial: 'shop_thing', collection: @things, as: :thing

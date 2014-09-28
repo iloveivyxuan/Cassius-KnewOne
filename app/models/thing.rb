@@ -30,6 +30,7 @@ class Thing < Post
 
   field :shop, type: String, default: ""
   field :price, type: Float
+  PRICE_LIST = [1, 100, 200, 500, 1000, Float::INFINITY]
   field :price_unit, type: String, default: "¥"
   field :shopping_desc, type: String, default: ""
   field :period, type: DateTime

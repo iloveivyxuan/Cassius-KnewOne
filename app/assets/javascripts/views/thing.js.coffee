@@ -74,7 +74,7 @@ window.Making = do (exports = window.Making || {}) ->
 
   exports.InitShop = ->
     exports.scrollSpyPopupLogin(window.location.pathname + '/page/2')
-    exports.infiniteScroll('.js-infinite', window.location.pathname)
+    exports.infiniteScroll('.js-infinite', window.location.pathname + window.location.search)
     $('#things_nav select').on 'change', (event) ->
       window.location = $(this).find(':selected').data('url')
 

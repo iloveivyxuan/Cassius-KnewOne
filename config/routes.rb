@@ -23,7 +23,7 @@ Making::Application.routes.draw do
   get "500", to: "home#error"
   get 'blocked', to: 'home#blocked'
 
-  get 'shop(/:order_by)(/page/:page)', to: 'things#shop', as: :shop
+  get 'shop(/page/:page)', to: 'things#shop', as: :shop
 
   get 'explore', to: 'explore#index'
   %w(features reviews specials events).each do |a|

@@ -49,6 +49,18 @@ class ThingsController < ApplicationController
 
   def shop
     params[:order_by] ||= "new"
+
+    @things ||= ::Thing
+    if params[:categories] && params[:categories] != "all"
+      c = Category.any_in(:slugs => params[:categories]).first
+      @things = @things.any_in(categories: c.name) if c
+    end
+
+    if (params[:price_l] || params[:price_h]) && params[:price_l] != "all"
+      params[:price_h] = Float::INFINITY if params[:price_h] == "Infinity"
+      @things = @things.price_between(params[:price_l], params[:price_h])
+    end
+
     @sort = case params[:order_by]
             when 'recommended' then {priority: :desc}
             when 'hits' then {fanciers_count: :desc}
@@ -57,7 +69,8 @@ class ThingsController < ApplicationController
             when 'price_l_h' then {price: :asc}
             else {priority: :desc}
             end
-    @things = Thing.published.self_run.order_by(@sort).page(params[:page]).per(24)
+
+    @things = @things.published.self_run.order_by(@sort).page(params[:page]).per(24)
 
     if request.xhr?
       if @things.any?

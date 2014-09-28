@@ -111,4 +111,53 @@ module ThingsHelper
     }
   end
 
+  def merge_params(original_params, new_params)
+    original_params.merge(new_params).select { |k, v| v != nil }
+  end
+
+  def original_params
+    {
+      :price_h => params[:price_h],
+      :price_l => params[:price_l],
+      :categories => params[:categories],
+      :order_by => params[:order_by]
+    }
+  end
+
+  def categories_options
+    navs = [%w(所有分类 all)]
+    Category.desc(:things_count).limit(9).map { |c| navs << [c.name, c.slug] }
+    options = navs.each { |nav| nav << { 'data-url' => shop_path(merge_params(original_params, categories: nav[1])) } }
+    [navs, options]
+  end
+
+  def price_options
+    p = Thing::PRICE_LIST
+    navs = [["所有价格", "all", "all", {"data-url"=>"/shop?price=all"}]]
+    (1..p.size-1).each.map { |i| navs << [price_format(p[i-1], p[i]), p[i-1], p[i]] }
+    navs[navs.size - 1] = ["￥#{navs.last[1]}+", navs.last[1], navs.last[2]]
+    options = navs.each { |nav| nav << { 'data-url' => shop_path(merge_params(original_params, price_l: nav[1], price_h: nav[2])) } }
+    [navs, options]
+  end
+
+  def order_options
+    navs = [
+            %w(最新 news),
+            %w(推荐 recommended),
+            %w(最热 hits),
+            %w(价格高到低 price_h_l),
+            %w(价格低到高 price_l_h)
+           ]
+    options = navs.map { |nav| nav << { 'data-url' => shop_path(merge_params(original_params, order_by: nav[1])) } }
+    [navs, options]
+  end
+
+  def price_format(l, h)
+    if h == Thing::PRICE_LIST.last
+      "￥#{l}+"
+    else
+      "￥#{l} ~ ￥#{h}"
+    end
+  end
+
 end
