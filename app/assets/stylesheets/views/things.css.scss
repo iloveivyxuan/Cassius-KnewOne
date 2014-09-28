@@ -116,8 +116,7 @@ html.feelings_show {
       background: none;
       i { &:before {  content:"\f164" } }
       &:hover {
-        color: #fff;
-        background-color: $gray-light;
+        color: $gray-light;
         i { &:before {  content:"\f087" } }
       }
     }
