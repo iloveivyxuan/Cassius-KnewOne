@@ -1050,6 +1050,8 @@ html.feelings_show {
       &:last-child { border-bottom: none }
     }
     .feed_article--feeling {
+      min-height: 140px;
+
       .feeling_author {
         position: absolute;
         top: 2em;
