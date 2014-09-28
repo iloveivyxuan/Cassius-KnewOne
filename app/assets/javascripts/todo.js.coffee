@@ -146,6 +146,7 @@ do (exports = Making) ->
 
         if !$html.hasClass('mobile')
           $item.css
+            fontSize: 0
             height: height
             lineHeight: height
 
