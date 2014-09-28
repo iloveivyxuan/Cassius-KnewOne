@@ -48,7 +48,7 @@ ul.nav.nav-pills
     = submit_tag "查询#{tag_text}"
 
 - @things.each do |t|
-  = form_tag batch_update_haven_things_path(redirect_from: request.fullpath), method: :patch do
+  = form_tag batch_update_haven_things_path(redirect_from: request.fullpath), method: :patch, remote: true, class: "batch_edit" do
     table.table.table-striped.table-hover.table-bordered
       tr
         th style="width:40%" 标题
@@ -86,10 +86,24 @@ ul.nav.nav-pills
             = text_field_tag 'things[][tags_text]', t.tags_text, hint: "用,分隔", style: 'width: 100%'
             | 品牌
             = text_field_tag 'things[][brand_text]', t.brand.try(:brand_text), style: 'width: 100%'
-            = submit_tag '修改', class: 'btn btn-primary'
           td
             = link_to t, target: '_blank' do
               = image_tag(t.cover.url(:small))
-            end
+      tfoot
+        tr
+          td colspan=4
+            output.pull-left
+            = submit_tag '修改', class: 'btn btn-primary pull-right'
 
 = paginate @things
+
+- content_for :script do
+  javascript:
+    $(document).ready(function() {
+      $(".batch_edit").on("ajax:success", function(e, data, status, xhr) {
+        if (data == "true") {
+          this.getElementsByClassName("btn-primary")[0].disabled = true;
+          this.getElementsByClassName("btn-primary")[0].value = "修改成功";
+        }
+      })
+    });

@@ -95,13 +95,11 @@ module Haven
     end
 
     def batch_update
-      if params[:things]
-        params[:things].each do |t|
-          Thing.find(t.delete(:id)).update_attributes! t.permit!
-        end
+      if t = params[:things].first
+        @result = Thing.find(t.delete(:id)).update_attributes t.permit!
       end
 
-      redirect_back_or batch_edit_haven_things_path
+      render js: @result
     end
 
     # notify user that his thing has been into hits
