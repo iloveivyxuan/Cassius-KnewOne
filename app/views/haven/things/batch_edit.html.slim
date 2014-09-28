@@ -13,22 +13,7 @@ ul.nav.nav-pills
     li.active
       = link_to '全部', queries.reject! {|k, v| k == :filter}
 
-  - {'no_link' => '无购买链接',
-     'no_category' => '无分类',
-     'no_price' => '无价格',
-     'no_tag' => '无标签',
-     'concept' => '研发中',
-     'kick' => '众筹中',
-     'pre_order' => '预售',
-     'domestic' => '国内导购',
-     'abroad' => '国外海淘',
-     'dsell' => '自销',
-     'feelings_count' => '按短评数排序',
-     'reviews_count' => '按评测数排序',
-     'heat' => '按热度排序',
-     'priority_asc' => '优先度倒序',
-     'priority_desc' => '优先度正序'}.each do |k, v|
-
+  - haven_filters.each do |k, v|
      - conds = queries.deep_dup
      - if conds[:filter].include?(k)
        li.active
@@ -39,8 +24,7 @@ ul.nav.nav-pills
          - conds[:filter].push(k)
          = link_to v, batch_edit_haven_things_path(conds)
 
-- queries = {"categories" => "分类", "shop" => "链接", "title" => "标题 & 副标题", "brand" => "品牌", "tag" => "标签"}
-- queries.each do |query, tag_text|
+- haven_queries.each do |query, tag_text|
   = form_tag batch_edit_haven_things_path, method: :get do
     - queries.each do |k, _|
       = hidden_field_tag k, params[k] if params[k]
@@ -79,6 +63,8 @@ ul.nav.nav-pills
             = text_field_tag 'things[][shop]', t.shop, style: 'width: 100%'
             | 分享文案
             = text_field_tag 'things[][sharing_text]', t.sharing_text, style: 'width: 100%'
+            | 来源网站
+            = text_field_tag 'things[][official_site]', t.official_site, style: 'width: 100%'
           td
             | 标签
             = text_field_tag 'things[][tags_text]', t.tags_text, hint: "用,分隔", style: 'width: 100%'

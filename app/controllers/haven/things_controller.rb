@@ -63,6 +63,7 @@ module Haven
         @things = @things.where(categories: []) if params[:filter].include? "no_category"
         @things = @things.where(price: nil) if params[:filter].include? "no_price"
         @things = @things.any_in(:tag_ids => nil) if params[:filter].include? "no_tag"
+        @things = @things.where(official_site: "") if params[:filter].include? "no_official"
         Thing::STAGES.keys.each do |stage|
           @things = @things.where(stage: stage) if params[:filter].include? stage.to_s
         end
@@ -87,6 +88,9 @@ module Haven
       if params[:brand]
         brand = Brand.where(name: Regexp.new(params[:brand], Regexp::IGNORECASE)).first
         @things = @things.where(brand: brand) if brand
+      end
+      if params[:official]
+        @things = @things.where(official_site: Regexp.new(params[:official], Regexp::IGNORECASE))
       end
       unless params[:filter] || params[:categories]
         @things = @things.desc(:created_at)

@@ -79,4 +79,36 @@ module ThingsHelper
     }
   end
 
+  def haven_filters
+    {
+      'no_link' => '无购买链接',
+      'no_category' => '无分类',
+      'no_price' => '无价格',
+      'no_tag' => '无标签',
+      'no_official' => '无来源',
+      'concept' => '研发中',
+      'kick' => '众筹中',
+      'pre_order' => '预售',
+      'domestic' => '国内导购',
+      'abroad' => '国外海淘',
+      'dsell' => '自销',
+      'feelings_count' => '按短评数排序',
+      'reviews_count' => '按评测数排序',
+      'heat' => '按热度排序',
+      'priority_asc' => '优先度倒序',
+      'priority_desc' => '优先度正序'
+    }
+  end
+
+  def haven_queries
+    {
+      "categories" => "分类",
+      "shop" => "链接",
+      "title" => "标题 & 副标题",
+      "brand" => "品牌",
+      "tag" => "标签",
+      "official" => "来源网站"
+    }
+  end
+
 end
