@@ -148,7 +148,7 @@ window.Making = do (exports = window.Making || {}) ->
           if $backdrop.is(':visible') then $backdrop.fadeOut()
 
   $ ->
-    if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ')')
+    if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')')
       $form       = $('#navbar_search')
       $input      = $form.find('input[type="search"]')
       $candidate  = $('.search_candidate')

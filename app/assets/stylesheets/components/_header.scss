@@ -80,7 +80,9 @@ html.touch {
   #nav_publish {
     a {color: white;}
     background-color: $blue;
-    margin-left: 15px;
+    @include MQ(Lplus) {
+      margin-left: 15px;
+    }
   }
 
   .dropdown-menu {
@@ -198,7 +200,7 @@ html.touch {
   @media (min-width: $grid-float-breakpoint) {
     margin-bottom: 7px;
     margin-top: 7px;
-    transition-duration: .2s;
+    transition-duration: .15s;
     transition-property: width;
   }
 
@@ -624,7 +626,6 @@ html.no-touch {
 	}
 }
 .navbar {
-  height: 45px;
   min-height: 45px;
   background-color: $navbar-bg;
   background-color: rgba($navbar-bg,.98);
@@ -1037,7 +1038,23 @@ html.home_index.landing.desktop {
   height: 100%;
 }
 
+.navbar {
+  height: auto;
+}
+
+#nav_secondary {
+  margin-right: 0;
+
+  @media (max-width: $grid-float-breakpoint) {
+    display: none;
+  }
+}
+
 #navbar_search {
+  @media (max-width: $screen-sm-max) {
+    width: 100%;
+  }
+
   &.focus {
     @include MQ(XLplus) {
       width: 50%;
