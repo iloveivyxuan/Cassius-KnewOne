@@ -2081,6 +2081,7 @@ html.reviews_index {
   .jumbotron {
     @include clearfix;
 
+    border-radius: 0;
     color: $gray;
     background: white;
 
