@@ -1931,11 +1931,16 @@ html.feelings_show {
         font-weight: normal;
       }
 
-      .score {
-        margin: 0;
-        margin-left: 20%;
-        > .rate {
-          padding: 0;
+
+      .review-score {
+        min-height: 20px;
+
+        .score {
+          margin: 0;
+          margin-left: 20%;
+          > .rate {
+            padding: 0;
+          }
         }
       }
     }
