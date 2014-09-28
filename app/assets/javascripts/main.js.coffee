@@ -503,14 +503,25 @@ do (exports = Making) ->
           $this.removeClass('open')
         $link.on 'mouseenter', ->
           $this.removeClass('open')
-        $dropdown_toggle.on 'mouseenter', (event) ->
-          if !$this.hasClass('open') then $this.addClass('open')
+        $dropdown_toggle
+          .on 'mouseenter', (event) ->
+            if !$this.hasClass('open') then $this.addClass('open')
+          .on 'click', (event) ->
+            link = $(@).attr('href')
+            if link isnt '#'
+              window.location.href = link
 
-      $user.children('.dropdown')
-        .on 'mouseenter', ->
-          $(@).addClass('open')
-        .on 'mouseleave', ->
-          $(@).removeClass('open')
+      $user
+        .children('.dropdown')
+          .on 'mouseenter', ->
+            $(@).addClass('open')
+          .on 'mouseleave', ->
+            $(@).removeClass('open')
+        .children('.dropdown-toggle')
+          .on 'click', ->
+            link = $(@).attr('href')
+            if link isnt '#'
+              window.location.href = link
 
       $('#new_thing_trigger').attr('data-target', '#new-thing-modal')
 
