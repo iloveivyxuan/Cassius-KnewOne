@@ -80,7 +80,9 @@ class Order
     :debangwuliu => '德邦物流',
     :huitongkuaidi => '百世汇通',
     :shunfeng => '顺丰速递',
-    :zhongtong => '中通速递'
+    :zhongtong => '中通速递',
+    :ems => 'EMS',
+    :shentong => '申通速递'
   }
   PAYMENT_METHOD = {
     :tenpay => '财付通',
