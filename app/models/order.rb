@@ -59,34 +59,34 @@ class Order
 
   SF_PRICE = 10.0
   STATES = {
-      :pending => '等待付款',
-      :freed => '无需支付，请用户确认',
-      :confirmed => '支付成功，等待发货',
-      :shipped => '已发货',
-      :canceled => '订单取消',
-      :closed => '订单关闭',
-      :refunded => '已协商退款',
-      :refunded_to_balance => '已退款到余额',
-      :refunded_to_platform => '已退款到第三方支付平台',
-      :unexpected => '订单异常，请联系客服'
+    :pending => '等待付款',
+    :freed => '无需支付，请用户确认',
+    :confirmed => '支付成功，等待发货',
+    :shipped => '已发货',
+    :canceled => '订单取消',
+    :closed => '订单关闭',
+    :refunded => '已协商退款',
+    :refunded_to_balance => '已退款到余额',
+    :refunded_to_platform => '已退款到第三方支付平台',
+    :unexpected => '订单异常，请联系客服'
   }
   DELIVER_METHODS = {
-      # Legacy code
-      :sf => '顺丰',
-      :zt => '中通',
-      :bong_delivery => 'bong',
-      # same as https://code.google.com/p/kuaidi-api/wiki/Open_API_API_URL
-      :yuantong => '圆通速递',
-      :debangwuliu => '德邦物流',
-      :huitongkuaidi => '百世汇通',
-      :shunfeng => '顺丰速递',
-      :zhongtong => '中通速递'
+    # Legacy code
+    :sf => '顺丰',
+    :zt => '中通',
+    :bong_delivery => 'bong',
+    # same as https://code.google.com/p/kuaidi-api/wiki/Open_API_API_URL
+    :yuantong => '圆通速递',
+    :debangwuliu => '德邦物流',
+    :huitongkuaidi => '百世汇通',
+    :shunfeng => '顺丰速递',
+    :zhongtong => '中通速递'
   }
   PAYMENT_METHOD = {
-      :tenpay => '财付通',
-      :alipay => '支付宝',
-      :btc => '比特币',
-      :other => '其它'
+    :tenpay => '财付通',
+    :alipay => '支付宝',
+    :btc => '比特币',
+    :other => '其它'
   }
 
   field :state, type: Symbol, default: :pending
