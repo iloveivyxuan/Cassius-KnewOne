@@ -15,7 +15,8 @@ class ThingListView extends Backbone.Marionette.ItemView
     @model.set('selected', event.currentTarget.checked)
 
 class Making.Views.ThingListsPopup extends Backbone.Marionette.CompositeView
-  className: 'thing-list-popup modal fade'
+  id: 'thing-list-popup'
+  className: 'modal fade'
   template: HandlebarsTemplates['thing_lists/popup']
 
   ui: {
