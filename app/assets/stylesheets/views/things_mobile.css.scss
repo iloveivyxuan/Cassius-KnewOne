@@ -31,10 +31,15 @@ html.things_show {
           max-height: $summary_height;
           overflow: hidden;
           padding-bottom: 0;
+
+          & + .more {
+            display: block;
+          }
         }
       }
 
       .more {
+        display: none;
         height: $summary_height + 40px;
         margin-top: -($summary_height + 28px);
         padding-bottom: 0;
