@@ -64,14 +64,16 @@ module Haven
         @things = @things.where(price: nil) if params[:filter].include? "no_price"
         @things = @things.any_in(:tag_ids => nil) if params[:filter].include? "no_tag"
         @things = @things.where(official_site: "") if params[:filter].include? "no_official"
+
         Thing::STAGES.keys.each do |stage|
           @things = @things.where(stage: stage) if params[:filter].include? stage.to_s
         end
-        @things = @things.order_by([:feelings_count, :desc]) if params[:filter].include? "feelings_count"
-        @things = @things.order_by([:reviews_count, :desc]) if params[:filter].include? "reviews_count"
-        @things = @things.order_by([:heat, :desc]) if params[:filter].include? "heat"
+
+        %w(feelings_count reviews_count heat priority).each do |sort_key|
+          @things = @things.order_by([sort_key.to_sym, :desc]) if params[:filter].include? sort_key
+        end
+
         @things = @things.order_by([:priority, :asc]) if params[:filter].include? "priority_asc"
-        @things = @things.order_by([:priority, :desc]) if params[:filter].include? "priority_desc"
       end
       @things = @things.in(categories: params[:categories]) if params[:categories]
       @things = @things.where(shop: Regexp.new(params[:shop])) if params[:shop]
