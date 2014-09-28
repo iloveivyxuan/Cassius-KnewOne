@@ -33,7 +33,7 @@ ul.nav.nav-pills
 
 - @things.each do |t|
   = form_tag batch_update_haven_things_path(redirect_from: request.fullpath), method: :patch, remote: true, class: "batch_edit" do
-    table.table.table-striped.table-hover.table-bordered
+    table.table.table-striped.table-bordered
       tr
         th style="width:40%" 标题
         th 购买
@@ -84,10 +84,17 @@ ul.nav.nav-pills
 - content_for :script do
   javascript:
     $(document).ready(function() {
-      $(".batch_edit").on("ajax:success", function(e, data, status, xhr) {
-        if (data == "true") {
-          this.getElementsByClassName("btn-primary")[0].disabled = true;
-          this.getElementsByClassName("btn-primary")[0].value = "修改成功";
-        }
-      })
-    });
+      $(".batch_edit")
+        .on("ajax:success", function(e, data, status, xhr) {
+          if (data == "true") {
+            var button = this.getElementsByClassName("btn-primary")[0];
+            button.disabled = true;
+            button.value = "修改成功";
+          }
+        })
+        .on("ajax:error", function(e, data, status, xhr) {
+          var output = this.getElementsByTagName("output")[0];
+          output.innerText = data.responseText;
+          output.classList.add("text-danger");
+        })
+      });

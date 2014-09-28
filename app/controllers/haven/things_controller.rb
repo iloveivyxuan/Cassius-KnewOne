@@ -101,11 +101,15 @@ module Haven
     end
 
     def batch_update
-      if t = params[:things].first
-        @result = Thing.find(t.delete(:id)).update_attributes t.permit!
+      if thing_params = params[:things].first
+        @thing = Thing.find(thing_params.delete :id)
+        @thing.update_attributes thing_params.permit!
+        if @thing.save
+          render js: true
+        else
+          render js: @thing.errors.full_messages
+        end
       end
-
-      render js: @result
     end
 
     # notify user that his thing has been into hits
