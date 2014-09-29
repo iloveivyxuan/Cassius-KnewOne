@@ -31,7 +31,8 @@ class Auth
   PROVIDERS = {
       'weibo' => '新浪微博',
       'twitter' => 'Twitter',
-      'qq_connect' => 'QQ'
+      'qq_connect' => 'QQ',
+      'bong' => 'Bong'
   }
 
   def expired?
@@ -42,10 +43,6 @@ class Auth
 
   def friends_on_site(bilateral = false)
     User.where(:'auths.provider' => self.provider, :'auths.uid'.in => friend_ids(self.uid, bilateral).map(&:to_s))
-  end
-
-  def update_profile
-
   end
 
   class << self

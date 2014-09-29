@@ -1,3 +1,4 @@
+require 'bong'
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -217,6 +218,7 @@ Devise.setup do |config|
   config.omniauth :wechat, Settings.wechat.consumer_key, Settings.wechat.consumer_secret
   config.omniauth :qq_connect, Settings.qq.consumer_key, Settings.qq.consumer_secret
   config.omniauth :douban, Settings.douban.consumer_key, Settings.douban.consumer_secret
+  config.omniauth :bong, Settings.bong.consumer_key, Settings.bong.consumer_secret
   kexue_opts = {}
   if Settings.kexue.enable
     kexue_opts.merge! client_options:

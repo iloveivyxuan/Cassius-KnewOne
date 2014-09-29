@@ -1,0 +1,13 @@
+tr
+  - if auth
+    td
+      i.fa.fa-bong
+      | bong
+    td.text-success 已绑定
+    td= link_to '解绑', authentication_path(auth.id), method: :delete, class: 'btn btn-danger', data: {confirm: '真的要解除绑定么？'}
+  - else
+    td
+      i.fa.fa-bong
+      | bong
+    td.text-danger 未绑定
+    td= link_to '绑定', user_omniauth_authorize_path(:bong), class: 'btn btn-primary'

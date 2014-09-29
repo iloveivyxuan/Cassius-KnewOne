@@ -31,7 +31,7 @@ class SessionsController < Devise::SessionsController
   after_action only: :create do
     if session[:omniauth].present? && !@error
       current_user.auths<< Auth.new(session[:omniauth])
-      current_user.update_from_oauth(session[:omniauth])
+      current_user.update_from_omniauth(session[:omniauth])
 
       session.delete :omniauth
     end

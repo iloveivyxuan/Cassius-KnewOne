@@ -129,6 +129,7 @@ class User
     has_fulfilled_email? && self.encrypted_password.present?
   end
 
+  BONG_CATEGORY_ID = '5414641e31302d466d000000'
   class << self
     def find_by_omniauth(data)
       where('auths.provider' => data[:provider], 'auths.uid' => data[:uid].to_s).first
@@ -141,6 +142,10 @@ class User
         user.set_profiles_by_auth(auth)
 
         user.auths << auth
+
+        if auth.provider == 'bong'
+          user.categories << Category.find(BONG_CATEGORY_ID)
+        end
       end
     end
 
@@ -190,22 +195,14 @@ class User
         set_profiles_by_auth(auth)
         save
 
-        self.remote_avatar_url = auth.avatar_url
-        save rescue Exception
+        if auth.avatar_url.present?
+          self.remote_avatar_url = auth.avatar_url
+          save rescue Exception
+        end
       end
-    end
-  end
 
-  def update_from_oauth(data)
-    if auth = auths.where(provider: data[:provider]).first
-      auth.update(data)
-
-      if self.auto_update_from_oauth?
-        set_profiles_by_auth(auth)
-        save
-
-        self.remote_avatar_url = auth.avatar_url
-        save rescue Exception
+      if auth.provider == 'bong' && !self.category_ids.include?(BONG_CATEGORY_ID)
+        self.categories << Category.find(BONG_CATEGORY_ID)
       end
     end
   end
@@ -213,6 +210,10 @@ class User
   def set_profiles_by_auth(auth)
     if self.name.blank?
       self.name = (auth.name || auth.nickname).try(:gsub, ' ', '-') || 'KnewOne小伙伴'
+
+      if auth.provider == 'bong'
+        self.name = self.name + '@bong'
+      end
     end
 
     if (!persisted? && User.where(name: /^#{Regexp.escape(self.name)}$/i).size > 0) || self.name.blank?

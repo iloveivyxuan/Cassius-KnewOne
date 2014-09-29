@@ -8,7 +8,8 @@
   <div id="oauth">
     <%= link_to_with_icon ' Twitter', 'fa fa-twitter', user_omniauth_authorize_path(:twitter), class: "btn btn-info twitter_sign_in" %>
     <%= link_to_with_icon ' 新浪微博', 'fa fa-weibo', user_omniauth_authorize_path(:weibo), class: "btn btn-danger weibo_sign_in" %>
-    <%= link_to_with_icon ' QQ', 'fa fa-qq', user_omniauth_authorize_path(:qq_connect), class: "btn btn-primary twitter_sign_in" %>
+    <%= link_to_with_icon ' QQ', 'fa fa-qq', user_omniauth_authorize_path(:qq_connect), class: "btn btn-primary qq_sign_in" %>
+    <%#= link_to_with_icon ' bong', 'fa fa-bong', user_omniauth_authorize_path(:bong), class: "btn btn-primary bong_sign_in" %>
   </div>
 
   <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name, redirect_from: params[:redirect_from])) do |f| %>
