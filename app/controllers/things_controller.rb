@@ -111,9 +111,7 @@ class ThingsController < ApplicationController
     mark_read @thing
 
     respond_to do |format|
-      format.html.mobile
-      format.html.tablet { render layout: 'thing' }
-      format.html.desktop { render layout: 'thing' }
+      format.html { render layout: 'thing' }
       format.json
     end
   end
