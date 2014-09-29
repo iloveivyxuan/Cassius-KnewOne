@@ -126,4 +126,7 @@ class HomeController < ApplicationController
 
   def user_agreement
   end
+
+  def bong
+  end
 end
