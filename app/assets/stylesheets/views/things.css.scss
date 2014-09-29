@@ -501,9 +501,9 @@ html.feelings_show {
           a {
             color: $text-color;
             border-bottom-color: $brand-primary;
+            cursor: default;
             &:hover {
               background: none;
-              cursor: default;
             }
             i {
               display: inline;
@@ -2135,6 +2135,15 @@ html.reviews_index {
       float: right;
       width: 20%;
       margin-left: 10%;
+    }
+  }
+}
+
+html.reviews_show,
+html.feelings_show {
+  #thing-top_nav {
+    ul li.active a {
+      cursor: pointer;
     }
   }
 }
