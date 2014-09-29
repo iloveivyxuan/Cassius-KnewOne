@@ -241,16 +241,33 @@ a.btn_block {
   z-index: $zindex_go_top;
   @include opacity(0.5);
 
-  &:hover {
-    color: $text-color;
-    .fa { background: $brand-primary }
-  }
-
   .fa {
     margin: 0;
     padding: .25em .5em;
-    color: #fff;
-    background: $blue-dark;
+  }
+
+  @include MQ(Mneg) {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    .fa {
+      width: 100%;
+      margin-top: 1em;
+      padding-right: 24px;
+      text-align: right;
+    }
+  }
+  @include MQ(M) { right: 24px }
+  @include MQ(Mplus) {
+    bottom: 0;
+    .fa {
+      margin: 0;
+      color: #fff;
+      background: $blue-dark;
+    }
+    &:hover .fa { background: $brand-primary }
   }
 }
 
