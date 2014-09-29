@@ -3,6 +3,7 @@ body {
 }
 @media (min-width: 768px) {
   body {
+    padding-bottom: 50px;
     padding-top: 50px;
   }
 }
