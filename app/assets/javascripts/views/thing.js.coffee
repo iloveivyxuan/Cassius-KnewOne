@@ -55,23 +55,6 @@ window.Making = do (exports = window.Making || {}) ->
               .index() + 1
           )
 
-        $('#toggle_feelings_form').on 'click', (event) ->
-          event.preventDefault()
-          $(@).hide()
-          $('.form_wrapper').show()
-
-        new exports.View.Stream('#feelings')
-        new exports.View.Stream('#reviews')
-        if $html.hasClass('things_show') then exports.InitFeelings()
-        exports.CartItemNew()
-        $('.feeling_form')
-          .on 'click', '[type="submit"]', ->
-            $(@)
-              .parents('.feeling_form')
-              .next('.stream_content')
-              .next('.nomore')
-              .hide()
-
   exports.InitShop = ->
     exports.scrollSpyPopupLogin(window.location.pathname + '/page/2')
     exports.infiniteScroll('.js-infinite', window.location.pathname + window.location.search)
