@@ -1,11 +1,37 @@
 @import '../base';
 
 html.home_bong {
+  body {
+    padding: 0;
+
+    @media (min-width: $screen-sm-min) {
+      padding: {
+        bottom: 50px;
+        top: 50px;
+      }
+    }
+  }
+
+  #header {
+    display: none;
+  }
+
   #wrapper {
     @include wrapper(simple, $max-width: $screen-sm-max);
+    margin-bottom: 0;
   }
 
   .page-header {
+    @include clearfix;
+
+    h1 {
+      float: left;
+    }
+
+    .btn {
+      float: right;
+    }
+
     b {
       display: inline-block;
       font-style: normal;
@@ -15,6 +41,10 @@ html.home_bong {
         border-top: 5px solid $brand-color;
         margin-top: -28px;
         padding-top: 23px;
+      }
+
+      a {
+        color: $text-color;
       }
     }
   }
@@ -32,7 +62,9 @@ html.home_bong {
     }
     
     > li {
-      @include make-sm-column(4);
+      @media (min-width: $screen-sm-min) {
+        @include make-sm-column(4);
+      }
     }
   }
 
@@ -40,6 +72,15 @@ html.home_bong {
 
     > .image {
       @include stretch_img;
+    }
+  }
+
+  .groups {
+    @media (max-width: $screen-sm-max) {
+      margin: {
+        left: 0;
+        right: 0;
+      }
     }
   }
 }

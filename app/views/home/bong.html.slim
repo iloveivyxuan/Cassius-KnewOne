@@ -3,8 +3,10 @@
 
 header.page-header
   h1
-    b bong
+    b
+      a href="http://www.bong.cn" target="_blank" bong
     small 更好的自己
+  = link_to "登录", "http://knewone.com/users/auth/bong", class: "btn btn-primary", target: "_blank"
 
 main
   h2 产品
@@ -26,8 +28,7 @@ main
   h2 小组
   ul.groups
     li
-      .group
-        a.card_compact href="/groups/541821d931302d76760f0000"
-          figure
-            img alt="Better bong" src="http://image.knewone.com/groups/9dfbc3a2c2bfaa298b28b9e2a90f8801.png!small"
-          h5 Better bong
+      a.card_compact href="/groups/541821d931302d76760f0000"
+        figure
+          img alt="Better bong" src="http://image.knewone.com/groups/9dfbc3a2c2bfaa298b28b9e2a90f8801.png!small"
+        h5 Better bong
