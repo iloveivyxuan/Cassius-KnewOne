@@ -50,7 +50,7 @@ class UserMailer < BaseMailer
     @name = name
 
     mail(to: email,
-         subject: '【免费领养 微博专场】专治强迫症的神器，别处买不到',
+         subject: '【免费领养】糖护士手机血糖仪，为重阳贺',
          edm: true)
   end
 
