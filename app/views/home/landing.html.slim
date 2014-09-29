@@ -33,7 +33,7 @@
         | 浏览发现
 
   .explore_body
-    - cache ['landing_categories', Time.now.to_i / 10.seconds] do
+    - cache ['landing_categories', Time.now.to_i / 5.minutes] do
       nav.explore_nav
         ul
           li.active
