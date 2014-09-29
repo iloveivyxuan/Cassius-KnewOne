@@ -489,6 +489,10 @@ html.feelings_show {
         padding-left: 2em;
         padding-right: 2em;
       }
+
+      &.main_user {
+        width: 75%;
+      }
     }
   }
 
@@ -656,6 +660,7 @@ html.feelings_show {
 
   #thing_description {
     padding-top: 2em;
+    margin-bottom: 2em;
     @include MQ(Lplus) {
       margin-bottom: 2.5em;
       padding-top: 2.5em;
@@ -666,7 +671,9 @@ html.feelings_show {
       padding-bottom: 1em;
       > a:first-child {
         position: absolute;
-        left: 2em;
+        left: 1em;
+        @include MQ(Splus) { left: 2em }
+
         width: 50px;
         height: 50px;
         margin-top: -5px;
@@ -704,16 +711,24 @@ html.feelings_show {
         }
       }
       .author_name {
-        padding-left: calc(65px + 2em);
-        padding-right: 2em;
+        padding-left: calc(65px + 1em);
+        padding-right: 1em;
+        @include MQ(Splus) {
+          padding-left: calc(65px + 2em);
+          padding-right: 2em;
+        }
         @include MQ(Lplus) {
           border-left: 3px solid $brand-primary;
         }
       }
       .editor_name {
         margin-left: 2px;
-        padding-left: 2em;
-        padding-right: 2em;
+        padding-left: 1em;
+        padding-right: 1em;
+        @include MQ(Splus) {
+          padding-left: 2em;
+          padding-right: 2em;
+        }
       }
       > .btn--square {
         float: right;
@@ -824,15 +839,22 @@ html.feelings_show {
   /**********************************************.mobile_buy****************************************/
 
   .mobile_buy {
-    margin: 2em 0;
-    @include box-shadow(0 5px 10px rgba(0,0,0,.1));
+    background: #fff;
+  }
+  .mobile_buy--subpage {
+    background: #fff;
+    @include MQ(Mneg) {
+      background: #fff;
+      border-top: 1px dashed $gray-light;
+    }
   }
   .mobile_shop {
-    padding: 2em;
-    background: #fff;
+    padding: 2em 1em;
+    @include MQ(Mplus) { padding: 2.5em 2em }
+
     #mobile_price {
       float: left;
-      width: 35%;
+      width: 40%;
       margin: 0;
       padding: 0;
       font-size: 1.5em;
@@ -841,20 +863,32 @@ html.feelings_show {
       font-weight: bold;
       text-align: center;
     }
+
     .btn-buy-mobile {
-      float: right;
-      display: inline-block;
+      float: left;
       margin: 0;
       padding: 0;
       width: 60%;
       height: 40px;
       line-height: 40px;
-      border: none;
 
       &:only-child {
         width: 100%;
       }
     }
+
+    .btn-buy-mobile--shorten {
+      float: left;
+      width: 28%;
+      height: 40px;
+      margin: 0;
+      margin-left: 2%;
+      padding: 0;
+      font-size: 14px;
+      @include MQ(XS) { font-size: 12px }
+      line-height: 40px;
+    }
+
     .mobile_buy {
       #cart_item_kind_id {
         height: 36px;
@@ -911,6 +945,59 @@ html.feelings_show {
         padding: 0;
         line-height: 36px;
         border: none;
+      }
+    }
+  }
+
+  .mobile_others {
+    margin-bottom: 2em;
+    padding: .8em 2em;
+    @include MQ(XS) { padding: .8em 1em }
+    background: #fafafa;
+    .mobile_related {
+      display: inline-block;
+      width: 40%;
+      margin: 0;
+      padding: 0;
+      a {
+        display: block;
+        line-height: 30px;
+        color: $gray;
+        text-align: center;
+        background: #fafafa;
+        &:hover {
+          color: $text-color;
+        }
+      }
+    }
+    .mobile_tags {
+      float: right;
+      width: 60%;
+      li {
+        float: right;
+        width: auto;
+        @include MQ(Splus) { margin-left: 1em }
+        padding: 0;
+        @include MQ(Mneg) {
+          &:nth-child(n+3) {
+            display: none;
+          }
+        }
+        a {
+          display: block;
+          height: 30px;
+          padding: 0 10px;
+          font-size: 12px;
+          color: $gray;
+          line-height: 30px;
+          text-align: center;
+          @include border-radius(4px);
+          &:hover {
+            color: #fff;
+            background-color: $gray;
+            border: none;
+          }
+        }
       }
     }
   }
@@ -1033,7 +1120,7 @@ html.feelings_show {
     margin-bottom: 2em;
     padding: 3em 0;
     background: #fff;
-    border: 2px solid $gray-lighter;
+    border: none;
     .user_avatar {
       top: 3em;
     }
@@ -1047,16 +1134,37 @@ html.feelings_show {
     }
   }
 
+  #thing--mobile-feeling_form {
+    @include MQ(Mplus) { display: none }
+    padding: 0;
+    padding-top: 2em;
+    padding-bottom: 1em;
+    background: #fff;
+    border: none;
+    .form_avatar {
+      top: 2em;
+    }
+    textarea {
+      background: #fff;
+      border-bottom-style: dashed;
+    }
+  }
+
   /**********************************************#thing-feelings**********************************************/
 
   #thing-feeds {
-    margin-bottom: 2em;
+    display: none;
+    @include MQ(Mplus) {
+      display: block;
+      margin-bottom: 2em;
+    }
     @include MQ(Lplus) { margin-bottom: 0 }
 
     .nothing {
       background: #fff;
     }
   }
+
   #thing-feeds_tab {
     background: #fff;
     ul {
@@ -1084,9 +1192,81 @@ html.feelings_show {
       }
     }
   }
+
+  /**********************************************#thing-feeds--mobile**********************************************/
+
+  #thing-feeds--mobile {
+    margin-bottom: 2em;
+    background: #fff;
+    @include MQ(Mplus) { display: none }
+  }
+
+  #thing-feeds--mobile_tab {
+    ul {
+      > li {
+        a {
+          background: #f7f7f7;
+          border-color: #f7f7f7;
+          border-top: 2px solid #f7f7f7;
+          @include MQ(Mplus) { border-top: none }
+          &:hover {
+            background: $blue-dark;
+            border-color: $blue-dark;
+            i { color: #fff }
+          }
+        }
+        &.active {
+          a {
+            background: #fff;
+            border-color: $brand-primary;
+            @include MQ(Mplus) {
+              border-left: 2px solid $brand-primary;
+            }
+            &:hover {
+              background: #fff;
+              i { color: $text-color }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #tab--mobile-reviews {
+    > a.btn-write-review {
+      width: 90%;
+      margin: 0 auto;
+      margin-top: 2em;
+      margin-left: 5%;
+      margin-right: 5%;
+    }
+  }
+
+  .thing-feeds--mobile_action {
+    border-top: 1px dashed $gray-light;
+    @include box-shadow(0 5px 10px rgba(#000,.1));
+    a {
+      display: block;
+      width: 100%;
+      height: 50px;
+      line-height: 50px;
+      i, span{
+        color: $blue-dark;
+      }
+      &:hover {
+        i, span { color: $brand-primary }
+      }
+    }
+  }
+
   .feelings.list {
     padding-top: 2em;
     background: #fff;
+
+    @include MQ(Mneg) {
+      padding-top: 0;
+    }
+
     > * {
       border: none;
       border-bottom: 1px dashed $gray-lighter;
@@ -1176,7 +1356,9 @@ html.feelings_show {
     }
     .activity_feed {
       position: relative;
+
       padding: 1em 2em;
+      @include MQ(Mplus) { padding: 1em 2em }
       &:first-child { padding-top: 0 }
 
       .user_avatar {
@@ -1189,7 +1371,8 @@ html.feelings_show {
         }
 
         .user_avatar-name {
-          margin-left: 20px;
+          margin-left: 10px;
+          @include MQ(Mplus) { margin-left: 20px; }
 
           color: $gray;
           &:hover { color: $blue-light }
@@ -1207,24 +1390,32 @@ html.feelings_show {
         p {
           float: left;
           margin-left: 5px;
-          width: 75%;
+
+          width: 70%;
+          @include MQ(Mplus) { width: 75% }
+
+          @include MQ(Mneg) { font-size: 13px }
+
           height: 40px;
           overflow: hidden;
           line-height: 40px;
           color: $text-color;
           text-overflow: ellipsis;
           white-space: nowrap;
+
           span,
           a {
             margin: 0 5px;
             &.user_list_name {
               color: $blue-dark;
+              text-overflow: ellipsis;
               &:hover { color: $brand-primary }
             }
             &.fancied { color: $red }
             &.owned { color: $blue-light }
           }
         }
+
         aside {
           position: absolute;
           right: 2em;
@@ -1232,11 +1423,12 @@ html.feelings_show {
           height: 40px;
           line-height: 40px;
         }
+
         .btn-invite-review {
           position: absolute;
           right: 0;
           width: 8%;
-          margin-right: 19%;
+          margin-right: 17%;
           padding: 0;
           line-height: 40px;
           color: $gray;
@@ -1274,6 +1466,10 @@ html.feelings_show {
         display: table;
       }
       &:after { clear:both }
+    }
+
+    &.aside_user {
+      width: 25%;
     }
   }
 
@@ -1331,45 +1527,6 @@ html.feelings_show {
           }
           a {
             margin: 0 .5em;
-          }
-        }
-        .kinds {
-          margin: 1em 0;
-          padding: 1em 2em;
-          background: #f7f7f7;
-          @include border-radius(4px);
-          li {
-            width: 100%;
-            margin-bottom: .5em;
-            color: $text-color;
-            &:before,
-            &:after {
-              content: " ";
-              display: table;
-            }
-            &:after { clear: both }
-            &:last-child { margin-bottom: 0 }
-          }
-          h5 {
-            float: left;
-            margin: 0;
-            padding: 0;
-            font-size: 1em;
-            line-height: 2;
-            font-weight: bold;
-          }
-          .note {
-            float: left;
-            margin-left: .5em;
-            line-height: 2;
-          }
-          .price {
-            float: right;
-            font-size: 1.2em;
-            line-height: 1.5;
-            font-weight: bold;
-            span { margin-right: 10px }
-            em { color: $blue-bright }
           }
         }
       }
@@ -1592,8 +1749,12 @@ html.feelings_show {
   /**********************************************.author_list****************************************/
 
   .author_list {
+    display: none;
+    @include MQ(Lplus) { display: block }
+
     background: #fff;
     margin-bottom: 1.5em;
+
     figure {
       figcaption {
         position: relative;
@@ -1685,13 +1846,17 @@ html.feelings_show {
   /**********************************************.related_things****************************************/
 
   .related_things {
-    margin-bottom: 2em;
     background: #fff;
-    @include box-shadow(0 5px 10px rgba(0,0,0,.1));
-    @include MQ(Lplus) {
-      margin-bottom: 1.5em;
-      box-shadow: none;
+
+    &.related_things--subpage {
+      @include MQ(M) {
+        margin-top: 2.5em;
+      }
     }
+
+    @include MQ(Mplus) { margin-bottom: 2em }
+    @include MQ(Lplus) { margin-bottom: 1.5em }
+
     > h4 {
       margin: 0;
       font-size: 16px;
@@ -1700,6 +1865,7 @@ html.feelings_show {
       text-align: center;
       background: #f7f7f7;
     }
+
     > ul {
       &:before,
       &:after {
@@ -1710,10 +1876,13 @@ html.feelings_show {
       > li {
         float: left;
         width: 33.33333333333%;
-        @include MQ(Lplus) {
-          width: 50%;
-        }
+
         border: none;
+        @include MQ(Lplus) { width: 50% }
+        @include MQ(Lneg) {
+          &:nth-child(n+4) { display: none }
+        }
+
         figure.thing {
           overflow: hidden;
           position: relative;
@@ -1757,16 +1926,16 @@ html.feelings_show {
   /**********************************************.other_lists****************************************/
 
   .other_lists {
+    @include MQ(Mneg) {
+      @include box-shadow(0 2px 10px rgba(0,0,0,.1));
+    }
+
     figure {
       background: #fff;
-      @include box-shadow(0 5px 10px rgba(0,0,0,.1));
-      @include MQ(Mplus) {
-        margin-bottom: 2em;
-      }
-      @include MQ(Lplus) {
-        margin-bottom: 1.5em;
-        box-shadow: none;
-      }
+
+      @include MQ(Mplus) { margin-bottom: 2em }
+      @include MQ(Lplus) { margin-bottom: 1.5em }
+
       &:last-child { margin-bottom: 0 }
       figcaption {
         position: relative;
@@ -1836,16 +2005,24 @@ html.feelings_show {
 
       .thing-list-cover {
         height: 0;
-        padding-bottom: 100%;
 
-        img {
-          display: inline-block;
-          width: 50%;
-
-          &:only-child {
-            width: 100%;
-            height: auto;
+        @include MQ(Mneg) {
+          padding-bottom: percentage(1 / 3);
+          img {
+            display: inline-block;
+            width: 33.333333333%;
+            &:nth-child(4) { display: none }
           }
+        }
+
+        @include MQ(Mplus) {
+          padding-bottom: percentage(1 / 4);
+          img { width: 25%; }
+        }
+
+        @include MQ(Lplus) {
+          padding-bottom: 100%;
+          img { width: 50%; }
         }
       }
     }
@@ -1862,7 +2039,7 @@ html.feelings_show {
         line-height: 50px;
         color: $text-color;
         text-align: center;
-        @include box-shadow(0 0 5px rgba(0,0,0,.1));
+        border-right: 2px solid #fafafa;
         @include transition-property(all);
         @include transition-duration(0.2s);
         @include transition-timing-function(ease);
@@ -1872,8 +2049,8 @@ html.feelings_show {
         }
         &:hover {
           background: #fff;
-          border-bottom: 2px solid $brand-primary;
-          @include box-shadow(0 0 10px rgba(0,0,0,.1));
+          border-right-color: $brand-primary;
+          @include box-shadow(0 0 4px rgba(0,0,0,.1));
         }
       }
     }
@@ -1930,7 +2107,6 @@ html.feelings_show {
                 color: #fff;
                 background: $blue-dark;
               }
-
             }
           }
         }
@@ -1951,7 +2127,10 @@ html.feelings_show {
       background: #f7f7f7;
       .author {
         position: absolute;
-        width: 20%;
+
+        width: 25%;
+        @include MQ(Mplus) { width: 20% }
+
         margin: 0 auto;
         margin-top: -15px;
         padding: 0;
@@ -1962,6 +2141,7 @@ html.feelings_show {
           img {
             width: 60px;
             height: 60px;
+            vertical-align: -2px;
           }
         }
         .author_name {
@@ -1974,23 +2154,32 @@ html.feelings_show {
           &:hover { color: $blue-light }
         }
       }
+
       h3 {
         display: inline-block;
+
         margin: 0;
-        margin-left: 20%;
-        font-size: 20px;
+        margin-left: 25%;
+        font-size: 18px;
+
+        @include MQ(Mplus) {
+          margin-left: 20%;
+          font-size: 20px;
+        }
+
         color: $gray;
         text-align: left;
         font-weight: normal;
       }
-
 
       .review-score {
         min-height: 20px;
 
         .score {
           margin: 0;
-          margin-left: 20%;
+          margin-left: 25%;
+          @include MQ(Mplus) { margin-left: 20% }
+
           > .rate {
             padding: 0;
           }
@@ -1998,11 +2187,15 @@ html.feelings_show {
       }
     }
     .post_content {
-      padding: 3em 2.5em 0;
+      padding: 2em 2.5em 0;
       margin-bottom: 0;
 
+      @include MQ(Mplus) { padding-top: 3em }
+
       > header {
-        margin-bottom: 1.5em;
+        margin-bottom: 2em;
+        @include MQ(Mplus) { margin-bottom: 3em; }
+        padding: 0 2em;
 
         a {
           text-decoration: none;
