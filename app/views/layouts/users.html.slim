@@ -35,7 +35,7 @@
       - if @user.categories.any?
         dd.tag title="标签"
           .data
-            = render @user.categories.limit(4)
+            = render @user.categories
       - managed_groups = @user.managed_groups
       - if managed_groups.present?
         dd.managed_groups title="管理的小组"
