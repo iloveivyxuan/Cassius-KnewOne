@@ -20,7 +20,10 @@
         = options_for_select options.last, (params[:order_by] || options.first.first)
 
   section#things_list.js-infinite
-    = render partial: 'shop_thing', collection: @things, as: :thing
+    - if @things.empty?
+      = render partial: 'shared/nothing'
+    - else
+      = render partial: 'shop_thing', collection: @things, as: :thing
 
 - content_for :script do
   javascript:
