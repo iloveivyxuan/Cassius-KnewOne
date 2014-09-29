@@ -22,6 +22,19 @@ ol {
   margin: 0;
   padding-left: 0;
 }
+.fa {
+  display: inline-block;
+  margin-right: .5rem;
+  vertical-align: middle;
+}
+.fa-bong {
+  background-image: url("/bong/images/bong-icon.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+}
 #wrapper {
   background-color: #fff;
   box-shadow: 0 1px 2px #ccc;
