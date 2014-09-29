@@ -129,7 +129,6 @@ class User
     has_fulfilled_email? && self.encrypted_password.present?
   end
 
-  BONG_CATEGORY_ID = '5414641e31302d466d000000'
   class << self
     def find_by_omniauth(data)
       where('auths.provider' => data[:provider], 'auths.uid' => data[:uid].to_s).first
@@ -144,7 +143,7 @@ class User
         user.auths << auth
 
         if auth.provider == 'bong'
-          user.categories << Category.find(BONG_CATEGORY_ID)
+          user.categories << Category.find_or_create_by(name: '@bong')
         end
       end
     end
@@ -201,8 +200,8 @@ class User
         end
       end
 
-      if auth.provider == 'bong' && !self.category_ids.include?(BONG_CATEGORY_ID)
-        self.categories << Category.find(BONG_CATEGORY_ID)
+      if auth.provider == 'bong'
+        self.categories << Category.find_or_create_by(name: '@bong')
       end
     end
   end
