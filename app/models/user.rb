@@ -141,10 +141,6 @@ class User
         user.set_profiles_by_auth(auth)
 
         user.auths << auth
-
-        if auth.provider == 'bong'
-          user.categories << Category.find_or_create_by(name: '@bong')
-        end
       end
     end
 
@@ -198,10 +194,6 @@ class User
           self.remote_avatar_url = auth.avatar_url
           save rescue Exception
         end
-      end
-
-      if auth.provider == 'bong'
-        self.categories << Category.find_or_create_by(name: '@bong')
       end
     end
   end
