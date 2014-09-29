@@ -1456,7 +1456,12 @@ html.feelings_show {
         > li {
           width: 50%;
           border-right: 1px dashed $gray-lighter;
-          border-bottom: 1px dashed $gray-lighter;
+
+          &:nth-child(1),
+          &:nth-child(2) {
+            border-bottom: 1px dashed $gray-lighter;
+          }
+
           &:nth-child(even) { border-right: none }
           &:hover {
             border-color: transparent;
@@ -1476,6 +1481,8 @@ html.feelings_show {
         width: 100%;
         margin: 0;
         padding: 10px 1em 20px 1em;
+        border-top: 1px dashed #eeeeee;
+
         li {
           float: right;
           width: auto;
