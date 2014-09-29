@@ -410,6 +410,42 @@ html.feelings_show {
       padding: 1em 0;
       text-align: center;
     }
+
+    .kinds {
+      margin: 1em 0;
+      padding: 1em;
+      @include MQ(Mplus) { padding: 1em 2em }
+      background: #f7f7f7;
+      @include border-radius(4px);
+      li {
+        width: 100%;
+        margin-bottom: .5em;
+        color: $text-color;
+        &:before,
+        &:after {
+          content: " ";
+          display: table;
+        }
+        &:after { clear: both }
+        &:last-child { margin-bottom: 0 }
+      }
+      h5 {
+        float: left;
+        margin: 0;
+        padding: 0;
+        font-size: 1em;
+        line-height: 2;
+        font-weight: bold;
+      }
+      .price {
+        float: right;
+        font-size: 1.2em;
+        line-height: 1.5;
+        font-weight: bold;
+        span { margin-right: 10px }
+        em { color: $blue-bright }
+      }
+    }
   }
   .modal-footer {
     margin: 0;
