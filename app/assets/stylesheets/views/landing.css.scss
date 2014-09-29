@@ -521,7 +521,6 @@ html.landing {
         background: #fff;
         height: 580px;
         overflow: hidden;
-        @include border-radius(5px);
         @include box-shadow(rgba(0,0,0,.1) 0 0 5px);
         .product_thumb {
           display: block;
@@ -614,7 +613,6 @@ html.landing {
         &:last-child { margin-bottom: 0 }
         padding: 0;
         background: #fff;
-        @include border-radius(5px);
         @include box-shadow(rgba(0,0,0,.1) 0 0 10px);
         &:last-child { margin-bottom: 0 }
       }
@@ -744,7 +742,6 @@ html.landing {
             margin-right: 15px;
             img {
               height: 70px;
-              @include border-radius(5px);
             }
           }
         }
@@ -757,7 +754,6 @@ html.landing {
       height: 250px;
       background: #fff;
       overflow: hidden;
-      @include border-radius(5px);
       @include box-shadow(rgba(0,0,0,.1) 0 0 5px);
       .product_thumb {
         float: left;
