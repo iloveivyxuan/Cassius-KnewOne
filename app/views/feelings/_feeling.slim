@@ -9,7 +9,6 @@
           = feeling_presenter.author_avatar(:small, class: "img-circle")
           figcaption
             = feeling_presenter.author_name
-            = feeling_presenter.score
 
         figure.feeling_thing
           = link_to feeling.thing do
@@ -17,9 +16,9 @@
           figcaption
             = link_to feeling.thing do
               = feeling.thing.title
-            = feeling_presenter.score
 
         section
+          = feeling_presenter.score
           = feeling_presenter.content
           - if feeling.photos.present?
             ul
