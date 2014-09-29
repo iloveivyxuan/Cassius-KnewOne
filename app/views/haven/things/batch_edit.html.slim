@@ -1,6 +1,7 @@
 hgroup
   h1
     | 批量修改产品
+  p= "当前数量 #{@things.size} / 总数量 #{Thing.all.size}"
 
 - queries = params.except(*request.path_parameters.keys)
 - queries[:filter] ||= []
