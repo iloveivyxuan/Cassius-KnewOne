@@ -283,13 +283,6 @@ html.desktop {
       }
 
       .metas {
-        @media (max-width: $screen-xs-max) {
-          display: table-cell;
-          padding-right: 10px;
-          vertical-align: middle;
-          width: calc(100% - 70px);
-        }
-
         time {
           font-size: 14px;
         }
