@@ -1,7 +1,7 @@
 - cache_unless user_signed_in?, ['things', 'reviews', tp.thing]
   - reviews = tp.reviews(5)
   - if reviews.present?
-    #thing_reviews.clearfix
+    #thing_reviews
       header
         = render 'reviews/link_to_new', klass: 'btn btn--transition btn-new-review btn--blue btn--square'
         h4 用户评测

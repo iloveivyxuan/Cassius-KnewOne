@@ -1,4 +1,4 @@
-.form_wrapper.clearfix id=(id if defined?(id))
+.form_wrapper id=(id if defined?(id))
   - if user_signed_in?
     = render 'shared/user_avatar', user: current_user, options: {class: 'user_avatar user_avatar--vertical'}
 
