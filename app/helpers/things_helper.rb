@@ -3,9 +3,12 @@ module ThingsHelper
     case thing.stage
     when :dsell
       if user_signed_in?
-        link_to_with_icon "购买", "fa fa-shopping-cart", "#",
-        class: "btn btn-success btn-buy-mobile track_event",
-        data: data_with_buy_tracker("dsell", thing.title, {toggle: "modal", target: "#mobile_buy_modal"})
+        (link_to_with_icon "现在购买", "fa fa-shopping-cart", "#",
+         class: "btn btn--blue btn-buy-mobile--shorten track_event",
+         data: data_with_buy_tracker("dsell", thing.title, {toggle: "modal", target: "#mobile_buy_modal"})) +
+        (link_to_with_icon "购买详情", "fa fa-info-circle", "#",
+         class: "btn btn--blue_light btn-buy-mobile--shorten track_event",
+         data: {toggle: "modal", target: "#shopping_modal"})
       else
         link_to_with_icon "请登录后购买", "fa fa-sign-in", "#",
         class: "btn btn-danger btn-buy-mobile track_event",
@@ -13,9 +16,12 @@ module ThingsHelper
       end
     when :pre_order
       if user_signed_in?
-        link_to_with_icon "购买", "fa fa-shopping-cart", "#",
-        class: "btn btn-success btn-buy-mobile track_event",
-        data: data_with_buy_tracker("pre_order", thing.title, {toggle: "modal", target: "#mobile_buy_modal"})
+        (link_to_with_icon "现在购买", "fa fa-shopping-cart", "#",
+         class: "btn btn--blue btn-buy-mobile--shorten track_event",
+         data: data_with_buy_tracker("pre_order", thing.title, {toggle: "modal", target: "#mobile_buy_modal"})) +
+        (link_to_with_icon "购买详情", "fa fa-info-circle", "#",
+         class: "btn btn--blue_light btn-buy-mobile--shorten track_event",
+         data: {toggle: "modal", target: "#mobile_shopping_modal"})
       else
         link_to_with_icon "请登录后购买", "fa fa-sign-in", "#",
         class: "btn btn-danger btn-buy-mobile track_event",
