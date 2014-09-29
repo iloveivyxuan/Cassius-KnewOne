@@ -258,20 +258,19 @@ do (exports = Making) ->
       $('html,body').animate {scrollTop: 0}, 'slow'
 
   exports.ToggleFixedNavbar = ->
-    if Modernizr.mq('(max-width: ' + Making.Breakpoints.screenMDMax + ')') and
-        $('html').hasClass('touch')
-      $element  = $('.navbar-fixed-top')
+    if $('html').hasClass('touch')
+      $element  = $('#header')
       $window   = $(window)
       scrollTop = 0
       top       = 0
 
-      $(':input')
-        .on 'focusin', ->
+      $document
+        .on 'focusin', ':input', ->
           top = $element.css('top')
           $element.css
             'position': 'absolute'
             'top': 0
-        .on 'focusout', ->
+        .on 'focusout', ':input', ->
           $element.css
             'position': 'fixed'
             'top': top
