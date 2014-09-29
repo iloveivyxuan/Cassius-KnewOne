@@ -578,7 +578,7 @@ html.feelings_show {
     .carousel_overview.slideshow {
       position: relative;
       margin: 0;
-      padding-top: 1.5em;
+      padding: 1em 0;
       overflow: hidden;
       @include MQ(Mneg) { display: none }
       .slideshow_body  {
