@@ -76,7 +76,7 @@ gem 'mini_magick'
 gem 'apn_sender', require: ['apn', 'apn/jobs/sidekiq_notification_job']
 
 # API
-gem 'doorkeeper', github: 'doorkeeper-gem/doorkeeper'
+gem 'doorkeeper', '~> 1', github: 'doorkeeper-gem/doorkeeper'
 
 # monitoring
 gem 'newrelic_rpm'

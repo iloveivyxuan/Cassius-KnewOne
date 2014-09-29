@@ -585,7 +585,7 @@ DEPENDENCIES
   database_cleaner
   devise
   dkim
-  doorkeeper!
+  doorkeeper (~> 1)!
   factory_girl_rails
   faker
   font-awesome-rails!
