@@ -32,7 +32,7 @@ class Auth
       'weibo' => '新浪微博',
       'twitter' => 'Twitter',
       'qq_connect' => 'QQ',
-      'bong' => 'Bong'
+      'bong' => 'bong'
   }
 
   def expired?
