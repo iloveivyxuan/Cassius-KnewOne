@@ -4,7 +4,7 @@ module OmniAuth
   module Strategies
     class Bong < OmniAuth::Strategies::OAuth2
       option :client_options, {
-        :site => "http://open-test.bong.cn",
+        :site => "https://open.bong.cn/",
         :authorize_url => "/oauth/authorize",
         :token_url => "/oauth/token"
       }
