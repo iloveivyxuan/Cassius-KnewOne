@@ -4,7 +4,7 @@ module Haven
     before_action :set_special, except: [:index, :create, :new]
 
     def index
-      @specials = Special.all.page params[:page]
+      @specials = Special.all.page(params[:page]).desc(:created_at)
     end
 
     def edit
