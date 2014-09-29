@@ -266,6 +266,14 @@ html.feelings_show {
         left: 2em;
         margin-left: 0;
       }
+
+      .user_avatar-name {
+        @include text-overflow;
+
+        &:hover {
+          color: $blue-light;
+        }
+      }
     }
 
     .feeling_form {
@@ -1141,7 +1149,7 @@ html.feelings_show {
     padding-bottom: 1em;
     background: #fff;
     border: none;
-    .form_avatar {
+    .user_avatar {
       top: 2em;
     }
     textarea {
@@ -1273,6 +1281,7 @@ html.feelings_show {
       &:last-child { border-bottom: none }
     }
     .feed_article--feeling {
+      position: relative;
       min-height: 140px;
 
       .feeling_author {

@@ -1,0 +1,37 @@
+- activities = Activity.visible.by_reference(thing).by_types(:fancy_thing, :own_thing, :add_to_list).limit(20)
+
+#thing-feeds--mobile
+  nav#thing-feeds--mobile_tab
+    ul.nav.nav-pills.nav-justified.nav-layout.nav--thing_tab
+      li.active
+        = link_to '#tab--mobile-feelings', data: {toggle: 'tab'}
+          i.fa.fa-comments
+          span 短评
+      - if thing.reviews_count > 0
+        li
+          = link_to '#tab--mobile-reviews', data: {toggle: 'tab'}
+            i.fa.fa-pencil
+            span 评测
+      - if activities.present?
+        li
+          = link_to '#tab--mobile-activities', data: {toggle: 'tab'}
+            i.fa.fa-group
+            span 动态
+
+  .tab-content
+    #tab--mobile-feelings.tab-pane.active
+      = render 'feelings/form', thing: thing, id: 'thing--mobile-feeling_form'
+      - if thing.feelings_count > 0
+        = render 'feelings', thing: thing
+      - else
+        = render 'shared/nothing'
+    #tab--mobile-reviews.tab-pane
+      - if thing.reviews_count > 0
+        = render 'reviews', thing: thing
+      - else
+        = render 'shared/nothing'
+    #tab--mobile-activities.tab-pane
+      - if activities.present?
+        = render 'activities', thing: thing, activities: activities
+      - else
+        = render 'shared/nothing'

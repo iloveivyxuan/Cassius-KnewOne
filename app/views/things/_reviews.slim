@@ -1,3 +1,4 @@
+- tp ||= present(thing)
 - cache_unless user_signed_in?, ['things', 'reviews', tp.thing]
   - reviews = tp.reviews(5)
   - if reviews.present?
@@ -10,8 +11,14 @@
         = render reviews
 
       - if tp.thing.reviews.count > 5
-        .thing_reviews_action.clearfix
-          ul
-            li= link_to [tp.thing, :reviews], class: 'btn btn--transition btn--square btn--tall btn--blue'
-              i.fa.fa-ellipsis-h
-              span 更多评测
+        - if browser.mobile? || browser.tablet?
+          .thing-feeds--mobile_action
+            a.btn.btn--square href="#"
+              i.fa.fa-refresh
+              span 加载更多评测
+        - else
+          .thing_reviews_action.clearfix
+            ul
+              li= link_to [tp.thing, :reviews], class: 'btn btn--transition btn--square btn--tall btn--blue'
+                i.fa.fa-ellipsis-h
+                span 更多评测
