@@ -103,7 +103,7 @@ header#header role="banner"
                   em= c.name
                 .dropdown-submenu-wrapper
                   ul.dropdown-submenu
-                    = render partial: "shared/header_tag", collection: c.tags.desc(:things_count).gt(things_count: 0).limit(11)
+                    = render partial: "shared/header_tag", collection: c.tags.gt(things_count: 5).desc(:things_count)
                     li
                       = link_to_with_icon "查看全部分类", "fa fa-list", categories_path
   /-- Navbar --/
