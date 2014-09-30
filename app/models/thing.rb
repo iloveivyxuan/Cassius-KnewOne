@@ -10,7 +10,6 @@ class Thing < Post
   field :categories, type: Array, default: []
   before_save :update_price
   before_save :update_amazon_link
-  before_save :update_priority
   after_save :update_categories
 
   has_many :single_feelings, class_name: "Feeling", dependent: :destroy
@@ -371,11 +370,6 @@ class Thing < Post
   def update_counts
     self.feelings_count = feelings.size
     self.reviews_count = reviews.size
-  end
-
-  def update_priority
-    self.priority ||= 0
-    self.priority = 1 if self.priority == 0 && self.tags.size > 0
   end
 
   def update_brand
