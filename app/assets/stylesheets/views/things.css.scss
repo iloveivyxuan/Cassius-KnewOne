@@ -2140,7 +2140,6 @@ html.feelings_show {
       padding: 2em;
 
       .btn--like {
-        height: 40px;
         width: auto;
         margin-left: -2em;
         padding-left: 2em;
@@ -2148,18 +2147,18 @@ html.feelings_show {
 
         @extend .btn--blue;
         @extend .btn--square;
+        @extend .btn--tall;
         color: white;
       }
 
       .share_btn {
         display: inline-block;
         width: 60px;
-        line-height: 40px;
-        text-align: center;
         vertical-align: middle;
 
         @extend .btn--blue_light;
         @extend .btn--square;
+        @extend .btn--tall;
         color: white;
 
         i {
