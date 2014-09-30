@@ -18,6 +18,9 @@
 // $gray:                   lighten(#000, 33.5%) // #555
 // $gray-light:             lighten(#000, 46.7%) // #777
 // $gray-lighter:           lighten(#000, 93.5%) // #eee
+$gray:         lighten(#000, 45%);
+$gray-light:   lighten(#000, 60%);
+
 
 $brand-primary:            $blue;
 // $brand-success:         #5cb85c
@@ -33,6 +36,7 @@ $brand-primary:            $blue;
 $body-bg:               #ebeced;
 //* Global text color on `<body>`.
 // $text-color:            $gray-dark
+$text-color:            #777;
 
 //* Global textual link color.
 $link-color:            #588cc7;
