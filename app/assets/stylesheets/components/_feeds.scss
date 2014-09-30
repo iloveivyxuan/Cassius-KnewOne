@@ -152,15 +152,6 @@ html.desktop {
       }
 
       figcaption {
-
-        @media (max-width: $screen-xs-max) {
-          @include translate3d(0, -50%, 0);
-
-          position: absolute;
-          top: 50%;
-          max-width: 50%;
-        }
-
         @media (min-width: $screen-sm-min) {
           display: block;
           height: 20px;
@@ -173,9 +164,12 @@ html.desktop {
           }
         }
 
-        a {
-          @media (max-width: $screen-sm-max) {
-            margin-top: 2em;
+        @media (max-width: $screen-xs-max) {
+          overflow: hidden;
+          max-height: 100px;
+
+          a {
+            margin-top: 1em;
           }
         }
 
