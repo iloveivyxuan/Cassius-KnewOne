@@ -1,10 +1,10 @@
 - cache_unless user_signed_in?, ['things', 'activities', activities.first]
-  .activities.list= render partial: 'activity', collection: activities
+  .activities.list.stream_content = render partial: 'activity', collection: activities
 
 - if activities.count > 10
   - if browser.mobile? || browser.tablet?
     .thing-feeds--mobile_action
-      a.btn.btn--square href="#"
+      a.btn.btn--square.stream_more href="#"
         i.fa.fa-refresh
         span 加载更多动态
   - else
