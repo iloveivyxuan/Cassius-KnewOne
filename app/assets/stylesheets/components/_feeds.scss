@@ -99,6 +99,10 @@ html.desktop {
           font-size: 16px;
         }
       }
+
+      .score {
+        margin-bottom: 0;
+      }
     }
 
     > figure {
@@ -125,6 +129,7 @@ html.desktop {
       }
 
       a {
+        @include clearfix;
         color: $gray;
         display: block;
       }
@@ -169,10 +174,8 @@ html.desktop {
         }
 
         a {
-          @include text-overflow;
-
           @media (max-width: $screen-sm-max) {
-            line-height: 30px;
+            margin-top: 2em;
           }
         }
 
@@ -194,12 +197,17 @@ html.desktop {
     > section {
       margin-bottom: 15px;
 
-      @media (min-width: $screen-sm-min) {
-        @include clearfix;
+      .score {
+        margin-top: 0;
+        .rate { padding: 0; }
 
-        .score {
+        @media (min-width: $screen-sm-min) {
           display: none;
         }
+      }
+
+      @media (min-width: $screen-sm-min) {
+        @include clearfix;
       }
 
       > p {
