@@ -20,14 +20,14 @@ data: data_with_login_tracker("buy", request.path)
     | 已加入购物车
   .submit
     - if user_signed_in?
-      = button_tag type: "submit", class: "btn btn--buy btn--blue btn--short buy_button track_event", data: data, disabled: true do
+      = button_tag type: "submit", class: "btn btn--buy btn--blue buy_button track_event", data: data, disabled: true do
         i.fa.fa-shopping-cart.fa-lg
         | 加入购物车
     - else
       = link_to_login
 
   .btn-group
-    = button_tag type: 'button', class: "btn btn-service-terms btn--blue_light btn--short dropdown-toggle", data: {toggle: 'dropdown'}
+    = button_tag type: 'button', class: "btn btn-service-terms btn--blue_light dropdown-toggle", data: {toggle: 'dropdown'}
       | 帮助
       span.caret
 
