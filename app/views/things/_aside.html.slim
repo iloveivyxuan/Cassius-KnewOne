@@ -12,6 +12,8 @@
   - if show_action
     = render 'things/actions', tp: tp
 
-= render 'things/author_list', thing: tp.thing
+- unless browser.mobile?
+  = render 'things/author_list', thing: tp.thing
+
 = render 'things/related_things', tp: tp
 = render 'things/other_lists', thing: tp.thing
