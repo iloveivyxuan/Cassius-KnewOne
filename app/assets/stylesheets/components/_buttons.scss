@@ -11,6 +11,10 @@
   &:hover {
     color: $btn-primary-color;
   }
+
+  .fa-lg {
+    vertical-align: middle;
+  }
 }
 
 .btn--share {
