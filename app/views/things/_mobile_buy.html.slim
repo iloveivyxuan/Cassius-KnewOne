@@ -5,4 +5,18 @@
         #mobile_price.mobile_price= tp.price
       = render_mobile_buy(tp.thing)
 
-  = render 'mobile_buy_modals', tp: tp
+    .mobile_others.clearfix
+      .mobile_related.clearfix
+        - if tp.thing.official_site.present?
+          = tp.official_site
+
+      - if tp.tags.present?
+        ul.mobile_tags
+          = render partial: 'things/tag', collection: tp.tags
+
+  = tp.render_shopping_desc_modal
+  = render 'things/mobile_buy_modals', tp: tp
+
+- content_for :script
+  javascript:
+      Making.CartItemNew()

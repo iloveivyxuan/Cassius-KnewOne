@@ -8,10 +8,11 @@
 
   - if browser.mobile? || browser.tablet?
     = render "mobile_buy", tp: tp
-
-  = render 'reviews', tp: tp
-  = render 'feelings/form', thing: tp.thing, id: 'thing_feeling_form'
-  = render 'feeds', thing: tp.thing
+    = render 'mobile_feeds', thing: tp.thing
+  - else
+    #thing_reviews = render 'reviews', tp: tp
+    = render 'feelings/form', thing: tp.thing, id: 'thing_feeling_form'
+    = render 'feeds', thing: tp.thing
 
 - content_for :script do
   javascript:

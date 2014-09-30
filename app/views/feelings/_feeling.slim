@@ -9,7 +9,6 @@
           = feeling_presenter.author_avatar(:small, class: "img-circle")
           figcaption
             = feeling_presenter.author_name
-            = feeling_presenter.score
 
         figure.feeling_thing
           = link_to feeling.thing do
@@ -17,9 +16,9 @@
           figcaption
             = link_to feeling.thing do
               = feeling.thing.title
-            = feeling_presenter.score
 
         section
+          = feeling_presenter.score
           = feeling_presenter.content
           - if feeling.photos.present?
             ul
@@ -42,7 +41,7 @@
                   i.fa.fa-comments-o
                   span.comments_count = feeling.comments.count > 0 ? feeling.comments.count : ''
               li
-                = feeling_presenter.link_to_share
+                = feeling_presenter.link_to_share('', '')
               - if can? :destroy, feeling
                 li.destroy
                   = link_to_with_icon "", "fa fa-trash-o", [feeling.thing, feeling],

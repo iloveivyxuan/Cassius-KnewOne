@@ -1,15 +1,24 @@
+- tp ||= present(thing)
 - cache_unless user_signed_in?, ['things', 'reviews', tp.thing]
   - reviews = tp.reviews(5)
   - if reviews.present?
-    #thing_reviews.clearfix
+    - if browser.mobile? || browser.tablet?
+      = render 'reviews/link_to_new', klass: 'btn btn--transition btn-write-review btn--blue btn--tail'
+    - else
       header
-        = render 'reviews/link_to_new', klass: 'btn btn--transition btn-new-review btn--blue btn--square'
+        = render 'reviews/link_to_new', klass: 'btn btn--transition btn-write-review btn--blue btn--square'
         h4 用户评测
 
-      .reviews.list
-        = render reviews
+    .reviews.list.stream_content data-url=thing_reviews_path(tp.thing)
+      = render reviews
 
-      - if tp.thing.reviews.count > 5
+    - if tp.thing.reviews.count > 5
+      - if browser.mobile? || browser.tablet?
+        .thing-feeds--mobile_action
+          a.btn.btn--square.stream_more href="#"
+            i.fa.fa-refresh
+            span 加载更多评测
+      - else
         .thing_reviews_action.clearfix
           ul
             li= link_to [tp.thing, :reviews], class: 'btn btn--transition btn--square btn--tall btn--blue'

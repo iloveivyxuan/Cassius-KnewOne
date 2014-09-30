@@ -1,4 +1,4 @@
-.form_wrapper.clearfix id=(id if defined?(id))
+.form_wrapper id=(id if defined?(id))
   - if user_signed_in?
     = render 'shared/user_avatar', user: current_user, options: {class: 'user_avatar user_avatar--vertical'}
 
@@ -16,14 +16,14 @@
           span.counter 140
           - data = { category: "feeling", action: "feeling_submit", label: "feeling+feeling_submit+#{request.path}" }
           - data.merge!({"loading-text" => "提交中...", "toggle" => "tooltip", "placement" => "bottom"})
-          = button_tag type: "submit", class: "btn btn--transition btn--blue_light btn--short track_event",
+          = button_tag type: "submit", class: "btn btn--transition btn--blue_light track_event",
             title: "按 Command + Enter 或 Control + Enter 键发布回复", "data" => data do
             i.fa.fa-comments-o
             | 发布
 
     - if user_signed_in?
       = simple_form_for Photo.new, html: {class: "uploader"} do |f|
-        span.btn.btn--transition.uploader_button.btn--blue.btn--short
+        span.btn.btn--transition.uploader_button.btn--blue
           i.fa.fa-cloud-upload
           | 上传图片
           = f.file_field :image, multiple: true, name: "photo[image]", label: "上传图片"

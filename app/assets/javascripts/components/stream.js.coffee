@@ -7,15 +7,14 @@ do (exports = Making) ->
       @$content  = $('.stream_content', @$el)
       @$btn_load = $('.stream_more', @$el)
       @$hint     = @$btn_load.find('.fa')
-      @page      = 0
+      @page      = 1
+      @per       = @$content.children().length || 1
       @status    = ''
 
       _.bindAll(this, 'render', 'load', 'success', 'fail')
 
       @$el
         .on 'click', '.stream_more', @load
-
-      @load()
 
     render: ->
 
@@ -32,7 +31,9 @@ do (exports = Making) ->
         when 'fail'
           @$btn_load.text('出错了，请稍候再试。')
 
-    load: ->
+    load: (event) ->
+      event.preventDefault()
+
       @$hint.addClass('fa-spin')
 
       $
@@ -40,7 +41,7 @@ do (exports = Making) ->
           url: @$content.data('url')
           data:
             page: @page + 1
-            per: 3
+            per: @per
           dataType: 'html'
           contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
         .done @success

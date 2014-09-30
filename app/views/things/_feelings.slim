@@ -1,12 +1,19 @@
 - cache_unless user_signed_in?, ['things', 'feelings', thing]
-  .feelings.list = render thing.feelings.desc(:lovers_count, :created_at).limit(10)
+  .feelings.list.stream_content data-url=thing_feelings_path(thing)
+    = render thing.feelings.desc(:lovers_count, :created_at).limit(10)
 
-.clearfix.thing_feelings_action
-  - if thing.feelings.count > 10
-    - if user_signed_in?
-      = link_to_with_icon "更多短评", 'fa fa-ellipsis-h', [thing, :feelings],
-      class: "btn btn--transition btn--square btn--tall btn--blue pull-right"
-    - else
-      = link_to_with_icon "更多短评", 'fa fa-ellipsis-h', "#",
-      class: "btn btn--transition btn--square btn--tall btn--blue pull-right track_event",
-      data: data_with_login_tracker("feeling", thing.title)
+- if thing.feelings.count > 10
+  - if browser.mobile? || browser.tablet?
+    .thing-feeds--mobile_action
+      a.btn.btn--square.stream_more href="#"
+        i.fa.fa-refresh
+        span 加载更多短评
+  - else
+    .clearfix.thing_feelings_action
+      - if user_signed_in?
+        = link_to_with_icon "更多短评", 'fa fa-ellipsis-h', [thing, :feelings],
+        class: "btn btn--transition btn--square btn--tall btn--blue pull-right"
+      - else
+        = link_to_with_icon "更多短评", 'fa fa-ellipsis-h', "#",
+        class: "btn btn--transition btn--square btn--tall btn--blue pull-right track_event",
+        data: data_with_login_tracker("feeling", thing.title)
