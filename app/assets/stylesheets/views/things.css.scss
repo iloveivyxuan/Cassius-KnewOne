@@ -2154,10 +2154,16 @@ html.feelings_show {
         padding-left: 2em;
         padding-right: 1em;
 
-        @extend .btn--blue;
+        @extend .btn--blue_light;
         @extend .btn--square;
         @extend .btn--tall;
-        color: white;
+
+        &.done {
+          background-color: $navbar-search-bg;
+          &:hover {
+            background-color: $gray-light;
+          }
+        }
       }
 
       .share_btn {
@@ -2165,10 +2171,9 @@ html.feelings_show {
         width: 60px;
         vertical-align: middle;
 
-        @extend .btn--blue_light;
+        @extend .btn--orange;
         @extend .btn--square;
         @extend .btn--tall;
-        color: white;
 
         i {
           margin: 0;
