@@ -128,5 +128,8 @@ class HomeController < ApplicationController
   end
 
   def bong
+    if params[:from] == 'bong_app' && !user_signed_in?
+      redirect_to user_omniauth_authorize_path(:bong, state: bong_path)
+    end
   end
 end
