@@ -1,5 +1,6 @@
 - cache_unless user_signed_in?, ['things', 'activities', activities.first]
-  .activities.list.stream_content = render partial: 'activity', collection: activities
+  .activities.list.stream_content data-url=activities_thing_path(thing)
+    = render partial: 'activity', collection: activities
 
 - if activities.count > 10
   - if browser.mobile? || browser.tablet?

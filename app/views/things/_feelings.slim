@@ -1,5 +1,6 @@
 - cache_unless user_signed_in?, ['things', 'feelings', thing]
-  .feelings.list.stream_content = render thing.feelings.desc(:lovers_count, :created_at).limit(10)
+  .feelings.list.stream_content data-url=thing_feelings_path(thing)
+    = render thing.feelings.desc(:lovers_count, :created_at).limit(10)
 
 - if thing.feelings.count > 10
   - if browser.mobile? || browser.tablet?
