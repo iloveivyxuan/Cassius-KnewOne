@@ -792,7 +792,7 @@ html.feelings_show {
         color: $text-color;
         text-align: center;
         background-color: #fff;
-        border-top: 1px dashed $gray;
+        border-top: 1px dashed $gray-light;
         @include box-shadow(0 10px 15px rgba(0,0,0,.1));
         @include transition-property(all);
         @include transition-duration(0.2s);
