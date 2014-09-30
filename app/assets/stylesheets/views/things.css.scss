@@ -76,6 +76,18 @@ html.feelings_show {
     background-color: $blue-light;
     &:hover { background-color: $blue-bright }
   }
+  .btn--login {
+    background-color: lighten($blue-dark, 10%);
+    &:hover { background-color: lighten($blue-dark, 5%) }
+  }
+  .btn--online_shopping {
+    background-color: $orange;
+    &:hover { background-color: darken($orange, 5%) }
+  }
+  .btn--kick {
+    background-color: lighten($red, 10%);
+    &:hover { background-color: darken($red, 5%) }
+  }
   .btn--orange {
     background-color: $blue-dark;
     &:hover { background-color: $orange }

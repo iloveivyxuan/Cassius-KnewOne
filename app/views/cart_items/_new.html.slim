@@ -1,5 +1,5 @@
 - link_to_login = link_to_with_icon "请登录后购买", "fa fa-sign-in", "#",
-class: "btn btn-info buy_button cart_login track_event",
+class: "btn btn--login buy_button cart_login track_event",
 data: data_with_login_tracker("buy", request.path)
 
 - data = { category: "buy", action: "buy_#{@thing.stage}", label: "buy+buy_#{@thing.stage}+#{request.path}" }
