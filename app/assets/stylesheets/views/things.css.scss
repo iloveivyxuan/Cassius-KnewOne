@@ -1220,6 +1220,11 @@ html.feelings_show {
           margin-top: 10px;
           padding: 0;
           border: none;
+
+          @include MQ(Sneg) {
+            margin-right: -40px;
+          }
+
           .form-control {
             display: block;
             width: 100%;
