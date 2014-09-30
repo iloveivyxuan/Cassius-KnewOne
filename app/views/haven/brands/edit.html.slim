@@ -6,7 +6,7 @@ header.page-header
     = @brand.name
 
 section
-  = form_for @brand, url: haven_brand_path(@brand) do |f|
+  = form_for @brand, url: haven_brand_path(@brand.id) do |f|
     - if @brand.logo
       = image_tag @brand.logo.url
     = f.file_field :logo
