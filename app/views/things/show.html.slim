@@ -10,7 +10,7 @@
     = render "mobile_buy", tp: tp
     = render 'mobile_feeds', thing: tp.thing
   - else
-    = render 'reviews', tp: tp
+    #thing_reviews = render 'reviews', tp: tp
     = render 'feelings/form', thing: tp.thing, id: 'thing_feeling_form'
     = render 'feeds', thing: tp.thing
 
