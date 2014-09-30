@@ -11,6 +11,7 @@ class ThingList
 
   field :name, type: String
   field :description, type: String
+  field :size, type: Integer, default: 0
 
   validates :name, presence: true, uniqueness: { scope: :author }
 

@@ -4,7 +4,7 @@ class ThingListItem
   include AutoCleanup
 
   belongs_to :thing
-  embedded_in :thing_list
+  embedded_in :thing_list, counter_cache: :size
 
   field :description, type: String
   field :order, type: Float, default: 0
