@@ -43,8 +43,11 @@ video {
 a {
   word-wrap: break-word;
 
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
   &:focus {outline: none;}
-  &:hover {text-decoration: none;}
 }
 
 i {
