@@ -471,7 +471,7 @@ html.touch {
       color: #fff;
       font-weight: normal;
       left: 28px;
-      margin-top: -12px;
+      margin-top: -15px;
       padding: 1px 6px;
       position: absolute;
       top: 50%;
@@ -479,7 +479,7 @@ html.touch {
 
       @media (min-width: $grid-float-breakpoint) {
         font-size: 14px;
-        left: 18px;
+        left: 25px;
       }
     }
   }
