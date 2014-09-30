@@ -100,7 +100,10 @@
       display: table-cell;
       width: 1%;
       float: none;
-      > a { margin-bottom: 0; }
+      > a {
+        margin-bottom: 0;
+        i { margin: 0; }
+      }
     }
   }
 
