@@ -1,0 +1,123 @@
+%new_button_base {
+  padding: 0 20px;
+  color: $btn-primary-color;
+  text-align: center;
+  border: none;
+
+  &:hover {
+    color: $btn-primary-color;
+  }
+}
+
+.btn--share {
+  @extend %new_button_base;
+  i { margin: 0 }
+}
+.btn--transition {
+  overflow: hidden;
+  min-width: 80px;
+  @include transition-property(all);
+  @include transition-duration(0.2s);
+  @include transition-timing-function(ease);
+  i {
+    display: none;
+    width: 100%;
+    color: #fff;
+  }
+  span {
+    display: block;
+    width: 100%;
+    color: #fff;
+    opacity: 1;
+  }
+  &:hover {
+    i { display: block }
+    span { opacity: 0 }
+  }
+}
+.btn--square {
+  @include border-radius(0);
+}
+.btn--tall {
+  height: 40px;
+  line-height: 40px;
+  i, span { line-height: 40px }
+}
+.btn--short {
+  height: 35px;
+  line-height: 35px;
+  i, span { line-height: 35px }
+}
+.btn--blue {
+  @extend %new_button_base;
+  background-color: rgba($blue-dark,.9);
+  &:hover { background-color: $blue-dark }
+}
+.btn--blue_light {
+  @extend %new_button_base;
+  background-color: $blue-light;
+  &:hover { background-color: $blue-bright }
+}
+.btn--login {
+  @extend %new_button_base;
+  background-color: lighten($blue-dark, 10%);
+  &:hover { background-color: lighten($blue-dark, 5%) }
+}
+.btn--online_shopping {
+  @extend %new_button_base;
+  background-color: $orange;
+  &:hover { background-color: darken($orange, 5%) }
+}
+.btn--kick {
+  @extend %new_button_base;
+  background-color: lighten($red, 10%);
+  &:hover { background-color: darken($red, 5%) }
+}
+.btn--orange {
+  @extend %new_button_base;
+  background-color: $blue-dark;
+  &:hover { background-color: $orange }
+}
+.btn--cancel {
+  @extend %new_button_base;
+  background-color: $gray-light;
+  &:hover { background-color: $gray }
+}
+.btn--delete {
+  @extend %new_button_base;
+  background-color: $gray-light;
+  &:hover { background-color: $red }
+}
+.btn--like {
+  margin: 0;
+  padding: 5px;
+  color: $gray;
+  background: none;
+  @include border-radius(4px);
+  i {
+    margin: 0;
+    &:before {
+      content:"\f087";
+      -webkit-font-smoothing: auto;
+    }
+  }
+  span {
+    margin-left: 5px;
+    font-size: 12px;
+    line-height: 1;
+  }
+  &:hover {
+    color: $blue-bright;
+    background: none;
+    i { &:before {  content:"\f164" } }
+  }
+  &.done {
+    color: $brand-primary;
+    background: none;
+    i { &:before {  content:"\f164" } }
+    &:hover {
+      color: $gray-light;
+      i { &:before {  content:"\f087" } }
+    }
+  }
+}
