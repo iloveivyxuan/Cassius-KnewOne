@@ -1094,7 +1094,6 @@ html.feelings_show {
   #thing-feeds--mobile {
     margin-bottom: 2em;
     background: #fff;
-    @include MQ(Mplus) { display: none }
   }
 
   #thing-feeds--mobile_tab {
