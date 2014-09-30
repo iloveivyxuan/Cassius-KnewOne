@@ -41,6 +41,17 @@ module OmniAuth
         @uid ||= access_token['uid']
         @raw_info ||= access_token.get("/1/userInfo/#{@uid}").parsed['value'] || {}
       end
+
+      def authorize_params
+        super.tap do |params|
+          if request.params['state']
+            params[:state] = request.params['state']
+
+            # to support omniauth-oauth2's auto csrf protection
+            session['omniauth.state'] = params[:state]
+          end
+        end
+      end
     end
   end
 end
