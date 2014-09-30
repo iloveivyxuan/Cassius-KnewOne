@@ -7,7 +7,7 @@ header.page-header
       a href="http://www.bong.cn" target="_blank" bong
     small 更好的自己
   - if !user_signed_in?
-    = link_to '用bong登录', user_omniauth_authorize_path(:bong, state: request.path), class: 'btn btn-primary'
+    = link_to '用 bong 登录', user_omniauth_authorize_path(:bong, state: request.path), class: 'btn btn-primary'
 
 main
   h2 小组
