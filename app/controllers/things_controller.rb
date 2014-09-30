@@ -191,7 +191,13 @@ class ThingsController < ApplicationController
     @activities = @activities.page(params[:page]).per(params[:per] || 24)
 
     respond_to do |format|
-      format.html { render layout: 'thing' }
+      format.html do
+        if request.xhr?
+          render partial: 'activity', collection: @activities
+        else
+          render layout: 'thing'
+        end
+      end
     end
   end
 
