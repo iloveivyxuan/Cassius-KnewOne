@@ -46,7 +46,6 @@ class UserMailer < BaseMailer
 
   def adopt(email, name)
     attachments.inline['adoption.jpg'] = File.read(Rails.root.join('app/assets/images/mails/adoption.jpg'))
-    attachments.inline['ko_wechat_qr.png'] = File.read(Rails.root.join('app/assets/images/mails/ko_wechat_qr.png'))
     @name = name
 
     mail(to: email,
