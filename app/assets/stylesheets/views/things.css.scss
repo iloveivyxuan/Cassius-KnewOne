@@ -400,16 +400,18 @@ html.feelings_show {
     @include MQ(XLplus) { padding: 1.5em 2em 2em 2em }
     h1, h2 { margin: 0 }
     h1 {
+      line-height: 1;
       a {
         font-family: "lato-bold", sans-serif;
         font-size: 21px;
-        line-height: 1.5;
+        line-height: 1;
         color: $text-color;
         @include MQ(XLplus) { font-size: 25px; }
         &:hover { color: $blue-dark }
       }
     }
     h2 {
+      margin-top: 1em;
       font-size: 14px;
       line-height: 2;
       color: $gray;
