@@ -162,6 +162,14 @@ module Haven
       end
     end
 
+    def confirm_email
+      user = User.find params[:id]
+      unless user.confirmed?
+        user.confirm!
+      end
+      redirect_to :back
+    end
+
     def batch_query
     end
 

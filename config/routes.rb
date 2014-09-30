@@ -307,6 +307,7 @@ Making::Application.routes.draw do
       collection do
         get 'batch_query'
         post 'batch_show'
+        post 'confirm_email'
       end
     end
 

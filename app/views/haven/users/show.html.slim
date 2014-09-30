@@ -28,3 +28,8 @@ table.table.table-striped
         td = a.id
         td = a.thing.title
         td = a.status
+
+h2
+  | 用户收不到邮件怎么办？
+= button_to "祖传小按钮专治邮件收不到", confirm_email_haven_users_path(id: @user.id),
+  class: "btn btn-primary", disabled: @user.confirmed?
