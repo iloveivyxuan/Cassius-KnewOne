@@ -2398,6 +2398,10 @@ html.reviews_index {
 
 html.reviews_show,
 html.feelings_show {
+  .mobile_others {
+    display: none;
+  }
+
   #thing-top_nav {
     ul li.active a {
       cursor: pointer;

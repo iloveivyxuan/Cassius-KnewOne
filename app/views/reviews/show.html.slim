@@ -1,6 +1,9 @@
 - provide :nav, :reviews
 - page_title "#{@review.title} - #{@thing.title}"
 
+- if browser.mobile? || browser.tablet?
+  = render "things/mobile_buy", tp: present(@thing)
+
 - present @review do |rp|
   section.things_subpage
     article.article.single_review id="review_#{@review.id}"
