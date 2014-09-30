@@ -1135,6 +1135,10 @@ html.feelings_show {
       margin-top: 2em;
       margin-left: 5%;
       margin-right: 5%;
+
+      span:before {
+        content: '我要';
+      }
     }
   }
 
