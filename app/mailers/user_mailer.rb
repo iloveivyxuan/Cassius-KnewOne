@@ -53,6 +53,13 @@ class UserMailer < BaseMailer
          edm: true)
   end
 
+  def announcement(email, name)
+    @name = name
+
+    mail(to: email,
+         subject: 'KnewOne商店国庆放假安排')
+  end
+
   def private_message(dialog)
     @dialog = dialog
     @receiver = dialog.user

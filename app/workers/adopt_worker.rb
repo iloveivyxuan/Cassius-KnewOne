@@ -1,4 +1,4 @@
-class EmailWorker
+class AdoptWorker
   include Sidekiq::Worker
   sidekiq_options :queue => :edm, :backtrace => true, :retry => false
 
