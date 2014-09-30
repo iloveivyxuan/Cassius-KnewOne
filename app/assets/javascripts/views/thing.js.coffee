@@ -55,6 +55,10 @@ window.Making = do (exports = window.Making || {}) ->
               .index() + 1
           )
 
+        new exports.View.Stream('#tab--mobile-feelings')
+        new exports.View.Stream('#tab--mobile-reviews')
+        new exports.View.Stream('#tab--mobile-activities')
+
   exports.InitShop = ->
     exports.scrollSpyPopupLogin(window.location.pathname + '/page/2')
     exports.infiniteScroll('.js-infinite', window.location.pathname + window.location.search)
