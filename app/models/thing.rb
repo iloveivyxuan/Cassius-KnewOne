@@ -139,7 +139,9 @@ class Thing < Post
 
   def brand_text=(text)
     if /[a-zA-Z0-9]/ =~ text
-      self.brand = Brand.find_or_create_by(en_name: text)
+      brand = Brand.where(en_name: /^#{text}$/i).first
+      brand ||= Brand.create(en_name: text)
+      self.brand = brand
     else
       self.brand = Brand.find_or_create_by(zh_name: text)
     end
