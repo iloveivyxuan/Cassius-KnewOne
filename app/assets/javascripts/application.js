@@ -24,7 +24,6 @@
 //= require minsert/minsert
 //= require bootstrap-wysiwyg
 //= require bootstrap-select
-//= require bootstrap-touch-carousel
 //= require bootstrap-modal-popover
 //= require typeahead.bundle
 //= require jquery.caret
