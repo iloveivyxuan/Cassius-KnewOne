@@ -85,6 +85,7 @@ class Thing < Post
   scope :self_run, -> { send :in, stage: [:dsell, :pre_order] }
   scope :price_between, ->(from, to) { where :price.gt => from, :price.lt => to }
   scope :linked, -> { where :links.ne => nil }
+  scope :approved, -> { gt(priority: 0) }
 
   STAGES.each do |k, v|
     scope k, -> { where(stage: k) }
