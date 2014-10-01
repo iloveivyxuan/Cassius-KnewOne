@@ -687,7 +687,7 @@ html.landing {
             font-size: 0.95em;
             text-overflow: ellipsis;
             white-space: nowrap;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
           }
         }
         h5 {
@@ -870,7 +870,7 @@ html.landing {
                   font-size: 0.95em;
                   text-overflow: ellipsis;
                   white-space: nowrap;
-                  letter-spacing: 2px;
+                  letter-spacing: 1px;
                   max-width: 20em;
                   &:hover {
                     color: $link-hover-color;
