@@ -28,7 +28,7 @@ ul.nav.nav-pills
 - haven_queries.each do |query, tag_text|
   = form_tag batch_edit_haven_things_path, method: :get do
     - queries.each do |k, _|
-      = hidden_field_tag k, params[k] if params[k]
+      = hidden_field_tag "#{k}[]", params[k] if params[k]
     = text_field_tag(query, params[query])
     = submit_tag "查询#{tag_text}"
 
