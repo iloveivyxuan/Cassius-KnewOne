@@ -63,9 +63,6 @@ class Thing < Post
 
   has_and_belongs_to_many :fancy_groups, class_name: "Group", inverse_of: :fancies
 
-  has_many :feelings, dependent: :destroy
-  field :feelings_count, type: Integer, default: 0
-
   has_and_belongs_to_many :owners, class_name: "User", inverse_of: :owns
 
   has_many :stories, dependent: :destroy
@@ -311,6 +308,10 @@ class Thing < Post
     end
   end
 
+  def has_feelings?
+    feelings.empty?
+  end
+
   def fanciers_count
     if links.blank?
       fanciers.count
@@ -333,6 +334,10 @@ class Thing < Post
     else
       Review.in(thing_id: links)
     end
+  end
+
+  def has_reviews?
+    reviews.empty?
   end
 
   # get all linked things of a specific thing.
