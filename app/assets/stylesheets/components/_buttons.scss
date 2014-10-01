@@ -109,6 +109,14 @@
     font-size: 12px;
     line-height: 1;
   }
+
+  &:active,
+  &:focus,
+  &:active:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
   &:hover {
     color: $blue-bright;
     background: none;
