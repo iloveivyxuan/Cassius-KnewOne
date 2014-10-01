@@ -18,6 +18,12 @@
                      "lato-regular.svg", svg),
                    "lato-regular.eot");
 
+@include font-face("lato-thin", font-files(
+                     "lato-thin.woff", woff,
+                     "lato-thin.ttf", truetype,
+                     "lato-thin.svg", svg),
+                   "lato-thin.eot");
+
 @include font-face("lato-bold", font-files(
                      "lato-bold.woff", woff,
                      "lato-bold.ttf", truetype,
