@@ -309,7 +309,7 @@ class Thing < Post
   end
 
   def has_feelings?
-    feelings.empty?
+    feelings_count > 0
   end
 
   def fanciers_count
@@ -337,7 +337,7 @@ class Thing < Post
   end
 
   def has_reviews?
-    reviews.empty?
+    reviews_count > 0
   end
 
   # get all linked things of a specific thing.
