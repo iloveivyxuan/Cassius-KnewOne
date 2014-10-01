@@ -119,7 +119,7 @@
     background: none;
     i { &:before {  content:"\f164" } }
     &:hover {
-      color: $gray-light;
+      color: $blue-light;
       i { &:before {  content:"\f087" } }
     }
   }
