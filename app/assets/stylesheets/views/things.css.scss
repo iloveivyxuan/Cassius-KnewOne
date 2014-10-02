@@ -1202,6 +1202,13 @@ html.feelings_show {
           top: 130%;
           max-width: 100%;
           text-align: center;
+          line-height: 1.25;
+
+          @include MQ(Sneg) {
+            max-height: 60px;
+            overflow: hidden;
+          }
+
           @include MQ(Mplus) {
             margin-top: 10px;
           }
