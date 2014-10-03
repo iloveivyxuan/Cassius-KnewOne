@@ -50,8 +50,8 @@ class HomeController < ApplicationController
 
   def hits
     @batch = 5
-    @things = Thing.includes(:fanciers, :owners, :single_reviews, :author).hot.page(params[:page]).per(6*@batch)
-    @reviews = Review.includes(:thing, :author, :comments).hot.page(params[:page]).per(@batch)
+    @things = Thing.hot.approved.page(params[:page]).per(6*@batch)
+    @reviews = Review.hot.page(params[:page]).per(@batch)
 
     if request.xhr?
       render 'hits_xhr', layout: false
