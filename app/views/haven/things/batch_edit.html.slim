@@ -50,7 +50,11 @@ ul.nav.nav-pills
             = text_field_tag 'things[][subtitle]', t.subtitle, style: 'width: 100%'
             br
             | 价格单位
-            = select_tag 'things[][price_unit]', options_for_select(["¥", "$", "€", "£", "JPY¥", "₩", "NT$"], t.price_unit)
+            .btn-group data-toggle="buttons"
+              - ["¥", "$", "€", "£", "JPY¥", "₩", "NT$"].each do |u|
+                label class=(t.price_unit == u ? "btn btn-primary active" : "btn btn-primary")
+                  input checked=(t.price_unit == u) name='things[][price_unit]' type="radio" value=u
+                    | #{u}
             br
             | 价格
             = text_field_tag 'things[][price]', t.price, style: 'width: 100%'
@@ -59,7 +63,11 @@ ul.nav.nav-pills
             = text_field_tag 'things[][priority]', t.priority, style: 'width: 100%'
           td
             | 阶段
-            = select_tag 'things[][stage]', options_for_select(Thing::STAGES.invert, t.stage), style: 'width: 100%'
+            .btn-group data-toggle="buttons"
+              - Thing::STAGES.invert.each do |k, v|
+                label class=(t.stage == v ? "btn btn-primary active" : "btn btn-primary")
+                  input checked=(t.stage == v) name='things[][stage]' type="radio" value=v
+                    | #{k}
             | 购买链接
             = text_field_tag 'things[][shop]', t.shop, style: 'width: 100%'
             | 分享文案
@@ -88,7 +96,7 @@ ul.nav.nav-pills
       $(".batch_edit")
         .on("ajax:success", function(e, data, status, xhr) {
           if (data == "true") {
-            var button = this.getElementsByClassName("btn-primary")[0];
+            var button = this.getElementsByClassName("pull-right")[0];
             button.disabled = true;
             button.value = "修改成功";
           }
