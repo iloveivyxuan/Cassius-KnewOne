@@ -96,14 +96,14 @@ header#header role="banner"
           = link_to_with_icon "分类", "fa fa-tags", categories_path,
             class: 'nav_group_more', data: {target: "#", toggle: "dropdown"}
           ul.dropdown-menu
-            - Category.gt(things_count: 0).desc(:things_count).each do |c|
+            - Category.includes(:tags).gt(things_count: 0).desc(:things_count).each do |c|
               li
                 = link_to category_things_path(category: c) do
                   i class="fa fa-fw #{c.icon}"
                   em= c.name
                 .dropdown-submenu-wrapper
                   ul.dropdown-submenu
-                    = render partial: "shared/header_tag", collection: c.tags.gt(things_count: 5).desc(:things_count).limit(14)
+                    = render partial: "shared/header_tag", collection: c.tags.includes(:things).gt(things_count: 5).desc(:things_count).limit(14)
                     li
                       = link_to_with_icon "查看全部分类", "fa fa-list", categories_path
   /-- Navbar --/

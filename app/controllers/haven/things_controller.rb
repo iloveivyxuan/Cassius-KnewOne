@@ -97,7 +97,7 @@ module Haven
       unless params[:filter] || params[:categories]
         @things = @things.desc(:created_at)
       end
-      @things = @things.page params[:page]
+      @things = @things.includes(:tags, :brand).page params[:page]
     end
 
     def batch_update
