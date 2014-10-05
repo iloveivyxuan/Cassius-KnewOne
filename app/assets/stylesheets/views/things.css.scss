@@ -268,7 +268,6 @@ html.feelings_show {
     @include box-shadow(0 5px 15px rgba(0,0,0,.2));
   }
   .modal-header {
-    padding: 1em 2em;
     background: #f7f7f7;
     .modal-title {
       width: 95%;
@@ -279,7 +278,6 @@ html.feelings_show {
   }
   .modal-body {
     width: 100%;
-    padding: 2em;
     color: $text-color;
     .input_area {
       margin-bottom: 10px;
@@ -344,7 +342,6 @@ html.feelings_show {
   }
   .modal-footer {
     margin: 0;
-    padding: 1.5em 2em;
     border-top: 1px dashed $gray-lighter;
     .counter {
       margin-right: 20px;
