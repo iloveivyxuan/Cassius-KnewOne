@@ -103,8 +103,9 @@
       ul {
         @include always-show-scrollbar;
 
-        height: 170px;
         overflow: auto;
+        height: 136px;
+        @include breakpoint(sm) { height: 170px; }
 
         border: solid $gray-lighter;
         border-width: 0 1px;
