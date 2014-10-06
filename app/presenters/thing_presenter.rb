@@ -168,14 +168,6 @@ class ThingPresenter < PostPresenter
     show_count thing.reviews.count
   end
 
-  def updates_count
-    show_count thing.updates.count
-  end
-
-  def comments_count
-    show_count thing.comments.count
-  end
-
   def feelings_count
     show_count thing.feelings.count
   end
