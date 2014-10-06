@@ -1,6 +1,8 @@
 class Order
   include Mongoid::Document
   include Mongoid::Timestamps
+
+  include BongPointAttachable
   include Aftermath
 
   belongs_to :user

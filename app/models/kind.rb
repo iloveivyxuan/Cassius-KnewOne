@@ -2,6 +2,8 @@ class Kind
   include Mongoid::Document
   include Mongoid::MultiParameterAttributes
 
+  include BongPointConsumable
+
   embedded_in :thing
 
   field :stock, type: Integer, default: 0
