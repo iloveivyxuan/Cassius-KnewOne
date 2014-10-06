@@ -24,8 +24,8 @@ defaults: &defaults
     consumer_key: '0e15780d13b4f5832a4068273b1ee089'
     consumer_secret: '2231d26bdaf58224'
   bong:
-    consumer_key: '1411886389171'
-    consumer_secret: 'a0c8de58c7b94b4484640784f4c44df5'
+    consumer_key: '1409808185075'
+    consumer_secret: '69cdc295f4224ed4898e29f4e6ac2666'
   kexue:
     enable: false
   karma:
@@ -95,3 +95,6 @@ production:
   tenpay:
     pid: '1217836601'
     key: '7130fa61604c9926418dbe140ccaaf19'
+  bong:
+    consumer_key: '1411886389171'
+    consumer_secret: 'a0c8de58c7b94b4484640784f4c44df5'

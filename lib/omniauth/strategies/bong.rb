@@ -3,8 +3,13 @@ require "omniauth-oauth2"
 module OmniAuth
   module Strategies
     class Bong < OmniAuth::Strategies::OAuth2
+      if Rails.env.production?
+        HOST = 'https://open.bong.cn/'
+      else
+        HOST = 'http://open-test.bong.cn/'
+      end
       option :client_options, {
-        :site => "https://open.bong.cn/",
+        :site => HOST,
         :authorize_url => "/oauth/authorize",
         :token_url => "/oauth/token"
       }
