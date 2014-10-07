@@ -29,7 +29,8 @@ ul.nav.nav-pills
   = form_tag batch_edit_haven_things_path, method: :get do
     - queries.delete(:page)
     - queries.each do |k, _|
-      = hidden_field_tag "#{k}[]", params[k] if params[k]
+      - if params[k] && k != "utf8" && k != "page"
+        = hidden_field_tag "#{k}[]", params[k]
     = text_field_tag(query, params[query])
     = submit_tag "查询#{tag_text}"
 
