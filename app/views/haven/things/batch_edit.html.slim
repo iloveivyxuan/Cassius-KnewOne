@@ -52,7 +52,7 @@ ul.nav.nav-pills
             | 价格单位
             .btn-group data-toggle="buttons"
               - ["¥", "$", "€", "£", "JPY¥", "₩", "NT$"].each do |u|
-                label class=(t.price_unit == u ? "btn btn-primary active" : "btn btn-primary")
+                label class=(t.price_unit == u ? "btn btn-default active" : "btn btn-default")
                   input checked=(t.price_unit == u) name='things[][price_unit]' type="radio" value=u
                     | #{u}
             br
@@ -65,7 +65,7 @@ ul.nav.nav-pills
             | 阶段
             .btn-group data-toggle="buttons"
               - Thing::STAGES.invert.each do |k, v|
-                label class=(t.stage == v ? "btn btn-primary active" : "btn btn-primary")
+                label class=(t.stage == v ? "btn btn-default active" : "btn btn-default")
                   input checked=(t.stage == v) name='things[][stage]' type="radio" value=v
                     | #{k}
             | 购买链接
