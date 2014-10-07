@@ -24,7 +24,7 @@ class WeiboAuthHandler
     rescue OAuth2::Error => ex
       # retry again
       client.statuses.update preprocess_content(content)
-      raise ex
+      # raise ex
     end
   end
 
