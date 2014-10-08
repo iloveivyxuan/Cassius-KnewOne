@@ -326,7 +326,7 @@ HERE
   end
 
   after_create do
-    User.delay_for(30.minutes).send_welcome_message_to(self.id)
+    User.delay_for(rand(10.minutes)).send_welcome_message_to(self.id)
   end
 
   # Payment
