@@ -304,19 +304,21 @@ class User
     user = User.where(id: user_id).first
     return unless user
 
-    ceo = User.where(id: '50ffdd447373c2f015000001').first
+    ceo = User.where(id: '50ffe1107373c2f015000003').first
     return unless ceo
 
     content = <<HERE
-#{user.name} ，欢迎你加入 KnewOne 牛玩！
+Hi，#{user.name} ，欢迎来到 KnewOne
 
-我是沙沙，KnewOne 的 CEO。
+KnewOne 是探讨科技与设计相关产品的社区，在这里你可以：
 
-KnewOne 牛玩是一个分享高品质消费品和使用体验的社区。在这里，你可以发现和分享提高生活品质的新奇酷产品，结识更多品位相似的朋友，共同探索未来世界。当你看到喜欢的东西时候记得点<i class="fancy_icon"></i>标记下来，这样你会获得关于这个产品更多的信息，也可以将它加入你喜欢的列表，当你参与的越多，你从 KnewOne 收获的也会越多！
+－发布令你印象深刻的产品
+－发表你对产品的感受和使用体验
+－从多达上万件的产品库中选择符合你生活品味的产品做成列表，分享给朋友们
 
-点这里看看我们为你做的 <a href="http://knewone.com/about?from_ceo">KnewOne 牛玩上手指南</a>
+当你参与越多，就越容易在 KnewOne 找到适合你的产品和品味相近的朋友
 
-祝你玩儿的开心！
+通过 <a href="http://knewone.com/about">KnewOne 指南</a> 可以更多地了解我们，<b>现在就来探索 KnewOne 吧</b>
 HERE
 
     ceo.send_private_message_to(user, content)
