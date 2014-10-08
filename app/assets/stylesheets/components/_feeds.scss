@@ -375,4 +375,19 @@ html.users_feelings,
 html.users_reviews {
   figure.feeling_author {display: none;}
   figure.review_author {display: none;}
+
+  @include MQ(Mneg) {
+    figure.feeling_thing,
+    figure.review_thing,
+    .feed_action {
+      display: none !important;
+    }
+  }
+
+  figure.feeling_thing,
+  figure.review_thing {
+    figcaption a {
+      @include text-overflow;
+    }
+  }
 }
