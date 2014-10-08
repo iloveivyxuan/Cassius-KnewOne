@@ -312,18 +312,10 @@ html.desktop {
     }
 
     .feed_action {
-
-      @media (max-width: $screen-xs-max) {
-        display: table-cell;
-        vertical-align: middle;
-      }
-
-      @media (min-width: $screen-sm-min) {
-        right: 0;
-        margin-right: calc((#{$part_right} - 60px) / 2);
-        position: absolute;
-        top: calc(2em + 6px);
-      }
+      position: absolute;
+      top: 2em;
+      right: 0;
+      margin-right: calc((#{$part_right} - 70px) / 2);
     }
 
     &.review,
@@ -378,8 +370,7 @@ html.users_reviews {
 
   @include MQ(Mneg) {
     figure.feeling_thing,
-    figure.review_thing,
-    .feed_action {
+    figure.review_thing {
       display: none !important;
     }
   }
