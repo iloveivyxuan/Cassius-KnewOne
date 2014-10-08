@@ -256,12 +256,6 @@ html.feelings_show {
 
   /**********************************************.modal**********************************************/
 
-  .modal-dialog {
-    width: 90%;
-    margin: 0 auto;
-    margin-top: -1px;
-    @include MQ(Lplus) { width: 680px }
-  }
   .modal-content {
     border: 1px solid rgba(0, 0, 0, 0.1);
     @include border-radius(0);
