@@ -166,18 +166,11 @@ window.Making = do (exports = window.Making || {}) ->
       exports.SearchThing('#navbar_search')
 
       $('.navbar').add($backdrop).add($close).on 'click.search', (e) ->
+        if e.target is $input[0] then return
+
         if $candidate.is(':visible')
           $candidate.hide()
           $backdrop.fadeOut()
-
-      $input
-        .on 'focusin', ->
-          if !$form.hasClass('focus')
-            if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ') ')
-              $nav_primary.hide()
-              $nav_secondary.hide()
-            $form.addClass('focus')
-        .on 'focusout', ->
           if !$('html').hasClass('csstransitions')
             $nav_primary.show()
             $nav_secondary.show()
@@ -188,6 +181,14 @@ window.Making = do (exports = window.Making || {}) ->
                 $nav_primary.fadeIn()
                 $nav_secondary.fadeIn()
             .emulateTransitionEnd(transition_time)
+
+      $input
+        .on 'focusin', ->
+          if !$form.hasClass('focus')
+            if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ') ')
+              $nav_primary.hide()
+              $nav_secondary.hide()
+            $form.addClass('focus')
         .on 'click', ->
           $(@).select()
 
