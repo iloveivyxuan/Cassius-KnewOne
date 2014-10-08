@@ -162,6 +162,17 @@ window.Making = do (exports = window.Making || {}) ->
       $nav_primary    = $('#nav_primary')
       $nav_secondary  = $('#nav_secondary')
       transition_time = parseFloat($form.css('transition-duration')) * 1000
+      _focusOutSearch = ->
+        if !$('html').hasClass('csstransitions')
+          $nav_primary.show()
+          $nav_secondary.show()
+        $form
+          .removeClass('focus')
+          .one $.support.transition.end, ->
+            if Modernizr.mq '(min-width: ' + Making.Breakpoints.screenSMMin + ')'
+              $nav_primary.fadeIn()
+              $nav_secondary.fadeIn()
+          .emulateTransitionEnd(transition_time)
 
       exports.SearchThing('#navbar_search')
 
@@ -171,16 +182,7 @@ window.Making = do (exports = window.Making || {}) ->
         if $candidate.is(':visible')
           $candidate.hide()
           $backdrop.fadeOut()
-          if !$('html').hasClass('csstransitions')
-            $nav_primary.show()
-            $nav_secondary.show()
-          $form
-            .removeClass('focus')
-            .one $.support.transition.end, ->
-              if Modernizr.mq '(min-width: ' + Making.Breakpoints.screenSMMin + ')'
-                $nav_primary.fadeIn()
-                $nav_secondary.fadeIn()
-            .emulateTransitionEnd(transition_time)
+          _focusOutSearch()
 
       $input
         .on 'focusin', ->
@@ -189,6 +191,8 @@ window.Making = do (exports = window.Making || {}) ->
               $nav_primary.hide()
               $nav_secondary.hide()
             $form.addClass('focus')
+        .on 'focusout', ->
+          if $candidate.is(':hidden') then _focusOutSearch()
         .on 'click', ->
           $(@).select()
 
