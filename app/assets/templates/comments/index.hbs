@@ -4,17 +4,6 @@
     {{title}}
   </h4>
   <form id="create_comment" class="comment_form">
-    {{#if signin}}
-      {{#unless auth}}
-        <p class="auth_tip">只有小组成员才能{{title}}</p>
-      {{/unless}}
-    {{else}}
-      <p class="auth_tip">
-        需要您
-        <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#login-modal">登录</a>
-        之后才可以进行{{title}}
-      </p>
-    {{/if}}
     <div class="controls">
       <textarea class="form-control" name="comment_content" rows="3" maxlength="300" placeholder="{{title}}（不超过300字）" required></textarea>
     </div>

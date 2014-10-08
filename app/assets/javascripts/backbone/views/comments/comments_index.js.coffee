@@ -35,8 +35,6 @@ class Making.Views.CommentsIndex extends Backbone.View
   render: =>
     @$el.html @template
       title: @$el.data('title')
-      signin: @$el.data('signin')
-      auth: @$el.data('auth')
 
     Making.AtUser('.comments textarea')
     @$submit = @$('[type="submit"]')
@@ -45,7 +43,13 @@ class Making.Views.CommentsIndex extends Backbone.View
     this
 
   disableForm: =>
+    if @$el.data('auth')
+      placeholder = "需要您登录之后才可以#{@$el.data('title')}"
+    else
+      placeholder = "只有小组成员才能#{@$el.data('title')}"
+
     $('#create_comment')
+      .find('textarea').prop('placeholder', placeholder).end()
       .find('textarea,button').prop('disabled', true).addClass('disabled')
 
   create: (e) ->
