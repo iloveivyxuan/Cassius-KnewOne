@@ -1,4 +1,4 @@
 | 您好，#{@receiver.name}，这是
-= link_to @group.name, @group, target: "_blank"
+= link_to @group.name, group_url(@group), target: "_blank"
 | 小组的加入邀请：
 = link_to "我要加入", @link
