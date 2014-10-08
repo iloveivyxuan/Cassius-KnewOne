@@ -105,6 +105,8 @@ class Making.Views.ThingsNew extends Backbone.View
     else
       if $photos.length is 0
         $('.uploader_label').tooltip('show')
+      if @$title.val().trim() is ''
+        @$title.tooltip('show')
       if @$content.val().trim() is ''
         @$el.parents('#form-thing').find('#form-thing-body').tooltip('show')
       return false
