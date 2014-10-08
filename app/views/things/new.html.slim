@@ -33,7 +33,7 @@
           .slideshow_body
       = f.input :subtitle, placeholder: "请填写一句话介绍", input_html: {maxlength: 40, autocomplete: "off"}
       - if current_user.role? :volunteer
-        = f.input :categories_text, placeholder: "请填写分类", input_html: {maxlength: 40, autocomplete: "off"}
+        = f.input :tags_text, placeholder: "请填写标签", input_html: {maxlength: 40, autocomplete: "off"}
       = f.input :official_site, as: :url, placeholder: "请填写产品官方链接", input_html: {autocomplete: "off"}
       = f.input :content, as: :hidden
 
