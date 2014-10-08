@@ -365,9 +365,7 @@ html.desktop {
 html.things_show,
 html.feelings_index,
 html.feelings_show,
-html.reviews_index,
-html.users_reviews,
-html.users_feelings {
+html.reviews_index {
   figure.feeling_thing {display: none;}
   figure.review_thing {display: none;}
 }
@@ -375,9 +373,6 @@ html.users_feelings {
 html.users_show,
 html.users_feelings,
 html.users_reviews {
-  figure.feeling_author,
-  figure.review_author,
-  .feed_action {
-    display: none !important;
-  }
+  figure.feeling_author {display: none;}
+  figure.review_author {display: none;}
 }
