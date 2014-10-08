@@ -27,10 +27,12 @@ ul.nav.nav-pills
 
 - haven_queries.each do |query, tag_text|
   = form_tag batch_edit_haven_things_path, method: :get do
-    - queries.delete(:page)
-    - queries.each do |k, _|
-      - if params[k] && k != "utf8" && k != "page"
-        = hidden_field_tag "#{k}[]", params[k]
+    - haven_filters.each do |k, _|
+      - if queries["filter"].include?(k)
+        = hidden_field_tag "filter[]", k
+    - haven_queries.each do |k, v|
+      - if queries.include?(k)
+        = hidden_field_tag k, queries[k]
     = text_field_tag(query, params[query])
     = submit_tag "查询#{tag_text}"
 
