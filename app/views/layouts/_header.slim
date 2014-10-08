@@ -105,7 +105,7 @@ header#header role="banner"
                   ul.dropdown-submenu
                     = render partial: "shared/header_tag", collection: c.tags.gt(things_count: 5).desc(:things_count).limit(14)
                     li
-                      = link_to_with_icon "查看全部分类", "fa fa-list", categories_path
+                      = link_to_with_icon "查看全部标签", "fa fa-list", categories_path
   /-- Navbar --/
 
   .search_backdrop
