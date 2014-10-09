@@ -39,4 +39,6 @@ Making::Application.configure do
 
   Moped.logger.level = Logger::DEBUG
   Mongoid.logger.level = Logger::DEBUG
+
+  require 'sidekiq/testing/inline'
 end
