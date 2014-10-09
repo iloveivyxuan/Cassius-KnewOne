@@ -6,18 +6,12 @@ class Making.Views.CommentsIndex extends Backbone.View
     'submit #create_comment': 'create'
     'click .comments_more': 'fetch'
 
-  initialize: ->
+  initialize: ({url}) ->
+    @url       = url
     @page      = 1
     @anchor    = @getAnchor()
     @commentId = @getCommentId()
     @render()
-    @collection.on
-      add: @prepend
-      reset: (comments) =>
-        comments.each @append
-        if @anchor.length > 0
-          @jumpToAnchor()
-          @anchor = ''
     @fetch(@commentId)
 
   fetch: (fromId) =>
@@ -26,11 +20,24 @@ class Making.Views.CommentsIndex extends Backbone.View
       @page++
     else
       data = {page: @page++}
-    @collection.fetch
-      reset: true
-      data: data
-      beforeSend: =>
-        @$('ul').append(HandlebarsTemplates['shared/loading'])
+
+    $.ajax({
+      url: @url
+      data
+      beforeSend: => @$('ul').append(HandlebarsTemplates['shared/loading'])
+    }).success((data) =>
+      @$('ul').append(data)
+
+      if @anchor.length > 0
+        @jumpToAnchor()
+        @anchor = ''
+
+      @$more = @$('.comments_more')
+      if @$('ul li').length < @$el.data('count')
+        @$more.removeClass('is-hidden')
+      else
+        @$more.remove()
+    )
 
   render: =>
     @$el.html @template

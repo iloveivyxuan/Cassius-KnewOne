@@ -97,10 +97,8 @@ do (exports = Making) ->
         $el = $(el)
         type = $el.data('type')
         id = $el.data('id')
-        collection = new Making.Collections.Comments
-        collection.url = "/#{type}/#{id}/comments"
         view = new Making.Views.CommentsIndex
-          collection: collection
+          url: "/#{type}/#{id}/comments"
           el: el
         $el.data('comments', view)
 
