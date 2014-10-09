@@ -51,4 +51,15 @@ do (exports = Making) ->
           Making.ExtendCarousel()
           lock = false
 
+      if $html.hasClass('touch')
+        $('.carousel').each ->
+          $this  = $(@)
+          hammer = new Hammer(@)
+
+          hammer
+            .on 'swipeleft', ->
+              $this.carousel('next')
+            .on 'swiperight', ->
+              $this.carousel('prev')
+
   return exports
