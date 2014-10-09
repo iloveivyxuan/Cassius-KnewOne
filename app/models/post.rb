@@ -91,7 +91,9 @@ class Post
   end
 
   def around_update_counter
-    if self_changed? && self.author_id_changed?
+    if self_changed? &&
+      self.author_id_changed? &&
+      self.author_id_was.present? &&
       original_author = User.find(self.author_id_was)
 
       yield
@@ -112,5 +114,4 @@ class Post
     self.content.gsub!(/(<p><br><\/p>)+\z/, "")
     self.content = "<p><br></p>" if self.content.empty?
   end
-
 end
