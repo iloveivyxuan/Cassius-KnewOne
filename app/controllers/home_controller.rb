@@ -80,6 +80,8 @@ class HomeController < ApplicationController
 
   def welcome
     @friends = current_user.recommend_users || []
+    @categories = Category.desc(:things_count).limit(9)
+    @categories.each { |c| current_user.categories << c }
   end
 
   def error

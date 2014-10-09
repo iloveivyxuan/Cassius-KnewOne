@@ -51,7 +51,7 @@ section.step#step2
       .panel-body
         p 选择你感兴趣的分类：
         .tags
-          - Category.desc(:things_count).limit(9).each do |category|
+          - @categories.each do |category|
             - flag = current_user.categories.include? category
             = link_to category.name, "#", data: {slug: category.slug}, class: "#{'is-active' if flag}"
         .things
