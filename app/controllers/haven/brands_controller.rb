@@ -4,7 +4,12 @@ module Haven
     before_action :set_brand, only: [:edit, :destroy, :update]
 
     def index
-      @brands = Brand.all.desc(:things_size).page(params[:page]).per(20)
+      if params[:brand_name]
+        brand_regex = Regexp.new(params[:brand_name], Regexp::IGNORECASE)
+        @brands = Brand.or({ zh_name: brand_regex }, { en_name: brand_regex }).page(params[:page]).per(20)
+      else
+        @brands = Brand.all.desc(:things_size).page(params[:page]).per(20)
+      end
     end
 
     def edit
