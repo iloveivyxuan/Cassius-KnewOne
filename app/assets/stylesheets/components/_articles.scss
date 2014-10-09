@@ -354,14 +354,19 @@ form.edit_post {
     @include clearfix;
 
     color: $text-color;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.8;
     word-wrap: break-word;
 
-    h1 { font-size: 2.6em; }
-    h2 { font-size: 2.15em; }
-    h3 { font-size: 1.7em; }
-    h4 { font-size: 1.25em; }
+    h1, h2, h3,
+    h4, h5, h6 {
+      color: #555;
+      font-weight: bold;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.6em; }
+    h3 { font-size: 1.2em; }
+    h4 { font-size: 1.1em; }
     h5 { font-size: 1em; }
     h6 { font-size: .85em; }
 
@@ -390,10 +395,13 @@ form.edit_post {
     b,
     strong {
       color: #000;
+      font-weight: 700;
+      padding: 0 4px;
     }
 
     i {
       margin: 0;
+      padding: 0 4px;
     }
 
     del,
@@ -438,11 +446,9 @@ form.edit_post {
     blockquote {
       border-left-color: #ebeced;
       border-left-width: 4px;
-      color: $gray;
-      font-style: italic;
-      margin: {
-        left: 2em;
-        right: 2em;
+      color: #aaa;
+      padding: {
+        bottom: 0;
         top: 0;
       }
     }
