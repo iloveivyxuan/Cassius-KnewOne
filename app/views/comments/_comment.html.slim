@@ -1,0 +1,21 @@
+- author = comment.author
+
+li
+  article.comment
+    a.anchor--hidden id="comment-#{comment.id}"
+
+    .avatar
+      = link_to author, data: {'popover-profile' => author.id.to_s}
+        = user_avatar(author)
+
+    header.author
+      = link_to author.name, author
+      = time_ago_tag comment.created_at
+      - if can?(:create, comment)
+        a.reply href="#" title="回复"
+          i.fa.fa-reply
+      - if can?(:destroy, comment)
+        a.destroy href="#" title="删除"
+          i.fa.fa-trash-o
+
+    section = comment_content(comment)
