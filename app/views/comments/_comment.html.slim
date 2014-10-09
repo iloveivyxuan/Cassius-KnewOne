@@ -9,7 +9,7 @@ li
         = user_avatar(author)
 
     header.author
-      = link_to author.name, author
+      = link_to author.name, author, class: 'author_name'
       = time_ago_tag comment.created_at
       - if can?(:create, comment)
         a.reply href="#" title="回复"

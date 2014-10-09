@@ -5,6 +5,7 @@ class Making.Views.CommentsIndex extends Backbone.View
   events:
     'submit #create_comment': 'create'
     'click .comments_more': 'fetch'
+    'click .reply': 'reply'
 
   initialize: ({url}) ->
     @url       = url
@@ -102,3 +103,13 @@ class Making.Views.CommentsIndex extends Backbone.View
     $anchor = $("#{@anchor}")
     $window.scrollTop($anchor.offset().top - 55)
     $anchor.parent().addClass('is-targeted')
+
+  reply: (event) ->
+    event.preventDefault()
+
+    authorName = $(event.currentTarget).siblings('.author_name').text()
+    $textarea = $('form#create_comment textarea')
+
+    $textarea
+      .focus()
+      .val($textarea.val() + " @#{authorName} ")
