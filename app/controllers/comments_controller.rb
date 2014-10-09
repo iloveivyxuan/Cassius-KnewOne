@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   load_and_authorize_resource :thing_list
   load_and_authorize_resource :comment, :through => [:post, :thing_list]
 
-  respond_to :html
+  respond_to :html, :js
   layout false
 
   def index

@@ -15,7 +15,9 @@ li
         a.reply href="#" title="回复"
           i.fa.fa-reply
       - if can?(:destroy, comment)
-        a.destroy href="#" title="删除"
+        = link_to comment.post ? post_comment_path(comment.post, comment) : [comment.thing_list, comment],
+          method: :delete, remote: true,
+          class: 'destroy', title: '删除', data: {confirm: '您确定要删除吗？'}
           i.fa.fa-trash-o
 
     section = comment_content(comment)
