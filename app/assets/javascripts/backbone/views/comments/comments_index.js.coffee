@@ -62,35 +62,29 @@ class Making.Views.CommentsIndex extends Backbone.View
   create: (e) ->
     e.preventDefault()
     @$submit.disable()
-    @collection.create
-      content: @$('textarea').val()
-    ,
-      wait: true
-      success: =>
-        @$('textarea').val("")
-        $comments_count = @$el.parents('.feed_article, .feed-feeling').find('.comments_count, .comments-count')
 
-        if $comments_count.length == 0
-          $comments_count = $('<span class="comments_count"></span>')
-          $comments_count.appendTo(@$el.parents('.feed_article').find('.comments_toggle'))
+    $.ajax({
+      url: @url
+      type: 'POST'
+      data: {comment: {content: @$('textarea').val()}}
+    }).success((html) =>
+      @prepend(html)
 
-        initial = parseInt($comments_count.text())
-        result = if isNaN(initial) then 1 else initial + 1
-        $comments_count.text(result)
-        @$submit.enable()
+      @$('textarea').val("")
+      $comments_count = @$el.parents('.feed_article, .feed-feeling').find('.comments_count, .comments-count')
 
-  append: (comment) =>
-    view = new Making.Views.Comment(model: comment)
-    view.render().$el.hide().appendTo(@$('ul')).fadeIn()
-    @$more = @$('.comments_more')
-    if @$('ul li').length < @$el.data('count')
-      @$more.removeClass('is-hidden')
-    else
-      @$more.remove()
+      if $comments_count.length == 0
+        $comments_count = $('<span class="comments_count"></span>')
+        $comments_count.appendTo(@$el.parents('.feed_article').find('.comments_toggle'))
 
-  prepend: (comment) =>
-    view = new Making.Views.Comment(model: comment)
-    view.render().$el.hide().prependTo(@$('ul')).fadeIn()
+      initial = parseInt($comments_count.text())
+      result = if isNaN(initial) then 1 else initial + 1
+      $comments_count.text(result)
+      @$submit.enable()
+    )
+
+  prepend: (html) =>
+    $(html).hide().prependTo(@$('ul')).fadeIn()
 
   getAnchor: =>
     hash = location.hash
