@@ -334,13 +334,6 @@ do (exports = Making) ->
     if $(".track_event").length
       $(".track_event").click ->
         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
-    if $('.carousel').length
-      Making.ExtendCarousel()
-      $(window).on 'resize.bs.carousel.data-api', ->
-        if !lock
-          lock = true
-          Making.ExtendCarousel()
-          lock = false
     if ($entry = $('.entry_compact')).length
       $entry.on 'click', '.entry_email_toggle', ->
         $form = $(@).parents('.entry').find('.entry_email')
