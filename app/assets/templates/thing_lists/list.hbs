@@ -1,5 +1,5 @@
 <label {{#if selected}}class="selected"{{/if}}>
   <span class="thing-list-name">{{name}} {{#if items.length}}({{items.length}}){{/if}}</span>
-  <input type="checkbox">
+  <input type="checkbox" {{#if selected}}checked{{/if}}>
   {{#if selected}}<i class="fa fa-check"></i>{{/if}}
 </label>
