@@ -18,3 +18,5 @@ table.table
         th
           = link_to '[编辑]', edit_haven_brand_path(b.id)
           = link_to '[删除]', haven_brand_path(b.id), method: :delete
+
+= paginate @brands

@@ -4,7 +4,7 @@ module Haven
     before_action :set_brand, only: [:edit, :destroy, :update]
 
     def index
-      @brands = Brand.all.desc(:things_size)
+      @brands = Brand.all.desc(:things_size).page(params[:page]).per(20)
     end
 
     def edit
