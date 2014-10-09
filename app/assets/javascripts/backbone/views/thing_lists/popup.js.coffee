@@ -87,6 +87,10 @@ class Making.Views.ThingListsPopup extends Backbone.Marionette.CompositeView
 
     thing_id = @model.id
     description = @ui.description.val().trim()
+
+    unless _.any(@_changedLists, (l) -> l.get('selected'))
+      return unless confirm('您还没有为此产品添加列表，是否继续？')
+
     @ui.description.val('')
 
     _.each(@_changedLists, (list) ->
