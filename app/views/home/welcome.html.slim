@@ -49,7 +49,7 @@ section.step#step2
           strong.logo KnewOne
           |  正在流行的新奇酷
       .panel-body
-        p 选择你感兴趣的标签：
+        p 选择你感兴趣的分类：
         .tags
           - Category.desc(:things_count).limit(9).each do |category|
             - flag = current_user.categories.include? category
