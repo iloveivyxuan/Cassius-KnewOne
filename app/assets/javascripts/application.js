@@ -12,6 +12,7 @@
 //= require jquery-fileupload/vendor/load-image
 //= require matchmedia
 //= require picturefill
+//= require hammer
 //= require jquery.lazyload
 //= require jquery.ui.sortable
 //= require jquery.infinitescroll
