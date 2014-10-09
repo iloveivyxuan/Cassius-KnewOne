@@ -1,6 +1,7 @@
 $('#feeling_<%= @feeling.id %>')
-.fadeOut('slow')
-.remove();
+.fadeOut(function () {
+  $(this).remove();
+});
 
 var count = parseInt($('.feelings_count').text());
 if (count > 1) {
