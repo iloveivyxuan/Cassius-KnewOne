@@ -51,9 +51,7 @@ section.step#step2
       .panel-body
         p 选择你感兴趣的分类：
         .tags
-          - @categories.each do |category|
-            - flag = current_user.categories.include? category
-            = link_to category.name, "#", data: {slug: category.slug}, class: "#{'is-active' if flag}"
+          = render partial: 'shared/category', locals: { categories: @categories }
         .things
           = render partial: 'home/hot_thing', collection: Thing.hot.limit(12), as: :hot_thing
 

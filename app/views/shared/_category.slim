@@ -1,0 +1,3 @@
+- categories.each do |category|
+  - flag = current_user.categories.include? category
+  = link_to category.name, "#", data: { slug: category.slug }, class: "#{'is-active' if flag}"
