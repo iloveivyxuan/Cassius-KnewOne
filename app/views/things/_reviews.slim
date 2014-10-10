@@ -24,3 +24,5 @@
             li= link_to [tp.thing, :reviews], class: 'btn btn--transition btn--square btn--tall btn--blue'
               i.fa.fa-ellipsis-h
               span 更多评测
+  - else
+    = render 'reviews/nothing'

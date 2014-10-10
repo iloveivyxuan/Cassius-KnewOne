@@ -2274,8 +2274,9 @@ html.feelings_show {
   }
 }
 
+html.things_show,
 html.reviews_index {
-  .jumbotron {
+  .no_reviews {
     @include clearfix;
 
     border-radius: 0;
