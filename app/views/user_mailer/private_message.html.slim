@@ -7,7 +7,7 @@
 p
   | #{link_to @sender.name, user_url(@sender)} 于 #{@message.created_at.strftime '%Y-%m-%d %H:%M:%S'} 给您发送了一封私信：
 
-blockquote = raw @message.content
+blockquote = simple_format @message.content
 
 p
   | #{link_to '点此回复', dialog_url(@dialog)}
