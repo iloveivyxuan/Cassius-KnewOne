@@ -61,5 +61,17 @@ window.Making = do (exports = window.Making || {}) ->
               .replace(/>/g, '&gt;')
               .replace(/"/g, '&quot;')
 
+  exports.prefixEvent = (event) ->
+    eventsPrefixed = ''
+
+    for prefix in ['', 'webkit', 'moz', 'MS']
+      do (prefix) ->
+        if prefix
+          eventsPrefixed += prefix + event + ' '
+        else
+          eventsPrefixed += event.toLowerCase() + ' '
+
+    return eventsPrefixed.trim()
+
   #exports
   exports
