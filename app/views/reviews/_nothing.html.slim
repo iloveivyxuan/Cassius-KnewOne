@@ -1,0 +1,5 @@
+.no_reviews.jumbotron
+  = image_tag image_path('writing.png'), title: '快来写评测！'
+  p 还没有人为 #{@thing.title} 撰写评测，你想做第一个为它写评测的人么？
+  #new_review_link
+    = render 'reviews/link_to_new', klass: 'btn btn--transition btn-new-review btn--blue'
