@@ -1,0 +1,17 @@
+- if @order.can_consume_bong_point?
+  = form_tag bong_consume_point_path, role: 'form', class: 'form consume_point_form' do
+    = hidden_field_tag :order_id, @order.id.to_s
+    .form-group.integer.optional.order_bong_point
+      label.integer.optional.control-label for="order_bong_point"
+        | 使用bong活跃点
+      = number_field_tag 'point', 0,
+                         in: @order.minimal_consumable_bong_point..@order.maximal_consumable_bong_point, step: 1,
+                         class: 'numeric integer optional form-control'
+      p.help-block
+        | 你有 #{content_tag :span, '<i class="fa fa-spinner"></i>'.html_safe, id: 'available_bong_point'}点
+        | （#{link_to '刷新', bong_available_point_path, remote: true}） 可以消费，
+        | 可以使用 #{content_tag :span, @order.minimal_consumable_bong_point, id: 'minimal_consumable_bong_point'}
+        | -#{content_tag :span, @order.maximal_consumable_bong_point, id: 'maximal_consumable_bong_point'}点
+        | （每点可抵扣 #{Order::BONG_POINT_VALUE} 元）。
+
+    = submit_tag '使用', class: 'btn btn-default'

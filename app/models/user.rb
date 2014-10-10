@@ -483,6 +483,19 @@ HERE
     joined_groups.select { |g| g.has_admin? self }
   end
 
+  # bong
+  def bong_bind?
+    !!bong_auth
+  end
+
+  def bong_auth
+    @_bong_auth ||= self.auths.where(provider: 'bong').first
+  end
+
+  def bong_client
+    @_bong_client ||= BongClient.new access_token: bong_auth.access_token, uid: bong_auth.uid
+  end
+
   include IdsSortable
 
   sort_by_ids :owns, Thing

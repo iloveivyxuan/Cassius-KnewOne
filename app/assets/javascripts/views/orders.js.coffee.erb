@@ -40,3 +40,5 @@ Making.OrderPage =
       )
 
       $('[name^="order[address_id]"]:enabled').first().prop('checked', true)
+
+      $.getScript('<%= Rails.application.routes.url_helpers.bong_available_point_path %>');

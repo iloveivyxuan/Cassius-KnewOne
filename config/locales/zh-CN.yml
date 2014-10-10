@@ -47,6 +47,8 @@ zh-CN:
         photo_number: '图片序号'
         max_per_buy: '单次最大购买数量'
         note: '备注'
+        minimal_bong_point: '最少需求bong活跃点'
+        maximal_bong_point: '最多消费bong活跃点'
       order:
         deliver_by: '物流'
         note: '备注'
@@ -55,6 +57,9 @@ zh-CN:
         coupon: '优惠券'
         price: '应付价格'
         alteration: '变更信息'
+        bong_point: 'bong活跃点'
+        minimal_consumable_bong_point: '最少需消费bong活跃点'
+        maximal_consumable_bong_point: '最多可消费bong活跃点'
       address:
         province: '省/直辖市'
         district: '市/区'

@@ -4,9 +4,11 @@ class BongPointTransaction
 
   belongs_to :order
 
-  field :request_bong_point, type: Integer
-  field :consumed_bong_point, type: Integer, default: 0
-  field :success, type: Boolean
+  field :bong_point, type: Integer, default: 0
+  field :success, type: Boolean, default: true
+  field :code, type: String
 
   field :raw, type: Hash
+
+  scope :success, -> { where success: true }
 end

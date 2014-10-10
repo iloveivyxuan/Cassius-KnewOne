@@ -105,7 +105,7 @@ class ApplicationController < ActionController::Base
   end
 
   def store_location(url=nil)
-    return if request.format != Mime::HTML || request.xhr?
+    return if request.format != Mime::HTML || request.xhr? || !request.get?
 
     session[:previous_url] = request.fullpath
   end

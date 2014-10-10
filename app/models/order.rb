@@ -136,15 +136,7 @@ class Order
     end
 
     self.invoice = self.user.invoices.where(id: self.invoice_id).first if self.invoice_id
-    self.coupon_code = CouponCode.where(id: self.coupon_code_id).first if self.coupon_code_id
-
-    unless self.coupon_code.nil?
-      if self.coupon_code.bound_user?
-        self.coupon_code.use
-      else
-        self.coupon_code.bind_order_user_and_use
-      end
-    end
+    @bong_point ||= 0
   end
 
   before_create do
@@ -155,21 +147,6 @@ class Order
     # mongoid may not rollback when error occurred
     order_items.each &:claim_stock!
     sync_price
-
-    if free?
-      self.state = :freed
-    elsif use_balance? && self.user.has_balance?
-      available_balance = self.user.balance
-
-      if available_balance - total_price >= 0 && self.user.expense_balance!(total_price, "支付订单#{self.order_no}")
-        self.expense_balance = total_price
-        self.state = :freed
-      elsif self.user.expense_balance!(available_balance, "支付订单#{self.order_no}")
-        self.expense_balance = available_balance
-      else
-        self.state = :unexpected
-      end
-    end
   end
 
   validate do
@@ -193,7 +170,10 @@ class Order
   after_create do
     self.user.cart_items.where(:thing.in => order_items.map(&:thing), :kind_id.in => order_items.map(&:kind).map(&:id)).destroy_all
 
-    confirm_free! if can_confirm_free?
+    consume_bong_point!(self.bong_point) if self.bong_point > 0
+
+    free!
+    confirm_free!
 
     OrderMailer.delay_for(3.hours, retry: false, queue: :mails).remind_payment(self.id.to_s)
   end
@@ -221,6 +201,10 @@ class Order
     define_method :"#{s}?" do
       state == s
     end
+  end
+
+  def can_free?
+    pending?
   end
 
   # There is a situation is user closed or canceled order, but still paid at third party
@@ -255,6 +239,31 @@ class Order
 
   def can_refunded_balance_to_platform?
     refunded_to_balance?
+  end
+
+  def free!
+    return false unless can_free?
+
+    state = self.state
+
+    if free?
+      self.state = :freed
+    elsif use_balance? && self.user.has_balance?
+      available_balance = self.user.balance
+
+      if available_balance - total_price >= 0 && self.user.expense_balance!(total_price, "支付订单#{self.order_no}")
+        self.expense_balance = total_price
+        self.state = :freed
+      elsif self.user.expense_balance!(available_balance, "支付订单#{self.order_no}")
+        self.expense_balance = available_balance
+      else
+        self.state = :unexpected
+      end
+    end
+
+    save!
+
+    order_histories.create from: state, to: self.state
   end
 
   def confirm_payment!(trade_no, price, method, raw)
@@ -559,6 +568,18 @@ class Order
     bong && self.order_items.where(thing_title: bong.title).exists?
   end
 
+  def set_coupon!
+    self.coupon_code = CouponCode.where(id: self.coupon_code_id).first if self.coupon_code_id
+
+    unless self.coupon_code.nil?
+      if self.coupon_code.bound_user?
+        self.coupon_code.use
+      else
+        self.coupon_code.bind_order_user_and_use
+      end
+    end
+  end
+
   need_aftermath :confirm_payment!, :refund_to_balance!, :refund!, :confirm_free!
 
   private
@@ -583,11 +604,18 @@ class Order
         order.deliver_by = :zt
       end
 
+      order.cal_and_set_consumable_bong_point
+
+      # 优惠券和bong活跃点互斥
+      if order.bong_point == 0
+        order.set_coupon!
+      end
+
       order
     end
 
     def cleanup_expired_orders
-      pending.each do |o|
+      pending.where(consumed_bong_point: 0).each do |o|
         if o.created_at + o.valid_period_days.days < Date.today
           o.close!
         end
