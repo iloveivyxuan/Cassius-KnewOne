@@ -1,0 +1,26 @@
+#categories-modal.modal.fade aria-hidden="true" role="dialog" tabindex="-1"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal"
+          span aria-hidden="true" &times;
+          span.sr-only Close
+        h4.modal-title 管理订阅的分类
+      .modal-body
+        .panel-body
+          p 选择你感兴趣的分类：
+          .tags
+            - categories = Category.gt(things_count: 0).desc(:things_count)
+            = render partial: 'shared/category', locals: { categories: categories }
+      .modal-footer
+        button.btn.btn-primary type="button" data-dismiss="modal"
+          i.fa.fa-check
+          | 确认
+
+- content_for :script do
+  javascript:
+    Making.selectCategories('#categories-modal', '.things');
+    $('#categories-modal').on('hidden.bs.modal', function (e) {
+      Making.ShowMessageOnTop("分类订阅成功！");
+      window.location.replace("#{url_for(latest_path)}");
+    });

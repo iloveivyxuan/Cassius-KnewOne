@@ -12,14 +12,16 @@ section.promotions
 section.tags
   - if current_user.categories.any?
     header
-      h2 已订阅的分类
+      h2
+        | 已订阅的分类
+        = link_to_with_icon "", 'fa fa-gear', "#", data: {toggle: "modal", target: "#categories-modal"}
     section
       = render current_user.categories
   - else
     header
-      h2 热门分类
-    section
-      = render Category.prior.limit(6)
+      h2
+        = button_tag "订阅分类", type: "button", class: "btn btn-default", data: { target: "#categories-modal", toggle: "modal" }
+  = render "categories_modal"
 
 section.recommended-users
   header
