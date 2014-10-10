@@ -72,7 +72,6 @@ class Thing < Post
   has_many :adoptions, dependent: :destroy
 
   has_and_belongs_to_many :tags
-  before_save :ensure_corresponding_tags
   before_save :update_categories_by_tags
 
   scope :recent, -> { gt(created_at: 1.month.ago) }
@@ -127,11 +126,11 @@ class Thing < Post
   end
 
   def tags_text=(text)
-    new_tags = []
+    self.tags.clear
+
     text.split(",").each do |tag_name|
-      new_tags <<  Tag.find_or_create_by(name: tag_name)
+      self.tags <<  Tag.find_or_create_by(name: tag_name)
     end
-    self.tags = new_tags
   end
 
   def brand_text=(text)
@@ -382,16 +381,6 @@ class Thing < Post
 
   def update_brand
     self.brand_name = self.brand.brand_text if self.brand
-  end
-
-  # hotfix
-  def ensure_corresponding_tags
-    self.tags.each do |tag|
-      unless tag.things.include?(self)
-        tag.things << self
-        tag.save
-      end
-    end
   end
 
   def update_categories_by_tags
