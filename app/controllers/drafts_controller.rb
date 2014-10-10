@@ -16,7 +16,7 @@ class DraftsController < ApplicationController
 
   def update
     @draft = current_user.drafts.find_or_create_by(key: params[:id])
-    @draft.update(content: request.body.string)
+    @draft.update(content: request.raw_post)
     respond_with @draft
   end
 
