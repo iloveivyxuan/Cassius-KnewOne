@@ -1,18 +1,14 @@
 <% present @thing do |tp| %>
-  var $own = $(".owners"),
-      $review = $("div.new_review"),
-      $review_trigger = $review.children('.new_review')
-      $review_icon = $review.find('.fa-pencil');
+  var $actions     = $('#thing_actions .actions'),
+      $actionOwn   = $actions.find('.owners'),
+      $actionWrite = $actions.find('.write_feeling');
 
-  $own.html("<%=j render('own', tp: tp) %>");
-
-  if ($own.children('a').hasClass('owned')) {
-    $review_icon.addClass('rotate');
-    $review_trigger.tooltip('show');
-    setTimeout(function() {
-      $review_trigger.tooltip('destroy');
-    }, 5000);
-  } else {
-    $review_icon.removeClass('rotate');
+  $actionOwn.html("<%=j render('own', tp: tp) %>");
+  if ($html.hasClass('cssanimations') &&
+      $actionOwn.children('a').hasClass('owned')) {
+    $actionWrite.find('.fa')
+      .on(Making.prefixEvent('AnimationEnd'), function(event) {
+        $(this).removeClass('flip');
+      }).addClass('flip');
   }
 <% end %>
