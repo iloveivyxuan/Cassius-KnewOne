@@ -20,25 +20,7 @@ do (exports = window.Making || {}) ->
         .on 'load', ->
           $window.trigger('hashchange')
 
-      $tags.on 'click', 'a', (event) ->
-        $this = $(@)
-
-        slug = $.trim($(@).data('slug'))
-
-        $.ajax
-          url: "/settings/interests/#{slug}"
-          method: 'patch'
-
-        if !$this.hasClass('is-active')
-          if !cache[slug]
-            cache[slug] = $.ajax
-                              url: "/things/category/#{slug}?sort_by=fanciers_count"
-                              dataType: 'html'
-                              data:
-                                per: 12
-          cache[slug]
-            .done (data, status, jqXHR) ->
-              $things.empty().append(data)
+      exports.selectCategories('#step2', '#step2 .things')
 
       $('.js-friendship')
         .on 'click', '.js-friendship-follow-all', (event) ->

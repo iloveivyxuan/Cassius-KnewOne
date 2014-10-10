@@ -92,4 +92,25 @@ do (root = @, exports = Making) ->
         $('#login-modal').find('[name="redirect_from"]').val(redirectFrom)
         $window.off 'scroll.login'
 
+  exports.selectCategories = (tags, container) ->
+    $(tags).find('.tags').on 'click', 'a', (event) ->
+      $this = $(@)
+
+      slug = $.trim($(@).data('slug'))
+
+      $.ajax
+        url: "/settings/interests/#{slug}"
+        method: 'patch'
+
+      if !$this.hasClass('is-active')
+        if !cache[slug]
+          cache[slug] = $.ajax
+            url: "/things/category/#{slug}?sort_by=fanciers_count"
+            dataType: 'html'
+            data:
+              per: 12
+        cache[slug]
+          .done (data, status, jqXHR) ->
+            $(container).empty().append(data)
+
   return exports
