@@ -36,7 +36,7 @@ class ReviewsController < ApplicationController
   def create
     # review whose content is less than 140 will be transformed to feeling.
     review_content = ActionView::Base.full_sanitizer.sanitize(@review.content)
-    if review_content.size < 140
+    if !images_inside? && !iframe_inside? && (review_content.size < 140)
       @feeling = Feeling.new
       %w(title score thing).each { |attr| @feeling[attr] = @review[attr] }
       @feeling.content = review_content
@@ -123,5 +123,13 @@ class ReviewsController < ApplicationController
     permit_attrs = [:title, :content, :score]
     permit_attrs.concat [:is_top, :author] if current_user && current_user.role?(:editor)
     params.require(:review).permit permit_attrs
+  end
+
+  def images_inside?
+    !Nokogiri::HTML(@review.content).xpath("//img").empty?
+  end
+
+  def iframe_inside?
+    !Nokogiri::HTML(@review.content).xpath("//iframe").empty?
   end
 end

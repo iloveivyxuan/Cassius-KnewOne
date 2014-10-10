@@ -54,8 +54,10 @@
       placeholder: '正文',
       beforeSubmit: function(event) {
         var content = $($('[name="review[content]"]').val()).text();
-        if (content.length < 140) {
-          return confirm('您的评测不足 140 字，想要把正文内容转化为短评来发布吗？');
+        var iframe_inside = $("iframe").length != 0;
+        var img_inside = $('#form-review-body').find('img').length != 0;
+        if (!iframe_inside && !img_inside && (content.length < 140)) {
+          return confirm('您的评测不足 140 字，且不包含图片和视频，想要把正文内容转化为短评来发布吗？');
         }
       }
     });
