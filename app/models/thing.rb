@@ -126,10 +126,8 @@ class Thing < Post
   end
 
   def tags_text=(text)
-    self.tags.clear
-
-    text.split(",").each do |tag_name|
-      self.tags <<  Tag.find_or_create_by(name: tag_name)
+    self.tags = text.split(',').map do |tag_name|
+      Tag.find_or_create_by(name: tag_name)
     end
   end
 
