@@ -12,6 +12,18 @@
   100% {@include transform(rotate(360deg));}
 }
 
+// Flip
+// --------------------------------------------------------------------------
+.flip {
+  @include animation-name(flip);
+  @include animation-duration(.5s);
+}
+
+@include keyframes(flip) {
+  0% {@include transform(rotateY(0deg));}
+  100% {@include transform(rotateY(360deg));}
+}
+
 
 // Heartbeat
 // --------------------------------------------------------------------------
