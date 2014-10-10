@@ -7,7 +7,7 @@
   if ($html.hasClass('cssanimations') &&
       $actionOwn.children('a').hasClass('owned')) {
     $actionWrite.find('.fa')
-      .on(Making.prefixEvent('AnimationEnd'), function(event) {
+      .one(Making.prefixEvent('AnimationEnd'), function(event) {
         $(this).removeClass('flip');
       }).addClass('flip');
   }
