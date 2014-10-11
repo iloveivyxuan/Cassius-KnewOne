@@ -38,6 +38,7 @@ html class=page_class lang="zh-CN"
     = render 'layouts/fulfill_info'
     = render 'shared/private_message'
     = render 'shared/share_modal'
+    = yield :end
     .site_maps.hidden
       = link_to '产品', maps_things_path
       = link_to '评测', maps_reviews_path
