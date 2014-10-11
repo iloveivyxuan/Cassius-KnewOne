@@ -1,13 +1,26 @@
-= simple_form_for @address, html: {class: 'form'} do |f|
+- province = '440000'
+- city = '440300'
+- district = '440305'
+
+= simple_form_for @address, html: {class: 'form city-group'} do |f|
   = hidden_field_tag :redirect_from, params[:redirect_from]
-  .form-group.select.required.address_province
-    label.select.required.control-label for="address_province"
-      abbr title="required" *
-      | 省/直辖市
-    = f.select :province, options_for_select(Province.keys), {prompt: '请选择所在省/直辖市'}, class: 'select form-control'
+  .form-group
+    label for="address_province"
+      abbr title="require" *
+      |  省/直辖市
+    = f.select :province, options_for_select(ChinaCity.list, province), {prompt: '- 省/直辖市 -'}, class: 'form-control city-select', required: true
     p.help-block
-      small * 我们暂不能为港澳台用户提供服务。
-  = f.input :district, required: true
+      small 我们暂不能为港澳台用户提供服务。
+  .form-group
+    label for="address_city"
+      abbr title="require" *
+      |  城市
+    = f.select :city, options_for_select(ChinaCity.list(province), city), {prompt: '- 城市 -'}, class: 'form-control city-select', required: true
+  .form-group
+    label for="address_district"
+      abbr title="require" *
+      |  地区
+    = f.select :district, options_for_select(ChinaCity.list(city), district), {prompt: '- 地区 -'}, class: 'form-control city-select', required: true
   = f.input :street, required: true
   = f.input :name, required: true
   = f.input :phone, required: true

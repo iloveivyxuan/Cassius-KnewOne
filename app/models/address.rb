@@ -2,6 +2,7 @@ class Address
   include Mongoid::Document
   field :province, type: String
   field :district, type: String
+  field :city, type: String
   field :street, type: String
   field :name, type: String
   field :phone, type: String
