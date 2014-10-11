@@ -11,6 +11,7 @@ class Making.Views.CommentsIndex extends Backbone.View
     @render()
 
     if @commentId || @getCommentsCount() == 0
+      @$('ul').empty()
       @fetch(@commentId)
 
   fetch: (fromId) =>
