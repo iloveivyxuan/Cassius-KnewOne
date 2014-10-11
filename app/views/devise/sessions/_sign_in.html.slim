@@ -14,7 +14,7 @@
     div
       #remember_me.checkbox
         label
-          = f.check_box :remember_me
+          = f.check_box :remember_me, checked: true
           | 记住我
       = link_to new_user_password_path
         i.fa.fa-question-circle
