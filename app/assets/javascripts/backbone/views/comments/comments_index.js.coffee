@@ -1,6 +1,6 @@
 class Making.Views.CommentsIndex extends Backbone.View
   events:
-    'submit #create_comment': 'create'
+    'submit .comment_form': 'create'
     'click .comments_more': 'fetch'
     'click .reply': 'reply'
 
@@ -97,7 +97,7 @@ class Making.Views.CommentsIndex extends Backbone.View
 
     $target = $(event.currentTarget)
     authorName = $target.siblings('.author_name').text()
-    $textarea = $target.closest('.comments').find('form#create_comment textarea')
+    $textarea = $target.closest('.comments').find('.comment_form textarea')
     $textarea
       .focus()
       .val($textarea.val() + " @#{authorName} ")
