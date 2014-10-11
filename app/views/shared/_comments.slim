@@ -31,7 +31,8 @@
 
     ul
       - unless lazy
-        = render post.comments.limit(Settings.comments.per_page)
+        - cache_unless user_signed_in?, ['comments', post.comments.first]
+          = render post.comments.limit(Settings.comments.per_page)
 
     button.btn.btn-info.comments_more.is-hidden.pull-right type="button"
       i.fa
