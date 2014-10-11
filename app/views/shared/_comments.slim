@@ -1,6 +1,38 @@
-= content_tag :aside, "", id: id, data: {signin: user_signed_in?,
-  auth: auth,
-  url: post.is_a?(Post) ? post_comments_path(post) : thing_list_comments_path(post),
-  title: post.is_a?(Post) ? '回复' : '评论',
-  count: post.comments.count,
-  per: Settings.comments.per_page}
+- lazy = false unless defined?(lazy)
+- title = post.is_a?(Post) ? '回复' : '评论'
+- disabled = !(auth && user_signed_in?)
+- if disabled
+  - if auth
+    - placeholder = "需要您登录之后才可以#{title}"
+  - else
+    - placeholder = "只有小组成员才能#{title}"
+- else
+  - placeholder = "#{title}（不超过300字）"
+
+= content_tag :aside, id: id,
+  data: {url: post.is_a?(Post) ? post_comments_path(post) : thing_list_comments_path(post),
+         count: post.comments.count,
+         per: Settings.comments.per_page}
+  .comments
+    h4
+      i.fa.fa-comments-o
+      = title
+
+    form#create_comment.comment_form
+      .controls
+        textarea.form-control[name="comment_content" rows="3" maxlength="300"
+          placeholder=placeholder required=true disabled=disabled]
+
+      button.btn.btn--blue.pull-right[type="submit" disabled=disabled
+        data-toggle="tooltip" data-placement="bottom"
+        title="按 Command + Enter 或 Control + Enter 键发布回复"]
+        i.fa.fa-comments-o
+        = title
+
+    ul
+      - unless lazy
+        = render post.comments.limit(Settings.comments.per_page)
+
+    button.btn.btn-info.comments_more.is-hidden.pull-right type="button"
+      i.fa
+      = "更早的#{title}..."

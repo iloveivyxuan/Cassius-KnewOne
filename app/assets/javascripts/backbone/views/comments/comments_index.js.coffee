@@ -1,7 +1,4 @@
 class Making.Views.CommentsIndex extends Backbone.View
-
-  template: HandlebarsTemplates['comments/index']
-
   events:
     'submit #create_comment': 'create'
     'click .comments_more': 'fetch'
@@ -12,7 +9,9 @@ class Making.Views.CommentsIndex extends Backbone.View
     @anchor    = @getAnchor()
     @commentId = @getCommentId()
     @render()
-    @fetch(@commentId)
+
+    if @commentId || @getCommentsCount() == 0
+      @fetch(@commentId)
 
   fetch: (fromId) =>
     if typeof fromId is 'string'
@@ -41,24 +40,9 @@ class Making.Views.CommentsIndex extends Backbone.View
     )
 
   render: =>
-    @$el.html @template
-      title: @$el.data('title')
-
     Making.AtUser('.comments textarea')
     @$submit = @$('[type="submit"]')
-
-    @disableForm() unless @$el.data("signin") and @$el.data("auth")
     this
-
-  disableForm: =>
-    if @$el.data('auth')
-      placeholder = "需要您登录之后才可以#{@$el.data('title')}"
-    else
-      placeholder = "只有小组成员才能#{@$el.data('title')}"
-
-    $('#create_comment')
-      .find('textarea').prop('placeholder', placeholder).end()
-      .find('textarea,button').prop('disabled', true).addClass('disabled')
 
   create: (e) ->
     e.preventDefault()
