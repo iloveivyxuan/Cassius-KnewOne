@@ -1,8 +1,9 @@
-- if can? :update, post
-  span.post_actions
+span.post_actions
+  - if can? :update, post
     = link_to edit_post_path, title: "编辑文章"
       i.fa.fa-edit
       span.hidden-xs 编辑
+  - if can? :destroy, post
     = link_to post_path, method: :delete, title: "删除文章", data: {confirm: "您确定要删除文章吗?"}
       i.fa.fa-trash-o
       span.hidden-xs 删除
