@@ -34,6 +34,7 @@
         - cache_unless user_signed_in?, ['comments', post.comments.first]
           = render post.comments.limit(Settings.comments.per_page)
 
-    button.btn.btn-info.comments_more.is-hidden.pull-right type="button"
-      i.fa
-      = "更早的#{title}..."
+    - if post.comments.count > Settings.comments.per_page
+      button.btn.btn-info.comments_more.pull-right type="button"
+        i.fa
+        = "更早的#{title}..."

@@ -32,11 +32,7 @@ class Making.Views.CommentsIndex extends Backbone.View
         @jumpToAnchor()
         @anchor = ''
 
-      @$more = @$('.comments_more')
-      if @getCommentsCount() < @$el.data('count')
-        @$more.removeClass('is-hidden')
-      else
-        @$more.remove()
+      @$('.comments_more').remove() if @getCommentsCount() == @$el.data('count')
     )
 
   render: =>
