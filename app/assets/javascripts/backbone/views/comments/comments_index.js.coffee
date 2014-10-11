@@ -25,9 +25,9 @@ class Making.Views.CommentsIndex extends Backbone.View
       data
       beforeSend: => @$('ul').append(HandlebarsTemplates['shared/loading'])
     }).success((html) =>
-      @$('ul').append(html)
-
       $('.spinning').remove()
+
+      @$('ul').append(html)
 
       if @anchor.length > 0
         @jumpToAnchor()
