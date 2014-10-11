@@ -163,7 +163,7 @@ Making::Application.routes.draw do
   end
 
   resources :posts, only: [] do
-    resources :comments
+    resources :comments, only: [:index, :create, :destroy]
   end
 
   resources :articles, only: [] do

@@ -1,0 +1,23 @@
+- author = comment.author
+
+li
+  article.comment
+    a.anchor--hidden id="comment-#{comment.id}"
+
+    .avatar
+      = link_to author, data: {'popover-profile' => author.id.to_s}
+        = user_avatar(author)
+
+    header.author
+      = link_to author.name, author, class: 'author_name'
+      = time_ago_tag comment.created_at
+      - if can?(:create, comment)
+        a.reply href="#" title="回复"
+          i.fa.fa-reply
+      - if can?(:destroy, comment)
+        = link_to comment.post ? post_comment_path(comment.post, comment) : [comment.thing_list, comment],
+          method: :delete, remote: true,
+          class: 'destroy', title: '删除', data: {confirm: '您确定要删除吗？'}
+          i.fa.fa-trash-o
+
+    section = comment_content(comment)

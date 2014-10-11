@@ -1,89 +1,79 @@
 class Making.Views.CommentsIndex extends Backbone.View
-
-  template: HandlebarsTemplates['comments/index']
-
   events:
-    'submit #create_comment': 'create'
+    'submit .comment_form': 'create'
     'click .comments_more': 'fetch'
+    'click .reply': 'reply'
 
-  initialize: ->
-    @page      = 1
+  initialize: ({url}) ->
+    @url       = url
     @anchor    = @getAnchor()
     @commentId = @getCommentId()
     @render()
-    @collection.on
-      add: @prepend
-      reset: (comments) =>
-        comments.each @append
-        if @anchor.length > 0
-          @jumpToAnchor()
-          @anchor = ''
-    @fetch(@commentId)
+
+    if @commentId || @getCommentsCount() == 0
+      @$('ul').empty()
+      @fetch(@commentId)
 
   fetch: (fromId) =>
     if typeof fromId is 'string'
       data = {from_id: fromId}
-      @page++
     else
-      data = {page: @page++}
-    @collection.fetch
-      reset: true
-      data: data
-      beforeSend: =>
-        @$('ul').append(HandlebarsTemplates['shared/loading'])
+      data = {page: @getNextPageNumber()}
+
+    $.ajax({
+      url: @url
+      data
+      beforeSend: => @$('ul').append(HandlebarsTemplates['shared/loading'])
+    }).success((html) =>
+      $('.spinning').remove()
+
+      @$('ul').append(html)
+
+      if @anchor.length > 0
+        @jumpToAnchor()
+        @anchor = ''
+
+      if !html || @getCommentsCount() >= @$el.data('count')
+        @$('.comments_more').remove()
+    )
 
   render: =>
-    @$el.html @template
-      title: @$el.data('title')
-
     Making.AtUser('.comments textarea')
     @$submit = @$('[type="submit"]')
-
-    @disableForm() unless @$el.data("signin") and @$el.data("auth")
     this
-
-  disableForm: =>
-    if @$el.data('auth')
-      placeholder = "需要您登录之后才可以#{@$el.data('title')}"
-    else
-      placeholder = "只有小组成员才能#{@$el.data('title')}"
-
-    $('#create_comment')
-      .find('textarea').prop('placeholder', placeholder).end()
-      .find('textarea,button').prop('disabled', true).addClass('disabled')
 
   create: (e) ->
     e.preventDefault()
     @$submit.disable()
-    @collection.create
-      content: @$('textarea').val()
-    ,
-      wait: true
-      success: =>
-        @$('textarea').val("")
-        $comments_count = @$el.parents('.feed_article, .feed-feeling').find('.comments_count, .comments-count')
 
-        if $comments_count.length == 0
-          $comments_count = $('<span class="comments_count"></span>')
-          $comments_count.appendTo(@$el.parents('.feed_article').find('.comments_toggle'))
+    $.ajax({
+      url: @url
+      type: 'POST'
+      data: {comment: {content: @$('textarea').val()}}
+    }).success((html) =>
+      @prepend(html)
 
-        initial = parseInt($comments_count.text())
-        result = if isNaN(initial) then 1 else initial + 1
-        $comments_count.text(result)
-        @$submit.enable()
+      @$('textarea').val("")
+      $comments_count = @$el.parents('.feed_article, .feed-feeling').find('.comments_count, .comments-count')
 
-  append: (comment) =>
-    view = new Making.Views.Comment(model: comment)
-    view.render().$el.hide().appendTo(@$('ul')).fadeIn()
-    @$more = @$('.comments_more')
-    if @$('ul li').length < @$el.data('count')
-      @$more.removeClass('is-hidden')
-    else
-      @$more.remove()
+      if $comments_count.length == 0
+        $comments_count = $('<span class="comments_count"></span>')
+        $comments_count.appendTo(@$el.parents('.feed_article').find('.comments_toggle'))
 
-  prepend: (comment) =>
-    view = new Making.Views.Comment(model: comment)
-    view.render().$el.hide().prependTo(@$('ul')).fadeIn()
+      initial = parseInt($comments_count.text())
+      result = if isNaN(initial) then 1 else initial + 1
+      $comments_count.text(result)
+      @$submit.enable()
+    )
+
+  prepend: (html) =>
+    $(html).hide().prependTo(@$('ul')).fadeIn()
+
+  getCommentsCount: ->
+    @$('ul > li').length
+
+  getNextPageNumber: ->
+    Math.floor(@getCommentsCount() / @$el.data('per')) + 1
 
   getAnchor: =>
     hash = location.hash
@@ -99,5 +89,15 @@ class Making.Views.CommentsIndex extends Backbone.View
 
   jumpToAnchor: =>
     $anchor = $("#{@anchor}")
-    $window.scrollTop($anchor.offset().top - 55)
+    $window.scrollTop($anchor.offset().top)
     $anchor.parent().addClass('is-targeted')
+
+  reply: (event) ->
+    event.preventDefault()
+
+    $target = $(event.currentTarget)
+    authorName = $target.siblings('.author_name').text()
+    $textarea = $target.closest('.comments').find('.comment_form textarea')
+    $textarea
+      .focus()
+      .val($textarea.val() + " @#{authorName} ")
