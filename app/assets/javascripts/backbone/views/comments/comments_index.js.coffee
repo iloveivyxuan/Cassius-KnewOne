@@ -24,8 +24,8 @@ class Making.Views.CommentsIndex extends Backbone.View
       url: @url
       data
       beforeSend: => @$('ul').append(HandlebarsTemplates['shared/loading'])
-    }).success((data) =>
-      @$('ul').append(data)
+    }).success((html) =>
+      @$('ul').append(html)
 
       $('.spinning').remove()
 
@@ -33,7 +33,7 @@ class Making.Views.CommentsIndex extends Backbone.View
         @jumpToAnchor()
         @anchor = ''
 
-      if !data || @getCommentsCount() >= @$el.data('count')
+      if !html || @getCommentsCount() >= @$el.data('count')
         @$('.comments_more').remove()
     )
 
