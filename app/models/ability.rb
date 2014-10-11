@@ -122,7 +122,10 @@ class Ability
     can :create, Topic do |topic|
       topic.group.has_member? user
     end
-    can [:update, :destroy], Topic do |topic|
+    can :update, Topic do |topic|
+      topic.author == user || topic.group.has_admin?(user)
+    end
+    can :destroy, Topic do |topic|
       topic.group.has_admin? user
     end
     can :vote, Topic do |topic|
