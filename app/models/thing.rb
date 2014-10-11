@@ -132,6 +132,7 @@ class Thing < Post
   end
 
   def brand_text=(text)
+    text.strip!
     if /[a-zA-Z0-9]/ =~ text
       brand = Brand.where(en_name: /^#{text}$/i).first
       brand ||= Brand.create(en_name: text)
