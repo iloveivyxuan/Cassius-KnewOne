@@ -68,7 +68,7 @@ class Making.Views.CommentsIndex extends Backbone.View
     $(html).hide().prependTo(@$('ul')).fadeIn()
 
   getCommentsCount: ->
-    @$('ul li').length
+    @$('ul > li').length
 
   getNextPageNumber: ->
     Math.floor(@getCommentsCount() / @$el.data('per')) + 1
