@@ -33,7 +33,8 @@ class Making.Views.CommentsIndex extends Backbone.View
         @jumpToAnchor()
         @anchor = ''
 
-      @$('.comments_more').remove() if @getCommentsCount() == @$el.data('count')
+      if !data || @getCommentsCount() >= @$el.data('count')
+        @$('.comments_more').remove()
     )
 
   render: =>
