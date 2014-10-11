@@ -1,7 +1,6 @@
 = content_tag :aside, "", id: id, data: {signin: user_signed_in?,
   auth: auth,
-  type: post.is_a?(Post) ? 'posts' : 'lists',
-  id: post.id.to_s,
+  url: post.is_a?(Post) ? post_comments_path(post) : thing_list_comments_path(post),
   title: post.is_a?(Post) ? '回复' : '评论',
   count: post.comments.count,
   per: Settings.comments.per_page}

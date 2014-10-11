@@ -95,11 +95,7 @@ do (exports = Making) ->
     Comments: (el) ->
       $ ->
         $el = $(el)
-        type = $el.data('type')
-        id = $el.data('id')
-        view = new Making.Views.CommentsIndex
-          url: "/#{type}/#{id}/comments"
-          el: el
+        view = new Making.Views.CommentsIndex({el, url: $el.data('url')})
         $el.data('comments', view)
 
     InfiniteScroll: (container, callback) ->
