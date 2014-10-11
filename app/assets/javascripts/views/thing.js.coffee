@@ -76,6 +76,7 @@ window.Making = do (exports = window.Making || {}) ->
 
     requireAddress = (required) ->
       $(['#adoption_address_province'
+         '#adoption_address_city'
          '#adoption_address_district'
          '#adoption_address_street'
          '#adoption_address_name'

@@ -27,6 +27,7 @@ Making.OrderPage =
 
       requireAddress = (required) ->
         $(['#order_address_province'
+           '#order_address_city'
            '#order_address_district'
            '#order_address_street'
            '#order_address_name'
