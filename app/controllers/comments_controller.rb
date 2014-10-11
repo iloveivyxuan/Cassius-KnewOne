@@ -13,13 +13,11 @@ class CommentsController < ApplicationController
 
     comment = @comments.where(id: params[:from_id]).first
     if comment
-      comments_from_created_at = @comments.gte(created_at: comment.created_at)
-    end
-
-    if !comment || comments_from_created_at.size < Settings.comments.per_page
-      @comments = @comments.page(params[:page]).per(Settings.comments.per_page)
+      offset = @comments.gte(created_at: comment.created_at).size
+      limit = (offset.to_f / Settings.comments.per_page).ceil * Settings.comments.per_page
+      @comments = @comments.limit(limit)
     else
-      @comments = comments_from_created_at
+      @comments = @comments.page(params[:page]).per(Settings.comments.per_page)
     end
 
     respond_with @comments

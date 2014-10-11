@@ -9,7 +9,6 @@ class Making.Views.CommentsIndex extends Backbone.View
 
   initialize: ({url}) ->
     @url       = url
-    @page      = 1
     @anchor    = @getAnchor()
     @commentId = @getCommentId()
     @render()
@@ -18,9 +17,8 @@ class Making.Views.CommentsIndex extends Backbone.View
   fetch: (fromId) =>
     if typeof fromId is 'string'
       data = {from_id: fromId}
-      @page++
     else
-      data = {page: @page++}
+      data = {page: @getNextPageNumber()}
 
     $.ajax({
       url: @url
@@ -34,7 +32,7 @@ class Making.Views.CommentsIndex extends Backbone.View
         @anchor = ''
 
       @$more = @$('.comments_more')
-      if @$('ul li').length < @$el.data('count')
+      if @getCommentsCount < @$el.data('count')
         @$more.removeClass('is-hidden')
       else
         @$more.remove()
@@ -86,6 +84,12 @@ class Making.Views.CommentsIndex extends Backbone.View
 
   prepend: (html) =>
     $(html).hide().prependTo(@$('ul')).fadeIn()
+
+  getCommentsCount: ->
+    @$('ul li').length
+
+  getNextPageNumber: ->
+    Math.floor(@getCommentsCount() / @$el.data('per')) + 1
 
   getAnchor: =>
     hash = location.hash
