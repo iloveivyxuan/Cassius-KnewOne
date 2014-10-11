@@ -642,9 +642,6 @@ html.feelings_show {
         max-height: 200px;
         overflow: hidden;
       }
-      p {
-        font-size: 14px;
-      }
       a:not(.btn) {
         color: $blue-dark;
         &:hover { color: $blue-bright }
@@ -2102,7 +2099,6 @@ html.feelings_show {
     .post_content {
       padding: 2em 2em 0;
       margin-bottom: 0;
-      font-size: 14px;
 
       @include MQ(Mplus) { padding-top: 3em }
 
