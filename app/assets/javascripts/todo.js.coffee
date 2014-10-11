@@ -93,10 +93,10 @@ do (exports = Making) ->
       $modal.on("submit form", -> $modal.modal("hide"))
 
     Comments: (el) ->
-      $ ->
-        $el = $(el)
-        view = new Making.Views.CommentsIndex({el, url: $el.data('url')})
-        $el.data('comments', view)
+      $el = $(el)
+      unless $el.data('comments')
+        new Making.Views.CommentsIndex({el, url: $el.data('url')})
+        $el.data('comments', true)
 
     InfiniteScroll: (container, callback) ->
       $('.pagination').hide()
