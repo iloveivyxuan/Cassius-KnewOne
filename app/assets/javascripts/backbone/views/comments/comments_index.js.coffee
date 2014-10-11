@@ -27,12 +27,14 @@ class Making.Views.CommentsIndex extends Backbone.View
     }).success((data) =>
       @$('ul').append(data)
 
+      $('.spinning').remove()
+
       if @anchor.length > 0
         @jumpToAnchor()
         @anchor = ''
 
       @$more = @$('.comments_more')
-      if @getCommentsCount < @$el.data('count')
+      if @getCommentsCount() < @$el.data('count')
         @$more.removeClass('is-hidden')
       else
         @$more.remove()
@@ -105,7 +107,7 @@ class Making.Views.CommentsIndex extends Backbone.View
 
   jumpToAnchor: =>
     $anchor = $("#{@anchor}")
-    $window.scrollTop($anchor.offset().top - 55)
+    $window.scrollTop($anchor.offset().top)
     $anchor.parent().addClass('is-targeted')
 
   reply: (event) ->
