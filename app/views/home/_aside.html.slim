@@ -14,7 +14,7 @@ section.tags
     header
       h2
         | 已订阅的分类
-        = link_to_with_icon "", 'fa fa-gear', "#", data: {toggle: "modal", target: "#categories-modal"}
+        = link_to_with_icon "", 'fa fa-gear', "#", id: "manage_categories", data: {toggle: "modal", target: "#categories-modal"}
     section
       = render current_user.categories
   - else

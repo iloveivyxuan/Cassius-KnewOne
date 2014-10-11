@@ -43,6 +43,15 @@
   }
 }
 
+a#manage_categories {
+  text-decoration: none;
+  color: $gray;
+
+  > i {
+    margin-left: 3px;
+  }
+}
+
 // Deprecated.
 .tag, .tags {
 
