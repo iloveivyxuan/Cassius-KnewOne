@@ -95,9 +95,9 @@ class Making.Views.CommentsIndex extends Backbone.View
   reply: (event) ->
     event.preventDefault()
 
-    authorName = $(event.currentTarget).siblings('.author_name').text()
-    $textarea = $('form#create_comment textarea')
-
+    $target = $(event.currentTarget)
+    authorName = $target.siblings('.author_name').text()
+    $textarea = $target.closest('.comments').find('form#create_comment textarea')
     $textarea
       .focus()
       .val($textarea.val() + " @#{authorName} ")
