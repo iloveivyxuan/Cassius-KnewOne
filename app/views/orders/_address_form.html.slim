@@ -1,7 +1,3 @@
-- province = '440000'
-- city = '440300'
-- district = '440305'
-
 li.radio
   label
     = f.radio_button :address_id, :new, class: 'order_address_radio', checked: current_user.addresses.empty?
@@ -11,11 +7,11 @@ li.radio
     = f.fields_for :address do |address_form|
       .row
         .form-group.select.address_province.col-xs-12.col-md-4
-          = address_form.select :province, options_for_select(ChinaCity.list, province), {prompt: '- 省/直辖市 -'}, class: 'form-control city-select', required: false
+          = address_select address_form, address_form.object, :province, class: 'form-control city-select', required: false
         .form-group.col-xs-12.col-md-4
-          = address_form.select :city, options_for_select(ChinaCity.list(province), city), {prompt: '- 城市 -'}, class: 'form-control city-select', required: false
+          = address_select address_form, address_form.object, :city, class: 'form-control city-select', required: false
         .form-group.col-xs-12.col-md-4
-          = address_form.select :district, options_for_select(ChinaCity.list(city), district), {prompt: '- 地区 -'}, class: 'form-control city-select', required: false
+          = address_select address_form, address_form.object, :district, class: 'form-control city-select', required: false
       .row
         .col-xs-12.col-md-6
           = address_form.input :street, required: false, label: false, placeholder: '街道地址'

@@ -33,7 +33,7 @@
 //= require jquery.menu-aim
 //= require editable/bootstrap-editable
 //= require editable/rails
-//= require china_city/jquery.china_city
+//= require jquery.china_city
 //= require_tree ../templates
 //= require base
 //= require todo
