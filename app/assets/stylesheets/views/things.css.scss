@@ -121,6 +121,7 @@ html.feelings_show {
           position: absolute;
           top: 2em;
           right: 0;
+          width: 20px;
           width: calc(10% - 1em);
           margin-right: 3em;
           @include MQ(Mplus) { margin-right: 2em }
