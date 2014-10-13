@@ -96,10 +96,21 @@
   }
 
   @media screen and (max-width: $screen-xs-max) {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+
+    // Reset clearfix
+    &:before,
+    &:after {
+      content: none;
+    }
+
     > li {
       display: table-cell;
-      width: 1%;
+      width: auto;
       float: none;
+
       > a {
         margin-bottom: 0;
         i { margin: 0; }
