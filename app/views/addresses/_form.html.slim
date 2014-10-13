@@ -4,19 +4,19 @@
     label for="address_province"
       abbr title="require" *
       |  省/直辖市
-    = address_select f, @address, :province, class: 'form-control city-select', required: false
+    = address_select f, @address, :province, class: 'form-control city-select', required: true
     p.help-block
       small 我们暂不能为港澳台用户提供服务。
   .form-group
     label for="address_city"
       abbr title="require" *
       |  城市
-    = address_select f, @address, :city, class: 'form-control city-select', required: false
+    = address_select f, @address, :city, class: 'form-control city-select', required: true
   .form-group
     label for="address_district"
       abbr title="require" *
       |  地区
-    = address_select f, @address, :district, class: 'form-control city-select', required: false
+    = address_select f, @address, :district, class: 'form-control city-select', required: true
   = f.input :street, required: true
   = f.input :name, required: true
   = f.input :phone, required: true
