@@ -9,7 +9,8 @@
         select_index = $selects.index($this)+1
         select = $selects.eq(select_index)
         # clear children's options
-        $selects.slice($selects.index(@) + 1).html('')
+        $selects.slice($selects.index(@) + 1).each ->
+          $(@).children().slice(1).remove()
         # when select value not empty
         if select[0] and $(@).val()
           $.get "/china_city/" + $(@).val(), (data) ->

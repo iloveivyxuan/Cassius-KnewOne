@@ -129,7 +129,7 @@ class Order
     self.address = if self.address_id
                      self.user.addresses.where(id: self.address_id).first
                    else
-                     self.user.addresses.build
+                     Address.new
                    end
 
     self.invoice = self.user.invoices.where(id: self.invoice_id).first if self.invoice_id
