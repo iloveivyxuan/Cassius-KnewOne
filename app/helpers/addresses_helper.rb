@@ -5,10 +5,14 @@ module AddressesHelper
     district: '- 地区 -'
   }
 
+  CITY_PLACEHOLDER = %w(市辖区 县)
+
   def content_for_address(address)
     return '' unless address
 
-    content = "#{address.province}#{address.district}#{address.street}, #{address.name}"
+    city = (address.city.present? && !CITY_PLACEHOLDER.include?(address.city)) ? address.city : ''
+
+    content = "#{address.province}#{city}#{address.district}#{address.street}, #{address.name}"
     content += ", #{address.zip_code}" if address.zip_code.present?
     content += ", #{address.phone}"
     content
