@@ -7,11 +7,11 @@ li.radio
     = f.fields_for :address do |address_form|
       .row
         .form-group.select.address_province.col-xs-12.col-md-4
-          = address_select address_form, address_form.object, :province, class: 'form-control city-select', required: false
+          = address_select address_form, f.object.address, :province, class: 'form-control city-select', required: false
         .form-group.col-xs-12.col-md-4
-          = address_select address_form, address_form.object, :city, class: 'form-control city-select', required: false
+          = address_select address_form, f.object.address, :city, class: 'form-control city-select', required: false
         .form-group.col-xs-12.col-md-4
-          = address_select address_form, address_form.object, :district, class: 'form-control city-select', required: false
+          = address_select address_form, f.object.address, :district, class: 'form-control city-select', required: false
       .row
         .col-xs-12.col-md-6
           = address_form.input :street, required: false, label: false, placeholder: '街道地址'

@@ -186,6 +186,6 @@ class OrdersController < ApplicationController
     params.require(:order).
         permit(:note, :address_id, :invoice_id, :auto_owning,
                :coupon_code_id, :use_balance, :use_sf, :buy_as_gift, :bong_delivery,
-               address: [:province, :district, :street, :name, :phone, :zip_code, :default])
+               address: [:province_code, :city_code, :district_code, :street, :name, :phone, :zip_code, :default])
   end
 end
