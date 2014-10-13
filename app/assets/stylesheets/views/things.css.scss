@@ -99,6 +99,7 @@ html.feelings_show {
     .feed_article {
       width: 100%;
       padding-left: 23%;
+      padding-right: 23%;
       padding-right: calc(13% + 2em);
       background: #fff;
 
@@ -608,9 +609,11 @@ html.feelings_show {
         }
       }
       .author_name {
+        padding-left: 80px;
         padding-left: calc(65px + 1em);
         padding-right: 1em;
         @include MQ(Splus) {
+          padding-left: 93px;
           padding-left: calc(65px + 2em);
           padding-right: 2em;
         }
