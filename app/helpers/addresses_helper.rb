@@ -31,11 +31,11 @@ module AddressesHelper
     when :city
       f.select :city_code,
                options_for_select(ChinaCity.list(address.province_code), address.city_code),
-               {prompt: '- 城市 -'}, options
+               {prompt: '- 城市 -', include_blank: true}, options
     when :district
       f.select :district_code,
                options_for_select(ChinaCity.list(address.city_code), address.district_code),
-               {prompt: '- 地区 -'}, options
+               {prompt: '- 地区 -', include_blank: true}, options
     else
       ''
     end
