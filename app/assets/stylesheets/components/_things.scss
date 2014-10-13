@@ -213,7 +213,7 @@ article.thing {
     .user_avatar,
     .shopping {
       float: left;
-      max-width: 50%;
+      max-width: 43%;
       @include text-overflow;
       > a {color: $gray;}
     }
@@ -225,7 +225,7 @@ article.thing {
 
     .interactions {
       float: right;
-      max-width: 50%;
+      max-width: 57%;
       @include text-overflow;
       margin-top: 5px;
 
