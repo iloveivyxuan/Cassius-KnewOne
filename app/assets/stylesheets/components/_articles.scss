@@ -466,7 +466,11 @@ form.edit_post {
     embed,
     object,
     video {
-      vertical-align: middle;
+      display: block;
+      margin: {
+        left: auto;
+        right: auto;
+      }
       width: 100%;
     }
 

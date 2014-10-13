@@ -465,14 +465,24 @@ do (exports = Making) ->
         console.log 'What happened?'
         return
 
+    # Post content video wrapper
+    $('.article > .body, .post_content')
+      .find('iframe, embed')
+      .filter ->
+        $this  = $(@)
+        result = true
+        src    = $this.attr('src')
+        # e.g. <embed src="http://www.xiami.com/widget/0_141236/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent"></embed>
+        if src.indexOf('www.xiami.com') > 0 and src.indexOf('singlePlayer') > 0
+          $this.css('width', $this.attr('width'))
+          result = false
+        return result
+      .addClass('embed-responsive-item')
+      .wrap('<div class="embed-responsive embed-responsive-16by9"></div>')
+
     # Screen MD below
     if Modernizr.mq('(max-width: ' + Making.Breakpoints.screenMDMax + ')')
       menu = new exports.View.Menu('#menu', 'body', '#menu_toggle')
-
-    # Post content video wrapper
-    $(".post_content, .article > .body")
-      .find("iframe, embed").addClass("embed-responsive-item")
-      .wrap( "<div class='embed-responsive embed-responsive-16by9'></div>" )
 
     # Screen MD
     if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')')
