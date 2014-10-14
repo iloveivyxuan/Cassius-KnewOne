@@ -506,6 +506,20 @@ html.landing {
     .explore_content_item { display:none }
     .explore_content_item.active { display:block }
 
+    .product {
+      
+      figcaption {
+        position: relative;
+
+        .price {
+          bottom: 0;
+          padding: 10px 0;
+          position: absolute;
+          right: 0;
+        }
+      }
+    }
+
     .product_1 {
       width: 100%;
       margin: 0 auto;

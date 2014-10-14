@@ -15,6 +15,7 @@ section class="product_#{index == 0 ? 1 : 2}"
             h5
               = thing.subtitle
         .product_detail
+          span.price = thing_presenter.price
           span
             i.fa.fa-heart-o
             = thing_presenter.fanciers_count
