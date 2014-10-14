@@ -1,5 +1,5 @@
 .form-group
   label for="order_address_id" * 收货地址
   ul.addresses.option_list
-    = render partial: 'orders/address_radio', collection: current_user.addresses, as: :address, locals: {f: f}
+    = render partial: 'orders/address_radio', collection: current_user.addresses.select(&:persisted?), as: :address, locals: {f: f}
     = render 'orders/address_form', f: f

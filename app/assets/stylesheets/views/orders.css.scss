@@ -270,6 +270,9 @@ html.orders_create,
   }
 
   #new_address {
-    padding-top: 0.5em;
+    padding: {
+      left: 20px;
+      top: 0.5em;
+    }
   }
 }
