@@ -21,7 +21,6 @@ class Address
   embedded_in :adoption
 
   validates :province, :city, :district, :street, :name, :phone, presence: true
-  validates_inclusion_of :province, in: Province.keys
 
   default_scope -> { where(:city.ne => nil).desc(:default) }
 

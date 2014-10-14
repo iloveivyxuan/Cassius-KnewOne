@@ -127,7 +127,7 @@ class Order
 
   after_build do
     self.address = if self.address_id
-                     self.user.addresses.where(id: self.address_id).first
+                     self.user.addresses.unscoped.where(id: self.address_id).first
                    else
                      Address.new
                    end

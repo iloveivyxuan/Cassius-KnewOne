@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Order, type: :model do
   let(:user) { create(:user, :with_cart_items, :with_addresses) }
-  let(:address) { user.addresses.first }
+  let(:address) { user.addresses.unscoped.first }
   let(:items_price) { user.cart_items.map(&:price).reduce(:+) }
 
   let(:order) { create(:order, user: user) }

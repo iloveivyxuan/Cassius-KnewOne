@@ -22,6 +22,7 @@ FactoryGirl.define do
   factory :address do
     user
     province '广东省'
+    city     '深圳市'
     district { Faker::Address.city }
     street   { Faker::Address.street_address }
     name     { Faker::Address.secondary_address }
