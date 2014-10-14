@@ -77,11 +77,11 @@ class ThingPresenter < PostPresenter
 
     if user_signed_in?
       link_to_with_icon "网购", "fa fa-location-arrow fa-lg", buy_thing_path(thing), title: title,
-      class: "btn btn--online_shopping btn-block buy_button track_event", target: "_blank", rel: 'nofollow',
+      class: "btn btn--online_shopping buy_button track_event", target: "_blank", rel: 'nofollow',
       data: data_with_buy_tracker("domestic", thing.title)
     else
       link_to_with_icon "请登录后网购", "fa fa-sign-in", "#",
-      class: "btn btn--login btn-block buy_button track_event",
+      class: "btn btn--login buy_button track_event",
       data: data_with_login_tracker("domestic", thing.title)
     end
   end
@@ -91,11 +91,11 @@ class ThingPresenter < PostPresenter
 
     if user_signed_in?
       link_to_with_icon "众筹", "fa fa-fire fa-lg", buy_thing_path(thing),
-      title: title, class: "btn btn--kick btn-block buy_button track_event", target: "_blank", rel: 'nofollow',
+      title: title, class: "btn btn--kick buy_button track_event", target: "_blank", rel: 'nofollow',
       data: data_with_buy_tracker("kick", thing.title)
     else
       link_to_with_icon "请登录后众筹", "fa fa-sign-in", "#",
-      class: "btn btn--login btn-block buy_button track_event",
+      class: "btn btn--login buy_button track_event",
       data: data_with_login_tracker("kick", thing.title)
     end
   end
@@ -105,11 +105,11 @@ class ThingPresenter < PostPresenter
 
     if user_signed_in?
       link_to_with_icon "海淘", "fa fa-plane fa-lg", buy_thing_path(thing),
-      title: title, class: "btn btn--blue_light btn-block buy_button track_event", target: "_blank", rel: 'nofollow',
+      title: title, class: "btn btn--blue_light buy_button track_event", target: "_blank", rel: 'nofollow',
       data: data_with_buy_tracker("abroad", thing.title)
     else
       link_to_with_icon "请登录后海淘", "fa fa-sign-in", "#",
-      class: "btn btn--login btn-block buy_button track_event",
+      class: "btn btn--login buy_button track_event",
       data: data_with_login_tracker("abroad", thing.title)
     end
   end

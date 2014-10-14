@@ -4,7 +4,9 @@
       #price.price= tp.price
     - if user_signed_in?
       = tp.render_shopping_desc
-    .buy.clearfix= tp.buy
+    .buy.clearfix
+      = tp.buy
+      = render 'things/help'
 
 - content_for :script
   javascript:
