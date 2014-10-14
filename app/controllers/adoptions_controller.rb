@@ -22,6 +22,7 @@ class AdoptionsController < ApplicationController
   private
 
   def adoption_params
-    params.require(:adoption).permit(:note, :thing, :address_id, address: [:province, :district, :street, :name, :phone, :zip_code, :default])
+    params.require(:adoption).permit(:note, :thing, :address_id,
+                                     address: [:province_code, :city_code, :district_code, :street, :name, :phone, :zip_code, :default])
   end
 end
