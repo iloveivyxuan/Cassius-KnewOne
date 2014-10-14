@@ -1,17 +1,30 @@
-#share_wechat.modal.fade
-  .modal-dialog
-    .modal-content
-      .modal-header
-        = button_tag type: 'button', class: 'close', data: {dismiss: "modal"} do
-          raw &times;
-        h5.modal-title
-          |请在微信中扫描以下二维码，然后您可以轻触屏幕右上角的
-          i.fa.fa-share<
-          |分享给朋友们
-      .modal-body
-        .qr-field
+- if browser.wechat?
+  #share_wechat.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          = button_tag type: 'button', class: 'close', data: {dismiss: "modal"} do
+            raw &times;
+          h5.modal-title
+            | 微信分享
+        .modal-body
+          | 点击右上角...分享
 
-- content_for :script do
-  javascript:
-    var url = document.URL.indexOf('#') > 0 ? Making.url : document.URL;
-    $('.qr-field').qrcode({render: 'image', ecLevel: 'L', text: url});
+- else
+  #share_wechat.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          = button_tag type: 'button', class: 'close', data: {dismiss: "modal"} do
+            raw &times;
+          h5.modal-title
+            |请在微信中扫描以下二维码，然后您可以轻触屏幕右上角的
+            i.fa.fa-share<
+            |分享给朋友们
+        .modal-body
+          .qr-field
+
+    - content_for :script do
+      javascript:
+        var url = document.URL.indexOf('#') > 0 ? Making.url : document.URL;
+        $('.qr-field').qrcode({render: 'image', ecLevel: 'L', text: url});

@@ -106,17 +106,26 @@ class PostPresenter < ApplicationPresenter
   end
 
   def link_to_share(klass = '', text = '分享')
-    link_to_with_icon text, "fa fa-share-alt",
-    user_signed_in? ? "#share_modal" : "#login-modal",
-    title: "分享", class: "#{klass} share_btn track_event",
-    data: {
-      toggle: 'modal',
-      content: share_content,
-      pic: share_pic(:huge),
-      preview_pic: share_pic(:small),
-      category: "share_internal_ready",
-      action: "share_internal_ready_#{post.class.to_s.downcase}",
-      label: "share_internal_ready_#{post.class.to_s.downcase}+#{path}"
-    }
+    if browser.wechat?
+      link_to_with_icon text, "fa fa-share-alt",
+                        "#share_wechat",
+                        title: "分享", class: "#{klass} share_btn track_event",
+                        data: {
+                          toggle: 'modal',
+                        }
+    else
+      link_to_with_icon text, "fa fa-share-alt",
+                        user_signed_in? ? "#share_modal" : "#login-modal",
+                        title: "分享", class: "#{klass} share_btn track_event",
+                        data: {
+                          toggle: 'modal',
+                          content: share_content,
+                          pic: share_pic(:huge),
+                          preview_pic: share_pic(:small),
+                          category: "share_internal_ready",
+                          action: "share_internal_ready_#{post.class.to_s.downcase}",
+                          label: "share_internal_ready_#{post.class.to_s.downcase}+#{path}"
+                        }
+    end
   end
 end
