@@ -20,7 +20,7 @@ class Address
   embedded_in :order
   embedded_in :adoption
 
-  validates :province, :city, :district, :street, :name, :phone, presence: true
+  validates :province, :district, :street, :name, :phone, presence: true
 
   default_scope -> { where(:city.ne => nil).desc(:default) }
 
