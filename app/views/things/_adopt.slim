@@ -5,7 +5,8 @@
   - else
     = button_tag "领养", type: "button", class: "btn btn--green btn-success buy_button",
     data: data_with_buy_tracker("adoption", tp.thing.title, {toggle: "modal", target: "#adoption-modal"})
-    = render 'shared/adoption_modal', tp: tp
+    - content_for :end do
+      = render 'shared/adoption_modal', tp: tp
 - else
   = link_to_with_icon "请登录后领养", "fa fa-sign-in", "#",
   class: "btn btn-info buy_button cart_login track_event",

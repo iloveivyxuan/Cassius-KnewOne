@@ -126,7 +126,12 @@ class Order
   scope :deal, -> { unscoped.in(state: [:confirmed, :shipped, :freed]).desc(:created_at) }
 
   after_build do
-    self.address = self.user.addresses.where(id: self.address_id).first if self.address_id
+    self.address = if self.address_id
+                     self.user.addresses.where(id: self.address_id).first
+                   else
+                     Address.new
+                   end
+
     self.invoice = self.user.invoices.where(id: self.invoice_id).first if self.invoice_id
     self.coupon_code = CouponCode.where(id: self.coupon_code_id).first if self.coupon_code_id
 

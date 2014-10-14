@@ -26,8 +26,9 @@ Making.OrderPage =
       )
 
       requireAddress = (required) ->
-        $(['#order_address_province'
-           '#order_address_district'
+        $(['#order_address_province_code'
+           '#order_address_city_code'
+           '#order_address_district_code'
            '#order_address_street'
            '#order_address_name'
            '#order_address_phone'].join(', ')).prop('required', required)
