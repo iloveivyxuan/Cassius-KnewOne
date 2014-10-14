@@ -7,16 +7,31 @@ html.home {
     padding: 0;
 
     > nav {
+      @include clearfix;
       margin: 15px 0;
 
       .nav {
         text-align: center;
       }
 
+      > a {
+        float: right;
+        padding: 5px 10px;
+      }
+
       @include breakpoint(md) {
         margin-top: 0;
         margin-left: 10em;
-        .nav {text-align: left;}
+        width: calc(66.6666666667% - 10em - 30px);
+        .nav {
+          float: left;
+          text-align: left;
+        }
+
+        > a {
+          line-height: 34px;
+          padding: 5px 10px;
+        }
       }
     }
 

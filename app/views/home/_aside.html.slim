@@ -17,11 +17,6 @@ section.tags
         = link_to_with_icon "", 'fa fa-gear', "#", id: "manage_categories", data: {toggle: "modal", target: "#categories-modal"}
     section
       = render current_user.categories
-  - else
-    header
-      h2
-        = button_tag "订阅分类", type: "button", class: "btn btn-default", data: { target: "#categories-modal", toggle: "modal" }
-  = render "categories_modal"
 
 section.recommended-users
   header
