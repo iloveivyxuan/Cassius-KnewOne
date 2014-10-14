@@ -1483,19 +1483,19 @@ html.feelings_show {
           color: $blue-bright;
           text-align: left;
         }
-        .submit {
+
+        .buy_button {
           float: left;
           width: 65%;
           margin-right: 4%;
           padding: 0;
-          .btn--buy {
-            width: 100%;
-            i {
-              margin-right: 10px;
-              vertical-align: -1px;
-            }
+
+          i {
+            margin-right: 10px;
+            vertical-align: -1px;
           }
         }
+
         .btn-group {
           float: left;
           width: 31%;
