@@ -16,7 +16,13 @@ html.home {
 
       > a {
         float: right;
-        padding: 5px 10px;
+        padding: 0 10px;
+        text-decoration: none;
+        margin-top: -34px;
+        color: #999999;
+        line-height: 34px;
+        font-size: 14px;
+        float: right;
       }
 
       @include breakpoint(md) {
@@ -29,8 +35,9 @@ html.home {
         }
 
         > a {
-          line-height: 34px;
           padding: 5px 10px;
+          float: right;
+          margin-top: -5px;
         }
       }
     }
@@ -362,5 +369,11 @@ html.home {
 
   .pagination {
     display: none;
+  }
+  #manage_categories {
+    text-decoration: none;
+    color: #999999;
+    font-size: 14px;
+    margin-left: 5px;
   }
 }
