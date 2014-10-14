@@ -6,8 +6,8 @@ class Address
   field :city_code, type: String
 
   field :province, type: String
-  field :district, type: String
   field :city, type: String
+  field :district, type: String
 
   field :street, type: String
   field :name, type: String
@@ -20,7 +20,7 @@ class Address
   embedded_in :order
   embedded_in :adoption
 
-  validates :province, :district, :street, :name, :phone, presence: true
+  validates :province, :city, :district, :street, :name, :phone, presence: true
   validates_inclusion_of :province, in: Province.keys
 
   default_scope -> { desc(:default, :created_at) }
