@@ -1,7 +1,7 @@
 - thing = tp.thing
 - thing_adopted_users = thing.adoptions.limit(15).map(&:user)
 
-= simple_form_for current_user.adoptions.build, html: {class: "modal fade", id: "adoption-modal", tabIndex:"-1", role: "dialog"}, remote: true do |f|
+= simple_form_for Adoption.new, html: {class: "modal fade", id: "adoption-modal", tabIndex:"-1", role: "dialog"}, remote: true do |f|
   .modal-dialog
     .modal-content
       .modal-header

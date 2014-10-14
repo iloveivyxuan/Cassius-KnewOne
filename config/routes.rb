@@ -456,6 +456,4 @@ Making::Application.routes.draw do
       post 'oauth/exchange_access_token', to: 'oauth#exchange_access_token'
     end
   end
-
-  mount ChinaCity::Engine => '/china_city'
 end

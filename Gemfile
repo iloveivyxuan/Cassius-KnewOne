@@ -60,7 +60,6 @@ gem 'modernizr-rails'
 gem 'jquery-fileupload-rails'
 gem 'handlebars_assets'
 gem 'x-editable-rails', github: 'werein/x-editable-rails'
-gem 'china_city'
 
 # stylesheets
 gem 'sass-rails', '~> 4.0.3' # Resolve dependency with sprocket

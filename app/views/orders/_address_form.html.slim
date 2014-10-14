@@ -3,22 +3,20 @@ li.radio
     = f.radio_button :address_id, :new, class: 'order_address_radio', checked: current_user.addresses.empty?
     | 使用新地址
 
-  .city-group#new_address
+  #new_address
     = f.fields_for :address do |address_form|
       .row
-        .form-group.select.address_province.col-xs-12.col-md-4
-          = address_select address_form, f.object.address, :province, class: 'form-control city-select', required: false
-        .form-group.col-xs-12.col-md-4
-          = address_select address_form, f.object.address, :city, class: 'form-control city-select', required: false
-        .form-group.col-xs-12.col-md-4
-          = address_select address_form, f.object.address, :district, class: 'form-control city-select', required: false
-      .row
-        .col-xs-12.col-md-6
-          = address_form.input :street, required: false, label: false, placeholder: '街道地址'
+        .col-xs-12.col-md-4
+          .form-group.select.address_province
+            = address_form.select :province, options_for_select(Province.keys), {prompt: '请选择所在省/直辖市'}, class: 'select form-control'
         .col-xs-12.col-md-3
+          = address_form.input :district, required: false, label: false, placeholder: '市/区'
+        .col-xs-12.col-md-5
+          = address_form.input :street, required: false, label: false, placeholder: '街道地址'
+      .row
+        .col-xs-12.col-md-4
           = address_form.input :name, required: false, label: false, placeholder: '联系人'
         .col-xs-12.col-md-3
           = address_form.input :phone, required: false, label: false, placeholder: '电话'
-      .row
-        .col-xs-12
-          = address_form.input :default, label: '设为首选地址', as: :boolean
+        .col-xs-12.col-md-3
+          = address_form.input :default, label: '设为首选', as: :boolean

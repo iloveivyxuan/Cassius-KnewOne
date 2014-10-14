@@ -4,8 +4,6 @@ module Haven
     before_action :set_order, except: :index
     include ::AddressesHelper
 
-    CITY_PLACEHOLDER = %w(市辖区 县)
-
     def index
       @orders = ::Order.unscoped
 
@@ -36,12 +34,9 @@ module Haven
         end
 
         format.csv do
-          lines = [%w(订单编号 创建时间 订单状态 商品 总价 物流方式 物流单号 配送省 配送市 配送区/县 配送街道 配送姓名 配送手机号 用户备注 管理员备注 系统备注 用户ID 用户名 用户邮箱)]
+          lines = [%w(订单编号 创建时间 订单状态 商品 总价 物流方式 物流单号 配送省 配送地区 配送街道 配送姓名 配送手机号 用户备注 管理员备注 系统备注 用户ID 用户名 用户邮箱)]
 
           @orders.each do |order|
-            city = CITY_PLACEHOLDER.include?(order.address.city) ? order.address.province : (order.address.city || '')
-
-
             cols = [
                     order.order_no,
                     order.created_at.strftime('%Y-%m-%d %H:%M:%S'),
@@ -51,7 +46,6 @@ module Haven
                     ::Order::DELIVER_METHODS[order.deliver_by],
                     order.deliver_no,
                     order.address.province,
-                    city,
                     order.address.district,
                     order.address.street,
                     order.address.name,
@@ -63,7 +57,6 @@ module Haven
                     order.user.name,
                     order.user.email
                    ]
-
             lines<< cols
           end
 

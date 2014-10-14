@@ -45,6 +45,5 @@
         = link_to_login
       = link_to_with_icon "帮助", "fa fa-question", '#olark_chat', class: "support", data: {hint: "fa-question", url: asset_path('olark.js')}
 
-  - content_for :end do
-    - if (tp.thing.stage == :adoption) && !Adoption.where(thing: tp.thing, user: current_user).exists?
-      = render 'shared/adoption_modal', tp: tp
+  - if (tp.thing.stage == :adoption) && !Adoption.where(thing: tp.thing, user: current_user).exists?
+    = render 'shared/adoption_modal', tp: tp

@@ -75,9 +75,8 @@ window.Making = do (exports = window.Making || {}) ->
         $adoptionKind.val($cartKind.val())
 
     requireAddress = (required) ->
-      $(['#adoption_address_province_code'
-         '#adoption_address_city_code'
-         '#adoption_address_district_code'
+      $(['#adoption_address_province'
+         '#adoption_address_district'
          '#adoption_address_street'
          '#adoption_address_name'
          '#adoption_address_phone'].join(', ')).prop('required', required)
