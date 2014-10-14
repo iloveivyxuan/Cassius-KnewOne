@@ -23,7 +23,7 @@ nav.thing-list-filter.clearfix
     .modal-content
       = simple_form_for ThingList.new, remote: true do |f|
         .modal-header
-          button.close data-dismiss="modal" &times;
+          button.close type="button" data-dismiss="modal" &times;
           h4.modal-title
             i.fa.fa-list
             | 添加到列表
@@ -31,5 +31,5 @@ nav.thing-list-filter.clearfix
           = f.input :name
           = f.input :description
         .modal-footer
-          button.btn.btn-default data-dismiss="modal" 取消
+          button.btn.btn-default type="button" data-dismiss="modal" 取消
           button.btn.btn-primary type="submit" 创建
