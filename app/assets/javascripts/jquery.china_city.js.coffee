@@ -3,8 +3,7 @@
     @each ->
       $selects = $(@).find('.city-select')
       $selects
-      .unbind('change') # 避免多次绑定change事件
-      .change ->
+      .on 'change.city', ->
         $this = $(@)
         select_index = $selects.index($this)+1
         select = $selects.eq(select_index)
@@ -17,8 +16,7 @@
             result = eval(data)
             options = select[0].options
             $.each result, (i, item) -> options.add new Option(item[0], item[1])
-            select.change()
 
   $ ->
-    $('.city-group').china_city()
+    ($cityGroup = $('.city-group')).length and $cityGroup.china_city()
 )(jQuery)
