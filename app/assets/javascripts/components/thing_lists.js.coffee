@@ -1,14 +1,14 @@
 $(->
   cache = Object.create({})
-  selector = '[data-thing-list-popup]'
+  selector = '[data-add-to-list]'
 
-  $('body').append('<div id="thing-list-popup-container"></div>')
+  $('body').append('<div id="add-to-list-modal-container"></div>')
   region = new Backbone.Marionette.Region({
-    el: "#thing-list-popup-container"
+    el: '#add-to-list-modal-container'
   })
 
   show = (thing) ->
-    view = new Making.Views.ThingListsPopup({
+    view = new Making.Views.AddToListModal({
       model: new Backbone.Model(thing)
       collection: new Making.Collections.ThingLists()
     })
@@ -18,7 +18,7 @@ $(->
     $target = $(this)
     return if $target.is('.fancied')
 
-    thingId = $target.data('thing-list-popup')
+    thingId = $target.data('thing-id')
 
     return show(cache[thingId]) if cache[thingId]
 

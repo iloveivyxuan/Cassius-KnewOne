@@ -1,7 +1,7 @@
 - path = user_signed_in? ? p.fancy_path : "#"
 - data = user_signed_in? ? {url: path} : {toggle: "modal", target: "#login-modal", link: thing_url(p.thing)}
 - data.merge!({ category: "fancy", action: "fancy_#{from}", label: "fancy+fancy_#{from}+#{p.path}" })
-- data.merge!({ 'thing-list-popup' => p.id.to_s }) if can?(:create, ThingList)
+- data.merge!({ 'add-to-list' => true, 'thing-id' => p.id.to_s }) if can?(:create, ThingList)
 - data.merge!({ 'has-lists' => true }) if p.thing.lists.present?
 - title = p.fancied? ? "取消喜欢" : "喜欢"
 - fancy_class = p.fancied? ? "fancied" : "unfancied"

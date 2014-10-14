@@ -14,10 +14,10 @@ class ThingListView extends Backbone.Marionette.ItemView
   toggle: (event) ->
     @model.set('selected', event.currentTarget.checked)
 
-class Making.Views.ThingListsPopup extends Backbone.Marionette.CompositeView
-  id: 'thing-list-popup'
+class Making.Views.AddToListModal extends Backbone.Marionette.CompositeView
+  id: 'add-to-list-modal'
   className: 'modal fade'
-  template: HandlebarsTemplates['thing_lists/popup']
+  template: HandlebarsTemplates['thing_lists/add_to_list_modal']
 
   ui: {
     name: 'input[name="name"]'
