@@ -51,6 +51,11 @@
   line-height: 40px;
   i, span { line-height: 40px }
 }
+.btn--green {
+  @extend %new_button_base;
+  background-color: rgba($brand-success,.9);
+  &:hover { background-color: $brand-success }
+}
 .btn--blue {
   @extend %new_button_base;
   background-color: rgba($blue-dark,.9);
