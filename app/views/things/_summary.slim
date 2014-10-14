@@ -9,12 +9,12 @@
 
         = tp.link_to_share('btn btn--square btn--share btn--orange hidden-xs hidden-sm', ' 分享')
         = link_to_with_icon ' 举报', "fa fa-flag", "#",
-        class: 'btn btn--square btn--share btn--orange hidden-xs hidden-sm',
+        class: 'btn btn--square btn--share btn--blue_light hidden-xs hidden-sm',
         data: { toggle: "modal", target: user_signed_in? ? "#new_private_message_modal" : "#login-modal" }
         - if can?(:edit, @thing)
-          = link_to('编辑', [:edit, @thing], class: 'btn btn--square btn--blue_light')
+          = link_to('编辑', [:edit, @thing], class: 'btn btn--square btn--blue')
         - if can?(:pro_edit, @thing)
-          = link_to('高级编辑', edit_haven_thing_path(@thing), class: 'btn btn--square btn--blue')
+          = link_to('高级编辑', edit_haven_thing_path(@thing), class: 'btn btn--square btn--blue_light')
 
       - if tp.summary.present?
         = tp.content
