@@ -10,7 +10,7 @@ class Making.Views.CommentsIndex extends Backbone.View
     @commentId = @getCommentId()
     @render()
 
-    if @commentId || @getCommentsCount() == 0
+    if @commentId || (@$el.data('count') > 0 && @getCommentsCount() == 0)
       @$('ul').empty()
       @fetch(@commentId)
 
