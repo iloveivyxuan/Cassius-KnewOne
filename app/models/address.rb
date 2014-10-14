@@ -23,7 +23,7 @@ class Address
   validates :province, :city, :district, :street, :name, :phone, presence: true
   validates_inclusion_of :province, in: Province.keys
 
-  default_scope -> { desc(:default, :created_at) }
+  default_scope -> { where(:city.ne => nil).desc(:default) }
 
   before_validation do
     if self.province_code.present? && self.province_code != ChinaCity::CHINA
