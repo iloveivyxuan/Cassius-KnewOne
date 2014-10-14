@@ -89,7 +89,7 @@ class Making.Views.ThingListsPopup extends Backbone.Marionette.CompositeView
     description = @ui.description.val().trim()
 
     unless _.any(@_changedLists, (l) -> l.get('selected'))
-      return unless confirm('您还没有为此产品添加列表，是否继续？')
+      return @$('form > h5').fadeTo('fast', 0.7).fadeTo('fast', 1)
 
     @ui.description.val('')
 
