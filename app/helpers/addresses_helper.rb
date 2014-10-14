@@ -23,19 +23,21 @@ module AddressesHelper
   end
 
   def address_select(f, address, field, options = {})
+    field_prefix = f.object_name == 'address' ? 'address' : "#{f.object_name}[address]"
+
     case field
     when :province
-      f.select :province_code,
-               options_for_select(ChinaCity.list, address.province_code),
-               {prompt: '- 省/直辖市 -'}, options
+      select_tag "#{field_prefix}[province_code]",
+                 options_for_select(ChinaCity.list, address.province_code),
+                 { prompt: '- 省/直辖市 -' }.merge(options)
     when :city
-      f.select :city_code,
-               options_for_select(ChinaCity.list(address.province_code), address.city_code),
-               {prompt: '- 城市 -', include_blank: true}, options
+      select_tag "#{field_prefix}[city_code]",
+                 options_for_select(ChinaCity.list(address.province_code), address.city_code),
+                 { prompt: '- 城市 -' }.merge(options)
     when :district
-      f.select :district_code,
-               options_for_select(ChinaCity.list(address.city_code), address.district_code),
-               {prompt: '- 地区 -', include_blank: true}, options
+      select_tag "#{field_prefix}[district_code]",
+                 options_for_select(ChinaCity.list(address.city_code), address.district_code),
+                 { prompt: '- 地区 -' }.merge(options)
     else
       ''
     end
