@@ -1,3 +1,10 @@
-= link_to '#', class: 'add_to_list', data: {'add-to-list' => true, 'thing-id' => thing_id}, title: '加入列表'
-  i.fa.fa-list-ul
-  | 加入列表
+- if user_signed_in?
+  = link_to '#', class: 'add_to_list', data: {'add-to-list' => true, 'thing-id' => thing_id}, title: '加入列表'
+    i.fa.fa-list-ul
+    | 加入列表
+- else
+  = link_to_with_icon '加入列表 ',
+                      "fa fa-list-ul",
+                      "#login-modal",
+                      title: "加入列表", class: "add_to_list",
+                      data: { toggle: 'modal' }
