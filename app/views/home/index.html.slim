@@ -10,7 +10,10 @@
         li class=("active" if @source == "following")
           = link_to "我的关注", following_path
     - if @source == "latest"
-      = link_to "兴趣设置", "#", id: "manage_categories", data: {toggle: "modal", target: "#categories-modal"}
+      - if request.variant == :desktop
+        = link_to_with_icon "兴趣设置", 'fa fa-gear', "#", id: "manage_categories", data: {toggle: "modal", target: "#categories-modal"}
+      - else
+        = link_to_with_icon "", 'fa fa-gear', "#", id: "manage_categories", data: {toggle: "modal", target: "#categories-modal"}
     - content_for :end do
       = render "categories_modal"
 
