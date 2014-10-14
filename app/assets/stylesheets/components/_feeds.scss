@@ -135,20 +135,12 @@ html.desktop {
       }
 
       img {
-        float: right;
-        height: 60px;
-        margin-left: 15px;
-        width: 60px;
-
-        @media (min-width: $screen-sm-min) {
-          float: none;
-          height: 80px;
-          margin: {
-            left: auto;
-            right: auto;
-          }
-          width: 80px;
+        height: 80px;
+        margin: {
+          left: auto;
+          right: auto;
         }
+        width: 80px;
       }
 
       figcaption {
@@ -314,8 +306,7 @@ html.desktop {
     .feed_action {
       position: absolute;
       top: 2em;
-      right: 0;
-      margin-right: calc((#{$part_right} - 70px) / 2);
+      right: 1em;
     }
 
     &.review,
