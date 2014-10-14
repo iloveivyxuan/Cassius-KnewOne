@@ -6,7 +6,7 @@
     small 共 #{category.tags.count} 个标签
   .tags_container
     .tags
-      - category.tags.each do |tag|
+      - category.tags.gt(:things_count => 0).desc(:things_count).each do |tag|
         = link_to tag.name, things_path(tag: tag)
   footer
     a.pull-left href="#" rel="prev" 上一组标签
