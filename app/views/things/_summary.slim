@@ -30,14 +30,16 @@
 - content_for :script do
   javascript:
     $('#new_private_message_modal').on('shown.bs.modal', function (e) {
-      var flag_message = '我想举报此产品：' + location.href + "\n\n" + '举报理由：';
-      var message = $(this);
-      var dialog_content = message.find('#dialog_content')[0];
+      if ((e.relatedTarget) && (e.relatedTarget.innerText == ' 举报')) {
+        var flag_message = '我想举报此产品：' + location.href + "\n\n" + '举报理由：';
+        var message = $(this);
+        var dialog_content = message.find('#dialog_content')[0];
 
-      message.find('#dialog_user_id')[0].value = '543c956231302d1015600100';
-      message.find('#dialog_user_name')[0].value = 'KnewOne小信鸽';
-      dialog_content.innerText = flag_message;
-      dialog_content.focus();
+        message.find('#dialog_user_id')[0].value = '543c956231302d1015600100';
+        message.find('#dialog_user_name')[0].value = 'KnewOne小信鸽';
+        dialog_content.innerText = flag_message;
+        dialog_content.focus();
+      }
     });
     $('#new_private_message_modal').on('hidden.bs.modal', function (e) {
       Making.ShowMessageOnTop("举报已发出，走你！");
