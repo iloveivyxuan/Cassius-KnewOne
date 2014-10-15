@@ -1,15 +1,6 @@
 - if browser.wechat?
-  #share_wechat.modal.fade
-    .modal-dialog
-      .modal-content
-        .modal-header
-          = button_tag type: 'button', class: 'close', data: {dismiss: "modal"} do
-            raw &times;
-          h5.modal-title
-            | 微信分享
-        .modal-body
-          | 点击右上角...分享
-
+  #share--wechat-tip
+    = image_tag "share-wechat.png", width: 250
 - else
   #share_wechat.modal.fade
     .modal-dialog

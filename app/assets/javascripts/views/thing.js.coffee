@@ -59,6 +59,23 @@ window.Making = do (exports = window.Making || {}) ->
         new exports.View.Stream('#tab--mobile-reviews')
         new exports.View.Stream('#tab--mobile-activities')
 
+    switch exports.browser
+
+      when 'wechat'
+        $modalShare = $('#share_modal')
+        $tipShare   = $('#share--wechat-tip')
+
+        $modalShare.find('.js-share--wechat')
+          .removeAttr('data-toggle')
+          .attr('href', '#')
+          .on 'tap click', (event) ->
+            event.preventDefault()
+            $modalShare.modal('hide')
+            $tipShare.fadeIn('fast')
+        $tipShare
+          .on 'tab click', (event) ->
+            $(this).fadeOut('fast')
+
   exports.InitShop = ->
     exports.scrollSpyPopupLogin(window.location.pathname + '/page/2')
     exports.infiniteScroll('.js-infinite', window.location.pathname + window.location.search)
