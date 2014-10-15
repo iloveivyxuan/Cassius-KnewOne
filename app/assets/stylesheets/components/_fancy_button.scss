@@ -1,10 +1,12 @@
 .fancy-button {
-  @extend .btn;
-
-  background: $gray-lighter;
-  color: $gray;
+  @include plain-link($red);
+  font-size: $font-size-small;
 
   i {
-    color: #ff3b3b;
+    vertical-align: middle;
+    margin-right: $padding-small-horizontal;
+
+    color: $red;
+    font-size: 2em;
   }
 }
