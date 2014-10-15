@@ -62,18 +62,17 @@ window.Making = do (exports = window.Making || {}) ->
     switch exports.browser
 
       when 'wechat'
-        $modalShare = $('#share_modal')
-        $tipShare   = $('#share--wechat-tip')
+        $btnShare = $('main .actions .share_btn')
+        $tipShare = $('#share--wechat-tip')
 
-        $modalShare.find('.js-share--wechat')
+        $btnShare
           .removeAttr('data-toggle')
           .attr('href', '#')
-          .on 'tap click', (event) ->
+          .on 'click', (event) ->
             event.preventDefault()
-            $modalShare.modal('hide')
             $tipShare.fadeIn('fast')
         $tipShare
-          .on 'tab click', (event) ->
+          .on 'click', (event) ->
             $(this).fadeOut('fast')
 
   exports.InitShop = ->
