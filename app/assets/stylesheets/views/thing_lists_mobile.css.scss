@@ -50,16 +50,11 @@ html.thing_lists_show.tablet {
 
       > footer {
         > ul {
+          display: flex;
+          justify-content: space-between;
+
           margin-top: $padding-large-vertical;
-          width: 100%;
           max-width: 200px;
-
-          display: table;
-          table-layout: fixed;
-
-          > li {
-            display: table-cell;
-          }
 
           a {
             @include plain-link($gray-light);
