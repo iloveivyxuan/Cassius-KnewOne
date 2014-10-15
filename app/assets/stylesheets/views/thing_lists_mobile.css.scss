@@ -20,5 +20,62 @@ html.thing_lists_show.tablet {
         padding: 0 40px;
       }
     }
+
+    > header {
+      position: relative;
+      min-height: 120px;
+      padding: 30px 16px 30px (16px + 90px);
+
+      > header {
+        .user_avatar {
+          position: absolute;
+          left: 16px;
+
+          img {
+            width: auto;
+            height: 60px;
+          }
+        }
+
+        .thing_list_name {
+          font-size: $font-size-large;
+          line-height: 60px;
+        }
+
+        .thing_list_description {
+          margin: $padding-large-vertical 0 20px;
+          color: $gray-light;
+        }
+      }
+
+      > footer {
+        > ul {
+          margin-top: $padding-large-vertical;
+          width: 100%;
+          max-width: 200px;
+
+          display: table;
+          table-layout: fixed;
+
+          > li {
+            display: table-cell;
+          }
+
+          a {
+            @include plain-link($gray-light);
+
+            i {
+              vertical-align: middle;
+              margin-right: $padding-small-horizontal;
+              font-size: 2em;
+            }
+          }
+
+          .fanciers_count {
+            color: $red;
+          }
+        }
+      }
+    }
   }
 }
