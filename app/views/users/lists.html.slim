@@ -14,7 +14,7 @@ nav.thing-list-filter.clearfix
 
 - if @lists.present?
   .thing-lists= render @lists
-  = paginate @lists
+  = paginate @lists.desc(:updated_at)
 - else
   = render 'shared/nothing'
 

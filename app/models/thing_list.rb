@@ -13,8 +13,6 @@ class ThingList
   field :description, type: String
   field :size, type: Integer, default: 0
 
-  default_scope -> { desc(:updated_at) }
-
   validates :name, presence: true, uniqueness: { scope: :author }
 
   alias_method :items, :thing_list_items
