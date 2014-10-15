@@ -127,7 +127,7 @@ class Thing < Post
 
   def tags_text=(text)
     self.tags = text.split(',').map do |tag_name|
-      Tag.find_or_create_by(name: tag_name)
+      Tag.find_or_create_by(name: tag_name.strip)
     end
   end
 
