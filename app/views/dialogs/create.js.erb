@@ -2,7 +2,9 @@
   $('#dialog_content').val("");
   $('#new_private_message_modal').modal('hide');
 
-  Making.ShowMessageOnTop('发送成功！');
+  <% if @message.dialog.user_id != '543c956231302d1015600100' %>
+    Making.ShowMessageOnTop('发送成功！');
+  <% end %>
 
   if ($('html').is('.dialogs_index')) {
     window.location.reload();

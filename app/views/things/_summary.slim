@@ -39,3 +39,6 @@
       dialog_content.innerText = flag_message;
       dialog_content.focus();
     });
+    $('#new_private_message_modal').on('hidden.bs.modal', function (e) {
+      Making.ShowMessageOnTop("举报已发出，请等候处理：）");
+    });
