@@ -432,6 +432,10 @@ html.feelings_show {
             background: $blue-dark;
             border-bottom-color: $blue-dark;
             color: #fff;
+
+            span {
+              color: $gray-lighter;
+            }
           }
           i { display: none }
           span {
