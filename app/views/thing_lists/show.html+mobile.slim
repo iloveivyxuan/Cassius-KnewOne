@@ -1,0 +1,10 @@
+- page_title @thing_list.name
+- page_css 'thing_lists_mobile'
+
+- list = @thing_list
+- user = list.author
+
+nav
+  = link_to lists_user_path(user)
+    i.fa.fa-angle-left
+    | 查看该用户的所有列表

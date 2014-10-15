@@ -1,0 +1,24 @@
+@import '../base';
+
+html.thing_lists_show.mobile,
+html.thing_lists_show.tablet {
+  #wrapper {
+    @include wrapper(empty);
+
+    background: white;
+
+    > nav {
+      line-height: 60px;
+      background: $body-bg;
+
+      a {
+        @include plain-link($text-color);
+      }
+
+      i {
+        margin: 0;
+        padding: 0 40px;
+      }
+    }
+  }
+}
