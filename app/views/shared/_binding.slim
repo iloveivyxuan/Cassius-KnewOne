@@ -17,10 +17,11 @@
         section.box
           h5 直接分享
           p
-            = link_to "#share_wechat",
-              title: "微信朋友圈分享", class: "share-button track_event js-share--wechat",
-              data: {toggle: 'modal', category: "share_internal_wechat", action: "share_internal_wechat", label: "share_internal_wechat+#{request.url}"} do
-              i.fa.fa-weixin.fa-4x
+            - if !browser.mobile? && !browser.tablet? && !browser.wechat?
+              = link_to "#share_wechat",
+                title: "微信朋友圈分享", class: "share-button track_event js-share--wechat",
+                data: {toggle: 'modal', category: "share_internal_wechat", action: "share_internal_wechat", label: "share_internal_wechat+#{request.url}"} do
+                i.fa.fa-weixin.fa-4x
             = link_to "http://widget.renren.com/dialog/share?link=#{request.url}", class: "share-button", target: "_blank", title: "分享到人人网" do
               i.fa.fa-renren.fa-4x
 
