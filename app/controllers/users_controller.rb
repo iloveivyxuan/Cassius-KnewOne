@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @owns = @user.owns_sorted_by_ids(1, 3)
     @makings = @user.makings.desc(:created_at)
     @activities = @user.activities.visible.limit(10)
-    @lists = @user.thing_lists.desc(:updated_at).limit(3)
+    @lists = @user.thing_lists.desc(:fanciers_count).limit(3)
   end
 
   def fancies
