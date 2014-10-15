@@ -31,7 +31,7 @@ do (root = @, exports = Making) ->
   else if $html.hasClass('desktop')
     exports.device = 'desktop'
 
-  if window.navigator.userAgent.toLowerCase().indexOf('micromessage') >= 0
+  if window.navigator.userAgent.toLowerCase().indexOf('micromessenger') >= 0
     exports.browser = 'wechat'
 
   exports.infiniteScroll = (container, url, callback) ->
