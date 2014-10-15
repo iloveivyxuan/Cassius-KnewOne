@@ -1,5 +1,5 @@
 module UsersHelper
-  def user_avatar(user, size=:tiny)
+  def user_avatar(user, size=:small)
     image_tag user.avatar.url(size), alt: user.name
   end
 
