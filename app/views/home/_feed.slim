@@ -9,7 +9,13 @@ article.feed
 
   - if feed.activities_not_from_reviews.present?
     ul.feed-activities
-      = render partial: 'feed_activity', collection: feed.activities_not_from_reviews, as: :activity
+      - activities = feed.activities_not_from_reviews
+      - descriptions = activities.map do |activity|
+        - next unless activity.type == :add_to_list
+        - list = activity.source
+        - item = list.items.where(thing: activity.related_thing).first
+        - item.try(:description)
+      = render partial: 'feed_activity', collection: activities, as: :activity, locals: {descriptions: descriptions}
 
   - if feed.reviews.present?
     .feed-reviews

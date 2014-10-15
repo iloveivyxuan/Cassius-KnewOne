@@ -35,11 +35,11 @@ li.feed-activity
         = render 'shared/comments', post: feeling, id: "feeling_#{feeling.id}_comments", auth: true, lazy: true
 
   - if activity.type == :add_to_list
-    - list = activity.source
-    - item = list.items.where(thing: activity.related_thing).first
-    - if item && item.description.present?
+    - index = activity_counter
+    - description = descriptions[index]
+    - if description.present? && descriptions.rindex(description) == index
       .feed-thing-list
         p
           i.fa.fa-quote-left
-          = item.description
+          = description
           i.fa.fa-quote-right
