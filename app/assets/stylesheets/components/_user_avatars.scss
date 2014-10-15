@@ -4,12 +4,16 @@
 
   vertical-align: middle;
 
-  > .user_avatar-name,
+  .user_avatar-name,
   > img {
     vertical-align: middle;
   }
 
-  img {
+  .user_avatar-name {
+    font-size: $font-size-small;
+  }
+
+  > img {
     @extend %img-circle;
 
     width: 26px;
