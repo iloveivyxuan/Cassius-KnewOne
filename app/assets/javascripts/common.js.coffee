@@ -116,4 +116,20 @@ do (root = @, exports = Making) ->
           .done (data, status, jqXHR) ->
             $(container).empty().append(data)
 
+  exports.shareOnWechat = ->
+    $button = $('.js-share')
+
+    if exports.browser is 'wechat' and $button.length
+        $tip = $('#share--wechat-tip')
+
+        $button
+          .removeAttr('data-toggle')
+          .attr('href', '#')
+          .on 'click', (event) ->
+            event.preventDefault()
+            $tip.fadeIn('fast')
+        $tip
+          .on 'click', (event) ->
+            $(this).fadeOut('fast')
+
   return exports
