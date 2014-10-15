@@ -45,7 +45,7 @@
           .col-sm-9
             = f.text_field :subtitle, class: 'form-control'
 
-        = f.text_area :content, rows: 3, placeholder: '在这里写产品的简要描述信息', required: true
+        = f.text_area :content, rows: 3, placeholder: '在这里写产品的简要描述信息', required: true, title: '请填写产品描述', data: {toggle: "tooltip", placement: "bottom"}
 
         .progress.progress-striped.active style="display: none"
           .progress-bar

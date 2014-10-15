@@ -56,7 +56,13 @@ do (exports = Making) ->
 
         $progress_bar = $new_thing_edit_modal.find('.progress-bar')
         $progress_bar.animate({width: '100%'}, 3000)
-      )
+      ).on 'submit', (event) ->
+        $form = $(@)
+        $requiredFields = $form.find('[required]')
+        $requiredFields.each ->
+          $field = $(@)
+          if $field.val().trim() is ''
+            $field.tooltip('show')
 
       $carousel_inner = $('#new-thing-edit-modal-images .carousel-inner')
       $slideshow_inner = $('#new-thing-edit-modal-sortable')
