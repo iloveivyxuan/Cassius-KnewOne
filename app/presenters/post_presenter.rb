@@ -109,7 +109,7 @@ class PostPresenter < ApplicationPresenter
     if browser.wechat?
       link_to_with_icon text, "fa fa-share-alt",
                         "#share_wechat",
-                        title: "分享", class: "#{klass} share_btn track_event",
+                        title: "分享", class: "#{klass} js-share share_btn track_event",
                         data: {
                           toggle: 'modal',
                         }
