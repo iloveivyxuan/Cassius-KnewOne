@@ -14,4 +14,9 @@ class PrivateMessage
 
   after_create -> { dialog.reset }
   after_destroy -> { dialog.reset }
+
+  def is_for_flagged?
+    self.dialog.sender_id.to_s == '543c956231302d1015600100' and self.content.include?("举报")
+  end
+
 end

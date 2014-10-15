@@ -2,10 +2,10 @@
   $('#dialog_content').val("");
   $('#new_private_message_modal').modal('hide');
 
-  <% if @message.dialog.sender_id.to_s != '543c956231302d1015600100' %>
-    Making.ShowMessageOnTop('发送成功！');
-  <% else %>
+  <% if @message.is_for_flagged? %>
     Making.ShowMessageOnTop('举报已发出，走你！');
+  <% else %>
+    Making.ShowMessageOnTop('发送成功！');
   <% end %>
 
   if ($('html').is('.dialogs_index')) {
