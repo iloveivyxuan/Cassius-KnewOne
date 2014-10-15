@@ -333,6 +333,7 @@ do (exports = Making) ->
     exports.PopoverProfiles()
     exports.PrivateMessage()
     exports.AtUser('textarea')
+    exports.shareOnWechat()
 
     # TODO
     ($popovertoggle = $(".popover-toggle")).length && $popovertoggle.popover()

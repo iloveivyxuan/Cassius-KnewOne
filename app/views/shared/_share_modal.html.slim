@@ -33,10 +33,11 @@
                 - else
                   = hidden_field_tag 'providers[]', auth.provider, data: {'skip-deserialize' => true}
               div
-                = link_to_with_icon "分享到微信", "fa fa-wechat", "#share_wechat",
-                title: "微信朋友圈分享", class: "share-button track_event",
-                data: {toggle: 'modal', category: "share_internal_wechat", action: "share_internal_wechat", label: "share_internal_wechat+#{request.url}"}
-                span.separator |
+                - unless browser.mobile?
+                  = link_to_with_icon "分享到微信", "fa fa-wechat", "#share_wechat",
+                  title: "微信朋友圈分享", class: "share-button track_event",
+                  data: {toggle: 'modal', category: "share_internal_wechat", action: "share_internal_wechat", label: "share_internal_wechat+#{request.url}"}
+                  span.separator |
                 = link_to_with_icon "分享到人人网", "fa fa-renren", "http://widget.renren.com/dialog/share?link=#{request.url}", class: "share-button", target: "_blank"
             .modal-footer
               span class="words-check"
@@ -46,4 +47,5 @@
                 label: "share_internal_pub_#{auths.first.provider}+#{request.path}"}
   - else
     = render 'shared/binding', id: 'share_modal'
-  = render 'shared/wechat'
+
+= render 'shared/wechat'
