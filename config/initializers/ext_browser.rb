@@ -1,1 +1,1 @@
-require Rails.root.join('lib/browser')
+require Rails.root.join('lib/browser_ext')
