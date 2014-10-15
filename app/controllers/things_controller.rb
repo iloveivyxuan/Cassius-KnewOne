@@ -228,6 +228,7 @@ class ThingsController < ApplicationController
     return render 'things/create_by_extractor_without_photos' if params[:images].nil? || params[:images].empty?
 
     photos = params[:images].map do |i|
+      i.sub!(%r{^//}, 'http://')
       i.sub!(/!\w+$/, '')
       Photo.create! remote_image_url: i, user: current_user
     end
