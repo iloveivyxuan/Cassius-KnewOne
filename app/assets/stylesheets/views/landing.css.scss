@@ -713,10 +713,14 @@ html.landing {
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
-          margin-right: 20px;
+          margin: 0 20px 0 0;
           font-size: 1.2em;
           line-height: 1;
           color: #949494;
+          padding: {
+            bottom: 10px;
+            top: 10px;
+          }
         }
         .score {
           float: left;
