@@ -51,4 +51,4 @@
             .feed_action
               = render partial: 'shared/voting', locals: {object: feeling}
           section.comments_wrap
-            = render 'shared/comments', post: feeling, id: "feeling_#{feeling.id}_comments", auth: true, lazy: true, show_avatar: false
+            = render 'shared/comments', post: feeling, id: "feeling_#{feeling.id}_comments", auth: true, compact: true
