@@ -5,8 +5,6 @@ html.thing_lists_show.tablet {
   #wrapper {
     @include wrapper(empty);
 
-    background: white;
-
     > nav {
       line-height: 60px;
       background: $body-bg;
@@ -25,6 +23,7 @@ html.thing_lists_show.tablet {
       position: relative;
       min-height: 120px;
       padding: 30px 16px 30px (16px + 90px);
+      background: white;
 
       > header {
         .user_avatar {
