@@ -455,6 +455,9 @@ html.feelings_show {
               display: inline;
               &:before { content:"\f0d7" }
             }
+            span {
+              color: $text-color;
+            }
           }
         }
 
