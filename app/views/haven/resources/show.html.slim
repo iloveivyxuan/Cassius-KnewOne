@@ -1,0 +1,8 @@
+header.page-header
+  h1
+    i.fa.fa-tag
+    | 新供应商
+
+section
+  = form_for @resource, url: haven_resources_path, method: :post do |f|
+    = render 'resource', f: f

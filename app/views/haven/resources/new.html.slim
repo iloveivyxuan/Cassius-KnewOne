@@ -1,0 +1,14 @@
+header.page-header
+  h1
+    i.fa.fa-tag
+    | 新供应商
+
+section
+  = form_for Resource.new, url: haven_resources_path, method: :post do |f|
+    p = f.label "名字"
+    p = f.text_field :name
+    p = f.label "网址"
+    p = f.text_field :url
+    p = f.label "运费"
+    p = f.text_field :deliver_price
+    p = f.submit

@@ -1,0 +1,22 @@
+table.table
+  thead
+    tr
+      th 名字
+      th 网址
+      th 运费
+      th 产品数
+      th 操作
+  tbody
+    - @resources.each do |r|
+      tr
+        th= r.name
+        th= r.url
+        th= r.deliver_price
+        th= r.things.size
+        th
+          = link_to '[编辑]', edit_haven_resource_path(r.id)
+          = link_to '[删除]', haven_resource_path(r.id), method: :delete
+
+= link_to '添加', new_haven_resource_path
+
+= paginate @resources
