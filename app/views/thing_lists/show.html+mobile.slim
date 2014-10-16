@@ -34,3 +34,5 @@ header
     = render list.items
 - else
     = render 'shared/nothing'
+
+footer = render 'shared/comments', post: list, id: 'comments', auth: true

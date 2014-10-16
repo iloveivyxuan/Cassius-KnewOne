@@ -17,7 +17,7 @@
   .comments
     h4
       i.fa.fa-comments-o
-      = title
+      span = title
 
     - if show_avatar && user_signed_in?
       = render 'shared/user_avatar', user: current_user, options: {class: 'user_avatar user_avatar--vertical'}
