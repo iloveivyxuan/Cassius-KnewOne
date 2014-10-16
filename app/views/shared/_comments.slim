@@ -1,4 +1,5 @@
 - lazy = false if lazy.nil?
+- show_avatar = true if show_avatar.nil?
 - title = post.is_a?(Post) ? '回复' : '评论'
 - disabled = !(auth && user_signed_in?)
 - if disabled
@@ -17,6 +18,9 @@
     h4
       i.fa.fa-comments-o
       = title
+
+    - if show_avatar && user_signed_in?
+      = render 'shared/user_avatar', user: current_user, options: {class: 'user_avatar user_avatar--vertical'}
 
     form.comment_form
       .controls

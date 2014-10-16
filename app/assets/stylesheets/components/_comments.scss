@@ -3,6 +3,16 @@
 
   h4 {color: $text-muted;}
 
+  position: relative;
+  .user_avatar {
+    position: absolute;
+    margin-top: 1em;
+
+    & + .comment_form {
+      margin-left: 90px;
+    }
+  }
+
   .comment_form {
     @include clearfix;
     textarea {margin: 1em 0;}
