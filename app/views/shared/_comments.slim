@@ -1,4 +1,4 @@
-- lazy = false unless defined?(lazy)
+- lazy = false if lazy.nil?
 - title = post.is_a?(Post) ? '回复' : '评论'
 - disabled = !(auth && user_signed_in?)
 - if disabled
