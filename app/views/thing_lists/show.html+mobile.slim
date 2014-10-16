@@ -36,3 +36,7 @@ header
     = render 'shared/nothing'
 
 footer = render 'shared/comments', post: list, id: 'comments', auth: true
+
+- content_for :script
+  javascript:
+    Making.Comments('#comments')
