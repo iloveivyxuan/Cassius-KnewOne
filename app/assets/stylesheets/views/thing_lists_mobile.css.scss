@@ -71,5 +71,34 @@ html.thing_lists_show.tablet {
         }
       }
     }
+
+    section.thing_list_items {
+      > .thing_list_item {
+        background: $ghost-white;
+
+        &:not(:first-child) {
+          margin-top: 15px;
+        }
+
+        > header {
+          h4 {
+            @include plain-link;
+
+            margin: 0;
+            padding: 20px 0;
+            text-align: center;
+          }
+        }
+
+        > footer {
+          padding: 0 16px 30px;
+
+          color: $gray-light;
+          i {
+            color: $gray-lighter;
+          }
+        }
+      }
+    }
   }
 }

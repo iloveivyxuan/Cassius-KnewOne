@@ -1,0 +1,11 @@
+section.thing_list_item
+  header
+    - thing = thing_list_item.thing
+    = link_to thing, target: '_blank'
+      = present(thing).photo('thing.fixed')
+      h4 = thing.title
+  footer
+    - if thing_list_item.description.present?
+      .thing_list_item-description
+        i.fa.fa-quote-left.fa-2x
+        = thing_list_item.description

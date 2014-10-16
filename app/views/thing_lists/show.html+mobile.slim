@@ -28,3 +28,9 @@ header
           span.comments_count= list.comments.size
 
       li = render 'share_link', thing_list: list
+
+- if list.items.present?
+  section.thing_list_items
+    = render list.items
+- else
+    = render 'shared/nothing'
