@@ -21,7 +21,7 @@
 
   article.editor-content.article
     = simple_form_for @thing, html: {class: "editor-form thing_form"} do |f|
-      = f.input :title, placeholder: "请填写产品名称", input_html: {maxlength: 41, autofocus: true, autocomplete: "off", title: "请填写产品名称", "data-placement"=>"bottom"}
+      = f.input :title, placeholder: "产品名称", input_html: {maxlength: 41, autofocus: true, autocomplete: "off", title: "请填写产品名称", "data-placement"=>"bottom"}
       - unless @thing.persisted?
         section#thing_candidate.slideshow
           h5 您想分享的是以下产品吗？
@@ -31,14 +31,14 @@
           button.slideshow_control.right
             i.fa.fa-chevron-right
           .slideshow_body
-      = f.input :subtitle, placeholder: "请填写一句话介绍", input_html: {maxlength: 40, autocomplete: "off"}
+      = f.input :subtitle, placeholder: "一句话介绍", input_html: {maxlength: 40, autocomplete: "off"}
       - if current_user.role? :volunteer
-        = f.input :tags_text, placeholder: "请填写标签", input_html: {maxlength: 40, autocomplete: "off"}
-      = f.input :official_site, as: :url, placeholder: "请填写产品官方链接", input_html: {autocomplete: "off"}
+        = f.input :tags_text, placeholder: "标签", input_html: {maxlength: 40, autocomplete: "off"}
+      = f.input :official_site, as: :url, placeholder: "产品官方链接", input_html: {autocomplete: "off"}
       = f.input :content, as: :hidden
 
     = simple_form_for Photo.new, html: {class: "uploader"} do |f|
-      label.uploader_label for="photo_image" title="请为产品上传图片" data-placement="right" 请上传产品图片
+      label.uploader_label for="photo_image" title="请为产品上传图片" data-placement="right" 产品图片
       = content_tag :div, class: "uploader_queue", id: "photos", data: {photos: @photos} do
         p.help-block.uploader_toggle
           i.fa.fa-arrows
