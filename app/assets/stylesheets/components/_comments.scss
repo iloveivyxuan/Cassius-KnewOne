@@ -15,9 +15,14 @@
 
   .comment_form {
     @include clearfix;
-    textarea {margin: 1em 0;}
+
     .auth_tip {color: $text-muted;}
     .help-block {text-align: right;}
+
+    textarea {
+      margin: 1em 0;
+      resize: none;
+    }
   }
 
   ul {
@@ -67,19 +72,26 @@
   }
 }
 
+.comments:not(.comments--compact) {
+  textarea {
+    border: none;
+    border-bottom: 1px solid $gray-lighter;
+    border-radius: 0;
+    box-shadow: none;
+
+    &:focus {
+      color: $brand-primary;
+      border-bottom: 1px dashed $brand-primary;
+    }
+  }
+}
+
 html.mobile {
 
   .comments {
 
     h4 {
       display: none;
-    }
-
-    .comment_form {
-
-      button[type="submit"] {
-        @extend .btn-block;
-      }
     }
 
     > ul {

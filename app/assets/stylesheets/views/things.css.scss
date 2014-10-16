@@ -1237,7 +1237,7 @@ html.feelings_show {
           border: none;
 
           @include MQ(Sneg) {
-            margin-right: -40px;
+            margin-right: -30px;
           }
 
           .form-control {
@@ -2220,7 +2220,7 @@ html.feelings_show {
           padding: 0;
           li {
             margin: 0;
-            padding: .5em 1.5em;
+            padding: .5em 0;
             @include MQ(Lplus) {
               padding: 1em 2em;
             }
@@ -2242,7 +2242,6 @@ html.feelings_show {
 
         .comment_form {
           margin-bottom: 2em;
-          padding: 0 2em;
         }
 
         .comments_more {
