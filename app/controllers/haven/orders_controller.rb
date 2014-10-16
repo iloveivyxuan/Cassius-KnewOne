@@ -13,16 +13,20 @@ module Haven
 
       @orders = @orders.where(state: params[:state]) if params[:state]
 
-      @orders = case params[:find_by]
+      if params[:find_cond].present?
+        @orders = case params[:find_by]
                   when 'order_no'
                     @orders.where(:order_no => params[:find_cond])
                   when 'user_id'
                     @orders.where(:user_id => params[:find_cond])
                   when 'thing_id'
                     @orders.by_thing(Thing.find(params[:find_cond]))
+                  when 'exclude_thing_id'
+                    @orders.without_thing(Thing.find(params[:find_cond]))
                   else
                     @orders
-                end
+                  end
+      end
 
       @orders = @orders.where(:created_at.lte => params[:end_date]) if params[:end_date].present?
       @orders = @orders.where(:created_at.gte => params[:start_date]) if params[:start_date].present?

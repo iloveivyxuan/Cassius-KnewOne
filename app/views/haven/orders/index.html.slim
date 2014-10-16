@@ -8,7 +8,7 @@ header.page-header
   - queries = params.except(*request.path_parameters.keys)
   = link_to '导出CSV(Numbers)', "#{haven_orders_path(queries.merge(format: :csv, platform: 'numbers'))}", class: 'btn btn-success'
   = link_to '导出CSV(Excel)', "#{haven_orders_path(queries.merge(format: :csv))}", class: 'btn btn-success'
-= render partial: 'search', locals: {types: {all: '全部', order_no: '订单号', user_id: '用户ID', thing_id: '产品ID'}}
+= render partial: 'search', locals: {types: {all: '全部', order_no: '订单号', user_id: '用户ID', thing_id: '产品ID', exclude_thing_id: '不包含产品ID'}}
 = render 'filter'
 ul.orders = render @orders
 = paginate @orders
