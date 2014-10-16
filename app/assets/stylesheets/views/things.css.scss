@@ -10,7 +10,7 @@ html.feelings_show {
   /**********************************************.btn**********************************************/
 
   .fancy-button {
-    background: #fafafa;
+    background: $ghost-white;
 
     .fanciers_count {
       display: none;
@@ -68,8 +68,8 @@ html.feelings_show {
         padding: 0;
         line-height: 50px;
         color: $gray;
-        background: #fafafa;
-        border-color: #fafafa;
+        background: $ghost-white;
+        border-color: $ghost-white;
         @include border-radius(0);
         &:hover {
           color: $text-color;
@@ -189,7 +189,7 @@ html.feelings_show {
         margin-right: 5px;
       }
       .uploader_queue {
-        background: #fafafa;
+        background: $ghost-white;
         border: none;
         ul { padding-top: .5em }
         .help-block { margin: .5em 1em }
@@ -393,7 +393,7 @@ html.feelings_show {
 
   #thing_title {
     text-align: center;
-    background: #fafafa;
+    background: $ghost-white;
     padding: 1em 2em 1.5em 2em;
     @include MQ(XLplus) { padding: 1.5em 2em 2em 2em }
     h1, h2 { margin: 0 }
@@ -421,7 +421,7 @@ html.feelings_show {
   /**********************************************#thing-top_nav**********************************************/
 
   #thing-top_nav {
-    background: #fafafa;
+    background: $ghost-white;
     ul {
       li {
         a {
@@ -594,7 +594,7 @@ html.feelings_show {
         height: 40px;
         margin: 0;
         line-height: 40px;
-        background: #fafafa;
+        background: $ghost-white;
         label {
           float: left;
           margin-right: 10px;
@@ -858,7 +858,7 @@ html.feelings_show {
     margin-bottom: 2em;
     padding: .8em 2em;
     @include MQ(XS) { padding: .8em 1em }
-    background: #fafafa;
+    background: $ghost-white;
     .mobile_related {
       display: inline-block;
       width: 40%;
@@ -869,7 +869,7 @@ html.feelings_show {
         line-height: 30px;
         color: $gray;
         text-align: center;
-        background: #fafafa;
+        background: $ghost-white;
         &:hover {
           color: $text-color;
         }
@@ -1400,7 +1400,7 @@ html.feelings_show {
     .shop {
       margin-bottom: 1.5em;
       padding: 2em 1.5em;
-      background: #fafafa;
+      background: $ghost-white;
       #price {
         margin-bottom: .75em;
         font-size: 1.5em;
@@ -1549,7 +1549,7 @@ html.feelings_show {
         float: left;
         text-align: center;
         @include transition(all 0.2s ease-out);
-        &:hover { background: #fafafa }
+        &:hover { background: $ghost-white }
         a {
           display: block;
           width: 100%;
@@ -1663,7 +1663,7 @@ html.feelings_show {
   .subpage_product_image {
     max-height: 300px;
     overflow: hidden;
-    background: #fafafa;
+    background: $ghost-white;
     a { display: block }
   }
 
@@ -1680,7 +1680,7 @@ html.feelings_show {
       figcaption {
         position: relative;
         width: 100%;
-        background: #fafafa;
+        background: $ghost-white;
         border-bottom: 1px solid $gray-lighter;
         > .user_avatar {
           position: absolute;
@@ -1861,7 +1861,7 @@ html.feelings_show {
       figcaption {
         position: relative;
         width: 100%;
-        background: #fafafa;
+        background: $ghost-white;
         border-bottom: 1px solid $gray-lighter;
         > a {
           float: left;
@@ -1955,12 +1955,12 @@ html.feelings_show {
         width: 100%;
         height: 50px;
         margin: 0;
-        background: #fafafa;
+        background: $ghost-white;
         font-size: 14px;
         line-height: 50px;
         color: $text-color;
         text-align: center;
-        border-right: 2px solid #fafafa;
+        border-right: 2px solid $ghost-white;
         @include transition-property(all);
         @include transition-duration(0.2s);
         @include transition-timing-function(ease);

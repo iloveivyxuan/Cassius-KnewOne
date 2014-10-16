@@ -700,7 +700,7 @@ html.no-touch {
         @include transition-timing-function(ease);
       &:hover {
         color: $brand-primary;
-        background-color: #fafafa;
+        background-color: $ghost-white;
       }
     }
     &#nav_publish {
