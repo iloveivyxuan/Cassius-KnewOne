@@ -93,8 +93,9 @@ class Making.Views.CommentsIndex extends Backbone.View
     return @anchor.replace('#comment-', '')
 
   jumpTo: ($anchor) =>
-    $window.scrollTop($anchor.offset().top)
-    $anchor.parent().addClass('is-targeted')
+    if $anchor?.length
+      $window.scrollTop($anchor.offset().top)
+      $anchor.parent().addClass('is-targeted')
 
   reply: (event) ->
     event.preventDefault()
