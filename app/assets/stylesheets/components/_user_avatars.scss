@@ -2,6 +2,7 @@
   @include text-overflow;
   @include plain-link;
 
+  display: inline-block;
   vertical-align: middle;
 
   .user_avatar-name,
