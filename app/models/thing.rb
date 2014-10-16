@@ -74,6 +74,8 @@ class Thing < Post
   has_and_belongs_to_many :tags
   before_save :update_categories_by_tags
 
+  belongs_to :resource
+
   scope :recent, -> { gt(created_at: 1.month.ago) }
   scope :published, -> { lt(created_at: Time.now) }
   scope :reviewed, -> { gt(reviews_count: 0).desc(:priority, :created_at) }
@@ -111,6 +113,15 @@ class Thing < Post
     lists.each do |list|
       list.items.where(thing_id: id).destroy
     end
+  end
+
+  def resource_text=(text)
+    @resource = Resource.where(name: text).first
+    self.resource = @resource if @resource
+  end
+
+  def resource_text
+    self.resource.try(:name)
   end
 
   def categories_text
