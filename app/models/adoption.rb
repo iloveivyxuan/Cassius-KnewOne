@@ -17,4 +17,5 @@ class Adoption
   validates :user, presence: true, uniqueness: { scope: :thing }
   validates :thing, presence: true
   validates :address, presence: true
+  validates_associated :address
 end

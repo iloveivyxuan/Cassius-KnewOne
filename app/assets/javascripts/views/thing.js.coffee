@@ -92,6 +92,8 @@ window.Making = do (exports = window.Making || {}) ->
       requireAddress(true)
     )
 
+    $('[name^="adoption[address_id]"]:enabled').first().prop('checked', true)
+
   exports.InitReview = ->
     exports.Comments('#comments')
 

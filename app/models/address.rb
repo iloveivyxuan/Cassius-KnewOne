@@ -21,8 +21,13 @@ class Address
   embedded_in :adoption
 
   validates :province, :district, :street, :name, :phone, presence: true
+  validates :city, presence: true, unless: :persisted? # 约束新的地址，老的地址为兼容不做检查
 
-  default_scope -> { where(:city.ne => nil).desc(:default) }
+  default_scope -> { desc(:default) }
+
+  def upgrade_required?
+    self.city.blank?
+  end
 
   before_validation do
     if self.province_code.present? && self.province_code != ChinaCity::CHINA

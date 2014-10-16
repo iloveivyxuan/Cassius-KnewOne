@@ -1,6 +1,10 @@
 li.radio
   label
     = f.radio_button :address_id, address.id, class: 'order_address_radio',
-    checked: address.default? || (!has_default_address?(current_user) && (address_counter == 0))
+    checked: address_counter == 0 && !address.upgrade_required?,
+    disabled: address.upgrade_required?
     = content_for_address address
-  = link_to '[编辑]', edit_address_path(address, redirect_from: request.url)
+  - if address.upgrade_required?
+    = link_to '[点此更新!]', edit_address_path(address, redirect_from: request.url), class: 'text-danger'
+  - else
+    = link_to '[编辑]', edit_address_path(address, redirect_from: request.url)

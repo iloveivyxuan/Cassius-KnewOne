@@ -13,11 +13,7 @@ Making.OrderPage =
         $('.total_price strong span').text(price.toFixed(1))
       )
 
-      if($('.order_address_radio').length == 0)
-        $('.order_address_id').on('change',
-        ->
-          $('.make_order').removeAttr("disabled")
-        )
+      if($('[name^="order[address_id]"]:enabled').length == 0)
         $('.make_order').attr("disabled", "disabled")
 
       $('.order_coupon_radio').click(
@@ -42,3 +38,5 @@ Making.OrderPage =
         $('#order_address_id_new').prop('checked', true)
         requireAddress(true)
       )
+
+      $('[name^="order[address_id]"]:enabled').first().prop('checked', true)

@@ -6,6 +6,10 @@ header.page-header
     i.fa.fa-truck
     | 收货地址
 
+- if @addresses.any? &:upgrade_required?
+  .alert.alert-warning role="alert"
+    | 我们更新了地址系统，部分您的地址需要更新，在更新之前，将不可用于提交订单。
+
 table.table.table-striped
   thead
     tr

@@ -1,7 +1,7 @@
 module OrdersHelper
   def pay_link(order, drop_up = true, css = 'btn btn-success btn_pay')
     if order.can_pay?
-      render partial: 'orders/pay', locals: {order: order, css: css, dropup: drop_up}
+      render partial: 'orders/pay', locals: { order: order, css: css, dropup: drop_up }
     end
   end
 
@@ -18,7 +18,7 @@ module OrdersHelper
     if order.can_cancel?
       content_tag :div, class: 'btn-group' do
         link_to '取消订单', cancel_order_path(order),
-                data: {confirm: '真的要取消这个订单么？'},
+                data: { confirm: '真的要取消这个订单么？' },
                 method: :patch, class: css
       end
     end
@@ -34,7 +34,7 @@ module OrdersHelper
     if order.can_close?
       content_tag :div, class: 'btn-group' do
         link_to '关闭订单', close_haven_order_path(order),
-                data: {confirm: '确认关闭？'},
+                data: { confirm: '确认关闭？' },
                 method: :patch, class: css
       end
     end
@@ -44,7 +44,7 @@ module OrdersHelper
     if order.can_refund?
       content_tag :div, class: 'btn-group' do
         link_to '已退款', refund_haven_order_path(order),
-                data: {confirm: '确认退款？'},
+                data: { confirm: '确认退款？' },
                 method: :patch, class: css
       end
     end
@@ -54,7 +54,7 @@ module OrdersHelper
     if order.can_refunded_balance_to_platform? && order.payment_method != :btc
       content_tag :div, class: 'btn-group' do
         link_to '改退款到第三方平台', refunded_balance_to_platform_haven_order_path(order),
-                data: {confirm: '确认退款？'},
+                data: { confirm: '确认退款？' },
                 method: :patch, class: css
       end
     end
@@ -105,21 +105,21 @@ module OrdersHelper
         item = popularize_items.first
 
         str = item.thing.sharing_text.
-            gsub('{{item}}', "#{item.kind.title}的#{item.thing.title}").
-            gsub('{{url}}', thing_url(item.thing, refer: :order_share))
+          gsub('{{item}}', "#{item.kind.title}的#{item.thing.title}").
+          gsub('{{url}}', thing_url(item.thing, refer: :order_share))
       end
 
       content_tag :div, class: 'btn-group' do
-        link_to '分享', '#share_modal', id: 'share_order_btn', class: "share_btn #{css}", data: {toggle: 'modal', content: str, pic: item.thing.cover.url(:review)}
+        link_to '分享', '#share_modal', id: 'share_order_btn', class: "share_btn #{css}", data: { toggle: 'modal', content: str, pic: item.thing.cover.url(:review) }
       end
     end
   end
 
   def order_operations(order)
     [
-        cancel_link(order),
-        pay_link(order),
-        confirm_free_link(order)
+      cancel_link(order),
+      pay_link(order),
+      confirm_free_link(order)
     ].compact.join('').html_safe
   end
 
@@ -129,12 +129,12 @@ module OrdersHelper
 
   def render_summary_state(order)
     css = case order.state
-            when :confirmed, :shipped, :refunded then
-              'success'
-            when :canceled, :closed then
-              'failure'
-            else
-              ''
+          when :confirmed, :shipped, :refunded then
+            'success'
+          when :canceled, :closed then
+            'failure'
+          else
+            ''
           end
     content_tag :span, class: css do
       state_text order
@@ -158,9 +158,17 @@ module OrdersHelper
   end
 
   def new_order_path_with_params(order, options = {})
+    address_id = if options.has_key?(:address_id)
+                   options[:address_id]
+                 elsif order.address.persisted?
+                   order.address.id.to_s
+                 else
+                   nil
+                 end
+
     new_order_path(order: {
-        coupon_code_id: (options.has_key?(:coupon_code_id) ? options[:coupon_code_id] : order.coupon_code.try(:id)),
-        address_id: (options.has_key?(:address_id) ? options[:address_id] : order.address.try(:id))
+      coupon_code_id: (options.has_key?(:coupon_code_id) ? options[:coupon_code_id] : order.coupon_code.try(:id)),
+      address_id: address_id
     })
   end
 

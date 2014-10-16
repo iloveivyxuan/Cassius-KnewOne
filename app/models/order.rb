@@ -126,11 +126,11 @@ class Order
   scope :deal, -> { unscoped.in(state: [:confirmed, :shipped, :freed]).desc(:created_at) }
 
   after_build do
-    self.address = if self.address_id
-                     self.user.addresses.unscoped.where(id: self.address_id).first
-                   else
-                     Address.new
-                   end
+    if self.address_id.present? && address = self.user.addresses.unscoped.where(id: self.address_id).first
+      self.address = address
+    else
+      build_address
+    end
 
     self.invoice = self.user.invoices.where(id: self.invoice_id).first if self.invoice_id
     self.coupon_code = CouponCode.where(id: self.coupon_code_id).first if self.coupon_code_id
@@ -180,6 +180,10 @@ class Order
   validate on: :create do
     unless self.coupon_code.nil?
       errors.add :coupon_code, '不能使用这个优惠券' unless self.coupon_code.usable?
+    end
+
+    if self.address.upgrade_required?
+      errors.add :address, '地址需要更新'
     end
   end
 

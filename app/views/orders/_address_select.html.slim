@@ -1,5 +1,11 @@
+- addresses = current_user.addresses.sort_by { |a| a.default? ? -1 : 1 }.sort_by { |a| a.upgrade_required? ? 1 : -1 }
+
+- if addresses.any? &:upgrade_required?
+  .alert.alert-warning role="alert"
+    | 我们更新了地址系统，部分您的地址需要更新，在更新之前，将不可用于提交订单。若在其他页面更新过，请刷新页面。
+
 .form-group
   label for="order_address_id" * 收货地址
   ul.addresses.option_list
-    = render partial: 'orders/address_radio', collection: current_user.addresses.select(&:persisted?), as: :address, locals: {f: f}
+    = render partial: 'orders/address_radio', collection: addresses, as: :address, locals: {f: f}
     = render 'orders/address_form', f: f

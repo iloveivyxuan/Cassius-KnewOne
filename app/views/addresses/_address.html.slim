@@ -5,5 +5,9 @@ tr
       span.label.label-primary
         | 首选地址
   td
-    = link_to '[编辑]', address_path(address)
+    - if address.upgrade_required?
+      = link_to '[更新]', edit_address_path(address)
+    - else
+      = link_to '[编辑]', edit_address_path(address)
+    | &nbsp;
     = link_to '[删除]', address, :confirm => '确定要删除么？', :method => :delete, class: 'text-danger'
