@@ -16,11 +16,13 @@
         abbr title="require" *
         |  地区
       = address_select f, @address, :district, class: 'form-control city-select', required: true
-  = f.input :street, required: true
+  .row
+    = f.input :street, required: true, wrapper_html: {class: 'col-md-12'}
   .row
     = f.input :name, required: true, wrapper_html: {class: 'col-md-6'}
     = f.input :phone, required: true, wrapper_html: {class: 'col-md-6'}
-  = f.input :default, as: :boolean
+  .row
+    = f.input :default, as: :boolean, wrapper_html: {class: 'col-md-12'}
   p.help-block
     small 我们暂不能为港澳台用户提供服务。
   = f.button :submit, class: 'btn btn-primary'
