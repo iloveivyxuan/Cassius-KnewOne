@@ -798,14 +798,12 @@ html.no-touch {
     padding-left: 30px;
     padding-right: 30px;
     font-size: 14px;
-    line-height: 29px;
+    line-height: 1em;
     background-color: $navbar-search-bg;
     border: none;
     @include border-radius(0);
     &:focus {
-      height: 45px;
       margin: 0;
-      line-height: 45px;
       color: $gray-lighter;
       letter-spacing: 1px;
       border-left: 3px solid $brand-primary;
