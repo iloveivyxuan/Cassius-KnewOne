@@ -324,6 +324,7 @@ html.landing {
 
   .explore_header {
     @include MQ(Mplus) {
+      box-shadow: 0 0 8px rgba(0, 0, 0, .1);
       display: block;
       width: 100%;
       background-color: #fff;
@@ -365,7 +366,7 @@ html.landing {
       left: 10px;
       font-size: 1.9em;
       line-height: 60px;
-      i { color: #727272 }
+      i { color: $brand-primary; }
     }
     #search_thing {
       width: 100%;

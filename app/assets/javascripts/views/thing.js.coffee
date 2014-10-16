@@ -11,7 +11,7 @@ window.Making = do (exports = window.Making || {}) ->
       type: 'thing'
       bodyField: '[name="thing[content]"]'
       excludeField: '[name="utf8"], [name="authenticity_token"], [name="photo[image]"]'
-      placeholder: '请填写产品详细信息'
+      placeholder: '产品详细信息'
 
   exports.InitThings = ->
     exports.infiniteScroll '.infinite', window.location.href, (data, xhr) ->

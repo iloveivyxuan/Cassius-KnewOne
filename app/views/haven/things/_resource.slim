@@ -1,0 +1,4 @@
+- if @thing.stage == :dsell
+  .resource
+    label.control-label 供应商
+    = f.input_field :resource_text, collection: Resource.all.map(&:name)

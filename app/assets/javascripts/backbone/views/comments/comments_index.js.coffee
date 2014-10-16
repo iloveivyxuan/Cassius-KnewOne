@@ -30,8 +30,13 @@ class Making.Views.CommentsIndex extends Backbone.View
       @$('ul').append(html)
 
       if @anchor.length > 0
-        @jumpToAnchor()
+        $anchor = $(@anchor)
         @anchor = ''
+
+        if document.readyState == 'complete'
+          @jumpTo($anchor)
+        else
+          $(window).one('load', => @jumpTo($anchor))
 
       if !html || @getCommentsCount() >= @$el.data('count')
         @$('.comments_more').remove()
@@ -87,10 +92,10 @@ class Making.Views.CommentsIndex extends Backbone.View
   getCommentId: =>
     return @anchor.replace('#comment-', '')
 
-  jumpToAnchor: =>
-    $anchor = $("#{@anchor}")
-    $window.scrollTop($anchor.offset().top)
-    $anchor.parent().addClass('is-targeted')
+  jumpTo: ($anchor) =>
+    if $anchor?.length
+      $window.scrollTop($anchor.offset().top)
+      $anchor.parent().addClass('is-targeted')
 
   reply: (event) ->
     event.preventDefault()
