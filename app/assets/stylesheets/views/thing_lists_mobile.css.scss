@@ -154,7 +154,8 @@ html.thing_lists_show.tablet {
           }
 
           p {
-            margin-left: 3em;
+            margin: 0 3em;
+            text-align: center;
             color: $gray-light;
           }
         }
