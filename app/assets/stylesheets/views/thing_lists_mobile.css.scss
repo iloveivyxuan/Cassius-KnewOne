@@ -68,12 +68,16 @@ html.thing_lists_show.tablet {
             i {
               vertical-align: middle;
               margin-right: $padding-small-horizontal;
-              font-size: 2em;
+              font-size: 28px;
             }
           }
 
           .fanciers_count {
             color: $red;
+          }
+
+          .fa-share-alt {
+            margin-right: 0;
           }
         }
       }
