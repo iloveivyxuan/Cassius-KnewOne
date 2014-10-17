@@ -5,8 +5,9 @@ section.thing_list_item
       = present(thing).photo('thing.fixed')
     = link_to thing, target: '_blank'
       h4 = thing.title
-  footer
-    - if thing_list_item.description.present?
+
+  - if thing_list_item.description.present?
+    footer
       .thing_list_item-description
         i.fa.fa-quote-left.fa-2x
         = thing_list_item.description
