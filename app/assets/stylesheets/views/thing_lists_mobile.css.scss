@@ -4,9 +4,9 @@ html.thing_lists_show.mobile,
 html.thing_lists_show.tablet {
   body {
     padding-top: 45px;
-    background: image-url('list-background-white.jpg') no-repeat fixed;
+    background: image-url('list-background-white.jpg');
     background-position: top center;
-    background-size: cover;
+    background-attachment: fixed;
   }
 
   #wrapper {
