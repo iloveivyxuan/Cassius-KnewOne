@@ -4,6 +4,11 @@ html.thing_lists_show.mobile,
 html.thing_lists_show.tablet {
   body {
     padding-top: 45px;
+
+    @media (max-width: $screen-xs-max) {
+      padding-bottom: 0;
+    }
+
     background: image-url('list-background-white.jpg');
     background-position: top center;
     background-attachment: fixed;
@@ -188,6 +193,15 @@ html.thing_lists_show.tablet {
           vertical-align: middle;
         }
       }
+    }
+  }
+
+  @media (max-width: $screen-xs-max) {
+    #go_top .fa {
+      margin: 0;
+      padding: .5em 1em;
+      color: #fff;
+      background: $blue-dark;
     }
   }
 }
