@@ -92,6 +92,7 @@ html.thing_lists_show.tablet {
         width: 100%;
         @include breakpoint(sm) { width: percentage(1 / 3); }
 
+        box-shadow: 0 0 8px rgba(0,0,0,.1);
         background: $ghost-white;
 
         > header {
