@@ -16,3 +16,13 @@
       - brand_text = tp.thing.try(:brand).try(:brand_text)
       - if brand_text.present?
         = link_to_with_icon brand_text, 'fa fa-folder-open', things_path(brand: tp.thing.brand.id)
+
+- content_for :script do
+  javascript:
+    $('.write_feeling > a').on('click', function (event) {
+      event.preventDefault();
+
+      $('html, body').animate({
+        scrollTop: $($.attr(this, 'href')).offset().top - 108
+      }, 500);
+    });
