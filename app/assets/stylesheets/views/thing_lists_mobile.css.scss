@@ -77,7 +77,7 @@ html.thing_lists_show.tablet {
     }
 
     section.thing_list_items {
-      margin-top: -15px;
+      margin-top: -20px;
 
       background: $body-bg;
       @include breakpoint(sm) {
@@ -86,7 +86,7 @@ html.thing_lists_show.tablet {
 
       > .thing_list_item {
         display: inline-block;
-        margin-top: 15px;
+        margin-top: 20px;
         vertical-align: top;
 
         width: 100%;
