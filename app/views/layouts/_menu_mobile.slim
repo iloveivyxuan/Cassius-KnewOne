@@ -43,7 +43,7 @@ section#menu
       li.nav_group_title
         | 频道
       li
-        = link_to_with_icon "发现", "fa fa-rocket fa-fw", "#", data: {toggle: "collapse", target:"#explore_category"}
+        = link_to_with_icon "精选", "fa fa-rocket fa-fw", "#", data: {toggle: "collapse", target:"#explore_category"}
         #explore_category.nav_collapse.collapse
           = link_to '首页', explore_path
           = link_to '特写', explore_features_path
@@ -51,7 +51,7 @@ section#menu
           = link_to '专题', explore_specials_path
           = link_to '活动', explore_events_path
       li
-        = link_to_with_icon "精选", "fa fa-compass fa-fw", hits_path
+        = link_to_with_icon "热门", "fa fa-compass fa-fw", hits_path
       li
         = link_to_with_icon "商店", "fa fa-cubes fa-fw", shop_path
       li
