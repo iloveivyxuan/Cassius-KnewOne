@@ -26,7 +26,11 @@
         vertical-align: middle;
       }
 
-      .thing-list-create,
+      .thing-list-creator {
+        @include text-overflow;
+        max-width: 43%;
+      }
+
       .thing-list-name {
         @include text-overflow;
         max-width: 50%;
