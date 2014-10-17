@@ -107,7 +107,8 @@ class MailerInterceptor
 
   EXCEPTIONAL = {
     'gmail.com' => :mailgun,
-    'ruby-china.org' => :mailgun
+    'ruby-china.org' => :mailgun,
+    'live.com' => :mailgun
   }
 end
 
