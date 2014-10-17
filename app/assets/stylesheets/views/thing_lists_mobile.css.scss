@@ -79,6 +79,11 @@ html.thing_lists_show.tablet {
     section.thing_list_items {
       margin-top: -15px;
 
+      background: $body-bg;
+      @include breakpoint(sm) {
+        background: image-url('list-background-white.jpg') no-repeat fixed;
+      }
+
       > .thing_list_item {
         display: inline-block;
         margin-top: 15px;
