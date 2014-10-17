@@ -81,6 +81,16 @@ html.thing_lists_show.tablet {
         }
 
         > header {
+          .thing_list_item-cover {
+            display: block;
+            height: 0;
+            padding-bottom: percentage(8 / 11);
+
+            img {
+              width: 100%;
+            }
+          }
+
           h4 {
             @include plain-link;
 

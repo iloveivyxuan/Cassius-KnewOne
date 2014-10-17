@@ -1,8 +1,9 @@
 section.thing_list_item
   header
     - thing = thing_list_item.thing
-    = link_to thing, target: '_blank'
+    = link_to thing, target: '_blank', class: 'thing_list_item-cover'
       = present(thing).photo('thing.fixed')
+    = link_to thing, target: '_blank'
       h4 = thing.title
   footer
     - if thing_list_item.description.present?
