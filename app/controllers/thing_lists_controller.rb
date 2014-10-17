@@ -10,9 +10,7 @@ class ThingListsController < ApplicationController
   end
 
   def show
-    respond_with @thing_list do |format|
-      format.html.tablet { render 'show.html+mobile' }
-    end
+    respond_with @thing_list
   end
 
   def create
