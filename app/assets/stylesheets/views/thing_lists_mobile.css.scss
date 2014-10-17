@@ -163,9 +163,12 @@ html.thing_lists_show.tablet {
     }
 
     > footer {
-      margin-bottom: 2em;
       padding: 0 16px;
       background: white;
+
+      @include breakpoint(sm) {
+        margin-bottom: 2em;
+      }
 
       h4 {
         display: block;
