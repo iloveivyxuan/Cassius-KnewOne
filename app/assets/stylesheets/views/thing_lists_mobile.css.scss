@@ -110,6 +110,10 @@ html.thing_lists_show.tablet {
           h4 {
             @include plain-link;
 
+            @include breakpoint(sm) {
+              @include text-overflow;
+            }
+
             margin: 0;
             padding: 20px 16px;
             line-height: 1.2;
