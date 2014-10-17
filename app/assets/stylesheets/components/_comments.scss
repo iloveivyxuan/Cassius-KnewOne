@@ -3,26 +3,34 @@
 
   h4 {color: $text-muted;}
 
-  position: relative;
-  .user_avatar {
-    position: absolute;
-    margin-top: 1em;
+  .comments-form_wrapper {
+    position: relative;
+    padding: 1em 2em;
 
-    & + .comment_form {
-      margin-left: 90px;
+    .user_avatar {
+      position: absolute;
+      margin-top: 1em;
+
+      & + .comment_form {
+        margin-left: 90px;
+      }
+    }
+
+    .comment_form {
+      @include clearfix;
+
+      .auth_tip {color: $text-muted;}
+      .help-block {text-align: right;}
+
+      textarea {
+        margin: 1em 0;
+        resize: none;
+      }
     }
   }
 
-  .comment_form {
-    @include clearfix;
-
-    .auth_tip {color: $text-muted;}
-    .help-block {text-align: right;}
-
-    textarea {
-      margin: 1em 0;
-      resize: none;
-    }
+  &.comments--compact .comments-form_wrapper {
+    padding: 0;
   }
 
   ul {
@@ -31,6 +39,10 @@
 
     li:not(:last-child) {
       border-bottom: $border-dashed;
+    }
+
+    li {
+      padding: 1em 2em;
     }
   }
 

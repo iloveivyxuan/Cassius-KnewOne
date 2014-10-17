@@ -2215,16 +2215,21 @@ html.feelings_show {
           display: none;
         }
 
-        ul {
-          margin: 0;
-          padding: 0;
-          li {
+        &.comments--compact {
+          ul {
             margin: 0;
-            padding: .5em 0;
-            @include MQ(Lplus) {
-              padding: 1em 2em;
+            padding: 0;
+            li {
+              margin: 0;
+              padding: .5em 0;
+              @include MQ(Lplus) {
+                padding: 1em 2em;
+              }
             }
           }
+        }
+
+        ul {
           .author a {
             color: $gray;
             &:hover { color: $blue-light }
@@ -2270,6 +2275,10 @@ html.feelings_show {
             @include box-shadow(0 10px 15px rgba(0,0,0,.1));
             .fa:before { content: "\f103" }
           }
+        }
+
+        &.comments--compact .comments_more {
+          @include box-shadow(none);
         }
       }
 

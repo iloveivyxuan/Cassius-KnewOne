@@ -18,19 +18,20 @@
       i.fa.fa-comments-o
       span = title
 
-    - if !compact && user_signed_in?
-      = render 'shared/user_avatar', user: current_user, options: {class: 'user_avatar user_avatar--vertical'}
+    .comments-form_wrapper
+      - if !compact && user_signed_in?
+        = render 'shared/user_avatar', user: current_user, options: {class: 'user_avatar user_avatar--vertical'}
 
-    form.comment_form
-      .controls
-        textarea.form-control[name="comment_content" rows="3" maxlength="300"
-          placeholder=placeholder required=true disabled=disabled]
+      form.comment_form
+        .controls
+          textarea.form-control[name="comment_content" rows="3" maxlength="300"
+            placeholder=placeholder required=true disabled=disabled]
 
-      button.btn.btn--blue.pull-right[type="submit" disabled=disabled
-        data-toggle="tooltip" data-placement="bottom"
-        title="按 Command + Enter 或 Control + Enter 键发布回复"]
-        i.fa.fa-comments-o
-        = title
+        button.btn.btn--blue.pull-right[type="submit" disabled=disabled
+          data-toggle="tooltip" data-placement="bottom"
+          title="按 Command + Enter 或 Control + Enter 键发布回复"]
+          i.fa.fa-comments-o
+          = title
 
     ul
       - unless compact
@@ -38,6 +39,6 @@
           = render post.comments.limit(Settings.comments.per_page)
 
     - if post.comments.count > Settings.comments.per_page
-      button.btn.btn-info.comments_more.pull-right type="button"
+      button.btn.btn-info.comments_more.btn-block type="button"
         i.fa
         = "更早的#{title}..."
