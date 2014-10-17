@@ -111,12 +111,12 @@ html.thing_lists_show.tablet {
               position: absolute;
               bottom: 0;
               left: 48%;
-              left: calc(50% - 7px);
+              left: calc(50% - 8px);
 
               width: 0;
               height: 0;
               border-style: solid;
-              border-width: 0 7px 14px 7px;
+              border-width: 0 8px 11px 8px;
               border-color: transparent transparent $ghost-white transparent;
             }
 
