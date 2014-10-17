@@ -118,7 +118,8 @@ html.thing_lists_show.tablet {
         }
 
         > footer {
-          padding: 0 16px 30px;
+          padding: 20px 16px;
+          border-top: 1px dashed $gray-lighter;
 
           color: $gray-light;
           i {
