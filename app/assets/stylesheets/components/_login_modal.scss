@@ -4,7 +4,7 @@
     margin-top: -1px;
   }
   .modal-content {
-    background-color: #fafafa;
+    background-color: $ghost-white;
     border: none;
     border-radius: 4px;
     @include box-shadow(0 0 10px rgba(0,0,0,.2));
@@ -28,10 +28,10 @@
         font-size: 1.2em;
         line-height: 50px;
         @include MQ(Mplus) { line-height: 60px }
-        color: #fafafa;
+        color: $ghost-white;
         letter-spacing: 2px;
         &:hover {
-          color: #fafafa;
+          color: $ghost-white;
           background: #588cc7;
         }
         span {
@@ -43,7 +43,7 @@
         }
       }
       &.active {
-        background: #fafafa;
+        background: $ghost-white;
         border: none;
         @include box-shadow(none);
         a {

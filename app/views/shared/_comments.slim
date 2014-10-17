@@ -1,4 +1,4 @@
-- lazy = false unless defined?(lazy)
+- compact = false if compact.nil?
 - title = post.is_a?(Post) ? '回复' : '评论'
 - disabled = !(auth && user_signed_in?)
 - if disabled
@@ -13,10 +13,13 @@
   data: {url: post.is_a?(Post) ? post_comments_path(post) : thing_list_comments_path(post),
          count: post.comments.count,
          per: Settings.comments.per_page}
-  .comments
+  .comments class=('comments--compact' if compact)
     h4
       i.fa.fa-comments-o
-      = title
+      span = title
+
+    - if !compact && user_signed_in?
+      = render 'shared/user_avatar', user: current_user, options: {class: 'user_avatar user_avatar--vertical'}
 
     form.comment_form
       .controls
@@ -30,7 +33,7 @@
         = title
 
     ul
-      - unless lazy
+      - unless compact
         - cache_unless user_signed_in?, ['comments', post.comments.first]
           = render post.comments.limit(Settings.comments.per_page)
 

@@ -1,0 +1,64 @@
+- page_title @thing_list.name
+- page_css 'thing_lists_mobile'
+
+- list = @thing_list
+- user = list.author
+
+nav
+  = link_to lists_user_path(user)
+    i.fa.fa-angle-left
+    | 查看该用户的所有列表
+
+header
+  header
+    = render 'shared/user_avatar', user: user, options: {class: 'user_avatar user_avatar--vertical'}
+    .thing_list_name
+      = editable list, :name, title: '列表名称'
+
+    - if can?(:update, list) || list.description.present?
+      .thing_list_description
+        = editable list, :description, title: '列表描述'
+
+  footer
+    ul
+      li = render 'fancy_button', thing_list: list
+
+      li
+        a href="#comments" title="评论"
+          i.fa.fa-comments-o
+          span.comments_count= list.comments.size
+
+      li = render 'share_link', thing_list: list
+
+- if list.items.present?
+  section.thing_list_items
+    = render list.items
+- else
+    = render 'shared/nothing'
+
+footer = render 'shared/comments', post: list, id: 'comments', auth: true
+
+- content_for :script
+  javascript:
+    Making.Comments('#comments')
+
+- if can?(:update, list)
+  - content_for :script
+    javascript:
+      $('.thing_list_name .editable').editable({
+        unsavedclass: null
+      })
+
+      $('.thing_list_description .editable').editable({
+        emptytext: '描述一下吧',
+        unsavedclass: null
+      })
+
+      $('.thing_list_item-description .editable').editable({
+        emptytext: '说点什么吧（50字以内哦）',
+        unsavedclass: null,
+        success: function (response, newValue) {
+          $(this).siblings('.fa')[newValue.trim() ? 'removeClass' : 'addClass']('hidden')
+        },
+        tpl: '<input type="text" maxlength="50">'
+      })

@@ -32,7 +32,7 @@ li.feed-activity
             = link_to photo.url, data: {lightbox: "feeling_#{feeling.id}"} do
               = image_tag photo.url(:small), alt: photo.name
       section.comments_wrap
-        = render 'shared/comments', post: feeling, id: "feeling_#{feeling.id}_comments", auth: true, lazy: true
+        = render 'shared/comments', post: feeling, id: "feeling_#{feeling.id}_comments", auth: true, compact: true
 
   - if activity.type == :add_to_list
     - index = activity_counter

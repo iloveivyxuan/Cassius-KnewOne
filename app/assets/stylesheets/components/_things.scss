@@ -76,7 +76,7 @@ figure.thing {
         width: 50px;
 
         .fa {
-          color: #ff3b3b;
+          color: $red;
           margin-right: 0;
         }
 
@@ -248,7 +248,7 @@ article.thing {
     }
 
     .fancy_button a {
-      .fa {color: #ff3b3b;}
+      .fa {color: $red;}
       small {display: none;}
     }
 
