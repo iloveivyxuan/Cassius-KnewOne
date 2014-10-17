@@ -1,10 +1,5 @@
-nav.thing-list-filter.clearfix
-  - if current_user == @user
-    .btn.btn-default.pull-left data-toggle="modal" data-target="#create_list_modal"
-      i.fa.fa-plus
-      | 新建一个列表
-
-  .btn-group.pull-right
+nav.thing-list-filter
+  .btn-group
     = link_to({filter: 'owned'}, class: "btn btn-default #{@filter == 'owned' ? 'active' : ''}")
       i.fa.fa-eye
       | 创建
@@ -17,19 +12,3 @@ nav.thing-list-filter.clearfix
   = paginate @lists.desc(:updated_at)
 - else
   = render 'shared/nothing'
-
-#create_list_modal.modal.fade
-  .modal-dialog
-    .modal-content
-      = simple_form_for ThingList.new, remote: true do |f|
-        .modal-header
-          button.close type="button" data-dismiss="modal" &times;
-          h4.modal-title
-            i.fa.fa-list
-            | 添加到列表
-        .modal-body
-          = f.input :name
-          = f.input :description
-        .modal-footer
-          button.btn.btn-default type="button" data-dismiss="modal" 取消
-          button.btn.btn-primary type="submit" 创建

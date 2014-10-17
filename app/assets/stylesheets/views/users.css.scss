@@ -429,5 +429,10 @@ html.users_lists {
   nav.thing-list-filter {
     margin-bottom: 20px;
     padding-right: 15px;
+    text-align: right;
+
+    .btn-group {
+      display: inline-block;
+    }
   }
 }
