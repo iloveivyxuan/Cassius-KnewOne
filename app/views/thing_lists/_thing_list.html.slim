@@ -8,7 +8,9 @@ section.thing-list id="thing-list-#{thing_list.id}"
 
       li.thing-list-name= link_to thing_list
         i.fa.fa-list
-        = "#{thing_list.name} (#{thing_list.items.size})"
+        = thing_list.name
+
+      li.thing-list-size = "(#{thing_list.size})"
 
       li.thing-list-fancy= link_to thing_list
           i.fa.fa-heart-o

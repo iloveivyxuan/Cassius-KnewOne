@@ -92,7 +92,12 @@ html.users_activities {
 
           .thing-list-name {
             display: inline-block;
-            max-width: 80%;
+            max-width: 63%;
+          }
+
+          .thing-list-size {
+            display: inline-block;
+            padding: 0;
           }
 
           .thing-list-fancy {
