@@ -2,6 +2,10 @@
 
 html.thing_lists_show.mobile,
 html.thing_lists_show.tablet {
+  body {
+    padding-top: 45px;
+  }
+
   #wrapper {
     @include wrapper(empty);
 
