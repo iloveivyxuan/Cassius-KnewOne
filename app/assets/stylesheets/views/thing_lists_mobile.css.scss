@@ -194,6 +194,13 @@ html.thing_lists_show.tablet {
           vertical-align: middle;
         }
       }
+
+      .comments {
+        .comments-form_wrapper,
+        ul li {
+          padding: 0;
+        }
+      }
     }
   }
 
