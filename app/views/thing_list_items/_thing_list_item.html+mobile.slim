@@ -10,4 +10,4 @@ section.thing_list_item
     footer
       .thing_list_item-description
         i.fa.fa-quote-left.fa-2x
-        p = thing_list_item.description
+        p = editable [thing_list_item.list, thing_list_item], :description, title: '产品描述'

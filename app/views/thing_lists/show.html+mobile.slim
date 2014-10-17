@@ -12,11 +12,12 @@ nav
 header
   header
     = render 'shared/user_avatar', user: user, options: {class: 'user_avatar user_avatar--vertical'}
-    .thing_list_name = list.name
+    .thing_list_name
+      = editable list, :name, title: '列表名称'
 
-    - if list.description.present?
+    - if can?(:update, list) || list.description.present?
       .thing_list_description
-        = list.description
+        = editable list, :description, title: '列表描述'
 
   footer
     ul
@@ -40,3 +41,24 @@ footer = render 'shared/comments', post: list, id: 'comments', auth: true
 - content_for :script
   javascript:
     Making.Comments('#comments')
+
+- if can?(:update, list)
+  - content_for :script
+    javascript:
+      $('.thing_list_name .editable').editable({
+        unsavedclass: null
+      })
+
+      $('.thing_list_description .editable').editable({
+        emptytext: '描述一下吧',
+        unsavedclass: null
+      })
+
+      $('.thing_list_item-description .editable').editable({
+        emptytext: '说点什么吧（50字以内哦）',
+        unsavedclass: null,
+        success: function (response, newValue) {
+          $(this).siblings('.fa')[newValue.trim() ? 'removeClass' : 'addClass']('hidden')
+        },
+        tpl: '<input type="text" maxlength="50">'
+      })
