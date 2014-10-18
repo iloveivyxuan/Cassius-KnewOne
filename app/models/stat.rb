@@ -313,7 +313,7 @@ class Stat
   end
 
   def all_orders
-    @_all_orders ||= Order.where(:state.in => [:confirmed, :shipped]).from_date(@@date_from).to_date(@@date_to)
+    @_all_orders ||= Order.where('order_histories.to' => :confirmed).from_date(@@date_from).to_date(@@date_to)
   end
 
   def all_feelings
