@@ -2334,4 +2334,10 @@ html.feelings_show {
     height: 400px;
     overflow: scroll;
   }
+  table {
+    td {
+      border-radius: 5px;
+      border-top: 0;
+    }
+  }
 }
