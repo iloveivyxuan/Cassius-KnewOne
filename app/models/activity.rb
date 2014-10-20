@@ -3,6 +3,7 @@ class Activity
   include Mongoid::Timestamps::Created
 
   index created_at: -1
+  index({ type: 1, reference_union: 1, user_id: 1 })
 
   #type common rules: {action}_{reference}
   #examples: new_review, fancy_thing
