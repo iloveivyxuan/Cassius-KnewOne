@@ -172,6 +172,6 @@ FactoryGirl.define do
   factory :thing_list_item do
     thing
     thing_list
-    description { Faker::Lorem.paragraph }
+    description { Faker::Lorem.characters(20) }
   end
 end
