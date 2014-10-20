@@ -13,6 +13,7 @@ class ThingListItem
 
   validates :list, presence: true
   validates :thing, presence: true, uniqueness: { scope: :list }
+  validates :description, length: {maximum: 50}
 
   before_create do
     self.order = self.list.items.max(:order).to_i + 1
