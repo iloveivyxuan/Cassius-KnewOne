@@ -28,8 +28,6 @@
         = render 'feelings', thing: thing
       - else
         = render 'shared/nothing'
-    #tab--mobile-activities.tab-pane
-      - if activities.present?
+    - if activities.present?
+      #tab--mobile-activities.tab-pane
         = render 'activities', thing: thing, activities: activities
-      - else
-        = render 'shared/nothing'
