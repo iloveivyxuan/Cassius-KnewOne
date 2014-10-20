@@ -96,6 +96,7 @@ do (root = @, exports = Making) ->
         $window.off 'scroll.login'
 
   exports.selectCategories = (tags, container) ->
+    cache = {}
     $(tags).find('.tags').on 'click', 'a', (event) ->
       $this = $(@)
 

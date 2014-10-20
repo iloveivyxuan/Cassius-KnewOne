@@ -5,7 +5,6 @@ do (exports = window.Making || {}) ->
     $ ->
       step  = location.hash
       $tags = $('#step2').find('.tags')
-      cache = {}
       $things = $('#step2 .things')
       visibleCount = if $html.hasClass('mobile') then 6 else 12
 
