@@ -22,7 +22,7 @@ class SfWayBill < WayBill
 
     set_text(925, 910, contact.name)
 
-    addr2 = "#{contact.province} #{contact.district} #{contact.street}"
+    addr2 = "#{contact.province} #{contact.city} #{contact.district} #{contact.street}"
     set_text(250, 1000, addr2[0..16])
     set_text(250, 1075, addr2[17..-1])
 
