@@ -489,7 +489,7 @@ HERE
   def self.related_users_and_owned(thing, user, count)
     users = user ? user.followings + user.followers : []
     users = thing.owners.desc(:karma).first(count) if users.empty?
-    (users && thing.owners).take(count)
+    (result = users && thing.owners) ? result.take(count) : []
   end
 
   def has_been_invited_by?(user, thing)
