@@ -923,6 +923,14 @@ html.feelings_show {
         background: #f7f7f7;
       }
 
+      > .btn-invite-review {
+        color: $gray;
+        padding: {
+          bottom: 0;
+          top: 0;
+        }
+      }
+
       > .btn {
         float: right;
       }
@@ -1360,6 +1368,7 @@ html.feelings_show {
             box-shadow: none;
           }
         }
+
         .tooltip-inner {
           padding: 5px 8px;
           background: $blue-light;
@@ -2317,5 +2326,12 @@ html.feelings_show {
     ul li.active a {
       cursor: pointer;
     }
+  }
+}
+
+#invite-review-modal {
+  .modal-body {
+    height: 400px;
+    overflow: scroll;
   }
 }

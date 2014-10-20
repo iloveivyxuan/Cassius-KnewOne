@@ -33,6 +33,11 @@ class DialogsController < ApplicationController
 
     if receiver
       @message = current_user.send_private_message_to receiver, params[:dialog_content]
+      if session[:previous_url] =~ /things\/([0-9a-z-]*)/
+        result = /things\/([0-9a-z-]*)/.match "/things/iqunix-pad-lu-he-jin-shu-biao-dian"
+        thing = Thing.where(slugs: "bong-ii").first
+        current_user.log_activity :invite_review, receiver, source: thing, visible: false if thing
+      end
     end
   end
 
