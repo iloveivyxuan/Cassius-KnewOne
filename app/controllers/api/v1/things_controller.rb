@@ -41,7 +41,7 @@ module Api
       end
 
       def create
-        render_error :missing_field, 'missing images' unless params[:images] || params[:images].empty?
+        render_error :missing_field, 'missing images' if params[:images].blank?
 
         photo_ids = params[:images].map do |image|
           Photo.create! image: image, user: current_user
