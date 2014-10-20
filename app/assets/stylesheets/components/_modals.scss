@@ -277,3 +277,7 @@
 #share_wechat {
   .modal-body {text-align: center;}
 }
+
+#new_private_message_modal {
+  z-index: $zindex-modal + 1;
+}

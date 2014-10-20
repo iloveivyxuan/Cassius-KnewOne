@@ -486,6 +486,18 @@ HERE
 
   need_aftermath :follow, :unfollow
 
+  def self.related_users_and_owned(thing, user, count)
+    users = user ? user.followings + user.followers : []
+    users = thing.owners.desc(:karma).first(count) if users.empty?
+    (result = users && thing.owners) ? result.take(count) : []
+  end
+
+  def has_been_invited_by?(user, thing)
+    Activity.where(type: :invite_review)
+      .where(reference_union: "User_#{self.id.to_s}")
+      .where(user: user).exists?
+  end
+
   protected
   def password_required?
     self.encrypted_password.present? && (!password.nil? || !password_confirmation.nil?)
