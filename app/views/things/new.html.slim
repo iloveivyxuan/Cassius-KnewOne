@@ -32,8 +32,6 @@
             i.fa.fa-chevron-right
           .slideshow_body
       = f.input :subtitle, placeholder: "一句话介绍", input_html: {maxlength: 40, autocomplete: "off"}
-      - if current_user.role? :editor
-        = f.input :tags_text, placeholder: "标签", input_html: {maxlength: 40, autocomplete: "off"}
       = f.input :official_site, as: :url, placeholder: "产品官方链接", input_html: {autocomplete: "off"}
       = f.input :content, as: :hidden
 
