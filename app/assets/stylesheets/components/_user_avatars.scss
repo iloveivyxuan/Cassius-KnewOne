@@ -30,6 +30,11 @@
     text-align: center;
   }
 
+  .user_avatar-name {
+    @include text-overflow;
+    width: 60px;
+  }
+
   img {
     width: 60px;
     margin-bottom: $padding-large-vertical;
