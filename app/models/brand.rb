@@ -28,7 +28,7 @@ class Brand
   end
 
   def update_names
-    self.zh_name = nil if self.zh_name.empty?
-    self.en_name = nil if self.en_name.empty?
+    self.zh_name = nil if self.zh_name.try(:empty?)
+    self.en_name = nil if self.en_name.try(:empty?)
   end
 end
