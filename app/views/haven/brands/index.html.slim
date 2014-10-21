@@ -19,7 +19,7 @@ table.table
         th= link_to b.brand_text, things_path(brand: b.id)
         th= b.zh_name
         th= b.en_name
-        th= b.things_size
+        th= b.things.size
         th
           = link_to '[编辑]', edit_haven_brand_path(b.id)
           = link_to '[删除]', haven_brand_path(b.id), method: :delete
