@@ -21,7 +21,7 @@ class ZtoWayBill < WayBill
 
     set_text(1550, 320, contact.name)
 
-    addr2 = "#{contact.province} #{contact.district} #{contact.street}"
+    addr2 = "#{contact.province} #{contact.city} #{contact.district} #{contact.street}"
     set_text(1500, 400, addr2[0..16])
     set_text(1500, 500, addr2[17..-1])
 
