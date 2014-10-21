@@ -9,6 +9,7 @@ class Brand
   field :things_size, type: Integer, default: 0
   before_save :update_count
   before_save :update_things_brand
+  before_save :update_names
 
   mount_uploader :logo, CoverUploader
 
@@ -24,5 +25,10 @@ class Brand
 
   def update_things_brand
     things.each { |thing| thing.update_attributes(brand_name: brand_text) }
+  end
+
+  def update_names
+    self.zh_name = nil if self.zh_name.empty?
+    self.en_name = nil if self.en_name.empty?
   end
 end
