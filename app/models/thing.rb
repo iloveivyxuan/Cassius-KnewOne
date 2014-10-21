@@ -146,7 +146,7 @@ class Thing < Post
 
   def brand_text=(text)
     if text.nil?
-      self.brand = nil if text.nil?
+      self.brand = nil
     else
       text.strip!
       if /[a-zA-Z0-9]/ =~ text
