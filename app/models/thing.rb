@@ -4,6 +4,8 @@ class Thing < Post
   include Aftermath
 
   slug :title, history: true
+  before_save :delete_illegal_chars
+
   field :subtitle, type: String, default: ""
   field :official_site, type: String, default: ""
   field :photo_ids, type: Array, default: []
@@ -398,6 +400,11 @@ class Thing < Post
 
   def update_categories_by_tags
     self.categories = self.tags.map(&:category).compact.map(&:name) unless self.tags.empty?
+  end
+
+  # delete ~, which may cause slug to be 'foo-bar-~', which cannot be found.
+  def delete_illegal_chars
+    self.title.delete!("~")
   end
 
 end
