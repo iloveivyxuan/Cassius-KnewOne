@@ -6,6 +6,9 @@ class SessionsController < Devise::SessionsController
     session[:previous_url] = params[:redirect_from] if params[:redirect_from].present?
   end
 
+  # bind oauth
+  after_action :bind_omniauth, only: :create
+
   # POST /resource/sign_in
   def create
     self.resource = warden.authenticate(auth_options)
@@ -19,7 +22,7 @@ class SessionsController < Devise::SessionsController
         sign_in(resource_name, resource)
         yield resource if block_given?
 
-        format.html { redirect_to after_sign_in_path_for(resource) }
+        format.html { redirect_back_or after_sign_in_path_for(resource) }
         format.js do
           @location = after_sign_in_path_for(resource)
         end
@@ -27,20 +30,15 @@ class SessionsController < Devise::SessionsController
     end
   end
 
-  # bind oauth
-  after_action only: :create do
-    if session[:omniauth].present? && !@error
-      current_user.auths<< Auth.new(session[:omniauth])
-      current_user.update_from_omniauth(session[:omniauth])
-
-      session.delete :omniauth
-    end
-  end
-
   private
   def user_params
     params.require(:user).permit(:email, :password, :remember_me)
   end
+
+  # def redirect_back_or(path, flash = {})
+  #   url = params[:redirect_from].present? ? params[:redirect_from] : path # Avoiding querystring like redirect_from=&
+  #   redirect_to(url, flash)
+  # end
 
   def after_sign_out_path_for(resource_name)
     root_path

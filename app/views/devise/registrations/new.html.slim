@@ -4,7 +4,7 @@ header.page-header
   h1 注册
 
 main role="main"
-  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name, redirect_from: params[:redirect_from])) do |f|
     = f.input :email, required: true, autofocus: true
     = f.input :name, required: true
     = f.input :password, required: true

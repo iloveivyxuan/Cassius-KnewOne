@@ -128,6 +128,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def bind_omniauth
+    if session[:omniauth].present? && user_signed_in?
+      current_user.auths<< Auth.new(session[:omniauth])
+      current_user.update_from_omniauth(session[:omniauth])
+
+      session.delete :omniauth
+    end
+  end
+
   private
 
   def logging

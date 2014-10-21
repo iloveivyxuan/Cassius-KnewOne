@@ -184,7 +184,11 @@ class User
 
   def update_from_omniauth(data)
     if auth = auths.where(provider: data[:provider]).first
-      auth.update_from_omniauth(data)
+      if data[:info]
+        auth.update_from_omniauth(data)
+      else
+        auth.update data
+      end
 
       if self.auto_update_from_oauth?
         set_profiles_by_auth(auth)

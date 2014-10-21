@@ -9,6 +9,7 @@
     <%= link_to_with_icon ' Twitter', 'fa fa-twitter', user_omniauth_authorize_path(:twitter), class: "btn btn-info twitter_sign_in" %>
     <%= link_to_with_icon ' 新浪微博', 'fa fa-weibo', user_omniauth_authorize_path(:weibo), class: "btn btn-danger weibo_sign_in" %>
     <%= link_to_with_icon ' QQ', 'fa fa-qq', user_omniauth_authorize_path(:qq_connect), class: "btn btn-primary qq_sign_in" %>
+    <%= link_to_with_icon ' 豆瓣', 'fa fa-douban', user_omniauth_authorize_path(:douban), class: "btn btn-success douban_sign_in" %>
     <%#= link_to_with_icon ' bong', 'fa fa-bong', user_omniauth_authorize_path(:bong), class: "btn btn-primary bong_sign_in" %>
   </div>
 
@@ -26,6 +27,6 @@
     </div>
 
     <%= f.button :submit, "登录", class: "btn btn-primary btn-lg btn-block" %>
-    <%= link_to '注册', new_user_registration_path, class: 'btn btn-success btn-lg btn-block' %>
+    <%= link_to '注册', new_user_registration_path(redirect_from: params[:redirect_from]), class: 'btn btn-success btn-lg btn-block' %>
   <% end %>
 </main>

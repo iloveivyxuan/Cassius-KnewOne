@@ -1,6 +1,12 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   include ApplicationHelper
 
+  before_action do
+    params[:redirect_from] = params[:state] if params[:state].present? && params[:state][0] == '/'
+  end
+
+  after_action :bind_omniauth
+
   def callback
     omniauth = request.env['omniauth.auth']
 
@@ -18,8 +24,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user.remember_me = true
       sign_in user
 
-      params[:redirect_from] = params[:state] if params[:state].present? && params[:state][0] == '/'
-
       redirect_back_or after_sign_in_path_for(user),
                        :notice => t('devise.omniauth_callbacks.success', kind: omniauth.provider),
                        :flash => {:show_set_email_modal => !user.has_fulfilled_email?}
@@ -27,8 +31,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # must be
       current_user.auths<< Auth.from_omniauth(omniauth)
       current_user.update_from_omniauth(omniauth)
-
-      params[:redirect_from] = params[:state] if params[:state].present? && params[:state][0] == '/'
 
       redirect_back_or edit_account_path, flash: {oauth: {status: 'success', text: '绑定成功。'}}
     else
@@ -44,7 +46,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
-  def wechat
+  def callback_with_bind_flow
     omniauth = request.env['omniauth.auth']
 
     if user = User.find_by_omniauth(omniauth)
@@ -71,7 +73,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       session[:omniauth] = Auth.omniauth_to_auth(omniauth)
 
-      redirect_to new_user_session_path
+      redirect_to new_user_session_path(redirect_from: params[:redirect_from])
     end
   end
 
@@ -89,5 +91,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   alias_method :twitter, :callback
   alias_method :qq_connect, :callback
   alias_method :douban, :callback
-  alias_method :bong, :callback
+
+  alias_method :wechat, :callback_with_bind_flow
+  alias_method :bong, :callback_with_bind_flow
 end
