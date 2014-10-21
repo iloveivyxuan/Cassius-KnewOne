@@ -42,12 +42,12 @@ class DialogsController < ApplicationController
   end
 
   def destroy
-    @dialog.destroy if @dialog
+    @dialog.destroy
   end
 
   private
 
   def set_dialog
-    @dialog = current_user.dialogs.where(id: params[:id]).first
+    @dialog = current_user.dialogs.find(params[:id])
   end
 end
