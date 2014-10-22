@@ -130,8 +130,12 @@ class ApplicationController < ActionController::Base
 
   def bind_omniauth
     if session[:omniauth].present? && user_signed_in?
-      current_user.auths<< Auth.new(session[:omniauth])
-      current_user.update_from_omniauth(session[:omniauth])
+      if a = current_user.auths.where(provider: session[:omniauth][:provider]).first
+         a.update session[:omniauth]
+      else
+        current_user.auths<< Auth.new(session[:omniauth])
+        current_user.update_from_omniauth(session[:omniauth])
+      end
 
       session.delete :omniauth
     end
