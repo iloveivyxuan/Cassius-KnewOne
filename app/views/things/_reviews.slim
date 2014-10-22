@@ -7,7 +7,8 @@
     - else
       header
         = render 'reviews/link_to_new', klass: 'btn btn--transition btn-write-review btn--blue btn--square'
-        = render 'reviews/invite_to_write', klass: 'btn btn-invite-review'
+        - unless tp.thing.owners.empty?
+          = render 'reviews/invite_to_write', klass: 'btn btn-invite-review'
         h4 用户评测
 
     .reviews.list.stream_content data-url=thing_reviews_path(tp.thing)
