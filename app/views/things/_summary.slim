@@ -10,7 +10,7 @@
         = tp.link_to_share('btn btn--square btn--share btn--orange hidden-xs hidden-sm', '分享')
         = link_to_with_icon '举报', "fa fa-flag", "#",
         class: 'btn btn--square btn--share btn--blue_light hidden-xs hidden-sm',
-        data: { 'private-message' => true, 'user-id' => '543c956231302d1015600100', 'user-name' => 'KnewOne小信鸽', 'content' => "我想举报此产品：#{request.host + request.fullpath} \n\n 举报理由：" }
+        data: { 'private-message' => true, 'user-id' => '543c956231302d1015600100', 'user-name' => 'KnewOne小信鸽', 'content' => "我想举报此产品：#{request.original_url}\n\n举报理由：" }
         - if can?(:edit, @thing)
           = link_to('编辑', [:edit, @thing], class: 'btn btn--square btn--blue')
         - if can?(:pro_edit, @thing)
