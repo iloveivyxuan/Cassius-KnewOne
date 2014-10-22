@@ -7,8 +7,8 @@
           label 分享者
           = link_to @thing.author.name, @thing.author, data: {"popover-profile" => @thing.author.id.to_s}
 
-        = tp.link_to_share('btn btn--square btn--share btn--orange hidden-xs hidden-sm', ' 分享')
-        = link_to_with_icon ' 举报', "fa fa-flag", "#",
+        = tp.link_to_share('btn btn--square btn--share btn--orange hidden-xs hidden-sm', '分享')
+        = link_to_with_icon '举报', "fa fa-flag", "#",
         class: 'btn btn--square btn--share btn--blue_light hidden-xs hidden-sm',
         data: { toggle: "modal", target: user_signed_in? ? "#new_private_message_modal" : "#login-modal" }
         - if can?(:edit, @thing)
