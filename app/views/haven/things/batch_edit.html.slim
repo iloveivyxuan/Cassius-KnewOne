@@ -54,9 +54,9 @@ ul.nav.nav-pills
             = text_field_tag 'things[][subtitle]', t.subtitle, style: 'width: 100%'
             br
             | 价格单位
-            .btn-group data-toggle="buttons"
+            .btn-group
               - ["¥", "$", "€", "£", "JPY¥", "₩", "NT$"].each do |u|
-                label class=(t.price_unit == u ? "btn btn-default active" : "btn btn-default")
+                label.btn.btn-default
                   input checked=(t.price_unit == u) name='things[][price_unit]' type="radio" value=u
                     | #{u}
             br
@@ -67,7 +67,7 @@ ul.nav.nav-pills
             = text_field_tag 'things[][priority]', t.priority, style: 'width: 100%'
           td
             | 阶段
-            .btn-group data-toggle="buttons"
+            .btn-group
               - Thing::STAGES.invert.each do |k, v|
                 label class=(t.stage == v ? "btn btn-default active" : "btn btn-default")
                   input checked=(t.stage == v) name='things[][stage]' type="radio" value=v
