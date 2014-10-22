@@ -8,9 +8,12 @@ Making.PrivateMessage = ->
 
     userId   = $target.attr('data-user-id')
     userName = $target.attr('data-user-name')
+    messageContent = $target.attr('data-content')
 
     $modal.find('#dialog_user_id').val(userId)
     $modal.find('#dialog_user_name').val(userName)
+    if messageContent
+      $modal.find('#dialog_content').val(messageContent)
     $modal.find('#dialog_user_name').prop('disabled', true)
 
     $modal.modal('show')
