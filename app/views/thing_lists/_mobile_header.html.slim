@@ -1,11 +1,12 @@
-nav
-  = link_to lists_user_path(user)
-    i.fa.fa-angle-left
-    | 查看该用户的所有列表
-
 header
-  header
-    = render 'shared/user_avatar', user: user, options: {class: 'user_avatar user_avatar--vertical'}
+  nav
+    = link_to lists_user_path(user)
+      i.fa.fa-angle-left
+      | 查看该用户的所有列表
+
+  = render 'shared/user_avatar', user: user, options: {class: 'user_avatar user_avatar--vertical'}
+
+  .thing_list_info
     .thing_list_name
       = editable list, :name, title: '列表名称'
 
@@ -13,7 +14,7 @@ header
       .thing_list_description
         = editable list, :description, title: '列表描述'
 
-  footer
+  .thing_list_actions
     ul
       li = render 'fancy_button', thing_list: list
 

@@ -20,36 +20,42 @@ html.thing_lists_show {
   #wrapper {
     @include wrapper(empty);
 
-    > nav {
-      line-height: 60px;
-      background: $body-bg;
-
-      a {
-        @include plain-link($text-color);
-      }
-
-      i {
-        margin: 0;
-        padding: 0 47px 0 44px;
-      }
-    }
-
     > header {
-      position: relative;
-      min-height: 120px;
-      padding: 30px 16px 30px (16px + 60px + 20px);
+      padding: 0 16px 30px;
       background: rgba(white, 0.6);
 
-      > header {
-        .user_avatar {
-          position: absolute;
-          left: 16px;
+      > nav {
+        margin: 0 -16px;
+        line-height: 60px;
+        background: $body-bg;
 
-          img {
-            width: auto;
-            height: 60px;
-          }
+        a {
+          @include plain-link($text-color);
         }
+
+        i {
+          margin: 0;
+          padding: 0 47px 0 44px;
+        }
+      }
+
+      position: relative;
+
+      .user_avatar {
+        position: absolute;
+        top: 60px + 30px;
+        left: 16px;
+
+        img {
+          width: auto;
+          height: 60px;
+        }
+      }
+
+      .thing_list_info {
+        min-height: 120px;
+        padding: 30px 0 0 60px + 20px;
+
 
         .thing_list_name {
           padding: (60px - $font-size-large) / 2 0;
@@ -63,7 +69,9 @@ html.thing_lists_show {
         }
       }
 
-      > footer {
+      .thing_list_actions {
+        padding-left: 60px + 20px;
+
         > ul {
           display: flex;
           justify-content: space-between;
