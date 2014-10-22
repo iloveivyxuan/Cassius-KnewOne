@@ -9,6 +9,7 @@ do ($ = jQuery) ->
       constructor: (element, options) ->
         @$element = $(element)
         @options  = options
+        @$form    = @$element.closest('.editor')
 
         @initMenu()
 
@@ -131,11 +132,17 @@ do ($ = jQuery) ->
           <div class='progress-bar progress-bar-striped active' role='progressbar' aria-valuemin='0' aria-valuemax='100' style='width: 100%'>
           </div>
         </div>")
+        @$form.find('[type="submit"]:not(.is-inactive)')
+          .on 'click.loading.minsert', (event) ->
+            event.preventDefault()
+            alert '还有图片正在上传，请等待上传完后再提交。'
+          .addClass('is-inactive')
 
       loaded: (event, id) ->
         # @TODO
         # @$element.find("progress##{id}").remove()
         @$element.find("#minsert-progress-#{id}").remove()
+        @$form.find('[type="submit"].is-inactive').off('click.loading.minsert')
 
       handleFigureFocus: (event) ->
         $figure = $(event.target).parent()
