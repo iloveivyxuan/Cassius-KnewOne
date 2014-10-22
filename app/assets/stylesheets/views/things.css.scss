@@ -2331,8 +2331,20 @@ html.feelings_show {
 
   .things_subpage {
     .feed_article--feeling {
-      figcaption a {
-        @include MQ(Mplus) {
+      @include MQ(Mplus) {
+        padding-left: 132px;
+
+        .feeling_author {
+          width: auto;
+          margin-left: 2em;
+
+          img {
+            width: 60px;
+            height: 60px;
+          }
+        }
+
+        figcaption a {
           display: block;
           line-height: 14px;
           max-height: 44px;
