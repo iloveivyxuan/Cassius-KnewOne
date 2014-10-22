@@ -4,7 +4,7 @@ header
       li class="#{'active' if k == @active_tab_key}"
         a.dropdown_box_propagate href="#notification_#{k}" data-toggle="tab"
           i.fa.fa_alone.dropdown_box_propagate class="#{notification_tab_icon(k)}"
-          - if @tabs[k].unread.size > 0
+          - if @tabs[k].where(opened: false).size > 0
             span.unread
 
 section
