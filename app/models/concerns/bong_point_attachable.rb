@@ -11,12 +11,14 @@ module BongPointAttachable
 
     has_many :bong_point_transactions
 
-    attr_accessor :bong_point
-
     def bong_point=(val)
       @bong_point = val.to_i
     rescue
       @bong_point = 0
+    end
+
+    def bong_point
+      @bong_point || 0
     end
 
     validate do
