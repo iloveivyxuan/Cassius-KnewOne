@@ -145,7 +145,7 @@ class Thing < Post
   end
 
   def brand_text=(text)
-    if text.nil?
+    if text.empty?
       self.brand = nil
     else
       text.strip!
