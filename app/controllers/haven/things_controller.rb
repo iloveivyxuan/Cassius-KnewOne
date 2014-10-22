@@ -103,9 +103,10 @@ module Haven
     def batch_update
       if thing_params = params[:things].first
         @thing = Thing.find(thing_params.delete :id)
-        @thing.update_attributes thing_params.permit!
+        @thing.assign_attributes thing_params.permit!
+        @changes = @thing.changes
         if @thing.save
-          render js: true
+          render js: { status: true, changes: @changes }.to_json
         else
           render js: @thing.errors.full_messages
         end

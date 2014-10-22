@@ -98,13 +98,6 @@ ul.nav.nav-pills
   javascript:
     $(document).ready(function() {
       $(".batch_edit")
-        .on("ajax:success", function(e, data, status, xhr) {
-          if (data == "true") {
-            var button = this.getElementsByClassName("pull-right")[0];
-            button.disabled = true;
-            button.value = "修改成功";
-          }
-        })
         .on("ajax:error", function(e, data, status, xhr) {
           var output = this.getElementsByTagName("output")[0];
           output.innerText = data.responseText;
