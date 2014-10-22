@@ -183,10 +183,10 @@ html.landing {
           margin-top: 20px;
           margin-bottom: 20px;
           @include MQ(Sneg) { margin-top: 10px }
-          @include MQ(Mneg) { width: 70% }
-          @include MQ(M) { width: 40% }
+          @include MQ(Mneg) { width: 80% }
+          @include MQ(M) { width: 50% }
           @include MQ(Lplus) {
-            width: 400px;
+            width: 510px;
             margin-top: 20px;
             margin-left: 15px;
             margin-bottom: 0;

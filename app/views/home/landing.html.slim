@@ -5,7 +5,7 @@
   header
     = logo
     h1 = image_tag "logo_blue.png", height: "34", width: "345", title: "KnewOne 牛玩", alt: "KnewOne 牛玩"
-    = image_tag "slogan.png", height: "29", width: "400", title: "在这里，分享新奇酷产品和你的体验", alt: "KnewOne-Slogan"
+    = image_tag "slogan.png", height: "24", width: "510", title: "在这里，分享科技与设计产品，发现更好的生活", alt: "KnewOne-Slogan"
 
   = render 'shared/entry_compact'
 
@@ -24,8 +24,8 @@
   .explore_header
     .explore_header_inner
       = form_tag search_path, class: 'form-inline', id: 'search_form', role: 'form', method: 'get'
-        label.sr-only 搜索发现新奇酷
-        input#search_thing autocomplete="off" name="q" placeholder="搜索发现新奇酷" role="search" type="search"
+        label.sr-only 搜索产品
+        input#search_thing autocomplete="off" name="q" placeholder="搜索产品" role="search" type="search"
         label for="search_input"
           i.fa.fa-search
       a.btn.btn-link.discover href="/hits"
