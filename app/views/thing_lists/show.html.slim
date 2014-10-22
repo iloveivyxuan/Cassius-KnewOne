@@ -1,84 +1,36 @@
 - page_title @thing_list.name
 - page_css 'thing_lists'
 
-- user = @thing_list.author
+- list = @thing_list
+- user = list.author
 
-nav
-  = link_to lists_user_path(user)
-    i.fa.fa-undo
-    | 查看该用户的所有列表
+= render 'mobile_header', list: list, user: user
 
-header
-  .info
-    = link_to user
-      .user-avatar
-        = user_avatar(user, :small)
-    .thing-list-name
-      = editable @thing_list, :name, title: '列表名称'
-    - if can?(:update, @thing_list) || @thing_list.description.present?
-      .thing-list-description
-        = editable @thing_list, :description, title: '列表描述'
-    .stats
-      | 创建于
-      = time_ago_tag(@thing_list.created_at)
-
-      a.comments_toggle href="#comments" title="评论"
-        i.fa.fa-comments-o
-        - if @thing_list.has_comments?
-          span.comments_count= @thing_list.comments.size
-
-      = render 'share_link', thing_list: @thing_list
-
-  .follow
-    = render 'fancy_button', thing_list: @thing_list
-
-- if @thing_list.items.present?
-  section.thing-list-items
-    = render @thing_list.items, fanciable: current_user != user
+- if list.items.present?
+  section.thing_list_items
+    = render list.items
 - else
     = render 'shared/nothing'
 
-= render 'shared/comments', post: @thing_list, id: 'comments', auth: true
+footer = render 'shared/comments', post: list, id: 'comments', auth: true
 
 - content_for :script
   javascript:
     Making.Comments('#comments')
 
-- if can?(:update, @thing_list)
+- if can?(:update, list)
   - content_for :script
     javascript:
-      $('.thing-list-name .editable').editable()
+      $('.thing_list_name .editable').editable()
 
-      $('.thing-list-description .editable').editable({
+      $('.thing_list_description .editable').editable({
         emptytext: '描述一下吧'
       })
 
-      $('.thing-list-item-description .editable').editable({
+      $('.thing_list_item-description .editable').editable({
         emptytext: '说点什么吧（50字以内哦）',
         success: function (response, newValue) {
           $(this).siblings('.fa')[newValue.trim() ? 'removeClass' : 'addClass']('hidden')
         },
         tpl: '<input type="text" maxlength="50">'
       })
-
-      if (!Modernizr.touch) {
-        $('.thing-list-items').sortable({
-          update: function (event, ui) {
-            var $el = ui.item
-
-            var prevOrder = $el.prev().length ? parseFloat($el.prev().data('order')) : null
-            var nextOrder = $el.next().length ? parseFloat($el.next().data('order')) : null
-            if (prevOrder === null) prevOrder = nextOrder + 1
-            if (nextOrder === null) nextOrder = prevOrder - 1
-
-            var newOrder = (prevOrder + nextOrder) / 2
-
-            $el.data('order', newOrder)
-            $.ajax({
-              url: $el.data('url'),
-              type: 'PATCH',
-              data: {thing_list_item: {order: newOrder}}
-            })
-          }
-        })
-      }

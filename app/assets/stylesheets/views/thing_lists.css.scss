@@ -1,139 +1,214 @@
 @import '../base';
 
 html.thing_lists_show {
-  #wrapper {
-    @extend %container;
+  body {
+    padding-top: 45px;
 
-    background: white;
-
-    @include breakpoint(sm) {
-      padding: 20px 40px;
-      border-radius: 10px;
+    @media (max-width: $screen-xs-max) {
+      padding-bottom: 0;
     }
 
-    > nav {
-      margin: 0 (-$grid-gutter-width / 2);
-      padding: 10px 20px;
-      background: $gray-lighter;
+    background: image-url('list-background-white.jpg');
+    background-position: top center;
+    background-attachment: fixed;
+  }
 
-      @include breakpoint(sm) {
-        padding: 0;
-        padding-bottom: 20px;
-        border-bottom: 1px solid $gray-lighter;
-        background: white;
-      }
+  #wrapper {
+    @include wrapper(empty);
+
+    > nav {
+      line-height: 60px;
+      background: $body-bg;
 
       a {
-        color: $black;
+        @include plain-link($text-color);
+      }
+
+      i {
+        margin: 0;
+        padding: 0 47px 0 44px;
       }
     }
 
     > header {
       position: relative;
-      height: 70px;
-      margin: 20px 10px;
-      padding-left: 60px;
+      min-height: 120px;
+      padding: 30px 16px 30px (16px + 60px + 20px);
+      background: rgba(white, 0.6);
 
-      .info {
-        margin-left: 10px;
-
-        a {
-          color: $black;
-        }
-
-        img {
-          @extend %img-circle;
+      > header {
+        .user_avatar {
           position: absolute;
-          top: 0;
-          left: 0;
-          width: 60px;
-          height: 60px;
-        }
+          left: 16px;
 
-        .thing-list-name {
-          @include text-overflow;
-
-          margin-right: 60px;
-          padding-top: 6px;
-          font-size: 16px;
-        }
-
-        .thing-list-description {
-          @include text-overflow;
-          padding: 3px 0 2px;
-        }
-
-        .stats {
-          margin-top: 8px;
-          color: $gray-light;
-          font-size: 14px;
-        }
-
-        .comments_toggle {
-          margin-left: .5em;
-          @include breakpoint(sm) {
-            margin-left: 1em;
+          img {
+            width: auto;
+            height: 60px;
           }
+        }
 
-          .comments_count {
-            display: none;
-            @include breakpoint(sm) {
-              display: inline;
+        .thing_list_name {
+          padding: (60px - $font-size-large) / 2 0;
+          font-size: $font-size-large;
+          line-height: 1.1;
+        }
+
+        .thing_list_description {
+          margin: $padding-large-vertical 0 20px;
+          color: $gray-light;
+        }
+      }
+
+      > footer {
+        > ul {
+          display: flex;
+          justify-content: space-between;
+
+          margin-top: $padding-large-vertical;
+          max-width: 200px;
+
+          a {
+            @include plain-link($gray-light);
+
+            i {
+              vertical-align: middle;
+              margin-right: $padding-small-horizontal;
+              font-size: 28px;
             }
           }
-        }
 
-        .thing-list-share {
-          @include breakpoint(sm) {
-            margin-left: 1em;
+          .fanciers_count {
+            color: $red;
+          }
+
+          .fa-share-alt {
+            margin-right: 0;
           }
         }
       }
-
-      .follow {
-        position: absolute;
-        top: 14px;
-        right: 0;
-      }
     }
 
-    .thing-list-items {
-      @include make-row;
+    section.thing_list_items {
+      margin-top: -30px;
 
-      @include breakpoint(sm) {
-        padding: 10px 0;
-        border: solid $gray-lighter;
-        border-width: 1px 0;
-      }
-
-      &.ui-sortable {
-        > section {
-          cursor: move;
-        }
-      }
-
-      > section {
-        @include make-xs-column(12);
-        @include make-sm-column(6);
-        @include make-md-column(4);
-        @include make-lg-column(3);
-
-        @include make-inline-block-column;
+      > .thing_list_item {
+        display: inline-block;
+        margin-top: 30px;
         vertical-align: top;
 
-        &.ui-sortable-helper {
-          @include box-shadow(0 0 10px $gray);
+        width: 100%;
+        @include breakpoint(sm) { width: percentage(1 / 3); }
+
+        box-shadow: 0 2px 5px rgba(black, 0.1);
+        background: $ghost-white;
+
+        > header {
+          .thing_list_item-cover {
+            position: relative;
+            display: block;
+            height: 0;
+            overflow: hidden;
+            padding-bottom: percentage(8 / 11);
+
+            &:before {
+              content: '';
+
+              position: absolute;
+              bottom: 0;
+              left: 48%;
+              left: calc(50% - 8px);
+
+              width: 0;
+              height: 0;
+              border-style: solid;
+              border-width: 0 8px 11px 8px;
+              border-color: transparent transparent $ghost-white transparent;
+            }
+
+            img {
+              width: 100%;
+            }
+          }
+
+          h4 {
+            @include plain-link;
+
+            @include breakpoint(sm) {
+              @include text-overflow;
+            }
+
+            margin: 0;
+            padding: 20px 16px;
+            line-height: 1.2;
+            text-align: center;
+
+            font-family: lato-bold;
+            font-size: 17px;
+          }
         }
 
-        &.ui-sortable-placeholder {
-          visibility: visible !important;
-          border: 5px dashed $gray-lighter;
+        > footer {
+          padding: 20px 16px;
+          border-top: 1px dashed $gray-lighter;
+
+          position: relative;
+          i {
+            position: absolute;
+            top: 14px;
+            color: $gray-lighter;
+          }
+
+          p {
+            margin: 0 3em;
+            text-align: center;
+            color: $gray-light;
+          }
         }
       }
     }
 
-    #comments {
-      margin-top: 10px;
+    > footer {
+      padding: 0 16px;
+      background: white;
+
+      @include breakpoint(sm) {
+        margin-bottom: 2em;
+      }
+
+      h4 {
+        display: block;
+        margin: 0 -16px 20px;
+        line-height: 60px;
+        background: $vulcan;
+        color: $ghost-white;
+
+        i {
+          margin: 0;
+          padding: 0 36px;
+          vertical-align: middle;
+          font-size: 2em;
+        }
+
+        span {
+          vertical-align: middle;
+        }
+      }
+
+      .comments {
+        .comments-form_wrapper,
+        ul li {
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $screen-xs-max) {
+    #go_top .fa {
+      margin: 0;
+      padding: .5em 1em;
+      color: #fff;
+      background: $blue-dark;
     }
   }
 }

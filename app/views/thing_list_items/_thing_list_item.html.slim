@@ -1,19 +1,13 @@
-section.thing-list-item id="thing-list-item-#{thing_list_item.id}" data-url=url_for([thing_list_item.list, thing_list_item]) data-order=thing_list_item.order
+section.thing_list_item
   header
-    = render 'home/hot_thing', hot_thing: thing_list_item.thing, fanciable: fanciable
+    - thing = thing_list_item.thing
+    = link_to thing, target: '_blank', class: 'thing_list_item-cover'
+      = present(thing).photo('thing.fixed')
+    = link_to thing, target: '_blank'
+      h4 = thing.title
 
-  footer
-    - if can?(:destroy, thing_list_item)
-      .thing-list-item-destroy
-        = link_to [thing_list_item.list, thing_list_item], method: :delete, remote: true, data: {confirm: '您确定要删除吗?'}
-          i.fa.fa-trash-o
-
-    .thing-list-item-description
-      - if thing_list_item.description.present?
-        i.fa.fa-quote-left
-        = editable [thing_list_item.list, thing_list_item], :description, title: '产品描述'
-        i.fa.fa-quote-right
-      - elsif can?(:update, thing_list_item)
-        i.fa.fa-quote-left.hidden
-        = editable [thing_list_item.list, thing_list_item], :description, title: '产品描述'
-        i.fa.fa-quote-right.hidden
+  - if thing_list_item.description.present?
+    footer
+      .thing_list_item-description
+        i.fa.fa-quote-left.fa-2x
+        p = editable [thing_list_item.list, thing_list_item], :description, title: '产品描述'
