@@ -1,10 +1,10 @@
 header
   ul.nav.nav-justified
     - @tabs.keys.each do |k|
-      li class="#{'active' if k == @active_tab_key}"
+      li class="#{'active' if k == @active_tab_key}" data-unread-count=@tabs[k].unread.size
         a.dropdown_box_propagate href="#notification_#{k}" data-toggle="tab"
           i.fa.fa_alone.dropdown_box_propagate class="#{notification_tab_icon(k)}"
-          - if @tabs[k].where(opened: false).size > 0
+          - if (@tabs[k].unread.size > 0) && (k != @active_tab_key)
             span.unread
 
 section

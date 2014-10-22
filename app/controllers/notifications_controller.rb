@@ -13,12 +13,10 @@ class NotificationsController < ApplicationController
     end
 
     if request.xhr?
-      @tabs = {
-          thing: @notifications.by_types(%w(stock new_review new_feeling)),
-          reply: @notifications.by_types(%w(comment topic review feeling)),
-          friend: @notifications.by_types(%w(following weibo_friend_joined)),
-          fancy: @notifications.by_types(%w(love_feeling love_review love_topic fancy_thing fancy_list))
-      }
+      @tabs = {}
+      %w(thing reply friend fancy).each do |type|
+        @tabs[type.to_sym] = @notifications.by_types(notification_types(type))
+      end
       @active_tab_key = @tabs.map {|pair| pair[1].select {|i| !i.read?}.any? ? pair[0] : nil}.compact.first || :thing
 
       render 'notifications/index_xhr', layout: false
@@ -30,7 +28,11 @@ class NotificationsController < ApplicationController
   end
 
   def mark
-    current_user.notifications.mark_as_read
+    if params[:type]
+      type = params[:type].split("_").last
+      notifications = current_user.notifications.by_types(notification_types(type))
+      notifications.set read: true
+    end
 
     respond_to do |format|
       format.html { redirect_to notifications_path }
@@ -42,5 +44,18 @@ class NotificationsController < ApplicationController
 
   def mark_read
     @notifications.set read: true
+  end
+
+  def notification_types(type)
+    case type
+    when "thing"
+      %w(stock new_review new_feeling)
+    when "reply"
+      %w(comment topic review feeling)
+    when "friend"
+      %w(following weibo_friend_joined)
+    when "fancy"
+      %w(love_feeling love_review love_topic fancy_thing fancy_list)
+    end
   end
 end
