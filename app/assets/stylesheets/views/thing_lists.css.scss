@@ -13,6 +13,10 @@ html.thing_lists_show {
     background-attachment: fixed;
   }
 
+  #header {
+    margin-bottom: 0;
+  }
+
   #wrapper {
     @include wrapper(empty);
 
