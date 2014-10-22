@@ -8,6 +8,7 @@
   text-align: center;
   border: none;
 
+  &:focus,
   &:hover {
     color: $btn-primary-color;
   }
