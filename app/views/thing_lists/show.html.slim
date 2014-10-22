@@ -29,8 +29,5 @@ footer = render 'shared/comments', post: list, id: 'comments', auth: true
 
       $('.thing_list_item-description .editable').editable({
         emptytext: '说点什么吧（50字以内哦）',
-        success: function (response, newValue) {
-          $(this).siblings('.fa')[newValue.trim() ? 'removeClass' : 'addClass']('hidden')
-        },
         tpl: '<input type="text" maxlength="50">'
       })
