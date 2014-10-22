@@ -2328,6 +2328,19 @@ html.feelings_show {
       cursor: pointer;
     }
   }
+
+  .things_subpage {
+    .feed_article--feeling {
+      figcaption a {
+        @include MQ(Mplus) {
+          display: block;
+          line-height: 14px;
+          max-height: 44px;
+          overflow: hidden;
+        }
+      }
+    }
+  }
 }
 
 #invite-review-modal {
