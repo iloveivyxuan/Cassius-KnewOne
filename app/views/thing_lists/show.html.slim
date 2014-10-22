@@ -47,18 +47,14 @@ header
 - if can?(:update, @thing_list)
   - content_for :script
     javascript:
-      $('.thing-list-name .editable').editable({
-        unsavedclass: null
-      })
+      $('.thing-list-name .editable').editable()
 
       $('.thing-list-description .editable').editable({
-        emptytext: '描述一下吧',
-        unsavedclass: null
+        emptytext: '描述一下吧'
       })
 
       $('.thing-list-item-description .editable').editable({
         emptytext: '说点什么吧（50字以内哦）',
-        unsavedclass: null,
         success: function (response, newValue) {
           $(this).siblings('.fa')[newValue.trim() ? 'removeClass' : 'addClass']('hidden')
         },

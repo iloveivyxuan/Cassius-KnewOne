@@ -45,18 +45,14 @@ footer = render 'shared/comments', post: list, id: 'comments', auth: true
 - if can?(:update, list)
   - content_for :script
     javascript:
-      $('.thing_list_name .editable').editable({
-        unsavedclass: null
-      })
+      $('.thing_list_name .editable').editable()
 
       $('.thing_list_description .editable').editable({
-        emptytext: '描述一下吧',
-        unsavedclass: null
+        emptytext: '描述一下吧'
       })
 
       $('.thing_list_item-description .editable').editable({
         emptytext: '说点什么吧（50字以内哦）',
-        unsavedclass: null,
         success: function (response, newValue) {
           $(this).siblings('.fa')[newValue.trim() ? 'removeClass' : 'addClass']('hidden')
         },
