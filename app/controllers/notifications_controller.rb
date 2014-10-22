@@ -6,10 +6,10 @@ class NotificationsController < ApplicationController
     @notifications = current_user.notifications.page params[:page]
 
     case params[:scope]
-      when 'unread'
-        @notifications = @notifications.unread
-      when 'read'
-        @notifications = @notifications.marked_as_read
+    when 'unread'
+      @notifications = @notifications.unread
+    when 'read'
+      @notifications = @notifications.marked_as_read
     end
 
     if request.xhr?
