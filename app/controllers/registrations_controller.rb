@@ -6,6 +6,9 @@ class RegistrationsController < Devise::RegistrationsController
     session[:previous_url] = params[:redirect_from] if params[:redirect_from].present?
   end
 
+  # bind oauth
+  after_action :bind_omniauth, only: :create
+
   def update
     @user = User.find(current_user.id)
     successfully_updated = if needs_password?(@user, user_params)
@@ -50,7 +53,7 @@ class RegistrationsController < Devise::RegistrationsController
 
         flash[:show_sign_up_modal] = true
 
-        format.html { redirect_to welcome_url }
+        format.html { redirect_back_or welcome_url }
         format.js { @location = welcome_url }
         format.json { render json: resource, status: :created, location: resource }
       else
@@ -63,16 +66,6 @@ class RegistrationsController < Devise::RegistrationsController
         end
         format.json { render json: resource.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # bind oauth
-  after_action only: :create do
-    if session[:omniauth].present? && @success
-      current_user.auths<< Auth.new(session[:omniauth])
-      current_user.update_from_omniauth(session[:omniauth])
-
-      session.delete :omniauth
     end
   end
 

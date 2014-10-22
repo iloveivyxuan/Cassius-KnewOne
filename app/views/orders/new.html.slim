@@ -17,6 +17,7 @@ header.page-header
     = f.input :note, as: :text, input_html: {placeholder: "在此可填写特殊要求、配送时间、发票信息等。",rows: 5}
     - unless @order.bong_inside?
       = render partial: 'coupon_select', locals: {f: f}
+    = render partial: 'bong_point', locals: {f: f}
 
     - if (@order.items_price <= 500) && (!@order.bong_inside?)
       div

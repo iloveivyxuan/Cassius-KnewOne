@@ -1,0 +1,20 @@
+- if @order.can_consume_bong_point?
+  .form-group.integer.optional.order_bong_point
+    label.integer.optional.control-label for="order_bong_point"
+      | 使用bong活跃点
+    = f.number_field :bong_point,
+                     in: @order.minimal_consumable_bong_point..@order.maximal_consumable_bong_point, step: 1,
+                     class: 'numeric integer optional form-control'
+    p.help-block
+      | 你有 #{content_tag :span, '<i class="fa fa-spinner"></i>'.html_safe, id: 'available_bong_point'}点
+      | （#{link_to '刷新', bong_available_point_path, remote: true}） 可以消费，
+      | 可以使用 #{content_tag :span, @order.minimal_consumable_bong_point, id: 'minimal_consumable_bong_point'}
+      | -#{content_tag :span, @order.maximal_consumable_bong_point, id: 'maximal_consumable_bong_point'}点
+      | （每点可抵扣 #{Order::BONG_POINT_VALUE} 元）。
+      br
+      | 活跃点是由使用bong运动手环时，通过运动而产生的一种激励点数，具体获得规则可参考
+      = link_to '活跃点规则', 'https://bongservice.daikeapp.com/kb/articles/229', target: '_blank'
+      | 。
+      br
+      | 活跃点订单下单后，如需关闭、退款或退货，需要在提出申请后48小时返还您的bong账户。
+

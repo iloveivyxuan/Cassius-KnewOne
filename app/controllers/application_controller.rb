@@ -105,7 +105,7 @@ class ApplicationController < ActionController::Base
   end
 
   def store_location(url=nil)
-    return if request.format != Mime::HTML || request.xhr?
+    return if request.format != Mime::HTML || request.xhr? || !request.get?
 
     session[:previous_url] = request.fullpath
   end
@@ -125,6 +125,19 @@ class ApplicationController < ActionController::Base
   def require_not_blocked
     if user_signed_in? && current_user.blocked?
       redirect_to blocked_path
+    end
+  end
+
+  def bind_omniauth
+    if session[:omniauth].present? && user_signed_in?
+      if a = current_user.auths.where(provider: session[:omniauth][:provider]).first
+         a.update session[:omniauth]
+      else
+        current_user.auths<< Auth.new(session[:omniauth])
+        current_user.update_from_omniauth(session[:omniauth])
+      end
+
+      session.delete :omniauth
     end
   end
 

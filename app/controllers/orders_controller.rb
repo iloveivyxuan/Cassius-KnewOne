@@ -184,7 +184,7 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).
-        permit(:note, :address_id, :invoice_id, :auto_owning,
+        permit(:note, :address_id, :invoice_id, :auto_owning, :bong_point,
                :coupon_code_id, :use_balance, :use_sf, :buy_as_gift, :bong_delivery,
                address: [:province_code, :city_code, :district_code, :street, :name, :phone, :zip_code, :default])
   end

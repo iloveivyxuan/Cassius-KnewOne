@@ -184,7 +184,11 @@ class User
 
   def update_from_omniauth(data)
     if auth = auths.where(provider: data[:provider]).first
-      auth.update_from_omniauth(data)
+      if data[:info]
+        auth.update_from_omniauth(data)
+      else
+        auth.update data
+      end
 
       if self.auto_update_from_oauth?
         set_profiles_by_auth(auth)
@@ -477,6 +481,19 @@ HERE
 
   def managed_groups
     joined_groups.select { |g| g.has_admin? self }
+  end
+
+  # bong
+  def bong_bind?
+    !!bong_auth
+  end
+
+  def bong_auth
+    @_bong_auth ||= self.auths.where(provider: 'bong').first
+  end
+
+  def bong_client
+    @_bong_client ||= BongClient.new access_token: bong_auth.access_token, uid: bong_auth.uid
   end
 
   include IdsSortable

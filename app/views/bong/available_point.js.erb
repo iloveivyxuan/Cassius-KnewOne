@@ -1,0 +1,10 @@
+point = <%= @point %>;
+$maximal = $('#maximal_consumable_bong_point');
+maximal_point = parseInt($maximal.text());
+
+$('#available_bong_point').text(point);
+
+if(point < maximal_point) {
+  $maximal.text(point);
+  $('#order_bong_point').attr('max', point);
+}

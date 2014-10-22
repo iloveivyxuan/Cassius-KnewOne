@@ -81,6 +81,12 @@ section.orders_wrapper
         i.fa.fa-yen
         span= @order.total_price
 
+  = render partial: 'consume_point'
+
+  - content_for :script do
+    javascript:
+      $.getScript('#{bong_available_point_path}');
+
   - if @order.pending?
     p.well.text-info * 请您在24小时之内支付，否则订单将自动取消。
 

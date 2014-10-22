@@ -18,13 +18,17 @@ Making::Application.routes.draw do
   get 'jobs', to: 'home#jobs'
   get 'user_agreement', to: 'home#user_agreement'
   get 'qr_entry', to: 'home#qr_entry'
-  get 'bong', to: 'home#bong'
   get "404", to: "home#not_found"
   get "403", to: "home#forbidden"
   get "500", to: "home#error"
   get 'blocked', to: 'home#blocked'
 
   get 'shop(/page/:page)', to: 'things#shop', as: :shop
+
+  # bong
+  get 'bong', to: 'bong#index'
+  post 'bong/consume_point', to: 'bong#consume_point'
+  get 'bong/available_point', to: 'bong#available_point'
 
   get 'explore', to: 'explore#index'
   %w(features reviews specials events).each do |a|
