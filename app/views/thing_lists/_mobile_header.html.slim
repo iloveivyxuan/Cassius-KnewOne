@@ -1,0 +1,25 @@
+nav
+  = link_to lists_user_path(user)
+    i.fa.fa-angle-left
+    | 查看该用户的所有列表
+
+header
+  header
+    = render 'shared/user_avatar', user: user, options: {class: 'user_avatar user_avatar--vertical'}
+    .thing_list_name
+      = editable list, :name, title: '列表名称'
+
+    - if can?(:update, list) || list.description.present?
+      .thing_list_description
+        = editable list, :description, title: '列表描述'
+
+  footer
+    ul
+      li = render 'fancy_button', thing_list: list
+
+      li
+        a href="#comments" title="评论"
+          i.fa.fa-comments-o
+          span.comments_count= list.comments.size
+
+      li = render 'share_link', thing_list: list
