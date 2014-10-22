@@ -1,5 +1,5 @@
 - if user_signed_in?
-  - auths = current_user.auths.reject {|a| %w(wechat qq_connect douban).include?(a.provider)}
+  - auths = current_user.auths.reject {|a| %w(wechat qq_connect douban bong).include?(a.provider)}
   - if auths.any?
     #share_modal.modal.fade.share-modal.share_modal
       .modal-dialog
