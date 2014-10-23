@@ -244,11 +244,12 @@ html.thing_lists_show {
           i {
             position: absolute;
             top: 14px;
-            color: $gray-lighter;
+            color: $body-bg;
+            font-size: 20px;
           }
 
           p {
-            margin: 0 3em;
+            margin: 0 1.5em;
             text-align: center;
             color: $gray-light;
           }
