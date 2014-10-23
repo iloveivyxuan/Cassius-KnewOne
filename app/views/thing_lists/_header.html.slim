@@ -4,7 +4,8 @@ header
       i.fa.fa-angle-left
       | 查看该用户的所有列表
 
-  = render 'shared/user_avatar', user: user, options: {class: 'user_avatar user_avatar--vertical'}
+  = render 'shared/user_avatar', user: user, options: {class: 'user_avatar user_avatar--vertical hidden-md hidden-lg'}
+  = render 'shared/user_avatar', user: user, options: {class: 'user_avatar hidden-xs hidden-sm'}
 
   .thing_list_info
     .thing_list_name
