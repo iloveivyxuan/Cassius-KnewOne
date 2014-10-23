@@ -113,7 +113,8 @@ module ThingsHelper
       "title" => "标题 & 副标题",
       "brand" => "品牌",
       "tag" => "标签",
-      "official" => "来源网站"
+      "official" => "来源网站",
+      "price_unit" => '价格单位'
     }
   end
 

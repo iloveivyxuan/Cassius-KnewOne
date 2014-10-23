@@ -94,6 +94,9 @@ module Haven
       if params[:official]
         @things = @things.where(official_site: Regexp.new(params[:official], Regexp::IGNORECASE))
       end
+      if params[:price_unit]
+        @things = @things.where(price_unit: params[:price_unit])
+      end
       unless params[:filter] || params[:categories]
         @things = @things.desc(:created_at)
       end
