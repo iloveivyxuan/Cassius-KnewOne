@@ -24,7 +24,7 @@
               - User.related_users_and_owned(@thing, current_user, 30).each do |owner|
                 - unless owner.has_been_invited_by?(current_user, @thing)
                   - message_content = "#{request.original_url}\n\n我看到你点拥有了，求评测！"
-                  - data = { 'private-message' => true, 'user-id' => owner.id.to_s, 'user-name' => owner.name, title: '邀请 TA 写评测', 'content' => message_content }
+                  - data = { 'private-message' => true, 'user-id' => owner.id.to_s, 'user-name' => owner.name, 'content' => message_content }
                   tr
                     td
                       = owner.name
