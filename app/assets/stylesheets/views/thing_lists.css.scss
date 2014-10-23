@@ -37,13 +37,9 @@ html.thing_lists_show {
       @include breakpoint(md) {
         position: fixed;
         top: 45px;
-        left: 0;
         width: $header-width;
+        margin-left: -$header-width;
         padding: 0 30px;
-
-        @media (min-width: $wrapper-max-width) {
-          left: calc((100% - #{$wrapper-max-width}) / 2);
-        }
       }
 
       > nav {
