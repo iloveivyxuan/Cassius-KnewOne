@@ -1,10 +1,10 @@
-- page_title 'bong'
+- page_title 'bong，最好的智能手环'
 - page_css 'bong'
 
 header.page-header
   h1
     b
-      a href="http://www.bong.cn" target="_blank" bong
+      a href="http://www.bong.cn" title="最好的智能手环" target="_blank" bong
     small 更好的自己
   - if !user_signed_in?
     = link_to '用 bong 登录', user_omniauth_authorize_path(:bong, state: request.path), class: 'btn btn-primary'
@@ -13,75 +13,75 @@ main
   h2 小组
   ul.groups
     li
-      = link_or_login "http://knewone.com/groups/541821d931302d76760f0000", class: "card_compact"
+      = link_or_login "http://knewone.com/groups/541821d931302d76760f0000", class: "card_compact", title: "Better bong"
         figure
           img alt="Better bong" src="http://image.knewone.com/groups/9dfbc3a2c2bfaa298b28b9e2a90f8801.png!small"
         h5 Better bong
     li
-      = link_or_login "http://knewone.com/groups/5429511731302d6c48040000", class: "card_compact"
+      = link_or_login "http://knewone.com/groups/5429511731302d6c48040000", class: "card_compact", title: "@bong 黑板报"
         figure
-          img alt="Better bong" src="http://image.knewone.com/groups/cf7b048cf422697740689ee87d45afbe.png!small"
+          img alt="@bong 黑板报" src="http://image.knewone.com/groups/cf7b048cf422697740689ee87d45afbe.png!small"
         h5 @bong 黑板报
     li
-      = link_or_login "http://knewone.com/groups/5429521c31302d6c790f0000", class: "card_compact"
+      = link_or_login "http://knewone.com/groups/5429521c31302d6c790f0000", class: "card_compact", title: "@bong App 体验小组"
         figure
-          img alt="Better bong" src="http://image.knewone.com/groups/023117c40baa51617106241e3da7ac1f.png!small"
+          img alt="@bong App 体验小组" src="http://image.knewone.com/groups/023117c40baa51617106241e3da7ac1f.png!small"
         h5 @bong App 体验小组
   h2 产品
   ul.thumbnails
     li
-      = link_or_login "http://knewone.com/things/bong", class: "thumbnail" do
+      = link_or_login "http://knewone.com/things/bong", class: "thumbnail", title: "bong，使用方式简单至极的智能手环" do
         .image
-          img src="http://image.knewone.com/photos/13dc2203df8ec2a5e7ee0491eb0c1698.png!normal"
+          img src="http://image.knewone.com/photos/13dc2203df8ec2a5e7ee0491eb0c1698.png!normal" alt="bong，使用方式简单至极的智能手环"
         .caption
           h3 bong
           p 使用方式简单至极的智能手环
     li
-      = link_or_login "http://knewone.com/things/bong-ii", class: "thumbnail" do
+      = link_or_login "http://knewone.com/things/bong-ii", class: "thumbnail", title: "bong II，bong2 全自动识别智能手环" do
         .image
-          img src="http://image.knewone.com/photos/75fffc1838aece143fe2b24c411f8836.jpg!normal"
+          img src="http://image.knewone.com/photos/75fffc1838aece143fe2b24c411f8836.jpg!normal" alt="bong II，bong2 全自动识别智能手环"
         .caption
           h3 bong II
           p bong2 全自动识别智能手环
     li
-      = link_or_login "http://knewone.com/things/google-glass", class: "thumbnail" do
+      = link_or_login "http://knewone.com/things/google-glass", class: "thumbnail", title: "Google Glass，谷歌推出的首款可穿戴智能硬件" do
         .image
-          img src="http://image.knewone.com/photos/e3c57c97786bda695e0cb1afc6a048f6.jpg!normal"
+          img src="http://image.knewone.com/photos/e3c57c97786bda695e0cb1afc6a048f6.jpg!normal" alt="Google Glass，谷歌推出的首款可穿戴智能硬件"
         .caption
           h3 Google Glass
           p 谷歌推出的首款可穿戴智能硬件
     li
-      = link_or_login "http://knewone.com/things/bose-soundlink-mini-1", class: "thumbnail" do
+      = link_or_login "http://knewone.com/things/bose-soundlink-mini-1", class: "thumbnail", title: "Bose SoundLink Mini，蓝牙便携音箱" do
         .image
-          img src="http://image.knewone.com/photos/e545419a6674d32ec431f9a17cb610c9.jpg!normal"
+          img src="http://image.knewone.com/photos/e545419a6674d32ec431f9a17cb610c9.jpg!normal" alt="Bose SoundLink Mini，蓝牙便携音箱"
         .caption
           h3 Bose SoundLink Mini
           p 蓝牙便携音箱
     li
-      = link_or_login "http://knewone.com/things/yuan-mu-duo-gong-neng-di-zuo", class: "thumbnail" do
+      = link_or_login "http://knewone.com/things/yuan-mu-duo-gong-neng-di-zuo", class: "thumbnail", title: "原木多功能底座，支持iPhone和iPad同时使用和充电" do
         .image
-          img src="http://image.knewone.com/photos/0bd9c3ff24b014e59f0faaae236ee10e.jpg!normal"
+          img src="http://image.knewone.com/photos/0bd9c3ff24b014e59f0faaae236ee10e.jpg!normal" alt="原木多功能底座，支持iPhone和iPad同时使用和充电"
         .caption
           h3 原木多功能底座
           p 支持iPhone和iPad同时使用和充电
     li
-      = link_or_login "http://knewone.com/things/si-gua-bo-li-bei-zi", class: "thumbnail" do
+      = link_or_login "http://knewone.com/things/si-gua-bo-li-bei-zi", class: "thumbnail", title: "丝瓜玻璃杯子，手工吹制复古玻璃杯" do
         .image
-          img src="http://image.knewone.com/photos/0922936af7ff203707aeb7c6038612be.jpg!normal"
+          img src="http://image.knewone.com/photos/0922936af7ff203707aeb7c6038612be.jpg!normal" alt="丝瓜玻璃杯子，手工吹制复古玻璃杯"
         .caption
           h3 丝瓜玻璃杯子
           p 手工吹制复古玻璃杯
     li
-      = link_or_login "http://knewone.com/things/xian-yue-deng-star-man-yue-deng", class: "thumbnail" do
+      = link_or_login "http://knewone.com/things/xian-yue-deng-star-man-yue-deng", class: "thumbnail", title: "弦月灯·满月灯，你要月亮，那就给你" do
         .image
-          img src="http://image.knewone.com/photos/713d468f66e92e4fa25bddba32c900c3.jpg!normal"
+          img src="http://image.knewone.com/photos/713d468f66e92e4fa25bddba32c900c3.jpg!normal" alt="弦月灯·满月灯，你要月亮，那就给你"
         .caption
           h3 弦月灯·满月灯
           p 你要月亮，那就给你
     li
-      = link_or_login "http://knewone.com/things/prisma-r-clip-on-jia-pian", class: "thumbnail" do
+      = link_or_login "http://knewone.com/things/prisma-r-clip-on-jia-pian", class: "thumbnail", title: "PRiSMA® CLiP-ON 夹片，做工最好的防蓝光夹片" do
         .image
-          img src="http://image.knewone.com/photos/ba59937b24ec29f2385ba6d7614e0c56.jpg!normal"
+          img src="http://image.knewone.com/photos/ba59937b24ec29f2385ba6d7614e0c56.jpg!normal" alt="PRiSMA® CLiP-ON 夹片，做工最好的防蓝光夹片"
         .caption
           h3 PRiSMA® CLiP-ON 夹片
           p 做工最好的防蓝光夹片
