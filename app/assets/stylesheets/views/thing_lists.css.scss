@@ -20,9 +20,31 @@ html.thing_lists_show {
   #wrapper {
     @include wrapper(empty);
 
+    $wrapper-max-width: 1280px;
+    $header-width: 300px;
+
+    max-width: $wrapper-max-width;
+
+    @include breakpoint(md) {
+      margin: 0 auto;
+      padding-left: $header-width;
+    }
+
     > header {
       padding: 0 16px 30px;
       background: rgba(white, 0.6);
+
+      @include breakpoint(md) {
+        position: fixed;
+        top: 45px;
+        left: 0;
+        width: $header-width;
+        padding: 0 30px;
+
+        @media (min-width: $wrapper-max-width) {
+          left: calc((100% - #{$wrapper-max-width}) / 2);
+        }
+      }
 
       > nav {
         margin: 0 -16px;
@@ -37,6 +59,10 @@ html.thing_lists_show {
           margin: 0;
           padding: 0 47px 0 44px;
         }
+
+        @include breakpoint(md) {
+          display: none;
+        }
       }
 
       position: relative;
@@ -50,34 +76,77 @@ html.thing_lists_show {
           width: auto;
           height: 60px;
         }
+
+        @include breakpoint(md) {
+          position: static;
+          display: block;
+          margin: 0 -30px;
+          padding: 16px 30px;
+
+          background: $body-bg;
+
+          img {
+            width: 50px;
+            height: 50px;
+            margin-right: 50px;
+          }
+
+          .user_avatar-name {
+            font-size: 20px;
+          }
+        }
       }
 
       .thing_list_info {
         min-height: 120px;
         padding: 30px 0 0 60px + 20px;
 
+        @include breakpoint(md) {
+          min-height: 0;
+          padding: 0;
+        }
 
         .thing_list_name {
           padding: (60px - $font-size-large) / 2 0;
           font-size: $font-size-large;
           line-height: 1.1;
+
+          @include breakpoint(md) {
+            padding: 20px 0;
+            font-size: 20px;
+          }
         }
 
         .thing_list_description {
           margin: $padding-large-vertical 0 20px;
           color: $gray-light;
+
+          @include breakpoint(md) {
+            margin: 0 0 30px;
+          }
         }
       }
 
       .thing_list_actions {
         padding-left: 60px + 20px;
 
+        @include breakpoint(md) {
+          margin: 0 -30px;
+          padding: 30px;
+          border-top: 1px dashed $gray-light;
+        }
+
         > ul {
           display: flex;
           justify-content: space-between;
 
-          margin-top: $padding-large-vertical;
           max-width: 200px;
+          margin-top: $padding-large-vertical;
+
+          @include breakpoint(md) {
+            max-width: none;
+            margin-top: 0;
+          }
 
           a {
             @include plain-link($gray-light);
@@ -86,6 +155,10 @@ html.thing_lists_show {
               vertical-align: middle;
               margin-right: $padding-small-horizontal;
               font-size: 28px;
+
+              @include breakpoint(md) {
+                font-size: 32px;
+              }
             }
           }
 
@@ -102,6 +175,10 @@ html.thing_lists_show {
 
     section.thing_list_items {
       margin-top: -30px;
+
+      @include breakpoint(md) {
+        padding-top: 82px;
+      }
 
       > .thing_list_item {
         display: inline-block;
