@@ -17,17 +17,3 @@ footer = render 'shared/comments', post: list, id: 'comments', auth: true
 - content_for :script
   javascript:
     Making.Comments('#comments')
-
-- if can?(:update, list)
-  - content_for :script
-    javascript:
-      $('.thing_list_name .editable').editable()
-
-      $('.thing_list_description .editable').editable({
-        emptytext: '描述一下吧'
-      })
-
-      $('.thing_list_item-description .editable').editable({
-        emptytext: '说点什么吧（50字以内哦）',
-        tpl: '<input type="text" maxlength="50">'
-      })
