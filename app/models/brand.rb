@@ -7,7 +7,7 @@ class Brand
   field :en_name, type: String
 
   field :things_size, type: Integer, default: 0
-  before_save :update_count
+  before_save :update_things_size
   before_save :update_things_brand
   before_save :update_names
 
@@ -15,8 +15,8 @@ class Brand
 
   has_many :things
 
-  def update_count
-    things_size = things.size
+  def update_things_size
+    self.things_size = self.things.size
   end
 
   def brand_text
