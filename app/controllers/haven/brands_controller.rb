@@ -2,6 +2,7 @@ module Haven
   class BrandsController < Haven::ApplicationController
     layout 'settings'
     before_action :set_brand, only: [:edit, :destroy, :update]
+    before_action :store_location, only: [:index]
 
     def index
       if params[:brand_name]
@@ -17,7 +18,7 @@ module Haven
 
     def update
       if @brand.update brand_params
-        redirect_to haven_brands_path
+        redirect_to session[:previous_url]
       else
         redirect_to :back
       end
@@ -40,6 +41,10 @@ module Haven
 
     def set_brand
       @brand = Brand.find params[:id]
+    end
+
+    def store_location
+      session[:previous_url] = request.fullpath
     end
 
   end
