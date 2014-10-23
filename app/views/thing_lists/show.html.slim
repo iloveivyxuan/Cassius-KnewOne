@@ -7,7 +7,7 @@
 = render 'header', list: list, user: user
 
 - if list.items.present?
-  section.thing_list_items
+  section.thing_list_items class=('thing_list_items--loose' if list.size < 16)
     = render list.items
 - else
     = render 'shared/nothing'

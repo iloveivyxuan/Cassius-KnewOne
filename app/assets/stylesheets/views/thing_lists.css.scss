@@ -263,6 +263,72 @@ html.thing_lists_show {
           }
         }
       }
+
+      @include breakpoint(md) {
+        &.thing_list_items--loose {
+          > .thing_list_item {
+            display: block;
+            box-sizing: content-box;
+            width: 35%;
+            padding-right: 30%;
+
+            &:not(:first-child) {
+              margin-top: 0;
+            }
+
+            &:nth-child(even) {
+              margin-left: 35%;
+            }
+
+            > header {
+              position: relative;
+
+              .thing_list_item-cover {
+                &:before {
+                  content: '';
+
+                  right: 0;
+                  bottom: 48%;
+                  bottom: calc(50% - 8px);
+                  left: auto;
+
+                  border-width: 8px 11px 8px 0;
+                  border-color: transparent $ghost-white transparent transparent;
+                }
+              }
+
+              .thing_list_item-thing_title {
+                position: absolute;
+                top: 0;
+                left: 100%;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                width: percentage(30% / 35%);
+                height: 100%;
+
+                background: $ghost-white;
+
+                h4 {
+                  width: 100%;
+                  white-space: normal;
+                }
+              }
+            }
+
+            > footer {
+              width: percentage((35% + 30%) / 35%);
+              background: $body-bg;
+
+              i {
+                color: white;
+              }
+            }
+          }
+        }
+      }
     }
 
     > footer {
