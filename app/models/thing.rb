@@ -6,6 +6,9 @@ class Thing < Post
   slug :title, history: true
   before_save :delete_illegal_chars
 
+  field :approved_at, type: DateTime, default: nil
+  before_save :update_approved_time
+
   field :subtitle, type: String, default: ""
   field :official_site, type: String, default: ""
   field :photo_ids, type: Array, default: []
@@ -405,6 +408,12 @@ class Thing < Post
   # delete ~, which may cause slug to be 'foo-bar-~', which cannot be found.
   def delete_illegal_chars
     self.title.delete!("~")
+  end
+
+  def update_approved_time
+    if self.approved_at.nil? && self.priority > 0
+      self.approved_at = Time.now
+    end
   end
 
 end
