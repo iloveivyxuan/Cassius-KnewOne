@@ -19,9 +19,9 @@ class HomeController < ApplicationController
       else
         session[:source] = "latest"
         if current_user.categories.present?
-          things = current_user.categories.things.published.approved.desc(:created_at)
+          things = current_user.categories.things.published.approved.desc(:approved_at)
         else
-          things = Thing.published.approved.desc(:created_at)
+          things = Thing.published.approved.desc(:approved_at)
         end
         things = things.page(params[:page]).per(30)
         reviews = []
