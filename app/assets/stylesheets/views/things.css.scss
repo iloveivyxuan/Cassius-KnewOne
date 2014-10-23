@@ -2345,10 +2345,11 @@ html.feelings_show {
         }
 
         figcaption a {
+          @include text-overflow;
           display: block;
           line-height: 14px;
           max-height: 44px;
-          overflow: hidden;
+          width: 5em;
         }
       }
     }
