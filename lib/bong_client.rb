@@ -58,7 +58,9 @@ class BongClient
     }
     uri = "#{@consume_bong_point_api_uri}&sign=#{sign(params)}"
 
-    r = JSON.parse(RestClient.post(uri, params.to_json, :content_type => 'application/json'))
+    r = JSON.parse(RestClient::Request.execute(url: uri, payload: params.to_json, method: :post,
+                                               headers: { content_type: 'application/json' },
+                                               verify_ssl: OpenSSL::SSL::VERIFY_NONE))
 
     if r['code'] == ResponseCode::SUCCESS
       {
@@ -99,7 +101,9 @@ class BongClient
     }
     uri = "#{@consume_bong_point_api_uri}&sign=#{sign(params)}"
 
-    r = JSON.parse(RestClient.post(uri, params.to_json, :content_type => 'application/json'))
+    r = JSON.parse(RestClient::Request.execute(url: uri, payload: params.to_json, method: :post,
+                                               headers: { content_type: 'application/json' },
+                                               verify_ssl: OpenSSL::SSL::VERIFY_NONE))
     if r['code'] == ResponseCode::SUCCESS
       {
         code: r['code'],
