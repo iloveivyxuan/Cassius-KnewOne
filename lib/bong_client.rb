@@ -13,8 +13,8 @@ class BongClient
   RESPONSE_BODY_KEY = 'requestbody'.freeze
 
   if Rails.env.production?
-    SIGN_KEY = 'ff04f9e0274e33d8c51320b9902234de9067bad2'
-    HOST = 'http://open.bong.cn/1'
+    SIGN_KEY = '633042b534ff6d85e46d0206aab94e35c1e3c485'
+    HOST = 'https://open.bong.cn/1'
   else
     SIGN_KEY = 'ff04f9e0274e33d8c51320b9902234de9067bad2'
     HOST = 'http://open-test.bong.cn/1'
@@ -28,6 +28,8 @@ class BongClient
   def initialize(options)
     @uid = options[:uid]
     @access_token = options[:access_token]
+
+    @app_id = options[:app_id] || Settings.bong.consumer_key
 
     @consume_bong_point_api_uri = "#{HOST}/bongInfo/actPoint/consume/#{@uid}?access_token=#{@access_token}"
     @get_bong_point_api_uri = "#{HOST}/bongInfo/actPoint/#{@uid}?access_token=#{@access_token}"
@@ -51,7 +53,7 @@ class BongClient
       'actPoint' => point.to_s,
       'comment' => options[:comment] || 'null',
       'orderSN' => order.order_no,
-      'partner' => Settings.bong.consumer_key,
+      'partner' => @app_id,
       'partnerOrderSN' => order.order_no,
       'subject' => 'KnewOne',
       'userId' => @uid
@@ -92,12 +94,15 @@ class BongClient
       'actPoint' => options[:point].to_s,
       'comment' => options[:comment] || 'null',
       'orderSN' => options[:order_no],
-      'partner' => Settings.bong.consumer_key.to_s,
+      'partner' => @app_id,
       'partnerOrderSN' => options[:order_no],
       'subject' => 'KnewOne',
       'userId' => @uid
     }
     uri = "#{@consume_bong_point_api_uri}&sign=#{sign(params)}"
+
+    puts uri
+    puts params.to_json
 
     r = JSON.parse(RestClient.post(uri, params.to_json, :content_type => 'application/json'))
     if r['code'] == ResponseCode::SUCCESS
@@ -117,6 +122,7 @@ class BongClient
   rescue => e
     Rails.logger.info "bong client error in consume_bong_point: uid #{@uid} access_token #{@access_token}"
     Rails.logger.info e.message
+    raise e
     nil
   end
 
