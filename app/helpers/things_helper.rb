@@ -102,7 +102,9 @@ module ThingsHelper
       'reviews_count' => '按评测数排序',
       'heat' => '按热度排序',
       'priority_asc' => '优先度倒序',
-      'priority_desc' => '优先度正序'
+      'priority_desc' => '优先度正序',
+      'created_at_desc' => '创建时间正序',
+      'created_at_asc' => '创建时间倒序'
     }
   end
 

@@ -74,6 +74,8 @@ module Haven
         end
 
         @things = @things.order_by([:priority, :asc]) if params[:filter].include? "priority_asc"
+        @things = @things.order_by([:created_at, :desc]) if params[:filter].include? "created_at_desc"
+        @things = @things.order_by([:created_at, :asc]) if params[:filter].include? "created_at_asc"
       end
       @things = @things.in(categories: params[:categories]) if params[:categories]
       @things = @things.where(shop: Regexp.new(params[:shop])) if params[:shop]
