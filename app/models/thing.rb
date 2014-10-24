@@ -304,6 +304,10 @@ class Thing < Post
 
   include Rankable
 
+  def birth_time
+    approved_at || Time.at(0)
+  end
+
   def calculate_heat
     self.priority ||= 0
 
