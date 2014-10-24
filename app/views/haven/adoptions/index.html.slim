@@ -9,7 +9,7 @@
   = f.submit "查找用户名"
 
 = form_tag '/haven/adoptions', method: :get do
-  = text_field_tag :thing
+  = select_tag :thing, options_from_collection_for_select(Adoption.all_things, "title", "title")
   = submit_tag "查找产品"
 
 header.page-header

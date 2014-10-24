@@ -18,4 +18,8 @@ class Adoption
   validates :thing, presence: true
   validates :address, presence: true
   validates_associated :address
+
+  def self.all_things
+    Adoption.distinct(:thing).map { |thing_id| Thing.find thing_id }
+  end
 end
