@@ -36,6 +36,22 @@ html.users_activities {
       }
     }
 
+    .user_info--bottom {
+      border: {
+        bottom: 0;
+        top: 1px solid #eee;
+      }
+      padding-top: 20px;
+
+      .vcard {
+        margin-bottom: 0;
+      }
+
+      .url {
+        margin-bottom: 25px;
+      }
+    }
+
     .user_content {
       @include make-md-column(9, $gutter: 40px);
       @include make-md-column-pull(3);

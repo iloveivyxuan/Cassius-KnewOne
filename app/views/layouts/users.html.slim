@@ -30,17 +30,18 @@
         dd.exchange
           = render 'users/follow_btn', user: @user
           = render 'users/private_message_btn', user: @user
-      = render_user_location(@user)
-      = render_user_links(@user)
-      - if @user.categories.any?
-        dd.tag title="标签"
-          .data
-            = render @user.categories
-      - managed_groups = @user.managed_groups
-      - if managed_groups.present?
-        dd.managed_groups title="管理的小组"
-          h5 管理的小组
-          ul= render managed_groups
+      - if !browser.mobile? and !browser.tablet?
+        = render_user_location(@user)
+        = render_user_links(@user)
+        - if @user.categories.any?
+          dd.tag title="标签"
+            .data
+              = render @user.categories
+        - managed_groups = @user.managed_groups
+        - if managed_groups.present?
+          dd.managed_groups title="管理的小组"
+            h5 管理的小组
+            ul= render managed_groups
 
   .user_content
     ul.nav_primary.nav.nav-pills.nav-pills-list.nav-justified
@@ -90,6 +91,21 @@
         = link_to_with_icon '动态', 'fa fa-bars', activities_user_path(@user)
 
     = yield
+
+  - if browser.mobile? or browser.tablet?
+    .user_info.user_info--bottom
+      dl.vcard itemscope="" itemtype="http://data-vocabulary.org/Person"
+        = render_user_location(@user)
+        = render_user_links(@user)
+        - if @user.categories.any?
+          dd.tag title="标签"
+            .data
+              = render @user.categories
+        - managed_groups = @user.managed_groups
+        - if managed_groups.present?
+          dd.managed_groups title="管理的小组"
+            h5 管理的小组
+            ul= render managed_groups
 
   - content_for :script do
     javascript:
