@@ -34,6 +34,6 @@ Making.InitThingList = ->
       $('.thing_list_items').attr('class', originalClass)
       )
 
-    $target.toggleClass('editing')
+    $target.toggleClass('thing_list_edit_button--editing')
     $('.editable').editable('toggleDisabled')
   )

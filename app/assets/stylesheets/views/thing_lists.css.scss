@@ -103,7 +103,7 @@ html.thing_lists_show {
         padding: 0;
 
         @media (max-width: $screen-sm-max) {
-          &:not(.editing) {
+          &:not(.thing_list_edit_button--editing) {
             @extend .btn--blue_light;
           }
 
@@ -125,11 +125,11 @@ html.thing_lists_show {
           background: $vulcan;
           font-size: 20px;
 
-          &:not(.editing):after {
+          &:not(.thing_list_edit_button--editing):after {
             content: '列表';
           }
 
-          &.editing {
+          &.thing_list_edit_button--editing {
             background: $blue-dark;
           }
         }
