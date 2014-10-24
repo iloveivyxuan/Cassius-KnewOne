@@ -6,7 +6,7 @@ module Haven
 
     def index
       if params[:brand_name]
-        brand_regex = Regexp.new(params[:brand_name], Regexp::IGNORECASE)
+        brand_regex = /#{params[:brand_name].strip}/i
         @brands = Brand.or({ zh_name: brand_regex }, { en_name: brand_regex }).page(params[:page]).per(20)
       else
         @brands = Brand.all.desc(:things_size).page(params[:page]).per(20)
