@@ -208,8 +208,8 @@ html.thing_lists_show {
 
               position: absolute;
               bottom: 0;
-              left: 48%;
-              left: calc(50% - 8px);
+              left: 50%;
+              transform: translateX(-50%);
 
               width: 0;
               height: 0;
@@ -285,8 +285,8 @@ html.thing_lists_show {
                   content: '';
 
                   right: 0;
-                  bottom: 48%;
-                  bottom: calc(50% - 8px);
+                  bottom: 50%;
+                  transform: translateY(50%);
                   left: auto;
 
                   border-width: 8px 11px 8px 0;
@@ -299,17 +299,16 @@ html.thing_lists_show {
                 top: 0;
                 left: 100%;
 
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
                 width: percentage(30% / 35%);
                 height: 100%;
 
                 background: $ghost-white;
 
                 h4 {
-                  width: 100%;
+                  position: relative;
+                  top: 50%;
+                  transform: translateY(-50%);
+
                   white-space: normal;
                 }
               }
