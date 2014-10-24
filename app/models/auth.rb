@@ -88,15 +88,15 @@ class Auth
           avatar_url: "#{provider}_auth_handler".classify.constantize.parse_image(data)
       }
     end
+
+    private
+
+    def remove_weibo_suffix(s)
+      s && s.sub(/-Weibo$/, '')
+    end
   end
 
   def update_from_omniauth(data)
     update Auth.omniauth_to_auth(data)
-  end
-
-  private
-
-  def remove_weibo_suffix(s)
-    s && s.sub(/-Weibo$/, '')
   end
 end
