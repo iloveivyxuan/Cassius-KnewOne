@@ -24,6 +24,9 @@
     - if user_signed_in?
       = render 'things/supplier', tp: tp
 
+- content_for :end do
+  = render "shared/bong_point_modal"
+
 - content_for :script do
   javascript:
     Making.InitThing();

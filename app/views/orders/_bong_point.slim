@@ -12,9 +12,10 @@
       | -#{content_tag :span, @order.maximal_consumable_bong_point, id: 'maximal_consumable_bong_point'}点
       | （每点可抵扣 #{Order::BONG_POINT_VALUE} 元）。
       br
-      | 活跃点是由使用bong运动手环时，通过运动而产生的一种激励点数，具体获得规则可参考
-      = link_to '活跃点规则', 'https://bongservice.daikeapp.com/kb/articles/229', target: '_blank'
-      | 。
-      br
-      | 活跃点订单下单后，如需关闭、退款或退货，需要在提出申请后48小时返还您的bong账户。
-
+      | 活跃点是在佩戴&nbsp;
+      = link_to "bong", "http://bong.cn/", target: "_blank"
+      | &nbsp;的时候，通过运动产生的一种激励点数，更多信息可参考
+      = link_to "「活跃点规则」", "https://bongservice.daikeapp.com/kb/articles/229", target: "_blank"
+      | 。使用活跃点购买商品后，在取消订单或退货时，活跃点会在2个工作日内返还到你的&nbsp;
+      = link_to "bong", "http://bong.cn/", target: "_blank"
+      | &nbsp;账户。

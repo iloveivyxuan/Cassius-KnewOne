@@ -22,7 +22,17 @@ class KindPresenter < ApplicationPresenter
     if kind.stage == :pre_order
       kind.price > 0 ? price_format(kind.price) : '价格待定'
     else
-      price_format(kind.price)
+      str = price_format(kind.price)
+      if kind.can_consume_bong_point?
+        str += <<-HTML
+          <small>
+            （可用
+             #{kind.minimal_bong_point} - #{kind.maximal_bong_point}个
+             #{link_to "活跃点", "#", data: {toggle: "modal", target: "#bong_point_modal"}}）
+          </small>
+        HTML
+      end
+      str
     end
   end
 

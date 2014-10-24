@@ -1,0 +1,17 @@
+.modal.fade#bong_point_modal tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      .modal-content
+        .modal-header
+          button.close type="button" data-dismiss="modal"
+            span aria-hidden="true" &times;
+            span.sr-only Close
+          h4.modal-title bong 活跃点
+        .modal-body
+          | 活跃点是在佩戴&nbsp;
+          = link_to "bong", "http://bong.cn/", target: "_blank"
+          | &nbsp;的时候，通过运动产生的一种激励点数，更多信息可参考
+          = link_to "「活跃点规则」", "https://bongservice.daikeapp.com/kb/articles/229", target: "_blank"
+          | 。使用活跃点购买商品后，在取消订单或退货时，活跃点会在2个工作日内返还到你的&nbsp;
+          = link_to "bong", "http://bong.cn/", target: "_blank"
+          | &nbsp;账户。

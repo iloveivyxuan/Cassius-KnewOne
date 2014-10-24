@@ -259,4 +259,8 @@ class ThingPresenter < PostPresenter
   def share_pic(size)
     photo_url size
   end
+
+  def can_consume_bong_point?
+    thing.kinds.map(&:can_consume_bong_point?).reduce &:|
+  end
 end

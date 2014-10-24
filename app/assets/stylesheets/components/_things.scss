@@ -220,7 +220,22 @@ article.thing {
 
     .shopping {
       margin-top: 5px;
-      > a {margin-right: 1em;}
+      > a {
+        margin-right: .6em;
+        &:last-child {
+          margin-right: 0;
+        }
+
+        .fa {
+          height: 1em;
+          margin: {
+            left: 5px;
+            right: 0;
+          }
+          vertical-align: -2px;
+          width: 1em;
+        }
+      }
     }
 
     .interactions {
