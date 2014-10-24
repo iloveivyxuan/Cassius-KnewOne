@@ -786,14 +786,20 @@ html.feelings_show {
 
     .btn-buy-mobile--shorten {
       float: left;
-      width: 28%;
+      width: 48%;
       height: 40px;
       margin: 0;
-      margin-left: 2%;
+      margin-right: 2%;
       padding: 0;
       font-size: 14px;
       @include MQ(XS) { font-size: 12px }
       line-height: 40px;
+      &:last-child {
+        margin: {
+          left: 2%;
+          right: 0;
+        }
+      }
     }
 
     .mobile_buy {
