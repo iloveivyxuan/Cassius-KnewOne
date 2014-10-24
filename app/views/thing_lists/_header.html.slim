@@ -7,7 +7,8 @@ header
   = render 'shared/user_avatar', user: user, options: {class: 'user_avatar user_avatar--vertical hidden-md hidden-lg'}
   = render 'shared/user_avatar', user: user, options: {class: 'user_avatar hidden-xs hidden-sm'}
 
-  a.thing_list_edit_button.btn.btn--blue href="#" 管理
+  - if can?(:update, list)
+    a.thing_list_edit_button.btn.btn--blue href="#" 管理
 
   .thing_list_info
     .thing_list_name
