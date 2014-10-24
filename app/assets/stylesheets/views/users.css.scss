@@ -161,6 +161,13 @@ html.users_activities {
           text-align: center;
         }
 
+        @media (min-width: $screen-md-min) {
+          padding: {
+            left: 5px;
+            right: 5px;
+          }
+        }
+
         .fa {
           @media (min-width: $screen-sm-min) and (max-width: $screen-md-max) {
             display: none;
@@ -174,6 +181,7 @@ html.users_activities {
 
           @media (min-width: $screen-sm-min) {
             float: none;
+            font-size: 12px;
             margin-left: 4px;
           }
         }
