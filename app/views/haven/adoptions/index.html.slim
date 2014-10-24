@@ -8,6 +8,10 @@
   = f.text_field :name
   = f.submit "查找用户名"
 
+= form_tag '/haven/adoptions', method: :get do
+  = text_field_tag :thing
+  = submit_tag "查找产品"
+
 header.page-header
   h2
     i.fa.fa-users

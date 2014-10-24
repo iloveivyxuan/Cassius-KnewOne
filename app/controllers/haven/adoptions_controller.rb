@@ -6,8 +6,8 @@ module Haven
       @adoptions ||= Adoption.all
 
       if params[:thing]
-        thing = Thing.find params[:thing]
-        @adoptions = @adoptions.where(:thing => thing)
+        thing = Thing.where(title: /#{params[:thing]}/i).first
+        @adoptions = @adoptions.where(:thing => thing) if thing
       end
       if params[:status]
         @adoptions = @adoptions.where(:status => params[:status].to_sym)
