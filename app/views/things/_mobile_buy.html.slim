@@ -4,12 +4,11 @@
       - if tp.price.present?
         #mobile_price.mobile_price
           = tp.price
-          small
-            |（可用&nbsp;
-            | 99
-            | &nbsp;个
-            = link_to "活跃点", "#", data: {toggle: "modal", target: "#bong_point_modal"}
-            | ）
+          - if tp.can_consume_bong_point?
+            small
+              |（可用
+              = link_to "活跃点", "#", data: {toggle: "modal", target: "#bong_point_modal"}
+              | ）
           
       = render_mobile_buy(tp.thing)
 
