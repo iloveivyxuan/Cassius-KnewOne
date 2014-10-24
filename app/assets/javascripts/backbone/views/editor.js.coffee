@@ -162,10 +162,8 @@ do (exports = Making) ->
         that = @
 
         @editor = new MediumEditor @$body,
-          buttons: ['anchor', 'bold', 'italic', 'strikethrough', 'header1', 'header2', 'quote']
+          buttons: ['anchor', 'bold', 'italic', 'strikethrough', 'quote']
           buttonLabels: 'fontawesome'
-          firstHeader: 'h2'
-          secondHeader: 'h3'
           placeholder: @placeholder
           anchorInputPlaceholder: '在这里插入链接'
           targetBlank: true
