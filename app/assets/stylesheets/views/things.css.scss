@@ -1416,6 +1416,10 @@ html.feelings_show {
         font-size: 1.5em;
         line-height: 1;
         color: $text-color;
+
+        small {
+          font-size: 14px;
+        }
       }
       .shopping_desc {
         margin-bottom: 1em;

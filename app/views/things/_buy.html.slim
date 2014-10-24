@@ -1,7 +1,14 @@
 - if tp.buy
   .shop
     - if tp.price.present?
-      #price.price= tp.price
+      #price.price
+        = tp.price
+        small
+          |（可用&nbsp;
+          | 99
+          | &nbsp;个
+          = link_to "活跃点", "#", data: {toggle: "modal", target: "#bong_point_modal"}
+          | ）
     - if user_signed_in?
       = tp.render_shopping_desc
     .buy.clearfix
