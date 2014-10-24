@@ -64,7 +64,7 @@ class Auth
           refresh_token: data[:credentials][:refresh_token],
           expires_at: data[:credentials][:expires_at],
           nickname: data[:info][:nickname],
-          description: data[:info][:description],
+          description: remove_weibo_suffix(data[:info][:description]),
           location: data[:info][:location],
           urls: data[:info][:urls],
           followers_count: data[:extra][:raw_info][:followers_count],
@@ -92,5 +92,11 @@ class Auth
 
   def update_from_omniauth(data)
     update Auth.omniauth_to_auth(data)
+  end
+
+  private
+
+  def remove_weibo_suffix(s)
+    s && s.sub(/-Weibo$/, '')
   end
 end
