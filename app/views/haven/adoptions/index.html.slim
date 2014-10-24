@@ -1,7 +1,7 @@
 - page_title '领养管理'
 
 = form_for :adoption, url: one_click_deny_haven_adoption_path(1), method: :post do |f|
-  = select_tag "adoption", options_from_collection_for_select(@adoptions.map(&:thing).uniq, "id", "title")
+  = select_tag "adoption", options_from_collection_for_select(Adoption.all_things, "id", "title")
   = f.submit "一键拒绝"
 
 = form_for :user, url: haven_adoptions_path, method: :get do |f|
