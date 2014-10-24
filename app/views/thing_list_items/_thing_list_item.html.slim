@@ -1,4 +1,6 @@
-section.thing_list_item
+section.thing_list_item [id="thing-list-item-#{thing_list_item.id}"
+  data-url=url_for([thing_list_item.list, thing_list_item])
+  data-order=thing_list_item.order]
   header
     - thing = thing_list_item.thing
     = link_to thing, target: '_blank', class: 'thing_list_item-cover'
