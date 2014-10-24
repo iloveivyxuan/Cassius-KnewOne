@@ -1,3 +1,4 @@
 $('#thing_list_item_<%= @thing_list_item.id %>')
-.fadeOut('slow')
-.remove()
+.fadeOut(function () {
+  $(this).remove()
+})
