@@ -60,6 +60,11 @@ module NotificationsHelper
       list = post
       content += "列表 "
       content += link_to list.name, thing_list_path(list, anchor: anchor), target: target
+    when Comment then
+      if (list ||= post.thing_list)
+        content += "列表 "
+        content += link_to list.name, thing_list_path(list), target: target
+      end
     else
       content += ' 失效的资源'
     end
