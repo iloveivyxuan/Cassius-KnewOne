@@ -12,7 +12,7 @@ Making.CartItemNew = ->
     thing_price = $price.text()
 
     set_price = (price) ->
-      $price.text (price or thing_price)
+      $price.html (price or thing_price)
 
     set_estimated = (estimated) ->
       $prompt = $('.cart_estimated_prompt').hide()

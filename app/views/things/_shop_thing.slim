@@ -13,7 +13,8 @@
       .shopping
         = link_to thing, target: "_blank" do
           = thing_presenter.price
-          i.fa.fa-bong title="本商品支持使用 bong 活跃点抵扣"
+          - if thing_presenter.can_consume_bong_point?
+            i.fa.fa-bong title="本商品支持使用 bong 活跃点抵扣"
         = link_to thing_presenter.stage_text, thing, target: "_blank"
       .interactions
         = link_to thing, class: "fanciers_count", target: "_blank" do
