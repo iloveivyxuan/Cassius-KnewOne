@@ -17,3 +17,8 @@ footer = render 'shared/comments', post: list, id: 'comments', auth: true
 - content_for :script
   javascript:
     Making.Comments('#comments')
+
+- if can?(:update, list)
+  - content_for :script
+    javascript:
+      Making.InitThingList()

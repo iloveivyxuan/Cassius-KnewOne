@@ -1,4 +1,5 @@
 @import '../base';
+@import '../components/buttons';
 
 html.thing_lists_show {
   body {
@@ -93,8 +94,49 @@ html.thing_lists_show {
         }
       }
 
+      .thing_list_edit_button {
+        position: absolute;
+        bottom: 28px;
+        left: 16px;
+
+        width: 60px;
+        padding: 0;
+
+        @media (max-width: $screen-sm-max) {
+          &:not(.editing) {
+            @extend .btn--blue_light;
+          }
+
+          &.editing {
+            @extend .btn--blue_light;
+          }
+        }
+
+        @include breakpoint(md) {
+          top: 100%;
+          bottom: auto;
+          left: 0;
+
+          width: 100%;
+          height: auto;
+          padding: 5px;
+
+          border-radius: 0;
+          background: $vulcan;
+          font-size: 20px;
+
+          &:not(.editing):after {
+            content: '列表';
+          }
+
+          &.editing {
+            background: $blue-dark;
+          }
+        }
+      }
+
       .thing_list_info {
-        min-height: 120px;
+        min-height: 130px;
         padding: 30px 0 0 60px + 20px;
 
         @include breakpoint(md) {
@@ -241,22 +283,24 @@ html.thing_lists_show {
         }
 
         > footer {
-          padding: 20px 16px;
-          border-top: 1px dashed $gray-lighter;
+          .thing_list_item-description {
+            position: relative;
+            padding: 20px 16px;
+            border-top: 1px dashed $gray-lighter;
 
-          position: relative;
-          i {
-            position: absolute;
-            top: 14px;
-            left: 14px;
-            color: $body-bg;
-            font-size: 20px;
-          }
+            i {
+              position: absolute;
+              top: 14px;
+              left: 14px;
+              color: $body-bg;
+              font-size: 20px;
+            }
 
-          p {
-            margin: 0 1.5em;
-            text-align: center;
-            color: $gray-light;
+            p {
+              margin: 0 1.5em;
+              text-align: center;
+              color: $gray-light;
+            }
           }
         }
       }

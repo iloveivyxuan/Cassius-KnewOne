@@ -6,8 +6,8 @@ section.thing_list_item
     = link_to thing, target: '_blank', class: 'thing_list_item-thing_title'
       h4 = thing.title
 
-  - if thing_list_item.description.present?
-    footer
-      .thing_list_item-description
+  footer
+    - if thing_list_item.description.present? || can?(:update, thing_list_item)
+      .thing_list_item-description class=('hide' if thing_list_item.description.blank?)
         i.fa.fa-quote-left.fa-2x
         p = editable [thing_list_item.list, thing_list_item], :description, title: '产品描述'
