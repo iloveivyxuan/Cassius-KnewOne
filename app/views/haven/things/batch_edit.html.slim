@@ -55,7 +55,7 @@ ul.nav.nav-pills
             br
             | 价格单位
             .btn-group
-              - ["¥", "$", "€", "£", "JPY¥", "₩", "NT$"].each do |u|
+              - Thing::CURRENCY_LIST.each do |u|
                 label.btn.btn-default
                   input checked=(t.price_unit == u) name='things[][price_unit]' type="radio" value=u
                     | #{u}
