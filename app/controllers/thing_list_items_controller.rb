@@ -13,6 +13,10 @@ class ThingListItemsController < ApplicationController
 
   def update
     @thing_list_item.update(thing_list_item_params)
+    content_users = mentioned_users(@thing_list_item.description)
+    content_users.each do |u|
+      u.notify :list_item, context: @thing_list_item.thing_list, sender: current_user, opened: false
+    end
     respond_with @thing_list_item
   end
 

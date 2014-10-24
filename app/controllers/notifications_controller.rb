@@ -51,7 +51,7 @@ class NotificationsController < ApplicationController
     when "thing"
       %w(stock new_review new_feeling)
     when "reply"
-      %w(comment topic review feeling)
+      %w(comment topic review feeling list_item)
     when "friend"
       %w(following weibo_friend_joined)
     when "fancy"

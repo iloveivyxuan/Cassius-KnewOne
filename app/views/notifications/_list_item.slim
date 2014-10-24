@@ -1,0 +1,6 @@
+- if author = notification.context.author
+  = senders(notification)
+  | 在
+  = notification_post(notification.context, '_blank')
+  | &nbsp;
+  | 中提到了我
