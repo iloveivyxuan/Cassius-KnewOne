@@ -2,7 +2,15 @@
   .mobile_buy
     .mobile_shop.clearfix
       - if tp.price.present?
-        #mobile_price.mobile_price= tp.price
+        #mobile_price.mobile_price
+          = tp.price
+          small
+            |（可用&nbsp;
+            | 99
+            | &nbsp;个
+            = link_to "活跃点", "#", data: {toggle: "modal", target: "#bong_point_modal"}
+            | ）
+          
       = render_mobile_buy(tp.thing)
 
     .mobile_others.clearfix

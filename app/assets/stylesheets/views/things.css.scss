@@ -758,8 +758,6 @@ html.feelings_show {
     @include MQ(Mplus) { padding: 2.5em 2em }
 
     #mobile_price {
-      float: left;
-      width: 40%;
       margin: 0;
       padding: 0;
       font-size: 1.5em;
@@ -767,13 +765,17 @@ html.feelings_show {
       color: $text-color;
       font-weight: bold;
       text-align: center;
+
+      small {
+        font-size: 68%;
+        font-weight: normal;
+      }
     }
 
     .btn-buy-mobile {
-      float: left;
+      display: block;
       margin: 0;
       padding: 0;
-      width: 60%;
       height: 40px;
       line-height: 40px;
 
