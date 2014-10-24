@@ -305,6 +305,17 @@ html.thing_lists_show {
         }
       }
 
+      &.thing_list_items--editing {
+        > .thing_list_item {
+          cursor: move;
+
+          a {
+            cursor: move;
+            pointer-events: none;
+          }
+        }
+      }
+
       @include breakpoint(md) {
         &.thing_list_items--loose {
           > .thing_list_item {
