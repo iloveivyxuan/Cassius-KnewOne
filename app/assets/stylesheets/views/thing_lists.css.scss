@@ -284,6 +284,10 @@ html.thing_lists_show {
             font-family: lato-bold;
             font-size: 17px;
           }
+
+          .thing_list_item-destroy {
+            display: none;
+          }
         }
 
         > footer {
@@ -313,9 +317,29 @@ html.thing_lists_show {
         > .thing_list_item {
           cursor: move;
 
-          a {
+          a:not(.thing_list_item-destroy) {
             cursor: move;
             pointer-events: none;
+          }
+
+          .thing_list_item-destroy {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+
+            display: block;
+            width: 40px;
+            line-height: 42px;
+            font-size: 40px;
+            font-family: lato-thin;
+            text-align: center;
+
+            background: $vulcan;
+            color: white;
+
+            &:hover {
+              background: $red;
+            }
           }
         }
       }
