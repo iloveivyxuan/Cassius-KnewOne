@@ -26,7 +26,7 @@ class Comment
       .reject { |user| !user || user == author }
       .uniq
     elsif thing_list
-      [thing_list.author]
+      [thing_list.author] + self.content_users
     end
   end
 

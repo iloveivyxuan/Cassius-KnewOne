@@ -27,10 +27,6 @@ class CommentsController < ApplicationController
     @comment.author = current_user
 
     if @comment.save
-      content_users = mentioned_users(@comment.content)
-      content_users.each do |u|
-        u.notify :comment, context: @comment, sender: current_user, opened: false
-      end
       respond_with @comment
       @comment.author.log_activity :comment, (@post || @thing_list), check_recent: true
     else
