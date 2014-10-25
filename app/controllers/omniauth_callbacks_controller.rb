@@ -73,7 +73,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       session[:omniauth] = Auth.omniauth_to_auth(omniauth)
 
-      redirect_to new_user_session_path(redirect_from: params[:redirect_from])
+      redirect_to new_user_session_path(redirect_from: params[:redirect_from], from: 'oauth')
     end
   end
 
