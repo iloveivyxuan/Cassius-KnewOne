@@ -1,10 +1,27 @@
 point = <%= @point %>;
+$point_input_field = $('#order_bong_point');
+
 $maximal = $('#maximal_consumable_bong_point');
 maximal_point = parseInt($maximal.text());
+
+minimal_point = parseInt($point_input_field.attr('min'));
 
 $('#available_bong_point').text(point);
 
 if(point < maximal_point) {
   $maximal.text(point);
-  $('#order_bong_point').attr('max', point);
+  $point_input_field.attr('max', point);
+}
+
+if(point > minimal_point) {
+  $point_input_field.val(minimal_point);
+  $('#submit_order_btn').removeAttr('disabled');
+  $('#consume_bong_point_btn').removeAttr('disabled')
+  $('#not_enough_bong_point_alert').addClass('hidden');
+  $('#input_bong_point').show();
+} else {
+  $('#submit_order_btn').attr('disabled', 'disabled');
+  $('#consume_bong_point_btn').attr('disabled', 'disabled');
+  $('#not_enough_bong_point_alert').removeClass('hidden');
+  $('#input_bong_point').hide();
 }

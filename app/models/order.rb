@@ -214,7 +214,7 @@ class Order
   end
 
   def can_pay?
-    pending?
+    pending? && (!bong_point_required? || bong_point_required? && bong_point_consumed?)
   end
 
   def can_confirm_free?

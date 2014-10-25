@@ -51,7 +51,7 @@ header.page-header
         strong
           i.fa.fa-yen
           span= @order.total_price
-      = button_tag type: "submit", class: "btn btn-success make_order" do
+      = button_tag type: "submit", class: "btn btn-success make_order", id: 'submit_order_btn', disabled: @order.bong_point_required? do
         i.fa.fa-credit-card
         | 提交
       = link_to '需要帮助?', '#olark_chat', title: '需要帮助?', class: 'btn btn-link'

@@ -22,24 +22,10 @@ module BongPointAttachable
     def bong_point
       @bong_point || 0
     end
+  end
 
-    validate do
-      if (self.consumed_bong_point > self.maximal_consumable_bong_point) ||
-        (self.consumed_bong_point < self.minimal_consumable_bong_point)
-        errors.add :consumed_bong_point,
-                   "必须在 #{self.minimal_consumable_bong_point} - #{self.maximal_consumable_bong_point} 之内。"
-      end
-    end
-
-    validate do
-      unless self.bong_point.nil?
-        if (self.bong_point > self.maximal_consumable_bong_point) ||
-          (self.bong_point < self.minimal_consumable_bong_point)
-          errors.add :bong_point,
-                     "必须在 #{self.minimal_consumable_bong_point} - #{self.maximal_consumable_bong_point} 之内。"
-        end
-      end
-    end
+  def bong_point_required?
+    self.minimal_consumable_bong_point > 0
   end
 
   def bong_point_consumed?
@@ -80,9 +66,15 @@ module BongPointAttachable
                          note: "消费 #{self.consumed_bong_point} bong活跃点",
                          price: -self.consumed_bong_point * BONG_POINT_VALUE
       sync_price
+
+      if total_price == 0
+        self.state = :freed
+      end
     end
 
     save!
+
+    confirm_free!
 
     r[:success]
   end
