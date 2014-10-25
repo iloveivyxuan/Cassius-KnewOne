@@ -59,6 +59,10 @@ li.order
         li
           strong.field 送礼用途：
           span.warning 是
+      - if order.bong_point_consumed?
+        li
+          strong.field 消费活跃点：
+          span.warning = order.consumed_bong_point
       li
         strong.field 总计：
         span

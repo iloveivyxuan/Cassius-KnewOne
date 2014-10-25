@@ -11,6 +11,8 @@ module BongPointAttachable
 
     has_many :bong_point_transactions
 
+    scope :bong_point_consumed, -> { where :consumed_bong_point.gt => 0 }
+
     def bong_point=(val)
       @bong_point = val.to_i
     rescue

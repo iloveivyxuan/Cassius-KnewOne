@@ -60,6 +60,10 @@ section.orders_wrapper
         li
           strong.field 送礼用途：
           span.warning 是
+      - if @order.bong_point_consumed?
+        li
+          strong.field 消费活跃点：
+          span.warning = @order.consumed_bong_point
       - if @order.shipped?
         li
           strong.field 物流信息：

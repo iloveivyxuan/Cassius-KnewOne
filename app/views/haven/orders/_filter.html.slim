@@ -19,6 +19,13 @@ ul.nav.nav-pills
     li.active
       = link_to '过滤预售订单', params.reject!{|k| k == :filtpreorder}
 
+  - if params[:filter_bong_order].blank?
+    li
+      = link_to '过滤活跃点订单', params.merge(filter_bong_order: true)
+  - else
+    li.active
+      = link_to '过滤活跃点订单', params.reject!{|k| k == :filter_bong_order}
+
   - if params[:order_by].blank?
     li
       = link_to '按更新时间排序', params.merge(order_by: :updated_at)

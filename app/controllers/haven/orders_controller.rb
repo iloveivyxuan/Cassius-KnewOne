@@ -11,6 +11,8 @@ module Haven
 
       @orders = @orders.where(pre_order: false) if params[:filtpreorder]
 
+      @orders = @orders.bong_point_consumed if params[:filter_bong_order]
+
       @orders = @orders.where(state: params[:state]) if params[:state]
 
       if params[:find_cond].present?
