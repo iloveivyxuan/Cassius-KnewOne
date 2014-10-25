@@ -9,10 +9,14 @@ html.thing_lists_show {
       padding-bottom: 0;
     }
 
-    background: image-url('list-background-white.jpg');
+    background-image: image-url('list-background-white-1024.jpg');
     background-repeat: repeat-y;
     background-position: top center;
     background-attachment: fixed;
+
+    @include breakpoint(md) {
+      background-image: image-url('list-background-white-1680.jpg');
+    }
   }
 
   #header {
