@@ -1,139 +1,461 @@
 @import '../base';
+@import '../components/buttons';
 
 html.thing_lists_show {
-  #wrapper {
-    @extend %container;
+  body {
+    padding-top: 45px;
 
-    background: white;
-
-    @include breakpoint(sm) {
-      padding: 20px 40px;
-      border-radius: 10px;
+    @media (max-width: $screen-xs-max) {
+      padding-bottom: 0;
     }
 
-    > nav {
-      margin: 0 (-$grid-gutter-width / 2);
-      padding: 10px 20px;
-      background: $gray-lighter;
+    background: image-url('list-background-white.jpg');
+    background-position: top center;
+    background-attachment: fixed;
+  }
 
-      @include breakpoint(sm) {
-        padding: 0;
-        padding-bottom: 20px;
-        border-bottom: 1px solid $gray-lighter;
-        background: white;
-      }
+  #header {
+    margin-bottom: 0;
+  }
 
-      a {
-        color: $black;
-      }
+  #wrapper {
+    @include wrapper(empty);
+
+    $wrapper-max-width: 1280px;
+    $header-width: 300px;
+
+    max-width: $wrapper-max-width;
+
+    @include breakpoint(md) {
+      margin: 0 auto;
+      padding-left: $header-width;
     }
 
     > header {
-      position: relative;
-      height: 70px;
-      margin: 20px 10px;
-      padding-left: 60px;
+      padding: 0 16px 30px;
+      background: rgba(white, 0.6);
 
-      .info {
-        margin-left: 10px;
+      @include breakpoint(md) {
+        position: fixed;
+        top: 45px;
+        width: $header-width;
+        margin-left: -$header-width;
+        padding: 0 30px;
+      }
+
+      > nav {
+        margin: 0 -16px;
+        line-height: 60px;
+        background: $body-bg;
 
         a {
-          color: $black;
+          @include plain-link($text-color);
         }
 
+        i {
+          margin: 0;
+          padding: 0 47px 0 44px;
+        }
+
+        @include breakpoint(md) {
+          display: none;
+        }
+      }
+
+      position: relative;
+
+      .user_avatar {
+        position: absolute;
+        top: 60px + 30px;
+        left: 16px;
+
         img {
-          @extend %img-circle;
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 60px;
+          width: auto;
           height: 60px;
         }
 
-        .thing-list-name {
-          @include text-overflow;
+        @include breakpoint(md) {
+          position: static;
+          display: block;
+          margin: 0 -30px;
+          padding: 16px 30px;
 
-          margin-right: 60px;
-          padding-top: 6px;
-          font-size: 16px;
-        }
+          background: $body-bg;
 
-        .thing-list-description {
-          @include text-overflow;
-          padding: 3px 0 2px;
-        }
-
-        .stats {
-          margin-top: 8px;
-          color: $gray-light;
-          font-size: 14px;
-        }
-
-        .comments_toggle {
-          margin-left: .5em;
-          @include breakpoint(sm) {
-            margin-left: 1em;
+          img {
+            width: 50px;
+            height: 50px;
+            margin-right: 50px;
           }
 
-          .comments_count {
-            display: none;
+          .user_avatar-name {
+            font-size: 20px;
+          }
+        }
+      }
+
+      .thing_list_edit_button {
+        position: absolute;
+        bottom: 28px;
+        left: 16px;
+
+        width: 60px;
+        padding: 0;
+
+        @media (max-width: $screen-sm-max) {
+          &:not(.thing_list_edit_button--editing) {
+            @extend .btn--blue_light;
+          }
+
+          &.editing {
+            @extend .btn--blue_light;
+          }
+        }
+
+        @include breakpoint(md) {
+          top: 100%;
+          bottom: auto;
+          left: 0;
+
+          width: 100%;
+          height: auto;
+          padding: 5px;
+
+          border-radius: 0;
+          background: $vulcan;
+          font-size: 20px;
+
+          &:not(.thing_list_edit_button--editing):after {
+            content: '列表';
+          }
+
+          &.thing_list_edit_button--editing {
+            background: $blue-dark;
+          }
+        }
+      }
+
+      .thing_list_info {
+        min-height: 130px;
+        padding: 30px 0 0 60px + 20px;
+
+        @include breakpoint(md) {
+          min-height: 0;
+          padding: 0;
+        }
+
+        .thing_list_name {
+          padding: (60px - $font-size-large) / 2 0;
+          font-size: $font-size-large;
+          line-height: 1.1;
+
+          @include breakpoint(md) {
+            padding: 20px 0;
+            font-size: 20px;
+          }
+        }
+
+        .thing_list_description {
+          margin: $padding-large-vertical 0 20px;
+          color: $gray-light;
+
+          @include breakpoint(md) {
+            margin: 0 0 30px;
+          }
+        }
+      }
+
+      .thing_list_actions {
+        padding-left: 60px + 20px;
+
+        @include breakpoint(md) {
+          margin: 0 -30px;
+          padding: 30px;
+          border-top: 1px dashed $gray-light;
+        }
+
+        > ul {
+          display: flex;
+          justify-content: space-between;
+
+          max-width: 200px;
+          margin-top: $padding-large-vertical;
+
+          @include breakpoint(md) {
+            max-width: none;
+            margin-top: 0;
+          }
+
+          a {
+            @include plain-link($gray-light);
+
+            i {
+              vertical-align: middle;
+              margin-right: $padding-small-horizontal;
+              font-size: 28px;
+
+              @include breakpoint(md) {
+                font-size: 32px;
+              }
+            }
+          }
+
+          .fanciers_count {
+            color: $red;
+          }
+
+          .fa-share-alt {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+
+    section.thing_list_items {
+      margin-top: -30px;
+
+      @include breakpoint(md) {
+        padding-top: 82px;
+      }
+
+      > .thing_list_item {
+        display: inline-block;
+        margin-top: 30px;
+        vertical-align: top;
+
+        width: 100%;
+        @include breakpoint(sm) { width: percentage(1 / 3); }
+
+        background: $ghost-white;
+
+        transition: box-shadow .2s;
+        box-shadow: 0 2px 5px rgba(black, 0.1);
+
+        &:hover {
+          position: relative;
+          z-index: 1;
+          box-shadow: 0 4px 10px rgba(black, 0.4);
+        }
+
+        > header {
+          .thing_list_item-cover {
+            position: relative;
+            display: block;
+            height: 0;
+            overflow: hidden;
+            padding-bottom: percentage(8 / 11);
+
+            &:before {
+              content: '';
+
+              position: absolute;
+              bottom: 0;
+              left: 50%;
+              transform: translateX(-50%);
+
+              width: 0;
+              height: 0;
+              border-style: solid;
+              border-width: 0 8px 11px 8px;
+              border-color: transparent transparent $ghost-white transparent;
+            }
+
+            img {
+              width: 100%;
+            }
+          }
+
+          h4 {
+            @include plain-link;
+
             @include breakpoint(sm) {
-              display: inline;
+              @include text-overflow;
+            }
+
+            margin: 0;
+            padding: 20px 16px;
+            line-height: 1.2;
+            text-align: center;
+
+            font-family: lato-bold;
+            font-size: 17px;
+          }
+
+          .thing_list_item-destroy {
+            display: none;
+          }
+        }
+
+        > footer {
+          .thing_list_item-description {
+            position: relative;
+            padding: 20px 16px;
+            border-top: 1px dashed $gray-lighter;
+
+            i {
+              position: absolute;
+              top: 14px;
+              left: 14px;
+              color: $body-bg;
+              font-size: 20px;
+            }
+
+            p {
+              margin: 0 1.5em;
+              text-align: center;
+              color: $gray-light;
             }
           }
         }
+      }
 
-        .thing-list-share {
-          @include breakpoint(sm) {
-            margin-left: 1em;
+      &.thing_list_items--editing {
+        > .thing_list_item {
+          cursor: move;
+
+          a:not(.thing_list_item-destroy) {
+            cursor: move;
+            pointer-events: none;
+          }
+
+          .thing_list_item-destroy {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+
+            display: block;
+            width: 40px;
+            line-height: 42px;
+            font-size: 40px;
+            font-family: lato-thin;
+            text-align: center;
+
+            background: $vulcan;
+            color: white;
+
+            &:hover {
+              background: $red;
+            }
+          }
+
+          &.ui-sortable-helper {
+            box-shadow: 5px 10px 30px rgba(black, 0.9);
+
+            .thing_list_item-destroy {
+              display: none;
+            }
           }
         }
       }
 
-      .follow {
-        position: absolute;
-        top: 14px;
-        right: 0;
+      @include breakpoint(md) {
+        &.thing_list_items--loose {
+          > .thing_list_item {
+            display: block;
+            box-sizing: content-box;
+            width: 35%;
+            padding-right: 30%;
+
+            &:not(:first-child) {
+              margin-top: 0;
+            }
+
+            &:nth-child(even) {
+              margin-left: 35%;
+            }
+
+            > header {
+              position: relative;
+
+              .thing_list_item-cover {
+                &:before {
+                  content: '';
+
+                  right: 0;
+                  bottom: 50%;
+                  transform: translateY(50%);
+                  left: auto;
+
+                  border-width: 8px 11px 8px 0;
+                  border-color: transparent $ghost-white transparent transparent;
+                }
+              }
+
+              .thing_list_item-thing_title {
+                position: absolute;
+                top: 0;
+                left: 100%;
+
+                width: percentage(30% / 35%);
+                height: 100%;
+
+                background: $ghost-white;
+
+                h4 {
+                  position: relative;
+                  top: 50%;
+                  transform: translateY(-50%);
+
+                  white-space: normal;
+                }
+              }
+            }
+
+            > footer {
+              width: percentage((35% + 30%) / 35%);
+              background: $body-bg;
+
+              i {
+                color: white;
+              }
+            }
+          }
+        }
       }
     }
 
-    .thing-list-items {
-      @include make-row;
+    > footer {
+      padding: 0 16px;
+      background: white;
 
       @include breakpoint(sm) {
-        padding: 10px 0;
-        border: solid $gray-lighter;
-        border-width: 1px 0;
+        margin-bottom: 2em;
       }
 
-      &.ui-sortable {
-        > section {
-          cursor: move;
+      h4 {
+        display: block;
+        margin: 0 -16px 20px;
+        line-height: 60px;
+        background: $vulcan;
+        color: $ghost-white;
+
+        i {
+          margin: 0;
+          padding: 0 36px;
+          vertical-align: middle;
+          font-size: 2em;
+        }
+
+        span {
+          vertical-align: middle;
         }
       }
 
-      > section {
-        @include make-xs-column(12);
-        @include make-sm-column(6);
-        @include make-md-column(4);
-        @include make-lg-column(3);
-
-        @include make-inline-block-column;
-        vertical-align: top;
-
-        &.ui-sortable-helper {
-          @include box-shadow(0 0 10px $gray);
-        }
-
-        &.ui-sortable-placeholder {
-          visibility: visible !important;
-          border: 5px dashed $gray-lighter;
+      .comments {
+        .comments-form_wrapper,
+        ul li {
+          padding: 0;
         }
       }
     }
+  }
 
-    #comments {
-      margin-top: 10px;
+  @media (max-width: $screen-xs-max) {
+    #go_top .fa {
+      margin: 0;
+      padding: .5em 1em;
+      color: #fff;
+      background: $blue-dark;
     }
   }
 }
