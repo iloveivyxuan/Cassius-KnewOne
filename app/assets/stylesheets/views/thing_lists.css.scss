@@ -237,10 +237,6 @@ html.thing_lists_show {
           box-shadow: 0 4px 10px rgba(black, 0.4);
         }
 
-        &.ui-sortable-helper {
-          box-shadow: 5px 10px 30px rgba(black, 0.9);
-        }
-
         > header {
           .thing_list_item-cover {
             position: relative;
@@ -339,6 +335,14 @@ html.thing_lists_show {
 
             &:hover {
               background: $red;
+            }
+          }
+
+          &.ui-sortable-helper {
+            box-shadow: 5px 10px 30px rgba(black, 0.9);
+
+            .thing_list_item-destroy {
+              display: none;
             }
           }
         }
