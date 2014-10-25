@@ -2,7 +2,10 @@ tr
   - if auth
     td= link_to_with_icon '新浪微博', 'fa fa-weibo', auth.urls['Weibo'], target: '_blank'
     td.text-success 已绑定
-    td= link_to '解绑', authentication_path(auth.id), method: :delete, class: 'btn btn-danger', data: {confirm: '真的要解除绑定么？'}
+    td
+      = link_to '解绑', authentication_path(auth.id), method: :delete, class: 'btn btn-danger', data: {confirm: '真的要解除绑定么？'}
+    td
+      = link_to '刷新授权', user_omniauth_authorize_path(:weibo), class: 'btn btn-link'
   - else
     td
       i.fa.fa-weibo
