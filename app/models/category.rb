@@ -9,6 +9,9 @@ class Category
   mount_uploader :cover, CoverUploader
   field :icon, type: String, default: "fa-tags" # font awesome
 
+  has_many :inner_categories, class_name: "Category", inverse_of: :category
+  belongs_to :category, class_name: "Category", inverse_of: :inner_categories
+
   has_and_belongs_to_many :users
 
   validates :name, presence: true, uniqueness: true
@@ -19,6 +22,28 @@ class Category
 
   def things
     Thing.published.any_in(categories: [name])
+  end
+
+  def primary_category?
+    self.category.nil?
+  end
+
+  def primary_category
+    self.category.name
+  end
+
+  def primary_category=(text)
+    pc = Category.where(name: text.strip).first
+    self.category = pc if pc
+  end
+
+  def inner_categories_text
+    self.inner_categories.map(&:name).join(",")
+  end
+
+  def inner_categories_text=(text)
+    inners = text.split(/[，,]/).map { |c| Category.where(name: c.strip).first }
+    self.inner_categories = inners
   end
 
   class << self
