@@ -9,8 +9,8 @@ section.promotions
           | 我的草稿
           span.drafts-count= current_user.drafts.size
 
-section.tags
-  - if current_user.categories.gt(things_count: 0).any?
+- if current_user.categories.gt(things_count: 0).any?
+  section.tags
     header
       h2
         | 已订阅的分类
