@@ -300,6 +300,11 @@ html.thing_lists_show {
               text-align: center;
               color: $gray-light;
             }
+
+            .editable {
+              padding: .5em;
+              border-color: #b7b7b7;
+            }
           }
         }
       }
