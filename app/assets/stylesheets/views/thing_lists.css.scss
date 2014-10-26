@@ -422,6 +422,10 @@ html.thing_lists_show {
         margin-bottom: 2em;
       }
 
+      @include breakpoint(md) {
+        margin-top: 2em;
+      }
+
       h4 {
         display: block;
         margin: 0 -16px 20px;
@@ -433,7 +437,7 @@ html.thing_lists_show {
           margin: 0;
           padding: 0 36px;
           vertical-align: middle;
-          font-size: 2em;
+          font-size: 28px;
         }
 
         span {
