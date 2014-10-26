@@ -139,9 +139,9 @@ html.thing_lists_show {
         }
 
         .thing_list_name {
-          padding: (60px - 18px) / 2 0;
+          padding: (60px - 18px * 1.25) / 2 0;
           font-size: 18px;
-          line-height: 1.1;
+          line-height: 1.25;
 
           @include breakpoint(md) {
             padding: 20px 0;
