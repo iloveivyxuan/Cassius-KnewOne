@@ -126,10 +126,6 @@ html.thing_lists_show {
           &:not(.thing_list_edit_button--editing):after {
             content: '列表';
           }
-
-          &.thing_list_edit_button--editing {
-            background: $blue-dark;
-          }
         }
       }
 
