@@ -1,5 +1,4 @@
 @import '../base';
-@import '../components/buttons';
 
 html.thing_lists_show {
   body {
@@ -107,14 +106,8 @@ html.thing_lists_show {
         width: 60px;
         padding: 0;
 
-        @media (max-width: $screen-sm-max) {
-          &:not(.thing_list_edit_button--editing) {
-            @extend .btn--blue_light;
-          }
-
-          &.editing {
-            @extend .btn--blue_light;
-          }
+        &.thing_list_edit_button--editing {
+          background: $blue-light;
         }
 
         @include breakpoint(md) {
