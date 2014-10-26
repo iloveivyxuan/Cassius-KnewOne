@@ -197,16 +197,17 @@ html.thing_lists_show {
             i {
               vertical-align: middle;
               margin-right: $padding-small-horizontal;
-              font-size: 28px;
-
-              @include breakpoint(md) {
-                font-size: 32px;
-              }
+              font-size: 30px;
             }
           }
 
           .fanciers_count {
             color: $red;
+          }
+
+          .fanciers_count,
+          .comments_count {
+            font-size: 14px;
           }
 
           .fa-share-alt {
