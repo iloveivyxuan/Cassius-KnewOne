@@ -38,7 +38,7 @@ html.thing_lists_show {
 
     > header {
       padding: 0 16px 30px;
-      background: rgba(white, 0.6);
+      background: rgba(white, .6);
 
       @include breakpoint(md) {
         position: fixed;
@@ -234,12 +234,12 @@ html.thing_lists_show {
         background: $ghost-white;
 
         transition: box-shadow .2s;
-        box-shadow: 0 2px 5px rgba(black, 0.1);
+        box-shadow: 0 2px 5px rgba(black, .1);
 
         &:hover {
           position: relative;
           z-index: 1;
-          box-shadow: 0 4px 10px rgba(black, 0.4);
+          box-shadow: 0 4px 10px rgba(black, .4);
         }
 
         > header {
@@ -344,7 +344,7 @@ html.thing_lists_show {
           }
 
           &.ui-sortable-helper {
-            box-shadow: 5px 10px 30px rgba(black, 0.9);
+            box-shadow: 5px 10px 30px rgba(black, .9);
 
             .thing_list_item-destroy {
               display: none;
