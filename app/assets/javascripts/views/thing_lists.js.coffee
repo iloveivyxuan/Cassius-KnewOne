@@ -36,7 +36,7 @@ Making.InitThingList = ->
         data: {thing_list_item: {order: newOrder}}
       })
     }
-  ) unless Modernizr.touch
+  )
 
   $('.thing_list_edit_button').on('click', (event) ->
     event.preventDefault()
