@@ -62,14 +62,14 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user.update_from_omniauth(omniauth)
       sign_in user
 
-      redirect_to after_sign_in_path_for(user),
-                  :notice => t('devise.omniauth_callbacks.success', kind: omniauth.provider),
-                  :flash => {:show_set_email_modal => !user.has_fulfilled_email?}
+      redirect_back_or after_sign_in_path_for(user),
+                       :notice => t('devise.omniauth_callbacks.success', kind: omniauth.provider),
+                      :flash => {:show_set_email_modal => !user.has_fulfilled_email?}
     elsif user_signed_in?
       # must be
       current_user.auths<< Auth.from_omniauth(omniauth)
       current_user.update_from_omniauth(omniauth)
-      redirect_stored_or edit_account_path, flash: {oauth: {status: 'success', text: '绑定成功。'}}
+      redirect_back_or edit_account_path, flash: {oauth: {status: 'success', text: '绑定成功。'}}
     else
       session[:omniauth] = Auth.omniauth_to_auth(omniauth)
 

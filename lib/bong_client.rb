@@ -45,7 +45,7 @@ class BongClient
   rescue => e
     Rails.logger.info "bong client error in current_bong_point: uid #{@uid} access_token #{@access_token}"
     Rails.logger.info e.message
-    0
+    nil
   end
 
   def consume_bong_point_by_order(order, point, options = {})

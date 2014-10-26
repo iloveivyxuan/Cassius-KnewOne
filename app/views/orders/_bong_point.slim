@@ -22,25 +22,30 @@
   #input_bong_point.form-group.integer.optional.order_bong_point
     label.integer.optional.control-label for="order_bong_point"
       | 使用bong活跃点
+    #bong_access_token_error_alert.alert.alert-danger.hidden
+      | bong授权信息失效，
+      = link_to '点此刷新', user_omniauth_authorize_path(:bong, state: request.path)
+      | 。
     = f.number_field :bong_point,
                      in: @order.minimal_consumable_bong_point..@order.maximal_consumable_bong_point, step: 1,
                      class: 'numeric integer optional form-control'
-  small
-    | 你有 #{content_tag :span, '<i class="fa fa-spinner"></i>'.html_safe, id: 'available_bong_point'}点
-    | （#{link_to '刷新', bong_available_point_path, remote: true}） 可用，
-    | 最多可使用 #{content_tag :span, @order.maximal_consumable_bong_point, id: 'maximal_consumable_bong_point'}点
-    | （每点可抵扣 #{Order::BONG_POINT_VALUE} 元）。
+  #bong_point_tip
+    small
+      | 你有 #{content_tag :span, '<i class="fa fa-spinner"></i>'.html_safe, id: 'available_bong_point'}点
+      | （#{link_to '刷新', bong_available_point_path, remote: true}） 可用，
+      | 最多可使用 #{content_tag :span, @order.maximal_consumable_bong_point, id: 'maximal_consumable_bong_point'}点
+      | （每点可抵扣 #{Order::BONG_POINT_VALUE} 元）。
 
-  small
-    | 活跃点是在佩戴&nbsp;
-    = link_to "bong", "http://bong.cn/", target: "_blank"
-    | &nbsp;的时候，通过运动产生的一种激励点数，更多信息可参考
-    = link_to "「活跃点规则」", "https://bongservice.daikeapp.com/kb/articles/229", target: "_blank"
-    | 。
-    br
-    | 使用活跃点购买商品后，在取消订单或退货时，活跃点会在2个工作日内返还到你的&nbsp;
-    = link_to "bong", "http://bong.cn/", target: "_blank"
-    | &nbsp;账户。
+    small
+      | 活跃点是在佩戴&nbsp;
+      = link_to "bong", "http://bong.cn/", target: "_blank"
+      | &nbsp;的时候，通过运动产生的一种激励点数，更多信息可参考
+      = link_to "「活跃点规则」", "https://bongservice.daikeapp.com/kb/articles/229", target: "_blank"
+      | 。
+      br
+      | 使用活跃点购买商品后，在取消订单或退货时，活跃点会在2个工作日内返还到你的&nbsp;
+      = link_to "bong", "http://bong.cn/", target: "_blank"
+      | &nbsp;账户。
 
   - if current_user.bong_bind?
     - content_for :script do
