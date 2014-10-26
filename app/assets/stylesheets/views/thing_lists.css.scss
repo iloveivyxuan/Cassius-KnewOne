@@ -38,7 +38,7 @@ html.thing_lists_show {
 
     > header {
       padding: 0 16px 30px;
-      background: rgba(white, .6);
+      background: rgba(white, .8);
 
       @include breakpoint(md) {
         position: fixed;
