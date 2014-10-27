@@ -1,4 +1,10 @@
 .editable {
+  color: $text-color;
+
+  &.editable-disabled {
+    color: $text-color;
+  }
+
   &:focus {
     outline: none;
   }
