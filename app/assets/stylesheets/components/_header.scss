@@ -80,9 +80,6 @@ html.touch {
   #nav_publish {
     a {color: white;}
     background-color: $blue;
-    @include MQ(Lplus) {
-      margin-left: 15px;
-    }
   }
 
   .dropdown-menu {
