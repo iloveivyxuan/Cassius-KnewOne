@@ -3,6 +3,8 @@ class Entry
   include Mongoid::Timestamps
   include Mongoid::MultiParameterAttributes
 
+  include Rails.application.routes.url_helpers
+
   mount_uploader :cover, ImageUploader
 
   belongs_to :post
@@ -15,6 +17,8 @@ class Entry
   field :published, type: Boolean, default: false
 
   scope :published, -> {where published: true}
+
+  before_save :review_entry
 
   validate do
     if self.post.blank? && self.title.blank?
@@ -55,4 +59,17 @@ class Entry
       '专题' => 'specials',
       '活动' => 'events'
   }
+
+  def review_entry
+    if self.post.is_a?(Review) && !self.published_was && self.published
+      user = self.post.author
+      knewone = User.where(id: '511114fa7373c2e3180000b4').first
+      url = entry_url(self, host: "knewone.com")
+
+      return unless user && knewone && url
+      content = "Hi, 感谢你在 KnewOne 分享的测评《#{self.post.title}》，写得太赞啦！我们已将其收录至 <a href='#{url}'>精选频道</a>，感谢你，欢迎继续将更多体验与大家分享喔！┏ (゜ω゜)=☞"
+      knewone.send_private_message_to(user, content)
+    end
+  end
+
 end
