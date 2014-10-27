@@ -16,4 +16,11 @@ section
     br
     label icon
     = f.text_field :icon
+    div
+      - if @category.primary_category?
+        label 子分类
+        = f.text_field :inner_categories_text
+      - else
+        label 所属主分类
+        = f.text_field :primary_category
     = f.submit

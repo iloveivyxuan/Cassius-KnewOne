@@ -2,6 +2,8 @@ table.table
   thead
     tr
       th 分类
+      th 主分类
+      th 子分类数量
       th 产品数量
       th 优先级
       th 标签数量
@@ -10,6 +12,8 @@ table.table
     - @categories.each do |c|
       tr
         th= link_to c.name, things_path(category: c)
+        th= c.primary_category?
+        th= c.primary_category? ? c.inner_categories.size : -1
         th= c.things_count
         th= c.priority
         th= c.tags.size
