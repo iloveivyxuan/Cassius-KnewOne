@@ -34,4 +34,10 @@ class ThingList
     _fancy(fancier)
     self.author.notify(:fancy_list, context: self, sender: fancier, opened: true)
   end
+
+  include Rankable
+
+  def calculate_heat
+    (1 + fanciers_count + comments.count) * freezing_coefficient
+  end
 end
