@@ -1,5 +1,8 @@
 - page_title @thing_list.name
 - page_css 'thing_lists'
+- provide :wechat_title, @thing_list.name
+- provide :wechat_desc, @thing_list.description
+- provide :wechat_cover_url, @thing_list.items.first.thing.cover.url(:small)
 
 - list = @thing_list
 - user = list.author
