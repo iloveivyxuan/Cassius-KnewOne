@@ -19,7 +19,7 @@ var data = {
 };
 
 var callback = function(res) {
-    $('.js-share').fadeOut('fast');
+    $('#share--wechat-tip').fadeOut('fast');
     // 返回的是json，包含用户是否分享还是取消
 };
 
