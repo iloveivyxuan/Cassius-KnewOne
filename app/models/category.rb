@@ -12,8 +12,6 @@ class Category
   has_many :inner_categories, class_name: "Category", inverse_of: :category
   belongs_to :category, class_name: "Category", inverse_of: :inner_categories
 
-  before_save :update_things_count
-
   has_and_belongs_to_many :users
 
   validates :name, presence: true, uniqueness: true
@@ -63,14 +61,6 @@ class Category
       else
         Category.create name: name, things_count: 1
       end
-    end
-  end
-
-  private
-
-  def update_things_count
-    if self.primary_category?
-      self.things_count = self.inner_categories.map(&:things_count).reduce(&:+)
     end
   end
 end
