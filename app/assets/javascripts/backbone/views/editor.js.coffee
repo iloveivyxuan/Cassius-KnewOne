@@ -168,6 +168,17 @@ do (exports = Making) ->
           anchorInputPlaceholder: '在这里插入链接'
           targetBlank: true
 
+        if typeof MutationObserver is 'function'
+          @observer = new MutationObserver (mutations) ->
+            mutations.forEach (mutation) ->
+              addedNodes = mutation.addedNodes
+              if addedNodes.length
+                for node in addedNodes
+                  do (node) ->
+                    if node.nodeName is 'SPAN'
+                      $(node).contents().unwrap()
+          @observer.observe @$body[0], {childList: true, subtree: true}
+
         @$body.minsert
           actions:
             videos:
@@ -212,8 +223,10 @@ do (exports = Making) ->
 
       else
         @editor.activate()
+        @observer.observe() if typeof MutationObserver is 'function'
 
     deactivatePlugin: ->
+      @observer.disconnect() if typeof MutationObserver is 'function'
       @editor.deactivate()
 
     initHelp: ->
