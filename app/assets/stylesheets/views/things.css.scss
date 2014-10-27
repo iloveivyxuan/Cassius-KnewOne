@@ -263,15 +263,6 @@ html.feelings_show {
     @include border-radius(0);
     @include box-shadow(0 5px 15px rgba(0,0,0,.2));
   }
-  .modal-header {
-    background: #f7f7f7;
-    .modal-title {
-      width: 95%;
-      font-size: 16px;
-      color: $text-color;
-      font-weight: bold;
-    }
-  }
   .modal-body {
     width: 100%;
     color: $text-color;
@@ -295,11 +286,6 @@ html.feelings_show {
         &:hover { color: $brand-primary }
       }
     }
-    .qr-field {
-      padding: 1em 0;
-      text-align: center;
-    }
-
     .kinds {
       margin: 1em 0;
       padding: 1em;

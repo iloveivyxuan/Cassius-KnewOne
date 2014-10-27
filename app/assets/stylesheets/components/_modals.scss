@@ -32,7 +32,7 @@
     &:last-child {
       margin-bottom: 0;
     }
- 
+
     h5 {
       background-color: $panel-default-heading-bg;
       color: $panel-default-text;
@@ -64,6 +64,16 @@
 .share_modal {
   .words-check {
     margin-right: 5px;
+  }
+}
+
+.modal-header {
+  background: #f7f7f7;
+  .modal-title {
+    width: 95%;
+    font-size: 16px;
+    color: $text-color;
+    font-weight: bold;
   }
 }
 
@@ -276,8 +286,22 @@
 
 #share_wechat {
   .modal-body {text-align: center;}
+
+  .qr-field {
+    padding: 1em 0;
+    text-align: center;
+  }
 }
 
 #new_private_message_modal {
   z-index: $zindex-modal + 1;
+}
+
+#share_modal {
+  p {
+    a {
+      color: $blue-dark;
+      &:hover { color: $brand-primary }
+    }
+  }
 }
