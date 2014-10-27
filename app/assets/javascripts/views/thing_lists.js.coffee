@@ -20,6 +20,9 @@ Making.InitThingList = ->
 
   $('.thing_list_items').sortable({
     disabled: true
+    helper: 'clone'
+    start: (event, ui) ->
+      ui.placeholder.height(0)
     update: (event, ui) ->
       $el = ui.item
 
