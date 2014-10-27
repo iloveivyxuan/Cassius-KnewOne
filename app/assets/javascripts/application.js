@@ -2,6 +2,8 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require underscore
+//= require wechat.min
+//= require init_wechat
 //= require backbone
 //= require backbone.marionette
 //= require jquery_extend
