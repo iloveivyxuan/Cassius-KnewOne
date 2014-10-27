@@ -14,7 +14,8 @@ var data = {
             title = $('title').text();
         }
         return title;
-    }
+    },
+    link: window.location.href
 };
 
 var callback = function(res) {
@@ -24,4 +25,3 @@ var callback = function(res) {
 
 wechat('friend', data, callback);
 wechat('timeline', data, callback);
-wechat('weibo', data, callback);
