@@ -78,6 +78,8 @@ ul.nav.nav-pills
             = text_field_tag 'things[][sharing_text]', t.sharing_text, style: 'width: 100%'
             | 来源网站
             = text_field_tag 'things[][official_site]', t.official_site, style: 'width: 100%'
+            | 分享者&nbsp;
+            = link_to t.author.name, user_path(t.author), target: '_blank'
           td
             | 标签
             = text_field_tag 'things[][tags_text]', t.tags_text, hint: "用,分隔", style: 'width: 100%'
