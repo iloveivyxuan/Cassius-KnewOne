@@ -8,8 +8,8 @@ Making.InitThingList = ->
   })
 
   $('.thing_list_item-description .editable').editable({
-    emptytext: '说点什么吧（50字以内哦）'
-    tpl: '<input type="text" maxlength="50">'
+    emptytext: '说点什么吧（140字以内哦）'
+    tpl: '<input type="text" maxlength="140">'
   })
 
   $('.editable').editable('disable')
