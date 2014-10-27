@@ -52,7 +52,7 @@ class BongClient
     params = {
       'actPoint' => point.to_s,
       'comment' => options[:comment] || 'null',
-      'orderSN' => order.order_no,
+      'orderSN' => order.id.to_s,
       'partner' => @app_id,
       'partnerOrderSN' => order.order_no,
       'subject' => 'KnewOne',
