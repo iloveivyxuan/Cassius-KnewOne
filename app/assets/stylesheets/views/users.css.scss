@@ -65,6 +65,10 @@ html.users_activities {
         border-right: $border-default;
         min-height: 800px;
       }
+
+      > .breadcrumb {
+        display: none;
+      }
     }
   }
 
@@ -430,6 +434,45 @@ html.users_activities {
 
       .tag {
         margin-top: 10px;
+      }
+    }
+  }
+}
+
+html.users_fancies,
+html.users_owns,
+html.users_lists,
+html.users_reviews,
+html.users_feelings,
+html.users_things,
+html.users_groups,
+html.users_topics,
+html.users_followings,
+html.users_followers,
+html.users_activities {
+  &.mobile {
+    #wrapper {
+      .user_content {
+        > .nav {
+          display: none;
+        }
+
+        > .breadcrumb {
+          display: block;
+          padding: {
+            bottom: 20px;
+            left: 0;
+          }
+
+          &:before {
+            content: '';
+          }
+
+          em {
+            font-style: normal;
+            padding-left: .5em;
+          }
+        }
       }
     }
   }

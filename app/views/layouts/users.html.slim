@@ -90,6 +90,38 @@
       = li (action_name == 'activities') do
         = link_to_with_icon '动态', 'fa fa-bars', activities_user_path(@user)
 
+    - if browser.mobile?
+      ol.breadcrumb
+        li = link_to "个人主页", user_path(@user)
+        li.active
+          - case action_name
+          - when 'owns'
+            | 拥有
+            em = @user.owns_count
+          - when 'fancies'
+            | 喜欢
+            em = @user.fancies_count
+          - when 'lists'
+            | 列表
+            em = @user.thing_lists.size
+          - when 'things'
+            | 分享
+            em = @user.things_count
+          - when 'feelings'
+            | 短评
+            em = @user.feelings_count
+          - when 'reviews'
+            | 评测
+            em = @user.reviews_count
+          - when 'topics'
+            | 话题
+            em = @user.topics_count
+          - when 'groups'
+            | 小组
+            em = @user.groups_count
+          - when 'activities'
+            | 动态
+
     = yield
 
   - if browser.mobile? or browser.tablet?
