@@ -63,4 +63,16 @@ class Category
       end
     end
   end
+
+  def self.update_things_count
+    Category.all.each do |c|
+      if c.primary_category?
+        c.set(things_count: c.inner_categories.map(&:things_count).reduce(&:+)) unless c.inner_categories.empty?
+        c.set(things_count: c.tags.map(&:things_count).reduce(&:+)) unless c.tags.empty?
+      else
+        c.set(things_count: c.tags.map(&:things_count).reduce(&:+)) unless c.tags.empty?
+      end
+    end
+  end
+
 end

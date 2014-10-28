@@ -12,7 +12,6 @@ class Tag
   has_and_belongs_to_many :things
 
   field :things_count, type: Integer, default: 0
-  before_save :update_count
 
   def self.find_by_sequence(name)
     return all if name.blank?
@@ -20,7 +19,8 @@ class Tag
     where(name: /^#{str}/i)
   end
 
-  def update_count
-    self.things_count = self.things.size
+  def self.update_things_count
+    Tag.all.each { |t| t.set(things_count: t.things.size) }
   end
+
 end

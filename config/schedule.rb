@@ -53,6 +53,12 @@ every 10.minutes do
   runner 'Review.update_all_heat_since(20.days.ago)'
 end
 
+# categories & tags
+every 15.minutes do
+  runner 'Tag.update_things_count'
+  runner 'Category.update_things_count'
+end
+
 every 1.day, :at => '1:30 am' do
   runner 'Stat.generate_day_stats'
 end
