@@ -76,6 +76,8 @@ html.thing_lists_show {
         img {
           width: auto;
           height: 60px;
+
+          border: 3px solid white;
         }
 
         @include breakpoint(md) {
