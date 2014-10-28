@@ -25,6 +25,10 @@ class Brand
     (zh_name && en_name) ? "#{zh_name}(#{en_name})" : (zh_name || en_name)
   end
 
+  def tags
+    things.map(&:tags).flatten.uniq
+  end
+
   def update_things_brand
     things.each { |thing| thing.update_attributes(brand_name: brand_text) }
   end
