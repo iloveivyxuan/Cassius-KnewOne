@@ -9,8 +9,12 @@ Making.InitThingList = ->
 
   $('.thing_list_item-description .editable').editable({
     emptytext: '说点什么吧（140字以内哦）'
-    tpl: '<input type="text" maxlength="140">'
-  })
+    tpl: '<textarea maxlength="140"></textarea>'
+  }).on('shown', (event, editable) ->
+    setTimeout(->
+      editable.input.$input.autosize()
+    , 0)
+  )
 
   $('.editable').editable('disable')
 
