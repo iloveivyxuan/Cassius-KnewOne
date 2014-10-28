@@ -18,10 +18,11 @@
         = link_to '产品', things_path, class: 'breadcrumb'
     nav
       = form_tag things_path, method: :get, class: 'form-inline' do
-        = select_tag :category, \
-        options_for_select([%w(全部 all)]+@categories.map {|c| [c.name, c.slug]},  \
-          (params[:category] || 'all')), \
-          class: 'selectpicker js_auto_submit'
+        - unless @category || @tag || @brand
+          = select_tag :category, \
+          options_for_select([%w(全部 all)]+@categories.map {|c| [c.name, c.slug]},  \
+            (params[:category] || 'all')), \
+            class: 'selectpicker js_auto_submit'
         = select_tag :sort_by, \
         options_for_select([%w(最新 created_at), %w(热门 fanciers_count)], \
           (params[:sort_by] || 'created_at')), \
