@@ -16,6 +16,12 @@ Making.InitThingList = ->
     , 0)
   )
 
+  $('.thing_list_item-description').on('keydown', (event) ->
+    if event.which == 13 # ENTER
+      event.preventDefault()
+      $(this).find('.editableform').submit()
+  )
+
   $('.editable').editable('disable')
 
   $('.thing_list_description.hide, .thing_list_item-description.hide').each(->
