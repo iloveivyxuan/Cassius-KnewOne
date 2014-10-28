@@ -1642,6 +1642,8 @@ html.feelings_show {
         width: 100%;
         margin: 0;
         > a {
+          @include text-overflow;
+
           float: left;
           display: block;
           width: 50%;
