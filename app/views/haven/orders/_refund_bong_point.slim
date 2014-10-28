@@ -1,0 +1,8 @@
+- max_point = order.consumed_bong_point - order.refunded_bong_point
+= form_tag refund_bong_point_haven_order_path(order), method: :patch, class: 'form-inline', role: 'form' do
+  .form-group
+    label
+      | 已退还#{order.refunded_bong_point}点
+    = number_field_tag :point, max_point, class: 'form-control', max: max_point, min: 0
+  = submit_tag '退还活跃点', class: 'btn btn-warning', data: {confirm: '确定退活跃点？'}
+

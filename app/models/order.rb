@@ -592,6 +592,19 @@ class Order
     @_bong ||= Thing.where(id: "53d0bed731302d2c13b20000").first
   end
 
+  def log(type, text)
+    getter_field = :"#{type}_note"
+    setter_field = :"#{type}_note="
+
+    if self.send(getter_field).present?
+      text = " | #{text}"
+    else
+      self.send(setter_field, '')
+    end
+
+    self.send(setter_field, text)
+  end
+
   class<< self
     def build_order(user, params = {})
       params ||= {}
@@ -618,6 +631,10 @@ class Order
       pending.where(consumed_bong_point: 0).each do |o|
         if o.created_at + o.valid_period_days.days < Date.today
           o.close!
+
+          if o.consumed_bong_point > 0 && o.consumed_bong_point == 0
+            o.refund_bong_point! o.consumed_bong_point, 'SYSTEM(ON CLOSING)'
+          end
         end
       end
     end

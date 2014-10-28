@@ -63,7 +63,13 @@ section.orders_wrapper
       - if @order.bong_point_consumed?
         li
           strong.field 消费活跃点：
-          span.warning = @order.consumed_bong_point
+          span.warning
+            = @order.consumed_bong_point
+      - if @order.refunded_bong_point > 0
+        li
+          strong.field 退还活跃点：
+          span.warning
+            = @order.refunded_bong_point
       - if @order.shipped?
         li
           strong.field 物流信息：
@@ -98,6 +104,7 @@ section.orders_wrapper
     .text-right
       = ship_link(@order)
       = refund_to_balance_link(@order)
+      = refund_bong_point_link(@order)
     hr
     .order_actions.text-right
       .btn-group = link_to '返回', haven_orders_path, class: 'btn btn-default'

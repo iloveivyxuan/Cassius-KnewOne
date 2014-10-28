@@ -116,6 +116,11 @@ module Haven
       redirect_to haven_order_path(@order)
     end
 
+    def refund_bong_point
+      @order.refund_bong_point!(params[:point].to_i, current_user.id.to_s)
+      redirect_to haven_order_path(@order)
+    end
+
     def refunded_balance_to_platform
       @order.refunded_balance_to_platform!
       redirect_to haven_order_path(@order)
