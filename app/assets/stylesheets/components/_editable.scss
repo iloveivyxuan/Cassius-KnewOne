@@ -10,6 +10,36 @@
   }
 }
 
+.editable-container.editable-inline {
+  width: 100%;
+
+  .control-group {
+    width: 100%;
+
+    .editable-input {
+      width: 100%;
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 0;
+        resize: none;
+
+        color: $blue-dark;
+        background: transparent;
+        font-size: inherit;
+
+        &,
+        &:focus {
+          border: none;
+          outline: none;
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}
+
 .editable-buttons i {
   margin-right: 0;
 

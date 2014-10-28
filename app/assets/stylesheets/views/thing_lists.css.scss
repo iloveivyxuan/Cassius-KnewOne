@@ -297,7 +297,7 @@ html.thing_lists_show {
             }
 
             p {
-              margin: 0 1.5em;
+              margin: 0 2em;
               text-align: center;
               color: $gray-light;
             }
@@ -305,6 +305,11 @@ html.thing_lists_show {
             .editable {
               padding: 0 .5em;
               border-color: #b7b7b7;
+
+            }
+
+            .editable-input input {
+              text-align: center;
             }
           }
         }
