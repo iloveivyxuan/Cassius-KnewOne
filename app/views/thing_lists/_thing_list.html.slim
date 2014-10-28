@@ -4,11 +4,13 @@ section.thing-list id="thing-list-#{thing_list.id}"
       = render 'thing_lists/cover', thing_list: thing_list
 
     ul.thing-list-info.list-inline
-      li.thing-list-creator= render 'shared/user_avatar', user: thing_list.author
+      li.thing-list-creator
+        = render 'shared/user_avatar', user: thing_list.author
 
-      li.thing-list-name= link_to thing_list
-        i.fa.fa-list
-        = thing_list.name
+      li.thing-list-name
+        = link_to thing_list
+          i.fa.fa-list
+          = thing_list.name
 
       li.thing-list-size = "(#{thing_list.size})"
 
@@ -18,7 +20,8 @@ section.thing-list id="thing-list-#{thing_list.id}"
             i.fa.fa-comment-o
             = thing_list.comments.count
 
-      li.thing-list-fancy= link_to thing_list
+      li.thing-list-fancy
+        = link_to thing_list
           i.fa.fa-heart-o
           = thing_list.fanciers_count
 
