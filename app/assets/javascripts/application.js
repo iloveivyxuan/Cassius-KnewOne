@@ -15,6 +15,7 @@
 //= require matchmedia
 //= require picturefill
 //= require hammer
+//= require jquery.autosize
 //= require jquery.lazyload
 //= require jquery.ui.sortable
 //= require jquery.infinitescroll
