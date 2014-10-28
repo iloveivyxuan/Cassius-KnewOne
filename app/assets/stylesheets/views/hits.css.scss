@@ -72,6 +72,22 @@ html.home_hits section.hits, html.landing_mobile section.hits {
       }
     }
   }
+
+  .thing-list {
+    margin-bottom: $gutter;
+    padding: 1em;
+
+    background: $ghost-white;
+
+    .thing-list-timestamp,
+    .thing-list-destroy {
+      display: none;
+    }
+
+    .thing-list-description {
+      padding-bottom: 0;
+    }
+  }
 }
 
 html.home_hits .container-fluid > footer {
