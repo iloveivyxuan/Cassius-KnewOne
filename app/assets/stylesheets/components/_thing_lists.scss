@@ -36,18 +36,15 @@
         max-width: 50%;
       }
 
-      .thing-list-fancy {
+      .thing-list-counts {
         position: absolute;
-        top: 16px;
-        right: 45px;
-        padding: 0;
-      }
-
-      .thing-list-comments {
-        position: absolute;
-        top: 16px;
+        top: 17px;
         right: 0;
         padding: 0;
+
+        > a {
+          margin-left: .7em;
+        }
       }
 
       color: $gray-light;

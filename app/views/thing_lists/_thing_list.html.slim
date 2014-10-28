@@ -14,14 +14,13 @@ section.thing-list id="thing-list-#{thing_list.id}"
 
       li.thing-list-size = "(#{thing_list.size})"
 
-      - if thing_list.comments.present?
-        li.thing-list-comments
-          = link_to thing_list_path(thing_list, anchor: 'comments')
+      li.thing-list-counts
+        - if thing_list.comments.present?
+          = link_to thing_list_path(thing_list, anchor: 'comments'), class: 'thing-list-comments'
             i.fa.fa-comment-o
             = thing_list.comments.count
 
-      li.thing-list-fancy
-        = link_to thing_list
+        = link_to thing_list, class: 'thing-list-fancy'
           i.fa.fa-heart-o
           = thing_list.fanciers_count
 
