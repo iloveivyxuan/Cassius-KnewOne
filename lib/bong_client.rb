@@ -64,11 +64,6 @@ class BongClient
     }
     uri = "#{@refund_bong_point_api_uri}&sign=#{sign(params)}"
 
-    Rails.logger.info '------'
-    Rails.logger.info uri
-    Rails.logger.info params.to_json
-    Rails.logger.info '------'
-
     r = JSON.parse(RestClient.post(uri, params.to_json, :content_type => 'application/json'))
 
     if r['code'] == ResponseCode::SUCCESS
