@@ -11,6 +11,8 @@ class Brand
   before_save :update_things_brand
   before_save :update_names
 
+  field :description, type: String, default: ""
+
   mount_uploader :logo, CoverUploader
 
   has_many :things

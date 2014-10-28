@@ -11,10 +11,13 @@ section
       = image_tag @brand.logo.url
     = f.file_field :logo
     = f.hidden_field :logo_cache
-    label 中文名
-    = f.text_field :zh_name
-    br
-    label 英文名
-    = f.text_field :en_name
-    br
+    div
+      label 中文名
+      = f.text_field :zh_name
+    div
+      label 英文名
+      = f.text_field :en_name
+    div
+      label 描述
+      = f.text_field :description
     = f.submit
