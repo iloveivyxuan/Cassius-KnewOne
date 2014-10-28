@@ -52,6 +52,7 @@ class HomeController < ApplicationController
     @batch = 5
     @things = Thing.hot.approved.page(params[:page]).per(6*@batch)
     @reviews = Review.hot.page(params[:page]).per(@batch)
+    @thing_lists = ThingList.hot.page(params[:page]).per(@batch)
 
     if request.xhr?
       render 'hits_xhr', layout: false
