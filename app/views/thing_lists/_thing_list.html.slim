@@ -12,6 +12,12 @@ section.thing-list id="thing-list-#{thing_list.id}"
 
       li.thing-list-size = "(#{thing_list.size})"
 
+      - if thing_list.comments.present?
+        li.thing-list-comments
+          = link_to thing_list_path(thing_list, anchor: 'comments')
+            i.fa.fa-comment-o
+            = thing_list.comments.count
+
       li.thing-list-fancy= link_to thing_list
           i.fa.fa-heart-o
           = thing_list.fanciers_count
