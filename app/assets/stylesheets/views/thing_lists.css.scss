@@ -214,6 +214,8 @@ html.thing_lists_show {
       }
 
       > .thing_list_item {
+        position: relative;
+
         display: inline-block;
         margin-top: 30px;
         vertical-align: top;
@@ -227,7 +229,6 @@ html.thing_lists_show {
         box-shadow: 0 2px 5px rgba(black, .1);
 
         &:hover {
-          position: relative;
           z-index: 1;
           box-shadow: 0 4px 10px rgba(black, .4);
         }
