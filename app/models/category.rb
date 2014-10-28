@@ -70,10 +70,8 @@ class Category
     Category.all.each do |c|
       if c.primary_category?
         c.set(things_count: c.inner_categories.map(&:things_count).reduce(&:+)) unless c.inner_categories.empty?
-        c.set(things_count: c.tags.map(&:things_count).reduce(&:+)) unless c.tags.empty?
-      else
-        c.set(things_count: c.tags.map(&:things_count).reduce(&:+)) unless c.tags.empty?
       end
+      c.set(things_count: c.tags.map(&:things_count).reduce(&:+)) unless c.tags.empty?
     end
   end
 
@@ -81,10 +79,8 @@ class Category
     Category.all.each do |c|
       if c.primary_category?
         c.thing_ids = c.inner_categories.map(&:thing_ids).flatten.uniq unless c.inner_categories.empty?
-        c.thing_ids = c.tags.map(&:thing_ids).flatten.uniq unless c.tags.empty?
-      else
-        c.thing_ids = c.tags.map(&:thing_ids).flatten.uniq unless c.tags.empty?
       end
+      c.thing_ids = c.tags.map(&:thing_ids).flatten.uniq unless c.tags.empty?
       c.save
     end
   end
