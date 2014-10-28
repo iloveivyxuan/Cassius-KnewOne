@@ -17,6 +17,10 @@ section.thing-list id="thing-list-#{thing_list.id}"
           = thing_list.fanciers_count
 
   footer
+    - if thing_list.description.present?
+      .thing-list-description
+        = thing_list.description
+
     span.thing-list-timestamp
       = time_ago_tag(thing_list.created_at)
       | 创建

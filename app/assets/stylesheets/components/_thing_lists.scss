@@ -53,6 +53,12 @@
   footer {
     position: relative;
 
+    .thing-list-description {
+      padding: 1em 0;
+      color: $gray-light;
+      border-top: 1px dashed $gray-lighter;
+    }
+
     .thing-list-timestamp {
       font-size: 13px;
       color: $gray-light;
