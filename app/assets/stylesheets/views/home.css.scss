@@ -158,25 +158,9 @@ html.home {
         padding: $padding-base-vertical;
         background: $ghost-white;
 
-        .thing_list-info {
-          padding-left: 16px;
-          padding-right: 16px;
-
-          > li:first-child {
-            padding-left: 0;
-          }
-
-          .thing_list-name {
-            padding-left: $padding-large-horizontal;
-          }
-
-          .thing_list-fancy {
-            right: 16px;
-          }
-        }
-
-        footer {
-          display: none;
+        h4,
+        > footer {
+          padding: 0 16px;
         }
       }
 

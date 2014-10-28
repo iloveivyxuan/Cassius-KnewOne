@@ -1,9 +1,9 @@
 .thing_list {
-  background: white;
+  a {
+    @include plain-link($gray-light);
+  }
 
-  header {
-    position: relative;
-
+  > header {
     .thing_list-cover {
       height: 0;
       padding-bottom: 100%;
@@ -18,62 +18,75 @@
       }
     }
 
-    .thing_list-info {
-      position: relative;
-      padding: 1em 0;
-
-      > li {
-        vertical-align: middle;
+    .thing_list-cover--quintet {
+      &:nth-child(5) {
+        display: block;
       }
+    }
 
-      .thing_list-creator {
-        @include text-overflow;
-        max-width: 43%;
+    h4 {
+      margin: 1em 0;
+
+      color: $gray-light;
+      font-size: 14px;
+      line-height: 1;
+
+      i {
+        vertical-align: middle;
       }
 
       .thing_list-name {
         @include text-overflow;
-        max-width: 50%;
+        display: inline-block;
+        vertical-align: middle;
+        max-width: 80%;
       }
 
-      .thing_list-counts {
-        position: absolute;
-        top: 17px;
-        right: 0;
-        padding: 0;
-
-        > a {
-          margin-left: .7em;
-        }
-      }
-
-      color: $gray-light;
-      a {
-        @include plain-link($gray-light);
-      }
-    }
-  }
-
-  footer {
-    position: relative;
-
-    .thing_list-description {
-      padding: 1em 0;
-      color: $gray-light;
-      border-top: 1px dashed $gray-lighter;
-    }
-
-    .thing_list-timestamp {
-      font-size: 13px;
-      color: $gray-light;
-
-      time {
-        margin-right: .5em;
+      .thing_list-size {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: .5em;
       }
     }
 
     .thing_list-destroy {
-      margin-left: .5em;
+      display: none;
+      vertical-align: middle;
+      margin-left: 1em;
+      line-height: 1;
+
+      i { margin: 0; }
+    }
+  }
+
+  > footer {
+    .thing_list-description {
+      padding: 1em 0;
+      border-top: 1px solid $gray-lighter;
+
+      color: $gray-light;
+      font-size: 14px;
+    }
+
+    .thing_list-info {
+      @include clearfix;
+
+      li {
+        float: left;
+      }
+
+      .thing_list-creator {
+        max-width: 60%;
+      }
+
+      .thing_list-counts {
+        float: right;
+        margin-top: 3px;
+
+        .thing_list-comments {
+          margin-left: .7em;
+        }
+      }
     }
   }
 }

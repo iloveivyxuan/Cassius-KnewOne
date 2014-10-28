@@ -78,15 +78,6 @@ html.home_hits section.hits, html.landing_mobile section.hits {
     padding: 1em;
 
     background: $ghost-white;
-
-    .thing_list-timestamp,
-    .thing_list-destroy {
-      display: none;
-    }
-
-    .thing_list-description {
-      padding-bottom: 0;
-    }
   }
 }
 
