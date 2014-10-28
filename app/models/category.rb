@@ -9,6 +9,8 @@ class Category
   mount_uploader :cover, CoverUploader
   field :icon, type: String, default: "fa-tags" # font awesome
 
+  field :thing_ids, type: Array, default: []
+
   has_many :inner_categories, class_name: "Category", inverse_of: :category
   belongs_to :category, class_name: "Category", inverse_of: :inner_categories
 
@@ -72,6 +74,18 @@ class Category
       else
         c.set(things_count: c.tags.map(&:things_count).reduce(&:+)) unless c.tags.empty?
       end
+    end
+  end
+
+  def self.update_thing_ids
+    Category.all.each do |c|
+      if c.primary_category?
+        c.thing_ids = c.inner_categories.map(&:thing_ids).flatten.uniq unless c.inner_categories.empty?
+        c.thing_ids = c.tags.map(&:thing_ids).flatten.uniq unless c.tags.empty?
+      else
+        c.thing_ids = c.tags.map(&:thing_ids).flatten.uniq unless c.tags.empty?
+      end
+      c.save
     end
   end
 
