@@ -73,18 +73,18 @@ html.home_hits section.hits, html.landing_mobile section.hits {
     }
   }
 
-  .thing-list {
+  .thing_list {
     margin-bottom: $gutter;
     padding: 1em;
 
     background: $ghost-white;
 
-    .thing-list-timestamp,
-    .thing-list-destroy {
+    .thing_list-timestamp,
+    .thing_list-destroy {
       display: none;
     }
 
-    .thing-list-description {
+    .thing_list-description {
       padding-bottom: 0;
     }
   }

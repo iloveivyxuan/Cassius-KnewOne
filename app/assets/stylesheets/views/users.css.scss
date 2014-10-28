@@ -97,30 +97,30 @@ html.users_activities {
     }
 
     .thing-lists {
-      > .thing-list {
+      > .thing_list {
         @media (min-width: $screen-sm-min) {
           @include make-sm-column(4);
           padding: 2em;
         }
 
 
-        .thing-list-info {
+        .thing_list-info {
           > li,
           .fa-list {
             display: none;
           }
 
-          .thing-list-name {
+          .thing_list-name {
             display: inline-block;
             max-width: 63%;
           }
 
-          .thing-list-size {
+          .thing_list-size {
             display: inline-block;
             padding: 0;
           }
 
-          .thing-list-counts {
+          .thing_list-counts {
             display: block;
             top: 15px;
           }

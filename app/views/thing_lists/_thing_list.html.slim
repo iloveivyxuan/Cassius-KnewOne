@@ -1,39 +1,39 @@
-section.thing-list id="thing-list-#{thing_list.id}"
+section.thing_list id="thing_list_#{thing_list.id}"
   header
     = link_to thing_list
       = render 'thing_lists/cover', thing_list: thing_list
 
-    ul.thing-list-info.list-inline
-      li.thing-list-creator
+    ul.thing_list-info.list-inline
+      li.thing_list-creator
         = render 'shared/user_avatar', user: thing_list.author
 
-      li.thing-list-name
+      li.thing_list-name
         = link_to thing_list
           i.fa.fa-list
           = thing_list.name
 
-      li.thing-list-size = "(#{thing_list.size})"
+      li.thing_list-size = "(#{thing_list.size})"
 
-      li.thing-list-counts
+      li.thing_list-counts
         - if thing_list.comments.present?
-          = link_to thing_list_path(thing_list, anchor: 'comments'), class: 'thing-list-comments'
+          = link_to thing_list_path(thing_list, anchor: 'comments'), class: 'thing_list-comments'
             i.fa.fa-comment-o
             = thing_list.comments.count
 
-        = link_to thing_list, class: 'thing-list-fancy'
+        = link_to thing_list, class: 'thing_list-fancy'
           i.fa.fa-heart-o
           = thing_list.fanciers_count
 
   footer
     - if thing_list.description.present?
-      .thing-list-description
+      .thing_list-description
         = thing_list.description
 
-    span.thing-list-timestamp
+    span.thing_list-timestamp
       = time_ago_tag(thing_list.created_at)
       | 创建
 
     - if can?(:destroy, thing_list)
-      span.thing-list-destroy
+      span.thing_list-destroy
         = link_to thing_list, method: :delete, remote: true, data: {confirm: '您确定要删除吗?'}
           i.fa.fa-trash-o

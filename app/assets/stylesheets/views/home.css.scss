@@ -154,11 +154,11 @@ html.home {
         }
       }
 
-      > .thing-list {
+      > .thing_list {
         padding: $padding-base-vertical;
         background: $ghost-white;
 
-        .thing-list-info {
+        .thing_list-info {
           padding-left: 16px;
           padding-right: 16px;
 
@@ -166,11 +166,11 @@ html.home {
             padding-left: 0;
           }
 
-          .thing-list-name {
+          .thing_list-name {
             padding-left: $padding-large-horizontal;
           }
 
-          .thing-list-fancy {
+          .thing_list-fancy {
             right: 16px;
           }
         }

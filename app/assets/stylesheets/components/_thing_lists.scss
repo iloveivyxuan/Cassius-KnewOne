@@ -1,10 +1,10 @@
-.thing-list {
+.thing_list {
   background: white;
 
   header {
     position: relative;
 
-    .thing-list-cover {
+    .thing_list-cover {
       height: 0;
       padding-bottom: 100%;
 
@@ -18,7 +18,7 @@
       }
     }
 
-    .thing-list-info {
+    .thing_list-info {
       position: relative;
       padding: 1em 0;
 
@@ -26,17 +26,17 @@
         vertical-align: middle;
       }
 
-      .thing-list-creator {
+      .thing_list-creator {
         @include text-overflow;
         max-width: 43%;
       }
 
-      .thing-list-name {
+      .thing_list-name {
         @include text-overflow;
         max-width: 50%;
       }
 
-      .thing-list-counts {
+      .thing_list-counts {
         position: absolute;
         top: 17px;
         right: 0;
@@ -57,13 +57,13 @@
   footer {
     position: relative;
 
-    .thing-list-description {
+    .thing_list-description {
       padding: 1em 0;
       color: $gray-light;
       border-top: 1px dashed $gray-lighter;
     }
 
-    .thing-list-timestamp {
+    .thing_list-timestamp {
       font-size: 13px;
       color: $gray-light;
 
@@ -72,13 +72,13 @@
       }
     }
 
-    .thing-list-destroy {
+    .thing_list-destroy {
       margin-left: .5em;
     }
   }
 }
 
-.thing-list-item {
+.thing_list-item {
   padding: 15px;
   background: white;
 
@@ -105,7 +105,7 @@
     }
   }
 
-  .thing-list-item-description {
+  .thing_list-item-description {
     width: 95%;
     margin-top: 16px;
     color: $gray;
@@ -114,7 +114,7 @@
     .fa-quote-right { margin-left: .5em; }
   }
 
-  .thing-list-item-destroy {
+  .thing_list-item-destroy {
     position: absolute;
     right: 15px;
     bottom: 15px;
