@@ -8,6 +8,7 @@ class BongClient
     INVALID_SIGN = '403'.freeze
     NOT_ENOUGH_POINT = '2009'.freeze
     CONSUMING_POINT_ERROR = '2010'.freeze
+    REFUNDING_POINT_ERROR = '2011'.freeze
   end
 
   RESPONSE_BODY_KEY = 'requestbody'.freeze
@@ -32,6 +33,7 @@ class BongClient
     @app_id = options[:app_id] || Settings.bong.consumer_key
 
     @consume_bong_point_api_uri = "#{HOST}/bongInfo/actPoint/consume/#{@uid}?access_token=#{@access_token}"
+    @refund_bong_point_api_uri = "#{HOST}/bongInfo/actPoint/refund/#{@uid}?access_token=#{@access_token}"
     @get_bong_point_api_uri = "#{HOST}/bongInfo/actPoint/#{@uid}?access_token=#{@access_token}"
   end
 
@@ -40,10 +42,46 @@ class BongClient
     if r['code'] == ResponseCode::SUCCESS
       r['value']['point']
     else
-      0
+      Rails.logger.info "bong client not success in current_bong_point: uid #{@uid} access_token #{@access_token}"
+      Rails.logger.info r.to_s
+      nil
     end
   rescue => e
     Rails.logger.info "bong client error in current_bong_point: uid #{@uid} access_token #{@access_token}"
+    Rails.logger.info e.message
+    nil
+  end
+
+  def refund_bong_point_by_order(order, point, operator, options ={})
+    params = {
+      'actPoint' => point.to_s,
+      'comment' => "Operator: #{operator} " + options[:comment].to_s,
+      'orderSN' => order.id.to_s,
+      'partner' => @app_id,
+      'partnerOrderSN' => order.order_no,
+      'subject' => 'KnewOne',
+      'userId' => @uid
+    }
+    uri = "#{@refund_bong_point_api_uri}&sign=#{sign(params)}"
+
+    r = JSON.parse(RestClient.post(uri, params.to_json, :content_type => 'application/json'))
+
+    if r['code'] == ResponseCode::SUCCESS
+      {
+        code: r['code'],
+        bong_point: point,
+        success: true,
+        raw: r
+      }
+    else
+      {
+        code: r['code'],
+        success: false,
+        raw: r
+      }
+    end
+  rescue => e
+    Rails.logger.info "bong client error in refund_bong_point_by_order: uid #{@uid} access_token #{@access_token}"
     Rails.logger.info e.message
     nil
   end
@@ -52,7 +90,7 @@ class BongClient
     params = {
       'actPoint' => point.to_s,
       'comment' => options[:comment] || 'null',
-      'orderSN' => order.order_no,
+      'orderSN' => order.id.to_s,
       'partner' => @app_id,
       'partnerOrderSN' => order.order_no,
       'subject' => 'KnewOne',
@@ -76,7 +114,6 @@ class BongClient
         raw: r
       }
     end
-
   rescue => e
     Rails.logger.info "bong client error in consume_bong_point_by_order: uid #{@uid} access_token #{@access_token}"
     Rails.logger.info e.message
@@ -100,9 +137,6 @@ class BongClient
       'userId' => @uid
     }
     uri = "#{@consume_bong_point_api_uri}&sign=#{sign(params)}"
-
-    puts uri
-    puts params.to_json
 
     r = JSON.parse(RestClient.post(uri, params.to_json, :content_type => 'application/json'))
     if r['code'] == ResponseCode::SUCCESS

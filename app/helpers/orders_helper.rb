@@ -66,6 +66,12 @@ module OrdersHelper
     end
   end
 
+  def refund_bong_point_link(order)
+    if order.can_refund_bong_point?
+      render 'haven/orders/refund_bong_point', order: order
+    end
+  end
+
   def way_bill_link(order, css = 'btn btn-default')
     content_tag :div, class: 'btn-group' do
       if order.waybill.url.nil?

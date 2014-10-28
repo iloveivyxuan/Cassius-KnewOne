@@ -63,6 +63,11 @@ li.order
         li
           strong.field 消费活跃点：
           span.warning = order.consumed_bong_point
+      - if order.refunded_bong_point > 0
+        li
+          strong.field 退还活跃点：
+          span.warning
+            = order.refunded_bong_point
       li
         strong.field 总计：
         span

@@ -8,6 +8,7 @@ module BongPointAttachable
     field :maximal_consumable_bong_point, type: Integer, default: 0
 
     field :consumed_bong_point, type: Integer, default: 0
+    field :refunded_bong_point, type: Integer, default: 0
 
     has_many :bong_point_transactions
 
@@ -40,11 +41,6 @@ module BongPointAttachable
       !bong_point_consumed?
   end
 
-  # 暂未实现最小消费bong活跃点的情况，需要考虑当用户活跃点余额不足以购买的情况
-  # def bong_point_required?
-  #   self.minimal_consumable_bong_point > 0
-  # end
-
   def consume_bong_point!(point)
     return false unless can_consume_bong_point?
 
@@ -58,7 +54,7 @@ module BongPointAttachable
 
     return false unless r
 
-    self.bong_point_transactions.build r
+    self.bong_point_transactions.create! r.merge(type: :consuming)
 
     if r[:success]
       self.consumed_bong_point = r[:bong_point]
@@ -77,6 +73,40 @@ module BongPointAttachable
     confirm_free!
 
     r[:success]
+  end
+
+  def can_refund_bong_point?
+    self.consumed_bong_point > 0 &&
+      self.refunded_bong_point < self.consumed_bong_point
+  end
+
+  # 注意：调用退款与消费时性质不同，存在可能请求发送到bong并且成功，但没有返回结果，所以从保证我方利益的角度出发，无论成功或失败，都先记上
+  def refund_bong_point!(point, operator)
+    return false unless can_refund_bong_point? || operator.present?
+
+    if point == 0 ||
+      self.refunded_bong_point + point > self.consumed_bong_point
+      return false
+    end
+
+    self.refunded_bong_point += point
+
+    save!
+
+    if r = self.user.bong_client.refund_bong_point_by_order(self, point, operator)
+      self.bong_point_transactions.create! r.merge(type: :refunding)
+
+      if r[:success]
+        true
+      else
+        self.refunded_bong_point -= point
+        save!
+      end
+    else
+      log :system, '退活跃点时与bong通讯异常'
+      save!
+      false
+    end
   end
 
   def cal_and_set_consumable_bong_point
