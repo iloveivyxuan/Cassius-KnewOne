@@ -6,12 +6,16 @@
 
   header#things_nav
     h1
-      = link_to '产品', things_path, class: 'breadcrumb'
       - if @category
         = link_to @category.name, things_path(category: @category), class: 'breadcrumb'
         = render 'categories/subscribe_btn', category: @category
-      - if @tag
+      - elsif @tag
         = link_to @tag.name, things_path(tag: @tag), class: 'breadcrumb'
+      - elsif @brand
+        = label_tag '品牌', nil, class: 'breadcrumb'
+        = link_to @brand.name, things_path(brand: @brand.id), class: 'breadcrumb'
+      - else
+        = link_to '产品', things_path, class: 'breadcrumb'
     nav
       = form_tag things_path, method: :get, class: 'form-inline' do
         = select_tag :category, \
