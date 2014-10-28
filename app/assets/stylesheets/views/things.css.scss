@@ -1648,7 +1648,7 @@ html.feelings_show {
           display: block;
           width: 50%;
           margin: 0;
-          padding: 1em 0;
+          padding: 1em;
           font-size: 12px;
           @include MQ(XLplus) { font-size: 14px }
           line-height: 30px;
