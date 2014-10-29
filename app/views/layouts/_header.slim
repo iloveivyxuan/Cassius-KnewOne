@@ -1,131 +1,132 @@
-header#header role="banner"
-  nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
-    .navbar-header
-      = button_tag type: "button", data: {toggle: "collapse", target: "#nav_main"}, class: "navbar-toggle" do
-        span.sr-only "导航"
-        span.fa.fa-bars
-      = link_to root_path, class: "navbar-brand" do
-        = logo
-        span.logo= brand
-        = image_tag "logo_white.png", class: "logo-full", height: "12", width: "114", title: "KnewOne 牛玩", alt: "KnewOne 牛玩"
+- cache_unless user_signed_in?, ['#header']
+  header#header role="banner"
+    nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
+      .navbar-header
+        = button_tag type: "button", data: {toggle: "collapse", target: "#nav_main"}, class: "navbar-toggle" do
+          span.sr-only "导航"
+          span.fa.fa-bars
+        = link_to root_path, class: "navbar-brand" do
+          = logo
+          span.logo= brand
+          = image_tag "logo_white.png", class: "logo-full", height: "12", width: "114", title: "KnewOne 牛玩", alt: "KnewOne 牛玩"
 
-    #nav_main.collapse.navbar-collapse
-      ul.nav.navbar-nav#nav_primary
-        li
-          = link_to "首页", "/"
-        li
-          = link_to "热门", hits_path
-        li
-          = link_to "商店", shop_path
-        li
-          = link_to "精选", explore_path
-        li
-          = link_to "小组", groups_path
-        li#nav_publish
-          - if user_signed_in?
-            - data = {toggle: "modal", target: "#new-thing-from-url-modal"}
-            - data.merge!({category: "publish", action: "publish_thing", label: "publish_thing_logged"})
-            = link_to_with_icon "发布", "fa fa-laptop", "#", id: "new_thing_trigger", data: data, class: "track_event"
-          - else
-            - data = {toggle: "modal", target: "#login-modal"}
-            - data.merge!({category: "publish", action: "publish_thing", label: "publish_thing_unlogged"})
-            = link_to_with_icon "发布", "fa fa-laptop", "#", data: data, class: "track_event"
+      #nav_main.collapse.navbar-collapse
+        ul.nav.navbar-nav#nav_primary
+          li
+            = link_to "首页", "/"
+          li
+            = link_to "热门", hits_path
+          li
+            = link_to "商店", shop_path
+          li
+            = link_to "精选", explore_path
+          li
+            = link_to "小组", groups_path
+          li#nav_publish
+            - if user_signed_in?
+              - data = {toggle: "modal", target: "#new-thing-from-url-modal"}
+              - data.merge!({category: "publish", action: "publish_thing", label: "publish_thing_logged"})
+              = link_to_with_icon "发布", "fa fa-laptop", "#", id: "new_thing_trigger", data: data, class: "track_event"
+            - else
+              - data = {toggle: "modal", target: "#login-modal"}
+              - data.merge!({category: "publish", action: "publish_thing", label: "publish_thing_unlogged"})
+              = link_to_with_icon "发布", "fa fa-laptop", "#", data: data, class: "track_event"
 
-      - if user_signed_in?
-        .user_links.login.navbar-right
-          #user.user_link.user data-name=current_user.name data-email=current_user.email data-id=current_user.id
-            .more.dropdown
-              = link_to current_user, class: "dropdown-toggle avatar", data: {toggle: "dropdown", target: "#"} do
-                = image_tag current_user.avatar.url(:tiny)
-              ul.dropdown-menu role="menu"
-                li = link_to_with_icon '个人主页', 'fa fa-user fa-fw', current_user
-                li = link_to_with_icon "账户设置", "fa fa-tachometer fa-fw", setting_root_path
-                li = link_to_with_icon '我的订单', 'fa fa-truck fa-fw', orders_path
-                li = link_to_with_icon '我的草稿', 'fa fa-pencil-square-o fa-fw', setting_drafts_path
-                li = link_to_with_icon "安全退出", "fa fa-sign-out fa-fw", destroy_user_session_path, method: :delete
+        - if user_signed_in?
+          .user_links.login.navbar-right
+            #user.user_link.user data-name=current_user.name data-email=current_user.email data-id=current_user.id
+              .more.dropdown
+                = link_to current_user, class: "dropdown-toggle avatar", data: {toggle: "dropdown", target: "#"} do
+                  = image_tag current_user.avatar.url(:tiny)
+                ul.dropdown-menu role="menu"
+                  li = link_to_with_icon '个人主页', 'fa fa-user fa-fw', current_user
+                  li = link_to_with_icon "账户设置", "fa fa-tachometer fa-fw", setting_root_path
+                  li = link_to_with_icon '我的订单', 'fa fa-truck fa-fw', orders_path
+                  li = link_to_with_icon '我的草稿', 'fa fa-pencil-square-o fa-fw', setting_drafts_path
+                  li = link_to_with_icon "安全退出", "fa fa-sign-out fa-fw", destroy_user_session_path, method: :delete
 
-          = link_to cart_items_path, class: "user_link cart", title: "购物车" do
-            i.fa.fa-shopping-cart.fa-fw
-            span.badge.badge_success.cart_items_count= cart_items_count
+            = link_to cart_items_path, class: "user_link cart", title: "购物车" do
+              i.fa.fa-shopping-cart.fa-fw
+              span.badge.badge_success.cart_items_count= cart_items_count
 
-          #notification_box.user_link.notification.dropdown
-            = link_to notifications_path, id: "notification_trigger", title: "#{unread_notifications_text}未读消息" do
-              i.fa.fa-bolt.fa-fw
-              span#notification_count.badge.badge_primary= unread_notifications_count
-            .dropdown_box
-              header
-                ul.nav.nav-justified
-                  li.disabled
-                    a.dropdown_box_propagate.thing href="#"
-                      i.fa.fa-pencil.fa_alone.dropdown_box_propagate
-                  li.disabled
-                    a.dropdown_box_propagate.reply href="#"
-                      i.fa.fa-comment-o.fa_alone.dropdown_box_propagate
-                  li.disabled
-                    a.dropdown_box_propagate.friend href="#"
-                      i.fa.fa-eye.fa_alone.dropdown_box_propagate
-                  li.disabled
-                    a.dropdown_box_propagate.fancy href="#"
-                      i.fa.fa-heart-o.fa_alone.dropdown_box_propagate
-              section
-                .spinner
-                  i.fa.fa-circle-o-notch.fa-spin.fa-2x
-              footer
-                = link_to_with_icon "设置", "fa fa-cog", edit_notification_settings_path, class: "pull-left"
-                = link_to_with_icon "更多", "fa fa-ellipsis-h", notifications_path, class: "pull-right"
+            #notification_box.user_link.notification.dropdown
+              = link_to notifications_path, id: "notification_trigger", title: "#{unread_notifications_text}未读消息" do
+                i.fa.fa-bolt.fa-fw
+                span#notification_count.badge.badge_primary= unread_notifications_count
+              .dropdown_box
+                header
+                  ul.nav.nav-justified
+                    li.disabled
+                      a.dropdown_box_propagate.thing href="#"
+                        i.fa.fa-pencil.fa_alone.dropdown_box_propagate
+                    li.disabled
+                      a.dropdown_box_propagate.reply href="#"
+                        i.fa.fa-comment-o.fa_alone.dropdown_box_propagate
+                    li.disabled
+                      a.dropdown_box_propagate.friend href="#"
+                        i.fa.fa-eye.fa_alone.dropdown_box_propagate
+                    li.disabled
+                      a.dropdown_box_propagate.fancy href="#"
+                        i.fa.fa-heart-o.fa_alone.dropdown_box_propagate
+                section
+                  .spinner
+                    i.fa.fa-circle-o-notch.fa-spin.fa-2x
+                footer
+                  = link_to_with_icon "设置", "fa fa-cog", edit_notification_settings_path, class: "pull-left"
+                  = link_to_with_icon "更多", "fa fa-ellipsis-h", notifications_path, class: "pull-right"
 
-          - upmc = current_user.unread_private_messages_count
-          = link_to dialogs_path, class: "user_link", title: "#{upmc}封未读私信" do
-            i.fa.fa-envelope-o.fa-fw
-            span.badge.badge_danger.private_messages_count= badge upmc
-          = link_to_with_icon "", "fa fa-phone fa-fw", "#olark_chat", class: "user_link customer_service", title: "和我们聊天", data: {hint: "fa-phone", url: asset_path('olark.js')}
-      - else
-        .user_links.logout.navbar-right
-          = link_to_with_icon "登录", "fa fa-sign-in", "#",
-          class: "user_link track_event",
-          data: data_with_login_tracker("nav", request.path)
+            - upmc = current_user.unread_private_messages_count
+            = link_to dialogs_path, class: "user_link", title: "#{upmc}封未读私信" do
+              i.fa.fa-envelope-o.fa-fw
+              span.badge.badge_danger.private_messages_count= badge upmc
+            = link_to_with_icon "", "fa fa-phone fa-fw", "#olark_chat", class: "user_link customer_service", title: "和我们聊天", data: {hint: "fa-phone", url: asset_path('olark.js')}
+        - else
+          .user_links.logout.navbar-right
+            = link_to_with_icon "登录", "fa fa-sign-in", "#",
+            class: "user_link track_event",
+            data: data_with_login_tracker("nav", request.path)
 
-      = form_tag(search_path, method: "get", id: "navbar_search", class: "navbar-form navbar-right", role: "search") do
-        .form-group.search
-          input.form-control type="search" name="q" autocomplete="off" spellcheck="false"
-          i.fa.fa-search
-          i.fa.fa-times
+        = form_tag(search_path, method: "get", id: "navbar_search", class: "navbar-form navbar-right", role: "search") do
+          .form-group.search
+            input.form-control type="search" name="q" autocomplete="off" spellcheck="false"
+            i.fa.fa-search
+            i.fa.fa-times
 
-      ul.nav.navbar-nav.navbar-right#nav_secondary
-        li.nav_group.dropdown
-          = link_to_with_icon "分类", "fa fa-tags", categories_path,
-            class: 'nav_group_more', data: {target: "#", toggle: "dropdown"}
-          ul.dropdown-menu
-            - Category.gt(things_count: 0).desc(:things_count).each do |c|
-              li
-                = link_to category_things_path(category: c) do
-                  i class="fa fa-fw #{c.icon}"
-                  em= c.name
-                .dropdown-submenu-wrapper
-                  ul.dropdown-submenu
-                    = render partial: "shared/header_tag", collection: c.tags.gt(things_count: 5).desc(:things_count).limit(14)
-                    li
-                      = link_to_with_icon "查看全部标签", "fa fa-list", categories_path
-  /-- Navbar --/
+        ul.nav.navbar-nav.navbar-right#nav_secondary
+          li.nav_group.dropdown
+            = link_to_with_icon "分类", "fa fa-tags", categories_path,
+              class: 'nav_group_more', data: {target: "#", toggle: "dropdown"}
+            ul.dropdown-menu
+              - Category.gt(things_count: 0).desc(:things_count).each do |c|
+                li
+                  = link_to category_things_path(category: c) do
+                    i class="fa fa-fw #{c.icon}"
+                    em= c.name
+                  .dropdown-submenu-wrapper
+                    ul.dropdown-submenu
+                      = render partial: "shared/header_tag", collection: c.tags.gt(things_count: 5).desc(:things_count).limit(14)
+                      li
+                        = link_to_with_icon "查看全部标签", "fa fa-list", categories_path
+    /-- Navbar --/
 
-  .search_backdrop
-  .search_candidate
-    h5.search_title
-      em.search_keyword
-      | 的搜索结果：
-    button.close aria-hidden="true" &times;
+    .search_backdrop
+    .search_candidate
+      h5.search_title
+        em.search_keyword
+        | 的搜索结果：
+      button.close aria-hidden="true" &times;
 
-    .things.slideshow
-      button.slideshow_control.left
-        i.fa.fa-chevron-left
-      button.slideshow_control.right
-        i.fa.fa-chevron-right
-      .slideshow_body
+      .things.slideshow
+        button.slideshow_control.left
+          i.fa.fa-chevron-left
+        button.slideshow_control.right
+          i.fa.fa-chevron-right
+        .slideshow_body
 
-    .users.slideshow
-      button.slideshow_control.left
-        i.fa.fa-chevron-left
-      button.slideshow_control.right
-        i.fa.fa-chevron-right
-      .slideshow_body
-  /-- Search Candidate --/
+      .users.slideshow
+        button.slideshow_control.left
+          i.fa.fa-chevron-left
+        button.slideshow_control.right
+          i.fa.fa-chevron-right
+        .slideshow_body
+    /-- Search Candidate --/
