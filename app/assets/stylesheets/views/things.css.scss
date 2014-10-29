@@ -1922,6 +1922,11 @@ html.feelings_show {
 
       .thing_list-cover {
         .thing_list-image_wrapper {
+          img {
+            padding: 0;
+            box-shadow: none;
+          }
+
           @include MQ(Mneg) {
             width: percentage(1 / 3);
             padding-bottom: percentage(1 / 3);
