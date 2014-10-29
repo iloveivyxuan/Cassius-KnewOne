@@ -1,4 +1,5 @@
 - @batch.times do |i|
   .hits_group
+    = render @thing_lists[i...i+1], layout: browser.desktop? ? :quintet : :grid
     = render partial: 'hot_thing', collection: @things[6*i...6*(i+1)]
     = render partial: 'hot_review', collection: @reviews[i...i+1]

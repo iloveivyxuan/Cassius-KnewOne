@@ -17,14 +17,6 @@ class ThingList
 
   alias_method :items, :thing_list_items
 
-  def previous
-    author.thing_lists.lt(id: id).desc(:id).first
-  end
-
-  def next
-    author.thing_lists.gt(id: id).asc(:id).first
-  end
-
   include Fanciable
   fancied_as :fancied_thing_lists
 
@@ -33,5 +25,12 @@ class ThingList
     return if fancied?(fancier)
     _fancy(fancier)
     self.author.notify(:fancy_list, context: self, sender: fancier, opened: true)
+  end
+
+  include Rankable
+
+  def calculate_heat
+    return -1 if size < 6
+    (1 + fanciers_count + comments.count) * freezing_coefficient
   end
 end

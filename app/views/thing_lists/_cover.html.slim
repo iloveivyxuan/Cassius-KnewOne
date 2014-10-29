@@ -1,13 +1,17 @@
 - layout ||= :grid
 
-.thing-list-cover
+.thing_list-cover class="thing_list-cover--#{layout}"
   - if thing_list.items.size == 0
-    = image_tag('blank-list-cover.png')
+    .thing_list-image_wrapper = image_tag('blank-list-cover.png')
   - elsif thing_list.items.size < 4
-    = image_tag(thing_list.items.first.thing.cover.url(:square))
+    .thing_list-image_wrapper = image_tag(thing_list.items.first.thing.cover.url(:square))
   - else
-    - thing_list.items.limit(4).each_with_index do |item, i|
-      - if i == 0 && layout == :bottom_stack
-        = image_tag(item.thing.cover.url('thing.fixed'))
-      - else
-        = image_tag(item.thing.cover.url(:square))
+    - size = layout == :quintet ? 5 : 4
+    - thing_list.items.limit(size).each_with_index do |item, i|
+      .thing_list-image_wrapper
+        - if i == 0 && layout == :bottom_stack
+          = image_tag(item.thing.cover.url('thing.fixed'))
+        - elsif layout == :quintet
+          = image_tag(item.thing.cover.url('thing.fixed.small'))
+        - else
+          = image_tag(item.thing.cover.url(:square))

@@ -1,113 +1,177 @@
-.thing-list {
-  background: white;
+.thing_list {
+  a {
+    @include plain-link($gray-light);
+  }
 
-  header {
-    position: relative;
+  > header {
+    .thing_list-cover {
+      border: 2px solid white;
+      box-shadow: 0 0 5px rgba(black, 0.5);
 
-    .thing-list-cover {
-      height: 0;
-      padding-bottom: 100%;
+      font-size: 0;
 
-      img {
-        width: 50%;
-        &:only-child { width: 100%; }
+      .thing_list-image_wrapper {
+        position: relative;
+        display: inline-block;
+        height: 0;
 
-        padding: 2px;
-        background: white;
-        box-shadow: 0 0 1px rgba(0, 0, 0, .1);
+        &:only-child {
+          width: 100%;
+          padding-bottom: 100%;
+        }
+
+        > img {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+
+          max-width: 100%;
+          max-height: 100%;
+          margin: auto;
+
+          padding: 2px;
+          background: white;
+        }
+
+        &:nth-child(5) {
+          display: none;
+        }
       }
     }
 
-    .thing-list-info {
-      position: relative;
-      padding: 1em 0;
+    .thing_list-cover--grid {
+      .thing_list-image_wrapper {
+        width: 50%;
+        padding-bottom: 50%;
+      }
+    }
 
-      > li {
+    .thing_list-cover--bottom_stack {
+      .thing_list-image_wrapper {
+        width: percentage(1 / 3);
+        padding-bottom: percentage(1 / 3);
+
+        &:first-child:not(:only-child) {
+          width: 100%;
+          padding-bottom: percentage(400 / 550);
+        }
+      }
+    }
+
+    .thing_list-cover--quintet {
+      position: relative;
+      height: 0;
+      padding-bottom: percentage(6 / 16);
+
+      .thing_list-image_wrapper {
+        position: absolute;
+        height: auto;
+
+        &:nth-child(1) {
+          top: 0;
+          right: 25%;
+          bottom: 0;
+          left: 25%;
+        }
+
+        &:nth-child(2) {
+          top: 0;
+          right: 75%;
+          bottom: 50%;
+          left: 0;
+        }
+
+        &:nth-child(3) {
+          top: 50%;
+          right: 75%;
+          bottom: 0;
+          left: 0;
+        }
+
+        &:nth-child(4) {
+          top: 0;
+          right: 0;
+          bottom: 50%;
+          left: 75%;
+        }
+
+        &:nth-child(5) {
+          display: block;
+
+          top: 50%;
+          right: 0;
+          bottom: 0;
+          left: 75%;
+        }
+      }
+    }
+
+    h4 {
+      margin: 1em 0;
+
+      color: $gray-light;
+      font-size: 14px;
+      line-height: 1;
+
+      i {
         vertical-align: middle;
       }
 
-      .thing-list-creator {
+      .thing_list-name {
         @include text-overflow;
-        max-width: 43%;
+        display: inline-block;
+        vertical-align: middle;
+        max-width: 80%;
       }
 
-      .thing-list-name {
-        @include text-overflow;
-        max-width: 50%;
-      }
-
-      .thing-list-fancy {
-        position: absolute;
-        top: 16px;
-        right: 0;
-        padding: 0;
-      }
-
-      color: $gray-light;
-      a {
-        @include plain-link($gray-light);
-      }
-    }
-  }
-
-  footer {
-    position: relative;
-
-    .thing-list-timestamp {
-      font-size: 13px;
-      color: $gray-light;
-
-      time {
-        margin-right: .5em;
+      .thing_list-size {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: .5em;
       }
     }
 
-    .thing-list-destroy {
-      margin-left: .5em;
-    }
-  }
-}
-
-.thing-list-item {
-  padding: 15px;
-  background: white;
-
-  article.thing {
-    .title {
-      font-size: 18px;
-    }
-
-    .interactions {
+    .thing_list-destroy {
       display: none;
-    }
+      vertical-align: middle;
+      margin-left: 1em;
+      line-height: 1;
 
-    .fancy_button a {
-      right: 0;
-      bottom: -3.1em;
-    }
-
-    .content {
-      padding-left: 0;
-    }
-
-    .info {
-      padding: 0;
+      i { margin: 0; }
     }
   }
 
-  .thing-list-item-description {
-    width: 95%;
-    margin-top: 16px;
-    color: $gray;
+  > footer {
+    .thing_list-description {
+      padding: 1em 0;
+      border-top: 1px solid $gray-lighter;
 
-    .fa-quote-left { margin-right: .5em; }
-    .fa-quote-right { margin-left: .5em; }
-  }
+      color: $gray-light;
+      font-size: 14px;
+    }
 
-  .thing-list-item-destroy {
-    position: absolute;
-    right: 15px;
-    bottom: 15px;
+    .thing_list-info {
+      @include clearfix;
+
+      li {
+        float: left;
+      }
+
+      .thing_list-creator {
+        max-width: 60%;
+      }
+
+      .thing_list-counts {
+        float: right;
+        margin-top: 3px;
+
+        .thing_list-comments {
+          margin-left: .7em;
+        }
+      }
+    }
   }
 }
 

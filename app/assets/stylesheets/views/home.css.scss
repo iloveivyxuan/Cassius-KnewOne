@@ -154,29 +154,13 @@ html.home {
         }
       }
 
-      > .thing-list {
+      > .thing_list {
         padding: $padding-base-vertical;
         background: $ghost-white;
 
-        .thing-list-info {
-          padding-left: 16px;
-          padding-right: 16px;
-
-          > li:first-child {
-            padding-left: 0;
-          }
-
-          .thing-list-name {
-            padding-left: $padding-large-horizontal;
-          }
-
-          .thing-list-fancy {
-            right: 16px;
-          }
-        }
-
-        footer {
-          display: none;
+        h4,
+        > footer {
+          padding: 0 16px;
         }
       }
 

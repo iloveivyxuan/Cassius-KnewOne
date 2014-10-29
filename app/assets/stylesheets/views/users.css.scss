@@ -97,32 +97,32 @@ html.users_activities {
     }
 
     .thing-lists {
-      > .thing-list {
+      > .thing_list {
         @media (min-width: $screen-sm-min) {
           @include make-sm-column(4);
           padding: 2em;
         }
 
+        h4 {
+          display: inline-block;
+          max-width: 80%;
 
-        .thing-list-info {
-          > li,
-          .fa-list {
+          i {
             display: none;
           }
+        }
 
-          .thing-list-name {
-            display: inline-block;
-            max-width: 63%;
-          }
+        .thing_list-destroy {
+          display: inline-block;
+        }
 
-          .thing-list-size {
-            display: inline-block;
-            padding: 0;
-          }
+        .thing_list-description,
+        .thing_list-creator {
+          display: none;
+        }
 
-          .thing-list-fancy {
-            display: block;
-          }
+        .thing_list-counts {
+          float: left;
         }
       }
     }
