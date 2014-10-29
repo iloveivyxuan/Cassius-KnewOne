@@ -565,9 +565,9 @@ class Order
   end
 
   def bong_inside?
-    bong && self.order_items.where(thing_title: bong.title).exists? \
-    || self.order_items.where(thing_title: Thing.find("544f8b9331302d5139c60000").title).exists? \
-    || self.order_items.where(thing_title: Thing.find("544f8b0a31302d4fd2dd0000").title).exists?
+    (bong && self.order_items.where(thing_title: bong.title).exists?) \
+    || (bong_band && self.order_items.where(thing_title: bong_band.title).exists?) \
+    || (bong_battery && self.order_items.where(thing_title: bong_battery.title).exists?)
   end
 
   def set_coupon!
@@ -592,6 +592,14 @@ class Order
 
   def bong
     @_bong ||= Thing.where(id: "53d0bed731302d2c13b20000").first
+  end
+
+  def bong_band
+    @_bong_band ||= Thing.where(id: "544f8b9331302d5139c60000").first
+  end
+
+  def bong_battery
+    @_bong_battery ||= Thing.where(id: "544f8b0a31302d4fd2dd0000").first
   end
 
   def log(type, text)
