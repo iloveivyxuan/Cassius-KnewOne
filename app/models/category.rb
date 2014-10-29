@@ -16,6 +16,8 @@ class Category
 
   has_and_belongs_to_many :users
 
+  field :description, type: String, default: ""
+
   validates :name, presence: true, uniqueness: true
 
   scope :prior, -> { desc(:priority, :things_count) }
