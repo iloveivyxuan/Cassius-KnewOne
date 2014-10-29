@@ -64,6 +64,7 @@ module Haven
         @things = @things.where(price: nil) if params[:filter].include? "no_price"
         @things = @things.any_in(:tag_ids => [nil, []]) if params[:filter].include? "no_tag"
         @things = @things.where(official_site: "") if params[:filter].include? "no_official"
+        @things = @things.where(brand: nil) if params[:filter].include? "no_brand"
 
         Thing::STAGES.keys.each do |stage|
           @things = @things.where(stage: stage) if params[:filter].include? stage.to_s

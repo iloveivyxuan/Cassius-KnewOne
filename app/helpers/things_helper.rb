@@ -92,6 +92,7 @@ module ThingsHelper
       'no_price' => '无价格',
       'no_tag' => '无标签',
       'no_official' => '无来源',
+      'no_brand' => '无品牌',
       'concept' => '研发中',
       'kick' => '众筹中',
       'pre_order' => '预售',
