@@ -1,38 +1,39 @@
-section.promotions
-  = render Promotion.published.limit(2)
+- cache ['home', 'aside', current_user && current_user.cache_key]
+  section.promotions
+    = render Promotion.published.limit(2)
 
-- if current_user.drafts.present?
-  section.drafts
-    header
-      = link_to setting_drafts_path
+  - if current_user.drafts.present?
+    section.drafts
+      header
+        = link_to setting_drafts_path
+          h2
+            | 我的草稿
+            span.drafts-count= current_user.drafts.size
+
+  - if current_user.categories.gt(things_count: 0).any?
+    section.tags
+      header
         h2
-          | 我的草稿
-          span.drafts-count= current_user.drafts.size
+          | 已订阅的分类
+          = link_to_with_icon "", 'fa fa-gear', "#", id: "manage_categories", data: {toggle: "modal", target: "#categories-modal"}
+      section
+        = render current_user.categories.gt(things_count: 0)
 
-- if current_user.categories.gt(things_count: 0).any?
-  section.tags
+  section.recommended-users
     header
-      h2
-        | 已订阅的分类
-        = link_to_with_icon "", 'fa fa-gear', "#", id: "manage_categories", data: {toggle: "modal", target: "#categories-modal"}
+      h2 推荐用户
     section
-      = render current_user.categories.gt(things_count: 0)
+      ul
+        - recommend_users = current_user.recommend_new_users.limit(3)
+        = render partial: "recommend_user", collection: recommend_users, as: :user
 
-section.recommended-users
-  header
-    h2 推荐用户
-  section
-    ul
-      - recommend_users = current_user.recommend_new_users.limit(3)
-      = render partial: "recommend_user", collection: recommend_users, as: :user
-
-section.about
-  .contacts
-    = link_to '/about'
-        | 关于
-        span.logo= brand
-    = link_to "加入我们", jobs_path
-    = link_to "建议", "/things/knewone"
-    = link_to "联系", "mailto:welcome@knewone.com"
-  .icp
-    p 粤ICP备13057487号 © 2014 KnewOne
+  section.about
+    .contacts
+      = link_to '/about'
+          | 关于
+          span.logo= brand
+      = link_to "加入我们", jobs_path
+      = link_to "建议", "/things/knewone"
+      = link_to "联系", "mailto:welcome@knewone.com"
+    .icp
+      p 粤ICP备13057487号 © 2014 KnewOne
