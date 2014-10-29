@@ -33,7 +33,7 @@ table.table
     th 绑定的订单
     th 生成者
     th
-  - @coupon.coupon_codes.order_by([:created_at, :desc]).each do |code|
+  - @coupon_codes.order_by([:created_at, :desc]).each do |code|
     tr
       td = code.code
       td = code.expires_at
