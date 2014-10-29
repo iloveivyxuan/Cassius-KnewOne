@@ -39,13 +39,13 @@ html.home_hits section.hits, html.landing_mobile section.hits {
       float: left;
     }
     @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-      &:nth-child(odd) {margin-right: $gutter;}
+      &:nth-of-type(odd) {margin-right: $gutter;}
       width: 350px;
       width: calc((100% - #{$gutter})/2);
     }
 
     @media (min-width: $screen-md-min) {
-      &:nth-child(3n+1), &:nth-child(3n+2) {margin-right: $gutter;}
+      &:nth-of-type(3n+1), &:nth-of-type(3n+2) {margin-right: $gutter;}
       width: 306px;
       width: calc((100% - #{$gutter}*2)/3);
     }
@@ -74,10 +74,15 @@ html.home_hits section.hits, html.landing_mobile section.hits {
   }
 
   .thing_list {
+    width: 100%;
     margin-bottom: $gutter;
     padding: 1em;
 
     background: $ghost-white;
+
+    @media (min-width: $screen-sm-min) {
+      float: left;
+    }
   }
 }
 
