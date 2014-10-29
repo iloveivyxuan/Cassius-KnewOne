@@ -46,6 +46,32 @@ module Haven
       redirect_to haven_thing_rebate_coupon_path(@coupon)
     end
 
+    def download
+      coupon = ThingRebateCoupon.find params[:id]
+      respond_to do |format|
+        format.csv do
+          lines = [%w(券号)]
+
+          coupon.coupon_codes.each do |code|
+            cols = [code.code]
+            lines<< cols
+          end
+
+          col_sep = (params[:platform] == 'numbers') ? ',' : ';'
+
+          csv = CSV.generate :col_sep => col_sep do |csv|
+            lines.each { |l| csv<< l }
+          end
+
+          if params[:platform] != 'numbers'
+            send_data csv.encode 'gb2312', :replace => ''
+          else
+            send_data csv, :replace => ''
+          end
+        end
+      end
+    end
+
     private
     def thing_rebate_coupon_params
       params.require(:thing_rebate_coupon).permit!

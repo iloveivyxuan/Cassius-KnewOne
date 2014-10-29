@@ -279,6 +279,7 @@ Making::Application.routes.draw do
       member do
         post 'generate_code'
         post 'batch_bind'
+        get 'download'
       end
     end
 

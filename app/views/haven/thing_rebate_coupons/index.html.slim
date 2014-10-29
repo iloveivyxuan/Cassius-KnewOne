@@ -14,4 +14,5 @@ table.table
       td = link_to coupon.thing.title, coupon.thing, target: '_blank'
       td = coupon.price
       td
-        = link_to '详情', haven_thing_rebate_coupon_path(coupon)
+        = link_to '[详情]', haven_thing_rebate_coupon_path(coupon)
+        = link_to '[下载 csv (Numbers)]', download_haven_thing_rebate_coupon_path(id: coupon.id.to_s, format: :csv, platform: 'numbers')
