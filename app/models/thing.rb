@@ -76,7 +76,7 @@ class Thing < Post
 
   has_many :adoptions, dependent: :destroy
 
-  has_and_belongs_to_many :tags
+  has_and_belongs_to_many :tags, counter_cache: true
   before_save :update_categories_by_tags
 
   belongs_to :resource

@@ -9,7 +9,7 @@ class Tag
 
   validates :name, presence: true, uniqueness: true
 
-  has_and_belongs_to_many :things
+  has_and_belongs_to_many :things, counter_cache: true
 
   field :things_count, type: Integer, default: 0
 
