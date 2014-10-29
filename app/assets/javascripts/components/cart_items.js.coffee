@@ -8,6 +8,7 @@ Making.CartItemNew = ->
     $form = $('#new_cart_item')
     $submit = $form.find('button[type="submit"]')
     $price = $('#price')
+    $kind = $form.find('select#cart_item_kind_id')
     $quantity = $form.find('.cart_item_quantity').children('input[type="number"]')
     thing_price = $price.text()
 
@@ -23,14 +24,16 @@ Making.CartItemNew = ->
       $stock_prompt = $('.cart_item_quantity .help-block').hide()
       $quantity = $('#cart_item_quantity').attr('max', 100)
       if max > 0
-        $stock_prompt.find('strong').text(max).end()
-          .css('display', 'inline-block')
-        $quantity.prop('max', max)
+        $stock_prompt.find('strong').text(max)
+      else
+        $stock_prompt.text('暂时缺货')
+      $stock_prompt.css('display', 'inline-block')
+      $quantity.prop('max', max)
 
     set_photo = (photo) ->
       $("#thing_photos .carousel").carousel photo
 
-    $form.find('select#cart_item_kind_id').change ->
+    $kind.change ->
       $option = $(@).find('option:selected')
       set_price $option.data('price')
       set_estimated $option.data('estimated')
@@ -56,7 +59,8 @@ Making.CartItemNew = ->
 
     $kind_options = $form.find('option.kind_option:enabled')
     if $kind_options.length
-      $kind_options.first().prop('selected', true).parent().trigger('change')
+      $kind_options.first().prop('selected', true)
+    $kind.trigger('change')
 
 Making.CartItemCreate = (cart_items_count) ->
   $success = $('#new_cart_item .cart_success').show()
