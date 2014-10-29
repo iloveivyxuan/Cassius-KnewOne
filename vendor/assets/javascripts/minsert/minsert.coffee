@@ -14,8 +14,8 @@ do ($ = jQuery) ->
         @initMenu()
 
         @$element
-          .one 'click.minsert', @setMenuLeftPosition.bind(@)
-          .one 'keydown.minsert', @setMenuLeftPosition.bind(@)
+          .one 'click.init.minsert', @setMenuLeftPosition.bind(@)
+          .one 'keydown.init.minsert', @setMenuLeftPosition.bind(@)
           .on 'click.minsert', @toggle.bind(@)
           .on 'keyup.minsert', @toggle.bind(@)
           .on 'click.minsert', 'img', @handleFigureFocus.bind(@)
@@ -27,6 +27,10 @@ do ($ = jQuery) ->
           .on 'loaded.minsert', @loaded.bind(@)
           .on 'done:image.minsert', @insertImageDone.bind(@)
           .on 'fail:image.minsert', @insertImageFail.bind(@)
+
+        if window.navigator.userAgent.toLowerCase().indexOf('webkit') > -1
+          @$element
+            .on 'keydown.minsert', @handleDeleteBlock.bind(@)
 
         @$minsert
           .on 'click.minsert', '.minsert-toggle', @toggleActions.bind(@)
@@ -258,6 +262,17 @@ do ($ = jQuery) ->
             @insertPoint.insertNode(p)
             @insertPoint.collapse(false)
         @$element.trigger('input')
+
+      handleDeleteBlock: (event) ->
+        if event.which is 8
+          selection  = window.getSelection()
+          if selection.anchorOffset is 0
+            prevNode  = selection.anchorNode.previousSibling
+            $prevNode = $(prevNode)
+            if $prevNode.css('display') is 'block' and
+              prevNode.nodeName in ['IMG', 'FIGURE', 'IFRAME', 'EMBED', 'VIDEO', 'AUDIO']
+                event.preventDefault()
+                $prevNode.remove()
 
       # @TODO
       clearClipboard: (event) ->
