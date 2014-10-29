@@ -44,7 +44,12 @@ module OmniAuth
         access_token.options[:mode] = :query
         access_token.options[:param_name] = 'access_token'
         @uid ||= access_token['uid']
-        @raw_info ||= access_token.get("/1/userInfo/#{@uid}").parsed['value'] || {}
+        # @raw_info ||= access_token.get("/1/userInfo/#{@uid}").parsed['value'] || {}
+
+        # API 处理过慢
+        @raw_info ||= {
+          :name => "b#{access_token.token[0..6]}"
+        }
       end
 
       def authorize_params
