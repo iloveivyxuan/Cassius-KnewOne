@@ -1694,6 +1694,8 @@ html.feelings_show {
         border-bottom: 1px solid $gray-lighter;
         > .user_avatar {
           position: absolute;
+          z-index: 1;
+
           left: 0;
           width: 15%;
           height: auto;
