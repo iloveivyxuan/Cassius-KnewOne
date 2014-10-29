@@ -98,7 +98,7 @@ class PostPresenter < ApplicationPresenter
   end
 
   def share_author_name
-    if @object.author.current_auth
+    if @object.author.current_auth && @object.author.current_auth.name.present?
       '@' + @object.author.current_auth.name
     else
       @object.author.name
