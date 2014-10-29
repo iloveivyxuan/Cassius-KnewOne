@@ -13,7 +13,7 @@
         = link_to @tag.name, things_path(tag: @tag), class: 'breadcrumb'
       - elsif @brand
         = label_tag '品牌', nil, class: 'breadcrumb'
-        = link_to @brand.name, things_path(brand: @brand.id), class: 'breadcrumb'
+        = link_to @brand.brand_text, things_path(brand: @brand.id), class: 'breadcrumb'
       - else
         = link_to '产品', things_path, class: 'breadcrumb'
     nav
