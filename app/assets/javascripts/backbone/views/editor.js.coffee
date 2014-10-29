@@ -168,7 +168,7 @@ do (exports = Making) ->
           anchorInputPlaceholder: '在这里插入链接'
           targetBlank: true
 
-        if typeof MutationObserver is 'function'
+        if typeof MutationObserver in ['function', 'object']
           @observer = new MutationObserver (mutations) ->
             mutations.forEach (mutation) ->
               addedNodes = mutation.addedNodes
@@ -176,7 +176,11 @@ do (exports = Making) ->
                 for node in addedNodes
                   do (node) ->
                     if node.nodeName is 'SPAN'
+                      selection = window.getSelection()
+                      range     = selection.getRangeAt(0)
                       $(node).contents().unwrap()
+                      selection.removeAllRanges()
+                      selection.addRange(range)
           @observer.observe @$body[0], {childList: true, subtree: true}
 
         @$body.minsert
