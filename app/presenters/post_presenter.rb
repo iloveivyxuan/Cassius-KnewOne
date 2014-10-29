@@ -101,7 +101,7 @@ class PostPresenter < ApplicationPresenter
     if @object.author.current_auth && @object.author.current_auth.name.present?
       '@' + @object.author.current_auth.name
     else
-      @object.author.name
+      @object.author.name || ''
     end
   end
 
