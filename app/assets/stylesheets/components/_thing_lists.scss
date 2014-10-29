@@ -72,9 +72,6 @@
 }
 
 .thing_list-cover {
-  border: 2px solid white;
-  box-shadow: 0 0 5px rgba(black, 0.5);
-
   font-size: 0;
 
   .thing_list-image_wrapper {
@@ -100,6 +97,8 @@
 
       padding: 2px;
       background: white;
+
+      box-shadow: 0 0 1px rgba(black, 0.1);
     }
 
     &:nth-child(5) {
