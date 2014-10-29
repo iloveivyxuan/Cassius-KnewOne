@@ -565,7 +565,9 @@ class Order
   end
 
   def bong_inside?
-    bong && self.order_items.where(thing_title: bong.title).exists?
+    bong && self.order_items.where(thing_title: bong.title).exists? \
+    || self.order_items.where(thing_title: Thing.find("544f8b9331302d5139c60000").title).exists? \
+    || self.order_items.where(thing_title: Thing.find("544f8b0a31302d4fd2dd0000").title).exists?
   end
 
   def set_coupon!
