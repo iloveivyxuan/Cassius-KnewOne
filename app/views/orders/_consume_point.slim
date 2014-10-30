@@ -30,7 +30,7 @@
     = submit_tag '使用', class: 'btn btn-default', id: 'consume_bong_point_btn', disabled: @order.bong_point_required?
 
   #bong_access_token_error_alert.alert.alert-danger.hidden
-    | bong授权信息失效，
+    | bong授权信息失效或bong服务不可用，
     = link_to '点此刷新', user_omniauth_authorize_path(:bong, state: request.path)
     | 。
 

@@ -22,7 +22,11 @@ class BongController < ApplicationController
   end
 
   def available_point
-    @point =  current_user.bong_client.current_bong_point
+    if current_user.bong_auth.access_token.present?
+      @point = current_user.bong_client.current_bong_point
+    else
+      @point = nil
+    end
 
     respond_to do |format|
       format.js

@@ -23,7 +23,7 @@
     label.integer.optional.control-label for="order_bong_point"
       | 使用bong活跃点
     #bong_access_token_error_alert.alert.alert-danger.hidden
-      | bong授权信息失效，
+      | bong授权信息失效或bong服务不可用，
       = link_to '点此刷新', user_omniauth_authorize_path(:bong, state: request.path)
       | 。
     = f.number_field :bong_point,

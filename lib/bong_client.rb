@@ -38,7 +38,8 @@ class BongClient
   end
 
   def current_bong_point
-    r = JSON.parse(RestClient.get(@get_bong_point_api_uri))
+    r = JSON.parse(RestClient::Request.execute(method: :get, url: @get_bong_point_api_uri, timeout: 2, open_timeout: 3))
+
     if r['code'] == ResponseCode::SUCCESS
       r['value']['point']
     else
