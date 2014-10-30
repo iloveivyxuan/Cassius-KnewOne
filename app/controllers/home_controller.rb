@@ -94,7 +94,7 @@ class HomeController < ApplicationController
   end
 
   def search
-    q = (params[:q] || '')
+    q = (params[:q].to_s || '')
     q.gsub!(/[^\u4e00-\u9fa5a-zA-Z0-9[:blank:].-_]+/, '')
     q = Regexp.escape(q)
 
