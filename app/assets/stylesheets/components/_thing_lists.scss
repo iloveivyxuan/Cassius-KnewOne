@@ -72,6 +72,7 @@
 }
 
 .thing_list-cover {
+  background: white;
   font-size: 0;
 
   .thing_list-image_wrapper {
@@ -94,9 +95,7 @@
       max-width: 100%;
       max-height: 100%;
       margin: auto;
-
       padding: 2px;
-      background: white;
 
       box-shadow: 0 0 1px rgba(black, 0.1);
     }
