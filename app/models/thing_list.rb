@@ -31,6 +31,6 @@ class ThingList
 
   def calculate_heat
     return -1 if size < 6
-    (1 + fanciers_count + comments.count) * freezing_coefficient
+    (fanciers_count + comments.count) * freezing_coefficient
   end
 end
