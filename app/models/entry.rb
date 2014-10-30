@@ -18,7 +18,7 @@ class Entry
 
   scope :published, -> {where published: true}
 
-  before_save :review_entry
+  after_save :review_entry
 
   validate do
     if self.post.blank? && self.title.blank?
