@@ -1,0 +1,7 @@
+li
+  = link_or_login thing, class: "thumbnail", title: "#{thing.title}，#{thing.subtitle}" do
+    .image
+      img src=thing.cover.url(:normal) alt="#{thing.title}，#{thing.subtitle}"
+    .caption
+      h3 data-toggle="tooltip" title=thing.title =thing.title
+      p =thing.subtitle
