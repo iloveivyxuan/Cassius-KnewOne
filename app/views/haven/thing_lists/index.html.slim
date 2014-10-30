@@ -1,9 +1,9 @@
 h2 产品列表
 
 p.btn-group
-  = link_to '按喜欢数排序', {sort_by: 'fanciers_count'}, class: "btn btn-default #{@sort_by == 'fanciers_count' ? 'active' : ''}"
-  = link_to '按创建时间排序', {sort_by: 'created_at'}, class: "btn btn-default #{@sort_by == 'created_at' ? 'active' : ''}"
-  = link_to '按更新时间排序', {sort_by: 'updated_at'}, class: "btn btn-default #{@sort_by == 'updated_at' ? 'active' : ''}"
+  = link_to '按喜欢数排序', {sort_by: 'fanciers_count'}, class: "btn btn-default #{'active' if @sort_by == 'fanciers_count'}"
+  = link_to '按创建时间排序', {sort_by: 'created_at'}, class: "btn btn-default #{'active' if @sort_by == 'created_at'}"
+  = link_to '按更新时间排序', {sort_by: 'updated_at'}, class: "btn btn-default #{'active' if @sort_by == 'updated_at'}"
 
 table.table.table-striped.table-hover
   tr
