@@ -39,6 +39,7 @@ main
     = render partial: 'bong/thing', collection: top_things
     - Thing.gt('kinds.maximal_bong_point' => 0).each do |thing|
       - next if top_things.include?(thing)
+      - next unless thing.kinds.where(:maximal_bong_point.gt => 0, :stage.ne => :hidden).exists?
       = render partial: 'bong/thing', object: thing
 
 =render 'shared/login_modal'
