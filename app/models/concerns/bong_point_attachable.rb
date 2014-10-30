@@ -80,7 +80,7 @@ module BongPointAttachable
       self.refunded_bong_point < self.consumed_bong_point
   end
 
-  def refund_bong_point!(point, operator)
+  def refund_bong_point!(point, operator, options = {})
     return false unless can_refund_bong_point? || operator.present?
 
     if point == 0 ||
@@ -88,11 +88,12 @@ module BongPointAttachable
       return false
     end
 
-    if r = self.user.bong_client.refund_bong_point_by_order(self, point, operator)
+    if r = self.user.bong_client.refund_bong_point_by_order(self, point, operator, options)
       self.bong_point_transactions.create! r.merge(type: :refunding)
 
       if r[:success]
         self.refunded_bong_point += point
+        save!
         true
       else
         false

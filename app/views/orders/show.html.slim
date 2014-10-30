@@ -39,6 +39,14 @@ section.orders_wrapper
       tr
         th 创建时间：
         td= date_time_text @order.created_at
+      - if @order.consumed_bong_point > 0
+        tr
+          th 消费活跃点：
+          td= @order.consumed_bong_point
+      - if @order.refunded_bong_point > 0
+        tr
+          th 退还活跃点：
+          td= @order.refunded_bong_point
       - if @order.alteration.present?
         tr
           th 变更信息：
