@@ -81,6 +81,7 @@ html.bong_index {
       }
 
       p {
+        @include text-overflow;
         text-align: center;
       }
     }
