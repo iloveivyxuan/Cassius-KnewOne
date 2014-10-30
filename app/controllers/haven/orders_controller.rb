@@ -118,6 +118,9 @@ module Haven
 
     def refund_bong_point
       @order.refund_bong_point!(params[:point].to_i, current_user.id.to_s)
+      # TODO: Remove in future, just for legacy order
+      @order.refund_bong_point!(params[:point].to_i, current_user.id.to_s, order_sn: @order.order_no)
+
       redirect_to haven_order_path(@order)
     end
 

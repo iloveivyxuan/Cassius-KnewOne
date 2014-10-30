@@ -57,7 +57,7 @@ class BongClient
     params = {
       'actPoint' => point.to_s,
       'comment' => "Operator: #{operator} " + options[:comment].to_s,
-      'orderSN' => order.id.to_s,
+      'orderSN' => options[:order_sn] || order.id.to_s,
       'partner' => @app_id,
       'partnerOrderSN' => order.order_no,
       'subject' => 'KnewOne',
