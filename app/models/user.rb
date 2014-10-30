@@ -73,6 +73,7 @@ class User
   field :recommend_note, type: String, default: ''
 
   index recommend_priority: -1, followers_count: -1
+  index recommend_priority: -1, karma: -1
 
   ## Database authenticatable
   field :email, :type => String
