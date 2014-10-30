@@ -15,7 +15,7 @@ if(point != null) {
     $point_input_field.attr('max', point);
   }
 
-  if(point > minimal_point) {
+  if(point >= minimal_point) {
     $point_input_field.val(minimal_point);
     $('#submit_order_btn').removeAttr('disabled');
     $('#consume_bong_point_btn').removeAttr('disabled')
