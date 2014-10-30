@@ -6,12 +6,12 @@
   - elsif thing_list.items.size < 4
     .thing_list-image_wrapper = image_tag(thing_list.items.first.thing.cover.url(:square))
   - else
-    - size = layout == :quintet ? 5 : 4
+    - size = layout == :sextet ? 6 : (layout == :quintet ? 5 : 4)
     - thing_list.items.limit(size).each_with_index do |item, i|
       .thing_list-image_wrapper
         - if i == 0 && layout == :bottom_stack
           = image_tag(item.thing.cover.url('thing.fixed'))
-        - elsif layout == :quintet
+        - elsif [:quintet, :sextet].include?(layout)
           = image_tag(item.thing.cover.url('thing.fixed.small'))
         - else
           = image_tag(item.thing.cover.url(:square))

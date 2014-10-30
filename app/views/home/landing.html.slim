@@ -49,6 +49,10 @@
         .explore_content_item.fade.active.in#category_all
           - Thing.published.reviewed.limit(8).each_with_index do |thing, i|
             = render 'landing_thing', thing: thing, index: i
+
+            - if i == 0
+              = render ThingList.hot.first, layout: :sextet
+
         - @categories.each do |category|
           .explore_content_item.fade id="category_#{category.slug}"
             - category.things.reviewed.limit(8).each_with_index do |thing, i|
