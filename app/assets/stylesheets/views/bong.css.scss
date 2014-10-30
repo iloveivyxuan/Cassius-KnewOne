@@ -73,6 +73,17 @@ html.bong_index {
     > .image {
       @include stretch_img;
     }
+
+    > .caption {
+      h3 {
+        @include text-overflow;
+        text-align: center;
+      }
+
+      p {
+        text-align: center;
+      }
+    }
   }
 
   .groups {
