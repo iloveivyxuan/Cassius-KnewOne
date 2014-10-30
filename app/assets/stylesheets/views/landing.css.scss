@@ -949,14 +949,20 @@ html.landing {
       margin-bottom: 30px;
       padding-right: percentage(1 / 3);
 
-      background: white;
-      border: 30px solid white;
+      background: $ghost-white;
+      border: 30px solid $ghost-white;
       box-shadow: 0 0 5px rgba(0, 0, 0, .1);
 
       .thing_list-cover {
-        background: $smoke-white;
-        border-color: $smoke-white;
-        box-shadow: 2px 2px 2px rgba(0, 0, 0, .1);
+        background: white;
+        border-color: white;
+        box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+
+        img {
+          padding: 0;
+          box-shadow: none;
+          border: 1px solid $smoke-white;
+        }
 
         &:before {
           content: '';
@@ -970,8 +976,8 @@ html.landing {
           height: 0;
           border-style: solid;
           border-width: 8px 0 8px 11px;
-          border-color: transparent transparent transparent $smoke-white;
-          filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, .1));
+          border-color: transparent transparent transparent white;
+          filter: drop-shadow(0 1px 0 rgba(0, 0, 0, .1));
         }
       }
 
