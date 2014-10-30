@@ -348,6 +348,10 @@ class Order
       save!
     end
 
+    if self.consumed_bong_point > 0 && self.refunded_bong_point == 0
+      refund_bong_point! self.consumed_bong_point, 'SYSTEM(ON CANCELING)'
+    end
+
     order_histories.create from: :pending, to: :canceled, raw: raw
   end
 
@@ -365,6 +369,10 @@ class Order
 
       self.expense_balance = 0
       save!
+    end
+
+    if self.consumed_bong_point > 0 && self.refunded_bong_point == 0
+      refund_bong_point! self.consumed_bong_point, 'SYSTEM(ON CLOSING)'
     end
 
     order_histories.create from: :pending, to: :closed
@@ -641,10 +649,6 @@ class Order
       pending.where(consumed_bong_point: 0).each do |o|
         if o.created_at + o.valid_period_days.days < Date.today
           o.close!
-
-          if o.consumed_bong_point > 0 && o.consumed_bong_point == 0
-            o.refund_bong_point! o.consumed_bong_point, 'SYSTEM(ON CLOSING)'
-          end
         end
       end
     end
