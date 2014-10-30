@@ -4,6 +4,7 @@ p.btn-group
   = link_to '按喜欢数排序', {sort_by: 'fanciers_count'}, class: "btn btn-default #{'active' if @sort_by == 'fanciers_count'}"
   = link_to '按创建时间排序', {sort_by: 'created_at'}, class: "btn btn-default #{'active' if @sort_by == 'created_at'}"
   = link_to '按更新时间排序', {sort_by: 'updated_at'}, class: "btn btn-default #{'active' if @sort_by == 'updated_at'}"
+  = link_to '按热度排序', {sort_by: 'heat'}, class: "btn btn-default #{'active' if @sort_by == 'heat'}"
 
 table.table.table-striped.table-hover
   tr
@@ -12,6 +13,9 @@ table.table.table-striped.table-hover
     th 更新时间
     th 拥有者
     th 喜欢数
+    th 产品数
+    th 热度
+
   - @thing_lists.each do |list|
     tr
       td= link_to list.name, list
@@ -19,5 +23,7 @@ table.table.table-striped.table-hover
       td= list.updated_at.to_s(:db)
       td= link_to list.author.name, list.author
       td= list.fanciers_count
+      td= list.size
+      td= list.heat.round(2)
 
 = paginate @thing_lists

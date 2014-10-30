@@ -10,9 +10,12 @@ module Haven
       when 'created_at'
         @thing_lists = ThingList.desc(:created_at)
         @sort_by = 'created_at'
-      else
+      when 'updated_at'
         @thing_lists = ThingList.desc(:updated_at)
         @sort_by = 'updated_at'
+      else
+        @thing_lists = ThingList.hot
+        @sort_by = 'heat'
       end
 
       @thing_lists = @thing_lists.page(params[:page])
