@@ -1,0 +1,8 @@
+- if current_user.categories.gt(things_count: 0).any?
+  section.tags
+    header
+      h2
+        | 已订阅的分类
+        = link_to_with_icon "", 'fa fa-gear', "#", id: "manage_categories", data: {toggle: "modal", target: "#categories-modal"}
+    section
+      = render current_user.categories.gt(things_count: 0)

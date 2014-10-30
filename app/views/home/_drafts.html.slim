@@ -1,0 +1,7 @@
+- if current_user.drafts.present?
+  section.drafts
+    header
+      = link_to setting_drafts_path
+        h2
+          | 我的草稿
+          span.drafts-count= current_user.drafts.size
