@@ -11,6 +11,21 @@
       = link_to '用 bong 登录', user_omniauth_authorize_path(:bong, state: request.path), class: 'btn btn-primary'
 
   main
+    h2 bong & 活跃点商品
+    ul.thumbnails
+      - top_things = [ \
+        Thing.where(id: '53d0bed731302d2c13b20000').first, \
+        Thing.where(id: '544f8b0a31302d4fd2dd0000').first, \
+        Thing.where(id: '544f8b9331302d5139c60000').first, \
+        Thing.where(id: '5281d75fb10be51c4b000001').first \
+      ].compact
+      = render partial: 'bong/thing', collection: top_things
+      - Thing.gt('kinds.maximal_bong_point' => 0).each do |thing|
+        - next if top_things.include?(thing)
+        - next if thing.id.to_s == '517a44ca7373c2fee6000025'
+        - next unless thing.kinds.where(:maximal_bong_point.gt => 0, :stage.ne => :hidden).exists?
+        = render partial: 'bong/thing', object: thing
+
     h2 小组
     ul.groups
       li
@@ -28,21 +43,6 @@
           figure
             img alt="@bong App 体验小组" src="http://image.knewone.com/groups/023117c40baa51617106241e3da7ac1f.png!small"
           h5 @bong App 体验小组
-
-    h2 bong & 活跃点商品
-    ul.thumbnails
-      - top_things = [ \
-        Thing.where(id: '53d0bed731302d2c13b20000').first, \
-        Thing.where(id: '544f8b0a31302d4fd2dd0000').first, \
-        Thing.where(id: '544f8b9331302d5139c60000').first, \
-        Thing.where(id: '5281d75fb10be51c4b000001').first \
-      ].compact
-      = render partial: 'bong/thing', collection: top_things
-      - Thing.gt('kinds.maximal_bong_point' => 0).each do |thing|
-        - next if top_things.include?(thing)
-        - next if thing.id.to_s == '517a44ca7373c2fee6000025'
-        - next unless thing.kinds.where(:maximal_bong_point.gt => 0, :stage.ne => :hidden).exists?
-        = render partial: 'bong/thing', object: thing
 
   =render 'shared/login_modal'
 
