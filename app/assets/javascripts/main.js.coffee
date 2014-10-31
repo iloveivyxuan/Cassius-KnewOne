@@ -223,6 +223,7 @@ do (exports = Making) ->
     klass_hint  = $element.data('hint')
     klass_spin  = 'fa-spinner fa-spin'
     $hint       = $element.find('.' + klass_hint)
+    $modal      = $('#feedback_modal')
     initialized = false
 
     $element.click (e) ->
@@ -233,7 +234,8 @@ do (exports = Making) ->
           $hint.removeClass(klass_hint).addClass(klass_spin)
 
         timeout = setTimeout ->
-          $('#feedback_modal').modal('show')
+          $modal.modal('show')
+          $hint.removeClass(klass_spin).addClass(klass_hint)
         , 10000
 
         $.getScript $element.data('url'), ->
@@ -251,6 +253,7 @@ do (exports = Making) ->
             olark 'api.box.onExpand', ->
               $hint.removeClass(klass_spin).addClass(klass_hint)
               clearTimeout(timeout)
+              if $modal.is(':visible') then $modal.modal('hide')
 
           initialized = true
       else
