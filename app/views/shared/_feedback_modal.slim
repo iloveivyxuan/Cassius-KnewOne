@@ -1,0 +1,13 @@
+.modal.fade#feedback_modal tabindex="-1" role="dialog" aria-hidden="true"
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal"
+          span aria-hidden="true" &times;
+          span.sr-only Close
+        h4.modal-title 和我们聊天
+      .modal-body
+        p
+          | 请邮件联系&nbsp;
+          = link_to "help@knewone.com", "mailto:help@knewone.com", target: "_blank"
+          | &nbsp;，我们将尽快回复您。

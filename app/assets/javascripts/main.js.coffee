@@ -224,6 +224,7 @@ do (exports = Making) ->
     klass_spin  = 'fa-spinner fa-spin'
     $hint       = $element.find('.' + klass_hint)
     initialized = false
+    timeout     = undefined
 
     $element.click (e) ->
       e.preventDefault()
@@ -231,6 +232,10 @@ do (exports = Making) ->
       if !initialized
         if $hint.length > 0
           $hint.removeClass(klass_hint).addClass(klass_spin)
+
+        timeout = setTimeout ->
+          $('#feedback_modal').modal('show')
+        , 10000
 
         $.getScript $element.data('url'), ->
           $user = $('#user')
@@ -246,6 +251,7 @@ do (exports = Making) ->
           if $hint.length > 0
             olark 'api.box.onExpand', ->
               $hint.removeClass(klass_spin).addClass(klass_hint)
+              clearTimeout(timeout)
 
           initialized = true
       else
