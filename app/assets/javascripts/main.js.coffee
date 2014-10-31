@@ -224,7 +224,6 @@ do (exports = Making) ->
     klass_spin  = 'fa-spinner fa-spin'
     $hint       = $element.find('.' + klass_hint)
     initialized = false
-    timeout     = undefined
 
     $element.click (e) ->
       e.preventDefault()
