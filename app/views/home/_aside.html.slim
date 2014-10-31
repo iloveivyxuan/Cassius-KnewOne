@@ -1,5 +1,5 @@
 section.promotions
-  = render Promotion.published.limit(2)
+  = render Promotion.published
 
 - if current_user.drafts.present?
   section.drafts
