@@ -29,6 +29,17 @@
           include_blank: false, \
             class: 'selectpicker js_auto_submit'
 
+  - if @brand || @category
+    section#things_information
+      .col-md-4
+        img#logo src=(@brand ? @brand.logo.url : @category.cover.url)
+      .col-md-8
+        p#description= (@brand ? @brand.description : @category.description)
+        #tags
+          - tags = @brand ? @brand.tags : @category.tags
+          - tags.each do |tag|
+            = link_to tag.name, things_path(tag: tag), class: "tag-button btn btn-default", role: "button"
+
   section#things_list.infinite
     = render partial: 'home/hot_thing', collection: @things, as: :hot_thing
 

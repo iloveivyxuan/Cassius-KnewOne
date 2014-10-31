@@ -61,6 +61,24 @@ html.shop, html.things_index {
       }
     }
   }
+
+  #things_information {
+    @include clearfix;
+    background-color: #fbfbfa;
+    margin-top: 20px;
+    padding: 20px 20px;
+
+    .tag-button {
+      border: none;
+      border-radius: 0;
+      box-shadow: 1px 1px 1px #d5d5d5;
+      margin: 5px 5px;
+    }
+
+    #tags {
+      margin-top: 20px;
+    }
+  }
 }
 
 html.things_index #things_nav {
