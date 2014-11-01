@@ -29,6 +29,6 @@ section.thing_list id="thing_list_#{thing_list.id}"
           = thing_list.fanciers_count
 
         - if thing_list.comments.present?
-          = link_to thing_list_path(thing_list, anchor: 'comments'), class: 'thing_list-comments'
+          = link_to thing_list, class: 'thing_list-comments'
             i.fa.fa-comment-o
             = thing_list.comments.count
