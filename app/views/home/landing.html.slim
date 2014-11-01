@@ -51,7 +51,7 @@
             = render 'landing_thing', thing: thing, index: i
 
             - if i == 0
-              = render ThingList.hot.first, layout: :sextet
+              = render ThingList.hot.exists(description: true).first, layout: :sextet
 
         - @categories.each do |category|
           .explore_content_item.fade id="category_#{category.slug}"
