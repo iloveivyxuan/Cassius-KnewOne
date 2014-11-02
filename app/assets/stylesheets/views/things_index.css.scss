@@ -29,6 +29,15 @@ html.shop, html.things_index {
 
     nav {
       .bootstrap-select {margin: 0;}
+
+      > .breadcrumb {
+        text-decoration: none;
+
+        &:hover, &:link, &:visited {
+          color: #737373;
+          font-size: 20px;
+        }
+      }
     }
 
     @media (min-width: $screen-sm-min) {
