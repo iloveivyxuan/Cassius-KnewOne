@@ -16,9 +16,12 @@ module Rankable
     created_at
   end
 
+  def half_life
+    1.day
+  end
+
   def freezing_coefficient
-    days_after_birth = 1.0 * (Time.now - birth_time) / 1.day
-    (days_after_birth + 1) ** -2.7
+    1 / 2 ** ((Time.now - birth_time) / half_life)
   end
 
   def calculate_heat
