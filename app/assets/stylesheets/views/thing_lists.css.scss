@@ -101,6 +101,25 @@ html.thing_lists_show {
         }
       }
 
+      .thing_list_change_background_button {
+        display: none;
+
+        @include breakpoint(md) {
+          display: block;
+
+          position: absolute;
+          top: 100%;
+          left: 0;
+
+          width: 50%;
+          height: auto;
+          padding: 5px;
+
+          border-radius: 0;
+          font-size: 18px;
+        }
+      }
+
       .thing_list_edit_button {
         position: absolute;
         bottom: 28px;
@@ -116,9 +135,9 @@ html.thing_lists_show {
         @include breakpoint(md) {
           top: 100%;
           bottom: auto;
-          left: 0;
+          left: 50%;
 
-          width: 100%;
+          width: 50%;
           height: auto;
           padding: 5px;
 

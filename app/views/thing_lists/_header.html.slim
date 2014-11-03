@@ -8,6 +8,9 @@ header
   = render 'shared/user_avatar', user: user, options: {class: 'user_avatar hidden-xs hidden-sm'}
 
   - if can?(:update, list)
+    a.thing_list_change_background_button.btn.btn--blue [href="#"
+      data-toggle="modal" data-target="#change-list-background-modal"]
+      | 更换背景
     a.thing_list_edit_button.btn.btn--blue href="#" 管理
 
   .thing_list_info
