@@ -82,6 +82,11 @@ html.shop, html.things_index {
       border-radius: 0;
       box-shadow: 1px 1px 1px #d5d5d5;
       margin: 5px 5px;
+
+      &:hover {
+        background-color: #049cdb;
+        color: white;
+      }
     }
 
     #tags {
