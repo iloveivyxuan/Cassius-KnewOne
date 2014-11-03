@@ -19,17 +19,7 @@
     nav
       - if @category || @tag || @brand
         - params[:sort_by] ||= 'created_at'
-        ol.breadcrumb
-          - if params[:sort_by] == 'created_at'
-            li.active
-              | 最新
-            li
-              = link_to "热门", params.merge(sort_by: 'fanciers_count')
-          - else
-            li
-              = link_to "最新", params.merge(sort_by: 'created_at')
-            li.active
-              | 热门
+        = render 'sort_breadcrumb'
 
   - if @brand || @category
     section#things_information
@@ -38,9 +28,7 @@
       .col-md-8
         p#description= (@brand ? @brand.description : @category.description)
         #tags
-          - tags = @brand ? @brand.tags : @category.tags
-          - tags.each do |tag|
-            = link_to tag.name, things_path(tag: tag), class: "tag-button btn btn-default", role: "button"
+          = render 'thing_information_tags', tags: @brand ? @brand.tags : @category.tags
       - unless browser.desktop?
         .more
           = link_to_with_icon "查看所有 #{tags.size} 个标签", "fa fa-angle-double-down", "#"
