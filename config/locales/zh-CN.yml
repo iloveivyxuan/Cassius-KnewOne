@@ -5,6 +5,7 @@ zh-CN:
       post: '发布'
       thing: '产品'
       thing_list: '列表'
+      thing_list_background: '列表背景'
       review: '评测'
       category: '分类'
       comment: '留言'
@@ -38,6 +39,9 @@ zh-CN:
       thing_list:
         name: '名称'
         description: '描述'
+      thing_list_background:
+        image: '图片'
+        order: '位置'
       kind:
         title: '名称'
         price: '价格'
