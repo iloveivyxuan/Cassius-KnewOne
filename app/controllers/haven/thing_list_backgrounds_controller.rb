@@ -23,7 +23,7 @@ module Haven
     private
 
     def thing_list_background_params
-      params.require(:thing_list_background).permit(:image)
+      params.require(:thing_list_background).permit(:image, :order)
     end
   end
 end
