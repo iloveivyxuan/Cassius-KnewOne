@@ -190,6 +190,7 @@ class Ability
     can :manage, Lottery
     can :manage, ThingList
     can :manage, ThingListItem
+    can :manage, ThingListBackground
   end
 
   def pay_callback
