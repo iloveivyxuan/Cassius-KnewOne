@@ -42,35 +42,64 @@ module Haven
         end
 
         format.csv do
-          lines = [%w(订单编号 创建时间 订单状态 商品 总价 物流方式 物流单号 配送省 配送市 配送区/县 配送街道 配送姓名 配送手机号 用户备注 管理员备注 系统备注 用户ID 用户名 用户邮箱)]
+          if params[:filter] == 'bong'
+            bong_ii = Thing.find "53d0bed731302d2c13b20000"
+            bong_band = Thing.find "544f8b9331302d5139c60000"
+            bong_battery = Thing.find "544f8b0a31302d4fd2dd0000"
+            lines = [%w(订单时间 订单号 商品名 类型 数量 收件人 电话 省 市 区 详细地址 备注)]
 
-          @orders.each do |order|
-            city = CITY_PLACEHOLDER.include?(order.address.city) ? order.address.province : (order.address.city || '')
+            @orders.each do |order|
+              city = CITY_PLACEHOLDER.include?(order.address.city) ? order.address.province : (order.address.city || '')
+              order.order_items.each do |item|
+                if [bong_ii, bong_band, bong_battery].include?(item.thing)
+                  lines << [
+                            order.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+                            order.order_no,
+                            item.thing_title,
+                            item.kind_title.split(/[()（）]/).first.strip,
+                            item.quantity,
+                            order.address.name,
+                            order.address.phone,
+                            order.address.province,
+                            city,
+                            order.address.district,
+                            order.address.street,
+                            order.note
+                           ]
+                end
+              end
+            end
+          else
+            lines = [%w(订单编号 创建时间 订单状态 商品 总价 物流方式 物流单号 配送省 配送市 配送区/县 配送街道 配送姓名 配送手机号 用户备注 管理员备注 系统备注 用户ID 用户名 用户邮箱)]
+
+            @orders.each do |order|
+              city = CITY_PLACEHOLDER.include?(order.address.city) ? order.address.province : (order.address.city || '')
 
 
-            cols = [
-                    order.order_no,
-                    order.created_at.strftime('%Y-%m-%d %H:%M:%S'),
-                    ::Order::STATES[order.state],
-                    (order.order_items.map { |i| "{{ #{i.name} x #{i.quantity} }} " }.reduce &:+),
-                    "￥#{order.total_price}",
-                    ::Order::DELIVER_METHODS[order.deliver_by],
-                    order.deliver_no,
-                    order.address.province,
-                    city,
-                    order.address.district,
-                    order.address.street,
-                    order.address.name,
-                    order.address.phone,
-                    order.note,
-                    order.admin_note,
-                    order.system_note,
-                    order.user_id,
-                    order.user.name,
-                    order.user.email
-                   ]
+              cols = [
+                      order.order_no,
+                      order.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+                      ::Order::STATES[order.state],
+                      (order.order_items.map { |i| "{{ #{i.name} x #{i.quantity} }} " }.reduce &:+),
+                      "￥#{order.total_price}",
+                      ::Order::DELIVER_METHODS[order.deliver_by],
+                      order.deliver_no,
+                      order.address.province,
+                      city,
+                      order.address.district,
+                      order.address.street,
+                      order.address.name,
+                      order.address.phone,
+                      order.note,
+                      order.admin_note,
+                      order.system_note,
+                      order.user_id,
+                      order.user.name,
+                      order.user.email
+                     ]
 
-            lines<< cols
+              lines<< cols
+            end
           end
 
           col_sep = (params[:platform] == 'numbers') ? ',' : ';'
