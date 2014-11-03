@@ -46,7 +46,7 @@ class Category
   end
 
   def inner_categories_text=(text)
-    inners = text.split(/[，,]/).map { |c| Category.where(name: c.strip).first }
+    inners = text.split(/[，,]/).map { |c| Category.find_or_create_by(name: c.strip) }
     self.inner_categories = inners
   end
 
