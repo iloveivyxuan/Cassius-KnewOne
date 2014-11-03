@@ -17,17 +17,22 @@
       - else
         = link_to '产品', things_path, class: 'breadcrumb'
     nav
-      = form_tag things_path, method: :get, class: 'form-inline' do
-        - unless @category || @tag || @brand
-          = select_tag :category, \
-          options_for_select([%w(全部 all)]+@categories.map {|c| [c.name, c.slug]},  \
-            (params[:category] || 'all')), \
-            class: 'selectpicker js_auto_submit'
-        = select_tag :sort_by, \
-        options_for_select([%w(最新 created_at), %w(热门 fanciers_count)], \
-          (params[:sort_by] || 'created_at')), \
-          include_blank: false, \
-            class: 'selectpicker js_auto_submit'
+      - if @category || @tag || @brand
+        - params[:sort_by] ||= 'created_at'
+        = render 'sort_breadcrumb'
+
+  - if @brand || @category
+    section#things_information
+      .col-md-4
+        img#logo src=(@brand ? @brand.logo.url : @category.cover.url)
+      .col-md-8
+        p#description= (@brand ? @brand.description : @category.description)
+        - tags = @brand ? @brand.tags : @category.tags
+        #tags
+          = render 'thing_information_tags', tags: tags
+      - unless browser.desktop?
+        .more
+          = link_to_with_icon "查看所有 #{tags.size} 个标签", "fa fa-angle-double-down", "#"
 
   section#things_list.infinite
     = render partial: 'home/hot_thing', collection: @things, as: :hot_thing
@@ -35,3 +40,7 @@
 - content_for :script do
   javascript:
     Making.InitThings();
+    $('.more').on('click', function(){
+      $('#tags').css('height', 'auto');
+      $('.more').hide();
+    })

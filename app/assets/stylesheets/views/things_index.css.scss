@@ -29,6 +29,21 @@ html.shop, html.things_index {
 
     nav {
       .bootstrap-select {margin: 0;}
+
+      > ol {
+        margin-left: 25px;
+
+        > li {
+          color: #cdcdcd;
+          font-size: 20px;
+          text-decoration: none;
+
+          > a {
+            color: #737373;
+          }
+        }
+
+      }
     }
 
     @media (min-width: $screen-sm-min) {
@@ -58,6 +73,42 @@ html.shop, html.things_index {
         &:nth-child(3n+1), &:nth-child(3n+2) {margin-right: $gutter;}
         width: 306px;
         width: calc((100% - #{$gutter}*2)/3);
+      }
+    }
+  }
+
+  #things_information {
+    @include clearfix;
+    background-color: #fbfbfa;
+    margin-top: 20px;
+    padding: 20px 20px;
+
+    .tag-button {
+      border: none;
+      border-radius: 0;
+      box-shadow: 1px 1px 1px #d5d5d5;
+      margin: 5px 5px;
+
+      &:hover {
+        background-color: #049cdb;
+        color: white;
+      }
+    }
+
+    #tags {
+      @media (max-width: $screen-sm-max) {
+        height: 80px;
+        overflow: hidden;
+      }
+      margin-top: 20px;
+    }
+
+    .more {
+      margin-top: 20px;
+      text-align: center;
+
+      a {
+        color: #737373;
       }
     }
   }
