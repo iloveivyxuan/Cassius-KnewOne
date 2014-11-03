@@ -18,8 +18,18 @@
         = link_to '产品', things_path, class: 'breadcrumb'
     nav
       - if @category || @tag || @brand
-        = link_to "最新", params.merge(sort_by: 'created_at'), class: 'breadcrumb'
-        = link_to "热门", params.merge(sort_by: 'fanciers_count'), class: 'breadcrumb'
+        - params[:sort_by] ||= 'created_at'
+        ol.breadcrumb
+          - if params[:sort_by] == 'created_at'
+            li.active
+              | 最新
+            li
+              = link_to "热门", params.merge(sort_by: 'fanciers_count')
+          - else
+            li
+              = link_to "最新", params.merge(sort_by: 'created_at')
+            li.active
+              | 热门
 
   - if @brand || @category
     section#things_information

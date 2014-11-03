@@ -30,13 +30,18 @@ html.shop, html.things_index {
     nav {
       .bootstrap-select {margin: 0;}
 
-      > .breadcrumb {
-        text-decoration: none;
+      > ol {
 
-        &:hover, &:link, &:visited {
-          color: #737373;
+        > li {
+          color: #cdcdcd;
           font-size: 20px;
+          text-decoration: none;
+
+          > a {
+            color: #737373;
+          }
         }
+
       }
     }
 
