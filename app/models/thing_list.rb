@@ -34,4 +34,8 @@ class ThingList
     return -1 if size < 6
     (fanciers_count + comments.count) * freezing_coefficient
   end
+
+  before_create do
+    self.background = ThingListBackground.first
+  end
 end
