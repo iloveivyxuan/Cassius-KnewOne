@@ -11,8 +11,7 @@ class ThingListItem
 
   default_scope -> { desc(:order, :created_at) }
 
-  validates :list, presence: true
-  validates :thing, presence: true, uniqueness: { scope: :list }
+  validates :thing_id, presence: true, uniqueness: { scope: :thing_list }
   validates :description, length: {maximum: 140}
 
   before_create do
