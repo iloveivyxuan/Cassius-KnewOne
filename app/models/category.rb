@@ -21,6 +21,7 @@ class Category
   validates :name, presence: true, uniqueness: true
 
   scope :prior, -> { desc(:priority, :things_count) }
+  scope :primary, -> { where(category: nil) }
 
   has_many :tags
 
