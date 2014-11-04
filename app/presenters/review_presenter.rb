@@ -15,7 +15,7 @@ class ReviewPresenter < PostPresenter
 
   def share_content
     if review.author == current_user
-      "#晒牛玩# 刚刚动手玩了下 #{review.thing.title} ，在高大上的 #{share_topic} 写了一篇体验评测《#{title}》，随意感受下： #{thing_review_url(review.thing, review, refer: :share)}"
+      "#晒牛玩#我刚刚动手玩了下 #{review.thing.title} ，在剁手站 #{share_topic} 写了一篇体验测评《#{title}》，小伙伴快来围观 →_→： #{thing_review_url(review.thing, review, refer: :share)}"
     else
       "刚刚去逛了下 #{share_topic} 发现 #{share_author_name} 写的 #{review.thing.title} 体验评测《#{title}》：#{thing_review_url(review.thing, review, refer: :share)} 真心壕喜欢！！"
     end
