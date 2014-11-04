@@ -2,19 +2,32 @@
 
 html.thing_lists_show {
   body {
+    position: relative;
     padding-top: 45px;
 
     @media (max-width: $screen-xs-max) {
       padding-bottom: 0;
     }
 
-    background-image: image-url('list-background-white-1024.jpg');
     background-repeat: repeat-y;
     background-position: top center;
     background-attachment: fixed;
 
     @include breakpoint(md) {
-      background-image: image-url('list-background-white-1680.jpg');
+      transition: background-image 1s;
+    }
+
+    &:before {
+      content: '';
+
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+
+      background: rgba(white, .1);
     }
   }
 
@@ -489,6 +502,108 @@ html.thing_lists_show {
       padding: .5em 1em;
       color: #fff;
       background: $blue-dark;
+    }
+  }
+
+  #change_list_background_modal {
+    .modal-dialog {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      width: 750px;
+
+      .modal-content {
+        border-radius: 0;
+
+        .modal-header {
+          min-height: 0;
+          padding: 0;
+          border: none;
+
+          .close {
+            position: absolute;
+            right: 0;
+            bottom: 100%;
+
+            width: 40px;
+            line-height: 40px;
+            font-size: 40px;
+            font-family: lato-thin;
+            font-weight: normal;
+            text-align: center;
+
+            opacity: 1;
+            background: $vulcan;
+            color: white;
+
+            &:hover {
+              background: $red;
+            }
+          }
+        }
+
+        .modal-body {
+          padding: 0;
+        }
+      }
+    }
+
+    .thing_list_background_wrapper {
+      position: relative;
+
+      display: inline-block;
+      width: 25%;
+
+      opacity: .5;
+      transition: opacity .2s;
+
+      i {
+        display: none;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 34px;
+        text-align: center;
+        line-height: 34px;
+        margin: -17px 0 0 -17px;
+
+        color: white;
+        font-size: 24px;
+      }
+
+      &.thing_list_background_wrapper--active {
+        position: relative;
+        opacity: 1;
+
+        i {
+          display: block;
+        }
+
+        &:before {
+          content: '';
+
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+
+          background: rgba(black, .7);
+        }
+      }
+
+      &:hover {
+        opacity: 1;
+
+        i {
+          display: block;
+          background: rgba($blue-light, .7);
+          border-radius: 50%;
+        }
+      }
     }
   }
 }
