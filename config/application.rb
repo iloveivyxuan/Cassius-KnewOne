@@ -72,7 +72,7 @@ module Making
       g.test_framework :rspec, fixture: false
     end
 
-    config.action_view.sanitized_allowed_tags = ['embed', 'iframe', 'strike', 'u', 'table', 'td', 'tr']
+    config.action_view.sanitized_allowed_tags = ['embed', 'iframe', 'strike', 'u', 'table', 'td', 'tr', 'thead', 'tbody', 'tfoot']
     config.action_view.sanitized_allowed_attributes = ['src','target']
 
     I18n.enforce_available_locales = false
