@@ -2,7 +2,7 @@ class ExploreController < ApplicationController
   skip_before_action :require_not_blocked
 
   def index
-    @entries = Entry.published.desc(:created_at).page(params[:page]).per(6)
+    @entries = Entry.published.ne(category: '活动').desc(:created_at).page(params[:page]).per(6)
 
     respond_to do |format|
       format.html
