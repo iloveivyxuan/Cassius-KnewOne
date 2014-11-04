@@ -462,6 +462,9 @@ body.editor-open {
   margin-bottom: 1em;
   @include border-radius(4px);
 
+  img {
+    display: block;
+  }
   ol {list-style: decimal inside;}
   ul {list-style: disc inside;}
 
