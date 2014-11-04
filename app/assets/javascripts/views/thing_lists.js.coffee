@@ -76,7 +76,7 @@ Making.InitThingList = ->
   )
 
   changeBackground = (url) ->
-    $('body').css('background-image', "url(#{url})")
+    $('#thing_list_background').css('background-image', "url(#{url})")
 
   $('#change_list_background_modal').on('click', '.thing_list_background_wrapper', (event) ->
     event.preventDefault()

@@ -8,26 +8,24 @@ html.thing_lists_show {
     @media (max-width: $screen-xs-max) {
       padding-bottom: 0;
     }
+  }
 
-    background-repeat: repeat-y;
+  #thing_list_background {
+    content: '';
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+
+    opacity: .5;
     background-position: top center;
-    background-attachment: fixed;
+    background-repeat: no-repeat;
 
     @include breakpoint(md) {
       transition: background-image 1s;
-    }
-
-    &:before {
-      content: '';
-
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: -1;
-
-      background: rgba(white, .1);
     }
   }
 
