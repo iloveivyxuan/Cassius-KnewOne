@@ -5,6 +5,10 @@ module Haven
     def index
     end
 
+    def edit
+      @thing_list_background = ThingListBackground.find(params[:id])
+    end
+
     def create
       ThingListBackground.create(thing_list_background_params)
       redirect_to haven_thing_list_backgrounds_url
@@ -12,7 +16,11 @@ module Haven
 
     def update
       ThingListBackground.find(params[:id]).update(thing_list_background_params)
-      head :no_content
+
+      respond_to do |format|
+        format.html { redirect_to haven_thing_list_backgrounds_url }
+        format.json { head :no_content }
+      end
     end
 
     def destroy
