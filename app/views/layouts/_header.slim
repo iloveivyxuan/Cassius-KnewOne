@@ -98,7 +98,7 @@
               = link_to_with_icon "分类", "fa fa-tags", categories_path,
                 class: 'nav_group_more', data: {target: "#", toggle: "dropdown"}
               ul.dropdown-menu
-                - Category.gt(things_count: 0).desc(:things_count).limit(14).each do |c|
+                - Category.primary.gt(things_count: 0).desc(:things_count).limit(14).each do |c|
                   li
                     = link_to category_things_path(category: c) do
                       i class="fa fa-fw #{c.icon}"
