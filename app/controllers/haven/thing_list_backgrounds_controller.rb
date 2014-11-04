@@ -16,7 +16,10 @@ module Haven
     end
 
     def destroy
-      ThingListBackground.find(params[:id]).destroy
+      if ThingListBackground.count > 1
+        ThingListBackground.find(params[:id]).destroy
+      end
+
       redirect_to haven_thing_list_backgrounds_url
     end
 
