@@ -1,5 +1,5 @@
-$('[href=#tab-feelings]').trigger('click');
-$('#tab-feelings .nothing').replaceWith('<div class="feelings list"></div>');
+$('[href=#tab-feelings], [href=#tab--mobile-feelings]').trigger('click');
+$('#tab-feelings .nothing, #tab--mobile-feelings .nothing').replaceWith('<div class="feelings list"></div>');
 $('<%= escape_javascript render(@feeling) %>')
   .hide()
   .prependTo('.feelings')
