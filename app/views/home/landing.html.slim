@@ -9,16 +9,16 @@
 
   = render 'shared/entry_compact'
 
-  - case Time.now.hour
-  - when 7..17
-    - image_by_time = "landing_day"
-  - when 17..24
-    - image_by_time = "landing_evening"
-  - else
-    - image_by_time = "landing_deepnight"
-
-  span.landing_image_wrap class="#{image_by_time}" data-picture="true" data-alt="Landing"
-    span data-src=image_path("#{image_by_time}.jpg") data-media="(min-width: 992px)"
+  - if browser.desktop?
+    - case Time.now.hour
+    - when 7..17
+      - image_by_time = "landing_day"
+    - when 17..24
+      - image_by_time = "landing_evening"
+    - else
+      - image_by_time = "landing_deepnight"
+    span.landing_image_wrap class="#{image_by_time}"
+      img src=image_path("#{image_by_time}.jpg")
 
 .explore
   .explore_header

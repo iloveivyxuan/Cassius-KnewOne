@@ -13,7 +13,6 @@
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/load-image
 //= require matchmedia
-//= require picturefill
 //= require hammer
 //= require jquery.autosize
 //= require jquery.lazyload
