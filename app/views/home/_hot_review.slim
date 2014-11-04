@@ -3,9 +3,9 @@
     header.cover
       = link_to review_presenter.path, target: "_blank" do
         - if browser.mobile?
-          = review_presenter.cover(:'post.fixed')
+          = present(hot_review.thing).photo('post.fixed')
         - else
-          = review_presenter.cover(:square)
+          = present(hot_review.thing).photo(:square)
     section.content
       h4.title
         = link_to review_presenter.title, review_presenter.path, target: "_blank"
