@@ -4,7 +4,8 @@
   article.thing
     header.cover
       = link_to hot_thing, target: "_blank" do
-        = thing_presenter.photo :'thing.fixed.big'
+        - version = browser.mobile? ? 'thing.fixed.small' : 'thing.fixed.big'
+        = thing_presenter.photo version
       - if fanciable
         .fancy_thing
           = link_to "", hot_thing, class: "fancy_backdrop", target: "_blank"
