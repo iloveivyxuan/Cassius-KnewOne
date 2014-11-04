@@ -150,7 +150,7 @@ class OrdersController < ApplicationController
     callback_params = params.except(*request.path_parameters.keys)
     if Alipay::Notify::Wap.verify?(callback_params) && data = Hash.from_xml(callback_params[:notify_data])
       if %w(TRADE_SUCCESS TRADE_FINISHED).include?(data['trade_status'])
-        @order.confirm_payment!(data['trade_no'], data['total_fee'], :alipay, callback_params)
+        @order.confirm_payment!(data['trade_no'], data['total_fee'], :alipay_wap, callback_params)
       elsif data['trade_status'] == 'TRADE_CLOSED'
         @order.unexpect!("支付宝交易异常,交易号#{data['trade_no']}，状态TRADE_CLOSED", callback_params)
       end
@@ -172,7 +172,7 @@ class OrdersController < ApplicationController
     # notify may reach earlier than callback
     if Alipay::Sign::Wap.verify?(callback_params)
       if callback_params[:result] == 'success'
-        @order.confirm_payment!(callback_params[:trade_no], @order.should_pay_price, :alipay, callback_params)
+        @order.confirm_payment!(callback_params[:trade_no], @order.should_pay_price, :alipay_wap, callback_params)
       else
         @order.unexpect!("支付宝交易异常,交易号#{callback_params[:trade_no]}，返回失败", callback_params)
       end

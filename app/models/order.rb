@@ -90,6 +90,7 @@ class Order
   PAYMENT_METHOD = {
     :tenpay => '财付通',
     :alipay => '支付宝',
+    :alipay_wap => '支付宝手机网页',
     :btc => '比特币',
     :other => '其它'
   }
