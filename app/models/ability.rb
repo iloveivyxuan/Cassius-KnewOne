@@ -101,7 +101,9 @@ class Ability
     can :manage, Address
 
     can :create, Order
-    can [:read, :deliver_bill, :tenpay, :alipay, :tenpay_wechat, :cancel, :alipay_callback, :tenpay_callback], Order do |order|
+    can [:read, :deliver_bill,
+         :tenpay, :alipay, :tenpay_wechat, :cancel,
+         :alipay_callback, :tenpay_callback, :alipay_wap_callback], Order do |order|
       order.user == user
     end
 
@@ -195,5 +197,6 @@ class Ability
   def pay_callback
     can :tenpay_notify, Order
     can :alipay_notify, Order
+    can :alipay_wap_notify, Order
   end
 end

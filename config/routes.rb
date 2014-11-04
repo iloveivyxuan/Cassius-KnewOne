@@ -119,8 +119,11 @@ Making::Application.routes.draw do
       get 'tenpay_notify'
       get 'tenpay_callback'
       get 'alipay'
+      get 'alipay_wap'
       post 'alipay_notify'
       get 'alipay_callback'
+      post 'alipay_wap_notify'
+      get 'alipay_wap_callback'
       get 'deliver_bill'
     end
   end
