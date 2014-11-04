@@ -7,8 +7,6 @@
 - list = @thing_list
 - user = list.author
 
-#thing_list_background
-
 = render 'header', list: list, user: user
 
 - if list.items.present?
@@ -18,6 +16,8 @@
     = render 'shared/nothing'
 
 footer = render 'shared/comments', post: list, id: 'comments', auth: true
+
+#thing_list_background
 
 - content_for :script
   javascript:
