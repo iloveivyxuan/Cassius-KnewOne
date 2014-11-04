@@ -170,7 +170,7 @@ class OrdersController < ApplicationController
 
     callback_params = params.except(*request.path_parameters.keys)
     # notify may reach earlier than callback
-    if Alipay::Sign::Wap.verify?(callback_params)
+    if Alipay::Sign.verify?(callback_params)
       if callback_params[:result] == 'success'
         @order.confirm_payment!(callback_params[:trade_no], @order.should_pay_price, :alipay_wap, callback_params)
       else
