@@ -2,7 +2,7 @@ article.article_thumb
   - if entry.cover.present?
     figure
       = link_to entry do
-        = image_tag entry.cover.url(:huge)
+        = image_tag entry.cover.url(:middle)
   footer
     h3.title = link_to entry_title(entry), entry
     - if entry.post

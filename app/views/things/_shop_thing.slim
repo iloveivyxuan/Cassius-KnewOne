@@ -2,7 +2,8 @@
   article.thing
     header.cover
       = link_to thing, target: "_blank" do
-        = thing_presenter.photo :'thing.fixed.big'
+        - version = browser.mobile? ? 'thing.fixed.small' : 'thing.fixed.big'
+        = thing_presenter.photo version
       .fancy_thing
         = link_to "", thing, class: "fancy_backdrop", target: "_blank"
         .fancy_button= render "shared/fancy", p: thing_presenter, from: "shop"
