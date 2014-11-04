@@ -8,4 +8,10 @@ class ThingListBackground
   validates :image, presence: true, file_size: {maximum: 8.megabytes}
 
   default_scope -> { desc(:order, :created_at) }
+
+  after_destroy do
+    ThingList
+      .where(background_id: self.id)
+      .update_all(background_id: ThingListBackground.first.id)
+  end
 end

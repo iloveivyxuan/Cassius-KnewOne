@@ -35,7 +35,7 @@ class ThingList
     (fanciers_count + comments.count) * freezing_coefficient
   end
 
-  before_create do
-    self.background = ThingListBackground.first
+  before_save do
+    self.background ||= ThingListBackground.first
   end
 end
