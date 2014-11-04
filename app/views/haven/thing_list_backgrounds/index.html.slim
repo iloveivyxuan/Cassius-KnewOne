@@ -2,7 +2,7 @@
 
 h2 列表背景
 
-= simple_form_for ThingListBackground.new, url: haven_thing_list_backgrounds_path do |f|
+= simple_form_for [:haven, ThingListBackground.new] do |f|
   = f.input :image
   = f.input :order
   = f.button :submit, class: 'btn-primary'
@@ -18,8 +18,8 @@ table.table.table-striped.table-hover.table-bordered
   - ThingListBackground.each do |background|
     tr
       td = image_tag background.image.url
-      td = editable background, :order, url: haven_thing_list_background_path(background)
-      td = link_to haven_thing_list_background_path(background), method: :delete
+      td = editable [:haven, background], :order
+      td = link_to [:haven, background], method: :delete
         i.fa.fa-trash-o
 
 - content_for :script
