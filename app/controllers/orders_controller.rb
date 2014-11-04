@@ -105,6 +105,10 @@ class OrdersController < ApplicationController
     redirect_to generate_alipay_url(@order)
   end
 
+  def alipay_wap
+    redirect_to generate_alipay_wap_url(@order)
+  end
+
   def alipay_notify
     callback_params = params.except(*request.path_parameters.keys)
     if Alipay::Notify.verify?(callback_params)
@@ -134,6 +138,43 @@ class OrdersController < ApplicationController
         @order.confirm_payment!(callback_params[:trade_no], callback_params[:total_fee], :alipay, callback_params)
       elsif callback_params[:trade_status] == 'TRADE_CLOSED'
         @order.unexpect!("支付宝交易异常,交易号#{callback_params[:trade_no]}，状态TRADE_CLOSED", callback_params)
+      end
+    else
+      @order.unexpect!("支付宝交易异常,校验无效", callback_params)
+    end
+
+    redirect_to @order, flash: {success: (@order.has_stock? ? '付款成功，我们将尽快为您发货' : '付款成功')}
+  end
+
+  def alipay_wap_notify
+    callback_params = params.except(*request.path_parameters.keys)
+    if Alipay::Notify::Wap.verify?(callback_params) && data = Hash.from_xml(callback_params[:notify_data])
+      if %w(TRADE_SUCCESS TRADE_FINISHED).include?(data['trade_status'])
+        @order.confirm_payment!(data['trade_no'], data['total_fee'], :alipay, callback_params)
+      elsif data['trade_status'] == 'TRADE_CLOSED'
+        @order.unexpect!("支付宝交易异常,交易号#{data['trade_no']}，状态TRADE_CLOSED", callback_params)
+      end
+
+      render text: 'success'
+    else
+      @order.unexpect!("支付宝交易异常,校验无效", callback_params)
+
+      render text: 'fail'
+    end
+  end
+
+  def alipay_wap_callback
+    if @order.confirmed?
+      return redirect_to @order, flash: {success: (@order.has_stock? ? '付款成功，我们将尽快为您发货' : '付款成功')}
+    end
+
+    callback_params = params.except(*request.path_parameters.keys)
+    # notify may reach earlier than callback
+    if Alipay::Notify::Wap.verify?(callback_params)
+      if callback_params[:result] == 'success'
+        @order.confirm_payment!(callback_params[:trade_no], @order.should_pay_price, :alipay, callback_params)
+      else
+        @order.unexpect!("支付宝交易异常,交易号#{callback_params[:trade_no]}，返回失败", callback_params)
       end
     else
       @order.unexpect!("支付宝交易异常,校验无效", callback_params)
@@ -176,6 +217,21 @@ class OrdersController < ApplicationController
     }.merge(options)
 
     Alipay::Service.create_direct_pay_by_user_url(options)
+  end
+
+  def generate_alipay_wap_url(order, options = {})
+    options = {
+      :req_data => {
+        :out_trade_no  => order.order_no,
+        :subject       => "KnewOne购物订单: #{order.order_no}",
+        :total_fee     => order.should_pay_price,
+        :notify_url    => alipay_wap_callback_order_url(order),
+        :call_back_url => alipay_wap_callback_order_url(order)
+      }
+    }
+
+    token = Alipay::Service::Wap.trade_create_direct_token(options)
+    Alipay::Service::Wap.auth_and_execute(request_token: token)
   end
 
   def body_text(order, length = 16)
