@@ -1,0 +1,4 @@
+= simple_form_for [:haven, @thing_list_background || ThingListBackground.new] do |f|
+  = f.input :image
+  = f.input :order
+  = f.button :submit, class: 'btn-primary'

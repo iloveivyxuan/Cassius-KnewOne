@@ -2,10 +2,7 @@
 
 h2 列表背景
 
-= simple_form_for [:haven, ThingListBackground.new] do |f|
-  = f.input :image
-  = f.input :order
-  = f.button :submit, class: 'btn-primary'
+= render 'form'
 
 hr
 
