@@ -23,10 +23,10 @@ footer = render 'shared/comments', post: list, id: 'comments', auth: true
 
 - content_for :stylesheet
   - if list.background.present?
-      css:
-        body {
-          background-image: url('#{list.background.image.url}!background#{'.mobile' if browser.mobile?}');
-        }
+    css:
+      body {
+        background-image: url('#{list.background.image.url}!background#{'.mobile' if browser.mobile?}');
+      }
   - else
     css:
       body {
