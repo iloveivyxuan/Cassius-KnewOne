@@ -3,12 +3,12 @@
 #thing-feeds--mobile
   nav#thing-feeds--mobile_tab
     ul.nav.nav-pills.nav-justified.nav-layout.nav--thing_tab
-      - if thing.reviews_count > 0
+      - if thing.has_reviews?
         li.active
           = link_to '#tab--mobile-reviews', data: {toggle: 'tab'}
             i.fa.fa-pencil
             span 评测
-      li class=('active' if thing.reviews_count == 0)
+      li class=('active' unless thing.has_reviews?)
         = link_to '#tab--mobile-feelings', data: {toggle: 'tab'}
           i.fa.fa-comments
           span 短评
@@ -19,12 +19,12 @@
             span 动态
 
   .tab-content
-    - if thing.reviews_count > 0
+    - if thing.has_reviews?
       #tab--mobile-reviews.tab-pane.active
         = render 'reviews', thing: thing
-    #tab--mobile-feelings.tab-pane class=('active' if thing.reviews_count == 0)
+    #tab--mobile-feelings.tab-pane class=('active' unless thing.has_reviews?)
       = render 'feelings/form', thing: thing, id: 'thing--mobile-feeling_form'
-      - if thing.feelings_count > 0
+      - if thing.has_feelings?
         = render 'feelings', thing: thing
       - else
         = render 'shared/nothing'
