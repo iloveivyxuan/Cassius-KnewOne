@@ -170,14 +170,14 @@ class OrdersController < ApplicationController
 
     callback_params = params.except(*request.path_parameters.keys)
     # notify may reach earlier than callback
-    if Alipay::Notify::Wap.verify?(callback_params)
+    if Alipay::Sign::Wap.verify?(callback_params)
       if callback_params[:result] == 'success'
         @order.confirm_payment!(callback_params[:trade_no], @order.should_pay_price, :alipay, callback_params)
       else
         @order.unexpect!("支付宝交易异常,交易号#{callback_params[:trade_no]}，返回失败", callback_params)
       end
     else
-      @order.unexpect!("支付宝交易异常,校验无效", callback_params)
+      @order.unexpect!("支付宝交易异常,签名无效", callback_params)
     end
 
     redirect_to @order, flash: {success: (@order.has_stock? ? '付款成功，我们将尽快为您发货' : '付款成功')}
