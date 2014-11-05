@@ -219,8 +219,12 @@ do (exports = Making) ->
   )
 
   exports.SetupCustomerServices = (element) ->
-    $element = $(element)
-    $modal   = $('#feedback_modal')
+    $element   = $(element)
+    $modal     = $('#feedback_modal')
+    isPageLoaded = false
+
+    $window.on 'load', ->
+      isPageLoaded = true
 
     $element.click (e) ->
       e.preventDefault()
@@ -232,7 +236,7 @@ do (exports = Making) ->
           $button = $('#MECHAT-PCBTN')
       if $button.length
         $button.trigger('click')
-      else
+      else if isPageLoaded
         $modal.modal('show')
 
   exports.GoTop = ->
