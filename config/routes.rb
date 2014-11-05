@@ -259,6 +259,9 @@ Making::Application.routes.draw do
         patch 'refunded_balance_to_platform'
         get 'generate_waybill'
       end
+      collection do
+        get 'stock'
+      end
     end
 
     resources :adoptions, only: [:index] do

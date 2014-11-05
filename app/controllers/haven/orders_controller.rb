@@ -1,7 +1,7 @@
 module Haven
   class OrdersController < Haven::ApplicationController
     layout 'settings'
-    before_action :set_order, except: :index
+    before_action :set_order, except: [:index, :stock]
     include ::AddressesHelper
 
     CITY_PLACEHOLDER = %w(市辖区 县)
@@ -123,6 +123,10 @@ module Haven
     def update
       @order.update order_params
       redirect_to haven_order_path(@order)
+    end
+
+    def stock
+      @things = Thing.where(stage: :dsell)
     end
 
     def ship
