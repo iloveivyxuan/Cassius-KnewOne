@@ -25,9 +25,9 @@ class KindPresenter < ApplicationPresenter
     if kind.can_consume_bong_point?
       str += <<-HTML
           <small>
-            （可用
-             #{kind.minimal_bong_point} - #{kind.maximal_bong_point}个
-             #{link_to "活跃点", "#", data: {toggle: "modal", target: "#bong_point_modal"}}）
+            （可使用
+              #{link_to "活跃点", "#", data: {toggle: "modal", target: "#bong_point_modal"}}
+              抵扣#{kind.minimal_bong_point} - #{kind.maximal_bong_point}元）
           </small>
       HTML
     end

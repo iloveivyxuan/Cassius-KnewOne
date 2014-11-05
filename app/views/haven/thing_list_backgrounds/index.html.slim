@@ -1,0 +1,25 @@
+- provide :nav, :thing_list_backgrounds
+
+h2 列表背景
+
+= render 'form'
+
+hr
+
+table.table.table-striped.table-hover.table-bordered
+  tr
+    th 图片
+    th 位置
+    th 操作
+
+  - ThingListBackground.each do |background|
+    tr
+      td = link_to [:edit, :haven, background]
+        = image_tag background.image.url
+      td = editable [:haven, background], :order
+      td = link_to [:haven, background], method: :delete
+        i.fa.fa-trash-o
+
+- content_for :script
+  javascript:
+    $('.editable').editable()

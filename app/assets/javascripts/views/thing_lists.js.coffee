@@ -74,3 +74,23 @@ Making.InitThingList = ->
     $target.toggleClass('thing_list_edit_button--editing')
     $('.editable').editable('toggleDisabled')
   )
+
+  changeBackground = (url) ->
+    $('#thing_list_background').css('background-image', "url(#{url})")
+
+  $('#change_list_background_modal').on('click', '.thing_list_background_wrapper', (event) ->
+    event.preventDefault()
+
+    $target = $(this)
+    $target
+      .addClass('thing_list_background_wrapper--active')
+      .siblings().removeClass('thing_list_background_wrapper--active')
+
+    changeBackground($target.data('url'))
+
+    $.ajax({
+      url: window.location.pathname
+      type: 'PATCH'
+      data: {thing_list: {background_id: $target.data('id')}}
+    })
+  )

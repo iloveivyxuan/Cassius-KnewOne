@@ -1,0 +1,22 @@
+- page_title '库存'
+header.page-header
+  h2
+    i.fa.fa-shopping-cart
+    | 库存
+    small 共 #{@things.size} 个产品
+
+- @things.each do |thing|
+  table.table.table-bordered
+    thead
+      tr
+        - (['#'] + thing.kinds.map(&:title)).each_with_index do |cell, index|
+          - if index == 0
+            th width="200"
+              = cell
+          - else
+            th= cell
+    tbody
+      tr
+        - thing_link = link_to thing.title, thing_path(thing)
+        - ([thing_link] + thing.kinds.map(&:stock)).each do |cell|
+          th= cell

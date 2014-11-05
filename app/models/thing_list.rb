@@ -6,6 +6,7 @@ class ThingList
   belongs_to :author, class_name: 'User', inverse_of: :thing_lists, index: true
   embeds_many :thing_list_items
   has_many :comments
+  belongs_to :background, class_name: 'ThingListBackground', index: true
 
   index 'thing_list_items.thing_id' => 1
 
@@ -32,5 +33,9 @@ class ThingList
   def calculate_heat
     return -1 if size < 6
     (fanciers_count + comments.count) * freezing_coefficient
+  end
+
+  before_save do
+    self.background ||= ThingListBackground.first
   end
 end

@@ -17,9 +17,23 @@
 
 footer = render 'shared/comments', post: list, id: 'comments', auth: true
 
+#thing_list_background
+
 - content_for :script
   javascript:
     Making.Comments('#comments')
+
+- content_for :stylesheet
+  - if list.background.present?
+    css:
+      #thing_list_background {
+        background-image: url('#{list.background.image.url}!background#{'.mobile' if browser.mobile?}');
+      }
+  - else
+    css:
+      #thing_list_background {
+        background-image: url('list-background-white-#{browser.mobile? ? 1024 : 1680}.jpg');
+      }
 
 - if can?(:update, list)
   - content_for :script

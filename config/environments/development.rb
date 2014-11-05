@@ -37,8 +37,8 @@ Making::Application.configure do
   # See everything in the log (default is :info)
   config.log_level = :info
 
-  # Moped.logger.level = Logger::DEBUG
-  # Mongoid.logger.level = Logger::DEBUG
+  Moped.logger.level = Logger::DEBUG
+  Mongoid.logger.level = Logger::DEBUG
 
   require 'sidekiq/testing/inline'
 end

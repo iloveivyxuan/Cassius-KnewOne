@@ -46,6 +46,6 @@ class ThingListsController < ApplicationController
   private
 
   def thing_list_params
-    params.require(:thing_list).permit(:name, :description)
+    params.require(:thing_list).permit(:name, :description, :background_id)
   end
 end
