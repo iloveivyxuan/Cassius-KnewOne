@@ -79,7 +79,7 @@ class User
   field :email, :type => String
   field :encrypted_password, :type => String
 
-  index email: 1
+  index({email: 1}, {unique: true, sparse: true})
 
   ## Recoverable
   field :reset_password_token, :type => String
