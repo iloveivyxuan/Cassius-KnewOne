@@ -10,5 +10,5 @@ section
     p = f.label "标签名"
     p = f.text_field :name, :value => @tag.name
     p = f.label "分类"
-    p = f.text_field :category, :value => @tag.category.try(:name)
+    p = f.text_field :categories_text, :value => @tag.categories_text
     = f.submit

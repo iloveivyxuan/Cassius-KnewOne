@@ -2,7 +2,7 @@ class Tag
   include Mongoid::Document
   include Mongoid::Slug
 
-  belongs_to :category
+  has_and_belongs_to_many :categories, after_add: :add_belonging_tags
 
   field :name, type: String
   slug :name, history: true
@@ -23,4 +23,11 @@ class Tag
     Tag.all.each { |t| t.set(things_count: t.things.size) }
   end
 
+  def categories_text
+    self.categories.map(&:name).join(",")
+  end
+
+  def add_belonging_tags(category)
+    category.tags << self
+  end
 end

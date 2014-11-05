@@ -9,7 +9,7 @@ table.table
     - @tags.each do |t|
       tr
         th= link_to t.name, things_path(tag: t)
-        th= t.category.try(:name)
+        th= t.categories_text
         th= t.things.size
         th
           = link_to '[编辑]', edit_haven_tag_path(t)

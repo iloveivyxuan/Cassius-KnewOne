@@ -27,6 +27,9 @@ module Haven
       new_category = Category.where(name: tag_params.values.first).first
       @tag.category = new_category if new_category
       @tag.name = params[:tag][:name]
+      params[:tag][:categories_text].split(/[，,]/).map { |t| Category.where(name: t.strip).first  }.each do |c|
+        @tag.categories << c if c
+      end
       if @tag.save
         redirect_to haven_tags_path
       else
@@ -46,7 +49,7 @@ module Haven
     end
 
     def tag_params
-      params.require(:tag).permit(:category, :name)
+      params.require(:tag).permit(:categories_text, :name)
     end
   end
 end
