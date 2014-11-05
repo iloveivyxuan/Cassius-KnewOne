@@ -81,6 +81,12 @@ class User
 
   index({email: 1}, {unique: true, sparse: true})
 
+  def unset_blank_email
+    unset(:email) if email.blank?
+  end
+  after_save :unset_blank_email
+  private :unset_blank_email
+
   ## Recoverable
   field :reset_password_token, :type => String
   field :reset_password_sent_at, :type => Time
