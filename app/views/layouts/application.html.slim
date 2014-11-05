@@ -22,6 +22,7 @@ html class=page_class lang="zh-CN"
     = stylesheet_link_tag "application"
     = yield :stylesheet
     = javascript_include_tag "modernizr"
+    script src="https://s.meiqia.com/js/mechat.js?unitid=4075" async="true"
     - if Rails.env.production?
       = render 'layouts/analystics'
     = render 'layouts/browsehappy'
@@ -53,7 +54,6 @@ html class=page_class lang="zh-CN"
       = link_to '产品时间线', maps_stories_path
     = javascript_include_tag "application"
     = yield :script
-    script src="https://s.meiqia.com/js/mechat.js?unitid=4075"
     - if user_signed_in? and Rails.env.production?
       javascript:
         _hmt.push(['_trackEvent', 'session', 'signin']);
