@@ -8,6 +8,7 @@ class Category
   field :priority, type: Integer, default: 0
   mount_uploader :cover, CoverUploader
   field :icon, type: String, default: "fa-tags" # font awesome
+  field :tag_names, type: String
 
   field :thing_ids, type: Array, default: []
 
