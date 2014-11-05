@@ -77,7 +77,6 @@ class Thing < Post
   has_many :adoptions, dependent: :destroy
 
   has_and_belongs_to_many :tags, counter_cache: true
-  before_save :update_categories_by_tags
 
   belongs_to :resource
 
@@ -403,10 +402,6 @@ class Thing < Post
 
   def update_brand
     self.brand_name = self.brand.brand_text if self.brand
-  end
-
-  def update_categories_by_tags
-    self.categories = self.tags.map(&:category).compact.map(&:name) unless self.tags.empty?
   end
 
   # delete ~, which may cause slug to be 'foo-bar-~', which cannot be found.
