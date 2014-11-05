@@ -178,7 +178,7 @@ module OrdersHelper
     })
   end
 
-  def coupon_text order
+  def coupon_text(order)
     unless order.coupon_code.nil?
       coupon = order.coupon_code.coupon
       "#{coupon.price} -> #{coupon.name} #{coupon.note}"
@@ -186,8 +186,16 @@ module OrdersHelper
   end
 
   # 付款时间
-  def payment_time order
+  def payment_time(order)
     payment = order.order_histories.where(from: :pending).where(to: :confirmed).first
     date_time_text(payment.created_at) if payment
+  end
+
+  def bong_point_consumable?(order)
+    order.maximal_consumable_bong_point > 0
+  end
+
+  def bong_point_text
+    link_to '活跃点', '#', data: {toggle: "modal", target: "#bong_point_modal"}
   end
 end
