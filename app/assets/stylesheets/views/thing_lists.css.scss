@@ -503,6 +503,10 @@ html.thing_lists_show {
     }
   }
 
+  .modal-backdrop.fade.in {
+    opacity: .65;
+  }
+
   #change_list_background_modal {
     .modal-dialog {
       position: absolute;
@@ -533,11 +537,11 @@ html.thing_lists_show {
             text-align: center;
 
             opacity: 1;
-            background: $vulcan;
+            background: $blue-dark;
             color: white;
 
             &:hover {
-              background: $red;
+              background: $blue-light;
             }
           }
         }
@@ -572,12 +576,23 @@ html.thing_lists_show {
         font-size: 24px;
       }
 
+      &:hover {
+        opacity: 1;
+
+        i {
+          display: block;
+          background: rgba($blue-light, .7);
+          border-radius: 50%;
+        }
+      }
+
       &.thing_list_background_wrapper--active {
         position: relative;
         opacity: 1;
 
         i {
           display: block;
+          background: transparent;
         }
 
         &:before {
@@ -589,17 +604,7 @@ html.thing_lists_show {
           bottom: 0;
           left: 0;
 
-          background: rgba(black, .7);
-        }
-      }
-
-      &:hover {
-        opacity: 1;
-
-        i {
-          display: block;
-          background: rgba($blue-light, .7);
-          border-radius: 50%;
+          background: rgba($blue-light, .6);
         }
       }
     }
