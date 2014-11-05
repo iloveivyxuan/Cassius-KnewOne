@@ -1,5 +1,7 @@
 - provide :nav, :reviews
 - page_title "#{@review.title} - #{@thing.title}"
+- provide :wechat_title, @review.title
+- provide :wechat_desc, "#{@review.author.name}对#{@thing.title}的评测"
 
 - if browser.mobile? || browser.tablet?
   = render "things/mobile_buy", tp: present(@thing)

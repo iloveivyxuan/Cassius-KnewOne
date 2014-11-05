@@ -1,5 +1,7 @@
 - provide :nav, :activities
 - page_title "【#{[@thing.title, @thing.subtitle].reject(&:blank?).join(' - ')} 动态】"
+- provide :wechat_title, "#{@thing.title} - 动态"
+- provide :wechat_desc, @thing.subtitle
 
 section.things_subpage
   header.clearfix

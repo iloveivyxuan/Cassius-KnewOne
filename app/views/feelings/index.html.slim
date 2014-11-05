@@ -1,5 +1,7 @@
 - provide :nav, :thing_feelings unless content_for? :nav
 - page_title "【#{[@thing.title, @thing.subtitle].reject(&:blank?).join(' - ')} 短评】"
+- provide :wechat_title, "#{@thing.title} - 短评"
+- provide :wechat_desc, @thing.subtitle
 
 section.things_subpage
   = render 'feelings/form'

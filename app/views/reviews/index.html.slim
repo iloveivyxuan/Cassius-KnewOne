@@ -1,5 +1,7 @@
 - provide :nav, :reviews
 - page_title "【#{[@thing.title, @thing.subtitle].reject(&:blank?).join(' - ')} 评测|怎么用|评价】"
+- provide :wechat_title, "#{@thing.title} - 评测"
+- provide :wechat_desc, @thing.subtitle
 
 - if @reviews.present?
   section.things_subpage
