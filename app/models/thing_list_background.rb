@@ -12,6 +12,6 @@ class ThingListBackground
   after_destroy do
     ThingList
       .where(background_id: self.id)
-      .update_all(background_id: ThingListBackground.first.id)
+      .update_all(background_id: ThingListBackground.first.try(:id))
   end
 end
