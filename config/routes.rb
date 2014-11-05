@@ -321,6 +321,7 @@ Making::Application.routes.draw do
     end
 
     resources :thing_lists, only: [:index]
+    resources :thing_list_backgrounds, only: [:index, :edit, :create, :update, :destroy]
 
     resources :reviews, only: [:index]
 

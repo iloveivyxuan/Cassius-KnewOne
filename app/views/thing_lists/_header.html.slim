@@ -7,9 +7,6 @@ header
   = render 'shared/user_avatar', user: user, options: {class: 'user_avatar user_avatar--vertical hidden-md hidden-lg'}
   = render 'shared/user_avatar', user: user, options: {class: 'user_avatar hidden-xs hidden-sm'}
 
-  - if can?(:update, list)
-    a.thing_list_edit_button.btn.btn--blue href="#" 管理
-
   .thing_list_info
     .thing_list_name
       = editable list, :name, title: '列表名称'
@@ -28,3 +25,12 @@ header
           span.comments_count= list.comments.size
 
       li = render 'share_link', thing_list: list
+
+  - if can?(:update, list)
+    a.thing_list_edit_button.btn.btn--blue href="#" 管理
+    a.thing_list_change_background_button.btn.btn--blue [href="#"
+      data-toggle="modal" data-target="#change_list_background_modal"]
+      | 更换背景
+
+    - content_for :end
+      = render 'change_list_background_modal', thing_list: list

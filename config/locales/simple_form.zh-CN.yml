@@ -44,6 +44,8 @@ zh-CN:
         stage: '阶段'
         stage_end_at: '阶段结束时间'
         sharing_text: '分享文案'
+      thing_list_background:
+        order: '位置（值越大越靠前）'
       rebate:
         name: '明目'
         price: '价格'
