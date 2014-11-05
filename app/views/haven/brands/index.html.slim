@@ -11,6 +11,7 @@ table.table
       th 品牌名（中文）
       th 品牌名（英文）
       th 产品数
+      th 描述
       th 操作
   tbody
     - @brands.each do |b|
@@ -20,6 +21,7 @@ table.table
         th= b.zh_name
         th= b.en_name
         th= b.things.size
+        th= "（空）" unless b.description?
         th
           = link_to '[编辑]', edit_haven_brand_path(b.id)
           = link_to '[删除]', haven_brand_path(b.id), method: :delete
