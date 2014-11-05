@@ -20,7 +20,7 @@
                 li.nav_group.dropdown
                   = link_to categories_path, class: 'nav_group_more',
                     data: {target: "#", toggle: "dropdown"} do
-                    | 全部
+                    | 分类
                     i.fa.fa-caret-down
                   ul.dropdown-menu
                     - Category.primary.gt(things_count: 0).desc(:things_count).limit(14).each do |c|
