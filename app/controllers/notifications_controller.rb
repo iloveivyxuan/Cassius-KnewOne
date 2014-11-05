@@ -56,6 +56,8 @@ class NotificationsController < ApplicationController
       %w(following weibo_friend_joined)
     when "fancy"
       %w(love_feeling love_review love_topic fancy_thing fancy_list)
+    else
+      []
     end
   end
 end

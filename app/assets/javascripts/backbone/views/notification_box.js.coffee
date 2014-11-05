@@ -43,7 +43,7 @@ Making.Views.Notification = Backbone.View.extend
         @$count.text('')
 
   openNotification: (event) ->
-    @markRead $(".tab-pane.active").attr("id"), $('li.active').attr('data-unread-count')
+    @markRead $("#notification_box .tab-pane.active").attr("id"), $('li.active').attr('data-unread-count')
 
   openTab: (event) ->
     type = $(event.target.parentElement).attr("href")
