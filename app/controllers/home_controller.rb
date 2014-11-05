@@ -18,11 +18,7 @@ class HomeController < ApplicationController
         @pager = activities
       else
         session[:source] = "latest"
-        if current_user.categories.present?
-          things = current_user.categories.things.published.approved.desc(:approved_at)
-        else
-          things = Thing.published.approved.desc(:approved_at)
-        end
+        things = Thing.published.approved.desc(:approved_at)
         things = things.page(params[:page]).per(30)
         reviews = []
         @feeds = HomeFeed.create_from_things_and_reviews(things, reviews)
@@ -82,7 +78,6 @@ class HomeController < ApplicationController
   def welcome
     @friends = current_user.recommend_users || []
     @categories = Category.desc(:things_count).limit(9)
-    @categories.each { |c| current_user.categories << c }
   end
 
   def error
