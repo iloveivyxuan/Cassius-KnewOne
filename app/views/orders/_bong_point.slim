@@ -1,4 +1,5 @@
 - if bong_point_consumable?(@order)
+  = render 'shared/bong_point_modal'
   - if @order.bong_point_required?
     - if !current_user.bong_bind?
       .alert.alert-danger
