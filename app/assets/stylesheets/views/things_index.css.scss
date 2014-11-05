@@ -114,6 +114,17 @@ html.shop, html.things_index {
   }
 }
 
+html.things_shop {
+  &.desktop {
+    #things_nav {
+      .bootstrap-select {
+        margin-left: 1em;
+        width: 180px;
+      }
+    }
+  }
+}
+
 html.things_index #things_nav {
   h1 {
     margin-left: 1em;
