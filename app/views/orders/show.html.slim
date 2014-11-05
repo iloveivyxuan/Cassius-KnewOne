@@ -98,7 +98,7 @@ section.orders_wrapper
     = share_link(@order)
     = order_operations(@order)
     = return_link(@order, (@order.confirmed? ? 'btn btn-success' : 'btn btn-default'))
-    = link_to '需要帮助?', '#olark_chat', title: '需要帮助?', class: 'btn btn-link'
+    = link_to '需要帮助?', '#customer_services', title: '需要帮助?', class: 'btn btn-link'
 
 /= render partial: 'pay_modal', locals: {order: @order}
 

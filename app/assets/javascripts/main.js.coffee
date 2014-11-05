@@ -218,46 +218,22 @@ do (exports = Making) ->
         return
   )
 
-  exports.SetupOlark = (element) ->
-    $element    = $(element)
-    klass_hint  = $element.data('hint')
-    klass_spin  = 'fa-spinner fa-spin'
-    $hint       = $element.find('.' + klass_hint)
-    $modal      = $('#feedback_modal')
-    initialized = false
+  exports.SetupCustomerServices = (element) ->
+    $element = $(element)
+    $modal   = $('#feedback_modal')
 
     $element.click (e) ->
       e.preventDefault()
 
-      if !initialized
-        if $hint.length > 0
-          $hint.removeClass(klass_hint).addClass(klass_spin)
-
-        timeout = setTimeout ->
-          $modal.modal('show')
-          $hint.removeClass(klass_spin).addClass(klass_hint)
-        , 10000
-
-        $.getScript $element.data('url'), ->
-          $user = $('#user')
-          name  = $user.data('name')
-          email = $user.data('email')
-          id    = $user.data('id')
-
-          olark('api.visitor.updateFullName', {fullName: name}) if name
-          olark('api.chat.updateVisitorNickname', {snippet: name }) if name
-          olark('api.visitor.updateEmailAddress', {emailAddress: email}) if email
-          olark('api.visitor.updateCustomFields', {customerId: id}) if id
-          olark('api.box.expand')
-          if $hint.length > 0
-            olark 'api.box.onExpand', ->
-              $hint.removeClass(klass_spin).addClass(klass_hint)
-              clearTimeout(timeout)
-              if $modal.is(':visible') then $modal.modal('hide')
-
-          initialized = true
+      switch exports.device
+        when 'mobile', 'tablet'
+          $button = $('#MECHAT-BTN-2')
+        when 'desktop'
+          $button = $('#MECHAT-PCBTN')
+      if $button.length
+        $button.trigger('click')
       else
-        olark('api.box.expand')
+        $modal.modal('show')
 
   exports.GoTop = ->
     $(window).on 'scroll', ->
@@ -336,7 +312,7 @@ do (exports = Making) ->
     exports.Share()
     exports.AjaxComplete()
     exports.ToggleFixedNavbar()
-    exports.SetupOlark('[href="#olark_chat"]')
+    exports.SetupCustomerServices('[href="#customer_services"]')
     exports.GoTop()
     exports.PopoverProfiles()
     exports.PrivateMessage()
