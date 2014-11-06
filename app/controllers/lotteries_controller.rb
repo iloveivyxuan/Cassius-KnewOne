@@ -43,6 +43,8 @@ class LotteriesController < ApplicationController
     elsif params[:review]
       post = Review.find params[:review]
       @lottery.contribution_link = thing_review_url(post.thing, post)
+    else
+      return
     end
     @lottery.winner_link = user_url(post.author)
     @lottery.date = post.created_at
