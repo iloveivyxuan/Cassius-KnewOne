@@ -11,9 +11,10 @@ module Haven
     end
 
     def create
-      category = Category.where(name: params[:tag][:category]).first
-      tag = Tag.new(name: params[:tag][:name], category: category) if category
-      if tag && tag.save
+      categories = params[:tag][:categories_text].split(/[，,]/).map { |name| Category.where(name: name).first }.compact.uniq
+      tag = Tag.new(name: params[:tag][:name])
+      categories.each { |c| tag.categories << c }
+      if tag.save
         redirect_to haven_tags_path
       else
         render 'new'
