@@ -89,7 +89,10 @@ html.desktop {
     }
 
     > header {
-      margin-bottom: 15px;
+      margin: {
+        bottom: 15px;
+        right: 45px;
+      }
 
       h5 {
         margin: 0;
