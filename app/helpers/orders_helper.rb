@@ -1,7 +1,7 @@
 module OrdersHelper
-  def pay_link(order, drop_up = true, css = 'btn btn-success btn_pay')
+  def pay_link(order, drop_up = true)
     if order.can_pay?
-      render partial: 'orders/pay', locals: { order: order, css: css, dropup: drop_up }
+      render partial: 'orders/pay', locals: { order: order, dropup: drop_up }
     end
   end
 
