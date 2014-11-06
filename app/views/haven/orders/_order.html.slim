@@ -43,6 +43,10 @@ li.order
       li
         strong.field 订单状态：
         span = state_text order
+      - if order.refund_note.present?
+        li
+          strong.field 退款理由：
+          span.warning = order.refund_note
       - if order.note.present?
         li
           strong.field 用户备注：

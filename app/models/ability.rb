@@ -101,7 +101,7 @@ class Ability
     can :manage, Address
 
     can :create, Order
-    can [:read, :deliver_bill,
+    can [:read, :deliver_bill, :request_refund,
          :tenpay, :alipay, :alipay_wap, :tenpay_wechat, :cancel,
          :alipay_callback, :tenpay_callback, :alipay_wap_callback], Order do |order|
       order.user == user

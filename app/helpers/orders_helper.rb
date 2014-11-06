@@ -121,6 +121,14 @@ module OrdersHelper
     end
   end
 
+  def request_refund_link(order, css = 'btn btn-warning')
+    if order.can_request_refund?
+      content_tag :div, class: 'btn-group' do
+        link_to '申请退款', '#request_refund_modal', class: css, data: { toggle: 'modal' }
+      end
+    end
+  end
+
   def order_operations(order)
     [
       pay_link(order),
