@@ -10,6 +10,6 @@ class ThingListPresenter < ApplicationPresenter
   end
 
   def share_content
-    "来自 @KnewOne 的新奇酷榜单 #{thing_list.name}，里面收集了 #{thing_list.items.size} 个商品 #{thing_list_url(thing_list, refer: 'weibo')}"
+    "这是来自剁手站 @KnewOne 的新奇酷列表【#{thing_list.name}】，里面有各种好东西，感觉非常赞！真是忍不住剁手啊 →_→ #{thing_list_url(thing_list, refer: 'weibo')}"
   end
 end
