@@ -91,14 +91,14 @@ section.orders_wrapper
 
   = render partial: 'consume_point'
 
-  - if @order.pending?
-    p.well.text-info * 请您在24小时之内支付，否则订单将自动取消。
-
-  .order_actions.text-right
-    = share_link(@order)
+  .order_actions
     = order_operations(@order)
+    = share_link(@order)
     = return_link(@order, (@order.confirmed? ? 'btn btn-success' : 'btn btn-default'))
     = link_to '需要帮助?', '#customer_services', title: '需要帮助?', class: 'btn btn-link'
+
+  - if @order.pending?
+    p.well.text-info * 请您在24小时之内支付，否则订单将自动取消。
 
 /= render partial: 'pay_modal', locals: {order: @order}
 

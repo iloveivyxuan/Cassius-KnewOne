@@ -123,9 +123,9 @@ module OrdersHelper
 
   def order_operations(order)
     [
-      cancel_link(order),
       pay_link(order),
-      confirm_free_link(order)
+      confirm_free_link(order),
+      cancel_link(order)
     ].compact.join('').html_safe
   end
 

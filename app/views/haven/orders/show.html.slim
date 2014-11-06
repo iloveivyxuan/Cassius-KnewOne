@@ -106,10 +106,10 @@ section.orders_wrapper
       = refund_to_balance_link(@order)
       = refund_bong_point_link(@order)
     hr
-    .order_actions.text-right
-      .btn-group = link_to '返回', haven_orders_path, class: 'btn btn-default'
-      = way_bill_link(@order)
-      = deliver_bill_link(@order)
-      = refund_link(@order)
-      = refunded_balance_to_platform_link(@order)
+    .order_actions
       = close_link(@order)
+      = refunded_balance_to_platform_link(@order)
+      = refund_link(@order)
+      = deliver_bill_link(@order)
+      = way_bill_link(@order)
+      .btn-group = link_to '返回', haven_orders_path, class: 'btn btn-default'

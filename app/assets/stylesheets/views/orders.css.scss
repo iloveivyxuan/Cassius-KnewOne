@@ -4,6 +4,54 @@ html.orders_new,
 html.orders_create,
 .orders_wrapper {
 
+  @mixin btn-group-responsive {
+    @media screen and (max-width: $screen-md-max) {
+      .btn-group {
+        display: block;
+        margin-bottom: 1rem;
+
+        > .btn:only-child,
+        > .dropdown-toggle {
+          margin-bottom: 0;
+        }
+
+        & ~ .btn {
+          width: auto;
+        }
+      }
+
+      .btn {
+        display: block;
+        margin-bottom: 1rem;
+        width: 100%;
+      }
+
+      .dropdown-toggle {
+        display: block;
+        width: 100%;
+      }
+
+      .dropdown-menu {
+        width: 100%;
+
+        > li {
+          > a {
+            padding: {
+              bottom: 8px;
+              top: 8px;
+            }
+          }
+        }
+      }
+    }
+
+    @media screen and (min-width: $screen-md-min) {
+      .dropdown-menu {
+        min-width: 112px;
+      }
+    }
+  }
+
   #wrapper {
     @include wrapper(simple, $max-width: $screen-md-min);
   }
@@ -18,13 +66,20 @@ html.orders_create,
   }
 
   .order_actions {
-    .btn {
-      margin-left: 10px;
-    }
+    @include btn-group-responsive;
+    margin-bottom: 1rem;
 
-    @media screen and (max-width: $screen-xs-min) {
-      .btn {
-        margin-bottom: 10px;
+    @media screen and (min-width: $screen-md-min) {
+      @include clearfix;
+
+      > .btn,
+      > .btn-group {
+        float: right;
+        margin-left: 1rem;
+      }
+
+      .dropdown-toggle {
+        min-width: 112px;
       }
     }
   }
@@ -234,45 +289,26 @@ html.orders_create,
       }
 
       aside {
+        @include btn-group-responsive;
         @media screen and (min-width: $screen-md-min) {
           float: right;
-        }
 
-        .btn-group {
-          @include clearfix;
-          display: block;
-          margin-bottom: 1rem;
-        }
+          .btn-group {
+            display: block;
+            margin-bottom: 1rem;
 
-        .dropdown-toggle {
-          display: block;
-          width: 100%;
-        }
-
-        .dropdown-menu {
-          width: 100%;
-
-          @media screen and (min-width: $screen-md-min) {
-            min-width: 112px;
-          }
-
-          > li {
-            > a {
-              @media screen and (max-width: $screen-md-max) {
-                padding: {
-                  bottom: 8px;
-                  top: 8px;
-                }
-              }
+            > .btn:only-child,
+            > .dropdown-toggle {
+              margin-bottom: 0;
             }
           }
-        }
 
-        > .btn {
-          display: block;
-          margin-bottom: 1rem;
-          width: 100%;
-          min-width: 8em;
+          .btn {
+            display: block;
+            margin-bottom: 1rem;
+            width: 100%;
+            min-width: 8em;
+          }
         }
       }
     }
