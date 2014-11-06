@@ -450,6 +450,7 @@ html.touch {
 
   @mixin icon {
     > .fa {
+      margin-right: 0;
       line-height: 40px;
 
       @media (min-width: $grid-float-breakpoint) {
@@ -845,7 +846,6 @@ html.no-touch {
     height: 45px;
     margin: 0;
     padding: 0;
-    line-height: 45px;
     color: $gray-lighter;
     &:hover { color: #fff }
     text-align: center;
@@ -872,6 +872,10 @@ html.no-touch {
     .badge_success { background-color: $orange }
     .badge_primary { background-color: $blue-bright }
     .private_messages_count { background-color: $brand-primary }
+
+    &.cart {
+      margin-left: .5em;
+    }
   }
 
   .user_link.notification {
