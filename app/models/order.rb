@@ -85,7 +85,8 @@ class Order
     :shunfeng => '顺丰速递',
     :zhongtong => '中通速递',
     :ems => 'EMS',
-    :shentong => '申通速递'
+    :shentong => '申通速递',
+    :youshuwuliu => '优速物流'
   }
   PAYMENT_METHOD = {
     :tenpay => '财付通',
