@@ -25,9 +25,8 @@ module Haven
     end
 
     def update
-      new_category = Category.where(name: tag_params.values.first).first
-      @tag.category = new_category if new_category
       @tag.name = params[:tag][:name]
+      @tag.categories.clear
       params[:tag][:categories_text].split(/[，,]/).map { |t| Category.where(name: t.strip).first  }.each do |c|
         @tag.categories << c if c
       end
