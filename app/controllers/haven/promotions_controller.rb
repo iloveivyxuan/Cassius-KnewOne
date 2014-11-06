@@ -7,9 +7,6 @@ module Haven
       @promotions = Promotion.all
     end
 
-    def show
-    end
-
     def new
       @promotion = Promotion.new
     end

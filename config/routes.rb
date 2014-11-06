@@ -291,7 +291,7 @@ Making::Application.routes.draw do
 
     resources :coupon_codes, only: [:destroy]
 
-    resources :promotions
+    resources :promotions, except: [:show]
     resources :jumptrons
     resources :things, only: [:index, :update, :edit] do
       member do
