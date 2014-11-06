@@ -62,7 +62,11 @@ class Category
     def find_and_plus(name)
       c = where(name: name).first
       if c.present?
-        c.inc things_count: 1
+        if c.things_count
+          c.inc things_count: 1
+        else
+          c.update things_count: 1
+        end
       else
         Category.create name: name, things_count: 1
       end
