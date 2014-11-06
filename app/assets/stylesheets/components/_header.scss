@@ -431,6 +431,11 @@ html.touch {
 
     .user_link {
       width: auto;
+      line-height: 45px;
+
+      i {
+        margin-right: .5em;
+      }
 
       @media (min-width: $grid-float-breakpoint) {
         margin-left: 20px;
