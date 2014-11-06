@@ -1,0 +1,13 @@
+#request_refund_modal.modal.fade tabindex="-1" role="dialog" aria-labelledby="btc_pay_title" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      header.modal-header
+        button.close data-dismiss="modal" aria-hidden="true"
+          | &times;
+        h4.modal-title
+          | 申请退款
+      main.modal-body
+        = form_tag request_refund_order_path(@order), method: :patch do
+          = text_area_tag :reason, '', placeholder: '原因', class: 'form-control', row: 3
+          br
+          = submit_tag '提交', class: 'btn btn-success'

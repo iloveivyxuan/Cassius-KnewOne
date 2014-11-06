@@ -68,6 +68,7 @@ class Order
     :shipped => '已发货',
     :canceled => '订单取消',
     :closed => '订单关闭',
+    :request_refund => '退款等待受理',
     :refunded => '已协商退款',
     :refunded_to_balance => '已退款到余额',
     :refunded_to_platform => '已退款到第三方支付平台',
@@ -103,6 +104,7 @@ class Order
   field :deliver_no, type: String
   field :buy_as_gift, type: Boolean, default: false
   field :note, type: String
+  field :refund_note, type: String
   field :admin_note, type: String, default: ''
   field :system_note, type: String, default: ''
   field :alteration, type: String
@@ -235,8 +237,12 @@ class Order
     pending?
   end
 
+  def can_request_refund?
+    confirmed?
+  end
+
   def can_refund?
-    confirmed? || shipped?
+    request_refund? || confirmed? || shipped?
   end
 
   def can_refunded_balance_to_platform?
@@ -413,6 +419,18 @@ class Order
     after_confirm
 
     true
+  end
+
+  def request_refund!(reason)
+    return false unless can_request_refund?
+
+    state = self.state
+    self.state = :request_refund
+    self.refund_note = reason
+
+    save!
+
+    order_histories.create from: state, to: :request_refund
   end
 
   def refund!

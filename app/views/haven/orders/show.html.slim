@@ -44,6 +44,10 @@ section.orders_wrapper
       li
         strong.field 创建时间：
         span = date_time_text @order.created_at
+      - if @order.refund_note.present?
+        li
+          strong.field 退款理由：
+          span.warning = @order.refund_note
       - if @order.note.present?
         li
           strong.field 用户备注：

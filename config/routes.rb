@@ -114,6 +114,7 @@ Making::Application.routes.draw do
     member do
       patch 'confirm_free'
       patch 'cancel'
+      patch 'request_refund'
       get 'tenpay'
       get 'tenpay_wechat'
       get 'tenpay_notify'

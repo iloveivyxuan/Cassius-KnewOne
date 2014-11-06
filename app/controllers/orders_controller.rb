@@ -50,6 +50,11 @@ class OrdersController < ApplicationController
     redirect_to @order
   end
 
+  def request_refund
+    @order.request_refund! params[:reason]
+    redirect_to @order
+  end
+
   def deliver_bill
     return redirect_to @order unless @order.shipped? or @order.confirmed?
 
