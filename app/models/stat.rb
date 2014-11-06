@@ -42,7 +42,9 @@ class Stat
     :per_customer_sales => '客单价',
     :most_sales_product => '销售最多的产品',
     :less_sales_product => '销售最少的产品',
-    :has_purchased_users_count => '消费过的用户数'
+    :has_purchased_users_count => '消费过的用户数',
+    :bong_point_orders_count => '使用 Bong 活跃点支付的订单数',
+    :bong_point_consumed_count => '共使用了多少活跃点'
   }
 
   # datas with text_area
@@ -296,6 +298,14 @@ class Stat
 
   def lists_count
     ThingList.where(:created_at.lte => @@date_to.next_day).size
+  end
+
+  def bong_point_orders_count
+    all_orders.bong_point_consumed.size
+  end
+
+  def bong_point_consumed_count
+    all_orders.map(&:bong_point_transactions).flatten.map(&:bong_point).flatten.reduce(&:+)
   end
 
   private
