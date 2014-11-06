@@ -98,7 +98,7 @@ html.touch {
       &:last-child {
         border-radius: 0 0 4px 4px;
       }
-      
+
       &.is-active {
         > a + .dropdown-submenu-wrapper {
           display: block;
@@ -121,7 +121,7 @@ html.touch {
     @media (min-width: $grid-float-breakpoint) {
       background-color: $navbar-dropdown-bg;
       border-radius: 0 4px 4px 0;
-      box-shadow: inset 5px -5px 25px 1px rgba(0, 0, 0, .1); 
+      box-shadow: inset 5px -5px 25px 1px rgba(0, 0, 0, .1);
 
       > li {
         overflow: hidden;
@@ -616,10 +616,10 @@ html.touch {
 }
 
 html.no-touch {
-	#header {
-		margin-bottom: 45px;
-		@include MQ(Mplus) { margin-bottom: 74px }
-	}
+  #header {
+    margin-bottom: 45px;
+    @include MQ(Mplus) { margin-bottom: 74px }
+  }
 }
 .navbar {
   min-height: 45px;
@@ -734,7 +734,7 @@ html.no-touch {
     line-height: 45px;
     color: #fff;
     background: none;
-    &:hover { 
+    &:hover {
       color: $blue-light;
       background: $navbar-dropdown-bg;
     }
@@ -929,7 +929,7 @@ html.no-touch {
               }
             }
             &.active {
-              a { 
+              a {
                 color: $brand-primary;
                 background: $navbar-dropdown-bg;
                 &:hover {
