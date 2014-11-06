@@ -79,9 +79,13 @@ html.shop, html.things_index {
 
   #things_information {
     @include clearfix;
-    background-color: #fbfbfa;
+    background-color: #fafafa;
     margin-top: 20px;
-    padding: 20px 20px;
+    padding: 1.5em;
+
+    > .col-md-3 {
+      padding: 0;
+    }
 
     .tag-button {
       border: none;

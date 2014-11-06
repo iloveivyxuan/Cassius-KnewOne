@@ -23,9 +23,9 @@
 
   - if @brand || @category
     section#things_information
-      .col-md-4
+      .col-md-3
         img#logo src=(@brand ? @brand.logo.url : @category.cover.url)
-      .col-md-8
+      .col-md-9
         p#description= (@brand ? @brand.description : @category.description)
         - tags = @brand ? @brand.tags : @category.tags
         #tags
