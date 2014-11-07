@@ -306,7 +306,7 @@ do (exports = Making) ->
 
   $ ->
     $user = $('#user')
-    $nav_group = $('.nav_group.dropdown')
+    $navDropdown = $('.navbar .dropdown')
     $textarea = $('textarea')
     $selectpicker = $('select.selectpicker')
     keycode = exports.keycode
@@ -485,35 +485,16 @@ do (exports = Making) ->
       $('#notification_box').children('a').attr('data-toggle', 'dropdown_box')
       new Making.Views.Notification() if Making.user
 
-      $nav_group.each ->
+      $navDropdown.each ->
         $this = $(@)
-        $link = $this.children('.nav_group_link')
-        url = $link.data('url')
-        $dropdown_toggle = $this.children('.nav_group_more')
-        $dropdown_menu = $this.children('.dropdown-menu')
-        $link
-        .attr('href', url)
-        .removeClass('dropdown-toggle')
-        .removeAttr('data-toggle')
-        .removeAttr('data-url')
-        $this.on 'mouseleave', ->
-          $this.removeClass('open')
-        $link.on 'mouseenter', ->
-          $this.removeClass('open')
-        $dropdown_toggle
-          .on 'mouseenter', (event) ->
-            if !$this.hasClass('open') then $this.addClass('open')
-          .on 'click', (event) ->
-            link = $(@).attr('href')
-            if link isnt '#'
-              window.location.href = link
+        $this.hover ->
+          $this.toggleClass('open')
+        if $this.is('.nav_flyout')
+          $this.hover ->
+            $docbody.toggleClass('nav_flyout-open')
 
       $user
         .children('.dropdown')
-          .on 'mouseenter', ->
-            $(@).addClass('open')
-          .on 'mouseleave', ->
-            $(@).removeClass('open')
         .children('.dropdown-toggle')
           .on 'click', ->
             link = $(@).attr('href')

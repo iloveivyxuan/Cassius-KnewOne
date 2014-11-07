@@ -1,7 +1,0 @@
-- cache ['header_tag', header_tag.id, Time.now.to_i / 1.hour]
-  li
-    = link_to things_path(tag: header_tag) do
-      em
-        = header_tag.name
-      span
-        = header_tag.things.size
