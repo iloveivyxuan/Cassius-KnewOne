@@ -7,7 +7,10 @@ do (exports = Making, $ = jQuery) ->
         $(row).addClass('is-active')
       deactivate: (row) ->
         $(row).removeClass('is-active')
+      enter: ->
+        $menu.addClass('is-expand')
       exitMenu: ->
+        $menu.removeClass('is-expand')
         return true
 
   return
