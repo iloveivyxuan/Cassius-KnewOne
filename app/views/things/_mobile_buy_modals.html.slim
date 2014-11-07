@@ -33,9 +33,6 @@
       | 此产品将在
       time
       | 后到货
-    .cart_success
-      i.fa.fa-check.fa-lg
-      | 已加入购物车
     .submit
       - if user_signed_in?
         = button_tag type: "submit", class: "btn btn-success buy_button", disabled: true do
