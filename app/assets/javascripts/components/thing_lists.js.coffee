@@ -1,5 +1,5 @@
 $(->
-  cache = Object.create({})
+  cache = Object.create(null)
   selector = '[data-add-to-list]'
 
   $('body').append('<div id="add-to-list-modal-container"></div>')

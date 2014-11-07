@@ -51,7 +51,7 @@ Making.ProfilePopovers = ->
     )
   , 200)
 
-  cache = Object.create({})
+  cache = Object.create(null)
   selector = '[data-profile-popover]'
 
   $(document).on('mouseenter', selector, (event) ->
