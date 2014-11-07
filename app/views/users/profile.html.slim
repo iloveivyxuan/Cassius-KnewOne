@@ -1,63 +1,55 @@
 .profile
-  ul.profile_info
-    li.profile_name
+  header
+    h4.profile-name
       = link_to @user
         = @user.name
-        = render_user_gender(@user)
-    li.profile_level
-      span.profile_level_rank
-        | Lv.#{@user.rank}
-      span.progress title="#{@user.progress}%"
-        .progress-bar style="width: #{@user.progress}%"
-    li.profile_description
-      = @user.description
 
-    li.profile_avatar
+    .profile-gender = symbolize_gender(@user.gender)
+
+    .profile-level = render 'shared/level', user: @user
+
+    .profile-avatar
       = link_to @user
-        = user_avatar(@user, :square)
-    - if @user.location.present?
-      li.profile_location
-        i.fa.fa-map-marker
-        = @user.location
-    li.profile_followers
-      = link_to followers_user_path(@user)
-        | #{@user.followers_count} 关注者
+        = user_avatar(@user, :small)
 
-  ul.profile_actions
-    li.profile_action_dialog
-      = render 'private_message_btn', user: @user
-    li.profile_action_follow
+  - if @user.description.present?
+    p.profile-description
+      = @user.description.truncate(32)
+
+  section.profile-actions
+    = link_to followers_user_path(@user), class: 'profile-followers'
+      | 关注者
+      span = @user.followers_count
+
+    - if current_user == @user
+      = link_to followings_user_path(@user), class: 'profile-followings'
+        | 关注
+        span = @user.followings_count
+    - else
       = render 'follow_btn', user: @user
+      = render 'private_message_btn', user: @user, text: '私信'
 
-  / `&nbsp;` between <li>s is necessary for `text-align: justify`
-  / http://stackoverflow.com/questions/11589590/
-  ul.profile_links
-    li.profile_owns
-      = link_to owns_user_path(@user)
-        | 拥有
-        b = @user.owns_count
-    | &nbsp;
-    li.profile_fancies
-      = link_to fancies_user_path(@user)
-        | 喜欢
-        b = @user.fancies_count
-    | &nbsp;
-    li.profile_thing_lists
-      = link_to lists_user_path(@user)
-        | 列表
-        b = @user.thing_lists.count
-    | &nbsp;
-    li.profile_things
-      = link_to things_user_path(@user)
-        | 分享
-        b = @user.things_count
-    | &nbsp;
-    li.profile_feelings
-      = link_to feelings_user_path(@user)
-        | 短评
-        b = @user.feelings_count
-    | &nbsp;
-    li.profile_reviews
-      = link_to reviews_user_path(@user)
-        | 评测
-        b = @user.reviews_count
+  footer.profile-links
+    = link_to fancies_user_path(@user), class: 'profile-fancies'
+      i.fa.fa-heart
+      = @user.fancies_count
+
+    = link_to owns_user_path(@user), class: 'profile-owns'
+      i.fa.fa-dot-circle-o
+      = @user.owns_count
+
+    = link_to lists_user_path(@user), class: 'profile-lists'
+      i.fa.fa-list
+      = @user.thing_lists.count
+
+    = link_to things_user_path(@user), class: 'profile-things'
+      i.fa.fa-magic
+      = @user.things_count
+
+    = link_to reviews_user_path(@user), class: 'profile-reviews'
+      i.fa.fa-pencil
+      = @user.reviews_count
+
+    = link_to feelings_user_path(@user), class: 'profile-feelings'
+      i.fa.fa-comments
+      = @user.feelings_count

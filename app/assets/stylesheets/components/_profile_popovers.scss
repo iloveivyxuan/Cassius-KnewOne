@@ -1,160 +1,166 @@
 .popover {
   .profile {
-    $profile-popover-width: 360px;
-    $profile-popover-aside-width: 0.4 * $profile-popover-width;
-    $profile-popover-avatar-height: $profile-popover-aside-width - 25px;
+    width: 400px;
 
-    width: $profile-popover-width;
-    padding-left: $profile-popover-aside-width;
+    > header {
+      position: relative;
 
-    margin: 16px 11px;
+      min-height: 120px;
+      padding-left: 90px + 60px;
+      border: 30px solid transparent;
+      border-bottom-width: 0;
 
-    position: relative;
-
-    .profile_info {
-      height: 148px;
-      overflow: hidden;
-
-      .profile_name {
-        @include text-overflow;
-
-        a {
-          color: black;
-          font-weight: bold;
-          font-size: 24px;
-          line-height: 27px;
-        }
-
-        .gender {
-          margin-left: 7px;
-          color: $gray-light;
-          font-size: 24px;
-        }
-      }
-
-      .profile_level {
-        margin-top: 15px;
-
-        .profile_level_rank {
-          vertical-align: middle;
-          color: $blue;
-          font-family: 'orbitron-bold';
-        }
-
-        .progress {
-          display: inline-block;
-          margin: 0 0 0 1em;
-          width: 150px;
-          vertical-align: middle;
-        }
-      }
-
-      .profile_description {
-        margin-top: 15px;
-        font-size: 17px;
-
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-      }
-
-      .profile_avatar,
-      .profile_location,
-      .profile_followers {
+      .profile-avatar {
         position: absolute;
         left: 0;
-        width: $profile-popover-avatar-height;
-      }
-
-      .profile_avatar {
         top: 0;
 
         img {
-          @extend .img-circle;
-          height: $profile-popover-avatar-height;
-          width:  $profile-popover-avatar-height;
+          width: 90px;
+          border-radius: 50%;
         }
       }
 
-      .profile_location {
-        top: $profile-popover-avatar-height;
-        margin-top: 10px;
+      .profile-name {
+        margin-top: 20px;
 
-        text-align: center;
+        a {
+          @include plain-link($text-color);
+          @include text-overflow;
 
-        @include text-overflow;
-      }
-
-      .profile_followers {
-        top: 160px;
-        padding: 10px 0;
-
-        border: solid $gray-lighter;
-        border-width: 1px 0;
-
-        text-align: center;
-
-        a { color: black; }
-      }
-    }
-
-    .profile_actions {
-      margin-top: 12px;
-
-      .profile_action_dialog,
-      .profile_action_follow {
-        display: inline-block;
-
-        .btn {
-          line-height: 28px;
-          font-size: 16px;
+          max-width: 90%;
         }
       }
 
-      .profile_action_dialog .btn {
-        width: 50px;
-      }
+      .profile-gender {
+        position: absolute;
+        top: 20px;
+        right: 0;
 
-      .profile_action_follow .btn {
-        margin-left: 20px;
-        width: 146px;
-      }
-    }
-
-    .profile_links {
-      margin-top: 25px;
-
-      position: relative;
-      left: -$profile-popover-aside-width;
-      width: $profile-popover-width;
-
-      // http://stackoverflow.com/questions/11589590/
-      text-align: justify;
-      &:before {
-        content: '';
-        display: block;
-        width: 100%;
-        margin-bottom: -$line-height-base * 1em;
-      }
-      &:after {
-        content: '';
-        display: inline-block;
-        width: 100%;
-      }
-      li {
-        display: inline-block;
-        position: relative;
-        top: $line-height-base * 1em;
-      }
-
-      a {
+        font-size: 18px;
         color: $gray-light;
       }
+    }
 
-      b {
-        margin-left: 0.5em;
-        font-weight: normal;
-        color: black;
+    .profile-description {
+      margin: 10px 30px 0 180px;
+      font-size: 12px;
+      color: $gray-light;
+    }
+
+    .profile-actions,
+    .profile-links {
+      display: table;
+      table-layout: fixed;
+      width: 100%;
+
+      > a {
+        display: table-cell;
+        width: auto;
+        text-align: center;
+      }
+    }
+
+    .profile-actions {
+      margin-top: 20px;
+
+      > a {
+        @include plain-link($gray-lighter);
+        line-height: 40px;
+      }
+
+      i {
+        margin-right: 1em;
+      }
+
+      .profile-followers,
+      .profile-followings {
+        span {
+          margin-left: 1em;
+        }
+      }
+
+      .profile-followers {
+        @include plain-link($gray-light);
+
+        background: $vulcan;
+
+        span {
+          margin-left: 1em;
+          color: $gray-lighter;
+        }
+      }
+
+      .profile-followings {
+        background: $blue-dark;
+      }
+
+      .follow_btn {
+        padding: 0;
+        border: none;
+        border-radius: 0;
+
+        background: $blue-dark;
+
+        &.follow_btn--followed {
+        }
+
+        &.follow_btn--mutual_followed {
+        }
+      }
+
+      .private_message_btn {
+        background: $blue-light;
+      }
+    }
+
+    .profile-links {
+      background: $smoke-white;
+
+      > a {
+        @include plain-link($gray-light);
+
+        position: relative;
+        padding: 20px 0 15px;
+
+        &:before {
+          content: '';
+
+          position: absolute;
+          bottom: 0;
+
+          display: block;
+          width: 100%;
+          height: 3px;
+        }
+
+        &:hover {
+          &:before {
+            background-color: $blue;
+          }
+
+          i {
+            color: $blue-dark;
+          }
+
+          &.profile-fancies i {
+            color: $red;
+          }
+
+          &.profile-owns i {
+            color: $blue-light;
+          }
+
+          &.profile-lists i {
+            color: $orange;
+          }
+        }
+      }
+
+      i {
+        display: block;
+        margin-right: 0;
+        margin-bottom: .5em;
       }
     }
   }
