@@ -1,6 +1,7 @@
 .popover {
   .profile {
     width: 400px;
+    margin: -9px -15px;
 
     > header {
       position: relative;
@@ -127,7 +128,7 @@
           content: '';
 
           position: absolute;
-          bottom: 0;
+          bottom: -1px;
 
           display: block;
           width: 100%;
