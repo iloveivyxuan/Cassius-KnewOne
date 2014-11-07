@@ -29,7 +29,7 @@
       - if user_signed_in?
         dd.exchange
           = render 'users/follow_btn', user: @user
-          = render 'users/private_message_btn', user: @user
+          = render 'users/private_message_btn', user: @user, klass: 'btn btn-default'
       - if !browser.mobile? and !browser.tablet?
         = render_user_location(@user)
         = render_user_links(@user)
