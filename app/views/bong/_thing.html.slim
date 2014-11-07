@@ -1,5 +1,5 @@
 li
-  = link_or_login thing, class: "thumbnail", title: "#{thing.title}，#{thing.subtitle}" do
+  = link_or_login thing, class: "thumbnail", title: "#{thing.title}，#{thing.subtitle}", target: "_blank" do
     .image
       img src=thing.cover.url(:normal) alt="#{thing.title}，#{thing.subtitle}"
     .caption
