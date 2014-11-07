@@ -1,0 +1,22 @@
+- cache ['.nav_category', Time.now.to_i / 10.minutes]
+  ul.nav_category
+    li.nav_group.dropdown
+      = link_to categories_path, class: 'nav_group_more',
+        data: {target: "#", toggle: "dropdown"} do
+        | 分类
+        i.fa.fa-caret-down
+      ul.dropdown-menu
+        - Category.primary.gt(things_count: 0).desc(:things_count).limit(14).each do |c|
+          li
+            = link_to category_things_path(category: c) do
+              i class="fa fa-fw #{c.icon}"
+              em= c.name
+            .dropdown-submenu-wrapper
+              ul.dropdown-submenu
+                - c.inner_categories.each do |inner_c|
+                  = link_to category_things_path(category: inner_c) do
+                    i class="fa fa-fw #{inner_c.icon}"
+                    em= inner_c.name
+                    = render partial: "shared/header_tag", collection: inner_c.tags.gt(things_count: 5).desc(:things_count).limit(14)
+                li
+                  = link_to_with_icon "查看全部标签", "fa fa-list", categories_path
