@@ -27,7 +27,7 @@ li.order
           i.fa.fa-yen
           span = order.total_price
   aside
-    = pay_link order, false
+    = pay_link order
     = confirm_free_link order, 'btn btn-success'
     = link_to '订单详情', order, class: 'btn btn-default'
   section

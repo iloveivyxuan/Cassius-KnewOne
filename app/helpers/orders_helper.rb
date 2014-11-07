@@ -1,7 +1,7 @@
 module OrdersHelper
-  def pay_link(order, drop_up = true)
+  def pay_link(order, view = 'orders/pay')
     if order.can_pay?
-      render partial: 'orders/pay', locals: { order: order, dropup: drop_up }
+      render partial: view, locals: { order: order }
     end
   end
 
@@ -131,7 +131,7 @@ module OrdersHelper
 
   def order_operations(order)
     [
-      pay_link(order),
+      pay_link(order, 'orders/pay_buttons'),
       confirm_free_link(order),
       cancel_link(order)
     ].compact.join('').html_safe

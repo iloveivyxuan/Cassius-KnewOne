@@ -1,0 +1,3 @@
+= link_to_with_icon '支付宝', 'fa fa-fw fa-alipay fa-alipay--white', (browser.mobile? ? alipay_wap_order_path(order) : alipay_order_path(order)), class: 'btn btn-success'
+= link_to_with_icon '微信', 'fa fa-fw fa-weixin', tenpay_wechat_order_path(order), class: 'btn btn-success'
+= link_to_with_icon 'BTC', 'fa fa-fw fa-btc', '#btc_pay', class: 'btn btn-success', data: {toggle: 'modal'}
