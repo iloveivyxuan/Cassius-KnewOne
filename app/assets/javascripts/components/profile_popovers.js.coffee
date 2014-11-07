@@ -27,6 +27,7 @@ Making.ProfilePopovers = ->
       html: true
       placement: calculatePlacement
       trigger: 'manual'
+      template: '<div class="popover profile_popover"><div class="arrow"></div><div class="popover-content"></div></div>'
     })
 
     $element.on('mouseleave', ->

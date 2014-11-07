@@ -1,8 +1,15 @@
-.popover {
-  .profile {
-    width: 400px;
-    margin: -9px -15px;
+.popover.profile_popover {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .2);
 
+  .popover-content {
+    width: 400px;
+    padding: 0;
+  }
+
+  .profile {
     > header {
       position: relative;
 
@@ -102,12 +109,6 @@
         border-radius: 0;
 
         background: $blue-dark;
-
-        &.follow_btn--followed {
-        }
-
-        &.follow_btn--mutual_followed {
-        }
       }
 
       .private_message_btn {
@@ -128,7 +129,7 @@
           content: '';
 
           position: absolute;
-          bottom: -1px;
+          bottom: 0;
 
           display: block;
           width: 100%;
