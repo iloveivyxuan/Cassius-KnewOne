@@ -1,6 +1,7 @@
 module Haven
   class ApplicationController < ::ActionController::Base
     prepend_before_action :require_admin_signed_in
+    before_action :logging
     before_action :set_notification
 
     protected
@@ -23,6 +24,14 @@ module Haven
       if user_signed_in?
         @header_notifications = current_user.notifications.unread
       end
+    end
+
+    private
+
+    def logging
+      logger.info "Current user: #{user_signed_in? ? current_user.id : 'guest'}"
+      logger.info "Session: #{session.to_hash}"
+      logger.info "> IP #{request.ip} Who #{user_signed_in? ? current_user.id : 'guest'} By #{request.method} What #{request.fullpath} When #{Time.now} From #{request.env['action_dispatch.request.unsigned_session_cookie']['previous_url']}"
     end
   end
 end
