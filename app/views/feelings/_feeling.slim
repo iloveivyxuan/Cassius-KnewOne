@@ -5,7 +5,7 @@
       - klass = 'feed_article feeling feed_article--feeling'
       - klass += " #{feed_presenter.style}" if in_feeds
       article class=klass id="feeling_#{feeling.id}"
-        figure.feeling_author data-popover-profile=feeling.author.id
+        figure.feeling_author data-profile-popover=feeling.author.id
           = feeling_presenter.author_avatar(:small, class: "img-circle")
           figcaption
             = feeling_presenter.author_name

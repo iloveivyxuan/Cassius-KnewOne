@@ -1,11 +1,11 @@
 .popover {
   .profile {
-    $popover-profile-width: 360px;
-    $popover-profile-aside-width: 0.4 * $popover-profile-width;
-    $popover-profile-avatar-height: $popover-profile-aside-width - 25px;
+    $profile-popover-width: 360px;
+    $profile-popover-aside-width: 0.4 * $profile-popover-width;
+    $profile-popover-avatar-height: $profile-popover-aside-width - 25px;
 
-    width: $popover-profile-width;
-    padding-left: $popover-profile-aside-width;
+    width: $profile-popover-width;
+    padding-left: $profile-popover-aside-width;
 
     margin: 16px 11px;
 
@@ -63,7 +63,7 @@
       .profile_followers {
         position: absolute;
         left: 0;
-        width: $popover-profile-avatar-height;
+        width: $profile-popover-avatar-height;
       }
 
       .profile_avatar {
@@ -71,13 +71,13 @@
 
         img {
           @extend .img-circle;
-          height: $popover-profile-avatar-height;
-          width:  $popover-profile-avatar-height;
+          height: $profile-popover-avatar-height;
+          width:  $profile-popover-avatar-height;
         }
       }
 
       .profile_location {
-        top: $popover-profile-avatar-height;
+        top: $profile-popover-avatar-height;
         margin-top: 10px;
 
         text-align: center;
@@ -125,8 +125,8 @@
       margin-top: 25px;
 
       position: relative;
-      left: -$popover-profile-aside-width;
-      width: $popover-profile-width;
+      left: -$profile-popover-aside-width;
+      width: $profile-popover-width;
 
       // http://stackoverflow.com/questions/11589590/
       text-align: justify;

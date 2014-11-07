@@ -5,14 +5,14 @@ article.article_compact
         = link_to tp.title, tp.path
         = tp.top
     section.article_body
-      figure data-popover-profile=topic.author.id
+      figure data-profile-popover=topic.author.id
         = tp.author_avatar :small
       .metas
         - if show_group
           .metas_group
             .meta.topic_group= tp.group
         .metas_group
-          .meta.topic_author data-popover-profile=topic.author.id
+          .meta.topic_author data-profile-popover=topic.author.id
             = tp.author_name
         .metas_group
           .meta.topic_commented_at= tp.last_commented_at

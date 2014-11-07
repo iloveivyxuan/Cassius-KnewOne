@@ -7,7 +7,7 @@ section.article
         li
           label.avatar
             = image_tag author.avatar.url(:tiny), class: 'img-circle'
-            = link_to author.name, author, data: {"popover-profile" => author.id.to_s}
+            = link_to author.name, author, data: {"profile-popover" => author.id.to_s}
         li = time_ago_tag entry.created_at
       ul.metas
         li

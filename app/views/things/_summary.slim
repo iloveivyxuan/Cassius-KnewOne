@@ -2,10 +2,10 @@
   #thing_description
     article.article
       #thing_author.clearfix
-        = present(@thing.author).link_to_with_avatar(:small, {}, {class: "img-circle", data: {"popover-profile" => @thing.author.id.to_s}})
+        = present(@thing.author).link_to_with_avatar(:small, {}, {class: "img-circle", data: {"profile-popover" => @thing.author.id.to_s}})
         span.author_name
           label 分享者
-          = link_to @thing.author.name, @thing.author, data: {"popover-profile" => @thing.author.id.to_s}
+          = link_to @thing.author.name, @thing.author, data: {"profile-popover" => @thing.author.id.to_s}
 
         = tp.link_to_share('btn btn--square btn--share btn--orange hidden-xs hidden-sm', '分享')
         = link_to_with_icon '举报', "fa fa-flag", "#",

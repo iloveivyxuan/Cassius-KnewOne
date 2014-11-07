@@ -1,4 +1,4 @@
-Making.PopoverProfiles = ->
+Making.ProfilePopovers = ->
   calculatePlacement = (tip, element) ->
     $tip = $(tip)
     $element = $(element)
@@ -46,13 +46,13 @@ Making.PopoverProfiles = ->
     $('.popover')
     .on('mouseleave', -> $element.popover('hide'))
     .on('click', '.follow_btn', ->
-      userId = $element.attr('data-popover-profile')
+      userId = $element.attr('data-profile-popover')
       delete cache[userId]
     )
   , 200)
 
   cache = Object.create({})
-  selector = '[data-popover-profile]'
+  selector = '[data-profile-popover]'
 
   $(document).on('mouseenter', selector, (event) ->
     return if $('html').is('.mobile')
@@ -61,7 +61,7 @@ Making.PopoverProfiles = ->
 
     initialize($target)
 
-    userId = $target.attr('data-popover-profile')
+    userId = $target.attr('data-profile-popover')
 
     if cache[userId]
       return show($target, cache[userId])

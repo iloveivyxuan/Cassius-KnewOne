@@ -39,6 +39,6 @@ class UserPresenter < ApplicationPresenter
   private
 
   def add_popover_options(options)
-    options.merge(data: {'popover-profile' => user.id.to_s})
+    options.merge(data: {'profile-popover' => user.id.to_s})
   end
 end

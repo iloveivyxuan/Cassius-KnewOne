@@ -9,7 +9,7 @@
           h5 = link_to review_presenter.title, review_presenter.path
           = review_presenter.score
 
-        figure.review_author data-popover-profile=review.author.id
+        figure.review_author data-profile-popover=review.author.id
           = review_presenter.author_avatar(:small, class: "img-circle")
           figcaption
             = review_presenter.author_name

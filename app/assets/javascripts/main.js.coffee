@@ -318,7 +318,7 @@ do (exports = Making) ->
     exports.ToggleFixedNavbar()
     exports.SetupCustomerServices('[href="#customer_services"]')
     exports.GoTop()
-    exports.PopoverProfiles()
+    exports.ProfilePopovers()
     exports.PrivateMessage()
     exports.AtUser('textarea')
     exports.shareOnWechat()

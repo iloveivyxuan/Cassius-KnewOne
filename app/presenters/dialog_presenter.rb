@@ -2,7 +2,7 @@ class DialogPresenter < ApplicationPresenter
   presents :dialog
 
   def sender_avatar(size=:tiny)
-    present(dialog.sender).link_to_with_avatar(size, {}, {data: {"popover-profile" => dialog.sender.id.to_s}})
+    present(dialog.sender).link_to_with_avatar(size, {}, {data: {"profile-popover" => dialog.sender.id.to_s}})
   end
 
   def sender_name
