@@ -4,11 +4,11 @@
       i.fa.fa-plus
       | 关注
   - elsif current_user.followed?(user) && user.followed?(current_user)
-    = link_to followings_user_path(user), remote: true, method: :delete, class: 'btn btn-default follow_btn', id: "follow_btn_#{user.id.to_s}" do
+    = link_to followings_user_path(user), remote: true, method: :delete, class: 'btn btn-default follow_btn follow_btn--followed', id: "follow_btn_#{user.id.to_s}" do
       i.fa.fa-exchange
       | 互相关注
   - elsif current_user.followed? user
-    = link_to followings_user_path(user), remote: true, method: :delete, class: 'btn btn-default follow_btn', id: "follow_btn_#{user.id.to_s}" do
+    = link_to followings_user_path(user), remote: true, method: :delete, class: 'btn btn-default follow_btn follow_btn--followed', id: "follow_btn_#{user.id.to_s}" do
       i.fa.fa-check
       | 已关注
   - else
