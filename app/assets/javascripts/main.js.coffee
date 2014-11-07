@@ -306,7 +306,7 @@ do (exports = Making) ->
 
   $ ->
     $user = $('#user')
-    $navDropdown = $('.navbar .dropdown')
+    $navDropdown = $('.navbar .dropdown').not('.notification')
     $textarea = $('textarea')
     $selectpicker = $('select.selectpicker')
     keycode = exports.keycode
