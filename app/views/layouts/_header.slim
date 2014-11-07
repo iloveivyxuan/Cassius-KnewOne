@@ -30,7 +30,11 @@
                           em= c.name
                         .dropdown-submenu-wrapper
                           ul.dropdown-submenu
-                            = render partial: "shared/header_tag", collection: c.tags.gt(things_count: 5).desc(:things_count).limit(14)
+                            - c.inner_categories.each do |inner_c|
+                              = link_to category_things_path(category: inner_c) do
+                                i class="fa fa-fw #{inner_c.icon}"
+                                em= inner_c.name
+                                = render partial: "shared/header_tag", collection: inner_c.tags.gt(things_count: 5).desc(:things_count).limit(14)
                             li
                               = link_to_with_icon "查看全部标签", "fa fa-list", categories_path
           li
