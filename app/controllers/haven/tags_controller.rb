@@ -4,7 +4,7 @@ module Haven
     before_action :set_tag, only: [:edit, :update, :destroy]
 
     def index
-      @tags = Tag.all
+      @tags = Tag.all.includes(:categories)
     end
 
     def new
