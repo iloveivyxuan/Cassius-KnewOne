@@ -7,6 +7,8 @@ class Order
 
   belongs_to :user
 
+  index created_at: 1
+
   embeds_one :address
   attr_accessor :address_id
   alias_method :_address=, :address=
