@@ -10,7 +10,6 @@
             i class="fa fa-fw #{c.icon}"
             em= c.name
           .dropdown-submenu
-            i class="fa fa-fw #{c.icon}"
             - c.inner_categories.each do |inner_c|
               section.category--secondary
                 h6= link_to inner_c.name, category_things_path(category: inner_c)
