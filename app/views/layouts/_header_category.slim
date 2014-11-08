@@ -10,13 +10,13 @@
             i class="fa fa-fw #{c.icon}"
             em= c.name
           .dropdown-submenu
-            - c.inner_categories.each do |inner_c|
+            - c.inner_categories.desc(:things_count).each do |inner_c|
               section.category--secondary
                 h6= link_to inner_c.name, category_things_path(category: inner_c)
                 p
                   - tags = inner_c.tags
                   - tags_size = (tags.size > 7) ? 7 : 8
-                  - tags.limit(tags_size).each do |header_tag|
+                  - tags.desc(:things_count).limit(tags_size).each do |header_tag|
                     - cache ['header_tag', header_tag.id, Time.now.to_i / 1.hour]
                       = link_to header_tag.name, things_path(tag: header_tag)
                   - if tags.size > 8
