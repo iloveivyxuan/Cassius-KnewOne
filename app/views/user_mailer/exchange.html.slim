@@ -1,0 +1,21 @@
+- content_for :username do
+  = @name
+
+- content_for :title do
+  | 活跃点兑换「质造—上下杯」成功！
+
+p
+  | 恭喜你在 KnewOne 用活跃点成功兑换【质造—上下杯】！
+
+p
+  | 现邀请兑换成功的你加入【质造—上下杯】的微信群，在群里，可以与该产品工作人员及其他的小伙伴们交流！
+  br
+  = image_tag attachments['exchange_qr.jpg'].url, alt: '质造—上下杯微信群二维码'
+
+p
+  | 收到该产品之后，记得在 KnewOne 提交评测哦~ 多交流、多互动，会有更多体验其他产品的机会！
+  br
+  | （如何写出优质评测，可以参见#{link_to '发现频道', 'http://knewone.com/explore/reviews'}）
+
+p
+  | 最后，再次感谢你的参与，请继续关注 KnewOne，多多分享新奇酷和你的体验！

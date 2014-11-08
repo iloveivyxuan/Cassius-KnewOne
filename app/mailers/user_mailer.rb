@@ -41,7 +41,15 @@ class UserMailer < BaseMailer
     @name = name
 
     mail(to: email,
-         subject: '恭喜您在「KnewOne 牛玩」免费领养「Cuptime」成功！')
+         subject: '恭喜你在「KnewOne 牛玩」免费领养「Cuptime」成功！')
+  end
+
+  def exchange(email, name)
+    attachments.inline['exchange_qr.jpg'] = File.read(Rails.root.join('app/assets/images/mails/exchange_qr.jpg'))
+    @name = name
+
+    mail(to: email,
+         subject: '恭喜你在「KnewOne 牛玩」活跃点兑换「质造—上下杯」成功！')
   end
 
   def adopt(email, name)
