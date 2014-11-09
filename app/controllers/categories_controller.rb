@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @categories = Category.prior.gt(things_count: 10)
+    @categories = Category.primary.prior.gt(things_count: 10)
   end
 
   def subscribe_toggle
