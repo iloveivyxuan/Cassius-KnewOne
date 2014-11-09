@@ -311,17 +311,23 @@ article.thing {
     }
 
     @media (min-width: $screen-md-min) {
-      opacity: 0;
-      &:hover {opacity: 1;}
-      @include transition(opacity .2s ease);
-
       .fancy_backdrop {
+        @include transition(opacity .2s ease);
         display: block;
         background-color: rgba(black, 0.5);
+        opacity: 0;
+
+        &:hover {
+          opacity: 1;
+
+          & + .fancy_button a {
+            display: block;
+          }
+        }
       }
 
       .fancy_button a {
-        display: block;
+        display: none;
         position: absolute;
         top: 50%;
         left: 50%;
