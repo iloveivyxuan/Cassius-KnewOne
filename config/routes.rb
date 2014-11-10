@@ -112,7 +112,7 @@ Making::Application.routes.draw do
 
   resources :orders, only: [:index, :show, :create, :new] do
     collection do
-      get 'wxpay/:id', action: :wxpay, as: :wxpay
+      get 'wxpay'
     end
 
     member do
