@@ -8,7 +8,6 @@ class Brand
 
   field :things_size, type: Integer, default: 0
   before_save :update_things_size
-  before_save :update_things_brand
   before_save :update_names
 
   field :description, type: String, default: ""
@@ -27,10 +26,6 @@ class Brand
 
   def tags
     things.map(&:tags).flatten.uniq
-  end
-
-  def update_things_brand
-    things.each { |thing| thing.update_attributes(brand_name: brand_text) }
   end
 
   def update_names
