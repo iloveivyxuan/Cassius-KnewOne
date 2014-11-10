@@ -490,8 +490,11 @@ do (exports = Making) ->
         $this.hover ->
           $this.toggleClass('open')
         if $this.is('.nav_flyout')
-          $this.hover ->
-            $docbody.toggleClass('nav_flyout-open')
+          $this
+            .on 'mouseenter', ->
+              $docbody.trigger('freeze')
+            .on 'mouseleave', ->
+              $docbody.trigger('unfreeze')
 
       $user
         .children('.dropdown')
