@@ -109,6 +109,11 @@
         border-radius: 0;
 
         background: $blue-dark;
+        transition: background-color .1s;
+
+        &.follow_btn--followed:hover {
+          background-color: $gray;
+        }
       }
 
       .private_message_btn {
