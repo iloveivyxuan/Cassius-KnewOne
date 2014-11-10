@@ -4,6 +4,11 @@
   border-radius: 0;
   box-shadow: 0 0 8px rgba(0, 0, 0, .2);
 
+  .arrow {
+    border-color: transparent;
+    filter: drop-shadow(0 1px 0 rgba(0, 0, 0, .2));
+  }
+
   .popover-content {
     width: 400px;
     padding: 0;
