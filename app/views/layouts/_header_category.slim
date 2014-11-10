@@ -20,4 +20,6 @@
                     - cache ['header_tag', header_tag.id, Time.now.to_i / 1.hour]
                       = link_to header_tag.name, things_path(tag: header_tag)
                   - if tags.size > 8
-                    = link_to "查看更多", category_things_path(category: inner_c), class: "category--secondary-more"
+                    = link_to category_things_path(category: inner_c), class: "category--secondary-more" do
+                      | 查看更多
+                      i.fa.fa-caret-right
