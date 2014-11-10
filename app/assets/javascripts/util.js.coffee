@@ -24,7 +24,7 @@ window.Making = do (exports = window.Making || {}) ->
 
     document.body.removeChild(outer)
 
-    return (w1 - w2)
+    return (w1 - w2) + 'px'
 
   # from http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
   exports.GetParameterByKey = (key) ->

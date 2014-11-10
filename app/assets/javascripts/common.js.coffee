@@ -133,4 +133,24 @@ do (root = @, exports = Making) ->
           .on 'click', (event) ->
             $(this).fadeOut('fast')
 
+  $ ->
+    $navbar          = $('.navbar')
+    $gotop           = $('#go_top')
+    gotopOffsetRight = $gotop.css('right')
+    scrollbarWidth   = exports.GetScrollbarWidth()
+
+    $docbody
+      .on 'freeze', ->
+        $docbody.addClass('is-frozen')
+        if parseInt(scrollbarWidth) > 0 and $document.height() > $window.height()
+          $html.css 'margin-right', scrollbarWidth
+          $navbar.css 'padding-right', scrollbarWidth
+          $gotop.css 'right', "calc(#{gotopOffsetRight} + #{scrollbarWidth})"
+      .on 'unfreeze', ->
+        $docbody.removeClass('is-frozen')
+        if parseInt(scrollbarWidth) > 0 and $document.height() > $window.height()
+          $html.css 'margin-right', 0
+          $navbar.css 'padding-right', 0
+          $gotop.css 'right', gotopOffsetRight
+
   return exports
