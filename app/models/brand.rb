@@ -2,7 +2,6 @@ class Brand
   include Mongoid::Document
   include Mongoid::Slug
 
-  field :name, type: String
   field :zh_name, type: String
   field :en_name, type: String
 
