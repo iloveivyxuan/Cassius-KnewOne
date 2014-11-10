@@ -3,7 +3,7 @@
 header.page-header
   h1
     i.fa.fa-tag
-    = @brand.name
+    = @brand.brand_text
 
 section
   = form_for @brand, url: haven_brand_path(@brand.id) do |f|
