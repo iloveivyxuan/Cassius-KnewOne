@@ -137,3 +137,19 @@
     }
   }
 }
+
+.follow_btn--followed {
+  .show_on_hover {
+    display: none;
+  }
+
+  &:hover {
+    .show_on_hover {
+      display: inline;
+    }
+
+    .hide_on_hover {
+      display: none;
+    }
+  }
+}

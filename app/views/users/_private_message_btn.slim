@@ -1,7 +1,12 @@
+- klass ||= ''
+- text ||= ''
+
 - if user_signed_in? && current_user != user
-  = button_tag class: "btn btn-default", id: "private_message_btn", title: '私信',
+  = link_to '#', class: "#{klass} private_message_btn", title: '私信',
     data: {'private-message' => true, 'user-id' => user.id.to_s, 'user-name' => user.name} do
-    i.fa.fa-envelope-o.fa_alone.private_message_success data-container="body" data-toggle="popover" data-trigger="manual" data-placement="bottom" data-content="发送成功"
+    i.fa.fa-envelope-o class=('fa-alone' if text.blank?)
+    = text
 - else
-  = button_tag class: "btn btn-default", disabled: user_signed_in?, data: {toggle: 'modal', target: '#login-modal'}
-    i.fa.fa-envelope-o.fa_alone
+  = link_to '#', class: "#{klass} private_message_btn", disabled: user_signed_in?, data: {toggle: 'modal', target: '#login-modal'}
+    i.fa.fa-envelope-o class=('fa-alone' if text.blank?)
+    = text

@@ -1,0 +1,28 @@
+.level {
+  .level-rank {
+    display: inline-block;
+    vertical-align: middle;
+
+    width: 4rem;
+
+    font-size: 14px;
+    color: $blue;
+  }
+
+  .level-progress {
+    display: inline-block;
+    vertical-align: middle;
+
+    height: 14px;
+    width: 80%;
+    width: calc(100% - 4rem);
+
+    background: $gray-lighter;
+  }
+
+  .level-progress_bar {
+    width: 0;
+    height: 100%;
+    background: $blue;
+  }
+}

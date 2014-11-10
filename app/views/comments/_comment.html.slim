@@ -5,7 +5,7 @@ li
     a.anchor--hidden id="comment-#{comment.id}"
 
     .avatar
-      = link_to author, data: {'popover-profile' => author.id.to_s}
+      = link_to author, data: {'profile-popover' => author.id.to_s}
         = user_avatar(author)
 
     header.author

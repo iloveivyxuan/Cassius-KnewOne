@@ -7,7 +7,7 @@ class FeelingPresenter < PostPresenter
 
     feeling.content_users.each do |u|
       content.gsub! "@#{u.name}", link_to("@#{u.name}", u,
-                                          data: {'popover-profile' => u.id.to_s})
+                                          data: {'profile-popover' => u.id.to_s})
     end
 
     content.html_safe

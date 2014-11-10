@@ -62,15 +62,18 @@ module UsersHelper
     end
   end
 
+  def symbolize_gender(gender)
+    case gender
+      when '男' then '♂'
+      when '女' then '♀'
+      else ''
+    end
+  end
+
   def render_user_gender(user)
     if user.gender.present?
       content_tag :small, class: 'gender' do
-        case user.gender
-          when '男' then
-            '♂'
-          when '女' then
-            '♀'
-        end
+        symbolize_gender(user.gender)
       end
     end
   end
