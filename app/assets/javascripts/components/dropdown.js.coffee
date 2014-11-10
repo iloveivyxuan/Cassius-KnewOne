@@ -27,24 +27,14 @@ do (exports = Making, $ = jQuery) ->
       @$parent  = @$element.closest('.dropdown')
       @$box     = @$element.next('.dropdown_box')
       @options  = options
-      # TODO
-      scrollbar_width = exports.GetScrollbarWidth()
-      $navbar         = $('.navbar')
 
       @$box
         .on 'click', (event) ->
           event.stopPropagation() unless $(event.target).hasClass('dropdown_box_propagate')
-        # TODO
         .on 'mouseenter', ->
-          $docbody.addClass('dropdown_box_open')
-          if scrollbar_width > 0 and $document.height() > $window.height()
-            $html.css 'margin-right', scrollbar_width + 'px'
-            $navbar.css 'padding-right', scrollbar_width + 'px'
+          $docbody.trigger 'freeze'
         .on 'mouseleave', ->
-          $docbody.removeClass('dropdown_box_open')
-          if scrollbar_width > 0 and $document.height() > $window.height()
-            $html.css 'margin-right', 0
-            $navbar.css 'padding-right', 0
+          $docbody.trigger 'unfreeze'
 
     toggle: ->
       @$parent.toggleClass('open')
