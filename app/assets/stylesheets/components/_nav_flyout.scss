@@ -101,11 +101,6 @@
     position: absolute;
     top: 0;
     width: 500px;
-    -ms-overflow-style: none;
-
-    &::-webkit-scrollbar {
-      display: none; 
-    }
 
     > .fa {
       @include transform(rotate(25deg));
