@@ -177,7 +177,16 @@
       i {
         display: block;
         margin-right: 0;
-        margin-bottom: .5em;
+      }
+
+      .profile-link_count {
+        display: block;
+        margin: 5px 0 0;
+        font-weight: bold;
+      }
+
+      .profile-link_text {
+        font-size: 11px;
       }
     }
   }
