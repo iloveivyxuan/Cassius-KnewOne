@@ -8,7 +8,6 @@
     h1
       - if @category
         = link_to @category.name, things_path(category: @category), class: 'breadcrumb'
-        = render 'categories/subscribe_btn', category: @category
       - elsif @tag
         = link_to @tag.name, things_path(tag: @tag), class: 'breadcrumb'
       - elsif @brand
