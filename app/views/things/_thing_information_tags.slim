@@ -1,2 +1,2 @@
 - tags.each do |tag|
-  = link_to tag.name, things_path(tag: tag), class: "tag-button btn btn-default", role: "button"
+  = link_to tag.name, things_path(params.merge(tag: tag)), class: "tag-button btn btn-default", role: "button"

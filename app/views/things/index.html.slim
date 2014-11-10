@@ -6,14 +6,15 @@
 
   header#things_nav
     h1
-      - if @category
-        = link_to @category.name, things_path(category: @category), class: 'breadcrumb'
-      - elsif @tag
-        = link_to @tag.name, things_path(tag: @tag), class: 'breadcrumb'
-      - elsif @brand
-        = label_tag '品牌', nil, class: 'breadcrumb'
+      - if @brand
         = link_to @brand.brand_text, things_path(brand: @brand.id), class: 'breadcrumb'
-      - else
+      - if @category
+        - if (primary ||= @category.category)
+          = link_to primary.name, things_path(category: primary), class: 'breadcrumb'
+        = link_to @category.name, things_path(category: @category), class: 'breadcrumb'
+      - if @tag
+        = link_to @tag.name, things_path(tag: @tag), class: 'breadcrumb'
+      - if !@category && !@tag && !@brand
         = link_to '产品', things_path, class: 'breadcrumb'
     nav
       - if @category || @tag || @brand

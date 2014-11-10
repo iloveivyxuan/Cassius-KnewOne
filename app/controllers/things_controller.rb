@@ -9,17 +9,19 @@ class ThingsController < ApplicationController
   before_action :delete_links, only: [:destroy]
 
   def index
+    @things ||= ::Thing.published
+
     if params[:category].present? and params[:category] != 'all'
       @category = Category.find(params[:category])
-      @things = @category.things.published
-    elsif params[:tag].present?
+      @things = @things.by_category(@category).published
+    end
+    if params[:tag].present?
       @tag = Tag.where(slugs: params[:tag].to_s).first
-      @things = @tag.things.published if @tag
-    elsif params[:brand].present?
+      @things = @things.by_tag(@tag).published if @tag
+    end
+    if params[:brand].present?
       @brand = Brand.where(id: params[:brand].to_s).first
-      @things = @brand.things.published if @brand
-    else
-      @things = Thing.published
+      @things = @things.by_brand(@brand).published if @brand
     end
 
     if params[:sort_by] == 'fanciers_count'
