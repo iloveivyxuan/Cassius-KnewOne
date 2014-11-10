@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :require_signed_in, only: [:index, :show, :new, :create, :cancel, :tenpay, :alipay]
   before_action :have_items_in_cart, only: [:new, :create]
-  load_and_authorize_resource except: [:index, :new, :create]
+  load_and_authorize_resource except: [:index, :new, :create, :wxpay]
   layout 'settings', only: [:index, :show]
   skip_before_action :require_not_blocked
 
@@ -115,8 +115,15 @@ class OrdersController < ApplicationController
   end
 
   def wxpay
-    redirect_to @order unless browser.wechat?
-    redirect_to user_omniauth_authorize_path(:wechat, state: request.path) unless current_user.wechat_bind?
+    unless browser.wechat?
+      render js: "window.location = '#{order_path(@order)}';"
+    end
+
+    unless current_user.wechat_bind?
+      render js: "window.location = '#{user_omniauth_authorize_path(:wechat, state: request.path)}';"
+    end
+
+    @order = Order.find params[:id]
 
     result = WxPay::Service.invoke_unifiedorder body: body_text(@order, 64),
                                                 out_trade_no: @order.id.to_s,

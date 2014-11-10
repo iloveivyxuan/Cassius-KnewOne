@@ -111,6 +111,10 @@ Making::Application.routes.draw do
   resources :cart_items, only: [:index, :create, :update, :destroy]
 
   resources :orders, only: [:index, :show, :create, :new] do
+    collection do
+      get 'wxpay/:id', action: :wxpay, as: :wxpay
+    end
+
     member do
       patch 'confirm_free'
       patch 'cancel'
@@ -125,7 +129,6 @@ Making::Application.routes.draw do
       get 'alipay_callback'
       post 'alipay_wap_notify'
       get 'alipay_wap_callback'
-      get 'wxpay'
       get 'wxpay_callback'
       post 'wxpay_notify'
       get 'deliver_bill'

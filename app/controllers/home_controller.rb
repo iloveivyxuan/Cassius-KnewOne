@@ -124,4 +124,9 @@ class HomeController < ApplicationController
 
   def user_agreement
   end
+
+  def wxpay_alert
+    logger.info params.except(*request.path_parameters.keys)
+    head :no_content
+  end
 end
