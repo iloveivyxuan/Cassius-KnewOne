@@ -503,6 +503,15 @@ HERE
     @_bong_client ||= BongClient.new access_token: bong_auth.access_token, uid: bong_auth.uid
   end
 
+  # wechat
+  def wechat_bind?
+    !!wechat_auth
+  end
+
+  def wechat_auth
+    @_wechat_auth ||= self.auths.where(provider: 'wechat').first
+  end
+
   include IdsSortable
 
   sort_by_ids :owns, Thing

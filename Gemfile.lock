@@ -65,6 +65,14 @@ GIT
       rest-client (~> 1)
 
 GIT
+  remote: git://github.com/jasl/wx_pay.git
+  revision: 1fa6ade437289662de34647f24a1910df7dcff3b
+  specs:
+    wx_pay (0.0.2)
+      activesupport (~> 4)
+      rest-client (~> 1.7)
+
+GIT
   remote: git://github.com/ryanb/letter_opener.git
   revision: a17ae8700f98fd7c230c6659b60809714763bc12
   branch: master
@@ -648,4 +656,5 @@ DEPENDENCIES
   unicorn
   weibo_2!
   whenever
+  wx_pay!
   x-editable-rails!

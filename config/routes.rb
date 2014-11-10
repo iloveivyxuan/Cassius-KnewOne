@@ -125,6 +125,9 @@ Making::Application.routes.draw do
       get 'alipay_callback'
       post 'alipay_wap_notify'
       get 'alipay_wap_callback'
+      get 'wxpay'
+      get 'wxpay_callback'
+      post 'wxpay_notify'
       get 'deliver_bill'
     end
   end

@@ -1,0 +1,26 @@
+<% if @params %>
+function jsApiCall() {
+  WeixinJSBridge.invoke(
+          'getBrandWCPayRequest',
+          <%= @params %>,
+          function (res) {
+            WeixinJSBridge.log(res.err_msg);
+            alert(res.err_code+res.err_desc+res.err_msg);
+          }
+  );
+}
+
+if (typeof WeixinJSBridge == "undefined") {
+  if (document.addEventListener) {
+    document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+  } else if (document.attachEvent) {
+    document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+    document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+  }
+} else {
+  jsApiCall();
+}
+<% else %>
+  alert('创建微信支付失败，请重试');
+  window.location.href = '<%= order_path(@order) %>';
+<% end %>

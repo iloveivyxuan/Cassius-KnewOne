@@ -114,6 +114,39 @@ class OrdersController < ApplicationController
     redirect_to generate_alipay_wap_url(@order)
   end
 
+  def wxpay
+    redirect_to @order unless browser.wechat?
+    redirect_to user_omniauth_authorize_path(:wechat, state: request.path) unless current_user.wechat_bind?
+
+    result = WxPay::Service.invoke_unifiedorder body: body_text(@order, 64),
+                                                out_trade_no: @order.id.to_s,
+                                                total_fee: (@order.should_pay_price * 100).to_i,
+                                                spbill_create_ip: request.ip,
+                                                notify_url: wxpay_notify_order_url(@order),
+                                                trade_type: 'JSAPI',
+                                                openid: current_user.wechat_auth.uid
+
+    if result.success?
+      @params = {
+        'appId' => Settings.wxpay.appid,
+        'timeStamp' => Time.now.to_i.to_s,
+        'nonceStr' => SecureRandom.uuid.tr('-', ''),
+        'package' => "prepay_id=#{result['prepay_id']}",
+        'signType' => 'MD5'
+      }
+
+      @params['paySign'] = WxPay::Sign.generate(@params)
+
+      @params = @params.to_json
+    end
+  end
+
+  def wxpay_notify
+    logger.info '----'
+    logger.info params.except(*request.path_parameters.keys)
+    logger.info '----'
+  end
+
   def alipay_notify
     callback_params = params.except(*request.path_parameters.keys)
     if Alipay::Notify.verify?(callback_params)

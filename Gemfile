@@ -35,6 +35,7 @@ gem 'cancancan', '~> 1.7.0'
 # payment
 gem 'jasl_tenpay', github: 'jasl/tenpay'
 gem 'alipay'
+gem 'wx_pay', github: 'jasl/wx_pay'
 
 # components
 gem 'simple_form'

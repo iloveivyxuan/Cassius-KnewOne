@@ -43,6 +43,10 @@ defaults: &defaults
   tenpay:
     pid: '1900000109'
     key: '8934e7d15453e97507ef794cf7b0519d'
+  wxpay:
+    appid: 'wx26788de83c861cef'
+    mch_id: '10023993'
+    key: '024999c6ab0845c7865a483cf58854ac'
   invitation:
     secret: "Not so secret, Baby"
   keywords: 'KnewOne, 剁手网, 新奇酷'
