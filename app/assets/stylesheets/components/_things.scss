@@ -175,9 +175,11 @@ article.thing {
   position: relative;
 
   > em {
+    @include user-select(none);
     background-color: $blue;
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, .2);
     color: #fff;
+    cursor: default;
     font-size: 12px;
     font-style: normal;
     height: 26px;
