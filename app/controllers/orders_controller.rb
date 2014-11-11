@@ -2,9 +2,10 @@ class OrdersController < ApplicationController
   before_action :require_signed_in, only: [:index, :show, :new, :create, :cancel, :tenpay, :alipay, :alipay_wap, :wxpay]
   before_action :have_items_in_cart, only: [:new, :create]
   load_and_authorize_resource except: [:index, :new, :create, :wxpay]
-  layout 'settings', only: [:index, :show]
+  layout 'settings', only: [:index, :show, :wxpay]
   skip_before_action :require_not_blocked
   skip_before_action :verify_authenticity_token, only: [:alipay_notify, :tenpay_notify, :alipay_wap_notify, :wxpay_notify]
+  after_action :store_location, only: [:wxpay, :show]
 
   def index
     @orders = current_user.orders.page(params[:page]).per(3)
@@ -117,35 +118,27 @@ class OrdersController < ApplicationController
 
   def wxpay
     unless browser.wechat?
-      return render js: "window.location = '#{order_path(@order)}';"
-    end
-
-    unless current_user.wechat_bind?
-      return render js: "window.location = '#{user_omniauth_authorize_path(:wechat, state: request.path)}';"
+      head :forbidden
     end
 
     @order = Order.find params[:id]
 
-    result = WxPay::Service.invoke_unifiedorder body: "KnewOne购物订单: #{@order.order_no}",
-                                                out_trade_no: @order.id.to_s,
-                                                total_fee: (@order.should_pay_price * 100).to_i,
-                                                spbill_create_ip: request.ip,
-                                                notify_url: wxpay_notify_order_url(@order),
-                                                trade_type: 'JSAPI',
-                                                openid: current_user.wechat_auth.uid
+    respond_to do |format|
+      format.js do
+        unless current_user.wechat_bind?
+          return render js: "window.location = '#{user_omniauth_authorize_path(:wechat, state: request.fullpath)}';"
+        end
 
-    if result.success?
-      @params = {
-        'appId' => Settings.wxpay.appid,
-        'timeStamp' => Time.now.to_i.to_s,
-        'nonceStr' => SecureRandom.uuid.tr('-', ''),
-        'package' => "prepay_id=#{result['prepay_id']}",
-        'signType' => 'MD5'
-      }
+        @params = generate_wxpay_jsapi_params(@order)
+      end
 
-      @params['paySign'] = WxPay::Sign.generate(@params)
+      format.html do
+        unless current_user.wechat_bind?
+          return redirect_to user_omniauth_authorize_path(:wechat, state: request.fullpath)
+        end
 
-      @params = @params.to_json
+        @params = generate_wxpay_jsapi_params(@order)
+      end
     end
   end
 
@@ -240,6 +233,32 @@ class OrdersController < ApplicationController
 
   def have_items_in_cart
     redirect_to root_path if current_user.cart_items.select { |item| item.legal? && item.has_enough_stock? }.empty?
+  end
+
+  def generate_wxpay_jsapi_params(order)
+    result = WxPay::Service.invoke_unifiedorder body: "KnewOne购物订单: #{order.order_no}",
+                                                out_trade_no: order.id.to_s,
+                                                total_fee: (order.should_pay_price * 100).to_i,
+                                                spbill_create_ip: request.ip,
+                                                notify_url: wxpay_notify_order_url(order),
+                                                trade_type: 'JSAPI',
+                                                openid: current_user.wechat_auth.uid
+
+    if result.success?
+      params = {
+        'appId' => Settings.wxpay.appid,
+        'timeStamp' => Time.now.to_i.to_s,
+        'nonceStr' => SecureRandom.uuid.tr('-', ''),
+        'package' => "prepay_id=#{result['prepay_id']}",
+        'signType' => 'MD5'
+      }
+
+      params['paySign'] = WxPay::Sign.generate(@params)
+
+      params.to_json
+    else
+      nil
+    end
   end
 
   def generate_tenpay_url(order, options = {})

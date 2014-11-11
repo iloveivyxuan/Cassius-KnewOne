@@ -41,9 +41,9 @@ GIT
 
 GIT
   remote: git://github.com/jasl/omniauth-wechat.git
-  revision: 81855406579eed68532d62033cf16679b6c9360c
+  revision: 167f7f4918f34aa1d46692b1ff13c2476c949030
   specs:
-    omniauth-wechat (0.1.24)
+    omniauth-wechat (0.1.25)
       multi_json
       oauth2
       omniauth (~> 1.0)

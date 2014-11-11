@@ -1,0 +1,7 @@
+<%= render file: 'orders/show' %>
+
+<% content_for :script do %>
+  <script type="application/javascript">
+    <%= render file: 'orders/wxpay.js' %>
+  </script>
+<% end %>
