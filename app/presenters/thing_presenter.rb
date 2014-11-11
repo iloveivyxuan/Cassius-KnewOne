@@ -82,7 +82,7 @@ class ThingPresenter < PostPresenter
     else
       link_to_with_icon "请登录后网购", "fa fa-sign-in", login_path,
       class: "btn btn--login buy_button track_event",
-      data: data_with_login_tracker("domestic", thing.title, browser.wechat?)
+      data: data_with_login_tracker("domestic", thing.title, !browser.wechat?)
     end
   end
 
@@ -96,7 +96,7 @@ class ThingPresenter < PostPresenter
     else
       link_to_with_icon "请登录后众筹", "fa fa-sign-in", login_path,
       class: "btn btn--login buy_button track_event",
-      data: data_with_login_tracker("kick", thing.title, browser.wechat?)
+      data: data_with_login_tracker("kick", thing.title, !browser.wechat?)
     end
   end
 
@@ -110,7 +110,7 @@ class ThingPresenter < PostPresenter
     else
       link_to_with_icon "请登录后海淘", "fa fa-sign-in", login_path,
       class: "btn btn--login buy_button track_event",
-      data: data_with_login_tracker("abroad", thing.title, browser.wechat?)
+      data: data_with_login_tracker("abroad", thing.title, !browser.wechat?)
     end
   end
 
