@@ -4,7 +4,7 @@ function jsApiCall() {
           'getBrandWCPayRequest',
           <%= raw @params %>,
           function (res) {
-            window.location.href = '<%= order_path(@order) %>';
+            window.location.href = '<%= wxpay_callback_order_path(@order) %>';
           }
   );
 }

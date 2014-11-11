@@ -149,11 +149,32 @@ class OrdersController < ApplicationController
     end
   end
 
+  def wxpay_callback
+    redirect_to @order
+  end
+
   def wxpay_notify
+    r = request.body.read
+
     logger.info '----'
-    logger.info params.except(*request.path_parameters.keys)
-    logger.info request.body
+    logger.info request.body.read
     logger.info '----'
+
+    r = WxPay::Result.new Hash.from_xml(r)
+
+    logger.info '----'
+    logger.info r
+    logger.info '----'
+
+    if WxPay::Sign.verify? r
+      logger.info '---'
+      logger.info 'verified'
+      logger.info '---'
+
+      o = Order.find r['out_trade_no']
+      o.confirm_payment! r['transaction_id'], (r['total_fee'].to_i / 100), :wxpay, r
+    end
+
   end
 
   def alipay_notify
