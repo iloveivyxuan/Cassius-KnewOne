@@ -69,6 +69,22 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def quick_start
+    return redirect_back_or root_path unless session[:omniauth].present?
+
+    user = User.new
+    auth = Auth.from_omniauth(session[:omniauth])
+    user.set_profiles_by_auth(auth)
+    user.name = "#{SecureRandom.hex 3}@#{auth.provider}"
+    user.auths << auth
+
+    user.save!
+
+    sign_in user
+
+    redirect_back_or root_path
+  end
+
   private
   # check if we need password to update user data
   # ie if password or email was changed

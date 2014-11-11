@@ -44,6 +44,10 @@ Making::Application.routes.draw do
     passwords: "passwords"
   }
 
+  devise_scope :user do
+    get 'users/quick_start', to: 'registrations#quick_start', as: :quick_start
+  end
+
   scope 'settings' do
     root to: 'profiles#edit', as: 'setting_root'
 

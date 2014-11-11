@@ -10,7 +10,7 @@
       .modal-body
         = image_tag "welcome_wechat.jpg", alt: "欢迎来到 KnewOne 牛玩！"
       .modal-footer
-        = link_to "/", class: "btn btn-block btn-primary"
+        = link_to quick_start_path(redirect_from: request.fullpath), class: "btn btn-block btn-primary"
           | 开始探索
           span.logo KnewOne
         = link_to "已经是 KnewOne 用户？点击这里绑定", "#", data: {toggle: 'modal', target: '#binding_to_exists_user_modal'}

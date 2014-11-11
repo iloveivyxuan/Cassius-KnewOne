@@ -22,7 +22,7 @@ class ApplicationPresenter
 
   def login_path(path = '')
     if browser.wechat?
-      user_omniauth_authorize_path(:wechat, state: request.path)
+      user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base')
     else
       path.present? ? path : '#'
     end
