@@ -2,7 +2,7 @@
 
 section.thing_list id="thing_list_#{thing_list.id}"
   header
-    = link_to thing_list
+    = link_to thing_list, target: "_blank"
       = render 'thing_lists/cover', thing_list: thing_list, layout: layout
 
       h4
