@@ -75,7 +75,7 @@ class RegistrationsController < Devise::RegistrationsController
     user = User.new
     auth = Auth.from_omniauth(session[:omniauth])
     user.set_profiles_by_auth(auth)
-    user.name = "#{SecureRandom.hex 3}@#{auth.provider}"
+    user.name = "#{SecureRandom.hex 3}@#{auth.provider}" unless user.name.present?
     user.auths << auth
 
     user.save!
