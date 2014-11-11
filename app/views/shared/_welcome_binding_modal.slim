@@ -19,7 +19,11 @@
   .modal-dialog
     .modal-content
       .modal-header
-        | 绑定到已有账号
+        button.close type="button" data-dismiss="modal"
+          span aria-hidden="true" &times;
+          span.sr-only Close
+        h4.modal-title
+          | 绑定到已有账号
       .modal-body
         = simple_form_for(User.new, url: user_session_path(redirect_from: request.fullpath), remote: true) do |f|
           .form-group
@@ -45,17 +49,17 @@
             .form-result
               .alert.alert-danger
                 | 用户名或密码错误，请重新输入。
-        .social_sign_in
-          span
+        section.authorizations
+          h6
             | 通过社交网络账号
             i.fa.fa-caret-right
-          div
-            = link_to_with_icon '', 'fa fa-weibo', user_omniauth_authorize_path(:weibo, state: request.fullpath), title: '用微博登录'
-            = link_to_with_icon '', 'fa fa-twitter', user_omniauth_authorize_path(:twitter, state: request.fullpath), title: '用 Twitter 登录'
-            = link_to_with_icon '', 'fa fa-qq', user_omniauth_authorize_path(:qq_connect, state: request.fullpath), title: '用 QQ 登录'
-            = link_to_with_icon '', 'fa fa-douban', user_omniauth_authorize_path(:douban, state: request.fullpath), title: '用豆瓣登录'
-            = link_to_with_icon '', 'fa fa-bong', user_omniauth_authorize_path(:bong, state: request.fullpath), title: '用 bong 登录'
+          .text-center
+            = link_to_with_icon '', 'fa fa-weibo', user_omniauth_authorize_path(:weibo, state: request.fullpath), class: 'authorization', title: '用微博登录'
+            = link_to_with_icon '', 'fa fa-twitter', user_omniauth_authorize_path(:twitter, state: request.fullpath), class: 'authorization', title: '用 Twitter 登录'
+            = link_to_with_icon '', 'fa fa-qq', user_omniauth_authorize_path(:qq_connect, state: request.fullpath), class: 'authorization', title: '用 QQ 登录'
+            = link_to_with_icon '', 'fa fa-douban', user_omniauth_authorize_path(:douban, state: request.fullpath), class: 'authorization', title: '用豆瓣登录'
+            = link_to_with_icon '', 'fa fa-bong', user_omniauth_authorize_path(:bong, state: request.fullpath), class: 'authorization', title: '用 bong 登录'
 
 - content_for :script do
   javascript:
-    $('#welcome_binding_modal').modal('show');
+    $('#welcome_binding_modal').modal({'backdrop': 'static', 'show': true});
