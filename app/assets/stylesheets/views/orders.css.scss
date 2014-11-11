@@ -69,6 +69,15 @@ html.orders_create,
     @include btn-group-responsive;
     margin-bottom: 1rem;
 
+    > h5 {
+      border-bottom: $border-default;
+      margin: {
+        bottom: 1rem;
+        top: 1rem;
+      }
+      padding-bottom: 10px;
+    }
+
     @media screen and (min-width: $screen-md-min) {
       @include clearfix;
 

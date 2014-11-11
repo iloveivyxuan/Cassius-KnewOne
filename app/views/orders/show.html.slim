@@ -90,8 +90,9 @@ section.orders_wrapper
         span= @order.total_price
 
   = render partial: 'consume_point'
-
   .order_actions
+    - if browser.mobile?
+      h5 订单付款
     = order_operations(@order)
     = share_link(@order)
     = return_link(@order, (@order.confirmed? ? 'btn btn-success' : 'btn btn-default'))
