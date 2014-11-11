@@ -305,3 +305,66 @@
     }
   }
 }
+
+#welcome_wechat_modal {
+  .modal-content {
+    border-radius: 0;
+  }
+
+  .modal-header {
+    border-top: 8px solid $brand-primary;
+    padding: {
+      bottom: 10px;
+      top: 10px;
+    }
+
+    > p {
+      color: $text-muted;
+      margin-bottom: 0;
+    }
+  }
+  
+  .modal-title {
+    color: $text-color;
+    line-height: 32px;
+
+    .logo {
+      color: $text-color;
+    }
+  }
+
+  .modal-footer {
+    border-top: 0;
+
+    .btn {
+      margin: {
+        bottom: 1rem;
+        left: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .btn-primary {
+      border: 0;
+      box-shadow: 0px 3px 0px 0px darken($brand-primary, 10%);
+
+      &:active {
+        background-color: darken($brand-primary, 5%);
+        position: relative;
+        top: 1px;
+      }
+
+      .logo {
+        color: #fff;
+      }
+    }
+
+    .btn-link {
+      color: $text-color;
+      text-decoration: underline;
+    }
+  }
+}
