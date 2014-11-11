@@ -1,4 +1,149 @@
 @import '../base';
 
 html[class^="users_"] {
+  #wrapper {
+    @include wrapper(empty);
+
+    > aside {
+      background: white;
+
+      .info {
+        position: relative;
+      }
+
+      .info-avatar {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+
+        img {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+        }
+      }
+
+      .info-name {
+        margin-left: 90px;
+        padding: 30px 0 0;
+        font-size: 18px;
+      }
+
+      .info-level {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 90px;
+
+        .level-rank {
+          width: auto;
+        }
+
+        .level-progress {
+          display: none;
+        }
+      }
+
+      .info-gender {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 10px;
+      }
+
+      .info-location {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 10px;
+      }
+
+      .info-description {
+        position: relative;
+        margin-top: 20px;
+        padding: 0 20px;
+
+        i {
+          position: absolute;
+          top: 0px;
+          left: -18px;
+          color: $gray-lighter;
+        }
+      }
+
+      .info-links {
+        margin-top: 20px;
+        text-align: right;
+
+        a {
+          display: inline-block;
+
+          line-height: 32px;
+          width: 32px;
+          margin-right: 10px;
+          text-align: center;
+
+          border-radius: 50%;
+          color: $text-color;
+          background: $gray-lighter;
+
+          &:hover {
+            color: $gray-lighter;
+            background: $text-color;
+          }
+        }
+
+        i {
+          margin: 0;
+        }
+      }
+
+      .info-friendship {
+        margin-top: 10px;
+        padding: 10px 0;
+        line-height: 1;
+        background: $ghost-white;
+
+        > a {
+          display: inline-block;
+          width: 50%;
+          text-align: center;
+          font-size: 10px;
+          color: $text-color;
+
+          span {
+            display: block;
+            margin-top: 2px;
+            font-size: 18px;
+          }
+        }
+      }
+
+      .info-actions {
+        > a {
+          @include plain-link($gray-lighter);
+
+          display: inline-block;
+          width: 50%;
+          line-height: 50px;
+          vertical-align: middle;
+          text-align: center;
+        }
+
+        .follow_btn {
+          padding: 0;
+          border: none;
+          border-radius: 0;
+
+          background: $blue-dark;
+          transition: background-color .1s;
+
+          &.follow_btn--followed:hover {
+            background-color: $gray;
+          }
+        }
+
+        .private_message_btn {
+          background: $blue-light;
+        }
+      }
+    }
+  }
 }
