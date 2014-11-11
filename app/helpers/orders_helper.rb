@@ -129,11 +129,21 @@ module OrdersHelper
     end
   end
 
+  def cancel_request_refund_link(order, css = 'btn btn-warning')
+    if order.can_cancel_request_refund?
+      content_tag :div, class: 'btn-group' do
+        link_to '取消申请退款', cancel_request_refund_order_path(order), method: :patch, class: css
+      end
+    end
+  end
+
   def order_operations(order)
     [
       pay_link(order, 'orders/pay_buttons'),
       confirm_free_link(order),
-      cancel_link(order)
+      cancel_link(order),
+      request_refund_link(order),
+      cancel_request_refund_link(order)
     ].compact.join('').html_safe
   end
 

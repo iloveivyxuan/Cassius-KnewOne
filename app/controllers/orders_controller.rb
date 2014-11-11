@@ -57,6 +57,11 @@ class OrdersController < ApplicationController
     redirect_to @order
   end
 
+  def cancel_request_refund
+    @order.cancel_request_refund!
+    redirect_to @order
+  end
+
   def deliver_bill
     return redirect_to @order unless @order.shipped? or @order.confirmed?
 

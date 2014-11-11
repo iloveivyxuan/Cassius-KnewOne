@@ -95,7 +95,6 @@ section.orders_wrapper
     = order_operations(@order)
     = share_link(@order)
     = return_link(@order, (@order.confirmed? ? 'btn btn-success' : 'btn btn-default'))
-    = request_refund_link(@order)
     = link_to '需要帮助?', '#customer_services', title: '需要帮助?', class: 'btn btn-link'
 
   - if @order.pending?

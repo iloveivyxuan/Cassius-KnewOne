@@ -244,6 +244,10 @@ class Order
     confirmed?
   end
 
+  def can_cancel_request_refund?
+    request_refund?
+  end
+
   def can_refund?
     request_refund? || confirmed? || shipped?
   end
@@ -434,6 +438,16 @@ class Order
     save!
 
     order_histories.create from: state, to: :request_refund
+  end
+
+  def cancel_request_refund!
+    return false unless can_cancel_request_refund?
+
+    self.state = :request_refund
+
+    save!
+
+    order_histories.create from: :request_refund, to: :confirmed
   end
 
   def refund!
