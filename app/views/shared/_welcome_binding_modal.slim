@@ -2,9 +2,6 @@
   .modal-dialog
     .modal-content
       .modal-header
-        button.close type="button" data-dismiss="modal"
-          span aria-hidden="true" &times;
-          span.sr-only Close
         h4.modal-title
           | 欢迎来到
           span.logo KnewOne
@@ -65,4 +62,4 @@
 
 - content_for :script do
   javascript:
-    $('#welcome_binding_modal').modal('show');
+    $('#welcome_binding_modal').modal({'backdrop': 'static', 'show': true});
