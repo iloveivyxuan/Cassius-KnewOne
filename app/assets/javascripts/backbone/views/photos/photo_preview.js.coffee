@@ -39,7 +39,7 @@ class Making.Views.PhotoPreview extends Backbone.View
       .removeClass('uploading')
       .addClass('fail')
       .html('<p class="fail">' + error +
-        '<a class="destroy" title="删除" href="#"><i class="fa fa-trash-o"></i></a></p>')
+        '<a class="destroy" title="删除" href="javascript:;"><i class="fa fa-trash-o"></i></a></p>')
       .closest('form')
         .trigger('fail.validation')
     false
