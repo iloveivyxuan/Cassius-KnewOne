@@ -80,9 +80,9 @@ class ThingPresenter < PostPresenter
       class: "btn btn--online_shopping buy_button track_event", target: "_blank", rel: 'nofollow',
       data: data_with_buy_tracker("domestic", thing.title)
     else
-      link_to_with_icon "请登录后网购", "fa fa-sign-in", "#",
+      link_to_with_icon "请登录后网购", "fa fa-sign-in", login_path,
       class: "btn btn--login buy_button track_event",
-      data: data_with_login_tracker("domestic", thing.title)
+      data: data_with_login_tracker("domestic", thing.title, browser.wechat?)
     end
   end
 
@@ -94,9 +94,9 @@ class ThingPresenter < PostPresenter
       title: title, class: "btn btn--kick buy_button track_event", target: "_blank", rel: 'nofollow',
       data: data_with_buy_tracker("kick", thing.title)
     else
-      link_to_with_icon "请登录后众筹", "fa fa-sign-in", "#",
+      link_to_with_icon "请登录后众筹", "fa fa-sign-in", login_path,
       class: "btn btn--login buy_button track_event",
-      data: data_with_login_tracker("kick", thing.title)
+      data: data_with_login_tracker("kick", thing.title, browser.wechat?)
     end
   end
 
@@ -108,9 +108,9 @@ class ThingPresenter < PostPresenter
       title: title, class: "btn btn--blue_light buy_button track_event", target: "_blank", rel: 'nofollow',
       data: data_with_buy_tracker("abroad", thing.title)
     else
-      link_to_with_icon "请登录后海淘", "fa fa-sign-in", "#",
+      link_to_with_icon "请登录后海淘", "fa fa-sign-in", login_path,
       class: "btn btn--login buy_button track_event",
-      data: data_with_login_tracker("abroad", thing.title)
+      data: data_with_login_tracker("abroad", thing.title, browser.wechat?)
     end
   end
 

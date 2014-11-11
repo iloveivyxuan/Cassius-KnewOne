@@ -1,4 +1,4 @@
-= simple_form_for(User.new, url: user_session_path, remote: true) do |f|
+= simple_form_for(User.new, url: user_session_path(redirect_from: request.fullpath), remote: true) do |f|
   .form-group
     .input-group
       span.input-group-addon
