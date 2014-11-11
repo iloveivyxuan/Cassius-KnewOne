@@ -253,7 +253,7 @@ class OrdersController < ApplicationController
         'signType' => 'MD5'
       }
 
-      params['paySign'] = WxPay::Sign.generate(@params)
+      params['paySign'] = WxPay::Sign.generate(params)
 
       params.to_json
     else
