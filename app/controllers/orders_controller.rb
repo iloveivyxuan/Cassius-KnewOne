@@ -1,9 +1,10 @@
 class OrdersController < ApplicationController
-  before_action :require_signed_in, only: [:index, :show, :new, :create, :cancel, :tenpay, :alipay]
+  before_action :require_signed_in, only: [:index, :show, :new, :create, :cancel, :tenpay, :alipay, :alipay_wap, :wxpay]
   before_action :have_items_in_cart, only: [:new, :create]
   load_and_authorize_resource except: [:index, :new, :create, :wxpay]
   layout 'settings', only: [:index, :show]
   skip_before_action :require_not_blocked
+  skip_before_action :verify_authenticity_token, only: [:alipay_notify, :tenpay_notify, :alipay_wap_notify, :wxpay_notify]
 
   def index
     @orders = current_user.orders.page(params[:page]).per(3)
@@ -125,7 +126,7 @@ class OrdersController < ApplicationController
 
     @order = Order.find params[:id]
 
-    result = WxPay::Service.invoke_unifiedorder body: body_text(@order, 64),
+    result = WxPay::Service.invoke_unifiedorder body: "KnewOne购物订单: #{@order.order_no}",
                                                 out_trade_no: @order.id.to_s,
                                                 total_fee: (@order.should_pay_price * 100).to_i,
                                                 spbill_create_ip: request.ip,
@@ -151,6 +152,7 @@ class OrdersController < ApplicationController
   def wxpay_notify
     logger.info '----'
     logger.info params.except(*request.path_parameters.keys)
+    logger.info request.body
     logger.info '----'
   end
 
