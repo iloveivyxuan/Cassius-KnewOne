@@ -443,7 +443,7 @@ class Order
   def cancel_request_refund!
     return false unless can_cancel_request_refund?
 
-    self.state = :request_refund
+    self.state = :confirmed
 
     save!
 
