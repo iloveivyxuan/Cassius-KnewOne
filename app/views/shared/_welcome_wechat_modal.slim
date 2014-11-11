@@ -13,8 +13,7 @@
         = link_to "/", class: "btn btn-block btn-primary"
           | 开始探索
           span.logo KnewOne
-        = link_to "已经是 KnewOne 用户？点击这里绑定", "/", class: "btn btn-block btn-link"
-
+        = link_to "已经是 KnewOne 用户？点击这里绑定", "/"
 - content_for :script do
   javascript:
     $('#welcome_wechat_modal').modal('show')
