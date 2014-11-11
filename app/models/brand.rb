@@ -5,9 +5,10 @@ class Brand
   field :zh_name, type: String
   field :en_name, type: String
 
+  before_save :update_names
+
   field :things_size, type: Integer, default: 0
   before_save :update_things_size
-  before_save :update_names
 
   field :description, type: String, default: ""
 
@@ -30,5 +31,7 @@ class Brand
   def update_names
     self.zh_name = nil if self.zh_name.try(:empty?)
     self.en_name = nil if self.en_name.try(:empty?)
+    self.en_name.strip! if self.en_name
+    self.zh_name.strip! if self.zh_name
   end
 end
