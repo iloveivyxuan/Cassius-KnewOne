@@ -126,7 +126,7 @@ class OrdersController < ApplicationController
     respond_to do |format|
       format.js do
         unless current_user.wechat_bind?
-          return render js: "window.location = '#{user_omniauth_authorize_path(:wechat, state: request.fullpath)}';"
+          return render js: "window.location = '#{user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base')}';"
         end
 
         @params = generate_wxpay_jsapi_params(@order)
@@ -134,7 +134,7 @@ class OrdersController < ApplicationController
 
       format.html do
         unless current_user.wechat_bind?
-          return redirect_to user_omniauth_authorize_path(:wechat, state: request.fullpath)
+          return redirect_to user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base')
         end
 
         @params = generate_wxpay_jsapi_params(@order)
