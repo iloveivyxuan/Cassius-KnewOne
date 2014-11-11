@@ -4,6 +4,37 @@
 - content_for :content do
   aside
     ul.info
+      li.info-name = @user.name
+      li.info-avatar = user_avatar(@user, :small)
+      li.info-level = render 'shared/level', user: @user
+
+      - if @user.gender.present?
+        li.info-gender = symbolize_gender(@user.gender)
+
+      - if @user.location.present?
+        li.info-location
+          i.fa.fa-map-marker
+          = @user.location
+
+      - if @user.description.present?
+        li.info-description
+          i.fa.fa-quote-left
+          p = @user.description
+
+      li.info-links = user_links(@user)
+
+      li.info-friendship
+        = link_to followers_user_path(@user), class: 'info-followers'
+          | 关注者
+          span = @user.followers_count
+        = link_to followings_user_path(@user), class: 'info-followings'
+          | 关注
+          span = @user.followings_count
+
+      - if @user != current_user
+        li.info-actions
+          = render 'follow_btn', user: @user
+          = render 'private_message_btn', user: @user, text: '私信'
 
   nav
     ul.user_content
