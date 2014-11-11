@@ -202,14 +202,30 @@ module ApplicationHelper
     data ? tracker.merge(data) : tracker
   end
 
-  def data_with_login_tracker(category, label)
-    {
-      action: "login",
-      category: "login+#{category}",
-      label: "login+#{category}+#{label}",
+  def data_with_login_tracker(category, label, auto_show_modal = true)
+    if auto_show_modal
+      {
+        action: "login",
+        category: "login+#{category}",
+        label: "login+#{category}+#{label}",
 
-      toggle: "modal",
-      target: "#login-modal"
-    }
+        toggle: "modal",
+        target: "#login-modal"
+      }
+    else
+      {
+        action: "login",
+        category: "login+#{category}",
+        label: "login+#{category}+#{label}",
+      }
+    end
+  end
+
+  def login_path(path = '')
+    if browser.wechat?
+      user_omniauth_authorize_path(:wechat, state: request.path)
+    else
+      path.present? ? path : '#'
+    end
   end
 end
