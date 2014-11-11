@@ -80,6 +80,8 @@ class RegistrationsController < Devise::RegistrationsController
 
     user.save!
 
+    session.delete :omniauth
+
     sign_in user
 
     redirect_back_or root_path
