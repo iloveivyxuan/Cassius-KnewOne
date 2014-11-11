@@ -47,7 +47,7 @@ html.home_hits section.hits, html.landing_mobile section.hits {
     @media (min-width: $screen-md-min) {
       &:nth-of-type(3n+1), &:nth-of-type(3n+2) {margin-right: $gutter;}
       width: 306px;
-      width: calc((100% - (#{$gutter}+1px)*2)/3);
+      width: calc((100% - (#{$gutter} + 1px) * 2) / 3);
     }
   }
 
