@@ -117,11 +117,11 @@ class OrdersController < ApplicationController
 
   def wxpay
     unless browser.wechat?
-      render js: "window.location = '#{order_path(@order)}';"
+      return render js: "window.location = '#{order_path(@order)}';"
     end
 
     unless current_user.wechat_bind?
-      render js: "window.location = '#{user_omniauth_authorize_path(:wechat, state: request.path)}';"
+      return render js: "window.location = '#{user_omniauth_authorize_path(:wechat, state: request.path)}';"
     end
 
     @order = Order.find params[:id]
@@ -154,27 +154,12 @@ class OrdersController < ApplicationController
   end
 
   def wxpay_notify
-    r = request.body.read
-
-    logger.info '----'
-    logger.info request.body.read
-    logger.info '----'
-
-    r = WxPay::Result.new Hash.from_xml(r)
-
-    logger.info '----'
-    logger.info r
-    logger.info '----'
+    r = WxPay::Result.new Hash.from_xml(request.body.read)
 
     if WxPay::Sign.verify? r
-      logger.info '---'
-      logger.info 'verified'
-      logger.info '---'
-
       o = Order.find r['out_trade_no']
       o.confirm_payment! r['transaction_id'], (r['total_fee'].to_i / 100), :wxpay, r
     end
-
   end
 
   def alipay_notify
