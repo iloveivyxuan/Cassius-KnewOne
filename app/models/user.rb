@@ -211,14 +211,10 @@ class User
 
   def set_profiles_by_auth(auth)
     if self.name.blank?
-      self.name = (auth.name || auth.nickname).try(:gsub, ' ', '-') || 'KnewOne小伙伴'
-
-      if auth.provider == 'bong'
-        self.name = self.name + '@bong'
-      end
+      self.name = (auth.name || auth.nickname).try(:gsub, ' ', '-')
     end
 
-    if (!persisted? && User.where(name: /^#{Regexp.escape(self.name)}$/i).size > 0) || self.name.blank?
+    if self.name.present? && (!persisted? && User.where(name: /^#{Regexp.escape(self.name)}$/i).size > 0)
       self.name += "x#{SecureRandom.uuid[0..4]}"
     end
 
