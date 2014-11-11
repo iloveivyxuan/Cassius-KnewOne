@@ -24,7 +24,7 @@ class SessionsController < Devise::SessionsController
 
         format.html { redirect_back_or after_sign_in_path_for(resource) }
         format.js do
-          @location = after_sign_in_path_for(resource)
+          @location = params[:redirect_from] || after_sign_in_path_for(resource)
         end
       end
     end

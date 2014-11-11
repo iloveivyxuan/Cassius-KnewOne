@@ -1,0 +1,61 @@
+#welcome_binding_modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h4.modal-title
+          | 欢迎来到
+          span.logo KnewOne
+          | 牛玩！
+        p 分享科技与设计产品，发现更好的生活
+      .modal-body
+        = image_tag "welcome_wechat.jpg", alt: "欢迎来到 KnewOne 牛玩！"
+      .modal-footer
+        = link_to "/", class: "btn btn-block btn-primary"
+          | 开始探索
+          span.logo KnewOne
+        = link_to "已经是 KnewOne 用户？点击这里绑定", "#", data: {toggle: 'modal', target: '#binding_to_exists_user_modal'}
+
+#binding_to_exists_user_modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        | 绑定到已有账号
+      .modal-body
+        = simple_form_for(User.new, url: user_session_path(redirect_from: request.fullpath), remote: true) do |f|
+          .form-group
+            .input-group
+              span.input-group-addon
+                i.fa.fa-envelope
+              = f.email_field :email, required: true, autofocus: true, placeholder: '邮箱地址', class: 'form-control'
+          .form-group
+            .input-group
+              span.input-group-addon
+                i.fa.fa-key
+              = f.password_field :password, required: true, placeholder: '密码', class: 'form-control'
+              = hidden_field_tag :redirect_from
+          .form-group.addon
+            div
+              = link_to new_user_password_path
+                i.fa.fa-question-circle
+                | 忘记密码？
+          .form-group
+            .form-action
+              = f.button :submit, "绑定", class: "btn btn-primary btn-lg btn-block"
+          .form-group.hidden#sign_in_alert_field
+            .form-result
+              .alert.alert-danger
+                | 用户名或密码错误，请重新输入。
+        .social_sign_in
+          span
+            | 通过社交网络账号
+            i.fa.fa-caret-right
+          div
+            = link_to_with_icon '', 'fa fa-weibo', user_omniauth_authorize_path(:weibo, state: request.fullpath), title: '用微博登录'
+            = link_to_with_icon '', 'fa fa-twitter', user_omniauth_authorize_path(:twitter, state: request.fullpath), title: '用 Twitter 登录'
+            = link_to_with_icon '', 'fa fa-qq', user_omniauth_authorize_path(:qq_connect, state: request.fullpath), title: '用 QQ 登录'
+            = link_to_with_icon '', 'fa fa-douban', user_omniauth_authorize_path(:douban, state: request.fullpath), title: '用豆瓣登录'
+            = link_to_with_icon '', 'fa fa-bong', user_omniauth_authorize_path(:bong, state: request.fullpath), title: '用 bong 登录'
+
+- content_for :script do
+  javascript:
+    $('#welcome_binding_modal').modal('show');

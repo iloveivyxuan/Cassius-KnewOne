@@ -43,8 +43,8 @@ html class=page_class lang="zh-CN"
     = render 'shared/private_message'
     = render 'shared/share_modal'
     = render 'shared/feedback_modal'
-    - if browser.mobile?
-      = render 'shared/welcome_wechat_modal'
+    - if flash[:show_welcome_binding_modal]
+      = render 'shared/welcome_binding_modal'
     = yield :end
     .site_maps.hidden
       = link_to '产品', maps_things_path
