@@ -21,3 +21,7 @@ section
       label 描述
       = f.text_field :description
     = f.submit
+
+section
+  label 旗下产品名
+  div= simple_format @brand.things.map(&:title).join("\n")
