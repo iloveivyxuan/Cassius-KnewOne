@@ -73,7 +73,7 @@ class RegistrationsController < Devise::RegistrationsController
     return redirect_back_or root_path unless session[:omniauth].present?
 
     user = User.new
-    auth = Auth.from_omniauth(session[:omniauth])
+    auth = Auth.new session[:omniauth]
     user.set_profiles_by_auth(auth)
     user.name = "#{SecureRandom.hex 3}@#{auth.provider}" unless user.name.present?
     user.auths << auth
