@@ -30,6 +30,12 @@ window.Making = do (exports = window.Making || {}) ->
             .empty()
           _$button.button('reset')
 
+    _setUploaderHeight = ->
+      height = _$uploader_queue.outerHeight()
+
+      _$uploader_queue.css marginTop: - (70 + height)
+      _$content.css paddingBottom: height
+
     exports.Rating()
 
     _$element
@@ -37,16 +43,14 @@ window.Making = do (exports = window.Making || {}) ->
         if !_$editor.hasClass('uploading')
           _$editor.addClass('uploading')
 
-      .on 'fileuploadsubmit', ->
-        height = _$uploader_queue.outerHeight()
-
-        _$uploader_queue.css marginTop: - (70 + height)
-        _$content.css paddingBottom: height
+      .on 'fileuploadsubmit', _setUploaderHeight
 
       .on 'submit', '.editor_compact', ->
         deferred_reset = new $.Deferred()
         _reset(deferred_reset)
         _$element.data('reset', deferred_reset)
+
+    _$uploader.on 'fail.validation', _setUploaderHeight
 
     _reset(deferred_reset)
     _$element.data('reset', deferred_reset)
