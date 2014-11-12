@@ -646,6 +646,11 @@ html.feelings_show {
       footer {
         margin-top: 1em;
 
+        .official_site {
+          font-size: 14px;
+          text-decoration: none;
+        }
+
         > .btn {
           float: right;
           height: 40px;

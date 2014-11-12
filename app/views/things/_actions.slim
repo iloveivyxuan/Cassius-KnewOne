@@ -11,11 +11,9 @@
         = render partial: 'things/tag', collection: tp.tags
 
     .related.clearfix
-      - if tp.thing.official_site.present?
-        = tp.official_site
       - brand_text = tp.thing.try(:brand).try(:brand_text)
       - if brand_text.present?
-        = link_to_with_icon brand_text, 'fa fa-folder-open', brand_things_path(tp.thing.brand.id)
+        = link_to brand_text, brand_things_path(tp.thing.brand.id)
 
 - content_for :script do
   javascript:
