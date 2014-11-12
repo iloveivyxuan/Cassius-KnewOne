@@ -282,7 +282,7 @@
 // Media queries
 // -----------------------------------------------------------------------------
 
-@mixin breakpoint($class) {
+@mixin from-breakpoint($class) {
   @if $class == xs {
     @media (min-width: 0px) { @content; }
   } @else if $class == sm {

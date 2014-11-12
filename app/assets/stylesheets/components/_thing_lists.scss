@@ -240,7 +240,7 @@
   .modal-content {
     @include border-radius(10px);
 
-    @include breakpoint(md) {
+    @include from-breakpoint(md) {
       width: 560px;
     }
   }
@@ -259,7 +259,7 @@
       .title {
         display: none;
 
-        @include breakpoint(md) {
+        @include from-breakpoint(md) {
           display: inline;
           margin-left: 1em;
           color: $gray-lighter;
@@ -284,7 +284,7 @@
       width: 64px;
       height: 64px;
 
-      @include breakpoint(md) {
+      @include from-breakpoint(md) {
         width: 256px;
         height: 256px;
       }
@@ -318,13 +318,13 @@
         }
       }
 
-      @include breakpoint(md) {
+      @include from-breakpoint(md) {
         display: none;
       }
     }
 
     > form {
-      @include breakpoint(md) {
+      @include from-breakpoint(md) {
         margin-left: 270px;
       }
 
@@ -343,7 +343,7 @@
 
         overflow: auto;
         height: 136px;
-        @include breakpoint(sm) { height: 170px; }
+        @include from-breakpoint(sm) { height: 170px; }
 
         border: solid $gray-lighter;
         border-width: 0 1px;

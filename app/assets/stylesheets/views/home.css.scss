@@ -25,7 +25,7 @@ html.home {
         float: right;
       }
 
-      @include breakpoint(md) {
+      @include from-breakpoint(md) {
         margin-top: 0;
         margin-left: 10em;
         width: calc(66.6666666667% - 10em - 30px);
@@ -45,7 +45,7 @@ html.home {
     > main {
       width: 100%;
 
-      @include breakpoint(md) {
+      @include from-breakpoint(md) {
         float: left;
         width: percentage(2 / 3);
         padding-right: 30px;
@@ -55,7 +55,7 @@ html.home {
     > aside {
       display: none;
 
-      @include breakpoint(md) {
+      @include from-breakpoint(md) {
         display: block;
         float: left;
         width: percentage(1 / 3);
@@ -148,7 +148,7 @@ html.home {
         padding-right: 16px;
       }
 
-      @include breakpoint(md) {
+      @include from-breakpoint(md) {
         position: relative;
         margin-left: 10em;
 
@@ -352,7 +352,7 @@ html.home {
     width: auto;
     margin-top: 1em;
 
-    @include breakpoint(sm) {
+    @include from-breakpoint(sm) {
       margin-left: 10em;
     }
   }

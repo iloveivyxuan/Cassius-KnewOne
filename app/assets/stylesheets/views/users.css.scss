@@ -59,7 +59,7 @@ html[class^="users_"] {
         margin-top: 20px;
         text-align: right;
 
-        @include breakpoint(sm) {
+        @include from-breakpoint(sm) {
           position: absolute;
           top: 30px;
           right: 0;
@@ -71,7 +71,7 @@ html[class^="users_"] {
         .info-location {
           margin-right: 10px;
 
-          @include breakpoint(sm) {
+          @include from-breakpoint(sm) {
             display: block;
             margin: 0 0 10px;
           }
@@ -106,7 +106,7 @@ html[class^="users_"] {
         line-height: 1;
         background: $ghost-white;
 
-        @include breakpoint(sm) {
+        @include from-breakpoint(sm) {
           &:not(.info-friendship--self) {
             display: inline-block;
             vertical-align: middle;
@@ -130,7 +130,7 @@ html[class^="users_"] {
       }
 
       .info-actions {
-        @include breakpoint(sm) {
+        @include from-breakpoint(sm) {
           display: inline-block;
           vertical-align: middle;
           margin-top: 10px;
