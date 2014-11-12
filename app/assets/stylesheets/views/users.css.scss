@@ -8,7 +8,7 @@ html[class^="users_"] {
   #wrapper {
     @include wrapper(empty);
 
-    > aside {
+    > header {
       background: white;
 
       .info {
