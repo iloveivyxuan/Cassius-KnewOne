@@ -16,6 +16,8 @@ class Brand
 
   has_many :things
 
+  before_save :spacing_description
+
   def update_things_size
     self.things_size = self.things.size
   end
@@ -33,5 +35,10 @@ class Brand
     self.en_name = nil if self.en_name.try(:empty?)
     self.en_name.strip! if self.en_name
     self.zh_name.strip! if self.zh_name
+  end
+
+  def spacing_description
+    self.description_will_change!
+    self.description.auto_correct!
   end
 end

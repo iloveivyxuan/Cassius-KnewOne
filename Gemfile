@@ -98,6 +98,9 @@ gem 'redis-rails'
 # resolve error like ArgumentError: invalid byte sequence in UTF-8
 gem 'rack-utf8_sanitizer'
 
+# adding spaces between Chinese characters & English characters
+gem 'auto-correct'
+
 # servers
 group :production do
   gem 'unicorn'

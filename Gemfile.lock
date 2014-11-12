@@ -139,6 +139,8 @@ GEM
       connection_pool
       daemons
     arel (5.0.1.20140414130214)
+    auto-correct (0.1.0.pre0)
+      activesupport (> 3.0.0)
     autoprefixer-rails (3.0.1.20140826)
       execjs
     backbone-on-rails (1.1.1.0)
@@ -574,6 +576,7 @@ DEPENDENCIES
   airbrake
   alipay
   apn_sender
+  auto-correct
   autoprefixer-rails
   backbone-on-rails
   bootstrap-sass
