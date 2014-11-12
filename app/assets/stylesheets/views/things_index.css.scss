@@ -24,7 +24,10 @@ html.shop, html.things_index {
       margin: 1em 0 0 0;
       font-size: $font-size-h3;
       color: $gray;
-      > a {color: $gray;}
+
+      a {
+        color: $gray;
+      }
     }
 
     nav {
