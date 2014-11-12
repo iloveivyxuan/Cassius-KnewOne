@@ -7,7 +7,7 @@
   header#things_nav
     h1
       - if @brand
-        = link_to @brand.brand_text, things_path(brand: @brand.id), class: 'breadcrumb'
+        = link_to @brand.brand_text, brand_things_path(@brand.id), class: 'breadcrumb'
       - if @tag
         - zipped_categories = @tag.categories.map(&:category).zip(@tag.categories)
         = render 'category_tag_breadcrumb', zipped: zipped_categories

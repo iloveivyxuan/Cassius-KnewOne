@@ -154,7 +154,9 @@ Making::Application.routes.draw do
       get 'extract_url'
       get 'category/:category', action: :index, as: :category
       get 'tag/:tag', action: :index, as: :tag
+      get 'brand/:brand', action: :index, as: :brand
       get 'category/:category/tag/:tag', action: :index
+      get 'brand/:brand/tag/:tag', action: :index
     end
 
     member do
