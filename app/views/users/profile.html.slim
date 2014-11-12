@@ -14,7 +14,7 @@
 
   - if @user.description.present?
     p.profile-description
-      = @user.description.truncate(32)
+      = @user.description
 
   section.profile-actions
     = link_to followers_user_path(@user), class: 'profile-followers'
