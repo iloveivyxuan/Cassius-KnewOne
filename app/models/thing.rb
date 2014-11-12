@@ -6,6 +6,8 @@ class Thing < Post
   slug :title, history: true
   before_save :delete_illegal_chars
 
+  index priority: 1
+
   field :approved_at, type: DateTime, default: nil
   before_save :update_approved_time
 
