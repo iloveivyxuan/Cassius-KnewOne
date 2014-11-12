@@ -1,7 +1,7 @@
 module Haven
   class OrdersController < Haven::ApplicationController
     layout 'settings'
-    before_action :set_order, except: [:index, :stock]
+    before_action :set_order, except: [:index, :stock, :batch_ship]
     include ::AddressesHelper
 
     CITY_PLACEHOLDER = %w(市辖区 县)
@@ -168,6 +168,23 @@ module Haven
     def generate_waybill
       @order.generate_waybill!
       redirect_to haven_order_path(@order)
+    end
+
+    def batch_ship
+      if params[:order_nos] && params[:deliver_nos]
+        order_nos = params[:order_nos].split
+        deliver_nos = params[:deliver_nos].split
+        @errors = []
+        return unless order_nos.size == deliver_nos.size
+        (0..order_nos.size - 1).each do |i|
+          order = Order.where(order_no: order_nos[i]).first
+          if order && (order.state != :shipped)
+            order.ship!(deliver_nos[i], "", params[:deliver_method])
+          else
+            @errors << order_nos[i]
+          end
+        end
+      end
     end
 
     private

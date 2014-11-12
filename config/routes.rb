@@ -273,6 +273,8 @@ Making::Application.routes.draw do
       end
       collection do
         get 'stock'
+        get 'batch_ship'
+        post 'batch_ship'
       end
     end
 
