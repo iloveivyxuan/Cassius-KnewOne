@@ -12,17 +12,18 @@
       li.info-avatar = user_avatar(@user, :small)
       li.info-level = render 'shared/level', user: @user
 
-      - if @user.location.present?
-        li.info-location
-          i.fa.fa-map-marker
-          = @user.location
-
       - if @user.description.present?
         li.info-description
           i.fa.fa-quote-left
           p = @user.description
 
-      li.info-links = user_links(@user)
+      li.info-links
+        - if @user.location.present?
+          span.info-location
+            i.fa.fa-map-marker
+            = @user.location
+
+        = user_links(@user)
 
       li.info-friendship
         = link_to followers_user_path(@user), class: 'info-followers'

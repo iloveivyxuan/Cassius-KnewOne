@@ -34,23 +34,8 @@ html[class^="users_"] {
       }
 
       .info-level {
-        display: inline-block;
-        vertical-align: middle;
+        width: 160px;
         margin-left: 90px;
-
-        .level-rank {
-          width: auto;
-        }
-
-        .level-progress {
-          display: none;
-        }
-      }
-
-      .info-location {
-        display: inline-block;
-        vertical-align: middle;
-        margin-left: 10px;
       }
 
       .info-description {
@@ -70,6 +55,10 @@ html[class^="users_"] {
         margin-top: 20px;
         text-align: right;
 
+        .info-location {
+          margin-right: 10px;
+        }
+
         a {
           display: inline-block;
 
@@ -82,14 +71,14 @@ html[class^="users_"] {
           color: $text-color;
           background: $gray-lighter;
 
+          i {
+            margin: 0;
+          }
+
           &:hover {
             color: $gray-lighter;
             background: $text-color;
           }
-        }
-
-        i {
-          margin: 0;
         }
       }
 
