@@ -8,12 +8,13 @@
     h1
       - if @brand
         = link_to @brand.brand_text, things_path(brand: @brand.id), class: 'breadcrumb'
-      - if @category
-        - if (primary ||= @category.category)
-          = link_to primary.name, things_path(category: primary), class: 'breadcrumb'
-        = link_to @category.name, things_path(category: @category), class: 'breadcrumb'
       - if @tag
-        = link_to @tag.name, things_path(tag: @tag), class: 'breadcrumb'
+        - zipped_categories = @tag.categories.map(&:category).zip(@tag.categories)
+        = render 'category_tag_breadcrumb', zipped: zipped_categories
+      - elsif @category
+        - if (primary ||= @category.category)
+          = link_to primary.name, category_things_path(primary), class: 'breadcrumb'
+        = link_to @category.name, category_things_path(@category), class: 'breadcrumb'
       - if !@category && !@tag && !@brand
         = link_to '产品', things_path, class: 'breadcrumb'
     nav
@@ -27,7 +28,12 @@
         img#logo src=(@brand ? @brand.logo.url : @category.cover.url)
       .col-md-9
         p#description= (@brand ? @brand.description : @category.description)
-        - tags = @brand ? @brand.tags : @category.tags
+        - if @brand
+          - tags = @brand.tags
+        - elsif @category.primary_category?
+          - tags = @category.inner_categories
+        - else
+          - tags = @category.tags
         #tags
           = render 'thing_information_tags', tags: tags
       - unless browser.desktop?
