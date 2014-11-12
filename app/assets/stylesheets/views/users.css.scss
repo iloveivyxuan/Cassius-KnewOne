@@ -8,8 +8,25 @@ html[class^="users_"] {
   #wrapper {
     @include wrapper(empty);
 
+    $wrapper-max-width: 1280px;
+    $header-width: 320px;
+
+    max-width: $wrapper-max-width;
+
+    @include from-breakpoint(md) {
+      margin: 0 auto;
+      padding-left: $header-width;
+    }
+
     > header {
       background: white;
+
+      @include from-breakpoint(md) {
+        position: fixed;
+        top: 45px;
+        width: $header-width;
+        margin-left: -$header-width;
+      }
 
       .info {
         position: relative;
@@ -53,6 +70,11 @@ html[class^="users_"] {
           left: -18px;
           color: $gray-lighter;
 
+          @include from-breakpoint(md) {
+            left: 3px;
+          }
+        }
+
         p {
           margin: 0;
         }
@@ -63,20 +85,24 @@ html[class^="users_"] {
         text-align: right;
 
         @include from-breakpoint(sm) {
-          position: absolute;
-          top: 30px;
-          right: 0;
-          width: 25%;
-          margin: 0;
-          text-align: center;
+          @include to-breakpoint(sm) {
+            position: absolute;
+            top: 30px;
+            right: 0;
+            width: 25%;
+            margin: 0;
+            text-align: center;
+          }
         }
 
         .info-location {
           margin-right: 10px;
 
           @include from-breakpoint(sm) {
-            display: block;
-            margin: 0 0 10px;
+            @include to-breakpoint(sm) {
+              display: block;
+              margin: 0 0 10px;
+            }
           }
         }
 
@@ -110,10 +136,12 @@ html[class^="users_"] {
         background: $ghost-white;
 
         @include from-breakpoint(sm) {
-          &:not(.info-friendship--self) {
-            display: inline-block;
-            vertical-align: middle;
-            width: 50%;
+          @include to-breakpoint(sm) {
+            &:not(.info-friendship--self) {
+              display: inline-block;
+              vertical-align: middle;
+              width: 50%;
+            }
           }
         }
 
@@ -134,10 +162,12 @@ html[class^="users_"] {
 
       .info-actions {
         @include from-breakpoint(sm) {
-          display: inline-block;
-          vertical-align: middle;
-          margin-top: 10px;
-          width: 50%;
+          @include to-breakpoint(sm) {
+            display: inline-block;
+            vertical-align: middle;
+            margin-top: 20px;
+            width: 50%;
+          }
         }
 
         > a {
