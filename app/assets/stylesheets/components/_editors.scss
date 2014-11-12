@@ -63,9 +63,9 @@
 
   .btn {
     margin: {
-      bottom: 3px;
+      bottom: 6px;
       left: 1em;
-      top: 3px;
+      top: 6px;
     }
 
     &:focus {
@@ -105,7 +105,7 @@
 
   border: none;
   color: $text-muted;
-  margin: {
+  padding: {
     bottom: 4px;
     top: 4px;
   }
@@ -306,6 +306,20 @@
         line-height: 1.8;
       }
     }
+  }
+}
+
+html.mobile {
+  .editor-target,
+  .editor-help-toggle {
+    display: none;
+  }
+}
+
+html.mobile,
+html.tablet {
+  .medium-editor-toolbar {
+    display: none;
   }
 }
 

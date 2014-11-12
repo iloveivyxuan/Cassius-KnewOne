@@ -40,7 +40,10 @@
       = content_tag :div, class: "uploader_queue", id: "photos", data: {photos: @photos} do
         p.help-block.uploader_toggle
           i.fa.fa-arrows
-          | 拖拽图片到框里上传（建议产品图尺寸为 800×600 px 或以上）
+          - if browser.desktop?
+            | 拖拽图片到框里上传（建议产品图尺寸为 800×600 px 或以上）
+          - else
+            | 点击上传图片
           = f.file_field :image, multiple: true, name: "photo[image]", accept: "image/*"
 
     .body#form-thing-body title="请为产品填写信息" data-placement="top"
