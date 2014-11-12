@@ -37,7 +37,7 @@ class HomeController < ApplicationController
         end
 
         format.html.desktop do
-          @categories = Category.prior.gt(things_count: 10).limit(8)
+          @categories = Category.primary.gt(things_count: 10).desc(:things_count).limit(8)
           render 'home/landing'
         end
       end
