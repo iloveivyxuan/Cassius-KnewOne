@@ -447,23 +447,19 @@ html.landing {
   /***Explore Nav***/
 
   .explore_nav {
-    &:before {
-      content:" ";
-      display:table;
-    }
-    &:after {
-      content:" ";
-      display:table;
-      clear:both;
-    }
     margin-bottom: 30px;
+
     ul {
+      display: table;
+      table-layout: fixed;
       width: 100%;
+
       li {
-        float: left;
+        display: table-cell;
+        text-align: center;
+
         a {
           display: block;
-          padding: 0 35px;
           font-size: 1em;
           line-height: 4;
           color: #949494;
@@ -488,7 +484,6 @@ html.landing {
           }
         }
       }
-
     }
   }
 
