@@ -11,12 +11,14 @@
     ul.nav.nav-pills.nav-justified
       = nav_tab :overview do
         = link_to "Overview", styleguide_path
-      = nav_tab :codingstyle do
-        = link_to "Coding Style", "#"
+      = nav_tab :coding do
+        = link_to "Coding Style", coding_styleguide_path
       = nav_tab :scaffolds do
         = link_to "Scaffolds", scaffolds_styleguide_path
       = nav_tab :components do
         = link_to "Components", components_styleguide_path
+      = nav_tab :tips do
+        = link_to "Tips", tips_styleguide_path
 
   main
     = yield

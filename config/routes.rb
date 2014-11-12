@@ -276,8 +276,10 @@ Making::Application.routes.draw do
   end
 
   resource :styleguide, only: [:show] do
+    get 'coding'
     get 'scaffolds'
     get 'components'
+    get 'tips'
   end
 
   namespace :haven do
