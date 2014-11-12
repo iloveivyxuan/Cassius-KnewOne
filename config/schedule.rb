@@ -44,7 +44,7 @@ every 1.day, :at => '4:00 am' do
 end
 
 every 1.day, :at => '4:15 am' do
-  Brand.all.each { |b| b.things.set(brand_name: b.brand_text) }
+  runner 'Brand.all.each { |b| b.things.set(brand_name: b.brand_text) }'
 end
 
 every 1.day, at: '4:30 am' do
