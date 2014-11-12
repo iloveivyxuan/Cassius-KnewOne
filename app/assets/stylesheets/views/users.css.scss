@@ -1,6 +1,10 @@
 @import '../base';
 
 html[class^="users_"] {
+  body {
+    padding-top: 45px;
+  }
+
   #wrapper {
     @include wrapper(empty);
 
@@ -55,8 +59,22 @@ html[class^="users_"] {
         margin-top: 20px;
         text-align: right;
 
+        @include breakpoint(sm) {
+          position: absolute;
+          top: 30px;
+          right: 0;
+          width: 25%;
+          margin: 0;
+          text-align: center;
+        }
+
         .info-location {
           margin-right: 10px;
+
+          @include breakpoint(sm) {
+            display: block;
+            margin: 0 0 10px;
+          }
         }
 
         a {
@@ -88,6 +106,14 @@ html[class^="users_"] {
         line-height: 1;
         background: $ghost-white;
 
+        @include breakpoint(sm) {
+          &:not(.info-friendship--self) {
+            display: inline-block;
+            vertical-align: middle;
+            width: 50%;
+          }
+        }
+
         > a {
           display: inline-block;
           width: 50%;
@@ -104,6 +130,13 @@ html[class^="users_"] {
       }
 
       .info-actions {
+        @include breakpoint(sm) {
+          display: inline-block;
+          vertical-align: middle;
+          margin-top: 10px;
+          width: 50%;
+        }
+
         > a {
           @include plain-link($gray-lighter);
 

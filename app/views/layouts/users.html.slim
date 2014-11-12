@@ -25,7 +25,7 @@
 
         = user_links(@user)
 
-      li.info-friendship
+      li.info-friendship class=('info-friendship--self' if @user == current_user)
         = link_to followers_user_path(@user), class: 'info-followers'
           | 关注者
           span = @user.followers_count
