@@ -231,7 +231,7 @@ do (exports = Making) ->
 
       switch exports.device
         when 'mobile', 'tablet'
-          $button = $('#MECHAT-BTN-2')
+          $button = $('#MECHAT-BTN-1')
         when 'desktop'
           $button = $('#MECHAT-PCBTN')
       if $button.length
