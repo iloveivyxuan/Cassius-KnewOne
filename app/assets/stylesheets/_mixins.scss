@@ -296,6 +296,20 @@
   }
 }
 
+@mixin to-breakpoint($class) {
+  @if $class == xs {
+    @media (max-width: $screen-xs-max) { @content; }
+  } @else if $class == sm {
+    @media (max-width: $screen-sm-max) { @content; }
+  } @else if $class == md {
+    @media (max-width: $screen-md-max) { @content; }
+  } @else if $class == lg {
+    @media (max-width: $screen-lg-max) { @content; }
+  } @else {
+    @warn "Not supported";
+  }
+}
+
 @mixin MQ($canvas) {
   $XS: 320px;
   $S:  480px;
