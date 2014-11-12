@@ -647,6 +647,8 @@ html.feelings_show {
         margin-top: 1em;
 
         .official_site {
+          @include plain-link($text-muted);
+
           font-size: 14px;
           text-decoration: none;
         }
