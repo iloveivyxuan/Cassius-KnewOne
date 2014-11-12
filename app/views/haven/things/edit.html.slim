@@ -15,7 +15,6 @@ header.page-header
       - maker_id, maker_name = "", ""
     = hidden_field_tag 'thing[maker]', maker_id, id: 'maker_id'
     input#maker_autocomplete.form-control placeholder="用户昵称" value="#{maker_name}"
-  = f.input :categories_text, hint: "用,分隔"
   = f.input :tags_text, hint: "用,分隔"
   = f.input :brand_text, input_html: { value: @thing.brand && (@thing.brand.en_name || @thing.brand.zh_name) }
   = f.input :shop
