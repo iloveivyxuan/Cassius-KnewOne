@@ -29,6 +29,10 @@ html[class^="users_"] {
         font-size: 18px;
       }
 
+      .info-gender {
+        margin-left: 10px;
+      }
+
       .info-level {
         display: inline-block;
         vertical-align: middle;
@@ -41,12 +45,6 @@ html[class^="users_"] {
         .level-progress {
           display: none;
         }
-      }
-
-      .info-gender {
-        display: inline-block;
-        vertical-align: middle;
-        margin-left: 10px;
       }
 
       .info-location {

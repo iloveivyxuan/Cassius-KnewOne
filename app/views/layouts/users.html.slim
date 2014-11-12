@@ -4,12 +4,13 @@
 - content_for :content do
   aside
     ul.info
-      li.info-name = @user.name
+      li.info-name
+        = @user.name
+        - if @user.gender.present?
+          span.info-gender = symbolize_gender(@user.gender)
+
       li.info-avatar = user_avatar(@user, :small)
       li.info-level = render 'shared/level', user: @user
-
-      - if @user.gender.present?
-        li.info-gender = symbolize_gender(@user.gender)
 
       - if @user.location.present?
         li.info-location
