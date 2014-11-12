@@ -1,5 +1,8 @@
 - tags.each do |tag|
   - if tag.is_a? Tag
-    = link_to tag.name, tag_things_path(tag), class: "tag-button btn btn-default", role: "button"
+    - if @brand
+      = link_to tag.name, "/things/brand/#{@brand.id}/tag/#{tag.slug}", class: "tag-button btn btn-default", role: "button"
+    - else
+      = link_to tag.name, tag_things_path(tag), class: "tag-button btn btn-default", role: "button"
   - else
     = link_to tag.name, category_things_path(tag), class: "tag-button btn btn-default", role: "button"

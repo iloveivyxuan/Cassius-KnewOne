@@ -1,0 +1,6 @@
+ol.breadcrumb
+  li
+    = link_to @brand.brand_text, brand_things_path(@brand.id)
+  - if @tag
+    li.active
+      = @tag.name
