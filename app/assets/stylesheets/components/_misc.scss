@@ -321,3 +321,43 @@ a[href^='http://tongji.baidu.com'] {
 .warning {
   color: red !important;
 }
+
+// Lightbox
+body:after {
+  content: asset_url('icons/arrow-square-left.png')
+           asset_url('icons/arrow-square-right.png')
+           asset_url('icons/cross.png')
+           asset_url('spinner.gif');
+  display: none;
+}
+
+.lightbox {
+  .lb-image {
+    border-radius: 0;
+  }
+}
+
+.lb-outerContainer {
+  border-radius: 0;
+}
+
+.lb-cancel {
+  background: asset_url('spinner.gif') no-repeat;
+}
+
+.lb-data {
+  .lb-close {
+    background: asset_url('icons/cross.png') top right no-repeat;
+  }
+}
+
+.lb-nav {
+  a {
+    &.lb-prev {
+      background: asset_url('icons/arrow-square-left.png') left 48% no-repeat;
+    }
+    &.lb-next {
+      background: asset_url('icons/arrow-square-right.png') right 48% no-repeat;
+    }
+  }
+}
