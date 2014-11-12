@@ -52,6 +52,9 @@ html[class^="users_"] {
           top: 0px;
           left: -18px;
           color: $gray-lighter;
+
+        p {
+          margin: 0;
         }
       }
 
@@ -101,7 +104,7 @@ html[class^="users_"] {
       }
 
       .info-friendship {
-        margin-top: 10px;
+        margin-top: 20px;
         padding: 10px 0;
         line-height: 1;
         background: $ghost-white;
