@@ -153,6 +153,8 @@ Making::Application.routes.draw do
       post 'create_by_extractor'
       get 'extract_url'
       get 'category/:category', action: :index, as: :category
+      get 'tag/:tag', action: :index, as: :tag
+      get 'category/:category/tag/:tag', action: :index
     end
 
     member do
