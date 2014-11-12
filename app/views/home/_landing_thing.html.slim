@@ -1,31 +1,32 @@
-- thing_presenter = present thing
-section class="product_#{index == 0 ? 1 : 2}"
-  figure.product
-    = link_to thing, class: "product_thumb"
-      - if index == 0
-        = thing_presenter.photo(:'thing.fixed.big')
-      - else
-        = thing_presenter.photo(:'thing.fixed')
-    figcaption
-      div
-        = link_to thing
-          hgroup
-            h4
-              span= thing.title
-            h5
-              = thing.subtitle
-        .product_detail
-          span.price = thing_presenter.price
-          span
-            i.fa.fa-heart-o
-            = thing_presenter.fanciers_count
-          span
-            i.fa.fa-check-circle-o
-            = thing_presenter.owners_count
-          span
-            i.fa.fa-pencil
-            = thing_presenter.reviews_count
-  section.reviews
-    - reviews = thing.reviews.desc(:is_top, :lovers_count).limit(index == 0 ? 2 : 1).reverse
-    - reviews.each_with_index do |review, j|
-      = render 'landing_review', review: review, index: j
+- cache ['landing_thing', thing, index == 0]
+  - thing_presenter = present thing
+  section class="product_#{index == 0 ? 1 : 2}"
+    figure.product
+      = link_to thing, class: "product_thumb"
+        - if index == 0
+          = thing_presenter.photo(:'thing.fixed.big')
+        - else
+          = thing_presenter.photo(:'thing.fixed')
+      figcaption
+        div
+          = link_to thing
+            hgroup
+              h4
+                span= thing.title
+              h5
+                = thing.subtitle
+          .product_detail
+            span.price = thing_presenter.price
+            span
+              i.fa.fa-heart-o
+              = thing_presenter.fanciers_count
+            span
+              i.fa.fa-check-circle-o
+              = thing_presenter.owners_count
+            span
+              i.fa.fa-pencil
+              = thing_presenter.reviews_count
+    section.reviews
+      - reviews = thing.reviews.desc(:is_top, :lovers_count).limit(index == 0 ? 2 : 1).reverse
+      - reviews.each_with_index do |review, j|
+        = render 'landing_review', review: review, index: j

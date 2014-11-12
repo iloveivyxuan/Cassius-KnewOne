@@ -1,22 +1,23 @@
-article.review class="review_#{index + 1}"
-  div
-    - review_presenter = present review
-    - user_presenter = present review.author
-    = link_to user_presenter.path, class: 'review_author' do
-      = user_presenter.avatar :small
-      span.name = user_presenter.name
-    section.review_wrap
-      header.review_header
-        hgroup.review_title
-          h4= link_to review.title, review_presenter.path
-          h5= review.thing.title
-          = review_presenter.score
-        em.like
-          i.fa.fa-thumbs-o-up
-          = review.lovers_count
-      section.review_body
-        p= review_presenter.summary(120)
-        - if index == 1
-          ul
-            - review_presenter.content_photos(:small).take(8).each do |photo|
-              li= image_tag photo
+- cache ['landing_review', review, index]
+  article.review class="review_#{index + 1}"
+    div
+      - review_presenter = present review
+      - user_presenter = present review.author
+      = link_to user_presenter.path, class: 'review_author' do
+        = user_presenter.avatar :small
+        span.name = user_presenter.name
+      section.review_wrap
+        header.review_header
+          hgroup.review_title
+            h4= link_to review.title, review_presenter.path
+            h5= review.thing.title
+            = review_presenter.score
+          em.like
+            i.fa.fa-thumbs-o-up
+            = review.lovers_count
+        section.review_body
+          p= review_presenter.summary(120)
+          - if index == 1
+            ul
+              - review_presenter.content_photos(:small).take(8).each do |photo|
+                li= image_tag photo
