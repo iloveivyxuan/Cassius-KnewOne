@@ -1,2 +1,5 @@
 - tags.each do |tag|
-  = link_to tag.name, tag_things_path(tag), class: "tag-button btn btn-default", role: "button"
+  - if tag.is_a? Tag
+    = link_to tag.name, tag_things_path(tag), class: "tag-button btn btn-default", role: "button"
+  - else
+    = link_to tag.name, category_things_path(tag), class: "tag-button btn btn-default", role: "button"
