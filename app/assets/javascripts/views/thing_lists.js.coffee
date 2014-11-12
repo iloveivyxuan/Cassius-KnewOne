@@ -64,6 +64,7 @@ Making.InitThingList = ->
         .sortable('enable')
     else
       $target.text('管理')
+      $('.editableform').submit()
       $('.thing_list_description, .thing_list_item-description').each(->
         $(this).hide() if $(this).find('.editable-empty').length
       $('.thing_list_items')
