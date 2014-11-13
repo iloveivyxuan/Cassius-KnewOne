@@ -1,0 +1,3 @@
+ul.categories
+  - categories.each do |category|
+    li = link_to category.name, category_things_path(category: category)

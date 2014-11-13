@@ -1,4 +1,1 @@
-footer
-  ul.categories
-    - @user.categories.each do |category|
-      li = link_to category.name, category_things_path(category: category)
+footer = render 'categories', categories: @user.categories
