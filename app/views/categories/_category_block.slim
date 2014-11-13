@@ -5,7 +5,6 @@
   .col-md-7
     .info
       h5= link_to category.name, category_things_path(category: category)
-      = render 'categories/subscribe_btn', category: category
     .tags_container
       .tags
         - category.inner_categories.each do |inner_c|
