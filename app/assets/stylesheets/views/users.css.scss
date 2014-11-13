@@ -282,6 +282,40 @@ html[class^="users_"] {
               }
             }
           }
+
+          @include from-breakpoint(md) {
+            background: $ghost-white;
+
+            > li {
+              text-align: right;
+              border-top: 1px dashed $gray-lighter;
+
+              &:first-child {
+                border-top: none;
+              }
+
+              a {
+                @include plain-link($text-color);
+
+                display: block;
+                padding: 15px 55px 15px 0;
+
+                i,
+                span {
+                  display: none;
+                }
+              }
+
+              &.active {
+                background: white;
+                border-left: 5px solid $blue;
+
+                a {
+                  cursor: default;
+                }
+              }
+            }
+          }
         }
       }
     }
