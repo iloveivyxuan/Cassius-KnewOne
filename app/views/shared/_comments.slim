@@ -22,7 +22,7 @@
       - if !compact && user_signed_in?
         = render 'shared/user_avatar', user: current_user, options: {class: 'user_avatar user_avatar--vertical'}
 
-      form.comment_form
+      form.comment_form.js-require_login
         .controls
           textarea.form-control[name="comment_content" rows="3" maxlength="300"
             placeholder=placeholder required=true disabled=disabled]

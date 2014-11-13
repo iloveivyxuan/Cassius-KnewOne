@@ -3,7 +3,7 @@
     = render 'shared/user_avatar', user: current_user, options: {class: 'user_avatar user_avatar--vertical'}
 
   .feeling_form class=('disabled' unless user_signed_in?)
-    = simple_form_for [@thing || thing, Feeling.new], remote: true, html: {class: "editor_compact"} do |f|
+    = simple_form_for [@thing || thing, Feeling.new], remote: true, html: {class: "editor_compact js-require_login"} do |f|
       = f.input :content, as: :text, label: false, disabled: !user_signed_in?,
           wrapper_html: {class: "editor_content form_content"},
           input_html: {class: "form-control", placeholder: user_signed_in? ? '说点什么吧（140字以内哦）' : '需要您登录之后才可以发表短评', rows: 4, maxlength: 200, data: {maxlength: 140}}

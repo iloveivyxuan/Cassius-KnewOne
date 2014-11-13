@@ -335,6 +335,17 @@ do (exports = Making) ->
         $form.stop()[if $form.is(':hidden') then 'fadeIn' else 'fadeOut'](160)
         $(@).toggleClass 'active'
 
+    if exports.user is undefined
+      switch exports.device
+        when 'mobile', 'tablet'
+          $loginButton = $('#header [data-target="#login-modal"]')
+        when 'desktop'
+          $loginButton = $('#header .user_link[data-target="#login-modal"]')
+
+      $document.on 'click', '.js-require_login', (event) ->
+        if $(event.currentTarget).find('textarea').length
+          $loginButton.trigger('click')
+
     $(document)
       .on 'click', 'a.disabled', (event) ->
         false
