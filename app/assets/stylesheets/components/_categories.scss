@@ -9,13 +9,20 @@
 
 .category_block {
   margin-bottom: 30px;
- 
+
   .cover {
-    display: block;
-    height: 0;
+    border-bottom: 1px solid #e6e6e6;
+    border-left: 1px solid #f8f8f8;
+    border-radius: 5px;
+    border-right: 1px solid #f8f8f8;
+    box-shadow: 0 1px 0 #f8f8f8;
+    display: inline-block;
     margin-bottom: 10px;
-    overflow: hidden;
-    padding-bottom: 50%;
+    padding: 10px;
+
+    img {
+      border-radius: 5px;
+    }
   }
 
   .info {
@@ -31,9 +38,12 @@
 
       a {
         color: $text-color;
+        font-size: 24px;
+        font-weight: normal;
+        margin-right: 20px;
       }
     }
-    
+
     > small {
       color: $text-muted;
       float: right;
@@ -47,16 +57,27 @@
 
   .tags_container {
     height: 168px;
-    overflow: hidden;
 
     & + footer {
       height: 20px;
-      overflow: hidden;
 
       a {
         color: $gray;
         display: none;
         text-decoration: underline;
+      }
+    }
+    .tag-button {
+      background-color: white;
+      border: none;
+      border-radius: 0;
+      box-shadow: 1px 1px 1px #d5d5d5;
+      margin: 5px 5px;
+      padding: 6px 10px;
+
+      &:hover {
+        background-color: #049cdb;
+        color: white;
       }
     }
   }
@@ -68,9 +89,9 @@
   .category_block {
 
     @media (min-width: $screen-sm-min) {
-      @include make-sm-column(6);
-      @include make-md-column(4);
-      @include make-lg-column(3);
+      @include make-sm-column(12);
+      @include make-md-column(8);
+      @include make-lg-column(6);
     }
   }
 }

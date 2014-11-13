@@ -1,13 +1,12 @@
 .category_block
-  = link_to category_things_path(category: category), class: "cover" do
-    = image_tag category.cover.url(:normal)
-  em.info
-    h5= link_to category.name, category_things_path(category: category)
-    small 共 #{category.tags.count} 个标签
-  .tags_container
-    .tags
-      - category.tags.gt(:things_count => 0).desc(:things_count).each do |tag|
-        = link_to tag.name, things_path(tag: tag)
-  footer
-    a.pull-left href="#" rel="prev" 上一组标签
-    a.pull-right href="#" rel="next" 下一组标签
+  .col-md-5
+    = link_to category_things_path(category: category), class: "cover" do
+      = image_tag category.cover.url(:square)
+  .col-md-7
+    .info
+      h5= link_to category.name, category_things_path(category: category)
+      = render 'categories/subscribe_btn', category: category
+    .tags_container
+      .tags
+        - category.inner_categories.each do |inner_c|
+          = link_to inner_c.name, category_things_path(inner_c), class: "tag-button btn btn-default", role: "button"
