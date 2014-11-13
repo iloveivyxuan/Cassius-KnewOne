@@ -242,7 +242,7 @@ class OrdersController < ApplicationController
 
   def generate_wxpay_jsapi_params(order)
     result = WxPay::Service.invoke_unifiedorder body: "KnewOne购物订单: #{order.order_no}",
-                                                out_trade_no: order.id.to_s,
+                                                out_trade_no: order.order_no,
                                                 total_fee: (order.should_pay_price * 100).to_i,
                                                 spbill_create_ip: request.ip,
                                                 notify_url: wxpay_notify_order_url(order),
@@ -272,7 +272,7 @@ class OrdersController < ApplicationController
         :subject => "KnewOne购物订单: #{order.order_no}",
         :body => body_text(order, 16),
         :total_fee => (order.should_pay_price * 100).to_i,
-        :out_trade_no => order.id.to_s,
+        :out_trade_no => order.order_no,
         :return_url => tenpay_callback_order_url(order),
         :notify_url => tenpay_notify_order_url(order),
         :spbill_create_ip => request.ip,
@@ -283,7 +283,7 @@ class OrdersController < ApplicationController
 
   def generate_alipay_url(order, options = {})
     options = {
-        :out_trade_no => order.id.to_s,
+        :out_trade_no => order.order_no,
         :subject => "KnewOne购物订单: #{order.order_no}",
         :body => body_text(order, 500),
         :payment_type => '1',
@@ -299,7 +299,7 @@ class OrdersController < ApplicationController
   def generate_alipay_wap_url(order, options = {})
     options = {
       :req_data => {
-        :out_trade_no  => order.id.to_s,
+        :out_trade_no  => order.order_no,
         :subject       => "KnewOne购物订单: #{order.order_no}",
         :total_fee     => order.should_pay_price,
         :notify_url    => alipay_wap_callback_order_url(order),
