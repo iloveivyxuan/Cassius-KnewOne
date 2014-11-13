@@ -101,6 +101,9 @@ gem 'rack-utf8_sanitizer'
 # adding spaces between Chinese characters & English characters
 gem 'auto-correct'
 
+# countries
+gem 'country_select'
+
 # servers
 group :production do
   gem 'unicorn'

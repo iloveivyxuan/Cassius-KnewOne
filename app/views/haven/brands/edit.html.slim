@@ -20,6 +20,9 @@ section
     div
       label 描述
       = f.text_area :description, size: "50x10"
+    div
+      label 国家
+      = country_select("brand", "country")
     = f.submit
 
 section

@@ -7,6 +7,8 @@ class Brand
 
   before_save :update_names
 
+  field :country, type: String
+
   field :things_size, type: Integer, default: 0
   before_save :update_things_size
 
