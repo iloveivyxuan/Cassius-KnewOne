@@ -2,7 +2,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   include ApplicationHelper
 
   before_action do
-    params[:redirect_from] = params[:state] if params[:state].present? && params[:state][0] == '/'
+    if params[:state].present?
+      url = params[:state].split('||').last
+      params[:redirect_from] = url if url && url[0] == '/'
+    end
   end
 
   after_action :bind_omniauth
@@ -71,10 +74,12 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       current_user.update_from_omniauth(omniauth)
       redirect_back_or edit_account_path, flash: { oauth: { status: 'success', text: '绑定成功。' } }
     else
+      show_welcome_binding_modal = !(params[:state].present? && params[:state].include?('auto_login'))
+
       session[:omniauth] = Auth.omniauth_to_auth(omniauth)
 
       redirect_back_or after_sign_in_path_for(user),
-                       :flash => { :show_welcome_binding_modal => true }
+                       :flash => { :show_welcome_binding_modal => show_welcome_binding_modal }
     end
   end
 

@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   before_action :set_variant
   after_action :store_location, only: [:index, :show]
   prepend_before_action :require_not_blocked, except: :blocked
+  before_action :auto_login_in_wechat
+
 
   if Rails.env.production?
     # some bots using some *strange* format to request urls
@@ -138,6 +140,12 @@ class ApplicationController < ActionController::Base
       end
 
       session.delete :omniauth
+    end
+  end
+
+  def auto_login_in_wechat
+    if browser.wechat? && !user_signed_in?
+      redirect_to user_omniauth_authorize_path(:wechat, state: "auto_login||#{request.fullpath}", scope: 'snsapi_base')
     end
   end
 
