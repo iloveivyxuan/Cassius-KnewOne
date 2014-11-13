@@ -91,8 +91,9 @@ module Haven
         @things = @things.published.or({slug: /#{q}/i}, {title: /#{q}/i}, {subtitle: /#{q}/i})
       end
       if params[:brand]
-        brand = Brand.where(name: Regexp.new(params[:brand], Regexp::IGNORECASE)).first
-        @things = @things.where(brand: brand) if brand
+        brand = Brand.where(en_name: /#{params[:brand]}/i).first
+        brand ||= Brand.where(zh_name: /#{params[:brand]}/i).first
+        @things = @things.by_brand(brand) if brand
       end
       if params[:official]
         @things = @things.where(official_site: Regexp.new(params[:official], Regexp::IGNORECASE))
