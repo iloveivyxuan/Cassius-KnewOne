@@ -33,6 +33,7 @@
 
     > h5 {
       float: left;
+      font-size: 20px;
       font-weight: bold;
       margin: 0;
 
@@ -85,6 +86,7 @@
 
 .categories {
   @include make-row;
+  margin-top: 20px;
 
   .category_block {
 
