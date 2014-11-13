@@ -1,6 +1,8 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   include ApplicationHelper
 
+  skip_before_action :auto_login_in_wechat
+
   before_action do
     if params[:state].present?
       url = params[:state].split('||').last
