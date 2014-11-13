@@ -199,17 +199,6 @@ html[class^="users_"] {
         }
       }
 
-      .info-categories {
-        @include to-breakpoint(xs) {
-          display: none;
-        }
-
-        @include from-breakpoint(md) {
-          position: absolute;
-          top: 100%;
-        }
-      }
-
       > nav {
         > ul {
           @include to-breakpoint(xs) {
