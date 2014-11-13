@@ -23,6 +23,7 @@ html[class^="users_"] {
     }
 
     > header {
+      position: relative;
       background: white;
 
       @include from-breakpoint(md) {
@@ -30,10 +31,6 @@ html[class^="users_"] {
         top: 45px;
         width: $header-width;
         margin-left: -$header-width;
-      }
-
-      .info {
-        position: relative;
       }
 
       .info-avatar {
@@ -205,6 +202,11 @@ html[class^="users_"] {
       .info-categories {
         @include to-breakpoint(xs) {
           display: none;
+        }
+
+        @include from-breakpoint(md) {
+          position: absolute;
+          top: 100%;
         }
       }
 
