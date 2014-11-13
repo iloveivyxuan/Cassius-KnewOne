@@ -516,9 +516,15 @@ HERE
   need_aftermath :follow, :unfollow
 
   def self.related_users_and_owned(thing, user, count)
-    users = user ? user.followings + user.followers : []
-    users = thing.owners.desc(:karma).first(count) if users.empty?
-    (result = users && thing.owners) ? result.take(count) : []
+    related_user_ids = user.following_ids & thing.owner_ids
+    related_users = User.in(id: related_user_ids).desc(:karma).limit(count)
+
+    return related_users if related_users.size >= count
+
+    other_owner_ids = (thing.owner_ids - related_user_ids)
+    other_owners = User.in(id: other_owner_ids).desc(:karma).limit(count - related_users.size)
+
+    related_users + other_owners
   end
 
   def has_been_invited_by?(user, thing)
