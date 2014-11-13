@@ -149,4 +149,14 @@ module ThingsHelper
     end
   end
 
+  def thing_index_title
+    if @category.present?
+      "#{@category.name}|#{@category.name}产品"
+    elsif @brand.present?
+      "#{@brand.brand_text}|#{@brand.brand_text}产品"
+    else
+      "产品"
+    end
+  end
+
 end
