@@ -38,9 +38,6 @@
           = render 'follow_btn', user: @user
           = render 'private_message_btn', user: @user, text: '私信'
 
-  nav
-    ul.user_content
-
   = yield
 
   - content_for :script do
