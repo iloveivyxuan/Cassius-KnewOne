@@ -173,7 +173,7 @@ html.feelings_show {
         @include border-radius(0);
         textarea {
           letter-spacing: 1px;
-          background-color: $gray-lighter;
+          background-color: #f7f7f7;
           border: none;
           border-bottom: 1px solid $gray-lighter;
           @include box-shadow(none);
@@ -1039,14 +1039,6 @@ html.feelings_show {
     .user_avatar {
       top: 3em;
     }
-    textarea {
-      background: #fff;
-      border-bottom-style: dashed;
-
-      &:disabled {
-        background-color: $gray-lighter;
-      }
-    }
   }
 
   #thing--mobile-feeling_form {
@@ -1057,10 +1049,6 @@ html.feelings_show {
     border: none;
     .user_avatar {
       top: 2em;
-    }
-    textarea {
-      background: #fff;
-      border-bottom-style: dashed;
     }
   }
 

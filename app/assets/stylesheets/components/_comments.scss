@@ -86,12 +86,14 @@
 
 .comments:not(.comments--compact) {
   textarea {
+    background-color: #f7f7f7;
     border: none;
     border-bottom: 1px solid $gray-lighter;
     border-radius: 0;
     box-shadow: none;
 
     &:focus {
+      background-color: #fff;
       color: $brand-primary;
       border-bottom: 1px dashed $brand-primary;
     }
