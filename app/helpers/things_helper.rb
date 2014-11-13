@@ -159,4 +159,14 @@ module ThingsHelper
     end
   end
 
+  def thing_index_keywords
+    if @category.present?
+      "#{@category.name}"
+    elsif @brand.present?
+      @brand.brand_text.split('-').map(&:strip).join(',')
+    else
+      nil
+    end
+  end
+
 end
