@@ -93,6 +93,7 @@ class Thing < Post
   scope :by_category, -> (category) { any_in('categories' => category.name) }
   scope :by_tag, -> (tag) { any_in('tag_ids' => tag.id) }
   scope :by_brand, -> (brand) { where('brand_id' => brand.id) }
+  scope :no_brand, -> { where('brand_id' => nil) }
 
   STAGES.each do |k, v|
     scope k, -> { where(stage: k) }
