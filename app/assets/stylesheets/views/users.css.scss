@@ -5,6 +5,10 @@ html[class^="users_"] {
     padding-top: 45px;
   }
 
+  #header {
+    margin-bottom: 0;
+  }
+
   #wrapper {
     @include wrapper(empty);
 
