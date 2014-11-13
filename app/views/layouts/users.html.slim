@@ -38,6 +38,9 @@
           = render 'follow_btn', user: @user
           = render 'private_message_btn', user: @user, text: '私信'
 
+      li.info-categories
+        = render 'users/categories', categories: @user.categories
+
     nav
       ul
         = li action_name == 'show', class: 'nav-home'

@@ -198,6 +198,12 @@ html[class^="users_"] {
         }
       }
 
+      .info-categories {
+        @include to-breakpoint(xs) {
+          display: none;
+        }
+      }
+
       > nav {
         > ul {
           > li {
