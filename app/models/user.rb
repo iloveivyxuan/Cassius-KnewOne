@@ -521,7 +521,7 @@ HERE
 
     return related_users if related_users.size >= count
 
-    other_owner_ids = (thing.owner_ids - related_user_ids)
+    other_owner_ids = thing.owner_ids - related_user_ids
     other_owners = User.in(id: other_owner_ids).desc(:karma).limit(count - related_users.size)
 
     related_users + other_owners
