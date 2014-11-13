@@ -7,7 +7,6 @@ ul.things {
     @media (min-width: $screen-xs-min + 1) { @include make-xs-column(6); }
     @media (min-width: $screen-sm-min + 1) { @include make-sm-column(4); }
     @media (min-width: $screen-md-min + 1) { @include make-md-column(3); }
-    @media (min-width: $screen-lg-min + 1) { @include make-lg-column(2); }
   }
 }
 
