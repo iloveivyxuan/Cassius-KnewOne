@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :set_variant
   after_action :store_location, only: [:index, :show]
   prepend_before_action :require_not_blocked, except: :blocked
-  prepend_before_action :auto_login_in_wechat
+  # prepend_before_action :auto_login_in_wechat
 
 
   if Rails.env.production?
