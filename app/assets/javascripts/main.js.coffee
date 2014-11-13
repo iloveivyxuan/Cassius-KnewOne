@@ -346,11 +346,12 @@ do (exports = Making) ->
           $tag.toggleClass('is-active')
 
       .on 'click', '.fanciers > a, .fancy-button > a, .fancy_button > a', (event) ->
-        event.preventDefault()
-
         $trigger = $(@)
 
         if $trigger.data('toggle') is 'modal' then return
+        if $trigger.data('toggle') is 'wechat_login' then return
+
+        event.preventDefault()
 
         if $trigger.find('.fanciers_count').is(':visible')
           $count = $trigger.find('.fanciers_count')

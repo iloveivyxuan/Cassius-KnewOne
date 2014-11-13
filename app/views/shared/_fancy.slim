@@ -1,5 +1,5 @@
 - if browser.wechat? && !user_signed_in?
-  = link_to user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base'), class: "track_event", title: '喜欢' do
+  = link_to user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base'), data: {toggle: 'wechat_login'} do
     i.fa.fa-heart-o
     = p.fanciers_count
     small 喜欢
