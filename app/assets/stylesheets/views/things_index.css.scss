@@ -94,7 +94,7 @@ html.shop, html.things_index {
       border: none;
       border-radius: 0;
       box-shadow: 1px 1px 1px #d5d5d5;
-      margin: 5px 5px;
+      margin: 0 5px 5px;
 
       &:hover {
         background-color: #049cdb;
@@ -107,7 +107,6 @@ html.shop, html.things_index {
         height: 80px;
         overflow: hidden;
       }
-      margin-top: 20px;
     }
 
     .more {

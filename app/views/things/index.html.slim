@@ -27,7 +27,9 @@
       .col-md-3
         img#logo src=(@brand ? @brand.logo.url : @category.cover.url)
       .col-md-9
-        p#description= (@brand ? @brand.description : @category.description)
+        - description = @brand.try(:description) || @category.try(:description)
+        - unless description.blank?
+          p#description= description
         - if @brand
           - tags = @brand.tags
         - elsif @category.primary_category?
