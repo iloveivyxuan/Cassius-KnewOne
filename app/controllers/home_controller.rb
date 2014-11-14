@@ -129,4 +129,17 @@ class HomeController < ApplicationController
     logger.info params.except(*request.path_parameters.keys)
     head :no_content
   end
+
+  def embed
+    case params[:type]
+    when 'list'
+      @list = ThingList.where(id: params[:id]).first
+      render [@list] if @list
+    when 'review'
+      @review = Review.where(id: params[:id]).first
+      render partial: 'hot_review', collection: [@review] if @review
+    else
+      return
+    end
+  end
 end
