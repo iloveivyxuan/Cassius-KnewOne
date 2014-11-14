@@ -2230,6 +2230,16 @@ html.feelings_show {
   }
 }
 
+html.things_show {
+  &.desktop {
+    #thing_photos {
+      img {
+        max-height: 100%;
+      }
+    }
+  }
+}
+
 html.things_show,
 html.reviews_index {
   .no_reviews {
