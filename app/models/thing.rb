@@ -288,6 +288,7 @@ class Thing < Post
     end if self.has_brand?
 
     list.delete self.id.to_s
+    list.except!(*self.links.map(&:to_s))
 
     powers = list.values
     powers.uniq! && powers.sort! && powers.reverse! # O(n log n)
