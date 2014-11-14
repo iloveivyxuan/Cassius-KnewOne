@@ -155,8 +155,7 @@ class OrdersController < ApplicationController
     r = WxPay::Result.new Hash.from_xml(request.body.read)
 
     if WxPay::Sign.verify? r
-      o = Order.find r['out_trade_no']
-      o.confirm_payment! r['transaction_id'], (r['total_fee'].to_i / 100), :wxpay, r
+      @order.confirm_payment! r['transaction_id'], (r['total_fee'].to_i / 100), :wxpay, r
     end
   end
 
