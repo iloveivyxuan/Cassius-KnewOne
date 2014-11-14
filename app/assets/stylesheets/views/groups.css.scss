@@ -295,3 +295,39 @@ html.groups_new {
     @include wrapper(simple, $max-width: $screen-md-min);
   }
 }
+
+html.topics_show {
+  &.mobile {
+    #wrapper {
+      > header {
+        display: none;
+      }
+      > section {
+        > nav {
+          display: none;
+        }
+      }
+    }
+    .post_show {
+      > header {
+        > p {
+          @include clearfix;
+          margin-top: 10px;
+
+          .group_name {
+            @include text-overflow;
+            color: $gray;
+            float: left;
+            font-size: 12px;
+            line-height: 30px;
+            max-width: 65%;
+          }
+
+          .btn {
+            float: right;
+          }
+        }
+      }
+    }
+  }
+}

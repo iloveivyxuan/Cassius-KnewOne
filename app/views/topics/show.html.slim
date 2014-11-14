@@ -6,6 +6,12 @@
   article.post_show id="topic_#{@topic.id}"
     header
       h3= tp.title
+      - if browser.mobile?
+        p
+          = link_to @topic.group.name, @topic.group, class: 'group_name'
+          - if user_signed_in? and !@topic.group.has_member?(current_user) and @topic.group.public?
+            = link_to_with_icon "加入小组", "fa fa-sign-in", join_group_path(@topic.group),
+            method: :get, class: 'btn btn-default btn-sm'
       = tp.author_tag
 
     section.article.post_content= tp.content
