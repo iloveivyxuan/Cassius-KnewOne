@@ -88,7 +88,7 @@ class Thing < Post
   scope :prior, -> { gt(priority: 0).desc(:priority, :created_at) }
   scope :self_run, -> { send :in, stage: [:dsell, :pre_order] }
   scope :price_between, ->(from, to) { where :price.gt => from, :price.lt => to }
-  scope :linked, -> { where :links.ne => nil }
+  scope :linked, -> { nin(links: [nil, []]) }
   scope :approved, -> { gt(priority: 0) }
   scope :by_category, -> (category) { any_in('categories' => category.name) }
   scope :by_tag, -> (tag) { any_in('tag_ids' => tag.id) }
