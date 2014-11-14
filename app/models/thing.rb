@@ -246,7 +246,7 @@ class Thing < Post
     [:dsell, :pre_order].include? stage
   end
 
-  def cal_related_thing_ids(limit = 10, cate_power = 50, own_power = 2, fancy_power = 1)
+  def cal_related_thing_ids(limit = 10, cate_power = 50, own_power = 2, fancy_power = 1, brand_power = 100)
     list = {}
 
     Thing.any_in(categories: self.categories).each do |thing|
@@ -278,6 +278,14 @@ class Thing < Post
         end
       end
     end
+
+    Thing.where(brand_id: self.brand_id).pluck(:id).map(&:to_s).each do |id|
+      if list[id]
+        list[id] += brand_power
+      else
+        list[id] = brand_power
+      end
+    end if self.has_brand?
 
     list.delete self.id.to_s
 
