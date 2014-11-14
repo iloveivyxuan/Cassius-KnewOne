@@ -1651,7 +1651,7 @@ html.feelings_show {
           background: #f7f7f7;
           &:hover {
             color: $text-color;
-            background: #fff;
+            background: $ghost-white;
           }
 
           &:only-child {
