@@ -485,6 +485,66 @@ form.edit_post {
     }
   }
 
+  > .actions {
+    @include clearfix;
+    padding: 2em 0;
+    position: relative;
+
+    > .social,
+    > .advanced {
+      display: inline-block;
+      margin-right: 0;
+      vertical-align: middle;
+    }
+
+    > .social {
+
+      .btn--like {
+        width: auto;
+        padding-left: 2em;
+        padding-right: 1em;
+
+        @extend .btn--blue_light;
+        @extend .btn--square;
+        @extend .btn--tall;
+
+        &.done {
+          background-color: $navbar-search-bg;
+          &:hover {
+            background-color: $gray-light;
+          }
+        }
+      }
+
+      .share_btn {
+        display: inline-block;
+        width: 60px;
+        vertical-align: middle;
+
+        @extend .btn--orange;
+        @extend .btn--square;
+        @extend .btn--tall;
+
+        i {
+          margin: 0;
+        }
+      }
+    }
+
+    > .advanced {
+      .post_actions {
+        margin-left: 2em;
+      }
+    }
+
+    > time {
+      position: absolute;
+      right: 2em;
+      margin-top: 9px;
+      color: #999999;
+    }
+  }
+
   > .pager {
     border-top: $border_default;
     margin-top: 0;

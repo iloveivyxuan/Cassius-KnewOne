@@ -3,7 +3,7 @@
 - present @topic do |tp|
   - page_title tp.title
 
-  article.post_show id="topic_#{@topic.id}"
+  article.article.post_show id="topic_#{@topic.id}"
     header
       h3= tp.title
       - if browser.mobile?
@@ -14,13 +14,15 @@
             method: :get, class: 'btn btn-default btn-sm'
       = tp.author_tag
 
-    section.article.post_content= tp.content
+    section.post_content= tp.content
 
-    footer
-      .feed_action= render 'shared/voting', object: tp.topic
-      = tp.link_to_share
-      = render 'shared/post_actions', post: tp.topic,
-                edit_post_path: tp.edit_path, post_path: tp.path
+    footer.actions
+      .social
+        .feed_action= render 'shared/voting', object: tp.topic
+        = tp.link_to_share
+      .advanced
+        = render 'shared/post_actions', post: tp.topic,
+                  edit_post_path: tp.edit_path, post_path: tp.path
 
     = render 'shared/comments', post: tp.topic, id: "topic_comments", auth: can?(:create, @topic)
 

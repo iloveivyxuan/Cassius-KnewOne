@@ -2147,53 +2147,6 @@ html.feelings_show {
         margin: 2em 0;
       }
     }
-    > footer {
-      position: relative;
-      padding: 2em;
-
-      .btn--like {
-        width: auto;
-        margin-left: -2em;
-        padding-left: 2em;
-        padding-right: 1em;
-
-        @extend .btn--blue_light;
-        @extend .btn--square;
-        @extend .btn--tall;
-
-        &.done {
-          background-color: $navbar-search-bg;
-          &:hover {
-            background-color: $gray-light;
-          }
-        }
-      }
-
-      .share_btn {
-        display: inline-block;
-        width: 60px;
-        vertical-align: middle;
-
-        @extend .btn--orange;
-        @extend .btn--square;
-        @extend .btn--tall;
-
-        i {
-          margin: 0;
-        }
-      }
-
-      .post_actions {
-        margin-left: 2em;
-      }
-
-      > time {
-        position: absolute;
-        right: 2em;
-        margin-top: 9px;
-        color: #999999;
-      }
-    }
   }
 
   .things_subpage {
