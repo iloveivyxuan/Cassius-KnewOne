@@ -175,7 +175,7 @@ html.feelings_show {
           letter-spacing: 1px;
           background-color: #f7f7f7;
           border: none;
-          border-bottom: 1px solid $gray-lighter;
+          border-bottom: 1px solid #f7f7f7;
           @include box-shadow(none);
           @include border-radius(0);
           &:focus {
