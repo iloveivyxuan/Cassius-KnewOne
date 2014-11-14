@@ -9,14 +9,10 @@
               |（可用
               = link_to "活跃点", "#", data: {toggle: "modal", target: "#bong_point_modal"}
               | ）
-          
+
       = render_mobile_buy(tp.thing)
 
     .mobile_others.clearfix
-      .mobile_related.clearfix
-        - if tp.thing.official_site.present?
-          = tp.official_site
-
       - if tp.tags.present?
         ul.mobile_tags
           = render partial: 'things/tag', collection: tp.tags
