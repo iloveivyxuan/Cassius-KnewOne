@@ -341,6 +341,10 @@ body:after {
   border-radius: 0;
 }
 
+.lb-container {
+  padding: 0;
+}
+
 .lb-cancel {
   background: asset_url('spinner.gif') no-repeat;
 }
