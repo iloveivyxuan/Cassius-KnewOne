@@ -67,6 +67,7 @@ class Order
     :pending => '等待付款',
     :freed => '无需支付，请用户确认',
     :confirmed => '支付成功，等待发货',
+    :transit => '发货中',
     :shipped => '已发货',
     :canceled => '订单取消',
     :closed => '订单关闭',
@@ -229,6 +230,10 @@ class Order
   end
 
   def can_ship?
+    transit? || confirmed?
+  end
+
+  def can_transit?
     confirmed?
   end
 
@@ -346,6 +351,16 @@ class Order
     order_histories.create from: :confirmed, to: :shipped
 
     OrderMailer.delay(retry: false, queue: :mails).ship(self.id.to_s)
+  end
+
+  def transit!
+    return false unless can_transit?
+
+    self.state = :transit
+
+    save!
+
+    order_histories.create from: :confirmed, to: :transit
   end
 
   def cancel!(raw = {})

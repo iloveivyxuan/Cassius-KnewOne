@@ -200,6 +200,8 @@ module Haven
             order.force_confirm_payment!(order.trade_no, order.price, order.payment_method)
           when "close"
             order.force_close!
+          when "transit"
+            order.transit!
           end
         else
           @errors << order_no

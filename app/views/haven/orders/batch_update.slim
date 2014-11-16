@@ -10,7 +10,7 @@ header.page-header
 - else
   = form_tag '/haven/orders/batch_update', method: :post do
     label 状态
-    div= select_tag 'status', options_for_select(["confirmed", "close"], "confirmed")
+    div= select_tag 'status', options_for_select(["confirmed", "close", "transit"], "confirmed")
     div= submit_tag "确定"
     .pull-left.order-nos
       label 订单号
