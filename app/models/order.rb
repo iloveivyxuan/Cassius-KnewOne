@@ -149,6 +149,9 @@ class Order
 
   before_create do
     self.order_no = rand.to_s[2..11]
+    # in case of order_no start with 0,
+    # which will be inconvenient in Excel
+    self.order_no[0] = "1" if self.order_no.start_with?("0")
     self.deliver_price = calculate_deliver_price
     self.pre_order = order_items.all? {|i| i.kind.stage == :pre_order}
 
