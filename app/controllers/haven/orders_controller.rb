@@ -202,6 +202,8 @@ module Haven
             order.force_close!
           when "transit"
             order.transit!
+          when "refunded_to_platform"
+            order.refund!
           end
         else
           @errors << order_no
