@@ -1,7 +1,7 @@
 module Haven
   class OrdersController < Haven::ApplicationController
     layout 'settings'
-    before_action :set_order, except: [:index, :stock, :batch_ship]
+    before_action :set_order, except: [:index, :stock, :batch_ship, :batch_update]
     include ::AddressesHelper
 
     CITY_PLACEHOLDER = %w(市辖区 县)
@@ -183,6 +183,26 @@ module Haven
           else
             @errors << order_nos[i]
           end
+        end
+      end
+    end
+
+    # TODO refactor later
+    def batch_update
+      return unless params[:status]
+      order_nos = params[:order_nos].split
+      @errors = []
+      order_nos.each do |order_no|
+        order = Order.where(order_no: order_no).first
+        if order
+          case params[:status]
+          when "confirmed"
+            order.force_confirm_payment!(order.trade_no, order.price, order.payment_method)
+          when "close"
+            order.force_close!
+          end
+        else
+          @errors << order_no
         end
       end
     end

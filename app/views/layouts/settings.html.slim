@@ -77,6 +77,8 @@
           - if can? :manage, Order
             = nav_tab :supplier do
               = link_to_with_icon '管理订单', 'fa fa-fw fa-wrench', haven_orders_path
+            = nav_tab :supplier do
+              = link_to_with_icon '批量修改订单', 'fa fa-fw fa-wrench', batch_update_haven_orders_path
             = nav_tab :resource do
               = link_to_with_icon '供应商', 'fa fa-fw fa-wrench', haven_resources_path
           - if can? :edit, Thing
