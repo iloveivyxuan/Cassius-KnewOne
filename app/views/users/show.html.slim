@@ -10,3 +10,15 @@ ul.contents
         i.fa.fa-chevron-right
 
       = render partial: 'home/hot_thing', collection: @fancies, as: :hot_thing
+
+  - if @owns.any?
+    li.contents-owns
+      h3
+        i.fa.fa-fw.fa-check-circle-o
+        span 拥有
+
+      = link_to [:owns, @user], class: 'contents-more'
+        | 全部
+        i.fa.fa-chevron-right
+
+      = render partial: 'home/hot_thing', collection: @owns, as: :hot_thing

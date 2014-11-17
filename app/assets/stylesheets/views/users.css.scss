@@ -392,6 +392,19 @@ html[class^="users_"] {
             background: $ghost-white;
           }
         }
+
+        &.contents-owns {
+          background: $ghost-white;
+
+          h3 i {
+            color: $blue-light;
+          }
+
+          .thing {
+            border-right-color: $ghost-white;
+            background: white;
+          }
+        }
       }
     }
 
