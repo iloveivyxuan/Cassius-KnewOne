@@ -163,7 +163,7 @@ module ThingsHelper
     if @category.present?
       "#{@category.name}"
     elsif @brand.present?
-      @brand.brand_text.split('-').map(&:strip).join(',')
+      [@brand.en_name, @brand.zh_name].compact.join(",")
     else
       nil
     end
