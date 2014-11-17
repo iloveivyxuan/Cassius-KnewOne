@@ -1,7 +1,10 @@
 - topic = activity.reference
 - group = topic.group
 - if group
-  | 赞了小组
+  span.activity-voted
+    i.fa.fa-thumbs-o-up
+    | 赞
+  | 了小组
   = link_to group.name, group
   | 中的话题
   = link_to topic.title, group_topic_path(group, topic)

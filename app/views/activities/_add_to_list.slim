@@ -3,5 +3,9 @@
 - if thing
   | 将产品
   = link_to thing.title, thing
-  | 加入了列表:
-  = link_to list.name, list
+  | 加入了
+  = link_to list
+    span.activity-list
+      i.fa.fa-list
+      | 列表
+    = list.name
