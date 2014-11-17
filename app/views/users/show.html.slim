@@ -9,7 +9,7 @@ ul.contents
         | 全部
         i.fa.fa-chevron-right
 
-      = render partial: 'home/hot_thing', collection: @fancies, as: :hot_thing
+      ul = render partial: 'thing', collection: @fancies
 
   - if @owns.any?
     li.contents-owns
@@ -21,4 +21,4 @@ ul.contents
         | 全部
         i.fa.fa-chevron-right
 
-      = render partial: 'home/hot_thing', collection: @owns, as: :hot_thing
+      ul = render partial: 'thing', collection: @owns

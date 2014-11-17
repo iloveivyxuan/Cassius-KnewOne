@@ -1,0 +1,23 @@
+li.thing
+  header
+    .thing-cover
+      = link_to thing, target: '_blank'
+        = present(thing).photo('thing.fixed')
+
+    = link_to thing, target: '_blank', class: 'thing-title'
+      h4 = thing.title
+
+  footer
+    ul.thing-counts
+      - if thing.fanciers_count > 0
+        li = link_to thing, target: '_blank'
+          i.fa.fa-heart-o
+          = thing.fanciers_count
+      - if thing.owners_count > 0
+        li = link_to thing, target: '_blank'
+          i.fa.fa-check-circle-o
+          = thing.owners_count
+      - if thing.reviews_count > 0
+        li = link_to [thing, :reviews], target: '_blank'
+          i.fa.fa-pencil
+          = thing.reviews_count

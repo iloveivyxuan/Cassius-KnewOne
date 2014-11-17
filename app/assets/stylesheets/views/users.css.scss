@@ -378,6 +378,54 @@ html[class^="users_"] {
           vertical-align: top;
           width: percentage(1 / 3);
           border-right: $gutter-width solid transparent;
+
+          a {
+            @include plain-link($gray-light);
+          }
+
+          .thing-cover {
+            position: relative;
+            height: 0;
+            overflow: hidden;
+            padding-bottom: percentage(8 / 11);
+
+            &:before {
+              content: '';
+
+              position: absolute;
+              bottom: 0;
+              left: 50%;
+              transform: translateX(-50%);
+
+              width: 0;
+              height: 0;
+              border-style: solid;
+              border-width: 0 8px 11px 8px;
+              border-color: transparent;
+            }
+          }
+
+          h4 {
+            @include text-overflow;
+
+            font-size: 14px;
+            margin: 15px 20px;
+            text-align: center;
+          }
+
+          ul.thing-counts {
+            text-align: center;
+
+            li {
+              display: inline-block;
+              margin-right: 10px;
+              padding: 0 0 15px 0;
+
+              &:last-child {
+                margin-right: 0;
+              }
+            }
+          }
         }
 
         &.contents-fancies {
@@ -390,6 +438,10 @@ html[class^="users_"] {
           .thing {
             border-right-color: white;
             background: $ghost-white;
+
+            .thing-cover:before {
+              border-bottom-color: $ghost-white;
+            }
           }
         }
 
@@ -403,6 +455,10 @@ html[class^="users_"] {
           .thing {
             border-right-color: $ghost-white;
             background: white;
+
+            .thing-cover:before {
+              border-bottom-color: white;
+            }
           }
         }
       }
