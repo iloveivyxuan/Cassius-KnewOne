@@ -2,11 +2,6 @@
   - present thing do |tp|
     li
       figure class="thing"
-        .brand
-          | 品牌
-        .brand-text
-          = thing.brand_name
-        hr
         - if tp.self_run?
           = link_to tp.thing, class: "pre_ribbon #{tp.stage}" do
             span= tp.stage_text
