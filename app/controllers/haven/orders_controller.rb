@@ -147,6 +147,11 @@ module Haven
       redirect_to haven_order_path(@order)
     end
 
+    def transit
+      @order.transit!
+      redirect_to haven_order_path(@order)
+    end
+
     def refund_to_balance
       @order.refund_to_balance!(BigDecimal.new(params[:price]))
       redirect_to haven_order_path(@order)

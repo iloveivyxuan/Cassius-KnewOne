@@ -270,6 +270,7 @@ Making::Application.routes.draw do
         patch 'ship'
         patch 'close'
         patch 'refund'
+        patch 'transit'
         patch 'refund_to_balance'
         patch 'refund_bong_point'
         patch 'refunded_balance_to_platform'

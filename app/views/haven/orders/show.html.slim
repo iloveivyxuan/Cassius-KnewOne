@@ -114,6 +114,7 @@ section.orders_wrapper
       = close_link(@order)
       = refunded_balance_to_platform_link(@order)
       = refund_link(@order)
+      = transit_link(@order)
       = deliver_bill_link(@order)
       = way_bill_link(@order)
       .btn-group = link_to '返回', haven_orders_path, class: 'btn btn-default'

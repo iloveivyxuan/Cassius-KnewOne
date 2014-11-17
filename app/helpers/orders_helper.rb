@@ -50,6 +50,16 @@ module OrdersHelper
     end
   end
 
+  def transit_link(order, css = 'btn btn-default')
+    if order.can_transit?
+      content_tag :div, class: 'btn-group' do
+        link_to '安排出库', transit_haven_order_path(order),
+                data: { confirm: '确认出库？' },
+                method: :patch, class: css
+      end
+    end
+  end
+
   def refunded_balance_to_platform_link(order, css = 'btn btn-danger')
     if order.can_refunded_balance_to_platform? && order.payment_method != :btc
       content_tag :div, class: 'btn-group' do
