@@ -72,7 +72,7 @@ module Haven
               end
             end
           else
-            lines = [%w(订单编号 创建时间 订单状态 商品 总价 物流方式 物流单号 配送省 配送市 配送区/县 配送街道 配送姓名 配送手机号 用户备注 管理员备注 系统备注 支付平台流水号 用户ID 用户名 用户邮箱)]
+            lines = [%w(订单编号 创建时间 订单状态 商品 总价 物流方式 物流单号 配送省 配送市 配送区/县 配送街道 配送姓名 配送手机号 用户备注 管理员备注 系统备注 支付平台流水号 用户ID 用户名 用户邮箱 支付的活跃点)]
 
             @orders.each do |order|
               city = CITY_PLACEHOLDER.include?(order.address.city) ? order.address.province : (order.address.city || '')
@@ -98,7 +98,8 @@ module Haven
                       order.trade_no,
                       order.user_id,
                       order.user.name,
-                      order.user.email
+                      order.user.email,
+                      order.consumed_bong_point
                      ]
 
               lines<< cols
