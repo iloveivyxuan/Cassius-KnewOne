@@ -1,1 +1,12 @@
 ul.contents
+  - if @fancies.any?
+    li.contents-fancies
+      h3
+        i.fa.fa-fw.fa-heart
+        span 喜欢
+
+      = link_to [:fancies, @user], class: 'contents-more'
+        | 全部
+        i.fa.fa-chevron-right
+
+      = render partial: 'home/hot_thing', collection: @fancies, as: :hot_thing
