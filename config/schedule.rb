@@ -39,6 +39,11 @@ every 1.day, :at => '3:00 am' do
   runner 'Thing.recal_all_related_things'
 end
 
+# update thing's brand_name
+every 1.day, :at => '3:30 am' do
+  runner 'Brand.update_things_brand_name'
+end
+
 every 1.day, :at => '4:00 am' do
   rake '-s sitemap:refresh'
 end

@@ -25,7 +25,12 @@ class Brand
   end
 
   def brand_text
-    (zh_name && en_name) ? "#{zh_name} - #{en_name}" : (zh_name || en_name)
+    case country
+    when "CN"
+      return (zh_name && en_name) ? "#{zh_name} - #{en_name}" : (zh_name || en_name)
+    else
+      return en_name
+    end
   end
 
   def tags
@@ -42,5 +47,9 @@ class Brand
   def spacing_description
     self.description_will_change!
     self.description.auto_correct!
+  end
+
+  def self.update_things_brand_name
+    Brand.all.each { |b| b.things.set(brand_name: b.brand_text) }
   end
 end
