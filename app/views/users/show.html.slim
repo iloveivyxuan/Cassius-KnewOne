@@ -1,5 +1,5 @@
 ul.contents
-  - if @fancies.any?
+  - if @fancies.present?
     li.contents-fancies
       h3
         i.fa.fa-fw.fa-heart
@@ -11,7 +11,7 @@ ul.contents
 
       ul = render partial: 'thing', collection: @fancies
 
-  - if @owns.any?
+  - if @owns.present?
     li.contents-owns
       h3
         i.fa.fa-fw.fa-check-circle-o
