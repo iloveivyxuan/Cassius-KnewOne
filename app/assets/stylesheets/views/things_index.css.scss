@@ -80,7 +80,7 @@ html.shop, html.things_index {
       @media (min-width: $screen-md-min) {
         &:nth-child(3n+1), &:nth-child(3n+2) {margin-right: $gutter;}
         width: 306px;
-        width: calc((100% - #{$gutter}*2)/3);
+        width: calc((100% - (#{$gutter} + 1px)*2)/3);
       }
     }
   }
