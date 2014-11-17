@@ -428,12 +428,8 @@ html[class^="users_"] {
           }
         }
 
-        &.contents-fancies {
+        &:nth-child(odd) {
           background: white;
-
-          h3 i {
-            color: $red;
-          }
 
           .thing {
             border-right-color: white;
@@ -445,12 +441,8 @@ html[class^="users_"] {
           }
         }
 
-        &.contents-owns {
+        &:nth-child(even) {
           background: $ghost-white;
-
-          h3 i {
-            color: $blue-light;
-          }
 
           .thing {
             border-right-color: $ghost-white;
@@ -459,6 +451,18 @@ html[class^="users_"] {
             .thing-cover:before {
               border-bottom-color: white;
             }
+          }
+        }
+
+        &.contents-fancies {
+          h3 i {
+            color: $red;
+          }
+        }
+
+        &.contents-owns {
+          h3 i {
+            color: $blue-light;
           }
         }
       }
