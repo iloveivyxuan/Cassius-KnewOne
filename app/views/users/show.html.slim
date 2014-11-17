@@ -46,3 +46,15 @@ ul.contents
         i.fa.fa-chevron-right
 
       .reviews = render @reviews
+
+  - if @feelings.present?
+    li.contents-feelings
+      h3
+        i.fa.fa-fw.fa-comments-o
+        span 短评
+
+      = link_to [:feelings, @user], class: 'contents-more'
+        | 全部
+        i.fa.fa-chevron-right
+
+      .feelings = render @feelings

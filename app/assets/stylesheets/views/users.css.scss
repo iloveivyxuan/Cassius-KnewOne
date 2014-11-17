@@ -465,7 +465,8 @@ html[class^="users_"] {
           }
         }
 
-        .review {
+        .review,
+        .feeling {
           border-right: $gutter-width solid transparent;
         }
 
@@ -474,7 +475,8 @@ html[class^="users_"] {
 
           .thing,
           .thing_list,
-          .review {
+          .review,
+          .feeling {
             border-right-color: white;
           }
 
@@ -492,7 +494,8 @@ html[class^="users_"] {
             }
           }
 
-          .review {
+          .review,
+          .feeling {
             background: $ghost-white;
           }
         }
@@ -502,7 +505,8 @@ html[class^="users_"] {
 
           .thing,
           .thing_list,
-          .review {
+          .review,
+          .feeling {
             border-right-color: $ghost-white;
           }
 
@@ -520,7 +524,8 @@ html[class^="users_"] {
             }
           }
 
-          .review {
+          .review,
+          .feeling {
             background: white;
           }
         }
