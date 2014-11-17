@@ -58,3 +58,15 @@ ul.contents
         i.fa.fa-chevron-right
 
       .feelings = render @feelings
+
+  - if @activities.present?
+    li.contents-activities
+      h3
+        i.fa.fa-fw.fa-bars
+        span 动态
+
+      = link_to [:activities, @user], class: 'contents-more'
+        | 全部
+        i.fa.fa-chevron-right
+
+      ul.activities = render @activities

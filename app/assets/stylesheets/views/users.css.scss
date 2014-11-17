@@ -463,10 +463,15 @@ html[class^="users_"] {
           }
         }
 
+        .activity {
+          padding: 15px;
+        }
+
         .thing,
         .thing_list,
         .review,
-        .feeling {
+        .feeling,
+        .activity {
           border-right: $gutter-width solid transparent;
         }
 
@@ -476,7 +481,8 @@ html[class^="users_"] {
           .thing,
           .thing_list,
           .review,
-          .feeling {
+          .feeling,
+          .activity {
             border-right-color: white;
           }
 
@@ -495,7 +501,8 @@ html[class^="users_"] {
           }
 
           .review,
-          .feeling {
+          .feeling,
+          .activity {
             background: $ghost-white;
           }
         }
@@ -506,7 +513,8 @@ html[class^="users_"] {
           .thing,
           .thing_list,
           .review,
-          .feeling {
+          .feeling,
+          .activity {
             border-right-color: $ghost-white;
           }
 
@@ -525,7 +533,8 @@ html[class^="users_"] {
           }
 
           .review,
-          .feeling {
+          .feeling,
+          .activity {
             background: white;
           }
         }
