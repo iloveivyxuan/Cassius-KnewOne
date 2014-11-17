@@ -60,6 +60,11 @@ do ($ = jQuery) ->
                   '</button>' +
                 '</li>' +
                 '<li>' +
+                  '<button class="minsert-action" data-action="insert-embed" type="button">' +
+                    '<i class="fa fa-code"></i>' +
+                  '</button>' +
+                '</li>' +
+                '<li>' +
                   '<button class="minsert-action" data-action="insert-rule" type="button">' +
                     '<i class="fa fa-minus"></i>' +
                   '</button>' +
@@ -321,9 +326,9 @@ do ($ = jQuery) ->
       actions:
         images: {}
         videos:
-          placeholder: '在这里插入视频网址或代码'
+          placeholder: '在这里插入视频网址或代码然后按回车'
         embeds:
-          placeholder: '在这里插入网址或代码'
+          placeholder: '在这里插入网址或代码然后按回车'
         rules : {}
 
     # MInsert jQuery Plugin Definition

@@ -187,6 +187,8 @@ do (exports = Making) ->
           actions:
             videos:
               placeholder: '在这里输入视频网址或代码（通用代码）然后按回车'
+            embeds:
+              placeholder: '在这里输入网址或代码然后按回车'
 
         @$insertImageButton = @$('.minsert [data-action="insert-image"]')
           .on 'click', ->
