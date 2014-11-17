@@ -291,6 +291,8 @@ class Order
   end
 
   def confirm_payment!(trade_no, price, method, raw)
+    order_histories.create! from: self.state, raw: raw
+
     return false unless can_confirm_payment?
 
     state = self.state
@@ -511,6 +513,8 @@ class Order
   end
 
   def unexpect!(system_note = '', raw = {})
+    order_histories.create from: self.state, raw: raw
+
     state = self.state
     self.state = :unexpected
 
