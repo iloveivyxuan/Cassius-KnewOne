@@ -22,3 +22,15 @@ ul.contents
         i.fa.fa-chevron-right
 
       ul = render partial: 'thing', collection: @owns
+
+  - if @lists.present?
+    li.contents-lists
+      h3
+        i.fa.fa-fw.fa-list
+        span 列表
+
+      = link_to [:lists, @user], class: 'contents-more'
+        | 全部
+        i.fa.fa-chevron-right
+
+      .thing_lists = render @lists, user: @user

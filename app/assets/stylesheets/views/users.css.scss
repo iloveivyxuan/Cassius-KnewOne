@@ -429,15 +429,61 @@ html[class^="users_"] {
           }
         }
 
+        .thing_list {
+          display: inline-block;
+          vertical-align: top;
+          width: percentage(1 / 3);
+          border-right: $gutter-width solid transparent;
+
+          background: $body-bg;
+
+          h4 .fa-list,
+          .thing_list-creator {
+            display: none;
+          }
+
+          h4 {
+            margin: 20px;
+            text-align: center;
+            font-size: 16px;
+            color: $gray;
+
+            .thing_list-size {
+              vertical-align: bottom;
+              font-size: 80%;
+              color: $gray-light;
+            }
+          }
+
+          .thing_list-description {
+            padding: 10px;
+            border-top: 1px dashed white;
+          }
+
+          .thing_list-info {
+            padding: 10px;
+          }
+        }
+
         &:nth-child(odd) {
           background: white;
 
-          .thing {
+          .thing,
+          .thing_list {
             border-right-color: white;
+          }
+
+          .thing {
             background: $ghost-white;
 
             .thing-cover:before {
               border-bottom-color: $ghost-white;
+            }
+          }
+
+          .thing_list {
+            .thing_list-info {
+              background: $ghost-white;
             }
           }
         }
@@ -445,12 +491,22 @@ html[class^="users_"] {
         &:nth-child(even) {
           background: $ghost-white;
 
-          .thing {
+          .thing,
+          .thing_list {
             border-right-color: $ghost-white;
+          }
+
+          .thing {
             background: white;
 
             .thing-cover:before {
               border-bottom-color: white;
+            }
+          }
+
+          .thing_list {
+            .thing_list-info {
+              background: white;
             }
           }
         }
@@ -464,6 +520,12 @@ html[class^="users_"] {
         &.contents-owns {
           h3 i {
             color: $blue-light;
+          }
+        }
+
+        &.contents-lists {
+          h3 i {
+            color: $orange;
           }
         }
       }
