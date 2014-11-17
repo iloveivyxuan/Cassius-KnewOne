@@ -67,7 +67,7 @@ class Order
     :pending => '等待付款',
     :freed => '无需支付，请用户确认',
     :confirmed => '支付成功，等待发货',
-    :transit => '发货中',
+    :transit => '正在安排出库',
     :shipped => '已发货',
     :canceled => '订单取消',
     :closed => '订单关闭',
