@@ -465,11 +465,16 @@ html[class^="users_"] {
           }
         }
 
+        .review {
+          border-right: $gutter-width solid transparent;
+        }
+
         &:nth-child(odd) {
           background: white;
 
           .thing,
-          .thing_list {
+          .thing_list,
+          .review {
             border-right-color: white;
           }
 
@@ -486,13 +491,18 @@ html[class^="users_"] {
               background: $ghost-white;
             }
           }
+
+          .review {
+            background: $ghost-white;
+          }
         }
 
         &:nth-child(even) {
           background: $ghost-white;
 
           .thing,
-          .thing_list {
+          .thing_list,
+          .review {
             border-right-color: $ghost-white;
           }
 
@@ -508,6 +518,10 @@ html[class^="users_"] {
             .thing_list-info {
               background: white;
             }
+          }
+
+          .review {
+            background: white;
           }
         }
 

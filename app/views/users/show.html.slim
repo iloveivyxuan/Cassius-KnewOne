@@ -34,3 +34,15 @@ ul.contents
         i.fa.fa-chevron-right
 
       .thing_lists = render @lists, user: @user
+
+  - if @reviews.present?
+    li.contents-reviews
+      h3
+        i.fa.fa-fw.fa-pencil
+        span 评测
+
+      = link_to [:reviews, @user], class: 'contents-more'
+        | 全部
+        i.fa.fa-chevron-right
+
+      .reviews = render @reviews
