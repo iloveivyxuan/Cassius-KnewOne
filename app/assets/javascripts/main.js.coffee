@@ -326,6 +326,7 @@ do (exports = Making) ->
     # TODO
     ($popovertoggle = $(".popover-toggle")).length && $popovertoggle.popover()
     ($score = $('.score')).length && $score.score()
+    $('.knewone-embed:empty').length && exports.loadEmbed()
     if $(".track_event").length
       $(".track_event").click ->
         Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')

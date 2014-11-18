@@ -133,6 +133,28 @@ do (root = @, exports = Making) ->
           .on 'click', (event) ->
             $(this).fadeOut('fast')
 
+  exports.loadEmbed = ->
+    $embed     = $(".knewone-embed:empty")
+    # @TODO
+    requestUrl = 'http://making.dev/embed'
+    $embed.each (index, element) ->
+      $element = $(element)
+      requestData =
+        type: $element.data('knewoneEmbedType')
+        id: $element.data('knewoneEmbedId')
+      $
+        .ajax
+          url: requestUrl
+          data: requestData
+          dataType: 'html'
+          beforeSend: ->
+            $element.append('<div class="spinner"><i class="fa fa-spinner fa-2x fa-spin"></i></div>')
+        .done (data, status, xhr) ->
+          $element
+            .empty()
+            .append(data)
+            .attr('contenteditable', false)
+
   $ ->
     $navbar          = $('.navbar')
     $gotop           = $('#go_top')
