@@ -134,7 +134,9 @@ class HomeController < ApplicationController
     case params[:type]
     when 'list'
       @list = ThingList.where(id: params[:id]).first
-      render [@list] if @list
+      if @list
+        render [@list], locals: { layout: browser.desktop? ? :quintet : :grid }
+      end
     when 'review'
       @review = Review.where(id: params[:id]).first
       render partial: 'hot_review', collection: [@review] if @review
