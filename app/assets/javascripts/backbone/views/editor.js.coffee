@@ -260,6 +260,7 @@ do (exports = Making) ->
     initWidget: ->
       !@$rating && (@$rating = @$('.range-rating')).length && @$rating.rating()
       Making.AtUser('#form-review-body')
+      $('.knewone-embed:empty').length && exports.loadEmbed()
 
     getBody: ->
       @$body.html(@$bodyField.val())
@@ -369,7 +370,13 @@ do (exports = Making) ->
         when 'standalone'
           clearTimeout(@timeout)
           @model.updateStatus('submit')
-          @setBody()
+          body = $('<div>')
+                  .append(@editor.serialize()[@$body.attr('id')].value)
+                  .find('.knewone-embed')
+                    .empty()
+                    .removeAttr('contenteditable')
+                  .end()[0].innerHTML
+          @setBody(body)
 
           if @beforeSubmit?
             result = @beforeSubmit(event)
