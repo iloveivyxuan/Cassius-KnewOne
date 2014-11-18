@@ -358,9 +358,9 @@ do ($ = jQuery) ->
       actions:
         images: {}
         videos:
-          placeholder: '在这里插入视频网址或代码然后按回车'
+          placeholder: '在这里输入视频网址或代码（通用代码）然后按回车'
         embeds:
-          placeholder: '在这里插入网址或代码然后按回车'
+          placeholder: '在这里输入小工具网址或代码然后按回车'
         rules : {}
 
     # MInsert jQuery Plugin Definition
