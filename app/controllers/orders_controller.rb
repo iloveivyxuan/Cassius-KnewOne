@@ -156,7 +156,11 @@ class OrdersController < ApplicationController
 
     if WxPay::Sign.verify? r
       @order.confirm_payment! r['transaction_id'], (r['total_fee'].to_i / 100), :wxpay, r
+    else
+      @order.unexpect!('微信交易异常', r)
     end
+
+    head :no_content
   end
 
   def alipay_notify
@@ -164,8 +168,8 @@ class OrdersController < ApplicationController
     if Alipay::Notify.verify?(callback_params)
       if %w(TRADE_SUCCESS TRADE_FINISHED).include?(callback_params[:trade_status])
         @order.confirm_payment!(callback_params[:trade_no], callback_params[:total_fee], :alipay, callback_params)
-      elsif callback_params[:trade_status] == 'TRADE_CLOSED'
-        @order.unexpect!("支付宝交易异常,交易号#{callback_params[:trade_no]}，状态TRADE_CLOSED", callback_params)
+      else
+        @order.unexpect!("支付宝交易异常,交易号#{callback_params[:trade_no]}，状态#{callback_params[:trade_status]}", callback_params)
       end
 
       render text: 'success'
@@ -186,8 +190,8 @@ class OrdersController < ApplicationController
     if Alipay::Notify.verify?(callback_params)
       if %w(TRADE_SUCCESS TRADE_FINISHED).include?(callback_params[:trade_status])
         @order.confirm_payment!(callback_params[:trade_no], callback_params[:total_fee], :alipay, callback_params)
-      elsif callback_params[:trade_status] == 'TRADE_CLOSED'
-        @order.unexpect!("支付宝交易异常,交易号#{callback_params[:trade_no]}，状态TRADE_CLOSED", callback_params)
+      else
+        @order.unexpect!("支付宝交易异常,交易号#{callback_params[:trade_no]}，状态#{callback_params[:trade_status]}", callback_params)
       end
     else
       @order.unexpect!("支付宝交易异常,校验无效", callback_params)
@@ -201,8 +205,8 @@ class OrdersController < ApplicationController
     if Alipay::Notify::Wap.verify?(callback_params) && data = Hash.from_xml(callback_params[:notify_data])
       if %w(TRADE_SUCCESS TRADE_FINISHED).include?(data['trade_status'])
         @order.confirm_payment!(data['trade_no'], data['total_fee'], :alipay_wap, callback_params)
-      elsif data['trade_status'] == 'TRADE_CLOSED'
-        @order.unexpect!("支付宝交易异常,交易号#{data['trade_no']}，状态TRADE_CLOSED", callback_params)
+      else
+        @order.unexpect!("支付宝交易异常,交易号#{data['trade_no']}，状态#{data['trade_status']}", callback_params)
       end
 
       render text: 'success'
