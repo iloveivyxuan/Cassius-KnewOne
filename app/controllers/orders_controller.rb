@@ -301,7 +301,7 @@ class OrdersController < ApplicationController
         :out_trade_no  => order.order_no,
         :subject       => "KnewOne购物订单: #{order.order_no}",
         :total_fee     => order.should_pay_price,
-        :notify_url    => alipay_wap_callback_order_url(order),
+        :notify_url    => alipay_wap_notify_order_url(order),
         :call_back_url => alipay_wap_callback_order_url(order)
       }
     }
