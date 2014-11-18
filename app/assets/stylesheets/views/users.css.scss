@@ -556,37 +556,6 @@ html[class^="users_"] {
             color: $orange;
           }
         }
-
-        &.contents-categories {
-          padding-left: 30px;
-          padding-right: 30px;
-
-          .categories {
-            padding: 0;
-            background: transparent;
-          }
-        }
-      }
-    }
-
-    ul.categories {
-      margin: 0;
-      padding: 10px;
-      padding-bottom: 20px;
-      background: $ghost-white;
-
-      > li {
-        display: inline-block;
-        margin: 10px 0 0 10px;
-
-        a {
-          @include plain-link($gray);
-
-          display: inline-block;
-          padding: 10px;
-          border-radius: 10px;
-          background: $gray-lighter;
-        }
       }
     }
   }
