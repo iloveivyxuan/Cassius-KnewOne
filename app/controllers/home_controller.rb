@@ -141,7 +141,7 @@ class HomeController < ApplicationController
       @review = Review.where(id: params[:id]).first
       render partial: 'hot_review', collection: [@review] if @review
     else
-      return
+      head :unprocessable_entity
     end
   end
 end
