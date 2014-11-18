@@ -21,7 +21,7 @@ module Votable
       foes << user
       author.inc karma: -Settings.karma.post
     end
-    self.update_attribute :lovers_count, lovers.count
+    self.set(lovers_count: lovers.count)
   end
 
   def unvote(user, love = true)
@@ -33,6 +33,6 @@ module Votable
       foes.delete(user)
       author.inc karma: Settings.karma.post
     end
-    self.update_attribute :lovers_count, lovers.count
+    self.set(lovers_count: lovers.count)
   end
 end

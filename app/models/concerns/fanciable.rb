@@ -21,7 +21,7 @@ module Fanciable
         self.push(fancier_ids: user.id)
         user.push("#{inverse_name.to_s.singularize}_ids" => self.id)
 
-        update_attribute :fanciers_count, fanciers.count
+        set fanciers_count: fanciers.count
 
         reload
         user.reload
@@ -33,7 +33,7 @@ module Fanciable
         return unless fancied?(user)
         fanciers.delete user
         user.send(inverse_name).delete self
-        update_attribute :fanciers_count, fanciers.count
+        set fanciers_count: fanciers.count
         user.inc karma: -Settings.karma.fancy
       end
     end
