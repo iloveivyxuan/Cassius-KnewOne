@@ -329,6 +329,10 @@ html[class^="users_"] {
         overflow: hidden;
         padding-bottom: percentage(8 / 11);
 
+        img {
+          width: 100%;
+        }
+
         &:before {
           content: '';
 
