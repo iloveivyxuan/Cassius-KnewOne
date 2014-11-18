@@ -413,7 +413,7 @@ class Thing < Post
     end
 
     def recal_all_related_things
-      Thing.all.each {|t| t.update_related_thing_ids; t.save}
+      Thing.desc(:created_at).each {|t| t.update_related_thing_ids; t.save}
     end
   end
 
