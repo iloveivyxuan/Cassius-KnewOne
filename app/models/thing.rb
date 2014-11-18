@@ -306,7 +306,7 @@ class Thing < Post
   end
 
   def update_related_thing_ids
-    update related_thing_ids: cal_related_thing_ids
+    set(related_thing_ids: cal_related_thing_ids)
   end
 
   def related_things(size = 10, lazy = Rails.env.development?)
@@ -413,7 +413,7 @@ class Thing < Post
     end
 
     def recal_all_related_things
-      Thing.desc(:created_at).each { |t| t.update_related_thing_ids }
+      Thing.desc(:created_at).each(&:update_related_thing_ids)
     end
   end
 
