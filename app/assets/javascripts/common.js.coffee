@@ -153,6 +153,10 @@ do (root = @, exports = Making) ->
             .empty()
             .append(data)
             .attr('contenteditable', false)
+        .fail (xhr, status, error) ->
+          $element
+            .empty()
+            .append('<p class="knewone-embed-tip">无效的资源。</p>')
 
   $ ->
     $navbar          = $('.navbar')

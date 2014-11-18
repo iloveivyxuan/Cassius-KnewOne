@@ -14,6 +14,13 @@
   }
 }
 
+.knewone-embed-tip {
+  color: $text-muted;
+  margin: 0 !important;
+  padding: 1em 0;
+  text-align: center;
+}
+
 .knewone-embed--review {
   .review {
     @media (min-width: $screen-sm-min) {
