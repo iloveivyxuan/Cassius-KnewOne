@@ -176,6 +176,10 @@ class Thing < Post
     Category.any_in(name: self.categories)
   end
 
+  def primary_categories
+    category_records.primary.pluck(:name)
+  end
+
   def update_categories
     return unless categories_changed?
     old = categories_change.first || []
