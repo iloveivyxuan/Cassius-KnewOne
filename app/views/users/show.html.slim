@@ -70,3 +70,6 @@ ul.contents
         i.fa.fa-chevron-right
 
       ul.activities = render @activities
+
+  li.contents-categories
+    = render 'categories', categories: @user.categories

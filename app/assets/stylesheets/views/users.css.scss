@@ -556,6 +556,16 @@ html[class^="users_"] {
             color: $orange;
           }
         }
+
+        &.contents-categories {
+          padding-left: 30px;
+          padding-right: 30px;
+
+          .categories {
+            padding: 0;
+            background: transparent;
+          }
+        }
       }
     }
 
