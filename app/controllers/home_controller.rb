@@ -133,13 +133,11 @@ class HomeController < ApplicationController
   def embed
     case params[:type]
     when 'list'
-      @list = ThingList.where(id: params[:id]).first
-      if @list
-        render [@list], locals: { layout: browser.desktop? ? :quintet : :grid }
-      end
+      @list = ThingList.find params[:id]
+      render [@list], locals: { layout: browser.desktop? ? :quintet : :grid }
     when 'review'
-      @review = Review.where(id: params[:id]).first
-      render partial: 'hot_review', collection: [@review] if @review
+      @review = Review.find params[:id]
+      render partial: 'hot_review', collection: [@review]
     else
       head :unprocessable_entity
     end
