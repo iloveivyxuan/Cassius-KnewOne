@@ -36,7 +36,7 @@ class ReviewsController < ApplicationController
   def create
     # review whose content is less than 140 will be transformed to feeling.
     review_content = ActionView::Base.full_sanitizer.sanitize(@review.content)
-    if !images_inside? && !iframe_inside? && (review_content.size < 140)
+    if !images_inside? && !iframe_inside? && !knewone_embed_inside? && (review_content.size < 140)
       @feeling = Feeling.new
       %w(title score thing).each { |attr| @feeling[attr] = @review[attr] }
       @feeling.content = review_content
@@ -131,5 +131,9 @@ class ReviewsController < ApplicationController
 
   def iframe_inside?
     !Nokogiri::HTML(@review.content).xpath("//iframe").empty?
+  end
+
+  def knewone_embed_inside?
+    !Nokogiri::HTML(@review.content).xpath("//*[contains(@class, 'knewone-embed')]").empty?
   end
 end
