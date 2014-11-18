@@ -226,15 +226,11 @@ do ($ = jQuery) ->
               url  = content
 
               # KnewOne embed
-              if /^(http(s)?:\/\/)?(www\.)?(making\.dev)/.test(url)
-              # if /^(http(s)?:\/\/)?(www\.)?(knewone\.com)/.test(url)
-                # requestUrl    = 'http://knewone.com/embed'
-                # patternReview = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/things\/(.*)\/reviews\/([0-9a-z]{24})/
-                # patternList   = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/lists\/([0-9a-z]{24})/
+              if /^(http(s)?:\/\/)?(www\.)?(knewone\.com)/.test(url)
                 that          = @
-                requestUrl    = 'http://making.dev/embed'
-                patternReview = /^(http(s)?:\/\/)?(www\.)?(making\.dev)\/things\/(.*)\/reviews\/([0-9a-z]{24})/
-                patternList   = /^(http(s)?:\/\/)?(www\.)?(making\.dev)\/lists\/([0-9a-z]{24})/
+                requestUrl    = 'http://knewone.com/embed'
+                patternReview = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/things\/(.*)\/reviews\/([0-9a-z]{24})/
+                patternList   = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/lists\/([0-9a-z]{24})/
                 async         = true
                 if patternReview.test(url)
                   requestData =

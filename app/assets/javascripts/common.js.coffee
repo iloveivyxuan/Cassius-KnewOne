@@ -135,8 +135,7 @@ do (root = @, exports = Making) ->
 
   exports.loadEmbed = ->
     $embed     = $(".knewone-embed:empty")
-    # @TODO
-    requestUrl = 'http://making.dev/embed'
+    requestUrl = 'http://knewone.com/embed'
     $embed.each (index, element) ->
       $element = $(element)
       requestData =
