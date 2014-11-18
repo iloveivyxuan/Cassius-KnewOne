@@ -2,7 +2,7 @@ json.id @thing.id.to_s
 json.title @thing.title
 json.subtitle @thing.subtitle
 json.url thing_url(@thing)
-json.categories @thing.categories
+json.categories @thing.primary_categories
 json.content @thing.content
 json.price_unit @thing.price_unit
 json.price @thing.price
