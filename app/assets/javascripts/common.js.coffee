@@ -77,24 +77,6 @@ do (root = @, exports = Making) ->
       return
     return
 
-  exports.scrollSpyPopupLogin = (redirectFrom, pixelsFromTopToBottom = -100) ->
-    if exports.user? then return
-
-    $window.on 'scroll.login', ->
-      if pixelsFromTopToBottom >= 0
-        isFire = $window.scrollTop() >= pixelsFromTopToBottom
-      else
-        isFire = $document.height() - $window.scrollTop() - $window.height() <= -pixelsFromTopToBottom
-
-      if isFire
-        switch exports.device
-          when 'mobile', 'tablet'
-            $('#header [data-target="#login-modal"]').trigger('click')
-          when 'desktop'
-            $('#header .user_link[data-target="#login-modal"]').trigger('click')
-        $('#login-modal').find('[name="redirect_from"]').val(redirectFrom)
-        $window.off 'scroll.login'
-
   exports.selectCategories = (tags, container) ->
     cache = {}
     $(tags).find('.tags').on 'click', 'a', (event) ->
