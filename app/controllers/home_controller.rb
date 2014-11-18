@@ -129,4 +129,17 @@ class HomeController < ApplicationController
     logger.info params.except(*request.path_parameters.keys)
     head :no_content
   end
+
+  def embed
+    case params[:type]
+    when 'list'
+      @list = ThingList.find params[:id]
+      render [@list], locals: { layout: browser.desktop? ? :quintet : :grid }
+    when 'review'
+      @review = Review.find params[:id]
+      render partial: 'hot_review', collection: [@review]
+    else
+      head :unprocessable_entity
+    end
+  end
 end

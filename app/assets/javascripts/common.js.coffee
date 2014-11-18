@@ -133,6 +133,31 @@ do (root = @, exports = Making) ->
           .on 'click', (event) ->
             $(this).fadeOut('fast')
 
+  exports.loadEmbed = ->
+    $embed     = $(".knewone-embed:empty")
+    requestUrl = 'http://knewone.com/embed'
+    $embed.each (index, element) ->
+      $element = $(element)
+      requestData =
+        type: $element.data('knewoneEmbedType')
+        id: $element.data('knewoneEmbedId')
+      $
+        .ajax
+          url: requestUrl
+          data: requestData
+          dataType: 'html'
+          beforeSend: ->
+            $element.append('<div class="spinner"><i class="fa fa-spinner fa-2x fa-spin"></i></div>')
+        .done (data, status, xhr) ->
+          $element
+            .empty()
+            .append(data)
+            .attr('contenteditable', false)
+        .fail (xhr, status, error) ->
+          $element
+            .empty()
+            .append('<p class="knewone-embed-tip">无效的资源。</p>')
+
   $ ->
     $navbar          = $('.navbar')
     $gotop           = $('#go_top')

@@ -183,10 +183,7 @@ do (exports = Making) ->
                       selection.addRange(range)
           @observer.observe @$body[0], {childList: true, subtree: true}
 
-        @$body.minsert
-          actions:
-            videos:
-              placeholder: '在这里输入视频网址或代码（通用代码）然后按回车'
+        @$body.minsert()
 
         @$insertImageButton = @$('.minsert [data-action="insert-image"]')
           .on 'click', ->
@@ -257,7 +254,8 @@ do (exports = Making) ->
 
     initWidget: ->
       !@$rating && (@$rating = @$('.range-rating')).length && @$rating.rating()
-      Making.AtUser('#form-review-body')
+      exports.AtUser('#form-review-body')
+      $('.knewone-embed:empty').length && exports.loadEmbed()
 
     getBody: ->
       @$body.html(@$bodyField.val())
@@ -366,12 +364,19 @@ do (exports = Making) ->
       switch @mode
         when 'standalone'
           clearTimeout(@timeout)
-          @model.updateStatus('submit')
-          @setBody()
+          body = $('<div>')
+                  .append(@editor.serialize()[@$body.attr('id')].value)
+                  .find('.knewone-embed')
+                    .empty()
+                    .removeAttr('contenteditable')
+                  .end()[0].innerHTML
+          @setBody(body)
 
           if @beforeSubmit?
             result = @beforeSubmit(event)
             if result is false then return false
+
+          @model.updateStatus('submit')
 
           $window
             .off 'beforeunload'

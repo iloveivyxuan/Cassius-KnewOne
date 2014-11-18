@@ -60,6 +60,11 @@ do ($ = jQuery) ->
                   '</button>' +
                 '</li>' +
                 '<li>' +
+                  '<button class="minsert-action" data-action="insert-embed" type="button">' +
+                    '<i class="fa fa-code"></i>' +
+                  '</button>' +
+                '</li>' +
+                '<li>' +
                   '<button class="minsert-action" data-action="insert-rule" type="button">' +
                     '<i class="fa fa-minus"></i>' +
                   '</button>' +
@@ -213,28 +218,56 @@ do ($ = jQuery) ->
         handler = (event) ->
           if event.which is 13
             content = event.target.value.trim()
+            async   = false
 
             event.preventDefault()
 
             if content.indexOf('http') is 0
               url  = content
-              html = url.replace(/\n?/g, '')
-                .replace(/^((http(s)?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/(watch\?v=|v\/)?)([a-zA-Z0-9-_]+)(.*)?$/, '<div class="video"><iframe width="420" height="315" src="//www.youtube.com/v/$7&amp;fs=1" frameborder="0" allowfullscreen></iframe></div>')
-                .replace(/http:\/\/vimeo\.com\/(\d+)$/, '<iframe src="//player.vimeo.com/video/$1" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>')
-                .replace(/^http:\/\/v\.youku.com\/v_show\/id_(.+)(\.html){1}(.*)/, '<iframe height=498 width=510 src="http://player.youku.com/embed/$1" frameborder=0 allowfullscreen></iframe>')
-                .replace(/^http:\/\/www\.tudou\.com\/listplay\/([a-zA-Z0-9]+)\/([a-zA-Z0-9]+)\.html$/, '<iframe src="http://www.tudou.com/programs/view/html5embed.action?type=1&code=$2&lcode=$1&resourceId=0_06_05_99" allowtransparency="true" scrolling="no" border="0" frameborder="0" style="width:480px;height:400px;"></iframe>')
-                .replace(/^http:\/\/www\.tudou\.com\/programs\/view\/(.+)$/, '<iframe src="http://www.tudou.com/programs/view/html5embed.action?type=0&code=$1" allowtransparency="true" scrolling="no" border="0" frameborder="0" style="width:480px;height:400px;"></iframe>')
-                .replace(/^http:\/\/www\.56\.com\/(.+)\/v_(.+)\.html$/, '<iframe width="480" height="405" src="http://www.56.com/iframe/$2" frameborder="0" allowfullscreen=""></iframe>')
-                .replace(/^http:\/\/v\.qq\.com\/page\/(.+)\/(.+)\/(.+)\/([a-zA-Z0-9]+)\.html$/, '<iframe width="480" height="405" frameborder=0 src="http://v.qq.com/iframe/player.html?vid=$4&tiny=0&auto=0" allowfullscreen></iframe>')
-                .replace(/https:\/\/twitter\.com\/(\w+)\/status\/(\d+)\/?$/, '<blockquote class="twitter-tweet" lang="en"><a href="https://twitter.com/$1/statuses/$2"></a></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>')
-                .replace(/https:\/\/www\.facebook\.com\/(\w+)\/posts\/(\d+)$/, '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/all.js#xfbml=1"; fjs.parentNode.insertBefore(js, fjs); }(document, "script", "facebook-jssdk"));</script><div class="fb-post" data-href="https://www.facebook.com/$1/posts/$2"></div>')
-                .replace(/http:\/\/instagram\.com\/p\/(.+)\/?$/, '<span class="instagram"><iframe src="//instagram.com/p/$1/embed/" width="612" height="710" frameborder="0" scrolling="no" allowtransparency="true"></iframe></span>')
-              if /<("[^"]*"|'[^']*'|[^'">])*>/.test(html) then content = html
+
+              # KnewOne embed
+              if /^(http(s)?:\/\/)?(www\.)?(knewone\.com)/.test(url)
+                that          = @
+                requestUrl    = 'http://knewone.com/embed'
+                patternReview = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/things\/(.*)\/reviews\/([0-9a-z]{24})/
+                patternList   = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/lists\/([0-9a-z]{24})/
+                async         = true
+                if patternReview.test(url)
+                  requestData =
+                    type: 'review'
+                    id: url.replace(patternReview, '$6')
+                else if patternList.test(url)
+                  requestData =
+                    type: 'list'
+                    id: url.replace(patternList, '$5')
+                $
+                  .ajax
+                    url: requestUrl
+                    data: requestData
+                    dataType: 'html'
+                  .done (data, status, xhr) ->
+                    content = "<div class='knewone-embed knewone-embed--#{requestData.type}' data-knewone-embed-type=#{requestData.type} data-knewone-embed-id=#{requestData.id} contenteditable='false'>" + data + '</div>'
+                    that.hide()
+                    that.insert(content)
+              else
+                html = url.replace(/\n?/g, '')
+                  .replace(/^((http(s)?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/(watch\?v=|v\/)?)([a-zA-Z0-9-_]+)(.*)?$/, '<div class="video"><iframe width="420" height="315" src="//www.youtube.com/v/$7&amp;fs=1" frameborder="0" allowfullscreen></iframe></div>')
+                  .replace(/http:\/\/vimeo\.com\/(\d+)$/, '<iframe src="//player.vimeo.com/video/$1" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>')
+                  .replace(/^http:\/\/v\.youku.com\/v_show\/id_(.+)(\.html){1}(.*)/, '<iframe height=498 width=510 src="http://player.youku.com/embed/$1" frameborder=0 allowfullscreen></iframe>')
+                  .replace(/^http:\/\/www\.tudou\.com\/listplay\/([a-zA-Z0-9]+)\/([a-zA-Z0-9]+)\.html$/, '<iframe src="http://www.tudou.com/programs/view/html5embed.action?type=1&code=$2&lcode=$1&resourceId=0_06_05_99" allowtransparency="true" scrolling="no" border="0" frameborder="0" style="width:480px;height:400px;"></iframe>')
+                  .replace(/^http:\/\/www\.tudou\.com\/programs\/view\/(.+)$/, '<iframe src="http://www.tudou.com/programs/view/html5embed.action?type=0&code=$1" allowtransparency="true" scrolling="no" border="0" frameborder="0" style="width:480px;height:400px;"></iframe>')
+                  .replace(/^http:\/\/www\.56\.com\/(.+)\/v_(.+)\.html$/, '<iframe width="480" height="405" src="http://www.56.com/iframe/$2" frameborder="0" allowfullscreen=""></iframe>')
+                  .replace(/^http:\/\/v\.qq\.com\/page\/(.+)\/(.+)\/(.+)\/([a-zA-Z0-9]+)\.html$/, '<iframe width="480" height="405" frameborder=0 src="http://v.qq.com/iframe/player.html?vid=$4&tiny=0&auto=0" allowfullscreen></iframe>')
+                  .replace(/https:\/\/twitter\.com\/(\w+)\/status\/(\d+)\/?$/, '<blockquote class="twitter-tweet" lang="en"><a href="https://twitter.com/$1/statuses/$2"></a></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>')
+                  .replace(/https:\/\/www\.facebook\.com\/(\w+)\/posts\/(\d+)$/, '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/all.js#xfbml=1"; fjs.parentNode.insertBefore(js, fjs); }(document, "script", "facebook-jssdk"));</script><div class="fb-post" data-href="https://www.facebook.com/$1/posts/$2"></div>')
+                  .replace(/http:\/\/instagram\.com\/p\/(.+)\/?$/, '<span class="instagram"><iframe src="//instagram.com/p/$1/embed/" width="612" height="710" frameborder="0" scrolling="no" allowtransparency="true"></iframe></span>')
+                if /<("[^"]*"|'[^']*'|[^'">])*>/.test(html) then content = html
             else if content.indexOf('<iframe') is 0 and !$(content).attr('src')
               content = ''
 
-            @insert(content)
-            @hide()
+            if !async
+              @hide()
+              @insert(content)
         $input.on 'keydown.minsert', handler.bind(@)
 
       insert: (content, id) ->
@@ -321,9 +354,9 @@ do ($ = jQuery) ->
       actions:
         images: {}
         videos:
-          placeholder: '在这里插入视频网址或代码'
+          placeholder: '在这里输入视频网址或代码（通用代码）然后按回车'
         embeds:
-          placeholder: '在这里插入网址或代码'
+          placeholder: '在这里输入小工具网址或代码然后按回车'
         rules : {}
 
     # MInsert jQuery Plugin Definition

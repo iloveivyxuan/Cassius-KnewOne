@@ -73,7 +73,7 @@ module Making
     end
 
     config.action_view.sanitized_allowed_tags = ['embed', 'iframe', 'strike', 'u', 'table', 'td', 'tr', 'thead', 'tbody', 'tfoot', 'th']
-    config.action_view.sanitized_allowed_attributes = ['src','target']
+    config.action_view.sanitized_allowed_attributes = ['src','target', 'data-knewone-embed-type', 'data-knewone-embed-id']
 
     I18n.enforce_available_locales = false
 
