@@ -32,6 +32,8 @@
               - data = {toggle: "modal", target: "#login-modal"}
               - data.merge!({category: "publish", action: "publish_thing", label: "publish_thing_unlogged"})
               = link_to_with_icon "发布", "fa fa-laptop", "#", data: data, class: "track_event"
+          li
+            = link_to "客服", "#customer_services", title: "和我们聊天"
 
         - if user_signed_in?
           .user_links.login.navbar-right
@@ -80,7 +82,6 @@
             = link_to dialogs_path, class: "user_link", title: "#{upmc}封未读私信" do
               i.fa.fa-envelope-o.fa-fw
               span.badge.badge_danger.private_messages_count= badge upmc
-            = link_to_with_icon "", "fa fa-comments fa-fw", "#customer_services", class: "user_link customer_service", title: "和我们聊天"
         - else
           .user_links.logout.navbar-right
             = link_to_with_icon "登录", "fa fa-sign-in", "#",
