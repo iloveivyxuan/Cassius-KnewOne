@@ -418,98 +418,106 @@ html[class^="users_"] {
       }
     }
 
-    .thing {
-      background: white;
+    > .contents {
+      background: $smoke-white;
 
-      a {
-        @include plain-link($gray-light);
+      @include from-breakpoint(md) {
+        margin-top: 101px;
       }
 
-      .thing-cover {
-        position: relative;
-        height: 0;
-        overflow: hidden;
-        padding-bottom: percentage(8 / 11);
+      .thing {
+        background: white;
 
-        img {
-          width: 100%;
+        a {
+          @include plain-link($gray-light);
         }
 
-        &:before {
-          content: '';
-
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
-
-          width: 0;
+        .thing-cover {
+          position: relative;
           height: 0;
-          border-style: solid;
-          border-width: 0 8px 11px 8px;
-          border-color: transparent;
+          overflow: hidden;
+          padding-bottom: percentage(8 / 11);
+
+          img {
+            width: 100%;
+          }
+
+          &:before {
+            content: '';
+
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 8px 11px 8px;
+            border-color: transparent;
+          }
         }
-      }
 
-      h4 {
-        @include text-overflow;
+        h4 {
+          @include text-overflow;
 
-        font-size: 14px;
-        margin: 15px 20px;
-        text-align: center;
-      }
+          font-size: 14px;
+          margin: 15px 20px;
+          text-align: center;
+        }
 
-      ul.thing-counts {
-        text-align: center;
+        ul.thing-counts {
+          text-align: center;
 
-        li {
-          display: inline-block;
-          margin-right: 10px;
-          padding: 0 0 15px 0;
+          li {
+            display: inline-block;
+            margin-right: 10px;
+            padding: 0 0 15px 0;
 
-          &:last-child {
-            margin-right: 0;
+            &:last-child {
+              margin-right: 0;
+            }
           }
         }
       }
-    }
 
-    .thing_list {
-      background: #e0e0e2;
+      .thing_list {
+        background: #e0e0e2;
 
-      h4 .fa-list,
-      .thing_list-creator {
-        display: none;
-      }
+        h4 .fa-list,
+        .thing_list-creator {
+          display: none;
+        }
 
-      h4 {
-        margin: 20px;
-        text-align: center;
-        font-size: 16px;
-        color: $gray;
+        h4 {
+          margin: 20px;
+          text-align: center;
+          font-size: 16px;
+          color: $gray;
 
-        .thing_list-size {
-          vertical-align: bottom;
-          font-size: 80%;
-          color: $gray-light;
+          .thing_list-size {
+            vertical-align: bottom;
+            font-size: 80%;
+            color: $gray-light;
+          }
+        }
+
+        .thing_list-description {
+          padding: 10px;
+          border-top: 1px dashed white;
+        }
+
+        .thing_list-info {
+          padding: 10px;
+          background: #ececec;
         }
       }
 
-      .thing_list-description {
-        padding: 10px;
-        border-top: 1px dashed white;
+      .review,
+      .feeling,
+      .activity {
+        background: white;
       }
-
-      .thing_list-info {
-        padding: 10px;
-        background: #ececec;
-      }
-    }
-
-    .review,
-    .feeling,
-    .activity {
-      background: white;
     }
   }
 }
@@ -525,14 +533,8 @@ html.users_show {
     }
 
     ul.contents {
-      background: $smoke-white;
-
       @include to-breakpoint(xs) {
         display: none;
-      }
-
-      @include from-breakpoint(md) {
-        margin-top: 101px;
       }
 
       > li {
