@@ -13,7 +13,7 @@ class ThingsController < ApplicationController
 
     if params[:category].present? and params[:category] != 'all'
       @category = Category.find(params[:category])
-      @things = @things.by_category(@category).published
+      @things = @things.any_in(id: @category.thing_ids).published
     end
     if params[:tag].present?
       @tag = Tag.where(slugs: params[:tag].to_s).first
