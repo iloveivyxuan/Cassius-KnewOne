@@ -36,6 +36,10 @@ html[class^="users_"] {
       .info-avatar {
         padding: 20px;
 
+        @include from-breakpoint(md) {
+          border-bottom: 1px dashed $gray-lighter;
+        }
+
         img {
           width: 60px;
           height: 60px;
@@ -494,7 +498,7 @@ html.users_show {
       }
 
       @include from-breakpoint(md) {
-        margin-top: 100px;
+        margin-top: 101px;
       }
 
       > li {
