@@ -108,6 +108,11 @@ class HomeController < ApplicationController
       @users = User.find_by_fuzzy(q).page(params[:page]).per(per)
     end
 
+    @category = Category.where(name: /#{q}/i).first
+    @tag = Tag.where(name: /#{q}/i).first
+    @brand = Brand.where(en_name: /#{q}/i).first
+    @brand ||= Brand.where(zh_name: /#{q}/i).first
+
     respond_to do |format|
       format.html { render "home/search_#{params[:type]}", layout: 'search' }
       format.js

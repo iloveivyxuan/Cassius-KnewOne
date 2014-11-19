@@ -1,3 +1,26 @@
+.row
+  - if @category
+    .search-result
+      = link_to category_things_path(@category) do
+        .pull-left
+          = @category.name
+        .pull-right
+          | 查看分类
+  - if @tag
+    .search-result
+      = link_to tag_things_path(@tag) do
+        .pull-left
+          = @tag.name
+        .pull-right
+          | 查看标签
+  - if @brand
+    .search-result
+      = link_to brand_things_path(@brand.id) do
+        .pull-left
+          = @brand.brand_text
+        .pull-right
+          | 查看品牌
+
 - if @things && @things.length > 0
   ul.things.infinite#things= render @things, size: :normal, img_lazy: true
   = paginate @things

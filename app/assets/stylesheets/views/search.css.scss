@@ -39,6 +39,31 @@ html.home_search {
     }
   }
 
+  .row {
+    margin-bottom: 28px;
+
+    .search-result {
+      @include make-sm-column(4);
+      @include make-md-column(3);
+
+      > a {
+        @include clearfix;
+        background-color: #fafafa;
+        display: block;
+        padding: 10px 15px;
+      }
+    }
+
+    .pull-left {
+      font-weight: bold;
+      color: black;
+    }
+
+    .pull-right {
+      color: gray;
+    }
+  }
+
   .noresult {
     color: $text-muted;
     font-size: 24px;
