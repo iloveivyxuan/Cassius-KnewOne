@@ -202,7 +202,7 @@ class OrdersController < ApplicationController
 
   def alipay_wap_notify
     callback_params = params.except(*request.path_parameters.keys)
-    if Alipay::Notify::Wap.verify?(callback_params) && data = Hash.from_xml(callback_params[:notify_data])
+    if Alipay::Notify::Wap.verify?(callback_params) && data = Hash.from_xml(callback_params[:notify_data])['notify']
       if %w(TRADE_SUCCESS TRADE_FINISHED).include?(data['trade_status'])
         @order.confirm_payment!(data['trade_no'], data['total_fee'], :alipay_wap, callback_params)
       else
