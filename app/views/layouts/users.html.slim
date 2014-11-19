@@ -89,6 +89,17 @@
             i.fa.fa-bars
             | 动态
 
+      - if action_name != 'show'
+        ol
+          li = link_to @user
+            i.fa.fa-chevron-left
+            | 个人主页
+          - case action_name
+            - when 'fancies'
+              li.active
+                i.fa.fa-heart
+                | 喜欢
+
   = yield
 
   - content_for :script do
