@@ -28,6 +28,8 @@ html.home_search {
   .page-header {
     @include clearfix;
 
+    border-bottom: 0;
+
     > h1 {
       float: left;
     }
