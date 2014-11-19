@@ -20,7 +20,7 @@ class UserPresenter < ApplicationPresenter
   end
 
   def topic_wrapper(topic)
-    return nil unless user.current_auth
+    return "KnewOne" unless user.current_auth
     user.current_auth.topic_wrapper topic
   end
 
