@@ -34,9 +34,7 @@ html[class^="users_"] {
       }
 
       .info-avatar {
-        position: absolute;
-        top: 20px;
-        left: 20px;
+        padding: 20px;
 
         img {
           width: 60px;
@@ -46,18 +44,23 @@ html[class^="users_"] {
       }
 
       .info-name {
-        margin-left: 90px;
-        padding: 30px 0 0;
-        font-size: 18px;
-      }
+        position: absolute;
+        top: 27px;
+        left: 90px;
 
-      .info-gender {
-        margin-left: 10px;
+        font-size: 14px;
+
+        .info-gender {
+          margin-left: 10px;
+        }
       }
 
       .info-level {
+        position: absolute;
+        top: 55px;
+        left: 90px;
+
         width: 160px;
-        margin-left: 90px;
       }
 
       .info-description {
