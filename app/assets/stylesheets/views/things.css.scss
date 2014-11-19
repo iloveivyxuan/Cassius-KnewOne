@@ -1766,8 +1766,8 @@ html.feelings_show {
       }
     }
 
-    margin-bottom: 2em;
-    @include MQ(Lplus) { margin-bottom: 1.5em }
+    margin-top: 2em;
+    @include MQ(Lplus) { margin-top: 1.5em }
 
     > h4 {
       margin: 0;
