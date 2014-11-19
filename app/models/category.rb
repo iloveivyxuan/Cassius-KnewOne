@@ -3,6 +3,9 @@ class Category
   include Mongoid::Slug
 
   field :name, type: String
+
+  before_save :update_things_categories
+
   slug :name, history: true
   field :things_count, type: Integer, default: 0
   field :priority, type: Integer, default: 0
@@ -89,6 +92,15 @@ class Category
       end
       c.thing_ids = c.tags.map(&:thing_ids).flatten.uniq unless c.tags.empty?
       c.save
+    end
+  end
+
+  def update_things_categories
+    if self.name_changed?
+      Thing.published.any_in(categories: [name_was]).each do |thing|
+        thing.categories << name
+        thing.save
+      end
     end
   end
 
