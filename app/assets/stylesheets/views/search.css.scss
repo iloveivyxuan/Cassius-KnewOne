@@ -3,7 +3,38 @@
 html.home_search {
 
   #wrapper {
-    @include wrapper(simple, $max-width: $screen-lg-min);
+    margin: 0;
+
+    .container-fluid {
+      padding: 0;
+      @media (min-width: $screen-md-min) {
+        padding: 0 10%;
+      }
+      @media (min-width: $screen-lg-min) {
+        width: $container-large-desktop;
+        padding: 0 $screen-lg-min * 0.1;
+      }
+    }
+  }
+
+  figure.thing {
+    border-radius: 0;
+
+    .pre_ribbon {
+      display: none;
+    }
+  }
+
+  .page-header {
+    @include clearfix;
+
+    > h1 {
+      float: left;
+    }
+
+    > nav {
+      float: right;
+    }
   }
 
   .noresult {
