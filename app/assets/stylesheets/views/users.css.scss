@@ -663,3 +663,11 @@ html.users_things {
     }
   }
 }
+
+html.users_activities {
+  ul.contents {
+    @include from-breakpoint(sm) {
+      padding: 20px;
+    }
+  }
+}
