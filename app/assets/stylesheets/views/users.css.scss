@@ -36,14 +36,25 @@ html[class^="users_"] {
       .info-avatar {
         padding: 20px;
 
-        @include from-breakpoint(md) {
-          border-bottom: 1px dashed $gray-lighter;
-        }
-
         img {
           width: 60px;
           height: 60px;
           border-radius: 50%;
+        }
+
+        @include from-breakpoint(sm) {
+          @include to-breakpoint(sm) {
+            padding-left: 70px;
+
+            img {
+              width: 90px;
+              height: 90px;
+            }
+          }
+        }
+
+        @include from-breakpoint(md) {
+          border-bottom: 1px dashed $gray-lighter;
         }
       }
 
@@ -57,6 +68,13 @@ html[class^="users_"] {
         .info-gender {
           margin-left: 10px;
         }
+
+        @include from-breakpoint(sm) {
+          @include to-breakpoint(sm) {
+            top: 40px;
+            left: 230px;
+          }
+        }
       }
 
       .info-level {
@@ -65,6 +83,13 @@ html[class^="users_"] {
         left: 90px;
 
         width: 160px;
+
+        @include from-breakpoint(sm) {
+          @include to-breakpoint(sm) {
+            top: 70px;
+            left: 230px;
+          }
+        }
       }
 
       .info-description {
@@ -73,18 +98,27 @@ html[class^="users_"] {
         padding: 0 20px;
 
         i {
-          position: absolute;
-          top: 0px;
-          left: -18px;
-          color: $gray-lighter;
-
-          @include from-breakpoint(md) {
-            left: 3px;
-          }
+          display: none;
         }
 
         p {
           margin: 0;
+        }
+
+        @include from-breakpoint(sm) {
+          @include to-breakpoint(sm) {
+            padding-left: 70px;
+
+            i {
+              display: block;
+              position: absolute;
+              top: -3px;
+              left: 30px;
+
+              color: $gray-lighter;
+              font-size: 16px;
+            }
+          }
         }
       }
 
@@ -96,7 +130,7 @@ html[class^="users_"] {
         @include from-breakpoint(sm) {
           @include to-breakpoint(sm) {
             position: absolute;
-            top: 30px;
+            top: 40px;
             right: 30px;
             width: 25%;
             margin: 0;
