@@ -83,16 +83,17 @@ html[class^="users_"] {
 
       .info-links {
         margin-top: 20px;
+        padding-right: 20px;
         text-align: right;
 
         @include from-breakpoint(sm) {
           @include to-breakpoint(sm) {
             position: absolute;
             top: 30px;
-            right: 0;
+            right: 30px;
             width: 25%;
             margin: 0;
-            text-align: center;
+            padding: 0;
           }
         }
 
@@ -121,6 +122,10 @@ html[class^="users_"] {
 
           i {
             margin: 0;
+          }
+
+          &:last-child {
+            margin-right: 0;
           }
 
           &:hover {
