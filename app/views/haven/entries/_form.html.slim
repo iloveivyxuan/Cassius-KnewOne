@@ -10,7 +10,7 @@
         option value="#{i}" = i
   = f.input :title
   - title = @entry.title? ? @entry.title : @entry.post.title
-  = f.input :sharing_content, input_html: {value: "分享 @KnewOne #{@entry.category}《#{title}》"}
+  = f.input :sharing_content, input_html: {value: "推荐 @KnewOne #{@entry.category}：《#{title}》"}
   = f.input :cover
   = f.input :cover_cache, as: :hidden
   = f.input :published, as: :radio_buttons

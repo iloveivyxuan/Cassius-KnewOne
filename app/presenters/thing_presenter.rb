@@ -254,7 +254,7 @@ class ThingPresenter < PostPresenter
     if thing.author == current_user
       "#晒牛玩# 我在高大上的 #{share_topic} 分享了一个新奇酷产品 #{title} "
     else
-      "推荐 #{share_author_name} 在 #{share_topic} 分享的产品 #{title} "
+      "推荐 #{share_author_name} 在 #{share_topic} 发布的产品 #{title} "
     end + thing_url(thing, refer: :share)
   end
 

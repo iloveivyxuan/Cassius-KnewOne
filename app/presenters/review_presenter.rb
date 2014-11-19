@@ -17,7 +17,7 @@ class ReviewPresenter < PostPresenter
     if review.author == current_user
       "#晒牛玩#我刚刚动手玩了下 #{review.thing.title} ，在剁手站 #{share_topic} 写了一篇体验测评《#{title}》，小伙伴快来围观 →_→： #{thing_review_url(review.thing, review, refer: :share)}"
     else
-      "推荐 @#{share_author_name} 在 #{share_topic} 分享的 #{review.thing.title} 评测《#{title}》：#{thing_review_url(review.thing, review, refer: :share)}"
+      "推荐 @#{share_author_name} 在 #{share_topic} 发布的 #{review.thing.title} 评测《#{title}》：#{thing_review_url(review.thing, review, refer: :share)}"
     end
   end
 
