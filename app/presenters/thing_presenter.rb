@@ -252,9 +252,9 @@ class ThingPresenter < PostPresenter
 
   def share_content
     if thing.author == current_user
-      "#晒牛玩# 我在高大上的 #{share_topic} 分享了一个新奇酷产品 #{title}："
+      "#晒牛玩# 我在高大上的 #{share_topic} 分享了一个新奇酷产品 #{title} "
     else
-      "刚刚去逛了下剁手站 #{share_topic} 发现了 #{share_author_name} 分享的新奇酷 #{title}，感觉非常赞！真是忍不住想剁手啊 →_→ "
+      "推荐 #{share_author_name} 在 #{share_topic} 分享的产品 #{title} "
     end + thing_url(thing, refer: :share)
   end
 

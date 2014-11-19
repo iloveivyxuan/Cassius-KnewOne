@@ -9,7 +9,15 @@ class ThingListPresenter < ApplicationPresenter
     end
   end
 
+  def share_author_name
+    if @object.author.current_auth && @object.author.current_auth.name.present?
+      '@' + @object.author.current_auth.name
+    else
+      @object.author.name || ''
+    end
+  end
+
   def share_content
-    "这是来自剁手站 @KnewOne 的新奇酷列表【#{thing_list.name}】，里面有各种好东西，感觉非常赞！真是忍不住剁手啊 →_→ #{thing_list_url(thing_list, refer: 'weibo')}"
+    "推荐 @#{share_author_name} 的 @KnewOne 列表【#{thing_list.name}】，非常喜欢 #{thing_list_url(thing_list, refer: 'weibo')}"
   end
 end

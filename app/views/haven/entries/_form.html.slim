@@ -9,7 +9,8 @@
       - @entry.thing_ids.each do |i|
         option value="#{i}" = i
   = f.input :title
-  = f.input :sharing_content
+  - title = @entry.title? ? @entry.title : @entry.post.title
+  = f.input :sharing_content, input_html: {value: "分享 @KnewOne #{@entry.category}《#{title}》"}
   = f.input :cover
   = f.input :cover_cache, as: :hidden
   = f.input :published, as: :radio_buttons

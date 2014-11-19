@@ -37,7 +37,7 @@ class TopicPresenter < PostPresenter
     if topic.author == current_user
       "我在#{share_topic}发起了话题《#{title}》: "
     else
-      "我在#{share_topic}分享了 #{share_author_name} 的话题 《#{title}》: "
+      "分享 @#{share_author_name} 的 #{share_topic} 话题《#{title}》: "
     end + %Q{“#{summary(40)}” } + group_topic_url(topic.group, topic, refer: 'weibo')
   end
 
