@@ -29,7 +29,7 @@ class Category
   has_and_belongs_to_many :tags
 
   def things
-    Thing.published.any_in(categories: [name])
+    Thing.any_in(id: thing_ids)
   end
 
   def primary_category?
