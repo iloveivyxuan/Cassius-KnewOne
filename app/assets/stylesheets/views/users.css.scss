@@ -134,7 +134,7 @@ html[class^="users_"] {
         margin-top: 20px;
         padding: 10px 0;
         line-height: 1;
-        background: $ghost-white;
+        background: $gray-lighter;
 
         @include from-breakpoint(sm) {
           @include to-breakpoint(sm) {
@@ -254,8 +254,6 @@ html[class^="users_"] {
               table-layout: fixed;
               width: 100%;
 
-              background: $body-bg;
-
               > li {
                 display: table-cell;
                 width: auto;
@@ -274,7 +272,7 @@ html[class^="users_"] {
                 }
 
                 &.active {
-                  background: white;
+                  background: $smoke-white;
                   border-top: 3px solid $blue;
 
                   a {
@@ -286,7 +284,7 @@ html[class^="users_"] {
           }
 
           @include from-breakpoint(md) {
-            background: $ghost-white;
+            background: white;
 
             > li {
               text-align: right;
@@ -309,7 +307,7 @@ html[class^="users_"] {
               }
 
               &.active {
-                background: white;
+                background: $smoke-white;
                 border-left: 5px solid $blue;
 
                 a {
@@ -321,7 +319,7 @@ html[class^="users_"] {
         }
 
         > ol {
-          border-top: 20px solid $body-bg;
+          border-top: 20px solid $smoke-white;
 
           @include from-breakpoint(sm) {
             display: none;
@@ -375,6 +373,8 @@ html[class^="users_"] {
     }
 
     .thing {
+      background: white;
+
       a {
         @include plain-link($gray-light);
       }
@@ -429,7 +429,7 @@ html[class^="users_"] {
     }
 
     .thing_list {
-      background: $body-bg;
+      background: #e0e0e2;
 
       h4 .fa-list,
       .thing_list-creator {
@@ -456,7 +456,14 @@ html[class^="users_"] {
 
       .thing_list-info {
         padding: 10px;
+        background: #ececec;
       }
+    }
+
+    .review,
+    .feeling,
+    .activity {
+      background: white;
     }
   }
 }
@@ -472,6 +479,8 @@ html.users_show {
     }
 
     ul.contents {
+      background: $smoke-white;
+
       @include to-breakpoint(xs) {
         display: none;
       }
@@ -482,6 +491,11 @@ html.users_show {
         position: relative;
         display: block;
         padding: 30px (90px - $gutter-width) 30px 90px;
+        border-top: 2px dashed $gray-lighter;
+
+        &:first-child {
+          border-top: none;
+        }
 
         h3 {
           position: absolute;
@@ -541,71 +555,7 @@ html.users_show {
         .review,
         .feeling,
         .activity {
-          border-right: $gutter-width solid transparent;
-        }
-
-        &:nth-child(odd) {
-          background: white;
-
-          .thing,
-          .thing_list,
-          .review,
-          .feeling,
-          .activity {
-            border-right-color: white;
-          }
-
-          .thing {
-            background: $ghost-white;
-
-            .thing-cover:before {
-              border-bottom-color: $ghost-white;
-            }
-          }
-
-          .thing_list {
-            .thing_list-info {
-              background: $ghost-white;
-            }
-          }
-
-          .review,
-          .feeling,
-          .activity {
-            background: $ghost-white;
-          }
-        }
-
-        &:nth-child(even) {
-          background: $ghost-white;
-
-          .thing,
-          .thing_list,
-          .review,
-          .feeling,
-          .activity {
-            border-right-color: $ghost-white;
-          }
-
-          .thing {
-            background: white;
-
-            .thing-cover:before {
-              border-bottom-color: white;
-            }
-          }
-
-          .thing_list {
-            .thing_list-info {
-              background: white;
-            }
-          }
-
-          .review,
-          .feeling,
-          .activity {
-            background: white;
-          }
+          border-right: $gutter-width solid $smoke-white;
         }
 
         &.contents-fancies {
@@ -632,10 +582,8 @@ html.users_show {
 
 html.users_fancies {
   ul.contents {
-    background: white;
-
     > li {
-      background: $ghost-white;
+      background: white;
     }
 
     @include to-breakpoint(xs) {
@@ -650,12 +598,13 @@ html.users_fancies {
 
     @include from-breakpoint(sm) {
       padding: 10px;
+      background: $smoke-white;
 
       > li {
         display: inline-block;
         vertical-align: top;
         width: percentage(1 / 3);
-        border: 10px solid white;
+        border: 10px solid $smoke-white;
       }
     }
 
