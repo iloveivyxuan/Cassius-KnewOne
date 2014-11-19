@@ -7,6 +7,8 @@ header.page-header
 
 section
   = form_for Category.new, url: haven_categories_path(@category), method: :post do |f|
+    = f.file_field :cover
+    = f.hidden_field :cover_cache
     label 名称
     = f.text_field :name
     br
