@@ -513,6 +513,10 @@ html[class^="users_"] {
         }
       }
 
+      .activity {
+        padding: 15px;
+      }
+
       .review,
       .feeling,
       .activity {
@@ -598,10 +602,6 @@ html.users_show {
           width: percentage(1 / 3);
         }
 
-        .activity {
-          padding: 15px;
-        }
-
         .thing,
         .thing_list,
         .review,
@@ -636,10 +636,6 @@ html.users_fancies,
 html.users_owns,
 html.users_things {
   ul.contents {
-    > li {
-      background: white;
-    }
-
     @include to-breakpoint(xs) {
       > li {
         margin-top: 20px;
