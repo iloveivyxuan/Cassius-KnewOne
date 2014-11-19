@@ -228,14 +228,8 @@ do (exports = Making) ->
 
     $element.click (e) ->
       e.preventDefault()
-
-      switch exports.device
-        when 'mobile', 'tablet'
-          $button = $('#MECHAT-BTN-1')
-        when 'desktop'
-          $button = $('#MECHAT-PCBTN')
-      if $button.length
-        $button.trigger('click')
+      if typeof mechatClick in ['function', 'object']
+        mechatClick()
       else if isPageLoaded
         $modal.modal('show')
 
