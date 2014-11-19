@@ -18,6 +18,6 @@ class ThingListPresenter < ApplicationPresenter
   end
 
   def share_content
-    "推荐 @#{share_author_name} 的 @KnewOne 列表【#{thing_list.name}】，非常喜欢 #{thing_list_url(thing_list, refer: 'weibo')}"
+    "推荐 #{share_author_name} 的 @KnewOne 列表【#{thing_list.name}】，非常喜欢 #{thing_list_url(thing_list, refer: 'weibo')}"
   end
 end
