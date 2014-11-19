@@ -1,0 +1,21 @@
+- page_title "添加分类"
+
+header.page-header
+  h1
+    i.fa.fa-tag
+    | 添加分类
+
+section
+  = form_for Category.new, url: haven_categories_path(@category), method: :post do |f|
+    label 名称
+    = f.text_field :name
+    br
+    label 优先级
+    = f.text_field :priority
+    br
+    label icon
+    = f.text_field :icon
+    div
+      label 描述
+      = f.text_area :description, cols: 80, rows: 20
+    = f.submit
