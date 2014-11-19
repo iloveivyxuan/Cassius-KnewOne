@@ -1,5 +1,5 @@
-ul.activities {
-  li.activity {
+ul {
+  > li.activity {
     @include clearfix;
 
     border-bottom: $border-dashed;
@@ -24,13 +24,7 @@ ul.activities {
     .activity-owned,
     .activity-voted,
     .activity-list {
-      margin: 0 .5em;
-    }
-
-    a {
-      .activity-list {
-        margin-left: 0;
-      }
+      margin-right: .5em;
     }
 
     .activity-fancied {
