@@ -354,7 +354,7 @@ html[class^="users_"] {
 
               &.active {
                 background: $smoke-white;
-                border-left: 5px solid $blue;
+                border-left: 3px solid $blue;
 
                 a {
                   cursor: default;
@@ -391,7 +391,7 @@ html[class^="users_"] {
             }
 
             &.active {
-              border-left: 5px solid $blue;
+              border-left: 3px solid $blue;
             }
 
             i {
