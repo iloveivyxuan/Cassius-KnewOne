@@ -22,7 +22,7 @@ table.table
         th= b.zh_name
         th= b.en_name
         th= b.things.size
-        th= "（空）" unless b.description?
+        th= (b.description.blank?) ? "<strong style='color: red;'>（空）</strong>".html_safe : "#{b.description.first(5)}…"
         th= b.country
         th
           = link_to '[编辑]', edit_haven_brand_path(b.id)
