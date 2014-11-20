@@ -146,6 +146,9 @@ class Thing < Post
     self.tags = text.split(/[，,]/).map do |tag_name|
       Tag.find_by(name: tag_name.strip)
     end
+    categories = self.tags.map(&:categories).flatten
+    categories += categories.map(&:category)
+    self.categories = categories.compact.uniq.map(&:name)
   end
 
   def brand_text=(text)
