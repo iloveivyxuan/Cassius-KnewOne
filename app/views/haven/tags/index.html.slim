@@ -8,7 +8,7 @@ table.table
   tbody
     - @tags.each do |t|
       tr
-        th= link_to t.name, things_path(tag: t)
+        th= link_to t.name, tag_things_path(t)
         th= t.categories_text
         th= t.things_count
         th
