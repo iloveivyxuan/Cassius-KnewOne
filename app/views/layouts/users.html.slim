@@ -5,7 +5,11 @@
   header
     ul.info
       li.info-name
-        = @user.name
+        - if current_user.try(:role?, :editor)
+          = link_to @user.name, [:haven, @user], title: '内幕'
+        - else
+          = @user.name
+
         - if @user.gender.present?
           span.info-gender = symbolize_gender(@user.gender)
 
