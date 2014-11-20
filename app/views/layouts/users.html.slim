@@ -114,6 +114,20 @@
               li.active
                 i.fa.fa-comments
                 | 短评
+            - when 'groups'
+              li.active = link_to [:groups, @user]
+                i.fa.fa-tint
+                | 小组
+              li = link_to [:topics, @user]
+                i.fa.fa-leaf
+                | 话题
+            - when 'topics'
+              li = link_to [:groups, @user]
+                i.fa.fa-tint
+                | 小组
+              li.active = link_to [:topics, @user]
+                i.fa.fa-leaf
+                | 话题
             - when 'activities'
               li.active
                 i.fa.fa-bars

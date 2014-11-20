@@ -525,7 +525,8 @@ html[class^="users_"] {
 
       .review,
       .feeling,
-      .activity {
+      .activity,
+      .topic {
         background: white;
       }
     }
@@ -640,10 +641,17 @@ html.users_show {
 
 html.users_fancies,
 html.users_owns,
-html.users_things {
+html.users_things,
+html.users_groups {
   ul.contents {
+    > li {
+      display: inline-block;
+      vertical-align: top;
+    }
+
     @include to-breakpoint(xs) {
       > li {
+        width: 100%;
         margin-top: 20px;
 
         &:first-child {
@@ -657,8 +665,6 @@ html.users_things {
       background: $smoke-white;
 
       > li {
-        display: inline-block;
-        vertical-align: top;
         width: percentage(1 / 3);
         border: 10px solid $smoke-white;
       }
@@ -671,7 +677,8 @@ html.users_things {
 }
 
 html.users_reviews,
-html.users_feelings {
+html.users_feelings,
+html.users_topics {
   .contents {
     > .review {
       margin-top: 20px;
@@ -683,6 +690,97 @@ html.users_feelings {
 
     @include from-breakpoint(sm) {
       padding: 20px;
+    }
+  }
+}
+
+html.users_groups,
+html.users_topics {
+  #wrapper {
+    @include from-breakpoint(md) {
+      position: relative;
+    }
+
+    nav.subpage_tabs {
+      @include to-breakpoint(xs) {
+        display: none;
+      }
+
+      > ul {
+        > li {
+          display: inline-block;
+          text-align: center;
+          background: white;
+
+          a {
+            @include plain-link($text-color);
+
+            display: inline-block;
+            width: 100%;
+            padding: 10px 20px;
+            line-height: 1;
+          }
+
+          &.active {
+            a {
+              cursor: default;
+            }
+          }
+        }
+      }
+
+      @include from-breakpoint(sm) {
+        @include to-breakpoint(sm) {
+          padding: 15px 20px 0;
+          background: $smoke-white;
+          text-align: right;
+
+          > ul {
+            display: inline-block;
+
+            > li.active {
+              background: $vulcan;
+
+              a {
+                @include plain-link($gray-lighter);
+              }
+            }
+          }
+        }
+      }
+
+      @include from-breakpoint(md) {
+        position: absolute;
+        bottom: 100%;
+        left: 350px;
+
+        > ul {
+          > li {
+            border-top: 3px solid transparent;
+            background: white;
+
+            &.active {
+              border-top-color: $blue;
+              background: $smoke-white;
+            }
+          }
+        }
+      }
+    }
+
+    > header > nav > ol > li {
+      width: percentage(1 / 3);
+    }
+
+    @include to-breakpoint(xs) {
+      li.group:first-child {
+        margin-top: 20px;
+      }
+    }
+
+    .card_compact {
+      margin-bottom: 0;
+      background: white;
     }
   }
 }

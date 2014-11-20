@@ -1,2 +1,10 @@
-ul.groups = render partial: 'groups/group', collection: @groups
+nav.subpage_tabs
+  ul
+    li.active = link_to [:groups, @user]
+      | TA参与的小组
+    li = link_to [:topics, @user]
+      | TA参与的话题
+
+ul.contents = render partial: 'groups/group', collection: @groups
+
 = paginate @groups
