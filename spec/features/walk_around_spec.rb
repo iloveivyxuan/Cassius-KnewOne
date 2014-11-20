@@ -2,6 +2,7 @@ require 'spec_helper'
 
 feature 'Walk around (Smoke test)', slow: true do
   given!(:user) { create(:user, :with_addresses, :with_invoices) }
+  given!(:category) { create(:category) }
   given!(:thing) { create(:thing, :for_sell, author: user) }
   given!(:order) { create(:order, user: user) }
   given!(:review) { create(:review, author: user, thing: thing) }
@@ -82,7 +83,7 @@ feature 'Walk around (Smoke test)', slow: true do
      edit_thing_path(thing),
      thing_path(thing),
      random_things_path,
-     category_things_path(thing.categories.first),
+     category_things_path(category),
      buy_thing_path(thing),
      related_thing_path(thing),
      activities_thing_path(thing),

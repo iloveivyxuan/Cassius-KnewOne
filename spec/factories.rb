@@ -34,7 +34,6 @@ FactoryGirl.define do
     title    { Faker::Lorem.word }
     subtitle { Faker::Lorem.sentence }
     content  { Faker::Lorem.paragraph }
-    categories { ["category-#{rand(3)}"] }
 
     trait :for_sell do
       after(:create) { |thing| create_list(:kind, 1, thing: thing) }
