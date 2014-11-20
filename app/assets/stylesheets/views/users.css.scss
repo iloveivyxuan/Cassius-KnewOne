@@ -358,6 +358,10 @@ html[class^="users_"] {
                 background: $smoke-white;
                 border-left: 3px solid $blue;
               }
+
+              &:hover {
+                border-left: 3px solid $blue;
+              }
             }
           }
         }
