@@ -4,7 +4,10 @@ module Haven
     before_action :set_tag, only: [:edit, :update, :destroy]
 
     def index
-      @tags = Tag.all.includes(:categories)
+      @tags = Tag.all
+      if params[:category]
+        @tags = Category.where(name: /#{params[:category]}/).map(&:tags).flatten
+      end
     end
 
     def new

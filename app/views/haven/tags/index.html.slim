@@ -1,3 +1,14 @@
+- page_title "标签"
+
+header.page-header
+  h1
+    i.fa.fa-tag
+    = link_to "标签", haven_tags_path
+
+= form_for Tag.new, url: haven_tags_path, method: :get do |f|
+  = text_field_tag "category"
+  = f.submit "查找分类"
+
 table.table
   thead
     tr
