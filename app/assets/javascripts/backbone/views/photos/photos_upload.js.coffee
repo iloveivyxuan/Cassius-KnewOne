@@ -7,6 +7,7 @@ class Making.Views.PhotosUpload extends Backbone.View
 
   initialize: ->
     @$container = $("#photos")
+    @$label = @$container.closest('.uploader').find('.uploader_label')
     @collection = new Making.Collections.Photos(@$container.data('photos'))
     @collection.on
       add: @addPhoto
@@ -77,8 +78,10 @@ class Making.Views.PhotosUpload extends Backbone.View
     that = @
     if @$el.children('li:not(.uploader_button)').length is 0
       @$el.children('.uploader_button').remove()
+      @$label.removeClass('is-valid')
     else
       $uploader_button = @$el.children('.uploader_button')
+      @$label.addClass('is-valid')
       if $uploader_button.length is 0
         $button = $('<li class="uploader_button">+</li>')
         $button.on 'click', ->

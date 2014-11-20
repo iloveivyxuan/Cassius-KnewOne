@@ -69,6 +69,17 @@ html.things_edit {
   .form-group {
     margin: 0 0 2em;
 
+    &.required {
+      &::before {
+        color: $brand-primary;
+        content: '*';
+        left: -15px;
+        margin-top: -.5em;
+        position: absolute;
+        top: 50%;
+      }
+    }
+
     label {
       display: none;
       visibility: hidden;
@@ -77,7 +88,6 @@ html.things_edit {
     .form-control {
       @include placeholder-color($text-muted);
       border: none;
-      border-bottom: $border-default;
       border-radius: 0;
       box-shadow: none;
       color: $text-color;
@@ -95,18 +105,31 @@ html.things_edit {
 
   .uploader_label {
     font-size: 16px;
-    border-bottom: $border-default;
     color: $text-muted;
     display: block;
     margin-bottom: $padding-large-vertical;
+    position: relative;
     padding: {
       bottom: 6px;
       top: 6px;
     }
+
+    &.is-valid {
+      color: $text-color;
+    }
+
+    &::before {
+      color: $brand-primary;
+      content: '*';
+      left: -15px;
+      margin-top: -.5em;
+      position: absolute;
+      top: 50%;
+    }
   }
 
   .uploader_queue {
-    border-color: #eee;
+    border: none;
 
     .help-block {
       font-style: normal;
@@ -142,3 +165,4 @@ html.things_edit {
     }
   }
 }
+
