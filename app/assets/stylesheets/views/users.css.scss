@@ -512,9 +512,45 @@ html[class^="users_"] {
           }
         }
 
+        > header {
+          position: relative;
+
+          .thing_list-destroy {
+            position: absolute;
+            right: 0;
+            bottom: 38px;
+
+            display: block;
+            width: 40px;
+            line-height: 42px;
+            font-size: 40px;
+            font-family: lato-thin;
+            text-align: center;
+
+            background: $vulcan;
+            color: white;
+
+            &:hover {
+              background: $red;
+            }
+          }
+        }
+
         .thing_list-description {
-          padding: 10px;
+          position: relative;
+          padding: 10px 40px;
           border-top: 1px dashed white;
+
+          &:before {
+            position: absolute;
+            top: 9px;
+            left: 14px;
+
+            content: "\f10d";
+            color: white;
+            font-family: FontAwesome;
+            font-size: 14px;
+          }
         }
 
         .thing_list-info {
