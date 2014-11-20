@@ -32,8 +32,6 @@ class Group
   end
   field :members_count, type: Integer, default: 0
 
-  has_and_belongs_to_many :fancies, class_name: "Thing", inverse_of: :fancy_groups
-
   class << self
     def find_by_user(user)
       where('members.user_id' => user.id.to_s)
@@ -65,9 +63,5 @@ class Group
 
   def private?
     qualification == :private
-  end
-
-  def fancy(thing)
-    fancies.include? thing or fancies << thing
   end
 end

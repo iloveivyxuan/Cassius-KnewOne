@@ -223,7 +223,6 @@ Making::Application.routes.draw do
       delete 'leave'
       post 'invite'
       get 'members'
-      get 'fancies'
     end
 
     resources :topics do

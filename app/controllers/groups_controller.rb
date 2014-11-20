@@ -99,11 +99,6 @@ class GroupsController < ApplicationController
     render layout: 'group'
   end
 
-  def fancies
-    @things = @group.fancies.desc(:created_at).page(params[:page]).per(24)
-    render layout: 'group'
-  end
-
   def fuzzy
     @groups = Group.find_by_fuzzy_name(params[:query])
     respond_to do |format|

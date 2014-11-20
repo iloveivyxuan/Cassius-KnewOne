@@ -25,14 +25,4 @@ class GroupPresenter < ApplicationPresenter
   def member?
     group.has_member? current_user
   end
-
-  def fancies_count
-    @fancies_count ||= group.fancies.count
-  end
-
-  def fancies_aside
-    group.fancy_ids.last(3).reverse.map do |id|
-      present(Thing.where(id: id).first)
-    end.compact
-  end
 end

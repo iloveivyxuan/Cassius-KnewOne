@@ -104,7 +104,6 @@ feature 'Walk around (Smoke test)', slow: true do
      # groups
      all_groups_path,
      members_group_path(group),
-     fancies_group_path(group),
      new_group_topic_path(group),
      edit_group_topic_path(group, topic),
      group_topic_path(group, topic),

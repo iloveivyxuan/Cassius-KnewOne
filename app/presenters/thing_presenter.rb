@@ -246,10 +246,6 @@ class ThingPresenter < PostPresenter
     content_tag :span, thing.fanciers_count, class: "fanciers_count"
   end
 
-  def groups_count
-    show_count thing.fancy_groups.count
-  end
-
   def share_content
     if thing.author == current_user
       "#晒牛玩# 我在高大上的 #{share_topic} 分享了一个新奇酷产品 #{title} "

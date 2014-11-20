@@ -68,8 +68,6 @@ class Thing < Post
   include Fanciable
   fancied_as :fancies
 
-  has_and_belongs_to_many :fancy_groups, class_name: "Group", inverse_of: :fancies
-
   has_and_belongs_to_many :owners, class_name: "User", inverse_of: :owns
 
   has_many :stories, dependent: :destroy
