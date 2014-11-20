@@ -664,7 +664,8 @@ html.users_things {
   }
 }
 
-html.users_reviews {
+html.users_reviews,
+html.users_feelings {
   .contents {
     > .review {
       margin-top: 20px;
