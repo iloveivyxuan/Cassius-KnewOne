@@ -78,19 +78,19 @@ class Category
 
   def self.update_things_count
     Category.all.each do |c|
-      if c.primary_category?
-        c.set(things_count: c.inner_categories.map(&:things_count).reduce(&:+)) unless c.inner_categories.empty?
-      end
-      c.set(things_count: c.tags.map(&:things_count).reduce(&:+)) unless c.tags.empty?
+      c.set(things_count: c.things.size)
     end
   end
 
   def self.update_thing_ids
-    Category.all.each do |c|
-      if c.primary_category?
-        c.thing_ids = c.inner_categories.map(&:thing_ids).flatten.uniq unless c.inner_categories.empty?
-      end
-      c.thing_ids += c.tags.map(&:thing_ids).flatten.uniq unless c.tags.empty?
+    # inner categories
+    Category.ne(category: nil).each do |c|
+      c.thing_ids = c.tags.map(&:thing_ids).flatten.uniq unless c.tags.empty?
+      c.save
+    end
+    # primary categories
+    Category.where(category: nil).each do |c|
+      c.thing_ids = c.inner_categories.map(&:thing_ids).flatten.uniq unless c.inner_categories.empty?
       c.save
     end
   end

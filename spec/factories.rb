@@ -41,6 +41,14 @@ FactoryGirl.define do
     end
   end
 
+  factory :category do
+    name { Faker::Lorem.word }
+  end
+
+  factory :tag do
+    name { Faker::Lorem.word }
+  end
+
   factory :kind do
     thing
     title { '限量版' }
