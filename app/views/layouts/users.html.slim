@@ -102,6 +102,15 @@
               li.active
                 i.fa.fa-check-circle-o
                 | 拥有
+            - when 'lists'
+              = li @filter == 'owned'
+                = link_to filter: 'owned'
+                  i.fa.fa-list
+                  | TA创建的
+              = li @filter == 'fancied'
+                = link_to filter: 'fancied'
+                  i.fa.fa-list
+                  | TA喜欢的
             - when 'things'
               li.active
                 i.fa.fa-magic

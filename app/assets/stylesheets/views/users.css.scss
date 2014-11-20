@@ -682,6 +682,7 @@ html.users_show {
 html.users_fancies,
 html.users_owns,
 html.users_things,
+html.users_lists,
 html.users_groups {
   .contents {
     > li,
@@ -744,6 +745,7 @@ html.users_topics {
   }
 }
 
+html.users_lists,
 html.users_groups,
 html.users_topics {
   #wrapper {
