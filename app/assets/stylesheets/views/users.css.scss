@@ -246,6 +246,12 @@ html[class^="users_"] {
       }
 
       > nav {
+        li.active {
+          a {
+            cursor: default;
+          }
+        }
+
         > ul {
           @include to-breakpoint(xs) {
             display: none;
@@ -320,10 +326,6 @@ html[class^="users_"] {
                 &.active {
                   background: $smoke-white;
                   border-top: 3px solid $blue;
-
-                  a {
-                    cursor: default;
-                  }
                 }
               }
             }
@@ -355,17 +357,13 @@ html[class^="users_"] {
               &.active {
                 background: $smoke-white;
                 border-left: 3px solid $blue;
-
-                a {
-                  cursor: default;
-                }
               }
             }
           }
         }
 
         > ol {
-          border-top: 20px solid $smoke-white;
+          border-top: 20px solid $body-bg;
 
           @include from-breakpoint(sm) {
             display: none;
@@ -373,25 +371,16 @@ html[class^="users_"] {
 
           > li {
             display: inline-block;
-            vertical-align: middle;
-            line-height: 40px;
             text-align: center;
 
-            &:first-child {
-              width: percentage(1 / 3);
-              background: $vulcan;
+            width: percentage(2 / 3);
 
-              a {
-                color: $gray-lighter;
-              }
-            }
+            a {
+              @include plain-link($text-color);
 
-            &:last-child {
-              width: percentage(2 / 3);
-            }
-
-            &.active {
-              border-left: 3px solid $blue;
+              display: inline-block;
+              width: 100%;
+              line-height: 40px;
             }
 
             i {
@@ -412,6 +401,23 @@ html[class^="users_"] {
               &.fa-list {
                 color: $orange;
               }
+            }
+
+            &:first-child {
+              width: percentage(1 / 3);
+              background: $vulcan;
+
+              a {
+                color: $gray-lighter;
+              }
+            }
+
+            border-top: 3px solid transparent;
+            background: white;
+
+            &.active {
+              border-top-color: $blue;
+              background: $smoke-white;
             }
           }
         }
