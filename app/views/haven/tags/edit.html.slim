@@ -5,6 +5,10 @@ header.page-header
     i.fa.fa-tag
     = @tag.name
 
+- if flash[:error]
+  .bg-danger
+    = flash[:error]
+
 section
   = form_for @tag, url: haven_tag_path(@tag) do |f|
     p = f.label "标签名"

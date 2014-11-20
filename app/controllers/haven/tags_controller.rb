@@ -33,6 +33,7 @@ module Haven
       if @tag.save
         redirect_to haven_tags_path
       else
+        flash[:error] = @tag.errors.full_messages
         render action: 'edit'
       end
     end
