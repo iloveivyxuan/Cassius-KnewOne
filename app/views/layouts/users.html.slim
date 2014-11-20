@@ -78,12 +78,7 @@
             i.fa.fa-comments
             span = @user.feelings_count
             | 短评
-        = li action_name == 'topics', class: 'nav-topics'
-          = link_to [:topics, @user]
-            i.fa.fa-leaf
-            span = @user.topics_count
-            | 话题
-        = li action_name == 'groups', class: 'nav-groups'
+        = li ['groups', 'topics'].include?(action_name), class: 'nav-groups'
           = link_to [:groups, @user]
             i.fa.fa-tint
             span = @user.groups_count
