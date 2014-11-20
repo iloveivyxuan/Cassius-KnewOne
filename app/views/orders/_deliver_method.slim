@@ -1,0 +1,11 @@
+div
+  label.checkbox.misc_option
+    - if @order.order_items.map(&:kind).map(&:use_sf).include?(false)
+      = f.check_box :use_sf, :class => 'use_sf', :'data-price' => Order::SF_PRICE, disabled: true
+      | 此订单不能使用顺丰快递
+    - elsif (@order.items_price <= 500) && (!@order.bong_inside?)
+      = f.check_box :use_sf, :class => 'use_sf', :'data-price' => Order::SF_PRICE
+      | 使用顺丰速运（+10元）
+    - elsif @order.bong_inside?
+      = f.check_box :bong_delivery, :class => 'bong_delivery', :'data-price' => 10, checked: true, disabled: true
+      | bong 10 元运费
