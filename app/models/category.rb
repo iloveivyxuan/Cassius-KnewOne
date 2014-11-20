@@ -54,28 +54,6 @@ class Category
     self.inner_categories = inners
   end
 
-  class << self
-    def find_and_minus(name)
-      c = where(name: name).first
-      if c.present? && c.things_count.try(:>, 0)
-        c.inc things_count: -1
-      end
-    end
-
-    def find_and_plus(name)
-      c = where(name: name).first
-      if c.present?
-        if c.things_count
-          c.inc things_count: 1
-        else
-          c.update things_count: 1
-        end
-      else
-        Category.create name: name, things_count: 1
-      end
-    end
-  end
-
   def self.update_things_count
     Category.all.each do |c|
       c.set(things_count: c.things.size)

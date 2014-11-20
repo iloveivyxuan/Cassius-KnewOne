@@ -17,7 +17,6 @@ class Thing < Post
   field :categories, type: Array, default: []
   before_save :update_price
   before_save :update_amazon_link
-  after_save :update_categories
 
   has_many :single_feelings, class_name: "Feeling", dependent: :destroy
   field :feelings_count, type: Integer, default: 0
@@ -175,14 +174,6 @@ class Thing < Post
 
   def primary_categories
     category_records.primary.pluck(:name)
-  end
-
-  def update_categories
-    return unless categories_changed?
-    old = categories_change.first || []
-    new = categories_change.last || []
-    (old - new).each { |c| Category.find_and_minus c }
-    (new - old).each { |c| Category.find_and_plus c }
   end
 
   def update_price
