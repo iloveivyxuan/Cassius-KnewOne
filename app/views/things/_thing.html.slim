@@ -19,8 +19,8 @@
             = link_to "", tp.thing, class: "thing_fancy_backdrop", target: "_blank"
             .fanciers = render "shared/fancy", p: tp, from: "things"
         figcaption
-          h5 data-toggle="tooltip" data-placement="top" title=tp.full_title
-            = link_to tp.full_title, tp.thing, target: '_blank'
+          h5 data-toggle="tooltip" data-placement="top" title=tp.title
+            = link_to tp.title, tp.thing, target: '_blank'
           em.figure_detail
             span.fanciers
               i.fa.fa-heart
