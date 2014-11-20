@@ -751,30 +751,25 @@ html.feelings_show {
     }
   }
   .mobile_shop {
+    display: table;
     padding: 2em 1em;
     @include MQ(Mplus) { padding: 2.5em 2em }
 
-    #mobile_price {
-      margin: 0;
-      padding: 0;
-      font-size: 1.5em;
+    .mobile_shop_details {
+      display: table-cell;
       line-height: 40px;
-      color: $text-color;
-      font-weight: bold;
+      padding-left: 1em;
       text-align: center;
-
-      small {
-        font-size: 68%;
-        font-weight: normal;
-      }
+      width: 1%;
     }
 
     .btn-buy-mobile {
-      display: block;
+      display: table-cell;
       margin: 0;
       padding: 0;
       height: 40px;
       line-height: 40px;
+      width: 1%;
 
       &:only-child {
         width: 100%;
@@ -782,13 +777,12 @@ html.feelings_show {
     }
 
     .btn-buy-mobile--shorten {
-      float: left;
-      width: 48%;
+      display: table-cell;
       height: 40px;
       margin: 0;
-      margin-right: 2%;
       padding: 0;
       font-size: 14px;
+      width: 1%;
       @include MQ(XS) { font-size: 12px }
       line-height: 40px;
       &:last-child {

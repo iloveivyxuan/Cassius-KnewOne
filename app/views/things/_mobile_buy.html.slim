@@ -1,17 +1,13 @@
 - if tp.buy
   .mobile_buy
-    .mobile_shop.clearfix
-      - if tp.price.present?
-        #mobile_price.mobile_price
+    .mobile_shop
+      = render_mobile_buy_button(tp.thing)
+      .mobile_shop_details
+        - if tp.price.present?
           = tp.price
-          - if tp.can_consume_bong_point?
-            small
-              |（可用
-              = link_to "活跃点", "#", data: {toggle: "modal", target: "#bong_point_modal"}
-              | ）
-
-      = render_mobile_buy(tp.thing)
-
+        - if user_signed_in? && [:dsell, :pre_order].include?(tp.thing.stage)
+          = link_to "（购买详情）", "#", class: "track_event",
+            data: {toggle: "modal", target: "#shopping_modal"}
     .mobile_others.clearfix
       - if tp.tags.present?
         ul.mobile_tags
