@@ -90,7 +90,7 @@ class Category
       if c.primary_category?
         c.thing_ids = c.inner_categories.map(&:thing_ids).flatten.uniq unless c.inner_categories.empty?
       end
-      c.thing_ids = c.tags.map(&:thing_ids).flatten.uniq unless c.tags.empty?
+      c.thing_ids += c.tags.map(&:thing_ids).flatten.uniq unless c.tags.empty?
       c.save
     end
   end
