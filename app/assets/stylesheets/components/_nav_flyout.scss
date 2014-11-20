@@ -14,7 +14,10 @@
 
   > a {
     .fa {
-      margin-left: 5px;
+      margin: {
+        left: 5px;
+        right: 0;
+      }
     }
   }
 
