@@ -359,7 +359,7 @@ Making::Application.routes.draw do
       end
     end
 
-    resources :categories, only: [:index, :new, :create, :edit, :update]
+    resources :categories
 
     resources :tags
 

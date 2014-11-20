@@ -31,6 +31,11 @@ module Haven
       end
     end
 
+    def destroy
+      @category.destroy
+      redirect_to haven_categories_path
+    end
+
     private
 
     def category_params
