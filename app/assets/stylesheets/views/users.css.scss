@@ -664,6 +664,22 @@ html.users_things {
   }
 }
 
+html.users_reviews {
+  .contents {
+    > .review {
+      margin-top: 20px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    @include from-breakpoint(sm) {
+      padding: 20px;
+    }
+  }
+}
+
 html.users_activities {
   ul.contents {
     @include from-breakpoint(sm) {
