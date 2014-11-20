@@ -9,6 +9,6 @@ nav.thing-list-filter
 
 - if @lists.present?
   .thing-lists= render @lists
-  = paginate @lists.desc(:updated_at)
+  = paginate @lists
 - else
   = render 'shared/nothing'

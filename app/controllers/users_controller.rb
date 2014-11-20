@@ -28,6 +28,7 @@ class UsersController < ApplicationController
       @lists = @user.thing_lists
     end
 
+    @lists = @lists.desc(:updated_at)
     @lists = @lists.page(params[:page]).per(24)
   end
 
