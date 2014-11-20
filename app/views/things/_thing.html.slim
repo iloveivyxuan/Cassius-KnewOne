@@ -4,9 +4,11 @@
       figure class="thing"
         - if request.path == '/search.js'
           .brand
-            | 品牌
+            - unless thing.brand_name.blank?
+              | 品牌
           .brand-text
-            = thing.brand_name
+            - unless thing.brand_name.blank?
+              = thing.brand_name
           hr
         - if tp.self_run?
           = link_to tp.thing, class: "pre_ribbon #{tp.stage}" do
