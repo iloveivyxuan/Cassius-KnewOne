@@ -785,17 +785,19 @@ html.users_topics {
     > header > nav > ol > li {
       width: percentage(1 / 3);
     }
+  }
+}
 
-    @include to-breakpoint(xs) {
-      li.group:first-child {
-        margin-top: 20px;
-      }
+html.users_groups {
+  @include to-breakpoint(xs) {
+    li.group:first-child {
+      margin-top: 20px;
     }
+  }
 
-    .card_compact {
-      margin-bottom: 0;
-      background: white;
-    }
+  .card_compact {
+    margin-bottom: 0;
+    background: white;
   }
 }
 
