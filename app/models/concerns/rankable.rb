@@ -30,7 +30,7 @@ module Rankable
 
   module ClassMethods
     def update_all_heat_since(time)
-      where(:created_at.gt => time).each do |x|
+      where(:created_at.gt => time).no_timeout.each do |x|
         x.set(heat: x.calculate_heat)
       end
     end

@@ -401,7 +401,7 @@ class Thing < Post
     end
 
     def recal_all_related_things
-      Thing.desc(:created_at).each(&:update_related_thing_ids)
+      Thing.desc(:created_at).no_timeout.each(&:update_related_thing_ids)
     end
   end
 
