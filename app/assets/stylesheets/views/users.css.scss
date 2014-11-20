@@ -680,16 +680,26 @@ html.users_reviews,
 html.users_feelings,
 html.users_topics {
   .contents {
-    > .review {
+    > .review,
+    > .feeling,
+    > .topic {
       margin-top: 20px;
 
       &:first-child {
         margin-top: 0;
       }
+
+      @include from-breakpoint(md) {
+        margin-top: 30px;
+      }
     }
 
     @include from-breakpoint(sm) {
       padding: 20px;
+    }
+
+    @include from-breakpoint(md) {
+      padding: 30px;
     }
   }
 }
