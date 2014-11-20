@@ -2041,39 +2041,27 @@ html.feelings_show {
       background: #f7f7f7;
       .author {
         position: absolute;
-
         width: 25%;
         @include MQ(Mplus) { width: 20% }
-
-        margin: 0 auto;
-        margin-top: -15px;
-        padding: 0;
         text-align: center;
+        margin-top: -30px;
+        top: 50%;
         .author_avatar {
           margin: 0;
           padding: 0;
           img {
             width: 60px;
             height: 60px;
-            vertical-align: -2px;
           }
         }
         .author_name {
-          display: block;
-          margin: 10px;
-          margin-top: 3px;
-          padding: 0;
-          font-size: 13px;
-          color: $gray;
-          &:hover { color: $blue-light }
+          display: none;
         }
       }
 
       h3 {
         display: inline-block;
-
-        margin: 0;
-        margin-left: 25%;
+        margin: 0 0 5px 25%;
         font-size: 18px;
 
         @include MQ(Mplus) {
@@ -2087,6 +2075,7 @@ html.feelings_show {
       }
 
       .review-score {
+        margin-bottom: 5px;
         min-height: 20px;
 
         .score {
@@ -2098,6 +2087,13 @@ html.feelings_show {
             padding: 0;
           }
         }
+      }
+
+      .review-author {
+        margin: {
+          left: 25%;
+        }
+        @include MQ(Mplus) { margin-left: 20% }
       }
     }
     .post_content {
