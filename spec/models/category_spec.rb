@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Category, type: :model do
 
-  describe 'things & categories & tags' do
+  describe 'share same things between categories & tags' do
     let(:thing) { create(:thing) }
     let(:category) { create(:category) }
     let(:inner_c) { create(:category) }
