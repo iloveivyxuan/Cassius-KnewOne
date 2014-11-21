@@ -12,8 +12,7 @@ section.thing_list id="thing_list_#{thing_list.id}"
 
     - if can? :destroy, thing_list
       .thing_list-destroy
-        = link_to thing_list, method: :delete, remote: true, data: {confirm: '您确定要删除吗?'}
-          i.fa.fa-trash-o
+        = link_to '×', thing_list, method: :delete, remote: true, data: {confirm: '您确定要删除吗?'}
 
   footer
     - if thing_list.description.present?

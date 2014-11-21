@@ -2,13 +2,12 @@ class UsersController < ApplicationController
   load_and_authorize_resource except: [:fuzzy]
 
   def show
-    @reviews = @user.reviews.desc(:is_top, :lovers_count, :created_at).where(:thing_id.ne => nil).limit(4)
-    @feelings = @user.feelings.desc(:lovers_count, :created_at).where(:thing_id.ne => nil).limit(4)
     @fancies = @user.fancies_sorted_by_ids(1, 3)
     @owns = @user.owns_sorted_by_ids(1, 3)
-    @makings = @user.makings.desc(:created_at)
-    @activities = @user.activities.visible.limit(10)
     @lists = @user.thing_lists.desc(:fanciers_count).limit(3)
+    @reviews = @user.reviews.desc(:is_top, :lovers_count, :created_at).where(:thing_id.ne => nil).limit(2)
+    @feelings = @user.feelings.desc(:lovers_count, :created_at).where(:thing_id.ne => nil).limit(2)
+    @activities = @user.activities.visible.limit(10)
   end
 
   def fancies

@@ -2,145 +2,164 @@
 - page_css 'users'
 
 - content_for :content do
-  .user_info
-    dl.vcard itemscope="" itemtype="http://data-vocabulary.org/Person"
-      dd.avatar itemprop="photo"= user_avatar(@user, :square)
-      dt.name itemprop="name"
-        h1
+  header
+    ul.info
+      li.info-name
+        - if current_user.try(:role?, :editor)
+          = link_to @user.name, [:haven, @user], title: '内幕'
+        - else
           = @user.name
-          = link_to '[内幕]', haven_user_path(@user), class: "note" if current_user.try :role?, :editor
-          = render_user_gender(@user)
-          - if @user.identities.any?
-            small.note
-              |
-              i.fa.fa-flask
-              = @user.identities.join(', ')
-      dd.level itemprop="rating" itemscope="" itemtype="http://data-vocabulary.org/Rating"
-        .level_num Lv.#{@user.rank}
-        .progress title="#{@user.progress}%"
-          .progress-bar style="width: #{@user.progress}%;"
-      dd.friendship
-        = link_to followings_user_path(@user), id: "#{@user.id.to_s}_followings", data: {count: @user.followings_count} do
-          = @user.followings_count
-          small 关注
-        = link_to followers_user_path(@user), id: "#{@user.id.to_s}_followers", data: {count: @user.followers_count} do
-          = @user.followers_count
-          small 关注者
-      - if user_signed_in?
-        dd.exchange
-          = render 'users/follow_btn', user: @user
-          = render 'users/private_message_btn', user: @user, klass: 'btn btn-default'
-      - if !browser.mobile? and !browser.tablet?
-        = render_user_location(@user)
-        = render_user_links(@user)
-        - if @user.categories.any?
-          dd.tag title="标签"
-            .data
-              = render @user.categories
-        - managed_groups = @user.managed_groups
-        - if managed_groups.present?
-          dd.managed_groups title="管理的小组"
-            h5 管理的小组
-            ul= render managed_groups
 
-  .user_content
-    ul.nav_primary.nav.nav-pills.nav-pills-list.nav-justified
-      = li (action_name == 'show') do
-        = link_to_with_icon '', 'fa fa-home', user_path(@user)
-      = li (action_name == 'fancies') do
-        = link_to fancies_user_path(@user) do
-          i.fa.fa-heart
-          | 喜欢
-          em = @user.fancies_count
-      = li (action_name == 'owns') do
-        = link_to owns_user_path(@user)
-          i.fa.fa-check
-          | 拥有
-          em = @user.owns_count
-      = li (action_name == 'lists') do
-        = link_to lists_user_path(@user) do
-          i.fa.fa-list
-          | 列表
-          em = @user.thing_lists.size
-      = li (action_name == 'things') do
-        = link_to things_user_path(@user) do
-          i.fa.fa-magic
-          | 分享
-          em = @user.things_count
-      = li (action_name == 'reviews') do
-        = link_to reviews_user_path(@user) do
-          i.fa.fa-pencil
-          | 评测
-          em = @user.reviews_count
-      = li (action_name == 'feelings') do
-        = link_to feelings_user_path(@user) do
-          i.fa.fa-comments
-          | 短评
-          em = @user.feelings_count
-      = li (action_name == 'topics') do
-        = link_to topics_user_path(@user) do
-          i.fa.fa-leaf
-          | 话题
-          em = @user.topics_count
-      = li (action_name == 'groups') do
-        = link_to groups_user_path(@user) do
-          i.fa.fa-tint
-          | 小组
-          em = @user.groups_count
-      = li (action_name == 'activities') do
-        = link_to_with_icon '动态', 'fa fa-bars', activities_user_path(@user)
+        - if @user.gender.present?
+          span.info-gender = symbolize_gender(@user.gender)
 
-    - if browser.mobile?
-      ol.breadcrumb
-        li = link_to "个人主页", user_path(@user)
-        li.active
-          - case action_name
-          - when 'owns'
-            | 拥有
-            em = @user.owns_count
-          - when 'fancies'
+      li.info-avatar = user_avatar(@user, :small)
+      li.info-level = render 'shared/level', user: @user
+
+      - if @user.description.present?
+        li.info-description
+          i.fa.fa-quote-left
+          p = @user.description
+
+      li.info-links
+        - if @user.location.present?
+          span.info-location
+            i.fa.fa-map-marker
+            = @user.location
+
+        = user_links(@user)
+
+      li.info-friendship class=('info-friendship--self' if @user == current_user)
+        = link_to followers_user_path(@user), class: 'info-followers'
+          | 关注者
+          span = @user.followers_count
+        = link_to followings_user_path(@user), class: 'info-followings'
+          | 关注
+          span = @user.followings_count
+
+      - if @user != current_user
+        li.info-actions
+          = render 'follow_btn', user: @user
+          = render 'private_message_btn', user: @user, text: '私信'
+
+    nav
+      ul
+        = li action_name == 'show', class: 'nav-home'
+          = link_to @user
+            i.fa.fa-home
+            | 首页
+        = li action_name == 'fancies', class: 'nav-fancies'
+          = link_to [:fancies, @user]
+            i.fa.fa-heart
+            span = @user.fancies_count
             | 喜欢
-            em = @user.fancies_count
-          - when 'lists'
+        = li action_name == 'owns', class: 'nav-owns'
+          = link_to [:owns, @user]
+            i.fa.fa-check-circle-o
+            span = @user.owns_count
+            | 拥有
+        = li action_name == 'lists', class: 'nav-lists'
+          = link_to [:lists, @user]
+            i.fa.fa-list
+            span = @user.thing_lists.size
             | 列表
-            em = @user.thing_lists.size
-          - when 'things'
+        = li action_name == 'things', class: 'nav-things'
+          = link_to [:things, @user]
+            i.fa.fa-magic
+            span = @user.things_count
             | 分享
-            em = @user.things_count
-          - when 'feelings'
-            | 短评
-            em = @user.feelings_count
-          - when 'reviews'
+        = li action_name == 'reviews', class: 'nav-reviews'
+          = link_to [:reviews, @user]
+            i.fa.fa-pencil
+            span = @user.reviews_count
             | 评测
-            em = @user.reviews_count
-          - when 'topics'
-            | 话题
-            em = @user.topics_count
-          - when 'groups'
+        = li action_name == 'feelings', class: 'nav-feelings'
+          = link_to [:feelings, @user]
+            i.fa.fa-comments
+            span = @user.feelings_count
+            | 短评
+        = li ['groups', 'topics'].include?(action_name), class: 'nav-groups'
+          = link_to [:groups, @user]
+            i.fa.fa-tint
+            span = @user.groups_count
             | 小组
-            em = @user.groups_count
-          - when 'activities'
+        = li action_name == 'activities', class: 'nav-activities'
+          = link_to [:activities, @user]
+            i.fa.fa-bars
             | 动态
 
-    = yield
+      - if action_name != 'show'
+        ol
+          li = link_to @user
+            i.fa.fa-chevron-left
+            | 个人主页
+          - case action_name
+            - when 'fancies'
+              li.active
+                i.fa.fa-heart
+                | 喜欢
+            - when 'owns'
+              li.active
+                i.fa.fa-check-circle-o
+                | 拥有
+            - when 'lists'
+              = li @filter == 'owned'
+                = link_to filter: 'owned'
+                  i.fa.fa-list
+                  | TA创建的
+              = li @filter == 'fancied'
+                = link_to filter: 'fancied'
+                  i.fa.fa-list
+                  | TA喜欢的
+            - when 'things'
+              li.active
+                i.fa.fa-magic
+                | 分享
+            - when 'reviews'
+              li.active
+                i.fa.fa-pencil
+                | 评测
+            - when 'feelings'
+              li.active
+                i.fa.fa-comments
+                | 短评
+            - when 'groups'
+              li.active
+                i.fa.fa-tint
+                | 小组
+              li = link_to [:topics, @user]
+                i.fa.fa-leaf
+                | 话题
+            - when 'topics'
+              li = link_to [:groups, @user]
+                i.fa.fa-tint
+                | 小组
+              li.active
+                i.fa.fa-leaf
+                | 话题
+            - when 'activities'
+              li.active
+                i.fa.fa-bars
+                | 动态
+            - when 'followers'
+              li.active
+                i.fa.fa-tint
+                | 关注
+              li = link_to [:followings, @user]
+                i.fa.fa-leaf
+                | 关注者
+            - when 'followings'
+              li = link_to [:followers, @user]
+                i.fa.fa-tint
+                | 关注
+              li.active
+                i.fa.fa-leaf
+                | 关注者
 
-  - if browser.mobile? or browser.tablet?
-    .user_info.user_info--bottom
-      dl.vcard itemscope="" itemtype="http://data-vocabulary.org/Person"
-        = render_user_location(@user)
-        = render_user_links(@user)
-        - if @user.categories.any?
-          dd.tag title="标签"
-            .data
-              = render @user.categories
-        - managed_groups = @user.managed_groups
-        - if managed_groups.present?
-          dd.managed_groups title="管理的小组"
-            h5 管理的小组
-            ul= render managed_groups
+  = yield
 
   - content_for :script do
     javascript:
-      Making.Feeling('.user_content');
+      Making.Feeling('.contents')
 
 = render template: 'layouts/application'

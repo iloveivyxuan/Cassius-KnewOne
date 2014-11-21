@@ -1,7 +1,10 @@
 - feeling = activity.reference
 - thing = feeling.thing
 - if thing
-  | 赞了关于产品
+  span.activity-voted
+    i.fa.fa-thumbs-o-up
+    | 赞
+  | 了关于产品
   = link_to thing.title, thing
   | 短评
-  = link_to truncate(feeling.content), thing_feeling_path(thing, feeling)
+  = link_to feeling.content.truncate(16), thing_feeling_path(thing, feeling)

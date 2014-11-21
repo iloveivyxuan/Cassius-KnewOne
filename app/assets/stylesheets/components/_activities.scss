@@ -1,5 +1,5 @@
-ul.activities {
-  li {
+ul {
+  > li.activity {
     @include clearfix;
 
     border-bottom: $border-dashed;
@@ -10,14 +10,37 @@ ul.activities {
     }
 
     a {
-      padding-left: .5em;
-      padding-right: .5em;
+      margin-left: .5em;
+      margin-right: .5em;
     }
 
     time {
       line-height: 20px;
       float: right;
       padding-left: 2em;
+    }
+
+    .activity-fancied,
+    .activity-owned,
+    .activity-voted,
+    .activity-list {
+      margin-right: .5em;
+    }
+
+    .activity-fancied {
+      color: $red;
+    }
+
+    .activity-owned {
+      color: $blue-light;
+    }
+
+    .activity-voted {
+      color: $blue-light;
+    }
+
+    .activity-list {
+      color: $orange;
     }
   }
 }

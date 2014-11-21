@@ -20,7 +20,7 @@ html.dialogs_index, html.dialogs_show {
 
       .new_private_message, .readall {margin-left: 1em;}
 
-      @include breakpoint(md) {
+      @include from-breakpoint(md) {
         @include clearfix;
         margin: 0 0 0 10em;
         h1 {
@@ -42,7 +42,7 @@ html.dialogs_index, html.dialogs_show {
           width: 100%;
         }
 
-        @include breakpoint(md) {
+        @include from-breakpoint(md) {
           @include clearfix;
           margin: 0 0 30px 10em;
           button {

@@ -1,3 +1,10 @@
 - list = activity.reference
-| 喜欢了列表
-= link_to list.name, list
+span.activity-fancied
+  i.fa.fa-heart
+  | 喜欢
+| 了
+= link_to list
+  span.activity-list
+    i.fa.fa-list
+    | 列表
+  = list.name

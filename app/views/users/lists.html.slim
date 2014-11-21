@@ -1,14 +1,13 @@
-nav.thing-list-filter
-  .btn-group
-    = link_to({filter: 'owned'}, class: "btn btn-default #{@filter == 'owned' ? 'active' : ''}")
-      i.fa.fa-eye
-      | 创建
-    = link_to({filter: 'fancied'}, class: "btn btn-default #{@filter == 'fancied' ? 'active' : ''}")
-      i.fa.fa-star-o
-      | 喜欢
+nav.subpage_tabs
+  ul
+    = li @filter == 'owned'
+      = link_to 'TA创建的列表', {filter: 'owned'}
+    = li @filter == 'fancied'
+      = link_to 'TA喜欢的列表', {filter: 'fancied'}
 
 - if @lists.present?
-  .thing-lists= render @lists
-  = paginate @lists
+  section.contents = render @lists
 - else
-  = render 'shared/nothing'
+  section.contents = render 'shared/nothing'
+
+= paginate @lists
