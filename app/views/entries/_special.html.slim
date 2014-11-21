@@ -31,7 +31,7 @@ section.article
           h3.title
             = link_to s.title.present? ? s.title : s.thing.title, s.thing, target: "_blank"
           p = s.subtitle
-      .content
+      section.content
         = sanitize s.content
 
   - if post.ending.present?

@@ -21,7 +21,7 @@ article.article
   - if Entry::CATEGORIES[entry.category] == 'events'
     = render 'entries/related_things', entry: entry, title: '相关产品'
 
-  .content = sanitize post.content
+  section.content = sanitize post.content
 
   .actions
     .voting id="article_#{post.id.to_s}"

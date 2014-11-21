@@ -28,7 +28,7 @@ article.article
           = post.comments.size
           | 评论
 
-  .content = present(post).content
+  section.content = present(post).content
 
   .actions
     .voting id="review_#{post.id.to_s}"
