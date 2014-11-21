@@ -4,6 +4,10 @@ li.thing
       = link_to thing, target: '_blank'
         = present(thing).photo('thing.fixed')
 
+      .fancy_thing
+        = link_to '', thing, class: 'fancy_backdrop'
+        .fancy_button = render 'shared/fancy', p: present(thing), from: 'users'
+
     = link_to thing, target: '_blank', class: 'thing-title'
       h4 = thing.title
 
