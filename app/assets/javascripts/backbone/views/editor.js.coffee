@@ -19,6 +19,7 @@ do (exports = Making) ->
 
     defaults:
       buttons: ['anchor', 'bold', 'italic', 'strikethrough', 'quote']
+      imageSize: 'review'
 
     initialize: (options) ->
       @options     = $.extend({}, @defaults, options)
@@ -210,7 +211,7 @@ do (exports = Making) ->
               id = jqXHR.requestid = new Date().getTime()
               that.$body.trigger('loading.minsert', id)
             done: (event, data) ->
-              url = that.$imageField.data('domain') + data.jqXHR.responseJSON.url + '!review'
+              url = that.$imageField.data('domain') + data.jqXHR.responseJSON.url + "!#{that.options.imageSize}"
               id  = data.jqXHR.requestid
               that.$body.trigger('done:image.minsert', {url, id})
             fail: (event, data) ->
