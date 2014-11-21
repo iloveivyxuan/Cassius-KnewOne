@@ -932,6 +932,10 @@ html.users_followings {
           background: $blue-bright;
           border: none;
 
+          &.follow_btn--mutual_followed {
+            background: $blue-dark;
+          }
+
           &:hover {
             background: $gray-light;
           }
