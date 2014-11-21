@@ -1,5 +1,7 @@
 module Haven
   class ArticlesController < Haven::ApplicationController
+    include DestroyDraft
+
     layout 'settings'
     before_action :set_article, except: [:index, :create, :new]
 
