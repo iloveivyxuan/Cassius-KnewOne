@@ -105,6 +105,10 @@ html[class^="users_"] {
           margin: 0;
         }
 
+        @include to-breakpoint(xs) {
+          display: none;
+        }
+
         @include from-breakpoint(sm) {
           @include to-breakpoint(sm) {
             padding-left: 70px;
@@ -126,6 +130,10 @@ html[class^="users_"] {
         margin-top: 20px;
         padding-right: 20px;
         text-align: right;
+
+        @include to-breakpoint(xs) {
+          display: none;
+        }
 
         @include from-breakpoint(sm) {
           @include to-breakpoint(sm) {
@@ -187,6 +195,10 @@ html[class^="users_"] {
       .info-friendship {
         line-height: 1;
         background: $gray-lighter;
+
+        @include to-breakpoint(xs) {
+          display: none;
+        }
 
         @include from-breakpoint(sm) {
           @include to-breakpoint(sm) {
@@ -636,9 +648,15 @@ html[class^="users_"] {
 
 html.users_show {
   #wrapper {
-    > header > nav {
-      @include to-breakpoint(xs) {
-        > ul {
+    @include to-breakpoint(xs) {
+      > header {
+        .info-description,
+        .info-links,
+        .info-friendship {
+          display: block;
+        }
+
+        > nav > ul {
           display: block;
         }
       }
