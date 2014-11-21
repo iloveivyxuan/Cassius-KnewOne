@@ -379,6 +379,7 @@ html[class^="users_"] {
             text-align: center;
 
             width: percentage(2 / 3);
+            line-height: 40px;
 
             a {
               @include plain-link($text-color);

@@ -124,7 +124,7 @@
                 i.fa.fa-comments
                 | 短评
             - when 'groups'
-              li.active = link_to [:groups, @user]
+              li.active
                 i.fa.fa-tint
                 | 小组
               li = link_to [:topics, @user]
@@ -134,7 +134,7 @@
               li = link_to [:groups, @user]
                 i.fa.fa-tint
                 | 小组
-              li.active = link_to [:topics, @user]
+              li.active
                 i.fa.fa-leaf
                 | 话题
             - when 'activities'
@@ -142,7 +142,7 @@
                 i.fa.fa-bars
                 | 动态
             - when 'followers'
-              li.active = link_to [:followers, @user]
+              li.active
                 i.fa.fa-tint
                 | 关注
               li = link_to [:followings, @user]
@@ -152,7 +152,7 @@
               li = link_to [:followers, @user]
                 i.fa.fa-tint
                 | 关注
-              li.active = link_to [:followings, @user]
+              li.active
                 i.fa.fa-leaf
                 | 关注者
 
