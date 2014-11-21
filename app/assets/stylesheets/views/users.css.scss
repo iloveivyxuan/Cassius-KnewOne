@@ -598,6 +598,13 @@ html[class^="users_"] {
         }
       }
 
+      .review,
+      .feeling {
+        .video {
+          display: none;
+        }
+      }
+
       .activity {
         padding: 15px;
       }
