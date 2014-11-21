@@ -341,6 +341,7 @@ Making::Application.routes.draw do
         get 'batch_query'
         post 'batch_show'
         post 'confirm_email'
+        post 'reset_password'
       end
     end
 

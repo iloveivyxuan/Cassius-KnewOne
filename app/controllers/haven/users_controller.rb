@@ -173,6 +173,12 @@ module Haven
       redirect_to :back
     end
 
+    def reset_password
+      @user = User.find params[:id]
+      flash[:token] = @user.send_reset_password_instructions
+      redirect_to :back
+    end
+
     def batch_query
     end
 

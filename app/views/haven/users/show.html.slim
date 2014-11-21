@@ -33,3 +33,10 @@ h2
   | 用户收不到邮件怎么办？
 = button_to "祖传小按钮专治邮件收不到", confirm_email_haven_users_path(id: @user.id),
   class: "btn btn-primary", disabled: @user.confirmed?
+
+h2
+  | 用户忘记密码怎么办
+= button_to "祖传小按钮专治用户健忘症", reset_password_haven_users_path(id: @user.id),
+  class: "btn btn-primary", data: { confirm: '确定要重置这位同学的密码吗？' }
+- if flash[:token]
+  = link_to edit_password_url(@user, :reset_password_token => flash[:token]), edit_password_url(@user, :reset_password_token => flash[:token])
