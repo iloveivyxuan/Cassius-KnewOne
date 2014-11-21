@@ -698,10 +698,6 @@ html.users_followings {
       @include to-breakpoint(xs) {
         width: 100%;
         margin-top: 20px;
-
-        &:first-child {
-          margin-top: 0;
-        }
       }
 
       @include from-breakpoint(sm) {
@@ -731,12 +727,12 @@ html.users_topics {
     .topic {
       margin-top: 20px;
 
-      &:first-child {
-        margin-top: 0;
-      }
-
       @include from-breakpoint(md) {
         margin-top: 30px;
+
+        &:first-child {
+          margin-top: 0;
+        }
       }
     }
 
@@ -834,12 +830,6 @@ html.users_followings {
 }
 
 html.users_groups {
-  @include to-breakpoint(xs) {
-    li.group:first-child {
-      margin-top: 20px;
-    }
-  }
-
   .card_compact {
     margin-bottom: 0;
     background: white;
@@ -849,7 +839,7 @@ html.users_groups {
 html.users_activities {
   ul.contents {
     @include from-breakpoint(sm) {
-      padding: 20px;
+      padding: 30px;
     }
   }
 }
@@ -870,6 +860,10 @@ html.users_followings {
       padding: 15px;
 
       background: white;
+
+      @include to-breakpoint(xs) {
+        margin-top: 20px;
+      }
 
       @include from-breakpoint(sm) {
         width: 50%;
