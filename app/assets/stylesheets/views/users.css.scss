@@ -440,6 +440,10 @@ html[class^="users_"] {
     > .contents {
       background: $smoke-white;
 
+      @include from-breakpoint(md) {
+        margin-top: 30px;
+      }
+
       .thing {
         background: white;
 
