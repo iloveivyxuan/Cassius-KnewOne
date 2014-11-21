@@ -4,4 +4,4 @@
 | 为我分享的产品
 = link_to " #{thing.title} ", thing
 | 编写了短评
-= link_to " #{truncate(feeling.content)} ", [thing, feeling]
+= link_to " #{truncate(feeling.content, escape: false)} ", [thing, feeling]
