@@ -773,8 +773,20 @@ html.users_followings {
 html.users_lists,
 html.users_groups,
 html.users_topics {
-  #wrapper > .contents {
-    margin-top: 30px + 40px;
+  @include from-breakpoint(sm) {
+    @include to-breakpoint(sm) {
+      .contents {
+        .topic:first-child {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  @include from-breakpoint(md) {
+    #wrapper > .contents {
+      margin-top: 30px + 40px;
+    }
   }
 }
 
