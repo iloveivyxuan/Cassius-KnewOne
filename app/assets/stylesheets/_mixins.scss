@@ -17,9 +17,14 @@
 }
 
 // http://dropshado.ws/post/1015351370/webkit-line-clamp
-@mixin line-clamp($lines) {
+@mixin multi-line-text-overflow($n, $line-height) {
+  display: block;
+  overflow: hidden;
+  line-height: $line-height;
+  max-height: $n * $line-height;
+
   display: -webkit-box;
-  -webkit-line-clamp: $lines;
+  -webkit-line-clamp: $n;
   -webkit-box-orient: vertical;
 }
 
