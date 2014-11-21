@@ -16,6 +16,13 @@
   display: inline-block;
 }
 
+// http://dropshado.ws/post/1015351370/webkit-line-clamp
+@mixin line-clamp($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+}
+
 // http://stackoverflow.com/questions/7492062/css-overflow-scroll-always-show-vertical-scroll-bar
 @mixin always-show-scrollbar {
   &::-webkit-scrollbar {
