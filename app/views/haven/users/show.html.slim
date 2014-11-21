@@ -1,6 +1,28 @@
 = render 'haven/users/admin_note'
 
 h2
+  | 登录信息
+
+table.table.table-striped
+  thead
+    tr
+      th 登录方式
+      th 登录信息
+  tbody
+    - if @user.email
+      tr
+        td= "邮箱"
+        td= @user.email
+    - if @user.unconfirmed_email
+      tr
+        td= "没通过验证的邮箱"
+        td= @user.unconfirmed_email
+    - @user.auths.each do |auth|
+      tr
+        td= auth.provider
+        td= auth.name
+
+h2
   | 余额
   = @user.balance
 table.table.table-striped
