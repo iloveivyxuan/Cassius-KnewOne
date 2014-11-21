@@ -770,6 +770,14 @@ html.users_followings {
   }
 }
 
+html.users_lists,
+html.users_groups,
+html.users_topics {
+  #wrapper > .contents {
+    margin-top: 30px + 40px;
+  }
+}
+
 html.users_show,
 html.users_reviews,
 html.users_feelings,
