@@ -64,6 +64,7 @@ end
 every 15.minutes do
   runner 'Category.update_thing_ids'
   runner 'Category.update_things_count'
+  runner 'Category.update_tags'
   runner 'Tag.update_things_count'
 end
 
