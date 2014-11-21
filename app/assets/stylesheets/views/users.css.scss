@@ -198,10 +198,15 @@ html[class^="users_"] {
           }
         }
 
+        @include from-breakpoint(md) {
+          background: white;
+          border-top: 1px dashed $gray-lighter;
+        }
+
         > a {
           display: inline-block;
           width: 50%;
-          padding: 10px 0;
+          padding: 7px 0;
 
           text-align: center;
           font-size: 10px;
