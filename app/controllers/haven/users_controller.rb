@@ -79,6 +79,9 @@ module Haven
             @users = @users.where(:created_at.lt => Date.parse(params[:to]).next_day)
           end
         end
+      elsif params[:search]
+        q = params[:search]
+        @users = User.or({ id: q }, { name: /#{q}/i }, { email: /#{q}/i }, { unconfirmed_email: /#{q}/i })
       else
         @users = @users.order_by([:created_at, :desc],
                                  [:things_count, :desc],

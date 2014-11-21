@@ -11,6 +11,11 @@ header.page-header
 
 = render 'filter'
 
+.pull-right
+  = form_tag(haven_users_path, method: "get") do
+    = text_field_tag("search", params[:search], placeholder: "id/名字/邮箱")
+    = submit_tag("搜搜搜")
+
 table.table.table-striped
   thead
     tr
