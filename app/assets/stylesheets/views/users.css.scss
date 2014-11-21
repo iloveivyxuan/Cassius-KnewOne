@@ -627,6 +627,11 @@ html.users_show {
         display: none;
       }
 
+      @include from-breakpoint(md) {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
       > li {
         $gutter-width: 20px;
 
