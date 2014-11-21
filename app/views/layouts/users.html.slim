@@ -141,6 +141,20 @@
               li.active
                 i.fa.fa-bars
                 | 动态
+            - when 'followers'
+              li.active = link_to [:followers, @user]
+                i.fa.fa-tint
+                | 关注
+              li = link_to [:followings, @user]
+                i.fa.fa-leaf
+                | 关注者
+            - when 'followings'
+              li = link_to [:followers, @user]
+                i.fa.fa-tint
+                | 关注
+              li.active = link_to [:followings, @user]
+                i.fa.fa-leaf
+                | 关注者
 
   = yield
 

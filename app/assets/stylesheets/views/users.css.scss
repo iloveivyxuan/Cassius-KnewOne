@@ -684,7 +684,9 @@ html.users_fancies,
 html.users_owns,
 html.users_things,
 html.users_lists,
-html.users_groups {
+html.users_groups,
+html.users_followers,
+html.users_followings {
   .contents {
     > li,
     > article,
@@ -749,7 +751,9 @@ html.users_topics {
 
 html.users_lists,
 html.users_groups,
-html.users_topics {
+html.users_topics,
+html.users_followers,
+html.users_followings {
   #wrapper {
     @include from-breakpoint(md) {
       position: relative;
@@ -845,6 +849,99 @@ html.users_activities {
   ul.contents {
     @include from-breakpoint(sm) {
       padding: 20px;
+    }
+  }
+}
+
+html.users_followers .info-followers,
+html.users_followings .info-followings {
+  color: $gray-lighter !important;
+  background: $vulcan;
+}
+
+html.users_followers,
+html.users_followings {
+  ul.contents {
+    > li.author {
+      position: relative;
+
+      margin: 0;
+      padding: 15px;
+
+      background: white;
+
+      @include from-breakpoint(sm) {
+        width: 50%;
+      }
+
+      @include from-breakpoint(lg) {
+        width: percentage(1 / 3);
+      }
+
+      .author-avatar {
+        img {
+          width: 60px;
+          height: 60px;
+        }
+      }
+
+      .author-name {
+        @include text-overflow;
+
+        position: absolute;
+        top: 25px;
+        left: 85px;
+        right: 100px;
+        margin: 0;
+
+        font-size: 12px;
+      }
+
+      .author-description {
+        @include multi-line-text-overflow(2, 15px);
+
+        position: absolute;
+        top: 45px;
+        left: 85px;
+        right: 100px;
+        margin: 0;
+
+        font-size: 10px;
+        color: $gray-light;
+      }
+
+      .follow_btn {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+
+        width: 75px;
+        margin: 0;
+
+        font-size: 12px;
+        text-align: center;
+
+        color: $blue-dark;
+        background: white;
+        border: 1px solid $blue-dark;
+
+        transition: background .2s;
+
+        i {
+          display: none;
+        }
+
+        &.follow_btn--followed {
+          color: white;
+          background: $blue-bright;
+          border: none;
+
+          &:hover {
+            background: $gray-light;
+          }
+        }
+      }
     }
   }
 }
