@@ -70,4 +70,11 @@ class Category
     end
   end
 
+  def self.update_tags
+    Category.where(category: nil).each do |c|
+      tags = c.inner_categories.map(&:tags).flatten.uniq
+      tags.each { |tag| c.tags << tag }
+    end
+  end
+
 end
