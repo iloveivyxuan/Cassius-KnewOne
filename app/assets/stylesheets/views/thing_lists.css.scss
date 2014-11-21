@@ -81,7 +81,9 @@ html.thing_lists_show {
           left: 0;
 
           font-size: 16px;
-          line-height: 45px;
+          line-height: 60px;
+
+          border-top: 1px dashed $gray-light;
           background: $ghost-white;
         }
       }
@@ -209,7 +211,6 @@ html.thing_lists_show {
         @include from-breakpoint(md) {
           margin: 0 -30px;
           padding: 30px;
-          border-top: 1px dashed $gray-light;
         }
 
         > ul {
