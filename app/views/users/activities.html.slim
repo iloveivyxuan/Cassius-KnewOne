@@ -1,3 +1,6 @@
-ul.contents = render @activities
+- if @activities.present?
+  section.contents = render @activities
+- else
+  section.contents = render 'shared/nothing'
 
 = paginate @activities

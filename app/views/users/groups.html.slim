@@ -5,6 +5,9 @@ nav.subpage_tabs
     li = link_to [:topics, @user]
       | TA参与的话题
 
-ul.contents = render partial: 'groups/group', collection: @groups
+- if @groups.present?
+  ul.contents = render partial: 'groups/group', collection: @groups
+- else
+  section.contents = render 'shared/nothing'
 
 = paginate @groups

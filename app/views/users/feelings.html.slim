@@ -1,3 +1,6 @@
-section.contents = render @feelings
+- if @feelings.present?
+  section.contents = render @feelings
+- else
+  section.contents = render 'shared/nothing'
 
 = paginate @feelings

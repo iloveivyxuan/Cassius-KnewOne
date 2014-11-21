@@ -1,3 +1,6 @@
-ul.contents = render partial: 'thing', collection: @owns
+- if @owns.present?
+  ul.contents = render partial: 'thing', collection: @owns
+- else
+  section.contents = render 'shared/nothing'
 
 = paginate @owns

@@ -1,3 +1,6 @@
-ul.contents = render partial: 'thing', collection: @fancies
+- if @fancies.present?
+  ul.contents = render partial: 'thing', collection: @fancies
+- else
+  section.contents = render 'shared/nothing'
 
 = paginate @fancies

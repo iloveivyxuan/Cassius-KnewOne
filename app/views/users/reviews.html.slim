@@ -1,3 +1,6 @@
-section.contents = render @reviews
+- if @reviews.present?
+  section.contents = render @reviews
+- else
+  section.contents = render 'shared/nothing'
 
 = paginate @reviews

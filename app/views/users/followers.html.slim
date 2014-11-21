@@ -1,3 +1,6 @@
-ul.contents = render @followers
+- if @followers.present?
+  ul.contents = render @followers
+- else
+  section.contents = render 'shared/nothing'
 
 = paginate @followers
