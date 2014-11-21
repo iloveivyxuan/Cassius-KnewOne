@@ -1,13 +1,40 @@
-= simple_form_for [:haven, @article], html: {class: "edit_post"} do |f|
-  .form-group
-    = hidden_field_tag 'article[author]', @article.author.id.to_s, id: 'author_id'
-    input#author_autocomplete.form-control placeholder="用户昵称" value="#{@article.author.name}"
-  = f.input :title, label: false, placeholder: "标题"
-  = f.input :content, as: :hidden
-  = render 'shared/editor'
-  = f.button :submit
+.spinner-fullscreen
+  em 正在加载
+= form_for [:haven, @article], html: {class: "editor", id: "form-article"} do |f|
+  .editor-menu
+    p.editor-target
+      | 写文章－精选
+    output
+    .pull-right
+      button.editor-help-toggle type="button" data-toggle="modal" data-target="#editor-help"
+        i.fa.fa-question
+        | 帮助
+      button.editor-close type="button" 退出
+      button.editor-drop type="button" 舍弃
+      button.editor-save type="button" 保存
+      button.editor-submit type="submit" 发布
+  article.editor-content.article
+    header
+      = f.text_field :title, class: "title", required: true, autocomplete: "off", autofocus: "true", placeholder: "标题"
+      .editor-metas
+        .form-group
+          label 作者：
+          = hidden_field_tag 'article[author]', @article.author.id.to_s, id: 'author_id'
+          input#author_autocomplete.form-control placeholder="用户昵称" value="#{@article.author.name}"
+    .body#form-article-body
+      p
+        br
+    = f.hidden_field :content
+= attachment_tag target: "#pictureBtn", edit: "insertImage"
+= render 'shared/editor_help'
 
 - content_for :script do
   javascript:
-    Making.Editor('#article_content');
-    Making.UserFuzzy('#author_autocomplete', '#author_id');
+    new Making.Views.Editor({
+      el: '#form-article',
+      model: new Making.Models.Editor(),
+      mode: 'standalone',
+      type: 'article',
+      placeholder: '正文'
+    });
+    Making.UserFuzzy('#author_autocomplete', '[name="article[author]"]');
