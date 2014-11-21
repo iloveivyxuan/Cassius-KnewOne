@@ -176,8 +176,11 @@ html[class^="users_"] {
         }
       }
 
-      .info-friendship {
+      .info-links + .info-friendship {
         margin-top: 20px;
+      }
+
+      .info-friendship {
         line-height: 1;
         background: $gray-lighter;
 
