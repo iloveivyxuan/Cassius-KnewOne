@@ -1,4 +1,4 @@
-- show_follow_btn ||= user_signed_in?
+- show_follow_btn = user_signed_in? if show_follow_btn.nil?
 li.author
   = link_to user, target: '_blank' do
     = user_avatar(user, :small)
