@@ -85,6 +85,11 @@
             i.fa.fa-tint
             span = @user.groups_count
             | 小组
+        = li false, class: 'nav-topics'
+          = link_to [:topics, @user]
+            i.fa.fa-leaf
+            span = @user.topics_count
+            | 话题
         = li action_name == 'activities', class: 'nav-activities'
           = link_to [:activities, @user]
             i.fa.fa-bars

@@ -305,6 +305,12 @@ html[class^="users_"] {
               &.nav-lists a {
                 @include plain-link($orange);
               }
+
+              &.nav-topics {
+                @include from-breakpoint(sm) {
+                  display: none;
+                }
+              }
             }
           }
 
