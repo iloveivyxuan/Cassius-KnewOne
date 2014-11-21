@@ -35,7 +35,8 @@
       model: new Making.Models.Editor(),
       mode: 'standalone',
       type: 'article',
-      buttons: ['header1', 'header2', 'anchor', 'bold', 'italic', 'strikethrough', 'quote'],
-      placeholder: '正文'
+      buttons: ['header1', 'header2', 'anchor', 'bold', 'italic', 'strikethrough', 'orderedlist', 'unorderedlist', 'quote'],
+      placeholder: '正文',
+      imageSize: 'huge'
     });
     Making.UserFuzzy('#author_autocomplete', '[name="article[author]"]');
