@@ -17,9 +17,11 @@ do (exports = Making) ->
       'click .editor-submit' : 'submit'
       'submit .editor-form'  : 'submit'
 
+    defaults:
+      buttons: ['anchor', 'bold', 'italic', 'strikethrough', 'quote']
+
     initialize: (options) ->
-      @mode        = options.mode
-      @type        = options.type
+      @options     = $.extend({}, @defaults, options)
       @$spinner    = $('.spinner-fullscreen')
       @$submit     = @$('.editor-submit')
       @$drop       = @$('.editor-drop')
@@ -27,25 +29,24 @@ do (exports = Making) ->
       @$output     = @$('.editor-menu output')
       @$content    = @$('.editor-content')
       @$body       = @$content.children('.body')
-      @$fields     = @$content.find('[name]').filter(":not(#{options.excludeField})")
-      @placeholder = options.placeholder
-      @$bodyField  = if options.bodyField? then $(options.bodyField) else
+      @$fields     = @$content.find('[name]').filter(":not(#{@options.excludeField})")
+      @$bodyField  = if @options.bodyField? then $(@options.bodyField) else
                       @$('[name$="[content]"]')
       @$help       = $('.editor-help')
       @$helpToggle = @$('.editor-help-toggle')
       @$imageField = $('#file')
       @$form       = $(@$bodyField[0].form)
       @draft       = new exports.Models.Draft
-                      type: @type
+                      type: @options.type
                       id: exports.user + '+draft+' +
                             encodeURIComponent(location.pathname) +
                             '+#' + (@el.id ? '')
                       link: location.href
-      @beforeSubmit = options.beforeSubmit
+      @beforeSubmit = @options.beforeSubmit
       @delay        = 1500
       @typingTime   = 0
 
-      if @mode is 'complemental'
+      if @options.mode is 'complemental'
         @$origin = $(options.origin)
         @$toggle = $(options.toggle)
 
@@ -55,7 +56,7 @@ do (exports = Making) ->
       @render()
 
     render: ->
-      switch @mode
+      switch @options.mode
 
         when 'standalone'
           that = @
@@ -162,9 +163,9 @@ do (exports = Making) ->
         that = @
 
         @editor = new MediumEditor @$body,
-          buttons: ['anchor', 'bold', 'italic', 'strikethrough', 'quote']
+          buttons: @options.buttons
           buttonLabels: 'fontawesome'
-          placeholder: @placeholder
+          placeholder: @options.placeholder
           anchorInputPlaceholder: '在这里插入链接'
           targetBlank: true
 
@@ -296,7 +297,7 @@ do (exports = Making) ->
       }))
 
     save: (callback) ->
-      switch @mode
+      switch @options.mode
         when 'standalone'
           @setContent()
         when 'complemental'
@@ -344,7 +345,7 @@ do (exports = Making) ->
       if confirm '确定删除草稿吗？'
         callback = null
 
-        switch @mode
+        switch @options.mode
           when 'standalone'
             callback = ->
               window.close()
@@ -361,7 +362,7 @@ do (exports = Making) ->
           success: callback
 
     submit: (event) ->
-      switch @mode
+      switch @options.mode
         when 'standalone'
           clearTimeout(@timeout)
           body = $('<div>')
