@@ -21,8 +21,6 @@ section#menu
       li
         - if user_signed_in?
           = link_to_with_icon "发布", "fa fa-plus fa-fw", "#", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}
-        - elsif browser.wechat?
-          = link_to_with_icon "发布", "fa fa-plus fa-fw", user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base')
         - else
           = link_to_with_icon "发布", "fa fa-plus fa-fw", "#", data: {toggle: "modal", target: "#login-modal"}
       - if user_signed_in?
@@ -116,7 +114,5 @@ section#menu
   footer
     - if user_signed_in?
       = link_to_with_icon "登出", "fa fa-sign-out fa-fw", destroy_user_session_path, class: "btn btn-danger btn-block", method: :delete
-    - elsif browser.wechat?
-      = link_to_with_icon "登录", "fa fa-sign-in fa-fw", user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base'), class: "btn btn-success btn-block"
     - else
       = link_to_with_icon "登录", "fa fa-sign-in fa-fw", "#", class: "btn btn-success btn-block", data: {toggle: "modal", target: "#login-modal"}

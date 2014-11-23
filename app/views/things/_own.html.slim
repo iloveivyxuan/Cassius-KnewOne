@@ -1,17 +1,11 @@
-- if browser.wechat? && !user_signed_in?
-  = link_to user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base') do
-    i.fa.fa-circle-o
-    = tp.owners_count
-    small 拥有
-- else
-  - link_path = user_signed_in? ? own_thing_path(tp.thing) : "#"
-  - data = user_signed_in? ? {} : {toggle: "modal", target: "#login-modal"}
-  - data.merge!({category: "own", action: "own_thing", label: "own_thing+#{tp.path}"})
-  - title = tp.owned? ? "取消拥有此产品" : "拥有此产品"
-  - own_class = tp.owned? ? "owned" : "unowned"
+- link_path = user_signed_in? ? own_thing_path(tp.thing) : "#"
+- data = user_signed_in? ? {} : {toggle: "modal", target: "#login-modal"}
+- data.merge!({category: "own", action: "own_thing", label: "own_thing+#{tp.path}"})
+- title = tp.owned? ? "取消拥有此产品" : "拥有此产品"
+- own_class = tp.owned? ? "owned" : "unowned"
 
-  = link_to link_path, remote: true, method: :post, class: "track_event #{own_class}", title: title, data: data do
-    i.fa.fa-check-circle-o
-    i.fa.fa-circle-o
-    = tp.owners_count
-    small 拥有
+= link_to link_path, remote: true, method: :post, class: "track_event #{own_class}", title: title, data: data do
+  i.fa.fa-check-circle-o
+  i.fa.fa-circle-o
+  = tp.owners_count
+  small 拥有
