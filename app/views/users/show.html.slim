@@ -70,3 +70,6 @@ ul.contents
         i.fa.fa-chevron-right
 
       ul.activities = render @activities
+  - else
+    li.contents-activities
+      = render 'shared/nothing'
