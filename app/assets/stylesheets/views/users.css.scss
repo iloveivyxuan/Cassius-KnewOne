@@ -672,7 +672,7 @@ html.users_show {
 
         position: relative;
         display: block;
-        padding: 40px (90px - $gutter-width) 40px 90px;
+        padding: 30px (90px - $gutter-width) 30px 90px;
         border-top: 1px dashed $iron;
 
         &:first-child {
@@ -706,7 +706,7 @@ html.users_show {
         .contents-more {
           position: absolute;
           z-index: 1;
-          top: 40px;
+          top: 30px;
           right: 0;
 
           width: 90px;
