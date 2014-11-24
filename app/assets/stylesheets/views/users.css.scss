@@ -185,7 +185,7 @@ html[class^="users_"] {
 
       .info-friendship {
         line-height: 1;
-        background: $gray-lighter;
+        background: white;
 
         @include to-breakpoint(xs) {
           display: none;
@@ -193,6 +193,8 @@ html[class^="users_"] {
 
         @include from-breakpoint(sm) {
           @include to-breakpoint(sm) {
+            background: $gray-lighter;
+
             &:not(.info-friendship--self) {
               display: inline-block;
               vertical-align: middle;
@@ -202,24 +204,30 @@ html[class^="users_"] {
         }
 
         @include from-breakpoint(md) {
-          background: white;
           border-top: 1px dashed $gray-lighter;
         }
 
         > a {
           display: inline-block;
           width: 50%;
-          padding: 7px 0;
+          padding: 15px 0;
 
           text-align: center;
           font-family: lato-thin, sans-serif;
           font-size: 10px;
-          color: $text-color;
+          color: $blue-dark;
 
           span {
             display: block;
             margin-top: 8px;
             font-size: 18px;
+          }
+
+          @include from-breakpoint(sm) {
+            @include to-breakpoint(sm) {
+              padding: 7px 0;
+              color: $text-color;
+            }
           }
         }
       }
