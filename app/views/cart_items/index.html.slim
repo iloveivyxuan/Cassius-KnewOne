@@ -7,8 +7,6 @@ header.page-header
     | 购物车
 
 = render 'shared/sell_notice'
-p.alert.alert-warning
-  | 受 APEC 会议影响，近期寄往北京、天津、河北、内蒙古，或者其他经转省份的快递，可能出现时限延长情况，敬请谅解。
 
 = form_tag new_order_path, method: :get, authenticity_token: false
   fieldset
