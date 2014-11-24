@@ -28,6 +28,7 @@ html[class^="users_"] {
 
       @include from-breakpoint(md) {
         position: fixed;
+        z-index: 2;
         top: 45px;
         width: $header-width;
         margin-left: -$header-width;
@@ -182,10 +183,6 @@ html[class^="users_"] {
             background: $text-color;
           }
         }
-
-        @include from-breakpoint(md) {
-          display: none;
-        }
       }
 
       .info-links + .info-friendship {
@@ -332,54 +329,24 @@ html[class^="users_"] {
           }
 
           @include from-breakpoint(sm) {
-            @include to-breakpoint(sm) {
-              display: table;
-              table-layout: fixed;
-              width: 100%;
-
-              > li {
-                display: table-cell;
-                width: auto;
-                text-align: center;
-
-                a {
-                  @include plain-link($text-color);
-
-                  display: inline-block;
-                  width: 100%;
-                  padding: 15px 0;
-
-                  span {
-                    display: none;
-                  }
-                }
-
-                &.active {
-                  background: $smoke-white;
-                  border-top: 3px solid $blue;
-                }
-              }
-            }
-          }
-
-          @include from-breakpoint(md) {
-            background: white;
+            display: table;
+            table-layout: fixed;
+            width: 100%;
 
             > li {
-              text-align: right;
-              border-top: 1px dashed $gray-lighter;
+              display: table-cell;
+              width: auto;
+              text-align: center;
 
-              &:first-child {
-                border-top: none;
-              }
+              background: white;
 
               a {
                 @include plain-link($text-color);
 
-                display: block;
-                padding: 10px 55px 10px 0;
+                display: inline-block;
+                width: 100%;
+                padding: 15px 0;
 
-                i,
                 span {
                   display: none;
                 }
@@ -387,13 +354,16 @@ html[class^="users_"] {
 
               &.active {
                 background: $smoke-white;
-                border-left: 3px solid $blue;
-              }
-
-              &:hover {
-                border-left: 3px solid $blue;
+                border-top: 3px solid $blue;
               }
             }
+          }
+
+          @include from-breakpoint(md) {
+            position: fixed;
+            top: 45px;
+            max-width: $wrapper-max-width;
+            padding-left: $header-width;
           }
         }
 
@@ -464,7 +434,7 @@ html[class^="users_"] {
       background: $smoke-white;
 
       @include from-breakpoint(md) {
-        margin-top: 30px;
+        margin-top: 50px;
       }
 
       .thing {
