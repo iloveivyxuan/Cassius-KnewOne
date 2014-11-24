@@ -13,7 +13,7 @@ html[class^="users_"] {
     @include wrapper(empty);
 
     $wrapper-max-width: 1280px;
-    $header-width: 320px;
+    $header-width: 280px;
 
     max-width: $wrapper-max-width;
 
