@@ -20,7 +20,7 @@
     = f.input :street, required: true, wrapper_html: {class: 'col-md-12'}
   .row
     = f.input :name, required: true, wrapper_html: {class: 'col-md-6'}
-    = f.input :phone, required: true, wrapper_html: {class: 'col-md-6'}
+    = f.input :phone, required: true, type: 'tel', maxlength: 11, wrapper_html: {class: 'col-md-6'}
   .row
     = f.input :default, as: :boolean, wrapper_html: {class: 'col-md-12'}
   p.help-block

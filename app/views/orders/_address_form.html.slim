@@ -18,7 +18,7 @@ li.radio
         .col-xs-12.col-md-3
           = address_form.input :name, required: false, label: false, placeholder: '联系人'
         .col-xs-12.col-md-3
-          = address_form.input :phone, required: false, label: false, placeholder: '电话'
+          = address_form.input :phone, required: false, type: 'tel', maxlength: 11, label: false, placeholder: '电话'
       .row
         .col-xs-12
           = address_form.input :default, label: '设为首选地址', as: :boolean
