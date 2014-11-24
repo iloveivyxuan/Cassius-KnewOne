@@ -195,6 +195,7 @@ html[class^="users_"] {
 
         @include to-breakpoint(xs) {
           display: none;
+          border-top: 1px dashed $iron;
         }
 
         @include from-breakpoint(sm) {
