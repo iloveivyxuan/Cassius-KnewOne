@@ -1,6 +1,7 @@
 class Brand
   include Mongoid::Document
   include Mongoid::Slug
+  include Mongoid::Paranoia
 
   field :zh_name, type: String
   field :en_name, type: String
