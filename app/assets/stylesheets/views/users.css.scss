@@ -772,18 +772,10 @@ html.users_lists,
 html.users_groups,
 html.users_topics {
   @include from-breakpoint(sm) {
-    @include to-breakpoint(sm) {
-      .contents {
-        .topic:first-child {
-          margin-top: 0;
-        }
+    .contents {
+      .topic:first-child {
+        margin-top: 0;
       }
-    }
-  }
-
-  @include from-breakpoint(md) {
-    #wrapper > .contents {
-      margin-top: 30px + 40px;
     }
   }
 }
@@ -865,40 +857,29 @@ html.users_followings {
       }
 
       @include from-breakpoint(sm) {
-        @include to-breakpoint(sm) {
-          padding: 15px 20px 0;
-          background: $smoke-white;
-          text-align: right;
+        padding: 15px 20px 0;
+        background: $smoke-white;
+        text-align: right;
 
-          > ul {
-            display: inline-block;
+        > ul {
+          display: inline-block;
 
-            > li.active {
-              background: $vulcan;
+          > li.active {
+            background: $vulcan;
 
-              a {
-                @include plain-link($gray-lighter);
-              }
+            a {
+              @include plain-link($gray-lighter);
             }
           }
         }
       }
 
       @include from-breakpoint(md) {
-        position: absolute;
-        bottom: 100%;
-        left: 350px;
+        margin-top: 50px;
+        padding: 30px 30px 0;
 
-        > ul {
-          > li {
-            border-top: 3px solid transparent;
-            background: white;
-
-            &.active {
-              border-top-color: $blue;
-              background: $smoke-white;
-            }
-          }
+        & + .contents {
+          margin-top: 0;
         }
       }
     }
