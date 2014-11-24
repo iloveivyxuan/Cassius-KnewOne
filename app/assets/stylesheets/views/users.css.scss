@@ -148,14 +148,8 @@ html[class^="users_"] {
         }
 
         .info-location {
-          margin-right: 10px;
-
-          @include from-breakpoint(sm) {
-            @include to-breakpoint(sm) {
-              display: block;
-              margin: 0 0 10px;
-            }
-          }
+          display: block;
+          margin: 20px 0 0;
         }
 
         a {
@@ -163,7 +157,7 @@ html[class^="users_"] {
 
           line-height: 32px;
           width: 32px;
-          margin-right: 10px;
+          margin-left: 20px;
           text-align: center;
 
           border-radius: 50%;

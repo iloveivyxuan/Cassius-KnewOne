@@ -24,12 +24,12 @@
       - links_html = user_links(@user)
       - if @user.location? || links_html.present?
         li.info-links
+          = links_html
+
           - if @user.location.present?
             span.info-location
               i.fa.fa-map-marker
               = @user.location
-
-          = links_html
 
       li.info-friendship class=('info-friendship--self' if @user == current_user)
         = link_to followers_user_path(@user), class: 'info-followers'
