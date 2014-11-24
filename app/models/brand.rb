@@ -27,10 +27,11 @@ class Brand
   def brand_text
     case country
     when "CN"
-      return (zh_name && en_name) ? "#{zh_name} - #{en_name}" : (zh_name || en_name)
+      brand_text = (zh_name && en_name) ? "#{zh_name} - #{en_name}" : (zh_name || en_name)
     else
-      return en_name
+      brand_text = en_name
     end
+    brand_text.nil? ? zh_name : brand_text
   end
 
   def tags
