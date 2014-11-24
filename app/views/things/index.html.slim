@@ -10,8 +10,8 @@
       - if @brand
         = render 'brand_breadcrumb'
       - elsif @tag
-        - zipped_categories = @tag.categories.inner.map(&:category).zip(@tag.categories)
-        = render 'category_tag_breadcrumb', zipped: zipped_categories
+        - inner = @tag.categories.inner
+        = render 'category_tag_breadcrumb', inner: inner
       - elsif @category
         - if (primary ||= @category.category)
           = link_to primary.name, category_things_path(primary), class: 'breadcrumb'

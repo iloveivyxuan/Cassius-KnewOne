@@ -1,11 +1,9 @@
-- zipped.each do |category|
+- inner.each do |category|
   .category-tag
     ol.breadcrumb
-      - if category.first
-        li
-          = link_to category.first.name, category_things_path(category.first)
-      - if category.last
-        li
-          = link_to category.last.name, category_things_path(category.last)
+      li
+        = link_to category.category.name, category_things_path(category.category)
+      li
+        = link_to category.name, category_things_path(category)
       li.active
         = @tag.name
