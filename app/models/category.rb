@@ -22,6 +22,7 @@ class Category
 
   scope :prior, -> { desc(:priority, :things_count) }
   scope :primary, -> { where(category: nil) }
+  scope :inner, -> { ne(category: nil) }
 
   has_and_belongs_to_many :tags
 

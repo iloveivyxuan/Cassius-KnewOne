@@ -24,7 +24,7 @@ class Tag
   end
 
   def categories_text
-    self.categories.map(&:name).join(",")
+    self.categories.inner.map(&:name).join(",")
   end
 
   def add_belonging_tags(category)
