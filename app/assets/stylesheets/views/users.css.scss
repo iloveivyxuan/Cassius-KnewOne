@@ -63,28 +63,39 @@ html[class^="users_"] {
         position: absolute;
         top: 27px;
         left: 90px;
-        width: 140px;
-
-        font-size: 14px;
-
-        .info-gender {
-          margin-left: 10px;
-        }
+        width: 240px;
 
         @include from-breakpoint(sm) {
           top: 40px;
-
-          @include to-breakpoint(sm) {
-            left: 230px;
-          }
+          left: 230px;
+          width: 360px;
         }
 
         @include from-breakpoint(md) {
           left: 120px;
+          width: 140px;
+        }
+
+        font-size: 14px;
+
+        .info-name {
+          @include text-overflow;
+
+          display: inline-block;
+          vertical-align: middle;
+
+          max-width: 116px;
+          max-width: calc(100% - 22px);
+        }
+
+        .info-gender {
+          vertical-align: middle;
+          margin-left: 10px;
         }
 
         .info-level {
           margin-top: 10px;
+          width: 140px;
         }
       }
 

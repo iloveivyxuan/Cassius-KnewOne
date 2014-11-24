@@ -8,9 +8,9 @@
 
       li.info-name-and-level
         - if current_user.try(:role?, :editor)
-          = link_to @user.name, [:haven, @user], title: '内幕', class: 'info-name'
+          = link_to @user.name, [:haven, @user], title: "#{@user.name}的内幕", class: 'info-name'
         - else
-          span.info-name = @user.name
+          span.info-name title=@user.name = @user.name
 
         - if @user.gender.present?
           span.info-gender = symbolize_gender(@user.gender)
