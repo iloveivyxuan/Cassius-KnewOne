@@ -4,17 +4,18 @@
 - content_for :content do
   header
     ul.info
-      li.info-name
+      li.info-avatar = user_avatar(@user, :small)
+
+      li.info-name-and-level
         - if current_user.try(:role?, :editor)
-          = link_to @user.name, [:haven, @user], title: '内幕'
+          = link_to @user.name, [:haven, @user], title: '内幕', class: 'info-name'
         - else
-          = @user.name
+          span.info-name = @user.name
 
         - if @user.gender.present?
           span.info-gender = symbolize_gender(@user.gender)
 
-      li.info-avatar = user_avatar(@user, :small)
-      li.info-level = render 'shared/level', user: @user
+        .info-level = render 'shared/level', user: @user
 
       - if @user.description.present?
         li.info-description

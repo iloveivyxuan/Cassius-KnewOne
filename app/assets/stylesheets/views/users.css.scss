@@ -59,10 +59,11 @@ html[class^="users_"] {
         }
       }
 
-      .info-name {
+      .info-name-and-level {
         position: absolute;
         top: 27px;
         left: 90px;
+        width: 140px;
 
         font-size: 14px;
 
@@ -81,25 +82,9 @@ html[class^="users_"] {
         @include from-breakpoint(md) {
           left: 120px;
         }
-      }
 
-      .info-level {
-        position: absolute;
-        top: 55px;
-        left: 90px;
-
-        width: 140px;
-
-        @include from-breakpoint(sm) {
-          top: 70px;
-
-          @include to-breakpoint(sm) {
-            left: 230px;
-          }
-        }
-
-        @include from-breakpoint(md) {
-          left: 120px;
+        .info-level {
+          margin-top: 10px;
         }
       }
 
