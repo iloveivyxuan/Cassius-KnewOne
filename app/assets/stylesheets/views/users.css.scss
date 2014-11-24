@@ -44,13 +44,13 @@ html[class^="users_"] {
         }
 
         @include from-breakpoint(sm) {
+          img {
+            width: 90px;
+            height: 90px;
+          }
+
           @include to-breakpoint(sm) {
             padding-left: 70px;
-
-            img {
-              width: 90px;
-              height: 90px;
-            }
           }
         }
 
@@ -71,10 +71,15 @@ html[class^="users_"] {
         }
 
         @include from-breakpoint(sm) {
+          top: 40px;
+
           @include to-breakpoint(sm) {
-            top: 40px;
             left: 230px;
           }
+        }
+
+        @include from-breakpoint(md) {
+          left: 120px;
         }
       }
 
@@ -83,13 +88,18 @@ html[class^="users_"] {
         top: 55px;
         left: 90px;
 
-        width: 160px;
+        width: 140px;
 
         @include from-breakpoint(sm) {
+          top: 70px;
+
           @include to-breakpoint(sm) {
-            top: 70px;
             left: 230px;
           }
+        }
+
+        @include from-breakpoint(md) {
+          left: 120px;
         }
       }
 
