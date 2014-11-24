@@ -373,7 +373,7 @@ html[class^="users_"] {
             max-width: $wrapper-max-width - $header-width;
             margin-left: $header-width;
 
-            box-shadow: 0 0 8px rgba(0, 0, 0, .2);
+            box-shadow: 0 3px 5px rgba(0, 0, 0, .1);
           }
         }
 
