@@ -369,6 +369,7 @@ html[class^="users_"] {
           @include from-breakpoint(md) {
             position: fixed;
             top: 45px;
+            width: calc(100% - #{$header-width});
             max-width: $wrapper-max-width - $header-width;
             margin-left: $header-width;
 
