@@ -592,6 +592,10 @@ html[class^="users_"] {
             font-family: FontAwesome;
             font-size: 14px;
           }
+
+          p {
+            @include multi-line-text-overflow(3, 1.4);
+          }
         }
 
         .thing_list-info {
