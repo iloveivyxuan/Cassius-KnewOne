@@ -83,7 +83,7 @@ html.thing_lists_show {
           font-size: 16px;
           line-height: 60px;
 
-          border-top: 1px dashed #ccc;
+          border-top: 1px dashed $iron;
           background: $body-bg;
         }
       }
@@ -99,7 +99,7 @@ html.thing_lists_show {
           width: auto;
           height: 60px;
 
-          border: 1px solid #ccc;
+          border: 1px solid $iron;
           box-shadow: 0 0 5px rgba(black, .2);
         }
 
