@@ -363,8 +363,10 @@ html[class^="users_"] {
           @include from-breakpoint(md) {
             position: fixed;
             top: 45px;
-            max-width: $wrapper-max-width;
-            padding-left: $header-width;
+            max-width: $wrapper-max-width - $header-width;
+            margin-left: $header-width;
+
+            box-shadow: 0 0 8px rgba(0, 0, 0, .2);
           }
         }
 
