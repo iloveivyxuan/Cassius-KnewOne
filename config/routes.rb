@@ -162,6 +162,7 @@ Making::Application.routes.draw do
 
     member do
       get 'activities'
+      get 'lists'
       post 'fancy'
       post 'own'
       get 'buy'
