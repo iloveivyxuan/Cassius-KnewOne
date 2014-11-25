@@ -18,7 +18,7 @@ table.table
     - @brands.each do |b|
       tr
         th= image_tag b.logo.url(:small)
-        th= link_to b.brand_text, things_path(brand: b.id)
+        th= link_to b.brand_text, brand_things_path(b.id)
         th= b.zh_name
         th= b.en_name
         th= b.things.size
