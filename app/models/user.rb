@@ -118,6 +118,7 @@ class User
   validates_format_of :unconfirmed_email, with: email_regexp, allow_blank: true
 
   index confirmation_token: 1
+  index unconfirmed_email: 1
 
   mount_uploader :avatar, AvatarUploader
 
