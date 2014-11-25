@@ -28,6 +28,10 @@ figure.thing {
   padding: 1em;
   @include border-radius(8px);
 
+  a {
+    color: gray;
+  }
+
   @media (min-width: $screen-md-min) {
     &:hover {
       .thing_fancy {

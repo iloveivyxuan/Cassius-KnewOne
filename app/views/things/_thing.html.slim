@@ -3,12 +3,15 @@
     li
       figure class="thing"
         - if request.path == '/search.js'
-          .brand
-            - unless thing.brand_name.blank?
-              | 品牌
-          .brand-text
-            - unless thing.brand_name.blank?
-              = thing.brand_name
+          - if thing.brand_name.blank?
+            .brand
+            .brand-text
+          - else
+            = link_to brand_things_path(thing.brand.id.to_s) do
+              .brand
+                | 品牌
+              .brand-text
+                = thing.brand_name
           hr
         - if tp.self_run?
           = link_to tp.thing, class: "pre_ribbon #{tp.stage}" do
