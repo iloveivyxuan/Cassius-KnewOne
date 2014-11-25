@@ -294,7 +294,7 @@ html[class^="users_"] {
               text-align: center;
 
               border-top: 1px solid $gray-lighter;
-              &:nth-child(-n + 3) { border: none; }
+              &:nth-child(-n + 4) { border: none; }
 
               a {
                 @include plain-link($blue-dark);
