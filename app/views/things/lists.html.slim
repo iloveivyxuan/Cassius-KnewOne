@@ -1,0 +1,14 @@
+- page_title "#{@thing.title} 的列表"
+= page_css 'things'
+
+.container
+  nav
+    = link_to @thing
+      i.fa.fa-angle-left
+      | 回产品首页
+
+  ul
+    - @lists.each do |list|
+      li = render list
+
+  = paginate @lists
