@@ -108,6 +108,12 @@ html.desktop {
       }
     }
 
+    &.review {
+      > header h5 a {
+        color: $brand-primary;
+      }
+    }
+
     > figure {
       @include clearfix;
       margin-bottom: 10px;
