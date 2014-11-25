@@ -29,7 +29,7 @@
         img#logo src=(@brand ? @brand.logo.url : @category.cover.url)
       .col-md-9
         - description = @brand.try(:description) || @category.try(:description)
-        - description = "速速建设中 =͟͟͞͞( •̀д•́)   请您稍等！" if description.blank?
+        - description = "编辑正速速建设此页中 =͟͟͞͞( •̀д•́)    敬请期待" if description.blank?
         - unless description.blank?
           p#description= description
         - if @brand
