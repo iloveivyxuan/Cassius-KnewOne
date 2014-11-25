@@ -204,7 +204,7 @@ class ThingsController < ApplicationController
   end
 
   def lists
-    @lists = @thing.lists.hot
+    @lists = @thing.lists.hot.gte(size: 4)
     @lists = @lists.page(params[:page]).per(24)
 
     respond_to do |format|
