@@ -1,0 +1,52 @@
+- provide :page_class, 'entries_special'
+- page_css 'entries_special'
+
+article.article
+
+  nav
+    - if browser.mobile?
+      = link_to_with_icon "精选首页", "fa fa-caret-left", explore_path
+    - else
+      = link_to "#" do
+        img src=""
+    em KnewOne talk
+
+  header
+    h1.title = post.title
+    .clearfix
+      ul.metas.pull-left
+        li
+          label.avatar
+            = image_tag author.avatar.url(:tiny), class: 'img-circle'
+            = link_to author.name, author, data: {"profile-popover" => author.id.to_s}
+        li = time_ago_tag entry.created_at
+      ul.metas.pull-right
+        li
+          i.fa.fa-thumbs-o-up
+          = post.lovers_count
+        li
+          i.fa.fa-comment-o
+          = post.comments.size
+
+  .cover= image_tag post.cover.url
+
+  .summary= post.summary
+
+  section.content= sanitize post.content
+
+  .actions
+    .interactions id="article_#{post.id.to_s}"
+      = render partial: 'shared/voting', locals: {object: post}
+    = render "shared/share_external", type: entry.category, title: entry_title(entry)
+
+  ul.pager
+    - if previous_entry = entry.previous
+      li.previous = link_to "#{entry_title(previous_entry)}", previous_entry
+    - if next_entry = entry.next
+      li.next = link_to "#{entry_title(next_entry)}", next_entry
+
+  = render 'shared/comments', post: post, id: "comments", auth: true
+
+- content_for :script do
+  javascript:
+    Making.Comments("#comments");

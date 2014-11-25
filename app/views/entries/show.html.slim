@@ -11,4 +11,7 @@ img.hidden.sharing_cover src=@entry.cover.url(:normal)
 - when Special
   = render 'entries/special', entry: @entry, post: post, author: author
 - else
-  = render 'entries/article', entry: @entry, post: post, author: author
+  - if @entry.category == '专题'
+    = render 'entries/article_special', entry: @entry, post: post, author: author
+  - else
+    = render 'entries/article', entry: @entry, post: post, author: author

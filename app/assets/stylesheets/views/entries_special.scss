@@ -1,0 +1,75 @@
+@import '../base';
+
+html.entries_special {
+  #wrapper {
+    background-color: #fff;
+  }
+
+  .article {
+
+    > nav {
+      @include clearfix;
+
+      > a {
+        background-color: darken($smoke-white, 2%);
+        color: $text-color;
+        float: left;
+        height: 56px;
+        line-height: 56px;
+        text-align: center;
+        width: 40%;
+      }
+
+      > em {
+        background-color: $ghost-white;
+        color: $text-color;
+        float: right;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: bold;
+        height: 56px;
+        line-height: 56px;
+        text-align: center;
+        width: 60%;
+      }
+    }
+
+    > header {
+      margin-bottom: 0;
+      padding: 30px;
+
+      .title {
+        border-bottom: 0;
+        margin-bottom: 10px;
+        padding-bottom: 0;
+        text-align: left;
+      }
+    }
+
+    > .summary {
+      background-color: darken($smoke-white, 2%);
+      color: $text-color;
+      padding: 30px;
+    }
+
+    > .content {
+      margin-bottom: 0;
+      padding: 30px;
+    }
+
+    > .actions {
+      margin-bottom: 60px;
+      padding: 0;
+    }
+
+    > .pager {
+      border-top: none;
+      margin-bottom: 10px;
+      padding: 0 30px;
+    }
+
+    .comments {
+      border-top: $border-dashed;
+    }
+  }
+}
