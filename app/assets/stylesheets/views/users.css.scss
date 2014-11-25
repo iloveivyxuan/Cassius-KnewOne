@@ -632,6 +632,12 @@ html[class^="users_"] {
 
       .activity {
         padding: 15px;
+        border-bottom-color: $iron;
+
+        @include to-breakpoint(xs) {
+          padding-top: 20px;
+          padding-bottom: 20px;
+        }
       }
 
       .review,
