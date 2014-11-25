@@ -436,6 +436,11 @@ html[class^="users_"] {
               border-top-color: $blue;
               background: $smoke-white;
             }
+
+            @include to-breakpoint(xs) {
+              background: $smoke-white;
+              &.active { background: white; }
+            }
           }
         }
       }
@@ -783,6 +788,10 @@ html.users_followings {
         width: 100%;
         margin-top: 20px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+
+        &:first-child {
+          margin-top: 0;
+        }
       }
 
       @include from-breakpoint(sm) {
