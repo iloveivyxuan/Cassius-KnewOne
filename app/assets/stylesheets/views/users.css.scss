@@ -191,17 +191,14 @@ html[class^="users_"] {
 
       .info-friendship {
         line-height: 1;
-        background: white;
+        background: $smoke-white;
 
         @include to-breakpoint(xs) {
           display: none;
-          border-top: 1px dashed $iron;
         }
 
         @include from-breakpoint(sm) {
           @include to-breakpoint(sm) {
-            background: $gray-lighter;
-
             &:not(.info-friendship--self) {
               display: inline-block;
               vertical-align: middle;
@@ -211,6 +208,7 @@ html[class^="users_"] {
         }
 
         @include from-breakpoint(md) {
+          background: white;
           border-top: 1px dashed $gray-lighter;
         }
 
@@ -233,7 +231,6 @@ html[class^="users_"] {
           @include from-breakpoint(sm) {
             @include to-breakpoint(sm) {
               padding: 7px 0;
-              color: $text-color;
             }
           }
         }
