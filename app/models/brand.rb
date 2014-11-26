@@ -53,5 +53,6 @@ class Brand
 
   def self.update_things_brand_name
     Brand.all.each { |b| b.things.set(brand_name: b.brand_text) }
+    Thing.where(brand_id: nil).update(brand_name: "")
   end
 end
