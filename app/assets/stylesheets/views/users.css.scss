@@ -287,8 +287,6 @@ html[class^="users_"] {
 
           width: calc(100% - #{$header-width});
           max-width: $wrapper-max-width - $header-width;
-
-          box-shadow: 0 3px 5px rgba(0, 0, 0, .1);
         }
 
         li.active {
