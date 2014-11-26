@@ -137,6 +137,10 @@ class HomeController < ApplicationController
 
   def embed
     case params[:type]
+    when 'thing'
+      ids = params[:id].split(',')
+      @things = Thing.any_in(id: ids)
+      render partial: 'things/embed_thing', collection: @things, locals: { klass: (ids.size > 1) ? 'col-sm-6' : 'col-sm-12' }
     when 'list'
       @list = ThingList.find params[:id]
       render [@list], locals: { layout: browser.desktop? ? :quintet : :grid }

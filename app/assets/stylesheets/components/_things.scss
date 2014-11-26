@@ -365,3 +365,87 @@ article.thing {
     }
   }
 }
+
+figure.thing--embed {
+  padding: 0;
+
+  @media (min-width: $screen-sm-min) {
+    position: relative;
+
+    &.col-sm-6 {
+      figcaption {
+        padding: 0 0 55% 0;
+        top: 22.5%;
+        width: 55%;
+      }
+    }
+
+    &.col-sm-12 {
+      > a {
+        padding-bottom: 50%;
+      }
+
+      figcaption {
+        padding: 0 0 27.5% 0;
+        top: 22.5%;
+        width: 27.5%;
+      }
+    }
+  }
+
+  > a {
+    @include stretch_img;
+    display: block;
+  }
+
+  figcaption {
+    background-color: $smoke-white;
+    text-align: center;
+    padding: 1rem;
+
+    @media (max-width: $screen-xs-max) {
+      position: relative;
+
+      &::before {
+        border-color: transparent transparent $smoke-white transparent;
+        border-style: solid;
+        border-width: 10px;
+        content: '';
+        left: 50%;
+        margin-left: -10px;
+        position: absolute;
+        top: -20px;
+      }
+    }
+
+    @media (min-width: $screen-sm-min) {
+      height: 0;
+      opacity: .8;
+      position: absolute;
+    }
+
+    h5 {
+      margin: 0;
+      text-align: center;
+
+      a {
+        @include text-overflow;
+        color: $text-color;
+        display: block;
+        font-size: 20px;
+        line-height: 40px;
+        padding: 0 1rem;
+      }
+    }
+
+    em {
+      font-style: normal;
+      line-height: 40px;
+      padding: 0 .5rem;
+
+      .fa-heart { color: $red; }
+      .fa-check-circle-o { color: $blue-light; }
+      .fa-comment-o { color: $text-color; }
+    }
+  }
+}

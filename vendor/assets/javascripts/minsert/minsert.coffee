@@ -223,7 +223,7 @@ do ($ = jQuery) ->
             event.preventDefault()
 
             if content.indexOf('http') is 0
-              url  = content
+              url = content
 
               # KnewOne embed
               if /^(http(s)?:\/\/)?(www\.)?(knewone\.com)/.test(url)
@@ -232,7 +232,22 @@ do ($ = jQuery) ->
                 patternReview = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/things\/(.*)\/reviews\/([0-9a-z]{24})/
                 patternList   = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/lists\/([0-9a-z]{24})/
                 async         = true
-                if patternReview.test(url)
+                urls          = url.split(',')
+                isThings      = undefined
+                thingIds      = []
+
+                for url in urls
+                  if isThings is false then break
+                  do ->
+                    url = url.trim()
+                    isThings = patternThing.test(url)
+                    if isThings then thingIds.push(url.replace(patternThing, '$5'))
+
+                if isThings
+                  requestData =
+                    type: 'thing'
+                    id: thingIds.join(',')
+                else if patternReview.test(url)
                   requestData =
                     type: 'review'
                     id: url.replace(patternReview, '$6')
@@ -240,6 +255,7 @@ do ($ = jQuery) ->
                   requestData =
                     type: 'list'
                     id: url.replace(patternList, '$5')
+
                 $
                   .ajax
                     url: requestUrl

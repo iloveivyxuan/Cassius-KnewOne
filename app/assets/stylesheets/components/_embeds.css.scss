@@ -21,6 +21,11 @@
   text-align: center;
 }
 
+.knewone-embed--thing {
+  @include make-row;
+  border: none;
+}
+
 .knewone-embed--review {
   .review {
     @media (min-width: $screen-sm-min) {

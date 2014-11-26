@@ -1,0 +1,15 @@
+figure class="thing--embed #{klass}"
+  = link_to thing do
+    - version = browser.mobile? ? :'thing.fixed.small' : :middle
+    = image_tag thing.photos.first.url(version)
+  figcaption
+    h5= link_to thing.title, thing
+    em
+      i.fa.fa-heart
+      = thing.fanciers_count
+    em
+      i.fa.fa-check-circle-o
+      = thing.owners_count
+    em
+      i.fa.fa-comment-o
+      = thing.reviews_count
