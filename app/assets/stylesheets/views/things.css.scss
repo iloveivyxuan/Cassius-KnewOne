@@ -2243,11 +2243,13 @@ html.feelings_show {
   }
 }
 
-.thing_list-cover {
-  .thing_list-image_wrapper {
-    img {
-      padding: 0;
-      box-shadow: none;
+html:not(.things_lists) {
+  .thing_list-cover {
+    .thing_list-image_wrapper {
+      img {
+        padding: 0;
+        box-shadow: none;
+      }
     }
   }
 }
@@ -2289,7 +2291,7 @@ html.things_lists {
     }
 
     .thing_list {
-      background: white;
+      background: $ghost-white;
 
       h4 {
         margin: 1em;
@@ -2301,6 +2303,10 @@ html.things_lists {
 
       footer {
         padding: 0 1em 1em;
+
+        .thing_list-description {
+          display: none;
+        }
       }
     }
 
