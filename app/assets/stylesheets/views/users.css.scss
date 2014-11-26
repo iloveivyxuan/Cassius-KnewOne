@@ -912,7 +912,6 @@ html.users_followings {
       }
 
       @include from-breakpoint(md) {
-        margin-top: 50px;
         padding: 30px 30px 0;
 
         & + .contents {
