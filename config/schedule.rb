@@ -66,6 +66,7 @@ every 15.minutes do
   runner 'Category.update_things_count'
   runner 'Category.update_tags'
   runner 'Tag.update_things_count'
+  runner 'Brand.update_things_brand_name'
 end
 
 every 1.day, :at => '1:30 am' do
