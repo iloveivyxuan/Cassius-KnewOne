@@ -58,6 +58,7 @@ class Thing < Post
     dsell: "自销"
   }
   validates :stage, inclusion: {in: STAGES.keys}
+  before_save :update_stage
 
   def safe_destroy?
     !Order.where('order_items.thing_id' => self.id).exists?
@@ -421,6 +422,16 @@ class Thing < Post
     self.priority = 0 unless self.priority.is_a?(Integer)
     if self.approved_at.nil? && self.priority > 0
       self.approved_at = Time.now
+    end
+  end
+
+  def update_stage
+    if self.shop_changed? && self.shop_was.blank? && !self.shop.blank?
+      if self.price_unit == "¥"
+        self.stage = :domestic
+      else
+        self.stage = :abroad
+      end
     end
   end
 
