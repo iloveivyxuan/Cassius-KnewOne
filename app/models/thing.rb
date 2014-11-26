@@ -25,7 +25,6 @@ class Thing < Post
   before_save :update_counts
 
   field :brand_name, type: String, default: ""
-  before_save :update_brand
 
   field :links, type: Array, default: []
 
@@ -411,10 +410,6 @@ class Thing < Post
   def update_counts
     self.feelings_count = feelings.size
     self.reviews_count = reviews.size
-  end
-
-  def update_brand
-    self.brand_name = self.brand.brand_text if self.brand
   end
 
   # delete ~, which may cause slug to be 'foo-bar-~', which cannot be found.

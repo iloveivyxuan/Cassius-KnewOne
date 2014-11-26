@@ -83,4 +83,28 @@ describe Thing, type: :model do
       expect(thing2.related_things).to include thing
     end
   end
+
+  describe '#brand' do
+    let(:thing) { create(:thing) }
+    let(:thing2) { create(:thing) }
+    let(:brand) { Brand.create(zh_name: "测试", en_name: "Test", country: 'CN') }
+    let(:brand2) { Brand.create(zh_name: "不存在", en_name: "not_exists", country: 'CN') }
+
+    before do
+      thing.brand_text = brand.en_name
+      thing2.brand_text = brand2.en_name
+      thing.save; thing2.save
+      Brand.update_things_brand_name
+      thing2.brand_text = ""
+      thing2.save
+      Brand.update_things_brand_name
+      thing.reload
+      thing2.reload
+    end
+
+    specify do
+      expect(thing.brand_name).to eq brand.brand_text
+      expect(thing2.brand_name).to eq ''
+    end
+  end
 end
