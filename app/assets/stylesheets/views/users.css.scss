@@ -18,263 +18,279 @@ html[class^="users_"] {
     max-width: $wrapper-max-width;
 
     @include from-breakpoint(md) {
+      position: relative;
       margin: 0 auto;
-      padding-left: $header-width;
+      padding-right: $header-width;
     }
 
     > header {
-      position: relative;
       background: white;
 
-      @include from-breakpoint(md) {
-        position: fixed;
-        z-index: 2;
-        top: 45px;
-        width: $header-width;
-        margin-left: -$header-width;
-      }
-
-      .info-avatar {
-        padding: 20px;
-
-        img {
-          width: 60px;
-          height: 60px;
-          border-radius: 50%;
-        }
-
-        @include from-breakpoint(sm) {
-          img {
-            width: 90px;
-            height: 90px;
-          }
-
-          @include to-breakpoint(sm) {
-            padding-left: 70px;
-          }
-        }
-
-        @include from-breakpoint(md) {
-          border-bottom: 1px dashed $gray-lighter;
-        }
-      }
-
-      .info-name-and-level {
-        position: absolute;
-        top: 27px;
-        left: 90px;
-        width: 240px;
-
-        @include from-breakpoint(sm) {
-          top: 40px;
-          left: 230px;
-          width: 360px;
-        }
-
-        @include from-breakpoint(md) {
-          left: 120px;
-          width: 140px;
-        }
-
-        font-size: 14px;
-
-        .info-name {
-          @include text-overflow;
-
-          display: inline-block;
-          vertical-align: middle;
-
-          max-width: 116px;
-          max-width: calc(100% - 22px);
-        }
-
-        .info-gender {
-          vertical-align: middle;
-          margin-left: 10px;
-        }
-
-        .info-level {
-          margin-top: 10px;
-          width: 140px;
-        }
-      }
-
-      .info-description {
+      .info {
         position: relative;
-        margin-top: 20px;
-        padding: 0 20px;
 
-        i {
-          display: none;
+        @include from-breakpoint(md) {
+          position: absolute;
+          top: -50px;
+          right: 0;
+          width: $header-width;
+
+          background: white;
         }
 
-        p {
-          margin: 0;
-        }
+        .info-avatar {
+          padding: 20px;
 
-        @include to-breakpoint(xs) {
-          display: none;
-        }
+          img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+          }
 
-        @include from-breakpoint(sm) {
-          @include to-breakpoint(sm) {
-            padding-left: 70px;
+          @include from-breakpoint(sm) {
+            img {
+              width: 90px;
+              height: 90px;
+            }
 
-            i {
-              display: block;
-              position: absolute;
-              top: -3px;
-              left: 30px;
-
-              color: $gray-lighter;
-              font-size: 16px;
+            @include to-breakpoint(sm) {
+              padding-left: 70px;
             }
           }
-        }
-      }
 
-      .info-links {
-        margin-top: 20px;
-        padding-right: 20px;
-        text-align: right;
-
-        @include to-breakpoint(xs) {
-          display: none;
-        }
-
-        @include from-breakpoint(sm) {
-          @include to-breakpoint(sm) {
-            position: absolute;
-            top: 40px;
-            right: 30px;
-            width: 25%;
-            margin: 0;
-            padding: 0;
+          @include from-breakpoint(md) {
+            border-bottom: 1px dashed $gray-lighter;
           }
         }
 
-        .info-location {
-          display: block;
-          margin: 20px 0 0;
+        .info-name-and-level {
+          position: absolute;
+          top: 27px;
+          left: 90px;
+          width: 240px;
+
+          @include from-breakpoint(sm) {
+            top: 40px;
+            left: 230px;
+            width: 360px;
+          }
+
+          @include from-breakpoint(md) {
+            left: 120px;
+            width: 140px;
+          }
+
+          font-size: 14px;
+
+          .info-name {
+            @include text-overflow;
+
+            display: inline-block;
+            vertical-align: middle;
+
+            max-width: 116px;
+            max-width: calc(100% - 22px);
+          }
+
+          .info-gender {
+            vertical-align: middle;
+            margin-left: 10px;
+          }
+
+          .info-level {
+            margin-top: 10px;
+            width: 140px;
+          }
         }
 
-        a {
-          display: inline-block;
-
-          line-height: 32px;
-          width: 32px;
-          margin-left: 20px;
-          text-align: center;
-
-          border-radius: 50%;
-          color: $text-color;
-          background: $gray-lighter;
+        .info-description {
+          position: relative;
+          margin-top: 20px;
+          padding: 0 20px;
 
           i {
+            display: none;
+          }
+
+          p {
             margin: 0;
           }
 
-          &:last-child {
-            margin-right: 0;
-          }
-
-          &:hover {
-            color: $gray-lighter;
-            background: $text-color;
-          }
-        }
-      }
-
-      .info-links + .info-friendship {
-        margin-top: 20px;
-      }
-
-      .info-friendship {
-        line-height: 1;
-        background: $smoke-white;
-
-        @include to-breakpoint(xs) {
-          display: none;
-        }
-
-        @include from-breakpoint(sm) {
-          @include to-breakpoint(sm) {
-            &:not(.info-friendship--self) {
-              display: inline-block;
-              vertical-align: middle;
-              width: 50%;
-            }
-          }
-        }
-
-        @include from-breakpoint(md) {
-          background: white;
-          border-top: 1px dashed $gray-lighter;
-        }
-
-        > a {
-          display: inline-block;
-          width: 50%;
-          padding: 15px 0;
-
-          text-align: center;
-          font-family: lato-thin, sans-serif;
-          font-size: 10px;
-          color: $blue-dark;
-
-          span {
-            display: block;
-            margin-top: 8px;
-            font-size: 18px;
+          @include to-breakpoint(xs) {
+            display: none;
           }
 
           @include from-breakpoint(sm) {
             @include to-breakpoint(sm) {
-              padding: 7px 0;
+              padding-left: 70px;
+
+              i {
+                display: block;
+                position: absolute;
+                top: -3px;
+                left: 30px;
+
+                color: $gray-lighter;
+                font-size: 16px;
+              }
             }
           }
         }
-      }
 
-      .info-actions {
-        @include from-breakpoint(sm) {
-          @include to-breakpoint(sm) {
+        .info-links {
+          margin-top: 20px;
+          padding-right: 20px;
+          text-align: right;
+
+          @include to-breakpoint(xs) {
+            display: none;
+          }
+
+          @include from-breakpoint(sm) {
+            @include to-breakpoint(sm) {
+              position: absolute;
+              top: 40px;
+              right: 30px;
+              width: 25%;
+              margin: 0;
+              padding: 0;
+            }
+          }
+
+          .info-location {
+            display: block;
+            margin: 20px 0 0;
+          }
+
+          a {
             display: inline-block;
-            vertical-align: middle;
-            margin-top: 20px;
+
+            line-height: 32px;
+            width: 32px;
+            margin-left: 20px;
+            text-align: center;
+
+            border-radius: 50%;
+            color: $text-color;
+            background: $gray-lighter;
+
+            i {
+              margin: 0;
+            }
+
+            &:last-child {
+              margin-right: 0;
+            }
+
+            &:hover {
+              color: $gray-lighter;
+              background: $text-color;
+            }
+          }
+        }
+
+        .info-links + .info-friendship {
+          margin-top: 20px;
+        }
+
+        .info-friendship {
+          line-height: 1;
+          background: $smoke-white;
+
+          @include to-breakpoint(xs) {
+            display: none;
+          }
+
+          @include from-breakpoint(sm) {
+            @include to-breakpoint(sm) {
+              &:not(.info-friendship--self) {
+                display: inline-block;
+                vertical-align: middle;
+                width: 50%;
+              }
+            }
+          }
+
+          @include from-breakpoint(md) {
+            background: white;
+            border-top: 1px dashed $gray-lighter;
+          }
+
+          > a {
+            display: inline-block;
             width: 50%;
+            padding: 15px 0;
+
+            text-align: center;
+            font-family: lato-thin, sans-serif;
+            font-size: 10px;
+            color: $blue-dark;
+
+            span {
+              display: block;
+              margin-top: 8px;
+              font-size: 18px;
+            }
+
+            @include from-breakpoint(sm) {
+              @include to-breakpoint(sm) {
+                padding: 7px 0;
+              }
+            }
           }
         }
 
-        > a {
-          @include plain-link($gray-lighter);
-
-          display: inline-block;
-          width: 50%;
-          line-height: 50px;
-          vertical-align: middle;
-          text-align: center;
-        }
-
-        .follow_btn {
-          padding: 0;
-          border: none;
-          border-radius: 0;
-
-          background: $blue-dark;
-          transition: background-color .1s;
-
-          &.follow_btn--followed:hover {
-            background-color: $gray;
+        .info-actions {
+          @include from-breakpoint(sm) {
+            @include to-breakpoint(sm) {
+              display: inline-block;
+              vertical-align: middle;
+              margin-top: 20px;
+              width: 50%;
+            }
           }
-        }
 
-        .private_message_btn {
-          background: $blue-light;
+          > a {
+            @include plain-link($gray-lighter);
+
+            display: inline-block;
+            width: 50%;
+            line-height: 50px;
+            vertical-align: middle;
+            text-align: center;
+          }
+
+          .follow_btn {
+            padding: 0;
+            border: none;
+            border-radius: 0;
+
+            background: $blue-dark;
+            transition: background-color .1s;
+
+            &.follow_btn--followed:hover {
+              background-color: $gray;
+            }
+          }
+
+          .private_message_btn {
+            background: $blue-light;
+          }
         }
       }
 
       > nav {
+        @include from-breakpoint(md) {
+          position: absolute;
+          bottom: 100%;
+          left: 0;
+
+          width: calc(100% - #{$header-width});
+          max-width: $wrapper-max-width - $header-width;
+
+          box-shadow: 0 3px 5px rgba(0, 0, 0, .1);
+        }
+
         li.active {
           a {
             cursor: default;
@@ -362,16 +378,6 @@ html[class^="users_"] {
                 display: none;
               }
             }
-          }
-
-          @include from-breakpoint(md) {
-            position: fixed;
-            top: 45px;
-            width: calc(100% - #{$header-width});
-            max-width: $wrapper-max-width - $header-width;
-            margin-left: $header-width;
-
-            box-shadow: 0 3px 5px rgba(0, 0, 0, .1);
           }
         }
 
