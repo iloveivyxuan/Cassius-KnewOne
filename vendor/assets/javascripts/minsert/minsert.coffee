@@ -226,9 +226,13 @@ do ($ = jQuery) ->
               url = content
 
               # KnewOne embed
-              if /^(http(s)?:\/\/)?(www\.)?(knewone\.com)/.test(url)
+              if /^(http(s)?:\/\/)?(www\.)?(making\.dev)/.test(url)
+              # if /^(http(s)?:\/\/)?(www\.)?(knewone\.com)/.test(url)
                 that          = @
-                requestUrl    = 'http://knewone.com/embed'
+                requestUrl    = 'http://making.dev/embed'
+                # requestUrl    = 'http://knewone.com/embed'
+                patternThing  = /^(http(s)?:\/\/)?(www\.)?(making\.dev)\/things\/([^\/]+?)\/?$/
+                # patternThing  = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/things\/([a-zA-Z0-9-_])+/
                 patternReview = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/things\/(.*)\/reviews\/([0-9a-z]{24})/
                 patternList   = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/lists\/([0-9a-z]{24})/
                 async         = true
