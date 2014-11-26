@@ -19,8 +19,9 @@ html[class^="users_"] {
 
     @include from-breakpoint(md) {
       position: relative;
-      margin: 0 auto;
-      padding-right: $header-width;
+      margin: 30px auto 0;
+      padding-top: 50px;
+      padding-right: $header-width + 20px;
     }
 
     > header {
@@ -31,7 +32,7 @@ html[class^="users_"] {
 
         @include from-breakpoint(md) {
           position: absolute;
-          top: -50px;
+          top: 0;
           right: 0;
           width: $header-width;
 
@@ -282,11 +283,11 @@ html[class^="users_"] {
       > nav {
         @include from-breakpoint(md) {
           position: absolute;
-          bottom: 100%;
+          top: 0;
           left: 0;
 
-          width: calc(100% - #{$header-width});
-          max-width: $wrapper-max-width - $header-width;
+          width: calc(100% - #{$header-width + 20px});
+          max-width: $wrapper-max-width - $header-width - 20px;
         }
 
         li.active {
@@ -449,10 +450,6 @@ html[class^="users_"] {
 
     > .contents {
       background: $smoke-white;
-
-      @include from-breakpoint(md) {
-        margin-top: 50px;
-      }
 
       .thing {
         background: white;
