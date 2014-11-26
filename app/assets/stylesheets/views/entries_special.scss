@@ -24,10 +24,6 @@ html.entries_special {
         right: 0;
       }
     }
-
-    @media (min-width: $screen-md-min) {
-      padding-top: 140px;
-    }
   }
 
   .article {
@@ -40,7 +36,11 @@ html.entries_special {
       }
 
       > figure {
-        min-height: 150px;
+        min-height: 250px;
+
+        @media (min-width: $screen-md-min) {
+          margin-top: -140px;
+        }
 
         img {
           width: 100%;
@@ -55,7 +55,6 @@ html.entries_special {
       }
 
       @media (min-width: $screen-md-min) {
-        margin-top: -140px;
         position: relative;
         top: auto;
       }
