@@ -48,12 +48,13 @@ module Haven
             bong_ii = Thing.find "53d0bed731302d2c13b20000"
             bong_band = Thing.find "544f8b9331302d5139c60000"
             bong_battery = Thing.find "544f8b0a31302d4fd2dd0000"
+            bong_bang_dai = Thing.find "54700f5d31302d2b49260100"
             lines = [%w(订单时间 订单号 商品名 类型 数量 收件人 电话 省 市 区 详细地址 备注)]
 
             @orders.each do |order|
               city = CITY_PLACEHOLDER.include?(order.address.city) ? order.address.province : (order.address.city || '')
               order.order_items.each do |item|
-                if [bong_ii, bong_band, bong_battery].include?(item.thing)
+                if [bong_ii, bong_band, bong_battery, bong_bang_dai].include?(item.thing)
                   lines << [
                             order.created_at.strftime('%Y-%m-%d %H:%M:%S'),
                             order.order_no,
