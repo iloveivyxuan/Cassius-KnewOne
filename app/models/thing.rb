@@ -427,7 +427,7 @@ class Thing < Post
 
   def update_stage
     if self.shop_changed? && self.shop_was.blank? && !self.shop.blank?
-      if self.price_unit == "¥"
+      if ['¥', 'NT$', 'HK$'].include?(self.price_unit)
         self.stage = :domestic
       else
         self.stage = :abroad
