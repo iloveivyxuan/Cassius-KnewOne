@@ -3,34 +3,36 @@
 
 article.article
 
-  nav
-    - if browser.mobile?
-      = link_to_with_icon "精选首页", "fa fa-caret-left", explore_path
-    - else
-      = link_to "#" do
-        img src=""
-    em KnewOne talk
-
   header
-    h1.title = post.title
-    .clearfix
-      ul.metas.pull-left
-        li
-          label.avatar
-            = image_tag author.avatar.url(:tiny), class: 'img-circle'
-            = link_to author.name, author, data: {"profile-popover" => author.id.to_s}
-        li = time_ago_tag entry.created_at
-      ul.metas.pull-right
-        li
-          i.fa.fa-thumbs-o-up
-          = post.lovers_count
-        li
-          i.fa.fa-comment-o
-          = post.comments.size
+    .header-inner
+      nav.header-top
+        = link_to_with_icon "精选首页", "fa fa-caret-left", explore_path, class: "visible-xs-block"
+        = link_to "#", class: "hidden-xs" do
+          = image_tag "http://image.knewone.com/review_photos/a4545144d0e2f61901d99caa7e765f5b.jpg"
+        em KnewOne talk
 
-  .cover= image_tag post.cover.url
+      .header-main
+        h1.title = post.title
+        .clearfix
+          ul.metas.pull-left
+            li
+              label.avatar
+                = image_tag author.avatar.url(:tiny), class: 'img-circle'
+                = link_to author.name, author, data: {"profile-popover" => author.id.to_s}
+            li = time_ago_tag entry.created_at
+          ul.metas.pull-right
+            li
+              i.fa.fa-thumbs-o-up
+              = post.lovers_count
+            li
+              i.fa.fa-comment-o
+              = post.comments.size
 
-  .summary= post.summary
+    figure
+      - version = browser.mobile? ? :'thing.fixed.small' : :huge
+      = image_tag post.cover.url(version)
+
+  p.summary= post.summary
 
   section.content= sanitize post.content
 
@@ -44,6 +46,8 @@ article.article
       li.previous = link_to "#{entry_title(previous_entry)}", previous_entry
     - if next_entry = entry.next
       li.next = link_to "#{entry_title(next_entry)}", next_entry
+
+  hr
 
   = render 'shared/comments', post: post, id: "comments", auth: true
 

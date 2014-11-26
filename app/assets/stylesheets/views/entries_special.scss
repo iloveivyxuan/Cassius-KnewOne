@@ -1,13 +1,67 @@
 @import '../base';
 
 html.entries_special {
+  $row-width-md: 1120px;
+
+  &.touch {
+    body {
+      padding-top: 45px;
+    }
+  }
+
+  &.no-touch {
+    #header {
+      margin-bottom: 45px;
+    }
+  }
+
   #wrapper {
     background-color: #fff;
+
+    @media (min-width: $screen-sm-min) {
+      margin: {
+        left: 0;
+        right: 0;
+      }
+    }
+
+    @media (min-width: $screen-md-min) {
+      padding-top: 140px;
+    }
   }
 
   .article {
 
-    > nav {
+    > header {
+      margin-bottom: 0;
+
+      @media (min-width: $screen-sm-min) {
+        position: relative;
+      }
+
+      > figure {
+        min-height: 150px;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+
+    .header-inner {
+      @media (min-width: $screen-sm-min) {
+        position: absolute;
+        top: 20%;
+      }
+
+      @media (min-width: $screen-md-min) {
+        margin-top: -140px;
+        position: relative;
+        top: auto;
+      }
+    }
+
+    .header-top {
       @include clearfix;
 
       > a {
@@ -18,12 +72,32 @@ html.entries_special {
         line-height: 56px;
         text-align: center;
         width: 40%;
+
+        @media (min-width: $screen-sm-min) {
+          background-color: transparent;
+          width: auto;
+
+          img {
+            display: block;
+            height: 56px;
+            width: 56px;
+          }
+        }
+
+        @media (min-width: $screen-md-min) {
+          height: 140px;
+
+          img {
+            height: 140px;
+            width: 140px;
+          }
+        }
       }
 
       > em {
         background-color: $ghost-white;
         color: $text-color;
-        float: right;
+        float: left;
         font-size: 16px;
         font-style: normal;
         font-weight: bold;
@@ -31,10 +105,17 @@ html.entries_special {
         line-height: 56px;
         text-align: center;
         width: 60%;
+
+        @media (min-width: $screen-sm-min) {
+          background-color: $navbar-bg;
+          color: #fff;
+          padding: 0 1.5em;
+          width: auto;
+        }
       }
     }
 
-    > header {
+    .header-main {
       margin-bottom: 0;
       padding: 30px;
 
@@ -44,12 +125,29 @@ html.entries_special {
         padding-bottom: 0;
         text-align: left;
       }
+
+      @media (min-width: $screen-sm-min) {
+        background-color: $smoke-white;
+      }
+
+      @media (min-width: $screen-md-min) {
+        left: 140px;
+        position: absolute;
+        top: 56px;
+      }
     }
 
     > .summary {
       background-color: darken($smoke-white, 2%);
       color: $text-color;
+      font-size: 16px;
+      margin-bottom: 0;
       padding: 30px;
+
+      @media (min-width: $screen-md-min) {
+        margin-top: -60px;
+        position: relative;
+      }
     }
 
     > .content {
@@ -66,10 +164,46 @@ html.entries_special {
       border-top: none;
       margin-bottom: 10px;
       padding: 0 30px;
+
+      @media (min-width: $screen-md-min) {
+        margin-bottom: 30px;
+      }
     }
 
-    .comments {
+    > hr {
+      border: none;
       border-top: $border-dashed;
+      height: 0;
+      line-height: 0;
+    }
+
+    @media (min-width: $screen-md-min) {
+      .header-inner,
+      > .summary,
+      > .content,
+      > .actions,
+      > .pager,
+      .comments {
+        margin: {
+          left: 12%;
+          right: 12%;
+        }
+        max-width: $screen-md-min;
+      }
+    }
+
+    @media (min-width: $screen-lg-min) {
+      .header-inner,
+      > .summary,
+      > .content,
+      > .actions,
+      > .pager,
+      .comments {
+        margin: {
+          left: auto;
+          right: auto;
+        }
+      }
     }
   }
 }
