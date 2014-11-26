@@ -287,9 +287,11 @@ class ThingsController < ApplicationController
   private
 
   def thing_params
-    params.require(:thing)
-      .permit(:title, :subtitle, :official_site, :tags_text,
-              :content, :description, photo_ids: [])
+    permit_params = [:title, :subtitle, :official_site, :tags_text, :content, :description, photo_ids: []]
+    if (@thing.author == current_user) && current_user.role?(:volunteer)
+      permit_params += [:shop, :price_unit, :price]
+    end
+    params.require(:thing).permit(permit_params)
   end
 
   def set_categories

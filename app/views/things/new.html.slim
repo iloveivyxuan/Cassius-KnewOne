@@ -34,6 +34,15 @@
       = f.input :subtitle, placeholder: "一句话介绍", input_html: {maxlength: 40, autocomplete: "off"}
       = f.input :official_site, as: :url, placeholder: "产品官方链接", input_html: {autocomplete: "off"}
       = f.input :content, as: :hidden
+      - if (@thing.author == current_user) && current_user.role?(:volunteer)
+        - style = 'width: 100%; border: none; font-size: 16px; margin: 0 0 2em;'
+        = text_field_tag 'thing[shop]', @thing.shop, style: style, placeholder: "购买链接"
+        .btn-group style= style
+          - Thing::CURRENCY_LIST.each do |u|
+            label.btn.btn-default
+              input checked=(@thing.price_unit == u) name='thing[price_unit]' type="radio" value=u
+                | #{u}
+        = text_field_tag 'thing[price]', @thing.price, style: style, placeholder: "价格"
 
     = simple_form_for Photo.new, html: {class: "uploader"} do |f|
       label.uploader_label for="photo_image" title="请为产品上传图片" data-placement="right" 产品图片
