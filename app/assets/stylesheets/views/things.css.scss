@@ -1874,7 +1874,6 @@ html.feelings_show {
     }
 
     .show_all_lists {
-      display: none;
       a {
         display: block;
         width: 100%;
@@ -2023,8 +2022,8 @@ html.feelings_show {
 
       .review-author {
         margin: {
-          left: 25%;
-        }
+        left: 25%;
+      }
         @include MQ(Mplus) { margin-left: 20% }
       }
     }
@@ -2249,6 +2248,64 @@ html.feelings_show {
     img {
       padding: 0;
       box-shadow: none;
+    }
+  }
+}
+
+html.things_lists {
+  $gutter-width: 20px;
+
+  #header {
+    margin-bottom: 45px;
+  }
+
+  #wrapper {
+    @include wrapper(empty);
+
+    .container {
+      > nav {
+        margin: $gutter-width 0;
+
+        a {
+          color: $text-color;
+          font-size: $font-size-large;
+        }
+      }
+
+      > ul {
+        margin: -($gutter-width / 2);
+
+        > li {
+          @include make-inline-block-column;
+          @include make-xs-column(12, $gutter-width);
+          @include make-sm-column(6, $gutter-width);
+          @include make-md-column(4, $gutter-width);
+          @include make-lg-column(3, $gutter-width);
+
+          vertical-align: top;
+          margin: ($gutter-width / 2) 0;
+        }
+      }
+    }
+
+    .thing_list {
+      background: white;
+
+      h4 {
+        margin: 1em;
+
+        i {
+          display: none;
+        }
+      }
+
+      footer {
+        padding: 0 1em 1em;
+      }
+    }
+
+    .pagination {
+      margin-top: $gutter-width;
     }
   }
 }

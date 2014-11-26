@@ -6,3 +6,8 @@
       - next if names.include?(list.name) || list.author == thing.author
       - names << list.name
       = render partial: 'things/thing_list', locals: {thing_list: list, thing: thing, layout: :grid}
+
+    .show_all_lists
+      = link_to [:lists, thing]
+        | 收藏此产品的全部列表
+        i.fa.fa-chevron-right

@@ -203,6 +203,15 @@ class ThingsController < ApplicationController
     end
   end
 
+  def lists
+    @lists = @thing.lists.hot.gte(size: 4)
+    @lists = @lists.page(params[:page]).per(24)
+
+    respond_to do |format|
+      format.html { render layout: 'application' }
+    end
+  end
+
   def extract_url
     return head :not_accepted if params[:url].blank?
 
