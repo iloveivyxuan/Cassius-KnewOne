@@ -36,10 +36,10 @@ html.entries_special {
       }
 
       > figure {
-        min-height: 250px;
 
         @media (min-width: $screen-md-min) {
           margin-top: -140px;
+          min-height: 250px;
         }
 
         img {
