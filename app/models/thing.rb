@@ -25,6 +25,7 @@ class Thing < Post
   before_save :update_counts
 
   field :brand_name, type: String, default: ""
+  field :brand_information, type: String, default: ""
 
   field :links, type: Array, default: []
 

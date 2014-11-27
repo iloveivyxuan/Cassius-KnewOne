@@ -19,6 +19,9 @@ class Brand
 
   has_many :things
 
+  field :nickname, type: String, default: ""
+  after_save :update_brand_information
+
   before_save :spacing_description
 
   def update_things_size
@@ -54,5 +57,11 @@ class Brand
   def self.update_things_brand_name
     Brand.all.each { |b| b.things.set(brand_name: b.brand_text) }
     Thing.where(brand_id: nil).update(brand_name: "")
+  end
+
+  def update_brand_information
+    if zh_name_changed? || en_name_changed? || nickname_changed?
+      self.things.update(brand_information: "#{zh_name} #{en_name} #{nickname}")
+    end
   end
 end
