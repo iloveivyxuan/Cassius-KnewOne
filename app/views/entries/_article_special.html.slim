@@ -7,9 +7,10 @@ article.article
     .header-inner
       nav.header-top
         = link_to_with_icon "精选首页", "fa fa-caret-left", explore_path, class: "visible-xs-block"
-        = link_to "#", class: "hidden-xs" do
-          = image_tag "http://image.knewone.com/review_photos/a4545144d0e2f61901d99caa7e765f5b.jpg"
-        em KnewOne talk
+        - if !browser.mobile?
+          = link_to "#", class: "hidden-xs" do
+            = image_tag "article_#{Entry::CATEGORIES[post.entry.category]}.jpg"
+        em= "KnewOne #{post.entry.foo}"
 
       .header-main
         h1.title = post.title
