@@ -13,15 +13,16 @@ html[class^="users_"] {
     @include wrapper(empty);
 
     $wrapper-max-width: 1200px;
-    $header-width: 280px;
+    $info-width: 280px;
+    $nav-height: 60px;
 
     max-width: $wrapper-max-width;
 
     @include from-breakpoint(md) {
       position: relative;
       margin: 30px auto 0;
-      padding-top: 50px;
-      padding-right: $header-width + 20px;
+      padding-top: $nav-height;
+      padding-right: $info-width + 20px;
     }
 
     > header {
@@ -34,7 +35,7 @@ html[class^="users_"] {
           position: absolute;
           top: 0;
           right: 0;
-          width: $header-width;
+          width: $info-width;
 
           background: white;
         }
@@ -286,8 +287,11 @@ html[class^="users_"] {
           top: 0;
           left: 0;
 
-          width: calc(100% - #{$header-width + 20px});
-          max-width: $wrapper-max-width - $header-width - 20px;
+          width: calc(100% - #{$info-width + 20px});
+          max-width: $wrapper-max-width - $info-width - 20px;
+          height: $nav-height;
+
+          background: $smoke-white;
         }
 
         li.active {
@@ -322,7 +326,7 @@ html[class^="users_"] {
                 }
 
                 span {
-                  margin-right: 5px;
+                  margin-left: 5px;
                 }
               }
 
@@ -352,6 +356,7 @@ html[class^="users_"] {
             > li {
               display: table-cell;
               width: auto;
+              vertical-align: middle;
               text-align: center;
 
               background: white;
@@ -361,10 +366,13 @@ html[class^="users_"] {
 
                 display: inline-block;
                 width: 100%;
-                padding: 15px 0;
+                padding: 10px 0;
 
                 span {
-                  display: none;
+                  display: block;
+                  margin-top: 2px;
+                  font-size: 11px;
+                  color: $gray-light;
                 }
               }
 

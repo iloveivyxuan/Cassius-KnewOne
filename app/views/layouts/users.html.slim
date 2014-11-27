@@ -54,43 +54,43 @@
         = li action_name == 'fancies', class: 'nav-fancies'
           = link_to [:fancies, @user]
             i.fa.fa-heart
-            span = @user.fancies_count
             | 喜欢
+            span = @user.fancies_count
         = li action_name == 'owns', class: 'nav-owns'
           = link_to [:owns, @user]
             i.fa.fa-check-circle-o
-            span = @user.owns_count
             | 拥有
+            span = @user.owns_count
         = li action_name == 'lists', class: 'nav-lists'
           = link_to [:lists, @user]
             i.fa.fa-list
-            span = @user.thing_lists.size
             | 列表
+            span = @user.thing_lists.size
         = li action_name == 'things', class: 'nav-things'
           = link_to [:things, @user]
             i.fa.fa-magic
-            span = @user.things_count
             | 分享
+            span = @user.things_count
         = li action_name == 'reviews', class: 'nav-reviews'
           = link_to [:reviews, @user]
             i.fa.fa-pencil
-            span = @user.reviews_count
             | 评测
+            span = @user.reviews_count
         = li action_name == 'feelings', class: 'nav-feelings'
           = link_to [:feelings, @user]
             i.fa.fa-comments
-            span = @user.feelings_count
             | 短评
+            span = @user.feelings_count
         = li ['groups', 'topics'].include?(action_name), class: 'nav-groups'
           = link_to [:groups, @user]
             i.fa.fa-tint
-            span = @user.groups_count
             | 小组
+            span = @user.groups_count
         = li false, class: 'nav-topics'
           = link_to [:topics, @user]
             i.fa.fa-leaf
-            span = @user.topics_count
             | 话题
+            span = @user.topics_count
         = li action_name == 'activities', class: 'nav-activities'
           = link_to [:activities, @user]
             i.fa.fa-bars
