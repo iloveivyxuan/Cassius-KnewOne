@@ -656,6 +656,13 @@ class Order
     self.order_items.map {|i| "#{i.name}x#{i.quantity}"}.join(';')
   end
 
+  def coupon_text
+    unless self.coupon_code.nil?
+      coupon = self.coupon_code.coupon
+      "#{coupon.price} -> #{coupon.name} #{coupon.note}"
+    end
+  end
+
   need_aftermath :confirm_payment!, :refund_to_balance!, :refund!, :confirm_free!
 
   private
