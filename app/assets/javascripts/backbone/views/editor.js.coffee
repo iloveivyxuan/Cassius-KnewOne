@@ -128,7 +128,7 @@ do (exports = Making) ->
             @getBody()
             @show()
             @initHelp()
-            $docbody.addClass('editor-open')
+            $docbody.trigger('freeze')
           , @
 
           @$form.on 'submit', _.bind(@submit, @)
@@ -145,13 +145,14 @@ do (exports = Making) ->
       @activatePlugin()
       @$el.show()
       @$spinner.addClass('hidden')
+      $docbody.trigger('freeze')
 
       $window
         .on 'beforeunload', (_.bind @beforeunload, @)
 
     hide: ->
       @$el.hide()
-      $docbody.removeClass('editor-open')
+      $docbody.trigger('unfreeze')
       @deactivatePlugin()
       $window
         .off 'beforeunload'
