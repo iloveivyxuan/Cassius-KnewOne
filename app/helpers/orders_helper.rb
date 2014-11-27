@@ -206,13 +206,6 @@ module OrdersHelper
     })
   end
 
-  def coupon_text(order)
-    unless order.coupon_code.nil?
-      coupon = order.coupon_code.coupon
-      "#{coupon.price} -> #{coupon.name} #{coupon.note}"
-    end
-  end
-
   # 付款时间
   def payment_time(order)
     payment = order.order_histories.where(from: :pending).where(to: :confirmed).first
