@@ -22,7 +22,7 @@
 }
 
 .knewone-embed--thing {
-  @include make-row;
+  @include clearfix;
   border: none;
 }
 

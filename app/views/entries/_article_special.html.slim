@@ -9,8 +9,8 @@ article.article
         = link_to_with_icon "精选首页", "fa fa-caret-left", explore_path, class: "visible-xs-block"
         - if !browser.mobile?
           = link_to "#", class: "hidden-xs" do
-            = image_tag "article_#{Entry::CATEGORIES[post.entry.category]}.jpg"
-        em= "KnewOne #{post.entry.foo}"
+            = image_tag "article_#{Entry::CATEGORIES[entry.category]}.jpg"
+        em= "KnewOne #{entry.category_translation}"
 
       .header-main
         h1.title = post.title
@@ -33,9 +33,16 @@ article.article
       - version = browser.mobile? ? :'thing.fixed.small' : :huge
       = image_tag post.cover.url(version)
 
-  p.summary= post.summary
+  - if post.try(:summary).present?
+    p.summary= post.summary
+  - else
+    p.summary= strip_tags(post.content).truncate(140)
 
   section.content= sanitize post.content
+
+  - if entry.category == '评测'
+    .knewone-embed.knewone-embed--thing
+      = render 'things/embed_thing', thing: post.thing, klass: 'col-sm-12'
 
   .actions
     .interactions id="article_#{post.id.to_s}"

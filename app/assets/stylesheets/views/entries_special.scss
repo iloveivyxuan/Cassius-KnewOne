@@ -134,6 +134,14 @@ html.entries_special {
         position: absolute;
         top: 56px;
       }
+
+      .metas {
+        &.pull-right {
+          @media (min-width: $screen-sm-min) {
+            margin-left: 2rem;
+          }
+        }
+      }
     }
 
     > .summary {
@@ -152,6 +160,10 @@ html.entries_special {
     > .content {
       margin-bottom: 0;
       padding: 30px;
+    }
+
+    > .knewone-embed {
+      margin-bottom: 30px;
     }
 
     > .actions {
@@ -182,6 +194,7 @@ html.entries_special {
       > .content,
       > .actions,
       > .pager,
+      > .knewone-embed,
       .comments {
         margin: {
           left: 12%;
@@ -197,6 +210,7 @@ html.entries_special {
       > .content,
       > .actions,
       > .pager,
+      > .knewone-embed,
       .comments {
         margin: {
           left: auto;

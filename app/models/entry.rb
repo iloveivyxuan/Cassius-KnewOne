@@ -74,7 +74,7 @@ class Entry
     end
   end
 
-  def foo
+  def category_translation
     case self.category
     when '专访'
       return 'talk'
