@@ -31,7 +31,7 @@ article.article
 
     figure
       - version = browser.mobile? ? :'thing.fixed.small' : :huge
-      = image_tag post.cover.url(version)
+      = image_tag (entry.canopy.url(version) || "http://image.knewone.com/entries/b84131df90f176213ce8aef9eea64d7c.jpeg!#{version}")
 
   - if post.try(:summary).present?
     p.summary= post.summary

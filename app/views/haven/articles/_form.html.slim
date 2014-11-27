@@ -21,9 +21,6 @@
           label 作者：
           = hidden_field_tag 'article[author]', @article.author.id.to_s, id: 'author_id'
           input#author_autocomplete.form-control placeholder="用户昵称" value="#{@article.author.name}"
-        .form-group
-          label Cover：
-          = f.file_field :cover, class: "form-control", accept: 'image/png, image/jpeg, image/jpg'
         .form-group.form-group--block
           label 摘要：
           = f.text_area :summary, class: "form-control", rows: 4
@@ -42,7 +39,7 @@
       mode: 'standalone',
       type: 'article',
       buttons: ['header1', 'header2', 'anchor', 'bold', 'italic', 'strikethrough', 'orderedlist', 'unorderedlist', 'quote'],
-      excludeField: '[name="utf8"], [name="authenticity_token"], [name="article[cover]"]',
+      excludeField: '[name="utf8"], [name="authenticity_token"]',
       placeholder: '正文',
       imageSize: 'huge'
     });

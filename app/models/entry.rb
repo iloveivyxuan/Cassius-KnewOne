@@ -6,6 +6,7 @@ class Entry
   include Rails.application.routes.url_helpers
 
   mount_uploader :cover, ImageUploader
+  mount_uploader :canopy, ImageUploader
 
   belongs_to :post
 
