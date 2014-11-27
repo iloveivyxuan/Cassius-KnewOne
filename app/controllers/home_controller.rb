@@ -101,7 +101,7 @@ class HomeController < ApplicationController
     end
 
     if params[:type].blank? || params[:type] == 'things'
-      @things = Thing.published.or({slug: /#{q}/i}, {title: /#{q}/i}, {subtitle: /#{q}/i}, {brand_name: /#{q}/i}).desc(:fanciers_count).page(params[:page]).per(per)
+      @things = Thing.search(q).desc(:fanciers_count).page(params[:page]).per(per)
     end
 
     if params[:type].blank? || params[:type] == 'users'
