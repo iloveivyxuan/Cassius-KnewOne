@@ -90,7 +90,7 @@ class HomeController < ApplicationController
 
   def search
     q = (params[:q].to_s || '')
-    q.gsub!(/[^\u4e00-\u9fa5a-zA-Z0-9[:blank:].-_]+/, '')
+    q.gsub!(/[^\u4e00-\u9fa5a-zA-Z0-9[:blank:].-_^&]+/, '')
     q = Regexp.escape(q)
 
     return head :no_content if q.empty?
