@@ -204,10 +204,6 @@
       outline: none;
     }
 
-    *:last-child {
-      margin-bottom: 0;
-    }
-
     .is-focused {
 
       &::selection {

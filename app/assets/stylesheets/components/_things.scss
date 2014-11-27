@@ -367,12 +367,27 @@ article.thing {
 }
 
 figure.thing--embed {
+  margin-bottom: 0 !important;
   padding: 0;
+
+  @media (max-width: $screen-xs-max) {
+    > a {
+      img {
+        width: 100%;
+      }
+    }
+  }
 
   @media (min-width: $screen-sm-min) {
     position: relative;
 
     &.col-sm-6 {
+      > a {
+        img {
+          width: 100%;
+        }
+      }
+
       figcaption {
         padding: 0 0 55% 0;
         top: 22.5%;
@@ -396,6 +411,10 @@ figure.thing--embed {
   > a {
     @include stretch_img;
     display: block;
+
+    img {
+      margin: auto !important;
+    }
   }
 
   figcaption {
@@ -425,16 +444,28 @@ figure.thing--embed {
     }
 
     h5 {
+      font-weight: normal !important;
       margin: 0;
+      padding: 10px 3rem;
       text-align: center;
 
+      @media (min-width: $screen-sm-min) {
+        margin: {
+          bottom: 1rem;
+          top: 20%;
+        }
+      }
+
       a {
-        @include text-overflow;
         color: $text-color;
         display: block;
         font-size: 20px;
-        line-height: 40px;
-        padding: 0 1rem;
+
+        @media (min-width: $screen-sm-min) {
+          height: 60px;
+          line-height: 30px;
+          overflow: hidden;
+        }
       }
     }
 
