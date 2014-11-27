@@ -91,6 +91,7 @@ class Order
     :ems => 'EMS',
     :shentong => '申通速递',
     :youshuwuliu => '优速物流',
+    :yunda => '韵达快运',
     :tiantian => '天天速递'
   }
   PAYMENT_METHOD = {
