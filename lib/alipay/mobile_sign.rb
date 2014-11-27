@@ -11,8 +11,8 @@ module Alipay
       end.join('&')
     end
 
-    def self.generate(params)
-      Base64.encode64(private_key.sign(OpenSSL::Digest::SHA1.new, to_query_string(params))).gsub("\n", '')
+    def self.generate(params, wrap_quotation = true)
+      Base64.encode64(private_key.sign(OpenSSL::Digest::SHA1.new, to_query_string(params, wrap_quotation))).gsub("\n", '')
     end
 
     def self.verify?(params)
