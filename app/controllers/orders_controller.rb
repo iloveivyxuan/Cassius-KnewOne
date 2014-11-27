@@ -118,6 +118,8 @@ class OrdersController < ApplicationController
   end
 
   def alipay_wap
+    touch_alipay_security_risk_detect(@order)
+
     redirect_to generate_alipay_wap_url(@order)
   end
 
@@ -297,6 +299,20 @@ class OrdersController < ApplicationController
     }.merge(options)
 
     Alipay::Service.create_direct_pay_by_user_url(options)
+  end
+
+  def touch_alipay_security_risk_detect(order, options = {})
+    options = {
+      order_no: order.order_no,
+      order_credate_time: order.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+      order_category: 'KnewOne^商店^新奇酷',
+      order_item_name: order.content,
+      order_amount: format('%.2f', order.should_pay_price),
+      buyer_account_no: order.user.id.to_s,
+      buyer_reg_date: order.user.created_at.strftime('%Y-%m-%d %H:%M:%S')
+    }.merge(options)
+
+    Alipay::MobileService.security_risk_detect options
   end
 
   def generate_alipay_wap_url(order, options = {})

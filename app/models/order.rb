@@ -689,6 +689,10 @@ class Order
     self.send(setter_field, text)
   end
 
+  def content
+    order_items.map {|i| "#{i.name}x#{i.quantity}"}.join(';')
+  end
+
   class<< self
     def build_order(user, params = {})
       params ||= {}
