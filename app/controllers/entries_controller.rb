@@ -11,6 +11,6 @@ class EntriesController < ApplicationController
   private
 
   def explore_layout
-    (Entry.find(params[:id]).category != '专题') ? 'explore' : nil
+    (['专访', '评测', '列表'].include? Entry.find(params[:id]).category) ? nil : 'explore'
   end
 end
