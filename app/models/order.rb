@@ -652,6 +652,10 @@ class Order
     end
   end
 
+  def content
+    self.order_items.map {|i| "#{i.name}x#{i.quantity}"}.join(';')
+  end
+
   need_aftermath :confirm_payment!, :refund_to_balance!, :refund!, :confirm_free!
 
   private
@@ -687,10 +691,6 @@ class Order
     end
 
     self.send(setter_field, text)
-  end
-
-  def content
-    order_items.map {|i| "#{i.name}x#{i.quantity}"}.join(';')
   end
 
   class<< self
