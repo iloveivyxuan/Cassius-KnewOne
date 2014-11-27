@@ -1,6 +1,6 @@
 figure class="thing--embed #{klass}"
   = link_to thing do
-    - version = browser.mobile? ? :'thing.fixed.small' : :middle
+    - version = browser.mobile? ? :square : (klass == 'col-sm-12' ? :huge : :square)
     = image_tag thing.photos.first.url(version)
   figcaption
     h5= link_to thing.title, thing

@@ -138,14 +138,14 @@ class HomeController < ApplicationController
   def embed
     case params[:type]
     when 'thing'
-      ids = params[:id].split(',')
-      @things = Thing.any_in(id: ids)
-      render partial: 'things/embed_thing', collection: @things, locals: { klass: (ids.size > 1) ? 'col-sm-6' : 'col-sm-12' }
+      slugs = params[:key].split(',')
+      @things = Thing.any_in(slugs: slugs)
+      render partial: 'things/embed_thing', collection: @things, locals: { klass: (slugs.size > 1) ? 'col-sm-6' : 'col-sm-12' }, as: 'thing'
     when 'list'
-      @list = ThingList.find params[:id]
+      @list = ThingList.find params[:key]
       render [@list], locals: { layout: browser.desktop? ? :quintet : :grid }
     when 'review'
-      @review = Review.find params[:id]
+      @review = Review.find params[:key]
       render partial: 'hot_review', collection: [@review]
     else
       head :unprocessable_entity

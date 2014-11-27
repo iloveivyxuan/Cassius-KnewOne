@@ -226,39 +226,35 @@ do ($ = jQuery) ->
               url = content
 
               # KnewOne embed
-              if /^(http(s)?:\/\/)?(www\.)?(making\.dev)/.test(url)
-              # if /^(http(s)?:\/\/)?(www\.)?(knewone\.com)/.test(url)
+              if /^(http(s)?:\/\/)?(www\.)?(knewone\.com)/.test(url)
                 that          = @
-                requestUrl    = 'http://making.dev/embed'
-                # requestUrl    = 'http://knewone.com/embed'
-                patternThing  = /^(http(s)?:\/\/)?(www\.)?(making\.dev)\/things\/([^\/]+?)\/?$/
-                # patternThing  = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/things\/([a-zA-Z0-9-_])+/
+                requestUrl    = 'http://knewone.com/embed'
+                patternThing  = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/things\/([a-zA-Z0-9-_])+/
                 patternReview = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/things\/(.*)\/reviews\/([0-9a-z]{24})/
                 patternList   = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/lists\/([0-9a-z]{24})/
                 async         = true
-                urls          = url.split(',')
+                urls          = url.split(' ')
                 isThings      = undefined
-                thingIds      = []
+                thingSlugs    = []
 
                 for url in urls
                   if isThings is false then break
                   do ->
-                    url = url.trim()
                     isThings = patternThing.test(url)
-                    if isThings then thingIds.push(url.replace(patternThing, '$5'))
+                    if isThings then thingSlugs.push(url.replace(patternThing, '$5'))
 
                 if isThings
                   requestData =
                     type: 'thing'
-                    id: thingIds.join(',')
+                    key: thingSlugs.join(',')
                 else if patternReview.test(url)
                   requestData =
                     type: 'review'
-                    id: url.replace(patternReview, '$6')
+                    key: url.replace(patternReview, '$6')
                 else if patternList.test(url)
                   requestData =
                     type: 'list'
-                    id: url.replace(patternList, '$5')
+                    key: url.replace(patternList, '$5')
 
                 $
                   .ajax
@@ -266,7 +262,7 @@ do ($ = jQuery) ->
                     data: requestData
                     dataType: 'html'
                   .done (data, status, xhr) ->
-                    content = "<div class='knewone-embed knewone-embed--#{requestData.type}' data-knewone-embed-type=#{requestData.type} data-knewone-embed-id=#{requestData.id} contenteditable='false'>" + data + '</div>'
+                    content = "<div class='knewone-embed knewone-embed--#{requestData.type}' data-knewone-embed-type=#{requestData.type} data-knewone-embed-key=#{requestData.key} contenteditable='false'>" + data + '</div>'
                     that.hide()
                     that.insert(content)
               else
