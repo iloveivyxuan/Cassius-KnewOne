@@ -38,8 +38,8 @@ li.order
         span= order.deliver_price
       li
         strong.field 使用的优惠券：
-        - if coupon_text(order)
-          span.warning= coupon_text(order)
+        - if order.coupon_text
+          span.warning= order.coupon_text
       li
         strong.field 订单状态：
         span = state_text order
