@@ -652,10 +652,12 @@ html.users_show {
   #wrapper {
     @include to-breakpoint(xs) {
       > header {
-        .info-description,
-        .info-links,
-        .info-friendship {
-          display: block;
+        .info {
+          .info-description,
+          .info-links,
+          .info-friendship {
+            display: block;
+          }
         }
 
         > nav > ul {
