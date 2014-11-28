@@ -61,7 +61,7 @@ class Brand
 
   def update_brand_information
     if zh_name_changed? || en_name_changed? || nickname_changed?
-      self.things.update(brand_information: "#{zh_name} #{en_name} #{nickname}")
+      self.things.set(brand_information: "#{zh_name} #{en_name} #{nickname}")
     end
   end
 end
