@@ -405,6 +405,19 @@ class Thing < Post
     end
   end
 
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
+  def as_indexed_json
+    {
+      title: self.title,
+      slug: self.slug,
+      subtitle: self.subtitle,
+      brand: self.brand_name,
+      content: ActionController::Base.helpers.strip_tags(self.content)
+    }
+  end
+
   private
 
   def update_counts
