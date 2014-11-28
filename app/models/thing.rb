@@ -417,6 +417,17 @@ class Thing < Post
     }
   end
 
+  def self.search(query)
+    options = {
+      multi_match: {
+        query: query,
+        fields: ['title^10', 'slug^5', 'subtitle^3', 'brand^3', 'content']
+      }
+    }
+
+    __elasticsearch__.search(query: options)
+  end
+
   private
 
   def update_counts
