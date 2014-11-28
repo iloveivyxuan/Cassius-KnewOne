@@ -92,7 +92,6 @@ gem 'airbrake'
 gem 'sitemap_generator'
 
 # misc
-gem "lograge"
 gem 'nokogiri'
 gem 'browser'
 gem 'dkim'

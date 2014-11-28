@@ -94,9 +94,6 @@ module Making
       # Doorkeeper::AuthorizedApplicationsController.layout "doorkeeper"
     end
 
-    require 'elasticsearch/rails/lograge'
-    config.lograge.enabled = true
-
     APN.password = 'Knewone123'
   end
 end
