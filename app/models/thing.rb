@@ -405,8 +405,7 @@ class Thing < Post
     end
   end
 
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+  include Searchable
 
   def as_indexed_json
     {
