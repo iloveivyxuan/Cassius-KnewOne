@@ -91,7 +91,6 @@ class Thing < Post
   scope :by_tag, -> (tag) { any_in('tag_ids' => tag.id) }
   scope :by_brand, -> (brand) { where('brand_id' => brand.id) }
   scope :no_brand, -> { where('brand_id' => nil) }
-  scope :search, -> (q) { Thing.published.or({slug: /#{q}/i}, {title: /#{q}/i}, {subtitle: /#{q}/i}, {brand_information: /#{q}/i}) }
 
   STAGES.each do |k, v|
     scope k, -> { where(stage: k) }
@@ -406,6 +405,29 @@ class Thing < Post
     def recal_all_related_things
       Thing.desc(:created_at).no_timeout.each(&:update_related_thing_ids)
     end
+  end
+
+  include Searchable
+
+  def as_indexed_json(options={})
+    {
+      title: self.title,
+      slug: self.slug,
+      subtitle: self.subtitle,
+      brand: self.brand_name,
+      content: ActionController::Base.helpers.strip_tags(self.content)
+    }
+  end
+
+  def self.search(query)
+    options = {
+      multi_match: {
+        query: query,
+        fields: ['title^10', 'slug^5', 'subtitle^3', 'brand^3', 'content']
+      }
+    }
+
+    __elasticsearch__.search(query: options)
   end
 
   private

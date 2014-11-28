@@ -54,6 +54,16 @@ class Brand
     self.description.auto_correct!
   end
 
+  include Searchable
+
+  def as_indexed_json(options={})
+    {
+      zh_name: zh_name,
+      en_name: en_name,
+      description: description
+    }
+  end
+
   def self.update_things_brand_name
     Brand.all.each { |b| b.things.set(brand_name: b.brand_text) }
     Thing.where(brand_id: nil).update(brand_name: "")

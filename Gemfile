@@ -77,6 +77,10 @@ gem 'sidekiq'
 gem 'mini_magick'
 gem 'apn_sender', require: ['apn', 'apn/jobs/sidekiq_notification_job']
 
+# search
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+
 # API
 gem 'doorkeeper', '~> 1', github: 'doorkeeper-gem/doorkeeper'
 
@@ -88,6 +92,7 @@ gem 'airbrake'
 gem 'sitemap_generator'
 
 # misc
+gem "lograge"
 gem 'nokogiri'
 gem 'browser'
 gem 'dkim'

@@ -248,6 +248,19 @@ GEM
       execjs
     eco-source (1.1.0.rc.1)
     ejs (1.1.1)
+    elasticsearch (1.0.6)
+      elasticsearch-api (= 1.0.6)
+      elasticsearch-transport (= 1.0.6)
+    elasticsearch-api (1.0.6)
+      multi_json
+    elasticsearch-model (0.1.6)
+      activesupport (> 3)
+      elasticsearch (> 0.4)
+      hashie
+    elasticsearch-rails (0.1.6)
+    elasticsearch-transport (1.0.6)
+      faraday
+      multi_json
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
@@ -315,6 +328,10 @@ GEM
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
+    lograge (0.3.0)
+      actionpack (>= 3)
+      activesupport (>= 3)
+      railties (>= 3)
     lumberjack (1.0.9)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -607,6 +624,8 @@ DEPENDENCIES
   devise
   dkim
   doorkeeper (~> 1)!
+  elasticsearch-model
+  elasticsearch-rails
   factory_girl_rails
   faker
   font-awesome-rails!
@@ -622,6 +641,7 @@ DEPENDENCIES
   kaminari
   letter_opener!
   libnotify
+  lograge
   marionette-rails
   meta_request
   mini_magick

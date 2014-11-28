@@ -89,9 +89,7 @@ class HomeController < ApplicationController
   end
 
   def search
-    q = (params[:q].to_s || '')
-    q.gsub!(/[^\u4e00-\u9fa5a-zA-Z0-9[:blank:].-_^&]+/, '')
-    q = Regexp.escape(q)
+    q = params[:q].to_s
 
     return head :no_content if q.empty?
     per = params[:per_page] || 48
@@ -101,17 +99,16 @@ class HomeController < ApplicationController
     end
 
     if params[:type].blank? || params[:type] == 'things'
-      @things = Thing.search(q).desc(:fanciers_count).page(params[:page]).per(per)
+      @things = Thing.search(q).page(params[:page]).per(per).records
     end
 
     if params[:type].blank? || params[:type] == 'users'
-      @users = User.find_by_fuzzy(q).page(params[:page]).per(per)
+      @users = User.search(q).page(params[:page]).per(per).records
     end
 
-    @category = Category.where(name: /#{q}/i).first
-    @tag = Tag.where(name: /#{q}/i).first
-    @brand = Brand.where(en_name: /#{q}/i).first
-    @brand ||= Brand.where(zh_name: /#{q}/i).first
+    @category = Category.search(q).records.first
+    @tag = Tag.search(q).records.first
+    @brand = Brand.search(q).records.first
 
     respond_to do |format|
       format.html { render "home/search_#{params[:type]}", layout: 'search' }
