@@ -106,9 +106,9 @@ class HomeController < ApplicationController
       @users = User.search(q).page(params[:page]).per(per).records
     end
 
-    @category = Category.search(q).records.first
-    @tag = Tag.search(q).records.first
-    @brand = Brand.search(q).records.first
+    @category = Category.search(q).limit(1).records.first
+    @tag = Tag.search(q).limit(1).records.first
+    @brand = Brand.search(q).limit(1).records.first
 
     respond_to do |format|
       format.html { render "home/search_#{params[:type]}", layout: 'search' }
