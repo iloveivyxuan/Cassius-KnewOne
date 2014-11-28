@@ -4,11 +4,11 @@ module Searchable
   included do
     include Elasticsearch::Model
 
-    after_save do
-      if should_update_index?
-        Indexer.perform_async(:index, self.class.to_s, self.id.to_s)
-      end
-    end
+    # after_save do
+    #   if should_update_index?
+    #     Indexer.perform_async(:index, self.class.to_s, self.id.to_s)
+    #   end
+    # end
 
     after_destroy { Indexer.perform_async(:delete, self.class.to_s, self.id.to_s) }
   end
