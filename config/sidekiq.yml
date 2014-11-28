@@ -10,5 +10,6 @@ production:
   - devise
   - mails
   - default
+  - elasticsearch
   - edm
   - waybill
