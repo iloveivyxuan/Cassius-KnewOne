@@ -144,6 +144,14 @@ describe Thing, type: :model do
 
         expect(thing.stage).to eq :abroad
       end
+
+      it 'kick' do
+        thing.shop = "http://kickstarter.com/foobar"
+        thing.price_unit = "$"
+        thing.save
+
+        expect(thing.stage).to eq :kick
+      end
     end
   end
 end

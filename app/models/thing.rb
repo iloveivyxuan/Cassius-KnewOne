@@ -429,7 +429,9 @@ class Thing < Post
 
   def update_stage
     if self.shop_changed? && self.shop_was.blank? && !self.shop.blank?
-      if ['¥', 'NT$', 'HK$'].include?(self.price_unit)
+      if %w(kickstarter indiegogo pozible demohour z.jd zhongchou hi.taobao.com).map { |rule| shop.include?(rule) }.include?(true)
+          self.stage = :kick
+      elsif ['¥', 'NT$', 'HK$'].include?(self.price_unit)
         self.stage = :domestic
       else
         self.stage = :abroad
