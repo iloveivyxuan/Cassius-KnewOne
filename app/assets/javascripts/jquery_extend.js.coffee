@@ -31,7 +31,7 @@
     return @each ->
       $element = $(@)
       node_name = $element[0].nodeName.toLowerCase()
-      klass = $element.data('disabled-class')
+      klass = $element.data('disabled-class') || 'disabled'
 
       switch node_name
         when 'input', 'button'
