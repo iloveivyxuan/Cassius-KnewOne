@@ -22,7 +22,7 @@ html[class^="users_"] {
       position: relative;
       margin: 30px auto 0;
       padding-top: $nav-height;
-      padding-right: $info-width + 20px;
+      padding-right: $info-width + 30px;
     }
 
     > header {
@@ -287,8 +287,8 @@ html[class^="users_"] {
           top: 0;
           left: 0;
 
-          width: calc(100% - #{$info-width + 20px});
-          max-width: $wrapper-max-width - $info-width - 20px;
+          width: calc(100% - #{$info-width + 30px});
+          max-width: $wrapper-max-width - $info-width - 30px;
           height: $nav-height;
 
           background: $smoke-white;
