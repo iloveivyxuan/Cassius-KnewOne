@@ -407,7 +407,7 @@ class Thing < Post
 
   include Searchable
 
-  def as_indexed_json
+  def as_indexed_json(options={})
     {
       title: self.title,
       slug: self.slug,

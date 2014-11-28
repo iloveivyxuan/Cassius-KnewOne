@@ -8,7 +8,7 @@ module Searchable
     after_destroy { Indexer.perform_async(:delete, self.class.to_s, self.id.to_s) }
   end
 
-  def as_indexed_json
+  def as_indexed_json(options={})
     {}
   end
 end
