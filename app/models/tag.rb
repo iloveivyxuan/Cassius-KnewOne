@@ -30,4 +30,13 @@ class Tag
   def add_belonging_tags(category)
     category.tags << self
   end
+
+  include Searchable
+
+  def as_indexed_json(options={})
+    {
+      name: name,
+      slug: slug,
+    }
+  end
 end
