@@ -41,17 +41,6 @@ module Haven
       redirect_to haven_articles_url
     end
 
-    def photo
-      if params[:photo]
-        @article.photo[params[:thing]] = params[:photo]
-        @article.save
-      end
-
-      respond_to do |format|
-        format.json { render json: @article.photo[params[:thing]] }
-      end
-    end
-
     private
 
     def article_params
