@@ -52,6 +52,12 @@ class Category
     self.inner_categories = inners
   end
 
+  include Searchable
+
+  def as_indexed_json(options={})
+    {name: name, slug: slug}
+  end
+
   def self.update_things_count
     Category.all.each do |c|
       c.set(things_count: c.things.size)
