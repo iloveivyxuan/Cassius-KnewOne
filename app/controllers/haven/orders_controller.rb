@@ -19,6 +19,8 @@ module Haven
         @orders = case params[:find_by]
                   when 'order_no'
                     @orders.where(:order_no => params[:find_cond])
+                  when 'deliver_no'
+                    @orders.where(:deliver_no => params[:find_cond])
                   when 'user_id'
                     @orders.where(:user_id => params[:find_cond])
                   when 'thing_id'

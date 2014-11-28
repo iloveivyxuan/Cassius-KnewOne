@@ -13,7 +13,7 @@ header.page-header
   br
   = link_to '导出 bong CSV(Numbers)', "#{haven_orders_path(queries.merge(format: :csv, platform: 'numbers', filter: :bong))}", class: 'btn btn-success'
   = link_to '导出 bong CSV(Excel)', "#{haven_orders_path(queries.merge(format: :csv, filter: :bong))}", class: 'btn btn-success'
-= render partial: 'search', locals: {types: {all: '全部', order_no: '订单号', user_id: '用户ID', thing_id: '产品ID', exclude_thing_id: '不包含产品ID', order_name: '姓名'}}
+= render partial: 'search', locals: {types: {all: '全部', order_no: '订单号', deliver_no: '运单号', user_id: '用户ID', thing_id: '产品ID', exclude_thing_id: '不包含产品ID', order_name: '姓名'}}
 = render 'filter'
 ul.orders = render @orders
 = paginate @orders
