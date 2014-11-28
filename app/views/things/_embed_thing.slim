@@ -1,6 +1,6 @@
-figure class="thing--embed #{klass}"
+figure class="thing--embed #{klass}" data-thing-id=thing.id
   = link_to thing, target: "_blank" do
-    - if article.is_a?(Article) && (photo = article.photo[thing.id.to_s])
+    - if !article.nil? && article.is_a?(Article) && (photo = article.photo[thing.id.to_s])
       = image_tag photo
     - else
       - version = browser.mobile? ? :square : (klass == 'col-sm-12' ? :huge : :square)

@@ -30,6 +30,7 @@
     = f.hidden_field :content
 = attachment_tag target: "#pictureBtn", edit: "insertImage"
 = render 'shared/editor_help'
+= render 'things/thing_embed_form_modal'
 
 - content_for :script do
   javascript:
@@ -43,4 +44,5 @@
       placeholder: '正文',
       imageSize: 'huge'
     });
+    Making.embedThing('#form-article')
     Making.UserFuzzy('#author_autocomplete', '[name="article[author]"]');

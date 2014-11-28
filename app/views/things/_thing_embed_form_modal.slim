@@ -1,0 +1,17 @@
+section.modal.fade#thing--embed_form tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      .modal-content
+        header.modal-header
+          button.close type="button" data-dismiss="modal"
+            span aria-hidden="true" &times;
+            span.sr-only Close
+          h4.modal-title 更换产品图片
+        .modal-body
+          .fieldset--photo
+            figure
+            footer
+              button.btn.btn-primary type="button" data-loading-text="上传中..." 上传产品图片
+              = attachment_tag target: "#pictureBtn", edit: "insertImage"
+        footer.modal-footer
+          button.btn.btn-success.disabled.js-submit type="button" disabled="true" data-loading-text="正在提交..." 提交

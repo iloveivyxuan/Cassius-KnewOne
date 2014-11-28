@@ -123,6 +123,7 @@ do (root = @, exports = Making) ->
       requestData =
         type: $element.data('knewoneEmbedType')
         key: $element.data('knewoneEmbedKey') or $element.data('knewoneEmbedId')
+        article: location.href.replace(/^(http(s)?:\/\/)?(www\.)?(knewone\.com)(\/haven)?\/(entries|articles)\/([a-zA-Z0-9^/]{24})(\/edit)?/, '$7')
       $
         .ajax
           url: requestUrl
