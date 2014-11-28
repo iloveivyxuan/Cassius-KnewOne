@@ -24,6 +24,19 @@ hr
   br
   = submit_tag '生成、绑定', class: 'btn btn-primary'
 hr
+
+| 优惠券总数：
+
+= @coupon_codes.all.size
+
+| 绑定用户数：
+
+= @coupon_codes.where(:user_id.ne => nil).all.size
+
+| 绑定订单数：
+
+= @coupon_codes.where(:order_id.ne => nil).all.size
+
 table.table
   tr
     th 代码

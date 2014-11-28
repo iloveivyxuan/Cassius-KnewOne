@@ -91,6 +91,7 @@ class Order
     :ems => 'EMS',
     :shentong => '申通速递',
     :youshuwuliu => '优速物流',
+    :yunda => '韵达快运',
     :tiantian => '天天速递'
   }
   PAYMENT_METHOD = {
@@ -648,6 +649,17 @@ class Order
       else
         self.coupon_code.bind_order_user_and_use
       end
+    end
+  end
+
+  def content
+    self.order_items.map {|i| "#{i.name}x#{i.quantity}"}.join(';')
+  end
+
+  def coupon_text
+    unless self.coupon_code.nil?
+      coupon = self.coupon_code.coupon
+      "#{coupon.price} -> #{coupon.name} #{coupon.note}"
     end
   end
 

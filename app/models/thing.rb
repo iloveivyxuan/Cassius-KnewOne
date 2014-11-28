@@ -25,6 +25,7 @@ class Thing < Post
   before_save :update_counts
 
   field :brand_name, type: String, default: ""
+  field :brand_information, type: String, default: ""
 
   field :links, type: Array, default: []
 
@@ -58,6 +59,7 @@ class Thing < Post
     dsell: "自销"
   }
   validates :stage, inclusion: {in: STAGES.keys}
+  before_save :update_stage
 
   def safe_destroy?
     !Order.where('order_items.thing_id' => self.id).exists?
@@ -444,6 +446,18 @@ class Thing < Post
     self.priority = 0 unless self.priority.is_a?(Integer)
     if self.approved_at.nil? && self.priority > 0
       self.approved_at = Time.now
+    end
+  end
+
+  def update_stage
+    if self.shop_changed? && self.shop_was.blank? && !self.shop.blank?
+      if %w(kickstarter indiegogo pozible demohour z.jd zhongchou hi.taobao.com).map { |rule| shop.include?(rule) }.include?(true)
+          self.stage = :kick
+      elsif ['¥', 'NT$', 'HK$'].include?(self.price_unit)
+        self.stage = :domestic
+      else
+        self.stage = :abroad
+      end
     end
   end
 

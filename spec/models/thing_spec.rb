@@ -107,4 +107,51 @@ describe Thing, type: :model do
       expect(thing2.brand_name).to eq ''
     end
   end
+
+  describe '#stage' do
+    let(:thing) { create(:thing) }
+
+    context 'set stage & price_unit' do
+      before do
+        thing.set(stage: :concept)
+        thing.reload
+      end
+      it 'concept to domestic' do
+        thing.shop = Faker::Internet.url
+        thing.price_unit = "¥"
+        thing.save
+
+        expect(thing.stage).to eq :domestic
+      end
+
+      it 'concept to abroad' do
+        thing.shop = Faker::Internet.url
+        thing.price_unit = "$"
+        thing.save
+
+        expect(thing.stage).to eq :abroad
+      end
+
+      it 'not changed' do
+        thing.shop = Faker::Internet.url
+        thing.price_unit = "$"
+        thing.save
+
+        expect(thing.stage).to eq :abroad
+
+        thing.price_unit = "¥"
+        thing.save
+
+        expect(thing.stage).to eq :abroad
+      end
+
+      it 'kick' do
+        thing.shop = "http://kickstarter.com/foobar"
+        thing.price_unit = "$"
+        thing.save
+
+        expect(thing.stage).to eq :kick
+      end
+    end
+  end
 end

@@ -19,6 +19,8 @@ module Haven
         @orders = case params[:find_by]
                   when 'order_no'
                     @orders.where(:order_no => params[:find_cond])
+                  when 'deliver_no'
+                    @orders.where(:deliver_no => params[:find_cond])
                   when 'user_id'
                     @orders.where(:user_id => params[:find_cond])
                   when 'thing_id'
@@ -73,11 +75,10 @@ module Haven
               end
             end
           else
-            lines = [%w(订单编号 创建时间 订单状态 商品 总价 物流方式 物流单号 配送省 配送市 配送区/县 配送街道 地址 配送姓名 配送手机号 用户备注 管理员备注 系统备注 支付平台流水号 用户ID 用户名 用户邮箱 支付的活跃点)]
+            lines = [%w(订单编号 创建时间 订单状态 商品 总价 物流方式 物流单号 配送省 配送市 配送区/县 配送街道 地址 配送姓名 配送手机号 用户备注 管理员备注 系统备注 支付平台流水号 用户ID 用户名 用户邮箱 支付的活跃点 使用的优惠券)]
 
-            @orders.each do |order|
+            @orders.includes(:coupon_code).each do |order|
               city = CITY_PLACEHOLDER.include?(order.address.city) ? order.address.province : (order.address.city || '')
-
 
               cols = [
                       order.order_no,
@@ -101,7 +102,8 @@ module Haven
                       order.user_id,
                       order.user.name,
                       order.user.email,
-                      order.consumed_bong_point
+                      order.consumed_bong_point,
+                      order.coupon_text
                      ]
 
               lines<< cols
