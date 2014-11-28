@@ -55,14 +55,7 @@ class Brand
   end
 
   include Searchable
-
-  def as_indexed_json(options={})
-    {
-      zh_name: zh_name,
-      en_name: en_name,
-      description: description
-    }
-  end
+  searchable_fields [:zh_name, :en_name, :description]
 
   def self.update_things_brand_name
     Brand.all.each { |b| b.things.set(brand_name: b.brand_text) }

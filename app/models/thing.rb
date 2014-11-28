@@ -409,10 +409,12 @@ class Thing < Post
 
   include Searchable
 
+  searchable_fields [:title, :_slugs, :subtitle, :brand_name, :content]
+
   def as_indexed_json(options={})
     {
       title: self.title,
-      slug: self.slug,
+      slugs: self.slugs,
       subtitle: self.subtitle,
       brand: self.brand_name,
       content: ActionController::Base.helpers.strip_tags(self.content)

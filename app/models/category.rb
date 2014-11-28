@@ -53,10 +53,7 @@ class Category
   end
 
   include Searchable
-
-  def as_indexed_json(options={})
-    {name: name, slug: slug}
-  end
+  searchable_fields [:name, :_slugs]
 
   def self.update_things_count
     Category.all.each do |c|

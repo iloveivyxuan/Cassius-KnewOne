@@ -32,11 +32,5 @@ class Tag
   end
 
   include Searchable
-
-  def as_indexed_json(options={})
-    {
-      name: name,
-      slug: slug,
-    }
-  end
+  searchable_fields [:name, :_slugs]
 end

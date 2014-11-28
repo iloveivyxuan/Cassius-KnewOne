@@ -542,10 +542,7 @@ HERE
   end
 
   include Searchable
-
-  def as_indexed_json(options={})
-    {name: name}
-  end
+  searchable_fields [:name]
 
   protected
   def password_required?
