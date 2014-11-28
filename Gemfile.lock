@@ -328,6 +328,10 @@ GEM
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
+    lograge (0.3.0)
+      actionpack (>= 3)
+      activesupport (>= 3)
+      railties (>= 3)
     lumberjack (1.0.9)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -637,6 +641,7 @@ DEPENDENCIES
   kaminari
   letter_opener!
   libnotify
+  lograge
   marionette-rails
   meta_request
   mini_magick
