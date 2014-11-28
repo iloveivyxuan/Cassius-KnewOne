@@ -541,6 +541,12 @@ HERE
     self.role?(:editor) || group.has_admin?(self) || self == group.founder
   end
 
+  include Searchable
+
+  def as_indexed_json(options={})
+    {name: name}
+  end
+
   protected
   def password_required?
     self.encrypted_password.present? && (!password.nil? || !password_confirmation.nil?)
