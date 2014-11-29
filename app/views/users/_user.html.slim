@@ -1,14 +1,15 @@
 - show_follow_btn = user_signed_in? if show_follow_btn.nil?
-li.author
-  = link_to user, target: '_blank', class: 'author-avatar' do
-    = user_avatar(user, :small)
+- cache_unless user_signed_in?, [user, show_follow_btn]
+  li.author
+    = link_to user, target: '_blank', class: 'author-avatar' do
+      = user_avatar(user, :small)
 
-  = link_to user, target: '_blank', class: 'author-name' do
-    = user.name
+    = link_to user, target: '_blank', class: 'author-name' do
+      = user.name
 
-  - if user.description?
-    p.author-description = user.description
+    - if user.description?
+      p.author-description = user.description
 
-  p.followers_count = "#{user.followers_count}人关注"
-  - if show_follow_btn
-    = render 'users/follow_btn', user: user
+    p.followers_count = "#{user.followers_count}人关注"
+    - if show_follow_btn
+      = render 'users/follow_btn', user: user
