@@ -2,7 +2,7 @@
 - data = user_signed_in? ? {url: path} : {toggle: "modal", target: "#login-modal", link: thing_url(p.thing)}
 - data.merge!({ category: "fancy", action: "fancy_#{from}", label: "fancy+fancy_#{from}+#{p.path}" })
 - data.merge!({ 'add-to-list' => true, 'thing-id' => p.id.to_s }) if can?(:create, ThingList)
-- data.merge!({ 'has-lists' => true }) if p.thing.lists.present?
+- data.merge!({ 'has-lists' => true }) if p.thing.lists.where(author: current_user).present?
 - title = p.fancied? ? "取消喜欢" : "喜欢"
 - fancy_class = p.fancied? ? "fancied" : "unfancied"
 - icon_class = p.fancied? ? "fa-heart" : "fa-heart-o"
