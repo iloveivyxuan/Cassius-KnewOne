@@ -5,7 +5,7 @@ module Searchable
     include Elasticsearch::Model
 
     after_save do
-      if should_update_index?
+      if searchable_fields_changed?
         Indexer.perform_async(:index, self.class.to_s, self.id.to_s)
       end
     end
@@ -15,7 +15,7 @@ module Searchable
 
   module ClassMethods
     def searchable_fields(fields)
-      define_method :should_update_index? do
+      define_method :searchable_fields_changed? do
         fields.any? { |field| changed.include?(field.to_s) }
       end
 
