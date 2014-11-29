@@ -141,7 +141,6 @@ class HomeController < ApplicationController
       slugs = params[:key].split(',')
       @things = Thing.any_in(slugs: slugs)
       article = Article.where(id: params[:article]).first
-      article ||= Entry.where(id: params[:article]).first.post
       render partial: 'things/embed_thing', collection: @things, locals: { article: article, klass: (slugs.size > 1) ? 'col-sm-6' : 'col-sm-12' }, as: 'thing'
     when 'list'
       @list = ThingList.find params[:key]

@@ -13,7 +13,7 @@
       button.editor-drop type="button" 舍弃
       button.editor-save type="button" 保存
       button.editor-submit type="submit" 发布
-  article.editor-content.article
+  article.editor-content.article data-article-id=@article.id
     header
       = f.text_field :title, class: "title", required: true, autocomplete: "off", autofocus: "true", placeholder: "标题"
       .editor-metas

@@ -9,7 +9,7 @@ do (exports = Making) ->
     $photoButton   = $photoFieldset.children('footer').children('button')
     $photoField    = $photoFieldset.find('input[type="file"]')
     photoUrl       = ''
-    patternArticle = /(http:\/\/making\.dev\/haven\/articles\/([a-zA-Z0-9]+?))\/edit/
+    articleId      = $element.attr('data-article-id') || $element.find('.article').attr('data-article-id')
 
     $element
       .on 'mouseenter.embed', '.thing--embed', (event) ->
@@ -28,10 +28,12 @@ do (exports = Making) ->
     $modal
       .on 'click', '.js-submit', (event) ->
         $editTarget = $modal.data('embedEditTarget')
+
         $
           .ajax
             type: 'post'
-            url: location.href.replace(patternArticle, '$1') + '/photo'
+            #TODO
+            url: "http://knewone.com/haven/articles/#{articleId}/photo"
             data:
               thing: $editTarget.data('thingId')
               photo: photoUrl
@@ -39,6 +41,8 @@ do (exports = Making) ->
             beforeSend: (xhr, setting) ->
               $submit.button('loading')
           .done (data, status, xhr) ->
+            $embed = $editTarget.closest('.knewone-embed--thing')
+            $embed.attr('data-knewone-embed-affiliate', articleId)
             $editTarget
               .children('a')
               .children('img')
