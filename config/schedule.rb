@@ -34,7 +34,7 @@ every 1.day, at: '3:00 am' do
   rake 'db:mongoid:create_indexes'
 end
 
-every 1.days, :at => '3:30 am' do
+every 1.day, :at => '3:30 am' do
   command 'backup perform -t site_backup -r ~/Backup'
 end
 
