@@ -25,6 +25,10 @@ app_path = "#{Pathname.new(__FILE__).realpath.dirname}/../"
 
 set :output, "#{app_path}/log/cron_log.log"
 
+every 1.day, at: '2:30 am' do
+  rake 'environment elasticsearch:import:all DIR=app/models FORCE=y'
+end
+
 every 1.day, at: '3:00 am' do
   rake 'db:mongoid:remove_undefined_indexes'
   rake 'db:mongoid:create_indexes'
