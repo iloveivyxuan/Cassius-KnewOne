@@ -1,6 +1,6 @@
-- if @things
+- if @things.present?
   ul.things
     = render @things.to_a, size: :normal, img_lazy: false
-- if @users
+- if @users.present?
   ul.users
     = render @users.to_a
