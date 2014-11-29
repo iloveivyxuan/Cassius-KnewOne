@@ -19,7 +19,7 @@ module Searchable
         fields.any? { |field| changed.include?(field.to_s) }
       end
 
-      define_method :as_indexed_json do
+      define_method :as_indexed_json do |*args|
         as_json(only: fields)
       end
     end
