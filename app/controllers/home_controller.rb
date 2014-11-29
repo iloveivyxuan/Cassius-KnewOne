@@ -90,6 +90,7 @@ class HomeController < ApplicationController
 
   def search
     q = params[:q].to_s
+    q = q.gsub(%r{[#{Regexp.escape('\\+-&|!(){}[]^~*?:/')}]}, '\\\\\0')
 
     return head :no_content if q.empty?
     per = params[:per_page] || 48
