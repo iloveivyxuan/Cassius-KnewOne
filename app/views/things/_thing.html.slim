@@ -1,4 +1,6 @@
-- cache_unless user_signed_in?, thing
+- fanciable = true if fanciable.nil?
+-
+- cache_unless user_signed_in?, [thing, fanciable]
   - present thing do |tp|
     li
       figure class="thing"
@@ -19,9 +21,10 @@
             span= tp.stage_text
         .thing_thumb
           = img_lazy ? tp.photo_lazy(size) : tp.photo(size)
-          .thing_fancy
-            = link_to "", tp.thing, class: "thing_fancy_backdrop", target: "_blank"
-            .fanciers = render "shared/fancy", p: tp, from: "things"
+          - if fanciable
+            .thing_fancy
+              = link_to "", tp.thing, class: "thing_fancy_backdrop", target: "_blank"
+              .fanciers = render "shared/fancy", p: tp, from: "things"
         figcaption
           h5 data-toggle="tooltip" data-placement="top" title=tp.title
             = link_to tp.title, tp.thing, target: '_blank'
