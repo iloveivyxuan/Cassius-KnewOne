@@ -12,7 +12,7 @@ window.Making = do (exports = window.Making || {}) ->
       url         = $form.attr('action') + '.js'
       cache       = {}
       max_length  = 12
-      delay       = 300
+      delay       = 200
 
       hideSearchSlide = ->
         if $candidate.is(':visible') then $candidate.hide()
