@@ -13,7 +13,6 @@ window.Making = do (exports = window.Making || {}) ->
       cache       = {}
       max_length  = 12
       delay       = 300
-      typing_time = 0
 
       $form.on 'submit', (e) ->
         if $.trim($input.val()).length < 2
@@ -24,14 +23,17 @@ window.Making = do (exports = window.Making || {}) ->
         $self = $(@)
         keyword = $.trim @.value
 
-        if keyword.length >= 1
+        if keyword.length == 0
+          if $candidate.is(':visible') then $candidate.hide()
+          if $backdrop.is(':visible') then $backdrop.fadeOut()
+        else
           $status.removeClass('fa-search').addClass('fa-spinner fa-spin')
 
           if !cache[keyword]
             cache[keyword] = $.ajax
                             url: url
                             data:
-                              per_page: 12
+                              per_page: max_length
                               q: keyword
                             dataType: 'html'
                             contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
@@ -136,10 +138,6 @@ window.Making = do (exports = window.Making || {}) ->
               if $candidate.is(':visible') then $candidate.hide()
               if $backdrop.is(':visible') then $backdrop.hide()
               $status.removeClass('fa-spinner fa-spin').addClass('fa-search')
-
-        else
-          if $candidate.is(':visible') then $candidate.hide()
-          if $backdrop.is(':visible') then $backdrop.fadeOut()
       , delay)
 
   $ ->
@@ -149,11 +147,6 @@ window.Making = do (exports = window.Making || {}) ->
       $candidate  = $('.search_candidate')
       $backdrop   = $('.search_backdrop')
       $close      = $candidate.children('.close')
-      $status     = $input.next('.fa')
-      cache       = {}
-      max_length  = 12
-      delay       = 300
-      typing_time = 0
       $nav_primary    = $('#nav_primary')
       transition_time = parseFloat($form.css('transition-duration')) * 1000
       _focusOutSearch = ->
