@@ -14,6 +14,11 @@ window.Making = do (exports = window.Making || {}) ->
       max_length  = 12
       delay       = 300
 
+      hideSearchSlide = ->
+        if $candidate.is(':visible') then $candidate.hide()
+        if $backdrop.is(':visible') then $backdrop.fadeOut()
+        $status.addClass('fa-search').removeClass('fa-spinner fa-spin')
+
       $form.on 'submit', (e) ->
         if $.trim($input.val()).length < 2
           return false
@@ -24,8 +29,7 @@ window.Making = do (exports = window.Making || {}) ->
         keyword = $.trim @.value
 
         if keyword.length == 0
-          if $candidate.is(':visible') then $candidate.hide()
-          if $backdrop.is(':visible') then $backdrop.fadeOut()
+          hideSearchSlide()
         else
           $status.removeClass('fa-search').addClass('fa-spinner fa-spin')
 
@@ -134,10 +138,7 @@ window.Making = do (exports = window.Making || {}) ->
                   if $candidate.is(':hidden') then $candidate.show()
                   $status.removeClass('fa-spinner fa-spin').addClass('fa-search')
 
-            .fail ->
-              if $candidate.is(':visible') then $candidate.hide()
-              if $backdrop.is(':visible') then $backdrop.hide()
-              $status.removeClass('fa-spinner fa-spin').addClass('fa-search')
+            .fail hideSearchSlide
       , delay)
 
   $ ->
