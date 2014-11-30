@@ -44,7 +44,7 @@ window.Making = do (exports = window.Making || {}) ->
 
           cache[keyword]
             .done (data, status, xhr) ->
-              url_request = decodeURI(@.url)
+              url_request = decodeURIComponent(@url)
               param = url_request.slice(url_request.lastIndexOf('q=') + 2)
 
               if xhr.status is 200 and param is $.trim($input.val()).replace(' ', '+')
