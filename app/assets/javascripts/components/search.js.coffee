@@ -37,6 +37,7 @@ window.Making = do (exports = window.Making || {}) ->
               cache[keyword] = $.ajax
                               url: url
                               data:
+                                per_page: 12
                                 q: keyword
                               dataType: 'html'
                               contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
