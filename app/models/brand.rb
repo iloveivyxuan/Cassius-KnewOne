@@ -57,6 +57,17 @@ class Brand
   include Searchable
   searchable_fields [:zh_name, :en_name, :description]
 
+  def self.search(query)
+    options = {
+      multi_match: {
+        query: query,
+        fields: ['zh_name^10', 'en_name^10', 'description']
+      }
+    }
+
+    __elasticsearch__.search(query: options)
+  end
+
   def self.update_things_brand_name
     Brand.all.each { |b| b.things.set(brand_name: b.brand_text) }
     Thing.where(brand_id: nil).update(brand_name: "")
