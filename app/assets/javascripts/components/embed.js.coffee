@@ -32,7 +32,6 @@ do (exports = Making) ->
         embedOptions = JSON.parse($embed.attr('data-knewone-embed-options') || '{}')
         embedOptions['photo'] = photoUrl
         $embed.attr('data-knewone-embed-options', JSON.stringify(embedOptions))
-        console.log $embed.attr('data-knewone-embed-options')
         $editTarget
           .children('a')
           .children('img')
