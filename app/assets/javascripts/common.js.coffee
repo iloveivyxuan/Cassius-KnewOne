@@ -123,7 +123,8 @@ do (root = @, exports = Making) ->
       requestData =
         type: $element.data('knewoneEmbedType')
         key: $element.data('knewoneEmbedKey') or $element.data('knewoneEmbedId')
-        article: $element.data('knewoneEmbedAffiliate')
+      if $element.data('knewoneEmbedOptions')
+        requestData['options'] = $element.data('knewoneEmbedOptions')
       $
         .ajax
           url: requestUrl

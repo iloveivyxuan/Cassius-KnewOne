@@ -229,7 +229,7 @@ do ($ = jQuery) ->
               if /^(http(s)?:\/\/)?(www\.)?(knewone\.com)/.test(url)
                 that          = @
                 requestUrl    = 'http://knewone.com/embed'
-                patternThing  = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/things\/([^\/]+?)\/?$/
+                patternThing  = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/things\/([^\/]+)\/?$/
                 patternReview = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/things\/(.*)\/reviews\/([0-9a-z]{24})/
                 patternList   = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/lists\/([0-9a-z]{24})/
                 async         = true

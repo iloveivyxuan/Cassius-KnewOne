@@ -27,29 +27,18 @@ do (exports = Making) ->
 
     $modal
       .on 'click', '.js-submit', (event) ->
-        $editTarget = $modal.data('embedEditTarget')
-
-        $
-          .ajax
-            type: 'post'
-            #TODO
-            url: "http://knewone.com/haven/articles/#{articleId}/photo"
-            data:
-              thing: $editTarget.data('thingId')
-              photo: photoUrl
-            dataType: 'html'
-            beforeSend: (xhr, setting) ->
-              $submit.button('loading')
-          .done (data, status, xhr) ->
-            $embed = $editTarget.closest('.knewone-embed--thing')
-            $embed.attr('data-knewone-embed-affiliate', articleId)
-            $editTarget
-              .children('a')
-              .children('img')
-              .attr('src', photoUrl)
-            $modal.modal('hide')
-            $photoPreview.empty()
-            $submit.disable().button('reset')
+        $editTarget  = $modal.data('embedEditTarget')
+        $embed       = $editTarget.closest('.knewone-embed--thing')
+        embedOptions = JSON.parse($embed.attr('data-knewone-embed-options') || '{}')
+        embedOptions['photo'] = photoUrl
+        $embed.attr('data-knewone-embed-options', JSON.stringify(embedOptions))
+        console.log $embed.attr('data-knewone-embed-options')
+        $editTarget
+          .children('a')
+          .children('img')
+          .attr('src', photoUrl)
+        $modal.modal('hide')
+        $photoPreview.empty()
 
     $photoField
       .removeAttr('id')
