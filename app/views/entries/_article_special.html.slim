@@ -41,7 +41,7 @@ article.article data-article-id=post.id
 
   - if entry.category == '评测'
     .knewone-embed.knewone-embed--thing
-      = render 'things/embed_thing', thing: post.thing, article: Article.first, klass: 'col-sm-12'
+      = render 'things/embed_thing', thing: post.thing, photo: nil, klass: 'col-sm-12'
 
   .actions
     .interactions id="article_#{post.id.to_s}"
