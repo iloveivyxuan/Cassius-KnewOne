@@ -1,6 +1,8 @@
+- thing = embed.first
+- photo = embed.last
 figure class="thing--embed #{klass}" data-thing-id=thing.id
   = link_to thing, target: "_blank" do
-    - if photo
+    - if !photo.blank?
       = image_tag photo
     - else
       - version = browser.mobile? ? :square : (klass == 'col-sm-12' ? :huge : :square)
