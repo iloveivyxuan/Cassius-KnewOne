@@ -36,6 +36,7 @@ do (exports = Making) ->
           .children('a')
           .children('img')
           .attr('src', photoUrl)
+        $element.trigger('input')
         $modal.modal('hide')
         $photoPreview.empty()
 
