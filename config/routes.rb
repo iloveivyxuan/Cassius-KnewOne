@@ -329,11 +329,7 @@ Making::Application.routes.draw do
 
     resources :links
 
-    resources :articles, except: [:show] do
-      member do
-        post 'photo'
-      end
-    end
+    resources :articles, except: [:show]
 
     resources :specials, except: [:show] do
       resources :special_subjects, except: [:show, :index]
