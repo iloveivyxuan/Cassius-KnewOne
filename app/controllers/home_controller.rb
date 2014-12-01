@@ -140,7 +140,7 @@ class HomeController < ApplicationController
     when 'thing'
       slugs = params[:key].split(',')
       @things = Thing.any_in(slugs: slugs)
-      photo = params[:options][:photo]
+      photo = params[:options] ? params[:options][:photo] : nil
       render partial: 'things/embed_thing', collection: @things, locals: { photo: photo, klass: (slugs.size > 1) ? 'col-sm-6' : 'col-sm-12' }, as: 'thing'
     when 'list'
       @list = ThingList.find params[:key]
