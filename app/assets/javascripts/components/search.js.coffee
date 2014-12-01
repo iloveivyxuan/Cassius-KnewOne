@@ -20,7 +20,7 @@ window.Making = do (exports = window.Making || {}) ->
         $status.addClass('fa-search').removeClass('fa-spinner fa-spin')
 
       $form.on 'submit', (e) ->
-        if $.trim($input.val()).length < 2
+        if $.trim($input.val()).length < 1
           return false
         return true
 
