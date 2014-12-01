@@ -5,7 +5,7 @@ figure class="thing--embed #{klass}" data-thing-id=thing.id
     - if !photo.blank?
       = image_tag photo
     - else
-      - version = browser.mobile? ? :square : (klass == 'col-sm-12' ? :huge : :square)
+      - version = browser.mobile? ? :square : (klass == 'col-sm-12' ? :middle : :square)
       = image_tag thing.photos.first.url(version)
   figcaption
     h5= link_to thing.title, thing, target: "_blank"
