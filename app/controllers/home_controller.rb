@@ -142,6 +142,8 @@ class HomeController < ApplicationController
       @things = Thing.any_in(slugs: slugs)
       if params[:options]
         photos = params[:options][:photos].split(',')
+      else
+        photos = Array.new(@things.size, "")
       end
       render partial: 'things/embed_thing', collection: @things.zip(photos), locals: { klass: (slugs.size > 1) ? 'col-sm-6' : 'col-sm-12' }, as: 'embed'
     when 'list'
