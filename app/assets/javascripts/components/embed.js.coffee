@@ -30,7 +30,10 @@ do (exports = Making) ->
         $editTarget  = $modal.data('embedEditTarget')
         $embed       = $editTarget.closest('.knewone-embed--thing')
         embedOptions = JSON.parse($embed.attr('data-knewone-embed-options') || '{}')
-        embedOptions['photo'] = photoUrl
+        photos        = embedOptions['photos'] || []
+        index         = $editTarget.index()
+        photos[index] = photoUrl
+        embedOptions['photos'] = photos.join(',')
         $embed.attr('data-knewone-embed-options', JSON.stringify(embedOptions))
         $editTarget
           .children('a')
