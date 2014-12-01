@@ -78,17 +78,17 @@ class Entry
   def category_translation
     case self.category
     when '专访'
-      return 'talk'
+      'talk'
     when '列表'
-      return 'list'
+      'list'
     when '评测'
-      return 'review'
-    when '特写 '
-      return 'feature'
+      'review'
+    when '特写'
+      'feature'
     when '专题'
-      return 'special'
+      'special'
     when '活动'
-      return 'event'
+      'event'
     else
       return
     end
