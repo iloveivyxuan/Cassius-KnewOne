@@ -1,6 +1,6 @@
-- if @things.present?
-  ul.things
+ul.things
+  - if @things.present?
     = render @things.to_a, size: :normal, img_lazy: false, fanciable: false
-- if @users.present?
-  ul.users
+ul.users
+  - if @users.present?
     = render @users.to_a
