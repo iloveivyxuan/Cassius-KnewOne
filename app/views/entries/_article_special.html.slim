@@ -30,7 +30,7 @@ article.article data-article-id=post.id
 
     figure
       - version = browser.mobile? ? :'thing.fixed.small' : :huge
-      = image_tag (entry.canopy.url(version) || "http://image.knewone.com/entries/b84131df90f176213ce8aef9eea64d7c.jpeg!#{version}")
+      = image_tag (entry.canopy.url(version) || "http://image.knewone.com/review_photos/65cd5f541dee082691f8481e96d132cc.jpg!#{version}")
 
   - if post.try(:summary).present?
     p.summary= post.summary
