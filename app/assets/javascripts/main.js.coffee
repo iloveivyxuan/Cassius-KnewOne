@@ -420,9 +420,11 @@ do (exports = Making) ->
       .on 'click', '.fa-times', ->
         $(@).hide().parents('.search').find('input').val('')
       .on 'keyup', 'input', ->
-        if $.trim(@.value) isnt ''
-          $trigger = $(@).parents('.search').find('.fa-times')
-          if $trigger.is(':hidden') then $trigger.show()
+        $trigger = $(@).parents('.search').find('.fa-times')
+        if $.trim(@value).length
+          $trigger.show()
+        else
+          $trigger.hide()
 
     $('.js_auto_submit').on 'change', ->
       $(@).parents('form').trigger('submit')
