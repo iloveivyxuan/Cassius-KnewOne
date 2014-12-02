@@ -16,6 +16,7 @@ class Entry
   field :thing_ids, type: Array, default: []
   field :category, type: String
   field :published, type: Boolean, default: false
+  field :summary, type: String
 
   scope :published, -> {where published: true}
 

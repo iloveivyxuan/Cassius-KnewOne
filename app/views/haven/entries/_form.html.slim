@@ -11,6 +11,7 @@
   = f.input :title
   - title = (@entry && @entry.title?) ? @entry.title : @entry.post.try(:title)
   = f.input :sharing_content, input_html: {value: "推荐 @KnewOne #{@entry.category}：《#{title}》"}
+  = f.input :summary
   = f.input :cover
   = f.input :cover_cache, as: :hidden
   = f.input :canopy

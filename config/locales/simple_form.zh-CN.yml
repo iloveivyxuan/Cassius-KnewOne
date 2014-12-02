@@ -115,6 +115,7 @@ zh-CN:
         title: '标题'
         cover: '封面'
         canopy: '文章顶部图片'
+        summary: '摘要'
         published: '公开'
         sharing_content: '分享文案'
       special:

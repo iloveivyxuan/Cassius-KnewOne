@@ -32,8 +32,8 @@ article.article data-article-id=post.id
       - version = browser.mobile? ? :'thing.fixed.small' : :huge
       = image_tag (entry.canopy.url(version) || "http://image.knewone.com/review_photos/65cd5f541dee082691f8481e96d132cc.jpg!#{version}")
 
-  - if post.try(:summary).present?
-    p.summary= post.summary
+  - if entry.try(:summary).present?
+    p.summary= entry.summary
   - else
     p.summary= strip_tags(post.content).truncate(140)
 
