@@ -7,10 +7,24 @@ module Haven
     def index
       if params[:brand_name]
         brand_regex = /#{params[:brand_name].strip}/i
-        @brands = Brand.or({ zh_name: brand_regex }, { en_name: brand_regex }).page(params[:page]).per(20)
+        @brands = Brand.or({ zh_name: brand_regex }, { en_name: brand_regex })
+      elsif params[:filter]
+        case params[:filter]
+        when 'things_count'
+          @brands = Brand.desc(:things_count)
+        when 'created_at'
+          @brands = Brand.desc(:created_at)
+        when 'updated_at'
+          @brands = Brand.desc(:updated_at)
+        when 'no_description'
+          @brands = Brand.where(description: "")
+        when 'no_country'
+          @brands = Brand.asc(:country)
+        end
       else
-        @brands = Brand.all.desc(:things_size).page(params[:page]).per(20)
+        @brands = Brand.all.desc(:things_size)
       end
+      @brands = @brands.page(params[:page]).per(20)
     end
 
     def edit
