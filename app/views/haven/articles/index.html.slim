@@ -1,22 +1,26 @@
+- page_title '管理文章'
+
 header.page-header.clearfix
   h1.pull-left 管理文章
   = link_to '新建', new_haven_article_path, class: 'btn btn-primary pull-right', target: "_blank"
 
 table.table.table-striped
-  tr
-    th ID
-    th 标题
-    th 作者
-    th 创建时间
-    th
-  - @articles.each do |a|
+  thead
     tr
-      td = a.id.to_s
-      td = a.title
-      td = a.author.name
-      td width="100"
-        = date_time_text(a.created_at)
-      td width="50"
-        = link_to '编辑', edit_haven_article_path(a), target: "_blank"
+      th ID
+      th 标题
+      th 作者
+      th 创建时间
+      th
+  tbody
+    - @articles.each do |a|
+      tr
+        td = a.id.to_s
+        td = a.title
+        td = a.author.name
+        td width="100"
+          = date_time_text(a.created_at)
+        td width="50"
+          = link_to '编辑', edit_haven_article_path(a), target: "_blank"
 
 = paginate @articles

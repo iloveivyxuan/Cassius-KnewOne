@@ -1,0 +1,63 @@
+- page_css 'entries_special'
+
+article.article data-article-id=post.id
+
+  header
+    .header-inner
+      nav.header-top
+        = link_to_with_icon "精选首页", "fa fa-caret-left", explore_path, class: "visible-xs-block"
+        - if !browser.mobile?
+          = link_to "#", class: "hidden-xs" do
+            = image_tag "article_#{Entry::CATEGORIES[entry.category]}.jpg"
+        em= "KnewOne #{entry.category_translation}"
+
+      .header-main
+        h1.title = post.title
+        .clearfix
+          ul.metas.pull-left
+            li
+              label.avatar
+                = image_tag author.avatar.url(:tiny), class: 'img-circle'
+                = link_to author.name, author, data: {"profile-popover" => author.id.to_s}
+            li = time_ago_tag entry.created_at
+          ul.metas.pull-right
+            li
+              i.fa.fa-thumbs-o-up
+              = post.lovers_count
+            li
+              i.fa.fa-comment-o
+              = post.comments.size
+
+    figure
+      - version = browser.mobile? ? :'thing.fixed.small' : :huge
+      = image_tag (entry.canopy.url(version) || "http://image.knewone.com/review_photos/65cd5f541dee082691f8481e96d132cc.jpg!#{version}")
+
+  - if post.try(:summary).present?
+    p.summary= post.summary
+  - else
+    p.summary= strip_tags(post.content).truncate(140)
+
+  section.content= sanitize post.content
+
+  - if entry.category == '评测'
+    .knewone-embed.knewone-embed--thing
+      = render 'things/embed_thing', thing: post.thing, photo: nil, klass: 'col-sm-12'
+
+  .actions
+    .interactions id="article_#{post.id.to_s}"
+      = render partial: 'shared/voting', locals: {object: post}
+    = render "shared/share_external", type: entry.category, title: entry_title(entry)
+
+  ul.pager
+    - if previous_entry = entry.previous
+      li.previous = link_to "#{entry_title(previous_entry)}", previous_entry
+    - if next_entry = entry.next
+      li.next = link_to "#{entry_title(next_entry)}", next_entry
+
+  hr
+
+  = render 'shared/comments', post: post, id: "comments", auth: true
+
+- content_for :script do
+  javascript:
+    Making.Comments("#comments");

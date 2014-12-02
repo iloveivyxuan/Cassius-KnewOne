@@ -181,7 +181,7 @@
   }
 
   > header {
-    margin-bottom: $padding-large-vertical * 3;
+    margin-bottom: $padding-large-vertical * 2;
 
     .title {
       border: none;
@@ -202,10 +202,6 @@
 
     &:focus {
       outline: none;
-    }
-
-    *:last-child {
-      margin-bottom: 0;
     }
 
     .is-focused {
@@ -234,13 +230,31 @@
   @extend .form-inline;
 
   .form-group {
+    margin-bottom: 10px;
 
-    &:not(:last-child):after {
+    &:not(:first-child)::before {
       color: #eee;
       content: '|';
       display: inline-block;
       line-height: 32px;
       margin: 0 1.5em;
+    }
+
+    &.form-group--block {
+      display: block;
+
+      &::before {
+        display: none !important;
+      }
+
+      label {
+        display: block;
+      }
+
+      .form-control {
+        display: block;
+        width: 100%;
+      }
     }
   }
 
@@ -321,10 +335,6 @@ html.tablet {
   .medium-editor-toolbar {
     display: none;
   }
-}
-
-body.editor-open {
-  overflow: hidden;
 }
 
 .editor_compact {

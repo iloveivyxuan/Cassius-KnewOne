@@ -223,30 +223,46 @@ do ($ = jQuery) ->
             event.preventDefault()
 
             if content.indexOf('http') is 0
-              url  = content
+              url = content
 
               # KnewOne embed
               if /^(http(s)?:\/\/)?(www\.)?(knewone\.com)/.test(url)
                 that          = @
                 requestUrl    = 'http://knewone.com/embed'
+                patternThing  = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/things\/([^\/]+)\/?$/
                 patternReview = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/things\/(.*)\/reviews\/([0-9a-z]{24})/
                 patternList   = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/lists\/([0-9a-z]{24})/
                 async         = true
-                if patternReview.test(url)
+                urls          = url.split(' ')
+                isThings      = undefined
+                thingSlugs    = []
+
+                for url in urls
+                  if isThings is false then break
+                  do ->
+                    isThings = patternThing.test(url)
+                    if isThings then thingSlugs.push(url.replace(patternThing, '$5'))
+
+                if isThings
+                  requestData =
+                    type: 'thing'
+                    key: thingSlugs.join(',')
+                else if patternReview.test(url)
                   requestData =
                     type: 'review'
-                    id: url.replace(patternReview, '$6')
+                    key: url.replace(patternReview, '$6')
                 else if patternList.test(url)
                   requestData =
                     type: 'list'
-                    id: url.replace(patternList, '$5')
+                    key: url.replace(patternList, '$5')
+
                 $
                   .ajax
                     url: requestUrl
                     data: requestData
                     dataType: 'html'
                   .done (data, status, xhr) ->
-                    content = "<div class='knewone-embed knewone-embed--#{requestData.type}' data-knewone-embed-type=#{requestData.type} data-knewone-embed-id=#{requestData.id} contenteditable='false'>" + data + '</div>'
+                    content = "<div class='knewone-embed knewone-embed--#{requestData.type}' data-knewone-embed-type=#{requestData.type} data-knewone-embed-key=#{requestData.key} contenteditable='false'>" + data + '</div>'
                     that.hide()
                     that.insert(content)
               else

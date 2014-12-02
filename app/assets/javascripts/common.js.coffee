@@ -122,7 +122,9 @@ do (root = @, exports = Making) ->
       $element = $(element)
       requestData =
         type: $element.data('knewoneEmbedType')
-        id: $element.data('knewoneEmbedId')
+        key: $element.data('knewoneEmbedKey') or $element.data('knewoneEmbedId')
+      if $element.data('knewoneEmbedOptions')
+        requestData['options'] = $element.data('knewoneEmbedOptions')
       $
         .ajax
           url: requestUrl
@@ -139,6 +141,7 @@ do (root = @, exports = Making) ->
           $element
             .empty()
             .append('<p class="knewone-embed-tip">无效的资源。</p>')
+            .attr('contenteditable', false)
 
   $ ->
     $navbar          = $('.navbar')

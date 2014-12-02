@@ -14,11 +14,59 @@
   }
 }
 
+.knewone-embed-edit {
+  background-color: #333;
+  border: none;
+  color: #fff;
+  position: absolute;
+  right: 0;
+  top: 0;
+  
+  .fa {
+    margin-right: 0;
+  }
+}
+
+#thing--embed_form {
+  .fieldset--photo {
+    figure {
+      border: $border-default;
+      height: 0;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      padding-bottom: percentage(9/16);
+    }
+
+    footer {
+      text-align: center;
+
+      [type="file"] {
+        display: inline-block;
+        height: 34px;
+        margin-left: -110px;
+        opacity: 0;
+        position: absolute;
+        vertical-align: middle;
+        width: 110px;
+      }
+    }
+  }
+}
+
 .knewone-embed-tip {
   color: $text-muted;
   margin: 0 !important;
   padding: 1em 0;
   text-align: center;
+}
+
+.knewone-embed--thing {
+  @include clearfix;
+  border: none;
+
+  .thing--embed {
+    position: relative;
+  }
 }
 
 .knewone-embed--review {

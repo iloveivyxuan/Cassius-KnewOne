@@ -6,6 +6,7 @@ class Entry
   include Rails.application.routes.url_helpers
 
   mount_uploader :cover, ImageUploader
+  mount_uploader :canopy, ImageUploader
 
   belongs_to :post
 
@@ -54,10 +55,12 @@ class Entry
   end
 
   CATEGORIES = {
-      '特写' => 'features',
-      '评测' => 'reviews',
-      '专题' => 'specials',
-      '活动' => 'events'
+    '专访' => 'talks',
+    '列表' => 'lists',
+    '评测' => 'reviews',
+    '特写' => 'features',
+    '专题' => 'specials',
+    '活动' => 'events'
   }
 
   def review_entry
@@ -69,6 +72,25 @@ class Entry
       return unless user && knewone && url
       content = "Hi, 感谢你在 KnewOne 分享的测评《#{self.post.title}》，写得太赞啦！我们已将其收录至 <a href='#{url}'>精选频道</a>，感谢你，欢迎继续将更多体验与大家分享喔！┏ (゜ω゜)=☞"
       knewone.send_private_message_to(user, content)
+    end
+  end
+
+  def category_translation
+    case self.category
+    when '专访'
+      'talk'
+    when '列表'
+      'list'
+    when '评测'
+      'review'
+    when '特写'
+      'feature'
+    when '专题'
+      'special'
+    when '活动'
+      'event'
+    else
+      return
     end
   end
 

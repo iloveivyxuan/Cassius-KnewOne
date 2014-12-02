@@ -1,0 +1,20 @@
+- thing = embed.first
+- photo = embed.last
+figure class="thing--embed #{klass}" data-thing-id=thing.id
+  = link_to thing, target: "_blank" do
+    - if !photo.blank?
+      = image_tag photo
+    - else
+      - version = browser.mobile? ? :square : (klass == 'col-sm-12' ? :middle : :square)
+      = image_tag thing.photos.first.url(version)
+  figcaption
+    h5= link_to thing.title, thing, target: "_blank"
+    em
+      i.fa.fa-heart
+      = thing.fanciers_count
+    em
+      i.fa.fa-check-circle-o
+      = thing.owners_count
+    em
+      i.fa.fa-comment-o
+      = thing.reviews_count

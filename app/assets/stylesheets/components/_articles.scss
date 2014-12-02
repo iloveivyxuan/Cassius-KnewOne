@@ -494,14 +494,14 @@ form.edit_post {
     padding: 2em 0;
     position: relative;
 
-    > .social,
+    > .interactions,
     > .advanced {
       display: inline-block;
       margin-right: 0;
       vertical-align: middle;
     }
 
-    > .social {
+    > .interactions {
 
       .btn--like {
         width: auto;
@@ -546,6 +546,27 @@ form.edit_post {
       right: 2em;
       margin-top: 9px;
       color: #999999;
+    }
+
+    .tiny_share {
+      float: right;
+      height: 40px;
+      line-height: 40px;
+      padding: {
+        left: 1rem;
+        right: 1rem;
+      }
+      @media (min-width: $screen-lg-min) {
+        padding: {
+          left: 0;
+          right: 0;
+        }
+      }
+
+      .fa {
+        font-size: 2em;
+        vertical-align: middle;
+      }
     }
   }
 

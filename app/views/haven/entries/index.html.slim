@@ -1,27 +1,36 @@
-= link_to '新建', new_haven_entry_path, class: 'btn btn-primary'
+- page_title '管理精选'
 
-table.table.table-strip
-  tr
-    th 封面
-    th 标题
-    th 分类
-    th 创建时间
-    th 公开
-    th 操作
-  - @entries.each do |e|
+header.page-header
+  h1.pull-left 管理精选
+  = link_to '新建', new_haven_entry_path, class: 'btn btn-primary pull-right'
+
+table.table.table-striped
+  thead
     tr
-      td
-        - if e.cover.present?
-          = image_tag(e.cover.url(:small))
-      td = e.title.present? ? e.title : e.post.title
-      td = e.category
-      td = date_time_text(e.created_at)
-      td = e.published?
-      td
-        = link_to '查看', e, target: '_blank'
-        span.separator |
-        = link_to '编辑', edit_haven_entry_path(e)
-        span.separator |
-        = link_to '删除', haven_entry_path(e), method: :delete, data: {confirm: 'are you sure?'}
+      th 封面
+      th 标题
+      th 分类
+      th 创建时间
+      th 公开
+      th 操作
+  tbody
+    - @entries.each do |e|
+      tr
+        td
+          - if e.cover.present?
+            = image_tag(e.cover.url(:small), height: 90, width: 90)
+        td = e.title.present? ? e.title : e.post.title
+        td width="50"
+          = e.category
+        td width="90"
+          = date_time_text(e.created_at)
+        td width="50"
+          = e.published?
+        td width="150"
+          = link_to '查看', e, target: '_blank'
+          span.separator |
+          = link_to '编辑', edit_haven_entry_path(e)
+          span.separator |
+          = link_to '删除', haven_entry_path(e), method: :delete, data: {confirm: 'are you sure?'}
 
 = paginate @entries

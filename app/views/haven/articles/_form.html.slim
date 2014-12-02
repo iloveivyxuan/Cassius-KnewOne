@@ -13,7 +13,7 @@
       button.editor-drop type="button" 舍弃
       button.editor-save type="button" 保存
       button.editor-submit type="submit" 发布
-  article.editor-content.article
+  article.editor-content.article data-article-id=@article.id
     header
       = f.text_field :title, class: "title", required: true, autocomplete: "off", autofocus: "true", placeholder: "标题"
       .editor-metas
@@ -21,12 +21,16 @@
           label 作者：
           = hidden_field_tag 'article[author]', @article.author.id.to_s, id: 'author_id'
           input#author_autocomplete.form-control placeholder="用户昵称" value="#{@article.author.name}"
+        .form-group.form-group--block
+          label 摘要：
+          = f.text_area :summary, class: "form-control", rows: 4
     .body#form-article-body
       p
         br
     = f.hidden_field :content
 = attachment_tag target: "#pictureBtn", edit: "insertImage"
 = render 'shared/editor_help'
+= render 'things/thing_embed_form_modal'
 
 - content_for :script do
   javascript:
@@ -36,7 +40,9 @@
       mode: 'standalone',
       type: 'article',
       buttons: ['header1', 'header2', 'anchor', 'bold', 'italic', 'strikethrough', 'orderedlist', 'unorderedlist', 'quote'],
+      excludeField: '[name="utf8"], [name="authenticity_token"]',
       placeholder: '正文',
       imageSize: 'huge'
     });
+    Making.embedThing('#form-article')
     Making.UserFuzzy('#author_autocomplete', '[name="article[author]"]');
