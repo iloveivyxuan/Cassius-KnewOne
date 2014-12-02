@@ -1,4 +1,4 @@
-= form_for @brand, remote: true, url: modify_brand_things_path, method: :post, html: { class: "modal fade", id: "brand-modify-modal", tabIndex:"-1", role: "dialog" } do |f|
+= form_for @brand, url: modify_brand_things_path, method: :post, html: { class: "modal fade", id: "brand-modify-modal", tabIndex:"-1", role: "dialog" } do |f|
   .modal-dialog
     .modal-content
       .modal-header
@@ -7,26 +7,8 @@
           span.sr-only Close
         h4.modal-title 修改品牌信息
       .modal-body
-        - if @brand.logo
-          = image_tag @brand.logo.url
-        = f.file_field :logo
-        = f.hidden_field :logo_cache
         = hidden_field_tag :brand_id, @brand.id.to_s
         = hidden_field_tag :authenticity_token, form_authenticity_token
-        div
-          label 中文名
-          = f.text_field :zh_name
-        div
-          label 英文名
-          = f.text_field :en_name
-        div
-          label 描述
-          = f.text_area :description, size: "50*10"
-        div
-          label 国家
-          = country_select("brand", "country")
-        div
-          label 别名
-          = f.text_area :nickname, size: '50*5', placeholder: "用空格隔开即可"
+        = render file: 'app/views/haven/brands/_form.html.slim', locals: { f: f }
       .modal-footer
         = f.submit '修改'
