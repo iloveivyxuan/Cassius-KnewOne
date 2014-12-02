@@ -34,7 +34,7 @@ module Haven
             lines << [
                       brand.zh_name,
                       brand.en_name,
-                      brand_things_url(brand.id.to_s),
+                      '=HYPERLINK("' + brand_things_url(brand.id.to_s) + '")',
                       brand.country,
                       brand.description,
                       brand.things_size
