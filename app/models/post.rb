@@ -6,6 +6,17 @@ class Post
   include AutoCleanup
 
   field :title, type: String
+
+  RESERVED_WORDS = ['热线', '卖家']
+  validate :title_cannot_include_reserved_words
+  def title_cannot_include_reserved_words
+    return if self.title.blank?
+
+    if RESERVED_WORDS.any? { |word| title.downcase.include? word }
+      errors.add(:title, '名字不和谐')
+    end
+  end
+
   field :content, type: String, default: ""
   field :commented_at, type: DateTime
 
