@@ -22,7 +22,7 @@ module Haven
           @brands = Brand.asc(:country)
         end
       else
-        @brands = Brand.all.desc(:things_size)
+        @brands = Brand.all.desc(:created_at)
       end
       respond_to do |format|
         format.html do
