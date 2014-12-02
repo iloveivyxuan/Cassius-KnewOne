@@ -14,7 +14,7 @@ header.page-header
     = render partial: 'orders/error_field', locals: {messages: @order.errors.full_messages} unless Rails.env.production?
 
     = render partial: 'address_select', locals: {f: f}
-    = f.input :note, as: :text, input_html: {placeholder: "在此可填写特殊要求、配送时间、发票信息等。",rows: 5}
+    = f.input :note, as: :text, input_html: {placeholder: "在此填写特殊要求、发票信息。部分要求可能因客观条件，或产品购买规则限制而无法达成，敬请谅解。详情请咨询在线客服。",rows: 5}
     = render partial: 'coupon_select', locals: {f: f}
     = render partial: 'bong_point', locals: {f: f}
 
