@@ -20,11 +20,14 @@
           = link_to tp.thing, class: "pre_ribbon #{tp.stage}" do
             span= tp.stage_text
         .thing_thumb
-          = img_lazy ? tp.photo_lazy(size) : tp.photo(size)
           - if fanciable
+            = img_lazy ? tp.photo_lazy(size) : tp.photo(size)
             .thing_fancy
               = link_to "", tp.thing, class: "thing_fancy_backdrop", target: "_blank"
               .fanciers = render "shared/fancy", p: tp, from: "things"
+          - else
+            = link_to tp.thing, target: "_blank"
+              = img_lazy ? tp.photo_lazy(size) : tp.photo(size)
         figcaption
           h5 data-toggle="tooltip" data-placement="top" title=tp.title
             = link_to tp.title, tp.thing, target: '_blank'
