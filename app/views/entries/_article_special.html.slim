@@ -35,7 +35,7 @@ article.article data-article-id=post.id
   - if entry.try(:summary).present?
     p.summary= entry.summary
   - else
-    p.summary= strip_tags(post.content).truncate(140, escape: false)
+    p.summary= strip_tags(post.content).truncate(140, escape: false).gsub('&nbsp;', ' ')
 
   section.content= sanitize post.content
 
