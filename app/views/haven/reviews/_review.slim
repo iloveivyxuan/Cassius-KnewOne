@@ -7,7 +7,8 @@
             = link_to rp.title, rp.path
           - else
             | 产品已被删除
-        = rp.author_tag
+        - if review.author
+          = rp.author_tag
         = rp.score
         = review.created_at
       section
