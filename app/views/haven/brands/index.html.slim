@@ -5,6 +5,11 @@
 
 = render 'filter'
 
+.pull-right
+  - queries = params.except(*request.path_parameters.keys)
+  = link_to '导出CSV(Numbers)', "#{haven_brands_path(queries.merge(format: :csv, platform: 'numbers'))}", class: 'btn btn-success'
+  = link_to '导出CSV(Excel)', "#{haven_brands_path(queries.merge(format: :csv))}", class: 'btn btn-success'
+
 table.table
   thead
     tr

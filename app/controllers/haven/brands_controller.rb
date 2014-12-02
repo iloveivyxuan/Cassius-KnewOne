@@ -24,7 +24,35 @@ module Haven
       else
         @brands = Brand.all.desc(:things_size)
       end
-      @brands = @brands.page(params[:page]).per(20)
+      respond_to do |format|
+        format.html do
+          @brands = @brands.page(params[:page]).per(20)
+        end
+        format.csv do
+          lines = [%w(品牌名(中文) 品牌名(英文) 链接 国家 描述 产品数)]
+          @brands.each do |brand|
+            lines << [
+                      brand.zh_name,
+                      brand.en_name,
+                      brand_things_path(brand.id.to_s),
+                      brand.country,
+                      brand.description,
+                      brand.things_size
+                     ]
+          end
+                    col_sep = (params[:platform] == 'numbers') ? ',' : ';'
+
+          csv = CSV.generate :col_sep => col_sep do |csv|
+            lines.each { |l| csv<< l }
+          end
+
+          if params[:platform] != 'numbers'
+            send_data csv.encode 'gb2312', :replace => ''
+          else
+            send_data csv, :replace => ''
+          end
+        end
+      end
     end
 
     def edit
