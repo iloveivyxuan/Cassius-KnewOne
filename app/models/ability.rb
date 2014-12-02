@@ -22,6 +22,7 @@ class Ability
     elsif user.role? :volunteer
       signed user
       can :update, Thing
+      can :modify_brand, Thing
     else
       signed user
     end
