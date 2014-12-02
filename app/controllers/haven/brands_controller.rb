@@ -10,8 +10,8 @@ module Haven
         @brands = Brand.or({ zh_name: brand_regex }, { en_name: brand_regex })
       elsif params[:filter]
         case params[:filter]
-        when 'things_count'
-          @brands = Brand.desc(:things_count)
+        when 'things_size'
+          @brands = Brand.desc(:things_size)
         when 'created_at'
           @brands = Brand.desc(:created_at)
         when 'updated_at'
