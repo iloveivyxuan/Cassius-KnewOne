@@ -26,7 +26,7 @@ article.activity_feed
     aside= time_ago_tag activity.created_at
 
     - if activity.type == :own_thing && current_user != user
-      - if user_signed_in?
+      - if user_signed_in? && user
         - message_content = "#{request.original_url}\n\n我看到你点拥有了，求评测！"
         = button_tag class: "btn btn-invite-review hidden-xs", data: {'private-message' => true, 'user-id' => user.id.to_s, 'user-name' => user.name, title: '请TA写评测', content: message_content }
           i.fa.fa-hand-o-left
