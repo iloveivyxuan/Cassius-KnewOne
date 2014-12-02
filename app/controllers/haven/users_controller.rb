@@ -179,6 +179,17 @@ module Haven
       redirect_to :back
     end
 
+    def fuck_you
+      @user = User.find params[:id]
+      @user.set(status: :blocked)
+      @user.activities.clear
+      @user.things.delete_all
+      @user.topics.delete_all
+      @user.reviews.delete_all
+      @user.feelings.delete_all
+      redirect_to :back
+    end
+
     def batch_query
     end
 

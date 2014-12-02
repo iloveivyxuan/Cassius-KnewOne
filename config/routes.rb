@@ -344,6 +344,7 @@ Making::Application.routes.draw do
         post 'batch_show'
         post 'confirm_email'
         post 'reset_password'
+        post 'fuck_you'
       end
     end
 

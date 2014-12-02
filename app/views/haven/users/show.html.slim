@@ -62,3 +62,8 @@ h2
   class: "btn btn-primary", data: { confirm: '确定要重置这位同学的密码吗？' }
 - if flash[:token]
   = link_to edit_password_url(@user, :reset_password_token => flash[:token]), edit_password_url(@user, :reset_password_token => flash[:token])
+
+h2
+  | 删号重练
+= button_to "祖传小按钮专治用户不老实", fuck_you_haven_users_path(id: @user.id),
+  class: "btn btn-primary", data: { confirm: '确定要阉了这位同学嘛？不能复原喔。' }
