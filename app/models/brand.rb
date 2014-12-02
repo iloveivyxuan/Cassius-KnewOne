@@ -56,13 +56,13 @@ class Brand
   end
 
   include Searchable
-  searchable_fields [:zh_name, :en_name, :description]
+  searchable_fields [:zh_name, :en_name, :nickname, :description]
 
   def self.search(query)
     options = {
       multi_match: {
         query: query,
-        fields: ['zh_name^10', 'en_name^10', 'description']
+        fields: ['zh_name^10', 'en_name^10', 'nickname^10', 'description']
       }
     }
 
