@@ -1,5 +1,5 @@
 - tp ||= present(thing)
-- cache_unless user_signed_in?, ['things', 'reviews', tp.thing]
+- cache_unless user_signed_in?, ['things', 'reviews', tp.thing, request.variant]
   - reviews = tp.reviews(5)
   - if reviews.present?
     - if browser.mobile? || browser.tablet?
