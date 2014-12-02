@@ -289,7 +289,7 @@ class ThingsController < ApplicationController
     @brand.update(brand_params)
     @brand.save
 
-    redirect_to :back
+    redirect_to brand_things_path(@brand.id.to_s)
   end
 
   private
