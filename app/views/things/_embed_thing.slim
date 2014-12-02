@@ -1,5 +1,6 @@
-- thing = embed.first
-- photo = embed.last
+- if embed
+  - thing = embed.first
+  - photo = embed.last
 figure class="thing--embed #{klass}" data-thing-id=thing.id
   = link_to thing, target: "_blank" do
     - if !photo.blank?
