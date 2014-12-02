@@ -53,6 +53,8 @@ class Thing < Post
 
   field :priority, type: Integer, default: 0
 
+  before_create :update_priority
+
   field :sharing_text, type: String
 
   validates :title, presence: true
@@ -458,6 +460,12 @@ class Thing < Post
     self.priority = 0 unless self.priority.is_a?(Integer)
     if self.approved_at.nil? && self.priority > 0
       self.approved_at = Time.now
+    end
+  end
+
+  def update_priority
+    if self.author.role?(:editor)
+      self.priority = 1
     end
   end
 
