@@ -284,6 +284,14 @@ class ThingsController < ApplicationController
     end
   end
 
+  def modify_brand
+    @brand = Brand.find(params[:brand_id])
+    @brand.update(brand_params)
+    @brand.save
+
+    redirect_to :back
+  end
+
   private
 
   def thing_params
@@ -296,5 +304,11 @@ class ThingsController < ApplicationController
 
   def set_categories
     @categories = Category.gt(things_count: 10)
+  end
+
+  def brand_params
+    if current_user.role?(:volunteer)
+      params.require(:brand).permit([:zh_name, :en_name, :logo, :logo_cache, :description, :nickname, :country])
+    end
   end
 end

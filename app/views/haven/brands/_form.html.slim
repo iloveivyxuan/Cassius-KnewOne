@@ -1,0 +1,19 @@
+- if @brand.logo
+  = image_tag @brand.logo.url
+= f.file_field :logo
+= f.hidden_field :logo_cache
+div
+  label 中文名
+  = f.text_field :zh_name
+div
+  label 英文名
+  = f.text_field :en_name
+div
+  label 描述
+  = f.text_area :description, size: "50x10"
+div
+  label 国家
+  = country_select("brand", "country", :include_blank => '请选择国家…')
+div
+  label 别名
+  = f.text_area :nickname, size: '50*5', placeholder: "用空格隔开即可"

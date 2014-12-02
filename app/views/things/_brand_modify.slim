@@ -1,0 +1,14 @@
+= form_for @brand, url: modify_brand_things_path, method: :post, html: { class: "modal fade", id: "brand-modify-modal", tabIndex:"-1", role: "dialog" } do |f|
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal"
+          span aria-hidden="true" &times;
+          span.sr-only Close
+        h4.modal-title 修改品牌信息
+      .modal-body
+        = hidden_field_tag :brand_id, @brand.id.to_s
+        = hidden_field_tag :authenticity_token, form_authenticity_token
+        = render file: 'app/views/haven/brands/_form.html.slim', locals: { f: f }
+      .modal-footer
+        = f.submit '修改'
