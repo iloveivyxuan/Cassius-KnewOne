@@ -2,6 +2,7 @@ class Brand
   include Mongoid::Document
   include Mongoid::Slug
   include Mongoid::Paranoia
+  include Mongoid::Timestamps::Updated
 
   field :zh_name, type: String
   field :en_name, type: String
