@@ -40,7 +40,7 @@
           - tags = @category.tags
         #tags
           = render 'thing_information_tags', tags: tags
-        - if current_user.role?(:volunteer)
+        - if current_user && [:volunteer, :editor].include?(current_user.role)
           = button_tag "编辑品牌信息", type: "button", class: "btn btn-default", data: { toggle: 'modal', target: '#brand-modify-modal' }
       - unless browser.desktop?
         .more
@@ -62,6 +62,6 @@
       $('.more').hide();
     })
 
-- if current_user.role?(:volunteer)
+- if current_user && current_user.role?(:volunteer)
   - content_for :end do
     = render 'brand_modify'
