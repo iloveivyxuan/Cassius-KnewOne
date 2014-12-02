@@ -13,7 +13,7 @@ div
   = f.text_area :description, size: "50x10"
 div
   label 国家
-  = country_select("brand", "country")
+  = country_select("brand", "country", :include_blank => '请选择国家…')
 div
   label 别名
   = f.text_area :nickname, size: '50*5', placeholder: "用空格隔开即可"
