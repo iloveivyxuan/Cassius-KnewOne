@@ -431,7 +431,7 @@ class Thing < Post
       }
     }
 
-    __elasticsearch__.search(query: options, min_score: 2)
+    __elasticsearch__.search(query: options, min_score: 1)
   end
 
   private
