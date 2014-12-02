@@ -9,7 +9,7 @@ class ThingsController < ApplicationController
   before_action :delete_links, only: [:destroy]
 
   def index
-    @things ||= ::Thing.published
+    @things ||= ::Thing.published.approved
 
     if params[:category].present? and params[:category] != 'all'
       @category = Category.find(params[:category])
