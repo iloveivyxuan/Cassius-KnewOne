@@ -5,11 +5,8 @@ article.article data-article-id=post.id
   header
     .header-inner
       nav.header-top
-        = link_to_with_icon "精选首页", "fa fa-caret-left", explore_path, class: "visible-xs-block"
-        - if !browser.mobile?
-          = link_to "#", class: "hidden-xs" do
-            = image_tag "article_#{Entry::CATEGORIES[entry.category]}.jpg"
-        em= "KnewOne #{entry.category_translation}"
+        = link_to_with_icon "精选首页", "fa fa-caret-left", explore_path, class: "nav_explore visible-xs-block"
+        = link_to_with_icon "KnewOne #{entry.category_translation}", "fa fa-caret-left hidden-xs", explore_path, class: "nav_explore_category"
 
       .header-main
         h1.title = post.title

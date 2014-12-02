@@ -10,6 +10,10 @@ html.entries_show {
   }
 
   &.no-touch {
+    body {
+      padding-bottom: 0;
+    }
+
     #header {
       margin-bottom: 45px;
     }
@@ -23,6 +27,7 @@ html.entries_show {
         left: 0;
         right: 0;
       }
+      padding-bottom: 50px;
     }
   }
 
@@ -38,7 +43,6 @@ html.entries_show {
       > figure {
 
         @media (min-width: $screen-md-min) {
-          margin-top: -140px;
           min-height: 250px;
         }
 
@@ -50,20 +54,25 @@ html.entries_show {
 
     .header-inner {
       @media (min-width: $screen-sm-min) {
+        left: 30px;
         position: absolute;
         top: 20%;
       }
 
       @media (min-width: $screen-md-min) {
+        height: 0;
+        left: auto;
         position: relative;
-        top: auto;
+        top: 100px;
       }
     }
 
     .header-top {
-      @include clearfix;
+      @media (max-width: $screen-xs-max) {
+        @include clearfix;
+      }
 
-      > a {
+      > .nav_explore {
         background-color: darken($smoke-white, 2%);
         color: $text-color;
         float: left;
@@ -71,29 +80,9 @@ html.entries_show {
         line-height: 56px;
         text-align: center;
         width: 40%;
-
-        @media (min-width: $screen-sm-min) {
-          background-color: transparent;
-          width: auto;
-
-          img {
-            display: block;
-            height: 56px;
-            width: 56px;
-          }
-        }
-
-        @media (min-width: $screen-md-min) {
-          height: 140px;
-
-          img {
-            height: 140px;
-            width: 140px;
-          }
-        }
       }
 
-      > em {
+      > .nav_explore_category {
         background-color: $ghost-white;
         color: $text-color;
         float: left;
@@ -108,6 +97,8 @@ html.entries_show {
         @media (min-width: $screen-sm-min) {
           background-color: $navbar-bg;
           color: #fff;
+          display: inline-block;
+          float: none;
           padding: 0 1.5em;
           width: auto;
         }
@@ -130,9 +121,8 @@ html.entries_show {
       }
 
       @media (min-width: $screen-md-min) {
-        left: 140px;
-        position: absolute;
-        top: 56px;
+        display: inline-block;
+        opacity: .95;
       }
 
       .metas {
@@ -145,14 +135,18 @@ html.entries_show {
     }
 
     > .summary {
-      background-color: darken($smoke-white, 2%);
-      color: $text-color;
+      background-color: $navbar-bg;
+      color: #fff;
       font-size: 16px;
       margin-bottom: 0;
       padding: 30px;
 
-      @media (min-width: $screen-md-min) {
-        margin-top: -60px;
+      @media (min-width: $screen-sm-min) {
+        margin: {
+          left: 30px;
+          right: 30px;
+          top: -60px;
+        }
         position: relative;
       }
     }
@@ -200,7 +194,7 @@ html.entries_show {
           left: 12%;
           right: 12%;
         }
-        max-width: $screen-md-min;
+        max-width: 900px; 
       }
     }
 
