@@ -1,4 +1,4 @@
-= form_for @brand, url: modify_brand_things_path, method: :post, html: { class: "modal fade", id: "brand-modify-modal", tabIndex:"-1", role: "dialog" } do |f|
+= form_for (@brand ||= Brand.new), url: modify_brand_things_path, method: :post, html: { class: "modal fade", id: "brand-modify-modal", tabIndex:"-1", role: "dialog" } do |f|
   .modal-dialog
     .modal-content
       .modal-header
