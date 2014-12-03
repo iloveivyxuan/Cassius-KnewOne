@@ -30,7 +30,7 @@ do (exports = Making) ->
         $editTarget  = $modal.data('embedEditTarget')
         $embed       = $editTarget.closest('.knewone-embed--thing')
         embedOptions = JSON.parse($embed.attr('data-knewone-embed-options') || '{}')
-        photos        = embedOptions['photos'] || []
+        photos        = if Array.isArray(embedOptions['photos']) then embedOptions['photos'] else (if embedOptions['photos'] then new Array(embedOptions['photos']) else [])
         index         = $editTarget.index()
         photos[index] = photoUrl
         embedOptions['photos'] = photos.join(',')
@@ -38,7 +38,7 @@ do (exports = Making) ->
         $editTarget
           .children('a')
           .children('img')
-          .attr('src', photoUrl)
+          .attr('src', photoUrl + '!middle')
         $element.trigger('input')
         $modal.modal('hide')
         $photoPreview.empty()
