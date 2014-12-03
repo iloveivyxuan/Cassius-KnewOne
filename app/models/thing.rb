@@ -423,14 +423,14 @@ class Thing < Post
   end
 
   def self.search(query)
-    options = {
+    query_options = {
       multi_match: {
         query: query,
         fields: ['title^10', 'slugs^5', 'subtitle', 'brand^3']
       }
     }
 
-    __elasticsearch__.search(query: options, min_score: 1)
+    __elasticsearch__.search(query: query_options, min_score: 1)
   end
 
   private
