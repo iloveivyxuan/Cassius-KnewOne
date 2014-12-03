@@ -21,7 +21,9 @@ hgroup
         td= g.name
         td= g.description.truncate(40)
         td= g.created_at
-        td= link_to g.founder.try(:name), haven_user_path(g.founder)
+        td
+          - if g.founder
+            = link_to g.founder.name, haven_user_path(g.founder)
         th
           - btn_class = "btn btn-default btn-approve"
           = submit_tag "通过", class: g.approved ? "#{btn_class} disabled" : btn_class
