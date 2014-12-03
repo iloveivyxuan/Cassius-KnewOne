@@ -223,15 +223,16 @@ do ($ = jQuery) ->
             event.preventDefault()
 
             if content.indexOf('http') is 0
-              url = content
+              url  = content
+              host = location.host.replace(/\./g, '\\.') || 'knewone\.com'
 
               # KnewOne embed
-              if /^(http(s)?:\/\/)?(www\.)?(knewone\.com)/.test(url)
+              if new RegExp("^(http(s)?:\/\/)?(www\.)?(#{host})").test(url)
                 that          = @
-                requestUrl    = 'http://knewone.com/embed'
-                patternThing  = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/things\/([^\/]+)\/?$/
-                patternReview = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/things\/(.*)\/reviews\/([0-9a-z]{24})/
-                patternList   = /^(http(s)?:\/\/)?(www\.)?(knewone\.com)\/lists\/([0-9a-z]{24})/
+                requestUrl    = "http://#{location.host}/embed"
+                patternThing  = new RegExp("^(http(s)?:\/\/)?(www\.)?(#{host})\/things\/([^\/]+)\/?$")
+                patternReview = new RegExp("^(http(s)?:\/\/)?(www\.)?(#{host})\/things\/(.*)\/reviews\/([0-9a-z]{24})")
+                patternList   = new RegExp("^(http(s)?:\/\/)?(www\.)?(#{host})\/lists\/([0-9a-z]{24})")
                 async         = true
                 urls          = url.split(' ')
                 isThings      = undefined
