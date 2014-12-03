@@ -50,6 +50,9 @@ ul.nav.nav-pills
             | 标题
             = text_field_tag 'things[][title]', t.title, style: 'width: 100%'
             br
+            | 别名
+            = text_field_tag 'things[][nickname]', t.nickname, style: 'width: 100%'
+            br
             | 副标题
             = text_field_tag 'things[][subtitle]', t.subtitle, style: 'width: 100%'
             br
