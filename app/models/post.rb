@@ -7,7 +7,7 @@ class Post
 
   field :title, type: String
 
-  RESERVED_WORDS = ['热线', '卖家']
+  RESERVED_WORDS = ['热线', '卖家', '人流', '京东商城', '售后客服']
   validate :title_cannot_include_reserved_words
   def title_cannot_include_reserved_words
     return if self.title.blank?
