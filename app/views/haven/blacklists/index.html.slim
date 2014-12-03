@@ -4,11 +4,13 @@ hgroup
   h1
     = link_to "管理黑名单", haven_blacklists_path
 
-- @blacklists.each do |b|
-  table.table.table-striped.table-bordered
-    tr
-      th style="width: 40%" 关键词
-      th style="width: 40%" 操作
+
+table.table.table-striped.table-bordered
+  tr
+    th style="width: 40%" 关键词
+    th style="width: 40%" 操作
+
+  - @blacklists.each do |b|
     tr
       th= b.word
       th
