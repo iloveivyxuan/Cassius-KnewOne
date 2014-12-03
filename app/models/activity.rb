@@ -23,7 +23,7 @@ class Activity
 
   default_scope -> { desc(:created_at) }
 
-  scope :visible, -> { where(visible: true, :user_id.ne => nil) }
+  scope :visible, -> { where(visible: true) }
   scope :by_users, ->(users) { where(:user_id.in => users.map(&:id)) }
   scope :by_type, ->(type) { where type: type }
   scope :by_types, ->(*types) { where :type.in => types }
