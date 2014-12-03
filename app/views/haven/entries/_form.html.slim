@@ -11,7 +11,7 @@
   = f.input :title
   - title = (@entry && @entry.title?) ? @entry.title : @entry.post.try(:title)
   = f.input :sharing_content, input_html: {value: "推荐 @KnewOne #{@entry.category}：《#{title}》"}
-  = f.text_area :summary, class: "form-control", rows: 4
+  = f.input :summary, as: :text , input_html: {rows: 4}
   = f.input :cover
   = f.input :cover_cache, as: :hidden
   = f.input :canopy
