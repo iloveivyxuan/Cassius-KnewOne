@@ -288,16 +288,6 @@ do (exports = Making) ->
     )
     delete window.localStorage["saved|#{window.location.pathname}|#{id}"]
 
-  exports.popupLogin = ->
-    if exports.user? then return
-    for klass in ['']
-      if $html.hasClass(klass)
-        switch exports.device
-          when 'mobile', 'tablet'
-            $('#header [data-target="#login-modal"]').trigger('click')
-          when 'desktop'
-            $('#header .user_link[data-target="#login-modal"]').trigger('click')
-
   $ ->
     $user = $('#user')
     $navDropdown = $('.navbar .dropdown').not('.notification')
