@@ -118,7 +118,7 @@ class OrdersController < ApplicationController
   end
 
   def alipay_wap
-    touch_alipay_security_risk_detect(@order)
+    touch_alipay_security_risk_detect(@order, terminal_type: 'WAP')
 
     redirect_to generate_alipay_wap_url(@order)
   end
@@ -309,6 +309,7 @@ class OrdersController < ApplicationController
       order_item_name: order.content,
       order_amount: format('%.2f', order.should_pay_price),
       buyer_account_no: order.user.id.to_s,
+      buyer_bind_mobile: order.address.phone,
       buyer_reg_date: order.user.created_at.strftime('%Y-%m-%d %H:%M:%S')
     }.merge(options)
 

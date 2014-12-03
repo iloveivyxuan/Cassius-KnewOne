@@ -29,8 +29,8 @@ module Alipay
         'scene_code'   => 'PAYMENT'
       }.merge(Utils.stringify_keys(options))
 
-      options['order_category'] = CGI.escape(options['order_category'])
-      options['order_item_name'] = CGI.escape(options['order_item_name'])
+      options['order_category'] = options['order_category']
+      options['order_item_name'] = options['order_item_name']
 
       check_required_options(options, SECURITY_RISK_DETECT_REQUIRED_OPTIONS)
 
