@@ -328,6 +328,13 @@ Making::Application.routes.draw do
       end
     end
 
+    resources :groups do
+      collection do
+        get 'index'
+        post 'approve'
+      end
+    end
+
     resources :links
 
     resources :articles, except: [:show]

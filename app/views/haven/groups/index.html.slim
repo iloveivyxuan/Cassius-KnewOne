@@ -1,0 +1,38 @@
+- page_title "管理小组"
+
+hgroup
+  h1
+    = link_to "管理小组", haven_groups_path
+  p= "当前数量 #{@groups.size} / 总数量 #{Group.all.size}"
+
+- group_filters.each do |k, v|
+  = link_to v, haven_groups_path({ :filter => k }), class: "btn btn-default"
+
+- @groups.each do |g|
+  = form_tag approve_haven_groups_path(id: g), method: :post, remote: true, class: "approve_group" do
+    table.table.table-striped.table-bordered
+      tr
+        th style="width: 20%" 名字
+        th style="width: 20%" 描述
+        th style="width: 20%" 创建时间
+        th style="width: 20%" 创建人
+        th style="width: 20%" 操作
+      tr
+        td= g.name
+        td= g.description.truncate(40)
+        td= g.created_at
+        td= g.founder.try(:name)
+        th
+          - btn_class = "btn btn-default btn-approve"
+          = submit_tag "通过", class: g.approved ? "#{btn_class} disabled" : btn_class
+
+= paginate @groups
+
+- content_for :script do
+  javascript:
+    $(document).ready(function() {
+      $('.approve_group .btn-approve')
+        .on('click', function() {
+          this.classList.add("disabled")
+        })
+    })
