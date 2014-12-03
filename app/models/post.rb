@@ -122,6 +122,6 @@ class Post
   # remove multiple <p><br></p>
   def remove_ending_blanks
     self.content.gsub!(/(<p><br><\/p>)+\z/, "")
-    self.content = "<p><br></p>" if self.content.empty?
+    self.content += "<p><br></p>" if [Review, Article, Topic].include?(self.class)
   end
 end
