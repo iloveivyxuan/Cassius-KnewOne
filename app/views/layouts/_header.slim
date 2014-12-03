@@ -12,16 +12,16 @@
 
       #nav_main.collapse.navbar-collapse
         ul.nav.navbar-nav#nav_primary
-          li
+          = nav_tab :home do
             = link_to "首页", "/"
           = render 'layouts/header_category'
-          li
+          = nav_tab :hits do
             = link_to "热门", hits_path
-          li
+          = nav_tab :shop do
             = link_to "商店", shop_path
-          li
+          = nav_tab :explore do
             = link_to "精选", explore_path
-          li
+          = nav_tab :groups do
             = link_to "小组", groups_path
           li
             = link_to "客服", "#customer_services", title: "和我们聊天"

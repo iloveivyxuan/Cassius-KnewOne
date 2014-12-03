@@ -1,5 +1,6 @@
 - page_title '热门'
 - page_css 'hits'
+- provide :nav, :hits
 
 - cache_unless user_signed_in?, ['hits', params[:page] || 1, Time.now.to_i / 60]
   .container-fluid

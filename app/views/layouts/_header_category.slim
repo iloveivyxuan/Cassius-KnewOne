@@ -1,5 +1,5 @@
 - cache ['.nav_category', Time.now.to_i / 10.minutes]
-  li.nav_flyout.dropdown
+  = nav_tab :categories, class: 'nav_flyout dropdown' do
     = link_to categories_path do
       | 分类
       i.fa.fa-caret-down

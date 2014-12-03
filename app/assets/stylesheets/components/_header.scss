@@ -549,11 +549,24 @@ html.no-touch {
       color: $gray-lighter;
       text-align: center;
       @include transition-property(all);
-        @include transition-duration(0.2s);
-        @include transition-timing-function(ease);
+      @include transition-duration(0.2s);
+      @include transition-timing-function(ease);
       &:hover {
         color: $blue-light;
         background: $navbar-dropdown-bg;
+      }
+    }
+    &.active {
+      > a {
+        &,
+        &:hover,
+        &:active,
+        &.active,
+        &.active:hover,
+        &.active:active {
+          color: $blue-light;
+          background: $navbar-dropdown-bg;
+        }
       }
     }
     &#nav_publish {
