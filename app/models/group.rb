@@ -19,6 +19,9 @@ class Group
   field :visible, type: Boolean, default: true
   scope :visible, -> { where visible: true }
 
+  field :approved, type: Boolean, default: false
+  scope :approved, -> { where approved: true }
+
   embeds_many :members do
     def add(user, role = :member)
       unless @base.has_member? user
