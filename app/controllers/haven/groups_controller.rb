@@ -20,6 +20,7 @@ module Haven
     def approve
       @group = Group.find params[:id]
       @group.set(approved: true)
+      @group.topics.set(approved: true)
       render json: { status: true }
     end
   end
