@@ -182,7 +182,7 @@ module Haven
     def fuck_you
       @user = User.find params[:id]
       @user.set(status: :blocked)
-      @user.activities.clear
+      @user.activities.update_all(visible: false)
       @user.notifications.clear
       @user.things.delete_all
       @user.topics.delete_all
