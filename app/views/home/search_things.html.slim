@@ -22,7 +22,7 @@
           | 查看品牌
 
 - if @things && @things.length > 0
-  ul.things.infinite#things= render @things.to_a, size: :normal, img_lazy: true
+  ul.things.infinite#things= render @things.to_a, size: :normal, img_lazy: true, fanciable: false
   = paginate @things
 - else
   p.noresult
