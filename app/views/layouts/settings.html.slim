@@ -37,6 +37,8 @@
             = link_to_with_icon '管理用户', 'fa fa-fw fa-wrench', haven_users_path
           = nav_tab :group do
             = link_to_with_icon '管理小组', 'fa fa-fw fa-wrench', haven_groups_path
+          = nav_tab :blacklist do
+            = link_to_with_icon '管理黑名单', 'fa fa-fw fa-wrench', haven_blacklists_path
           = nav_tab :batch_query do
             = link_to_with_icon '批量查询用户', 'fa fa-fw fa-wrench', batch_query_haven_users_path
           = nav_tab :category do
