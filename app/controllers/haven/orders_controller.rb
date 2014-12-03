@@ -51,17 +51,18 @@ module Haven
             bong_band = Thing.find "544f8b9331302d5139c60000"
             bong_battery = Thing.find "544f8b0a31302d4fd2dd0000"
             bong_bang_dai = Thing.find "54700f5d31302d2b49260100"
+            bong_benpao = Thing.find "5453677a31302d0b55080000"
             lines = [%w(订单时间 订单号 商品名 类型 数量 收件人 电话 省 市 区 详细地址 备注)]
 
             @orders.each do |order|
               city = CITY_PLACEHOLDER.include?(order.address.city) ? order.address.province : (order.address.city || '')
               order.order_items.each do |item|
-                if [bong_ii, bong_band, bong_battery, bong_bang_dai].include?(item.thing)
+                if [bong_ii, bong_band, bong_battery, bong_bang_dai, bong_benpao].include?(item.thing)
                   lines << [
                             order.created_at.strftime('%Y-%m-%d %H:%M:%S'),
                             order.order_no,
-                            item.thing_title,
-                            item.kind_title.split(/[()（）]/).first.strip,
+                            [bong_benpao].include?(item.thing) ? "bong II" : item.thing_title,
+                            [bong_benpao].include?(item.thing) ? "绚金" : item.kind_title.split(/[()（）]/).first.strip,
                             item.quantity,
                             order.address.name,
                             order.address.phone,
