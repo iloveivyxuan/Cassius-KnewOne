@@ -219,4 +219,8 @@ module OrdersHelper
   def bong_point_text
     link_to '活跃点', '#', data: {toggle: "modal", target: "#bong_point_modal"}
   end
+
+  def bong_available_point_url
+    "http://bong.#{Settings.host}/available_point.js?uid=#{current_user.bong_auth.uid}&access_token=#{current_user.bong_auth.access_token}".html_safe
+  end
 end
