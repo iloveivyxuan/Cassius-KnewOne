@@ -3,16 +3,16 @@ class GroupsController < ApplicationController
   before_action :forbidden_invisible, only: [:show]
 
   def index
-    @groups = Group.visible.desc(:members_count).limit(10)
+    @groups = Group.visible.approved.desc(:members_count).limit(10)
 
     params[:filter] ||= session[:topic_filter] || 'all'
 
     if user_signed_in? && params[:filter] == 'joined'
       session[:topic_filter] = 'joined'
-      @topics = Topic.visible.in(group_id: current_user.joined_groups.map(&:id)).desc(:commented_at)
+      @topics = Topic.visible.approved.in(group_id: current_user.joined_groups.map(&:id)).desc(:commented_at)
     else
       session[:topic_filter] = 'all'
-      @topics = Topic.visible.desc(:commented_at)
+      @topics = Topic.visible.approved.desc(:commented_at)
     end
     @topics = @topics.page(params[:page]).per(20)
   end
