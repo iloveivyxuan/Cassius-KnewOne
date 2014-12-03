@@ -477,9 +477,10 @@ figure.thing--embed {
     }
 
     em {
+      font-size: 12px;
       font-style: normal;
       line-height: 40px;
-      padding: 0 .5rem;
+      padding: 0 5px;
 
       .fa-heart { color: $red; }
       .fa-check-circle-o { color: $blue-light; }
