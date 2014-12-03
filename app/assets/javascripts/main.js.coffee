@@ -486,8 +486,11 @@ do (exports = Making) ->
 
       $navDropdown.each ->
         $this = $(@)
-        $this.hover ->
-          $this.toggleClass('open')
+        $this
+          .on 'mouseenter', (event) ->
+            $this.addClass('open')
+          .on 'mouseleave', (event) ->
+            $this.removeClass('open')
         if $this.is('.nav_flyout')
           $this
             .on 'mouseenter', ->
