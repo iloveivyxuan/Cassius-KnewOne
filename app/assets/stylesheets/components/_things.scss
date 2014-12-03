@@ -368,6 +368,7 @@ article.thing {
 
 figure.thing--embed {
   margin-bottom: 0 !important;
+  overflow: hidden;
   padding: 0;
 
   @media (max-width: $screen-xs-max) {
@@ -397,12 +398,12 @@ figure.thing--embed {
 
     &.col-sm-12 {
       > a {
-        padding-bottom: 50%;
+        padding-bottom: percentage(1/2.39);
       }
 
       figcaption {
         padding: 0 0 27.5% 0;
-        top: 22.5%;
+        top: 17%;
         width: 27.5%;
       }
     }
@@ -414,6 +415,8 @@ figure.thing--embed {
 
     img {
       margin: auto !important;
+      max-height: none;
+      max-width: none;
     }
   }
 
