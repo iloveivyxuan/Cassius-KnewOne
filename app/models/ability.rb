@@ -18,6 +18,7 @@ class Ability
       can :manage, Supplier
     elsif user.role? :editor
       signed user
+      can :modify_brand, Thing
       editor
     elsif user.role? :volunteer
       signed user
