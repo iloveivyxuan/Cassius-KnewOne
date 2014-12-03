@@ -1,118 +1,119 @@
-section#menu
-  = form_tag search_path, role: 'form', method: 'get'
-    .form-group.search
-      label.sr-only 搜索 KnewOne
-      input.form-control name='q' type='search' autocomplete="off" placeholder="搜索 KnewOne"
-      i.fa.fa-search
+- cache_unless user_signed_in?, '#menu_mobile'
+  section#menu
+    = form_tag search_path, role: 'form', method: 'get'
+      .form-group.search
+        label.sr-only 搜索 KnewOne
+        input.form-control name='q' type='search' autocomplete="off" placeholder="搜索 KnewOne"
+        i.fa.fa-search
 
-  - if user_signed_in?
-    dl.profile id="user" data-name=current_user.name data-email=current_user.email data-id=current_user.id
-      dd.avatar
-        = link_to current_user do
-          = image_tag current_user.avatar.url(:tiny)
-      dt.name
-        = link_to current_user do
-          = current_user.name
-
-  nav role="navigation"
-    ul.nav.nav-stacked
-      li
-        = link_to_with_icon "首页", "fa fa-home fa-fw", root_path
-      li
-        - if user_signed_in?
-          = link_to_with_icon "发布", "fa fa-plus fa-fw", "#", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}
-        - else
-          = link_to_with_icon "发布", "fa fa-plus fa-fw", "#", data: {toggle: "modal", target: "#login-modal"}
-      - if user_signed_in?
-        - upmc = current_user.unread_private_messages_count
-        li
-          = link_to dialogs_path, title: "#{upmc}封未读私信" do
-            i.fa.fa-paper-plane-o.fa-fw
-            | 私信
-            span.badge.badge_danger.pull-right.private_messages_count= badge upmc
-        li
-          = link_to notifications_path, title: "#{unread_notifications_text}未读消息" do
-            i.fa.fa-bell-o.fa-fw
-            | 通知
-            span.badge.badge_primary.pull-right= unread_notifications_count
-        li
-          = link_to cart_items_path, title: "购物车" do
-            i.fa.fa-shopping-cart.fa-fw
-            | 购物车
-            span.badge.badge_success.pull-right.cart_items_count= cart_items_count
-      li.nav_group_title
-        | 频道
-      li
-        = link_to_with_icon "精选", "fa fa-rocket fa-fw", "#", data: {toggle: "collapse", target:"#explore_category"}
-        #explore_category.nav_collapse.collapse
-          = link_to '首页', explore_path
-          = link_to '特写', explore_features_path
-          = link_to '评测', explore_reviews_path
-          = link_to '专题', explore_specials_path
-      li
-        = link_to_with_icon "热门", "fa fa-compass fa-fw", hits_path
-      li
-        = link_to_with_icon "商店", "fa fa-cubes fa-fw", shop_path
-      li
-        = link_to_with_icon "探索", "fa fa-bars fa-fw", categories_path
-      li
-        = link_to_with_icon "小组", "fa fa-tint fa-fw", groups_path
-      li
-        = link_to_with_icon "客服", "fa fa-comment fa-fw", "#customer_services"
-      - if user_signed_in?
-        li.nav_group_title
-          | 帐户
-        li
-          = link_to_with_icon '个人信息', 'fa fa-user fa-fw', edit_profile_path
-        li
-          = link_to_with_icon '领养记录', 'fa fa-fw fa-file-text', adoptions_path
-        li
-          = link_to_with_icon '账户信息', 'fa fa-cogs fa-fw', edit_account_path
-        li
-          = link_to_with_icon '通知设置', 'fa fa-inbox fa-fw', edit_notification_settings_path
-        li.nav_group_title
-          | 购买
-        li
-          = link_to_with_icon '订单', 'fa fa-truck fa-fw', orders_path
-        li
-          = link_to_with_icon '余额', 'fa fa-money fa-fw', balances_path
-        li
-          = link_to_with_icon '优惠券', 'fa fa-ticket fa-fw', coupons_path
-        li
-          = link_to_with_icon '收货地址', 'fa fa-truck fa-fw', addresses_path
-      - if user_signed_in? and current_user.role? :editor
-        li.nav_group_title
-          | 管理员
-        li
-          = link_to_with_icon '评论', 'fa fa-fw fa-wrench', haven_comments_path
-        li
-          = link_to_with_icon '管理用户', 'fa fa-fw fa-wrench', haven_users_path
-        li
-          = link_to_with_icon '管理分类', 'fa fa-fw fa-wrench', haven_categories_path
-        li
-          = link_to_with_icon '管理广告位', 'fa fa-fw fa-wrench', haven_promotions_path
-        - if can? :manage, Review
-          li
-            = link_to_with_icon '管理评测', 'fa fa-fw fa-wrench', haven_reviews_path
-        - if can? :manage, Supplier
-          li
-            = link_to_with_icon '供货信息', 'fa fa-fw fa-wrench', suppliers_path
-        - if can? :manage, Order
-          li
-            = link_to_with_icon '管理订单', 'fa fa-fw fa-wrench', haven_orders_path
-        - if can? :manage, :all
-          li
-            = link_to_with_icon '管理产品', 'fa fa-fw fa-wrench', haven_things_path
-          li
-            = link_to_with_icon '管理足价减优惠券', 'fa fa-fw fa-wrench', haven_abatement_coupons_path
-          li
-            = link_to_with_icon '管理产品减优惠券', 'fa fa-fw fa-wrench', haven_thing_rebate_coupons_path
-          li
-            = link_to_with_icon 'OAuth App', 'fa fa-fw fa-wrench', oauth_applications_path, target: '_blank'
-          li
-            = link_to_with_icon 'Sidekiq', 'fa fa-fw fa-wrench', '/haven/sidekiq', target: '_blank'
-  footer
     - if user_signed_in?
-      = link_to_with_icon "登出", "fa fa-sign-out fa-fw", destroy_user_session_path, class: "btn btn-danger btn-block", method: :delete
-    - else
-      = link_to_with_icon "登录", "fa fa-sign-in fa-fw", "#", class: "btn btn-success btn-block", data: {toggle: "modal", target: "#login-modal"}
+      dl.profile id="user" data-name=current_user.name data-email=current_user.email data-id=current_user.id
+        dd.avatar
+          = link_to current_user do
+            = image_tag current_user.avatar.url(:tiny)
+        dt.name
+          = link_to current_user do
+            = current_user.name
+
+    nav role="navigation"
+      ul.nav.nav-stacked
+        li
+          = link_to_with_icon "首页", "fa fa-home fa-fw", root_path
+        li
+          - if user_signed_in?
+            = link_to_with_icon "发布", "fa fa-plus fa-fw", "#", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}
+          - else
+            = link_to_with_icon "发布", "fa fa-plus fa-fw", "#", data: {toggle: "modal", target: "#login-modal"}
+        - if user_signed_in?
+          - upmc = current_user.unread_private_messages_count
+          li
+            = link_to dialogs_path, title: "#{upmc}封未读私信" do
+              i.fa.fa-paper-plane-o.fa-fw
+              | 私信
+              span.badge.badge_danger.pull-right.private_messages_count= badge upmc
+          li
+            = link_to notifications_path, title: "#{unread_notifications_text}未读消息" do
+              i.fa.fa-bell-o.fa-fw
+              | 通知
+              span.badge.badge_primary.pull-right= unread_notifications_count
+          li
+            = link_to cart_items_path, title: "购物车" do
+              i.fa.fa-shopping-cart.fa-fw
+              | 购物车
+              span.badge.badge_success.pull-right.cart_items_count= cart_items_count
+        li.nav_group_title
+          | 频道
+        li
+          = link_to_with_icon "精选", "fa fa-rocket fa-fw", "#", data: {toggle: "collapse", target:"#explore_category"}
+          #explore_category.nav_collapse.collapse
+            = link_to '首页', explore_path
+            = link_to '特写', explore_features_path
+            = link_to '评测', explore_reviews_path
+            = link_to '专题', explore_specials_path
+        li
+          = link_to_with_icon "热门", "fa fa-compass fa-fw", hits_path
+        li
+          = link_to_with_icon "商店", "fa fa-cubes fa-fw", shop_path
+        li
+          = link_to_with_icon "探索", "fa fa-bars fa-fw", categories_path
+        li
+          = link_to_with_icon "小组", "fa fa-tint fa-fw", groups_path
+        li
+          = link_to_with_icon "客服", "fa fa-comment fa-fw", "#customer_services"
+        - if user_signed_in?
+          li.nav_group_title
+            | 帐户
+          li
+            = link_to_with_icon '个人信息', 'fa fa-user fa-fw', edit_profile_path
+          li
+            = link_to_with_icon '领养记录', 'fa fa-fw fa-file-text', adoptions_path
+          li
+            = link_to_with_icon '账户信息', 'fa fa-cogs fa-fw', edit_account_path
+          li
+            = link_to_with_icon '通知设置', 'fa fa-inbox fa-fw', edit_notification_settings_path
+          li.nav_group_title
+            | 购买
+          li
+            = link_to_with_icon '订单', 'fa fa-truck fa-fw', orders_path
+          li
+            = link_to_with_icon '余额', 'fa fa-money fa-fw', balances_path
+          li
+            = link_to_with_icon '优惠券', 'fa fa-ticket fa-fw', coupons_path
+          li
+            = link_to_with_icon '收货地址', 'fa fa-truck fa-fw', addresses_path
+        - if user_signed_in? and current_user.role? :editor
+          li.nav_group_title
+            | 管理员
+          li
+            = link_to_with_icon '评论', 'fa fa-fw fa-wrench', haven_comments_path
+          li
+            = link_to_with_icon '管理用户', 'fa fa-fw fa-wrench', haven_users_path
+          li
+            = link_to_with_icon '管理分类', 'fa fa-fw fa-wrench', haven_categories_path
+          li
+            = link_to_with_icon '管理广告位', 'fa fa-fw fa-wrench', haven_promotions_path
+          - if can? :manage, Review
+            li
+              = link_to_with_icon '管理评测', 'fa fa-fw fa-wrench', haven_reviews_path
+          - if can? :manage, Supplier
+            li
+              = link_to_with_icon '供货信息', 'fa fa-fw fa-wrench', suppliers_path
+          - if can? :manage, Order
+            li
+              = link_to_with_icon '管理订单', 'fa fa-fw fa-wrench', haven_orders_path
+          - if can? :manage, :all
+            li
+              = link_to_with_icon '管理产品', 'fa fa-fw fa-wrench', haven_things_path
+            li
+              = link_to_with_icon '管理足价减优惠券', 'fa fa-fw fa-wrench', haven_abatement_coupons_path
+            li
+              = link_to_with_icon '管理产品减优惠券', 'fa fa-fw fa-wrench', haven_thing_rebate_coupons_path
+            li
+              = link_to_with_icon 'OAuth App', 'fa fa-fw fa-wrench', oauth_applications_path, target: '_blank'
+            li
+              = link_to_with_icon 'Sidekiq', 'fa fa-fw fa-wrench', '/haven/sidekiq', target: '_blank'
+    footer
+      - if user_signed_in?
+        = link_to_with_icon "登出", "fa fa-sign-out fa-fw", destroy_user_session_path, class: "btn btn-danger btn-block", method: :delete
+      - else
+        = link_to_with_icon "登录", "fa fa-sign-in fa-fw", "#", class: "btn btn-success btn-block", data: {toggle: "modal", target: "#login-modal"}
