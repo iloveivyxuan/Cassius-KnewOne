@@ -1,0 +1,6 @@
+- description = "编辑正速速建设此页中 =͟͟͞͞( •̀д•́)    敬请期待" if description.blank?
+- unless description.blank?
+  p#description= description
+- @tags = (klass.try(:inner_categories)) ? klass.inner_categories : klass.tags
+#tags
+  = render 'thing_information_tags', tags: @tags

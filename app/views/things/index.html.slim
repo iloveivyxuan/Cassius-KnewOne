@@ -24,32 +24,33 @@
         = render 'sort_breadcrumb'
 
   - if @brand || @category
+    - klass = @brand || @category
     section#things_information
       .col-md-3
-        img#logo src=(@brand ? @brand.logo.url : @category.cover.url)
+        img#logo src=klass.cover.url
       .col-md-9
-        - description = @brand.try(:description) || @category.try(:description)
-        - description = "编辑正速速建设此页中 =͟͟͞͞( •̀д•́)    敬请期待" if description.blank?
-        - unless description.blank?
-          p#description= description
-        - if @brand
-          - tags = @brand.tags
-        - elsif @category.primary_category?
-          - tags = @category.inner_categories
-        - else
-          - tags = @category.tags
-        #tags
-          = render 'thing_information_tags', tags: tags
+        - description = klass.description
+        = render 'description', klass: klass
         - if current_user && [:volunteer, :editor].include?(current_user.role)
           = button_tag "编辑品牌信息", type: "button", class: "btn btn-default", data: { toggle: 'modal', target: '#brand-modify-modal' }
-      - unless browser.desktop?
+      - if !browser.desktop?
         .more
-          = link_to_with_icon "查看所有 #{tags.size} 个标签", "fa fa-angle-double-down", "#"
+          = link_to_with_icon "查看所有 #{@tags.size} 个标签", "fa fa-angle-double-down", "#"
 
-    - if !browser.desktop? && (@category || @tag || @brand)
-      nav
-        - params[:sort_by] ||= 'created_at'
-        = render 'sort_breadcrumb'
+  - if !browser.desktop? && (@category || @tag || @brand)
+    nav
+      - params[:sort_by] ||= 'created_at'
+      = render 'sort_breadcrumb'
+  - if @tag
+    - klass = @tag
+    - unless klass.description.blank?
+      section#things_information
+        .col-md-12
+          - p#description= klass.description
+      - if !browser.desktop?
+        nav
+          - params[:sort_by] ||= 'created_at'
+          = render 'sort_breadcrumb'
 
   section#things_list.infinite
     = render partial: 'home/hot_thing', collection: @things, as: :hot_thing
