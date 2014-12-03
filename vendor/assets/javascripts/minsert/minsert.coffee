@@ -246,7 +246,7 @@ do ($ = jQuery) ->
                 if isThings
                   requestData =
                     type: 'thing'
-                    key: thingSlugs.join(',')
+                    key: _.union(thingSlugs).join(',')
                 else if patternReview.test(url)
                   requestData =
                     type: 'review'
