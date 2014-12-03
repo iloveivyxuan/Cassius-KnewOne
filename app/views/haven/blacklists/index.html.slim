@@ -1,0 +1,19 @@
+- page_title "管理黑名单"
+
+hgroup
+  h1
+    = link_to "管理黑名单", haven_blacklists_path
+
+- @blacklists.each do |b|
+  table.table.table-striped.table-bordered
+    tr
+      th style="width: 40%" 关键词
+      th style="width: 40%" 操作
+    tr
+      th= b.word
+      th
+        = link_to "删除", haven_blacklist_path(b), method: :delete, data: { confirm: '确定要删除吗？' }
+
+= form_for Blacklist.new, url: haven_blacklists_path, method: :post do |f|
+  = f.text_field :word
+  = f.submit

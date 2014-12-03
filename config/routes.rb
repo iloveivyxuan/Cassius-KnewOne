@@ -335,6 +335,8 @@ Making::Application.routes.draw do
       end
     end
 
+    resources :blacklists, only: [:index, :create, :destroy]
+
     resources :links
 
     resources :articles, except: [:show]
