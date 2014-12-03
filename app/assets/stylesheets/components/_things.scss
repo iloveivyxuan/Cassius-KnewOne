@@ -414,9 +414,13 @@ figure.thing--embed {
     display: block;
 
     img {
+      bottom: -1000%;
+      left: -1000%;
       margin: auto !important;
       max-height: none;
       max-width: none;
+      right: -1000%;
+      top: -1000%;
     }
   }
 

@@ -30,7 +30,7 @@
 #thing--embed_form {
   .fieldset--photo {
     figure {
-      border: $border-default;
+      outline: 1px dashed #444;
       height: 0;
       margin-bottom: 1rem;
       overflow: hidden;
