@@ -426,7 +426,7 @@ class Thing < Post
     options = {
       multi_match: {
         query: query,
-        fields: ['title^10', 'slugs^5', 'subtitle^3', 'brand^3']
+        fields: ['title^10', 'slugs^5', 'subtitle', 'brand^3']
       }
     }
 
