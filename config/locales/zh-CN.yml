@@ -36,6 +36,7 @@ zh-CN:
         price: '价格'
         description: '简介'
         sharing_text: '分享文案'
+        nickname: '别名'
       thing_list:
         name: '名称'
         description: '描述'

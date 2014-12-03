@@ -12,6 +12,7 @@ class Thing < Post
   before_save :update_approved_time
 
   field :subtitle, type: String, default: ""
+  field :nickname, type: String
   field :official_site, type: String, default: ""
   field :photo_ids, type: Array, default: []
   field :categories, type: Array, default: []
@@ -411,13 +412,13 @@ class Thing < Post
 
   include Searchable
 
-  searchable_fields [:title, :_slugs, :subtitle, :brand_name]
+  searchable_fields [:title, :_slugs, :subtitle, :nickname, :brand_name]
 
   def self.search(query)
     query_options = {
       multi_match: {
         query: query,
-        fields: ['title^10', '_slugs^5', 'subtitle', 'brand_name^3']
+        fields: ['title^10', '_slugs^5', 'subtitle', 'nickname^10', 'brand_name^3']
       }
     }
 
