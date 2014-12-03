@@ -411,15 +411,14 @@ class Thing < Post
 
   include Searchable
 
-  searchable_fields [:title, :_slugs, :subtitle, :brand_name, :content]
+  searchable_fields [:title, :_slugs, :subtitle, :brand_name]
 
   def as_indexed_json(options={})
     {
       title: self.title,
       slugs: self.slugs,
       subtitle: self.subtitle,
-      brand: self.brand_name,
-      content: ActionController::Base.helpers.strip_tags(self.content)
+      brand: self.brand_name
     }
   end
 
@@ -427,7 +426,7 @@ class Thing < Post
     options = {
       multi_match: {
         query: query,
-        fields: ['title^10', 'slugs^5', 'subtitle^3', 'brand^3', 'content']
+        fields: ['title^10', 'slugs^5', 'subtitle^3', 'brand^3']
       }
     }
 
