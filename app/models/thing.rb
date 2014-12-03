@@ -413,20 +413,11 @@ class Thing < Post
 
   searchable_fields [:title, :_slugs, :subtitle, :brand_name]
 
-  def as_indexed_json(options={})
-    {
-      title: self.title,
-      slugs: self.slugs,
-      subtitle: self.subtitle,
-      brand: self.brand_name
-    }
-  end
-
   def self.search(query)
     query_options = {
       multi_match: {
         query: query,
-        fields: ['title^10', 'slugs^5', 'subtitle', 'brand^3']
+        fields: ['title^10', '_slugs^5', 'subtitle', 'brand_name^3']
       }
     }
 
