@@ -1,0 +1,5 @@
+ul.pager
+  - if previous_entry = entry.previous
+    li.previous = link_to "#{entry_title(previous_entry)}", previous_entry
+  - if next_entry = entry.next
+    li.next = link_to "#{entry_title(next_entry)}", next_entry
