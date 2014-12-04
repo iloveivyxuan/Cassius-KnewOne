@@ -11,11 +11,16 @@ Making.Views.Notification = Backbone.View.extend
     @spinner_template = $('#notification_box .dropdown_box').html()
     @$content = $('#notification_box .dropdown_box')
     @$count = @$('#notification_count')
+    @$trigger = @$('#notification_trigger')
 
     Making.Events
     .on('notifications:loaded', @loaded, @)
 
-    @fetch()
+    if @$count.text()
+      @fetch()
+    else
+      @$trigger.one('click', => @fetch())
+
 
   fetch: ->
     @$content.html(@spinner_template)
