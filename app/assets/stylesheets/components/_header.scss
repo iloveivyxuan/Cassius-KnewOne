@@ -90,11 +90,6 @@ html.touch {
       }
     }
   }
-
-  #nav_publish {
-    a {color: white;}
-    background-color: $blue;
-  }
 }
 
 .navbar-brand {
@@ -554,6 +549,9 @@ html.no-touch {
       &:hover {
         border-bottom-color: $brand-primary;
       }
+
+      > .fa-plus {
+        color: $brand-primary;
       }
     }
     &.active {
