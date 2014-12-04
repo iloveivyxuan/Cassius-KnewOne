@@ -420,11 +420,24 @@ class Thing < Post
     indexes :ngram, index_analyzer: 'english', search_analyzer: 'standard'
   end
 
+  alias_method :_as_indexed_json, :as_indexed_json
+  def as_indexed_json(options={})
+    _as_indexed_json(options).merge(weight: reviews_count)
+  end
+
   def self.search(query)
     query_options = {
-      multi_match: {
-        query: query,
-        fields: ['title^10', '_slugs^5', 'subtitle', 'nickname^10', 'brand_name^3', 'ngram^3']
+      function_score: {
+        query: {
+          multi_match: {
+            query: query,
+            fields: ['title^10', '_slugs^5', 'subtitle', 'nickname^10', 'brand_name^3', 'ngram^3']
+          }
+        },
+        field_value_factor: {
+          field: 'weight',
+          modifier: 'log2p'
+        }
       }
     }
 
