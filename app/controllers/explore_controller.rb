@@ -1,5 +1,6 @@
 class ExploreController < ApplicationController
   skip_before_action :require_not_blocked
+  helper :entries
 
   def index
     @entries = Entry.published.ne(category: '活动').desc(:created_at).page(params[:page]).per(6)
