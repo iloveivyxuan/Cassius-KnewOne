@@ -537,10 +537,15 @@ html.no-touch {
       border-bottom: 3px solid transparent;
       display: block;
       margin: 0 auto;
-      padding: 0 10px;
-      @include MQ(XLplus) { padding: 0 20px }
+      padding: 3px 10px 0;
+      @include MQ(XLplus) {
+        padding: {
+          left: 20px;
+          right: 20px;
+        }
+      }
       font-size: 14px;
-      line-height: 42px;
+      line-height: 39px;
       color: $gray-lighter;
       text-align: center;
       @include transition-property(all);
