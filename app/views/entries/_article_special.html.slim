@@ -41,7 +41,7 @@ article.article data-article-id=post.id
       = render 'things/embed_thing', thing: post.thing, photo: nil, embed: nil, klass: 'col-sm-12'
 
   .actions
-    .interactions id="article_#{post.id.to_s}"
+    .interactions id="#{post.class.to_s.downcase}_#{post.id.to_s}"
       = render partial: 'shared/voting', locals: {object: post}
     = render "shared/share_external", type: entry.category, title: entry_title(entry)
 
