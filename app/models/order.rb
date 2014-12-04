@@ -191,9 +191,9 @@ class Order
     OrderMailer.delay_for(3.hours, retry: false, queue: :mails).remind_payment(self.id.to_s)
   end
 
-  # after_save do
-  #   generate_waybill! if confirmed?
-  # end
+  after_save do
+    generate_waybill! if confirmed?
+  end
 
   default_scope -> { order_by(created_at: :desc) }
 
