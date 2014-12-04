@@ -41,17 +41,17 @@ class Entry
 
   def previous(same_category = true)
     if same_category
-      self.class.where(:_id.lt => self._id, category: self.category).order_by([[:_id, :desc]]).limit(1).first
+      self.class.where(:_id.lt => self._id, category: self.category, published: true).order_by([[:_id, :desc]]).limit(1).first
     else
-      self.class.where(:_id.lt => self._id).order_by([[:_id, :desc]]).limit(1).first
+      self.class.where(:_id.lt => self._id, published: true).order_by([[:_id, :desc]]).limit(1).first
     end
   end
 
   def next(same_category = true)
     if same_category
-      self.class.where(:_id.gt => self._id, category: self.category).order_by([[:_id, :asc]]).limit(1).first
+      self.class.where(:_id.gt => self._id, category: self.category, published: true).order_by([[:_id, :asc]]).limit(1).first
     else
-      self.class.where(:_id.gt => self._id).order_by([[:_id, :asc]]).limit(1).first
+      self.class.where(:_id.gt => self._id, published: true).order_by([[:_id, :asc]]).limit(1).first
     end
   end
 

@@ -51,11 +51,7 @@ section.article
       = render partial: 'shared/voting', locals: {object: post}
     = render "shared/share_external", type: entry.category, title: entry_title(entry)
 
-  ul.pager
-    - if previous_entry = entry.previous
-      li.previous = link_to "#{entry_title(previous_entry)}", previous_entry
-    - if next_entry = entry.next
-      li.next = link_to "#{entry_title(next_entry)}", next_entry
+  = render 'pager', entry: entry
 
   = render 'shared/comments', post: post, id: "comments", auth: true
 
