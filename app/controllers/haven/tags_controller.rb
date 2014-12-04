@@ -29,6 +29,7 @@ module Haven
 
     def update
       @tag.name = params[:tag][:name]
+      @tag.description = params[:tag][:description]
       @tag.categories.clear
       params[:tag][:categories_text].split(/[，,]/).map { |t| Category.where(name: t.strip).first  }.each do |c|
         @tag.categories << c if c
@@ -53,7 +54,7 @@ module Haven
     end
 
     def tag_params
-      params.require(:tag).permit(:categories_text, :name)
+      params.require(:tag).permit(:categories_text, :name, :description)
     end
   end
 end
