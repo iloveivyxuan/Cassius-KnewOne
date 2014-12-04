@@ -73,7 +73,8 @@ class Post
     if self.title.present?
       self.title = self.title.
         gsub(/(?<=[0-9a-z])(?=[\u4e00-\u9fa5])/i, ' ').
-        gsub(/(?=[0-9a-z])(?<=[\u4e00-\u9fa5])/i, ' ')
+        gsub(/(?=[0-9a-z])(?<=[\u4e00-\u9fa5])/i, ' ').
+        gsub(/\s+/, ' ')
     end
   end
 
