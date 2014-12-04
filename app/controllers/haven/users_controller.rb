@@ -188,6 +188,7 @@ module Haven
       @user.topics.delete_all
       @user.reviews.delete_all
       @user.feelings.delete_all
+      @user.thing_lists.delete_all
       redirect_to :back
     end
 
