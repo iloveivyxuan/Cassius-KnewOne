@@ -105,9 +105,18 @@ section.orders_wrapper
 
 = render 'orders/btc_pay_modal'
 = render 'orders/request_refund_modal'
+= render 'orders/redirect_prompt_modal'
 
 - content_for :script do
   javascript:
+    var $redirectPromptModal = $('#redirect_prompt_modal');
+    $('.js-redirect_prompt').on('click', function(event) {
+      $redirectPromptModal
+        .find('.modal-body')
+          .text('正在跳转到' + $(this).text().slice(0, -2) + '...')
+        .end()
+        .modal('show');
+    });
     if ("#{flash[:provider_sync]}" == "on") {
       $(function(){$('#share_order_btn').click()});
     }

@@ -339,3 +339,13 @@ html.orders_create,
     margin-bottom: 20px;
   }
 }
+
+#redirect_prompt_modal {
+  .modal-dialog {
+    margin-top: 100px;
+  }
+
+  .modal-content {
+    border-radius: 3px;
+  }
+}
