@@ -434,11 +434,18 @@ class Thing < Post
     indexes :title, copy_to: :ngram
     indexes :nickname, copy_to: :ngram
     indexes :ngram, index_analyzer: 'english', search_analyzer: 'standard'
+    indexes :suggest, type: 'completion'
   end
 
   alias_method :_as_indexed_json, :as_indexed_json
   def as_indexed_json(options={})
-    _as_indexed_json(options).merge(weight: reviews_count)
+    suggest = {
+      input: title.split(' '),
+      output: title,
+      weight: reviews_count
+    }
+
+    _as_indexed_json(options).merge(weight: reviews_count, suggest: suggest)
   end
 
   def self.search(query)
@@ -450,6 +457,24 @@ class Thing < Post
     }
 
     __elasticsearch__.search(query: query_options, min_score: 0.1)
+  end
+
+  def self.suggest(prefix)
+    body = {
+      titles: {
+        text: prefix,
+        completion: {
+          field: :suggest,
+          size: 10,
+          fuzzy: {
+            unicode_aware: true
+          }
+        }
+      }
+    }
+
+    response = __elasticsearch__.client.suggest(index: index_name, body: body)
+    response['titles'].first['options'].map { |h| h['text'].strip } rescue []
   end
 
   private
