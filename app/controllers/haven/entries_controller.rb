@@ -4,11 +4,7 @@ module Haven
     before_action :set_entry, except: [:index, :create, :new]
 
     def index
-      @entries = ::Entry
-      if params[:published]
-        @entries = @entries.where(published: params[:published])
-      end
-      @entries = @entries.desc(:created_at).page params[:page]
+      @entries = Entry.desc(:created_at).page params[:page]
     end
 
     def edit

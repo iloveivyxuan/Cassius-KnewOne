@@ -4,9 +4,6 @@ header.page-header
   h1.pull-left 管理精选
   = link_to '新建', new_haven_entry_path, class: 'btn btn-primary pull-right'
 
-- {'true' => '公开', 'false' => '未公开'}.each do |k, v|
-  = link_to v, haven_entries_path({ :published => k }), class: "btn btn-default"
-
 table.table.table-striped
   thead
     tr
