@@ -175,6 +175,31 @@ html.entries_show {
       }
     }
 
+    .comments_more {
+      @include transition-property(all);
+      @include transition-duration(0.2s);
+      @include transition-timing-function(ease);
+      background-color: #fff;
+      border: none;
+      border-radius: 0;
+      border-top: 1px dashed $gray-lighter;
+      color: $blue-dark;
+      width: 100%;
+      .fa {
+        font-size: 18px;
+        line-height: 40px;
+        vertical-align: -1px;
+        &:before {
+          content:"\f107";
+          -webkit-font-smoothing: auto;
+        }
+      }
+      &:hover {
+        color: $brand-primary;
+        .fa:before { content: "\f103" }
+      }
+    }
+
     > hr {
       border: none;
       border-top: $border-dashed;
