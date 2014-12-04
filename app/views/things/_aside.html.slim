@@ -12,7 +12,7 @@
   - if show_action
     = render 'things/actions', tp: tp
 
-- cache ['thing', 'aside', thing, browser.mobile?, Time.now.to_i / 1.minutes]
+- cache ['thing', 'aside', tp.thing, browser.mobile?, Time.now.to_i / 1.minutes]
   - unless browser.mobile?
     = render 'things/author_list', thing: tp.thing
 
