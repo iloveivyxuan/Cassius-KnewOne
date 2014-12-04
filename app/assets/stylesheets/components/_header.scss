@@ -480,7 +480,6 @@ html.no-touch {
 }
 .navbar {
   min-height: 45px;
-  background-color: $navbar-bg;
   background-color: rgba($navbar-bg,.98);
   border: none;
   @include box-shadow(0 1px 5px #555);
@@ -540,20 +539,21 @@ html.no-touch {
       text-align: center;
     }
     > a {
+      border-bottom: 3px solid transparent;
       display: block;
       margin: 0 auto;
       padding: 0 10px;
       @include MQ(XLplus) { padding: 0 20px }
       font-size: 14px;
-      line-height: 45px;
+      line-height: 42px;
       color: $gray-lighter;
       text-align: center;
       @include transition-property(all);
       @include transition-duration(0.2s);
       @include transition-timing-function(ease);
       &:hover {
-        color: $blue-light;
-        background: $navbar-dropdown-bg;
+        border-bottom-color: $brand-primary;
+      }
       }
     }
     &.active {
@@ -564,21 +564,10 @@ html.no-touch {
         &.active,
         &.active:hover,
         &.active:active {
-          color: $blue-light;
-          background: $navbar-dropdown-bg;
+          background-color: transparent;
+          border-bottom-color: $brand-primary;
         }
       }
-    }
-    &#nav_publish {
-      a {
-        color: #fff;
-        background-color: $brand-primary;
-        i {
-          display: none;
-          @include MQ(XLplus) { display: inline-block }
-        }
-      }
-
     }
   }
 }

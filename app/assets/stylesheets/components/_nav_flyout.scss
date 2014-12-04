@@ -6,8 +6,8 @@
       &,
       &:hover,
       &:focus {
-        background-color: $menu-background !important;
-        color: $blue-light;
+        background-color: transparent !important;
+        border-bottom-color: $brand-primary !important;
       }
     }
   }
