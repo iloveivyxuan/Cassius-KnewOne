@@ -1,6 +1,7 @@
 class Review < Post
   include Ratable
   include Aftermath
+  include Atable
 
   field :is_top, type: Boolean, default: false
 

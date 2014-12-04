@@ -1,6 +1,14 @@
 class ReviewPresenter < PostPresenter
   presents :review
 
+  def content
+    c = review.content.gsub /"(http:\/\/#{Settings.image_host}\/.+?)(!.+?)?"/, '"\1!review"'
+    review.content_users.each do |u|
+      c.gsub! "@#{u.name}", link_to("@#{u.name}", u, data: {'profile-popover' => u.id.to_s})
+    end
+    sanitize c
+  end
+
   def path
     thing_review_path(review.thing, review)
   end
