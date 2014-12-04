@@ -414,15 +414,21 @@ class Thing < Post
 
   searchable_fields [:title, :_slugs, :subtitle, :nickname, :brand_name]
 
+  mappings do
+    indexes :title, copy_to: :ngram
+    indexes :nickname, copy_to: :ngram
+    indexes :ngram, index_analyzer: 'english', search_analyzer: 'standard'
+  end
+
   def self.search(query)
     query_options = {
       multi_match: {
         query: query,
-        fields: ['title^10', '_slugs^5', 'subtitle', 'nickname^10', 'brand_name^3']
+        fields: ['title^10', '_slugs^5', 'subtitle', 'nickname^10', 'brand_name^3', 'ngram^3']
       }
     }
 
-    __elasticsearch__.search(query: query_options, min_score: 1)
+    __elasticsearch__.search(query: query_options, min_score: 0.5)
   end
 
   private
