@@ -46,6 +46,7 @@ Making.Views.Notification = Backbone.View.extend
         @$count.text(unread_count)
       else
         @$count.text('')
+        @$trigger.attr('title', '没有未读消息')
 
   openNotification: (event) ->
     @markRead $("#notification_box .tab-pane.active").attr("id"), $('li.active').attr('data-unread-count')
