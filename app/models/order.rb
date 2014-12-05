@@ -634,11 +634,8 @@ class Order
   end
 
   def bong_inside?
-    (bong && self.order_items.where(thing_title: bong.title).exists?) \
-    || (bong_band && self.order_items.where(thing_title: bong_band.title).exists?) \
-    || (bong_battery && self.order_items.where(thing_title: bong_battery.title).exists?) \
-    || (bong_bang_dai && self.order_items.where(thing_title: bong_bang_dai.title).exists?) \
-    || (bong_g_dian && self.order_items.where(thing_title: bong_g_dian.title).exists?)
+    bong_family = %w(53d0bed731302d2c13b20000 544f8b9331302d5139c60000 544f8b0a31302d4fd2dd0000 54700f5d31302d2b49260100 547eb49431302d676c830000)
+    bong_family.map { |bong| self.order_items.by_id(bong).exists? }.reduce(:|)
   end
 
   def set_coupon!
@@ -670,26 +667,6 @@ class Order
 
   def after_confirm
     self.user.inc karma: Settings.karma.order
-  end
-
-  def bong
-    @_bong ||= Thing.where(id: "53d0bed731302d2c13b20000").first
-  end
-
-  def bong_band
-    @_bong_band ||= Thing.where(id: "544f8b9331302d5139c60000").first
-  end
-
-  def bong_battery
-    @_bong_battery ||= Thing.where(id: "544f8b0a31302d4fd2dd0000").first
-  end
-
-  def bong_bang_dai
-    @_bong_bang_dai ||= Thing.where(id: "54700f5d31302d2b49260100").first
-  end
-
-  def bong_g_dian
-    @_bong_g_dian ||= Thing.where(id: "547eb49431302d676c830000").first
   end
 
   def log(type, text)

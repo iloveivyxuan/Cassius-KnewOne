@@ -10,6 +10,8 @@ class OrderItem
   field :kind_id, type: String
   validates :kind_id, :presence => true
 
+  scope :by_id, ->(id) { where 'thing_id' => id }
+
   embedded_in :order
 
   validates :quantity, :numericality => {only_integer: true, greater_than: 0}
