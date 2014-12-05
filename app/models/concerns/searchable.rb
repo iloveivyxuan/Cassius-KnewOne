@@ -4,6 +4,10 @@ module Searchable
   included do
     include Elasticsearch::Model
 
+    def self.search(query)
+      __elasticsearch__.search(query: {match: {_all: query}})
+    end
+
     after_save do
       if searchable_fields_changed?
         Indexer.perform_async(:index, self.class.to_s, self.id.to_s)
