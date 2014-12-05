@@ -39,10 +39,6 @@
 
   - if @tag
     = render 'tag_description'
-      - if !browser.desktop?
-        nav
-          - params[:sort_by] ||= 'created_at'
-          = render 'sort_breadcrumb'
 
   - if !browser.desktop? && (@category || @tag || @brand)
     nav

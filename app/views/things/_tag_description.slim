@@ -2,3 +2,7 @@
   section#things_information
     .col-md-12
       p#description= @tag.description
+  - if !browser.desktop?
+    nav
+      - params[:sort_by] ||= 'created_at'
+      = render 'sort_breadcrumb'
