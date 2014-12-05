@@ -8,7 +8,8 @@ li.cart_item id="cart_item_#{cart_item.id}" disabled=!cart_item.has_enough_stock
           = cart_item.kind.title
           - if cart_item.kind.stage == :pre_order
             | &nbsp;[预购]
-          strong.stock_hint.hide 抱歉, 此型号已没有库存
+          - unless cart_item.kind.has_stock?
+            strong.stock_hint 抱歉, 此型号已没有库存
   .item_opts
     .price
       i.fa.fa-yen
