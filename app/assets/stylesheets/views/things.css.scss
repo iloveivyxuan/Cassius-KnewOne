@@ -1776,6 +1776,12 @@ html.feelings_show {
   .other_lists {
     @include MQ(Mneg) {
       @include box-shadow(0 2px 10px rgba(0,0,0,.1));
+
+      margin-top: 2em;
+
+      .show_all_lists {
+        display: none;
+      }
     }
 
     figure {
