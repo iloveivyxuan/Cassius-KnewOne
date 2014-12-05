@@ -37,20 +37,17 @@
         .more
           = link_to_with_icon "查看所有 #{@tags.size} 个标签", "fa fa-angle-double-down", "#"
 
-  - if !browser.desktop? && (@category || @tag || @brand)
-    nav
-      - params[:sort_by] ||= 'created_at'
-      = render 'sort_breadcrumb'
   - if @tag
-    - klass = @tag
-    - unless klass.description.blank?
-      section#things_information
-        .col-md-12
-          p#description= klass.description
+    = render 'tag_description'
       - if !browser.desktop?
         nav
           - params[:sort_by] ||= 'created_at'
           = render 'sort_breadcrumb'
+
+  - if !browser.desktop? && (@category || @tag || @brand)
+    nav
+      - params[:sort_by] ||= 'created_at'
+      = render 'sort_breadcrumb'
 
   section#things_list.infinite
     = render partial: 'home/hot_thing', collection: @things, as: :hot_thing
