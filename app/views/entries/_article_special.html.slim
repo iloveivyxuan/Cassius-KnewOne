@@ -26,7 +26,7 @@ article.article data-article-id=post.id
               = post.comments.size
 
     figure
-      - version = browser.mobile? ? :'wechat' : :huge
+      - version = browser.mobile? ? :wechat : :huge
       = image_tag (entry.canopy.url(version) || "http://image.knewone.com/review_photos/65cd5f541dee082691f8481e96d132cc.jpg!#{version}")
 
   - if entry.try(:summary).present?
