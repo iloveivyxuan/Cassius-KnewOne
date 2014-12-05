@@ -148,6 +148,8 @@ module ThingsHelper
       "#{@category.name}|#{@category.name}产品"
     elsif @brand.present?
       "#{@brand.brand_text}|#{@brand.brand_text}产品"
+    elsif @tag.present?
+      "#{@tag.name}|#{@tag.name}产品"
     else
       "产品"
     end
