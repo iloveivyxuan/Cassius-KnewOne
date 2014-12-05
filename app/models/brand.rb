@@ -18,6 +18,8 @@ class Brand
 
   mount_uploader :logo, CoverUploader
 
+  alias_method :cover, :logo
+
   has_many :things
 
   field :nickname, type: String, default: ""

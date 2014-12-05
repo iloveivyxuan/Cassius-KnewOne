@@ -13,6 +13,8 @@ class Tag
 
   field :things_count, type: Integer, default: 0
 
+  field :description, type: String, default: ""
+
   def self.find_by_sequence(name)
     return all if name.blank?
     str = Regexp.escape(name.gsub(/[^\u4e00-\u9fa5a-zA-Z0-9_-]+/, ''))
