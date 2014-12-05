@@ -1,9 +1,6 @@
 - inner.each do |category|
   .category-tag
     ol.breadcrumb
-      li
-        = link_to category.category.name, category_things_path(category.category)
-      li
-        = link_to category.name, category_things_path(category)
-      li.active
-        = @tag.name
+      li= link_to category.category.name, category_things_path(category.category)
+      li= link_to category.name, category_things_path(category)
+      li.active= @tag.name

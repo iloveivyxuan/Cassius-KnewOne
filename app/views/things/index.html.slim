@@ -10,27 +10,24 @@
       - if @brand
         = render 'brand_breadcrumb'
       - elsif @tag
-        - inner = @tag.categories.inner
-        = render 'category_tag_breadcrumb', inner: inner
+        = render 'category_tag_breadcrumb', inner: @tag.categories.inner
       - elsif @category
         - if (primary ||= @category.category)
           = link_to primary.name, category_things_path(primary), class: 'breadcrumb'
         = link_to @category.name, category_things_path(@category), class: 'breadcrumb'
-      - if !@category && !@tag && !@brand
+      - unless @category || @tag || @brand
         = link_to '产品', things_path, class: 'breadcrumb'
     nav
       - if browser.desktop? && (@category || @tag || @brand)
-        - params[:sort_by] ||= 'created_at'
         = render 'sort_breadcrumb'
 
-  - if @brand || @category
-    - klass = @brand || @category
+  - if (klass = @brand || @category)
     section#things_information
       .col-md-3
         img#logo src=klass.cover.url
       .col-md-9
         - description = klass.description
-        = render 'description', klass: klass
+        = render 'description', klass: klass, description: description
         - if current_user && [:volunteer, :editor].include?(current_user.role)
           = button_tag "编辑品牌信息", type: "button", class: "btn btn-default", data: { toggle: 'modal', target: '#brand-modify-modal' }
       - if !browser.desktop?
@@ -40,9 +37,8 @@
   - if @tag
     = render 'tag_description'
 
-  - if !browser.desktop? && (@category || @tag || @brand)
+  - if !browser.desktop? && (@category || @brand)
     nav
-      - params[:sort_by] ||= 'created_at'
       = render 'sort_breadcrumb'
 
   section#things_list.infinite
