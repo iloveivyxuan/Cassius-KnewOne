@@ -76,12 +76,14 @@ production:
   sessions:
     default:
       database: making_production
+      username: admin
+      password: a83Be7b7
       hosts:
-        - localhost:27017
+        - 10.10.14.157
 staging:
   sessions:
     default:
-      database: making_production
+      database: making_staging
       username: admin
       password: a83Be7b7
       hosts:
