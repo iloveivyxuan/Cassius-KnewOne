@@ -550,11 +550,24 @@ HERE
     indexes :ngram, index_analyzer: 'english', search_analyzer: 'standard'
   end
 
+  alias_method :_as_indexed_json, :as_indexed_json
+  def as_indexed_json(options={})
+    _as_indexed_json(options).merge(weight: karma)
+  end
+
   def self.search(query)
     query_options = {
-      multi_match: {
-        query: query,
-        fields: ['name^3', 'ngram']
+      function_score: {
+        query: {
+          multi_match: {
+            query: query,
+            fields: ['name^3', 'ngram']
+          }
+        },
+        field_value_factor: {
+          field: 'weight',
+          modifier: 'log2p'
+        }
       }
     }
 
