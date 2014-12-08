@@ -14,7 +14,6 @@ describe Thing, type: :model do
       expect(thing.owner_ids).to include user.id
       expect(user.own_ids).to include thing.id
       expect(user.owns_count).to eq 1
-      expect(user.karma).to eq Settings.karma.own
     end
   end
 
@@ -29,7 +28,6 @@ describe Thing, type: :model do
       expect(thing.owner_ids).to_not include user.id
       expect(user.own_ids).to_not include thing.id
       expect(user.owns_count).to eq 0
-      expect(user.karma).to eq 0
     end
   end
 
@@ -44,7 +42,6 @@ describe Thing, type: :model do
       expect(user.fancy_ids).to include thing.id
       expect(thing.fanciers_count).to eq 1
       expect(user.fancies_count).to eq 1
-      expect(user.karma).to eq Settings.karma.fancy
     end
   end
 
@@ -60,7 +57,6 @@ describe Thing, type: :model do
       expect(user.fancy_ids).to_not include thing.id
       expect(thing.fanciers_count).to eq 0
       expect(user.fancies_count).to eq 0
-      expect(user.karma).to eq 0
     end
   end
 

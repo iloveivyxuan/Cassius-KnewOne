@@ -220,15 +220,12 @@ class Thing < Post
 
     reload
     user.reload
-
-    user.inc karma: Settings.karma.own
   end
 
   def unown(user)
     return unless owned?(user)
     owners.delete user
     user.owns.delete self
-    user.inc karma: -Settings.karma.own
   end
 
   def owned?(user)
