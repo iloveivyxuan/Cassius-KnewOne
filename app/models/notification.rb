@@ -84,10 +84,6 @@ class Notification
     receiver.notifications.by_context(context).set read: true, opened: true
   end
 
-  def self.batch_mark_as_read(ids)
-    Notification.where(:id.in => ids).set read: true
-  end
-
   # after_create :push_to_apn
 
   private
