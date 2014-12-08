@@ -41,6 +41,7 @@ end
 every 1.day, :at => '3:00 am' do
   runner 'Order.cleanup_expired_orders'
   runner 'Thing.recal_all_related_things'
+  runner 'User.update_all_karma'
 end
 
 # update thing's brand_name
