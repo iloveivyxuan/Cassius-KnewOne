@@ -70,8 +70,6 @@ describe Order, type: :model do
       expect(order_history.from).to eq :pending
       expect(order_history.to).to eq :confirmed
       expect(order_history.raw).to eq raw
-
-      expect(order.user.karma).to eq Settings.karma.order
     end
   end
 

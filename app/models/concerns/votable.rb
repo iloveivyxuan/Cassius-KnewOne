@@ -16,10 +16,8 @@ module Votable
     return if voted?(user)
     if love
       lovers << user
-      author.inc karma: Settings.karma.post
     else
       foes << user
-      author.inc karma: -Settings.karma.post
     end
     self.set(lovers_count: lovers.count)
   end
@@ -28,10 +26,8 @@ module Votable
     return unless voted?(user)
     if love
       lovers.delete(user)
-      author.inc karma: -Settings.karma.post
     else
       foes.delete(user)
-      author.inc karma: Settings.karma.post
     end
     self.set(lovers_count: lovers.count)
   end

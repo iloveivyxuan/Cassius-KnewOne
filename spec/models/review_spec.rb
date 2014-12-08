@@ -14,7 +14,6 @@ describe Review, type: :model do
       expect(review.voted?(user)).to be true
       expect(review.lover_ids).to include user.id
       expect(review.lovers_count).to eq 1
-      expect(author.karma).to eq Settings.karma.post
     end
   end
 
@@ -28,7 +27,6 @@ describe Review, type: :model do
       expect(review.voted?(user)).to be false
       expect(review.lover_ids).to_not include user.id
       expect(review.lovers_count).to eq 0
-      expect(author.karma).to eq 0
     end
   end
 

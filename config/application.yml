@@ -28,12 +28,6 @@ defaults: &defaults
     consumer_secret: '69cdc295f4224ed4898e29f4e6ac2666'
   kexue:
     enable: false
-  karma:
-    thing: 10
-    post: 5
-    fancy: 1
-    own: 1
-    order: 10
   messages:
     length: 100
   comments:

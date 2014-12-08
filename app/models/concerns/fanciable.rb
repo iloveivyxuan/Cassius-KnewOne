@@ -25,8 +25,6 @@ module Fanciable
 
         reload
         user.reload
-
-        user.inc karma: Settings.karma.fancy
       end
 
       define_method :unfancy do |user|
@@ -34,7 +32,6 @@ module Fanciable
         fanciers.delete user
         user.send(inverse_name).delete self
         set fanciers_count: fanciers.count
-        user.inc karma: -Settings.karma.fancy
       end
     end
   end

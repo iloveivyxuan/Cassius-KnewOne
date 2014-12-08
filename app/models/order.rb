@@ -666,7 +666,6 @@ class Order
   private
 
   def after_confirm
-    self.user.inc karma: Settings.karma.order
   end
 
   def log(type, text)

@@ -434,6 +434,23 @@ HERE
   end
 
   ## Karma & Rank
+  def calculate_karma
+    [
+      25 * self.reviews.gte(lovers_count: 10).count,
+      5  * self.things.gt(priority: 0).count,
+      self.reviews.gt(lovers_count: 0).pluck(:lovers_count).reduce(0, :+),
+      self.feelings.gt(lovers_count: 0).pluck(:lovers_count).reduce(0, :+),
+      self.topics.gt(lovers_count: 0).pluck(:lovers_count).reduce(0, :+),
+      self.thing_lists.gt(fanciers_count: 0).pluck(:fanciers_count).reduce(0, :+)
+    ].reduce(:+)
+  end
+
+  def self.update_all_karma
+    no_timeout.each do |user|
+      user.set(karma: user.calculate_karma)
+    end
+  end
+
   def rank
     return 0 if karma < 0
     @rank ||= (Math.sqrt karma/10).floor
