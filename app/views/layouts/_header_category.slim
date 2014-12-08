@@ -1,4 +1,4 @@
-- cache ['.nav_category', Time.now.to_i / 10.minutes]
+- cache '.nav_category', expires_in: 10.minutes
   = nav_tab :categories, class: 'nav_flyout dropdown' do
     = link_to categories_path do
       | 分类
@@ -17,7 +17,7 @@
                   - tags = inner_c.tags
                   - tags_size = (tags.size > 7) ? 7 : 8
                   - tags.desc(:things_count).limit(tags_size).each do |header_tag|
-                    - cache ['header_tag', header_tag.id, Time.now.to_i / 1.hour]
+                    - cache ['header_tag', header_tag.id], expires_in: 1.hour
                       = link_to header_tag.name, tag_things_path(header_tag)
                   - if tags.size > 8
                     = link_to category_things_path(inner_c), class: "category--secondary-more" do

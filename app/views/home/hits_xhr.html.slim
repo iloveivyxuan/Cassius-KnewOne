@@ -1,2 +1,2 @@
-- cache_unless user_signed_in?, ['hits_xhr', params[:page] || 1, Time.now.to_i / 60]
+- cache_unless user_signed_in?, ['hits_xhr', params[:page] || 1], expires_in: 1.minute
   = render 'hits_groups'

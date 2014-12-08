@@ -2,7 +2,7 @@
 - page_css 'hits'
 - provide :nav, :hits
 
-- cache_unless user_signed_in?, ['hits', params[:page] || 1, Time.now.to_i / 60]
+- cache_unless user_signed_in?, ['hits', params[:page] || 1], expires_in: 1.minute
   .container-fluid
     header.jumptron
       - if (j = Jumptron.where(default: true).sample)

@@ -1,7 +1,7 @@
 - page_title 'bong，最好的智能手环'
 - page_css 'bong'
 
-- cache ['bong', user_signed_in?, Time.now.to_i / 10.minutes]
+- cache ['bong', user_signed_in?], expires_in: 10.minutes
   header.page-header
     h1
       b
