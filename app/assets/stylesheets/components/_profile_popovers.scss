@@ -36,11 +36,13 @@
 
       .profile-name {
         margin-top: 20px;
+        margin-bottom: 0;
 
         a {
           @include plain-link($text-color);
           @include text-overflow;
 
+          display: inline-block;
           max-width: 90%;
         }
       }
