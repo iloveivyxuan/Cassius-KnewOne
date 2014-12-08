@@ -1012,20 +1012,6 @@ html.feelings_show {
           border-color: #f7f7f7;
           border-top: 2px solid #f7f7f7;
           @include MQ(Mplus) { border-top: none }
-          &:hover {
-            background: $gray-lighter;
-            border-color: $gray-lighter;
-          }
-        }
-        &.active {
-          a {
-            background: #fff;
-            border-color: $brand-primary;
-            @include MQ(Mplus) {
-              border-left: 2px solid $brand-primary;
-            }
-            &:hover { background: #fff }
-          }
         }
       }
     }

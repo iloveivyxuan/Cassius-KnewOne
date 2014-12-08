@@ -1,5 +1,3 @@
-- activities = Activity.visible.by_reference(thing).by_types(:fancy_thing, :own_thing, :add_to_list).limit(20)
-
 #thing-feeds--mobile
   nav#thing-feeds--mobile_tab
     ul.nav.nav-pills.nav-justified.nav-layout.nav--thing_tab
@@ -12,11 +10,6 @@
         = link_to '#tab--mobile-feelings', data: {toggle: 'tab'}
           i.fa.fa-comments
           span 短评
-      - if activities.present?
-        li
-          = link_to '#tab--mobile-activities', data: {toggle: 'tab'}
-            i.fa.fa-group
-            span 动态
 
   .tab-content
     - if thing.has_reviews?
@@ -28,6 +21,3 @@
         = render 'feelings', thing: thing
       - else
         = render 'shared/nothing'
-    - if activities.present?
-      #tab--mobile-activities.tab-pane
-        = render 'activities', thing: thing, activities: activities
