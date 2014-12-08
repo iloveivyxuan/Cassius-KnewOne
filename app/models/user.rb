@@ -438,10 +438,10 @@ HERE
     [
       25 * self.reviews.gte(lovers_count: 10).count,
       5  * self.things.gt(priority: 0).count,
-      self.reviews.sum(:lovers_count),
-      self.feelings.sum(:lovers_count),
-      self.topics.sum(:lovers_count),
-      self.thing_lists.sum(:fanciers_count)
+      self.reviews.gt(lovers_count: 0).pluck(:lovers_count).reduce(0, :+),
+      self.feelings.gt(lovers_count: 0).pluck(:lovers_count).reduce(0, :+),
+      self.topics.gt(lovers_count: 0).pluck(:lovers_count).reduce(0, :+),
+      self.thing_lists.gt(fanciers_count: 0).pluck(:fanciers_count).reduce(0, :+)
     ].reduce(:+)
   end
 
