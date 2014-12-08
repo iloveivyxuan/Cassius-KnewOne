@@ -542,7 +542,24 @@ HERE
   end
 
   include Searchable
+
   searchable_fields [:name]
+
+  mappings do
+    indexes :name, copy_to: :ngram
+    indexes :ngram, index_analyzer: 'english', search_analyzer: 'standard'
+  end
+
+  def self.search(query)
+    query_options = {
+      multi_match: {
+        query: query,
+        fields: ['name^3', 'ngram']
+      }
+    }
+
+    __elasticsearch__.search(query: query_options)
+  end
 
   protected
   def password_required?
