@@ -434,6 +434,17 @@ HERE
   end
 
   ## Karma & Rank
+  def calculate_karma
+    [
+      25 * self.reviews.gte(lovers_count: 10).count,
+      5  * self.things.gt(priority: 0).count,
+      self.reviews.sum(:lovers_count),
+      self.feelings.sum(:lovers_count),
+      self.topics.sum(:lovers_count),
+      self.thing_lists.sum(:fanciers_count)
+    ].reduce(:+)
+  end
+
   def rank
     return 0 if karma < 0
     @rank ||= (Math.sqrt karma/10).floor
