@@ -226,6 +226,8 @@ class Thing < Post
     return unless owned?(user)
     owners.delete user
     user.owns.delete self
+
+    user.reload
   end
 
   def owned?(user)
