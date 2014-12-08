@@ -4,7 +4,7 @@ class Dialog
 
   field :unread_count, type: Integer, default: 0
   belongs_to :sender, class_name: "User", inverse_of: nil
-  belongs_to :user
+  belongs_to :user, index: true
   embeds_many :private_messages do
     def unread
       where(is_new: true, is_in: true)

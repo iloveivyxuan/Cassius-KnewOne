@@ -3,10 +3,6 @@ module NotificationReceivable
 
   included do
     has_many :notifications do
-      def mark_as_read
-        set read: true
-      end
-
       def build(type, options = {})
         n = super type: type
         n.set_data options
@@ -15,6 +11,8 @@ module NotificationReceivable
     end
 
     embeds_one :notification_setting, autobuild: true
+
+    field :unread_notifications_count, type: Integer, default: 0
   end
 
   def notify(type, options = {})
@@ -37,5 +35,10 @@ module NotificationReceivable
       else
         Notification.build(self, type, options).save
     end
+  end
+
+  def read_notificaitions(notifications)
+    notifications.set(read: true)
+    inc(unread_notifications_count: -notifications.count)
   end
 end

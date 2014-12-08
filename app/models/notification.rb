@@ -48,6 +48,7 @@ class Notification
 
   def read!
     set read: true
+    receiver.inc unread_notifications_count: -1
   end
 
   def method_missing(*args)
@@ -81,11 +82,9 @@ class Notification
   end
 
   def self.mark_as_read_by_context(receiver, context)
-    receiver.notifications.by_context(context).set read: true, opened: true
-  end
-
-  def self.batch_mark_as_read(ids)
-    Notification.where(:id.in => ids).set read: true
+    notifications = receiver.notifications.by_context(context)
+    receiver.inc unread_notifications_count: -notifications.count
+    notifications.set read: true, opened: true
   end
 
   # after_create :push_to_apn
