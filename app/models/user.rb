@@ -445,6 +445,12 @@ HERE
     ].reduce(:+)
   end
 
+  def self.update_all_karma
+    no_timeout.each do |user|
+      user.set(karma: user.calculate_karma)
+    end
+  end
+
   def rank
     return 0 if karma < 0
     @rank ||= (Math.sqrt karma/10).floor
