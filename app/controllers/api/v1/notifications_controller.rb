@@ -22,6 +22,7 @@ module Api
       end
 
       def mark
+        current_user.set unread_notifications_count: 0
         current_user.notifications.unread.set read: true
         head :no_content
       end

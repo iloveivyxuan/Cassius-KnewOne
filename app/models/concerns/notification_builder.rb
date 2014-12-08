@@ -14,6 +14,8 @@ module NotificationBuilder
       n = new receiver_id: receiver_id, type: type
       n.set_data options
 
+      receiver.inc(unread_notifications_count: 1)
+
       n
     end
   end

@@ -21,7 +21,7 @@ class NotificationsController < ApplicationController
 
       render 'notifications/index_xhr', layout: false
     else
-      @unread_count = current_user.notifications.unread.count
+      @unread_count = current_user.unread_notifications_count
       render 'notifications/index'
       mark_read
     end
@@ -31,7 +31,7 @@ class NotificationsController < ApplicationController
     if params[:type]
       type = params[:type].split("_").last
       notifications = current_user.notifications.by_types(notification_types(type))
-      notifications.set read: true
+      current_user.read_notificaitions(notifications)
     end
 
     respond_to do |format|
@@ -43,7 +43,7 @@ class NotificationsController < ApplicationController
   private
 
   def mark_read
-    @notifications.set read: true
+    current_user.read_notificaitions(@notifications)
   end
 
   def notification_types(type)
