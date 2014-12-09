@@ -22,8 +22,8 @@ html class=page_class lang="zh-CN"
     = stylesheet_link_tag "application"
     = yield :stylesheet
     = javascript_include_tag "modernizr"
-    script src="https://s.meiqia.com/js/mechat.js?unitid=4075&btn=hide" async="true"
     - if Rails.env.production?
+      script src="https://s.meiqia.com/js/mechat.js?unitid=4075&btn=hide" async="true"
       = render 'layouts/analystics'
     = render 'layouts/browsehappy'
   body
