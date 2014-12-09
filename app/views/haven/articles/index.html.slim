@@ -19,7 +19,8 @@ table.table.table-striped
         td = a.author.name
         td width="100"
           = link_to '编辑', edit_haven_article_path(a), target: "_blank"
-          span.separator |
-          = link_to '删除', haven_article_path(a), method: :delete, data: { confirm: '确定要删除嘛？' }
+          - unless a.entry
+            span.separator |
+            = link_to '删除', haven_article_path(a), method: :delete, data: { confirm: '确定要删除嘛？' }
 
 = paginate @articles
