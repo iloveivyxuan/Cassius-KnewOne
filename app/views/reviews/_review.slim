@@ -1,9 +1,7 @@
-- in_feeds = local_assigns.has_key? :feed_presenter
-- cache_unless user_signed_in?, [review, in_feeds]
+- cache_unless user_signed_in?, review
   - if review.thing
     - present review do |review_presenter|
       - klass = 'feed_article review feed_article--review'
-      - klass += " #{feed_presenter.style}" if in_feeds
       article class=klass id="review_#{review.id}"
         header
           h5 = link_to review_presenter.title, review_presenter.path
@@ -36,9 +34,6 @@
         footer
           .wrap
             ul.metas
-              - if in_feeds
-                li.feed_type
-                  = feed_presenter.render_action
               li
                 = link_to review_presenter.path do
                   = review_presenter.created_at

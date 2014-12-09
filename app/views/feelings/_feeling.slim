@@ -1,9 +1,7 @@
-- in_feeds = local_assigns.has_key? :feed_presenter
-- cache_unless user_signed_in?, [feeling, in_feeds]
+- cache_unless user_signed_in?, feeling
   - if feeling.thing
     - present feeling do |feeling_presenter|
       - klass = 'feed_article feeling feed_article--feeling'
-      - klass += " #{feed_presenter.style}" if in_feeds
       article class=klass id="feeling_#{feeling.id}"
         figure.feeling_author data-profile-popover=feeling.author.id
           = feeling_presenter.author_avatar(:small, class: "img-circle")
@@ -30,9 +28,6 @@
         footer
           .wrap
             ul.metas
-              - if in_feeds
-                li.feed_type
-                  = feed_presenter.render_action
               li
                 = link_to feeling_presenter.path do
                   = feeling_presenter.created_at
