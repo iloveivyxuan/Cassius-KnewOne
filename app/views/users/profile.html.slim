@@ -1,61 +1,62 @@
-.profile
-  header
-    h4.profile-name
-      = link_to @user
-        = @user.name
+- cache_unless user_signed_in?, ['users', 'profile', @user]
+  .profile
+    header
+      h4.profile-name
+        = link_to @user
+          = @user.name
 
-    .profile-gender = symbolize_gender(@user.gender)
+      .profile-gender = symbolize_gender(@user.gender)
 
-    .profile-level = render 'shared/level', user: @user
+      .profile-level = render 'shared/level', user: @user
 
-    .profile-avatar
-      = link_to @user
-        = user_avatar(@user, :small)
+      .profile-avatar
+        = link_to @user
+          = user_avatar(@user, :small)
 
-  - if @user.description.present?
-    p.profile-description
-      = @user.description
+    - if @user.description.present?
+      p.profile-description
+        = @user.description
 
-  section.profile-actions
-    = link_to followers_user_path(@user), class: 'profile-followers'
-      | 关注者
-      span = @user.followers_count
+    section.profile-actions
+      = link_to followers_user_path(@user), class: 'profile-followers'
+        | 关注者
+        span = @user.followers_count
 
-    - if current_user == @user
-      = link_to followings_user_path(@user), class: 'profile-followings'
-        | 关注
-        span = @user.followings_count
-    - else
-      = render 'follow_btn', user: @user
-      = render 'private_message_btn', user: @user, text: '私信'
+      - if current_user == @user
+        = link_to followings_user_path(@user), class: 'profile-followings'
+          | 关注
+          span = @user.followings_count
+      - else
+        = render 'follow_btn', user: @user
+        = render 'private_message_btn', user: @user, text: '私信'
 
-  footer.profile-links
-    = link_to fancies_user_path(@user), class: 'profile-fancies'
-      i.fa.fa-heart
-      span.profile-link_count = @user.fancies_count
-      span.profile-link_text 喜欢
+    footer.profile-links
+      = link_to fancies_user_path(@user), class: 'profile-fancies'
+        i.fa.fa-heart
+        span.profile-link_count = @user.fancies_count
+        span.profile-link_text 喜欢
 
-    = link_to owns_user_path(@user), class: 'profile-owns'
-      i.fa.fa-check-circle-o
-      span.profile-link_count = @user.owns_count
-      span.profile-link_text 拥有
+      = link_to owns_user_path(@user), class: 'profile-owns'
+        i.fa.fa-check-circle-o
+        span.profile-link_count = @user.owns_count
+        span.profile-link_text 拥有
 
-    = link_to lists_user_path(@user), class: 'profile-lists'
-      i.fa.fa-list
-      span.profile-link_count = @user.thing_lists.count
-      span.profile-link_text 列表
+      = link_to lists_user_path(@user), class: 'profile-lists'
+        i.fa.fa-list
+        span.profile-link_count = @user.thing_lists.count
+        span.profile-link_text 列表
 
-    = link_to things_user_path(@user), class: 'profile-things'
-      i.fa.fa-magic
-      span.profile-link_count = @user.things_count
-      span.profile-link_text 分享
+      = link_to things_user_path(@user), class: 'profile-things'
+        i.fa.fa-magic
+        span.profile-link_count = @user.things_count
+        span.profile-link_text 分享
 
-    = link_to reviews_user_path(@user), class: 'profile-reviews'
-      i.fa.fa-pencil
-      span.profile-link_count = @user.reviews_count
-      span.profile-link_text 评测
+      = link_to reviews_user_path(@user), class: 'profile-reviews'
+        i.fa.fa-pencil
+        span.profile-link_count = @user.reviews_count
+        span.profile-link_text 评测
 
-    = link_to feelings_user_path(@user), class: 'profile-feelings'
-      i.fa.fa-comments
-      span.profile-link_count = @user.feelings_count
-      span.profile-link_text 短评
+      = link_to feelings_user_path(@user), class: 'profile-feelings'
+        i.fa.fa-comments
+        span.profile-link_count = @user.feelings_count
+        span.profile-link_text 短评

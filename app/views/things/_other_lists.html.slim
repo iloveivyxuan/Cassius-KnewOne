@@ -1,11 +1,8 @@
 - if thing.lists.present?
   .other_lists
-    - names = []
-    - thing.lists.gte(size: min_size).desc(:fanciers_count).each do |list|
-      - break if names.size == limit
-      - next if names.include?(list.name) || list.author == thing.author
-      - names << list.name
-      = render partial: 'things/thing_list', locals: {thing_list: list, thing: thing, layout: :grid}
+    - lists = thing.lists.where(:author.ne => thing.author, :name.nin => thing.primary_categories, :size.gte => min_size)
+    - lists = lists.desc(:fanciers_count).limit(limit)
+    = render partial: 'things/thing_list', collection: lists, locals: {thing: thing, layout: :grid}
 
     .show_all_lists
       = link_to [:lists, thing]
