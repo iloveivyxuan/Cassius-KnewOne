@@ -3,27 +3,28 @@
     - present feeling do |feeling_presenter|
       - klass = 'feed_article feeling feed_article--feeling'
       article class=klass id="feeling_#{feeling.id}"
-        figure.feeling_author data-profile-popover=feeling.author.id
-          = feeling_presenter.author_avatar(:small, class: "img-circle")
-          figcaption
-            = feeling_presenter.author_name
+        - cache [feeling, 'body']
+          figure.feeling_author data-profile-popover=feeling.author.id
+            = feeling_presenter.author_avatar(:small, class: "img-circle")
+            figcaption
+              = feeling_presenter.author_name
 
-        figure.feeling_thing
-          = link_to feeling.thing do
-            = image_tag feeling.thing.cover.url(:small)
-          figcaption
+          figure.feeling_thing
             = link_to feeling.thing do
-              = feeling.thing.title
+              = image_tag feeling.thing.cover.url(:small)
+            figcaption
+              = link_to feeling.thing do
+                = feeling.thing.title
 
-        section
-          = feeling_presenter.score
-          = feeling_presenter.content
-          - if feeling.photos.present?
-            ul
-              - feeling.photos.each do |photo|
-                li
-                  = link_to photo.url, data: {lightbox: "feeling_#{feeling.id}"} do
-                    = image_tag photo.url(:small), alt: photo.name
+          section
+            = feeling_presenter.score
+            = feeling_presenter.content
+            - if feeling.photos.present?
+              ul
+                - feeling.photos.each do |photo|
+                  li
+                    = link_to photo.url, data: {lightbox: "feeling_#{feeling.id}"} do
+                      = image_tag photo.url(:small), alt: photo.name
 
         footer
           .wrap
