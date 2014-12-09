@@ -301,9 +301,9 @@ class Thing < Post
     set(related_thing_ids: cal_related_thing_ids)
   end
 
-  def related_things(size = 10, lazy = Rails.env.development?)
-    ids = lazy ? cal_related_thing_ids : (self.related_thing_ids || [])
-    Thing.in(id: ids).limit(size).sort_by {|t| ids.index(t.id.to_s)}
+  def related_things(size = 10)
+    ids = (self.related_thing_ids || []).take(size)
+    Thing.in(id: ids).sort_by {|t| ids.index(t.id.to_s)}
   end
 
   def has_stock?
