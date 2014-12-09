@@ -68,7 +68,19 @@ class Post
     html_doc = Nokogiri::HTML::DocumentFragment.parse(content)
     if version == :wechat
       html_doc.css('.knewone-embed--thing').each do |thing|
-        thing.after('<img>') #TODO
+        things = thing["data-knewone-embed-key"].split(',').map { |slug| Thing.find(slug) }
+        if thing["data-knewone-embed-options"]
+          photos = JSON.parse(thing["data-knewone-embed-options"])["photos"].split(",")
+        end
+        photos ||= Array.new(things.size, "")
+        embeds = things.zip(photos).reverse
+        embeds.each do |e|
+          if e.last.blank?
+            thing.after("<img src=#{e.first.photos.first.url}>")
+          else
+            thing.after("<img src=#{e.last}>")
+          end
+        end
       end
       html_doc.css('.knewone-embed, iframe, embed, object, video, audio').remove
       html_doc.css('h1', 'h2', 'h3', 'h4', 'h5', 'h6').each do |header|
