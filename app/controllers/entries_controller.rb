@@ -6,6 +6,11 @@ class EntriesController < ApplicationController
     @entry = Entry.find(params[:id])
     redirect_to root_path if !@entry.published? && !current_user.try(:role?, :editor)
     redirect_to @entry.external_link if @entry.external_link.present?
+    respond_to do |format|
+      format.wechat do
+        render wechat: @entry, layout: false
+      end
+    end
   end
 
   private

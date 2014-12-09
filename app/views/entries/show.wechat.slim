@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    title 导出微信格式 - #{@entry.post.title} - KnewOne
+
+  body
+    h1 导出微信格式 - #{@entry.post.title}
+
+    h2 摘要
+    p= @entry.summary
+
+    h2 文章顶部图片
+    = image_tag @entry.canopy
+
+    h2 正文
+    section
+      = @entry.post.clean_content(:wechat)
+      table
+        tbody
+          tr.firstRow align="center" valign="middle" 
+            td style="border-width: 0px; border-radius: 8px; word-break: break-all; background-image: url(http://knewone.com/makerfaire/images/pattern/pattern_1.png);"
+              p style="clear: both; padding: 5px; font-family: inherit; font-size: 14px; color: rgb(0, 64, 128); line-height: 1.5;"
+                img#c1415949847850 data-ratio="0.6297071129707112" data-w="478" src="https://mmbiz.qlogo.cn/mmbiz/cel2QqbzibD3gCMWzrzqUzoZDU9hZMnajx8sYHic7AyqYt2abyBZEseLic4XCSbia9LL0QvmibOf3z6yB6pU62AJ6YA/0" style="max-width: 100%; height: auto !important; font-family: inherit; line-height: 1.5;" title="1415954372127461.png"
+              p style="clear: both; padding: 5px; font-family: inherit; font-size: 14px; line-height: 1.5;"
+                span style="color: rgb(255, 255, 255);"  喜欢请戳右上角[…]分享到朋友圈
+              p style="clear: both; padding: 5px; font-family: inherit; font-size: 14px; line-height: 1.5;"
+                span style="color: rgb(255, 255, 255);"  发现更多 关注微博 @KnewOne
+              p style="clear: both; padding: 5px; font-family: inherit; font-size: 14px; line-height: 1.5;"
+                strong
+                  span style="color: rgb(255, 255, 255);"  戳[阅读原文]blablabla

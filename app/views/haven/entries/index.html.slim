@@ -29,6 +29,7 @@ table.table.table-striped
         td width="150"
           = link_to '查看', e, target: '_blank'
           span.separator |
+          = link_to '导出微信格式', entry_path(id: e.id, format: :wechat), target: '_blank'
           = link_to '编辑', edit_haven_entry_path(e)
           span.separator |
           = link_to '删除', haven_entry_path(e), method: :delete, data: {confirm: 'are you sure?'}
