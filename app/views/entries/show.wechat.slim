@@ -10,7 +10,7 @@ html
     p= @entry.summary
 
     h2 文章顶部图片
-    = image_tag @entry.canopy
+    = image_tag @entry.canopy.url(:wechat)
 
     h2 正文
     section
