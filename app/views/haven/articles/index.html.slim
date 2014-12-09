@@ -22,5 +22,7 @@ table.table.table-striped
           = date_time_text(a.created_at)
         td width="50"
           = link_to '编辑', edit_haven_article_path(a), target: "_blank"
+          span.separator
+          = link_to '删除', haven_article_path(a), method: :delete, data: { confirm: '确定要删除嘛？' }
 
 = paginate @articles
