@@ -32,7 +32,7 @@ Making::Application.routes.draw do
   get 'bong/available_point', to: 'bong#available_point'
 
   get 'explore', to: 'explore#index'
-  %w(features reviews specials events).each do |a|
+  %w(talks lists reviews features specials events).each do |a|
     get "explore/#{a}", to: "explore##{a}", as: "explore_#{a}"
   end
   resources :entries, only: [:show]

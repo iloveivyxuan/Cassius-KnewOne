@@ -13,6 +13,8 @@ class ExploreController < ApplicationController
   end
 
   {
+      talks: '专访',
+      lists: '列表',
       features: '特写',
       reviews: '评测',
       specials: '专题',

@@ -12,11 +12,11 @@
       ul.nav.affix-top data-spy="affix" data-offset-top="100"
         = sidebar_tab :index do
           = link_to '首页', explore_path
-        = sidebar_tab :features do
-          = link_to '特写', explore_features_path
+        = sidebar_tab :talks do
+          = link_to '专访', explore_talks_path
+        = sidebar_tab :lists do
+          = link_to '列表', explore_lists_path
         = sidebar_tab :reviews do
           = link_to '评测', explore_reviews_path
-        = sidebar_tab :specials do
-          = link_to '专题', explore_specials_path
 
 = render template: 'layouts/application'
