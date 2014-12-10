@@ -1,12 +1,8 @@
-div
-  label 商家名
-  = f.text_field :name
-div
-  label 描述
-  = f.text_field :description
-div
-  label 小组
-  = f.text_field :group_id
-div
-  label 管理者
-  = f.text_field :user_name
+label 商家名
+= f.text_field :name, required: true, class: "form-control"
+label 描述
+= f.text_field :description, class: "form-control"
+label 小组
+= f.text_field :group_id, required: true, hint: "请填写小组 id", class: "form-control"
+label 管理者
+= f.text_field :user_name, required: true, hint: "请填写管理者用户名", class: "form-control"
