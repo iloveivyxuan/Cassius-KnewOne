@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ssh -p 22222 deployer@knewone.com mongodump -d making_production &&
+ssh -p 22222 deployer@knewone.com mongodump -h 10.10.14.157 -u admin -p a83Be7b7 -d making_production &&
 rsync -avz --progress -e 'ssh -p22222' deployer@knewone.com:~/dump/making_production /tmp &&
 mongorestore --drop -d making_development /tmp/making_production &&
 rm -r /tmp/making_production/
