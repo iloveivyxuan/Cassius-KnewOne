@@ -1,0 +1,22 @@
+- page_title "商家|#{@merchant.name}"
+- page_css 'merchants'
+
+.container-fluid
+
+  header
+    .name
+      = @merchant.name
+    .description
+      = @merchant.description
+      - if @merchant.role?(current_user)
+        = button_tag "编辑", type: "button", class: "btn btn-default", data: { toggle: 'modal', target: '#set-description-modal' }
+    ul.group
+      - if @merchant.group
+        = render @merchant.group
+
+  section.things
+    = render partial: 'home/hot_thing', collection: @merchant.things, as: :hot_thing
+
+- if @merchant.role?(current_user)
+  - content_for :end do
+    = render 'set_description'

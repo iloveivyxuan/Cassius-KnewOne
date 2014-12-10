@@ -1,0 +1,12 @@
+= form_for @merchant, url: set_description_merchant_path(@merchant), method: :post, html: { class: "modal fade", id: "set-description-modal", tabIndex:"-1", role: "dialog" } do |f|
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal"
+          span aria-hidden="true" &times;
+          span.sr-only Close
+        h4.modal-title 修改描述信息
+      .modal-body
+        = f.text_area :description, cols: 60, rows: 10
+      .modal-footer
+        = f.submit '修改'

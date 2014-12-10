@@ -1,0 +1,47 @@
+@import '../base';
+
+.merchants_show {
+  #wrapper {
+    margin: 0;
+
+    .container-fluid {
+      padding: 0;
+      @media (min-width: $screen-md-min) {
+        padding: 0 10%;
+      }
+      @media (min-width: $screen-lg-min) {
+        width: $container-large-desktop;
+        padding: 0 $screen-lg-min * 0.1;
+      }
+    }
+
+    .name {
+      font-size: 30px;
+    }
+
+    .description {
+      background-color: #fafafa;
+      margin-top: 20px;
+      padding: 1.5em;
+    }
+
+    .group {
+
+      > li {
+        list-style-type: none;
+      }
+      margin-top: 20px;
+    }
+
+    section.things {
+      .thing {
+        background-color: transparent;
+
+        .content, .info {
+          background-color: white;
+        }
+      }
+    }
+
+  }
+}

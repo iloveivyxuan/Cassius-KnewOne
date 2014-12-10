@@ -25,6 +25,7 @@ header.page-header
   = f.input :stage, collection: Thing.const_get(:STAGES),
   include_blank: false, label_method: :last, value_method: :first
   = f.input :priority, as: :integer
+  = f.input :merchant_name
   | 可用标记:
   | &nbsp;购买的商品&nbsp;
   span = "{{item}}"

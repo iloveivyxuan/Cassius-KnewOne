@@ -1,0 +1,11 @@
+- page_title '商家管理'
+
+header.page-header
+  h2
+    i.fa.fa-shopping-cart
+    | 管理商家
+    small 总共 #{Merchant.all.size} 个商家
+
+= form_for @merchant, url: haven_merchant_path(@merchant.id), method: :patch do |f|
+  = render 'form', f: f
+  = f.submit

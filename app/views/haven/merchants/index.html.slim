@@ -1,0 +1,32 @@
+- page_title '商家管理'
+
+header.page-header
+  h2
+    i.fa.fa-shopping-cart
+    | 管理商家
+    small 总共 #{Merchant.all.size} 个商家
+
+table.table.table-striped
+  thead
+    tr
+      th 商家名
+      th 描述
+      th 小组
+      th 产品数
+      th 管理者
+      th 操作
+  tbody
+    - @merchants.each do |m|
+      tr
+        th= link_to m.name, merchant_path(m)
+        th= m.description
+        th= m.group.name if m.group
+        th= m.things.size
+        th= link_to m.user_name, user_path(id: m.user.id)
+        th
+          = link_to "编辑", edit_haven_merchant_path(m), class: "btn btn-default"
+          = link_to "删除", haven_merchant_path(m), method: :delete, class: "btn btn-danger"
+
+= link_to "新建", new_haven_merchant_path
+
+= paginate @merchants
