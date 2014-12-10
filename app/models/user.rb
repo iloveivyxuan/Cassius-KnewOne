@@ -436,12 +436,12 @@ HERE
   ## Karma & Rank
   def calculate_karma
     [
-      25 * self.reviews.gte(lovers_count: 10).count,
-      5  * self.things.gt(priority: 0).count,
-      self.reviews.gt(lovers_count: 0).pluck(:lovers_count).reduce(0, :+),
-      self.feelings.gt(lovers_count: 0).pluck(:lovers_count).reduce(0, :+),
-      self.topics.gt(lovers_count: 0).pluck(:lovers_count).reduce(0, :+),
-      self.thing_lists.gt(fanciers_count: 0).pluck(:fanciers_count).reduce(0, :+)
+      self.fancies_count,
+      self.owns_count,
+      10 * self.orders_count,
+      5 * self.reviews.gt(lovers_count: 0).pluck(:lovers_count).reduce(0, :+),
+      5 * self.feelings.gt(lovers_count: 0).pluck(:lovers_count).reduce(0, :+),
+      5 * self.topics.gt(lovers_count: 0).pluck(:lovers_count).reduce(0, :+)
     ].reduce(:+)
   end
 
