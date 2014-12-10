@@ -23,7 +23,7 @@ class Merchant
   end
 
   def user_name
-    self.user.name
+    self.user.try(:name)
   end
 
   def user_name=(name)

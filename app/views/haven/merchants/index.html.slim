@@ -22,7 +22,7 @@ table.table.table-striped
         th= m.description
         th= m.group.name if m.group
         th= m.things.size
-        th= link_to m.user_name, user_path(id: m.user.id)
+        th= link_to m.user_name, user_path(id: m.user.id) if m.user
         th
           = link_to "编辑", edit_haven_merchant_path(m), class: "btn btn-default"
           = link_to "删除", haven_merchant_path(m), method: :delete, class: "btn btn-danger"
