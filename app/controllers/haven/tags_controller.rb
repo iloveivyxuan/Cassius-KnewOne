@@ -8,6 +8,30 @@ module Haven
       if params[:category]
         @tags = Category.where(name: /#{params[:category]}/).map(&:tags).flatten
       end
+      respond_to do |format|
+        format.html
+        format.csv do
+          lines = [%w(一级分类 二级分类 三级分类 产品数)]
+          Tag.all.includes(:categories).desc(:things_count).each do |tag|
+            inners = tag.categories
+            primaries = inners.map(&:category)
+            primaries.zip(inners).each do |embed|
+              lines << [embed.first.try(:name), embed.last.try(:name), tag.name, tag.things_count]
+            end
+          end
+          col_sep = (params[:platform] == 'numbers') ? ',' : ';'
+
+          csv = CSV.generate :col_sep => col_sep do |csv|
+            lines.each { |l| csv<< l }
+          end
+
+          if params[:platform] != 'numbers'
+            send_data csv.encode 'gb2312', :replace => ''
+          else
+            send_data csv, :replace => ''
+          end
+        end
+      end
     end
 
     def new

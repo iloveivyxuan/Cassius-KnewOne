@@ -9,6 +9,11 @@ header.page-header
   = text_field_tag "category"
   = f.submit "查找分类"
 
+.pull-right
+  - queries = params.except(*request.path_parameters.keys)
+  = link_to '导出CSV(Numbers)', "#{haven_tags_path(queries.merge(format: :csv, platform: 'numbers'))}", class: 'btn btn-success'
+  = link_to '导出CSV(Excel)', "#{haven_tags_path(queries.merge(format: :csv))}", class: 'btn btn-success'
+
 table.table
   thead
     tr
