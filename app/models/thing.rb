@@ -103,6 +103,8 @@ class Thing < Post
   accepts_nested_attributes_for :kinds, allow_destroy: true
   belongs_to :brand
 
+  belongs_to :merchant
+
   def photos
     Photo.find_with_order photo_ids
   end
@@ -171,6 +173,15 @@ class Thing < Post
         self.brand = brand
       end
     end
+  end
+
+  def merchant_name
+    return "" unless self.merchant?
+    self.merchant.name
+  end
+
+  def merchant_name=(name)
+    self.merchant = Merchant.find_by(name: name)
   end
 
   def category_records

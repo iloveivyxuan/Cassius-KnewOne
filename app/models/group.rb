@@ -22,6 +22,8 @@ class Group
   field :approved, type: Boolean, default: false
   scope :approved, -> { where approved: true }
 
+  belongs_to :merchant
+
   embeds_many :members do
     def add(user, role = :member)
       unless @base.has_member? user
