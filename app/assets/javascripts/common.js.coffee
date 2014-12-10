@@ -66,14 +66,13 @@ do (root = @, exports = Making) ->
               $container.append('<em class="nomore">没有更多了。</em>')
               $window.off('scroll.infiniteScroll')
           callback.call($container, data, xhr) if callback?
+          _lock = false
         .fail (xhr, status, error) ->
           $container
             .children('.loading-things')
             .remove()
           .end()
             .append('<em class="nomore">出错了，请刷新后重试。</em>')
-        .always ->
-          _lock = false
       return
     return
 
