@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
 
   load_and_authorize_resource :thing, singleton: true
   load_and_authorize_resource :review, through: :thing
-  layout 'thing'
+  layout :thing_layout
   after_action :allow_iframe_load, only: [:show]
 
   def index
@@ -118,6 +118,10 @@ class ReviewsController < ApplicationController
   end
 
   private
+
+  def thing_layout
+    (params[:action] == 'show' && browser.mobile?) ? 'application' : 'thing'
+  end
 
   def review_params
     permit_attrs = [:title, :content, :score]

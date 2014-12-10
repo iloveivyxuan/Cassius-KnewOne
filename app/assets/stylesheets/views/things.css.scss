@@ -2003,7 +2003,6 @@ html.feelings_show {
 
         .score {
           margin: 0;
-          margin-left: 25%;
           @include MQ(Mplus) { margin-left: 20% }
 
           > .rate {
@@ -2013,9 +2012,6 @@ html.feelings_show {
       }
 
       .review-author {
-        margin: {
-        left: 25%;
-      }
         @include MQ(Mplus) { margin-left: 20% }
       }
     }
@@ -2216,6 +2212,93 @@ html.feelings_show {
           line-height: 14px;
           max-height: 44px;
           width: 4em;
+        }
+      }
+    }
+  }
+}
+
+html.reviews_show {
+  &.mobile {
+    #wrapper {
+      margin-top: 45px;
+    }
+
+    .article {
+      background-color: #fff;
+
+      > header {
+        padding: 1em;
+
+        h3 {
+          display: block;
+          font-size: 16px;
+          margin-left: 0;
+          text-align: center;
+
+          & + p {
+            margin-bottom: 5px;
+
+            a {
+              color: $text-muted;
+            }
+          }
+        }
+
+        .author {
+          display: inline-block;
+          height: 40px;
+          line-height: 40px;
+          margin: {
+            right: 1em;
+            top: 0;
+          }
+          position: static;
+          vertical-align: middle;
+          width: auto;
+
+          a {
+            display: inline-block;
+            vertical-align: middle;
+          }
+
+          img {
+            display: block;
+            height: 40px;
+            width: 40px;
+          }
+
+          .author_name {
+            display: inline-block;
+            font-size: 12px;
+            margin: {
+              left: .5em;
+              right: 0;
+            }
+          }
+        }
+
+        .score {
+          display: inline-block;
+          height: 40px;
+          line-height: 40px;
+          margin: 0;
+          vertical-align: middle;
+
+          .rate {
+            padding: 0;
+          }
+        }
+      }
+
+      > .body {
+        > header {
+          @include clearfix;
+          margin: 0 -1em 1em;
+
+          .btn {
+            float: right;
+          }
         }
       }
     }

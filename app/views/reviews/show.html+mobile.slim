@@ -1,0 +1,42 @@
+- page_title "#{@review.title} - #{@thing.title}"
+- page_css 'things'
+- provide :keywords, "#{@thing.title}, #{@thing.subtitle}"
+- provide :description, "#{@thing.title},#{@thing.subtitle},关于该产品我们有#{@thing.feelings_count}条短评,#{@thing.reviews_count}篇评测,在KnewOne有#{@thing.owner_ids.size}个用户拥有#{@thing.title},#{@thing.fanciers_count}个用户喜欢#{@thing.title}！"
+- provide :feed, thing_url(@thing, format: "atom")
+- provide :wechat_cover_url, @thing.cover.url(:small)
+- provide :wechat_title, @review.title
+- provide :wechat_desc, "#{@review.author.name}对#{@thing.title}的评测"
+
+- present @review do |rp|
+  article.article.single_review id="review_#{@review.id}"
+    header
+      h3= rp.title
+      p.text-center= link_to rp.review.thing.title, rp.review.thing
+      .text-center
+        .author= rp.author
+        = rp.score
+
+    section.body.post_content
+      header
+        = rp.link_to_share('btn btn--blue', '分享')
+      = rp.content
+
+    footer.actions
+      .interactions
+        .feed_action = render 'shared/voting', object: rp.review
+        = rp.link_to_share('', '')
+      .advanced
+        = render 'shared/post_actions', post: rp.review,
+          edit_post_path: rp.edit_path, post_path: rp.path
+      = time_ago_tag @review.created_at
+
+    = render 'shared/comments', post: rp.review, id: "comments", auth: true
+
+  aside
+    = render "things/aside", tp: present(@thing)
+
+- content_for :script do
+  javascript:
+    Making.InitReview();
+    if ("#{flash[:provider_sync]}" == "true")
+      $(function(){$('#review_share').modal('show')});
