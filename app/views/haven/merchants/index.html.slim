@@ -19,7 +19,7 @@ table.table.table-striped
     - @merchants.each do |m|
       tr
         th= link_to m.name, merchant_path(m)
-        th= m.description
+        th= truncate(m.description, length: 25)
         th= m.group.name if m.group
         th= m.things.size
         th= link_to m.user_name, user_path(id: m.user.id) if m.user
