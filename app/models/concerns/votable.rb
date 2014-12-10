@@ -15,11 +15,17 @@ module Votable
     return if voted?(user)
     lovers << user
     self.set(lovers_count: lovers.count)
+    author.inc karma: karma_to_bump_from_loving
   end
 
   def unvote(user)
     return unless voted?(user)
     lovers.delete(user)
     self.set(lovers_count: lovers.count)
+    author.inc karma: -karma_to_bump_from_loving
+  end
+
+  def karma_to_bump_from_loving
+    Settings.karma.love[self.class.to_s.underscore] || 0
   end
 end

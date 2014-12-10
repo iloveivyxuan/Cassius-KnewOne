@@ -459,6 +459,7 @@ class Thing < Post
     self.priority = 0 unless self.priority.is_a?(Integer)
     if self.approved_at.nil? && self.priority > 0
       self.approved_at = Time.now
+      self.author.inc karma: Settings.karma.publish.thing
     end
   end
 

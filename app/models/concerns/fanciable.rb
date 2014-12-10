@@ -22,6 +22,7 @@ module Fanciable
         user.push("#{inverse_name.to_s.singularize}_ids" => self.id)
 
         set fanciers_count: fanciers.count
+        author.inc karma: karma_to_bump_from_fancying
 
         reload
         user.reload
@@ -29,14 +30,21 @@ module Fanciable
 
       define_method :unfancy do |user|
         return unless fancied?(user)
+
         fanciers.delete user
         user.send(inverse_name).delete self
+
         set fanciers_count: fanciers.count
+        author.inc karma: -karma_to_bump_from_fancying
       end
     end
   end
 
   def fancied?(user)
     user && fanciers.include?(user)
+  end
+
+  def karma_to_bump_from_fancying
+    Settings.karma.fancy[self.class.to_s.underscore] || 0
   end
 end
