@@ -1,161 +1,728 @@
-<div style="padding:10px 0 0 0;text-align:center;margin:0 0 30px 0;">
-  <b style="font-size:17px;">你好，<%= @user.name %></b>
+<% content_for :title do %>
+  你好，
+  <%= link_to @user.name, user_url(@user, from: :newspaper), target: '_blank', style: 'color: #049cdb; text-decoration: none; display: inline-block;', class: 'mobile-button' %>
+<% end %>
 
-  <p style="color:#cfcfcf;line-height:24px;">在过去的一周里<br/>(<%= @date.strftime('%Y.%m.%d') %> ~ <%= @from_date.strftime('%Y.%m.%d') %>)</p>
-</div>
+<% content_for :subtitle do %>
+  在过去的一周里 (<%= @from_date.strftime('%Y.%m.%d') %> ~ <%= @date.strftime('%Y.%m.%d') %>)
+<% end %>
 
 <%- if (owns = @items[:owns]) && @items[:owns_count] > 0 %>
-  <div style="margin:0 0 40px 0;">
-    <div style="margin:20px 0 0 0;text-align:center;padding:12px;" id="social" width="100%">
-      <b>你在 KnewOne 上拥有的产品</b>
-    </div>
-    <table style="margin:10px 0 0 0;" border="0" cellpadding="10" cellspacing="0" width="100%">
-      <%- owns.each do |t| %>
-        <tr>
-          <td align="right" width="40%">
-            <%= image_tag t.cover.url(:small), style: 'border:1px solid #eee;', width: '100px' %>
-          </td>
-          <td valign="top" style="line-height:26px;">
-            <b><%= link_to t.title, thing_url(t, from: :newspaper) %></b>
-            <br/>
-            <b style="color:#aaa;font-size:13px;"><%= t.fanciers.size %> 喜欢 <%= t.feelings.size %> 短评 <%= t.reviews.size %> 评测</b>
+  <div class="block">
+    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="fulltext">
+      <tbody>
+      <tr>
+        <td>
+          <table bgcolor="#f7f7f7" width="580" align="center" cellpadding="0" cellspacing="0" border="0" class="section-title">
+            <tbody>
+            <tr>
+              <td width="100%" height="40"></td>
+            </tr>
+            <tr>
+              <td align="center" style="font-size: 21px; font-family: Helvetica, Arial, sans-serif; color: #777777; font-weight: bold; line-height: 28px" st-title="fulltext-title">
+                你在 KnewOne 上拥有的产品
+              </td>
+            </tr>
+            <tr>
+              <td width="100%" height="40"></td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 
-            <p style="margin:5px 0 0 0;font-size:12px;line-height:20px;">在使用这个产品后，有什么体验呢？<br/>请和小伙伴们
-              <%= link_to '分享你的使用体验', new_thing_review_url(t, from: :newspaper), id: 'aldeco' %> 吧！</p>
+  <%- owns.each_with_index do |t, i| %>
+    <div class="block">
+      <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="leftimage">
+        <tbody>
+        <tr>
+          <td>
+            <table bgcolor="#ffffff" width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" modulebg="edit">
+              <tbody>
+              <tr>
+                <td height="50"></td>
+              </tr>
+
+              <tr>
+                <td>
+                  <table width="540" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                    <tbody>
+                    <tr>
+                      <td>
+                        <table width="200" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                          <tbody>
+                          <tr>
+                            <td width="200" height="150" align="center">
+                              <%= link_to thing_url(t, from: :newspaper), target: '_blank' do %>
+                                <%= image_tag t.cover.url('thing.fixed.small'), alt: '', border: '0', width: '200', height: '150', style: 'display:block; border:none; outline:none; text-decoration:none;', class: 'col2img' %>
+                              <% end %>
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                        <!-- mobile spacing -->
+                        <table align="left" border="0" cellpadding="0" cellspacing="0" class="mobilespacing">
+                          <tbody>
+                          <tr>
+                            <td width="100%" height="30" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                          </tr>
+                          </tbody>
+                        </table>
+                        <!-- mobile spacing -->
+                        <table width="310" align="right" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                          <tbody>
+                          <tr>
+                            <td style="padding: 10px 0 5px 0; font-family: Helvetica, arial, sans-serif; font-size: 18px; color: #333333; line-height: 22px;" st-title="leftimage-title">
+                              <%= link_to t.title, thing_url(t, from: :newspaper), target: '_blank', style: 'font-size: 22px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #049cdb; text-decoration: none; display: inline-block;' %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="padding: 5px 0 5px 0; font-size: 13px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #aaaaaa;" st-content="leftimage-paragraph">22
+                              喜欢 <%= t.fanciers.size %> 短评 <%= t.feelings.size %> 评测 <%= t.reviews.size %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="padding: 10px 0 0 0; font-size: 14px; line-height: 22px; font-family: Helvetica, Arial, sans-serif; color: #666666;" st-content="leftimage-paragraph">
+                              在使用这个产品后，有什么体验呢？
+                              <br>
+                              请和小伙伴们
+                              <%= link_to '分享你的使用体验', new_thing_review_url(t, from: :newspaper), target: '_blank', style: 'color: #8cadca; text-decoration: none; display: inline-block;' %>
+                              吧！
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+
+              <% if i != 0 %>
+                <tr>
+                  <td height="50"></td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
           </td>
         </tr>
-      <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+
+  <div class="block">
+    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="fulltext">
+      <tbody>
+      <tr>
+        <td>
+          <table bgcolor="#ffffff" width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" modulebg="edit">
+            <tbody>
+            <tr>
+              <td>
+                <table width="540" align="center" cellpadding="0" cellspacing="0" border="0" class="devicewidthinner">
+                  <tbody>
+                  <tr>
+                    <td>
+                      <table height="36" align="center" valign="middle" border="0" cellpadding="0" cellspacing="0" class="tablet-button" st-button="edit">
+                        <tbody>
+                        <tr>
+                          <td width="auto" align="center" valign="middle" height="36" style=" background-color:#049cdb; background-clip: padding-box;font-size:13px; font-family:Helvetica, arial, sans-serif; text-align:center;  color:#ffffff; font-weight: 300; padding-left:25px; padding-right:25px;">
+                            <span style="color: #ffffff; font-weight: 300;">
+                              <%= link_to '查看全部拥有 →', owns_user_url(@user, from: :newspaper), target: '_blank', style: 'color: #ffffff; text-align:center;text-decoration: none;' %>
+                            </span>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="100%" height="50"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
+<%- if (things = @items[:things]) && @items[:things_count] > 0 %>
+  <div class="block">
+    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="fulltext">
+      <tbody>
+      <tr>
+        <td>
+          <table bgcolor="#f7f7f7" width="580" align="center" cellpadding="0" cellspacing="0" border="0" class="section-title">
+            <tbody>
+            <tr>
+              <td width="100%" height="40"></td>
+            </tr>
+            <tr>
+              <td align="center" style="font-size: 21px; font-family: Helvetica, Arial, sans-serif; color: #777777; font-weight: bold; line-height: 28px" st-title="fulltext-title">
+                你在 KnewOne 上分享的产品
+              </td>
+            </tr>
+            <tr>
+              <td width="100%" height="40"></td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block">
+    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="2columns">
+      <tbody>
+      <tr>
+        <td>
+          <table bgcolor="#ffffff" width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" modulebg="edit">
+            <tbody>
+            <tr>
+              <td width="100%" height="50"></td>
+            </tr>
+            <tr>
+              <td>
+                <table width="540" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                  <tbody>
+                  <tr>
+                    <td>
+                      <%- things.each_with_index do |t, i| %>
+                        <table width="260" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidth">
+                          <tbody>
+                          <tr>
+                            <td width="260" height="195" align="center" class="devicewidth">
+                              <%= link_to thing_url(t, from: :newspaper), target: '_blank' do %>
+                                <%= image_tag t.cover.url('thing.fixed.small'), alt: '', border: '0', width: '260', height: '195', style: 'display:block; border:none; outline:none; text-decoration:none;', class: 'col2img' %>
+                              <% end %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td width="100%" height="15" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <table width="260" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                                <tbody>
+                                <tr>
+                                  <td align="center" style="padding: 0 0 5px 0; font-family: Helvetica, arial, sans-serif; font-size: 18px; color: #333333; line-height: 22px;" st-title="2col-title1">
+                                    <%= link_to t.title, thing_url(t, from: :newspaper), target: '_blank', style: 'font-size: 18px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #049cdb; text-decoration: none; display: inline-block;' %>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td align="center" style="padding: 5px 0 5px 0; font-size: 13px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #aaaaaa;" st-title="2col-title1"><%= t.fanciers.size %>
+                                    喜欢 <%= t.feelings.size %> 短评
+                                  </td>
+                                </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+
+                        <% if i < (@items[:things_count] - 1) %>
+                          <!-- spacing for mobile devices-->
+                          <table align="left" border="0" cellpadding="0" cellspacing="0" class="mobilespacing">
+                            <tbody>
+                            <tr>
+                              <td width="100%" height="30" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                            </tr>
+                            </tbody>
+                          </table>
+                          <!-- end of for mobile devices-->
+                        <% end %>
+                      <% end -%>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block">
+    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="fulltext">
+      <tbody>
+      <tr>
+        <td>
+          <table bgcolor="#ffffff" width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" modulebg="edit">
+            <tbody>
+            <tr>
+              <td width="100%" height="50"></td>
+            </tr>
+            <tr>
+              <td>
+                <table width="540" align="center" cellpadding="0" cellspacing="0" border="0" class="devicewidthinner">
+                  <tbody>
+                  <tr>
+                    <td>
+                      <table height="36" align="center" valign="middle" border="0" cellpadding="0" cellspacing="0" class="tablet-button" st-button="edit">
+                        <tbody>
+                        <tr>
+                          <td width="auto" align="center" valign="middle" height="36" style=" background-color:#049cdb; background-clip: padding-box;font-size:13px; font-family:Helvetica, arial, sans-serif; text-align:center;  color:#ffffff; font-weight: 300; padding-left:25px; padding-right:25px;">
+                             <span style="color: #ffffff; font-weight: 300;">
+                               <%= link_to '查看全部分享 →', things_user_url(@user, from: :newspaper), target: '_blank', style: 'color: #ffffff; text-align:center;text-decoration: none;' %>
+                             </span>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="100%" height="50"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      </tbody>
     </table>
   </div>
 <% end %>
 
 <%- if (reviews = @items[:reviews]) && @items[:reviews_count] > 0 %>
-  <div style="margin:0 0 40px 0;">
-    <div style="margin:20px 0 0 0;text-align:center;padding:12px;" id="social" width="100%">
-      <b>你在 KnewOne 上发表的评测反馈</b>
-    </div>
-    <table style="margin:10px 0 0 0;" border="0" cellpadding="10" cellspacing="0" width="100%">
-      <%- if r = reviews.first %>
-        <tr>
-          <td align="right" width="30%">
-            <%= image_tag r.thing.cover.url(:small), style: 'border:1px solid #eee;', width: '100px' %>
-          </td>
-          <td valign="top" style="line-height:26px;">
-            <b><%= link_to r.title, thing_review_url(r.thing, r, from: :newspaper) %></b>
-            <br/>
-            <b style="color:#aaa;font-size:13px;"><%= r.lovers.size %> 赞 <%= r.comments.size %> 评论</b>
-
-            <p style="margin:5px 0 0 0;font-size:12px;line-height:20px;">
-              <%= strip_tags(r.content).truncate(60) %>
-            </p>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-
-    <%- if @items[:reviews_count] > 1 %>
-      <p style="font-weight:bolder;font-size:12px;margin:5px 0 0 0;" align="center">
-        <%= link_to "查看更多你写的 #{reviews.size - 1} 篇评测 →", reviews_user_url(@user, from: :newspaper), style: 'text-decoration:none;' %>
-      </p>
-    <% end %>
-  </div>
-<% end %>
-
-<%- if (things = @items[:things]) && @items[:things_count] > 0 %>
-  <%- size = @items[:things_count] > 4 ? 4 : @items[:things_count] %>
-  <div style="margin:0 0 40px 0;">
-    <div style="margin:20px 0 0 0;text-align:center;padding:12px;" id="social" width="100%">
-      <b>你在 KnewOne 上分享产品收到的反馈</b>
-    </div>
-    <table style="margin:10px 0 0 0;" border="0" cellpadding="10" cellspacing="0" width="<%= size*25 %>%">
+  <div class="block">
+    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="fulltext">
+      <tbody>
       <tr>
-        <%- things.limit(4).each do |t| %>
-          <td align="left" valign="top" width="<%= 100/size %>%">
-            <%= image_tag t.cover.url(:small), style: 'border:1px solid #eee;', width: '100px' %>
-            <%= link_to t.title, thing_url(t, from: :newspaper) %><br/>
-            <b style="color:#aaa;font-size:12px;"><%= t.fanciers.size %> 赞 <%= t.feelings.size %> 短评</b>
-          </td>
-        <% end %>
+        <td>
+          <table bgcolor="#f7f7f7" width="580" align="center" cellpadding="0" cellspacing="0" border="0" class="section-title">
+            <tbody>
+            <tr>
+              <td width="100%" height="40"></td>
+            </tr>
+            <tr>
+              <td align="center" style="font-size: 21px; font-family: Helvetica, Arial, sans-serif; color: #777777; font-weight: bold; line-height: 28px" st-title="fulltext-title">
+                你在 KnewOne 上撰写的评测
+              </td>
+            </tr>
+            <tr>
+              <td width="100%" height="40"></td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
       </tr>
+      </tbody>
     </table>
+  </div>
 
-    <% if @items[:things_count] > 4 %>
-      <p style="font-weight:bolder;font-size:12px;margin:5px 0 0 0;" align="center">
-        <%= link_to "查看更多你分享的 #{things.size - 4} 个产品 →", things_user_url(@user, from: :newspaper), style: 'text-decoration:none;' %>
-      </p>
-    <% end %>
+  <div class="block">
+    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="leftimage">
+      <tbody>
+      <tr>
+        <td>
+          <%- reviews.each do |r| %>
+            <table bgcolor="#ffffff" width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" modulebg="edit">
+              <tbody>
+              <tr>
+                <td height="50"></td>
+              </tr>
+              <tr>
+                <td>
+                  <table width="540" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                    <tbody>
+                    <tr>
+                      <td>
+                        <table width="200" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                          <tbody>
+                          <tr>
+                            <td width="200" height="150" align="center">
+                              <%= link_to thing_review_url(r.thing, r, from: :newspaper) do %>
+                                <%= image_tag r.thing.cover.url('thing.fixed.small'), alt: '', border: '0', width: '200', height: '150', style: 'display:block; border:none; outline:none; text-decoration:none;' %>
+                              <% end %>
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                        <!-- mobile spacing -->
+                        <table align="left" border="0" cellpadding="0" cellspacing="0" class="mobilespacing">
+                          <tbody>
+                          <tr>
+                            <td width="100%" height="30" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                          </tr>
+                          </tbody>
+                        </table>
+                        <!-- mobile spacing -->
+                        <table width="310" align="right" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                          <tbody>
+                          <tr>
+                            <td style="padding: 10px 0 5px 0; font-family: Helvetica, arial, sans-serif; font-size: 20px; color: #333333; line-height: 28px;" st-title="leftimage-title">
+                              <%= link_to r.title, thing_review_url(r.thing, r, from: :newspaper), target: '_blank', style: 'font-size: 20px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #049cdb; text-decoration: none; display: inline-block;' %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="padding: 5px 0 5px 0; font-size: 13px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #aaaaaa;" st-content="leftimage-paragraph">
+                              <%= r.lovers.size %> 赞 <%= r.comments.size %> 回复
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="padding: 10px 0 0 0; font-size: 14px; line-height: 22px; font-family: Helvetica, Arial, sans-serif; color: #666666;" st-content="leftimage-paragraph">
+                              <%= link_to strip_tags(r.content).truncate(60), thing_review_url(r.thing, r, from: :newspaper), target: '_blank', style: 'color: #777777; text-decoration: none; display: inline-block;' %>
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          <% end %>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block">
+    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="fulltext">
+      <tbody>
+      <tr>
+        <td>
+          <table bgcolor="#ffffff" width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" modulebg="edit">
+            <tbody>
+            <tr>
+              <td width="100%" height="50"></td>
+            </tr>
+            <tr>
+              <td>
+                <table width="540" align="center" cellpadding="0" cellspacing="0" border="0" class="devicewidthinner">
+                  <tbody>
+                  <tr>
+                    <td>
+                      <table height="36" align="center" valign="middle" border="0" cellpadding="0" cellspacing="0" class="tablet-button" st-button="edit">
+                        <tbody>
+                        <tr>
+                          <td width="auto" align="center" valign="middle" height="36" style=" background-color:#049cdb; background-clip: padding-box;font-size:13px; font-family:Helvetica, arial, sans-serif; text-align:center;  color:#ffffff; font-weight: 300; padding-left:25px; padding-right:25px;">
+                            <span style="color: #ffffff; font-weight: 300;">
+                              <%= link_to "查看全部评测 →", reviews_user_url(@user, from: :newspaper), style: 'color: #ffffff; text-align:center;text-decoration: none;' %>
+                            </span>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="100%" height="50"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 <% end %>
 
 <%- if (friends_things = @items[:friends_things]) && @items[:friends_things_count] > 0 %>
-  <%- size = @items[:friends_things_count] > 4 ? 4 : @items[:friends_things_count] %>
-  <div style="margin:0 0 40px 0;">
-    <div style="margin:20px 0 0 0;text-align:center;padding:12px;" id="social" width="100%">
-      <b>你关注的小伙伴分享的新奇酷</b>
-    </div>
-    <table style="margin:10px 0 0 0;" border="0" cellpadding="10" cellspacing="0" width="<%= size*25 %>%">
+  <div class="block">
+    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="fulltext">
+      <tbody>
       <tr>
-        <%- friends_things.limit(4).each do |t| %>
-          <td align="left" valign="top" width="<%= 100/size %>%">
-            <%= image_tag t.cover.url(:small), style: 'border:1px solid #eee;', width: '100px' %>
-            <b><%= link_to t.title, thing_url(t, from: :newspaper) %></b><br/>
-            <b style="color:#aaa;font-size:12px;"><%= t.fanciers.size %> 赞 <%= t.feelings.size %> 短评</b>
-          </td>
-        <% end %>
+        <td>
+          <table bgcolor="#f7f7f7" width="580" align="center" cellpadding="0" cellspacing="0" border="0" class="section-title">
+            <tbody>
+            <tr>
+              <td width="100%" height="40"></td>
+            </tr>
+            <tr>
+              <td align="center" style="font-size: 21px; font-family: Helvetica, Arial, sans-serif; color: #777777; font-weight: bold; line-height: 28px" st-title="fulltext-title">
+                你关注的小伙伴分享的新奇酷
+              </td>
+            </tr>
+            <tr>
+              <td width="100%" height="40"></td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
       </tr>
+      </tbody>
     </table>
+  </div>
 
-    <% if @items[:friends_things_count] > 4 %>
-      <p style="font-weight:bolder;font-size:12px;margin:5px 0 0 0;" align="center">
-        <%= link_to '查看更多你关注的人分享的产品 →', things_user_url(@user, from: :newspaper), style: 'text-decoration:none;' %>
-      </p>
-    <% end %>
+  <div class="block">
+    <!-- 3-columns -->
+    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="3columns">
+      <tbody>
+      <tr>
+        <td>
+          <table bgcolor="#ffffff" width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" modulebg="edit">
+            <tbody>
+            <tr>
+              <td width="100%" height="50"></td>
+            </tr>
+            <tr>
+              <td>
+                <table width="540" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                  <tbody>
+                  <%- friends_things.each_slice(3) do |things| %>
+                    <tr>
+                      <td>
+                        <%- things.each_with_index do |t, i| %>
+                          <table width="170" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidth">
+                            <tbody>
+                            <tr>
+                              <td width="170" height="128" align="center" class="devicewidth">
+                                <%= link_to thing_url(t, from: :newspaper), target: '_blank' do %>
+                                  <%= image_tag t.cover.url('thing.fixed.small'), alt: '', border: '0', width: '170', height: '128', style: 'display:block; border:none; outline:none; text-decoration:none;', class: 'col3img' %>
+                                <% end -%>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <table width="170" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                                  <tbody>
+                                  <tr>
+                                    <td width="100%" height="15" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                  </tr>
+                                  <tr>
+                                    <td align="center" style="padding: 0 0 5px 0; font-family: Helvetica, arial, sans-serif; font-size: 14px; color: #333333; line-height: 20px;" st-title="2col-title1">
+                                      <%= link_to t.title, thing_url(t, from: :newspaper), target: '_blank', style: 'font-size: 14px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #049cdb; text-decoration: none; display: inline-block;' %>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td align="center" style="padding: 5px 0 5px 0; font-size: 13px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #aaaaaa;" st-title="2col-title1">
+                                      <%= t.fanciers.size %> 喜欢 <%= t.feelings.size %> 短评
+                                    </td>
+                                  </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                            </tbody>
+                          </table>
+
+                          <%- if i < 3 %>
+                            <table width="15" align="left" border="0" cellpadding="0" cellspacing="0" class="removeMobile">
+                              <tbody>
+                              <tr>
+                                <td width="100%" height="15" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                              </tr>
+                              </tbody>
+                            </table>
+                          <% end %>
+                        <% end -%>
+                      </td>
+                    </tr>
+                  <% end -%>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td width="100%" height="40"></td>
+            </tr>
+            <tr>
+              <td>
+                <table height="36" align="center" valign="middle" border="0" cellpadding="0" cellspacing="0" class="tablet-button" st-button="edit">
+                  <tbody>
+                  <tr>
+
+                  </tr>
+                  <tr>
+                    <td width="auto" align="center" valign="middle" height="36" style=" background-color:#049cdb; background-clip: padding-box;font-size:13px; font-family:Helvetica, arial, sans-serif; text-align:center;  color:#ffffff; font-weight: 300; padding-left:25px; padding-right:25px;">
+                      <span style="color: #ffffff; font-weight: 300;">
+                        <%= link_to '查看更多你关注的人分享的产品 →', things_user_url(@user, from: :newspaper), style: 'color: #ffffff; text-align:center;text-decoration: none;' %>
+                      </span>
+                    </td>
+                  </tr>
+
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td width="100%" height="40"></td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 <% end %>
 
-<%- if hot_things = @items[:hot_things] %>
-  <div style="margin:0 0 40px 0;">
-    <div style="margin:20px 0 0 0;text-align:center;padding:12px;" id="social" width="100%">
-      <b>KnewOne 上的热门新奇酷</b>
-    </div>
-    <table style="margin:10px 0 0 0;" border="0" cellpadding="10" cellspacing="0" width="<%= size*25 %>%">
+<%- if (hot_things = @items[:hot_things]) && @items[:hot_things_count] > 0 %>
+  <div class="block">
+    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="fulltext">
+      <tbody>
       <tr>
-        <%- hot_things[0..3].each do |t| %>
-          <td align="left" valign="top" width="<%= 100/size %>%">
-            <%= image_tag t.cover.url(:small), style: 'border:1px solid #eee;', width: '100px' %>
-            <%= link_to t.title, thing_url(t, from: :newspaper) %><br/>
-            <b style="color:#aaa;font-size:12px;"><%= t.fanciers.size %> 赞 <%= t.feelings.size %> 短评</b>
-          </td>
-        <% end %>
+        <td>
+          <table bgcolor="#f7f7f7" width="580" align="center" cellpadding="0" cellspacing="0" border="0" class="section-title">
+            <tbody>
+            <tr>
+              <td width="100%" height="40"></td>
+            </tr>
+            <tr>
+              <td align="center" style="font-size: 21px; font-family: Helvetica, Arial, sans-serif; color: #777777; font-weight: bold; line-height: 28px" st-title="fulltext-title">
+                KnewOne 上的热门新奇酷
+              </td>
+            </tr>
+            <tr>
+              <td width="100%" height="40"></td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
       </tr>
-      <tr>
-        <%- hot_things[4..-1].each do |t| %>
-          <td align="left" valign="top" width="<%= 100/size %>%">
-            <%= image_tag t.cover.url(:small), style: 'border:1px solid #eee;', width: '100px' %>
-            <%= link_to t.title, thing_url(t, from: :newspaper) %><br/>
-            <b style="color:#aaa;font-size:12px;"><%= t.fanciers.size %> 赞 <%= t.feelings.size %> 短评</b>
-          </td>
-        <% end %>
-      </tr>
+      </tbody>
     </table>
+  </div>
 
-    <p style="font-weight:bolder;font-size:12px;margin:5px 0 0 0;" align="center">
-      <%= link_to "查看更多 →", hits_url(from: :newspaper), style: 'text-decoration:none;' %>
-    </p>
+  <div class="block">
+    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="2columns">
+      <tbody>
+      <tr>
+        <td>
+          <table bgcolor="#ffffff" width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" modulebg="edit">
+            <tbody>
+            <tr>
+              <td width="100%" height="50"></td>
+            </tr>
+            <tr>
+              <td>
+                <table width="540" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                  <tbody>
+                  <tr>
+                    <td>
+                      <%- hot_things.each_with_index do |t, i| %>
+                        <table width="260" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidth">
+                          <tbody>
+                          <tr>
+                            <td width="260" height="195" align="center" class="devicewidth">
+                              <%= link_to thing_url(t, from: :newspaper), target: '_blank' do %>
+                                <%= image_tag t.cover.url('thing.fixed.small'), alt: '', border: '0', width: '260', height: '195', style: 'display:block; border:none; outline:none; text-decoration:none;', class: 'col2img' %>
+                              <% end %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td width="100%" height="15" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <table width="260" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                                <tbody>
+                                <tr>
+                                  <td align="center" style="padding: 0 0 5px 0; font-family: Helvetica, arial, sans-serif; font-size: 18px; color: #333333; line-height: 22px;" st-title="2col-title1">
+                                    <%= link_to t.title, thing_url(t, from: :newspaper), target: '_blank', style: 'font-size: 18px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #049cdb; text-decoration: none; display: inline-block;' %>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td align="center" style="padding: 5px 0 5px 0; font-size: 13px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #aaaaaa;" st-title="2col-title1"><%= t.fanciers.size %>
+                                    喜欢 <%= t.feelings.size %> 短评
+                                  </td>
+                                </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+
+                        <% if i < (@items[:hot_things_count] - 1) %>
+                          <!-- spacing for mobile devices-->
+                          <table align="left" border="0" cellpadding="0" cellspacing="0" class="mobilespacing">
+                            <tbody>
+                            <tr>
+                              <td width="100%" height="30" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                            </tr>
+                            </tbody>
+                          </table>
+                          <!-- end of for mobile devices-->
+                        <% end %>
+                      <% end -%>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block">
+    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="fulltext">
+      <tbody>
+      <tr>
+        <td>
+          <table bgcolor="#ffffff" width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" modulebg="edit">
+            <tbody>
+            <tr>
+              <td width="100%" height="50"></td>
+            </tr>
+            <tr>
+              <td>
+                <table width="540" align="center" cellpadding="0" cellspacing="0" border="0" class="devicewidthinner">
+                  <tbody>
+                  <tr>
+                    <td>
+                      <table height="36" align="center" valign="middle" border="0" cellpadding="0" cellspacing="0" class="tablet-button" st-button="edit">
+                        <tbody>
+                        <tr>
+                          <td width="auto" align="center" valign="middle" height="36" style=" background-color:#049cdb; background-clip: padding-box;font-size:13px; font-family:Helvetica, arial, sans-serif; text-align:center;  color:#ffffff; font-weight: 300; padding-left:25px; padding-right:25px;">
+                             <span style="color: #ffffff; font-weight: 300;">
+                               <%= link_to '查看全部热门 →', hits_url(from: :newspaper), target: '_blank', style: 'color: #ffffff; text-align:center;text-decoration: none;' %>
+                             </span>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="100%" height="50"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 <% end %>
-
-<div style="margin:40px 0 10px 0;border-top:1px solid #eee;padding:25px 0 0 0;">
-  <table border="0" cellpadding="10" cellspacing="0" width="100%">
-    <tr>
-      <td width>
-        <%= image_tag attachments['gift.png'].url %>
-      </td>
-      <td style="font-size:20px;line-height:40px;margin:10px 0 0 0;padding:10px 10px 0 20px;" valign="top">
-        <b>在 KnewOne 上分享你发现的新奇酷产品和使用体验，可以获奖喔！<br/>
-          <%= link_to '点此查看获奖者名单', rewards_url(from: :newspaper), style: 'font-size:15px;font-weight:bolder;text-decoration:none;' %>
-        </b>
-      </td>
-    </tr>
-  </table>
-</div>
