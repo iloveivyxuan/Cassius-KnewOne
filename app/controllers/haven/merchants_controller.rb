@@ -2,6 +2,7 @@ module Haven
   class MerchantsController < Haven::ApplicationController
     layout 'settings'
     before_action :set_merchant, except: [:index, :new, :create]
+    before_action :set_user_and_group, only: [:create, :update]
 
     def index
       @merchants = Merchant.all
@@ -18,17 +19,21 @@ module Haven
     end
 
     def create
-      @merchant = Merchant.create(name: params[:merchant][:name], description: params[:merchant][:description])
-      @merchant.group = Group.find(params[:merchant][:group_id])
+      if @group && @user
+        @merchant = Merchant.create(name: params[:merchant][:name], description: params[:merchant][:description])
+        @user.merchant = @merchant
+        @merchant.group = @group
+      end
 
       redirect_to haven_merchants_path
     end
 
     def update
-      @merchant.update_attributes(name: params[:merchant][:name], description: params[:merchant][:description])
-
-      @merchant.group = Group.find(params[:merchant][:group_id])
-      @merchant.user = User.find_by(name: params[:merchant][:user_name])
+      if @group && @user
+        @merchant.update_attributes(name: params[:merchant][:name], description: params[:merchant][:description])
+        @user.merchant = @merchant
+        @merchant.group = @group
+      end
 
       redirect_to haven_merchants_path
     end
@@ -42,6 +47,11 @@ module Haven
 
     def set_merchant
       @merchant = Merchant.find params[:id]
+    end
+
+    def set_user_and_group
+      @group = Group.where(id: params[:merchant][:group_id]).first
+      @user = User.where(name: params[:merchant][:user_name]).first
     end
 
     def merchant_params
