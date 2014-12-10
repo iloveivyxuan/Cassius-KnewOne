@@ -10,7 +10,7 @@ header.page-header
 - else
   = form_tag '/haven/orders/batch_update', method: :post do
     label 状态
-    div= select_tag 'status', options_for_select({'支付成功' => "confirmed", '订单关闭' => "close", '安排出库' => "transit", '退款到第三方平台' => "refunded_to_platform"}, "支付成功")
+    div= select_tag 'status', options_for_select({'支付成功' => "confirmed", '订单关闭' => "close", '安排出库' => "transit", '退款到第三方平台' => "refunded_to_platform", '已开票' => "invoiced"}, "支付成功")
     div= submit_tag "确定"
     .pull-left.order-nos
       label 订单号

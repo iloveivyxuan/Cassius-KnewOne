@@ -215,6 +215,8 @@ module Haven
             order.transit!
           when "refunded_to_platform"
             order.refund!
+          when "invoiced"
+            order.set(admin_note: "#{order.admin_note}\r\n已开票")
           end
         else
           @errors << order_no
