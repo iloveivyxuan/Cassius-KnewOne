@@ -1,4 +1,4 @@
-- cache_unless user_signed_in?, "#menu_mobile#{browser.wechat? ? '_wechat' : ''}"
+- cache_unless user_signed_in?, '#menu_mobile'
   section#menu
     = form_tag search_path, role: 'form', method: 'get'
       .form-group.search
