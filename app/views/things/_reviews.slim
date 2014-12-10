@@ -1,6 +1,6 @@
 - tp ||= present(thing)
 - cache_unless user_signed_in?, ['things', 'reviews', tp.thing, request.variant]
-  - reviews = tp.reviews(5)
+  - reviews = tp.reviews(3)
   - if reviews.present?
     - if browser.mobile? || browser.tablet?
       = render 'reviews/link_to_new', klass: 'btn btn--transition btn-write-review btn--blue btn--tail'
@@ -14,7 +14,7 @@
     .reviews.list.stream_content data-url=thing_reviews_path(tp.thing)
       = render reviews
 
-    - if tp.thing.reviews.count > 5
+    - if tp.thing.reviews.count > 3
       - if browser.mobile? || browser.tablet?
         .thing-feeds--mobile_action
           a.btn.btn--square.stream_more href="#"
