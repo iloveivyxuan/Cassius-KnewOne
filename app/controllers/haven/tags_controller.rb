@@ -13,7 +13,7 @@ module Haven
         format.csv do
           lines = [%w(一级分类 二级分类 三级分类 产品数)]
           Tag.all.includes(:categories).desc(:things_count).each do |tag|
-            inners = tag.categories
+            inners = tag.categories.ne(category: nil)
             primaries = inners.map(&:category)
             primaries.zip(inners).each do |embed|
               lines << [embed.first.try(:name), embed.last.try(:name), tag.name, tag.things_count]
