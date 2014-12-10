@@ -116,7 +116,7 @@ module OrdersHelper
       if popularize_items.empty?
         item = items.first
 
-        str = "#晒牛玩# 我在剁手站 @KnewOne 上入了#{item.thing.title}，感觉超级棒！钱什么的不重要，重要的是生活质量大幅提升！别说我没告诉你 →_→ #{thing_url(item.thing, refer: :order_share)}"
+        str = "我在 @KnewOne 上入了#{item.thing.title}: #{thing_url(item.thing, refer: :order_share)}"
       else
         item = popularize_items.first
 
