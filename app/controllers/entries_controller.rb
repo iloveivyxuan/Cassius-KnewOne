@@ -8,7 +8,7 @@ class EntriesController < ApplicationController
     return redirect_to @entry.external_link if @entry.external_link.present?
     respond_to do |format|
       format.wechat do
-        render wechat: @entry, layout: false
+        render wechat: @entry, layout: false, content_type: 'text/html'
       end
     end
   end
