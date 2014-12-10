@@ -1,16 +1,22 @@
-- path = user_signed_in? ? p.fancy_path : "#"
-- data = user_signed_in? ? {url: path} : {toggle: "modal", target: "#login-modal", link: thing_url(p.thing)}
-- data.merge!({ category: "fancy", action: "fancy_#{from}", label: "fancy+fancy_#{from}+#{p.path}" })
+- if browser.wechat? && !user_signed_in?
+  = link_to user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base'), data: {toggle: 'wechat_login'} do
+    i.fa.fa-heart-o
+    = p.fanciers_count
+    small 喜欢
+- else
+  - path = user_signed_in? ? p.fancy_path : "#"
+  - data = user_signed_in? ? { url: path } : { toggle: "modal", target: "#login-modal", link: thing_url(p.thing) }
+  - data.merge!({ category: "fancy", action: "fancy_#{from}", label: "fancy+fancy_#{from}+#{p.path}" })
 
-- if user_signed_in?
-  - data.merge!({ 'add-to-list' => true, 'thing-id' => p.id.to_s }) if can?(:create, ThingList)
-  - data.merge!({ 'has-lists' => true }) if p.thing.lists.where(author: current_user).present?
+  - if user_signed_in?
+    - data.merge!({ 'add-to-list' => true, 'thing-id' => p.id.to_s }) if can?(:create, ThingList)
+    - data.merge!({ 'has-lists' => true }) if p.thing.lists.where(author: current_user).present?
 
-- title = p.fancied? ? "取消喜欢" : "喜欢"
-- fancy_class = p.fancied? ? "fancied" : "unfancied"
-- icon_class = p.fancied? ? "fa-heart" : "fa-heart-o"
+  - title = p.fancied? ? "取消喜欢" : "喜欢"
+  - fancy_class = p.fancied? ? "fancied" : "unfancied"
+  - icon_class = p.fancied? ? "fa-heart" : "fa-heart-o"
 
-= link_to "#", class: "#{fancy_class} track_event", data: data, title: title do
-  i class="fa #{icon_class}"
-  = p.fanciers_count
-  small 喜欢
+  = link_to "#", class: "#{fancy_class} track_event", data: data, title: title do
+    i class="fa #{icon_class}"
+    = p.fanciers_count
+    small 喜欢
