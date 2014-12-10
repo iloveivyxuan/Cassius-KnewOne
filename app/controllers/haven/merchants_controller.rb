@@ -20,7 +20,7 @@ module Haven
 
     def create
       if @group && @user
-        @merchant = Merchant.create(name: params[:merchant][:name], description: params[:merchant][:description])
+        @merchant = Merchant.create(merchant_params)
         @user.merchant = @merchant
         @merchant.group = @group
       end
@@ -30,7 +30,7 @@ module Haven
 
     def update
       if @group && @user
-        @merchant.update_attributes(name: params[:merchant][:name], description: params[:merchant][:description])
+        @merchant.update_attributes(merchant_params)
         @user.merchant = @merchant
         @merchant.group = @group
       end
@@ -55,7 +55,7 @@ module Haven
     end
 
     def merchant_params
-      params.require(:merchant).permit!
+      params.require(:merchant).slice(:name, :description).permit!
     end
   end
 end
