@@ -36,16 +36,16 @@ class AftermathHandler
       ReviewNotificationWorker.perform_async(review.id.to_s, :new_review, sender_id: u.id.to_s, opened: false)
     end
 
-    def review_vote(review, voter, love)
+    def review_vote(review, voter)
       u = review.author
-      if love && u != voter
+      if u != voter
         u.notify :love_review, context: review, sender: voter
       end
     end
 
-    def feeling_vote(feeling, voter, love)
+    def feeling_vote(feeling, voter)
       u = feeling.author
-      if love && u != voter
+      if u != voter
         u.notify :love_feeling, context: feeling, sender: voter
       end
     end
@@ -111,9 +111,9 @@ class AftermathHandler
       u.inc groups_count: -1 if u.groups_count > 0
     end
 
-    def topic_vote(topic, voter, love)
+    def topic_vote(topic, voter)
       u = topic.author
-      if love && u != voter
+      if u != voter
         u.notify :love_topic, context: topic, sender: voter
       end
     end

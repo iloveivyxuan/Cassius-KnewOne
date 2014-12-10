@@ -7,7 +7,7 @@ describe Review, type: :model do
 
   describe '#vote' do
     before do
-      review.vote(user, true)
+      review.vote(user)
     end
 
     specify do
@@ -19,8 +19,8 @@ describe Review, type: :model do
 
   describe '#unvote' do
     before do
-      review.vote(user, true)
-      review.unvote(user, true)
+      review.vote(user)
+      review.unvote(user)
     end
 
     specify do

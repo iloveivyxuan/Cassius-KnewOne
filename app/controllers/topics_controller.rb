@@ -48,7 +48,7 @@ class TopicsController < ApplicationController
   end
 
   def vote
-    @topic.vote(current_user, true)
+    @topic.vote(current_user)
 
     current_user.log_activity :love_topic, @topic, source: @topic.group
 
@@ -58,7 +58,7 @@ class TopicsController < ApplicationController
   end
 
   def unvote
-    @topic.unvote(current_user, true)
+    @topic.unvote(current_user)
 
     respond_to do |format|
       format.js { render partial: 'shared/vote', locals: {object: @topic} }

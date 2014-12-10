@@ -100,7 +100,7 @@ class ReviewsController < ApplicationController
   end
 
   def vote
-    @review.vote(current_user, true)
+    @review.vote(current_user)
 
     current_user.log_activity :love_review, @review, source: @review.thing
 
@@ -110,7 +110,7 @@ class ReviewsController < ApplicationController
   end
 
   def unvote
-    @review.unvote(current_user, true)
+    @review.unvote(current_user)
 
     respond_to do |format|
       format.js { render partial: 'shared/vote', locals: {object: @review} }

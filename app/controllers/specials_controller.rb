@@ -5,7 +5,7 @@ class SpecialsController < ApplicationController
   before_action :set_special
 
   def vote
-    @special.vote(current_user, true)
+    @special.vote(current_user)
 
     respond_to do |format|
       format.js { render partial: 'shared/vote', locals: {object: @special} }
@@ -13,7 +13,7 @@ class SpecialsController < ApplicationController
   end
 
   def unvote
-    @special.unvote(current_user, true)
+    @special.unvote(current_user)
 
     respond_to do |format|
       format.js { render partial: 'shared/vote', locals: {object: @special} }

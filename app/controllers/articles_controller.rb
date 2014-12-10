@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   before_action :set_article
 
   def vote
-    @article.vote(current_user, true)
+    @article.vote(current_user)
 
     respond_to do |format|
       format.js { render partial: 'shared/vote', locals: {object: @article} }
@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
   end
 
   def unvote
-    @article.unvote(current_user, true)
+    @article.unvote(current_user)
 
     respond_to do |format|
       format.js { render partial: 'shared/vote', locals: {object: @article} }

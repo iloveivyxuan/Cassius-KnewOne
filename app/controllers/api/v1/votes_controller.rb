@@ -5,14 +5,14 @@ module Api
       before_action :set_post
 
       def create
-        @post.vote(current_user, true)
+        @post.vote(current_user)
         log_user_activity @post, current_user
 
         head :no_content
       end
 
       def destroy
-        @post.unvote(current_user, true)
+        @post.unvote(current_user)
         head :no_content
       end
 

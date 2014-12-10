@@ -64,7 +64,7 @@ class FeelingsController < ApplicationController
   end
 
   def vote
-    @feeling.vote(current_user, true)
+    @feeling.vote(current_user)
 
     current_user.log_activity :love_feeling, @feeling, source: @feeling.thing
 
@@ -74,7 +74,7 @@ class FeelingsController < ApplicationController
   end
 
   def unvote
-    @feeling.unvote(current_user, true)
+    @feeling.unvote(current_user)
 
     respond_to do |format|
       format.js { render partial: 'shared/vote', locals: {object: @feeling} }
