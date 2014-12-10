@@ -6,7 +6,6 @@ json.created_at feeling.created_at
 json.created_at_ago_in_words time_ago_in_words(feeling.created_at)
 
 json.lovers_count feeling.lovers.count
-json.foes_count feeling.foes.count
 
 if current_user
   json.loved feeling.lovers.include?(current_user)

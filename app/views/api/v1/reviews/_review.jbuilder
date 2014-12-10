@@ -3,7 +3,6 @@ json.url url_wrapper(review.thing, review)
 json.html_url thing_review_url(review.thing, review)
 
 json.lovers_count review.lovers.count
-json.foes_count review.foes.count
 json.comments_count review.comments.count
 json.comments_url url_wrapper(review.thing, review, :comments)
 
