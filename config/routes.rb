@@ -35,7 +35,11 @@ Making::Application.routes.draw do
   %w(talks lists reviews features specials events).each do |a|
     get "explore/#{a}", to: "explore##{a}", as: "explore_#{a}"
   end
-  resources :entries, only: [:show]
+  resources :entries, only: [:show] do
+    member do
+      get 'wechat'
+    end
+  end
 
   devise_for :users, controllers: {
     omniauth_callbacks: "omniauth_callbacks",
