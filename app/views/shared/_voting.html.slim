@@ -1,21 +1,23 @@
+- heartbeat = false if heartbeat.nil?
 - icon_class = 'fa fa-thumbs-up fa-fw'
-- icon_class += ' heartbeat' if defined?(heartbeat) && heartbeat
+- icon_class += ' heartbeat' if heartbeat
 
-- if user_signed_in?
-  - action = object.voted?(current_user) ? :unvote : :vote
-  - url = polymorphic_path([action, object.try(:thing) || object.try(:group), object])
-  = form_tag url, remote: true, class: 'voting' do
-    - if object.voted?(current_user)
-      = button_tag title: "取消赞", class: "btn btn--like done" do
-        i class=icon_class
-        span = object.lovers_count
-    - else
-      - klass = object.class.to_s.downcase
-      - data = { category: "like", action: "like_#{klass}", label: "like_#{klass}+#{request.path}" }
-      = button_tag title: "赞", class: "btn btn--like track_event", data: data do
-        i class=icon_class
-        span = object.lovers_count
-- else
-  = link_to '#', data: {target: '#login-modal', toggle: 'modal'}, class: 'btn btn--like' do
-    i class=icon_class
-    span = object.lovers_count
+- cache ['voting', user_signed_in? ? [heartbeat, object, object.voted?(current_user)] : object.lovers_count]
+  - if user_signed_in?
+    - action = object.voted?(current_user) ? :unvote : :vote
+    - url = polymorphic_path([action, object.try(:thing) || object.try(:group), object])
+    = form_tag url, remote: true, class: 'voting' do
+      - if object.voted?(current_user)
+        = button_tag title: "取消赞", class: "btn btn--like done" do
+          i class=icon_class
+          span = object.lovers_count
+      - else
+        - klass = object.class.to_s.downcase
+        - data = { category: "like", action: "like_#{klass}", label: "like_#{klass}+#{request.path}" }
+        = button_tag title: "赞", class: "btn btn--like track_event", data: data do
+          i class=icon_class
+          span = object.lovers_count
+  - else
+    = link_to '#', data: {target: '#login-modal', toggle: 'modal'}, class: 'btn btn--like' do
+      i class=icon_class
+      span = object.lovers_count
