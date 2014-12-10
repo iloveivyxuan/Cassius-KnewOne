@@ -11,4 +11,4 @@ header#header
   - else
     = link_to_with_icon "登录", "fa fa-sign-in", login_path,
       class: "btn btn-link pull-right track_event",
-      data: data_with_login_tracker("nav_mobile", request.path, !browser.wechat?)
+      data: data_with_login_tracker("nav_mobile", request.path)

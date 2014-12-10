@@ -15,10 +15,6 @@
       = button_tag title: "赞", class: "btn btn--like track_event", data: data do
         i class=icon_class
         span = object.lovers_count
-- elsif browser.wechat?
-  = link_to user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base'), class: 'btn btn--like' do
-    i class=icon_class
-    span = object.lovers_count
 - else
   = link_to '#', data: {target: '#login-modal', toggle: 'modal'}, class: 'btn btn--like' do
     i class=icon_class

@@ -9,7 +9,7 @@ module ThingsHelper
       else
         link_to_with_icon "请登录后购买", "fa fa-sign-in", login_path,
         class: "btn btn--login btn-buy-mobile track_event",
-        data: data_with_login_tracker("dsell", thing.title, !browser.wechat?)
+        data: data_with_login_tracker("dsell", thing.title)
       end
     when :pre_order
       if user_signed_in?
@@ -19,7 +19,7 @@ module ThingsHelper
       else
         link_to_with_icon "请登录后购买", "fa fa-sign-in", login_path,
         class: "btn btn--login btn-buy-mobile track_event",
-        data: data_with_login_tracker("pre_order", thing.title, !browser.wechat?)
+        data: data_with_login_tracker("pre_order", thing.title)
       end
     when :kick
       if user_signed_in? && thing.shop.present?
@@ -29,7 +29,7 @@ module ThingsHelper
       else
         link_to_with_icon (browser.wechat? ? "请登录后购买" : "请登录后众筹"), "fa fa-sign-in", login_path,
         class: "btn btn--login btn-buy-mobile track_event",
-        data: data_with_login_tracker("kick", thing.title, !browser.wechat?)
+        data: data_with_login_tracker("kick", thing.title)
       end
     when :domestic
       if user_signed_in? && thing.shop.present?
@@ -39,7 +39,7 @@ module ThingsHelper
       else
         link_to_with_icon (browser.wechat? ? "请登录后购买" : "请登录后网购"), "fa fa-sign-in", login_path,
         class: "btn btn--login btn-buy-mobile track_event",
-        data: data_with_login_tracker("domestic", thing.title, !browser.wechat?)
+        data: data_with_login_tracker("domestic", thing.title)
       end
     when :abroad
       if user_signed_in? && thing.shop.present?
@@ -49,7 +49,7 @@ module ThingsHelper
       else
         link_to_with_icon (browser.wechat? ? "请登录后购买" : "请登录后海淘"), "fa fa-sign-in", login_path,
         class: "btn btn--login btn-buy-mobile track_event",
-        data: data_with_login_tracker("abroad", thing.title, !browser.wechat?)
+        data: data_with_login_tracker("abroad", thing.title)
       end
     when :adoption
       render 'things/adopt', tp: present(thing)
