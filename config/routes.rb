@@ -152,6 +152,12 @@ Making::Application.routes.draw do
     post 'follow_recommends'
   end
 
+  resources :merchants, only: [:show] do
+    member do
+      post 'set_description'
+    end
+  end
+
   resources :things do
     collection do
       get 'random'
@@ -307,6 +313,8 @@ Making::Application.routes.draw do
     end
 
     resources :stats, only: [:index, :update, :edit]
+
+    resources :merchants
 
     resources :thing_rebate_coupons, only: [:show, :index, :new, :create, :update] do
       member do
