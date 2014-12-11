@@ -37,7 +37,7 @@
   #bong_point_tip
     small
       | 你有 #{content_tag :span, '<i class="fa fa-spinner"></i>'.html_safe, id: 'available_bong_point'}点
-      | （#{link_to '刷新', bong_available_point_path, remote: true}） 可用，
+      | （#{link_to '刷新', bong_available_point_url, remote: true}） 可用，
       | 最多可使用 #{content_tag :span, @order.maximal_consumable_bong_point, id: 'maximal_consumable_bong_point'}点
       | （每点可抵扣 #{Order::BONG_POINT_VALUE} 元）。
       br
@@ -54,4 +54,4 @@
   - if current_user.bong_bind?
     - content_for :script do
       javascript:
-        $.getScript('#{bong_available_point_path}');
+        $.getScript('#{bong_available_point_url}');
