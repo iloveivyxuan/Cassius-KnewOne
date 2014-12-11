@@ -181,7 +181,9 @@ class Thing < Post
   end
 
   def merchant_name=(name)
-    self.merchant = Merchant.find_by(name: name)
+    unless name.blank?
+      self.merchant = Merchant.find_by(name: name)
+    end
   end
 
   def category_records
