@@ -94,6 +94,7 @@ Making::Application.routes.draw do
       get 'topics'
       get 'activities'
       get 'followings'
+      post 'followings', to: :batch_follow
       get 'followers'
       post 'followers', to: :follow
       delete 'followers', to: :unfollow

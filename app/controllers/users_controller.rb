@@ -83,6 +83,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def batch_follow
+    user_ids = params[:user_ids].to_a.map(&:to_s) rescue []
+    @users = User.in(id: user_ids)
+    current_user.batch_follow(@users)
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def unfollow
     current_user.unfollow @user
 
