@@ -49,7 +49,7 @@ class NotificationsController < ApplicationController
   def notification_types(type)
     case type
     when "thing"
-      %w(stock new_review new_feeling)
+      %w(stock new_review new_feeling new_topic)
     when "reply"
       %w(comment topic review feeling list_item)
     when "friend"

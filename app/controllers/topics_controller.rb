@@ -22,6 +22,12 @@ class TopicsController < ApplicationController
         u.notify :topic, context: @topic, sender: current_user, opened: false
       end
 
+      @topic.group.members.each do |member|
+        if member.user != current_user
+          member.user.notify :new_topic, context: @topic, sender: current_user, opened: false
+        end
+      end
+
       current_user.log_activity :new_topic, @topic, source: @topic.group
       redirect_to group_topic_path(@topic.group, @topic)
     else

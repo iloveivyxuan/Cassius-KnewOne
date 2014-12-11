@@ -1,0 +1,8 @@
+- topic = notification.context
+- group = topic.group
+
+= senders(notification)
+| 在我加入的小组
+= link_to " #{group.name} ", group
+| 中发表了新帖
+= link_to " #{topic.title}", [group, topic]
