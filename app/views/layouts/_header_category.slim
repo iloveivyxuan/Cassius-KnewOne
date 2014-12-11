@@ -18,7 +18,7 @@
                   - tags_size = (tags.size > 7) ? 7 : 8
                   - tags.desc(:things_count).limit(tags_size).each do |header_tag|
                     - cache ['header_tag', header_tag.id], expires_in: 1.hour
-                      = link_to header_tag.name, tag_things_path(header_tag)
+                      = link_to header_tag.name, "/things/category/#{inner_c.slug}/tag/#{header_tag.slug}"
                   - if tags.size > 8
                     = link_to category_things_path(inner_c), class: "category--secondary-more" do
                       | 查看更多
