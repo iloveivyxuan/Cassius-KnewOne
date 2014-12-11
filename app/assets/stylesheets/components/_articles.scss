@@ -522,16 +522,11 @@ form.edit_post {
 
       .share_btn {
         display: inline-block;
-        width: 60px;
         vertical-align: middle;
 
         @extend .btn--orange;
         @extend .btn--square;
         @extend .btn--tall;
-
-        i {
-          margin: 0;
-        }
       }
     }
 

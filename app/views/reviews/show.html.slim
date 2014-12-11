@@ -24,7 +24,7 @@
       footer.actions
         .interactions
           .feed_action = render 'shared/voting', object: rp.review
-          = rp.link_to_share('', '')
+          = rp.link_to_share
         .advanced
           = render 'shared/post_actions', post: rp.review,
             edit_post_path: rp.edit_path, post_path: rp.path
