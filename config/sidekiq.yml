@@ -15,5 +15,5 @@ production:
   - waybill
   - newspaper
 :limits:
-  newspaper: 3
+  newspaper: 5
   edm: 10
