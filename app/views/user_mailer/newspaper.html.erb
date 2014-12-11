@@ -4,10 +4,10 @@
 <% end %>
 
 <% content_for :subtitle do %>
-  在过去的一周里 (<%= @from_date.strftime('%Y.%m.%d') %> ~ <%= @date.strftime('%Y.%m.%d') %>)
+  在过去的一周里（<%= @from_date.strftime('%Y.%m.%d') %> ~ <%= @date.strftime('%Y.%m.%d') %>）
 <% end %>
 
-<%- if (owns = @items[:owns]) && @items[:owns_count] > 0 %>
+<%- if (hot_things = @items[:hot_things]) && @items[:hot_things_count] > 0 %>
   <div class="block">
     <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="fulltext">
       <tbody>
@@ -20,7 +20,7 @@
             </tr>
             <tr>
               <td align="center" style="font-size: 21px; font-family: Helvetica, Arial, sans-serif; color: #777777; font-weight: bold; line-height: 28px" st-title="fulltext-title">
-                你在 KnewOne 上拥有的产品
+                本周在 KnewOne 上最受欢迎的产品
               </td>
             </tr>
             <tr>
@@ -34,79 +34,75 @@
     </table>
   </div>
 
-  <%- owns.each_with_index do |t, i| %>
+  <%- hot_things.each_slice(2) do |things| %>
     <div class="block">
-      <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="leftimage">
+      <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="2columns">
         <tbody>
         <tr>
           <td>
             <table bgcolor="#ffffff" width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" modulebg="edit">
               <tbody>
               <tr>
-                <td height="50"></td>
+                <td width="100%" height="50"></td>
               </tr>
-
               <tr>
                 <td>
-                  <table width="540" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                  <table width="540" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
                     <tbody>
                     <tr>
                       <td>
-                        <table width="200" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
-                          <tbody>
-                          <tr>
-                            <td width="200" height="150" align="center">
-                              <%= link_to thing_url(t, from: :newspaper), target: '_blank' do %>
-                                <%= image_tag t.cover.url('thing.fixed.small'), alt: '', border: '0', width: '200', height: '150', style: 'display:block; border:none; outline:none; text-decoration:none;', class: 'col2img' %>
-                              <% end %>
-                            </td>
-                          </tr>
-                          </tbody>
-                        </table>
-                        <!-- mobile spacing -->
-                        <table align="left" border="0" cellpadding="0" cellspacing="0" class="mobilespacing">
-                          <tbody>
-                          <tr>
-                            <td width="100%" height="30" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
-                          </tr>
-                          </tbody>
-                        </table>
-                        <!-- mobile spacing -->
-                        <table width="310" align="right" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
-                          <tbody>
-                          <tr>
-                            <td style="padding: 10px 0 5px 0; font-family: Helvetica, arial, sans-serif; font-size: 18px; color: #333333; line-height: 22px;" st-title="leftimage-title">
-                              <%= link_to t.title, thing_url(t, from: :newspaper), target: '_blank', style: 'font-size: 22px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #049cdb; text-decoration: none; display: inline-block;' %>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td style="padding: 5px 0 5px 0; font-size: 13px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #aaaaaa;" st-content="leftimage-paragraph">22
-                              喜欢 <%= t.fanciers.size %> 短评 <%= t.feelings.size %> 评测 <%= t.reviews.size %>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td style="padding: 10px 0 0 0; font-size: 14px; line-height: 22px; font-family: Helvetica, Arial, sans-serif; color: #666666;" st-content="leftimage-paragraph">
-                              在使用这个产品后，有什么体验呢？
-                              <br>
-                              请和小伙伴们
-                              <%= link_to '分享你的使用体验', new_thing_review_url(t, from: :newspaper), target: '_blank', style: 'color: #8cadca; text-decoration: none; display: inline-block;' %>
-                              吧！
-                            </td>
-                          </tr>
-                          </tbody>
-                        </table>
+                        <%- things.each_with_index do |t, i| %>
+                          <table width="260" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidth">
+                            <tbody>
+                            <tr>
+                              <td width="260" height="195" align="center" class="devicewidth">
+                                <%= link_to thing_url(t, from: :newspaper), target: '_blank' do %>
+                                  <%= image_tag t.cover.url('thing.fixed.small'), alt: '', border: '0', width: '260', height: '195', style: 'display:block; border:none; outline:none; text-decoration:none;', class: 'col2img' %>
+                                <% end %>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td width="100%" height="15" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <table width="260" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                                  <tbody>
+                                  <tr>
+                                    <td align="center" style="padding: 0 0 5px 0; font-family: Helvetica, arial, sans-serif; font-size: 16px; color: #333333; line-height: 22px;" st-title="2col-title1">
+                                      <%= link_to t.title, thing_url(t, from: :newspaper), target: '_blank', style: 'font-size: 16px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #049cdb; text-decoration: none; display: inline-block;' %>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td align="center" style="padding: 5px 0 5px 0; font-size: 13px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #aaaaaa;" st-title="2col-title1"><%= t.fanciers.size %>
+                                      喜欢 <%= t.feelings.size %> 短评
+                                    </td>
+                                  </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                            </tbody>
+                          </table>
+
+                          <% if i < (@items[:hot_things_count] - 1) %>
+                            <!-- spacing for mobile devices-->
+                            <table align="left" border="0" cellpadding="0" cellspacing="0" class="mobilespacing">
+                              <tbody>
+                              <tr>
+                                <td width="100%" height="30" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                              </tr>
+                              </tbody>
+                            </table>
+                            <!-- end of for mobile devices-->
+                          <% end %>
+                        <% end -%>
                       </td>
                     </tr>
                     </tbody>
                   </table>
                 </td>
               </tr>
-
-              <% if i != 0 %>
-                <tr>
-                  <td height="50"></td>
-                </tr>
-              <% end %>
               </tbody>
             </table>
           </td>
@@ -114,152 +110,7 @@
         </tbody>
       </table>
     </div>
-  <% end %>
-
-  <div class="block">
-    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="fulltext">
-      <tbody>
-      <tr>
-        <td>
-          <table bgcolor="#ffffff" width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" modulebg="edit">
-            <tbody>
-            <tr>
-              <td>
-                <table width="540" align="center" cellpadding="0" cellspacing="0" border="0" class="devicewidthinner">
-                  <tbody>
-                  <tr>
-                    <td>
-                      <table height="36" align="center" valign="middle" border="0" cellpadding="0" cellspacing="0" class="tablet-button" st-button="edit">
-                        <tbody>
-                        <tr>
-                          <td width="auto" align="center" valign="middle" height="36" style=" background-color:#049cdb; background-clip: padding-box;font-size:13px; font-family:Helvetica, arial, sans-serif; text-align:center;  color:#ffffff; font-weight: 300; padding-left:25px; padding-right:25px;">
-                            <span style="color: #ffffff; font-weight: 300;">
-                              <%= link_to '查看全部拥有 →', owns_user_url(@user, from: :newspaper), target: '_blank', style: 'color: #ffffff; text-align:center;text-decoration: none;' %>
-                            </span>
-                          </td>
-                        </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="100%" height="50"></td>
-                  </tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-<% end %>
-
-<%- if (things = @items[:things]) && @items[:things_count] > 0 %>
-  <div class="block">
-    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="fulltext">
-      <tbody>
-      <tr>
-        <td>
-          <table bgcolor="#f7f7f7" width="580" align="center" cellpadding="0" cellspacing="0" border="0" class="section-title">
-            <tbody>
-            <tr>
-              <td width="100%" height="40"></td>
-            </tr>
-            <tr>
-              <td align="center" style="font-size: 21px; font-family: Helvetica, Arial, sans-serif; color: #777777; font-weight: bold; line-height: 28px" st-title="fulltext-title">
-                你在 KnewOne 上分享的产品
-              </td>
-            </tr>
-            <tr>
-              <td width="100%" height="40"></td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="block">
-    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="2columns">
-      <tbody>
-      <tr>
-        <td>
-          <table bgcolor="#ffffff" width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" modulebg="edit">
-            <tbody>
-            <tr>
-              <td width="100%" height="50"></td>
-            </tr>
-            <tr>
-              <td>
-                <table width="540" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
-                  <tbody>
-                  <tr>
-                    <td>
-                      <%- things.each_with_index do |t, i| %>
-                        <table width="260" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidth">
-                          <tbody>
-                          <tr>
-                            <td width="260" height="195" align="center" class="devicewidth">
-                              <%= link_to thing_url(t, from: :newspaper), target: '_blank' do %>
-                                <%= image_tag t.cover.url('thing.fixed.small'), alt: '', border: '0', width: '260', height: '195', style: 'display:block; border:none; outline:none; text-decoration:none;', class: 'col2img' %>
-                              <% end %>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td width="100%" height="15" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <table width="260" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
-                                <tbody>
-                                <tr>
-                                  <td align="center" style="padding: 0 0 5px 0; font-family: Helvetica, arial, sans-serif; font-size: 18px; color: #333333; line-height: 22px;" st-title="2col-title1">
-                                    <%= link_to t.title, thing_url(t, from: :newspaper), target: '_blank', style: 'font-size: 18px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #049cdb; text-decoration: none; display: inline-block;' %>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td align="center" style="padding: 5px 0 5px 0; font-size: 13px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #aaaaaa;" st-title="2col-title1"><%= t.fanciers.size %>
-                                    喜欢 <%= t.feelings.size %> 短评
-                                  </td>
-                                </tr>
-                                </tbody>
-                              </table>
-                            </td>
-                          </tr>
-                          </tbody>
-                        </table>
-
-                        <% if i < (@items[:things_count] - 1) %>
-                          <!-- spacing for mobile devices-->
-                          <table align="left" border="0" cellpadding="0" cellspacing="0" class="mobilespacing">
-                            <tbody>
-                            <tr>
-                              <td width="100%" height="30" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
-                            </tr>
-                            </tbody>
-                          </table>
-                          <!-- end of for mobile devices-->
-                        <% end %>
-                      <% end -%>
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+  <% end -%>
 
   <div class="block">
     <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="fulltext">
@@ -282,151 +133,8 @@
                         <tr>
                           <td width="auto" align="center" valign="middle" height="36" style=" background-color:#049cdb; background-clip: padding-box;font-size:13px; font-family:Helvetica, arial, sans-serif; text-align:center;  color:#ffffff; font-weight: 300; padding-left:25px; padding-right:25px;">
                              <span style="color: #ffffff; font-weight: 300;">
-                               <%= link_to '查看全部分享 →', things_user_url(@user, from: :newspaper), target: '_blank', style: 'color: #ffffff; text-align:center;text-decoration: none;' %>
+                               <%= link_to '查看更多受欢迎的产品 →', hits_url(from: :newspaper), target: '_blank', style: 'color: #ffffff; text-align:center;text-decoration: none;' %>
                              </span>
-                          </td>
-                        </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="100%" height="50"></td>
-                  </tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-<% end %>
-
-<%- if (reviews = @items[:reviews]) && @items[:reviews_count] > 0 %>
-  <div class="block">
-    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="fulltext">
-      <tbody>
-      <tr>
-        <td>
-          <table bgcolor="#f7f7f7" width="580" align="center" cellpadding="0" cellspacing="0" border="0" class="section-title">
-            <tbody>
-            <tr>
-              <td width="100%" height="40"></td>
-            </tr>
-            <tr>
-              <td align="center" style="font-size: 21px; font-family: Helvetica, Arial, sans-serif; color: #777777; font-weight: bold; line-height: 28px" st-title="fulltext-title">
-                你在 KnewOne 上撰写的评测
-              </td>
-            </tr>
-            <tr>
-              <td width="100%" height="40"></td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="block">
-    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="leftimage">
-      <tbody>
-      <tr>
-        <td>
-          <%- reviews.each do |r| %>
-            <table bgcolor="#ffffff" width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" modulebg="edit">
-              <tbody>
-              <tr>
-                <td height="50"></td>
-              </tr>
-              <tr>
-                <td>
-                  <table width="540" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
-                    <tbody>
-                    <tr>
-                      <td>
-                        <table width="200" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
-                          <tbody>
-                          <tr>
-                            <td width="200" height="150" align="center">
-                              <%= link_to thing_review_url(r.thing, r, from: :newspaper) do %>
-                                <%= image_tag r.thing.cover.url('thing.fixed.small'), alt: '', border: '0', width: '200', height: '150', style: 'display:block; border:none; outline:none; text-decoration:none;' %>
-                              <% end %>
-                            </td>
-                          </tr>
-                          </tbody>
-                        </table>
-                        <!-- mobile spacing -->
-                        <table align="left" border="0" cellpadding="0" cellspacing="0" class="mobilespacing">
-                          <tbody>
-                          <tr>
-                            <td width="100%" height="30" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
-                          </tr>
-                          </tbody>
-                        </table>
-                        <!-- mobile spacing -->
-                        <table width="310" align="right" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
-                          <tbody>
-                          <tr>
-                            <td style="padding: 10px 0 5px 0; font-family: Helvetica, arial, sans-serif; font-size: 20px; color: #333333; line-height: 28px;" st-title="leftimage-title">
-                              <%= link_to r.title, thing_review_url(r.thing, r, from: :newspaper), target: '_blank', style: 'font-size: 20px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #049cdb; text-decoration: none; display: inline-block;' %>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td style="padding: 5px 0 5px 0; font-size: 13px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #aaaaaa;" st-content="leftimage-paragraph">
-                              <%= r.lovers.size %> 赞 <%= r.comments.size %> 回复
-                            </td>
-                          </tr>
-                          <tr>
-                            <td style="padding: 10px 0 0 0; font-size: 14px; line-height: 22px; font-family: Helvetica, Arial, sans-serif; color: #666666;" st-content="leftimage-paragraph">
-                              <%= link_to strip_tags(r.content).truncate(60), thing_review_url(r.thing, r, from: :newspaper), target: '_blank', style: 'color: #777777; text-decoration: none; display: inline-block;' %>
-                            </td>
-                          </tr>
-                          </tbody>
-                        </table>
-                      </td>
-                    </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          <% end %>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="block">
-    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="fulltext">
-      <tbody>
-      <tr>
-        <td>
-          <table bgcolor="#ffffff" width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" modulebg="edit">
-            <tbody>
-            <tr>
-              <td width="100%" height="50"></td>
-            </tr>
-            <tr>
-              <td>
-                <table width="540" align="center" cellpadding="0" cellspacing="0" border="0" class="devicewidthinner">
-                  <tbody>
-                  <tr>
-                    <td>
-                      <table height="36" align="center" valign="middle" border="0" cellpadding="0" cellspacing="0" class="tablet-button" st-button="edit">
-                        <tbody>
-                        <tr>
-                          <td width="auto" align="center" valign="middle" height="36" style=" background-color:#049cdb; background-clip: padding-box;font-size:13px; font-family:Helvetica, arial, sans-serif; text-align:center;  color:#ffffff; font-weight: 300; padding-left:25px; padding-right:25px;">
-                            <span style="color: #ffffff; font-weight: 300;">
-                              <%= link_to "查看全部评测 →", reviews_user_url(@user, from: :newspaper), style: 'color: #ffffff; text-align:center;text-decoration: none;' %>
-                            </span>
                           </td>
                         </tr>
                         </tbody>
@@ -462,7 +170,7 @@
             </tr>
             <tr>
               <td align="center" style="font-size: 21px; font-family: Helvetica, Arial, sans-serif; color: #777777; font-weight: bold; line-height: 28px" st-title="fulltext-title">
-                你关注的小伙伴分享的新奇酷
+                你关注的人感兴趣的产品
               </td>
             </tr>
             <tr>
@@ -579,150 +287,269 @@
   </div>
 <% end %>
 
-<%- if (hot_things = @items[:hot_things]) && @items[:hot_things_count] > 0 %>
-  <div class="block">
-    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="fulltext">
-      <tbody>
-      <tr>
-        <td>
-          <table bgcolor="#f7f7f7" width="580" align="center" cellpadding="0" cellspacing="0" border="0" class="section-title">
-            <tbody>
-            <tr>
-              <td width="100%" height="40"></td>
-            </tr>
-            <tr>
-              <td align="center" style="font-size: 21px; font-family: Helvetica, Arial, sans-serif; color: #777777; font-weight: bold; line-height: 28px" st-title="fulltext-title">
-                KnewOne 上的热门新奇酷
-              </td>
-            </tr>
-            <tr>
-              <td width="100%" height="40"></td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+<div class="block">
+  <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="fulltext">
+    <tbody>
+    <tr>
+      <td>
+        <table bgcolor="#f7f7f7" width="580" align="center" cellpadding="0" cellspacing="0" border="0" class="section-title">
+          <tbody>
+          <tr>
+            <td width="100%" height="40"></td>
+          </tr>
+          <tr>
+            <td align="center" style="font-size: 21px; font-family: Helvetica, Arial, sans-serif; color: #777777; font-weight: bold; line-height: 28px" st-title="fulltext-title">
+              KnewOne 本周新功能
+            </td>
+          </tr>
+          <tr>
+            <td width="100%" height="40"></td>
+          </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
 
-  <div class="block">
-    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="2columns">
-      <tbody>
-      <tr>
-        <td>
-          <table bgcolor="#ffffff" width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" modulebg="edit">
-            <tbody>
-            <tr>
-              <td width="100%" height="50"></td>
-            </tr>
-            <tr>
-              <td>
-                <table width="540" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
-                  <tbody>
-                  <tr>
-                    <td>
-                      <%- hot_things.each_with_index do |t, i| %>
-                        <table width="260" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidth">
-                          <tbody>
-                          <tr>
-                            <td width="260" height="195" align="center" class="devicewidth">
-                              <%= link_to thing_url(t, from: :newspaper), target: '_blank' do %>
-                                <%= image_tag t.cover.url('thing.fixed.small'), alt: '', border: '0', width: '260', height: '195', style: 'display:block; border:none; outline:none; text-decoration:none;', class: 'col2img' %>
-                              <% end %>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td width="100%" height="15" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <table width="260" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
-                                <tbody>
-                                <tr>
-                                  <td align="center" style="padding: 0 0 5px 0; font-family: Helvetica, arial, sans-serif; font-size: 18px; color: #333333; line-height: 22px;" st-title="2col-title1">
-                                    <%= link_to t.title, thing_url(t, from: :newspaper), target: '_blank', style: 'font-size: 18px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #049cdb; text-decoration: none; display: inline-block;' %>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td align="center" style="padding: 5px 0 5px 0; font-size: 13px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #aaaaaa;" st-title="2col-title1"><%= t.fanciers.size %>
-                                    喜欢 <%= t.feelings.size %> 短评
-                                  </td>
-                                </tr>
-                                </tbody>
-                              </table>
-                            </td>
-                          </tr>
-                          </tbody>
-                        </table>
+<div class="block">
+  <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="leftimage">
+    <tbody>
+    <tr>
+      <td>
+        <table bgcolor="#ffffff" width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" modulebg="edit">
+          <tbody>
+          <tr>
+            <td height="50"></td>
+          </tr>
+          <tr>
+            <td>
+              <table width="540" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                <tbody>
+                <tr>
+                  <td>
+                    <table width="240" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                      <tbody>
+                      <tr>
+                        <td width="240" height="180" align="center">
+                          <%= image_tag attachments['requestForReview.jpg'].url, alt: '', border: '0', width: '240', height: '180', style: 'display:block; border:none; outline:none; text-decoration:none; width: 240px; height: 180px;', class: 'col2img' %>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <!-- mobile spacing -->
+                    <table align="left" border="0" cellpadding="0" cellspacing="0" class="mobilespacing">
+                      <tbody>
+                      <tr>
+                        <td width="100%" height="30" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <!-- mobile spacing -->
+                    <table width="270" align="right" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                      <tbody>
+                      <tr>
+                        <td style="padding: 0 0 5px 0; font-family: Helvetica, arial, sans-serif; font-size: 18px; color: #777777; line-height: 22px; font-weight: bold;" st-title="leftimage-title">
+                          求测评
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 10px 0 0 0; font-size: 14px; line-height: 22px; font-family: Helvetica, Arial, sans-serif; color: #666666;" st-content="leftimage-paragraph">看到喜欢的产品，没有评测不放心剁手？已有评测看不够？KnewOne新功能“求测评”，向拥有此产品的小伙伴发送评测邀请，一起来分享使用乐趣！</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td height="50"></td>
+          </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
 
-                        <% if i < (@items[:hot_things_count] - 1) %>
-                          <!-- spacing for mobile devices-->
-                          <table align="left" border="0" cellpadding="0" cellspacing="0" class="mobilespacing">
-                            <tbody>
-                            <tr>
-                              <td width="100%" height="30" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
-                            </tr>
-                            </tbody>
-                          </table>
-                          <!-- end of for mobile devices-->
-                        <% end %>
-                      <% end -%>
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+<div class="block">
+  <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="fulltext">
+    <tbody>
+    <tr>
+      <td>
+        <table bgcolor="#f7f7f7" width="580" align="center" cellpadding="0" cellspacing="0" border="0" class="section-title">
+          <tbody>
+          <tr>
+            <td width="100%" height="40"></td>
+          </tr>
+          <tr>
+            <td align="center" style="font-size: 21px; font-family: Helvetica, Arial, sans-serif; color: #777777; font-weight: bold; line-height: 28px" st-title="fulltext-title">
+              KnewOne 本周新活动
+            </td>
+          </tr>
+          <tr>
+            <td width="100%" height="40"></td>
+          </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
 
-  <div class="block">
-    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="fulltext">
-      <tbody>
-      <tr>
-        <td>
-          <table bgcolor="#ffffff" width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" modulebg="edit">
-            <tbody>
-            <tr>
-              <td width="100%" height="50"></td>
-            </tr>
-            <tr>
-              <td>
-                <table width="540" align="center" cellpadding="0" cellspacing="0" border="0" class="devicewidthinner">
-                  <tbody>
-                  <tr>
-                    <td>
-                      <table height="36" align="center" valign="middle" border="0" cellpadding="0" cellspacing="0" class="tablet-button" st-button="edit">
-                        <tbody>
-                        <tr>
-                          <td width="auto" align="center" valign="middle" height="36" style=" background-color:#049cdb; background-clip: padding-box;font-size:13px; font-family:Helvetica, arial, sans-serif; text-align:center;  color:#ffffff; font-weight: 300; padding-left:25px; padding-right:25px;">
-                             <span style="color: #ffffff; font-weight: 300;">
-                               <%= link_to '查看全部热门 →', hits_url(from: :newspaper), target: '_blank', style: 'color: #ffffff; text-align:center;text-decoration: none;' %>
-                             </span>
-                          </td>
-                        </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="100%" height="50"></td>
-                  </tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-<% end %>
+<div class="block">
+  <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="leftimage">
+    <tbody>
+    <tr>
+      <td>
+        <table bgcolor="#ffffff" width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" modulebg="edit">
+          <tbody>
+          <tr>
+            <td height="50"></td>
+          </tr>
+          <tr>
+            <td>
+              <table width="540" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                <tbody>
+                <tr>
+                  <td>
+                    <table width="240" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                      <tbody>
+                      <tr>
+                        <td width="240" height="180" align="center">
+                          <%= image_tag attachments['event.jpg'].url, alt: '', border: '0', width: '240', height: '180', style: 'display:block; border:none; outline:none; text-decoration:none; width: 240px; height: 180px;', class: 'col2img' %>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <!-- mobile spacing -->
+                    <table align="left" border="0" cellpadding="0" cellspacing="0" class="mobilespacing">
+                      <tbody>
+                      <tr>
+                        <td width="100%" height="30" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <!-- mobile spacing -->
+                    <table width="270" align="right" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                      <tbody>
+                      <tr>
+                        <td style="padding: 0 0 5px 0; font-family: Helvetica, arial, sans-serif; font-size: 18px; color: #777777; line-height: 22px; font-weight: bold;" st-title="leftimage-title">
+                          <a href="" target="_blank" style="font-size: 18px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #049cdb; text-decoration: none; display: inline-block;">活动标题</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 10px 0 0 0; font-size: 14px; line-height: 22px; font-family: Helvetica, Arial, sans-serif; color: #666666;" st-content="leftimage-paragraph">你的办公桌是什么样子的？是整齐简洁的？文艺清新的？还是凌乱不羁的？无论是什么样，都体现着你的性格和生活痕迹，看过了大家各种文风的测评，这一次，我们来晒办公桌！戳下图一起来参与吧~</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td height="50"></td>
+          </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="block">
+  <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="fulltext">
+    <tbody>
+    <tr>
+      <td>
+        <table bgcolor="#f7f7f7" width="580" align="center" cellpadding="0" cellspacing="0" border="0" class="section-title">
+          <tbody>
+          <tr>
+            <td width="100%" height="40"></td>
+          </tr>
+          <tr>
+            <td align="center" style="font-size: 21px; font-family: Helvetica, Arial, sans-serif; color: #777777; font-weight: bold; line-height: 28px" st-title="fulltext-title">
+              KnewOne 本周热门专题
+            </td>
+          </tr>
+          <tr>
+            <td width="100%" height="40"></td>
+          </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="block">
+  <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="leftimage">
+    <tbody>
+    <tr>
+      <td>
+        <table bgcolor="#ffffff" width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" modulebg="edit">
+          <tbody>
+          <tr>
+            <td height="50"></td>
+          </tr>
+          <tr>
+            <td>
+              <table width="540" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                <tbody>
+                <tr>
+                  <td>
+                    <table width="240" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                      <tbody>
+                      <tr>
+                        <td width="240" height="180" align="center">
+                          <%= image_tag attachments['explore.jpg'].url, alt: '', border: '0', width: '240', height: '180', style: 'display:block; border:none; outline:none; text-decoration:none; width: 240px; height: 180px;', class: 'col2img' %>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <!-- mobile spacing -->
+                    <table align="left" border="0" cellpadding="0" cellspacing="0" class="mobilespacing">
+                      <tbody>
+                      <tr>
+                        <td width="100%" height="30" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <!-- mobile spacing -->
+                    <table width="270" align="right" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                      <tbody>
+                      <tr>
+                        <td style="padding: 0 0 5px 0; font-family: Helvetica, arial, sans-serif; font-size: 18px; color: #777777; line-height: 22px; font-weight: bold;" st-title="leftimage-title">
+                          <a href="" target="_blank" style="font-size: 18px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #049cdb; text-decoration: none; display: inline-block;">年会礼物采购季 「新奇酷」甄选方案</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 10px 0 0 0; font-size: 14px; line-height: 22px; font-family: Helvetica, Arial, sans-serif; color: #666666;" st-content="leftimage-paragraph">又是年末，又到了年会礼品采购季。没有点不一样的礼物，让人怎么好意思晒微博、发朋友圈？KnewOne 带给你「新奇酷」年会礼物甄选方案，成为热门话题中那个“别人的公司”！</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td height="50"></td>
+          </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

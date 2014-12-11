@@ -81,32 +81,27 @@ class UserMailer < BaseMailer
   end
 
   def newspaper(user_id, date = Date.today, items = {})
-    attachments.inline['gift.png'] = File.read(Rails.root.join('app/assets/images/mails/gift.png'))
-    attachments.inline['header.png'] = File.read(Rails.root.join('app/assets/images/mails/newspaper_header.png'))
+    attachments.inline['bigimage.jpg'] = File.read(Rails.root.join('app/assets/images/mails/bigimage.jpg'))
+    attachments.inline['footer.png'] = File.read(Rails.root.join('app/assets/images/mails/footer.png'))
+
+    attachments.inline['event.jpg'] = File.read(Rails.root.join('app/assets/images/mails/event.jpg'))
+    attachments.inline['explore.jpg'] = File.read(Rails.root.join('app/assets/images/mails/explore.jpg'))
+    attachments.inline['requestForReview.jpg'] = File.read(Rails.root.join('app/assets/images/mails/requestForReview.jpg'))
 
     @from_date = date - 7.days
     @date = date
     @user = User.find(user_id)
     @items = items
 
-    @items[:things] ||= @user.things.from_date(@from_date).to_date(@date)
-    @items[:things_count] ||= @items[:things].size
-
-    @items[:owns] ||= @user.owns.from_date(@from_date).to_date(@date)
-    @items[:owns_count] ||= @items[:owns].size
-
-    @items[:reviews] ||= @user.reviews.from_date(@from_date).to_date(@date)
-    @items[:reviews_count] ||= @items[:reviews].size
-
-    @items[:friends_things] ||= Thing.where(:id.in => @user.related_activities(%i(new_thing)).map(&:reference_union).map {|s| s.gsub 'Thing_', ''})
+    @items[:friends_things] ||= Thing.where(:id.in => @user.related_activities(%i(new_thing)).limit(6).map(&:reference_union).map {|s| s.gsub 'Thing_', ''})
     @items[:friends_things_count] ||= @items[:friends_things].size
 
-    if @items[:things_count] + @items[:owns_count] + @items[:friends_things_count] == 0
-      @items[:hot_things] ||= Thing.hot.limit(8)
-    end
+    @items[:hot_things] ||= Thing.hot.limit(6)
+    @items[:hot_things_count] ||= 6
 
     mail(to: @user.email,
-         subject: 'KnewOne用户周报') do |format|
+         subject: "'KnewOne用户周报（<%= @from_date.strftime('%Y.%m.%d') %> ~ <%= @date.strftime('%Y.%m.%d') %>）'",
+         edm: true) do |format|
       format.html { render layout: 'newspaper' }
     end
   end
