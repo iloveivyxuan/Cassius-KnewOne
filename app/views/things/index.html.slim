@@ -13,15 +13,15 @@
         ol.breadcrumb
           li= link_to @category.category.name, category_things_path(@category.category)
           li= link_to @category.name, category_things_path(@category)
-          li= link_to @tag.name, tag_things_path(@tag)
+          li.active= @tag.name
       - elsif @tag
         ol.breadcrumb
-          li= link_to @tag.name, tag_things_path(@tag)
+          li.active= @tag.name
       - elsif @category
         ol.breadcrumb
           - if (primary ||= @category.category)
             li= link_to primary.name, category_things_path(primary)
-          li= link_to @category.name, category_things_path(@category)
+          li.active= @category.name
       - unless @category || @tag || @brand
         = link_to '产品', things_path, class: 'breadcrumb'
     nav
