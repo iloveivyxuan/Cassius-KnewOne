@@ -16,10 +16,7 @@
         .author= rp.author
         = rp.score
 
-    section.body.post_content
-      header
-        = rp.link_to_share('btn btn--blue', '分享')
-      = rp.content
+    section.body.post_content= rp.content
 
     footer.actions
       .interactions
