@@ -5,13 +5,9 @@ class GroupsController < ApplicationController
   def index
     @groups = Group.visible.approved.desc(:members_count).limit(10)
 
-    params[:filter] ||= session[:topic_filter] || 'all'
-
-    if user_signed_in? && params[:filter] == 'joined'
-      session[:topic_filter] = 'joined'
+    if user_signed_in?
       @topics = Topic.visible.approved.in(group_id: current_user.joined_groups.map(&:id)).desc(:commented_at)
     else
-      session[:topic_filter] = 'all'
       @topics = Topic.visible.approved.desc(:commented_at)
     end
     @topics = @topics.page(params[:page]).per(20)

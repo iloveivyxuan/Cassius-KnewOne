@@ -16,10 +16,8 @@ section.flash_topics
   header
     nav
       ul.nav.nav--underline
-        li class=(session[:topic_filter] == 'joined' ? 'active' : '')
-          = link_or_login('我参与的', {filter: 'joined'})
-        li class=(session[:topic_filter] == 'all' ? 'active' : '')
-          = link_to('全站话题', {filter: 'all'})
+        li
+          = link_or_login('我加入的小组在讨论…')
 
   section
     - if @topics.present?
