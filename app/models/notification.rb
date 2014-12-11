@@ -47,8 +47,10 @@ class Notification
   default_scope -> { order_by [:created_at, :desc] }
 
   def read!
-    set read: true
-    receiver.inc unread_notifications_count: -1
+    unless self.read
+      set read: true
+      receiver.inc unread_notifications_count: -1
+    end
   end
 
   def method_missing(*args)
@@ -83,7 +85,7 @@ class Notification
 
   def self.mark_as_read_by_context(receiver, context)
     notifications = receiver.notifications.by_context(context)
-    receiver.inc unread_notifications_count: -notifications.count
+    receiver.inc unread_notifications_count: -notifications.unread.count
     notifications.set read: true, opened: true
   end
 
