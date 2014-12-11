@@ -443,7 +443,7 @@ class Thing < Post
         query: {
           multi_match: {
             query: query,
-            fields: ['title^10', '_slugs^5', 'subtitle', 'nickname^10', 'brand_name^3', 'ngram^3']
+            fields: ['title^10', '_slugs^5', 'subtitle^10', 'nickname^10', 'brand_name^3', 'ngram^3']
           }
         },
         field_value_factor: {
