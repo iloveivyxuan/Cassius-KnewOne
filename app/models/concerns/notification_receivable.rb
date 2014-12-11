@@ -38,7 +38,7 @@ module NotificationReceivable
   end
 
   def read_notificaitions(notifications)
-    inc(unread_notifications_count: -notifications.unread.count)
     notifications.set(read: true)
+    set unread_notifications_count: self.notifications.unread.count
   end
 end
