@@ -9,12 +9,19 @@
     h1
       - if @brand
         = render 'brand_breadcrumb'
+      - elsif @tag && @category
+        ol.breadcrumb
+          li= link_to @category.category.name, category_things_path(@category.category)
+          li= link_to @category.name, category_things_path(@category)
+          li= link_to @tag.name, tag_things_path(@tag)
       - elsif @tag
-        = render 'category_tag_breadcrumb', inner: @tag.categories.inner
+        ol.breadcrumb
+          li= link_to @tag.name, tag_things_path(@tag)
       - elsif @category
-        - if (primary ||= @category.category)
-          = link_to primary.name, category_things_path(primary), class: 'breadcrumb'
-        = link_to @category.name, category_things_path(@category), class: 'breadcrumb'
+        ol.breadcrumb
+          - if (primary ||= @category.category)
+            li= link_to primary.name, category_things_path(primary)
+          li= link_to @category.name, category_things_path(@category)
       - unless @category || @tag || @brand
         = link_to '产品', things_path, class: 'breadcrumb'
     nav
