@@ -84,9 +84,8 @@ class UserMailer < BaseMailer
     attachments.inline['bigimage.jpg'] = File.read(Rails.root.join('app/assets/images/mails/bigimage.jpg'))
     attachments.inline['footer.png'] = File.read(Rails.root.join('app/assets/images/mails/footer.png'))
 
-    attachments.inline['event.jpg'] = File.read(Rails.root.join('app/assets/images/mails/event.jpg'))
-    attachments.inline['explore.jpg'] = File.read(Rails.root.join('app/assets/images/mails/explore.jpg'))
-    attachments.inline['requestForReview.jpg'] = File.read(Rails.root.join('app/assets/images/mails/requestForReview.jpg'))
+    attachments.inline['special.jpg'] = File.read(Rails.root.join('app/assets/images/mails/special.jpg'))
+    attachments.inline['feature.jpg'] = File.read(Rails.root.join('app/assets/images/mails/feature.jpg'))
 
     @from_date = date - 7.days
     @date = date
@@ -100,7 +99,7 @@ class UserMailer < BaseMailer
     @items[:hot_things_count] ||= 6
 
     mail(to: @user.email,
-         subject: "'KnewOne用户周报（<%= @from_date.strftime('%Y.%m.%d') %> ~ <%= @date.strftime('%Y.%m.%d') %>）'",
+         subject: "'KnewOne用户周报（#{@from_date.strftime('%Y.%m.%d')} ~ #{@date.strftime('%Y.%m.%d')}）'",
          edm: true) do |format|
       format.html { render layout: 'newspaper' }
     end
