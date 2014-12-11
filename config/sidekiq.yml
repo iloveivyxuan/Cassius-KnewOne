@@ -13,3 +13,7 @@ production:
   - elasticsearch
   - edm
   - waybill
+  - newspaper
+:limits:
+  newspaper: 5
+  edm: 10
