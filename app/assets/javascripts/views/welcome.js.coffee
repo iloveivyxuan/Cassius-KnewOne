@@ -24,11 +24,14 @@ do (exports = window.Making || {}) ->
       $('.js-friendship')
         .on 'click', '.js-friendship-follow-all', (event) ->
           event.preventDefault()
-          $(event.delegateTarget)
-            .find('.js-friendship-users')
+
+          userIds = $(event.delegateTarget)
             .find('.follow_btn[data-method="post"]')
+            .map(-> $(this).attr('id').replace(/^follow_btn_/, ''))
+            .toArray()
             .slice(0, if location.hash is 'step3' and !$html.hasClass('mobile') then undefined else visibleCount)
-            .click()
+
+          $.post("/users/#{Making.user}/followings", {user_ids: userIds}, eval)
         .on 'click', '.js-friendship-refresh', (event) ->
           event.preventDefault()
           $list = $(event.delegateTarget).find('.js-friendship-users')
