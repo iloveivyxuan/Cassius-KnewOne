@@ -34,11 +34,12 @@
 
         footer
           .wrap
-            - cache [review, 'metas']
-              ul.metas
-                li
-                  = link_to review_presenter.path do
-                    = review_presenter.created_at
+            ul.metas
+              li
+                = link_to review_presenter.path do
+                  = review_presenter.created_at
+
+              - cache [review, 'metas']
                 li
                   = link_to review_presenter.path do
                     i.fa.fa-comments-o
