@@ -132,6 +132,7 @@ html.shop, html.things_index {
     #tags {
       @media (max-width: $screen-sm-max) {
         height: 80px;
+        margin-top: 20px;
         overflow: hidden;
       }
     }
