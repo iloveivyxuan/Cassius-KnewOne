@@ -12,6 +12,7 @@ class Merchant
   field :meiqia, type: String
 
   belongs_to :user
+  has_many :owners, class_name: "User"
   has_many :things
   has_one :group
 
@@ -21,7 +22,7 @@ class Merchant
 
   def role?(user)
     return unless user
-    true if user.role?(:editor) || self.user == user
+    true if user.role?(:editor) || self.owners.include?(user)
   end
 
   def user_name
@@ -30,5 +31,9 @@ class Merchant
 
   def user_name=(name)
     self.user = User.find_by(name: name)
+  end
+
+  def owner_names
+    self.owners.map(&:name).join(',')
   end
 end

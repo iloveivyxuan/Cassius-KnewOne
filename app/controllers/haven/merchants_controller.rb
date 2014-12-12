@@ -19,20 +19,20 @@ module Haven
     end
 
     def create
-      if @user
+      if @owners
         @merchant = Merchant.create(merchant_params)
-        @user.merchant = @merchant
         @merchant.group = @group if @group
+        @merchant.owners = @owners
       end
 
       redirect_to haven_merchants_path
     end
 
     def update
-      if @user
+      if @owners
         @merchant.update_attributes(merchant_params)
-        @user.merchant = @merchant
         @merchant.group = @group if @group
+        @merchant.owners = @owners
       end
 
       redirect_to haven_merchants_path
@@ -51,7 +51,7 @@ module Haven
 
     def set_user_and_group
       @group = Group.where(id: params[:merchant][:group_id]).first
-      @user = User.where(name: params[:merchant][:user_name]).first
+      @owners = params[:merchant][:owner_names].split(/[，,]/).map { |name| User.find_by(name: name) }
     end
 
     def merchant_params
