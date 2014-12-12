@@ -190,8 +190,9 @@ html.things_index #things_nav {
         color: #777;
 
         &:not(.active) {
+          padding: 0 2px;
           &:before {
-            content: "|\00a0";
+            content: "|";
           }
         }
 
