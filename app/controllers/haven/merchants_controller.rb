@@ -19,20 +19,20 @@ module Haven
     end
 
     def create
-      if @group && @user
+      if @user
         @merchant = Merchant.create(merchant_params)
         @user.merchant = @merchant
-        @merchant.group = @group
+        @merchant.group = @group if @group
       end
 
       redirect_to haven_merchants_path
     end
 
     def update
-      if @group && @user
+      if @user
         @merchant.update_attributes(merchant_params)
         @user.merchant = @merchant
-        @merchant.group = @group
+        @merchant.group = @group if @group
       end
 
       redirect_to haven_merchants_path
