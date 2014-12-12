@@ -375,7 +375,7 @@ HERE
   # ThingList
   has_many :thing_lists, inverse_of: :author
 
-  has_one :merchant
+  belongs_to :merchant
 
   def related_thing_lists
     (thing_lists + fancied_thing_lists).uniq
