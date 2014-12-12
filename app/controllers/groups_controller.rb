@@ -7,10 +7,11 @@ class GroupsController < ApplicationController
 
     if user_signed_in?
       @topics = Topic.visible.approved.in(group_id: current_user.joined_groups.map(&:id)).desc(:commented_at)
+      @topics = @topics.page(params[:page]).per(20)
     else
-      @topics = Topic.visible.approved.desc(:commented_at)
+      @groups = Group.visible.desc(:members_count).page(params[:page]).per(24)
+      render 'all'
     end
-    @topics = @topics.page(params[:page]).per(20)
   end
 
   def all
