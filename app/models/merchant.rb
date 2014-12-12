@@ -9,6 +9,8 @@ class Merchant
 
   field :description, type: String
 
+  field :meiqia, type: String
+
   belongs_to :user
   has_many :things
   has_one :group
