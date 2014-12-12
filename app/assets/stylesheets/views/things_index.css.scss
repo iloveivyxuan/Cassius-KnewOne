@@ -26,7 +26,7 @@ html.shop, html.things_index {
       color: $gray;
 
       a {
-        color: $gray;
+        color: #777;
       }
     }
 
@@ -47,15 +47,18 @@ html.shop, html.things_index {
       margin-left: 25px;
 
       > li {
-        color: #cdcdcd;
+        color: #777;
         font-size: 20px;
         text-decoration: none;
 
+        &.active {
+          color: #999;
+        }
+
         > a {
-          color: #737373;
+          color: #777;
         }
       }
-
     }
   }
 
@@ -111,12 +114,18 @@ html.shop, html.things_index {
     .tag-button {
       border: none;
       border-radius: 0;
-      box-shadow: 1px 1px 1px #d5d5d5;
-      margin: 0 5px 5px;
+      box-shadow: 0 0 1px rgba(0,0,0,.1);
+      color: #777;
+      margin: 0 5px 10px 5px;
 
       &:hover {
         background-color: #049cdb;
         color: white;
+      }
+
+      &.active {
+        background-color: #ebeced;
+        color: #999;
       }
     }
 
@@ -132,7 +141,7 @@ html.shop, html.things_index {
       text-align: center;
 
       a {
-        color: #737373;
+        color: #999;
       }
     }
   }
@@ -156,12 +165,30 @@ html.things_index #things_nav {
       margin-left: 2em;
       vertical-align: 3px;
     }
+    li {
+      color: #777;
+
+      &.active {
+        color: #999;
+      }
+    }
   }
 
   nav {
     margin-top: 1em;
     .bootstrap-select, select {margin-left: 1em;}
     .bootstrap-select {width: 150px;}
+
+    ol {
+      li {
+        color: #777;
+
+        &.active {
+          border-bottom: 2px solid #049cdb;
+          color: #999;
+        }
+      }
+    }
   }
 
   @media (min-width: $screen-sm-min) {
