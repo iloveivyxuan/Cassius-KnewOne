@@ -33,6 +33,9 @@ class Ability
 
   def signed(user)
     can [:follow, :unfollow], User
+    can :batch_follow, User do |u|
+      u == user
+    end
 
     can [:create, :update, :destroy], Story do |story|
       [story.thing.author, story.thing.maker, story.author].include? user

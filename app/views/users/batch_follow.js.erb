@@ -1,0 +1,3 @@
+<% @users.each do |user| %>
+  $('#follow_btn_<%= user.id.to_s %>').replaceWith("<%=j render('users/follow_btn', user: user) %>")
+<% end %>
