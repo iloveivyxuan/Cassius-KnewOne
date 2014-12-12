@@ -183,6 +183,12 @@ html.things_index #things_nav {
       li {
         color: #777;
 
+        &:not(.active) {
+          &:before {
+            content: "|\00a0";
+          }
+        }
+
         &.active {
           border-bottom: 2px solid #049cdb;
           color: #999;
