@@ -23,7 +23,7 @@ html class=page_class lang="zh-CN"
     = yield :stylesheet
     = javascript_include_tag "modernizr"
     - if Rails.env.production?
-      script src="https://s.meiqia.com/js/mechat.js?unitid=4075&btn=hide" async="true"
+      = render 'shared/meiqia'
       = render 'layouts/analystics'
     = render 'layouts/browsehappy'
   body

@@ -14,6 +14,7 @@ table.table.table-striped
       th 小组
       th 产品数
       th 管理者
+      th 美洽代码
       th 操作
   tbody
     - @merchants.each do |m|
@@ -23,6 +24,7 @@ table.table.table-striped
         th= m.group.name if m.group
         th= m.things.size
         th= link_to m.user_name, user_path(id: m.user.id) if m.user
+        th= !m.meiqia.blank?
         th
           = link_to "编辑", edit_haven_merchant_path(m), class: "btn btn-default"
           = link_to "删除", haven_merchant_path(m), method: :delete, class: "btn btn-danger"
