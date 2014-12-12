@@ -167,7 +167,13 @@ html.things_index #things_nav {
     }
     li {
       color: #777;
-
+      padding: 0 2px;
+      & + li {
+        &::before {
+          content: "\f105";
+          font-family: FontAwesome;
+        }
+      }
       &.active {
         color: #999;
       }
