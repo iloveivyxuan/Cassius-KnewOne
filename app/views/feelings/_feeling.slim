@@ -27,12 +27,11 @@
 
       footer
         .wrap
-          ul.metas
-            li
-              = link_to feeling_presenter.path do
-                = feeling_presenter.created_at
-
-            - cache [feeling, 'metas', can?(:destroy, feeling)]
+          - cache [feeling, 'metas', can?(:destroy, feeling)]
+            ul.metas
+              li
+                = link_to feeling_presenter.path do
+                  = feeling_presenter.created_at
               li
                 a.comments_toggle href="#" data-id="feeling_#{feeling.id}_comments"
                   i.fa.fa-comments-o
