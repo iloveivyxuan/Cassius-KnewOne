@@ -12,6 +12,11 @@
       - if tp.tags.present?
         ul.mobile_tags
           = render partial: 'things/tag', collection: tp.tags
+      - if tp.thing.merchant.present?
+        .merchant
+          | 由&nbsp
+          = link_to tp.thing.merchant.name, merchant_path(tp.thing.merchant)
+          | &nbsp发货并提供售后服务
 
   = tp.render_shopping_desc_modal
   = render 'things/mobile_buy_modals', tp: tp

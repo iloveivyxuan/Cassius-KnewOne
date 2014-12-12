@@ -812,6 +812,20 @@ html.feelings_show {
         }
       }
     }
+    .merchant {
+      background-color: #f7f7f7;
+      border-top: 1px solid #eee;
+      clear: both;
+      color: #b7b7b7;
+      display: block;
+      font-size: 12px;
+      margin: 30px -21px -28px;
+      text-align: center;
+      padding: 18px 21px;
+      a {
+        color: #777;
+      }
+    }
     .mobile_tags {
       float: right;
       width: 60%;
