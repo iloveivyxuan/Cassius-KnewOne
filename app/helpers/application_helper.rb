@@ -147,7 +147,7 @@ module ApplicationHelper
   end
 
   def time_ago_tag(time, css = '')
-    timeago_tag(time, date_only: true, nojs: true, class: css)
+    time_tag time, time_ago(time), class: css
   end
 
   def time_ago(time)
