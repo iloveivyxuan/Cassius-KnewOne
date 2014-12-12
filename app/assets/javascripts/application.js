@@ -36,6 +36,7 @@
 //= require editable/bootstrap-editable
 //= require editable/rails
 //= require jquery.china_city
+//= require rails-timeago
 //= require_tree ../templates
 //= require base
 //= require todo
