@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   before_action :forbidden_invisible, only: [:show]
 
   def index
-    @groups = Group.visible.approved.desc(:members_count).limit(10)
+    @groups = Group.visible.approved.desc(:members_count).limit(15)
 
     if user_signed_in?
       @topics = Topic.visible.approved.in(group_id: current_user.joined_groups.map(&:id)).desc(:commented_at)
