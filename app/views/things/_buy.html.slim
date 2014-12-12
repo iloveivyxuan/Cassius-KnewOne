@@ -8,6 +8,11 @@
     .buy.clearfix
       = tp.buy
       = render 'things/help'
+    - if tp.thing.merchant.present?
+      .merchant
+        | 由&nbsp
+        = link_to tp.thing.merchant.name, merchant_path(tp.thing.merchant)
+        | &nbsp发货并提供售后服务
 
 - content_for :script
   javascript:
