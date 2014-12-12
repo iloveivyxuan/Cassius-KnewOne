@@ -146,8 +146,9 @@ module ApplicationHelper
     content_tag :li, options, &block
   end
 
-  def time_ago_tag(time, css = '')
-    timeago_tag(time, force: true, date_only: false, nojs: true, class: css)
+  def time_ago_tag(time, klass = '')
+    title = date_time_text(time)
+    time_tag(time, time_ago_in_words(time), title: title, class: klass, 'data-time-ago' => time.iso8601)
   end
 
   def time_ago(time)
