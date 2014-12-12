@@ -29,6 +29,10 @@
 
       > li {
         list-style-type: none;
+
+        > a {
+          background-color: #fafafa;
+        }
       }
       margin-top: 20px;
     }
