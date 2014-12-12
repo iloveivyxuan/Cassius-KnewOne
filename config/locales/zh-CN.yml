@@ -37,6 +37,7 @@ zh-CN:
         description: '简介'
         sharing_text: '分享文案'
         nickname: '别名'
+        merchant_name: '商家名称'
       thing_list:
         name: '名称'
         description: '描述'
