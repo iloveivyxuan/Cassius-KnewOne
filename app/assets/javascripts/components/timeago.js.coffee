@@ -17,3 +17,5 @@ jQuery.timeago.settings.strings['zh-CN'] = {
   numbers: []
   wordSeparator: ''
 }
+
+jQuery.timeago.settings.lang = $('html').attr('lang') || 'zh-CN'
