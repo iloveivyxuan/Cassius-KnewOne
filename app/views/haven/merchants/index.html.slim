@@ -27,7 +27,7 @@ table.table.table-striped
         th= m.owners.size
         th
           = link_to "编辑", edit_haven_merchant_path(m), class: "btn btn-default"
-          = link_to "删除", haven_merchant_path(m), method: :delete, class: "btn btn-danger"
+          = link_to "删除", haven_merchant_path(m), method: :delete, class: "btn btn-danger", data: { confirm: '你确定吗，不能删除喔~' }
 
 = link_to "新建", new_haven_merchant_path
 
