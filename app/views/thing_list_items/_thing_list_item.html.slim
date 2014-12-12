@@ -6,7 +6,7 @@ section.thing_list_item [id="thing_list_item_#{thing_list_item.id}"
 
     .thing_list_item-cover
       = link_to thing, target: '_blank'
-        = present(thing).photo('thing.fixed')
+        = present(thing).photo_lazy('thing.fixed')
 
       - if can?(:destroy, thing_list_item)
         = link_to [thing_list_item.list, thing_list_item], class: 'thing_list_item-destroy',
