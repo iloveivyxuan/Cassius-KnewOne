@@ -189,10 +189,12 @@ html.things_index #things_nav {
       li {
         color: #777;
 
-        &:not(.active) {
+        & + li{
+          margin-left: 15px;
           padding: 0 2px;
           &:before {
             content: "|";
+            margin-left: -15px;
           }
         }
 
