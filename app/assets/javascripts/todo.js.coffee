@@ -112,8 +112,7 @@ do (exports = Making) ->
           $(container).find('.loading-things').html('<em class="nomore">没有更多了。</em>')
         , (data) ->
           $('.loading-things').remove()
-          $(data).find(".lazy").css("visibility", "visible").lazyload
-            threshold: 400
+          exports.lazyLoadImages(data)
           callback() if callback?
 
     CalculatePrice: ($el) ->

@@ -61,7 +61,7 @@ do (root = @, exports = Making) ->
             .remove()
           switch status
             when 'success'
-              $container.append(data)
+              $container.append(exports.lazyLoadImages(data))
             when 'nocontent'
               $container.append('<em class="nomore">没有更多了。</em>')
               $window.off('scroll.infiniteScroll')
