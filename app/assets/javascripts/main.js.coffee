@@ -295,7 +295,7 @@ do (exports = Making) ->
     $selectpicker = $('select.selectpicker')
     keycode = exports.keycode
 
-    exports.ImageLazyLoading()
+    exports.lazyLoadImages()
     exports.InitUIThings($('.thing'))
     exports.Share()
     exports.AjaxComplete()

@@ -142,6 +142,16 @@ do (root = @, exports = Making) ->
             .append('<p class="knewone-embed-tip">无效的资源。</p>')
             .attr('contenteditable', false)
 
+  exports.lazyLoadImages = (container = 'body') ->
+    $container = $(container)
+    $images    = $container.find('img.js-lazy')
+    if $images.length
+      $images
+        .css('visibility', 'visible')
+        .lazyload
+          threshold: 200
+    return $container
+
   $ ->
     $navbar          = $('.navbar')
     $gotop           = $('#go_top')

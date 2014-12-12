@@ -121,12 +121,4 @@ do (exports = Making) ->
       quantity = parseFloat($el.children('.item_quantity').val())
       $el.children('.price').text("￥ #{price * quantity}")
 
-    ImageLazyLoading: () ->
-      $("img.lazy")
-        .filter ->
-          $(@).css('visibility') is 'hidden'
-        .css('visibility', 'visible')
-        .lazyload
-          threshold: 0
-
   return

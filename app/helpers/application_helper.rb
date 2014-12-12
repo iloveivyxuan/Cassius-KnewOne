@@ -229,4 +229,10 @@ module ApplicationHelper
       path.present? ? path : '#'
     end
   end
+
+  def lazy_image(source, options = {})
+    options['data'] ||= {}
+    data = options['data'].merge(original: source)
+    tag 'img', options.merge(class: 'js-lazy', data: data)
+  end
 end

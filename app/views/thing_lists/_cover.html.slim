@@ -2,16 +2,16 @@
 
 .thing_list-cover class="thing_list-cover--#{layout}"
   - if thing_list.items.size == 0
-    .thing_list-image_wrapper = image_tag('blank-list-cover.png')
+    .thing_list-image_wrapper = lazy_image('blank-list-cover.png')
   - elsif thing_list.items.size < 4
-    .thing_list-image_wrapper = image_tag(thing_list.items.first.thing.cover.url(:square))
+    .thing_list-image_wrapper = lazy_image(thing_list.items.first.thing.cover.url(:square))
   - else
     - size = layout == :sextet ? 6 : (layout == :quintet ? 5 : 4)
     - thing_list.items.limit(size).each_with_index do |item, i|
       .thing_list-image_wrapper
         - if i == 0 && layout == :bottom_stack
-          = image_tag(item.thing.cover.url('thing.fixed'))
+          = lazy_image(item.thing.cover.url('thing.fixed'))
         - elsif [:quintet, :sextet].include?(layout)
-          = image_tag(item.thing.cover.url('thing.fixed.small'))
+          = lazy_image(item.thing.cover.url('thing.fixed.small'))
         - else
-          = image_tag(item.thing.cover.url(:square))
+          = lazy_image(item.thing.cover.url(:square))
