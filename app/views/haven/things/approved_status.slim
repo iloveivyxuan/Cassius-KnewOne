@@ -1,18 +1,41 @@
-h1
-  | 通过产品 #{@things.size} 个
+h1 通过产品
+h5= "#{@things.size} 个"
 
-h1
-  | 通过标签数量
+h1 通过标签
 
-- @values.each do |value|
-  h4
-    | 如下标签有 #{value} 个产品通过：
-  = @sorted.select { |k, v| v == value }.map(&:first).join(", ")
+table.table.table-striped
+  thead
+    tr
+      th style="width: 90%" 标签
+      th style="width: 10%" 产品数
+  tbody
+    - @values.each do |value|
+      tr
+        th= @sorted.select { |k, v| v == value }.map(&:first).join(", ")
+        th= value
 
-h1
-  | 产品喜欢数 top 20
+h1 产品喜欢数 top 20
 
-= @things.desc(:fanciers_count).take(20).map { |thing| [thing.title, thing.fanciers_count] }
+table.table.table-striped
+  thead
+    tr
+      th style="width: 90%" 产品
+      th style="width: 10%" 喜欢数
+  tbody
+    - @things.desc(:fanciers_count).take(20).map do |thing|
+      tr
+        th= link_to thing.title, thing
+        th= thing.fanciers_count
 
-h1
-  | 来源网站 top 20
+h1 来源网站 top 20
+
+table.table.table-striped
+  thead
+    tr
+      th style="width: 90%" 网站
+      th style="width: 10%" 次数
+  tbody
+    - @sorted_sites.take(20).each do |site, times|
+      tr
+        th= link_to site, site
+        th= times

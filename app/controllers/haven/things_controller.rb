@@ -136,12 +136,22 @@ module Haven
       from = Date.parse params[:from]
       to = Date.parse params[:to]
 
-      @things = Thing.gte(approved_at: from).lte(approved_at: to.next_day)
+      @things = Thing.gte(created_at: from).lte(created_at: to.next_day)
       tags = @things.map(&:tags).flatten
       result = {}
       tags.each { |tag| result[tag.name] = tags.count(tag) }
       @sorted = result.sort_by { |k, v| v }.reverse
       @values = @sorted.map(&:last).uniq
+      sites = @things.map(&:official_site).map do |site|
+        begin
+          URI.parse(URI::escape(site)).host unless site.blank?
+        rescue
+          nil
+        end
+      end.compact
+      result = {}
+      sites.each { |site| result[site] = sites.count(site) }
+      @sorted_sites = result.sort_by { |k, v| v }.reverse
     end
 
     private
