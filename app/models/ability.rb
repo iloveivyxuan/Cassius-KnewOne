@@ -188,6 +188,7 @@ class Ability
     can :destroy, Thing
     can :batch_update, Thing
     can :send_hits_message, Thing
+    can :approved_status, Thing
     can :batch_edit, Thing
     can :edit, Category
     can :update, Category
