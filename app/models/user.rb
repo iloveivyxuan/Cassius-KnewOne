@@ -81,11 +81,11 @@ class User
 
   index({email: 1}, {unique: true, sparse: true})
 
-  def remove_blank_email
-    self.delete :email if email.present?
+  def unset_blank_email
+    unset(:email) if email.blank?
   end
-  before_save :remove_blank_email
-  private :remove_blank_email
+  before_validation :unset_blank_email
+  private :unset_blank_email
 
   ## Recoverable
   field :reset_password_token, :type => String
