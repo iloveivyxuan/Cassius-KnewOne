@@ -149,6 +149,7 @@ do (root = @, exports = Making) ->
       $images
         .css('visibility', 'visible')
         .lazyload
+          delay: 300
           threshold: 200
     return $container
 
