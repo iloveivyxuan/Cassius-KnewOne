@@ -338,6 +338,7 @@ Making::Application.routes.draw do
         get 'batch_edit'
         patch 'batch_update'
         post 'send_hits_message'
+        get 'approved_status'
       end
     end
 

@@ -132,6 +132,18 @@ module Haven
       redirect_to :back, flash: { msg: "已成功向用户发送私信" }
     end
 
+    def approved_status
+      from = Date.parse params[:from]
+      to = Date.parse params[:to]
+
+      @things = Thing.gte(approved_at: from).lte(approved_at: to.next_day)
+      tags = @things.map(&:tags).flatten
+      result = {}
+      tags.each { |tag| result[tag.name] = tags.count(tag) }
+      @sorted = result.sort_by { |k, v| v }.reverse
+      @values = @sorted.map(&:last).uniq
+    end
+
     private
 
     def thing_params

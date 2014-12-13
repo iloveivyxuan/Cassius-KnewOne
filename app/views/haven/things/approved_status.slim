@@ -1,0 +1,18 @@
+h1
+  | 通过产品 #{@things.size} 个
+
+h1
+  | 通过标签数量
+
+- @values.each do |value|
+  h4
+    | 如下标签有 #{value} 个产品通过：
+  = @sorted.select { |k, v| v == value }.map(&:first).join(", ")
+
+h1
+  | 产品喜欢数 top 20
+
+= @things.desc(:fanciers_count).take(20).map { |thing| [thing.title, thing.fanciers_count] }
+
+h1
+  | 来源网站 top 20
