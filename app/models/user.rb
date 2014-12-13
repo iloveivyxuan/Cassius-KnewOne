@@ -82,9 +82,12 @@ class User
   index({email: 1}, {unique: true, sparse: true})
 
   def unset_blank_email
+    return if email.present?
+
+    reload
     unset(:email) if email.blank?
   end
-  before_validation :unset_blank_email
+  after_save :unset_blank_email
   private :unset_blank_email
 
   ## Recoverable
