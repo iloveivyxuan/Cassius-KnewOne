@@ -133,6 +133,8 @@ class HomeController < ApplicationController
   end
 
   def embed
+    return head :unprocessable_entity if params[:key].blank?
+
     case params[:type]
     when 'thing'
       slugs = params[:key].split(',')
