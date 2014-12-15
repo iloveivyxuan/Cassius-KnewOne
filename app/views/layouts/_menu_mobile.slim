@@ -21,11 +21,11 @@
           = link_to_with_icon "首页", "fa fa-home fa-fw", root_path
         li
           - if user_signed_in?
-            = link_to_with_icon "发布", "fa fa-plus fa-fw", "#", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}
+            = link_to_with_icon "分享产品", "fa fa-plus fa-fw", "#", id: "new_thing_trigger", data: {toggle: "modal", target: "#new-thing-from-url-modal"}
           - elsif browser.wechat?
-            = link_to_with_icon "发布", "fa fa-plus fa-fw", user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base')
+            = link_to_with_icon "分享产品", "fa fa-plus fa-fw", user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base')
           - else
-            = link_to_with_icon "发布", "fa fa-plus fa-fw", "#", data: {toggle: "modal", target: "#login-modal"}
+            = link_to_with_icon "分享产品", "fa fa-plus fa-fw", "#", data: {toggle: "modal", target: "#login-modal"}
         - if user_signed_in?
           - upmc = current_user.unread_private_messages_count
           li

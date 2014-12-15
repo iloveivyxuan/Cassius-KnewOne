@@ -554,10 +554,6 @@ html.no-touch {
       &:hover {
         border-bottom-color: $brand-primary;
       }
-
-      > .fa-plus {
-        color: $brand-primary;
-      }
     }
     &.active {
       > a {
@@ -572,6 +568,17 @@ html.no-touch {
         }
       }
     }
+  }
+}
+
+#nav_publish {
+  a {
+    background-color: #333;
+    color: #ccc !important;
+  }
+
+  .fa-plus {
+    color: $brand-primary;
   }
 }
 
