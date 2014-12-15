@@ -230,7 +230,7 @@ module ApplicationHelper
     end
   end
 
-  def lazy_image(source, options = {})
+  def lazy_image_tag(source, options = {})
     if browser.mobile?
       options['data'] ||= {}
       data = options['data'].merge(original: source)
