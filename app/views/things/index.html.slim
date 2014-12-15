@@ -45,7 +45,7 @@
   - if @tag
     = render 'tag_description'
 
-  - if !browser.desktop? && (@category || @brand)
+  - if !browser.desktop? && (@category || @brand || @tag)
     nav
       = render 'sort_breadcrumb'
 
