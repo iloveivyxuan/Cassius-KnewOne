@@ -19,7 +19,7 @@ class ThingPresenter < PostPresenter
   end
 
   def photo_lazy(size, options={})
-    tag "img", options.merge(class: 'lazy', alt: title, data:{original: photo_url(size)})
+    lazy_image_tag photo_url(size), options.merge(alt: title)
   end
 
   def content(is_fold = true)

@@ -229,4 +229,14 @@ module ApplicationHelper
       path.present? ? path : '#'
     end
   end
+
+  def lazy_image_tag(source, options = {})
+    if browser.mobile?
+      options['data'] ||= {}
+      data = options['data'].merge(original: source)
+      tag 'img', options.merge(class: 'js-lazy', data: data)
+    else
+      image_tag(source, options)
+    end
+  end
 end

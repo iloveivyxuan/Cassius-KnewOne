@@ -77,9 +77,23 @@
 
         /* Fire one scroll event per scroll. Not one scroll event per image. */
         if (0 === settings.event.indexOf("scroll")) {
-            $container.bind(settings.event, function() {
-                return update();
-            });
+            handler = (function() {
+              if (settings.delay > 0) {
+                return function() {
+                  $container.lastScrollTime = new Date().getTime()
+                  setTimeout(function() {
+                    if (new Date().getTime() - $container.lastScrollTime >= settings.delay) {
+                      return update();
+                    }
+                  }, settings.delay);
+                }
+              } else {
+                return function() {
+                  return update();
+                }
+              }
+            })();
+            $container.bind(settings.event, handler);
         }
 
         this.each(function() {

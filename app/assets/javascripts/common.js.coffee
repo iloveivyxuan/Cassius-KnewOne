@@ -61,7 +61,7 @@ do (root = @, exports = Making) ->
             .remove()
           switch status
             when 'success'
-              $container.append(data)
+              $container.append(exports.lazyLoadImages(data))
             when 'nocontent'
               $container.append('<em class="nomore">没有更多了。</em>')
               $window.off('scroll.infiniteScroll')
@@ -141,6 +141,17 @@ do (root = @, exports = Making) ->
             .empty()
             .append('<p class="knewone-embed-tip">无效的资源。</p>')
             .attr('contenteditable', false)
+
+  exports.lazyLoadImages = (container = 'body') ->
+    $container = $(container)
+    $images    = $container.find('img.js-lazy')
+    if $images.length
+      $images
+        .css('visibility', 'visible')
+        .lazyload
+          delay: 300
+          threshold: 200
+    return $container
 
   $ ->
     $navbar          = $('.navbar')

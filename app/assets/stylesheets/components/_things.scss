@@ -227,6 +227,7 @@ article.thing {
   header.cover {
     position: relative;
     height: 0;
+    overflow: hidden;
     padding-bottom: (600 / 800 * 100%);
 
     img {width: 100%;}
