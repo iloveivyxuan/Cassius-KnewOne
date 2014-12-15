@@ -4,7 +4,8 @@
     - lists = lists.desc(:fanciers_count).limit(limit)
     = render partial: 'things/thing_list', collection: lists, locals: {thing: thing, layout: :grid}
 
-    .show_all_lists
-      = link_to [:lists, thing]
-        | 收藏此产品的全部列表
-        i.fa.fa-chevron-right
+    - if lists.size > 2
+      .show_all_lists
+        = link_to [:lists, thing]
+          | 收藏此产品的全部列表
+          i.fa.fa-chevron-right
