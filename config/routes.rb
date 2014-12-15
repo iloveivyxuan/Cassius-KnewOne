@@ -275,7 +275,7 @@ Making::Application.routes.draw do
     mount Sidekiq::Web => '/haven/sidekiq'
   end
 
-  resource :styleguide, only: [:show] do
+  resource :styleguide, path: 'ediugelyts', only: [:show] do
     get 'coding'
     get 'scaffolds'
     get 'components'
