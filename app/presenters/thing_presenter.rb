@@ -19,11 +19,7 @@ class ThingPresenter < PostPresenter
   end
 
   def photo_lazy(size, options={})
-    if browser.mobile?
-      lazy_image(photo_url(size), alt: title)
-    else
-      photo(size, options)
-    end
+    lazy_image photo_url(size), options.merge(alt: title)
   end
 
   def content(is_fold = true)
