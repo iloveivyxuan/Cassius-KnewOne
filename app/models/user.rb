@@ -87,6 +87,14 @@ class User
   before_validation :unset_blank_email
   private :unset_blank_email
 
+  # most failure mail send is email inlcuding space
+  def clean_space_in_email
+    self.unconfirmed_email.gsub!(' ', '') if self.unconfirmed_email.present?
+    self.email.gsub!(' ', '') if self.email.present?
+  end
+  before_validation :clean_space_in_email
+  private :clean_space_in_email
+
   ## Recoverable
   field :reset_password_token, :type => String
   field :reset_password_sent_at, :type => Time
