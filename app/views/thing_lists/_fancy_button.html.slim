@@ -1,5 +1,5 @@
 - if browser.wechat? && !user_signed_in?
-  = link_to user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base'), data: {toggle: 'wechat_login'} do
+  = link_to user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base'), class: 'fancy-button', data: {toggle: 'wechat_login'} do
     i.fa.fa-heart-o
     span.fanciers_count = thing_list.fanciers_count
 - else
