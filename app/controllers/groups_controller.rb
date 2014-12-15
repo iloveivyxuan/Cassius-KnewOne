@@ -9,8 +9,7 @@ class GroupsController < ApplicationController
       @topics = Topic.visible.approved.in(group_id: current_user.joined_groups.map(&:id)).desc(:commented_at)
       @topics = @topics.page(params[:page]).per(20)
     else
-      @groups = Group.visible.desc(:members_count).page(params[:page]).per(24)
-      render 'all'
+      redirect_to action: "all"
     end
   end
 
