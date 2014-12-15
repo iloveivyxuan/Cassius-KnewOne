@@ -21,7 +21,7 @@ html.feelings_show {
       outline: none;
     }
 
-    .fa-heart-o {
+    i {
       margin: 0;
       font-size: 18px;
       color: $gray;
@@ -30,7 +30,7 @@ html.feelings_show {
     &:hover {
       background: #fff;
 
-      .fa-heart-o {
+      i {
         color: $red;
         &:before {  content:"\f004" }
       }
@@ -39,7 +39,7 @@ html.feelings_show {
     &.fancied {
       background: none;
 
-      .fa-heart-o {
+      i {
         color: $red;
         &:before {  content:"\f004" }
       }
@@ -47,7 +47,7 @@ html.feelings_show {
       &:hover {
         background: #fff;
 
-        .fa-heart-o {
+        i {
           color: $red;
           &:before {  content:"\f08a" }
         }
@@ -1690,7 +1690,6 @@ html.feelings_show {
         }
         .fancy-button {
           float: right;
-          width: 50px;
           width: calc(30% - 30px);
           @include MQ(XLplus) { width: calc(25% - 30px) }
           height: 60px;
