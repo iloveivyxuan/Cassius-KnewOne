@@ -442,7 +442,8 @@ class Thing < Post
         query: {
           multi_match: {
             query: query,
-            fields: ['title^10', '_slugs^5', 'subtitle^10', 'nickname^10', 'brand_name^3', 'ngram^3']
+            fields: ['title^10', '_slugs^10', 'subtitle^10', 'nickname^10', 'brand_name^5', 'ngram^5'],
+            tie_breaker: 0.4
           }
         },
         field_value_factor: {
@@ -452,7 +453,7 @@ class Thing < Post
       }
     }
 
-    __elasticsearch__.search(query: query_options, min_score: 0.5)
+    __elasticsearch__.search(query: query_options, min_score: 0.1)
   end
 
   private
