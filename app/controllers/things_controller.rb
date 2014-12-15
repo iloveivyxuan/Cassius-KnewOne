@@ -204,7 +204,7 @@ class ThingsController < ApplicationController
   end
 
   def lists
-    @lists = @thing.lists.gte(fanciers_count: 1, size: 4).desc(:fanciers_count)
+    @lists = @thing.lists.qualified.desc(:fanciers_count)
     @lists = @lists.page(params[:page]).per(24)
 
     respond_to do |format|

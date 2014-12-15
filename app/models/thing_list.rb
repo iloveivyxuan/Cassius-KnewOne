@@ -18,6 +18,8 @@ class ThingList
 
   alias_method :items, :thing_list_items
 
+  scope :qualified, -> { gte(fanciers_count: 1, size: 4) }
+
   include Fanciable
   fancied_as :fancied_thing_lists
 
