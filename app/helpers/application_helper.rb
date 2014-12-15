@@ -231,8 +231,12 @@ module ApplicationHelper
   end
 
   def lazy_image(source, options = {})
-    options['data'] ||= {}
-    data = options['data'].merge(original: source)
-    tag 'img', options.merge(class: 'js-lazy', data: data)
+    if browser.mobile?
+      options['data'] ||= {}
+      data = options['data'].merge(original: source)
+      tag 'img', options.merge(class: 'js-lazy', data: data)
+    else
+      image_tag(source, options)
+    end
   end
 end

@@ -146,17 +146,11 @@ do (root = @, exports = Making) ->
     $container = $(container)
     $images    = $container.find('img.js-lazy')
     if $images.length
-      switch exports.device
-        when 'mobile', 'tablet'
-          params =
-            delay: 300
-            threshold: 200
-        when 'desktop'
-          params =
-            threshold: 300
       $images
         .css('visibility', 'visible')
-        .lazyload(params)
+        .lazyload
+          delay: 300
+          threshold: 200
     return $container
 
   $ ->
