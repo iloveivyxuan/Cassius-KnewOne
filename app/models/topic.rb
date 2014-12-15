@@ -3,7 +3,7 @@ class Topic < Post
 
   field :is_top, type: Boolean, default: false
 
-  belongs_to :group, counter_cache: true
+  belongs_to :group, counter_cache: true, index: true
 
   validates :title, presence: true
   validates :content, presence: true
