@@ -1,0 +1,30 @@
+- page_title 'KnewOne Styleguide'
+- page_css 'styleguide'
+- provide :page_class, 'styleguide'
+
+- content_for :content do
+
+  header.page-header
+    h1 Styleguide
+
+  nav
+    ul.nav.nav-pills.nav-justified
+      = nav_tab :overview do
+        = link_to "Overview", styleguide_path
+      = nav_tab :coding do
+        = link_to "Coding Style", coding_styleguide_path
+      = nav_tab :scaffolds do
+        = link_to "Scaffolds", scaffolds_styleguide_path
+      = nav_tab :components do
+        = link_to "Components", components_styleguide_path
+      = nav_tab :tips do
+        = link_to "Tips", tips_styleguide_path
+
+  main
+    = yield
+
+- content_for :script do
+  javascript:
+    Making.InitStyleguide();
+
+= render template: 'layouts/application'

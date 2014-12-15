@@ -1,0 +1,33 @@
+@import '../base';
+
+html.styleguide {
+  #wrapper {
+    @include wrapper(simple, $max-width: $screen-md-min);
+
+    > nav {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .table {
+    &.text-center {
+      th {
+        text-align: center;
+      }
+    }
+  }
+
+  #gbs {
+    & + .dl-horizontal {
+      @media (min-width: $screen-md-min) {
+        dt {
+          width: 80px;
+        }
+
+        dd {
+          margin-left: 100px;
+        }
+      }
+    }
+  }
+}
