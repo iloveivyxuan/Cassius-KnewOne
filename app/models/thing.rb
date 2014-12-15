@@ -83,7 +83,6 @@ class Thing < Post
 
   belongs_to :resource
 
-  scope :recent, -> { gt(created_at: 1.month.ago) }
   scope :published, -> { lt(created_at: Time.now) }
   scope :reviewed, -> { gt(reviews_count: 0).desc(:priority, :created_at) }
   scope :prior, -> { gt(priority: 0).desc(:priority, :created_at) }
