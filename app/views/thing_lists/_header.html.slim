@@ -12,7 +12,7 @@ header
       = editable list, :name, title: '列表名称'
 
     - if list.description.present? || can?(:update, list)
-      .thing_list_description class=('hide' if list.description.blank?)
+      p.thing_list_description class=('hide' if list.description.blank?)
         = editable list, :description, title: '列表描述'
 
   .thing_list_actions
