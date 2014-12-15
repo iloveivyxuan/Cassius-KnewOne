@@ -1,23 +1,26 @@
-- author = comment.author
+- cache_unless user_signed_in?, comment
+  - author = comment.author
 
-li
-  article.comment
-    a.anchor--hidden id="comment-#{comment.id}"
+  li
+    article.comment
+      a.anchor--hidden id="comment-#{comment.id}"
 
-    .avatar
-      = link_to author, data: {'profile-popover' => author.id.to_s}
-        = user_avatar(author)
+      .avatar
+        = link_to author, data: {'profile-popover' => author.id.to_s}
+          = user_avatar(author)
 
-    header.author
-      = link_to author.name, author, class: 'author_name'
-      = time_ago_tag comment.created_at
-      - if can?(:create, comment)
-        a.reply href="#" title="回复"
-          i.fa.fa-reply
-      - if can?(:destroy, comment)
-        = link_to comment.post ? post_comment_path(comment.post, comment) : [comment.thing_list, comment],
-          method: :delete, remote: true,
-          class: 'destroy', title: '删除', data: {confirm: '您确定要删除吗？'}
-          i.fa.fa-trash-o
+      header.author
+        = link_to author.name, author, class: 'author_name'
+        = time_ago_tag comment.created_at
+        - if can?(:create, comment)
+          a.reply href="#" title="回复"
+            i.fa.fa-reply
+        - if can?(:destroy, comment)
+          = link_to comment.post ? post_comment_path(comment.post, comment) : [comment.thing_list, comment],
+            method: :delete, remote: true,
+            class: 'destroy', title: '删除', data: {confirm: '您确定要删除吗？'}
+            i.fa.fa-trash-o
 
-    section = comment_content(comment)
+
+      - cache [comment, 'content']
+        section = comment_content(comment)
