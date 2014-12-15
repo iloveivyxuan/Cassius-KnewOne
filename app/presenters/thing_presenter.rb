@@ -20,7 +20,7 @@ class ThingPresenter < PostPresenter
 
   def photo_lazy(size, options={})
     if browser.mobile?
-      tag "img", options.merge(class: 'js-lazy', alt: title, data:{original: photo_url(size)})
+      lazy_image(photo_url(size), alt: title)
     else
       photo(size, options)
     end
