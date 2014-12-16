@@ -1,10 +1,11 @@
 - page_title '商家管理'
 
-header.page-header
-  h2
+header.page-header.clearfix
+  h2.pull-left
     i.fa.fa-shopping-cart
     | 管理商家
     small 总共 #{Merchant.all.size} 个商家
+  = link_to "新建", new_haven_merchant_path, class: "btn btn-primary pull-right"
 
 table.table.table-striped
   thead
@@ -12,23 +13,23 @@ table.table.table-striped
       th 商家名
       th 描述
       th 小组
-      th 产品数
-      th 客服代码
-      th 管理者数量
-      th 操作
+      th width="60" 产品数
+      th width="72" 客服代码
+      th width="90" 管理者数量
+      th width="110" 操作
   tbody
     - @merchants.each do |m|
       tr
-        th= link_to m.name, merchant_path(m)
-        th= truncate(m.description, length: 25)
-        th= m.group.name if m.group
-        th= m.things.size
-        th= !m.customer_service.blank?
-        th= m.owners.size
-        th
-          = link_to "编辑", edit_haven_merchant_path(m), class: "btn btn-default"
-          = link_to "删除", haven_merchant_path(m), method: :delete, class: "btn btn-danger", data: { confirm: '你确定吗，不能恢复喔~' }
+        td= link_to m.name, merchant_path(m)
+        td= truncate(m.description, length: 25)
+        td= m.group.name if m.group
+        td= m.things.size
+        td= !m.customer_service.blank?
+        td= m.owners.size
+        td
+          = link_to "[编辑]", edit_haven_merchant_path(m)
+          span.separator |
+          = link_to "[删除]", haven_merchant_path(m), method: :delete, data: { confirm: '你确定吗，不能恢复喔~' }
 
-= link_to "新建", new_haven_merchant_path
 
 = paginate @merchants
