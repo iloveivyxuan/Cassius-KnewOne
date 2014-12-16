@@ -9,8 +9,6 @@ class Merchant
 
   field :description, type: String
 
-  field :meiqia, type: String
-
   field :customer_service, type: String
   field :customer_service_type, type: String # script or link
 
