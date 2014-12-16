@@ -7,7 +7,7 @@
       = tp.render_shopping_desc
     .buy.clearfix
       = tp.buy
-      = link_to "客服", "#customer_services", class: "btn btn-service-terms btn--blue"      
+      = customer_service tp.thing, "btn btn-service-terms btn--blue"
     - if tp.thing.merchant.present?
       .merchant
         | 由

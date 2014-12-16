@@ -165,4 +165,12 @@ module ThingsHelper
     end
   end
 
+  def customer_service(thing, klass=nil)
+    if thing.merchant.try(:customer_service_type) == "link"
+      link_to "客服", thing.merchant.customer_service, class: klass
+    else
+      link_to "客服", "#customer_services", class: klass
+    end
+  end
+
 end
