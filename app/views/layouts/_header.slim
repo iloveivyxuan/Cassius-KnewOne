@@ -24,8 +24,6 @@
             = link_to "精选", explore_path
           = nav_tab :groups do
             = link_to "小组", groups_path
-          li
-            = link_to "客服", "#customer_services", title: "和我们聊天"
           li#nav_publish
             - if user_signed_in?
               - data = {toggle: "modal", target: "#new-thing-from-url-modal"}
