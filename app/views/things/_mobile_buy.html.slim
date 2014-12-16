@@ -1,22 +1,23 @@
 - if tp.buy
   .mobile_buy
     .mobile_shop
-      = render_mobile_buy_button(tp.thing)
       .mobile_shop_details
         - if tp.price.present?
           = tp.price
         - if user_signed_in? && [:dsell, :pre_order].include?(tp.thing.stage)
-          = link_to "（购买详情）", "#", class: "track_event",
+          = link_to "详情", "#", class: "track_event",
             data: {toggle: "modal", target: "#shopping_modal"}
+      = render_mobile_buy_button(tp.thing)
     .mobile_others.clearfix
       - if tp.tags.present?
         ul.mobile_tags
           = render partial: 'things/tag', collection: tp.tags
       - if tp.thing.merchant.present?
         .merchant
-          | 由&nbsp
-          = link_to tp.thing.merchant.name, merchant_path(tp.thing.merchant)
-          | &nbsp发货并提供售后服务
+          | 由
+          = link_to tp.thing.merchant.name, merchant_path(tp.thing.merchant), class: "merchant-name"
+          | 发货并提供
+          = link_to "客服", "#customer_services", class: "btn btn-sm btn--blue"
 
   = tp.render_shopping_desc_modal
   = render 'things/mobile_buy_modals', tp: tp

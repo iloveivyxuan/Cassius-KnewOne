@@ -700,16 +700,20 @@ html.feelings_show {
     }
   }
   .mobile_shop {
-    @include clearfix;
-    padding: 2em 1em;
+    padding: 1.5em 1em;
     @include MQ(Mplus) { padding: 2.5em 2em }
 
     .mobile_shop_details {
-      float: right;
-      font-size: 12px;
+      font-size: 18px;
       line-height: 40px;
+      margin-bottom: 10px;
       text-align: center;
-      width: 50%;
+
+      [data-target="#shopping_modal"] {
+        color: $blue-dark;
+        font-size: 12px;
+        margin-left: .5em;
+      }
 
       &:empty {
         display: none;
@@ -719,16 +723,17 @@ html.feelings_show {
     .btn-buy-mobile,
     .btn-buy-mobile-shorten,
     .buy_button {
-      float: left;
       height: 40px;
       line-height: 40px;
       margin: 0;
       padding: 0;
-      width: 45%;
     }
 
     .btn-buy-mobile--shorten {
+      display: block;
       font-size: 14px;
+      margin: 0 auto;
+      width: 80%;
       @include MQ(XS) { font-size: 12px }
     }
 
@@ -819,12 +824,23 @@ html.feelings_show {
       display: block;
       font-size: 12px;
       text-align: center;
-      padding: 18px 21px;
-      a {
-        color: #777;
+      padding: 13px 10px;
+
+      .btn {
+        height: 24px;
+        line-height: 24px;
+        margin-left: .5em;
+        padding: 0 10px;
       }
     }
+
+    .merchant-name {
+      color: #777;
+      padding: 0 .25em;
+    }
+
     .mobile_tags {
+      display: none;
       float: right;
       padding: .8em 1em;
       width: 60%;
@@ -1353,9 +1369,10 @@ html.feelings_show {
         margin: 30px -21px -28px;
         text-align: center;
         padding: 18px 21px;
-        > a {
-          color: #777;
-        }
+      }
+      .merchant-name {
+        color: #777;
+        padding: 0 .25em;
       }
       .shopping_desc {
         margin-bottom: 1em;
