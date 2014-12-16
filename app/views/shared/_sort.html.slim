@@ -2,5 +2,5 @@
   .form-group
     i.fa.fa-sort-amount-desc.selectpicker_label
     = select_tag :sort,
-                 options_for_select([['最新', 'created_at'], ['最有用', 'hit']], selected: params[:sort]),
+                 options_for_select([['按时间排列', 'created_at'], ['按“赞”数排列', 'hit']], selected: params[:sort]),
                  class: 'form-control selectpicker js_auto_submit'
