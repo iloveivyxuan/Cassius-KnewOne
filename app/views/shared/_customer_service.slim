@@ -1,0 +1,5 @@
+- if @thing && @thing.merchant
+  - if @thing.merchant.customer_service_type == "script"
+    = @thing.merchant.customer_service
+- else
+  script src="https://s.meiqia.com/js/mechat.js?unitid=4075&btn=hide" async="true"
