@@ -14,6 +14,8 @@ class Merchant
   field :customer_service, type: String
   field :customer_service_type, type: String # script or link
 
+  before_save :meiqia_script
+
   has_many :owners, class_name: "User"
   has_many :things
   has_one :group
@@ -29,5 +31,16 @@ class Merchant
 
   def owner_names
     self.owners.map(&:name).join(',')
+  end
+
+  private
+
+  def meiqia_script
+    return if customer_service.blank?
+    return unless customer_service.include?('meiqia')
+    return if customer_service.include?("&btn=hide")
+    arr = customer_service.split("\"")
+    arr[-2].concat("&btn=hide")
+    self.customer_service = arr.join
   end
 end
