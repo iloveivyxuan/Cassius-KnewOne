@@ -151,6 +151,9 @@ window.Making = do (exports = window.Making || {}) ->
       $nav_primary    = $('#nav_primary')
       transition_time = parseFloat($form.css('transition-duration')) * 1000
       _focusOutSearch = ->
+        $candidate.hide()
+        $backdrop.fadeOut()
+
         if !$('html').hasClass('csstransitions')
           $nav_primary.show()
         $form
@@ -163,15 +166,11 @@ window.Making = do (exports = window.Making || {}) ->
 
       $('.navbar').add($backdrop).add($close).on 'click.search', (e) ->
         if e.target is $input[0] then return
-
-        if $candidate.is(':visible')
-          $candidate.hide()
-          $backdrop.fadeOut()
-          _focusOutSearch()
+        _focusOutSearch()
 
       $input
         .on 'focusout', ->
-          if $candidate.is(':hidden') then _focusOutSearch()
+          _focusOutSearch()
         .on 'click', ->
           $(@).select()
 
