@@ -80,15 +80,15 @@ class UserMailer < BaseMailer
          subject: '你在「KnewOne 牛玩」上收到了一封私信')
   end
 
-  def newspaper(user_id, date = Date.today, items = {})
+  def newspaper(user_id, date_str = Date.today.to_s, items = {})
     attachments.inline['bigimage.jpg'] = File.read(Rails.root.join('app/assets/images/mails/bigimage.jpg'))
     attachments.inline['footer.png'] = File.read(Rails.root.join('app/assets/images/mails/footer.png'))
 
     attachments.inline['special.jpg'] = File.read(Rails.root.join('app/assets/images/mails/special.jpg'))
     attachments.inline['feature.jpg'] = File.read(Rails.root.join('app/assets/images/mails/feature.jpg'))
 
-    @from_date = date - 7.days
-    @date = date
+    @date = Date.parse(date_str)
+    @from_date = @date - 7.days
     @user = User.find(user_id)
     @items = items
 
