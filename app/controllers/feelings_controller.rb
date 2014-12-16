@@ -5,7 +5,7 @@ class FeelingsController < ApplicationController
   layout 'thing'
 
   def index
-    @feelings = if params[:sort] == "created_at"
+    @feelings = if params[:sort] != "hit"
                   @thing.feelings.desc(:created_at)
                 else
                   @thing.feelings.desc(:lovers_count, :created_at)
