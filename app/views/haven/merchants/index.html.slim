@@ -23,7 +23,7 @@ table.table.table-striped
         th= truncate(m.description, length: 25)
         th= m.group.name if m.group
         th= m.things.size
-        th= !m.meiqia.blank?
+        th= !m.customer_service.blank?
         th= m.owners.size
         th
           = link_to "编辑", edit_haven_merchant_path(m), class: "btn btn-default"

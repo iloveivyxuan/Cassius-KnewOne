@@ -4,7 +4,37 @@ label 描述
 = f.text_field :description, class: "form-control"
 label 小组
 = f.text_field :group_id, class: "form-control", placeholder: "请填写小组 id"
-label 美洽代码
-= f.text_field :meiqia, class: "form-control", placeholder: "格式：https://s.meiqia.com/js/mechat.js?unitid=4075&btn=hide"
+
+label 客服代码
+.input-group#customer_service_code
+  .input-group-btn
+    button.btn.btn-default tabindex="-1" type="button" #{ type_value(@merchant) }
+    button.btn.btn-default.dropdown-toggle aria-expanded="false" data-toggle="dropdown" type="button"
+      span.caret
+      span.sr-only Toggle Dropdown
+    ul.dropdown-menu role="menu"
+      li= link_to "脚本", "javascript:;", data: { placeholder: '格式：<script async="true" src="https://s.meiqia.com/js/mechat.js?unitid=4075"></script>' }
+      li= link_to "链接", "javascript:;", data: { placeholder: "格式：http://bong.cn/service" }
+    = hidden_field_tag 'merchant[customer_service_type]', (@merchant && @merchant.customer_service_type) || 'script'
+  input.form-control name='merchant[customer_service]' type='text' placeholder='格式：<script async="true" src="https://s.meiqia.com/js/mechat.js?unitid=4075"></script>' value="#{@merchant && @merchant.customer_service}"
+
 label 管理者
 = f.text_field :owner_names, required: true, class: "form-control", placeholder: "用逗号隔开，例如：沙昕哲,李路"
+
+- content_for :script do
+  javascript:
+    $(function(){
+      var $customerServiceCode = $('#customer_service_code'),
+          $customerServiceInput = $customerServiceCode.children('.form-control');
+      $customerServiceCode.on('click', '.dropdown-menu a', function(){
+        var $firstButton = $(".btn:first-child");
+        $firstButton.text($(this).text());
+        $firstButton.val($(this).text());
+        if ($(this).text() == '脚本') {
+          $('#merchant_customer_service_type').val("script");
+        } else {
+          $('#merchant_customer_service_type').val("link");
+        }
+        $customerServiceInput.attr('placeholder', $(this).data('placeholder'));
+      });
+    });

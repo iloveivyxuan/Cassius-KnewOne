@@ -11,6 +11,9 @@ class Merchant
 
   field :meiqia, type: String
 
+  field :customer_service, type: String
+  field :customer_service_type, type: String # script or link
+
   has_many :owners, class_name: "User"
   has_many :things
   has_one :group
