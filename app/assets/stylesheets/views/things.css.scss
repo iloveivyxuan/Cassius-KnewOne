@@ -690,6 +690,7 @@ html.feelings_show {
 
   .mobile_buy {
     background: #fff;
+    margin-bottom: 2em;
   }
   .mobile_buy--subpage {
     background: #fff;
@@ -792,9 +793,7 @@ html.feelings_show {
   }
 
   .mobile_others {
-    margin-bottom: 2em;
-    padding: .8em 2em;
-    @include MQ(XS) { padding: .8em 1em }
+    @include MQ(MD) { padding: .8em 1em }
     background: $ghost-white;
     .mobile_related {
       display: inline-block;
@@ -819,7 +818,6 @@ html.feelings_show {
       color: #b7b7b7;
       display: block;
       font-size: 12px;
-      margin: 30px -21px -28px;
       text-align: center;
       padding: 18px 21px;
       a {
@@ -828,6 +826,7 @@ html.feelings_show {
     }
     .mobile_tags {
       float: right;
+      padding: .8em 1em;
       width: 60%;
       li {
         float: right;
