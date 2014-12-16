@@ -55,7 +55,7 @@ module Haven
     end
 
     def merchant_params
-      params.require(:merchant).slice(:name, :description, :meiqia).permit!
+      params.require(:merchant).slice(:name, :description, :meiqia, :customer_service_type, :customer_service).permit!
     end
   end
 end
