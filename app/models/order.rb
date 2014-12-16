@@ -548,9 +548,15 @@ class Order
 
   def calculate_deliver_price
     return 0 if self.deliver_by.nil?
-    self.deliver_by = :bong_delivery if self.bong_inside?
-    return 10 if self.deliver_by == :bong_delivery
-    (self.deliver_by == :zt || items_price > 500) ? 0 : SF_PRICE
+
+    case self.deliver_by
+    when :zt, :zhongtong
+      items_price < 88 ? 10 : 0
+    when :sf, :shunfeng
+      items_price < 500 ? 20 : 0
+    else
+      0
+    end
   end
 
   def items_price
