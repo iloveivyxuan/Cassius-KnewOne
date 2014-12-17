@@ -553,7 +553,7 @@ class Order
     when :zt, :zhongtong
       items_price < 88 ? 10 : 0
     when :sf, :shunfeng
-      items_price < 500 ? 20 : 0
+      items_price < 500 ? 10 : 0
     else
       0
     end
