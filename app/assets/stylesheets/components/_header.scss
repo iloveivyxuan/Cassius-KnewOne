@@ -607,8 +607,7 @@ html.no-touch {
     line-height: 29px;
   }
   &.focus {
-    width: 42%;
-    @include MQ(XLplus) { width: 57% }
+    width: 640px;
     .form-control {
       background-color: rgba(#5e6775,.6);
     }
@@ -825,11 +824,5 @@ html.no-touch {
 #navbar_search {
   @media (max-width: $screen-sm-max) {
     width: 100%;
-  }
-
-  &.focus {
-    @include MQ(XLplus) {
-      width: 50%;
-    }
   }
 }
