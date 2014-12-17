@@ -578,49 +578,42 @@ html.no-touch {
 }
 
 #navbar_search {
-  width: auto;
+  float: left;
   margin: 0;
   padding: 0;
-
+  width: 11%;
+  @include MQ(Lplus) { width: 15% }
   .form-control {
     height: 45px;
     padding-left: 30px;
     padding-right: 30px;
     font-size: 14px;
     line-height: 1em;
-
     background-color: $navbar-search-bg;
     border: none;
     @include border-radius(0);
-
     &:focus {
       margin: 0;
       color: $gray-lighter;
-      background-color: rgba(#5e6775,.6);
       letter-spacing: 1px;
       border-left: 3px solid $brand-primary;
       @include box-shadow(none);
       @include border-radius(0);
     }
-
-
-    @media (min-width: $grid-float-breakpoint) {
-      width: 200px;
-      transition: width .1s;
-
-      &:focus {
-        width: 300px;
-      }
-    }
   }
-
   .fa {
     color: #999;
     top: 8px;
     line-height: 29px;
   }
+  &.focus {
+    width: 42%;
+    @include MQ(XLplus) { width: 57% }
+    .form-control {
+      background-color: rgba(#5e6775,.6);
+    }
+  }
 }
-
 .user_links {
   height: 45px;
   .user_link {

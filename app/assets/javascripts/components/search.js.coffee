@@ -157,6 +157,7 @@ window.Making = do (exports = window.Making || {}) ->
         if !$('html').hasClass('csstransitions')
           $nav_primary.show()
         $form
+          .removeClass('focus')
           .one $.support.transition.end, ->
             if Modernizr.mq '(min-width: ' + Making.Breakpoints.screenSMMin + ')'
               $nav_primary.fadeIn()
@@ -169,9 +170,15 @@ window.Making = do (exports = window.Making || {}) ->
         _focusOutSearch()
 
       $input
+        .on 'focusin', ->
+          if !$form.hasClass('focus')
+            if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ') ')
+              $nav_primary.hide()
+            $form.addClass('focus')
         .on 'focusout', ->
           _focusOutSearch()
         .on 'click', ->
           $(@).select()
 
+  #exports
   exports
