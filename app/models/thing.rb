@@ -442,8 +442,7 @@ class Thing < Post
         query: {
           multi_match: {
             query: query,
-            fields: ['title^10', '_slugs^10', 'subtitle^10', 'nickname^10', 'brand_name^5', 'ngram^5'],
-            tie_breaker: 0.4
+            fields: ['title^10', '_slugs^10', 'subtitle^10', 'nickname^10', 'brand_name^5', 'ngram^5']
           }
         },
         field_value_factor: {
