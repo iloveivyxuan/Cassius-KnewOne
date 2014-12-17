@@ -22,13 +22,14 @@ section.orders_wrapper
         tr
           th 发票信息：
           td= content_for_invoice @order.invoice
-      tr
-        th 物流方式：
-        td= deliver_method_text @order
-      - if @order.deliver_no.present?
+      - if @order.shipped?
         tr
-          th 运单号：
-          td= @order.deliver_no
+          th 物流方式：
+          td= deliver_method_text @order
+        - if @order.deliver_no.present?
+          tr
+            th 运单号：
+            td= @order.deliver_no
       - if @order.trade_no.present?
         tr
           th 交易号：
