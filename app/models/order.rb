@@ -706,6 +706,8 @@ class Order
 
       order.cal_and_set_consumable_bong_point
 
+      order.deliver_price = order.calculate_deliver_price
+
       # 优惠券和bong活跃点互斥
       if order.bong_point == 0
         order.set_coupon!

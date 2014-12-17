@@ -4,7 +4,8 @@ Making.OrderPage =
       $('.use_sf').on('change',
       ->
         price = parseFloat($('.total_price').attr('data-things-price')) + \
-                parseFloat($('.total_price').attr('data-rebates-price'))
+                parseFloat($('.total_price').attr('data-rebates-price')) +
+                parseFloat($('.total_price').attr('data-deliver-price'))
 
         if $(@).prop('checked')
           price += parseFloat($(this).attr('data-price'))
