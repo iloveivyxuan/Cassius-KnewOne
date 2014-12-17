@@ -186,7 +186,12 @@ do (exports = Making) ->
                       selection.addRange(range)
           @observer.observe @$body[0], {childList: true, subtree: true}
 
-        @$body.minsert()
+        @$body.minsert
+          actions:
+            videos:
+              placeholder: '在这里输入视频网址或代码（通用代码）然后按回车'
+            embeds:
+              placeholder: '插入产品、评测或列表链接然后回车'
 
         @$insertImageButton = @$('.minsert [data-action="insert-image"]')
           .on 'click', ->
