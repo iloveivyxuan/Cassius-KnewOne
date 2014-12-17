@@ -180,5 +180,7 @@ window.Making = do (exports = window.Making || {}) ->
         .on 'click', ->
           $(@).select()
 
+      $input.triggerHandler('focusin') if $input.is(':focus')
+
   #exports
   exports
