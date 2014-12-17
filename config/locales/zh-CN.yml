@@ -52,6 +52,7 @@ zh-CN:
         estimates_at: '预计日期'
         photo_number: '图片序号'
         use_sf: '能否使用顺丰'
+        virtual: '这是虚拟商品'
         max_per_buy: '单次最大购买数量'
         note: '备注'
         minimal_bong_point: '最少需求bong活跃点'

@@ -5,12 +5,14 @@ class OrderItem
   field :kind_title, type: String
   field :quantity, type: Integer
   field :single_price, type: BigDecimal
+  field :virtual, type: Boolean
 
   belongs_to :thing
   field :kind_id, type: String
   validates :kind_id, :presence => true
 
   scope :by_id, ->(id) { where 'thing_id' => id }
+  scope :virtual, -> { where virtual: true }
 
   embedded_in :order
 
