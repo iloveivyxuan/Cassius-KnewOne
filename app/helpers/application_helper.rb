@@ -71,7 +71,7 @@ module ApplicationHelper
   end
 
   def slogan
-    "在这里，分享新奇酷产品和你的体验"
+    "分享科技与设计产品，发现更好的生活"
   end
 
   def logo
