@@ -10,7 +10,8 @@ html
     p= @entry.summary
 
     h2 文章顶部图片
-    = image_tag @entry.canopy.url(:wechat)
+    figure style="margin: 0 0 1em 0; text-align: center;"
+      = image_tag @entry.canopy.url(:wechat)
 
     h2 正文
     section
