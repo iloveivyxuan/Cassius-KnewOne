@@ -1,0 +1,5 @@
+header.page-header
+  h2
+    i.fa.fa-shopping-cart
+    = link_to "管理商家", haven_merchants_path
+    small 总共 #{Merchant.all.size} 个商家
