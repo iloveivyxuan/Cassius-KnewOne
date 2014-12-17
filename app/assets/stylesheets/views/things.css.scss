@@ -723,10 +723,12 @@ html.feelings_show {
     .btn-buy-mobile,
     .btn-buy-mobile-shorten,
     .buy_button {
+      display: block;
       height: 40px;
       line-height: 40px;
-      margin: 0;
+      margin: 0 auto;
       padding: 0;
+      width: 80%;
     }
 
     .btn-buy-mobile--shorten {
