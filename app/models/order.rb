@@ -547,13 +547,13 @@ class Order
   end
 
   def calculate_deliver_price
-    return 0 if self.deliver_by.nil?
+    price = items_price - (order_items.virtual.map(&:price).reduce(&:+) || 0)
 
     case self.deliver_by
     when :zt, :zhongtong
-      items_price < 88 ? 10 : 0
+      price < 88 ? 9 : 0
     when :sf, :shunfeng
-      items_price < 500 ? 10 : 0
+      items_price < 500 ? 19 : 0
     else
       0
     end
@@ -620,6 +620,7 @@ class Order
     self.order_items.build({
                                thing_title: cart_item.thing.title,
                                kind_title: cart_item.kind.title,
+                               virtual: cart_item.kind.virtual?,
                                quantity: cart_item.quantity,
                                thing: cart_item.thing.id,
                                kind_id: cart_item.kind.id,
@@ -642,6 +643,10 @@ class Order
   def bong_inside?
     bong_family = %w(544f8b9331302d5139c60000 544f8b0a31302d4fd2dd0000 54700f5d31302d2b49260100 547eb49431302d676c830000 54868ff731302d10625a0300)
     bong_family.map { |bong| self.order_items.by_id(bong).exists? }.reduce(:|)
+  end
+
+  def pure_virtual?
+    order_items.virtual.size == order_items.size
   end
 
   def set_coupon!
@@ -700,6 +705,8 @@ class Order
       end
 
       order.cal_and_set_consumable_bong_point
+
+      order.deliver_price = order.calculate_deliver_price
 
       # 优惠券和bong活跃点互斥
       if order.bong_point == 0

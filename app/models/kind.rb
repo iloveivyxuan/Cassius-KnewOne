@@ -15,6 +15,7 @@ class Kind
   field :max_per_buy, type: Integer, default: 0
 
   field :use_sf, type: Boolean, default: true
+  field :virtual, type: Boolean, default: false
 
   field :stage, type: Symbol, default: :stock
   field :estimates_at, type: DateTime
