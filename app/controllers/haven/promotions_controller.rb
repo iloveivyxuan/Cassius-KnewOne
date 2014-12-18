@@ -38,6 +38,18 @@ module Haven
       redirect_to haven_promotions_url
     end
 
+    def sort
+      promotions = []
+      params[:ids].each { |id| promotions << Promotion.find(id) }
+
+      priority = promotions.size + 1
+      promotions.each do |p|
+        p.set(priority: priority)
+        priority -= 1
+      end
+      head :no_content
+    end
+
     private
 
     def set_promotion

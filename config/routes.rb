@@ -334,7 +334,11 @@ Making::Application.routes.draw do
 
     resources :coupon_codes, only: [:destroy]
 
-    resources :promotions, except: [:show]
+    resources :promotions, except: [:show] do
+      collection do
+        post 'sort'
+      end
+    end
     resources :jumptrons
     resources :things, only: [:index, :update, :edit] do
       member do
