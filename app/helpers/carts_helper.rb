@@ -6,6 +6,6 @@ module CartsHelper
 
   def deliver_tip_text(total_price)
     return '' if total_price == 0
-    "* 88元及以上包运费（中通），以下需运费十元。"
+    "购物满 88 元包邮（普通快递），订单金额 88 元以下需另加 9 元运费。"
   end
 end
