@@ -7,7 +7,9 @@ article.feed-review
       = review_presenter.score
 
   section.feed-review-summary
-    p= review_presenter.summary(120)
+    - if review.cover
+      = image_tag review.cover(:small)
+    p = review_presenter.summary(120)
 
   footer.feed-review-info
     = render 'shared/user_avatar', user: review.author

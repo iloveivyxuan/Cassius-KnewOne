@@ -182,8 +182,15 @@ html.home {
         }
 
         .feed-review-summary {
+          @include clearfix;
+
           margin-top: 16px;
           color: $gray-light;
+
+          img {
+            float: right;
+            margin: 0 0 1em 1em;
+          }
         }
 
         .feed-review-info {
