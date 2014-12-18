@@ -79,6 +79,7 @@ Making::Application.routes.draw do
 
   scope :search, controller: :search, as: :search do
     root to: :index
+    get 'suggestions'
   end
 
   resources :users, only: [:show] do
