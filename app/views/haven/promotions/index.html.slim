@@ -1,17 +1,34 @@
-h1 Listing promotions
+- page_title '管理 Promotions'
 
-table
-  tr
-    th
-    th
-    th
+header.page-header.clearfix
+  h1.pull-left 管理 Promotions
+  = link_to '新建 Promotion', new_haven_promotion_path, class: "btn btn-primary pull-right"
 
-  - @promotions.each do |promotion|
+table#promotions_table.table.table-striped
+  thead
     tr
-      td = promotion.link
-      td = link_to 'Edit', edit_haven_promotion_path(promotion)
-      td = link_to 'Destroy', haven_promotion_path(promotion), data: {:confirm => 'Are you sure?'}, :method => :delete
+      th 链接
+      th
+      th
+  tbody
+    - @promotions.desc(:priority).each do |promotion|
+      tr id="#{promotion.id}"
+        td= promotion.link
+        td= link_to '编辑', edit_haven_promotion_path(promotion)
+        td= link_to '删除', haven_promotion_path(promotion), data: {:confirm => 'Are you sure?'}, :method => :delete
 
-br
-
-= link_to 'New Promotion', new_haven_promotion_path
+- content_for :script do
+  javascript:
+    $('#promotions_table tbody')
+      .sortable({
+        item: 'tr'
+      })
+      .on('sortupdate', function(event) {
+        var arr = [];
+        $('#promotions_table tbody tr').each(function(){ arr.push(this.id) });
+        $.ajax({
+          type: 'POST',
+          url: 'promotions/sort',
+          data: { ids: arr }
+        });
+      });
