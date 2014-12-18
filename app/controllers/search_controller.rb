@@ -22,8 +22,14 @@ class SearchController < ApplicationController
     @brand = Brand.search(q).limit(1).records.first
 
     respond_to do |format|
-      format.html { render "search_#{params[:type]}", layout: 'search' }
-      format.js
+      format.html do
+        if request.xhr?
+          render 'index_xhr', layout: false
+        else
+          render "search_#{params[:type]}", layout: 'search'
+        end
+      end
+
       format.json
     end
   end
