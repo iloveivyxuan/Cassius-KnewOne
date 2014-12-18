@@ -440,7 +440,7 @@ class Thing < Post
   alias_method :_as_indexed_json, :as_indexed_json
   def as_indexed_json(options={})
     suggest = {
-      input: title.split(' '),
+      input: ([title] + title.split(' ')).uniq,
       output: title,
       weight: reviews_count
     }
