@@ -1,6 +1,6 @@
 - layout ||= :grid
 
-- cache ['thing_lists', 'cover', thing_list, layout], expires_in: 10.minutes
+- cache ['thing_lists', 'cover', thing_list, layout, browser.mobile?], expires_in: 10.minutes
   .thing_list-cover class="thing_list-cover--#{layout}"
     - if thing_list.items.size == 0
       .thing_list-image_wrapper = lazy_image_tag('blank-list-cover.png')
