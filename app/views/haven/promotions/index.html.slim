@@ -8,12 +8,14 @@ table#promotions_table.table.table-striped
   thead
     tr
       th 链接
+      th 公开？
       th
       th
   tbody
     - @promotions.desc(:priority).each do |promotion|
       tr id="#{promotion.id}"
         td= promotion.link
+        td= promotion.published
         td= link_to '编辑', edit_haven_promotion_path(promotion)
         td= link_to '删除', haven_promotion_path(promotion), data: {:confirm => 'Are you sure?'}, :method => :delete
 
