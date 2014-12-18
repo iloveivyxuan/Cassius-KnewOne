@@ -32,9 +32,7 @@
         - if current_user.role? :editor
           li.nav-group-title 用户管理
           = nav_tab :user do
-            = link_to_with_icon '管理用户', 'fa fa-fw fa-wrench', haven_users_path
-          = nav_tab :batch_query do
-            = link_to_with_icon '批量查询用户', 'fa fa-fw fa-wrench', batch_query_haven_users_path
+            = link_to_with_icon '查询用户', 'fa fa-fw fa-wrench', haven_users_path
           = nav_tab :comment do
             = link_to_with_icon '活动', 'fa fa-fw fa-wrench', haven_comments_path
           = nav_tab :thing_lists do

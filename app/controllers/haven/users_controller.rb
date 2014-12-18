@@ -5,7 +5,10 @@ module Haven
     def index
       @users ||= ::User
 
-      if params[:name].present?
+      # batch query
+      if params[:names].present?
+        @users = User.any_in(name: params[:names].split)
+      elsif params[:name].present?
         @users = @users.where(name: /^#{Regexp.escape(params[:name])}/i)
       elsif params[:email].present?
         @users = @users.or({email: params[:email].downcase}, {unconfirmed_email: params[:email].downcase})
@@ -157,14 +160,6 @@ module Haven
       redirect_back_or haven_user_path(user)
     end
 
-    def batch_show
-      @users = params[:names].lines.reduce([]) do |users, line|
-        user = User.where(name: line.chomp).first
-        users << user if user.present?
-        users
-      end
-    end
-
     def confirm_email
       user = User.find params[:id]
       unless user.confirmed?
@@ -190,9 +185,6 @@ module Haven
       @user.feelings.delete_all
       @user.thing_lists.delete_all
       redirect_to :back
-    end
-
-    def batch_query
     end
 
     private

@@ -1,6 +1,0 @@
-- page_title '批量用户查询'
-
-= form_tag batch_show_haven_users_path, method: :post do
-  = text_area_tag 'names', nil, rows: 30,
-    class: 'form-control', required: true, autofocus: true
-  = submit_tag "提交"

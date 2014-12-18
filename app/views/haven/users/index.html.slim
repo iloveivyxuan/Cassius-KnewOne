@@ -16,6 +16,12 @@ header.page-header
     = text_field_tag("search", params[:search], placeholder: "id/名字/邮箱")
     = submit_tag("搜搜搜")
 
+= button_tag '批量查询用户', class: "batch"
+.batch-query style="display: none;"
+  = form_tag haven_users_path, method: :get do
+    = text_area_tag 'names', nil, rows: 30, class: 'form-control', required: true
+    = submit_tag "提交"
+
 table.table.table-striped
   thead
     tr
@@ -50,3 +56,13 @@ table.table.table-striped
         td
           = user_links(u)
 = paginate @users
+
+- content_for :script do
+  javascript:
+    $(document).ready(function() {
+      $(".haven_users_index button.batch")
+        .on('click', function(){
+          $(".batch-query").toggle();
+        })
+    })
+
