@@ -76,7 +76,7 @@ module Haven
               end
             end
           else
-            lines = [%w(订单编号 创建时间 订单状态 商品 总价 物流方式 物流单号 配送省 配送市 配送区/县 配送街道 地址 配送姓名 配送手机号 用户备注 管理员备注 系统备注 支付平台流水号 用户ID 用户名 用户邮箱 支付的活跃点 使用的优惠券)]
+            lines = [%w(订单编号 创建时间 订单状态 商品 总价 物流方式 物流单号 配送省 配送市 配送区/县 配送街道 地址 配送姓名 配送手机号 用户备注 管理员备注 系统备注 支付平台流水号 用户ID 用户名 用户邮箱 支付的活跃点 使用的优惠券 运费)]
 
             @orders.includes(:coupon_code).each do |order|
               city = CITY_PLACEHOLDER.include?(order.address.city) ? order.address.province : (order.address.city || '')
@@ -104,7 +104,8 @@ module Haven
                       order.user.name,
                       order.user.email,
                       order.consumed_bong_point,
-                      order.coupon_text
+                      order.coupon_text,
+                      order.deliver_price
                      ]
 
               lines<< cols
