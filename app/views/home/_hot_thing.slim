@@ -3,7 +3,7 @@
 - present hot_thing do |thing_presenter|
   article.thing
     header.cover
-      = link_to hot_thing, target: "_blank" do
+      = link_to hot_thing, class: "cover-inner", target: "_blank" do
         - version = browser.mobile? ? 'thing.fixed.small' : 'thing.fixed.big'
         = thing_presenter.photo_lazy version
       - if fanciable
