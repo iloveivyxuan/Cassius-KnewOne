@@ -22,3 +22,7 @@ li.radio
       .row
         .col-xs-12
           = address_form.input :default, label: '设为首选地址', as: :boolean
+
+- content_for :script do
+  javascript:
+    Making.validatePhone('[name="order[address][phone]"]');

@@ -27,3 +27,7 @@
     small 我们暂不能为港澳台用户提供服务。
   = f.button :submit, class: 'btn btn-primary'
   = back_btn
+
+- content_for :script do
+  javascript:
+    Making.validatePhone('[name="address[phone]"]');
