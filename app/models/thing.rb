@@ -465,10 +465,7 @@ class Thing < Post
         text: prefix,
         completion: {
           field: :suggest,
-          size: limit,
-          fuzzy: {
-            unicode_aware: true
-          }
+          size: limit
         }
       }
     }
