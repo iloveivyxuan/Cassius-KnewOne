@@ -108,6 +108,13 @@ html.desktop {
       }
     }
 
+    &.review {
+      > header h5 a {
+        color: $link-color;
+        &:hover { color: $link-hover-color; }
+      }
+    }
+
     > figure {
       @include clearfix;
       margin-bottom: 10px;
