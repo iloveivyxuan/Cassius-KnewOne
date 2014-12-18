@@ -553,7 +553,13 @@ class Order
     when :zt, :zhongtong
       price < 88 ? 9 : 0
     when :sf, :shunfeng
-      items_price < 500 ? 19 : 0
+      if price < 88
+        19
+      elsif price < 500
+        10
+      else
+        0
+      end
     else
       0
     end
