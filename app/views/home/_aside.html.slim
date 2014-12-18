@@ -1,5 +1,5 @@
 section.promotions
-  = render Promotion.published
+  = render Promotion.published.desc(:priority)
 
 = render 'drafts'
 = render 'recommended_users'
