@@ -114,6 +114,7 @@ zh-CN:
         external_link: '链接'
         title: '标题'
         cover: '封面'
+        wechat_cover: '微信分享图(80x80)'
         canopy: '文章顶部图片'
         summary: '摘要'
         published: '公开'
