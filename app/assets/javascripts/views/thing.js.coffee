@@ -42,19 +42,7 @@ window.Making = do (exports = window.Making || {}) ->
             'left': 0
 
     switch exports.device
-
       when 'mobile'
-        $carousel = $('#wrapper > .photos')
-        $page_num = $carousel.find('.page').find('em')
-
-        $carousel.on 'slid.bs.carousel swipeleft swiperight', (event) ->
-          $page_num.text(
-            $carousel
-              .find('.carousel-inner')
-              .children('.item.active')
-              .index() + 1
-          )
-
         new exports.View.Stream('#tab--mobile-feelings')
         new exports.View.Stream('#tab--mobile-reviews')
         new exports.View.Stream('#tab--mobile-activities')
