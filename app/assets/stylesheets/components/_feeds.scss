@@ -308,7 +308,7 @@ html.desktop {
 
     .feed_action {
       position: absolute;
-      top: 2em;
+      top: 30px;
       right: 1em;
     }
 
@@ -322,6 +322,16 @@ html.desktop {
 
           @media (min-width: $screen-sm-min) {
             display: block;
+          }
+        }
+      }
+    }
+
+    &.feeling {
+      > section {
+        > p {
+          @media (max-width: $screen-xs-max) {
+            padding-right: 30px;
           }
         }
       }
