@@ -3,7 +3,7 @@ var data = {
     img: function () {
         var url = $('meta[name="wechat:cover_url"]').attr('content');
         if (url == '') {
-            url = 'http://image.knewone.com/photos/87142c54ec6cef7d1ba8576671dd6826.jpg!small';
+            url = '<%= image_url('wechat_default_share_image.jpg') %>';
         }
         return url;
     },
