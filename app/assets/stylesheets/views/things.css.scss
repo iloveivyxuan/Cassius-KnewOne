@@ -927,11 +927,11 @@ html.feelings_show {
           a {
             display: block;
             overflow: hidden;
-            color: $brand-primary;
+            color: $link-color;
             white-space: nowrap;
             text-overflow: ellipsis;
             letter-spacing: 1px;
-            &:hover { color: $blue-bright }
+            &:hover { color: $link-hover-color }
           }
         }
       }

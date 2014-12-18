@@ -175,12 +175,6 @@ html.home {
         padding: 16px;
         background: white;
 
-        .feed-review-title {
-          h4 {
-            color: $blue;
-          }
-        }
-
         .feed-review-summary {
           @include clearfix;
 
