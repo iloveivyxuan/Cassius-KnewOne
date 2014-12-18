@@ -176,22 +176,8 @@ html.home {
         background: white;
 
         .feed-review-title {
-          @include clearfix;
-
           h4 {
-            float: left;
-            width: 65%;
-            margin: 0;
-            color: $black;
-          }
-
-          .score {
-            float: right;
-            width: 35%;
-            text-align: right;
-
-            margin: 3px 0;
-            .rate { padding: 0; }
+            color: $blue;
           }
         }
 
