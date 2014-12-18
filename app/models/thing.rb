@@ -459,13 +459,13 @@ class Thing < Post
     __elasticsearch__.search(query: query_options, min_score: 0.1)
   end
 
-  def self.suggest(prefix)
+  def self.suggest(prefix, limit = 10)
     body = {
       titles: {
         text: prefix,
         completion: {
           field: :suggest,
-          size: 10,
+          size: limit,
           fuzzy: {
             unicode_aware: true
           }

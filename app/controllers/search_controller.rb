@@ -36,7 +36,7 @@ class SearchController < ApplicationController
 
   def suggestions
     q = params[:q].to_s
-    @suggestions = Thing.suggest(q)
+    @suggestions = Thing.suggest(q, 3)
 
     respond_to do |format|
       format.json { render json: @suggestions }
