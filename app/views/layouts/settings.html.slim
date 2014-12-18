@@ -30,81 +30,83 @@
           = link_to_with_icon '优惠券', 'fa fa-fw fa-ticket', coupons_path
 
         - if current_user.role? :editor
-          li.nav-group-title 管理
-          = nav_tab :comment do
-            = link_to_with_icon '评论', 'fa fa-fw fa-wrench', haven_comments_path
+          li.nav-group-title 用户管理
           = nav_tab :user do
             = link_to_with_icon '管理用户', 'fa fa-fw fa-wrench', haven_users_path
-          = nav_tab :group do
-            = link_to_with_icon '管理小组', 'fa fa-fw fa-wrench', haven_groups_path
-          = nav_tab :blacklist do
-            = link_to_with_icon '管理黑名单', 'fa fa-fw fa-wrench', haven_blacklists_path
           = nav_tab :batch_query do
             = link_to_with_icon '批量查询用户', 'fa fa-fw fa-wrench', batch_query_haven_users_path
-          = nav_tab :category do
-            = link_to_with_icon '管理分类', 'fa fa-fw fa-wrench', haven_categories_path
-          = nav_tab :tag do
-            = link_to_with_icon '管理标签', 'fa fa-fw fa-wrench', haven_tags_path
-          = nav_tab :brand do
-            = link_to_with_icon '管理品牌', 'fa fa-fw fa-wrench', haven_brands_path
-          = nav_tab :things do
-            = link_to_with_icon '批量修改产品', 'fa fa-fw fa-wrench', batch_edit_haven_things_path
-            = link_to_with_icon '关联产品', 'fa fa-fw fa-wrench', haven_links_path
+          = nav_tab :comment do
+            = link_to_with_icon '活动', 'fa fa-fw fa-wrench', haven_comments_path
           = nav_tab :thing_lists do
-            = link_to_with_icon '管理列表', 'fa fa-fw fa-wrench', haven_thing_lists_path
-          = nav_tab :thing_list_backgrounds do
-            = link_to_with_icon '管理列表背景', 'fa fa-fw fa-wrench', haven_thing_list_backgrounds_path
-          = nav_tab :promotion do
-            = link_to_with_icon '管理广告位', 'fa fa-fw fa-wrench', haven_promotions_path
-          = nav_tab :activity do
-            = link_to_with_icon '查看全站动态', 'fa fa-fw fa-wrench', haven_activities_path
-          = nav_tab :adoption do
-            = link_to_with_icon '管理领养', 'fa fa-fw fa-wrench', haven_adoptions_path
-          = nav_tab :entry do
-            = link_to_with_icon '管理精选', 'fa fa-fw fa-wrench', haven_entries_path
-          = nav_tab :article do
-            = link_to_with_icon '管理文章', 'fa fa-fw fa-wrench', haven_articles_path
-          = nav_tab :special do
-            = link_to_with_icon '管理专题', 'fa fa-fw fa-wrench', haven_specials_path
-          = nav_tab :jumptron do
-            = link_to_with_icon '管理 Jumptron', 'fa fa-fw fa-wrench', haven_jumptrons_path
+            = link_to_with_icon '列表', 'fa fa-fw fa-wrench', haven_thing_lists_path
           = nav_tab :review do
-            = link_to_with_icon '管理评测', 'fa fa-fw fa-wrench', haven_reviews_path
-          = nav_tab :stat do
-            = link_to_with_icon '统计数据', 'fa fa-fw fa-wrench', haven_stats_path
-          = nav_tab :merchant do
-            = link_to_with_icon '管理商家', 'fa fa-fw fa-wrench', haven_merchants_path
-          - if can? :manage, Feeling
-            = nav_tab :feeling do
-              = link_to_with_icon '管理短评', 'fa fa-fw fa-wrench', haven_feelings_path
-          - if can? :manage, Supplier
+            = link_to_with_icon '评测', 'fa fa-fw fa-wrench', haven_reviews_path
+          = nav_tab :feeling do
+            = link_to_with_icon '短评', 'fa fa-fw fa-wrench', haven_feelings_path
+          = nav_tab :group do
+            = link_to_with_icon '小组', 'fa fa-fw fa-wrench', haven_groups_path
+          = nav_tab :blacklist do
+            = link_to_with_icon '黑名单', 'fa fa-fw fa-wrench', haven_blacklists_path
+          li.nav-group-title 产品管理
+          = nav_tab :category do
+            = link_to_with_icon '分类', 'fa fa-fw fa-wrench', haven_categories_path
+          = nav_tab :brand do
+            = link_to_with_icon '品牌', 'fa fa-fw fa-wrench', haven_brands_path
+          = nav_tab :tag do
+            = link_to_with_icon '标签', 'fa fa-fw fa-wrench', haven_tags_path
+          = nav_tab :things do
+            = link_to_with_icon '批量', 'fa fa-fw fa-wrench', batch_edit_haven_things_path
+          = nav_tab :link do
+            = link_to_with_icon '关联', 'fa fa-fw fa-wrench', haven_links_path
+          li.nav-group-title 精选频道
+          = nav_tab :article do
+            = link_to_with_icon '文章', 'fa fa-fw fa-wrench', haven_articles_path
+          = nav_tab :entry do
+            = link_to_with_icon '精选', 'fa fa-fw fa-wrench', haven_entries_path
+          = nav_tab :promotion do
+            = link_to_with_icon '广告位', 'fa fa-fw fa-wrench', haven_promotions_path
+
+          - if current_user.role? :sale
+            li.nav-group-title 销售管理
             = nav_tab :supplier do
-              = link_to_with_icon '供货信息', 'fa fa-fw fa-wrench', suppliers_path
-          - if can? :manage, Order
+              = link_to_with_icon '订单', 'fa fa-fw fa-wrench', haven_orders_path
             = nav_tab :supplier do
-              = link_to_with_icon '管理订单', 'fa fa-fw fa-wrench', haven_orders_path
-            = nav_tab :supplier do
-              = link_to_with_icon '批量修改订单', 'fa fa-fw fa-wrench', batch_update_haven_orders_path
+              = link_to_with_icon '批量', 'fa fa-fw fa-wrench', batch_update_haven_orders_path
+            = nav_tab :merchant do
+              = link_to_with_icon '商家', 'fa fa-fw fa-wrench', haven_merchants_path
             = nav_tab :resource do
-              = link_to_with_icon '供应商', 'fa fa-fw fa-wrench', haven_resources_path
-          - if can? :edit, Thing
-            = nav_tab :thing do
-              = link_to_with_icon '管理产品', 'fa fa-fw fa-wrench', haven_things_path
-          - if can? :manage, AbatementCoupon
+              = link_to_with_icon '代发', 'fa fa-fw fa-wrench', haven_resources_path
+            = nav_tab :supplier do
+              = link_to_with_icon '供货', 'fa fa-fw fa-wrench', suppliers_path
             = nav_tab :coupon do
-              = link_to_with_icon '管理足价减优惠券', 'fa fa-fw fa-wrench', haven_abatement_coupons_path
-          - if can? :manage, ThingRebateCoupon
+              = link_to_with_icon '满减券', 'fa fa-fw fa-wrench', haven_abatement_coupons_path
             = nav_tab :coupon do
-              = link_to_with_icon '管理产品减优惠券', 'fa fa-fw fa-wrench', haven_thing_rebate_coupons_path
+              = link_to_with_icon '产品券', 'fa fa-fw fa-wrench', haven_thing_rebate_coupons_path
 
-        - if current_user.role? :admin
-          = nav_tab :role do
-            = link_to_with_icon '管理用户权限', 'fa fa-fw fa-wrench', haven_staffs_path
-          = nav_tab :oauth do
-            = link_to_with_icon 'OAuth App', 'fa fa-fw fa-wrench', oauth_applications_path, target: '_blank'
-          = nav_tab :sidekiq do
-            = link_to_with_icon 'Sidekiq', 'fa fa-fw fa-wrench', '/haven/sidekiq', target: '_blank'
-
+            - if current_user.role? :admin
+              li.nav-group-title 后台功能
+              = nav_tab :thing_list_backgrounds do
+                = link_to_with_icon '列表背景', 'fa fa-fw fa-wrench', haven_thing_list_backgrounds_path
+              = nav_tab :role do
+                = link_to_with_icon '用户权限', 'fa fa-fw fa-wrench', haven_staffs_path
+              = nav_tab :oauth do
+                = link_to_with_icon 'OAuth App', 'fa fa-fw fa-wrench', oauth_applications_path, target: '_blank'
+              = nav_tab :sidekiq do
+                = link_to_with_icon 'Sidekiq', 'fa fa-fw fa-wrench', '/haven/sidekiq', target: '_blank'
+              li.nav-group-title 数据管理
+              = nav_tab :stat do
+                = link_to_with_icon '统计数据', 'fa fa-fw fa-wrench', haven_stats_path
+              li.nav-group-title 其他
+              = nav_tab :activity do
+                = link_to_with_icon '查看全站动态', 'fa fa-fw fa-wrench', haven_activities_path
+              = nav_tab :adoption do
+                = link_to_with_icon '管理领养', 'fa fa-fw fa-wrench', haven_adoptions_path
+              = nav_tab :special do
+                = link_to_with_icon '管理专题', 'fa fa-fw fa-wrench', haven_specials_path
+              = nav_tab :jumptron do
+                = link_to_with_icon '管理 Jumptron', 'fa fa-fw fa-wrench', haven_jumptrons_path
+              = nav_tab :thing do
+                = link_to_with_icon '管理产品', 'fa fa-fw fa-wrench', haven_things_path
 
   main role="main"
     = yield
