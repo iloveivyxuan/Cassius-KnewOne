@@ -3,7 +3,7 @@ var data = {
     img: function () {
         var url = $('meta[name="wechat:cover_url"]').attr('content');
         if (url == '') {
-            url = '<%= image_url('wechat_default_share_image.jpg') %>';
+            url = 'http://<%= Settings.host %><%= image_path('wechat_default_share_image.jpg') %>';
         }
         return url;
     },
