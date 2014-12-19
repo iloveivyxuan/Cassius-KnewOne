@@ -112,7 +112,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    root_path || super
+    session.delete(:previous_url) || root_path || super
   end
 
   def require_admin
