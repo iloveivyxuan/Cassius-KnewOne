@@ -133,8 +133,13 @@ module Haven
     end
 
     def approved_status
-      from = Date.parse params[:from]
-      to = Date.parse params[:to]
+      from = begin Date.parse params[:from] rescue nil end
+      to = begin Date.parse params[:to] rescue nil end
+
+      unless from && to
+        head :no_content
+        return
+      end
 
       @things = Thing.gte(created_at: from).lte(created_at: to.next_day)
       tags = @things.map(&:tags).flatten

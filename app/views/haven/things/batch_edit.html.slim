@@ -6,10 +6,10 @@ hgroup
   p= "当前数量 #{@things.size} / 总数量 #{Thing.all.size}"
 
 .pull-right
-  = form_tag approved_status_haven_things_path, method: :get do
-    = text_field_tag :from, nil, placeholder: "开始日期，比如 20141208（包括当天）", class: "form-control", style: "width: 270px;"
-    = text_field_tag :to, nil, placeholder: "结束日期，比如 20141214（包括当天）", class: "form-control", style: "width: 270px;"
-    = submit_tag "查询通过状态"
+  = form_tag approved_status_haven_things_path, method: :get, class: "approved_status" do
+    = date_field_tag :from, Date.yesterday, required: true, class: "form-control", style: "width: 270px;"
+    = date_field_tag :to, Date.yesterday, required: true, class: "form-control", style: "width: 270px;"
+    = submit_tag "查询通过状态", class: "btn btn-default"
 
 - queries = params.except(*request.path_parameters.keys)
 - queries[:filter] ||= []
