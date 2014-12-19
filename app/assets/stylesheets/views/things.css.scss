@@ -732,10 +732,13 @@ html.feelings_show {
     }
 
     .btn-buy-mobile--shorten {
+      @extend %new_button_base;
+      background-color: $orange;
       display: block;
       font-size: 14px;
       margin: 0 auto;
       width: 80%;
+      &:hover { background-color: darken($orange, 5%) }
       @include MQ(XS) { font-size: 12px }
     }
 
@@ -1470,6 +1473,12 @@ html.feelings_show {
             margin-right: 10px;
             vertical-align: -1px;
           }
+        }
+
+        .btn--buy {
+          @extend %new_button_base;
+          background-color: $orange;
+          &:hover { background-color: darken($orange, 5%) }
         }
 
         .btn-service-terms {

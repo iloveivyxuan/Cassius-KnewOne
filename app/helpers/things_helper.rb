@@ -4,7 +4,7 @@ module ThingsHelper
     when :dsell
       if user_signed_in?
         link_to_with_icon "现在购买", "fa fa-shopping-cart", "#",
-        class: "btn btn--blue_light btn-buy-mobile--shorten track_event",
+        class: "btn btn-buy-mobile--shorten track_event",
         data: data_with_buy_tracker("dsell", thing.title, {toggle: "modal", target: "#mobile_buy_modal"})
       else
         link_to_with_icon "请登录后购买", "fa fa-sign-in", login_path,
@@ -14,7 +14,7 @@ module ThingsHelper
     when :pre_order
       if user_signed_in?
         link_to_with_icon "现在购买", "fa fa-shopping-cart", "#",
-        class: "btn btn--blue_light btn-buy-mobile--shorten track_event",
+        class: "btn btn-buy-mobile--shorten track_event",
         data: data_with_buy_tracker("pre_order", thing.title, {toggle: "modal", target: "#mobile_buy_modal"})
       else
         link_to_with_icon "请登录后购买", "fa fa-sign-in", login_path,
