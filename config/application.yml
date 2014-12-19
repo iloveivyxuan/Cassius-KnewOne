@@ -52,8 +52,8 @@ defaults: &defaults
     key: '024999c6ab0845c7865a483cf58854ac'
   invitation:
     secret: "Not so secret, Baby"
-  keywords: 'KnewOne, 剁手网, 新奇酷'
-  description: 'KnewOne, 探索分享新奇酷'
+  keywords: 'KnewOne, 剁手网，新奇酷，科技，设计'
+  description: 'KnewOne, 分享科技与设计'
 
 staging:
   <<: *defaults
