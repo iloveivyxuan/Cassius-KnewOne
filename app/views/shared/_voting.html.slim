@@ -2,7 +2,7 @@
 - icon_class = 'fa fa-thumbs-up fa-fw'
 - icon_class += ' heartbeat' if heartbeat
 
-- cache [object, 'voting', browser.wechat?, user_signed_in? ? [heartbeat, object.voted?(current_user)] : object.lovers_count]
+- cache ['voting', browser.wechat?, user_signed_in? ? [heartbeat, object, object.voted?(current_user)] : object.lovers_count]
   - if user_signed_in?
     - action = object.voted?(current_user) ? :unvote : :vote
     - url = polymorphic_path([action, object.try(:thing) || object.try(:group), object])
