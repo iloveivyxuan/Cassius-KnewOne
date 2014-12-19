@@ -181,6 +181,7 @@ module Haven
       @user.notifications.clear
       @user.things.delete_all
       @user.topics.delete_all
+      @user.managed_groups.each { |g| g.delete }
       @user.reviews.delete_all
       @user.feelings.delete_all
       @user.thing_lists.delete_all
