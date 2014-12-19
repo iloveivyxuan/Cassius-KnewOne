@@ -14,8 +14,11 @@ $(->
       $form.addClass('focus')
     )
     .on('blur', 'input[type="search"]', ->
-      $form
-        .removeClass('focus')
-        .one($.support.transition.end, -> $nav_primary.fadeIn())
+      $form.removeClass('focus')
+
+      if Modernizr.csstransitions
+        $form.one($.support.transition.end, -> $nav_primary.fadeIn())
+      else
+        $nav_primary.show()
     )
 )
