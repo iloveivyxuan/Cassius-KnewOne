@@ -442,10 +442,10 @@ class Thing < Post
     suggest = {
       input: ([title, slug.gsub('-', '')] + title.split(' ')).uniq,
       output: title,
-      weight: reviews_count
+      weight: fancier_ids.size
     }
 
-    _as_indexed_json(options).merge(weight: reviews_count, suggest: suggest)
+    _as_indexed_json(options).merge(weight: fancier_ids.size, suggest: suggest)
   end
 
   def self.search(query)
