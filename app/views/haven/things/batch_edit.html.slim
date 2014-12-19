@@ -89,6 +89,9 @@ ul.nav.nav-pills
             = text_field_tag 'things[][official_site]', t.official_site, style: 'width: 100%'
             | 分享者&nbsp;
             = link_to t.author.name, user_path(t.author), target: '_blank'
+            br
+            | 审核时间
+            = text_field_tag 'things[][approved_at]', t.approved_at.to_s, placeholder: "比如 2014-12-01 16:15:00", style: 'width: 100%'
           td
             | 标签
             = text_field_tag 'things[][tags_text]', t.tags_text, hint: "用,分隔", style: 'width: 100%'
