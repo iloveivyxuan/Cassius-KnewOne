@@ -18,7 +18,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if user = User.find_by_omniauth(omniauth)
       # Auth already bound
       if user_signed_in? && user.id != current_user.id
-        return redirect_stored_or root_path, flash: {
+        return redirect_back_or after_sign_in_path_for(user), flash: {
           oauth: {
             status: 'danger', text: t('devise.omniauth_callbacks.bounded', kind: Auth::PROVIDERS[omniauth.provider])
           }
@@ -57,7 +57,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if user = User.find_by_omniauth(omniauth)
       # Auth already bound
       if user_signed_in? && user.id != current_user.id
-        return redirect_stored_or root_path, flash: {
+        return redirect_back_or after_sign_in_path_for(user), flash: {
           oauth: {
             status: 'danger', text: t('devise.omniauth_callbacks.bounded', kind: Auth::PROVIDERS[omniauth.provider])
           }

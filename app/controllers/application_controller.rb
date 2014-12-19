@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
   prepend_before_action :require_not_blocked, except: :blocked
   # prepend_before_action :auto_login_in_wechat
 
-
   if Rails.env.production?
     # some bots using some *strange* format to request urls
     # that would trigger missing template exception,
@@ -113,7 +112,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    params[:redirect_from] || session.delete(:previous_url) || root_path || super
+    session.delete(:previous_url) || root_path || super
   end
 
   def require_admin
