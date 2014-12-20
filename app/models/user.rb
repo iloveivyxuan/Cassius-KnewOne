@@ -539,9 +539,11 @@ HERE
   end
 
   def has_been_invited_by?(user, thing)
-    Activity.where(type: :invite_review)
-      .where(reference_union: "User_#{self.id.to_s}")
-      .where(user: user).exists?
+    Activity.by_users([user])
+      .by_type(:invite_review)
+      .by_reference(self)
+      .by_source(thing)
+      .exists?
   end
 
   def can_set_topic_top?(group)
