@@ -1,5 +1,5 @@
 class UserMailer < BaseMailer
-  skip_before_action :set_logo, only: :newspaper
+  skip_before_action :set_logo, only: :weekly
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -80,38 +80,24 @@ class UserMailer < BaseMailer
          subject: '你在「KnewOne 牛玩」上收到了一封私信')
   end
 
-  def newspaper(user_id, date_str = Date.today.to_s, items = {})
+  def weekly(weekly_id, user_id)
     attachments.inline['bigimage.jpg'] = File.read(Rails.root.join('app/assets/images/mails/bigimage.jpg'))
     attachments.inline['footer.png'] = File.read(Rails.root.join('app/assets/images/mails/footer.png'))
 
-    attachments.inline['special.jpg'] = File.read(Rails.root.join('app/assets/images/mails/special.jpg'))
-    attachments.inline['feature.jpg'] = File.read(Rails.root.join('app/assets/images/mails/feature.jpg'))
+    @weekly = Weekly.find weekly_id
+    @user = User.find user_id
 
-    @date = Date.parse(date_str)
-    @from_date = @date - 7.days
-    @user = User.find(user_id)
-    @items = items
+    @items = {}
 
-    friends_things_ids = @user
-                           .related_activities(%i(new_thing))
-                           .from_date(@from_date)
-                           .to_date(@date)
-                           .map(&:reference_union)
-                           .group_by { |e| e }
-                           .values
-                           .sort_by! { |e| e.size }
-                           .reverse![0..5]
-                           .map! {|e| e[0].gsub 'Thing_', ''}
-
-    @items[:friends_things] ||= Thing.where(:id.in => friends_things_ids).to_a
+    @items[:friends_things] ||= @weekly.friends_hot_things_of(@user)
     @items[:friends_things_count] ||= @items[:friends_things].size
 
-    @items[:hot_things] ||= Thing.from_date(@from_date).to_date(@date).hot.limit(6).to_a
-    @items[:hot_things_count] ||= 6
+    @items[:hot_things] ||= @weekly.hot_things.to_a
+    @items[:hot_things_count] ||= @items[:hot_things].size
 
     mail(to: @user.email,
          reply_to: 'advice@knewone.com',
-         subject: "KnewOne用户周报（#{@from_date.strftime('%Y.%m.%d')} ~ #{@date.strftime('%Y.%m.%d')}）",
+         subject: "KnewOne用户周报（#{@weekly.since_date.strftime('%Y.%m.%d')} ~ #{@weekly.due_date.strftime('%Y.%m.%d')}）",
          edm: true) do |format|
       format.html { render layout: 'newspaper' }
     end

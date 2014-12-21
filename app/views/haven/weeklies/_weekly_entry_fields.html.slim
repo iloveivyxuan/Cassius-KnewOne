@@ -1,0 +1,10 @@
+fieldset.kind_fields
+  legend 栏目
+  = f.input :subject
+  = f.input :title
+  = f.input :link
+  = f.input :content, as: :text
+  = f.input :image
+  = f.input :image_cache, as: :hidden
+  = image_tag f.object.image.url(:small) if f.object.image.url
+  = f.link_to_remove "删除", class: "remove_weekly_entry pull-right"

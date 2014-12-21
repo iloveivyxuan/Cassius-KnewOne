@@ -128,6 +128,15 @@ zh-CN:
         title: '标题'
         subtitle: '副标题'
         content: '内容'
+      weekly:
+        thing_list_id: '列表ID'
+        since_date: '周始日期'
+      weekly_entry:
+        subject: '块标题'
+        title: '标题'
+        content: '正文'
+        link: '链接（可空）'
+        image: '配图'
 
     placeholders:
       user:

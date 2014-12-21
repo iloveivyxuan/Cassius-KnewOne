@@ -372,6 +372,12 @@ Making::Application.routes.draw do
 
     resources :entries, except: [:show]
 
+    resources :weeklies, except: [:show] do
+      member do
+        get 'deliver'
+      end
+    end
+
     resources :users, only: [:index, :update, :show] do
       collection do
         post 'confirm_email'

@@ -199,6 +199,8 @@ class Ability
     can :manage, ThingList
     can :manage, ThingListItem
     can :manage, ThingListBackground
+    can :manage, Weekly
+    can :manage, WeeklyEntry
   end
 
   def pay_callback
