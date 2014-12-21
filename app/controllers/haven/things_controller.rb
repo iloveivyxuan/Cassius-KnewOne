@@ -157,6 +157,10 @@ module Haven
       result = {}
       sites.each { |site| result[site] = sites.count(site) }
       @sorted_sites = result.sort_by { |k, v| v }.reverse
+      brands = @things.map(&:brand).flatten.compact
+      result = {}
+      brands.each { |brand| result[brand] = brands.count(brand) }
+      @sorted_brands = result.sort_by { |k, v| v }.reverse
     end
 
     private

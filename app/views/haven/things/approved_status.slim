@@ -39,3 +39,16 @@ table.table.table-striped
       tr
         th= link_to site, site
         th= times
+
+h1 品牌 top 20
+
+table.table.table-striped
+  thead
+    tr
+      th style="width: 90%" 品牌
+      th style="width: 10%" 次数
+  tbody
+    - @sorted_brands.take(20).each do |brand, times|
+      tr
+        th= link_to brand.brand_text, brand_things_path(brand.id)
+        th= times
