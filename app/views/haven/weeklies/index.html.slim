@@ -1,0 +1,25 @@
+- page_title '管理周报'
+
+header.page-header
+  h1.pull-left 管理周报
+  = link_to '新建', new_haven_weekly_path, class: 'btn btn-primary pull-right'
+
+table.table.table-striped
+  thead
+    tr
+      th 起始时间
+      th 关联列表
+      th
+  tbody
+    - @weeklies.each do |w|
+      tr
+        td= w.since_date.strftime('%Y.%m.%d')
+        td= link_to w.thing_list.name, w.thing_list
+        td
+          = link_to '编辑', edit_haven_weekly_path(w)
+          span.separator |
+          = link_to '测试发送', deliver_haven_weekly_path(w), data: {confirm: 'are you sure?'}
+          span.separator |
+          = link_to '删除', haven_weekly_path(w), method: :delete, data: {confirm: 'are you sure?'}
+
+= paginate @weeklies
