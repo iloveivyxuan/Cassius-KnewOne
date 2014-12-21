@@ -465,7 +465,7 @@ HERE
                                     new_review love_review
                                     new_feeling love_feeling))
     user_ids = following_ids + [self.id]
-    Activity.where(:user_id.in => user_ids.map(&:to_s), :type.in => types, visible: true)
+    Activity.where(:user_id.in => user_ids, :type.in => types, visible: true)
   end
 
   # category

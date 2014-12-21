@@ -92,10 +92,21 @@ class UserMailer < BaseMailer
     @user = User.find(user_id)
     @items = items
 
-    @items[:friends_things] ||= Thing.where(:id.in => @user.related_activities(%i(new_thing)).limit(6).map(&:reference_union).map {|s| s.gsub 'Thing_', ''})
+    friends_things_ids = @user
+                           .related_activities(%i(new_thing))
+                           .from_date(@from_date)
+                           .to_date(@date)
+                           .map(&:reference_union)
+                           .group_by { |e| e }
+                           .values
+                           .sort_by! { |e| e.size }
+                           .reverse![0..5]
+                           .map! {|e| e[0].gsub 'Thing_', ''}
+
+    @items[:friends_things] ||= Thing.where(:id.in => friends_things_ids).to_a
     @items[:friends_things_count] ||= @items[:friends_things].size
 
-    @items[:hot_things] ||= Thing.hot.limit(6)
+    @items[:hot_things] ||= Thing.from_date(@from_date).to_date(@date).hot.limit(6).to_a
     @items[:hot_things_count] ||= 6
 
     mail(to: @user.email,
