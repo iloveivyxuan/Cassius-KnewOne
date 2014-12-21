@@ -1,4 +1,5 @@
 Making.initSearchForm = (form) ->
+  new Making.Views.SearchForm(el: form)
 
 $(->
   $form = $('#navbar_search')
