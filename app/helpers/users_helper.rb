@@ -3,9 +3,9 @@ module UsersHelper
     image_tag user.avatar.url(size), alt: user.name
   end
 
-  def provider_sync
+  def provider_sync(checked = true)
     return nil unless current_user && current_user.current_auth
-    raw "<label id='check_provider_sync'><input type='checkbox' name='provider_sync' checked>分享到社交网络</label>"
+    raw "<label id='check_provider_sync'><input type='checkbox' name='provider_sync' #{'checked' if checked}>分享到社交网络</label>"
   end
 
   def user_links(user)

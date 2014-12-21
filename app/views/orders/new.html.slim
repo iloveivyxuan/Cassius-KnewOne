@@ -33,7 +33,7 @@ header.page-header
       label.checkbox.misc_option
         = f.check_box :auto_owning
         | 帮我标记产品为拥有
-    = provider_sync
+    = provider_sync(false)
     .form-group.form-actions
       p.text-left
         small * 订单发货时间根据商家而定。详情请浏览产品页面信息，或者购买详情。部分商品运单号更新存在延迟，敬请谅解。
