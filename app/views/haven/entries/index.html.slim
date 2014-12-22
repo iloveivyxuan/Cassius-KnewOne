@@ -16,17 +16,18 @@ table.table.table-striped
   tbody
     - @entries.each do |e|
       tr
-        td
+        td width="15%"
           - if e.cover.present?
             = image_tag(e.cover.url(:small), height: 90, width: 90)
-        td = e.title.present? ? e.title : e.post.title
-        td width="50"
+        td width="25%"
+          = e.title.present? ? e.title : e.post.title
+        td width="7%"
           = e.category
-        td width="90"
+        td width="20%"
           = date_time_text(e.created_at)
-        td width="50"
+        td width="5%"
           = e.published?
-        td width="150"
+        td width="28%"
           = link_to '查看', e, target: '_blank'
           span.separator |
           = link_to '微信', wechat_entry_path(id: e.id), target: '_blank'
