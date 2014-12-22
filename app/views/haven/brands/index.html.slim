@@ -1,5 +1,10 @@
 - page_title "品牌管理"
 
+hgroup
+  h1
+    | 品牌
+  p= "当前数量 #{@brands.size} / 总数量 #{Brand.all.size}"
+
 .pull-right
   = form_tag(haven_brands_path, method: "get") do
     = text_field_tag "brand_name", params[:brand_name], placeholder: "搜索品牌名", class: "form-control"
