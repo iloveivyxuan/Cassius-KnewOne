@@ -29,8 +29,6 @@ class SearchController < ApplicationController
           render "search_#{params[:type]}", layout: 'search'
         end
       end
-
-      format.json
     end
   end
 
