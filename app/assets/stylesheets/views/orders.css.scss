@@ -96,6 +96,16 @@ html.orders_create,
         min-width: 112px;
       }
     }
+
+    .btn {
+      sup {
+        background-color: $orange;
+        border-radius: 2px;
+        font-size: 12px;
+        margin-left: 5px;
+        padding: 2px;
+      }
+    }
   }
 
   button[type="submit"] {
