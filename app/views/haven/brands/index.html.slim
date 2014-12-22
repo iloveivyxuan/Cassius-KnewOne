@@ -1,14 +1,16 @@
+- page_title "品牌管理"
+
 .pull-right
   = form_tag(haven_brands_path, method: "get") do
-    = text_field_tag("brand_name", params[:brand_name])
-    = submit_tag("确定")
+    = text_field_tag "brand_name", params[:brand_name], placeholder: "搜索品牌名", class: "form-control"
+    = submit_tag "确定", class: "btn btn-default btn-sm"
 
 = render 'filter'
 
-.pull-right
+.pull-left
   - queries = params.except(*request.path_parameters.keys)
-  = link_to '导出CSV(Numbers)', "#{haven_brands_path(queries.merge(format: :csv, platform: 'numbers'))}", class: 'btn btn-success'
-  = link_to '导出CSV(Excel)', "#{haven_brands_path(queries.merge(format: :csv))}", class: 'btn btn-success'
+  = link_to '导出CSV(Numbers)', "#{haven_brands_path(queries.merge(format: :csv, platform: 'numbers'))}", class: 'btn btn-success btn-sm'
+  = link_to '导出CSV(Excel)', "#{haven_brands_path(queries.merge(format: :csv))}", class: 'btn btn-success btn-sm'
 
 table.table
   thead

@@ -1,2 +1,3 @@
-- brand_filters.each do |k, v|
-  = link_to v, haven_brands_path({ :filter => k }), class: "btn btn-default"
+.pull-left
+  - brand_filters.each do |k, v|
+    = link_to v, haven_brands_path({ :filter => k }), class: "btn btn-default btn-sm"
