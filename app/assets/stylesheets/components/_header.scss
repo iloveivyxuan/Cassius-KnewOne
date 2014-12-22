@@ -808,7 +808,7 @@ html.no-touch {
 
     &:focus {
       margin: 0;
-      color: $gray-lighter;
+      color: $blue-bright;
       letter-spacing: 1px;
       border-left: 3px solid $brand-primary;
       @include box-shadow(none);
