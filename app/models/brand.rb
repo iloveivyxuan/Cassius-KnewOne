@@ -20,15 +20,15 @@ class Brand
 
   alias_method :cover, :logo
 
-  has_many :things
+  has_many :things, after_add: :update_things_size
 
   field :nickname, type: String, default: ""
   after_save :update_brand_information
 
   before_save :spacing_description
 
-  def update_things_size
-    self.things_size = self.things.size
+  def update_things_size(thing=nil)
+    self.set(things_size: self.things.size)
   end
 
   def brand_text
