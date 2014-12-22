@@ -14,7 +14,7 @@ table.table.table-striped
     - @weeklies.each do |w|
       tr
         td= w.since_date.strftime('%Y.%m.%d')
-        td= link_to w.thing_list.name, w.thing_list
+        td= link_to w.thing_list.name, w.thing_list if w.thing_list
         td
           = link_to '编辑', edit_haven_weekly_path(w)
           span.separator |
