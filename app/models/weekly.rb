@@ -27,7 +27,7 @@ class Weekly
 
   def friends_hot_things_of(user, limit = 6)
     thing_ids = user
-                .related_activities(%i(new_thing))
+                .related_activities(%i(fancy_thing))
                 .from_date(self.since_date)
                 .to_date(self.due_date)
                 .map(&:reference_union)
