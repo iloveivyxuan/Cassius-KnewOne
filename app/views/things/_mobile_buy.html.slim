@@ -3,7 +3,7 @@
     .mobile_shop
       .mobile_shop_details
         - if tp.price.present?
-          = tp.price
+          = tp.mobile_price
         - if user_signed_in? && [:dsell, :pre_order].include?(tp.thing.stage)
           = link_to "详情", "#", class: "track_event",
             data: {toggle: "modal", target: "#shopping_modal"}

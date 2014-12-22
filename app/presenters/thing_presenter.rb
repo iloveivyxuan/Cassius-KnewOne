@@ -45,6 +45,16 @@ class ThingPresenter < PostPresenter
     end
   end
 
+  def mobile_price
+    if thing.price.present?
+      price = price_format thing.kinds.map(&:price).sort.first, thing.price_unit
+      price.concat(" 起") if thing.kinds.map(&:price).uniq.size > 1
+      price
+    else
+      ""
+    end
+  end
+
   def shopping_desc(length = 48)
     return if thing.shopping_desc.blank?
     strip_tags(thing.shopping_desc).truncate(length).html_safe
