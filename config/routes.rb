@@ -38,6 +38,7 @@ Making::Application.routes.draw do
   resources :entries, only: [:show] do
     member do
       get 'wechat'
+      get 'photos'
     end
   end
 

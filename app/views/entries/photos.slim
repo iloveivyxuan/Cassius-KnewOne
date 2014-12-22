@@ -1,0 +1,2 @@
+- Nokogiri::HTML::DocumentFragment.parse(@entry.post.clean_content(:wechat)).css('img').each do |image|
+  p= image['src'].gsub('!wechat', '')

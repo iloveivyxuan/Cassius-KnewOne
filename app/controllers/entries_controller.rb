@@ -15,6 +15,10 @@ class EntriesController < ApplicationController
     render wechat: @entry, layout: false
   end
 
+  def photos
+    @entry = Entry.find(params[:id])
+  end
+
   private
 
   def explore_layout
