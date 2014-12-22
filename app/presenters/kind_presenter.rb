@@ -38,8 +38,9 @@ class KindPresenter < ApplicationPresenter
     "<em>#{kind.stock}</em> 库存".html_safe
   end
 
-  def option_for_select
-    content_tag :option, title, value: id, data: {
+  def option_for_select(with_price=false)
+    text = with_price ? title.concat(price) : title
+    content_tag :option, text, value: id, data: {
       stock: stock,
       max: max,
       price: price,

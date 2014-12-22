@@ -222,6 +222,10 @@ class ThingPresenter < PostPresenter
     kinds.map(&:option_for_select).join
   end
 
+  def options_for_kinds_with_price
+    kinds.map { |kind| kind.option_for_select(with_price: true) }.join
+  end
+
   def categories
     Category.any_in(name: thing.categories)
   end
