@@ -20,7 +20,7 @@
           | 已加入购物车。
         .modal-footer
           = link_to_with_icon "继续逛逛", "fa fa-smile-o", "#", class: "btn btn-primary", data: {dismiss: "modal"}
-          = link_to_with_icon "结算", "fa fa-credit-card", cart_items_path, class: "btn btn-success"
+          = link_to_with_icon "结算", "fa fa-credit-card", new_order_path, class: "btn btn-success"
 
   = simple_form_for CartItem.new(thing: tp.thing), remote: true, html: {method: :post, class: "hidden"} do |f|
     = f.input :thing, as: :hidden, input_html: {value: tp.id}
