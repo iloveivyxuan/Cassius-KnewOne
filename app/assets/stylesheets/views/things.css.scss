@@ -411,14 +411,19 @@ html.feelings_show {
     background-color: #fff;
   }
   #thing_photos {
-    @media (max-width: $screen-sm-max) {
+    .carousel {
       height: 0;
       overflow: hidden;
       padding-bottom: 75%;
-    }
-    .carousel {
+
       .item {
         text-align: center;
+        @media (max-width: $screen-sm-max) {
+          height: 0;
+          overflow: hidden;
+          padding-bottom: 75%;
+        }
+
         img {
           max-width: 100%;
         }

@@ -21,6 +21,9 @@ window.Making = do (exports = window.Making || {}) ->
     return
 
   exports.InitThing = ->
+    exports.carousel
+      isResetItemWidth: true
+    exports.extendCarousel() unless $html.hasClass('mobile')
     exports.ReadMore('.post_content')
     exports.InitAdoption()
 
