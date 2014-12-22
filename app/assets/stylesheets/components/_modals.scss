@@ -153,10 +153,14 @@
     }
 
     .carousel {
-      .item {
-        text-align: center;
+      max-height: 300px;
+      visibility: hidden;
 
+      .item {
+        min-height: 100px;
+        text-align: center;
         overflow: hidden;
+        position: relative;
         background: white;
 
         &:hover {
