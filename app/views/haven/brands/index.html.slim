@@ -16,14 +16,14 @@
 table.table
   thead
     tr
-      th logo
-      th 品牌
-      th 品牌名（中文）
-      th 品牌名（英文）
-      th 产品数
-      th 描述
-      th 国家
-      th 操作
+      th width="15%" logo
+      th width="15%" 品牌
+      th 中文名
+      th 英文名
+      th width="7%" 数量
+      th width="10%" 描述
+      th width="8%" 国别
+      th width="5%" 操作
   tbody
     - @brands.each do |b|
       tr
@@ -32,10 +32,10 @@ table.table
         th= b.zh_name
         th= b.en_name
         th= b.things.size
-        th= (b.description.blank?) ? "<strong style='color: red;'>（空）</strong>".html_safe : "#{b.description.first(5)}…"
+        th= description(b)
         th= b.country
         th
-          = link_to '[编辑]', edit_haven_brand_path(b.id)
-          = link_to '[删除]', haven_brand_path(b.id), method: :delete, data: { confirm: '确定要删除吗？' }
+          = link_to '编辑', edit_haven_brand_path(b.id)
+          = link_to '删除', haven_brand_path(b.id), method: :delete, data: { confirm: '确定要删除吗？' }
 
 = paginate @brands

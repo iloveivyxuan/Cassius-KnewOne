@@ -8,4 +8,12 @@ module BrandsHelper
       'no_country' => '无国家'
     }
   end
+
+  def description(brand)
+    if brand.description.blank?
+      "<strong style='color: red;'>（空）</strong>".html_safe
+    else
+      brand.description.truncate(20)
+    end
+  end
 end
