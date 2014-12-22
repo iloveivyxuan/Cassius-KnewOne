@@ -75,6 +75,11 @@ module Haven
       redirect_to haven_brands_path
     end
 
+    def clear
+      Brand.where(things_size: 0).delete_all
+      redirect_to haven_brands_path
+    end
+
     private
 
     def brand_params

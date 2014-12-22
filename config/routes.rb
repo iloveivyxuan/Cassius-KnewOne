@@ -406,7 +406,11 @@ Making::Application.routes.draw do
 
     resources :tags
 
-    resources :brands, only: [:index, :edit, :update, :destroy]
+    resources :brands, only: [:index, :edit, :update, :destroy] do
+      collection do
+        get 'clear'
+      end
+    end
 
     resources :resources
 

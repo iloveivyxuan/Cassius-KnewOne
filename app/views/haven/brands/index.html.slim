@@ -11,6 +11,7 @@
   - queries = params.except(*request.path_parameters.keys)
   = link_to '导出CSV(Numbers)', "#{haven_brands_path(queries.merge(format: :csv, platform: 'numbers'))}", class: 'btn btn-success btn-sm'
   = link_to '导出CSV(Excel)', "#{haven_brands_path(queries.merge(format: :csv))}", class: 'btn btn-success btn-sm'
+  = link_to '清除', clear_haven_brands_path, class: 'btn btn-danger btn-sm', data: { confirm: '你确定？' }
 
 table.table
   thead
