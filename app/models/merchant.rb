@@ -37,8 +37,7 @@ class Merchant
     return if customer_service.blank?
     return unless customer_service.include?('meiqia')
     return if customer_service.include?("&btn=hide")
-    arr = customer_service.split("\"")
-    arr[-2].concat("&btn=hide")
-    self.customer_service = arr.join
+    regex = /https:\/\/s\.meiqia\.com\/js\/mechat\.js\?unitid=([0-9]+)/.match(customer_service)
+    self.customer_service = "<script async='true' src='https://s.meiqia.com/js/mechat.js?unitid=#{regex[1]}&btn=hide' charset='UTF-8'></script>"
   end
 end
