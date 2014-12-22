@@ -80,6 +80,10 @@ Making::Application.routes.draw do
   scope :search, controller: :search, as: :search do
     root to: :index
     get 'suggestions'
+    get 'things'
+    get 'lists'
+    get 'users'
+    get 'groups'
   end
 
   resources :users, only: [:show] do

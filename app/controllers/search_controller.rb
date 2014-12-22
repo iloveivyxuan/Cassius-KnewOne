@@ -1,43 +1,47 @@
 class SearchController < ApplicationController
+  before_action :fix_query
+
   def index
-    q = params[:q].to_s
-
-    return head :no_content if q.empty?
-    per = params[:per_page] || 48
-
-    if (params[:type].blank? && params[:format].blank?) || !['things', 'users', nil].include?(params[:type])
-      params[:type] = 'things'
+    unless request.xhr?
+      return redirect_to action: 'things', q: params[:q]
     end
 
-    if params[:type].blank? || params[:type] == 'things'
-      @things = Thing.search(q).page(params[:page]).per(per).records
-    end
+    @brands = Brand.search(params[:q]).limit(3).records.to_a
+    @things = Thing.search(params[:q]).limit(8).records.to_a
+    @lists = ThingList.search(params[:q]).limit(3).records.to_a
+    @users = User.search(params[:q]).limit(6).records.to_a
 
-    if params[:type].blank? || params[:type] == 'users'
-      @users = User.search(q).page(params[:page]).per(per).records
-    end
-
-    @category = Category.search(q).limit(1).records.first
-    @tag = Tag.search(q).limit(1).records.first
-    @brand = Brand.search(q).limit(1).records.first
-
-    respond_to do |format|
-      format.html do
-        if request.xhr?
-          render 'index_xhr', layout: false
-        else
-          render "search_#{params[:type]}", layout: 'search'
-        end
-      end
-    end
+    render 'index_xhr', layout: false
   end
 
   def suggestions
-    q = params[:q].to_s
-    @suggestions = Thing.suggest(q, 3)
+    @suggestions = Thing.suggest(params[:q], 3)
 
     respond_to do |format|
       format.json { render json: @suggestions }
     end
+  end
+
+  def things
+    @things = Thing.search(params[:q]).page(params[:page]).per(24).records
+  end
+
+  def lists
+    @lists = ThingList.search(params[:q]).page(params[:page]).per(24).records
+  end
+
+  def users
+    @users = User.search(params[:q]).page(params[:page]).per(24).records
+  end
+
+  def groups
+    @groups = Group.search(params[:q]).page(params[:page]).per(24).records
+    @topics = Topic.search(params[:q]).page(params[:page]).per(24).records
+  end
+
+  private
+
+  def fix_query
+    params[:q] = params[:q].to_s
   end
 end

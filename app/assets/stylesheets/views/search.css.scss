@@ -1,6 +1,6 @@
 @import '../base';
 
-html.search_index {
+html[class^="search_"] {
 
   #wrapper {
     margin: 0;
