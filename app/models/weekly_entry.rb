@@ -8,5 +8,5 @@ class WeeklyEntry
   field :content, type: String
   field :link, type: String
 
-  mount_uploader :image, CoverUploader
+  mount_uploader :image, ImageUploader
 end
