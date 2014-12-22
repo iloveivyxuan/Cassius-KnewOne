@@ -829,4 +829,23 @@ html.no-touch {
       background-color: rgba(#5e6775,.6);
     }
   }
+
+  position: relative;
+
+  .search_menu {
+    display: none;
+
+    position: absolute;
+    width: 100%;
+
+    background: $navbar-bg;
+
+    .search_suggestions {
+      padding: 10px;
+    }
+
+    .search_result {
+      padding: 10px;
+    }
+  }
 }
