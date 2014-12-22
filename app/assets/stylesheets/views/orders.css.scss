@@ -92,18 +92,41 @@ html.orders_create,
         width: auto;
       }
 
+      > .btn[href*=wechat] {
+        padding: {
+          right: 52px;
+        }
+      }
+
       .dropdown-toggle {
         min-width: 112px;
       }
     }
 
     .btn {
+      position: relative;
+
       sup {
         background-color: $orange;
-        border-radius: 2px;
+        border-radius: 0 4px 4px 0;
         font-size: 12px;
+        height: 34px;
+        line-height: 34px;
         margin-left: 5px;
-        padding: 2px;
+        padding: 2px 5px 2px 0;
+        position: absolute;
+        right: -1px;
+        top: -1px;
+
+        &::before {
+          border-color: transparent $orange transparent transparent;
+          border-style: solid;
+          border-width: 17px;
+          content: '';
+          left: -34px;
+          position: absolute;
+          top: 0;
+        }
       }
     }
   }
