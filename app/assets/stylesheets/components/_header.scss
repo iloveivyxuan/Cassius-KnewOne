@@ -842,6 +842,28 @@ html.no-touch {
 
     .search_suggestions {
       padding: 10px;
+      padding-bottom: 0;
+      background: rgba($navbar-search-bg, .6);
+
+      h5 {
+        margin: 0;
+      }
+
+      li {
+        @include text-overflow;
+
+        margin: 0 -10px;
+        padding: 5px 10px;
+        padding-left: 30px;
+
+        color: $blue-bright;
+        cursor: pointer;
+
+        &:hover,
+        &.selected {
+          background: darken($navbar-bg, 10%);
+        }
+      }
     }
 
     .search_result {
