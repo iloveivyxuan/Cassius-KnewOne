@@ -41,7 +41,11 @@ class Weekly
   end
 
   def hot_things(limit = 6)
-    thing_ids = thing_list.thing_list_items.limit(limit).map(&:thing_id)
-    Thing.where :id.in => thing_ids
+    if thing_list
+      thing_ids = thing_list.thing_list_items.limit(limit).map(&:thing_id)
+      Thing.where :id.in => thing_ids
+    else
+      Thing.none
+    end
   end
 end
