@@ -71,6 +71,7 @@
   background-color: lighten($blue-dark, 10%);
   &:hover { background-color: lighten($blue-dark, 5%) }
 }
+.btn--orange--true,
 .btn--online_shopping {
   @extend %new_button_base;
   background-color: $orange;
