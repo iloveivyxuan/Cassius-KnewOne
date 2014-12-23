@@ -37,18 +37,14 @@ class ThingList
     (fanciers_count + comments.count) * freezing_coefficient
   end
 
-  before_save do
-    self.background ||= ThingListBackground.first
+  def get_things_by_order(limit = 0)
+    ids = thing_list_items.map { |item| [item.order, item.thing_id] }.sort_by(&:first).reverse!.map(&:last)
+    ids = ids.first(limit) if limit > 0
+
+    Thing.where(:id.in => ids).sort_by { |thing| ids.index(thing.id.to_s) }.reverse!
   end
 
-  def self.generate_hot_thing_for_weekly(since_date = Date.today - 7.days, user = User.find('511114fa7373c2e3180000b4'), limit = 6)
-    due_date = since_date + 6.days
-    list = user.thing_lists.build name: "店长推荐（#{since_date.strftime('%Y.%m.%d')} ~ #{due_date.strftime('%Y.%m.%d')}）"
-
-    Thing.hot.from_date(since_date).to_date(due_date).limit(limit).each_with_index do |t, i|
-      list.thing_list_items.build thing: t, order: i.to_f
-    end
-
-    list.save
+  before_save do
+    self.background ||= ThingListBackground.first
   end
 end

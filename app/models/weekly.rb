@@ -25,27 +25,66 @@ class Weekly
     end
   end
 
+  WEIGHT = {
+    fancy_thing: 1,
+    new_feeling: 3,
+    new_review: 3,
+    add_to_list: 3,
+    thing_comment: 3
+  }
+
   def friends_hot_things_of(user, limit = 6)
-    thing_ids = user
-                .related_activities(%i(fancy_thing))
-                .from_date(self.since_date)
-                .to_date(self.due_date)
-                .map(&:reference_union)
-                .group_by { |e| e }
-                .values
-                .sort_by! { |e| e.size }
-                .reverse!
-                .first(limit)
-                .map! {|e| e[0].gsub 'Thing_', ''}
-    Thing.where :id.in => thing_ids
+    fetch_hot_things_by_activities user.related_activities.visible, limit
   end
 
-  def hot_things(limit = 6)
-    if thing_list
-      thing_ids = thing_list.thing_list_items.limit(limit).map(&:thing_id)
-      Thing.where :id.in => thing_ids
+  def hot_things(limit = 14)
+    if self.thing_list
+      self.thing_list.get_things_by_order(limit)
     else
-      Thing.none
+      fetch_hot_things_by_activities(Activity, limit)
     end
+  end
+
+  def gen_weekly_hot_things_list!(user = User.find('511114fa7373c2e3180000b4'))
+    list = user.thing_lists.build name: "第 #{since_date.strftime '%W'} 周热门产品",
+                                  description: "#{since_date.strftime('%Y.%m.%d')} ~ #{due_date.strftime('%Y.%m.%d')}"
+
+
+    hot_things(14).each_with_index do |t, i|
+      list.thing_list_items.build thing: t, order: i.to_f
+    end
+
+    if list.save
+      self.thing_list_id = list.id.to_s
+      self.save
+    end
+  end
+
+  private
+
+  def fetch_hot_things_by_activities(activities, limit = 14)
+    thing_ids = activities
+                  .by_types(*WEIGHT.keys)
+                  .from_date(self.since_date)
+                  .to_date(self.due_date)
+                  .group_by(&:type)
+                  .values
+                  .map! do |grouped|
+                    grouped.inject({}) do |weight_list, activity|
+                      key = [activity.source_union, activity.reference_union].select {|v| v.start_with? 'Thing_'}.first
+                      if key
+                        weight_list[key] ||= 0
+                        weight_list[key] += WEIGHT[activity.type]
+                      end
+                      weight_list
+                    end
+                  end
+                  .reduce {|result, hash| hash.merge(result) { |key, old_value, new_value| old_value + new_value } }
+                  .sort_by {|k, v| v}
+                  .reverse!
+                  .map!(&:first)
+                  .first(limit)
+                  .map! {|e| e.gsub 'Thing_', ''}
+    Thing.where :id.in => thing_ids
   end
 end

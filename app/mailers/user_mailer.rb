@@ -92,7 +92,7 @@ class UserMailer < BaseMailer
     @items[:friends_things] ||= @weekly.friends_hot_things_of(@user)
     @items[:friends_things_count] ||= @items[:friends_things].size
 
-    @items[:hot_things] ||= @weekly.hot_things.to_a
+    @items[:hot_things] ||= @weekly.hot_things(6)
     @items[:hot_things_count] ||= @items[:hot_things].size
 
     mail(to: @user.email,
