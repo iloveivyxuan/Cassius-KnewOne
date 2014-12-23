@@ -176,8 +176,10 @@ html.touch {
       }
     }
 
-    .fa {
-      top: 6px;
+    > .fa {
+      color: #999;
+      top: 8px;
+      line-height: 29px;
     }
   }
 }
@@ -814,12 +816,6 @@ html.no-touch {
       @include box-shadow(none);
       @include border-radius(0);
     }
-  }
-
-  .fa {
-    color: #999;
-    top: 8px;
-    line-height: 29px;
   }
 
   &.focus {
