@@ -45,6 +45,6 @@
           | 申请成功，请耐心等待结果...
       .modal-footer
         button.btn.btn-default type="button" data-dismiss="modal" 关闭
-        - str = "#晒牛玩# 我在剁手站 @KnewOne 免费领养了 #{thing.title}，这个feel就随意感受下：http://knewone.com#{url_for(thing)}"
+        - str = "#晒 KnewOne# 我在剁手站 @KnewOne 免费领养了 #{thing.title}，这个feel就随意感受下：http://knewone.com#{url_for(thing)}"
         = link_to '分享', '#share_modal', id: 'share_order_btn', class: "share_btn btn btn-default", data: { toggle: 'modal', content: str, pic: thing.cover.url(:review) }
         = link_to "查看详情", adoptions_path, class: "btn btn-success"

@@ -57,7 +57,7 @@ module Haven
 您好，感谢您来到 KnewOne。
 由于您分享的产品 <a href='#{thing_url(t)}'>#{t.title}</a> 之前已经被 <a href='#{user_url(oldest_thing.author)}'>#{oldest_thing.author.name}</a> 于 <a href='#{thing_url(oldest_thing)}'>#{oldest_thing.title}</a> 分享过，所以您的产品条目将被合并。您分享的产品页面将会保留，但会发生如下变化：相同产品的喜欢数、拥有数、短评和测评都将统一合并。
 
-分享产品的帮助请点击 <a href="http://knewone.com/about">KnewOne 牛玩上手指南</a>
+分享产品的帮助请点击 <a href="http://knewone.com/about">KnewOne 上手指南</a>
 非常感谢您对 KnewOne 的关注，希望您能分享更多新奇酷的产品和体验，谢谢。
 STR
         knewone.send_private_message_to(t.author, content)

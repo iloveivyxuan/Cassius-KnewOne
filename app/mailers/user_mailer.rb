@@ -35,7 +35,7 @@ class UserMailer < BaseMailer
     @thing = thing
 
     mail(to: user.email,
-         subject: "你在「KnewOne 牛玩」上喜欢的产品\"#{thing.title}\"到货了")
+         subject: "你在「KnewOne」上喜欢的产品\"#{thing.title}\"到货了")
   end
 
   def chosen(email, name)
@@ -43,7 +43,7 @@ class UserMailer < BaseMailer
     @name = name
 
     mail(to: email,
-         subject: '恭喜你在「KnewOne 牛玩」免费领养「Cuptime」成功！')
+         subject: '恭喜你在「KnewOne」免费领养「Cuptime」成功！')
   end
 
   def exchange(email, name)
@@ -51,7 +51,7 @@ class UserMailer < BaseMailer
     @name = name
 
     mail(to: email,
-         subject: '恭喜你在「KnewOne 牛玩」活跃点兑换「质造—上下杯」成功！')
+         subject: '恭喜你在「KnewOne」活跃点兑换「质造—上下杯」成功！')
   end
 
   def adopt(email, name)
@@ -77,7 +77,7 @@ class UserMailer < BaseMailer
     @message = dialog.newest_message
 
     mail(to: @receiver.email,
-         subject: '你在「KnewOne 牛玩」上收到了一封私信')
+         subject: '你在「KnewOne」上收到了一封私信')
   end
 
   def weekly(weekly, user)
