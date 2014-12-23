@@ -868,7 +868,26 @@ html.no-touch {
     }
 
     .search_menu-result {
-      padding: 10px;
+      h5 {
+        margin-left: 10px;
+      }
+
+      a {
+        color: $blue-bright;
+      }
+
+      > ul {
+        padding-left: 30px;
+
+        &.search_brands {
+          > li {
+            display: inline;
+            margin-left: .5em;
+            &:first-child { margin: 0; }
+          }
+        }
+      }
+    }
 
     .search_menu-loading {
       p {
