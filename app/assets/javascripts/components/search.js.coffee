@@ -23,4 +23,6 @@ $(->
       else
         $nav_primary.show()
     )
+
+  $input.trigger('focus') if $input.is(':focus')
 )
