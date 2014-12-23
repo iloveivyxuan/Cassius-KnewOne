@@ -23,7 +23,6 @@ html class=page_class lang="zh-CN"
     = yield :stylesheet
     = javascript_include_tag "modernizr"
     - if Rails.env.production?
-      = render 'shared/customer_service'
       = render 'layouts/analystics'
     = render 'layouts/browsehappy'
   body
@@ -56,6 +55,8 @@ html class=page_class lang="zh-CN"
       = link_to '发现', maps_entries_path
       = link_to '产品时间线', maps_stories_path
     = javascript_include_tag "application"
+    - if Rails.env.production? && content_for(:load_customer_service)
+      = render 'shared/customer_service'
     = yield :script
     - if user_signed_in? and Rails.env.production?
       javascript:
