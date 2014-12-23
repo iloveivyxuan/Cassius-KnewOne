@@ -17,17 +17,13 @@ html.shop, html.things_index {
   }
 
   #things_nav {
-    @include clearfix;
-    background-color: white;
-    border-bottom: 1px solid #eee;
     margin-bottom: 0px;
-    padding: 0 15px;
+    @include clearfix;
 
     h1 {
-      color: $gray;
-      font-size: 20px;
-      line-height: 2.25;
       margin: 1em 0 0 0;
+      font-size: $font-size-h3;
+      color: $gray;
 
       a {
         color: #777;
@@ -52,9 +48,7 @@ html.shop, html.things_index {
 
       > li {
         color: #777;
-        font-size: 18px;
-        line-height: 2.5;
-        padding: 0 5px;
+        font-size: 20px;
         text-decoration: none;
 
         &.active {
@@ -97,6 +91,7 @@ html.shop, html.things_index {
   #things_information {
     @include clearfix;
     background-color: #fafafa;
+    margin-top: 20px;
     padding: 1.5em;
 
     > .col-md-3 {
@@ -197,10 +192,10 @@ html.things_index #things_nav {
 
         & + li{
           margin-left: 15px;
-          padding: 0 5px;
+          padding: 0 2px;
           &:before {
-            content: "";
-            margin-left: -10px;
+            content: "|";
+            margin-left: -15px;
           }
         }
 
