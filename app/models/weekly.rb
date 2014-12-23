@@ -46,12 +46,13 @@ class Weekly
   end
 
   def gen_weekly_hot_things_list!(user = User.find('511114fa7373c2e3180000b4'))
-    list = user.thing_lists.build name: "第 #{since_date.strftime '%W'} 周热门产品",
+    list = user.thing_lists.build name: "#{since_date.year}年第#{since_date.strftime '%W'}周热门产品",
                                   description: "#{since_date.strftime('%Y.%m.%d')} ~ #{due_date.strftime('%Y.%m.%d')}"
 
 
-    hot_things(14).each_with_index do |t, i|
-      list.thing_list_items.build thing: t, order: i.to_f
+    things = hot_things(14)
+    things.each_with_index do |t, i|
+      list.thing_list_items.build thing: t, order: things.size - i
     end
 
     if list.save
