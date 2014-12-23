@@ -236,3 +236,40 @@ html.shop #things_nav {
     nav {margin-top: 0;}
   }
 }
+
+html.things_index {
+  #things_nav {
+    background-color: white;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 0px;
+    padding: 0 15px;
+  }
+
+  h1 {
+    font-size: 20px;
+    line-height: 2.25;
+    margin: 1em 0 0 0;
+  }
+
+  #things_information {
+    margin-top: 0;
+  }
+
+  nav {
+    > ol {
+      > li {
+        font-size: 18px;
+        line-height: 2.5;
+        padding: 0 5px;
+
+        & + li{
+          padding: 0 5px;
+          &:before {
+            content: "";
+            margin-left: -10px;
+          }
+        }
+      }
+    }
+  }
+}
