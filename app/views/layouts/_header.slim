@@ -8,8 +8,6 @@
         = link_to root_path, class: "navbar-brand" do
           = logo
           span.logo= brand
-          - if !user_signed_in? and request.path == '/'
-            = image_tag "logo_white.png", class: "logo-full", height: "12", width: "114", title: "KnewOne 牛玩", alt: "KnewOne 牛玩"
 
       #nav_main.collapse.navbar-collapse
         ul.nav.navbar-nav#nav_primary

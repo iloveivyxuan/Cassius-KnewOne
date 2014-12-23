@@ -204,12 +204,6 @@ html.landing {
         @include MQ(Lplus) {
           line-height: 60px;
         }
-        img {
-          height: 34px;
-          margin: 0;
-          vertical-align: 2px;
-          width: auto;
-        }
       }
     }
 
