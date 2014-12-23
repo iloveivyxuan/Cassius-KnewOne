@@ -461,11 +461,9 @@ HERE
   # activity
   include Feedable
 
-  def related_activities(types = %i(new_thing own_thing fancy_thing
-                                    new_review love_review
-                                    new_feeling love_feeling))
+  def related_activities
     user_ids = following_ids + [self.id]
-    Activity.where(:user_id.in => user_ids, :type.in => types, visible: true)
+    Activity.where(:user_id.in => user_ids)
   end
 
   # category
