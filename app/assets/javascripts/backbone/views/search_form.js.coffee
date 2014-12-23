@@ -5,13 +5,13 @@ class Making.Views.SearchForm extends Backbone.Marionette.ItemView
     input: 'input[type="search"]'
     status: '.fa-search'
     menu: '.search_menu'
-    suggestions: '.search_suggestions'
-    result: '.search_result'
+    suggestions: '.search_menu-suggestions'
+    result: '.search_menu-result'
   }
 
   events: {
     'keydown @ui.input': 'onKeyDown'
-    'mousedown .search_suggestions li': 'clickSuggestion'
+    'mousedown .search_menu-suggestions li': 'clickSuggestion'
     'keyup @ui.input': 'onKeyUp'
     'blur @ui.input': 'onBlur'
     submit: 'onSubmit'

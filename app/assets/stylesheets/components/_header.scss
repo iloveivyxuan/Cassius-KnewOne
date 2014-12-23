@@ -840,7 +840,7 @@ html.no-touch {
 
     background: $navbar-bg;
 
-    .search_suggestions {
+    .search_menu-suggestions {
       padding: 10px;
       padding-bottom: 0;
       background: rgba($navbar-search-bg, .6);
@@ -866,7 +866,7 @@ html.no-touch {
       }
     }
 
-    .search_result {
+    .search_menu-result {
       padding: 10px;
     }
   }
