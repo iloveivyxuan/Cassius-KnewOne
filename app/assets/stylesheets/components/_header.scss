@@ -821,6 +821,10 @@ html.no-touch {
   &.focus {
     width: 600px;
 
+    @include from-breakpoint(lg) {
+      width: 800px;
+    }
+
     .form-control {
       background-color: rgba(#5e6775,.6);
     }
