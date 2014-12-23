@@ -31,7 +31,7 @@ class KindPresenter < ApplicationPresenter
           </small>
       HTML
     end
-    str
+    str.html_safe
   end
 
   def limit
