@@ -27,7 +27,7 @@
                   = hidden_field_tag 'images[]', photo, id: "image_#{index}_field", disabled: true
 
         #new-thing-edit-modal-images
-          .carousel.slide
+          .carousel
             .carousel-inner
             = link_to_with_icon "", "fa fa-chevron-left", "#new-thing-edit-modal-images .carousel", data: {slide: "prev"},
                       class: "carousel-control left"

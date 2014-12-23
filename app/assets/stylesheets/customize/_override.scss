@@ -213,17 +213,25 @@ input[type="number"] {
   }
 }
 .carousel-inner {
+  @include clearfix;
+
   > .item {
+    display: block;
+    float: left;
+    position: static;
+    
+    &.active {
+      left: auto;
+    }
+
     > img {
       display: inline-block;
     }
   }
 }
 .carousel-control {
-  display: none;
-}
-.carousel-control {
   @include border-radius(100px);
+  display: none;
   font-size: 28px;
   width: 40px;
   height: 40px;
@@ -242,6 +250,9 @@ input[type="number"] {
     text-align: right;
     padding-right: 8px;
     right: 20px;
+  }
+  &.is-disabled {
+    display: none !important;
   }
   i {
     margin: 8px 0 0;

@@ -1,6 +1,6 @@
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
+//= require bootstrap-sprockets
 //= require underscore
 //= require wechat
 //= require init_wechat
@@ -13,7 +13,6 @@
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/load-image
 //= require matchmedia
-//= require hammer
 //= require jquery.autosize
 //= require jquery.lazyload
 //= require jquery.ui.sortable

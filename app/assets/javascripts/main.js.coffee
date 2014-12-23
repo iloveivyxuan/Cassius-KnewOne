@@ -47,6 +47,14 @@ do (exports = Making) ->
   exports.init_new_thing_modal = (
     ->
       $new_thing_edit_modal = $('#new-thing-edit-modal')
+      
+      $new_thing_edit_modal.on 'loaded.carousel', ->
+        exports.carousel
+          element: '#new-thing-edit-modal .carousel'
+          isResetItemWidth: true
+        $('#new-thing-edit-modal .carousel').css
+          maxHeight: 'none'
+          visibility: 'visible'
 
       $('#create_thing_modal_form').on('ajax:beforeSend',
       (event, xhr, settings)->
@@ -72,7 +80,8 @@ do (exports = Making) ->
       i = 0
       loaded = 0
       flag = true
-      $.each($('#new-thing-edit-modal-images-container .image .item').find('img'), (index, value)->
+      $images = $('#new-thing-edit-modal-images-container .image .item').find('img')
+      $.each($images, (index, value)->
         $(value).one('load',
         ->
           loaded += 1
@@ -153,6 +162,7 @@ do (exports = Making) ->
               .find('.progress').hide().end()
               .find('.progress-bar').css({width: 0})
             i += 1
+          $new_thing_edit_modal.trigger 'loaded.carousel' if loaded is $images.length
         ).each(
           ->
             if @.complete then $(@).load()

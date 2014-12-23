@@ -1,17 +1,15 @@
 - cache ['things', 'carousel', tp.thing, browser.mobile?]
   #thing_cover_wrapper
     #thing_photos
-      .carousel.carousel--extend.slide
-        .carousel-inner
+      .carousel.carousel--extend
+        ul.carousel-inner
           - tp.photos.each_with_index do |photo, index|
-            div class="item #{'active' if index == 0}"
+            li class="item#{' active' if index == 0}"
               - version = browser.mobile? ? 'thing.fixed.small' : :middle
               = image_tag photo.url(version), alt: photo.name
         - if !browser.mobile? and tp.photos.count > 1
-          = link_to_with_icon "", "fa fa-angle-left", "#thing_photos .carousel", data: {slide: "prev"},
-          class: "carousel-control left"
-          = link_to_with_icon "", "fa fa-angle-right", "#thing_photos .carousel", data: {slide: "next"},
-          class: "carousel-control right"
+          = link_to_with_icon "", "fa fa-angle-left", "#", class: "carousel-control left"
+          = link_to_with_icon "", "fa fa-angle-right", "#", class: "carousel-control right"
       - if !browser.mobile? and tp.photos.count > 1
         .carousel_overview.slideshow
           button.slideshow_control.left

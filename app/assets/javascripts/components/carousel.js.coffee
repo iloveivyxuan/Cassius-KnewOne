@@ -1,13 +1,58 @@
 do (exports = Making) ->
 
-  exports.ExtendCarousel = ->
+  exports.carousel = (options) ->
+    that = @
+    @defaults =
+      element: '.carousel'
+    @options = _.extend {}, @defaults, options
+
+    $(@options.element).each ->
+      $carousel = $(@)
+      $controls = $carousel.find('.carousel-control')
+
+      return true if $carousel.data('carousel')
+
+      options =
+        horizontal: true
+        itemNav: 'forceCentered'
+        smart: true
+        activateMiddle: true
+        mouseDragging: true
+        touchDragging: true
+        releaseSwing: true
+        cycleBy: 'items'
+        pauseOnHover: true
+        speed: 300
+        keyboardNavBy: 'items'
+        disabledClass: 'is-disabled'
+      if $controls.length
+        $prev = $controls.filter('.left')
+        $next = $controls.filter('.right')
+        _.extend options,
+          prev: $prev
+          next: $next
+
+      frame = new Sly(this, options)
+      $carousel.data('carousel', frame)
+
+      resetItemWidth = ->
+        width = $carousel.css('width')
+        $carousel.find('.item').css('width', width)
+
+      $window.on 'resize', ->
+        resetItemWidth() if that.options.isResetItemWidth
+        frame.reload()
+
+      resetItemWidth() if that.options.isResetItemWidth
+      frame.init()
+
+  exports.extendCarousel = ->
     $('.carousel--extend').each ->
-      $carousel      = $(@)
-      $inner         = $carousel.find('.carousel-inner')
-      $item          = $inner.children('.item')
-      default_height = parseInt($item.css('max-height'))
-      height         = _.min([default_height, $inner.width() * 0.75]) + 'px'
-      $overview      = $carousel.next('.carousel_overview')
+      $carousel = $(@)
+      $inner    = $carousel.find('.carousel-inner')
+      $item     = $inner.children('.item')
+      $overview = $carousel.next('.carousel_overview')
+      height    = _.min([parseInt($item.css('max-height')), $carousel.width() * 0.75]) + 'px'
 
       if !$html.hasClass('mobile')
         $item.css
@@ -16,13 +61,13 @@ do (exports = Making) ->
           lineHeight: height
 
       if $overview.length and Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ')')
-        $overview_body = $overview.children('.slideshow_body')
+        $overviewBody = $overview.children('.slideshow_body')
 
-        if $overview_body.length and $overview_body.is(':visible')
-          $prevPage = $overview.find('.left')
-          $nextPage = $overview.find('.right')
+        if $overviewBody.is(':visible')
+          carousel       = $carousel.data('carousel')
+          $overviewItems = $overviewBody.find('[data-slide-to]')
 
-          $overview_body.sly
+          $overviewBody.sly
             horizontal: 1
             itemNav: 'centered'
             smart: 1
@@ -35,31 +80,14 @@ do (exports = Making) ->
             dragHandle: 1
             dynamicHandle: 1
             clickBar: 1
-            prevPage: $prevPage
-            nextPage: $nextPage
+            prevPage: $overview.find('.slideshow_control.left')
+            nextPage: $overview.find('.slideshow_control.right')
 
-          $carousel.on 'slid.bs.carousel', ->
-            index = $(@).find('.carousel-inner').children('.item').filter('.active').index()
+          $overviewItems.on 'click', ->
+            carousel.activate(@getAttribute('data-slide-to'))
+
+          carousel.on 'active', ->
+            index = $carousel.find('.carousel-inner').children('.item').filter('.active').index()
             $overview.find('.slideshow_inner').children('li').eq(index).addClass('active').siblings().removeClass('active')
-
-  $ ->
-    if $('.carousel').length
-      Making.ExtendCarousel()
-      $(window).on 'resize.bs.carousel.data-api', ->
-        if !lock
-          lock = true
-          Making.ExtendCarousel()
-          lock = false
-
-      if $html.hasClass('touch')
-        $('.carousel').each ->
-          $this  = $(@)
-          hammer = new Hammer(@)
-
-          hammer
-            .on 'swipeleft', ->
-              $this.carousel('next')
-            .on 'swiperight', ->
-              $this.carousel('prev')
 
   return exports
