@@ -24,7 +24,8 @@
         | 使用bong活跃点
       #bong_access_token_error_alert.alert.alert-danger.hidden
         | bong服务暂不可用，
-        = link_to '点此刷新', bong_available_point_url, remote: true
+        /= link_to '点此刷新', bong_available_point_url, remote: true
+        = link_to '重新授权', user_omniauth_authorize_path(:bong, state: request.path)
         | 。
       = f.number_field :bong_point,
                        in: @order.minimal_consumable_bong_point..@order.maximal_consumable_bong_point, step: 1,
