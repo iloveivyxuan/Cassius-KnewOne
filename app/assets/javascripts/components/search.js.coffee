@@ -4,17 +4,18 @@ Making.initSearchForm = (form) ->
 $(->
   $form = $('#navbar_search')
   $nav_primary = $('#nav_primary')
+  $input = $form.find('input[type="search"]')
 
   return if $form.length == 0
 
   Making.initSearchForm($form)
 
-  $('#navbar_search')
-    .on('focus', 'input[type="search"]', ->
+  $input
+    .on('focus', ->
       $nav_primary.hide()
       $form.addClass('focus')
     )
-    .on('blur', 'input[type="search"]', ->
+    .on('blur', ->
       $form.removeClass('focus')
 
       if Modernizr.csstransitions
