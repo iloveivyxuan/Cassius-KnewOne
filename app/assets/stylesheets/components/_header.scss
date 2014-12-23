@@ -842,7 +842,8 @@ html.no-touch {
       background: rgba($navbar-search-bg, .6);
 
       h5 {
-        margin: 0;
+        margin: 10px 0;
+        line-height: 1;
       }
 
       li {
@@ -867,7 +868,7 @@ html.no-touch {
 
     .search_menu-loading {
       p {
-        margin: 20px 0 16px;
+        margin: 15px;
         text-align: center;
       }
 
