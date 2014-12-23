@@ -80,8 +80,8 @@ production:
       password: a83Be7b7
       hosts:
         - 10.10.14.157
-      options:
-        pool_size: 64
+      # options:
+      #   pool_size: 64
 staging:
   sessions:
     default:
