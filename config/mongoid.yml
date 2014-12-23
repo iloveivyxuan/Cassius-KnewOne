@@ -81,7 +81,7 @@ production:
       hosts:
         - 10.10.14.157
       options:
-        pool_size: 32
+        pool_size: 64
 staging:
   sessions:
     default:
