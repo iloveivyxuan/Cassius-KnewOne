@@ -1,4 +1,5 @@
 suggestionsTemplate = HandlebarsTemplates['search/suggestions']
+loadingTemplate = HandlebarsTemplates['search/loading']
 
 class Making.Views.SearchForm extends Backbone.Marionette.ItemView
   ui: {
@@ -45,13 +46,23 @@ class Making.Views.SearchForm extends Backbone.Marionette.ItemView
     else
       @ui.menu.hide()
 
-    if @model.get('loading')
-      @ui.status.removeClass('fa-search').addClass('fa-spinner fa-spin')
+    if @model.hasChanged('loading')
+      if @model.get('loading')
+        @ui.status.removeClass('fa-search').addClass('fa-spinner fa-spin')
+
+        @ui.result.html(loadingTemplate())
+        @ui.result.find('.search_menu-progress').animate({width: '100%'}, 500)
+      else
+        @ui.status.addClass('fa-search').removeClass('fa-spinner fa-spin')
+
+        @ui.result.find('.search_menu-progress')
+          .animate({width: '100%'}, 50, =>
+            @ui.result.html(@model.get('result'))
+          )
     else
-      @ui.status.addClass('fa-search').removeClass('fa-spinner fa-spin')
+      @ui.result.html(@model.get('result')) unless @model.get('loading')
 
     @ui.input.val(@model.get('query'))
-    @ui.result.html(@model.get('result'))
 
     @ui.suggestions.html(suggestionsTemplate({
       suggestions: @model.get('suggestions')

@@ -865,6 +865,19 @@ html.no-touch {
     .search_menu-result {
       padding: 10px;
 
+    .search_menu-loading {
+      p {
+        margin: 20px 0 16px;
+        text-align: center;
+      }
+
+      .search_menu-progress {
+        width: 0;
+        height: 4px;
+        background: $blue;
+      }
+    }
+
     .search_not_found {
       @include clearfix;
 
