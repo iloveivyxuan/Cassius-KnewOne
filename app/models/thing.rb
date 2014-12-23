@@ -163,11 +163,13 @@ class Thing < Post
       text.strip!
       if /[a-zA-Z0-9]/ =~ text
         q = Regexp.escape(text)
-        brand = Brand.where(en_name: /^#{q}$/i).first
+        brand = Brand.where(en_name: q).first
+        brand ||= Brand.where(en_name: /^#{q}$/i).first
         brand ||= Brand.create(en_name: text)
         self.brand = brand
       else
-        brand = Brand.where(zh_name: /#{text}/i).first
+        brand = Brand.where(zh_name: text).first
+        brand ||= Brand.where(zh_name: /#{text}/i).first
         brand ||= Brand.create(zh_name: text)
         self.brand = brand
       end
