@@ -1479,6 +1479,10 @@ html.feelings_show {
           @extend %new_button_base;
           background-color: $orange;
           &:hover { background-color: darken($orange, 5%) }
+
+          .fa-lg {
+            vertical-align: -1px;
+          }
         }
 
         .btn-service-terms {
