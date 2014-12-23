@@ -1,0 +1,18 @@
+- cache ['search', thing]
+  li
+    .search_thing
+      header
+        = link_to thing, target: '_blank'
+          .search_thing-cover = present(thing).photo('thing.fixed.small')
+          h6 = thing.title
+
+      footer
+        ul.search_thing-counts
+          - if thing.fanciers_count > 0
+            li
+              i.fa.fa-heart-o
+              = thing.fanciers_count
+          - if thing.reviews_count > 0
+            li
+              i.fa.fa-pencil
+              = thing.reviews_count
