@@ -80,12 +80,12 @@ class UserMailer < BaseMailer
          subject: '你在「KnewOne 牛玩」上收到了一封私信')
   end
 
-  def weekly(weekly_id, user_id)
+  def weekly(weekly, user)
     attachments.inline['bigimage.jpg'] = File.read(Rails.root.join('app/assets/images/mails/bigimage.jpg'))
     attachments.inline['footer.png'] = File.read(Rails.root.join('app/assets/images/mails/footer.png'))
 
-    @weekly = Weekly.find weekly_id
-    @user = User.find user_id
+    @weekly = weekly
+    @user = user
 
     @items = {}
 

@@ -3,6 +3,9 @@ class WeeklyWorker
   sidekiq_options :queue => :weekly, :backtrace => true
 
   def perform(weekly_id, user_id)
-    UserMailer.weekly(weekly_id, user_id).deliver
+    user = User.find user_id
+    weekly = Weekly.find weekly_id
+
+    UserMailer.weekly(weekly, user).deliver
   end
 end
