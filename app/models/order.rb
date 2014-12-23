@@ -549,7 +549,7 @@ class Order
   def calculate_deliver_price
     price = items_price - (order_items.virtual.map(&:price).reduce(&:+) || 0)
 
-    return 0 if price.zero?
+    return 0 if price.zero? && order_items.virtual.size > 0
 
     case self.deliver_by
     when :zt, :zhongtong
