@@ -1,4 +1,4 @@
-- if @thing && @thing.merchant
+- if @thing && @thing.merchant && @thing.merchant.customer_service.present?
   - if @thing.merchant.customer_service_type == "script"
     = @thing.merchant.customer_service.html_safe
 - else
