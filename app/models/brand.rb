@@ -67,7 +67,7 @@ class Brand
       }
     }
 
-    __elasticsearch__.search(query: options)
+    __elasticsearch__.search(query: options, min_score: 1)
   end
 
   def self.update_things_brand_name
