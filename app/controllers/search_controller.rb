@@ -8,7 +8,7 @@ class SearchController < ApplicationController
 
     @brands = Brand.search(params[:q]).limit(3)
     @things = Thing.search(params[:q]).limit(5)
-    @lists = ThingList.search(params[:q]).limit(3).records.qualified.to_a
+    @lists = ThingList.search(params[:q]).limit(3)
     @users = User.search(params[:q]).limit(8).records.to_a
 
     render 'index_xhr', layout: false

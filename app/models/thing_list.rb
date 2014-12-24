@@ -50,16 +50,11 @@ class ThingList
 
   include Searchable
 
-  searchable_fields [:name]
+  searchable_fields [:name, :size, :fanciers_count]
 
   mappings do
     indexes :name, copy_to: :ngram
     indexes :ngram, index_analyzer: 'english', search_analyzer: 'standard'
-  end
-
-  alias_method :_as_indexed_json, :as_indexed_json
-  def as_indexed_json(options={})
-    _as_indexed_json(options).merge(weight: fanciers_count)
   end
 
   def self.search(query)
@@ -72,13 +67,20 @@ class ThingList
           }
         },
         field_value_factor: {
-          field: 'weight',
+          field: 'fanciers_count',
           modifier: 'log2p'
         }
       }
     }
 
-    __elasticsearch__.search(query: query_options)
+    filter_options = {
+      range: {
+        fanciers_count: {gte: 1},
+        size: {gte: 4}
+      }
+    }
+
+    __elasticsearch__.search(query: query_options, filter: filter_options)
   end
 
   before_save do
