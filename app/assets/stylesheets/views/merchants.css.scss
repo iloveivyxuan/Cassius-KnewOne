@@ -2,31 +2,60 @@
 
 .merchants_show {
   #wrapper {
-    margin: 0;
+    margin: 0 auto;
+    padding: 0 15px;
+    @media (min-width: $screen-md-min) {
+      padding: 0 10%;
+    }
+    @media (min-width: $screen-lg-min) {
+      width: $container-large-desktop;
+      padding: 0 $screen-lg-min * 0.1;
+    }
 
-    .container-fluid {
-      padding: 0;
+    > header {
+      margin: {
+        left: -15px;
+        right: -15px;
+      }
       @media (min-width: $screen-md-min) {
-        padding: 0 10%;
+        margin: {
+          left: 0;
+          right: 0;
+        }
       }
-      @media (min-width: $screen-lg-min) {
-        width: $container-large-desktop;
-        padding: 0 $screen-lg-min * 0.1;
+
+      > h1 {
+        font-size: 30px;
       }
-    }
 
-    .name {
-      font-size: 30px;
-    }
+      > .description {
+        $actions-width: 150px;
 
-    .description {
-      background-color: #fafafa;
-      margin-top: 20px;
-      padding: 1.5em;
+        @include clearfix;
+        background-color: #fafafa;
+        margin-top: 20px;
+        padding: 1.5em;
+
+        p {
+          @media (min-width: $screen-md-min) {
+            float: left;
+            margin: 0;
+            width: calc(100% - #{$actions-width});
+          }
+        }
+
+        .actions {
+          text-align: center;
+
+          @media (min-width: $screen-md-min) {
+            float: right;
+            width: $actions-width;
+          }
+        }
+      }
     }
 
     .group {
-
       > li {
         list-style-type: none;
 
@@ -46,6 +75,5 @@
         }
       }
     }
-
   }
 }
