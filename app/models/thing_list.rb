@@ -19,6 +19,7 @@ class ThingList
   alias_method :items, :thing_list_items
 
   scope :qualified, -> { gte(fanciers_count: 1, size: 4) }
+  scope :created_between, ->(from, to) { where :created_at.gt => from, :created_at.lt => to }
 
   include Fanciable
   fancied_as :fancied_thing_lists
