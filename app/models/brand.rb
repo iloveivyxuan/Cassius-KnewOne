@@ -45,13 +45,6 @@ class Brand
     things.map(&:tags).flatten.uniq
   end
 
-  def update_names
-    self.zh_name = nil if self.zh_name.try(:empty?)
-    self.en_name = nil if self.en_name.try(:empty?)
-    self.set(en_name: self.en_name.strip) if self.en_name
-    self.set(zh_name: self.zh_name.strip) if self.zh_name
-  end
-
   def spacing_description
     self.description_will_change!
     self.description.auto_correct!
@@ -80,5 +73,14 @@ class Brand
     if zh_name_changed? || en_name_changed? || nickname_changed?
       self.things.set(brand_information: "#{zh_name} #{en_name} #{nickname}")
     end
+  end
+
+  private
+
+  def update_names
+    b.unset(:zh_name) if self.zh_name.blank?
+    b.unset(:en_name) if self.en_name.blank?
+    self.set(en_name: self.en_name.strip) if self.en_name
+    self.set(zh_name: self.zh_name.strip) if self.zh_name
   end
 end
