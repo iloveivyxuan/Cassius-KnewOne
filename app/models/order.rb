@@ -38,8 +38,8 @@ class Order
   scope :by_thing, ->(thing) { where 'order_items.thing_id' => thing.id }
   scope :without_thing, ->(thing) { ne 'order_items.thing_id' => thing.id }
 
-  scope :from_date, ->(date) { where :created_at.gte => date.to_time.to_i }
-  scope :to_date, ->(date) { where :created_at.lt => date.next_day.to_time.to_i }
+  scope :since_date, ->(date) { where :created_at.gte => date.to_time.to_i }
+  scope :until_date, ->(date) { where :created_at.lt => date.next_day.to_time.to_i }
 
   embeds_many :rebates
 

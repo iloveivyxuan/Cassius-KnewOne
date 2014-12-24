@@ -33,8 +33,8 @@ class Activity
   scope :by_source, ->(record) do
     where source_union: "#{record.class.name}_#{record.id.to_s}"
   end
-  scope :from_date, ->(date) { where :created_at.gte => date.to_time.to_i }
-  scope :to_date, ->(date) { where :created_at.lt => date.next_day.to_time.to_i }
+  scope :since_date, ->(date) { where :created_at.gte => date.to_time.to_i }
+  scope :until_date, ->(date) { where :created_at.lt => date.next_day.to_time.to_i }
 
   TYPES = %i(fancy_thing own_thing new_thing
              new_feeling love_feeling

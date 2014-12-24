@@ -131,7 +131,7 @@ class Stat
   end
 
   def login_activities
-    Activity.by_type(:login_user).from_date(@@date_from).to_date(@@date_to)
+    Activity.by_type(:login_user).since_date(@@date_from).until_date(@@date_to)
   end
 
   def login_users
@@ -143,7 +143,7 @@ class Stat
   end
 
   def activities_users
-    Activity.from_date(@@date_from).to_date(@@date_to).distinct(:user_id).size
+    Activity.since_date(@@date_from).until_date(@@date_to).distinct(:user_id).size
   end
 
   def ave_follows_count
@@ -174,7 +174,7 @@ class Stat
   end
 
   def reviews_plus_tops
-    reviews_plus = Activity.where(:type => :love_review).from_date(@@date_from).to_date(@@date_to)
+    reviews_plus = Activity.where(:type => :love_review).since_date(@@date_from).until_date(@@date_to)
     plus_ones = reviews_plus.map(&:reference)
     uniqs = plus_ones.uniq.compact
     result = Hash[uniqs.map { |v| [v.title, plus_ones.count(v)] }].sort_by { |_, value| value }.reverse.take(10)
@@ -237,7 +237,7 @@ class Stat
   end
 
   def orders_users_count
-    User.where(:id.in => Order.from_date(@@date_from).to_date(@@date_to).map(&:user_id)).size
+    User.where(:id.in => Order.since_date(@@date_from).until_date(@@date_to).map(&:user_id)).size
   end
 
   def per_customer_sales
@@ -272,7 +272,7 @@ class Stat
   end
 
   def new_things_added_to_lists
-    activities = Activity.by_type(:add_to_list).where(visible: true).from_date(@@date_from).to_date(@@date_to)
+    activities = Activity.by_type(:add_to_list).where(visible: true).since_date(@@date_from).until_date(@@date_to)
     activities.map(&:reference).compact.uniq.size
   end
 
@@ -311,23 +311,23 @@ class Stat
   private
 
   def all_likes
-    @_all_likes ||= Activity.by_type(:fancy_thing).from_date(@@date_from).to_date(@@date_to)
+    @_all_likes ||= Activity.by_type(:fancy_thing).since_date(@@date_from).until_date(@@date_to)
   end
 
   def all_plus_one
-    @_all_plus_one ||= Activity.where(:type.in => [:love_review, :love_feeling, :love_topic]).from_date(@@date_from).to_date(@@date_to)
+    @_all_plus_one ||= Activity.where(:type.in => [:love_review, :love_feeling, :love_topic]).since_date(@@date_from).until_date(@@date_to)
   end
 
   def all_follows_activities
-    @_all_follows_activities ||= Activity.by_type(:follow_user).from_date(@@date_from).to_date(@@date_to)
+    @_all_follows_activities ||= Activity.by_type(:follow_user).since_date(@@date_from).until_date(@@date_to)
   end
 
   def all_orders
-    @_all_orders ||= Order.where('order_histories.to' => :confirmed).from_date(@@date_from).to_date(@@date_to)
+    @_all_orders ||= Order.where('order_histories.to' => :confirmed).since_date(@@date_from).until_date(@@date_to)
   end
 
   def all_feelings
-    @_all_feelings ||= Activity.by_type(:new_feeling).from_date(@@date_from).to_date(@@date_to)
+    @_all_feelings ||= Activity.by_type(:new_feeling).since_date(@@date_from).until_date(@@date_to)
   end
 
   def all_reviews
@@ -343,7 +343,7 @@ class Stat
   end
 
   def all_lists_fancies
-    @_all_lists_fancies ||= Activity.by_type(:fancy_list).from_date(@@date_from).to_date(@@date_to)
+    @_all_lists_fancies ||= Activity.by_type(:fancy_list).since_date(@@date_from).until_date(@@date_to)
   end
 
   def product_something_tops(klass)

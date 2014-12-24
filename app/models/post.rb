@@ -34,8 +34,8 @@ class Post
   before_save :format_title
   before_save :remove_ending_blanks
 
-  scope :from_date, ->(date) { where :created_at.gte => date }
-  scope :to_date, ->(date) { where :created_at.lt => date.next_day }
+  scope :since_date, ->(date) { where :created_at.gte => date }
+  scope :until_date, ->(date) { where :created_at.lt => date.next_day }
   scope :recent, ->(range = 30) { gt(created_at: range.days.ago) }
 
   after_create :update_commented_at
