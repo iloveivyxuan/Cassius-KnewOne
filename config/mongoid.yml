@@ -85,8 +85,4 @@ production:
 staging:
   sessions:
     default:
-      database: making_staging
-      username: admin
-      password: a83Be7b7
-      hosts:
-        - 10.10.14.157
+      database: making_production
