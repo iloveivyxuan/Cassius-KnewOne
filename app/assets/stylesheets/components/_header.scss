@@ -812,7 +812,6 @@ html.no-touch {
       margin: 0;
       color: $blue-bright;
       letter-spacing: 1px;
-      border-left: 3px solid $brand-primary;
       @include box-shadow(none);
       @include border-radius(0);
     }
