@@ -1,5 +1,6 @@
 - page_title "商家|#{@merchant.name}"
 - page_css 'merchants'
+- provide :load_customer_service, true
 
 .container-fluid
 
@@ -8,6 +9,7 @@
       = @merchant.name
     .description
       = @merchant.description
+      = customer_service @merchant, "btn btn-default"
       - if @merchant.role?(current_user)
         = button_tag "编辑", type: "button", class: "btn btn-default", data: { toggle: 'modal', target: '#set-description-modal' }
     ul.group
