@@ -59,6 +59,11 @@ class Brand
     indexes :ngram, index_analyzer: 'english', search_analyzer: 'standard'
   end
 
+  alias_method :_as_indexed_json, :as_indexed_json
+  def as_indexed_json(options={})
+    _as_indexed_json(options).merge(brand_text: brand_text)
+  end
+
   def self.search(query)
     options = {
       multi_match: {
