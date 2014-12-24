@@ -1,0 +1,5 @@
+li
+  .search_user
+    = link_to user, target: '_blank', data: {'profile-popover' => user.id.to_s}
+      = user_avatar(user, :small)
+      h6 = user.name
