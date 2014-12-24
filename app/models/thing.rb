@@ -445,7 +445,13 @@ class Thing < Post
       weight: fancier_ids.size
     }
 
-    _as_indexed_json(options).merge(weight: fancier_ids.size, suggest: suggest)
+    _as_indexed_json(options).merge(
+      cover_url: cover.url,
+      fanciers_count: fancier_ids.size,
+      reviews_count: reviews_count,
+      updated_at: updated_at,
+      suggest: suggest
+    )
   end
 
   def self.search(query)

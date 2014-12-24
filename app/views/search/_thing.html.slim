@@ -1,9 +1,9 @@
-- cache ['search', thing]
+- cache ['search_thing', thing.id, thing.updated_at]
   li
     .search_thing
       header
-        = link_to thing, target: '_blank'
-          .search_thing-cover = present(thing).photo('thing.fixed.small')
+        = link_to thing_path(thing.id), target: '_blank'
+          .search_thing-cover = image_tag "#{thing.cover_url}!thing.fixed.small", alt: thing.title
           h6 = thing.title
 
       footer
