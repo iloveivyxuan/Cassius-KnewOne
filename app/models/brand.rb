@@ -48,8 +48,8 @@ class Brand
   def update_names
     self.zh_name = nil if self.zh_name.try(:empty?)
     self.en_name = nil if self.en_name.try(:empty?)
-    self.en_name.strip! if self.en_name
-    self.zh_name.strip! if self.zh_name
+    self.set(en_name: self.en_name.strip) if self.en_name
+    self.set(zh_name: self.zh_name.strip) if self.zh_name
   end
 
   def spacing_description
