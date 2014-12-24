@@ -14,6 +14,7 @@ class Making.Views.SearchForm extends Backbone.Marionette.ItemView
     'keydown @ui.input': 'onKeyDown'
     'mousedown .search_menu-suggestions li': 'clickSuggestion'
     'keyup @ui.input': 'onKeyUp'
+    'focus @ui.input': 'onFocus'
     'blur @ui.input': 'onBlur'
     submit: 'onSubmit'
   }
@@ -149,6 +150,9 @@ class Making.Views.SearchForm extends Backbone.Marionette.ItemView
     @updateSuggestions(query)
     @updateResult(query)
   , 200)
+
+  onFocus: ->
+    @ui.input.select()
 
   onBlur: ->
     @model.set({
