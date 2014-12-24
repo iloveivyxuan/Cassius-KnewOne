@@ -7,7 +7,7 @@
       = tp.render_shopping_desc
     .buy.clearfix
       = tp.buy
-      = customer_service tp.thing, "btn btn-service-terms btn--blue"
+      = customer_service tp.thing.merchant, "btn btn-service-terms btn--blue"
     - if tp.thing.merchant.present?
       .merchant
         | 由

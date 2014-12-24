@@ -17,7 +17,7 @@
           | 由
           = link_to tp.thing.merchant.name, merchant_path(tp.thing.merchant), class: "merchant-name"
           | 发货并提供
-          = customer_service tp.thing, "btn btn-sm btn--blue"
+          = customer_service tp.thing.merchant, "btn btn-sm btn--blue"
 
   = tp.render_shopping_desc_modal
   = render 'things/mobile_buy_modals', tp: tp
