@@ -34,6 +34,8 @@ class Weekly
   }
 
   def friends_hot_things_of(user, limit = 6)
+    return [] if user.followings.empty?
+
     fetch_hot_things_by_activities user.related_activities.visible, limit
   end
 
@@ -64,6 +66,8 @@ class Weekly
   private
 
   def fetch_hot_things_by_activities(activities, limit = 14)
+    return [] if activities.empty?
+
     thing_ids = activities
                   .by_types(*WEIGHT.keys)
                   .from_date(self.since_date)
@@ -80,12 +84,12 @@ class Weekly
                       weight_list
                     end
                   end
-                  .reduce {|result, hash| hash.merge(result) { |key, old_value, new_value| old_value + new_value } }
+                  .reduce({}) {|result, hash| hash.merge(result) { |key, old_value, new_value| old_value + new_value } }
                   .sort_by {|k, v| v}
                   .reverse!
                   .map!(&:first)
                   .first(limit)
                   .map! {|e| e.gsub 'Thing_', ''}
-    Thing.where :id.in => thing_ids
+    Thing.where(:id.in => thing_ids).to_a
   end
 end
