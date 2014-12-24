@@ -74,6 +74,7 @@ class Making.Views.SearchForm extends Backbone.Marionette.ItemView
 
     return @model.set({
       suggestions: @_cachedSuggestions[query]
+      selectedIndex: 0
     }) if @_cachedSuggestions[query]?
 
     $.ajax({
@@ -83,7 +84,11 @@ class Making.Views.SearchForm extends Backbone.Marionette.ItemView
     }).done((suggestions) =>
       suggestions.unshift(query)
       @_cachedSuggestions[query] = suggestions
-      @model.set({suggestions}) if query == @inputValue()
+
+      @model.set({
+        suggestions
+        selectedIndex: 0
+      }) if query == @inputValue()
     )
 
   updateResult: (query) ->
