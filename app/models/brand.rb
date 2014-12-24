@@ -78,8 +78,8 @@ class Brand
   private
 
   def update_names
-    b.unset(:zh_name) if self.zh_name.blank?
-    b.unset(:en_name) if self.en_name.blank?
+    self.unset(:zh_name) if self.zh_name.blank?
+    self.unset(:en_name) if self.en_name.blank?
     self.set(en_name: self.en_name.strip) if self.en_name
     self.set(zh_name: self.zh_name.strip) if self.zh_name
   end
