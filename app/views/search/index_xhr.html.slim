@@ -10,6 +10,12 @@
     = "与 “#{params[:q]}” 相关的产品"
   ul.search_things = render partial: 'thing', collection: @things
 
+- if @lists.present?
+  h5
+    i.fa.fa-list
+    = "与 “#{params[:q]}” 相关的列表"
+  ul.search_lists = render partial: 'list', collection: @lists
+
 - unless @brands.present? || @things.present? || @lists.present? || @users.present?
   .search_not_found
     = image_tag image_path('not_found.png'), title: '啥都找不到 0_0'
