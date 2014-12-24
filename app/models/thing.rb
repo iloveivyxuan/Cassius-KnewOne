@@ -428,7 +428,7 @@ class Thing < Post
 
   include Searchable
 
-  searchable_fields [:title, :_slugs, :subtitle, :nickname, :brand_name]
+  searchable_fields [:title, :_slugs, :subtitle, :nickname, :brand_name, :priority]
 
   mappings do
     indexes :title, copy_to: :ngram
@@ -456,7 +456,13 @@ class Thing < Post
       }
     }
 
-    __elasticsearch__.search(query: query_options, min_score: 0.1)
+    filter_options = {
+      range: {
+        priority: {gte: 0}
+      }
+    }
+
+    __elasticsearch__.search(query: query_options, filter: filter_options, min_score: 0.1)
   end
 
   def self.suggest(prefix, limit = 10)
