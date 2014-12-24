@@ -81,6 +81,10 @@ every :monday, :at => '2:00 am' do
   runner "Stat.generate_week_stats"
 end
 
+every :monday, :at => '1:00 am' do
+  runner "Weekly.generate_for_week!"
+end
+
 every '0 3 1 * *' do
   runner "Stat.generate_month_stats"
 end

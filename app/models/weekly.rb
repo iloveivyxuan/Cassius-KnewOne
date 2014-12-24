@@ -96,7 +96,7 @@ class Weekly
                   .map!(&:first)
                   .first(limit)
                   .map! {|e| e.gsub 'Thing_', ''}
-    
+
     Thing.where(:id.in => thing_ids).to_a
   end
 end
