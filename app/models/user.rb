@@ -559,7 +559,7 @@ HERE
 
   alias_method :_as_indexed_json, :as_indexed_json
   def as_indexed_json(options={})
-    _as_indexed_json(options).merge(weight: karma)
+    _as_indexed_json(options).merge(avatar_url: avatar.url, weight: karma)
   end
 
   def self.search(query)
