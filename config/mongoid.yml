@@ -86,3 +86,5 @@ staging:
   sessions:
     default:
       database: making_production
+      hosts:
+        - localhost:27017
