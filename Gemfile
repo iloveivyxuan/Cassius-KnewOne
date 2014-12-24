@@ -87,6 +87,7 @@ gem 'doorkeeper', '~> 1', github: 'doorkeeper-gem/doorkeeper'
 
 # monitoring
 gem 'newrelic_rpm'
+gem 'newrelic_moped'
 gem 'airbrake'
 
 # sitemap
