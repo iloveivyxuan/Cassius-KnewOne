@@ -1,9 +1,11 @@
 - cache ['search_thing', thing.id, thing.updated_at]
+  - cover_url = Photo.find(thing.cover_id).url('thing.fixed.small') rescue ''
+
   li
     .search_thing
       header
         = link_to thing_path(thing.id), target: '_blank'
-          .search_thing-cover = image_tag "#{thing.cover_url}!thing.fixed.small", alt: thing.title
+          .search_thing-cover = image_tag cover_url, alt: thing.title
           h6 = thing.title
 
       footer

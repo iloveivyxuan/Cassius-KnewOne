@@ -446,7 +446,7 @@ class Thing < Post
     }
 
     _as_indexed_json(options).merge(
-      cover_url: cover.url,
+      cover_id: photo_ids.first.to_s,
       fanciers_count: fancier_ids.size,
       owners_count: owner_ids.size,
       reviews_count: reviews_count,
