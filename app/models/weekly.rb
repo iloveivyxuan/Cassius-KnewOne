@@ -33,6 +33,9 @@ class Weekly
     thing_comment: 3
   }
 
+  THING_RELATED_UNION_PREFIX = 'Thing_'.freeze
+  EMPTY_STRING = ''.freeze
+
   def friends_hot_things_of(user, limit = 6)
     return [] if user.followings.empty?
 
@@ -82,11 +85,14 @@ class Weekly
                   .values
                   .map! do |grouped|
                     grouped.inject({}) do |weight_list, activity|
-                      key = [activity.source_union, activity.reference_union].select {|v| v.start_with? 'Thing_'}.first
+                      key = [activity.source_union, activity.reference_union]
+                              .select {|v| v.start_with? THING_RELATED_UNION_PREFIX}
+                              .first
                       if key
                         weight_list[key] ||= 0
                         weight_list[key] += WEIGHT[activity.type]
                       end
+
                       weight_list
                     end
                   end
@@ -95,7 +101,7 @@ class Weekly
                   .reverse!
                   .map!(&:first)
                   .first(limit)
-                  .map! {|e| e.gsub 'Thing_', ''}
+                  .map! {|e| e.gsub THING_RELATED_UNION_PREFIX, EMPTY_STRING}
 
     Thing.where(:id.in => thing_ids).to_a
   end
