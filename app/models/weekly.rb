@@ -7,7 +7,14 @@ class Weekly
   accepts_nested_attributes_for :weekly_entries, allow_destroy: true
 
   field :thing_list_id, type: String
-  field :since_date, type: Date, default: Date.today.last_week
+  field :since_date, type: Date
+
+  after_initialize do
+    if self.new_record?
+      self.since_date ||=  Date.today.last_week
+      self.since_date = self.since_date.to_date.beginning_of_week
+    end
+  end
 
   def thing_list
     if self.thing_list_id_changed?
@@ -18,11 +25,7 @@ class Weekly
   end
 
   def until_date
-    if self.since_date_changed?
-      @_until_date = self.since_date + 6.days
-    else
-      @_until_date ||= self.since_date + 6.days
-    end
+    self.since_date.end_of_week
   end
 
   WEIGHT = {
@@ -60,9 +63,9 @@ class Weekly
       list.thing_list_items.build thing: t, order: things.size - i
     end
 
-    if list.save
+    if list.save!
       self.thing_list_id = list.id.to_s
-      self.save
+      self.save!
     end
   end
 
