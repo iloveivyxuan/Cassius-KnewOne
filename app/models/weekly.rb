@@ -7,7 +7,7 @@ class Weekly
   accepts_nested_attributes_for :weekly_entries, allow_destroy: true
 
   field :thing_list_id, type: String
-  field :since_date, type: Date, default: (Date.today - 7.days)
+  field :since_date, type: Date, default: Date.today.last_week
 
   def thing_list
     if self.thing_list_id_changed?
@@ -63,6 +63,12 @@ class Weekly
     end
   end
 
+  def self.generate_for_week!(since_date = Date.today.last_week)
+    w = create! since_date: since_date
+    w.gen_weekly_hot_things_list!
+    w
+  end
+
   private
 
   def fetch_hot_things_by_activities(activities, limit = 14)
@@ -90,6 +96,7 @@ class Weekly
                   .map!(&:first)
                   .first(limit)
                   .map! {|e| e.gsub 'Thing_', ''}
+    
     Thing.where(:id.in => thing_ids).to_a
   end
 end
