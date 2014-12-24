@@ -12,6 +12,10 @@
             li
               i.fa.fa-heart-o
               = thing.fanciers_count
+          - if thing.owners_count > 0
+            li
+              i.fa.fa-check-circle-o
+              = thing.owners_count
           - if thing.reviews_count > 0
             li
               i.fa.fa-pencil
