@@ -42,6 +42,31 @@
       color: $blue-bright;
     }
 
+    .search_menu-more {
+      float: right;
+      padding-right: 10px;
+      color: $gray-light;
+
+      .fa {
+        margin: 0 0 0 4px;
+      }
+    }
+
+    .search_menu-show_all {
+      display: block;
+
+      margin: 10px 0 0 0;
+      padding: 10px 0;
+
+      text-align: center;
+      color: $gray-light;
+      background: darken($navbar-bg, 10%);
+
+      .fa {
+        margin: 0 0 0 .5em;
+      }
+    }
+
     > ul {
       padding-left: 30px;
 
