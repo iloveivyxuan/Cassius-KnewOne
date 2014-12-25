@@ -36,10 +36,4 @@
     | 查看更多搜索结果
     i.fa.fa-chevron-right
 - else
-  .search_not_found
-    = image_tag image_path('not_found.png'), alt: '啥都找不到 0_0'
-    p
-      | 没有找到相关结果 0_0
-      = link_to new_thing_path
-        i.fa.fa-plus-square
-        | 来分享吧~
+  .search_not_found = render 'things_not_found'
