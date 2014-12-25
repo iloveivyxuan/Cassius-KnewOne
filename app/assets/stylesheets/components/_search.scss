@@ -164,6 +164,10 @@
     overflow: hidden;
     height: 0;
     padding-bottom: percentage(3 / 4);
+
+    img {
+      width: 100%;
+    }
   }
 
   .search_thing-counts {
