@@ -3,6 +3,8 @@
     ul.search_result-items.infinite
       = render partial: 'thing', collection: @things
     = paginate @things
+- else
+  section.search_not_found = render 'things_not_found', dark: true
 
 - content_for :script do
   javascript:

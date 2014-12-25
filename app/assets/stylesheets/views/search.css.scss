@@ -70,6 +70,14 @@ html[class^="search_"] {
         }
       }
     }
+
+    .search_not_found {
+      background: $smoke-white;
+
+      p {
+        font-size: 24px;
+      }
+    }
   }
 }
 
