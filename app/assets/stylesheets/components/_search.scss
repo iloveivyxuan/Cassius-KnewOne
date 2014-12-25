@@ -121,39 +121,6 @@
       background: $blue;
     }
   }
-
-  .search_not_found {
-    padding: 20px;
-
-    p {
-      margin-top: 20px;
-      font-size: $font-size-large;
-
-      a {
-        display: block;
-        color: $blue;
-      }
-    }
-
-    @include from-breakpoint(sm) {
-      @include clearfix;
-
-      position: relative;
-      padding: 90px 70px;
-
-      p {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        margin: 0;
-      }
-
-      img {
-        float: right;
-        width: 45%;
-      }
-    }
-  }
 }
 
 .search_thing {
@@ -211,5 +178,38 @@
     padding: 10px 0 0 0;
     font-size: 12px;
     color: $gray-light;
+  }
+}
+
+.search_not_found {
+  padding: 20px;
+
+  p {
+    margin-top: 20px;
+    font-size: $font-size-large;
+
+    a {
+      display: block;
+      color: $blue;
+    }
+  }
+
+  @include from-breakpoint(sm) {
+    @include clearfix;
+
+    position: relative;
+    padding: 90px 70px;
+
+    p {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      margin: 0;
+    }
+
+    img {
+      float: right;
+      width: 45%;
+    }
   }
 }
