@@ -1,16 +1,23 @@
-- page_title "#{params[:q]}的搜索结果"
+- page_title "#{params[:q]} 的搜索结果"
 - page_css 'search'
 
-- content_for :content do
-  .container-fluid
-    header.page-header
-      h1
-        em.text-success #{params[:q]}
-        | &nbsp;的搜索结果
-      nav.btn-group
-        = search_nav '产品', 'things', params.except(*request.path_parameters.keys).merge(type: 'things'), true
-        = search_nav '用户', 'users', params.except(*request.path_parameters.keys).merge(type: 'users')
+- content_for :content
+  header
+    h1
+      em = params[:q]
+      |  的搜索结果
 
-    = yield
+    nav
+      ul
+        = li action_name == 'things'
+          = link_to '产品', search_things_path(q: params[:q])
+        = li action_name == 'lists'
+          = link_to '列表', search_lists_path(q: params[:q])
+        = li action_name == 'users'
+          = link_to '用户', search_users_path(q: params[:q])
+        = li action_name == 'groups'
+          = link_to '小组 | 话题', search_groups_path(q: params[:q])
+
+  = yield
 
 = render template: 'layouts/application'
