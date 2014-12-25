@@ -101,14 +101,20 @@ module ApplicationHelper
 
   def page_class
     ["#{controller_path.gsub('/', '_')}_#{action_name}",
+      content_for(:page_class),
+      if user_signed_in?
+        "signed_in"
+      else
+        "signed_out"
+      end,
       if browser.mobile?
         "mobile"
       elsif browser.tablet?
         "tablet"
       else
         "desktop"
-      end,
-      content_for(:page_class)].reject(&:blank?).join(' ')
+      end
+    ].reject(&:blank?).join(' ')
   end
 
   def feed_link_tag
