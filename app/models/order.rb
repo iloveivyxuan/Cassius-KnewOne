@@ -82,6 +82,7 @@ class Order
     :sf => '顺丰',
     :zt => '中通',
     :bong_delivery => 'bong',
+    :other => '其他',
     # same as https://code.google.com/p/kuaidi-api/wiki/Open_API_API_URL
     :yuantong => '圆通速递',
     :debangwuliu => '德邦物流',
