@@ -23,7 +23,7 @@ class SearchController < ApplicationController
   end
 
   def things
-    @things = Thing.search(params[:q]).page(params[:page]).per(24).records
+    @things = Thing.search(params[:q]).page(params[:page]).per(24)
   end
 
   def lists
