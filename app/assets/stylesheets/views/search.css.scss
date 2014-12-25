@@ -1,4 +1,74 @@
 @import '../base';
 
 html[class^="search_"] {
+  #wrapper {
+    @extend %container;
+
+    @include to-breakpoint(xs) {
+      margin: 0;
+      padding: 0;
+    }
+
+    > header {
+      background: white;
+
+      h1 {
+        margin: 0;
+        padding: 15px;
+
+        text-align: center;
+        font-size: 18px;
+        line-height: 1;
+        color: $gray-light;
+
+        em {
+          color: $blue-dark;
+          font-style: normal;
+        }
+      }
+
+      nav {
+        > ul {
+          display: table;
+          table-layout: fixed;
+          width: 100%;
+
+          > li {
+            display: table-cell;
+            text-align: center;
+            width: auto;
+
+            &:last-child {
+              width: 30%;
+            }
+
+            &.active {
+              border-bottom: 3px solid $blue;
+            }
+
+            a {
+              @include plain-link;
+
+              display: inline-block;
+              width: 100%;
+              padding: 15px 0;
+            }
+          }
+        }
+      }
+
+      @include from-breakpoint(sm) {
+        @include clearfix;
+
+        h1 {
+          float: left;
+        }
+
+        nav {
+          float: right;
+          width: 320px;
+        }
+      }
+    }
+  }
 }
