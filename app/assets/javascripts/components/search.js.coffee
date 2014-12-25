@@ -25,4 +25,4 @@ $(->
     )
 
   $input.trigger('focus') if $input.is(':focus')
-)
+) if $('html').hasClass('desktop')
