@@ -581,6 +581,11 @@ HERE
     __elasticsearch__.search(query: query_options)
   end
 
+  def __elasticsearch__.__find_in_batches(options={}, &block)
+    batch_size = options[:batch_size] || 1000
+    User.only(:id, :name, :avatar, :karma).each_slice(batch_size, &block)
+  end
+
   protected
   def password_required?
     self.encrypted_password.present? && (!password.nil? || !password_confirmation.nil?)
