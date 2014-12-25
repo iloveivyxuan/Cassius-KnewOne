@@ -1,15 +1,17 @@
 do (exports = Making) ->
   class exports.View.Menu
     constructor: (element, container, toggle) ->
-      @$el          = $(element)
+      @$element     = $(element)
       @$container   = $(container)
       @$toggle      = $(toggle)
-      @$backdrop    = $('<div class="menu_backdrop"></div>')
-      @active_class = 'menu_open'
+      @$close       = @$element.find('.menu-close')
+      @$backdrop    = $('<div class="menu-backdrop"></div>')
+      @activeClass  = 'menu-open'
 
       _.bindAll(@, 'show', 'hide')
 
       @$toggle.on 'tap click', @show
+      @$close.on 'tap click', @hide
 
     show: (event) ->
       event.preventDefault()
@@ -19,12 +21,14 @@ do (exports = Making) ->
         .addClass('in')
         .appendTo(@$container)
 
-      @$container.addClass(@active_class)
+      @$container.addClass(@activeClass)
 
-    hide: ->
+    hide: (event) ->
+      event.preventDefault()
+
       @$container
-        .removeClass(@active_class)
-        .find('.menu_backdrop')
+        .removeClass(@activeClass)
+        .find('.menu-backdrop')
         .remove()
 
   return
