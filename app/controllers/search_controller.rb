@@ -24,6 +24,22 @@ class SearchController < ApplicationController
 
   def things
     @things = Thing.search(params[:q]).page(params[:page]).per(24)
+
+    things = @things.records.only(:brand_id, :categories)
+
+    brand_id, count = things.reduce(Hash.new(0)) do |counts, t|
+      counts[t.brand_id] += 1 if t.brand_id
+      counts
+    end.sort_by(&:last).last
+
+    @brand = Brand.where(id: brand_id).first if count && count > 10
+
+    category_name, count = things.reduce(Hash.new(0)) do |counts, t|
+      t.categories.each { |c| counts[c] += 1 }
+      counts
+    end.sort_by(&:last).last
+
+    @category = Category.where(name: category_name).first if count && count > 10
   end
 
   def lists
