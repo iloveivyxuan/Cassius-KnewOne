@@ -18,6 +18,7 @@ class Thing < Post
   field :categories, type: Array, default: []
   before_save :update_price
   before_save :update_amazon_link
+  before_save :update_thing_categories
 
   has_many :single_feelings, class_name: "Feeling", dependent: :destroy
   field :feelings_count, type: Integer, default: 0
@@ -485,6 +486,12 @@ class Thing < Post
         self.stage = :abroad
       end
     end
+  end
+
+  def update_thing_categories
+    c = self.tags.map(&:categories).flatten
+    c += c.map(&:category)
+    self.categories = c.compact.uniq.map(&:name)
   end
 
 end
