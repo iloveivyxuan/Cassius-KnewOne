@@ -123,26 +123,35 @@
   }
 
   .search_not_found {
-    @include clearfix;
-
-    position: relative;
-    padding: 90px 70px;
+    padding: 20px;
 
     p {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-
+      margin-top: 20px;
       font-size: $font-size-large;
 
       a {
         display: block;
+        color: $blue;
       }
     }
 
-    img {
-      float: right;
-      width: 45%;
+    @include from-breakpoint(sm) {
+      @include clearfix;
+
+      position: relative;
+      padding: 90px 70px;
+
+      p {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+      }
+
+      img {
+        float: right;
+        width: 45%;
+      }
     }
   }
 }
