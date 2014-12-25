@@ -3,7 +3,7 @@
 // For Mobile Device.
 //
 
-$menu-profile-width: 180px;
+$menu-profile-width: 210px;
 
 .menu {
   @include transition(top .2s ease);
@@ -37,7 +37,7 @@ $menu-profile-width: 180px;
       height: 40px;
       line-height: 40px;
       text-align: center;
-      width: 40px;
+      width: 50px;
 
       .fa {
         margin-right: 0;
