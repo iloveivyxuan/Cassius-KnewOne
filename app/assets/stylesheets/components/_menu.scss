@@ -79,6 +79,12 @@ $menu-profile-width: 180px;
   }
 }
 
+#user {
+  border-radius: 50%;
+  display: inline-block;
+  overflow: hidden;
+}
+
 .menu-close {
   background-color: #383d45;
   color: $gray-white;
