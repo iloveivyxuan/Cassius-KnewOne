@@ -13,12 +13,12 @@ class UserMailer < BaseMailer
          subject: 'Welcome to KnewOne')
   end
 
-  def award(reward_id)
-    @reward = Reward.find(reward_id)
-    @user = @reward.user
+  def prize(prize_id)
+    @prize = Prize.find(prize_id)
+    @user = @prize.user
     return false if @user.email.blank?
 
-    template = case @reward.coupon.class
+    template = case @prize.coupon.class
                  when AbatementCoupon then
                    'award_abatement'
                  when ThingRebateCoupon then
