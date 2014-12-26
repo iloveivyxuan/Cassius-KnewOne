@@ -14,7 +14,7 @@
               i.fa.fa-shopping-cart
           li
             = link_to setting_root_path, title: "账户设置" do
-              i.fa.fa-tachometer
+              i.fa.fa-cog
         = link_to current_user, class: "pull-right", id: "user", data: { name: current_user.name, email: current_user.email, id: current_user.id.to_s } do
           = image_tag current_user.avatar.url(:tiny), size: "40x40", alt: current_user.name
 
