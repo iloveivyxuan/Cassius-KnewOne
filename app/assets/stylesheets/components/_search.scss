@@ -4,11 +4,11 @@
   position: absolute;
   width: 100%;
 
-  background: $navbar-bg;
+  background: rgba($navbar-bg, .98);
 
   .search_menu-suggestions {
     padding: 0 10px;
-    background: rgba($navbar-search-bg, .6);
+    background: rgba($navbar-search-bg, .98);
 
     h5 {
       margin: 0;
