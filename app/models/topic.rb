@@ -25,11 +25,16 @@ class Topic < Post
 
   include Searchable
 
-  searchable_fields [:title]
+  searchable_fields [:title, :visible]
 
   mappings do
     indexes :title, copy_to: :ngram
     indexes :ngram, index_analyzer: 'english', search_analyzer: 'standard'
+  end
+
+  alias_method :_as_indexed_json, :as_indexed_json
+  def as_indexed_json(options={})
+    group.private? || !group.visible? ? {visible: false} : _as_indexed_json
   end
 
   def self.search(query)
@@ -40,6 +45,12 @@ class Topic < Post
       }
     }
 
-    __elasticsearch__.search(query: query_options)
+    filter_options = {
+      term: {
+        visible: true
+      }
+    }
+
+    __elasticsearch__.search(query: query_options, filter: filter_options)
   end
 end

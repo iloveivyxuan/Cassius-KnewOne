@@ -72,7 +72,7 @@ class Group
 
   include Searchable
 
-  searchable_fields [:name]
+  searchable_fields [:name, :visible, :qualification]
 
   mappings do
     indexes :name, copy_to: :ngram
@@ -87,6 +87,13 @@ class Group
       }
     }
 
-    __elasticsearch__.search(query: query_options)
+    filter_options = {
+      term: {
+        visible: true,
+        qualification: 'public'
+      }
+    }
+
+    __elasticsearch__.search(query: query_options, filter: filter_options)
   end
 end
