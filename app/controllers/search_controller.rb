@@ -6,7 +6,7 @@ class SearchController < ApplicationController
       return redirect_to action: 'things', q: params[:q]
     end
 
-    @brands = Brand.search(params[:q]).limit(3)
+    # @brands = Brand.search(params[:q]).limit(3)
     @things = Thing.search(params[:q]).limit(5)
     @lists = ThingList.search(params[:q]).limit(3)
     @users = User.search(params[:q]).limit(8)
