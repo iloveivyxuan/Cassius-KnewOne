@@ -155,6 +155,12 @@ class Making.Views.SearchForm extends Backbone.Marionette.ItemView
   onFocus: ->
     @ui.input.select()
 
+    query = @model.get('query')
+    return if query.length == 0
+
+    @updateSuggestions(query)
+    @updateResult(query)
+
   onBlur: ->
     @model.set({
       loading: false
