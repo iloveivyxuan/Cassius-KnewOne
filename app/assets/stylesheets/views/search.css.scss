@@ -88,7 +88,8 @@ html[class^="search_"] {
   }
 }
 
-html.search_things {
+html.search_things,
+html.search_lists {
   ul.search_result-traits {
     > li {
       text-align: center;
@@ -188,6 +189,28 @@ html.search_things {
       @include from-breakpoint(lg) {
         width: percentage(1 / 4);
       }
+    }
+  }
+}
+
+html.search_lists {
+  .thing_list {
+    padding: 2px;
+    padding-bottom: 10px;
+    background: white;
+
+    .fa-list,
+    .thing_list-description {
+      display: none;
+    }
+
+    h4,
+    > footer {
+      padding: 0 1em;
+    }
+
+    .thing_list-image_wrapper > img {
+      padding: 1px;
     }
   }
 }
