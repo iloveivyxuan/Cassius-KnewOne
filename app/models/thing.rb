@@ -459,7 +459,7 @@ class Thing < Post
     query_options = {
       multi_match: {
         query: query,
-        fields: ['title^10', '_slugs^10', 'subtitle^10', 'nickname^10', 'brand_name^5', 'ngram^5']
+        fields: ['title^10', 'subtitle^5', 'nickname^5', 'brand_name^5', 'ngram^5']
       }
     }
 
