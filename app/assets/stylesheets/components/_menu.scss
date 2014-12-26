@@ -168,6 +168,7 @@ $menu-profile-width: 225px;
 
     .dropdown-indicator {
       @extend .fa;
+      margin-right: 0 !important;
       position: absolute;
       right: 20px;
       top: 23px;
