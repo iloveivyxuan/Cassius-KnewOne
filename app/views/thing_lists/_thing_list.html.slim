@@ -1,4 +1,5 @@
 - layout ||= :grid
+- prize ||= false
 
 section.thing_list id="thing_list_#{thing_list.id}"
   header
@@ -20,15 +21,16 @@ section.thing_list id="thing_list_#{thing_list.id}"
         p = thing_list.description
 
     ul.thing_list-info
-      li.thing_list-creator
-        = render 'shared/user_avatar', user: thing_list.author
+      - unless prize
+        li.thing_list-creator
+          = render 'shared/user_avatar', user: thing_list.author
 
-      li.thing_list-counts
-        = link_to thing_list, class: 'thing_list-fancy'
-          i.fa.fa-heart-o
-          = thing_list.fanciers_count
+        li.thing_list-counts
+          = link_to thing_list, class: 'thing_list-fancy'
+            i.fa.fa-heart-o
+            = thing_list.fanciers_count
 
-        - if thing_list.comments.present?
-          = link_to thing_list, class: 'thing_list-comments'
-            i.fa.fa-comment-o
-            = thing_list.comments.count
+          - if thing_list.comments.present?
+            = link_to thing_list, class: 'thing_list-comments'
+              i.fa.fa-comment-o
+              = thing_list.comments.count

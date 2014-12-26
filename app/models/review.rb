@@ -11,6 +11,7 @@ class Review < Post
   validates :content, presence: true
 
   scope :living, -> { where :thing_id.ne => nil }
+  scope :created_between, ->(from, to) { where :created_at.gt => from, :created_at.lt => to }
 
   include Rankable
 

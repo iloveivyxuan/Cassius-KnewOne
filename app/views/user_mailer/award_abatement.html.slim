@@ -4,15 +4,15 @@
 - content_for :title do
   | 天天有礼
 
-- coupon = @reward.coupon
+- coupon = @prize.coupon
 p
   | 因“
-  = @reward.reason
+  = @prize.reason
   | ”，在此送给你 ”#{coupon.price}元代金券“ 一张，
-  = link_to '点此绑定到您的KnewOne账号上', coupons_url(code: @reward.coupon_code.code)
+  = link_to '点此绑定到您的KnewOne账号上', coupons_url(code: @prize.coupon_code.code)
   | 。
   br
-  | (若链接无法打开请复制 #{coupons_url(code: @reward.coupon_code.code)} 到浏览器地址栏)
+  | (若链接无法打开请复制 #{coupons_url(code: @prize.coupon_code.code)} 到浏览器地址栏)
 p
   | 绑定后，当你在KnewOne购物满 #{coupon.threshold_price}元，结账时便可以使用这个优惠券。
   br

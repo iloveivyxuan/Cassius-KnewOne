@@ -1,3 +1,5 @@
+- prize ||= false
+
 - present hot_review do |review_presenter|
   article.review
     header.cover
@@ -13,7 +15,8 @@
         = review_presenter.score
         p= review_presenter.summary(120)
     footer.info
-      = render 'shared/user_avatar', user: hot_review.author
+      - unless prize
+        = render 'shared/user_avatar', user: hot_review.author
       .interactions
         - if review_presenter.has_lover?
           = link_to review_presenter.path, target: "_blank" do

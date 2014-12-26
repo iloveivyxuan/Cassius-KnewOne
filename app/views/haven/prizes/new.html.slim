@@ -1,0 +1,8 @@
+- page_title "新建天天有礼"
+
+- if flash[:error]
+  = flash[:error]
+
+= form_for [:haven, @prize] do |f|
+  = render 'form', f: f
+  = f.submit class: "btn btn-default"

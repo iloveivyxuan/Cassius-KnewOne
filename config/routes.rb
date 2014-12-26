@@ -109,6 +109,8 @@ Making::Application.routes.draw do
     end
   end
 
+  resources :prizes, only: [:index]
+
   resources :thing_lists, path: 'lists', except: [:new, :edit] do
     resources :thing_list_items, path: 'items', only: [:create, :update, :destroy]
     resources :comments, only: [:index, :create, :destroy]
@@ -409,6 +411,12 @@ Making::Application.routes.draw do
     resources :brands, only: [:index, :edit, :update, :destroy] do
       collection do
         get 'clear'
+      end
+    end
+
+    resources :prizes do
+      collection do
+        get 'santa'
       end
     end
 
