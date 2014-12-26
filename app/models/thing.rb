@@ -342,7 +342,7 @@ class Thing < Post
     self.priority ||= 0
 
     (1 +
-     priority +
+     5 * priority +
      25 * reviews_count +
      5 * feelings_count +
      lists.count +
