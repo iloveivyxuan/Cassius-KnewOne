@@ -1,6 +1,7 @@
 module Haven
   class PrizesController < Haven::ApplicationController
     layout 'settings'
+    before_action :set_prize, only: [:edit, :update, :destroy]
 
     def index
       @prizes = Prize.all.desc(:since)
@@ -15,7 +16,6 @@ module Haven
     end
 
     def edit
-      @prize = Prize.find params[:id]
     end
 
     def create
@@ -30,7 +30,6 @@ module Haven
     end
 
     def update
-      @prize = Prize.find params[:id]
       @prize.assign_attributes prize_params
       if @prize.save
         redirect_to haven_prizes_path
@@ -40,7 +39,6 @@ module Haven
     end
 
     def destroy
-      @prize = Prize.find params[:id]
       @prize.delete
       redirect_to :back
     end
@@ -55,6 +53,10 @@ module Haven
     end
 
     private
+
+    def set_prize
+      @prize = Prize.find params[:id]
+    end
 
     def prize_params
       params.require(:prize).permit!
