@@ -55,15 +55,7 @@ class Prize
   end
 
   def self.reason_collection
-    [
-     %w(分享了最多的产品),
-     %w(分享的优质产品排名第二),
-     %w(分享的优质产品排名第三),
-     %w(分享的优质产品排名第四),
-     %w(分享了最多的优质列表),
-     %w(分享了最多的优质评测),
-     %w(分享超过5个产品)
-    ]
+    %w(分享了最多的产品 分享的优质产品排名第二 分享的优质产品排名第三 分享的优质产品排名第四 分享了最多的优质列表 分享了最多的优质评测 分享超过5个产品)
   end
 
   def self.share_things(day=Date.yesterday)
@@ -94,7 +86,7 @@ class Prize
     things = Prize.share_things(day)
     review = Prize.share_reviews(day).first
     list = Prize.share_lists(day).first
-    things.each_with_index do |action, index|
+    things.take(4).each_with_index do |action, index|
       user = action.first
       reason = Prize.reason_collection[index]
       Prize.create(
