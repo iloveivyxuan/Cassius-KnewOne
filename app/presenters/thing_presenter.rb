@@ -46,6 +46,7 @@ class ThingPresenter < PostPresenter
   end
 
   def mobile_price
+    return price_format(thing.price, thing.price_unit) unless thing.stage == :dsell
     if thing.price.present?
       price = price_format thing.kinds.map(&:price).sort.first, thing.price_unit
       price.concat(" 起") if thing.kinds.map(&:price).uniq.size > 1
