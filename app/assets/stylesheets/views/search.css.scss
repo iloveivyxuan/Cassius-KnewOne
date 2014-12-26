@@ -72,10 +72,17 @@ html[class^="search_"] {
     }
 
     .search_not_found {
+      padding: 10% 15%;
       background: $smoke-white;
 
       p {
         font-size: 24px;
+      }
+
+      @include from-breakpoint(sm) {
+        img {
+          width: 45%;
+        }
       }
     }
   }
