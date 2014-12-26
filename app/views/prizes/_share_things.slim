@@ -1,0 +1,12 @@
+- %w(最多 第二 第三 第四).each do |text|
+  - prize = @things.where(reason: /#{text}/).first
+  - if prize
+    p
+      = link_to prize.user.name, prize.user
+      | #{prize.reason}，获赠
+      = coupon_link(prize.coupon)
+      = coupon_amount(prize.coupon)
+- others = @things.where(reason: "分享超过5个产品")
+- if others.size > 0
+  footer
+    | 还有 #{others.size} 位同学分享超过 5 个优质产品，均获赠 5 元抵用券一张。

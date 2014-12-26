@@ -1,0 +1,55 @@
+- page_title '天天有礼'
+- page_css 'prizes'
+
+.container-fluid
+  header
+    .col-md-4
+      = image_tag "/about/images/5_left.png"
+    .col-md-8
+      h1 天天有礼
+      p
+        | 分享产品、创建列表、撰写评测……同学们在 KnewOne 活跃起来，每天都有惊喜送出！
+        = link_to "如何开始？", "/about", target: '_blank'
+      p
+        | 加入分享产品的队伍，上传你发现的新产品，分享优质产品数量第一的同学将会获得精美礼品一份。
+        br
+        | 分享优质产品排名第二、三、四名的同学，也将分别获得 30 元、20 元、10 元的 KnewOne 商店抵用券。
+        br
+        | 当然，所有分享超过 5 个优质产品的同学也都能获得 5 元 KnewOne 商店抵用券！
+      p 加入创建列表的队伍，用列表讲述你的故事，分享创建列表数量第一的同学也能得到精美礼品一份。
+      p 加入撰写评测的队伍，说说你对产品的使用体验，分享撰写评测数量第一的同学一样能得到精美礼品一份。
+      p
+        | 下面就是嘉奖名单啦，出现名字的同学请查收邮件。没出现你的名字？那快戳
+        = link_to "KnewOne 使用指南", "/about", target: '_blank'
+        | 走起！
+
+  - dates = @prizes.distinct(:since).map(&:to_date)
+  - dates.sort.reverse.each do |date|
+    - prizes = @prizes.where(since: date)
+    - @things = prizes.where(name: "产品")
+    - @review = prizes.where(name: "评测").first
+    - @list = prizes.where(name: "列表").first
+    section.things
+      header
+        | #{ date.to_s } 天天有礼
+      .col-sm-3
+        = image_tag thing_coupon_url(@things)
+      .col-sm-9
+        = render 'share_things'
+    section.thing_lists
+      - list = ThingList.find @list.reference_id
+      - coupon = @list.coupon
+      = render list, layout: browser.desktop? ? :quintet : :grid, prize: true
+      footer
+        = render 'shared/user_avatar', user: list.author
+        | #{ @list.reason }，获得
+        = coupon_link(@list.coupon)
+        = coupon_amount(@list.coupon)
+    section.reviews
+      - review = Review.find @review.reference_id
+      = render partial: 'home/hot_review', prize: true, collection: review.to_a
+      footer
+        = render 'shared/user_avatar', user: review.author
+        | #{ @review.reason }，获得
+        = coupon_link(@review.coupon)
+        = coupon_amount(@review.coupon)

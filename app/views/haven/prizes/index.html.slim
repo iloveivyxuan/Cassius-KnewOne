@@ -1,0 +1,62 @@
+- page_title "天天有礼"
+
+header.page-header
+  h1
+    i.fa.fa-tag
+    = link_to "天天有礼", haven_prizes_path
+  p= "当前数量 #{@prizes.size} / 总数量 #{Prize.all.size}"
+
+.pull-right
+  = link_to "新建", new_haven_prize_path, class: "btn btn-default"
+  = link_to "发奖", santa_haven_prizes_path, class: "btn btn-danger", data: { confirm: '发奖咯？' }
+
+table.table
+  thead
+    tr
+      th width="15%" 名称
+      th width="15%" 日期
+      th width="15%" 原因
+      th width="15%" 用户
+      th width="15%" 优惠券
+      th width="15%" 优惠码
+      th width="10%" 操作
+  tbody
+    - @prizes.each do |p|
+      tr
+        td= p.name
+        td= p.date_text
+        td= p.reason
+        td= p.user.name
+        td= p.coupon.try(:name)
+        td= p.coupon_code.try(:name)
+        td
+          = link_to "删", haven_prize_path(id: p.id), method: :delete
+
+table.table
+  thead
+    tr
+      th 类型
+      th 用户
+      th 数量
+  tbody
+    - @share_things.each do |user|
+      tr
+        td 产品
+        td
+          = link_to user.first.name, user.first
+          | &nbsp #{user.first.id.to_s}
+        td= user.last
+    - @share_reviews.each do |user|
+      tr
+        td 评测
+        td
+          = link_to user.first.name, user.first
+          | &nbsp #{user.first.id.to_s}
+        td= user.last
+    - @share_lists.each do |user|
+      tr
+        td 列表
+        td
+          = link_to user.first.name, user.first
+          | &nbsp #{user.first.id.to_s}
+        td= user.last

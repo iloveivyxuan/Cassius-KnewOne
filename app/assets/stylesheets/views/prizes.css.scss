@@ -1,0 +1,72 @@
+@import '../base';
+
+html.prizes_index body {
+  padding-top: 45px;
+  #header {margin: 0;}
+  #wrapper {margin: 0;}
+}
+
+html.prizes_index .container-fluid {
+  padding: 0;
+  @media (min-width: $screen-md-min) {
+    padding: 0 10%;
+  }
+  @media (min-width: $screen-lg-min) {
+    width: $container-large-desktop;
+    padding: 0 $screen-lg-min * 0.1;
+  }
+
+  > header {
+    @include clearfix;
+
+    @media (min-width: $screen-sm-min) {
+      margin: 40px -20px 30px;
+    }
+
+    .col-md-4 {
+      > img {
+        background-color: white;
+        border: 20px $ghost-white solid;
+        margin-top: 30px;
+      }
+    }    
+  }
+}
+
+html.prizes_index section {
+  a:link, a:visited {
+    color: black;
+    margin: 0 5px;
+  }
+  .things {
+    background-color: white;
+    margin: 0;
+    > header {
+      background: #fafafa;
+      font-size: 20px;
+      padding: 10px 0;
+      text-align: center;
+    }
+    > .col-sm-3 {
+      padding: 20px 20px;
+    }
+    > .col-sm-9 {
+      padding: 20px 20px;
+      > p {
+        font-size: 16px;
+        line-height: 2.25;
+      }
+    }
+  }
+  .thing_lists {
+    background-color: #fafafa;
+    margin-top: 40px;
+    padding: 10px 10px;
+  }
+  .reviews {
+    background-color: white;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 20px 20px;
+  }
+}
