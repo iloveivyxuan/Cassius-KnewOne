@@ -74,6 +74,9 @@ do (root = @, exports = Making) ->
           .end()
             .append('<em class="nomore">出错了，请刷新后重试。</em>')
       return
+
+    $window.trigger 'scroll.infiniteScroll' if $window.height() >= $docbody.height()
+
     return
 
   exports.selectCategories = (tags, container) ->
