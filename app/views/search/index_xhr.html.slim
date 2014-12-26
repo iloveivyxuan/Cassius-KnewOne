@@ -47,7 +47,7 @@
   h5
     i.fa.fa-leaf
     = "与 “#{params[:q]}” 相关的话题"
-    = link_to search_groups_path(q: params[:q]), class: 'search_menu-more'
+    = link_to search_topics_path(q: params[:q]), class: 'search_menu-more'
       | 查看更多
       i.fa.fa-chevron-right
   ul.search_topics

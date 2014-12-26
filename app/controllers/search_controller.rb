@@ -53,7 +53,7 @@ class SearchController < ApplicationController
     @users = User.search(params[:q]).page(params[:page]).per(36).records
   end
 
-  def groups
+  def topics
     @groups = Group.search(params[:q]).page(params[:page]).per(24).records
     @topics = Topic.search(params[:q]).page(params[:page]).per(24).records
   end

@@ -15,8 +15,8 @@
           = link_to '列表', search_lists_path(q: params[:q])
         = li action_name == 'users'
           = link_to '用户', search_users_path(q: params[:q])
-        = li action_name == 'groups'
-          = link_to '小组 | 话题', search_groups_path(q: params[:q])
+        = li action_name == 'topics'
+          = link_to '小组 | 话题', search_topics_path(q: params[:q])
 
   = yield
 

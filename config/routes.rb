@@ -83,7 +83,7 @@ Making::Application.routes.draw do
     get 'things'
     get 'lists'
     get 'users'
-    get 'groups'
+    get 'topics'
   end
 
   resources :users, only: [:show] do
