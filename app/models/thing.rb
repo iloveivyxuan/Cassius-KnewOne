@@ -90,7 +90,7 @@ class Thing < Post
   scope :self_run, -> { send :in, stage: [:dsell, :pre_order] }
   scope :price_between, ->(from, to) { where :price.gt => from, :price.lt => to }
   scope :linked, -> { nin(links: [nil, []]) }
-  scope :approved, -> { gte(priority: 0) }
+  scope :approved, -> { ne(approved_at: nil) }
   scope :by_tag, -> (tag) { any_in('tag_ids' => tag.id) }
   scope :by_brand, -> (brand) { where('brand_id' => brand.id) }
   scope :no_brand, -> { where('brand_id' => nil) }
