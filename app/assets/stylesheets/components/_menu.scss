@@ -305,18 +305,15 @@ $menu-profile-width: 225px;
 }
 
 .menu-footer {
-  margin: {
-    bottom: 30px;
-    top: 30px;
-  }
+  margin: 15px 0;
   text-align: center;
 
-  .btn {
-    background-color: #50c0ed;
-    border-radius: 0;
+  .btn--signin,
+  .btn--signout {
+    border-radius: 4px;
     color: $gray-white;
-    height: 50px;
-    line-height: 50px;
+    height: 46px;
+    line-height: 46px;
     max-width: 400px;
     padding: {
       bottom: 0;
@@ -329,6 +326,9 @@ $menu-profile-width: 225px;
       color: $ghost-white;
     }
   }
+
+  .btn--signin  { background-color: #8cadca; }
+  .btn--signout { background-color: #c9302c; }
 }
 
 body.menu-open {

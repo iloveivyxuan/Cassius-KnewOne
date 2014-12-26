@@ -45,9 +45,11 @@
         li= link_to_with_icon "分类", "fa fa-tags fa-fw", categories_path
         li= link_to_with_icon "小组", "fa fa-tint fa-fw", groups_path
 
-    - unless user_signed_in?
-      .menu-footer
+    .menu-footer
+      - if user_signed_in?
+        = link_to_with_icon "登出", "fa fa-sign-out", destroy_user_session_path, class: "btn btn--signout", method: :delete
+      -else
         - if browser.wechat?
-          = link_to "登录/注册", user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base'), class: "btn"
+          = link_to "登录/注册", user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base'), class: "btn btn--signin"
         - else
-          = link_to "登录/注册", "#login-modal", class: "btn", data: { toggle: "modal" }
+          = link_to "登录/注册", "#login-modal", class: "btn btn--signin", data: { toggle: "modal" }
