@@ -70,10 +70,11 @@
     > ul {
       padding-left: 30px;
 
-      &.search_brands {
+      &.search_brands,
+      &.search_lists {
         > li {
           display: inline;
-          margin-left: .5em;
+          margin-left: 1em;
           &:first-child { margin: 0; }
         }
       }
@@ -98,12 +99,6 @@
       &.search_users {
         > li {
           width: percentage(1 / 8);
-        }
-      }
-
-      &.search_lists {
-        > li {
-          padding: 5px 0;
         }
       }
     }
@@ -167,7 +162,7 @@
   }
 
   img {
-    width: 75%;
+    width: 60%;
     border-radius: 50%;
   }
 
