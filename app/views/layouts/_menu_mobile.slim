@@ -30,10 +30,9 @@
         - if user_signed_in?
           li= link_to_with_icon "分享产品", "fa fa-plus fa-fw", "#", id: "new_thing_trigger", data: { target: "#new-thing-from-url-modal", toggle: "modal" }
           li.dropdown
-            = link_to "#", class: "dropdown-toggle", data: { toggle: "dropdown" }
+            = link_to "#", class: "dropdown-toggle"
               i.fa.fa-cubes.fa-fw
               | 购买
-              i.dropdown-indicator
             ul.dropdown-menu
               li= link_to "订单", orders_path
               li= link_to "账户余额", balances_path
