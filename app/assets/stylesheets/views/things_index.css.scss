@@ -33,30 +33,30 @@ html.shop, html.things_index {
     @media (min-width: $screen-sm-min) {
       h1 {margin-top: 0;}
     }
-  }
 
-  nav {
-    @media (max-width: $screen-sm-max) {
-      margin-top: 20px;
-      text-align: center;
-    }
+    nav {
+      @media (max-width: $screen-sm-max) {
+        margin-top: 20px;
+        text-align: center;
+      }
 
-    .bootstrap-select {margin: 0;}
+      .bootstrap-select {margin: 0;}
 
-    > ol {
-      margin-left: 25px;
+      > ol {
+        margin-left: 25px;
 
-      > li {
-        color: #777;
-        font-size: 20px;
-        text-decoration: none;
-
-        &.active {
-          color: #999;
-        }
-
-        > a {
+        > li {
           color: #777;
+          font-size: 20px;
+          text-decoration: none;
+
+          &.active {
+            color: #999;
+          }
+
+          > a {
+            color: #777;
+          }
         }
       }
     }
