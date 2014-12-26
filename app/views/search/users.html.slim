@@ -1,11 +1,12 @@
-- if @users && @users.size > 0
-  ul.user_list.infinite#users= render @users.to_a
-  = paginate @users
+- if @users.present?
+  section.search_result
+    ul.search_result-items.infinite
+      = render @users.to_a
+    = paginate @users
 - else
-  p.noresult
-    | 没有找到与&nbsp;
-    em.text-danger #{params[:q]}
-    | &nbsp;相关的用户。
+  section.search_not_found
+    = image_tag image_path('not_found_dark.png'), alt: '啥都找不到 :('
+    p 没有找到相关的用户 :(
 
 - content_for :script do
   javascript:
