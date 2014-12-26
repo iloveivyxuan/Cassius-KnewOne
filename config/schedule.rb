@@ -77,6 +77,10 @@ every 1.day, :at => '1:30 am' do
   runner 'Stat.generate_day_stats'
 end
 
+every 1.day, :at => '2:00 am' do
+  runner 'Prize.generate_day_prize'
+end
+
 every :monday, :at => '2:00 am' do
   runner "Stat.generate_week_stats"
 end
