@@ -13,12 +13,13 @@ header.page-header
 table.table
   thead
     tr
-      th width="15%" 名称
+      th width="10%" 名称
       th width="15%" 日期
       th width="15%" 原因
       th width="15%" 用户
       th width="15%" 优惠券
       th width="15%" 优惠码
+      th width="5%" 引用
       th width="10%" 操作
   tbody
     - @prizes.each do |p|
@@ -29,6 +30,7 @@ table.table
         td= p.user.name
         td= p.coupon.try(:name)
         td= p.coupon_code.try(:name)
+        td= reference(p)
         td
           = link_to "删", haven_prize_path(id: p.id), method: :delete
 

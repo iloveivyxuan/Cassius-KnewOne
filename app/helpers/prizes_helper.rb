@@ -26,4 +26,9 @@ module PrizesHelper
     thing.photos.first.url(:square) if thing
   end
 
+  def reference(prize)
+    return true if prize.name == "产品"
+    prize.reference_id.present?
+  end
+
 end
