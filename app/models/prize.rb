@@ -58,6 +58,10 @@ class Prize
     %w(分享了最多的产品 分享的优质产品排名第二 分享的优质产品排名第三 分享的优质产品排名第四 分享了最多的优质列表 分享了最多的优质评测 分享超过5个产品)
   end
 
+  def self.coupon_ids
+    %w(549d13dd31302d197fb10000 549d13f331302d199b510000 549d140131302d1989600000 549d140f31302d19a9560000)
+  end
+
   def self.share_things(day=Date.yesterday)
     share_things = {}
     Thing.created_between(day, day.next_day).approved.group_by(&:author).each do |action|
@@ -86,22 +90,40 @@ class Prize
     things = Prize.share_things(day)
     review = Prize.share_reviews(day).first
     list = Prize.share_lists(day).first
+    # 优秀产品
     things.take(4).each_with_index do |action, index|
       user = action.first
       reason = Prize.reason_collection[index]
+      coupon = (index > 0) ? Prize.coupon_ids[index - 1] : nil
       Prize.create(
                    name: "产品",
                    since: day,
                    due: day,
                    reason: reason,
-                   user_id: user.id.to_s)
+                   user_id: user.id.to_s,
+                   coupon_id: coupon)
     end
+    # 超过 5 个产品
+    things.skip(4).each do |action|
+      user = action.first
+      reason = Prize.reason_collection.last
+      coupon = Prize.coupon_ids.last
+      Prize.create(
+                   name: "产品",
+                   since: day,
+                   due: day,
+                   reason: reason,
+                   user_id: user.id.to_s,
+                   coupon_id: coupon)
+    end
+    # 优秀列表
     Prize.create(
                  name: "列表",
                  since: day,
                  due: day,
                  reason: "分享了最多的优质列表",
                  user_id: list.first.id.to_s) if list
+    # 优秀评测
     Prize.create(
                  name: "评测",
                  since: day,
