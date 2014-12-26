@@ -26,6 +26,8 @@ class SearchController < ApplicationController
   def things
     @things = Thing.search(params[:q]).page(params[:page]).per(24)
 
+    return if params[:page].to_i > 1
+
     things = @things.records.only(:brand_id, :categories)
 
     brand_id, count = things.reduce(Hash.new(0)) do |counts, t|
