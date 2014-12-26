@@ -34,7 +34,7 @@ class Topic < Post
 
   alias_method :_as_indexed_json, :as_indexed_json
   def as_indexed_json(options={})
-    group.private? || !group.visible? ? {visible: false} : _as_indexed_json
+    Group.public.visible.where(id: group_id).exists? ? _as_indexed_json : {}
   end
 
   def self.search(query)
