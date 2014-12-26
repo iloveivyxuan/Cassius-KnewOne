@@ -37,7 +37,9 @@ module Haven
 
     def santa
       Prize.where(coupon_code_id: nil).each do |p|
-        p.surprise!
+        if (p.name == "产品") || p.reference_id.present?
+          p.surprise!
+        end
       end
       redirect_to haven_prizes_path
     end
