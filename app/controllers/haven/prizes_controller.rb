@@ -21,11 +21,21 @@ module Haven
     def create
       coupon = Coupon.where(id: params[:prize][:coupon_id]).first
       if coupon
-        @prize = Prize.new(params.require(:prize).permit!)
+        @prize = Prize.new prize_params
         @prize.save
         redirect_to haven_prizes_path
       else
         redirect_to :back, flash: { error: "优惠券不存在" }
+      end
+    end
+
+    def update
+      @prize = Prize.find params[:id]
+      @prize.assign_attributes prize_params
+      if @prize.save
+        redirect_to haven_prizes_path
+      else
+        redirect_to :back, flash: { error: @prize.errors.full_messages }
       end
     end
 
@@ -42,6 +52,12 @@ module Haven
         end
       end
       redirect_to haven_prizes_path
+    end
+
+    private
+
+    def prize_params
+      params.require(:prize).permit!
     end
   end
 end

@@ -32,6 +32,8 @@ table.table
         td= p.coupon_code.try(:name)
         td= reference(p)
         td
+          = link_to "编", edit_haven_prize_path(id: p.id)
+          span.separator |
           = link_to "删", haven_prize_path(id: p.id), method: :delete
 
 table.table
