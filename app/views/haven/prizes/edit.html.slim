@@ -4,17 +4,5 @@
   = flash[:error]
 
 = form_for @prize, url: haven_prize_path, method: :patch do |f|
-  label 奖项
-  = select "prize", "name", [%w(产品), %w(列表), %w(评测), %w(分享超过5个产品)], { include_blank: true }, class: "form-control", required: true
-  label 原因
-  = select "prize", "reason", Prize.reason_collection, { include_blank: true }, class: "form-control", required: true
-  label 起止日期
-  = date_field "prize", "since", value: @prize.since, class: "form-control"
-  = date_field "prize", "due", value: @prize.due, class: "form-control"
-  label 用户 ID
-  = f.text_field :user_id, class: "form-control", required: true
-  label 优惠券 ID
-  = f.text_field :coupon_id, class: "form-control", required: true
-  label 评测/列表 ID
-  = f.text_field :reference_id, class: "form-control"
+  = render 'form', f: f
   = f.submit class: "btn btn-default"
