@@ -23,6 +23,12 @@ $menu-profile-width: 210px;
   height: 60px;
   padding: 10px;
   width: $menu-profile-width;
+
+  #user {
+    border-radius: 50%;
+    display: inline-block;
+    overflow: hidden;
+  }
 }
 
 .menu-nav--top {
@@ -77,12 +83,6 @@ $menu-profile-width: 210px;
       }
     }
   }
-}
-
-#user {
-  border-radius: 50%;
-  display: inline-block;
-  overflow: hidden;
 }
 
 .menu-close {
