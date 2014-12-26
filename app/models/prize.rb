@@ -50,8 +50,8 @@ class Prize
     knewone = User.find "511114fa7373c2e3180000b4"
     user = self.user
     return unless knewone && user
-    content = "药药药！#{user.name}，你上天天有礼啦！这是优惠券快收好：#{self.coupon_code.code}，默念 KnewOne 大法好保平安~"
-    content += "<a href='http://knewone.com/settings/coupons?code=#{self.coupon_code.code}'>点此绑定到您的KnewOne账号上</a>"
+    content = "药药药！#{user.name}，你上天天有礼啦！这是一张 #{self.coupon.name} 优惠券快收好：#{self.coupon_code.code}，默念 KnewOne 大法好保平安~"
+    content += "<a href='http://knewone.com/settings/coupons?code=#{self.coupon_code.code}'>点此绑定到您的 KnewOne 账号上</a>"
     knewone.send_private_message_to(user, content)
   end
 
