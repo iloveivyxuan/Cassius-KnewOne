@@ -43,7 +43,7 @@ class Thing < Post
   field :period, type: DateTime
   CURRENCY_LIST = %w{¥ $ € £ JPY¥ ₩ NT$ C$ HK$}
 
-  field :priority, type: Integer, default: 0
+  field :priority, type: Integer, default: -1
 
   before_create :update_priority
 
@@ -90,7 +90,7 @@ class Thing < Post
   scope :self_run, -> { send :in, stage: [:dsell, :pre_order] }
   scope :price_between, ->(from, to) { where :price.gt => from, :price.lt => to }
   scope :linked, -> { nin(links: [nil, []]) }
-  scope :approved, -> { gt(priority: 0) }
+  scope :approved, -> { gte(priority: 0) }
   scope :by_tag, -> (tag) { any_in('tag_ids' => tag.id) }
   scope :by_brand, -> (brand) { where('brand_id' => brand.id) }
   scope :no_brand, -> { where('brand_id' => nil) }
@@ -463,17 +463,16 @@ class Thing < Post
   end
 
   def update_approved_time
-    self.priority = 0 unless self.priority.is_a?(Integer)
-    if self.approved_at.nil? && self.priority > 0
+    self.priority = -1 unless self.priority.is_a?(Integer)
+    if self.approved_at.nil? && self.priority >= 0
       self.approved_at = Time.now
       self.author.inc karma: Settings.karma.publish.thing
     end
   end
 
   def update_priority
-    if self.author.role?(:editor)
-      self.priority = 1
-    end
+    self.priority = 0 if self.author.role?(:volunteer)
+    self.priority = 1 if self.author.role?(:editor)
   end
 
   def update_stage
