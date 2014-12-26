@@ -104,17 +104,20 @@ class Prize
                    coupon_id: coupon)
     end
     # 超过 5 个产品
-    things.skip(4).each do |action|
-      user = action.first
-      reason = Prize.reason_collection.last
-      coupon = Prize.coupon_ids.last
-      Prize.create(
-                   name: "产品",
-                   since: day,
-                   due: day,
-                   reason: reason,
-                   user_id: user.id.to_s,
-                   coupon_id: coupon)
+    others = things[4..-1]
+    if others
+      others.each do |action|
+        user = action.first
+        reason = Prize.reason_collection.last
+        coupon = Prize.coupon_ids.last
+        Prize.create(
+                     name: "产品",
+                     since: day,
+                     due: day,
+                     reason: reason,
+                     user_id: user.id.to_s,
+                     coupon_id: coupon)
+      end
     end
     # 优秀列表
     Prize.create(
