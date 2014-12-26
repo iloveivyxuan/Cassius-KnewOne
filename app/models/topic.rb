@@ -22,4 +22,24 @@ class Topic < Post
     return unless self.group.approved
     self.approved = true
   end
+
+  include Searchable
+
+  searchable_fields [:title]
+
+  mappings do
+    indexes :title, copy_to: :ngram
+    indexes :ngram, index_analyzer: 'english', search_analyzer: 'standard'
+  end
+
+  def self.search(query)
+    query_options = {
+      multi_match: {
+        query: query,
+        fields: ['title^3', 'ngram']
+      }
+    }
+
+    __elasticsearch__.search(query: query_options)
+  end
 end
