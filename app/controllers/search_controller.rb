@@ -10,6 +10,7 @@ class SearchController < ApplicationController
     @things = Thing.search(params[:q]).limit(5)
     @lists = ThingList.search(params[:q]).limit(3)
     @users = User.search(params[:q]).limit(8)
+    @topics = Topic.search(params[:q]).limit(1)
 
     render 'index_xhr', layout: false
   end

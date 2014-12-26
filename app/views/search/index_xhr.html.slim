@@ -12,7 +12,7 @@
       | 查看更多
       i.fa.fa-chevron-right
   ul.search_things = render partial: 'thing', collection: @things
-- elsif @brands.present? || @lists.present? || @users.present?
+- elsif @brands.present? || @lists.present? || @users.present? || @topics.present?
   h5
     i.fa.fa-magic
     = "与 “#{params[:q]}” 相关的产品"
@@ -39,9 +39,16 @@
       i.fa.fa-chevron-right
   ul.search_users = render partial: 'user', collection: @users
 
-- if @brands.present? || @things.present? || @lists.present? || @users.present?
-  = link_to search_root_path(q: params[:q]), class: 'search_menu-show_all'
-    | 查看更多搜索结果
-    i.fa.fa-chevron-right
-- else
+- if @topics.present?
+  h5
+    i.fa.fa-leaf
+    = "与 “#{params[:q]}” 相关的话题"
+    = link_to search_groups_path(q: params[:q]), class: 'search_menu-more'
+      | 查看更多
+      i.fa.fa-chevron-right
+  ul.search_topics
+    - @topics.each do |topic|
+      li = link_to topic.title, group_topic_path(topic.group_id, topic.id), target: '_blank'
+
+- unless @brands.present? || @things.present? || @lists.present? || @users.present? || @topics.present?
   .search_not_found = render 'things_not_found'

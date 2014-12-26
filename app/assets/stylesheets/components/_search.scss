@@ -71,7 +71,8 @@
       padding-left: 30px;
 
       &.search_brands,
-      &.search_lists {
+      &.search_lists,
+      &.search_topics {
         > li {
           display: inline;
           margin-left: 1em;
@@ -99,6 +100,12 @@
       &.search_users {
         > li {
           width: percentage(1 / 8);
+        }
+      }
+
+      &.search_topics {
+        > li {
+          padding: 5px 0;
         }
       }
     }
