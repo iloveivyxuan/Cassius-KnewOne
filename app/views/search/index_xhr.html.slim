@@ -2,7 +2,9 @@
   h5
     i.fa.fa-briefcase
     = "与 “#{params[:q]}” 相关的品牌"
-  ul.search_brands = render partial: 'brand', collection: @brands
+  ul.search_brands
+    - @brands.each do |brand|
+      li = link_to brand.brand_text, brand_things_path(brand.id), target: '_blank'
 
 - if @things.present?
   h5
@@ -28,7 +30,9 @@
     = link_to search_lists_path(q: params[:q]), class: 'search_menu-more'
       | 查看更多
       i.fa.fa-chevron-right
-  ul.search_lists = render partial: 'list', collection: @lists
+  ul.search_lists
+    - @lists.each do |list|
+      li = link_to "#{list.name} (#{list.size})", thing_list_path(list.id), target: '_blank'
 
 - if @users.present?
   h5
