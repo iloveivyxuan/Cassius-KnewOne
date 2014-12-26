@@ -5,6 +5,7 @@ class Making.Views.SearchForm extends Backbone.Marionette.ItemView
   ui: {
     input: 'input[type="search"]'
     status: '.fa-search'
+    clear: '.fa-times'
     menu: '.search_menu'
     suggestions: '.search_menu-suggestions'
     result: '.search_menu-result'
@@ -17,6 +18,7 @@ class Making.Views.SearchForm extends Backbone.Marionette.ItemView
     'keyup @ui.input': 'onKeyUp'
     'focus @ui.input': 'onFocus'
     'blur @ui.input': 'onBlur'
+    'click @ui.clear': 'onClear'
     submit: 'onSubmit'
   }
 
@@ -168,6 +170,10 @@ class Making.Views.SearchForm extends Backbone.Marionette.ItemView
       selectedIndex: 0
       result: ''
     })
+
+  onClear: ->
+    @ui.input.val('')
+    @reset()
 
   onSubmit: (event) ->
     event.preventDefault() if @inputValue().length == 0
