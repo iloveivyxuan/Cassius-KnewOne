@@ -31,4 +31,8 @@ module PrizesHelper
     prize.reference_id.present?
   end
 
+  def pagination_array
+    Kaminari.paginate_array(Prize.distinct(:since)).page(params[:page]).per(5)
+  end
+
 end

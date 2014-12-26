@@ -53,3 +53,5 @@
         | #{ @review.reason }，获得
         = coupon_link(@review.coupon)
         = coupon_amount(@review.coupon)
+
+  = paginate pagination_array
