@@ -12,6 +12,14 @@
       | 查看更多
       i.fa.fa-chevron-right
   ul.search_things = render partial: 'thing', collection: @things
+- elsif @brands.present? || @lists.present? || @users.present?
+  h5
+    i.fa.fa-magic
+    = "与 “#{params[:q]}” 相关的产品"
+    = link_to search_things_path(q: params[:q]), class: 'search_menu-more'
+      | 查看更多
+      i.fa.fa-chevron-right
+  .search_not_found = render 'things_not_found'
 
 - if @lists.present?
   h5
