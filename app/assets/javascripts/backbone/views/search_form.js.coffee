@@ -12,7 +12,8 @@ class Making.Views.SearchForm extends Backbone.Marionette.ItemView
 
   events: {
     'keydown @ui.input': 'onKeyDown'
-    'mousedown .search_menu-suggestions li': 'clickSuggestion'
+    'mousedown .search_menu-suggestions li': 'onClick'
+    'mousedown .search_menu-result a': 'onClick'
     'keyup @ui.input': 'onKeyUp'
     'focus @ui.input': 'onFocus'
     'blur @ui.input': 'onBlur'
@@ -133,11 +134,11 @@ class Making.Views.SearchForm extends Backbone.Marionette.ItemView
 
     event.preventDefault()
 
-  clickSuggestion: (event) ->
+  onClick: (event) ->
     event.preventDefault()
 
     index = $(event.currentTarget).data('index')
-    @selectSuggestion(index)
+    @selectSuggestion(index) if index?
 
   onKeyUp: _.debounce((event) ->
     query = @inputValue()
