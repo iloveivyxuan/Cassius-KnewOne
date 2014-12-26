@@ -48,6 +48,6 @@
     - unless user_signed_in?
       .menu-footer
         - if browser.wechat?
-          = link_to "登录/注册", "user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base')", class: "btn"
+          = link_to "登录/注册", user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base'), class: "btn"
         - else
           = link_to "登录/注册", "#login-modal", class: "btn", data: { toggle: "modal" }
