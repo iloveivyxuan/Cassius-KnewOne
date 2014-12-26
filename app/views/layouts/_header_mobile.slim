@@ -2,7 +2,7 @@ header#header
   h1
     = link_to "KnewOne", "/", class: 'logo'
 
-  = link_to_with_icon "", "fa fa-bars fa_alone", "#menu", class: "btn btn-link pull-left", id: "menu_toggle"
+  = link_to_with_icon "", "fa fa-bars fa_alone", "#", class: "menu-toggle btn btn-link pull-left"
 
   - if user_signed_in?
     = link_to notifications_path, class: "btn btn-link pull-right notification", title: "#{unread_notifications_text}未读消息" do

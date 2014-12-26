@@ -484,9 +484,9 @@ do (exports = Making) ->
       .addClass('embed-responsive-item')
       .wrap('<div class="embed-responsive embed-responsive-16by9"></div>')
 
-    # Screen MD below
-    if Modernizr.mq('(max-width: ' + Making.Breakpoints.screenMDMax + ')')
-      menu = new exports.View.Menu('#menu', 'body', '#menu_toggle')
+    # Mobile and Tablet
+    if $html.hasClass('mobile') or $html.hasClass('tablet')
+      menu = new exports.View.Menu('.menu', 'body', '.menu-toggle')
 
     # Screen MD
     if Modernizr.mq('(min-width: ' + Making.Breakpoints.screenMDMin + ')')

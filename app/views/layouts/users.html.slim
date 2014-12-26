@@ -45,6 +45,9 @@
           = render 'follow_btn', user: @user
           = render 'private_message_btn', user: @user, text: '私信'
 
+    - if controller.action_name == 'show' && user_signed_in? && !browser.desktop? && current_user == @user
+      = link_to_with_icon "登出", "fa fa-sign-out", destroy_user_session_path, class: "btn btn-danger btn-block btn--signout", method: :delete
+
     nav
       ul
         = li action_name == 'show', class: 'nav-home'
@@ -165,6 +168,9 @@
                 | 关注者
 
   = yield
+
+  - if controller.action_name == 'show' && user_signed_in? && !browser.desktop? && current_user == @user
+    footer= link_to_with_icon "登出", "fa fa-sign-out", destroy_user_session_path, class: "btn btn-danger btn-block btn--signout", method: :delete
 
   - content_for :script do
     javascript:

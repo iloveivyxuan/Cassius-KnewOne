@@ -778,6 +778,38 @@ html.users_show {
       }
     }
   }
+
+  &.mobile,
+  &.tablet {
+    #wrapper {
+      > header {
+        .btn--signout {
+          display: none;
+
+          @media (min-width: $screen-md-min) {
+            display: block;
+            position: absolute;
+            right: 20px;
+            top: 350px;
+            width: 240px;
+          }
+        }
+      }
+
+      > footer {
+        padding: 20px;
+
+        @media (min-width: $screen-md-min) {
+          display: none;
+        }
+
+        .btn--signout {
+          margin: auto;
+          max-width: 400px;
+        }
+      }
+    }
+  }
 }
 
 html.users_fancies,
