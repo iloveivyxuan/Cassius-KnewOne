@@ -29,6 +29,8 @@ module Haven
                     @orders.without_thing(Thing.find(params[:find_cond]))
                   when 'order_name'
                     @orders.where('address.name' => params[:find_cond])
+                  when 'phone'
+                    @orders.where('address.phone' => params[:find_cond])
                   else
                     @orders
                   end
