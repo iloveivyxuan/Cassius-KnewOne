@@ -86,7 +86,8 @@
             class: "user_link track_event",
             data: data_with_login_tracker("nav", request.path)
 
-        = form_tag(search_root_path, method: "get", id: "navbar_search", class: "navbar-form navbar-right", role: "search") do
+        - search_url = controller_name == 'search' ? '' : search_root_path
+        = form_tag(search_url, method: "get", id: "navbar_search", class: "navbar-form navbar-right", role: "search") do
           .form-group.search
             input.form-control type="search" name="q" autocomplete="off" spellcheck="false"
             i.fa.fa-search
