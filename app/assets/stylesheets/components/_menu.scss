@@ -3,7 +3,7 @@
 // For Mobile Device.
 //
 
-$menu-profile-width: 210px;
+$menu-profile-width: 225px;
 
 .menu {
   @include transition(top .2s ease);
@@ -33,6 +33,7 @@ $menu-profile-width: 210px;
 
 .menu-nav--top {
   float: left;
+  margin-right: 15px;
 
   > li {
     float: left;
