@@ -27,6 +27,8 @@ class Comment
       .uniq
     elsif thing_list
       [thing_list.author] + self.content_users
+    else
+      []
     end
   end
 
