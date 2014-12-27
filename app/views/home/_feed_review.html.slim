@@ -21,4 +21,4 @@ article.feed-review
       - if review_presenter.has_comment?
         = link_to review_presenter.path, target: "_blank"
           i.fa.fa-comment-o
-          span= review.comments.count
+          span= review.comments_count

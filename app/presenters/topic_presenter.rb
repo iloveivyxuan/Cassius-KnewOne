@@ -19,7 +19,7 @@ class TopicPresenter < PostPresenter
 
   def comments_count
     if topic.comments.present?
-      link_to_with_icon topic.comments.count, "fa fa-comment-o", path
+      link_to_with_icon topic.comments_count, "fa fa-comment-o", path
     end
   end
 

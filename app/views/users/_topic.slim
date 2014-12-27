@@ -25,5 +25,5 @@
             li
               = link_to tp.path do
                 i.fa.fa-comments-o
-                span.comments_count = topic.comments.size
+                span.comments_count = topic.comments_count
           .feed_action = render partial: 'shared/voting', locals: {object: topic}

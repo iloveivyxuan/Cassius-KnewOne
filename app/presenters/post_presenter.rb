@@ -49,7 +49,7 @@ class PostPresenter < ApplicationPresenter
   end
 
   def has_comment?
-    @object.comments.count > 0
+    @object.comments_count > 0
   end
 
   def has_lover?
@@ -59,7 +59,7 @@ class PostPresenter < ApplicationPresenter
   def comments_count(options = {})
     css = "comments_count #{options.delete(:class)}"
     if @object.comments.present?
-      link_to_with_icon @object.comments.count, "fa fa-comments-o",
+      link_to_with_icon @object.comments_count, "fa fa-comments-o",
       path, class: css
     end
   end

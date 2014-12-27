@@ -16,7 +16,7 @@ class Review < Post
   include Rankable
 
   def calculate_heat
-    (lovers_count + comments.count) * freezing_coefficient
+    (lovers_count + comments_count) * freezing_coefficient
   end
 
   need_aftermath :create, :vote
