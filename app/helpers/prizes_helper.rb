@@ -36,7 +36,7 @@ module PrizesHelper
   end
 
   def list_link
-    link_to "新奇酷礼物", "lists/549d33a331302d7afb030000", target: '_blank'
+    link_to "KnewOne 商店产品", "lists/549d33a331302d7afb030000", target: '_blank'
   end
 
 end

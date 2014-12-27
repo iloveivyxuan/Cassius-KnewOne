@@ -24,20 +24,34 @@ html.prizes_index .container-fluid {
     }
 
     > .image {
+      margin-top: 10px;
       > img {
+        @media (min-width: $screen-md-min) {
+          max-width: 125%;
+        }
         background-color: white;
         border: 20px $ghost-white solid;
-        max-width: 125%;
         padding: 0 0;
       }
     }
     > .text {
+      font-size: 14px;
+      @media (min-width: $screen-md-min) {
+        padding-left: 90px;
+      }
+      @media (max-width: $screen-sm-max) {
+        padding: 0 30px;
+      }
       > h1 {
         color: #049cdb;
         font-weight: bold;
       }
-      font-size: 13px;
-      padding-left: 65px;
+      h4 {
+        margin-bottom: 0;
+      }
+      li {
+        list-style-type: disc;
+      }
     }
   }
 }
