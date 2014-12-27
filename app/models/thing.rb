@@ -92,6 +92,7 @@ class Thing < Post
   scope :created_between, ->(from, to) { where :created_at.gt => from, :created_at.lt => to }
   scope :linked, -> { nin(links: [nil, []]) }
   scope :approved, -> { ne(approved_at: nil) }
+  scope :recommended, -> { gt(priority: 0) }
   scope :by_tag, -> (tag) { any_in('tag_ids' => tag.id) }
   scope :by_brand, -> (brand) { where('brand_id' => brand.id) }
   scope :no_brand, -> { where('brand_id' => nil) }

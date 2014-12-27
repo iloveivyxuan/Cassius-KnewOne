@@ -46,7 +46,7 @@ class HomeController < ApplicationController
 
   def hits
     @batch = 5
-    @things = Thing.hot.approved.page(params[:page]).per(6*@batch)
+    @things = Thing.hot.recommended.page(params[:page]).per(6*@batch)
     @reviews = Review.hot.page(params[:page]).per(@batch)
     @thing_lists = ThingList.hot.page(params[:page]).per(@batch)
 
