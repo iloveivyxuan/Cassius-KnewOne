@@ -2,17 +2,17 @@
 
 - cache ['thing_lists', 'cover', thing_list, layout, browser.mobile?], expires_in: 10.minutes
   .thing_list-cover class="thing_list-cover--#{layout}"
-    - if thing_list.items.size == 0
+    - if thing_list.size == 0
       .thing_list-image_wrapper = lazy_image_tag('blank-list-cover.png')
-    - elsif thing_list.items.size < 4
+    - elsif thing_list.size < 4
       .thing_list-image_wrapper = lazy_image_tag(thing_list.items.first.thing.cover.url(:square))
     - else
       - size = layout == :sextet ? 6 : (layout == :quintet ? 5 : 4)
-      - thing_list.items.limit(size).each_with_index do |item, i|
+      - thing_list.things(size).each_with_index do |thing, i|
         .thing_list-image_wrapper
           - if i == 0 && layout == :bottom_stack
-            = lazy_image_tag(item.thing.cover.url('thing.fixed'))
+            = lazy_image_tag(thing.cover.url('thing.fixed'))
           - elsif [:quintet, :sextet].include?(layout)
-            = lazy_image_tag(item.thing.cover.url('thing.fixed.small'))
+            = lazy_image_tag(thing.cover.url('thing.fixed.small'))
           - else
-            = lazy_image_tag(item.thing.cover.url(:square))
+            = lazy_image_tag(thing.cover.url(:square))
