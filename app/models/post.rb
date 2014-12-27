@@ -22,6 +22,7 @@ class Post
   belongs_to :author, class_name: "User", inverse_of: :posts, index: true
 
   has_many :comments
+  field :comments_count, type: Integer, default: 0
 
   has_many :related_lotteries, class_name: "Lottery",
            inverse_of: :contributions, dependent: :delete

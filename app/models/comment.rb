@@ -6,8 +6,8 @@ class Comment
 
   field :content, type: String
 
-  belongs_to :post, index: true
-  belongs_to :thing_list, index: true
+  belongs_to :post, index: true, counter_cache: true
+  belongs_to :thing_list, index: true, counter_cache: true
   belongs_to :author, class_name: 'User'
   validates :author, presence: true
 
