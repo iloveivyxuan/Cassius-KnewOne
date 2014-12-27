@@ -8,6 +8,7 @@
           = link_to "详情", "#", class: "track_event",
             data: {toggle: "modal", target: "#shopping_modal"}
       = render_mobile_buy_button(tp.thing)
+      = render_mobile_adoption_button(tp.thing)
     .mobile_others.clearfix
       - if tp.tags.present?
         ul.mobile_tags

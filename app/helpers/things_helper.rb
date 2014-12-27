@@ -59,10 +59,14 @@ module ThingsHelper
         class: "btn btn--login btn-buy-mobile track_event",
         data: data_with_login_tracker("abroad", thing.title, !browser.wechat?)
       end
-    when :adoption
-      render 'things/adopt', tp: present(thing)
     else
       nil
+    end
+  end
+
+  def render_mobile_adoption_button(thing)
+    if thing.adoption
+      render 'things/adopt', tp: present(thing)
     end
   end
 
