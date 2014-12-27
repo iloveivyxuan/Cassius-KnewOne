@@ -18,7 +18,7 @@ class HomeController < ApplicationController
         @pager = activities
       else
         session[:source] = "latest"
-        things = Thing.published.approved.desc(:approved_at)
+        things = Thing.published.recommended.desc(:approved_at)
         things = things.page(params[:page]).per(30)
         reviews = []
         @feeds = HomeFeed.create_from_things_and_reviews(things, reviews)
