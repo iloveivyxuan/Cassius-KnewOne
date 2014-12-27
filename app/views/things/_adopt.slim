@@ -1,9 +1,9 @@
 - if user_signed_in?
   - if tp.thing.adopted_by? current_user
-    = button_tag "已领养", type: "button", class: "btn btn--green btn-success buy_button",
+    = button_tag "已领养", type: "button", class: "btn btn--blue_light btn--adoption buy_button",
     disabled: true
   - else
-    = button_tag "领养", type: "button", class: "btn btn--green btn-success buy_button",
+    = button_tag "领养", type: "button", class: "btn btn--blue_light btn--adoption buy_button",
     data: data_with_buy_tracker("adoption", tp.thing.title, {toggle: "modal", target: "#adoption-modal"})
     - content_for :end do
       = render 'shared/adoption_modal', tp: tp

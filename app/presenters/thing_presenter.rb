@@ -136,6 +136,7 @@ class ThingPresenter < PostPresenter
   end
 
   def adoption
+    return nil unless thing.adoption
     render 'things/adopt', tp: self
   end
 
