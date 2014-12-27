@@ -41,11 +41,11 @@ class ThingList
     (fanciers_count + comments_count) * freezing_coefficient
   end
 
-  def get_things_by_order(limit = 0)
-    ids = thing_list_items.map { |item| [item.order, item.thing_id] }.sort_by(&:first).reverse!.map(&:last)
-    ids = ids.first(limit) if limit > 0
+  def things(limit = nil)
+    ids = thing_list_items.pluck(:thing_id)
+    ids = ids.take(limit) if limit
 
-    Thing.where(:id.in => ids).sort_by { |thing| ids.index(thing.id.to_s) }.reverse!
+    Thing.in(id: ids).sort_by { |thing| ids.index(thing.id) }
   end
 
   before_save do

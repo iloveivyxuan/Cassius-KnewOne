@@ -47,7 +47,7 @@ class Weekly
 
   def hot_things(limit = 14)
     if self.thing_list
-      self.thing_list.get_things_by_order(limit)
+      self.thing_list.things(limit)
     else
       fetch_hot_things_by_activities(Activity, limit)
     end
