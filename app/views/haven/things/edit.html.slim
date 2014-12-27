@@ -26,6 +26,7 @@ header.page-header
   include_blank: false, label_method: :last, value_method: :first
   = f.input :priority, as: :integer
   = f.input :merchant_name
+  = f.input :adoption, collection: [true, false]
   | 可用标记:
   | &nbsp;购买的商品&nbsp;
   span = "{{item}}"

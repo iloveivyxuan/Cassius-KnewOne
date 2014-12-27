@@ -38,6 +38,7 @@ zh-CN:
         sharing_text: '分享文案'
         nickname: '别名'
         merchant_name: '商家名称'
+        adoption: '能否领养'
       thing_list:
         name: '名称'
         description: '描述'

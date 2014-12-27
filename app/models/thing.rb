@@ -65,6 +65,8 @@ class Thing < Post
   validates :stage, inclusion: {in: STAGES.keys}
   before_save :update_stage
 
+  field :adoption, type: Boolean, default: false
+
   def safe_destroy?
     !Order.where('order_items.thing_id' => self.id).exists?
   end
