@@ -23,13 +23,22 @@ html.prizes_index .container-fluid {
       margin: 40px -20px 30px;
     }
 
-    .col-md-4 {
+    > .image {
       > img {
         background-color: white;
         border: 20px $ghost-white solid;
-        margin-top: 30px;
+        max-width: 125%;
+        padding: 0 0;
       }
-    }    
+    }
+    > .text {
+      > h1 {
+        color: #049cdb;
+        font-weight: bold;
+      }
+      font-size: 13px;
+      padding-left: 65px;
+    }
   }
 }
 
