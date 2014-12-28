@@ -51,17 +51,28 @@ class Brand
   end
 
   include Searchable
-  searchable_fields [:zh_name, :en_name, :nickname, :description]
+
+  searchable_fields [:zh_name, :en_name, :nickname]
+
+  mappings do
+    indexes :en_name, copy_to: :ngram
+    indexes :ngram, index_analyzer: 'english', search_analyzer: 'standard'
+  end
+
+  alias_method :_as_indexed_json, :as_indexed_json
+  def as_indexed_json(options={})
+    _as_indexed_json(options).merge(brand_text: brand_text)
+  end
 
   def self.search(query)
     options = {
       multi_match: {
         query: query,
-        fields: ['zh_name^10', 'en_name^10', 'nickname^10', 'description']
+        fields: ['zh_name^10', 'en_name^10', 'nickname^10', 'ngram^3']
       }
     }
 
-    __elasticsearch__.search(query: options)
+    __elasticsearch__.search(query: options, min_score: 1)
   end
 
   def self.update_things_brand_name

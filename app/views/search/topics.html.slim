@@ -1,0 +1,18 @@
+- if @groups.present? || @topics.present?
+  section.search_result
+    - if @groups.present?
+      ul.search_result-traits
+        = render partial: 'group', collection: @groups.records.to_a
+
+    - if @topics.present?
+      ul.search_result-items.infinite
+        = render partial: 'topic', collection: @topics
+      = paginate @topics
+- else
+  section.search_not_found
+    = image_tag image_path('not_found_dark.png'), alt: '啥都找不到 :p'
+    p 没有找到相关的小组或话题 :p
+
+- content_for :script
+  javascript:
+    Making.InfiniteScroll('#wrapper')

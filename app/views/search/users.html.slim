@@ -1,0 +1,13 @@
+- if @users.present?
+  section.search_result
+    ul.search_result-items.infinite
+      = render @users.records.to_a
+    = paginate @users
+- else
+  section.search_not_found
+    = image_tag image_path('not_found_dark.png'), alt: '啥都找不到 :('
+    p 没有找到相关的用户 :(
+
+- content_for :script do
+  javascript:
+    Making.InfiniteScroll("#wrapper");

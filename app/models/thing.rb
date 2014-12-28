@@ -428,28 +428,63 @@ class Thing < Post
 
   include Searchable
 
-  searchable_fields [:title, :_slugs, :subtitle, :nickname, :brand_name]
+  searchable_fields [:title, :_slugs, :subtitle, :nickname, :brand_name, :priority]
 
   mappings do
     indexes :title, copy_to: :ngram
     indexes :nickname, copy_to: :ngram
     indexes :ngram, index_analyzer: 'english', search_analyzer: 'standard'
+    indexes :suggest, type: 'completion'
   end
 
   alias_method :_as_indexed_json, :as_indexed_json
   def as_indexed_json(options={})
-    _as_indexed_json(options).merge(weight: reviews_count)
+    suggest = {
+      input: ([title, slug.gsub('-', '')] + title.split(' ')).uniq,
+      output: title,
+      weight: fancier_ids.size
+    }
+
+    _as_indexed_json(options).merge(
+      cover_id: photo_ids.first.to_s,
+      fanciers_count: fancier_ids.size,
+      owners_count: owner_ids.size,
+      reviews_count: reviews_count,
+      updated_at: updated_at,
+      suggest: suggest
+    )
   end
 
   def self.search(query)
     query_options = {
       multi_match: {
         query: query,
-        fields: ['title^10', '_slugs^10', 'subtitle^10', 'nickname^10', 'brand_name^5', 'ngram^5']
+        fields: ['title^10', 'subtitle^5', 'nickname^5', 'brand_name^5', 'ngram^5']
       }
     }
 
-    __elasticsearch__.search(query: query_options, min_score: 0.1)
+    filter_options = {
+      range: {
+        priority: {gte: 0}
+      }
+    }
+
+    __elasticsearch__.search(query: query_options, filter: filter_options, min_score: 0.1)
+  end
+
+  def self.suggest(prefix, limit = 10)
+    body = {
+      titles: {
+        text: prefix,
+        completion: {
+          field: :suggest,
+          size: limit
+        }
+      }
+    }
+
+    response = __elasticsearch__.client.suggest(index: index_name, body: body)
+    response['titles'].first['options'].map { |h| h['text'].strip } rescue []
   end
 
   private

@@ -1,0 +1,26 @@
+- if @things.present?
+  section.search_result
+    - if @category || @brand
+      ul.search_result-traits
+        - if @category
+          li = link_to category_things_path(@category)
+            i.fa.fa-alone class= @category.icon
+            h6 = @category.name
+
+        - if @brand
+          li = link_to brand_things_path(@brand.id)
+            - if @brand.logo?
+              = image_tag @brand.logo.url(:tiny), alt: @brand.brand_text
+            - else
+              i.fa.fa-briefcase
+            h6 = @brand.brand_text
+
+    ul.search_result-items.infinite
+      = render partial: 'thing', collection: @things
+    = paginate @things
+- else
+  section.search_not_found = render 'things_not_found', dark: true
+
+- content_for :script do
+  javascript:
+    Making.InfiniteScroll("#wrapper");

@@ -1,74 +1,294 @@
 @import '../base';
+@import '../components/user';
 
-html.home_search {
-
+html[class^="search_"] {
   #wrapper {
-    margin: 0;
+    @extend %container;
 
-    .container-fluid {
+    @include to-breakpoint(xs) {
+      margin: 0;
       padding: 0;
-      @media (min-width: $screen-md-min) {
-        padding: 0 10%;
+    }
+
+    > header {
+      background: white;
+
+      h1 {
+        margin: 0;
+        padding: 15px;
+
+        text-align: center;
+        font-size: 18px;
+        line-height: 1;
+        color: $gray-light;
+
+        em {
+          color: $blue-dark;
+          font-style: normal;
+        }
       }
-      @media (min-width: $screen-lg-min) {
-        width: $container-large-desktop;
-        padding: 0 $screen-lg-min * 0.1;
+
+      nav {
+        > ul {
+          display: table;
+          table-layout: fixed;
+          width: 100%;
+
+          > li {
+            display: table-cell;
+            text-align: center;
+            width: auto;
+
+            &:last-child {
+              width: 30%;
+            }
+
+            &.active {
+              border-bottom: 3px solid $blue;
+            }
+
+            a {
+              @include plain-link;
+
+              display: inline-block;
+              width: 100%;
+              padding: 15px 0;
+            }
+          }
+        }
+      }
+
+      @include from-breakpoint(sm) {
+        @include clearfix;
+
+        h1 {
+          float: left;
+        }
+
+        nav {
+          float: right;
+          width: 320px;
+        }
+      }
+    }
+
+    .search_not_found {
+      padding: 10% 15%;
+      background: $smoke-white;
+
+      p {
+        font-size: 24px;
+      }
+
+      @include from-breakpoint(sm) {
+        img {
+          width: 45%;
+        }
+      }
+    }
+  }
+}
+
+html.search_things,
+html.search_lists,
+html.search_users,
+html.search_topics {
+  ul.search_result-traits {
+    > li {
+      text-align: center;
+
+      a {
+        @include clearfix;
+
+        position: relative;
+
+        display: block;
+        height: 50px;
+
+        color: $gray;
+        background: white;
+
+        i,
+        img {
+          position: absolute;
+          top: 0;
+          left: 0;
+
+          width: 50px;
+          height: 50px;
+        }
+
+        i {
+          font-size: 24px;
+          line-height: 50px;
+
+          color: $gray-light;
+          background: $smoke-white;
+        }
+
+        h6 {
+          @include text-overflow;
+
+          margin: 0 0 0 50px;
+          padding: 0 15px;
+
+          font-size: 16px;
+          line-height: 50px;
+        }
+      }
+    }
+
+    @include to-breakpoint(xs) {
+      margin: 30px 20px;
+
+      > li {
+        margin-top: 20px;
+      }
+    }
+
+    @include from-breakpoint(sm) {
+      margin: 30px -15px -30px;
+      padding: 0;
+
+      > li {
+        display: inline-block;
+        width: 50%;
+        padding: 0 15px;
+        margin-bottom: 30px;
+      }
+    }
+
+    @include from-breakpoint(lg) {
+      > li {
+        width: 25%;
       }
     }
   }
 
-  figure.thing {
-    border-radius: 0;
+  ul.search_result-items {
+    margin: 30px 0;
 
-    .pre_ribbon {
+    @include from-breakpoint(sm) {
+      margin: 30px -15px;
+    }
+
+    > li {
+      @include to-breakpoint(xs) {
+        margin-bottom: 20px;
+      }
+
+      @include from-breakpoint(sm) {
+        display: inline-block;
+        vertical-align: top;
+
+        width: percentage(1 / 2);
+        margin-bottom: 30px;
+        padding: 0 15px;
+      }
+
+      @include from-breakpoint(md) {
+        width: percentage(1 / 3);
+      }
+
+      @include from-breakpoint(lg) {
+        width: percentage(1 / 4);
+      }
+    }
+  }
+}
+
+html.search_lists {
+  .thing_list {
+    padding: 2px;
+    padding-bottom: 10px;
+    background: white;
+
+    .fa-list,
+    .thing_list-description {
       display: none;
     }
-  }
 
-  .page-header {
-    @include clearfix;
-
-    border-bottom: 0;
-
-    > h1 {
-      float: left;
+    h4,
+    > footer {
+      padding: 0 1em;
     }
 
-    > nav {
-      float: right;
+    .thing_list-image_wrapper > img {
+      padding: 1px;
     }
   }
+}
 
-  .row {
-    margin-bottom: 28px;
+html.search_users {
+  ul.search_result-items {
+    > li {
+      @include to-breakpoint(xs) {
+        margin-bottom: 20px;
+      }
 
-    .search-result {
-      @include make-sm-column(4);
-      @include make-md-column(3);
-      margin-bottom: 10px;
+      @include from-breakpoint(sm) {
+        border: solid $body-bg;
+        border-width: 0 15px;
+      }
 
-      > a {
-        @include clearfix;
-        background-color: #fafafa;
-        display: block;
-        padding: 10px 15px;
+      &.author {
+        @extend %new_user;
       }
     }
+  }
+}
 
-    .pull-left {
-      font-weight: bold;
-      color: black;
-    }
+html.search_topics {
+  .search_result-traits {
+    .search_group {
+      height: 90px;
 
-    .pull-right {
-      color: gray;
+      img {
+        width: 90px;
+        height: 90px;
+      }
+
+      h6,
+      .members_count {
+        margin-left: 90px;
+        line-height: 1.4;
+      }
+
+      h6 {
+        margin-top: 24px;
+      }
+
+      .members_count {
+        font-size: 11px;
+        color: $gray-light;
+      }
     }
   }
 
-  .noresult {
-    color: $text-muted;
-    font-size: 24px;
-    margin: 40px 0;
-    text-align: center;
+  ul.search_result-items {
+    > li {
+      @include from-breakpoint(md) {
+        width: percentage(1 / 2);
+      }
+
+      .search_topic {
+        padding: 20px;
+        background: white;
+
+        h6 {
+          @include text-overflow;
+
+          margin: 0 0 10px;
+          font-size: 18px;
+          color: $blue;
+        }
+
+        .comments_count {
+          display: inline-block;
+          vertical-align: middle;
+          margin-left: 1em;
+        }
+      }
+    }
   }
 }

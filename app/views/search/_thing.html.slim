@@ -1,0 +1,24 @@
+- cache ['search_thing', thing.id, thing.updated_at]
+  - cover_url = Photo.only(:image).find(thing.cover_id).url('thing.fixed.small') rescue ''
+
+  li
+    .search_thing
+      header
+        = link_to thing_path(thing.id), target: '_blank'
+          .search_thing-cover = image_tag cover_url, alt: thing.title
+          h6 = thing.title
+
+      footer
+        ul.search_thing-counts
+          - if thing.fanciers_count > 0
+            li
+              i.fa.fa-heart-o
+              = thing.fanciers_count
+          - if thing.owners_count > 0
+            li
+              i.fa.fa-check-circle-o
+              = thing.owners_count
+          - if thing.reviews_count > 0
+            li
+              i.fa.fa-pencil
+              = thing.reviews_count

@@ -22,4 +22,55 @@ class Topic < Post
     return unless self.group.approved
     self.approved = true
   end
+
+  include Searchable
+
+  searchable_fields [:title, :visible, :group_id, :author_id, :comments_count, :commented_at]
+
+  mappings do
+    indexes :title, copy_to: :ngram
+    indexes :ngram, index_analyzer: 'english', search_analyzer: 'standard'
+  end
+
+  alias_method :_as_indexed_json, :as_indexed_json
+  def as_indexed_json(options={})
+    Group.public.visible.where(id: group_id).exists? ? _as_indexed_json : {}
+  end
+
+  def self.search(query)
+    query_options = {
+      function_score: {
+        query: {
+          multi_match: {
+            query: query,
+            fields: ['title^3', 'ngram']
+          }
+        },
+        functions: [
+          {weight: 1},
+          {
+            gauss: {
+              commented_at: {
+                origin: 'now',
+                scale: '30d',
+                offset: '1d',
+                decay: '0.5'
+              }
+            }
+          }
+        ],
+        score_mode: 'sum',
+        boost_mode: 'multiply'
+      }
+    }
+
+    filter_options = {
+      and: [
+        {term: {visible: true}},
+        {range: {comments_count: {gt: 0}}}
+      ]
+    }
+
+    __elasticsearch__.search(query: query_options, filter: filter_options)
+  end
 end

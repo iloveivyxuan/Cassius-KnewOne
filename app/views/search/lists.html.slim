@@ -1,0 +1,14 @@
+- if @lists.present?
+  section.search_result
+    ul.search_result-items.infinite
+      - @lists.records.to_a.each do |list|
+        li = render list
+    = paginate @lists
+- else
+  section.search_not_found
+    = image_tag image_path('not_found_dark.png'), alt: '啥都找不到 :|'
+    p 没有找到相关的列表 :|
+
+- content_for :script
+  javascript:
+    Making.InfiniteScroll('#wrapper')

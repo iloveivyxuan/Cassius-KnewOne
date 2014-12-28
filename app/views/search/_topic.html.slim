@@ -1,0 +1,8 @@
+li
+  .search_topic
+    = link_to group_topic_path(topic.group_id, topic.id)
+      h6 = topic.title
+    = render 'shared/user_avatar', user: User.only(:id, :name, :avatar).find(topic.author_id)
+    .comments_count
+      i.fa.fa-comments-o
+      = topic.comments_count

@@ -48,6 +48,41 @@ class ThingList
     Thing.in(id: ids).sort_by { |thing| ids.index(thing.id) }
   end
 
+  include Searchable
+
+  searchable_fields [:name, :size, :fanciers_count]
+
+  mappings do
+    indexes :name, copy_to: :ngram
+    indexes :ngram, index_analyzer: 'english', search_analyzer: 'standard'
+  end
+
+  def self.search(query)
+    query_options = {
+      function_score: {
+        query: {
+          multi_match: {
+            query: query,
+            fields: ['name^3', 'ngram']
+          }
+        },
+        field_value_factor: {
+          field: 'fanciers_count',
+          modifier: 'log2p'
+        }
+      }
+    }
+
+    filter_options = {
+      range: {
+        fanciers_count: {gte: 1},
+        size: {gte: 4}
+      }
+    }
+
+    __elasticsearch__.search(query: query_options, filter: filter_options)
+  end
+
   before_save do
     self.background ||= ThingListBackground.first
   end

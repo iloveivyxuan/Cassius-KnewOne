@@ -12,7 +12,6 @@ Making::Application.routes.draw do
   get 'following', to: "home#index", defaults: {source: "following"}
   get 'latest', to: "home#index", defaults: {source: "latest"}
 
-  get 'search', to: 'home#search', as: :search
   get 'hits/(page/:page)', to: 'home#hits', as: :hits
   get 'embed', to: 'home#embed', as: :embed
   get 'welcome', to: 'home#welcome'
@@ -76,6 +75,15 @@ Making::Application.routes.draw do
       resource :notification_settings
     end
     resources :authentications, only: [:destroy]
+  end
+
+  scope :search, controller: :search, as: :search do
+    root to: :index
+    get 'suggestions'
+    get 'things'
+    get 'lists'
+    get 'users'
+    get 'topics'
   end
 
   resources :users, only: [:show] do

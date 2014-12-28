@@ -559,7 +559,7 @@ HERE
 
   alias_method :_as_indexed_json, :as_indexed_json
   def as_indexed_json(options={})
-    _as_indexed_json(options).merge(weight: karma)
+    _as_indexed_json(options).merge(avatar_url: avatar.url, weight: karma)
   end
 
   def self.search(query)
@@ -579,6 +579,11 @@ HERE
     }
 
     __elasticsearch__.search(query: query_options)
+  end
+
+  def __elasticsearch__.__find_in_batches(options={}, &block)
+    batch_size = options[:batch_size] || 1000
+    User.only(:id, :name, :avatar, :karma).each_slice(batch_size, &block)
   end
 
   protected

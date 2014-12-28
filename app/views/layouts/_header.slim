@@ -86,31 +86,14 @@
             class: "user_link track_event",
             data: data_with_login_tracker("nav", request.path)
 
-        = form_tag(search_path, method: "get", id: "navbar_search", class: "navbar-form navbar-right", role: "search") do
+        - search_url = controller_name == 'search' ? '' : search_root_path
+        = form_tag(search_url, method: "get", id: "navbar_search", class: "navbar-form navbar-right", role: "search") do
           .form-group.search
-            input.form-control type="search" name="q" autocomplete="off" spellcheck="false"
+            input.form-control type="search" name="q" autocomplete="off" spellcheck="false" value=params[:q]
             i.fa.fa-search
             i.fa.fa-times
+
+          .search_menu
+            .search_menu-suggestions
+            .search_menu-result
     /-- Navbar --/
-
-    .search_backdrop
-    .search_candidate
-      h5.search_title
-        em.search_keyword
-        | 的搜索结果：
-      button.close aria-hidden="true" &times;
-
-      .things.slideshow
-        button.slideshow_control.left
-          i.fa.fa-chevron-left
-        button.slideshow_control.right
-          i.fa.fa-chevron-right
-        .slideshow_body
-
-      .users.slideshow
-        button.slideshow_control.left
-          i.fa.fa-chevron-left
-        button.slideshow_control.right
-          i.fa.fa-chevron-right
-        .slideshow_body
-    /-- Search Candidate --/

@@ -161,6 +161,7 @@ html.touch {
     width: 100%;
 
     .form-control {
+      color: #999;
       background-color: #fcfcfc;
       font-size: 12px;
       height: 26px;
@@ -176,8 +177,10 @@ html.touch {
       }
     }
 
-    .fa {
-      top: 6px;
+    > .fa {
+      color: #999;
+      top: 8px;
+      line-height: 29px;
     }
   }
 }
@@ -577,43 +580,6 @@ html.no-touch {
   }
 }
 
-#navbar_search {
-  float: left;
-  margin: 0;
-  padding: 0;
-  width: 11%;
-  @include MQ(Lplus) { width: 15% }
-  .form-control {
-    height: 45px;
-    padding-left: 30px;
-    padding-right: 30px;
-    font-size: 14px;
-    line-height: 1em;
-    background-color: $navbar-search-bg;
-    border: none;
-    @include border-radius(0);
-    &:focus {
-      margin: 0;
-      color: $gray-lighter;
-      letter-spacing: 1px;
-      border-left: 3px solid $brand-primary;
-      @include box-shadow(none);
-      @include border-radius(0);
-    }
-  }
-  .fa {
-    color: #999;
-    top: 8px;
-    line-height: 29px;
-  }
-  &.focus {
-    width: 42%;
-    @include MQ(XLplus) { width: 57% }
-    .form-control {
-      background-color: rgba(#5e6775,.6);
-    }
-  }
-}
 .user_links {
   height: 45px;
   .user_link {
@@ -823,13 +789,45 @@ html.no-touch {
 }
 
 #navbar_search {
-  @media (max-width: $screen-sm-max) {
+  float: left;
+  width: 240px;
+  margin: 0;
+  padding: 0;
+
+  @media (max-width: $grid-float-breakpoint-max) {
     width: 100%;
   }
 
+  .form-control {
+    height: 45px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 14px;
+    line-height: 1em;
+    background-color: $navbar-search-bg;
+    border: none;
+
+    @include border-radius(0);
+
+    &:focus {
+      margin: 0;
+      color: $blue-bright;
+      letter-spacing: 1px;
+      @include box-shadow(none);
+      @include border-radius(0);
+    }
+  }
+
   &.focus {
-    @include MQ(XLplus) {
-      width: 50%;
+    position: relative;
+    width: 600px;
+
+    @include from-breakpoint(lg) {
+      width: 800px;
+    }
+
+    .form-control {
+      background-color: rgba(#5e6775,.6);
     }
   }
 }

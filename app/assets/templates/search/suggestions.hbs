@@ -1,0 +1,12 @@
+{{#ifCond suggestions.length '>' 1}}
+  <h5>
+    <i class="fa fa-eye"></i>猜你在找
+  </h5>
+  <ul>
+    {{#each suggestions}}
+      {{#if @index}}
+        <li{{#ifCond @index '==' ../../selectedIndex}} class="selected"{{/ifCond}} data-index="{{@index}}">{{this}}</li>
+      {{/if}}
+    {{/each}}
+  </ul>
+{{/ifCond}}
