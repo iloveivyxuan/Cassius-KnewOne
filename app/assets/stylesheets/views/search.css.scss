@@ -146,13 +146,14 @@ html.search_users {
     }
 
     @include from-breakpoint(sm) {
-      margin: 30px -15px;
+      margin: 30px -15px -30px;
       padding: 0;
 
       > li {
         display: inline-block;
         width: 50%;
         padding: 0 15px;
+        margin-bottom: 30px;
       }
     }
 
