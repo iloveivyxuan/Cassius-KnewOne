@@ -129,8 +129,11 @@ class Making.Views.SearchForm extends Backbone.Marionette.ItemView
     switch event.which
       when Making.keycode.UP
         @moveBy(-1)
-      when Making.keycode.DOWN
-        @moveBy(1)
+      when Making.keycode.DOWN, Making.keycode.TAB
+        if event.shiftKey
+          @moveBy(-1)
+        else
+          @moveBy(1)
       else
         return
 
