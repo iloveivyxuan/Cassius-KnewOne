@@ -25,7 +25,7 @@ class Topic < Post
 
   include Searchable
 
-  searchable_fields [:title, :visible]
+  searchable_fields [:title, :visible, :group_id]
 
   mappings do
     indexes :title, copy_to: :ngram
