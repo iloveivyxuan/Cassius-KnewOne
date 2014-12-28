@@ -7,58 +7,58 @@ class SearchController < ApplicationController
     end
 
     # @brands = Brand.search(params[:q]).limit(3)
-    # @things = Thing.search(params[:q]).limit(5)
-    # @lists = ThingList.search(params[:q]).limit(3)
-    # @users = User.search(params[:q]).limit(8)
-    # @topics = Topic.search(params[:q]).limit(1)
+    @things = Thing.search(params[:q]).limit(5)
+    @lists = ThingList.search(params[:q]).limit(3)
+    @users = User.search(params[:q]).limit(8)
+    @topics = Topic.search(params[:q]).limit(1)
 
     render 'index_xhr', layout: false
   end
 
   def suggestions
-    # @suggestions = Thing.suggest(params[:q], 3)
+    @suggestions = Thing.suggest(params[:q], 3)
 
     respond_to do |format|
-      format.json { render json: [] }
+      format.json { render json: @suggestions }
     end
   end
 
   def things
-    # @things = Thing.search(params[:q]).page(params[:page]).per(24)
+    @things = Thing.search(params[:q]).page(params[:page]).per(24)
 
-    # return if params[:page].to_i > 1
+    return if params[:page].to_i > 1
 
-    # things = @things.records.only(:brand_id, :categories)
+    things = @things.records.only(:brand_id, :categories)
 
-    # brand_id, count = things.reduce(Hash.new(0)) do |counts, t|
-    #   counts[t.brand_id] += 1 if t.brand_id
-    #   counts
-    # end.sort_by(&:last).last
+    brand_id, count = things.reduce(Hash.new(0)) do |counts, t|
+      counts[t.brand_id] += 1 if t.brand_id
+      counts
+    end.sort_by(&:last).last
 
-    # @brand = Brand.where(id: brand_id).first if count && count > 10
+    @brand = Brand.where(id: brand_id).first if count && count > 10
 
-    # category_name, count = things.reduce(Hash.new(0)) do |counts, t|
-    #   t.categories.each { |c| counts[c] += 1 }
-    #   counts
-    # end.sort_by(&:last).last
+    category_name, count = things.reduce(Hash.new(0)) do |counts, t|
+      t.categories.each { |c| counts[c] += 1 }
+      counts
+    end.sort_by(&:last).last
 
-    # @category = Category.where(name: category_name).first if count && count > 10
+    @category = Category.where(name: category_name).first if count && count > 10
   end
 
   def lists
-    # @lists = ThingList.search(params[:q]).page(params[:page]).per(24)
+    @lists = ThingList.search(params[:q]).page(params[:page]).per(24)
   end
 
   def users
-    # @users = User.search(params[:q]).page(params[:page]).per(36)
+    @users = User.search(params[:q]).page(params[:page]).per(36)
   end
 
   def topics
-    # @topics = Topic.search(params[:q]).page(params[:page]).per(24)
+    @topics = Topic.search(params[:q]).page(params[:page]).per(24)
 
-    # unless params[:page].to_i > 1
-    #   @groups = Group.search(params[:q]).limit(4)
-    # end
+    unless params[:page].to_i > 1
+      @groups = Group.search(params[:q]).limit(4)
+    end
   end
 
   private
