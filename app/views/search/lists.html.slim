@@ -1,7 +1,7 @@
 - if @lists.present?
   section.search_result
     ul.search_result-items.infinite
-      - @lists.to_a.each do |list|
+      - @lists.records.to_a.each do |list|
         li = render list
     = paginate @lists
 - else

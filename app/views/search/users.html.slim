@@ -1,7 +1,7 @@
 - if @users.present?
   section.search_result
     ul.search_result-items.infinite
-      = render @users.to_a
+      = render @users.records.to_a
     = paginate @users
 - else
   section.search_not_found

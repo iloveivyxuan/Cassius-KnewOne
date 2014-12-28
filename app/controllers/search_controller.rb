@@ -46,16 +46,16 @@ class SearchController < ApplicationController
   end
 
   def lists
-    @lists = ThingList.search(params[:q]).page(params[:page]).per(24).records
+    @lists = ThingList.search(params[:q]).page(params[:page]).per(24)
   end
 
   def users
-    @users = User.search(params[:q]).page(params[:page]).per(36).records
+    @users = User.search(params[:q]).page(params[:page]).per(36)
   end
 
   def topics
-    @groups = Group.search(params[:q]).page(params[:page]).per(24).records
-    @topics = Topic.search(params[:q]).page(params[:page]).per(24).records
+    @groups = Group.search(params[:q]).limit(24)
+    @topics = Topic.search(params[:q]).page(params[:page]).per(24)
   end
 
   private
