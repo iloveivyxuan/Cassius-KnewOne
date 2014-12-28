@@ -25,7 +25,7 @@ class Topic < Post
 
   include Searchable
 
-  searchable_fields [:title, :visible, :group_id]
+  searchable_fields [:title, :visible, :group_id, :commented_at]
 
   mappings do
     indexes :title, copy_to: :ngram
@@ -39,9 +39,28 @@ class Topic < Post
 
   def self.search(query)
     query_options = {
-      multi_match: {
-        query: query,
-        fields: ['title^3', 'ngram']
+      function_score: {
+        query: {
+          multi_match: {
+            query: query,
+            fields: ['title^3', 'ngram']
+          }
+        },
+        functions: [
+          {weight: 1},
+          {
+            gauss: {
+              commented_at: {
+                origin: 'now',
+                scale: '30d',
+                offset: '1d',
+                decay: '0.5'
+              }
+            }
+          }
+        ],
+        score_mode: 'sum',
+        boost_mode: 'multiply'
       }
     }
 
