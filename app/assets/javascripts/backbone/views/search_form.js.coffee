@@ -64,14 +64,14 @@ class Making.Views.SearchForm extends Backbone.Marionette.ItemView
             @ui.result.html(@model.get('result'))
           )
     else
-      @ui.result.html(@model.get('result')) unless @model.get('loading')
+      @ui.result.html(@model.get('result')) if !@model.get('loading') && @model.hasChanged('result')
 
-    @ui.input.val(@model.get('query'))
+    @ui.input.val(@model.get('query')) if @model.hasChanged('query')
 
     @ui.suggestions.html(suggestionsTemplate({
       suggestions: @model.get('suggestions')
       selectedIndex: @model.get('selectedIndex')
-    }))
+    })) if @model.hasChanged('suggestions') || @model.hasChanged('selectedIndex')
 
   updateSuggestions: (query) ->
     @_cachedSuggestions ?= Object.create(null)
