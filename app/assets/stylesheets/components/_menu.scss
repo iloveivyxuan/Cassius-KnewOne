@@ -179,8 +179,6 @@ $menu-profile-width: 225px;
     }
 
     .dropdown-menu {
-      display: block;
-
       @include clearfix;
       background-color: transparent;
       border: none;
