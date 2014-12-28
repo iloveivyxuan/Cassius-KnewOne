@@ -72,7 +72,7 @@ class Group
 
   include Searchable
 
-  searchable_fields [:name, :visible, :qualification]
+  searchable_fields [:name, :visible, :qualification, :members_count]
 
   mappings do
     indexes :name, copy_to: :ngram
@@ -81,9 +81,17 @@ class Group
 
   def self.search(query)
     query_options = {
-      multi_match: {
-        query: query,
-        fields: ['name^3', 'ngram']
+      function_score: {
+        query: {
+          multi_match: {
+            query: query,
+            fields: ['name^3', 'ngram']
+          }
+        },
+        field_value_factor: {
+          field: 'members_count',
+          modifier: 'log2p'
+        }
       }
     }
 
