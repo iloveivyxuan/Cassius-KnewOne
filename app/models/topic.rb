@@ -25,7 +25,7 @@ class Topic < Post
 
   include Searchable
 
-  searchable_fields [:title, :visible, :group_id, :commented_at]
+  searchable_fields [:title, :visible, :group_id, :comments_count, :commented_at]
 
   mappings do
     indexes :title, copy_to: :ngram
@@ -65,9 +65,10 @@ class Topic < Post
     }
 
     filter_options = {
-      term: {
-        visible: true
-      }
+      and: [
+        {term: {visible: true}},
+        {range: {comments_count: {gt: 0}}}
+      ]
     }
 
     __elasticsearch__.search(query: query_options, filter: filter_options)
