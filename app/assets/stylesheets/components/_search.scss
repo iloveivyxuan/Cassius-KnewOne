@@ -74,15 +74,15 @@
 
     > ul {
       padding-left: 30px;
-      padding-bottom: 15px;
+      padding-bottom: 10px;
 
       &.search_brands,
       &.search_lists,
       &.search_topics {
         > li {
-          display: inline;
-          margin-left: 1em;
-          &:first-child { margin: 0; }
+          display: inline-block;
+          margin-right: 1em;
+          padding-bottom: 5px;
         }
       }
 
