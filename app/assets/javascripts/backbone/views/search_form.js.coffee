@@ -61,10 +61,17 @@ class Making.Views.SearchForm extends Backbone.Marionette.ItemView
 
         @ui.result.find('.search_menu-progress')
           .animate({width: '100%'}, 50, =>
-            @ui.result.html(@model.get('result'))
+            @ui.result
+              .hide()
+              .html(@model.get('result'))
+              .fadeIn()
           )
     else
-      @ui.result.html(@model.get('result')) if !@model.get('loading') && @model.hasChanged('result')
+      if !@model.get('loading') && @model.hasChanged('result')
+        @ui.result
+          .hide()
+          .html(@model.get('result'))
+          .fadeIn()
 
     @ui.input.val(@model.get('query')) if @model.hasChanged('query')
 
