@@ -6,7 +6,7 @@
 
     - if @topics.present?
       ul.search_result-items.infinite
-        = render partial: 'topic', collection: @topics.records.to_a
+        = render partial: 'topic', collection: @topics
       = paginate @topics
 - else
   section.search_not_found
