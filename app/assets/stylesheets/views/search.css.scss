@@ -91,7 +91,8 @@ html[class^="search_"] {
 
 html.search_things,
 html.search_lists,
-html.search_users {
+html.search_users,
+html.search_topics {
   ul.search_result-traits {
     > li {
       text-align: center;
@@ -232,6 +233,61 @@ html.search_users {
 
       &.author {
         @extend %new_user;
+      }
+    }
+  }
+}
+
+html.search_topics {
+  .search_result-traits {
+    .search_group {
+      height: 90px;
+
+      img {
+        width: 90px;
+        height: 90px;
+      }
+
+      h6,
+      .members_count {
+        margin-left: 90px;
+        line-height: 1.4;
+      }
+
+      h6 {
+        margin-top: 24px;
+      }
+
+      .members_count {
+        font-size: 11px;
+        color: $gray-light;
+      }
+    }
+  }
+
+  ul.search_result-items {
+    > li {
+      @include from-breakpoint(md) {
+        width: percentage(1 / 2);
+      }
+
+      .search_topic {
+        padding: 20px;
+        background: white;
+
+        h6 {
+          @include text-overflow;
+
+          margin: 0 0 10px;
+          font-size: 18px;
+          color: $blue;
+        }
+
+        .comments_count {
+          display: inline-block;
+          vertical-align: middle;
+          margin-left: 1em;
+        }
       }
     }
   }

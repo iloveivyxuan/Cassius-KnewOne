@@ -54,8 +54,11 @@ class SearchController < ApplicationController
   end
 
   def topics
-    @groups = Group.search(params[:q]).limit(24)
     @topics = Topic.search(params[:q]).page(params[:page]).per(24)
+
+    unless params[:page].to_i > 1
+      @groups = Group.search(params[:q]).limit(4)
+    end
   end
 
   private
