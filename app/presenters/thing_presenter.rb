@@ -118,7 +118,7 @@ class ThingPresenter < PostPresenter
 
     if user_signed_in?
       link_to_with_icon "海淘", "fa fa-plane fa-lg", buy_thing_path(thing),
-      title: title, class: "btn btn--blue_light buy_button track_event", target: "_blank", rel: 'nofollow',
+      title: title, class: "btn btn--online_shopping buy_button track_event", target: "_blank", rel: 'nofollow',
       data: data_with_buy_tracker("abroad", thing.title)
     else
       link_to_with_icon "请登录后海淘", "fa fa-sign-in", login_path,

@@ -52,7 +52,7 @@ module ThingsHelper
     when :abroad
       if user_signed_in? && thing.shop.present?
         link_to_with_icon "海淘", "fa fa-plane fa-lg", buy_thing_path(thing),
-        title: thing.title, class: "btn btn--blue_light btn-buy-mobile buy_button track_event", target: "_blank", rel: 'nofollow',
+        title: thing.title, class: "btn btn--online_shopping btn-buy-mobile buy_button track_event", target: "_blank", rel: 'nofollow',
         data: data_with_buy_tracker("abroad", thing.title)
       else
         link_to_with_icon (browser.wechat? ? "请登录后购买" : "请登录后海淘"), "fa fa-sign-in", login_path,
