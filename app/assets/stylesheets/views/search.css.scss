@@ -87,6 +87,10 @@ html[class^="search_"] {
       }
     }
   }
+
+  .pagination {
+    display: none;
+  }
 }
 
 html.search_things,
