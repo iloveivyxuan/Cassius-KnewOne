@@ -342,6 +342,16 @@ html.landing {
       width: 85%;
       height: 60px;
       @include MQ(M) { width: 80%; }
+
+      .search_menu-result {
+        > section:not(.search_things) {
+          display: none;
+        }
+
+        section.search_things {
+          padding-bottom: 20px;
+        }
+      }
     }
     label[for="search_input"] {
       display: block;

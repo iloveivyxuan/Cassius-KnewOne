@@ -34,5 +34,7 @@ window.Making = do (exports = window.Making || {}) ->
     switch exports.device
       when 'mobile', 'tablet'
         exports.infiniteScroll('#wrapper > .hits', '/hits')
+      else
+        exports.initSearchForm('#search_form')
 
   exports
