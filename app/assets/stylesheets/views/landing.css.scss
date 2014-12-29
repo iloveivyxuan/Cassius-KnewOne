@@ -48,7 +48,7 @@ html.landing {
     }
   }
 
-  footer {
+  #wrapper > footer {
     width: 100%;
     overflow: hidden;
     @include MQ(Mplus) {
@@ -342,10 +342,6 @@ html.landing {
       width: 85%;
       height: 60px;
       @include MQ(M) { width: 80%; }
-      > div {
-        display: block;
-        height: 0;
-      }
     }
     label[for="search_input"] {
       display: block;
@@ -915,11 +911,6 @@ html.landing {
 
   #nav_secondary {
     display: none;
-  }
-
-  .search_candidate {
-    position: absolute;
-    padding: 40px 0;
   }
 
   .explore_content_item {
