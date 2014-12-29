@@ -40,22 +40,24 @@
         = image_tag thing_coupon_url(@things)
       .col-sm-9
         = render 'share_things'
-    section.thing_lists
-      - list = ThingList.find @list.reference_id
-      - coupon = @list.coupon
-      = render list, layout: browser.desktop? ? :quintet : :grid, prize: true
-      footer
-        = render 'shared/user_avatar', user: list.author
-        | #{ @list.reason }，获得
-        = coupon_link(@list.coupon)
-        = coupon_amount(@list.coupon)
-    section.reviews
-      - review = Review.find @review.reference_id
-      = render partial: 'home/hot_review', prize: true, collection: review.to_a
-      footer
-        = render 'shared/user_avatar', user: review.author
-        | #{ @review.reason }，获得
-        = coupon_link(@review.coupon)
-        = coupon_amount(@review.coupon)
+    - if @list
+      section.thing_lists
+        - list = ThingList.find @list.reference_id
+        - coupon = @list.coupon
+        = render list, layout: browser.desktop? ? :quintet : :grid, prize: true
+        footer
+          = render 'shared/user_avatar', user: list.author
+          | #{ @list.reason }，获得
+          = coupon_link(@list.coupon)
+          = coupon_amount(@list.coupon)
+    - if @review
+      section.reviews
+        - review = Review.find @review.reference_id
+        = render partial: 'home/hot_review', prize: true, collection: review.to_a
+        footer
+          = render 'shared/user_avatar', user: review.author
+          | #{ @review.reason }，获得
+          = coupon_link(@review.coupon)
+          = coupon_amount(@review.coupon)
 
   = paginate pagination_array
