@@ -23,7 +23,6 @@ do (exports = Making) ->
         cycleBy: 'items'
         pauseOnHover: true
         speed: 300
-        keyboardNavBy: 'items'
         disabledClass: 'is-disabled'
       if $controls.length
         $prev = $controls.filter('.left')

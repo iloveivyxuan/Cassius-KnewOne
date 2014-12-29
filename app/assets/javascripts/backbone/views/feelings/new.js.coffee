@@ -25,6 +25,7 @@ class Making.Views.FeelingNew extends Backbone.View
     else
       @$submit.disable()
       @$counter.addClass('error')
+    return
 
   on_submit: ->
     @$submit.button('loading')
