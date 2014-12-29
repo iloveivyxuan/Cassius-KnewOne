@@ -2,7 +2,7 @@ class Making.Views.ThingsNew extends Backbone.View
 
   events:
     "submit": "validate"
-    "focusout [name='thing[title]']": "validate_unicity"
+    # "focusout [name='thing[title]']": "validate_unicity"
 
   initialize: ->
     that        = @
