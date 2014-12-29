@@ -30,7 +30,7 @@
 
       &:hover,
       &.selected {
-        background: darken($navbar-bg, 10%);
+        background: rgba($navbar-bg, .98);
       }
     }
   }
