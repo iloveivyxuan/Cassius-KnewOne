@@ -8,8 +8,8 @@ $background-text: #eee;
 
 // z-index
 $zindex-menu: $zindex-modal-background + 1;
-$zindex-search-candidate: $zindex-navbar-fixed;
-$zindex-backdrop: $zindex-search-candidate - 1;
+$zindex-search-menu: $zindex-navbar-fixed - 1;
+$zindex-backdrop: $zindex-search-menu - 1;
 $zindex-selectpicker: $zindex-navbar-fixed - 1;
 $zindex-editor: $zindex-navbar-fixed + 1;
 $zindex-go-top: 500;
