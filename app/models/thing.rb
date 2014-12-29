@@ -59,7 +59,6 @@ class Thing < Post
     pre_order: "预售",
     domestic: "国内导购",
     abroad: "国外海淘",
-    adoption: "领养",
     dsell: "自销"
   }
   validates :stage, inclusion: {in: STAGES.keys}
