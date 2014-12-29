@@ -273,8 +273,6 @@ Making::Application.routes.draw do
 
   resources :drafts, only: [:index, :show, :update, :destroy]
 
-  resources :rewards, only: [:index]
-
   resources :suppliers
 
   require 'sidekiq/web'
@@ -401,12 +399,6 @@ Making::Application.routes.draw do
     resources :feelings, only: [:index]
 
     resources :comments, only: [:index, :destroy]
-
-    resources :rewards do
-      member do
-        patch 'award'
-      end
-    end
 
     resources :categories
 

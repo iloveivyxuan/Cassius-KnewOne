@@ -88,11 +88,6 @@ zh-CN:
         contact: "联系方式"
         url: "网店链接"
         description: "简要说明"
-      reward:
-        date: "日期"
-        reason: "原因（用于邮件）"
-        body: "正文"
-        coupon_id: "优惠券"
       notification_setting:
         stock: '产品到货'
         new_review: '产品有新评测'

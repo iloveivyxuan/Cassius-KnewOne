@@ -29,7 +29,6 @@ zh-CN:
       coupon: '优惠券'
       abatement_coupon: '足价即减优惠券'
       product_rebate_conpon: '指定商品减价优惠券'
-      reward: '天天有礼'
     attributes:
       user:
         email: '邮箱'
@@ -104,11 +103,6 @@ zh-CN:
       product_rebate_conpon:
         thing_id: '产品id'
         price: '降低金额'
-      reward:
-        date: "日期"
-        reason: "原因（用于邮件）"
-        body: "正文"
-        coupon_id: "优惠券"
   errors:
     messages:
       extension_white_list_error: '上传文件格式不正确'

@@ -117,8 +117,6 @@ feature 'Walk around (Smoke test)', slow: true do
      # dialogs
      dialogs_path,
      # dialog_path(dialog),
-     # rewards
-     rewards_path,
      # thing lists
      thing_list_path(thing_list)
     ]
