@@ -2,6 +2,7 @@
 table.table
   thead
     th 名称
+    th id
     th 说明
     th 产品
     th 减价
@@ -10,6 +11,7 @@ table.table
   - @coupons.each do |coupon|
     tr
       td = coupon.name
+      td= coupon.id.to_s
       td = coupon.note
       td = link_to coupon.thing.title, coupon.thing, target: '_blank'
       td = coupon.price
