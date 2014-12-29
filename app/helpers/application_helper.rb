@@ -22,6 +22,12 @@ module ApplicationHelper
     fragment.to_html.html_safe
   end
 
+  def number_to_human(number)
+    return number if number < 1000
+    precision = number < 10000 ? 1 : 0
+    ActionController::Base.helpers.number_to_human(number, precision: precision)
+  end
+
   def present(object, klass = nil)
     klass ||= "#{object.class}Presenter".constantize
     presenter = klass.new(object, self)
