@@ -80,7 +80,7 @@ html[class^="search_"] {
         font-size: 24px;
       }
 
-      @include from-breakpoint(sm) {
+      @include from-breakpoint(md) {
         img {
           width: 45%;
         }
