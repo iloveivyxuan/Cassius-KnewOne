@@ -371,6 +371,13 @@ do (exports = Making) ->
             .parents('.feed-thing')
             .find('.fanciers-count')
 
+        updateFanciersCount = (increment) ->
+          $humanizedNumber = $count.find('.humanized_number')
+          if $humanizedNumber.length
+            $humanizedNumber.attr('title', parseInt($humanizedNumber.attr('title')) + increment)
+          else
+            $count.text(parseInt($count.text(), 10) + increment)
+
         if $trigger.hasClass('fancied')
           unfancy = ->
             $trigger
@@ -384,7 +391,8 @@ do (exports = Making) ->
               .one $.support.transition.end, ->
                 $(@).removeClass('heartbeat')
               .emulateTransitionEnd(750)
-              if $count.length then $count.text(parseInt($count.text(), 10) - 1)
+
+            updateFanciersCount(-1)
 
           key = "#{Making.user}+unfancy-confirmed"
           if !$trigger.data('has-lists') || localStorage.getItem(key)
@@ -404,7 +412,8 @@ do (exports = Making) ->
           .one $.support.transition.end, ->
             $(@).removeClass('heartbeat')
           .emulateTransitionEnd(750)
-          if $count.length then $count.text(parseInt($count.text(), 10) + 1)
+
+          updateFanciersCount(1)
 
         $.ajax
           url: $trigger.data('url')
