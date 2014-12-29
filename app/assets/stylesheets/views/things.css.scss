@@ -747,6 +747,27 @@ html.feelings_show {
       @include MQ(XS) { font-size: 12px }
     }
 
+    .mobile_shop_buttons {
+      @include clearfix;
+      .btn {
+        float: left;
+        width: 45%;
+
+        &:only-child {
+          float: none;
+          width: 80%;
+        }
+
+        & + .btn {
+          float: right;
+          width: 45%;
+        }
+      }
+      .btn--adoption {
+        height: 35px;
+      }
+    }
+
     .mobile_buy {
       #cart_item_kind_id {
         height: 36px;
