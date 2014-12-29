@@ -35,14 +35,14 @@ class SearchController < ApplicationController
       counts
     end.sort_by(&:last).last
 
-    @brand = Brand.where(id: brand_id).first if count && count > 10
+    @brand = Brand.where(id: brand_id).first if count && count > things.size * 0.5
 
     category_name, count = things.reduce(Hash.new(0)) do |counts, t|
       t.categories.each { |c| counts[c] += 1 }
       counts
     end.sort_by(&:last).last
 
-    @category = Category.where(name: category_name).first if count && count > 10
+    @category = Category.where(name: category_name).first if count && count > things.size * 0.5
   end
 
   def lists
