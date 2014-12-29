@@ -468,7 +468,20 @@ class Thing < Post
       }
     }
 
-    __elasticsearch__.search(query: query_options, filter: filter_options, min_score: 0.1)
+    options = {
+      query: query_options,
+      filter: filter_options,
+      min_score: 0.1
+    }
+
+    result = __elasticsearch__.search(options)
+    return result if result.present?
+
+    query = suggest(query).first
+    return [] unless query
+
+    options[:query][:multi_match][:query] = query
+    __elasticsearch__.search(options)
   end
 
   def self.suggest(prefix, limit = 10)
