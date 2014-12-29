@@ -47,7 +47,7 @@ do (exports = Making) ->
   exports.init_new_thing_modal = (
     ->
       $new_thing_edit_modal = $('#new-thing-edit-modal')
-      
+
       $new_thing_edit_modal.on 'loaded.carousel', ->
         exports.carousel
           element: '#new-thing-edit-modal .carousel'
@@ -419,7 +419,7 @@ do (exports = Making) ->
     $('.form-group.search')
       .on 'click', '.fa-times', ->
         $(@).hide().parents('.search').find('input').val('')
-      .on 'keyup', 'input', ->
+      .on 'keyup focus', 'input', ->
         $trigger = $(@).parents('.search').find('.fa-times')
         if $.trim(@value).length
           $trigger.show()
