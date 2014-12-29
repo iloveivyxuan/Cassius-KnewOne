@@ -1,58 +1,63 @@
 - if @brands.present?
-  h5
-    i.fa.fa-briefcase
-    = "与 “#{params[:q]}” 相关的品牌"
-  ul.search_brands
-    - @brands.each do |brand|
-      li = link_to brand.brand_text, brand_things_path(brand.id), target: '_blank'
+  section.search_brands
+    h5
+      i.fa.fa-briefcase
+      = "与 “#{params[:q]}” 相关的品牌"
+    ul
+      - @brands.each do |brand|
+        li = link_to brand.brand_text, brand_things_path(brand.id), target: '_blank'
 
-- if @things.present?
-  h5
-    i.fa.fa-magic
-    = "与 “#{params[:q]}” 相关的产品"
-    = link_to search_things_path(q: params[:q]), class: 'search_menu-more'
-      | 查看更多
-      i.fa.fa-chevron-right
-  ul.search_things = render partial: 'thing', collection: @things
-- elsif @brands.present? || @lists.present? || @users.present? || @topics.present?
-  h5
-    i.fa.fa-magic
-    = "与 “#{params[:q]}” 相关的产品"
-    = link_to search_things_path(q: params[:q]), class: 'search_menu-more'
-      | 查看更多
-      i.fa.fa-chevron-right
-  .search_not_found = render 'things_not_found'
+section.search_things
+  - if @things.present?
+      h5
+        i.fa.fa-magic
+        = "与 “#{params[:q]}” 相关的产品"
+        = link_to search_things_path(q: params[:q]), class: 'search_menu-more'
+          | 查看更多
+          i.fa.fa-chevron-right
+      ul = render partial: 'thing', collection: @things
+  - elsif @brands.present? || @lists.present? || @users.present? || @topics.present?
+    h5
+      i.fa.fa-magic
+      = "与 “#{params[:q]}” 相关的产品"
+      = link_to search_things_path(q: params[:q]), class: 'search_menu-more'
+        | 查看更多
+        i.fa.fa-chevron-right
+    .search_not_found = render 'things_not_found'
 
 - if @lists.present?
-  h5
-    i.fa.fa-list
-    = "与 “#{params[:q]}” 相关的列表"
-    = link_to search_lists_path(q: params[:q]), class: 'search_menu-more'
-      | 查看更多
-      i.fa.fa-chevron-right
-  ul.search_lists
-    - @lists.each do |list|
-      li = link_to "#{list.name} (#{list.size})", thing_list_path(list.id), target: '_blank'
+  section.search_lists
+    h5
+      i.fa.fa-list
+      = "与 “#{params[:q]}” 相关的列表"
+      = link_to search_lists_path(q: params[:q]), class: 'search_menu-more'
+        | 查看更多
+        i.fa.fa-chevron-right
+    ul
+      - @lists.each do |list|
+        li = link_to "#{list.name} (#{list.size})", thing_list_path(list.id), target: '_blank'
 
 - if @users.present?
-  h5
-    i.fa.fa-users
-    = "与 “#{params[:q]}” 相关的用户"
-    = link_to search_users_path(q: params[:q]), class: 'search_menu-more'
-      | 查看更多
-      i.fa.fa-chevron-right
-  ul.search_users = render partial: 'user', collection: @users
+  section.search_users
+    h5
+      i.fa.fa-users
+      = "与 “#{params[:q]}” 相关的用户"
+      = link_to search_users_path(q: params[:q]), class: 'search_menu-more'
+        | 查看更多
+        i.fa.fa-chevron-right
+    ul = render partial: 'user', collection: @users
 
 - if @topics.present?
-  h5
-    i.fa.fa-leaf
-    = "与 “#{params[:q]}” 相关的话题"
-    = link_to search_topics_path(q: params[:q]), class: 'search_menu-more'
-      | 查看更多
-      i.fa.fa-chevron-right
-  ul.search_topics
-    - @topics.each do |topic|
-      li = link_to topic.title, group_topic_path(topic.group_id, topic.id), target: '_blank'
+  section.search_topics
+    h5
+      i.fa.fa-leaf
+      = "与 “#{params[:q]}” 相关的话题"
+      = link_to search_topics_path(q: params[:q]), class: 'search_menu-more'
+        | 查看更多
+        i.fa.fa-chevron-right
+    ul
+      - @topics.each do |topic|
+        li = link_to topic.title, group_topic_path(topic.group_id, topic.id), target: '_blank'
 
 - unless @brands.present? || @things.present? || @lists.present? || @users.present? || @topics.present?
   .search_not_found = render 'things_not_found'

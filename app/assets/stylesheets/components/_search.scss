@@ -73,14 +73,16 @@
       }
     }
 
-    > ul {
-      padding-left: 30px;
-      padding-bottom: 10px;
+    > section {
+      > ul {
+        padding-left: 30px;
+        padding-bottom: 10px;
+      }
 
       &.search_brands,
       &.search_lists,
       &.search_topics {
-        > li {
+        > ul > li {
           display: inline-block;
           margin-right: 1em;
           padding-bottom: 5px;
@@ -89,7 +91,7 @@
 
       &.search_things,
       &.search_users {
-        > li {
+        > ul > li {
           display: inline-block;
           vertical-align: top;
           padding-right: 15px;
@@ -97,13 +99,13 @@
       }
 
       &.search_things {
-        > li {
+        > ul > li {
           width: percentage(1 / 5);
         }
       }
 
       &.search_users {
-        > li {
+        > ul > li {
           width: percentage(1 / 8);
         }
       }
