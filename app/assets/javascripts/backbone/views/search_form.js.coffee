@@ -176,6 +176,8 @@ class Making.Views.SearchForm extends Backbone.Marionette.ItemView
     @updateResult(query)
 
   onBlur: ->
+    return if Making.isDebugging()
+
     @model.set({
       loading: false
       suggestions: []

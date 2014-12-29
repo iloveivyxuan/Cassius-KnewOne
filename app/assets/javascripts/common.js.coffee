@@ -162,6 +162,9 @@ do (root = @, exports = Making) ->
           threshold: 200
     return $container
 
+  exports.isDebugging = ->
+    Boolean(Making.GetParameterByKey('debug'))
+
   $ ->
     $navbar          = $('.navbar')
     $gotop           = $('#go_top')

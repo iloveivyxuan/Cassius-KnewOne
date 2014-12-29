@@ -14,6 +14,8 @@ $(->
       $form.addClass('focus')
     )
     .on('blur', ->
+      return if Making.GetParameterByKey('debugging')?
+
       $form.removeClass('focus')
 
       if Modernizr.csstransitions
