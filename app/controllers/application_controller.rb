@@ -79,6 +79,7 @@ class ApplicationController < ActionController::Base
   # get mentioned users
   # eg. "@Liam hello world cc @Syn" will get @Liam and @Syn
   def mentioned_users(content)
+    return [] unless content
     User.in(name: content.scan(/@(\S+)/).flatten).to_a
   end
 
