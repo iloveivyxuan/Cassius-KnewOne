@@ -13,9 +13,8 @@
         = link_to @user
           = user_avatar(@user, :small)
 
-    - if @user.description.present?
-      p.profile-description
-        = @user.description
+    p.profile-description
+      = @user.description
 
     section.profile-actions
       = link_to followers_user_path(@user), class: 'profile-followers'
