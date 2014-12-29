@@ -14,7 +14,7 @@ $(->
       $form.addClass('focus')
     )
     .on('blur', ->
-      return if Making.GetParameterByKey('debugging')?
+      return if Making.isDebugging()
 
       $form.removeClass('focus')
 
