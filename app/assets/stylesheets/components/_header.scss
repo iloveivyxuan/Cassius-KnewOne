@@ -551,7 +551,8 @@ html.no-touch {
       @include transition-duration(0.2s);
       @include transition-timing-function(ease);
       &:hover {
-        border-bottom-color: $brand-primary;
+        background-color: $navbar-bg;
+        color: $blue-light
       }
     }
     &.active {
