@@ -32,6 +32,10 @@
       &.selected {
         background: rgba($navbar-bg, .98);
       }
+
+      &.selected {
+        cursor: default;
+      }
     }
   }
 
