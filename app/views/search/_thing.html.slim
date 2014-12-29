@@ -4,7 +4,7 @@
   li
     .search_thing
       header
-        = link_to thing_path(thing.id), target: '_blank'
+        = link_to thing_path(thing._slugs.last), target: '_blank'
           .search_thing-cover = image_tag cover_url, alt: thing.title
           h6 = thing.title
 
