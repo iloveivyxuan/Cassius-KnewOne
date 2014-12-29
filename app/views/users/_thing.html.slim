@@ -16,11 +16,11 @@ li.thing
       - if thing.fanciers_count > 0
         li = link_to thing, target: '_blank'
           i.fa.fa-heart-o
-          = thing.fanciers_count
+          = number_to_human(thing.fanciers_count)
       - if thing.owners_count > 0
         li = link_to thing, target: '_blank'
           i.fa.fa-check-circle-o
-          = thing.owners_count
+          = number_to_human(thing.owners_count)
       - if thing.reviews_count > 0
         li = link_to [thing, :reviews], target: '_blank'
           i.fa.fa-pencil

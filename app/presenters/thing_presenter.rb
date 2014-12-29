@@ -163,7 +163,7 @@ class ThingPresenter < PostPresenter
   end
 
   def owners_count
-    content_tag :span, thing.owners_count, class: "owners_count"
+    content_tag :span, number_to_human(thing.owners_count), class: "owners_count"
   end
 
   def owners
@@ -259,7 +259,7 @@ class ThingPresenter < PostPresenter
   end
 
   def fanciers_count
-    content_tag :span, thing.fanciers_count, class: "fanciers_count"
+    content_tag :span, number_to_human(thing.fanciers_count), class: "fanciers_count"
   end
 
   def share_content
