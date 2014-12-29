@@ -116,7 +116,7 @@ class Making.Views.SearchForm extends Backbone.Marionette.ItemView
 
     $.ajax({
       url: '/search'
-      data: {q: query, per_page: 12}
+      data: {q: query}
       dateType: 'html'
     }).done((result) =>
       @_cachedResults[query] = result
