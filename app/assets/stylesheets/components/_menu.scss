@@ -149,6 +149,10 @@ $menu-profile-width: 225px;
     }
 
     &.dropdown {
+      .dropdown-backdrop {
+        display: none;
+      }
+
       &.open {
         .dropdown-indicator {
           &::before {
