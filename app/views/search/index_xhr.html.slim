@@ -2,7 +2,7 @@
   section.search_brands
     h5
       i.fa.fa-briefcase
-      = "与 “#{params[:q]}” 相关的品牌"
+      | 相关品牌
     ul
       - @brands.each do |brand|
         li = link_to brand.brand_text, brand_things_path(brand.id), target: '_blank'
@@ -11,7 +11,7 @@ section.search_things
   - if @things.present?
       h5
         i.fa.fa-magic
-        = "与 “#{params[:q]}” 相关的产品"
+        | 相关产品
         = link_to search_things_path(q: params[:q]), class: 'search_menu-more'
           | 查看更多
           i.fa.fa-chevron-right
@@ -19,7 +19,7 @@ section.search_things
   - elsif @brands.present? || @lists.present? || @users.present? || @topics.present?
     h5
       i.fa.fa-magic
-      = "与 “#{params[:q]}” 相关的产品"
+      | 相关产品
       = link_to search_things_path(q: params[:q]), class: 'search_menu-more'
         | 查看更多
         i.fa.fa-chevron-right
@@ -29,7 +29,7 @@ section.search_things
   section.search_lists
     h5
       i.fa.fa-list
-      = "与 “#{params[:q]}” 相关的列表"
+      | 相关列表
       = link_to search_lists_path(q: params[:q]), class: 'search_menu-more'
         | 查看更多
         i.fa.fa-chevron-right
@@ -41,7 +41,7 @@ section.search_things
   section.search_users
     h5
       i.fa.fa-users
-      = "与 “#{params[:q]}” 相关的用户"
+      | 相关用户
       = link_to search_users_path(q: params[:q]), class: 'search_menu-more'
         | 查看更多
         i.fa.fa-chevron-right
@@ -51,7 +51,7 @@ section.search_things
   section.search_topics
     h5
       i.fa.fa-leaf
-      = "与 “#{params[:q]}” 相关的话题"
+      | 相关话题
       = link_to search_topics_path(q: params[:q]), class: 'search_menu-more'
         | 查看更多
         i.fa.fa-chevron-right
