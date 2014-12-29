@@ -310,9 +310,6 @@ class User
     self.followings.delete user
   end
 
-  ## Lotteries
-  has_many :lotteries, inverse_of: :winners
-
   ##Dialogs
   include UserDialogs
 

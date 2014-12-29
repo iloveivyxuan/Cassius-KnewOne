@@ -170,7 +170,6 @@ class Ability
     can :members, Group
     can :fancies, Group
     can :read, Topic
-    can :read, Lottery
     can :read, User
     can :read, Category
     can [:owns, :fancies, :things, :lists, :reviews, :feelings,
@@ -195,7 +194,6 @@ class Ability
     can :pro_edit, Thing
     can :manage, Review
     can :manage, Feeling
-    can :manage, Lottery
     can :manage, ThingList
     can :manage, ThingListItem
     can :manage, ThingListBackground

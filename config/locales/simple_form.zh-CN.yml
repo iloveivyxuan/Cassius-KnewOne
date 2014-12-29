@@ -83,17 +83,6 @@ zh-CN:
         qualification: '加入方式'
       topic:
         content: '内容'
-      lottery:
-        date: '中奖日期'
-        contribution_link: "中奖原因链接"
-        thing_link: "奖品链接"
-        winner_link: "获奖用户链接"
-        name: '姓名'
-        phone: '电话'
-        address: '地址'
-        is_delivered: '是否递送'
-        delivery: '递送信息'
-        coupon_id: '优惠券ID'
       supplier:
         name: "姓名"
         contact: "联系方式"

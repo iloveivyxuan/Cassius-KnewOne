@@ -273,10 +273,6 @@ Making::Application.routes.draw do
 
   resources :drafts, only: [:index, :show, :update, :destroy]
 
-  resources :lotteries do
-    get 'page/:page', action: :index, on: :collection
-  end
-
   resources :rewards, only: [:index]
 
   resources :suppliers

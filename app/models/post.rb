@@ -24,9 +24,6 @@ class Post
   has_many :comments
   field :comments_count, type: Integer, default: 0
 
-  has_many :related_lotteries, class_name: "Lottery",
-           inverse_of: :contributions, dependent: :delete
-
   has_one :entry
 
   index created_at: -1
