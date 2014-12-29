@@ -32,6 +32,8 @@ class Making.Views.SearchForm extends Backbone.Marionette.ItemView
     @model = new Backbone.Model()
     @reset()
 
+    @ui.input.trigger('focus') if @ui.input.is(':focus')
+
   inputValue: ->
     @ui.input.val().trim()
 

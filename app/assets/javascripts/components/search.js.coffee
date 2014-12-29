@@ -8,8 +8,6 @@ $(->
 
   return if $form.length == 0
 
-  Making.initSearchForm($form)
-
   $input
     .on('focus', ->
       $nav_primary.hide()
@@ -24,5 +22,5 @@ $(->
         $nav_primary.show()
     )
 
-  $input.trigger('focus') if $input.is(':focus')
+  Making.initSearchForm($form)
 ) if $('html').hasClass('desktop')
