@@ -477,9 +477,7 @@ class Thing < Post
     result = __elasticsearch__.search(options)
     return result if result.present?
 
-    query = suggest(query).first
-    return [] unless query
-
+    query = suggest(query).first || ''
     options[:query][:multi_match][:query] = query
     __elasticsearch__.search(options)
   end
