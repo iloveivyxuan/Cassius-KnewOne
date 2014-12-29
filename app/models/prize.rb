@@ -68,7 +68,7 @@ class Prize
     Thing.created_between(day, day.next_day).approved.group_by(&:author).each do |action|
       share_things[action.first] = action.last.size
     end
-    share_things.sort_by { |k, v| v }.reverse.select { |k, v| v > 4 }
+    share_things.sort_by { |k, v| v }.reverse.select { |user, size| user.role.blank? }
   end
 
   def self.share_reviews(day=Date.yesterday)
@@ -76,7 +76,7 @@ class Prize
     Review.created_between(day, day.next_day).living.group_by(&:author).each do |action|
       share_reviews[action.first] = action.last.size
     end
-    share_reviews.sort_by { |k, v| v }.reverse.take(5)
+    share_reviews.sort_by { |k, v| v }.reverse.select { |user, size| user.role.blank? }
   end
 
   def self.share_lists(day=Date.yesterday)
@@ -84,7 +84,7 @@ class Prize
     ThingList.created_between(day, day.next_day).group_by(&:author).each do |action|
       share_lists[action.first] = action.last.size
     end
-    share_lists.sort_by { |k, v| v }.reverse.take(5)
+    share_lists.sort_by { |k, v| v }.reverse.select { |user, size| user.role.blank? && size > 1 }
   end
 
   def self.generate_day_prize(day=Date.yesterday)
