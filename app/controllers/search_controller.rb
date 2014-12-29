@@ -1,5 +1,6 @@
 class SearchController < ApplicationController
   before_action :fix_query
+  before_action :redirect_empty_query
 
   def index
     unless request.xhr?
@@ -65,5 +66,9 @@ class SearchController < ApplicationController
 
   def fix_query
     params[:q] = params[:q].to_s
+  end
+
+  def redirect_empty_query
+    redirect_to root_url if params[:q].blank? && !request.xhr?
   end
 end
