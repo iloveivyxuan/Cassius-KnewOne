@@ -8,7 +8,7 @@ table.table
     th 减价
     th
   tbody
-  - @coupons.each do |coupon|
+  - @coupons.desc(:created_at).each do |coupon|
     tr
       td = coupon.name
       td= coupon.id.to_s
