@@ -3,12 +3,12 @@
     - if @category || @brand
       ul.search_result-traits
         - if @category
-          li = link_to category_things_path(@category)
+          li = link_to category_things_path(@category), title: @category.name
             i.fa.fa-alone class= @category.icon
             h6 = @category.name
 
         - if @brand
-          li = link_to brand_things_path(@brand.id)
+          li = link_to brand_things_path(@brand.id), title: @brand.brand_text
             - if @brand.logo?
               = image_tag @brand.logo.url(:tiny), alt: @brand.brand_text
             - else

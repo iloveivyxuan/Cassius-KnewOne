@@ -1,5 +1,5 @@
 li
   .search_user
-    = link_to user_path(user.id), target: '_blank', data: {'profile-popover' => user.id.to_s}
+    = link_to user_path(user.id), target: '_blank', data: {'profile-popover' => user.id.to_s}, title: user.name
       = image_tag "#{user.avatar_url}!small", alt: user.name
       h6 = user.name

@@ -5,7 +5,7 @@ section.thing_list_item [id="thing_list_item_#{thing_list_item.id}"
     - thing = thing_list_item.thing
 
     .thing_list_item-cover
-      = link_to thing, target: '_blank'
+      = link_to thing, target: '_blank', title: thing.title
         = present(thing).photo_lazy('thing.fixed')
 
       - if can?(:destroy, thing_list_item)
@@ -13,7 +13,7 @@ section.thing_list_item [id="thing_list_item_#{thing_list_item.id}"
           method: :delete, remote: true, data: {confirm: '您确定要删除吗?'}
           | ×
 
-    = link_to thing, target: '_blank', class: 'thing_list_item-thing_title'
+    = link_to thing, target: '_blank', class: 'thing_list_item-thing_title', title: thing.title
       h4 = thing.title
 
   footer

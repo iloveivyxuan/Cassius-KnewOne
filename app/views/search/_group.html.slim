@@ -1,5 +1,5 @@
 li
-  = link_to group_path(group.id), class: 'search_group'
+  = link_to group_path(group.id), class: 'search_group', title: group.name
     = image_tag group.avatar.url(:small), alt: group.name
     h6 = group.name
     .members_count

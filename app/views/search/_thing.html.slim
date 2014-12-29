@@ -3,7 +3,7 @@
 
   li
     .search_thing
-      header
+      header title=thing.title
         = link_to thing_path(thing._slugs.last), target: '_blank'
           .search_thing-cover = image_tag cover_url, alt: thing.title
           h6 = thing.title

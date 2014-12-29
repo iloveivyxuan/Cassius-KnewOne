@@ -1,10 +1,10 @@
 - show_follow_btn = user_signed_in? if show_follow_btn.nil?
 - cache_unless user_signed_in?, [user, show_follow_btn]
   li.author
-    = link_to user, target: '_blank', class: 'author-avatar' do
+    = link_to user, target: '_blank', class: 'author-avatar', title: user.name do
       = user_avatar(user, :small)
 
-    = link_to user, target: '_blank', class: 'author-name' do
+    = link_to user, target: '_blank', class: 'author-name', title: user.name do
       = user.name
 
     - if user.description?
