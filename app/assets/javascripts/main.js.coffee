@@ -298,6 +298,14 @@ do (exports = Making) ->
     )
     delete window.localStorage["saved|#{window.location.pathname}|#{id}"]
 
+  exports.analytics = ->
+    $document.on 'click', '[data-action]', (event) ->
+      $element = $(event.currentTarget)
+      category = $element.attr('data-category')
+      action   = $element.attr('data-action')
+      label    = $element.attr('data-label')
+      ga('send', 'event', category, action, label)
+
   $ ->
     $user = $('#user')
     $navDropdown = $('.navbar .dropdown').not('.notification')
@@ -316,6 +324,7 @@ do (exports = Making) ->
     exports.PrivateMessage()
     exports.AtUser('textarea')
     exports.shareOnWechat()
+    exports.analytics()
 
     # TODO
     ($popovertoggle = $(".popover-toggle")).length && $popovertoggle.popover()
