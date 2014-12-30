@@ -90,7 +90,7 @@ class Thing < Post
   scope :price_between, ->(from, to) { where :price.gt => from, :price.lt => to }
   scope :created_between, ->(from, to) { where :created_at.gt => from, :created_at.lt => to }
   scope :linked, -> { nin(links: [nil, []]) }
-  scope :approved, -> { ne(approved_at: nil) }
+  scope :approved, -> { gte(priority: 0) }
   scope :recommended, -> { gt(priority: 0) }
   scope :by_tag, -> (tag) { any_in('tag_ids' => tag.id) }
   scope :by_brand, -> (brand) { where('brand_id' => brand.id) }
