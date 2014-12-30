@@ -3,23 +3,24 @@
     = link_to categories_path do
       | 分类
       i.fa.fa-caret-down
-    ul.dropdown-menu
-      - Category.primary.gt(things_count: 0).desc(:things_count).limit(14).each do |c|
-        li
-          = link_to category_things_path(c) do
-            i class="fa fa-fw #{c.icon}"
-            em= c.name
-          .dropdown-submenu
-            - c.inner_categories.desc(:things_count).each do |inner_c|
-              section.category--secondary
-                h6= link_to inner_c.name, category_things_path(inner_c)
-                p
-                  - tags = inner_c.tags
-                  - tags_size = (tags.size > 7) ? 7 : 8
-                  - tags.desc(:things_count).limit(tags_size).each do |header_tag|
-                    - cache ['header_tag', header_tag.id], expires_in: 1.hour
-                      = link_to header_tag.name, "/things/category/#{inner_c.slug}/tag/#{header_tag.slug}"
-                  - if tags.size > 8
-                    = link_to category_things_path(inner_c), class: "category--secondary-more" do
-                      | 查看更多
-                      i.fa.fa-caret-right
+    - if Rails.env.production?
+      ul.dropdown-menu
+        - Category.primary.gt(things_count: 0).desc(:things_count).limit(14).each do |c|
+          li
+            = link_to category_things_path(c) do
+              i class="fa fa-fw #{c.icon}"
+              em= c.name
+            .dropdown-submenu
+              - c.inner_categories.desc(:things_count).each do |inner_c|
+                section.category--secondary
+                  h6= link_to inner_c.name, category_things_path(inner_c)
+                  p
+                    - tags = inner_c.tags
+                    - tags_size = (tags.size > 7) ? 7 : 8
+                    - tags.desc(:things_count).limit(tags_size).each do |header_tag|
+                      - cache ['header_tag', header_tag.id], expires_in: 1.hour
+                        = link_to header_tag.name, "/things/category/#{inner_c.slug}/tag/#{header_tag.slug}"
+                    - if tags.size > 8
+                      = link_to category_things_path(inner_c), class: "category--secondary-more" do
+                        | 查看更多
+                        i.fa.fa-caret-right
