@@ -12,7 +12,6 @@ class Brand
   field :country, type: String
 
   field :things_size, type: Integer, default: 0
-  before_save :update_things_size
 
   field :description, type: String, default: ""
 
@@ -20,16 +19,14 @@ class Brand
 
   alias_method :cover, :logo
 
-  has_many :things, after_add: :update_things_size
+  has_many :things
 
   field :nickname, type: String, default: ""
   after_save :update_brand_information
 
   before_save :spacing_description
 
-  def update_things_size(thing=nil)
-    self.set(things_size: self.things.size)
-  end
+  after_save :update_things_size
 
   def brand_text
     case country
@@ -93,5 +90,9 @@ class Brand
     self.unset(:en_name) if self.en_name.blank?
     self.set(en_name: self.en_name.strip) if self.en_name
     self.set(zh_name: self.zh_name.strip) if self.zh_name
+  end
+
+  def update_things_size
+    set(things_size: things.size)
   end
 end

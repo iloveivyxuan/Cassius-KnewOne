@@ -159,23 +159,25 @@ class Thing < Post
   end
 
   def brand_text=(text)
-    if text.empty?
-      self.brand = nil
-    else
-      text.strip!
-      if /[a-zA-Z0-9]/ =~ text
-        q = Regexp.escape(text)
-        brand = Brand.where(en_name: q).first
-        brand ||= Brand.where(en_name: /^#{q}$/i).first
-        brand ||= Brand.create(en_name: text)
-        self.brand = brand
-      else
-        brand = Brand.where(zh_name: text).first
-        brand ||= Brand.where(zh_name: /#{text}/i).first
-        brand ||= Brand.create(zh_name: text)
-        self.brand = brand
-      end
-    end
+    text.strip!
+    self.brand = if text.blank?
+                   nil
+                 elsif /[a-zA-Z0-9]/ =~ text
+                   q = Regexp.escape(text)
+                   brand = Brand.where(en_name: q).first
+                   brand ||= Brand.where(en_name: /^#{q}$/i).first
+                   brand ||= Brand.create(en_name: text)
+                   brand
+                 else
+                   brand = Brand.where(zh_name: text).first
+                   brand ||= Brand.where(zh_name: /#{text}/i).first
+                   brand ||= Brand.create(zh_name: text)
+                   brand
+                 end
+    brand_was = Brand.where(id: self.brand_id_was).first
+    brand_is = Brand.where(id: self.brand_id).first
+    brand_was.save if brand_was
+    brand_is.save if brand_is
   end
 
   def merchant_name
