@@ -105,7 +105,7 @@ class Prize
                    coupon_id: coupon)
     end
     # 超过 5 个产品
-    others = things[4..-1]
+    others = things.select { |user, size| size > 5 }[4..-1]
     if others
       others.each do |action|
         user = action.first
@@ -125,14 +125,14 @@ class Prize
                  name: "列表",
                  since: day,
                  due: day,
-                 reason: "分享了最多的优质列表",
+                 reason: "创建优质列表",
                  user_id: list.first.id.to_s) if list
     # 优秀评测
     Prize.create(
                  name: "评测",
                  since: day,
                  due: day,
-                 reason: "分享了最多的优质评测",
+                 reason: "撰写优质评测",
                  user_id: review.first.id.to_s) if review
   end
 end
