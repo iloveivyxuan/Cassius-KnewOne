@@ -50,7 +50,7 @@ class ThingList
 
   include Searchable
 
-  searchable_fields [:name, :size, :fanciers_count]
+  searchable_fields [:name, :size, :fanciers_count, :updated_at]
 
   mappings do
     indexes :name, copy_to: :ngram

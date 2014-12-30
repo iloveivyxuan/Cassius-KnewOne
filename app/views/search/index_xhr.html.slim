@@ -35,7 +35,7 @@ section.search_things
         i.fa.fa-chevron-right
     ul
       - @lists.each do |list|
-        li = link_to "#{list.name} (#{list.size})", thing_list_path(list.id), target: '_blank'
+        li = link_to "#{list.name} (#{list._source[:size]})", thing_list_path(list.id), target: '_blank'
 
 - if @users.present?
   section.search_users
