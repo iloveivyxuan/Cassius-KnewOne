@@ -792,7 +792,7 @@ html.no-touch {
 
 #navbar_search {
   float: left;
-  width: 240px;
+  width: 180px;
   margin: 0;
   padding: 0;
 
@@ -822,11 +822,7 @@ html.no-touch {
 
   &.focus {
     position: relative;
-    width: 600px;
-
-    @include from-breakpoint(lg) {
-      width: 800px;
-    }
+    width: 690px;
 
     .form-control {
       background-color: rgba(#5e6775,.6);

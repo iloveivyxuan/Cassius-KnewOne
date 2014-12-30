@@ -45,7 +45,7 @@
 
   .search_menu-result {
     h5 {
-      margin: 0 0 15px 10px;
+      margin: 0 0 10px 10px;
 
       i {
         margin-right: 4px;
@@ -81,15 +81,15 @@
     }
 
     > section {
-      padding-right: 30px;
-      padding-bottom: 15px;
+      padding-right: 20px;
+      padding-bottom: 10px;
 
       &:first-child {
-        padding-top: 15px;
+        padding-top: 10px;
       }
 
       &:last-child {
-        padding-bottom: 30px;
+        padding-bottom: 15px;
       }
 
       > ul {
@@ -99,7 +99,11 @@
       &.search_brands,
       &.search_lists,
       &.search_topics {
-        padding-bottom: 10px;
+        padding-bottom: 5px;
+
+        &:last-child {
+          padding-bottom: 10px;
+        }
 
         > ul > li {
           display: inline-block;
@@ -110,28 +114,28 @@
 
       &.search_things,
       &.search_users {
-        padding-right: 15px;
+        padding-right: 10px;
 
         .search_menu-more {
-          padding-right: 15px;
+          padding-right: 10px;
         }
 
         > ul > li {
           display: inline-block;
           vertical-align: top;
-          padding-right: 15px;
+          padding-right: 10px;
         }
       }
 
       &.search_things {
         > ul > li {
-          width: percentage(1 / 5);
+          width: percentage(1 / 4);
         }
       }
 
       &.search_users {
         > ul > li {
-          width: percentage(1 / 8);
+          width: percentage(1 / 6);
         }
       }
     }
@@ -161,6 +165,7 @@
     margin: 0;
     padding: 10px;
     font-size: 12px;
+    line-height: 1;
     color: $gray-light;
   }
 
@@ -177,6 +182,7 @@
   .search_thing-counts {
     padding-bottom: 10px;
     font-size: 11px;
+    line-height: 1;
     color: $gray-light;
 
     > li {
