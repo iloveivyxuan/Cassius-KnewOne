@@ -3,7 +3,7 @@
   - if prize
     p
       = link_to prize.user.name, prize.user
-      | #{prize.reason}，获赠
+      | #{prize.reason}，获赠 
       = coupon_link(prize.coupon)
       = coupon_amount(prize.coupon)
 - others = @things.where(reason: "分享超过5个产品")
