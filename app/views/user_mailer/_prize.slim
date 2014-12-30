@@ -1,0 +1,7 @@
+- coupon = @prize.coupon
+| #{@user.name}，你上 #{link_to "天天有礼", prizes_path} 啦！这是一张 #{coupon.name} 优惠券，快收好：#{@prize.coupon_code.code}，
+= link_to '点此绑定到您的KnewOne账号上', coupons_url(code: @prize.coupon_code.code)
+br
+| (若链接无法打开请复制 #{coupons_url(code: @prize.coupon_code.code)} 到浏览器地址栏)
+br
+| 请你继续在 KnewOne 上分享产品，创建列表和撰写评测。记得拉上小伙伴喔，更多天天有礼等你来！
