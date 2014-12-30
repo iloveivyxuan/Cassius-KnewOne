@@ -1,6 +1,6 @@
 = link_to brand_things_path(brand.id), title: brand.brand_text
   - if brand.logo?
-    = image_tag brand.logo.url(:tiny), alt: brand.brand_text
+    = image_tag brand.logo.url(:small), alt: brand.brand_text
   - else
     i.fa.fa-briefcase
   h6 = brand.brand_text
