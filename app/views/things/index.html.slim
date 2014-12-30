@@ -25,7 +25,7 @@
           li.active= @category.name
       - unless @category || @tag || @brand
         = link_to '产品', things_path, class: 'breadcrumb'
-    nav
+    nav.sort_breadcrumb
       - if browser.desktop? && (@category || @tag || @brand)
         = render 'sort_breadcrumb'
 
@@ -46,7 +46,7 @@
     = render 'tag_description'
 
   - if !browser.desktop? && (@category || @brand || @tag)
-    nav
+    nav.sort_breadcrumb
       = render 'sort_breadcrumb'
 
   section#things_list.infinite

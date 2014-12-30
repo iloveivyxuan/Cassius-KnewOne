@@ -201,32 +201,6 @@ html.things_index #things_nav {
     }
   }
 
-  nav {
-    margin-top: 1em;
-    .bootstrap-select, select {margin-left: 1em;}
-    .bootstrap-select {width: 150px;}
-
-    ol {
-      li {
-        color: #777;
-
-        & + li{
-          margin-left: 15px;
-          padding: 0 2px;
-          &:before {
-            content: "|";
-            margin-left: -15px;
-          }
-        }
-
-        &.active {
-          border-bottom: 2px solid #049cdb;
-          color: #999;
-        }
-      }
-    }
-  }
-
   @media (min-width: $screen-sm-min) {
     h1 {
       font-size: 21px;
@@ -236,6 +210,35 @@ html.things_index #things_nav {
     nav {
       float: right;
       margin-top: 2px;
+    }
+  }
+}
+
+html.things_index .sort_breadcrumb {
+  margin-top: 1em;
+  text-align: center;
+  .bootstrap-select, select {margin-left: 1em;}
+  .bootstrap-select {width: 150px;}
+
+  ol {
+    li {
+      color: #777;
+
+      & + li{
+        margin-left: 15px;
+        padding: 0 2px;
+        &:before {
+          content: "";
+        }
+      }
+
+      &.active {
+        border-bottom: 2px solid #049cdb;
+        color: #999;
+      }
+      > a {
+        color: #777;
+      }
     }
   }
 }
