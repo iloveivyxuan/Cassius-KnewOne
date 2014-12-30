@@ -565,6 +565,7 @@ html.no-touch {
         &.active:active {
           background-color: transparent;
           border-bottom-color: $brand-primary;
+          color: $gray-lighter;
         }
       }
     }
