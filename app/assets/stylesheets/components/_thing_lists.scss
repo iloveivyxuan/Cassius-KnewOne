@@ -246,7 +246,8 @@
   }
 
   .modal-header {
-    color: white;
+    color: $gray-light;
+    padding: 15px 20px;
     border-radius: 15px 15px 0 0;
 
     h4 {
@@ -261,15 +262,14 @@
         @include from-breakpoint(md) {
           display: inline;
           margin-left: 1em;
-          color: $gray-lighter;
+          color: $gray;
         }
       }
     }
 
     .close {
       margin-top: 0;
-      color: white;
-      opacity: 1;
+      font-family: 'Lato Thin';
     }
   }
 
