@@ -127,6 +127,10 @@ module ApplicationHelper
     ].reject(&:blank?).join(' ')
   end
 
+  def env_class
+    "production" if Rails.env.production?
+  end
+
   def feed_link_tag
     feed_url = content_for?(:feed) ? content_for(:feed) : things_url(format: "atom")
     if content_for?(:rss)
