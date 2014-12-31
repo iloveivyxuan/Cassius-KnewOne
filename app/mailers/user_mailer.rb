@@ -89,7 +89,7 @@ class UserMailer < BaseMailer
 
     @items = {}
 
-    @items[:friends_things] ||= @weekly.friends_hot_things_of(@user)
+    @items[:friends_things] ||= @weekly.friends_hot_things_without_global_of(@user)
     @items[:friends_things_count] ||= @items[:friends_things].size
 
     @items[:hot_things] ||= @weekly.hot_things(6)
