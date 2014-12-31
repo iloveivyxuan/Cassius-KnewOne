@@ -58,8 +58,8 @@ module BongPointAttachable
 
     if r[:success]
       self.consumed_bong_point = r[:bong_point]
-      self.rebates.build name: 'bong活跃点兑换',
-                         note: "消费 #{self.consumed_bong_point} bong活跃点",
+      self.rebates.build name:  'bong活跃点兑换',
+                         note:  "消费 #{self.consumed_bong_point} bong活跃点",
                          price: -self.consumed_bong_point * BONG_POINT_VALUE
       sync_price
 
@@ -77,7 +77,8 @@ module BongPointAttachable
 
   def can_refund_bong_point?
     self.consumed_bong_point > 0 &&
-      self.refunded_bong_point < self.consumed_bong_point
+      self.refunded_bong_point < self.consumed_bong_point &&
+      self.user.bong_bind?
   end
 
   def refund_bong_point!(point, operator, options = {})
