@@ -238,6 +238,7 @@
 #add-to-list-modal {
   .modal-content {
     border-radius: 15px;
+    background: $smoke-white;
 
     @include from-breakpoint(md) {
       width: 560px;
@@ -245,7 +246,6 @@
   }
 
   .modal-header {
-    background: $blue;
     color: white;
     border-radius: 15px 15px 0 0;
 
