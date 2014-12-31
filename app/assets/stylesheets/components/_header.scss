@@ -800,6 +800,10 @@ html.no-touch {
     width: 100%;
   }
 
+  @include from-breakpoint(lg) {
+    width: 240px;
+  }
+
   .form-control {
     height: 45px;
     padding-left: 30px;
