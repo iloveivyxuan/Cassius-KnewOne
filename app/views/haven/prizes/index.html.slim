@@ -46,21 +46,15 @@ table.table
     - @share_things.each do |user|
       tr
         td 产品
-        td
-          = link_to user.first.name, user.first, target: '_blank'
-          | &nbsp #{user.first.id.to_s}
+        td= render 'user', user: user
         td= user.last
     - @share_reviews.each do |user|
       tr
         td 评测
-        td
-          = link_to user.first.name, user.first
-          | &nbsp #{user.first.id.to_s}
+        td= render 'user', user: user
         td= user.last
     - @share_lists.each do |user|
       tr
         td 列表
-        td
-          = link_to user.first.name, user.first
-          | &nbsp #{user.first.id.to_s}
+        td= render 'user', user: user
         td= user.last
