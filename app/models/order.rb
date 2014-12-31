@@ -726,9 +726,13 @@ class Order
     end
 
     def cleanup_expired_orders
-      pending.where(consumed_bong_point: 0).each do |o|
+      pending.each do |o|
         if o.created_at + o.valid_period_days.days < Date.today
-          o.close!
+          begin
+            o.close!
+          rescue
+            next
+          end
         end
       end
     end
