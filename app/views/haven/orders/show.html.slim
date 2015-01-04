@@ -44,6 +44,9 @@ section.orders_wrapper
       li
         strong.field 创建时间：
         span = date_time_text @order.created_at
+      li
+        strong.field 付款时间：
+        span= payment_time @order
       - if @order.refund_note.present?
         li
           strong.field 退款理由：
