@@ -209,6 +209,7 @@ module OrdersHelper
   # 付款时间
   def payment_time(order)
     payment = order.order_histories.where(from: :pending).where(to: :confirmed).first
+    payment ||= order.order_histories.where(from: :freed).where(to: :confirmed).first
     date_time_text(payment.created_at) if payment
   end
 
