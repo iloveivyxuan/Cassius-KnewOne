@@ -280,8 +280,8 @@
       position: absolute;
       top: 15px;
       left: 15px;
-      width: 64px;
-      height: 64px;
+      width: 70px;
+      height: 70px;
 
       @include from-breakpoint(md) {
         width: 256px;
@@ -290,21 +290,25 @@
     }
 
     > header {
-      height: 64px;
-      margin-left: 64px;
+      position: relative;
+
+      height: 70px;
+      margin-left: 70px;
       margin-bottom: 16px;
 
-      .title {
-        padding: 10px 0 10px 18px;
+      h5 {
+        @include multi-line-text-overflow(2, 20px);
 
-        h5 {
-          @include text-overflow;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
 
-          margin: 0;
-          font-size: 18px;
-          line-height: 1;
-          color: $black;
-        }
+        width: 75%;
+        margin: 0;
+        text-align: center;
+        font-size: 18px;
+        color: $black;
       }
 
       @include from-breakpoint(md) {
