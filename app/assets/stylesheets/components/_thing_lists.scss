@@ -374,11 +374,14 @@
               position: absolute;
               top: 9px;
               right: 12px;
+
+              color: $blue-dark;
             }
 
             &.selected:hover {
               .fa-check:before {
                 @extend .fa-times:before;
+                color: white;
               }
             }
           }
