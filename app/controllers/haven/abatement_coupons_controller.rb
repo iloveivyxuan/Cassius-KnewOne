@@ -8,7 +8,7 @@ module Haven
     end
 
     def show
-      @coupon_codes = @coupon.coupon_codes.page(params[:page]).per(params[:per_page]||20)
+      @coupon_codes = @coupon.coupon_codes.page(params[:page]).per(params[:per_page] || 20)
     end
 
     def new
