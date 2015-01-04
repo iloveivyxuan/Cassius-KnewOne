@@ -340,10 +340,7 @@
         height: 96px;
         @include from-breakpoint(sm) { height: 160px; }
 
-        border: solid $gray-lighter;
-        border-width: 0 1px;
         background: white;
-
         font-size: 13px;
 
         li {
