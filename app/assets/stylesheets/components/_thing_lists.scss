@@ -276,6 +276,10 @@
   .modal-body {
     position: relative;
 
+    @include from-breakpoint(md) {
+      padding-left: 256px + 15px;
+    }
+
     img {
       position: absolute;
       top: 15px;
@@ -317,10 +321,7 @@
     }
 
     > form {
-      @include from-breakpoint(md) {
-        margin-left: 270px;
-      }
-
+      padding: 10px;
       background: white;
 
       h5 {
@@ -336,12 +337,14 @@
         @include always-show-scrollbar;
 
         overflow: auto;
-        height: 102px;
-        @include from-breakpoint(sm) { height: 170px; }
+        height: 96px;
+        @include from-breakpoint(sm) { height: 160px; }
 
         border: solid $gray-lighter;
         border-width: 0 1px;
         background: white;
+
+        font-size: 13px;
 
         li {
           position: relative;
@@ -392,8 +395,7 @@
       }
 
       > fieldset {
-        padding: 10px 7px 7px;
-        border: 1px solid $gray-lighter;
+        padding: 9px 0 0 0;
 
         .input-group {
           width: 100%;
@@ -411,6 +413,7 @@
 
         input {
           border-radius: 10px 0 0 10px;
+          background: $smoke-white;
         }
 
         button {
