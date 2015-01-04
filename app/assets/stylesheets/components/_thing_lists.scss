@@ -321,25 +321,27 @@
         margin-left: 270px;
       }
 
-      background: #fbfbfb;
+      background: white;
 
       h5 {
         margin: 0;
         padding: 7px;
         border-radius: 3px 3px 0 0;
+
         color: white;
-        background: $blue;
+        background: $blue-dark;
       }
 
       ul {
         @include always-show-scrollbar;
 
         overflow: auto;
-        height: 136px;
+        height: 102px;
         @include from-breakpoint(sm) { height: 170px; }
 
         border: solid $gray-lighter;
         border-width: 0 1px;
+        background: white;
 
         li {
           position: relative;
@@ -358,12 +360,19 @@
             cursor: pointer;
 
             &.selected {
-              background: #f1f1f1;
+              background: $smoke-white;
             }
 
             &:hover {
-              background: #dcddde;
+              color: white;
+              background: #ababab;
               border-radius: 3px;
+            }
+
+            &.selected:hover {
+              .fa-check:before {
+                @extend .fa-times:before;
+              }
             }
           }
 
@@ -371,7 +380,6 @@
             height: 0;
             width: 0;
             visibility: hidden;
-
           }
 
           .fa-check {
