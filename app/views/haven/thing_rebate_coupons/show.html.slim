@@ -37,6 +37,8 @@ hr
 
 = @coupon_codes.where(:order_id.ne => nil).all.size
 
+= render 'haven/abatement_coupons/search'
+
 table.table
   tr
     th 代码
@@ -46,7 +48,7 @@ table.table
     th 绑定的订单
     th 生成者
     th
-  - @coupon_codes.order_by([:created_at, :desc]).each do |code|
+  - @search.each do |code|
     tr
       td = code.code
       td = code.expires_at
@@ -58,4 +60,4 @@ table.table
         - unless code.used?
           = link_to '作废', haven_coupon_code_path(code), method: :delete, data: {confirm: 'Sure?'}
 
-= paginate @coupon_codes
+= paginate @search

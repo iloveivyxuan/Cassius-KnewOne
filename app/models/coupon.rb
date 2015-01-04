@@ -45,4 +45,19 @@ class Coupon
 
     coupon_codes.create(params)
   end
+
+  def search(params)
+    coupon_codes = self.coupon_codes
+    search = case params[:by]
+              when 'code'
+                Kaminari.paginate_array coupon_codes.where(code: params[:cond]).order_by([:created_at, :desc])
+              when 'name'
+                user = User.where(name: params[:cond]).first
+                Kaminari.paginate_array(coupon_codes.where(user_id: user.id.to_s).order_by([:created_at, :desc])) if user
+              else
+                coupon_codes.order_by([:created_at, :desc])
+              end
+
+    search.page(params[:page]).per(params[:per_page] || 20)
+  end
 end

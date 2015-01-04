@@ -1,0 +1,6 @@
+= form_tag "", method: :get, class: 'form-inline' do
+  .form-group
+    = select_tag :by, options_for_select([%w(用户名 name), %w(券码 code)]), class: 'form-control'
+  .form-group
+    = text_field_tag :cond, params[:cond], class: 'form-control'
+  = submit_tag "搜索", class: "btn btn-default"
