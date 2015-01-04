@@ -39,7 +39,13 @@ module Haven
       @orders = @orders.where(:created_at.lte => params[:end_date]) if params[:end_date].present?
       @orders = @orders.where(:created_at.gte => params[:start_date]) if params[:start_date].present?
 
-      @orders = @orders.desc(params[:order_by] || :created_at)
+      # sort by payment_time if confirmed or transit or shipped
+      if %w(confirmed transit shipped).include? params[:state]
+        @orders = @orders.sort_by { |o| view_context.payment_time(o) || Time.at(0) }.reverse
+        @orders = Kaminari.paginate_array(@orders).page(params[:page])
+      else
+        @orders = @orders.desc(params[:order_by] || :created_at)
+      end
 
       respond_to do |format|
         format.html do
