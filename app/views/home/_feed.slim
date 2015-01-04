@@ -4,7 +4,7 @@ article.feed
 
   - if feed.thing
     = render 'hot_thing', hot_thing: feed.thing
-  - else feed.thing_list
+  - elsif feed.thing_list
     = render feed.thing_list
 
   - if feed.activities_not_from_reviews.present?
