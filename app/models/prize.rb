@@ -95,7 +95,11 @@ class Prize
     # 优秀产品
     things.take(4).each_with_index do |action, index|
       user = action.first
-      reason = Prize.reason_collection[index]
+      reason = if index.zero?
+                 "分享了 #{action.last} 个优质产品"
+               else
+                 Prize.reason_collection[index]
+               end
       coupon = (index > 0) ? Prize.coupon_ids[index - 1] : nil
       Prize.create(
                    name: "产品",
