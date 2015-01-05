@@ -1,9 +1,23 @@
-<%- if @success %>
+<% if @success %>
   window.location.href = '<%= @location %>';
 <% else %>
-  $('#email_sign_up_tab').removeClass('has-error');
-  <%- @error_fields.each do |field| %>
-    $('.<%= field %>_group').addClass('has-error');
-  <% end -%>
-  $('#sign_up_alert_field').find('.alert').html('<%= @messages.join('<br>').html_safe %>').end().removeClass('hidden');
-<% end -%>
+  var $form   = $('#signup_form'),
+      results = <%= raw @results.to_json %>
+
+  for (key in results) {
+    var messages     = results[key],
+        messagesHtml = '';
+
+    messages.forEach(function(message) {
+      messagesHtml += '<li>' + message + '</li>';
+    });
+
+    $form
+      .find('[name="user[' + key + ']"]')
+      .closest('.form-group')
+        .addClass('is-invalid')
+      .find('ul.help-block')
+        .empty()
+        .html(messagesHtml);
+  }
+<% end %>

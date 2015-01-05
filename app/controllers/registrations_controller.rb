@@ -61,6 +61,7 @@ class RegistrationsController < Devise::RegistrationsController
 
         format.html
         format.js do
+          @results = resource.errors.messages
           @error_fields = resource.errors.keys
           @messages = resource.errors.full_messages
         end
