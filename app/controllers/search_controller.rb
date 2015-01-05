@@ -43,7 +43,9 @@ class SearchController < ApplicationController
       counts
     end.sort_by(&:last).last
 
-    @category = Category.where(name: category_name).first if count && count > things.size * 0.5
+    if count && count > things.size * 0.5
+      @category = Category.only(:name, :icon, :slugs).where(name: category_name).first
+    end
   end
 
   def lists
