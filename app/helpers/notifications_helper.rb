@@ -23,7 +23,7 @@ module NotificationsHelper
     when Article then
       if entry = post.entry
         content += "文章 "
-        content += link_to post.title, entry_path(entry, anchor: anchor), target: target
+        content += link_to entry_title(entry), entry_path(entry, anchor: anchor), target: target
       else
         content += ' 失效的资源'
       end

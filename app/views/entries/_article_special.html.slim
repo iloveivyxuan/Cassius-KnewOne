@@ -9,7 +9,7 @@ article.article data-article-id=post.id
         = link_to_with_icon "KnewOne #{entry.category_translation}", "fa fa-caret-left hidden-xs", explore_path, class: "nav_explore_category"
 
       .header-main
-        h1.title= post.entry.title.blank? ? post.title : post.entry.title
+        h1.title= entry_title entry
         .clearfix
           ul.metas.pull-left
             li

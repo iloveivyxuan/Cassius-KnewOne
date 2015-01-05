@@ -20,7 +20,7 @@ table.table.table-striped
           - if e.cover.present?
             = image_tag(e.cover.url(:small), height: 90, width: 90)
         td width="25%"
-          = e.title.present? ? e.title : e.post.title
+          = entry_title e
         td width="7%"
           = e.category
         td width="20%"
