@@ -29,14 +29,7 @@
           .form-result
             .alert.alert-danger
 
-      section.auth
-        h6 使用社交账号登陆
-        p
-          = link_to_with_icon '', 'fa fa-weibo', user_omniauth_authorize_path(:weibo, state: request.path), class: "btn--icon", title: '用微博登录'
-          = link_to_with_icon '', 'fa fa-twitter', user_omniauth_authorize_path(:twitter, state: request.path), class: "btn--icon", title: '用 Twitter 登录'
-          = link_to_with_icon '', 'fa fa-qq', user_omniauth_authorize_path(:qq_connect, state: request.path), class: "btn--icon", title: '用 QQ 登录'
-          = link_to_with_icon '', 'fa fa-douban', user_omniauth_authorize_path(:douban, state: request.path), class: "btn--icon", title: '用豆瓣登录'
-          = link_to_with_icon '', 'fa fa-bong', user_omniauth_authorize_path(:bong, state: request.path), class: "btn--icon", title: '用 bong 登录'
+      = render 'shared/auth'
 
       footer.section-footer
         = link_to "#", class: "modal-flipper" do
