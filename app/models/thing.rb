@@ -460,9 +460,18 @@ class Thing < Post
     return __elasticsearch__.search('') if query.blank?
 
     query_options = {
-      multi_match: {
-        query: query,
-        fields: ['title^10', 'subtitle^5', 'nickname^5', 'brand_name^5', 'ngram^5']
+      function_score: {
+        query: {
+          multi_match: {
+            query: query,
+            fields: ['title^10', 'subtitle^5', 'nickname^5', 'brand_name^5', 'ngram^5']
+          }
+        },
+        field_value_factor: {
+          field: 'fanciers_count',
+          modifier: 'log2p'
+        },
+        max_boost: 1.2
       }
     }
 
