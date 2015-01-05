@@ -23,7 +23,10 @@
           label
             = check_box_tag :agreement, true, true, id: 'user_agreement'
             | 同意
-            = link_to "《KnewOne 用户协议》", user_agreement_path, target: "_blank"
+            = link_to user_agreement_path, target: "_blank" do
+              | 《&nbsp;
+              em.logo KnewOne
+              | &nbsp;用户协议》
         = hidden_field_tag :path, request.path
         = hidden_field_tag :redirect_from
         .form-group.form-actions
