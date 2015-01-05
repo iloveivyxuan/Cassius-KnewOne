@@ -8,8 +8,8 @@
         legend 登录
         .form-main
           .form-group.col-sm-6
-            label.sr-only 邮箱地址
-            = f.email_field :email, required: true, autofocus: true, placeholder: '邮箱地址', class: 'form-control', data: { "message-error" => "邮箱格式错误" } 
+            label.sr-only 邮件地址
+            = f.email_field :email, required: true, autofocus: true, placeholder: '邮件地址', class: 'form-control', data: { "message-error" => "邮箱格式错误" }
             ul.help-block
           .form-group.col-sm-6
             label.sr-only 密码
@@ -21,7 +21,7 @@
             label
               = f.check_box :remember_me, checked: true
               | 记住我
-          = link_to new_user_password_path, class: "pull-right" do
+          = link_to "#find_password_modal", class: "pull-right", data: { toggle: "modal", dismiss: "modal" } do
             i.fa.fa-question-circle
             | 忘记密码？
         .form-group.hidden#sign_in_alert_field
