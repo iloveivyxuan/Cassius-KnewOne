@@ -42,14 +42,16 @@ class Weekly
   def friends_hot_things_of(user, limit = 6)
     return [] if user.followings.empty?
 
-    Thing.where(:id.in => fetch_hot_thing_ids_by_activities(user.related_activities.visible, limit)).to_a
+    ids = fetch_hot_thing_ids_by_activities(user.related_activities.visible, limit)
+
+    Thing.where(:id.in => ids).sort_by { |thing| ids.index(thing.id.to_s) }
   end
 
   def friends_hot_things_without_global_of(user, limit = 6)
-    global_ids = hot_things(limit)
-    ids = fetch_hot_thing_ids_by_activities(user.related_activities.visible, limit*2)
+    global_ids = hot_things(limit).map {|t| t.id.to_s }
+    ids = (fetch_hot_thing_ids_by_activities(user.related_activities.visible, limit*2) - global_ids).take(limit)
 
-    Thing.where(:id.in => (ids - global_ids).take(limit)).to_a
+    Thing.where(:id.in => ids).sort_by { |thing| ids.index(thing.id.to_s) }
   end
 
   def hot_things(limit = 14)
