@@ -75,7 +75,7 @@ class Making.Views.SearchForm extends Backbone.Marionette.ItemView
           .html(@model.get('result'))
           .fadeIn()
 
-    @ui.input.val(@model.get('query')) if @model.hasChanged('query')
+    @ui.input.val(@model.get('query')) if @model.get('query') != @inputValue()
 
     @ui.suggestions.html(suggestionsTemplate({
       suggestions: @model.get('suggestions')
