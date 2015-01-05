@@ -36,6 +36,13 @@
   }
 
   .form-main {
+    .form-group {
+      padding: {
+        left: 0;
+        right: 0;
+      }
+    }
+
     @media (min-width: $screen-sm-min) {
       @include make-row;
 
@@ -67,13 +74,7 @@
   }
 
   .form-group {
-    margin-bottom: 0;
-    padding-bottom: 15px;
-
-    .help-block {
-      color: $red;
-      display: none;
-    }
+    margin-bottom: 15px;
 
     &.addon {
       padding: {
@@ -97,6 +98,20 @@
         }
       }
     }
+
+    &.is-invalid {
+      margin-bottom: 8px;
+
+      > label,
+      .form-control,
+      .help-block {
+        color: $red;
+      }
+
+      .help-block {
+        margin-bottom: 0;
+      }
+    }
   }
 
   .form-control {
@@ -113,6 +128,10 @@
     }
   }
 
+  .help-block {
+    padding: 0 12px;
+  }
+
   .checkbox {
     & ~ a {
       display: inline-block;
@@ -121,6 +140,11 @@
         top: 10px;
       }
     }
+  }
+
+  .form-results {
+    color: $red;
+    text-align: center;
   }
 
   .form-actions {

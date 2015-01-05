@@ -1,7 +1,6 @@
 // Forms.
 //
 
-
 .form-group {
 
   .controls label.radio {
@@ -87,5 +86,16 @@
         }
       }
     }
+  }
+}
+
+.help-block {
+  &:empty {
+    display: none;
+  }
+
+  > li {
+    font-size: 12px;
+    line-height: 18px;
   }
 }
