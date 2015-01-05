@@ -89,7 +89,10 @@ class Making.Views.AddToListModal extends Backbone.Marionette.CompositeView
     description = @ui.description.val().trim()
 
     unless _.any(@_changedLists, (l) -> l.get('selected'))
-      return @$('form > h5').fadeTo('fast', 0.7).fadeTo('fast', 1)
+      return @$('form > h5')
+        .css({color: '#8cadca'})
+        .fadeTo('fast', 0.7)
+        .fadeTo('fast', 1)
 
     @ui.description.val('')
 

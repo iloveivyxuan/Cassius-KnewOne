@@ -278,7 +278,7 @@
     position: relative;
 
     @include from-breakpoint(md) {
-      padding-left: 256px + 15px;
+      padding-left: 251px + 15px;
     }
 
     img {
@@ -289,8 +289,8 @@
       height: 90px;
 
       @include from-breakpoint(md) {
-        width: 256px;
-        height: 256px;
+        width: 251px;
+        height: 251px;
       }
     }
 
@@ -327,11 +327,10 @@
 
       h5 {
         margin: 0;
-        padding: 7px;
+        padding: 0 0 7px;
         border-radius: 3px 3px 0 0;
-
-        color: white;
-        background: $blue-dark;
+        border-bottom: 1px solid $gray-lighter;
+        text-align: center;
       }
 
       ul {
@@ -392,7 +391,7 @@
       }
 
       > fieldset {
-        padding: 9px 0 0 0;
+        padding: 10px 0 0 0;
 
         .input-group {
           width: 100%;
