@@ -4,18 +4,21 @@
       span aria-hidden="true" &times;
       span.sr-only Close
     .modal-body
-      = simple_form_for(User.new, url: user_registration_path, remote: true) do |f|
+      = simple_form_for(User.new, url: user_registration_path, remote: true, html: { id: 'signup_form' }) do |f|
         legend 注册
         .form-main
           .form-group.col-sm-4
-            label.sr-only 昵称
-            = f.text_field :name, placeholder: '昵称（少于 16 个字符）', required: true, class: 'form-control'
+            label.sr-only for="user_name" 昵称
+            = f.text_field :name, placeholder: '昵称（少于 16 个字符）', class: 'form-control', required: true, maxlength: 16, data: { "message-error" => "昵称必须少于 16 个字符" }
+            ul.help-block
           .form-group.col-sm-4
-            label.sr-only 邮箱地址
-            = f.email_field :email, placeholder: '邮箱地址', required: true, class: 'form-control'
+            label.sr-only for="user_email" 邮箱地址
+            = f.email_field :email, placeholder: '邮箱地址', class: 'form-control', required: true, data: { "message-error" => "邮箱格式错误" }
+            ul.help-block
           .form-group.col-sm-4
-            label.sr-only 密码
-            = f.password_field :password, placeholder: '密码（至少 6 个字符）', required: true, class: 'form-control'
+            label.sr-only for="user_password" 密码
+            = f.password_field :password, placeholder: '密码（至少 6 个字符）', class: 'form-control', required: true, minlength: 6, data: { "message-error" => "密码至少 6 个字符" }
+            ul.help-block
         .checkbox.text-center
           label
             = check_box_tag :agreement, true, true, id: 'user_agreement'
@@ -25,9 +28,6 @@
         = hidden_field_tag :redirect_from
         .form-group.form-actions
           = submit_tag "注册", class: "btn btn--blue_light"
-        .form-group.hidden#sign_up_alert_field
-          .form-result
-            .alert.alert-danger
 
       = render 'shared/auth'
 

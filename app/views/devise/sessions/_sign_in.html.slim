@@ -4,15 +4,17 @@
       span aria-hidden="true" &times;
       span.sr-only Close
     .modal-body
-      = simple_form_for(User.new, url: user_session_path(redirect_from: request.fullpath), remote: true) do |f|
+      = simple_form_for(User.new, url: user_session_path(redirect_from: request.fullpath), remote: true, html: { id: 'signin_form' }) do |f|
         legend 登录
         .form-main
           .form-group.col-sm-6
             label.sr-only 邮箱地址
-            = f.email_field :email, required: true, autofocus: true, placeholder: '邮箱地址', class: 'form-control'
+            = f.email_field :email, required: true, autofocus: true, placeholder: '邮箱地址', class: 'form-control', data: { "message-error" => "邮箱格式错误" } 
+            ul.help-block
           .form-group.col-sm-6
             label.sr-only 密码
-            = f.password_field :password, required: true, placeholder: '密码', class: 'form-control'
+            = f.password_field :password, required: true, placeholder: '密码', class: 'form-control', minlength: 6, data: { "message-error" => "密码至少 6 个字符" }
+            ul.help-block
           = hidden_field_tag :redirect_from
         .form-group.addon.clearfix
           #remember_me.checkbox.pull-left
@@ -22,12 +24,11 @@
           = link_to new_user_password_path, class: "pull-right" do
             i.fa.fa-question-circle
             | 忘记密码？
+        .form-group.hidden#sign_in_alert_field
+          .form-results
+            | 用户名或密码错误，请重新输入
         .form-group.form-actions
           = submit_tag "登录", class: "btn btn--blue_light"
-        .form-group.hidden#sign_in_alert_field
-          .form-result
-            .alert.alert-danger
-              | 用户名或密码错误，请重新输入。
 
       = render 'shared/auth'
 

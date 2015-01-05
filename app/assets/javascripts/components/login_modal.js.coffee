@@ -26,3 +26,4 @@ do (exports = Making) ->
           .removeClass('modal-dialog--back')
           .addClass('modal-dialog--front')
 
+    exports.validator('#login-modal form')
