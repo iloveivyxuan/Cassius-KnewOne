@@ -123,6 +123,7 @@ group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'meta_request'
+  gem 'pry-rails'
   gem 'pry-doc'
 
   # deploy
@@ -142,7 +143,6 @@ group :test do
 end
 
 group :development, :test do
-  gem 'pry-rails'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'mongoid-rspec'
