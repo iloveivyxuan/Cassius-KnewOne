@@ -26,7 +26,6 @@ do (exports = Making) ->
           .removeClass('modal-dialog--back')
           .addClass('modal-dialog--front')
 
-    exports.validator('#login-modal form')
     $modal.find('.button--clear').on 'tap click', (event)->
       event.preventDefault()
       $(@)
@@ -35,3 +34,5 @@ do (exports = Making) ->
         .val('')
         .trigger('change')
 
+    exports.validator('#signup_form')
+    exports.validator('#signin_form')

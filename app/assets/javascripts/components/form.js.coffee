@@ -4,6 +4,7 @@ do (exports = Making, $ = jQuery) ->
     $form    = $(form)
     identifie = '[required]'
     $identifie = $(identifie)
+    $submit  = $form.find('[type="submit"]')
     defaults =
                 validator:
                   identifie: identifie
@@ -45,6 +46,9 @@ do (exports = Making, $ = jQuery) ->
         else
           message = $control.data('message-error')
         $help.empty().html('<li>' + message + '</li>')
+        $submit.disable()
+      else if $form.find('.is-invalid').length is 0
+        $submit.enable()
 
   exports.validatePhone = (element) ->
     $(element).on 'change', (event) ->
