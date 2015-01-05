@@ -112,8 +112,7 @@ class Weekly
       .reduce({}) { |result, hash| hash.merge(result) { |key, old_value, new_value| old_value + new_value } }
       .sort_by { |k, v| v }
       .reverse!
-      .map!(&:first)
       .take(limit)
-      .map! { |e| e.gsub THING_RELATED_UNION_PREFIX, EMPTY_STRING }
+      .map! { |e| e[0].gsub THING_RELATED_UNION_PREFIX, EMPTY_STRING }
   end
 end
