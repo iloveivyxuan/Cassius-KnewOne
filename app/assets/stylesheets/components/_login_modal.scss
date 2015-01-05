@@ -1,5 +1,13 @@
 #login-modal,
 #find_password_modal {
+  a {
+    color: #79acd9;
+  }
+
+  .logo {
+    color: #79acd9;
+  }
+
   .modal-dialog {
     @media (max-width: $screen-sm-max) {
       margin: {
@@ -151,7 +159,6 @@
   }
 
   .form-actions {
-    padding-top: 15px;
     text-align: center;
   }
 
@@ -172,11 +179,9 @@
     }
 
     a {
-      color: #79acd9;
       display: block;
 
       .logo {
-        color: #79acd9;
         margin-left: .25em;
       }
     }
@@ -196,6 +201,10 @@
 
     > p {
       margin-bottom: 0;
+    }
+
+    a {
+      color: #fff;
     }
 
     @media (min-width: $screen-sm-min) {
@@ -247,7 +256,7 @@ html.csstransforms3d {
       overflow: visible;
       position: relative;
       transform-style: preserve-3d;
-      transition: transform .25s;
+      transition: transform .4s;
 
       &.is-flipped {
         transform: rotateY(180deg);
