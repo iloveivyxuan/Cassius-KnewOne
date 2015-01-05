@@ -49,7 +49,7 @@ section.article
   .actions
     .voting id="special_#{post.id.to_s}"
       = render partial: 'shared/voting', locals: {object: post}
-    = render "shared/share_external", type: entry.category, title: entry_title(entry)
+    = render "shared/share_external", type: entry.category, title: entry_title(entry), object: entry
 
   = render 'pager', entry: entry
 

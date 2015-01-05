@@ -26,7 +26,7 @@ article.article
   .actions
     .voting id="article_#{post.id.to_s}"
       = render partial: 'shared/voting', locals: {object: post}
-    = render "shared/share_external", type: entry.category, title: entry_title(entry)
+    = render "shared/share_external", type: entry.category, title: entry_title(entry), object: entry
 
   - if Entry::CATEGORIES[entry.category] != 'events'
     = render 'entries/related_things', entry: entry
