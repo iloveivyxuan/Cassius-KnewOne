@@ -225,13 +225,26 @@ module ApplicationHelper
 
   def data_with_login_tracker(category, label, auto_show_modal = true)
     if auto_show_modal
+      signin_legend = case category
+                      when "dsell", "pre_order"
+                        "登录后，购买商品"
+                      when "kick"
+                        "登录后，众筹商品"
+                      when "domestic"
+                        "登录后，网购商品"
+                      when "abroad"
+                        "登录后，海淘商品"
+                      else
+                        "登录"
+                      end
       {
         action: "login",
         category: "login+#{category}",
         label: "login+#{category}+#{label}",
 
         toggle: "modal",
-        target: "#login-modal"
+        target: "#login-modal",
+        "signin-legend" => signin_legend
       }
     else
       {
