@@ -432,7 +432,12 @@
 
   input[type="text"] {
     border-radius: 10px;
-    border-color: $gray-lighter;
+
+    &,
+    &:focus {
+      border: none;
+      box-shadow: none;
+    }
   }
 
   .btn-primary {
