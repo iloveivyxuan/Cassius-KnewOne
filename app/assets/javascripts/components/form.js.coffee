@@ -15,7 +15,7 @@ do (exports = Making, $ = jQuery) ->
     $identifie.attr('data-event', 'validate')
     $form.validator(options.validator)
 
-    $form.on 'keydown focusin focusout', '.form-control', (event) ->
+    $form.on 'change keyup focusin focusout', '.form-control', (event) ->
       $control = $(event.currentTarget)
       $group   = $control.closest('.form-group')
 
@@ -26,7 +26,7 @@ do (exports = Making, $ = jQuery) ->
             .removeClass('is-invalid')
             .find('ul.help-block')
             .empty()
-        when 'keydown'
+        when 'change', 'keyup'
           $group[if $control.val().length == 0 then 'removeClass' else 'addClass']('is-filled')
         when 'focusout'
           $group.removeClass('is-focused')

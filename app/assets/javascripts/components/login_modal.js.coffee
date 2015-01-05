@@ -27,3 +27,11 @@ do (exports = Making) ->
           .addClass('modal-dialog--front')
 
     exports.validator('#login-modal form')
+    $modal.find('.button--clear').on 'tap click', (event)->
+      event.preventDefault()
+      $(@)
+        .closest('.form-group')
+        .children('.form-control')
+        .val('')
+        .trigger('change')
+

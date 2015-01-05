@@ -55,18 +55,15 @@
 
     @media (min-width: $screen-sm-min) {
       @include make-row;
+      padding: {
+        left: 5px;
+        right: 5px;
+      }
 
-      .col-sm-4 {
+      .form-group {
         padding: {
           left: 5px;
           right: 5px;
-        }
-      }
-
-      .col-sm-6 {
-        padding: {
-          left: 10px;
-          right: 10px;
         }
       }
     }
@@ -85,6 +82,28 @@
 
   .form-group {
     margin-bottom: 15px;
+    position: relatvie;
+
+    .form-control[type="text"],
+    .form-control[type="email"],
+    .form-control[type="password"] {
+      padding-right: 30px;
+    }
+
+    > .button--clear {
+      background-color: #dedede;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      font-size: 19px;
+      height: 20px;
+      line-height: 20px;
+      position: absolute;
+      right: 10px;
+      text-align: center;
+      top: 12px;
+      width: 20px;
+    }
 
     &.addon {
       padding: {
@@ -106,6 +125,12 @@
           }
           width: 160px;
         }
+      }
+    }
+
+    &.is-filled {
+      > .button--clear {
+        display: block;
       }
     }
 

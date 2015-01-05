@@ -10,10 +10,12 @@
           .form-group.col-sm-6
             label.sr-only 邮件地址
             = f.email_field :email, required: true, placeholder: '邮件地址', class: 'form-control', data: { "message-error" => "邮箱格式错误" }
+            span.button--clear &times;
             ul.help-block
           .form-group.col-sm-6
             label.sr-only 密码
             = f.password_field :password, required: true, placeholder: '密码', class: 'form-control', minlength: 6, data: { "message-error" => "密码至少 6 个字符" }
+            span.button--clear &times;
             ul.help-block
           = hidden_field_tag :redirect_from
         .form-group.addon.clearfix
