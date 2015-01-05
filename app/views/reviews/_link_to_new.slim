@@ -2,8 +2,8 @@
 
 - if user_signed_in?
   - data = { toggle: 'tooltip', title: '把你的使用心得分享给大家吧～', trigger: 'manual', placement: 'bottom' }
-  - data.merge!({ category: "review", action: "review_write", label: "review+review_write+#{request.path}" })
-  = link_to new_thing_review_path(@thing), target: "_blank", class: "track_event new_review #{klass}", data: data
+  - data.merge!({ category: "thing", action: "write_review", label: "#{@thing.title} - #{current_user.name}" })
+  = link_to new_thing_review_path(@thing), target: "_blank", class: "new_review #{klass}", data: data
     i.fa.fa-pencil
     span 写评测
 - else
