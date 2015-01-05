@@ -123,6 +123,7 @@ group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'meta_request'
+  gem 'pry-doc'
 
   # deploy
   gem 'capistrano', '~> 3.1', require: false
