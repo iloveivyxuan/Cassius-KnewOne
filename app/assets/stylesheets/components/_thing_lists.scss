@@ -360,10 +360,6 @@
 
             cursor: pointer;
 
-            &.selected {
-              background: $smoke-white;
-            }
-
             &:hover {
               color: white;
               background: #ababab;
