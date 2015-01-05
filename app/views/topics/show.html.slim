@@ -19,7 +19,7 @@
     footer.actions
       .interactions
         .feed_action= render 'shared/voting', object: tp.topic
-        = tp.link_to_share
+        = tp.link_to_share "#{@topic.group.name} - #{@topic.title}"
       .advanced
         = render 'shared/post_actions', post: tp.topic,
                   edit_post_path: tp.edit_path, post_path: tp.path
