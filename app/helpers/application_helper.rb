@@ -214,10 +214,19 @@ module ApplicationHelper
   end
 
   def data_with_buy_tracker(category, label, data=nil)
+    action = case category
+             when "dsell"
+               "buy_shop"
+             when "adoption"
+               "buy_adoption"
+             else
+               "buy_external"
+             end
+
     tracker = {
-      action: "buy",
-      category: "buy+#{category}",
-      label: "buy+#{category}+#{label}"
+      category: "thing",
+      action: action,
+      label: label
     }
 
     data ? tracker.merge(data) : tracker
@@ -270,6 +279,25 @@ module ApplicationHelper
       tag 'img', options.merge(class: 'js-lazy', data: data)
     else
       image_tag(source, options)
+    end
+  end
+
+  def fancy_tracker(klass, object)
+    { category: klass, action: "fancy", label: tracker_title(object) }
+  end
+
+  def tracker_title(object)
+    case object.class
+    when Feeling
+      "#{object.thing.title} - #{object.content}"
+    when Review
+      "#{object.thing.title} - #{object.title}"
+    when Topic
+      "#{object.group.name} - #{object.title}"
+    when Post
+      "#{object.title}"
+    else
+      "unknown object #{object.id.to_s}"
     end
   end
 end
