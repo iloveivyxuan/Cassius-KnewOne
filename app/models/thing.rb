@@ -457,6 +457,8 @@ class Thing < Post
   end
 
   def self.search(query)
+    return __elasticsearch__.search('') if query.blank?
+
     query_options = {
       multi_match: {
         query: query,
@@ -479,9 +481,7 @@ class Thing < Post
     result = __elasticsearch__.search(options)
     return result if result.present?
 
-    query = suggest(query).first || ''
-    options[:query][:multi_match][:query] = query
-    __elasticsearch__.search(options)
+    self.search(suggest(query).first)
   end
 
   def self.suggest(prefix, limit = 10)
