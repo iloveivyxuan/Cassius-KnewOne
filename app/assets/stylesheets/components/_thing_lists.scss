@@ -247,7 +247,8 @@
 
   .modal-header {
     color: $gray-light;
-    padding: 10px 15px;
+    padding: 10px 15px 0;
+    border-bottom: 0;
     border-radius: 15px 15px 0 0;
 
     h4 {
