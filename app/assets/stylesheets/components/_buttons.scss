@@ -154,3 +154,29 @@
     }
   }
 }
+
+.btn--icon {
+  background-color: #9fcde5;
+  border-radius: 15px;
+  color: #fff;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  margin: {
+    left: .5em;
+    right: .5em;
+  }
+  width: 40px;
+
+  &:hover,
+  &:active {
+    background-color: $blue-bright;
+    color: #fff;
+  }
+
+  .fa {
+    font-size: 18px;
+    margin: 0;
+    vertical-align: middle;
+  }
+}
