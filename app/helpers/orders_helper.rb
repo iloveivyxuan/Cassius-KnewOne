@@ -208,9 +208,8 @@ module OrdersHelper
 
   # 付款时间
   def payment_time(order)
-    payment = order.order_histories.where(from: :pending).where(to: :confirmed).first
-    payment ||= order.order_histories.where(from: :freed).where(to: :confirmed).first
-    date_time_text(payment.created_at) if payment
+    return unless order.pay_at
+    date_time_text order.pay_at
   end
 
   def bong_point_consumable?(order)

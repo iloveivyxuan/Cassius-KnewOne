@@ -176,4 +176,30 @@ describe Order, type: :model do
       expect(order_history.to).to eq :unexpected
     end
   end
+
+  describe '#pay_at' do
+    context "with free order" do
+      before do
+        order.state = :freed
+      end
+      specify do
+        expect(order.pay_at).to be_nil
+        order.confirm_free!
+        order.reload
+        expect(order.pay_at).to be_a DateTime
+      end
+    end
+
+    context "with paid order" do
+      let(:price) { order.should_pay_price }
+      let(:raw) { {trade_no: trade_no} }
+
+      specify do
+        expect(order.pay_at).to be_nil
+        order.confirm_payment!(trade_no, price, payment_method, raw)
+        order.reload
+        expect(order.pay_at).to be_a DateTime
+      end
+    end
+  end
 end

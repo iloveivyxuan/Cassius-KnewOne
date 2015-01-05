@@ -41,7 +41,7 @@ module Haven
 
       # sort by payment_time if confirmed or transit or shipped
       if %w(confirmed transit shipped).include? params[:state]
-        @orders = Order.in(id: @orders.sort_by { |o| view_context.payment_time(o) || Time.at(0) }.reverse.map(&:id))
+        @orders = @orders.desc :pay_at
       else
         @orders = @orders.desc(params[:order_by] || :created_at)
       end

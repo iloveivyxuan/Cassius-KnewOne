@@ -125,6 +125,7 @@ class Order
   field :price, type: BigDecimal
   field :pre_order, type: Boolean, default: false
   field :valid_period_days, type: Integer, default: 1
+  field :pay_at, type: DateTime, default: nil
 
   mount_uploader :waybill, WaybillUploader
 
@@ -310,6 +311,7 @@ class Order
     end
 
     self.state = :confirmed
+    self.pay_at = Time.now
     self.payment_method = method
     self.trade_no = trade_no
     self.trade_price = price
@@ -326,6 +328,7 @@ class Order
     return false unless can_confirm_free?
 
     self.state = :confirmed
+    self.pay_at = Time.now
     save!
 
     order_histories.create from: :freed, to: :confirmed
@@ -442,6 +445,7 @@ class Order
     self.payment_method = method
     self.trade_no = trade_no
     self.trade_price = price
+    self.pay_at = Time.now
     save!
 
     order_histories.create from: state, to: :confirmed
