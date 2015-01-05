@@ -37,6 +37,7 @@ class SearchController < ApplicationController
     end.sort_by(&:last).last
 
     @brand = Brand.where(id: brand_id).first if count && count > things.size * 0.3
+    @brand ||= Brand.search(params[:q]).limit(1).records.first
 
     category_name, count = things.reduce(Hash.new(0)) do |counts, t|
       t.categories.each { |c| counts[c] += 1 }
