@@ -143,7 +143,7 @@ do (root = @, exports = Making) ->
         .done (data, status, xhr) ->
           $element
             .empty()
-            .append(data)
+            .append(exports.lazyLoadImages(data))
             .attr('contenteditable', false)
         .fail (xhr, status, error) ->
           $element
