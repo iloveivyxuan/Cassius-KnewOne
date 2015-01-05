@@ -27,7 +27,7 @@ table.table
         td= p.name
         td= p.date_text
         td= p.reason
-        td= p.user.name
+        td= p.user.try(:name)
         td= p.coupon.try(:name)
         td= p.coupon_code.try(:name)
         td= reference(p)
