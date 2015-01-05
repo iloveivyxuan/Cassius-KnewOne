@@ -16,7 +16,7 @@
           span.counter 140
           - data = { category: "thing", action: "comment", label: @thing.title }
           - data.merge!({"loading-text" => "提交中...", "toggle" => "tooltip", "placement" => "bottom"})
-          = button_tag type: "submit", class: "btn btn--transition btn--blue_light track_event",
+          = button_tag type: "submit", class: "btn btn--transition btn--blue_light",
             title: "按 Command + Enter 或 Control + Enter 键发布回复", "data" => data do
             i.fa.fa-comments-o
             | 发布

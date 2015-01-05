@@ -1,5 +1,5 @@
 - link_to_login = link_to_with_icon "请登录后购买", "fa fa-sign-in", "#",
-class: "btn btn--login buy_button cart_login track_event",
+class: "btn btn--login buy_button cart_login",
 data: data_with_login_tracker("buy", request.path)
 
 - data = { category: "thing", action: "buy_shop", label: tp.thing.title }
@@ -20,7 +20,7 @@ data: data_with_login_tracker("buy", request.path)
     | 已加入购物车
   .submit
     - if user_signed_in?
-      = button_tag type: "submit", class: "btn btn--buy buy_button track_event", data: data, disabled: true do
+      = button_tag type: "submit", class: "btn btn--buy buy_button", data: data, disabled: true do
         i.fa.fa-shopping-cart.fa-lg
         | 加入购物车
     - else
