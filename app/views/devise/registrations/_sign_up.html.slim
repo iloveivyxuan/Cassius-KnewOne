@@ -1,32 +1,48 @@
-= simple_form_for(User.new, url: user_registration_path, remote: true) do |f|
-  .form-group.name_group
-    .input-group
-      span.input-group-addon
-        i.fa.fa-user
-      = f.text_field :name, placeholder: '昵称', required: true, class: 'form-control'
-  .form-group.email_group
-    .input-group
-      span.input-group-addon
-        i.fa.fa-envelope
-      = f.email_field :email, placeholder: '邮箱地址', required: true, class: 'form-control'
-  .form-group.password_group
-    .input-group
-      span.input-group-addon
-        i.fa.fa-key
-      = f.password_field :password, placeholder: '密码', required: true, class: 'form-control'
-  .checkbox
-    label
-      = check_box_tag :agreement, true, true, id: 'user_agreement'
-      | 同意
-      = link_to "《KnewOne 用户协议》", user_agreement_path, target: "_blank"
-  = hidden_field_tag :path, request.path
-  = hidden_field_tag :redirect_from
-  .form-group
-    .form-action
-      = f.button :submit, "用邮箱注册", class: "btn btn-primary btn-lg btn-block"
-  .form-group.hidden#sign_up_alert_field
-    .form-result
-      .alert.alert-danger
+.modal-dialog.modal-dialog--back.modal-dialog--signup
+  .modal-content
+    button.close type="button" data-dismiss="modal"
+      span aria-hidden="true" &times;
+      span.sr-only Close
+    .modal-body
+      = simple_form_for(User.new, url: user_registration_path, remote: true) do |f|
+        legend 注册
+        .form-main
+          .form-group.col-sm-4
+            label.sr-only 昵称
+            = f.text_field :name, placeholder: '昵称（少于 16 个字符）', required: true, class: 'form-control'
+          .form-group.col-sm-4
+            label.sr-only 邮箱地址
+            = f.email_field :email, placeholder: '邮箱地址', required: true, class: 'form-control'
+          .form-group.col-sm-4
+            label.sr-only 密码
+            = f.password_field :password, placeholder: '密码（至少 6 个字符）', required: true, class: 'form-control'
+        .checkbox.text-center
+          label
+            = check_box_tag :agreement, true, true, id: 'user_agreement'
+            | 同意
+            = link_to "《KnewOne 用户协议》", user_agreement_path, target: "_blank"
+        = hidden_field_tag :path, request.path
+        = hidden_field_tag :redirect_from
+        .form-group.form-actions
+          = submit_tag "注册", class: "btn btn--blue_light"
+        .form-group.hidden#sign_up_alert_field
+          .form-result
+            .alert.alert-danger
+
+      section.auth
+        h6 使用社交账号登陆
+        p
+          = link_to_with_icon '', 'fa fa-weibo', user_omniauth_authorize_path(:weibo, state: request.path), class: "btn--icon", title: '用微博登录'
+          = link_to_with_icon '', 'fa fa-twitter', user_omniauth_authorize_path(:twitter, state: request.path), class: "btn--icon", title: '用 Twitter 登录'
+          = link_to_with_icon '', 'fa fa-qq', user_omniauth_authorize_path(:qq_connect, state: request.path), class: "btn--icon", title: '用 QQ 登录'
+          = link_to_with_icon '', 'fa fa-douban', user_omniauth_authorize_path(:douban, state: request.path), class: "btn--icon", title: '用豆瓣登录'
+          = link_to_with_icon '', 'fa fa-bong', user_omniauth_authorize_path(:bong, state: request.path), class: "btn--icon", title: '用 bong 登录'
+
+      footer.section-footer
+        = link_to "#", class: "modal-flipper" do
+          i.fa.fa-angle-left
+          | 登录
+          em.logo KnewOne
 
 - content_for :script do
   javascript:

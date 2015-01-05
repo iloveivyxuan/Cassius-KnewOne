@@ -1,34 +1,8 @@
 #login-modal.modal.fade
-  .modal-dialog
-    .modal-content
-      .modal-header
-        ul.nav.nav-pills.nav-pills-list.nav-justified
-          li.active
-            = link_to '#email_sign_in_tab', data: {toggle: 'tab'}
-              | 登录
-              span Sign In
-          li
-            = link_to '#email_sign_up_tab', data: {toggle: 'tab'}
-              | 注册
-              span Sign Up
+  .modal-dialog_wrapper
+    = render 'devise/sessions/sign_in'
+    = render 'devise/registrations/sign_up'
 
-      .modal-body
-        .tab-content
-          #email_sign_in_tab.tab-pane.active
-            = render 'devise/sessions/sign_in'
-          #email_sign_up_tab.tab-pane
-            = render 'devise/registrations/sign_up'
-        .social_sign_in
-          span
-            | 社交网络账号直接登陆
-            i.fa.fa-caret-right
-          div
-            = link_to_with_icon '', 'fa fa-weibo', user_omniauth_authorize_path(:weibo, state: request.path), title: '用微博登录'
-            = link_to_with_icon '', 'fa fa-twitter', user_omniauth_authorize_path(:twitter, state: request.path), title: '用 Twitter 登录'
-            = link_to_with_icon '', 'fa fa-qq', user_omniauth_authorize_path(:qq_connect, state: request.path), title: '用 QQ 登录'
-            = link_to_with_icon '', 'fa fa-douban', user_omniauth_authorize_path(:douban, state: request.path), title: '用豆瓣登录'
-            = link_to_with_icon '', 'fa fa-bong', user_omniauth_authorize_path(:bong, state: request.path), title: '用 bong 登录'
-
-      .modal-footer
-        button data-dismiss='modal' type='button'
-          i.fa.fa-chevron-up
+- content_for :script do
+  javascript:
+    Making.loginModal();

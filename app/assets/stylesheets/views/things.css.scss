@@ -231,7 +231,7 @@ html.feelings_show {
       }
     }
     p {
-      a {
+      a:not(.btn--icon) {
         color: $blue-dark;
         &:hover { color: $brand-primary }
       }
