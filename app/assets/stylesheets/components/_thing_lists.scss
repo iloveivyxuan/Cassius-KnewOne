@@ -237,7 +237,8 @@
 
 #add-to-list-modal {
   .modal-content {
-    @include border-radius(10px);
+    border-radius: 15px;
+    background: $smoke-white;
 
     @include from-breakpoint(md) {
       width: 560px;
@@ -245,9 +246,10 @@
   }
 
   .modal-header {
-    background: $blue;
-    color: white;
-    @include border-radius(8px 8px 0 0);
+    color: $gray-light;
+    padding: 10px 15px 0;
+    border-bottom: 0;
+    border-radius: 15px 15px 0 0;
 
     h4 {
       @include text-overflow;
@@ -261,60 +263,57 @@
         @include from-breakpoint(md) {
           display: inline;
           margin-left: 1em;
-          color: $gray-lighter;
+          color: $gray;
         }
       }
     }
 
     .close {
       margin-top: 0;
-      color: white;
-      opacity: 1;
+      font-family: 'Lato Thin';
     }
   }
 
   .modal-body {
     position: relative;
 
+    @include from-breakpoint(md) {
+      padding-left: 251px + 15px;
+    }
+
     img {
       position: absolute;
       top: 15px;
       left: 15px;
-      width: 64px;
-      height: 64px;
+      width: 90px;
+      height: 90px;
 
       @include from-breakpoint(md) {
-        width: 256px;
-        height: 256px;
+        width: 251px;
+        height: 251px;
       }
     }
 
     > header {
-      height: 64px;
-      margin-left: 64px;
+      position: relative;
+
+      height: 90px;
+      margin-left: 90px;
       margin-bottom: 16px;
 
-      .title {
-        padding: 10px 0 10px 18px;
+      h5 {
+        @include multi-line-text-overflow(2, 20px);
 
-        h5,
-        small {
-          @include text-overflow;
-          line-height: 1;
-        }
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
 
-        h5 {
-          margin: 0;
-          font-size: 18px;
-          color: $black;
-        }
-
-        small {
-          display: block;
-          margin-top: 10px;
-          font-size: 16px;
-          color: $gray-light;
-        }
+        width: 75%;
+        margin: 0;
+        text-align: center;
+        font-size: 18px;
+        color: $black;
       }
 
       @include from-breakpoint(md) {
@@ -323,29 +322,26 @@
     }
 
     > form {
-      @include from-breakpoint(md) {
-        margin-left: 270px;
-      }
-
-      background: #fbfbfb;
+      padding: 10px;
+      background: white;
 
       h5 {
         margin: 0;
-        padding: 7px;
+        padding: 0 0 7px;
         border-radius: 3px 3px 0 0;
-        color: white;
-        background: $blue;
+        border-bottom: 1px solid $gray-lighter;
+        text-align: center;
       }
 
       ul {
         @include always-show-scrollbar;
 
         overflow: auto;
-        height: 136px;
-        @include from-breakpoint(sm) { height: 170px; }
+        height: 96px;
+        @include from-breakpoint(sm) { height: 160px; }
 
-        border: solid $gray-lighter;
-        border-width: 0 1px;
+        background: white;
+        font-size: 13px;
 
         li {
           position: relative;
@@ -363,13 +359,26 @@
 
             cursor: pointer;
 
-            &.selected {
-              background: #f1f1f1;
+            &:hover {
+              color: white;
+              background: #ababab;
+              border-radius: 3px;
             }
 
-            &:hover {
-              background: #dcddde;
-              border-radius: 3px;
+            .fa-check {
+              margin-right: 0;
+              position: absolute;
+              top: 9px;
+              right: 12px;
+
+              color: $blue-dark;
+            }
+
+            &.selected:hover {
+              .fa-check:before {
+                @extend .fa-times:before;
+                color: white;
+              }
             }
           }
 
@@ -377,21 +386,12 @@
             height: 0;
             width: 0;
             visibility: hidden;
-
-          }
-
-          .fa-check {
-            margin-right: 0;
-            position: absolute;
-            top: 9px;
-            right: 12px;
           }
         }
       }
 
       > fieldset {
-        padding: 10px 7px 7px;
-        border: 1px solid $gray-lighter;
+        padding: 10px 0 0 0;
 
         .input-group {
           width: 100%;
@@ -406,6 +406,15 @@
           height: 32px;
           font-size: 13px;
         }
+
+        input {
+          border-radius: 10px 0 0 10px;
+          background: $smoke-white;
+        }
+
+        button {
+          border-radius: 0 10px 10px 0;
+        }
       }
     }
   }
@@ -415,7 +424,28 @@
     border: 0;
 
     button {
-      margin-top: 10px;
+      margin-top: 15px;
+      padding: 7px 30px;
+    }
+  }
+
+  input[type="text"] {
+    border-radius: 10px;
+
+    &,
+    &:focus {
+      border: none;
+      box-shadow: none;
+    }
+  }
+
+  .btn-primary {
+    border-radius: 10px;
+    background: $blue-dark;
+    border: 0;
+
+    &:hover {
+      background: darken($blue-dark, 10%);
     }
   }
 }

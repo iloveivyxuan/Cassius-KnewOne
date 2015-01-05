@@ -1,11 +1,11 @@
 <div class="modal-dialog">
   <div class="modal-content">
     <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <button type="button" class="close" data-dismiss="modal">X</button>
       <h4>
         <i class="fa fa-list"></i>
         添加到收藏列表
-        <span class="title">{{title}} {{subtitle}}</span>
+        <span class="title">{{title}}</span>
       </h4>
     </div>
 
@@ -13,14 +13,11 @@
       <img alt="{{title}}" src="{{photo}}">
 
       <header>
-        <div class="title">
-          <h5>{{title}}</h5>
-          <small>{{subtitle}}</small>
-        </div>
+        <h5>{{title}}</h5>
       </header>
 
       <form class="new-thing-list-form form-inline" action="#">
-        <h5>选择该产品要添加进的列表</h5>
+        <h5>请选择该产品要添加进的列表</h5>
         <ul class="thing-lists"></ul>
 
         <fieldset>
@@ -37,10 +34,7 @@
     <div class="modal-footer">
       <form class="new-thing-list-items-form" action="#">
         <input class="form-control" name="description" type="text" placeholder="说点什么吧（140字以内哦）" maxlength=140>
-        <button class="btn btn-primary track_event" type="submit" data-category="list" data-action="add_to_list" data-label="{{title}}">
-          <i class="fa fa-check"></i>
-          完成
-        </button>
+        <button class="btn btn-primary track_event" type="submit" data-category="list" data-action="add_to_list" data-label="{{title}}">完成</button>
       </form>
     </div>
   </div>
