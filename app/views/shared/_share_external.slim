@@ -1,13 +1,13 @@
 .tiny_share
   - unless browser.mobile?
-    = link_to_with_icon "", "fa fa-weixin", "#", title: "分享到微信", class: "weixin track_event",
+    = link_to_with_icon "", "fa fa-weixin", "#", title: "分享到微信", class: "weixin",
     data: {toggle: "popover", trigger: "manual", container: "body", placement: "top",
       category: "share", action: "wechat", label: tracker_title(object)}
-  = link_to_with_icon "", "fa fa-weibo", "#", class: "weibo track_event", title: "分享到新浪微博",
+  = link_to_with_icon "", "fa fa-weibo", "#", class: "weibo", title: "分享到新浪微博",
   data: {category: "share", action: "weibo", label: tracker_title(object)}
-  = link_to_with_icon "", "fa fa-twitter", "#", class: "twitter track_event", title: "分享到 Twitter",
+  = link_to_with_icon "", "fa fa-twitter", "#", class: "twitter", title: "分享到 Twitter",
   data: {category: "share", action: "twitter", label: tracker_title(object)}
-  = link_to_with_icon "", "fa fa-renren", "http://widget.renren.com/dialog/share?link=#{request.url}", class: "renren track_event", target: "_blank", title: "分享到人人网",
+  = link_to_with_icon "", "fa fa-renren", "http://widget.renren.com/dialog/share?link=#{request.url}", class: "renren", target: "_blank", title: "分享到人人网",
   data: {category: "share", action: "renren", label: tracker_title(object)}
 
 - content_for :script do

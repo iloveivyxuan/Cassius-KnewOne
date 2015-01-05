@@ -247,9 +247,9 @@ module ApplicationHelper
                         "登录"
                       end
       {
-        action: "login",
-        category: "login+#{category}",
-        label: "login+#{category}+#{label}",
+        action: "user",
+        category: "login",
+        label: "email",
 
         toggle: "modal",
         target: "#login-modal",
@@ -257,9 +257,9 @@ module ApplicationHelper
       }
     else
       {
-        action: "login",
-        category: "login+#{category}",
-        label: "login+#{category}+#{label}",
+        action: "user",
+        category: "login",
+        label: "email",
       }
     end
   end

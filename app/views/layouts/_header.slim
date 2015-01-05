@@ -25,11 +25,11 @@
           li#nav_publish
             - if user_signed_in?
               - data = {toggle: "modal", target: "#new-thing-from-url-modal"}
-              - data.merge!({category: "publish", action: "publish_thing", label: "publish_thing_logged"})
-              = link_to_with_icon "分享产品", "fa fa-plus", "#", id: "new_thing_trigger", data: data, class: "track_event"
+              - data.merge!({category: "thing", action: "create", label: "upload"})
+              = link_to_with_icon "分享产品", "fa fa-plus", "#", id: "new_thing_trigger", data: data
             - else
               - data = {toggle: "modal", target: "#login-modal"}
-              - data.merge!({category: "publish", action: "publish_thing", label: "publish_thing_unlogged"})
+              - data.merge!({category: "thing", action: "create", label: "upload"})
               = link_to_with_icon "分享产品", "fa fa-plus", "#", data: data, class: "track_event"
 
         - if user_signed_in?
@@ -82,7 +82,7 @@
         - else
           .user_links.logout.navbar-right
             = link_to_with_icon "登录", "fa fa-sign-in", "#",
-            class: "user_link track_event",
+            class: "user_link",
             data: data_with_login_tracker("nav", request.path)
 
         - search_url = controller_name == 'search' ? '' : search_root_path

@@ -9,5 +9,5 @@
       = render 'shared/adoption_modal', tp: tp
 - else
   = link_to_with_icon "请登录后领养", "fa fa-sign-in", "#",
-  class: "btn btn-info buy_button cart_login track_event",
+  class: "btn btn-info buy_button cart_login",
   data: data_with_login_tracker("adoption", tp.thing.title)
