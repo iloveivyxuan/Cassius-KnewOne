@@ -3,6 +3,8 @@
     = render 'devise/sessions/sign_in'
     = render 'devise/registrations/sign_up'
 
+= render 'devise/sessions/find_password_modal'
+
 - content_for :script do
   javascript:
     Making.loginModal();

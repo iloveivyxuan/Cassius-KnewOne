@@ -1,4 +1,5 @@
-#login-modal {
+#login-modal,
+#find_password_modal {
   .modal-dialog {
     @media (max-width: $screen-sm-max) {
       margin: {
@@ -24,6 +25,7 @@
     }
 
     @media (min-width: $screen-sm-min) {
+      border-radius: 10px;
       padding: {
         left: 30px;
         right: 30px;
@@ -270,14 +272,24 @@ html.csstransforms3d {
       }
     }
 
-    .modal-content {
-      @media (min-width: $screen-sm-min) {
-        border-radius: 10px;
-      }
-    }
-
     .modal-dialog--back {
       transform: translate3d(0, 0, 0) rotateY(180deg);
+    }
+  }
+}
+
+#find_password_modal {
+  .modal-dialog {
+    margin: {
+      left: auto;
+      right: auto;
+    }
+  }
+
+  .form-actions {
+    @media (min-width: $screen-sm-min) {
+      padding-top: 0;
+      text-align: right;
     }
   }
 }
