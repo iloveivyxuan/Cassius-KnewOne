@@ -58,16 +58,17 @@ class Weekly
     if self.thing_list
       self.thing_list.things(limit)
     else
-      Thing.where(:id.in => fetch_hot_thing_ids_by_activities(Activity, limit)).to_a
+      []
     end
   end
 
-  def gen_weekly_hot_things_list!(user = User.find('511114fa7373c2e3180000b4'))
+  def gen_weekly_hot_things_list!(user = User.find('511114fa7373c2e3180000b4'), limit = 14)
     list = user.thing_lists.build name:        "#{self.since_date.year}年第#{self.since_date.strftime '%W'}周热门产品",
                                   description: "#{self.since_date.strftime('%Y.%m.%d')} ~ #{self.until_date.strftime('%Y.%m.%d')}"
 
 
-    things = hot_things(14)
+    ids = fetch_hot_thing_ids_by_activities(Activity, limit)
+    things = Thing.where(:id.in => ids).sort_by { |thing| ids.index(thing.id.to_s) }
     things.each_with_index do |t, i|
       list.thing_list_items.build thing: t, order: things.size - i
     end
