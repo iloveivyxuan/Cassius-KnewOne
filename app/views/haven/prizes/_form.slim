@@ -1,7 +1,7 @@
 label 奖项
 = select "prize", "name", [%w(产品), %w(列表), %w(评测)], { include_blank: true }, class: "form-control", required: true
 label 原因
-= select "prize", "reason", Prize.reason_collection, { include_blank: true }, class: "form-control", required: true
+= f.text_field :reason, class: "form-control", required: true
 label 起止日期
 = date_field "prize", "since", value: @prize.since || Date.yesterday.to_s, class: "form-control"
 = date_field "prize", "due", value: @prize.due || Date.yesterday.to_s, class: "form-control"
