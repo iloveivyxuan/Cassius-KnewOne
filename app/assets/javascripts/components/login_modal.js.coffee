@@ -6,7 +6,7 @@ do (exports = Making) ->
     $dialogSignup  = $dialogWrapper.find('.modal-dialog--signup')
     $flipper       = $modal.find('.modal-flipper')
 
-    $flipper.on 'tap click', (event) ->
+    $flipper.on 'click', (event) ->
       event.preventDefault()
       $dialogWrapper.toggleClass('is-flipped')
 
@@ -26,7 +26,7 @@ do (exports = Making) ->
           .removeClass('modal-dialog--back')
           .addClass('modal-dialog--front')
 
-    $modal.find('.button--clear').on 'tap click', (event)->
+    $modal.find('.button--clear').on 'click', (event)->
       event.preventDefault()
       $(@)
         .closest('.form-group')
