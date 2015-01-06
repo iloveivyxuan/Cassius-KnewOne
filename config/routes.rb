@@ -362,6 +362,7 @@ Making::Application.routes.draw do
       collection do
         get 'index'
         post 'approve'
+        post 'invisible'
       end
     end
 

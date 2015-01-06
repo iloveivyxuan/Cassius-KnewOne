@@ -4,6 +4,7 @@
   .new_topic
     = link_to_with_icon "发布新话题", "fa fa-pencil", new_group_topic_path(@group), class: 'btn btn-default',
     data: { category: "group", action: "create_topic", label: @group.name }
+    = render 'set_invisible', group: @group
 
 .topics= render @topics, show_group: false
 = paginate @topics

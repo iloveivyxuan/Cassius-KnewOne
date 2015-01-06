@@ -23,5 +23,12 @@ module Haven
       @group.topics.set(approved: true)
       render json: { status: true }
     end
+
+    def invisible
+      @group = Group.find params[:id]
+      @group.set(approved: false)
+      @group.topics.set(approved: false)
+      redirect_to groups_path
+    end
   end
 end

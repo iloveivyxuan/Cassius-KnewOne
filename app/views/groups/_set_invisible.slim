@@ -1,0 +1,3 @@
+- if current_user && current_user.role?(:editor)
+  = link_to "隐藏小组", invisible_haven_groups_path(id: group.id), method: :post,
+  data: { confirm: "真的要隐藏吗？" }, class: "btn btn-default"
