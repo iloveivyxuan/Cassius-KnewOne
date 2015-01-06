@@ -175,15 +175,15 @@ class ThingPresenter < PostPresenter
   end
 
   def has_review?
-    thing.reviews.count > 0
+    thing.reviews_count > 0
   end
 
   def reviews_count
-    show_count thing.reviews.count
+    show_count thing.reviews_count
   end
 
   def feelings_count
-    show_count thing.feelings.count
+    show_count thing.feelings_count
   end
 
   def reviews(limit)

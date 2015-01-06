@@ -14,7 +14,7 @@
     .reviews.list.stream_content data-url=thing_reviews_path(tp.thing)
       = render reviews
 
-    - if tp.thing.reviews.count > 3
+    - if tp.thing.reviews_count > 3
       - if browser.mobile? || browser.tablet?
         .thing-feeds--mobile_action
           a.btn.btn--square.stream_more href="#"

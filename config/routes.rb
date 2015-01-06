@@ -368,8 +368,6 @@ Making::Application.routes.draw do
 
     resources :blacklists, only: [:index, :create, :destroy]
 
-    resources :links
-
     resources :articles, except: [:show]
 
     resources :specials, except: [:show] do

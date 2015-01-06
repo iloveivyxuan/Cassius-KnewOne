@@ -24,9 +24,9 @@ json.reivews_url url_wrapper(@thing, :reviews)
 json.comments_url url_wrapper(@thing, :comments)
 json.cover_url @thing.cover.url
 json.photo_urls @thing.photos.map {|p| p.image.url}
-json.fanciers_count @thing.fanciers.count
-json.owners_count @thing.owners.count
-json.reviews_count @thing.reviews.count
+json.fanciers_count @thing.fanciers_count
+json.owners_count @thing.owners_count
+json.reviews_count @thing.reviews_count
 json.content sanitize(@thing.content)
 json.created_at @thing.created_at
 json.updated_at @thing.updated_at

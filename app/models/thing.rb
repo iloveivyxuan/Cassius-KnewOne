@@ -20,16 +20,15 @@ class Thing < Post
   before_save :update_amazon_link
   before_save :update_thing_categories
 
-  has_many :single_feelings, class_name: "Feeling", dependent: :destroy
+  has_many :feelings, dependent: :destroy
   field :feelings_count, type: Integer, default: 0
-  has_many :single_reviews, class_name: "Review", dependent: :destroy
+  has_many :reviews, dependent: :destroy
   field :reviews_count, type: Integer, default: 0
-  before_save :update_counts
 
   field :brand_name, type: String, default: ""
   field :brand_information, type: String, default: ""
 
-  field :links, type: Array, default: []
+  field :links, type: Array
 
   belongs_to :maker, class_name: "User", inverse_of: nil
 
@@ -89,7 +88,6 @@ class Thing < Post
   scope :self_run, -> { send :in, stage: [:dsell, :pre_order] }
   scope :price_between, ->(from, to) { where :price.gt => from, :price.lt => to }
   scope :created_between, ->(from, to) { where :created_at.gt => from, :created_at.lt => to }
-  scope :linked, -> { nin(links: [nil, []]) }
   scope :approved, -> { gte(priority: 0) }
   scope :recommended, -> { gt(priority: 0) }
   scope :by_tag, -> (tag) { any_in('tag_ids' => tag.id) }
@@ -302,7 +300,7 @@ class Thing < Post
     end if self.has_brand?
 
     list.delete self.id.to_s
-    list.except!(*self.links.map(&:to_s))
+    list.except!(*self.links.map(&:to_s)) if self.links.present?
 
     powers = list.values
     powers.uniq! && powers.sort! && powers.reverse! # O(n log n)
@@ -349,64 +347,13 @@ class Thing < Post
      25 * reviews_count +
      5 * feelings_count +
      lists.count +
-     fancier_ids.count +
-     owner_ids.count) *
+     fanciers_count +
+     owners_count) *
     freezing_coefficient
   end
 
-  def feelings
-    if links.blank?
-      single_feelings
-    else
-      Feeling.in(thing_id: links)
-    end
-  end
-
-  def has_feelings?
-    feelings.count > 0
-  end
-
-  def fanciers_count
-    if links.blank?
-      fanciers.count
-    else
-      links.map { |l| Thing.find(l).fanciers.count }.reduce(&:+)
-    end
-  end
-
   def owners_count
-    if links.blank?
-      owners.count
-    else
-      links.map { |l| Thing.find(l).owners.count }.reduce(&:+)
-    end
-  end
-
-  def reviews
-    if links.blank?
-      single_reviews
-    else
-      Review.in(thing_id: links)
-    end
-  end
-
-  def has_reviews?
-    reviews.count > 0
-  end
-
-  # get all linked things of a specific thing.
-  # return Array or empty Array.
-  def all_links
-    if self.links.blank?
-      return []
-    else
-      self.links.map { |l| Thing.find(l) }
-    end
-  end
-
-  # delete all linked things of a specific thing.
-  def delete_links
-    self.all_links.each { |t| t.update_attributes(links: []) }
+    owner_ids.size
   end
 
   def adopted_by? user
@@ -443,13 +390,13 @@ class Thing < Post
     suggest = {
       input: ([title, slug.gsub('-', '')] + title.split(' ')).uniq,
       output: title,
-      weight: fancier_ids.size
+      weight: fanciers_count
     }
 
     _as_indexed_json(options).merge(
       cover_id: photo_ids.first.to_s,
-      fanciers_count: fancier_ids.size,
-      owners_count: owner_ids.size,
+      fanciers_count: fanciers_count,
+      owners_count: owners_count,
       reviews_count: reviews_count,
       updated_at: updated_at,
       suggest: suggest
@@ -509,11 +456,6 @@ class Thing < Post
   end
 
   private
-
-  def update_counts
-    self.feelings_count = feelings.size
-    self.reviews_count = reviews.size
-  end
 
   # delete ~, which may cause slug to be 'foo-bar-~', which cannot be found.
   def delete_illegal_chars

@@ -7,7 +7,7 @@ class Feeling < Post
 
   validates :content, presence: true, length: { maximum: 140 }
 
-  belongs_to :thing, inverse_of: :single_feelings, index: true
+  belongs_to :thing, index: true, counter_cache: true
 
   def photos
     Photo.find_with_order photo_ids
