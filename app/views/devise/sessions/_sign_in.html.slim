@@ -26,9 +26,8 @@
           = link_to "#find_password_modal", class: "pull-right", data: { toggle: "modal", dismiss: "modal" } do
             i.fa.fa-question-circle
             | 忘记密码？
-        .form-group.hidden#sign_in_alert_field
-          .form-results
-            | 用户名或密码错误，请重新输入
+        .form-group.form-results.hidden#sign_in_alert_field
+          | 用户名或密码错误，请重新输入
         .form-group.form-actions
           = submit_tag "登录", class: "btn btn--blue_light"
 
