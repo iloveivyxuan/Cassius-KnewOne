@@ -97,7 +97,7 @@ class UserMailer < BaseMailer
 
     mail(to: @user.email,
          reply_to: 'advice@knewone.com',
-         subject: "KnewOne用户周报（#{@weekly.since_date.strftime('%Y.%m.%d')} ~ #{@weekly.until_date.strftime('%Y.%m.%d')}）",
+         subject: "KnewOne 用户周报（#{@weekly.since_date.strftime('%Y.%m.%d')} ~ #{@weekly.until_date.strftime('%Y.%m.%d')}）",
          edm: true) do |format|
       format.html { render layout: 'newspaper' }
     end
