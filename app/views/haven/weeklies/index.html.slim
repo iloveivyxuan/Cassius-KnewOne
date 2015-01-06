@@ -8,12 +8,15 @@ table.table.table-striped
   thead
     tr
       th 起始时间
+      th 周
       th 关联列表
+      th 操作
       th
   tbody
     - @weeklies.each do |w|
       tr
         td= w.since_date.strftime('%Y.%m.%d')
+        td= "#{w.since_date.year} 年第 #{w.week} 周"
         td= link_to w.thing_list.name, w.thing_list if w.thing_list
         td
           = link_to '编辑', edit_haven_weekly_path(w)
@@ -21,5 +24,21 @@ table.table.table-striped
           = link_to '测试发送', deliver_haven_weekly_path(w), data: {confirm: 'are you sure?'}
           span.separator |
           = link_to '删除', haven_weekly_path(w), method: :delete, data: {confirm: 'are you sure?'}
+        td
+          = link_to '别摸！', '#', class: 'red_button', style: 'color: red;', data: {note: "#{w.since_date.year} 年第 #{w.week} 周"}
 
 = paginate @weeklies
+
+- content_for :script do
+  javascript:
+    $(function() {
+      $('.red_button').on('click', function () {
+        $this = $(this);
+        if (!confirm('真的要摸嘛？')) { alert('好乖~'); return false; }
+        if (!confirm($this.attr('data-note') + ' 哦~')) { return false; }
+
+        alert('啊♂~~');
+        alert('一库....');
+        alert('（其实这个按钮目前是没有作用的...）');
+      });
+    });

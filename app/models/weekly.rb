@@ -28,6 +28,10 @@ class Weekly
     self.since_date.end_of_week
   end
 
+  def week
+    self.since_date.strftime('%W').to_i
+  end
+
   WEIGHT = {
     fancy_thing:   1,
     new_feeling:   3,
@@ -63,7 +67,7 @@ class Weekly
   end
 
   def gen_weekly_hot_things_list!(user = User.find('511114fa7373c2e3180000b4'), limit = 14)
-    list = user.thing_lists.build name:        "#{self.since_date.year}年第#{self.since_date.strftime '%W'}周热门产品",
+    list = user.thing_lists.build name:        "#{self.since_date.year}年第#{self.week}周热门产品",
                                   description: "#{self.since_date.strftime('%Y.%m.%d')} ~ #{self.until_date.strftime('%Y.%m.%d')}"
 
 
@@ -73,10 +77,7 @@ class Weekly
       list.thing_list_items.build thing: t, order: things.size - i
     end
 
-    if list.save!
-      self.thing_list_id = list.id.to_s
-      self.save!
-    end
+    list.save!
   end
 
   def self.generate_for_week!(since_date = Date.today.last_week)
