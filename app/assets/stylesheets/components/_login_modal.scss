@@ -313,19 +313,17 @@ html.csstransforms3d {
     .modal-dialog {
       backface-visibility: hidden;
       display: block !important;
-      left: 0;
+      left: 10px;
       margin: {
         left: auto;
         right: auto;
       }
       position: absolute;
-      right: 0;
+      right: 10px;
       top: 0;
-      width: 100%;
 
       @media (min-width: $screen-sm-min) {
         max-width: 720px;
-        width: auto;
       }
     }
 
