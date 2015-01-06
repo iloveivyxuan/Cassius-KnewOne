@@ -230,8 +230,13 @@
       margin-bottom: 0;
     }
 
-    a {
+    .btn--icon {
       color: #fff;
+      line-height: 39px;
+
+      .fa-qq { vertical-align: -2px; }
+      .fa-douban { vertical-align: -2px; }
+      .fa-bong { vertical-align: -5px; }
     }
 
     @media (min-width: $screen-sm-min) {
