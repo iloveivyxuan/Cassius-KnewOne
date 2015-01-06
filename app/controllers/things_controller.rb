@@ -6,7 +6,6 @@ class ThingsController < ApplicationController
   before_action :set_categories, only: [:index]
   after_action :allow_iframe_load, only: [:show]
   after_action :store_location, only: [:comments, :show]
-  before_action :delete_links, only: [:destroy]
 
   def index
     if params[:category].present? and params[:category] != 'all'
@@ -271,16 +270,6 @@ class ThingsController < ApplicationController
                                                   generator_id: current_user.id.to_s)
     end
     redirect_to :back
-  end
-
-  def delete_links
-    thing = Thing.find(params[:id])
-    unless thing.links.blank?
-      link = thing.links
-      link.delete(thing.id.to_s)
-      link = [] if link.size < 2
-      thing.links.each { |l| Thing.find(l).update_attributes(links: link) }
-    end
   end
 
   def modify_brand

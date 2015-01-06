@@ -89,7 +89,6 @@ class Thing < Post
   scope :self_run, -> { send :in, stage: [:dsell, :pre_order] }
   scope :price_between, ->(from, to) { where :price.gt => from, :price.lt => to }
   scope :created_between, ->(from, to) { where :created_at.gt => from, :created_at.lt => to }
-  scope :linked, -> { nin(links: [nil, []]) }
   scope :approved, -> { gte(priority: 0) }
   scope :recommended, -> { gt(priority: 0) }
   scope :by_tag, -> (tag) { any_in('tag_ids' => tag.id) }
@@ -392,21 +391,6 @@ class Thing < Post
 
   def has_reviews?
     reviews.count > 0
-  end
-
-  # get all linked things of a specific thing.
-  # return Array or empty Array.
-  def all_links
-    if self.links.blank?
-      return []
-    else
-      self.links.map { |l| Thing.find(l) }
-    end
-  end
-
-  # delete all linked things of a specific thing.
-  def delete_links
-    self.all_links.each { |t| t.update_attributes(links: []) }
   end
 
   def adopted_by? user
