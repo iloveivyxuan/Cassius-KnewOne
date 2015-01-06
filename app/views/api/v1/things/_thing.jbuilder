@@ -8,7 +8,7 @@ json.comments_url url_wrapper(thing, :comments)
 json.cover_url thing.cover.url
 json.stage thing.stage
 json.stage_text ::Thing::STAGES[thing.stage]
-json.fanciers_count thing.fanciers.count
+json.fanciers_count thing.fanciers_count
 json.owners_count thing.owners.count
 json.reviews_count thing.reviews_count
 json.categories thing.category_records do |c|
