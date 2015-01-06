@@ -344,13 +344,9 @@ class Thing < Post
      25 * reviews_count +
      5 * feelings_count +
      lists.count +
-     fancier_ids.count +
+     fanciers_count +
      owner_ids.count) *
     freezing_coefficient
-  end
-
-  def fanciers_count
-    fanciers.count
   end
 
   def owners_count
@@ -391,12 +387,12 @@ class Thing < Post
     suggest = {
       input: ([title, slug.gsub('-', '')] + title.split(' ')).uniq,
       output: title,
-      weight: fancier_ids.size
+      weight: fanciers_count
     }
 
     _as_indexed_json(options).merge(
       cover_id: photo_ids.first.to_s,
-      fanciers_count: fancier_ids.size,
+      fanciers_count: fanciers_count,
       owners_count: owner_ids.size,
       reviews_count: reviews_count,
       updated_at: updated_at,
