@@ -28,6 +28,8 @@ class Thing < Post
   field :brand_name, type: String, default: ""
   field :brand_information, type: String, default: ""
 
+  field :links, type: Array
+
   belongs_to :maker, class_name: "User", inverse_of: nil
 
   field :related_thing_ids, type: Array, default: []
@@ -298,6 +300,7 @@ class Thing < Post
     end if self.has_brand?
 
     list.delete self.id.to_s
+    list.except!(*self.links.map(&:to_s)) if self.links.present?
 
     powers = list.values
     powers.uniq! && powers.sort! && powers.reverse! # O(n log n)
