@@ -506,7 +506,35 @@ html.thing_lists_show {
         }
 
         .comments_more {
-          margin: 1em 0;
+          display: block;
+          width: auto;
+          margin: 0 -16px;
+
+          color: $blue-dark;
+          background: white;
+
+          border: none;
+          border-top: 1px dashed $gray-lighter;
+          box-shadow: 0 5px 5px rgba(0, 0, 0, .1);
+
+          transition: all 0.2s ease;
+
+          .fa {
+            font-size: 18px;
+            line-height: 40px;
+            vertical-align: -1px;
+
+            &:before {
+              content:"\f107";
+              -webkit-font-smoothing: auto;
+            }
+          }
+
+          &:hover {
+            color: $brand-primary;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, .1);
+            .fa:before { content: "\f103" }
+          }
         }
       }
     }
