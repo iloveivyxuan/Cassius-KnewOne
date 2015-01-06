@@ -44,7 +44,7 @@
         - coupon = @list.coupon
         = render list, layout: browser.desktop? ? :quintet : :grid, prize: true
         footer
-          = render 'shared/user_avatar', user: list.author
+          = render 'shared/user_avatar', user_id: list.author_id
           | #{ @list.reason }，获得
           = coupon_link(@list.coupon)
           = coupon_amount(@list.coupon)
@@ -53,7 +53,7 @@
         - review = Review.find @review.reference_id
         = render partial: 'home/hot_review', prize: true, collection: review.to_a
         footer
-          = render 'shared/user_avatar', user: review.author
+          = render 'shared/user_avatar', user_id: review.author_id
           | #{ @review.reason }，获得
           = coupon_link(@review.coupon)
           = coupon_amount(@review.coupon)

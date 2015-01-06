@@ -1,11 +1,11 @@
 header
   nav
-    = link_to lists_user_path(user)
+    = link_to lists_user_path(list.author_id)
       i.fa.fa-angle-left
       | 查看该用户的所有列表
 
-  = render 'shared/user_avatar', user: user, options: {class: 'user_avatar user_avatar--vertical hidden-md hidden-lg'}
-  = render 'shared/user_avatar', user: user, options: {class: 'user_avatar hidden-xs hidden-sm'}
+  = render 'shared/user_avatar', user_id: list.author_id, options: {class: 'user_avatar user_avatar--vertical hidden-md hidden-lg'}
+  = render 'shared/user_avatar', user_id: list.author_id, options: {class: 'user_avatar hidden-xs hidden-sm'}
 
   .thing_list_info
     .thing_list_name

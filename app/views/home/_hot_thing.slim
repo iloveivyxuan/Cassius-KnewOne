@@ -13,7 +13,7 @@
     section.content
       h4.title= link_to thing_presenter.title, hot_thing, target: "_blank"
     footer.info
-      = render 'shared/user_avatar', user: hot_thing.author
+      = render 'shared/user_avatar', user_id: hot_thing.author_id
       .interactions
         = link_to hot_thing, class: "fanciers_count", target: "_blank" do
           i.fa.fa-heart-o

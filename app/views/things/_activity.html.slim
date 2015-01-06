@@ -1,4 +1,4 @@
-- user = activity.user
+- user = User.only(:id, :name, :avatar).find(activity.user_id)
 
 article.activity_feed
   = render 'shared/user_avatar', user: user

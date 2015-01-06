@@ -3,7 +3,7 @@
 li.feed-activity
   ul
     li.feed-user
-      = render 'shared/user_avatar', user: activity.user
+      = render 'shared/user_avatar', user_id: activity.user_id
     li.feed-action
       = time_ago_tag(activity.created_at)
       = present(activity, FeedPresenter).action

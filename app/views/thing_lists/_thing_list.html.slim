@@ -23,7 +23,7 @@ section.thing_list id="thing_list_#{thing_list.id}"
     ul.thing_list-info
       - unless prize
         li.thing_list-creator
-          = render 'shared/user_avatar', user: thing_list.author
+          = render 'shared/user_avatar', user_id: thing_list.author_id
 
         li.thing_list-counts
           = link_to thing_list, class: 'thing_list-fancy'
