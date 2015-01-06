@@ -237,11 +237,11 @@
 
 #add-to-list-modal {
   .modal-content {
-    border-radius: 15px;
     background: $smoke-white;
 
     @include from-breakpoint(md) {
       width: 600px;
+      border-radius: 15px;
     }
   }
 
