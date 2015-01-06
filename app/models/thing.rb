@@ -24,7 +24,6 @@ class Thing < Post
   field :feelings_count, type: Integer, default: 0
   has_many :reviews, dependent: :destroy
   field :reviews_count, type: Integer, default: 0
-  before_save :update_counts
 
   field :brand_name, type: String, default: ""
   field :brand_information, type: String, default: ""
@@ -458,11 +457,6 @@ class Thing < Post
   end
 
   private
-
-  def update_counts
-    self.feelings_count = feelings.size
-    self.reviews_count = reviews.size
-  end
 
   # delete ~, which may cause slug to be 'foo-bar-~', which cannot be found.
   def delete_illegal_chars
