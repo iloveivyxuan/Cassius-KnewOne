@@ -174,7 +174,8 @@ module Haven
         @brands = {}
         brands = params[:new_brands].split
         brands.each do |b|
-          @brands[b] = @things.map(&:brand).compact.map(&:brand_text).count(b)
+          b.downcase!
+          @brands[b] = @things.map(&:brand).compact.map(&:brand_text).map(&:downcase).count(b)
         end
       end
     end
