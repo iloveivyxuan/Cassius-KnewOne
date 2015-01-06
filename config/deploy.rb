@@ -16,6 +16,7 @@ set :bundle_bins, %w(gem rake rails whenever)
 set :whenever_roles, :app
 
 namespace :deploy do
+  after :updated, 'newrelic:notice_deployment'
   after :publishing, :restart
   after :finishing, :cleanup
 end
