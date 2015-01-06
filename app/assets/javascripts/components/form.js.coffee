@@ -67,6 +67,7 @@ do (exports = Making, $ = jQuery) ->
         .find('ul.help-block')
           .empty()
           .html(messagesHtml)
+    $form.find('[type="submit"]').disable()
 
   exports.validatePhone = (element) ->
     $(element).on 'change', (event) ->
