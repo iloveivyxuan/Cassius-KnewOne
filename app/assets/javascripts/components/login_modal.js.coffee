@@ -30,9 +30,10 @@ do (exports = Making) ->
       event.preventDefault()
       $(@)
         .closest('.form-group')
+          .removeClass('is-filled')
         .children('.form-control')
-        .val('')
-        .trigger('change')
+          .val('')
+          .focus()
 
     exports.validator('#signup_form')
     exports.validator('#signin_form')
