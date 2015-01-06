@@ -19,7 +19,7 @@ module Api
           end
         end
 
-        @feeling = @thing.single_feelings.build feeling_params
+        @feeling = @thing.feelings.build feeling_params
         @feeling.author = current_user
         @feeling.photo_ids.concat photos.map { |p| p.id.to_s }
 
