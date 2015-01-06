@@ -5,8 +5,7 @@
         - if tp.price.present?
           = tp.mobile_price
         - if user_signed_in? && [:dsell, :pre_order].include?(tp.thing.stage)
-          = link_to "详情", "#", class: "track_event",
-            data: {toggle: "modal", target: "#shopping_modal"}
+          = link_to "详情", "#", data: {toggle: "modal", target: "#shopping_modal"}
       .mobile_shop_buttons
         = render_mobile_buy_button(tp.thing)
         = render_mobile_adoption_button(tp.thing)

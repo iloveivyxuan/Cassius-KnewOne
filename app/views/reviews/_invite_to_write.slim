@@ -1,11 +1,12 @@
 - klass ||= ''
 
+- data = { category: "thing", action: "review_ask", label: @thing.title }
 - if user_signed_in?
-  = link_to "#", class: klass, data: { toggle: "modal", target: "#invite-review-modal" }
+  = link_to "#", class: klass, data: data.merge({ toggle: "modal", target: "#invite-review-modal" })
     i.fa class=icon_class
     span = text
 - else
-  = link_to '#', class: klass, data: { toggle: "modal", target: "#login-modal" }
+  = link_to '#', class: klass, data: data.merge({ toggle: "modal", target: "#login-modal" })
     i.fa class=icon_class
     span = text
 

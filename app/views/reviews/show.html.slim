@@ -18,13 +18,13 @@
       section.body.post_content
         header
           = render 'users/follow_btn', user: @review.author
-          = rp.link_to_share('btn btn--blue', '分享评测')
+          = rp.link_to_share("#{@review.thing.title} - #{@review.title}", 'btn btn--blue', '分享评测')
         = rp.content
 
       footer.actions
         .interactions
           .feed_action = render 'shared/voting', object: rp.review
-          = rp.link_to_share
+          = rp.link_to_share(rp.review)
         .advanced
           = render 'shared/post_actions', post: rp.review,
             edit_post_path: rp.edit_path, post_path: rp.path

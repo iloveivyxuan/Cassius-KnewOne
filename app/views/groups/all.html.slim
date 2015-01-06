@@ -5,7 +5,8 @@ header.page-header
     i.fa.fa-tint
     | 浏览小组
   - if can? :create, Group
-    .new_group= link_to_with_icon "创建小组", "fa fa-plus", new_group_path, class: 'btn btn-default'
+    .new_group= link_to_with_icon "创建小组", "fa fa-plus", new_group_path, class: 'btn btn-default',
+      data: { category: "group", action: "create_group", label: current_user.name }
 
 section
   ul.groups= render @groups

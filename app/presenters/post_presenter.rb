@@ -105,26 +105,29 @@ class PostPresenter < ApplicationPresenter
     end
   end
 
-  def link_to_share(klass = '', text = '分享')
+  def link_to_share(title, klass = '', text = '分享')
     if browser.wechat?
       link_to_with_icon text, "fa fa-share-alt",
                         "#share_wechat",
-                        title: "分享", class: "#{klass} js-share share_btn track_event",
+                        title: "分享", class: "#{klass} js-share share_btn",
                         data: {
                           toggle: 'modal',
+                          category: "share",
+                          action: "wechat",
+                          label: title
                         }
     else
       link_to_with_icon text, "fa fa-share-alt",
                         user_signed_in? ? "#share_modal" : "#login-modal",
-                        title: "分享", class: "#{klass} share_btn track_event",
+                        title: "分享", class: "#{klass} share_btn",
                         data: {
                           toggle: 'modal',
                           content: share_content,
                           pic: share_pic(:huge),
                           preview_pic: share_pic(:small),
-                          category: "share_internal_ready",
-                          action: "share_internal_ready_#{post.class.to_s.downcase}",
-                          label: "share_internal_ready_#{post.class.to_s.downcase}+#{path}"
+                          category: "share",
+                          action: "weibo",
+                          label: title
                         }
     end
   end

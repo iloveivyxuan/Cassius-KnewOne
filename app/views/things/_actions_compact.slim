@@ -3,4 +3,4 @@
     li.fanciers= render "shared/fancy", p: tp, from: "thing"
     li.owners= render "things/own", tp: tp
     li.add_to_list= render 'thing_lists/link_to_add_list', thing_id: tp.thing.id.to_s
-    li.share= tp.link_to_share
+    li.share= tp.link_to_share tp.thing.title

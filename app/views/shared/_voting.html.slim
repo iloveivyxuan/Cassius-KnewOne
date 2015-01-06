@@ -18,8 +18,8 @@
             span = object.lovers_count
         - else
           - klass = object.class.to_s.downcase
-          - data = { category: "like", action: "like_#{klass}", label: "like_#{klass}+#{request.path}" }
-          = button_tag title: "赞", class: "btn btn--like track_event", data: data do
+          - data = fancy_tracker(klass, object)
+          = button_tag title: "赞", class: "btn btn--like", data: data do
             i class=icon_class
             span = object.lovers_count
     - else

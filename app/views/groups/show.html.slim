@@ -2,7 +2,8 @@
 
 - if user_signed_in? and @group.has_member?(current_user)
   .new_topic
-    = link_to_with_icon "发布新话题", "fa fa-pencil", new_group_topic_path(@group), class: 'btn btn-default'
+    = link_to_with_icon "发布新话题", "fa fa-pencil", new_group_topic_path(@group), class: 'btn btn-default',
+    data: { category: "group", action: "create_topic", label: @group.name }
 
 .topics= render @topics, show_group: false
 = paginate @topics
