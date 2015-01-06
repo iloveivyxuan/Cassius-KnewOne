@@ -5,7 +5,7 @@
     small 喜欢
 - else
   - path = user_signed_in? ? p.fancy_path : "#"
-  - data = user_signed_in? ? { url: path } : { toggle: "modal", target: "#login-modal", link: thing_url(p.thing) }
+  - data = user_signed_in? ? { url: path } : { toggle: "modal", target: "#login-modal", link: thing_url(p.thing), "signin-legend" => "登陆后，收集喜欢的产品" }
   - data.merge!({ category: "fancy", action: "fancy_#{from}", label: "fancy+fancy_#{from}+#{p.path}" })
 
   - if user_signed_in?

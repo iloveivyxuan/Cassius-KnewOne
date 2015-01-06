@@ -1,0 +1,14 @@
+<% if @success %>
+  var $results = $('#find_password_form').find('.form-results');
+
+  $results
+    .text('发送邮件成功')
+    .css('color', '#46a546')
+    .removeClass('hidden');
+  setTimeout(function() {
+    $('#find_password_modal').modal('hide');
+    $results.empty().addClass('hidden');
+  }, 3000);
+<% else %>
+  Making.showValidateResults('#find_password_form', { 'user[email]': ['邮箱错误'] });
+<% end %>

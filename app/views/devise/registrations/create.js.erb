@@ -1,9 +1,5 @@
-<%- if @success %>
+<% if @success %>
   window.location.href = '<%= @location %>';
 <% else %>
-  $('#email_sign_up_tab').removeClass('has-error');
-  <%- @error_fields.each do |field| %>
-    $('.<%= field %>_group').addClass('has-error');
-  <% end -%>
-  $('#sign_up_alert_field').find('.alert').html('<%= @messages.join('<br>').html_safe %>').end().removeClass('hidden');
-<% end -%>
+  Making.showValidateResults('#signup_form', <%= raw @results.to_json %>);
+<% end %>

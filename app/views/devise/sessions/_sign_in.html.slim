@@ -1,28 +1,40 @@
-= simple_form_for(User.new, url: user_session_path(redirect_from: request.fullpath), remote: true) do |f|
-  .form-group
-    .input-group
-      span.input-group-addon
-        i.fa.fa-envelope
-      = f.email_field :email, required: true, autofocus: true, placeholder: '邮箱地址', class: 'form-control'
-  .form-group
-    .input-group
-      span.input-group-addon
-        i.fa.fa-key
-      = f.password_field :password, required: true, placeholder: '密码', class: 'form-control'
-      = hidden_field_tag :redirect_from
-  .form-group.addon
-    div
-      #remember_me.checkbox
-        label
-          = f.check_box :remember_me, checked: true
-          | 记住我
-      = link_to new_user_password_path
-        i.fa.fa-question-circle
-        | 忘记密码？
-  .form-group
-    .form-action
-      = f.button :submit, "用邮箱登录", class: "btn btn-primary btn-lg btn-block"
-  .form-group.hidden#sign_in_alert_field
-    .form-result
-      .alert.alert-danger
-        | 用户名或密码错误，请重新输入。
+.modal-dialog.modal-dialog--front.modal-dialog--signin
+  .modal-content
+    button.close type="button" data-dismiss="modal"
+      span aria-hidden="true" &times;
+      span.sr-only Close
+    .modal-body
+      = simple_form_for(User.new, url: user_session_path(redirect_from: request.fullpath), remote: true, html: { id: 'signin_form' }) do |f|
+        legend 登录
+        .form-main
+          .form-group.col-sm-6
+            label.sr-only 邮件地址
+            = f.email_field :email, required: true, placeholder: '邮件地址', class: 'form-control', data: { "message-error" => "邮箱格式错误" }
+            span.button--clear &times;
+            ul.help-block
+          .form-group.col-sm-6
+            label.sr-only 密码
+            = f.password_field :password, required: true, placeholder: '密码', class: 'form-control'
+            span.button--clear &times;
+            ul.help-block
+          = hidden_field_tag :redirect_from
+        .form-group.addon.clearfix
+          #remember_me.checkbox.pull-left
+            label
+              = f.check_box :remember_me, checked: true
+              | 记住我
+          = link_to "#find_password_modal", class: "pull-right", data: { toggle: "modal", dismiss: "modal" } do
+            i.fa.fa-question-circle
+            | 忘记密码？
+        .form-group.form-results.hidden#sign_in_alert_field
+          | 用户名或密码错误，请重新输入
+        .form-group.form-actions
+          = submit_tag "登录", class: "btn btn--blue_light"
+
+      = render 'shared/auth'
+
+      footer.section-footer
+        = link_to "#", class: "modal-flipper" do
+          | 注册
+          em.logo KnewOne
+          i.fa.fa-angle-right

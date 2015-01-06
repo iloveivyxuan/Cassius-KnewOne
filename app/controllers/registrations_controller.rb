@@ -61,8 +61,9 @@ class RegistrationsController < Devise::RegistrationsController
 
         format.html
         format.js do
-          @error_fields = resource.errors.keys
-          @messages = resource.errors.full_messages
+          @results = resource.errors.messages.map do |k, v|
+            { "user[#{k}]" => v.map {|i| "#{t("mongoid.attributes.user.#{k}")}#{i}" } }
+          end.reduce &:merge
         end
         format.json { render json: resource.errors, status: :unprocessable_entity }
       end

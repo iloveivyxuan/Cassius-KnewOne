@@ -5,7 +5,7 @@
     small 拥有
 - else
   - link_path = user_signed_in? ? own_thing_path(tp.thing) : "#"
-  - data = user_signed_in? ? {} : {toggle: "modal", target: "#login-modal"}
+  - data = user_signed_in? ? {} : {toggle: "modal", target: "#login-modal", "signin-legend" => "登录后，标注拥有的产品" }
   - data.merge!({category: "own", action: "own_thing", label: "own_thing+#{tp.path}"})
   - title = tp.owned? ? "取消拥有此产品" : "拥有此产品"
   - own_class = tp.owned? ? "owned" : "unowned"

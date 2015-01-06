@@ -7,6 +7,6 @@
     i.fa.fa-envelope-o class=('fa-alone' if text.blank?)
     = text
 - else
-  = link_to '#', class: "#{klass} private_message_btn", disabled: user_signed_in?, data: {toggle: 'modal', target: '#login-modal'}
+  = link_to '#', class: "#{klass} private_message_btn", disabled: user_signed_in?, data: {toggle: 'modal', target: '#login-modal', 'signin-legend' => '登录后，给 Ta 写私信' }
     i.fa.fa-envelope-o class=('fa-alone' if text.blank?)
     = text

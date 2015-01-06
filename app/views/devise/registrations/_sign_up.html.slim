@@ -1,32 +1,47 @@
-= simple_form_for(User.new, url: user_registration_path, remote: true) do |f|
-  .form-group.name_group
-    .input-group
-      span.input-group-addon
-        i.fa.fa-user
-      = f.text_field :name, placeholder: '昵称', required: true, class: 'form-control'
-  .form-group.email_group
-    .input-group
-      span.input-group-addon
-        i.fa.fa-envelope
-      = f.email_field :email, placeholder: '邮箱地址', required: true, class: 'form-control'
-  .form-group.password_group
-    .input-group
-      span.input-group-addon
-        i.fa.fa-key
-      = f.password_field :password, placeholder: '密码', required: true, class: 'form-control'
-  .checkbox
-    label
-      = check_box_tag :agreement, true, true, id: 'user_agreement'
-      | 同意
-      = link_to "《KnewOne 用户协议》", user_agreement_path, target: "_blank"
-  = hidden_field_tag :path, request.path
-  = hidden_field_tag :redirect_from
-  .form-group
-    .form-action
-      = f.button :submit, "用邮箱注册", class: "btn btn-primary btn-lg btn-block"
-  .form-group.hidden#sign_up_alert_field
-    .form-result
-      .alert.alert-danger
+.modal-dialog.modal-dialog--back.modal-dialog--signup
+  .modal-content
+    button.close type="button" data-dismiss="modal"
+      span aria-hidden="true" &times;
+      span.sr-only Close
+    .modal-body
+      = simple_form_for(User.new, url: user_registration_path, remote: true, html: { id: 'signup_form' }) do |f|
+        legend 注册
+        .form-main
+          .form-group.col-sm-4
+            label.sr-only for="user_name" 昵称
+            = f.text_field :name, placeholder: '昵称（少于 16 个字符）', class: 'form-control', required: true, maxlength: 16, data: { "message-error" => "昵称必须少于 16 个字符" }
+            span.button--clear &times;
+            ul.help-block
+          .form-group.col-sm-4
+            label.sr-only for="user_email" 邮件地址
+            = f.email_field :email, placeholder: '邮件地址', class: 'form-control', required: true, data: { "message-error" => "邮箱格式错误" }
+            span.button--clear &times;
+            ul.help-block
+          .form-group.col-sm-4
+            label.sr-only for="user_password" 密码
+            = f.password_field :password, placeholder: '密码（至少 6 个字符）', class: 'form-control', required: true, minlength: 6, data: { "message-error" => "密码至少 6 个字符" }
+            span.button--clear &times;
+            ul.help-block
+        .checkbox.text-center
+          label
+            = check_box_tag :agreement, true, true, id: 'user_agreement'
+            | 同意
+            = link_to user_agreement_path, target: "_blank" do
+              | 《&nbsp;
+              em.logo KnewOne
+              | &nbsp;用户协议》
+        = hidden_field_tag :path, request.path
+        = hidden_field_tag :redirect_from
+        .form-group.form-actions
+          = submit_tag "注册", class: "btn btn--blue_light"
+
+      = render 'shared/auth'
+
+      footer.section-footer
+        = link_to "#", class: "modal-flipper" do
+          i.fa.fa-angle-left
+          | 登录
+          em.logo KnewOne
 
 - content_for :script do
   javascript:

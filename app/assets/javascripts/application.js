@@ -21,6 +21,7 @@
 //= require jquery.cookie
 //= require jquery.qrcode
 //= require jquery.deserialize
+//= require validator
 //= require bootstrap-tagsinput
 //= require medium-editor/medium-editor
 //= require minsert/minsert

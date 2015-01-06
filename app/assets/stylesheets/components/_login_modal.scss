@@ -1,236 +1,352 @@
-#login-modal {
-  .modal-dialog {
-    @include MQ(Mplus) { width: 500px }
-    margin-top: -1px;
+#login-modal,
+#find_password_modal {
+  a {
+    color: #79acd9;
   }
-  .modal-content {
-    background-color: $ghost-white;
-    border: none;
-    border-radius: 4px;
-    @include box-shadow(0 0 10px rgba(0,0,0,.2));
-  }
-  .modal-header {
-    padding: 0;
-    border: none;
-    ul li {
-      float: left;
-      width: 50%;
-      height: 50px;
-      @include MQ(Mplus) { height: 60px }
-      margin: 0;
-      padding: 0;
-      background: $blue;
-      border: none;
-      @include box-shadow(inset rgba(0,0,0,.1) 0 0 5px);
-      a {
-        display: block;
-        padding: 0 20px;
-        font-size: 1.2em;
-        line-height: 50px;
-        @include MQ(Mplus) { line-height: 60px }
-        color: $ghost-white;
-        letter-spacing: 2px;
-        &:hover {
-          color: $ghost-white;
-          background: #588cc7;
-        }
-        span {
-          @include MQ(Sneg) { display: none }
-          margin-left: 10px;
-          font-family: "Helvetica Neue";
-          font-weight: lighter;
-          text-transform: uppercase;
-        }
-      }
-      &.active {
-        background: $ghost-white;
-        border: none;
-        @include box-shadow(none);
-        a {
-          color: $blue;
-          font-weight: bold;
-          &:hover {
-            color: $blue;
-            Background: transparent;
-          }
-        }
-      }
-    }
-  }
-  .modal-body {
-    padding: 30px 30px 0 30px;
-    @include MQ(Mplus) { padding: 30px 30px 20px 30px }
-    .form-group {
-      margin-bottom: 20px;
-      .form-action {
-        margin-top: 20px;
-        input {
-          background: $blue;
-          border: none;
-          border-radius: 4px;
-          &:hover { background: #588cc7 }
-        }
-      }
-    }
-    .input-group {
-      width: 100%;
-      height: 50px;
-    }
-    .input-group-addon {
-      width: 50px;
-      height: 50px;
-      padding: 0;
-      line-height: 50px;
-      color: #fff;
-      text-align: center;
-      background-color: $blue;
-      border: none;
-      @include border-radius(0);
-      @include border-corner-radius(top,left,5px);
-      @include border-corner-radius(bottom,left,5px);
-      i {
-        display: block;
-        margin: 0;
-        padding: 0;
-      }
-    }
-    .form-control {
-      height: 50px;
-      line-height: 50px;
-      letter-spacing: 1px;
-      border: 1px solid #e7e7e7;
-      @include border-radius(0);
-      @include border-corner-radius(top,right,5px);
-      @include border-corner-radius(bottom,right,5px);
-      &:focus {
-        background: #fff;
-        border-color: $blue;
-        outline: 0;
-        @include box-shadow(inset 0 1px 1px rgba(0,0,0,.05), 0 0 8px rgba(102, 175, 233, .6));
-      }
-    }
-    .form-group.addon {
-      &:before,
-      &:after {
-        content:" ";
-        display:table;
-      }
-      &:after { clear:both }
-      > div {
-        float: right;
-        div {
-          display: inline-block;
-          min-height: 20px;
-          padding: 0;
-          label {
-            color: #949494;
-            font-weight: normal;
-          }
-        }
-      }
-      a {
-        margin-left: 20px;
-        i {
-          margin: 0;
-          margin-right: 5px;
-        }
-      }
-    }
-    .user_agreement {
-      text-align: right;
-      label {
-        color: #949494;
-        font-weight: normal;
-      }
-      a {
-        i { margin: 0 5px }
-        span {
-          margin-right: 5px;
-          font-family: "Orbitron-Bold";
-        }
-      }
-    }
-    .alert {
-      color: #ddd;
-      background-color: #404b53;
-      border-color: #181818;
-    }
-    .social_sign_in {
-      > span {
-        display: block;
-        line-height: 40px;
-        color: $blue;
-        text-align: center;
-        i { margin-left: 10px }
-      }
-      div {
-        margin: 0 auto;
-        margin-top: 10px;
-        text-align: center;
-        a {
-          display: inline-block;
-          width: 40px;
-          height: 40px;
-          margin-right: 8px;
-          text-align: center;
-          background: $blue;
-          vertical-align: middle;
-          @include border-radius(4px);
-          @media (min-width: $screen-sm-min) {
-            margin-right: 10px;
-          }
-          &:hover {
-            background: #588cc7;
-          }
-          i {
-            display: block;
-            margin: 0 auto;
-            font-size: 1.5em;
-            line-height: 40px;
-            color: #fff;
 
-            &.fa-bong {
-              height: 22px;
-              margin-top: 9px;
-              width: 22px;
-            }
-          }
-        }
+  .logo {
+    color: #79acd9;
+  }
+
+  .modal-dialog {
+    @media (max-width: $screen-sm-max) {
+      margin: {
+        left: 0;
+        right: 0;
       }
-      @include MQ(Mplus) {
-        margin-top: 40px;
-        @include clearfix;
-        > span {
-          float: left;
-        }
-        div {
-          float: right;
-          display: inline-block;
-          margin-top: 0;
-          a {
-            margin-left: 10px;
-            margin-right: 0;
-          }
+    }
+  }
+
+  .modal-content {
+    background-color: #f6f6f6;
+    border-radius: 0;
+    padding-top: 25px;
+
+    > .close {
+      float: none;
+      height: 30px;
+      position: absolute;
+      right: 5px;
+      text-align: center;
+      top: 4px;
+      width: 30px;
+    }
+
+    @media (min-width: $screen-sm-min) {
+      border-radius: 10px;
+      padding: {
+        left: 30px;
+        right: 30px;
+      }
+    }
+  }
+
+  .modal-body {
+    padding: 0;
+  }
+
+  .form-main {
+    .form-group {
+      padding: {
+        left: 0;
+        right: 0;
+      }
+    }
+
+    @media (min-width: $screen-sm-min) {
+      @include make-row;
+      padding: {
+        left: 5px;
+        right: 5px;
+      }
+
+      .form-group {
+        padding: {
+          left: 5px;
+          right: 5px;
         }
       }
     }
   }
-  .modal-footer {
-    position: relative;
-    width: 100%;
-    padding: 0 30px 20px 30px;
-    @include MQ(Mneg) { padding-top: 20px }
-    border: none;
-    text-align: right;
-    button {
-      padding: 0;
-      font-size: 1em;
-      color: #949494;
+
+  legend {
+    border-bottom: 0;
+    color: #9a9a9a;
+    font-size: 18px;
+    text-align: center;
+
+    @media (min-width: $screen-sm-min) {
+      text-align: left;
+    }
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+    position: relatvie;
+
+    .form-control[type="text"],
+    .form-control[type="email"],
+    .form-control[type="password"] {
+      padding-right: 30px;
+    }
+
+    > .button--clear {
+      background-color: #dedede;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      font-size: 19px;
+      height: 20px;
+      line-height: 20px;
+      position: absolute;
+      right: 10px;
       text-align: center;
-      background: none;
-      border: none;
-      &:hover { color: #588cc7 }
-      &:focus { outline: none }
+      top: 12px;
+      width: 20px;
+    }
+
+    &.addon {
+      padding: {
+        bottom: 0;
+        left: 35px;
+        right: 35px;
+      }
+
+      @media (min-width: $screen-sm-min) {
+        text-align: center;
+
+        .checkbox,
+        > a {
+          display: inline-block;
+          float: none !important;
+          padding: {
+            left: 30px;
+            right: 30px;
+          }
+          width: 160px;
+        }
+      }
+    }
+
+    &.is-filled {
+      > .button--clear {
+        display: block;
+      }
+    }
+
+    &.is-invalid {
+      margin-bottom: 8px;
+
+      > label,
+      .form-control,
+      .help-block {
+        color: $red;
+      }
+
+      .help-block {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .form-control {
+    @include placeholder-color(#B6BABF);
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    color: #79acd9;
+    height: 44px;
+    line-height: 44px;
+
+    &:focus {
+      box-shadow: 0 1px 0 0 $blue;
+    }
+  }
+
+  .help-block {
+    font-style: normal;
+    padding: 0 12px;
+  }
+
+  .checkbox {
+    & ~ a {
+      display: inline-block;
+      margin: {
+        bottom: 10px;
+        top: 10px;
+      }
+    }
+  }
+
+  .form-results {
+    color: $red;
+    text-align: center;
+  }
+
+  .form-actions {
+    text-align: center;
+  }
+
+  [type="submit"] {
+    border-radius: 15px;
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px;
+    width: 220px;
+  }
+
+  .section-footer {
+    padding: 10px;
+    text-align: center;
+
+    @media (min-width: $screen-sm-min) {
+      border-top: 1px solid #79acd9;
+    }
+  }
+
+  .modal-flipper {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+
+    .logo {
+      margin-left: .25em;
+    }
+
+    .fa-angle-left  { margin-right: .5em; }
+    .fa-angle-right { margin-left: .5em; }
+  }
+
+  .auth {
+    margin-bottom: 10px;
+    text-align: center;
+
+    > h6 {
+      color: #9a9a9a;
+      font-size: 14px;
+    }
+
+    > p {
+      margin-bottom: 0;
+    }
+
+    a {
+      color: #fff;
+    }
+
+    @media (min-width: $screen-sm-min) {
+      margin: {
+        bottom: 20px;
+        top: 10px;
+      }
+
+      > h6 {
+        display: inline-block;
+        line-height: 40px;
+        margin: 0 30px 0 0;
+      }
+
+      > p {
+        display: inline-block;
+      }
+    }
+  }
+
+  .modal-dialog_wrapper {
+
+    &.is-flipped {
+      .modal-dialog--front { display: none; }
+      .modal-dialog--back  { display: block; }
+    }
+  }
+
+  .modal-dialog--back {
+    display: none;
+  }
+
+  .modal-dialog--signup {
+    .auth {
+      display: none;
+
+      @media (min-width: $screen-sm-min) {
+        display: block;
+      }
+    }
+  }
+}
+
+#signup_form {
+  .form-main {
+    min-height: 195px;
+
+    @media (min-width: $screen-sm-min) {
+      min-height: 90px;
+    }
+  }
+}
+
+#signin_form {
+  .form-main {
+    min-height: 135px;
+
+    @media (min-width: $screen-sm-min) {
+      min-height: 90px;
+    }
+  }
+}
+
+html.csstransforms3d {
+  #login-modal {
+    perspective: 800px;
+
+    .modal-dialog_wrapper {
+      overflow: visible;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform .4s;
+
+      &.is-flipped {
+        transform: rotateY(180deg);
+      }
+    }
+
+    .modal-dialog {
+      backface-visibility: hidden;
+      display: block !important;
+      left: 0;
+      margin: {
+        left: auto;
+        right: auto;
+      }
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 100%;
+
+      @media (min-width: $screen-sm-min) {
+        max-width: 720px;
+        width: auto;
+      }
+    }
+
+    .modal-dialog--back {
+      transform: translate3d(0, 0, 0) rotateY(180deg);
+    }
+  }
+}
+
+#find_password_modal {
+  .modal-dialog {
+    margin: {
+      left: auto;
+      right: auto;
+    }
+  }
+
+  .form-actions {
+    @media (min-width: $screen-sm-min) {
+      padding-top: 0;
+      text-align: right;
     }
   }
 }
