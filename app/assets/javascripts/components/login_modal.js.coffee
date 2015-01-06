@@ -36,3 +36,4 @@ do (exports = Making) ->
 
     exports.validator('#signup_form')
     exports.validator('#signin_form')
+    exports.validator('#find_password_form')
