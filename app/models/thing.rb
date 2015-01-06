@@ -20,9 +20,9 @@ class Thing < Post
   before_save :update_amazon_link
   before_save :update_thing_categories
 
-  has_many :single_feelings, class_name: "Feeling", dependent: :destroy
+  has_many :feelings, dependent: :destroy
   field :feelings_count, type: Integer, default: 0
-  has_many :single_reviews, class_name: "Review", dependent: :destroy
+  has_many :reviews, dependent: :destroy
   field :reviews_count, type: Integer, default: 0
   before_save :update_counts
 
@@ -350,28 +350,12 @@ class Thing < Post
     freezing_coefficient
   end
 
-  def feelings
-    single_feelings
-  end
-
-  def has_feelings?
-    feelings.count > 0
-  end
-
   def fanciers_count
     fanciers.count
   end
 
   def owners_count
     owners.count
-  end
-
-  def reviews
-    single_reviews
-  end
-
-  def has_reviews?
-    reviews.count > 0
   end
 
   def adopted_by? user

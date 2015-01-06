@@ -5,7 +5,7 @@ class Review < Post
 
   field :is_top, type: Boolean, default: false
 
-  belongs_to :thing, inverse_of: :single_reviews, index: true
+  belongs_to :thing, index: true
 
   validates :title, presence: true
   validates :content, presence: true
