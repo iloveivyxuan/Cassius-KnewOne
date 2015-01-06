@@ -2,7 +2,7 @@
   .feelings.list.stream_content data-url=thing_feelings_path(thing)
     = render thing.feelings.desc(:created_at).limit(5)
 
-- if thing.feelings.count > 5
+- if thing.feelings_count > 5
   - if browser.mobile? || browser.tablet?
     .thing-feeds--mobile_action
       a.btn.btn--square.stream_more href="#"

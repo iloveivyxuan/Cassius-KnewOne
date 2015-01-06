@@ -10,7 +10,7 @@ json.stage thing.stage
 json.stage_text ::Thing::STAGES[thing.stage]
 json.fanciers_count thing.fanciers.count
 json.owners_count thing.owners.count
-json.reviews_count thing.reviews.count
+json.reviews_count thing.reviews_count
 json.categories thing.category_records do |c|
   json.partial! 'api/v1/categories/category', category: c
 end
