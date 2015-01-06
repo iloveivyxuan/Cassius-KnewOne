@@ -345,12 +345,12 @@ class Thing < Post
      5 * feelings_count +
      lists.count +
      fanciers_count +
-     owner_ids.count) *
+     owners_count) *
     freezing_coefficient
   end
 
   def owners_count
-    owners.count
+    owner_ids.size
   end
 
   def adopted_by? user
@@ -393,7 +393,7 @@ class Thing < Post
     _as_indexed_json(options).merge(
       cover_id: photo_ids.first.to_s,
       fanciers_count: fanciers_count,
-      owners_count: owner_ids.size,
+      owners_count: owners_count,
       reviews_count: reviews_count,
       updated_at: updated_at,
       suggest: suggest

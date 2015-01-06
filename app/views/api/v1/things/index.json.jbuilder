@@ -15,7 +15,7 @@ json.array!(@things) do |thing|
     json.has_stock thing.has_stock?
   end
   json.fanciers_count thing.fanciers_count
-  json.owners_count thing.owners.count
+  json.owners_count thing.owners_count
   json.reviews_count thing.reviews_count
   json.categories thing.category_records do |c|
     json.partial! 'api/v1/categories/category', category: c
