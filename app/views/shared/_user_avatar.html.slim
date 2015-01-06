@@ -1,5 +1,9 @@
+- user_id ||= user.id
 - options ||= {}
-- if user
+
+- cache_if user_id != current_user.try(:id), ['user_avatar', user_id, options], expires_in: 10.minutes
+  - user ||= User.only(:id, :name, :avatar).find(user_id)
+
   = link_to user, {class: 'user_avatar', target: '_blank', title: user.name, data: {'profile-popover' => user.id.to_s}}.merge(options)
     = image_tag user.avatar.url(:small), alt: user.name
     span.user_avatar-name= user.name
