@@ -25,16 +25,20 @@ table.table.table-striped
           span.separator |
           = link_to '删除', haven_weekly_path(w), method: :delete, data: {confirm: 'are you sure?'}
         td
-          = link_to '别摸！', '#', class: 'red_button', style: 'color: red;', data: {note: "#{w.since_date.year} 年第 #{w.week} 周"}
+          = link_to '红色小按钮', '#', class: 'red_button btn btn-danger',
+                    data: {note: "#{w.since_date.year} 年第 #{w.week} 周",
+                           toggle: 'tooltip', title: '使用：摸我！'}
 
 = paginate @weeklies
 
 - content_for :script do
   javascript:
     $(function() {
+      $('[data-toggle="tooltip"]').tooltip();
+
       $('.red_button').on('click', function () {
         $this = $(this);
-        if (!confirm('真的要摸嘛？')) { alert('好乖~'); return false; }
+        if (!confirm('真的要摸嘛？')) { alert('讨厌~'); return false; }
         if (!confirm($this.attr('data-note') + ' 哦~')) { return false; }
 
         alert('啊♂~~');
