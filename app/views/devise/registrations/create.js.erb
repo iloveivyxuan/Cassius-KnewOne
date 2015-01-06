@@ -2,7 +2,7 @@
   window.location.href = '<%= @location %>';
 <% else %>
   var $form   = $('#signup_form'),
-      results = <%= raw @results.to_json %>
+      results = <%= raw @results.to_json %>;
 
   for (key in results) {
     var messages     = results[key],
