@@ -125,6 +125,7 @@ class User
   index unconfirmed_email: 1
 
   mount_uploader :avatar, AvatarUploader
+  scope :only_with_avatars, -> { only(:id, :name, :avatar) }
 
   ## Omniauthable
   embeds_many :auths

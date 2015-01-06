@@ -1,4 +1,4 @@
-- author = User.only(:id, :name, :avatar).find(thing_list.author_id)
+- author = User.only_with_avatars.find(thing_list.author_id)
 
 figure
   figcaption.clearfix
