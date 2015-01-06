@@ -27,6 +27,7 @@ do (exports = Making, $ = jQuery) ->
             .removeClass('is-invalid')
             .find('ul.help-block')
             .empty()
+          $form.find('.form-results').addClass('hidden')
         when 'change', 'keyup'
           $group[if $control.val().length == 0 then 'removeClass' else 'addClass']('is-filled')
         when 'focusout'
@@ -49,6 +50,23 @@ do (exports = Making, $ = jQuery) ->
         $submit.disable()
       else if $form.find('.is-invalid').length is 0
         $submit.enable()
+
+  exports.showValidateResults = (form, results) ->
+    $form = $(form)
+
+    for key, messages of results
+      messagesHtml = ''
+
+      messages.forEach (message) ->
+        messagesHtml += '<li>' + message + '</li>'
+
+      $form
+        .find('[name="' + key + '"]')
+        .closest('.form-group')
+          .addClass('is-invalid')
+        .find('ul.help-block')
+          .empty()
+          .html(messagesHtml)
 
   exports.validatePhone = (element) ->
     $(element).on 'change', (event) ->

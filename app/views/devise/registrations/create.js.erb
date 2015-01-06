@@ -1,23 +1,5 @@
 <% if @success %>
   window.location.href = '<%= @location %>';
 <% else %>
-  var $form   = $('#signup_form'),
-      results = <%= raw @results.to_json %>;
-
-  for (key in results) {
-    var messages     = results[key],
-        messagesHtml = '';
-
-    messages.forEach(function(message) {
-      messagesHtml += '<li>' + message + '</li>';
-    });
-
-    $form
-      .find('[name="' + key + '"]')
-      .closest('.form-group')
-        .addClass('is-invalid')
-      .find('ul.help-block')
-        .empty()
-        .html(messagesHtml);
-  }
+  Making.showValidateResults('#signup_form', <%= raw @results.to_json %>);
 <% end %>
