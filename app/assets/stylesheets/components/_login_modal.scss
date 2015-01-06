@@ -263,16 +263,6 @@
   .modal-dialog--back {
     display: none;
   }
-
-  .modal-dialog--signup {
-    .auth {
-      display: none;
-
-      @media (min-width: $screen-sm-min) {
-        display: block;
-      }
-    }
-  }
 }
 
 #signup_form {
