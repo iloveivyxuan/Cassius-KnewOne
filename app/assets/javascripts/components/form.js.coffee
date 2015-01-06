@@ -29,7 +29,7 @@ do (exports = Making, $ = jQuery) ->
             .empty()
           $form.find('.form-results').addClass('hidden')
         when 'change', 'keyup'
-          $group[if $control.val().length == 0 then 'removeClass' else 'addClass']('is-filled')
+          $group[if $control.val() is '' then 'removeClass' else 'addClass']('is-filled')
         when 'focusout'
           $group.removeClass('is-focused')
 
