@@ -196,19 +196,21 @@
   }
 
   .section-footer {
-    padding: 20px;
+    padding: 10px;
     text-align: center;
 
     @media (min-width: $screen-sm-min) {
       border-top: 1px solid #79acd9;
     }
+  }
 
-    a {
-      display: block;
+  .modal-flipper {
+    display: block;
+    height: 40px;
+    line-height: 40px;
 
-      .logo {
-        margin-left: .25em;
-      }
+    .logo {
+      margin-left: .25em;
     }
 
     .fa-angle-left  { margin-right: .5em; }
