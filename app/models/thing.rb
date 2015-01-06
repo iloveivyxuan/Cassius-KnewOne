@@ -29,8 +29,6 @@ class Thing < Post
   field :brand_name, type: String, default: ""
   field :brand_information, type: String, default: ""
 
-  field :links, type: Array, default: []
-
   belongs_to :maker, class_name: "User", inverse_of: nil
 
   field :related_thing_ids, type: Array, default: []
@@ -301,7 +299,6 @@ class Thing < Post
     end if self.has_brand?
 
     list.delete self.id.to_s
-    list.except!(*self.links.map(&:to_s))
 
     powers = list.values
     powers.uniq! && powers.sort! && powers.reverse! # O(n log n)
@@ -354,11 +351,7 @@ class Thing < Post
   end
 
   def feelings
-    if links.blank?
-      single_feelings
-    else
-      Feeling.in(thing_id: links)
-    end
+    single_feelings
   end
 
   def has_feelings?
@@ -366,27 +359,15 @@ class Thing < Post
   end
 
   def fanciers_count
-    if links.blank?
-      fanciers.count
-    else
-      links.map { |l| Thing.find(l).fanciers.count }.reduce(&:+)
-    end
+    fanciers.count
   end
 
   def owners_count
-    if links.blank?
-      owners.count
-    else
-      links.map { |l| Thing.find(l).owners.count }.reduce(&:+)
-    end
+    owners.count
   end
 
   def reviews
-    if links.blank?
-      single_reviews
-    else
-      Review.in(thing_id: links)
-    end
+    single_reviews
   end
 
   def has_reviews?
