@@ -52,3 +52,33 @@ table.table.table-striped
       tr
         th= link_to brand.brand_text, brand_things_path(brand.id)
         th= times
+
+h1 新来源
+
+- @sources ||= {}
+
+table.table.table-striped
+  thead
+    tr
+      th style="width: 90%" 来源
+      th style="width: 10%" 产品
+  tbody
+    - @sources.each do |source, times|
+      tr
+        th= source
+        th= times
+
+h1 新品牌
+
+- @brands ||= {}
+
+table.table.table-striped
+  thead
+    tr
+      th style="width: 90%" 品牌
+      th style="width: 10%" 产品
+  tbody
+    - @brands.each do |brand, times|
+      tr
+        th= brand
+        th= times

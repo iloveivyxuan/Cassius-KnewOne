@@ -161,6 +161,22 @@ module Haven
       result = {}
       brands.each { |brand| result[brand] = brands.count(brand) }
       @sorted_brands = result.sort_by { |k, v| v }.reverse
+
+      if params[:new_sources]
+        @sources = {}
+        sources = params[:new_sources].split
+        sources.each do |shop|
+          @sources[shop] = @things.where(shop: /#{shop}/).size
+        end
+      end
+
+      if params[:new_brands]
+        @brands = {}
+        brands = params[:new_brands].split
+        brands.each do |b|
+          @brands[b] = @things.map(&:brand).compact.map(&:brand_text).count(b)
+        end
+      end
     end
 
     private

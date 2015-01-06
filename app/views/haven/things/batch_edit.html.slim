@@ -5,12 +5,6 @@ hgroup
     | 批量修改产品
   p= "当前数量 #{@things.size} / 总数量 #{Thing.all.size}"
 
-.pull-right
-  = form_tag approved_status_haven_things_path, method: :get, class: "approved_status" do
-    = date_field_tag :from, Date.yesterday, required: true, class: "form-control", style: "width: 270px;"
-    = date_field_tag :to, Date.yesterday, required: true, class: "form-control", style: "width: 270px;"
-    = submit_tag "查询通过状态", class: "btn btn-default"
-
 - queries = params.except(*request.path_parameters.keys)
 - queries[:filter] ||= []
 
@@ -109,6 +103,14 @@ ul.nav.nav-pills
             = submit_tag '修改', class: 'btn btn-primary pull-right'
 
 = paginate @things
+
+.pull-right
+  = form_tag approved_status_haven_things_path, method: :get, class: "approved_status" do
+    = date_field_tag :from, Date.yesterday, required: true, class: "form-control", style: "width: 270px;"
+    = date_field_tag :to, Date.yesterday, required: true, class: "form-control", style: "width: 270px;"
+    = text_area_tag 'new_sources', nil, rows: 10, class: 'form-control', placeholder: "来源，一行一个"
+    = text_area_tag 'new_brands', nil, rows: 10, class: 'form-control', placeholder: "品牌，一行一个"
+    = submit_tag "查询通过状态", class: "btn btn-default"
 
 - content_for :script do
   javascript:
