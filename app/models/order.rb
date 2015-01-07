@@ -311,7 +311,7 @@ class Order
     end
 
     self.state = :confirmed
-    self.pay_at = Time.now
+    self.pay_at ||= Time.now
     self.payment_method = method
     self.trade_no = trade_no
     self.trade_price = price
@@ -328,7 +328,7 @@ class Order
     return false unless can_confirm_free?
 
     self.state = :confirmed
-    self.pay_at = Time.now
+    self.pay_at ||= Time.now
     save!
 
     order_histories.create from: :freed, to: :confirmed
@@ -445,7 +445,7 @@ class Order
     self.payment_method = method
     self.trade_no = trade_no
     self.trade_price = price
-    self.pay_at = Time.now
+    self.pay_at ||= Time.now
     save!
 
     order_histories.create from: state, to: :confirmed
