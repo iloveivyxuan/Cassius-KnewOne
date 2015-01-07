@@ -114,6 +114,7 @@ module PageExtractor
 
           if key == :images
             info[key] = Array(value).uniq
+            info[key].map! { |path| URI.join(url, path).to_s rescue nil }.compact!
           else
             info[key] = Array(value).first
           end
