@@ -293,4 +293,20 @@ module ApplicationHelper
       "unknown object #{object.id.to_s}"
     end
   end
+
+  def share_btn_label
+    if @review
+      @review.title
+    elsif @order
+      @order.order_items.first.thing.title
+    elsif @thing_list
+      @thing_list.name
+    elsif @thing
+      @thing.title
+    elsif current_user
+      current_user.name
+    else
+      request.path
+    end
+  end
 end
