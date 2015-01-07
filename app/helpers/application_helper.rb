@@ -120,6 +120,10 @@ module ApplicationHelper
     ].reject(&:blank?).join(' ')
   end
 
+  def browser_class
+    browser.name
+  end
+
   def env_class
     " production" if Rails.env.production?
   end
