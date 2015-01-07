@@ -117,15 +117,15 @@ module ApplicationHelper
       else
         "signed_out"
       end
-    ].reject(&:blank?).join(' ')
+    ].reject(&:blank?).map { |str| str.delete(' ') }.join(' ')
   end
 
   def browser_class
-    browser.name
+    browser.name.downcase
   end
 
   def env_class
-    " production" if Rails.env.production?
+    Rails.env.production? ? ' production' : ''
   end
 
   def feed_link_tag
