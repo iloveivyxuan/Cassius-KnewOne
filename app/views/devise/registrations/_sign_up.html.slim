@@ -22,14 +22,15 @@
             = f.password_field :password, placeholder: '密码（至少 6 个字符）', class: 'form-control', required: true, minlength: 6, data: { "message-error" => "密码至少 6 个字符" }
             span.button--clear.fa.fa-times
             ul.help-block
-        .checkbox.text-center
-          label
-            = check_box_tag :agreement, true, true, id: 'user_agreement'
-            | 同意
-            = link_to user_agreement_path, target: "_blank" do
-              | 《&nbsp;
-              em.logo KnewOne
-              | &nbsp;用户协议》
+        .form-group.clearfix
+          .checkbox.text-center
+            label
+              = check_box_tag :agreement, true, true, id: 'user_agreement'
+              | 同意
+              = link_to user_agreement_path, target: "_blank" do
+                | 《&nbsp;
+                em.logo KnewOne
+                | &nbsp;用户协议》
         = hidden_field_tag :path, request.path
         = hidden_field_tag :redirect_from
         .form-group.form-actions

@@ -55,9 +55,9 @@
 
     @media (min-width: $screen-sm-min) {
       @include make-row;
-      padding: {
-        left: 5px;
-        right: 5px;
+      margin: {
+        left: -5px;
+        right: -5px;
       }
 
       .form-group {
@@ -272,8 +272,6 @@
 
 #signup_form {
   .form-main {
-    min-height: 195px;
-
     @media (min-width: $screen-sm-min) {
       min-height: 90px;
     }
@@ -282,8 +280,6 @@
 
 #signin_form {
   .form-main {
-    min-height: 135px;
-
     @media (min-width: $screen-sm-min) {
       min-height: 90px;
     }
