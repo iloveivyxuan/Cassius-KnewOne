@@ -251,8 +251,8 @@ module ApplicationHelper
     else
       {
         action: "user",
-        category: "login",
-        label: "email",
+        category: "register",
+        label: "wechat",
       }
     end
   end
