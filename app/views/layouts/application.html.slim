@@ -21,6 +21,7 @@ html class="#{page_class} #{env_class}" lang="zh-CN"
     = feed_link_tag
     = stylesheet_link_tag "application"
     = yield :stylesheet
+    = javascript_include_tag "device"
     = javascript_include_tag "modernizr"
     - if Rails.env.production?
       = render 'layouts/analystics'
