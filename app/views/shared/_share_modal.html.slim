@@ -35,14 +35,14 @@
               div
                 - unless browser.mobile?
                   = link_to_with_icon "分享到微信", "fa fa-wechat", "#share_wechat",
-                  title: "微信朋友圈分享", class: "share-button track_event",
+                  title: "微信朋友圈分享", class: "share-button",
                   data: {toggle: 'modal', category: "share", action: "wechat", label: share_btn_label }
                   span.separator |
                 = link_to_with_icon "分享到人人网", "fa fa-renren", "http://widget.renren.com/dialog/share?link=#{request.url}", class: "share-button", target: "_blank", data: { category: "share", action: "renren", label: share_btn_label}
             .modal-footer
               span class="words-check"
               = button_tag "取消", type: 'button', class: "btn btn-default", data: {dismiss: "modal"}
-              = f.submit "发布", class: "btn btn-primary track_event",
+              = f.submit "发布", class: "btn btn-primary",
               data: { category: "share", action: "weibo", label: share_btn_label }
   - else
     = render 'shared/binding', id: 'share_modal'

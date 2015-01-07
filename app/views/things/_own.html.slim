@@ -10,7 +10,7 @@
   - title = tp.owned? ? "取消拥有此产品" : "拥有此产品"
   - own_class = tp.owned? ? "owned" : "unowned"
 
-  = link_to link_path, remote: true, method: :post, class: "track_event #{own_class}", title: title, data: data do
+  = link_to link_path, remote: true, method: :post, class: own_class, title: title, data: data do
     i.fa.fa-check-circle-o
     i.fa.fa-circle-o
     = tp.owners_count

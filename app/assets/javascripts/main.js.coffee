@@ -330,9 +330,6 @@ do (exports = Making) ->
     ($popovertoggle = $(".popover-toggle")).length && $popovertoggle.popover()
     ($score = $('.score')).length && $score.score()
     $('.knewone-embed:empty').length && exports.loadEmbed()
-    if $(".track_event").length
-      $(".track_event").click ->
-        Making.TrackEvent $(@).data('category'), $(@).data('action'), $(@).data('label')
     if ($entry = $('.entry_compact')).length
       $entry.on 'click', '.entry_email_toggle', ->
         $form = $(@).parents('.entry').find('.entry_email')

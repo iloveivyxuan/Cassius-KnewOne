@@ -30,7 +30,7 @@
             - else
               - data = {toggle: "modal", target: "#login-modal"}
               - data.merge!({category: "thing", action: "create", label: "upload"})
-              = link_to_with_icon "分享产品", "fa fa-plus", "#", data: data, class: "track_event"
+              = link_to_with_icon "分享产品", "fa fa-plus", "#", data: data
 
         - if user_signed_in?
           .user_links.login.navbar-right
