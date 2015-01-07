@@ -121,7 +121,7 @@ module ApplicationHelper
   end
 
   def browser_class
-    browser.name
+    browser.name.downcase
   end
 
   def env_class
