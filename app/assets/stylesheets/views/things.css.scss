@@ -330,6 +330,7 @@ html.feelings_show {
   #thing_title {
     text-align: center;
     background: $ghost-white;
+    border-radius: 10px 10px 0 0;
     padding: 1em 2em 1.5em 2em;
     @include MQ(XLplus) { padding: 1.5em 2em 2em 2em }
     h1, h2 { margin: 0 }
@@ -1406,7 +1407,7 @@ html.feelings_show {
         background-color: #f7f7f7;
         border-top: 1px solid #eee;
         color: #b7b7b7;
-        font-size: 16px;
+        font-size: 14px;
         margin: 30px -21px -28px;
         text-align: center;
         padding: 18px 21px;
@@ -1424,11 +1425,10 @@ html.feelings_show {
           color: $text-color;
           text-decoration: none;
           background: #fff;
-          @include border-radius(4px);
-          border: 1px solid #555;
-          border: 1px solid rgba(#000,.1);
-          @include box-shadow(inset 0 0 8px rgba(0,0,0,.1));
+          border-radius: 10px;
+          border: 1px solid #eee;
           &:hover {
+            box-shadow: 0 0 2px rgba(0,0,0,.1);
             color: $blue-dark;
           }
           span {
@@ -1467,7 +1467,7 @@ html.feelings_show {
             font-size: 14px;
             color: $text-color;
             background-color: #fff;
-            border-color: $blue-dark;
+            border-color: 1px solid rgba(0, 0, 0, .1);
             @include box-shadow(inset 0 0 1px rgba(0,0,0,.1));
           }
           input.form-control {
