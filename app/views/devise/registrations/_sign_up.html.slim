@@ -34,7 +34,8 @@
         = hidden_field_tag :path, request.path
         = hidden_field_tag :redirect_from
         .form-group.form-actions
-          = submit_tag "注册", class: "btn btn--blue_light"
+          = submit_tag "注册", class: "btn btn--blue_light",
+          data: { category: "user", action: "register", label: "email" }
 
       = render 'shared/auth'
 

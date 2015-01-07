@@ -29,7 +29,8 @@
         .form-group.form-results.hidden#sign_in_alert_field
           | 用户名或密码错误，请重新输入
         .form-group.form-actions
-          = submit_tag "登录", class: "btn btn--blue_light"
+          = submit_tag "登录", class: "btn btn--blue_light",
+          data: { category: "user", action: "login", label: "email" }
 
       = render 'shared/auth'
 
