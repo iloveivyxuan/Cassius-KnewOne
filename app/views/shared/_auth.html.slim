@@ -1,5 +1,5 @@
 section.auth
-  h6 使用社交账号登陆
+  h6 使用社交账号登录
   p
     = link_to_with_icon '', 'fa fa-weibo', user_omniauth_authorize_path(:weibo, state: request.path), class: "btn--icon", title: '用微博登录'
     = link_to_with_icon '', 'fa fa-twitter', user_omniauth_authorize_path(:twitter, state: request.path), class: "btn--icon", title: '用 Twitter 登录'

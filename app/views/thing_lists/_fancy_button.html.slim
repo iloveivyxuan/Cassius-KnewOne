@@ -16,4 +16,4 @@
   = link_to url, remote: true, method: :post, id: id, class: klass, data: data, title: title
     i.fa class=icon_class
     span.fanciers_count= thing_list.fanciers_count
-  - data = user_signed_in? ? {} : {toggle: 'modal', target: '#login-modal', 'signin-legend' => '登陆后，收集喜欢的li' }
+  - data = user_signed_in? ? {} : {toggle: 'modal', target: '#login-modal', 'signin-legend' => '登录后，收集喜欢的li' }
