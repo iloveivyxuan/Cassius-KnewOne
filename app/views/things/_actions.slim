@@ -1,4 +1,4 @@
-- cache_unless user_signed_in?, ['things', 'actions', @thing]
+- cache_unless user_signed_in?, ['things', 'actions', @thing, browser.wechat?]
   ul.actions.clearfix
     li.fanciers= render "shared/fancy", p: tp, from: "thing"
     li.owners= render "things/own", tp: tp
