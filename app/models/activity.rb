@@ -19,7 +19,7 @@ class Activity
   field :visible, type: Boolean, default: true
 
   belongs_to :user
-  index({user_id: 1})
+  index({user_id: 1, created_at: -1})
 
   default_scope -> { desc(:created_at) }
 
