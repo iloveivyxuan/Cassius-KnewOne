@@ -330,7 +330,6 @@ html.feelings_show {
   #thing_title {
     text-align: center;
     background: $ghost-white;
-    border-radius: 10px 10px 0 0;
     padding: 1em 2em 1.5em 2em;
     @include MQ(XLplus) { padding: 1.5em 2em 2em 2em }
     h1, h2 { margin: 0 }
@@ -2216,6 +2215,12 @@ html.feelings_show {
       }
     }
   }
+
+  &.desktop {
+    #thing_title {
+      border-radius: 10px 10px 0 0;
+    }
+  }
 }
 
 html.things_show {
@@ -2224,6 +2229,11 @@ html.things_show {
       img {
         max-height: 100%;
       }
+    }
+
+    #thing_actions {
+      border-radius: 10px 10px 0 0;
+      overflow: hidden;
     }
   }
 }
