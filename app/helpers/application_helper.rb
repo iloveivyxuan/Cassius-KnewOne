@@ -295,13 +295,13 @@ module ApplicationHelper
   end
 
   def share_btn_label
-    if @review
+    if @review && @review.is_a?(Review)
       @review.title
-    elsif @order
+    elsif @order && @order.is_a?(Order)
       @order.order_items.first.thing.title
-    elsif @thing_list
+    elsif @thing_list && @thing_list.is_a?(ThingList)
       @thing_list.name
-    elsif @thing
+    elsif @thing && @thing.is_a?(Thing)
       @thing.title
     elsif current_user
       current_user.name

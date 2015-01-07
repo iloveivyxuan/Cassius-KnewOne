@@ -29,7 +29,7 @@
   - dates.sort.reverse.each do |date|
     - prizes = @prizes.where(since: date)
     - @things = prizes.where(name: "产品")
-    - @review = prizes.where(name: "评测").first
+    - @prize_review = prizes.where(name: "评测").first
     - @list = prizes.where(name: "列表").first
     section.things
       header
@@ -48,14 +48,14 @@
           | #{ @list.reason }，获得
           = coupon_link(@list.coupon)
           = coupon_amount(@list.coupon)
-    - if @review
+    - if @prize_review
       section.reviews
-        - review = Review.find @review.reference_id
+        - review = Review.find @prize_review.reference_id
         = render partial: 'home/hot_review', prize: true, collection: review.to_a
         footer
           = render 'shared/user_avatar', user_id: review.author_id
-          | #{ @review.reason }，获得
-          = coupon_link(@review.coupon)
-          = coupon_amount(@review.coupon)
+          | #{ @prize_review.reason }，获得
+          = coupon_link(@prize_review.coupon)
+          = coupon_amount(@prize_review.coupon)
 
   = paginate pagination_array
