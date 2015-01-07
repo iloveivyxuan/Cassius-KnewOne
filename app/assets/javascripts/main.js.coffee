@@ -49,12 +49,17 @@ do (exports = Making) ->
       $new_thing_edit_modal = $('#new-thing-edit-modal')
 
       $new_thing_edit_modal.on 'loaded.carousel', ->
+        $carousel = $('#new-thing-edit-modal-images .carousel')
         exports.carousel
           element: '#new-thing-edit-modal .carousel'
           isResetItemWidth: true
+        carousel = $carousel.data('carousel')
         $('#new-thing-edit-modal .carousel').css
           maxHeight: 'none'
           visibility: 'visible'
+        $('[data-target="#new-thing-edit-modal-images .carousel"]').on 'click', (event) ->
+          event.preventDefault()
+          carousel.activate $(@).attr('data-slide-to')
 
       $('#create_thing_modal_form').on('ajax:beforeSend',
       (event, xhr, settings)->
