@@ -116,19 +116,12 @@ module ApplicationHelper
         "signed_in"
       else
         "signed_out"
-      end,
-      if browser.mobile?
-        "mobile"
-      elsif browser.tablet?
-        "tablet"
-      else
-        "desktop"
       end
     ].reject(&:blank?).join(' ')
   end
 
   def env_class
-    "production" if Rails.env.production?
+    " production" if Rails.env.production?
   end
 
   def feed_link_tag
