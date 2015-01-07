@@ -2220,6 +2220,18 @@ html.feelings_show {
     #thing_title {
       border-radius: 10px 10px 0 0;
     }
+
+    &:not(.things_show) {
+      #thing_actions {
+        .subpage_product_image {
+          border-radius: 10px 10px 0 0;
+        }
+
+        .shop {
+          border-radius: 0 0 10px 10px;
+        }
+      }
+    }
   }
 }
 
@@ -2232,8 +2244,9 @@ html.things_show {
     }
 
     #thing_actions {
-      border-radius: 10px 10px 0 0;
-      overflow: hidden;
+      .shop {
+        border-radius: 10px;
+      }
     }
   }
 }
