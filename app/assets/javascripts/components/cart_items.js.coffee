@@ -31,7 +31,8 @@ Making.CartItemNew = ->
       $quantity.prop('max', max)
 
     set_photo = (photo) ->
-      $("#thing_photos .carousel").data('carousel').activate photo
+      ($carousel= $("#thing_photos .carousel")).length && $carousel.data('carousel').activate photo
+      return
 
     $kind.change ->
       $option = $(@).find('option:selected')
