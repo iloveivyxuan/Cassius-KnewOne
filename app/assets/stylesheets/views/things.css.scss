@@ -369,12 +369,12 @@ html.feelings_show {
           color: $gray;
           border-bottom: 2px solid transparent;
           &:hover {
-            background: $blue-dark;
-            border-bottom-color: $blue-dark;
-            color: #fff;
+            background-color: #fff;
+            border-bottom-color: #fff;
+            color: $blue-dark;
 
             span {
-              color: $gray-lighter;
+              color: $blue-dark;
             }
           }
           i { display: none }
