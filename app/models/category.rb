@@ -47,10 +47,6 @@ class Category
     Thing.where(category_ids: self.id)
   end
 
-  def primary_category?
-    self.category.nil?
-  end
-
   def parent_text
     self.parent.name
   end
