@@ -286,7 +286,7 @@
   }
 }
 
-html.csstransforms3d {
+html.csstransforms3d:not(.ucbrowser) {
   #login-modal {
     perspective: 800px;
 
