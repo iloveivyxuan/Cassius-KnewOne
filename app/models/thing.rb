@@ -167,10 +167,6 @@ class Thing < Post
     end
   end
 
-  def category_records
-    Category.any_in(name: self.categories)
-  end
-
   def primary_categories
     category_records.primary.pluck(:name)
   end
