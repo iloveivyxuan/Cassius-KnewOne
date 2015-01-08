@@ -134,14 +134,6 @@ class Thing < Post
     self.resource.try(:name)
   end
 
-  def categories_text
-    (categories || []).join ','
-  end
-
-  def categories_text=(text)
-    self.categories = text.split(',').map(&:strip).reject(&:blank?).uniq
-  end
-
   def brand_text=(text)
     text.strip!
     self.brand = if text.blank?
