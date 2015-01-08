@@ -20,7 +20,7 @@
         button.editor-close type="button" 退出
         button.editor-drop type="button" 舍弃
         button.editor-save type="button" 保存
-        button.editor-submit type="submit" 发布
+        button.editor-submit type="submit" data-category="thing" data-action="submit_review" data-label="#{@thing.title}" 发布
     article.editor-content.article
       header
         = f.text_field :title, class: "title", required: true, autocomplete: "off", autofocus: "true", placeholder: "标题"
