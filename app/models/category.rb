@@ -26,6 +26,11 @@ class Category
 
   scope :prior, -> { desc(:priority, :things_count) }
 
+  def ancestors
+    return [] if parent.blank?
+    [parent] + parent.ancestors
+  end
+
   def things
     Thing.where(category_ids: self.id)
   end
