@@ -20,7 +20,7 @@
             - if !browser.mobile? && !browser.tablet? && !browser.wechat?
               = link_to "#share_wechat",
                 title: "微信朋友圈分享", class: "share-button js-share--wechat",
-                data: {toggle: 'modal', category: "share_internal_wechat", action: "share_internal_wechat", label: "share_internal_wechat+#{request.url}"} do
+                data: {toggle: 'modal', category: "share", action: "wechat", label: share_btn_label} do
                 i.fa.fa-weixin.fa-4x
             = link_to "http://widget.renren.com/dialog/share?link=#{request.url}", class: "share-button", target: "_blank", title: "分享到人人网" do
               i.fa.fa-renren.fa-4x
