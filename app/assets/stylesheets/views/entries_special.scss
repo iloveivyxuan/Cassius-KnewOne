@@ -52,6 +52,23 @@ html.entries_show {
       }
     }
 
+    .entry-avatar {
+      border: 2px solid white;
+      position: absolute;
+
+      @media (min-width: $screen-sm-min) {
+        margin-left: -15px;
+        margin-top: -10px;
+        z-index: 1;
+      }
+      @media (max-width: $screen-md-max) {
+        height: 70px;
+        margin-left: 230px;
+        margin-top: -50px;
+        width: 70px;
+      }
+    }
+
     .header-inner {
       @media (min-width: $screen-sm-min) {
         left: 30px;
@@ -102,11 +119,6 @@ html.entries_show {
           padding: 0 1.5em;
           width: auto;
         }
-      }
-
-      > .entry-avatar {
-        border: 2px solid white;
-        margin-left: -15px;
       }
     }
 
