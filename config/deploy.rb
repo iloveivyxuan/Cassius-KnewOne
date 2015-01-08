@@ -2,7 +2,7 @@
 
 set :application, 'making'
 set :user, 'deployer'
-set :repo_url, 'git@github.com:lilu/making.git'
+set :repo_url, 'git@github.com:KnewOneCom/knewone.git'
 set :deploy_to, "/home/deployer/apps/making"
 set :pty, true
 set :ssh_options, { forward_agent: true }
