@@ -15,10 +15,12 @@ class Thing < Post
   field :nickname, type: String
   field :official_site, type: String, default: ""
   field :photo_ids, type: Array, default: []
-  field :categories, type: Array, default: []
+
+  has_and_belongs_to_many :categories, inverse_of: nil
+  before_save :fix_categories
+
   before_save :update_price
   before_save :update_amazon_link
-  before_save :update_thing_categories
 
   has_many :feelings, dependent: :destroy
   field :feelings_count, type: Integer, default: 0
@@ -77,8 +79,6 @@ class Thing < Post
   has_many :stories, dependent: :destroy
 
   has_many :adoptions, dependent: :destroy
-
-  has_and_belongs_to_many :tags, counter_cache: true
 
   belongs_to :resource
 
@@ -487,10 +487,12 @@ class Thing < Post
     end
   end
 
-  def update_thing_categories
-    c = self.tags.map(&:categories).flatten
-    c += c.map(&:category)
-    self.categories = c.compact.uniq.map(&:name)
+  def fix_categories
+    third_level_categories = self.categories.third_level
+    second_level_categories = third_level_categories.map(&:parent).uniq
+    top_level_categories = second_level_categories.map(&:parent).uniq
+
+    self.categories = top_level_categories + second_level_categories + third_level_categories
   end
 
 end

@@ -5,26 +5,28 @@ class Category
   field :name, type: String
   slug :name, history: true
   field :things_count, type: Integer, default: 0
+  field :users_count, type: Integer, default: 0
   field :priority, type: Integer, default: 0
   mount_uploader :cover, CoverUploader
   field :icon, type: String, default: "fa-tags" # font awesome
 
-  field :thing_ids, type: Array, default: []
-
-  has_many :inner_categories, class_name: "Category", inverse_of: :category
-  belongs_to :category, class_name: "Category", inverse_of: :inner_categories
-
-  has_and_belongs_to_many :users
+  has_many :children, class_name: 'Category', inverse_of: :parent
+  belongs_to :parent, class_name: 'Category', inverse_of: :children
 
   field :description, type: String, default: ""
 
   validates :name, presence: true, uniqueness: true
 
+  field :depth, type: Integer, default: 0
+  before_save { self.depth = self.parent.present? ? self.parent.depth + 1 : 0 }
+
+  scope :top_level, -> { where(depth: 0) }
+  scope :second_level, -> { where(depth: 1) }
+  scope :third_level, -> { where(depth: 2) }
+
   scope :prior, -> { desc(:priority, :things_count) }
   scope :primary, -> { where(category: nil) }
   scope :inner, -> { ne(category: nil) }
-
-  has_and_belongs_to_many :tags
 
   def things
     Thing.any_in(id: thing_ids)

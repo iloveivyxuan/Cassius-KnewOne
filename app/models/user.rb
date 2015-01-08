@@ -464,7 +464,7 @@ HERE
   end
 
   # category
-  has_and_belongs_to_many :categories do
+  has_and_belongs_to_many :categories, inverse_of: nil do
     def things
       Thing.published.any_in(categories: @target.map(&:name))
     end
