@@ -121,7 +121,7 @@ module ApplicationHelper
   end
 
   def browser_class
-    browser.name.downcase
+    browser.possible_names.join(' ').downcase
   end
 
   def env_class
