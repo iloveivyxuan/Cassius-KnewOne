@@ -90,7 +90,6 @@ class Thing < Post
   scope :created_between, ->(from, to) { where :created_at.gt => from, :created_at.lt => to }
   scope :approved, -> { gte(priority: 0) }
   scope :recommended, -> { gt(priority: 0) }
-  scope :by_tag, -> (tag) { any_in('tag_ids' => tag.id) }
   scope :by_brand, -> (brand) { where('brand_id' => brand.id) }
   scope :no_brand, -> { where('brand_id' => nil) }
 
@@ -141,19 +140,6 @@ class Thing < Post
 
   def categories_text=(text)
     self.categories = text.split(',').map(&:strip).reject(&:blank?).uniq
-  end
-
-  def tags_text
-    (tags.map(&:name) || []).join ','
-  end
-
-  def tags_text=(text)
-    self.tags = text.split(/[，,]/).map do |tag_name|
-      Tag.find_by(name: tag_name.strip)
-    end
-    categories = self.tags.map(&:categories).flatten
-    categories += categories.map(&:category)
-    self.categories = categories.compact.uniq.map(&:name)
   end
 
   def brand_text=(text)
