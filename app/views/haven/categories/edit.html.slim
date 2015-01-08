@@ -20,12 +20,17 @@ section
     label icon
     = f.text_field :icon
     div
-      - if @category.primary_category?
+      - if @category.depth == 0
         label 子分类
-        = f.text_field :inner_categories_text
-      - else
-        label 所属主分类
-        = f.text_field :primary_category
+        = f.text_field :children_text
+      - if @category.depth == 1
+        label 所属一级分类
+        = f.text_field :parent_text
+        label 子分类
+        = f.text_field :children_text
+      - elsif @category.depth == 2
+        label 所属二级分类
+        = f.text_field :parent_text
     div
       label 描述
       = f.text_area :description, cols: 80, rows: 20

@@ -34,22 +34,21 @@ class Category
     self.category.nil?
   end
 
-  def primary_category
-    self.category.name
+  def parent_text
+    self.parent.name
   end
 
-  def primary_category=(text)
-    pc = Category.where(name: text.strip).first
-    self.category = pc if pc
+  def parent_text=(text)
+    c = Category.where(name: text.strip).first
+    self.parent = c if c
   end
 
-  def inner_categories_text
+  def children_text
     self.inner_categories.map(&:name).join(",")
   end
 
-  def inner_categories_text=(text)
-    inners = text.split(/[，,]/).map { |c| Category.find_or_create_by(name: c.strip) }
-    self.inner_categories = inners
+  def children_text=(text)
+    self.children = text.split(/[，,]/).map { |c| Category.find_or_create_by(name: c.strip) }
   end
 
   include Searchable
