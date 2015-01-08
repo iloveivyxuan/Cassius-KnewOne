@@ -1,6 +1,6 @@
 - if thing.lists.present?
   .other_lists
-    - lists = thing.lists.where(:author.ne => thing.author, :name.nin => thing.primary_categories, :size.gte => min_size)
+    - lists = thing.lists.where(:author.ne => thing.author, :name.nin => thing.categories.pluck(:name), :size.gte => min_size)
     - lists = lists.desc(:fanciers_count).limit(limit)
     = render partial: 'things/thing_list', collection: lists, locals: {thing: thing, layout: :grid}
 

@@ -167,10 +167,6 @@ class Thing < Post
     end
   end
 
-  def primary_categories
-    category_records.primary.pluck(:name)
-  end
-
   def update_price
     kinds_price = valid_kinds.map(&:price).uniq
     self.price = kinds_price.min if kinds_price.present?
