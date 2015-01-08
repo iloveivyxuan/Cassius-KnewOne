@@ -10,7 +10,7 @@ class ThingsController < ApplicationController
   def index
     if params[:category].present? and params[:category] != 'all'
       @category = Category.find(params[:category])
-      @things = @things.any_in(id: @category.thing_ids)
+      @things = @category.things
     end
     if params[:tag].present?
       @tag = Tag.where(slugs: params[:tag].to_s).first
