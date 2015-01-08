@@ -25,8 +25,6 @@ class Category
   scope :third_level, -> { where(depth: 2) }
 
   scope :prior, -> { desc(:priority, :things_count) }
-  scope :primary, -> { where(category: nil) }
-  scope :inner, -> { ne(category: nil) }
 
   def things
     Thing.any_in(id: thing_ids)
@@ -62,26 +60,4 @@ class Category
       c.set(things_count: c.things.size)
     end
   end
-
-  def self.update_thing_ids
-    # inner categories
-    Category.ne(category: nil).each do |c|
-      c.thing_ids = c.tags.map(&:thing_ids).flatten.uniq unless c.tags.empty?
-      c.save
-    end
-    # primary categories
-    Category.where(category: nil).each do |c|
-      c.thing_ids = c.inner_categories.map(&:thing_ids).flatten.uniq unless c.inner_categories.empty?
-      c.save
-    end
-  end
-
-  def self.update_tags
-    Category.where(category: nil).each do |c|
-      c.tags.clear
-      tags = c.inner_categories.map(&:tags).flatten.uniq
-      tags.each { |tag| c.tags << tag }
-    end
-  end
-
 end

@@ -5,7 +5,7 @@
       i.fa.fa-caret-down
     - if Rails.env.production?
       ul.dropdown-menu
-        - Category.primary.gt(things_count: 0).desc(:things_count).limit(14).each do |c|
+        - Category.top_level.gt(things_count: 0).desc(:things_count).limit(14).each do |c|
           li
             = link_to category_things_path(c) do
               i class="fa fa-fw #{c.icon}"
