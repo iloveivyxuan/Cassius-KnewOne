@@ -3,59 +3,20 @@ require 'spec_helper'
 describe Category, type: :model do
   let(:thing) { create(:thing) }
   let(:category) { create(:category) }
-  let(:inner_c) { create(:category) }
-  let(:tag) { create(:tag) }
+  let(:category2) { create(:category, parent: category) }
+  let(:category3) { create(:category, parent: category2) }
 
-  describe 'share same things between categories & tags' do
-    before do
-      category.inner_categories << inner_c
-      inner_c.tags << tag
-      thing.tags_text = tag.name
+  specify do
+    thing.categories << category3
+    thing.reload
 
-      refresh
-      reload
-    end
+    expect(thing.categories).to include category
+    expect(thing.categories).to include category2
+    expect(thing.categories).to include category3
 
-    specify do
-      expect(category.things).to include thing
-      expect(inner_c.things).to include thing
-      expect(tag.things).to include thing
-      expect(category.things_count).to eq 1
-      expect(inner_c.things_count).to eq 1
-      expect(tag.things_count).to eq 1
+    thing.categories.delete(category3)
+    thing.reload
 
-      expect(thing.categories.sort).to eq [category, inner_c].map(&:name).sort
-      expect(thing.tags).to include tag
-    end
+    expect(thing.categories.size).to eq 0
   end
-
-  describe 'share tags between primary & inner categories' do
-    before do
-      category.inner_categories << inner_c
-      inner_c.tags << tag
-      thing.tags_text = tag.name
-
-      refresh
-      reload
-    end
-
-    specify do
-      expect(category.tags).to include tag
-      expect(inner_c.tags).to include tag
-    end
-  end
-
-end
-
-def refresh
-  Category.update_thing_ids
-  Category.update_things_count
-  Category.update_tags
-  Tag.update_things_count
-end
-
-def reload
-  category.reload
-  inner_c.reload
-  tag.reload
 end
