@@ -10,8 +10,8 @@ class Category
   mount_uploader :cover, CoverUploader
   field :icon, type: String, default: "fa-tags" # font awesome
 
-  has_many :children, class_name: 'Category', inverse_of: :parent
-  belongs_to :parent, class_name: 'Category', inverse_of: :children
+  has_many :children, class_name: 'Category', inverse_of: :parent, foreign_key: :category_id
+  belongs_to :parent, class_name: 'Category', inverse_of: :children, foreign_key: :category_id
 
   field :description, type: String, default: ""
 
