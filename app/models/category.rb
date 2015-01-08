@@ -27,7 +27,7 @@ class Category
   scope :prior, -> { desc(:priority, :things_count) }
 
   def things
-    Thing.any_in(id: thing_ids)
+    Thing.where(category_ids: self.id)
   end
 
   def primary_category?
