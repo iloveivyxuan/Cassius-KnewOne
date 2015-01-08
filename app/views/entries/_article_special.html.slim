@@ -7,6 +7,8 @@ article.article data-article-id=post.id
       nav.header-top
         = link_to_with_icon "精选首页", "fa fa-caret-left", explore_path, class: "nav_explore visible-xs-block"
         = link_to_with_icon "KnewOne #{entry.category_translation}", "fa fa-caret-left hidden-xs", explore_path, class: "nav_explore_category"
+        - unless browser.mobile?
+          = image_tag entry.avatar.url(:small), class: 'img-circle entry-avatar'
 
       .header-main
         h1.title= entry_title entry

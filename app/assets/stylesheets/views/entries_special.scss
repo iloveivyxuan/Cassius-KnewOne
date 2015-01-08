@@ -103,6 +103,11 @@ html.entries_show {
           width: auto;
         }
       }
+
+      > .entry-avatar {
+        border: 2px solid white;
+        margin-left: -15px;
+      }
     }
 
     .header-main {
