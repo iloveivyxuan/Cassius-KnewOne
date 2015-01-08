@@ -458,6 +458,8 @@ class Thing < Post
   end
 
   def fix_categories
+    return unless category_ids_changed?
+
     third_level_categories = self.categories.third_level
     second_level_categories = third_level_categories.map(&:parent).uniq
     top_level_categories = second_level_categories.map(&:parent).uniq
