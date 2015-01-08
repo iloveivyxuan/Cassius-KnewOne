@@ -8,6 +8,7 @@ class Entry
   mount_uploader :cover, ImageUploader
   mount_uploader :canopy, ImageUploader
   mount_uploader :wechat_cover, ImageUploader
+  mount_uploader :avatar, ImageUploader
 
   belongs_to :post
 
