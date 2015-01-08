@@ -56,16 +56,17 @@ html.entries_show {
       border: 2px solid white;
       position: absolute;
 
-      @media (min-width: $screen-sm-min) {
-        margin-left: -15px;
-        margin-top: -10px;
-        z-index: 1;
-      }
-      @media (max-width: $screen-md-max) {
+      @media (max-width: $screen-xs-max) {
         height: 70px;
         margin-left: 230px;
         margin-top: -50px;
         width: 70px;
+      }
+
+      @media (min-width: $screen-md-min) {
+        margin-left: -18px;
+        margin-top: -10px;
+        z-index: 1;
       }
     }
 
