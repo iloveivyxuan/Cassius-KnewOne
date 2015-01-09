@@ -7,6 +7,7 @@ header.page-header.clearfix
 table#promotions_table.table.table-striped
   thead
     tr
+      th 缩略图
       th 链接
       th 公开？
       th
@@ -14,6 +15,7 @@ table#promotions_table.table.table-striped
   tbody
     - @promotions.desc(:priority).each do |promotion|
       tr id="#{promotion.id}"
+        td= image_tag promotion.cover.url(:small)
         td= promotion.link
         td= promotion.published
         td= link_to '编辑', edit_haven_promotion_path(promotion)
