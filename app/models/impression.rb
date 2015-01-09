@@ -24,11 +24,16 @@ class Impression
 
   def after_add_tag(tag)
     author.set(tag_ids: [tag.id] + (author.tag_ids - [tag.id]))
+    thing.add_to_set(tag_ids: tag.id)
   end
 
   def after_remove_tag(tag)
     unless Impression.where(author_id: author_id, tag_ids: tag.id).exists?
       author.pull(tag_ids: tag.id)
+    end
+
+    unless Impression.where(thing_id: thing_id, tag_ids: tag.id).exists?
+      thing.pull(tag_ids: tag.id)
     end
   end
 end

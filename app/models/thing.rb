@@ -19,6 +19,8 @@ class Thing < Post
                           after_add: :after_add_category,
                           after_remove: :after_remove_category
 
+  has_and_belongs_to_many :tags, inverse_of: nil
+
   before_save :update_price
   before_save :update_amazon_link
 
