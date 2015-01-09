@@ -183,4 +183,10 @@ FactoryGirl.define do
     thing_list
     description { Faker::Lorem.characters(20) }
   end
+
+  factory :impression do
+    author
+    thing
+    tags { create_list(:tag, 1) }
+  end
 end
