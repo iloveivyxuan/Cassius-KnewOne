@@ -221,6 +221,11 @@
     }
   }
 
+  .knewone-embed {
+    display: inline-block;
+    width: 100%;
+  }
+
   [data-edit="insertImage"] {
     @include mask;
   }
