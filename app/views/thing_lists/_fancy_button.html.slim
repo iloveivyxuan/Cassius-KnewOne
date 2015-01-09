@@ -6,7 +6,7 @@
   - fancied = thing_list.fancied?(current_user)
   - url = user_signed_in? ? (fancied ? unfancy_thing_list_path(thing_list) : fancy_thing_list_path(thing_list)) : '#'
   - data = user_signed_in? ? {} : { toggle: 'modal', target: '#login-modal', 'signin-legend' => '登录后，收集喜欢的列表' }
-  - data.merge!({category: "thinglist", action: "fancy", label: thing_list.name, foobar: "test"})
+  - data.merge!({category: "thinglist", action: "fancy", label: thing_list.name})
   - title = fancied ? '取消喜欢' : '喜欢'
   - id = "fancy-list-button-#{thing_list.id}"
   - klass = "fancy-button #{'fancied' if fancied}"
