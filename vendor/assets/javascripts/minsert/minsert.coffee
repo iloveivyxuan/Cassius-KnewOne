@@ -365,7 +365,7 @@ do ($ = jQuery) ->
             range.setEndBefore(node)
           range.insertNode(@clipboard.cloneNode(true))
           selection.collapseToEnd()
-        @$element.trigger('input')
+        @$element.trigger('input') if @$element
 
     MInsert.DEFAULTS =
       actions:
