@@ -1,6 +1,7 @@
 @import '../base';
 
-html.home_user_agreement {
+html.home_user_agreement,
+html.home_sale_terms {
 
   #wrapper {
     @include wrapper(simple, $max-width: $screen-md-min);
@@ -23,6 +24,15 @@ html.home_user_agreement {
     ol {
       margin-bottom: 1em;
       padding-left: 2rem;
+
+      ul,
+      ol {
+        margin: {
+          bottom: .5em;
+          top: .5em;
+        }
+        padding-left: 1.2em;
+      }
     }
 
     ul {
@@ -31,6 +41,16 @@ html.home_user_agreement {
 
     ol {
       list-style-type: decimal;
+    }
+
+    li {
+      > h5 {
+        font-weight: bold;
+      }
+
+      > p {
+        text-indent: 0;
+      }
     }
   }
 }

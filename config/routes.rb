@@ -17,6 +17,7 @@ Making::Application.routes.draw do
   get 'welcome', to: 'home#welcome'
   get 'jobs', to: 'home#jobs'
   get 'user_agreement', to: 'home#user_agreement'
+  get 'sale_terms', to: 'home#sale_terms'
   get 'qr_entry', to: 'home#qr_entry'
   get "404", to: "home#not_found"
   get "403", to: "home#forbidden"

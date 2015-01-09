@@ -9,7 +9,10 @@
       = tp.render_shopping_desc
     .buy.clearfix
       = tp.buy
-      = customer_service tp.thing.merchant, "btn btn-service-terms btn--blue"
+      - if tp.thing.stage == :dsell
+        = render 'things/help'
+      - else
+        = customer_service tp.thing.merchant, "btn btn-service-terms btn--blue"
     - if tp.thing.merchant.present?
       .merchant
         | 由
