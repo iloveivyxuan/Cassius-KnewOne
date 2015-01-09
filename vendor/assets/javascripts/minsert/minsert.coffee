@@ -317,7 +317,17 @@ do ($ = jQuery) ->
         if event.which is 8
           selection  = window.getSelection()
           if selection.anchorOffset is 0
-            prevNode  = selection.anchorNode.previousSibling
+            anchorNode = selection.anchorNode
+            if anchorNode.nodeType is 3
+              parentNode = anchorNode.parentNode
+              if parentNode.getAttribute('data-medium-element') isnt 'false'
+                paragraphNode = document.createElement('p')
+                parentNode.insertBefore(paragraphNode, anchorNode)
+                paragraphNode.appendChild(anchorNode)
+                anchorNode = paragraphNode
+              else
+                anchorNode = parentNode
+            prevNode  = anchorNode.previousSibling
             $prevNode = $(prevNode)
             if $prevNode.css('display') is 'block' and
               prevNode.nodeName in ['IMG', 'FIGURE', 'IFRAME', 'EMBED', 'VIDEO', 'AUDIO']
