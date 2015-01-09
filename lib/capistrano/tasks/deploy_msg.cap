@@ -6,4 +6,8 @@ namespace :deploy do
   task :after_finish_deploy do
     sh './bin/after_finish_deploy'
   end
+
+  task :show_version do
+    sh './bin/show_version'
+  end
 end
