@@ -10,8 +10,7 @@ class Category
   mount_uploader :cover, CoverUploader
   field :icon, type: String, default: "fa-tags" # font awesome
 
-  has_many :children, class_name: 'Category', inverse_of: :parent, foreign_key: :category_id
-  belongs_to :parent, class_name: 'Category', inverse_of: :children, foreign_key: :category_id
+  has_and_belongs_to_many :parents, class_name: 'Category', index: true, inverse_of: nil
 
   field :description, type: String, default: ""
 
@@ -26,9 +25,21 @@ class Category
 
   scope :prior, -> { desc(:priority, :things_count) }
 
+  def children
+    Category.where(parent_ids: self.id)
+  end
+
   def ancestors
     return [] if parent.blank?
-    [parent] + parent.ancestors
+    parents | parents.flat_map(&:ancestors)
+  end
+
+  def parent
+    parents.first
+  end
+
+  def parent=(category)
+    self.parents = [category]
   end
 
   def things
