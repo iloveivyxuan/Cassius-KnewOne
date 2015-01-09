@@ -60,11 +60,15 @@ class Category
   end
 
   def children_text
-    self.inner_categories.map(&:name).join(",")
+    self.children.map(&:name).join(",")
   end
 
   def children_text=(text)
-    self.children = text.split(/[，,]/).map { |c| Category.find_or_create_by(name: c.strip) }
+    text.split(/[，,]/).each do |name|
+      child = Category.find_or_create_by(name: name.strip)
+      child.parents << self
+      child.set(depth: self.depth + 1)
+    end
   end
 
   include Searchable
