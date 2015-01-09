@@ -59,6 +59,14 @@ class Category
     self.parent = c if c
   end
 
+  def parents_text
+    self.parents.map(&:name).join(",")
+  end
+
+  def parents_text=(text)
+    self.parents = Category.where(name: text.split(/[，,]/).map(&:strip))
+  end
+
   def children_text
     self.children.map(&:name).join(",")
   end
