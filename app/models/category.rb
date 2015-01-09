@@ -30,6 +30,11 @@ class Category
     Category.where(parent_ids: self.id)
   end
 
+  # top_level? second_level? third_level?
+  [%w(top 0), %w(second 1), %w(third 2)].each do |level|
+    define_method("#{level.first}_level?".to_sym) { depth == level.last }
+  end
+
   def ancestors
     return [] if parent_ids.blank?
     parents | parents.flat_map(&:ancestors)

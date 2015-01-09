@@ -12,8 +12,8 @@ table.table
     - @categories.each do |c|
       tr
         th= link_to c.name, things_path(category: c)
-        th= c.depth == 0
-        th= c.depth == 1
+        th= c.top_level?
+        th= c.second_level?
         th= c.children.size
         th= c.things_count
         th= c.priority
