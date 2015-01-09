@@ -110,6 +110,9 @@ gem 'auto-correct'
 # countries
 gem 'country_select'
 
+# similarity
+gem 'similar_text'
+
 # servers
 group :production do
   gem 'unicorn'
