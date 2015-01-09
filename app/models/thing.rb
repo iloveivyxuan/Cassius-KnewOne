@@ -459,7 +459,9 @@ class Thing < Post
   end
 
   def after_add_category(category)
-    self.add_to_set(category_ids: category.ancestors.map(&:id))
+    category.ancestors.each do |c|
+      self.add_to_set(category_ids: c.id)
+    end
   end
 
   def after_remove_category(category)
