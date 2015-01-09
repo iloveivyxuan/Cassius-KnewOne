@@ -38,9 +38,9 @@
         = render 'description', klass: klass, description: description
         - if current_user && @brand && [:volunteer, :editor].include?(current_user.role)
           = button_tag "编辑品牌信息", type: "button", class: "btn btn-default", data: { toggle: 'modal', target: '#brand-modify-modal' }
-      - if !browser.desktop?
+      - if !browser.desktop? && @tags && @tags.size > 1
         .more
-          = link_to_with_icon "查看所有 #{@tags.size} 个标签", "fa fa-angle-double-down", "#"
+          = link_to_with_icon "查看所有 #{@tags.size} 个标签", "fa fa-angle-double-down", "javascript:;"
 
   - if @tag
     = render 'tag_description'
