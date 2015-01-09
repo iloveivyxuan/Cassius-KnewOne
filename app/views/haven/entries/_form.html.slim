@@ -9,6 +9,7 @@
       - @entry.thing_ids.each do |i|
         option value="#{i}" = i
   = f.input :title
+  = f.input :wechat_title
   - title = (@entry && @entry.title?) ? @entry.title : @entry.post.try(:title)
   = f.input :sharing_content, input_html: {value: "推荐 @KnewOne #{@entry.category}：《#{title}》"}
   = f.input :summary, as: :text , input_html: {rows: 4}

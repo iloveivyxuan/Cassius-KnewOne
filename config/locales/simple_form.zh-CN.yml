@@ -95,6 +95,7 @@ zh-CN:
       entry:
         category: '分类'
         post_id: '文章/评测ID'
+        wechat_title: '微信标题'
         external_link: '链接'
         title: '标题'
         cover: '封面'
