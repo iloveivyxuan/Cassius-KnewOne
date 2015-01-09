@@ -14,6 +14,7 @@ class Category
 
   field :description, type: String, default: ""
 
+  index name: 1
   validates :name, presence: true, uniqueness: true
 
   field :depth, type: Integer, default: 0
@@ -30,7 +31,7 @@ class Category
   end
 
   def ancestors
-    return [] if parent.blank?
+    return [] if parent_ids.blank?
     parents | parents.flat_map(&:ancestors)
   end
 
