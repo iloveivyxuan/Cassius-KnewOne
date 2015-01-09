@@ -60,7 +60,7 @@ do (exports = Making) ->
             carousel.activate $(@).attr('data-slide-to')
         else
           $('#new-thing-edit-modal-sortable').show()
-        $('#new-thing-edit-modal .carousel').css
+        $carousel.css
           maxHeight: 'none'
           visibility: 'visible'
 
