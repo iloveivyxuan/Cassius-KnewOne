@@ -60,7 +60,7 @@ class Category
   end
 
   def parents_text
-    self.parents.map(&:name).join(",")
+    self.parents.map(&:name).join(', ')
   end
 
   def parents_text=(text)
@@ -68,7 +68,7 @@ class Category
   end
 
   def children_text
-    self.children.map(&:name).join(",")
+    self.children.map(&:name).join(', ')
   end
 
   def children_text=(text)
