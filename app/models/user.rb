@@ -471,6 +471,13 @@ HERE
     end
   end
 
+  # tags
+  has_and_belongs_to_many :tags, inverse_of: nil do
+    def recent
+      sort_by { |tag| base.tag_ids.index(tag.id) }
+    end
+  end
+
   # recommend users who not followed by self
   def recommend_new_users
     user_ids = following_ids + [self.id]
