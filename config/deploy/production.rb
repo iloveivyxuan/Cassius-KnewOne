@@ -13,6 +13,7 @@ namespace :deploy do
   before :updating, :test
   after :finished, 'airbrake:deploy'
   after :finished, :after_finish_deploy
+  after :finished, :show_version
   task :restart do
     invoke 'unicorn:reload'
     invoke 'sidekiq:restart'
