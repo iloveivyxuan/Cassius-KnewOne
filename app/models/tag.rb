@@ -5,5 +5,7 @@ class Tag
   field :name, type: String
   slug :name, history: true
 
+  index name: 1
+
   validates :name, presence: true, uniqueness: true
 end
