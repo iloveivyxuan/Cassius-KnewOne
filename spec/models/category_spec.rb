@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Category, type: :model do
   let(:thing) { create(:thing) }
   let(:category) { create(:category) }
-  let(:category2) { create(:category, parent: category) }
-  let(:category3) { create(:category, parent: category2) }
+  let(:category2) { create(:category, parents: [category]) }
+  let(:category3) { create(:category, parents: [category2]) }
 
   specify do
     thing.categories << category3
