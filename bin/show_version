@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-curl -X POST --data-urlencode "payload={\"channel\": \"#dev\", \"username\": \"$(git config --global user.name)\", \"text\": \"server version: $(ssh -p 22222 deployer@knewone.com cd apps/making/current && git rev-parse --short HEAD)\", \"icon_emoji\": \":full_moon_with_face:\"}" https://knewone.slack.com/services/hooks/incoming-webhook?token=JZzDMuRAdFIQQULJUadI4Yke
