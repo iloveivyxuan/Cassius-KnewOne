@@ -18,7 +18,7 @@ class Post
 
   field :content, type: String, default: ""
 
-  validate :no_similarity
+  validate :no_similarity, on: :create
 
   field :commented_at, type: DateTime
 
