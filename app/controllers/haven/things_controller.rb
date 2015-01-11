@@ -56,8 +56,39 @@ module Haven
       redirect_to edit_haven_thing_path(@thing)
     end
 
+    def part_time_list name
+      case name
+      when 'linlidan'
+        %w(5457108131302d300a990000 541db6a931302d0ca9690700 533ff45d31302d5426a80300 54295ec831302d6c79440000 5382fc1731302d2932350000)
+      when 'zhongkai'
+        %w(5444cab931302d282c0e0000 544903e131302d77a7180000 546480a331302d4131220000 54201d8131302d31d2df0000 535d1d0a31302d57d3d50500)
+      when 'yanjingwei'
+        %w(540448d131302d275b110000 5459ae2b31302d572c240000 5421205a31302d741b360000 513de38f7373c292ed000008 53e4896131302d7ac07f0200)
+      when 'xiaoqiu'
+        %w(542903a531302d1e6e000000 54811bc031302d4e6bb80000 5381ffb231302d1a768b0000 5497a52031302d0f421b0000 5321d08631302d2f79520000)
+      else
+        whole_list = []
+        %w(linlidan zhongkai yanjingwei xiaoqiu).each do |name|
+          whole_list += part_time_list(name)
+        end
+        whole_list
+      end
+    end
+
     def batch_edit
       @things ||= ::Thing
+      case params[:team]
+      when 'linlidan'
+        @things = @things.in('author_id' => part_time_list('linlidan'))
+      when 'zhongkai'
+        @things = @things.in('author_id' => part_time_list('zhongkai'))
+      when 'yanjingwei'
+        @things = @things.in('author_id' => part_time_list('yanjingwei'))
+      when 'xiaoqiu'
+        @things = @things.in('author_id' => part_time_list('xiaoqiu'))
+      when 'no_team'
+        @things = @things.ne(:author_id.in => part_time_list('no_team'))
+      end
       if params[:filter]
         @things = @things.where(shop: "") if params[:filter].include? "no_link"
         @things = @things.where(categories: []) if params[:filter].include? "no_category"

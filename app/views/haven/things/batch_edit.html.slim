@@ -38,6 +38,9 @@ ul.nav.nav-pills
     = text_field_tag(query, params[query])
     = submit_tag "查询#{tag_text}"
 
+- %w(yanjingwei zhongkai linlidan xiaoqiu no_team).each do |member|
+  = link_to member, batch_edit_haven_things_path(queries.merge(team: member)), class: "btn btn-default"
+
 - @things.each do |t|
   = form_tag batch_update_haven_things_path(redirect_from: request.fullpath), method: :patch, remote: true, class: "batch_edit" do
     table.table.table-striped.table-bordered
