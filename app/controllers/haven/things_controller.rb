@@ -21,10 +21,10 @@ module Haven
 
     def index
       @things = case params[:filter]
-                  when "can_buy" then
-                    Thing.ne(shop: "")
-                  else
-                    Thing
+                when "can_buy" then
+                  Thing.ne(shop: "")
+                else
+                  Thing
                 end
 
       @things = case params[:sort_by]
