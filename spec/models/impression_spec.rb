@@ -23,4 +23,50 @@ describe Impression, type: :model do
       expect(thing.tags).to_not include tag
     end
   end
+
+  describe 'updates counts automatically' do
+    specify do
+      expect(thing.desirers_count).to eq 0
+      expect(author.desires_count).to eq 0
+      expect(thing.owners_count).to eq 0
+      expect(author.owns_count).to eq 0
+
+      impression.update(state: :desired)
+      author.reload
+      thing.reload
+
+      expect(thing.desirers_count).to eq 1
+      expect(author.desires_count).to eq 1
+      expect(thing.owners_count).to eq 0
+      expect(author.owns_count).to eq 0
+
+      impression.update(state: :owned)
+      author.reload
+      thing.reload
+
+      expect(thing.desirers_count).to eq 0
+      expect(author.desires_count).to eq 0
+      expect(thing.owners_count).to eq 1
+      expect(author.owns_count).to eq 1
+
+      impression.update(state: :none)
+      author.reload
+      thing.reload
+
+      expect(thing.desirers_count).to eq 0
+      expect(author.desires_count).to eq 0
+      expect(thing.owners_count).to eq 0
+      expect(author.owns_count).to eq 0
+
+      impression.update(state: :owned)
+      impression.destroy
+      author.reload
+      thing.reload
+
+      expect(thing.desirers_count).to eq 0
+      expect(author.desires_count).to eq 0
+      expect(thing.owners_count).to eq 0
+      expect(author.owns_count).to eq 0
+    end
+  end
 end
