@@ -33,7 +33,7 @@ FactoryGirl.define do
     author
     title    { Faker::Lorem.word }
     subtitle { Faker::Lorem.sentence }
-    content  { Faker::Lorem.paragraph }
+    sequence(:content)  { |i| "#{i} - #{Faker::Lorem.paragraph}" }
 
     trait :for_sell do
       after(:create) { |thing| create_list(:kind, 1, thing: thing) }
@@ -93,21 +93,21 @@ FactoryGirl.define do
     author
     thing
     title   { Faker::Lorem.word }
-    content { Faker::Lorem.paragraph }
+    sequence(:content)  { |i| "#{i} - #{Faker::Lorem.paragraph}" }
   end
 
   factory :feeling do
     author
     thing
     title   { Faker::Lorem.word }
-    content { Faker::Lorem.sentence }
+    sequence(:content)  { |i| "#{i} - #{Faker::Lorem.sentence}" }
   end
 
   factory :story do
     author
     thing
     title   { Faker::Lorem.word }
-    content { Faker::Lorem.sentence }
+    sequence(:content)  { |i| "#{i} - #{Faker::Lorem.sentence}" }
     occured_at { Time.now }
   end
 
@@ -143,7 +143,7 @@ FactoryGirl.define do
     author
     group
     title   { Faker::Lorem.word }
-    content { Faker::Lorem.paragraph }
+    sequence(:content)  { |i| "#{i} - #{Faker::Lorem.paragraph}" }
   end
 
   factory :photo do
@@ -165,7 +165,7 @@ FactoryGirl.define do
   end
 
   factory :private_message do
-    content { Faker::Lorem.sentences }
+    sequence(:content)  { |i| "#{i} - #{Faker::Lorem.sentences}" }
   end
 
   factory :thing_list do
