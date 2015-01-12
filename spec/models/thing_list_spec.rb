@@ -22,26 +22,9 @@ describe ThingList, type: :model do
       end
     end
 
-    context 'after create' do
-      it 'gets fancied' do
-        expect(item.thing.fancied?(thing_list.author)).to be true
-      end
-    end
-
     context 'after thing destroy' do
       before do
         item.thing.destroy
-        thing_list.reload
-      end
-
-      it 'destroys' do
-        expect(thing_list.items).to_not include item
-      end
-    end
-
-    context 'after unfancy thing' do
-      before do
-        item.thing.unfancy(thing_list.author)
         thing_list.reload
       end
 
