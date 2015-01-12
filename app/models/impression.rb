@@ -21,6 +21,9 @@ class Impression
     self.score = 0 if self.state != :owned
   end
 
+  scope :desired, -> { where(state: :desired) }
+  scope :owned, -> { where(state: :owned) }
+
   private
 
   def before_add_tag(tag)

@@ -8,24 +8,6 @@ class AftermathHandler
       end
     end
 
-    def thing_fancy(thing, user)
-      user.inc fancies_count: 1
-
-      thing.author.notify :fancy_thing, context: thing, sender: user, opened: false
-    end
-
-    def thing_unfancy(thing, user)
-      user.inc fancies_count: -1 if user.fancies_count > 0
-    end
-
-    def thing_own(thing, user)
-      user.inc owns_count: 1
-    end
-
-    def thing_unown(thing, user)
-      user.inc owns_count: -1 if user.owns_count > 0
-    end
-
     def review_create(review)
       u = review.author
 

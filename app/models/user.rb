@@ -285,9 +285,6 @@ class User
     posts.where(_type: "Topic").desc(:created_at)
   end
 
-  ## Things
-  has_and_belongs_to_many :owns, class_name: "Thing", inverse_of: :owners
-
   def makings
     Thing.where(maker: self).desc(:created_at)
   end

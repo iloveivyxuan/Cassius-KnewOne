@@ -76,10 +76,59 @@ class Thing < Post
     !Order.where('order_items.thing_id' => self.id).exists?
   end
 
-  include Fanciable
-  fancied_as :fancies
+  has_many :impressions
 
-  has_and_belongs_to_many :owners, class_name: "User", inverse_of: :owns
+  def fanciers
+    User.in(id: impressions.pluck(:author_id))
+  end
+
+  def desirers
+    User.in(id: impressions.desired.pluck(:author_id))
+  end
+
+  def owners
+    User.in(id: impressions.owned.pluck(:author_id))
+  end
+
+  def fancy(user)
+    impressions.create(author: user) unless fancied?(user)
+  end
+
+  def desire(user)
+    impression = impressions.find_or_create_by(author: user)
+    impression.update(state: :desired) if impression.state != :owned
+  end
+
+  def own(user)
+    impression = impressions.find_or_create_by(author: user)
+    impression.update(state: :owned)
+  end
+
+  def unfancy(user)
+    impressions.where(author: user).destroy
+  end
+
+  def undesire(user)
+    impression = impressions.desired.where(author: user).first
+    impression.update(state: :none) if impression
+  end
+
+  def unown(user)
+    impression = impressions.owned.where(author: user).first
+    impression.update(state: :none) if impression
+  end
+
+  def fancied?(user)
+    impressions.where(author: user).exists?
+  end
+
+  def desired?(user)
+    impressions.desired.where(author: user).exists?
+  end
+
+  def owned?(user)
+    impressions.owned.where(author: user).exists?
+  end
 
   has_many :stories, dependent: :destroy
 
@@ -208,28 +257,6 @@ class Thing < Post
     reviews.where(is_top: true).first
   end
 
-  def own(user)
-    return if owned?(user)
-
-    self.push(owner_ids: user.id)
-    user.push(own_ids: self.id)
-
-    reload
-    user.reload
-  end
-
-  def unown(user)
-    return unless owned?(user)
-    owners.delete user
-    user.owns.delete self
-
-    user.reload
-  end
-
-  def owned?(user)
-    owner_ids.include? user.id
-  end
-
   def valid_kinds
     kinds.ne(stage: :hidden).sort_by { |k| k.photo_number }
   end
@@ -238,7 +265,7 @@ class Thing < Post
     [:dsell, :pre_order].include? stage
   end
 
-  def cal_related_thing_ids(limit = 10, cate_power = 50, own_power = 2, fancy_power = 1, brand_power = 100)
+  def cal_related_thing_ids(limit = 10, cate_power = 50, desire_power = 1, own_power = 2, brand_power = 100)
     list = {}
 
     Thing.any_in(categories: self.categories).each do |thing|
@@ -249,25 +276,19 @@ class Thing < Post
       end
     end
 
-    self.fanciers.map(&:fancy_ids).each do |thing_ids|
-      thing_ids.each do |t|
-        id = t.to_s
-        if list[id]
-          list[id] += fancy_power
-        else
-          list[id] = fancy_power
-        end
+    Impression.in(author_id: self.desirers.pluck(:id)).pluck(:thing_id).map(&:to_s).each do |id|
+      if list[id]
+        list[id] += desire_power
+      else
+        list[id] = desire_power
       end
     end
 
-    self.owners.map(&:own_ids).each do |thing_ids|
-      thing_ids.each do |t|
-        id = t.to_s
-        if list[id]
-          list[id] += own_power
-        else
-          list[id] = own_power
-        end
+    Impression.in(author_id: self.owners.pluck(:id)).pluck(:thing_id).map(&:to_s).each do |id|
+      if list[id]
+        list[id] += own_power
+      else
+        list[id] = own_power
       end
     end
 
@@ -311,8 +332,6 @@ class Thing < Post
     ThingNotificationWorker.perform_async(self.id.to_s, :fanciers, :stock, options)
   end
 
-  need_aftermath :own, :unown, :fancy, :unfancy
-
   include Rankable
 
   def birth_time
@@ -330,10 +349,6 @@ class Thing < Post
      fanciers_count +
      owners_count) *
     freezing_coefficient
-  end
-
-  def owners_count
-    owner_ids.size
   end
 
   def adopted_by? user
