@@ -1,5 +1,6 @@
 class Impression
   include Mongoid::Document
+  include Mongoid::Timestamps
   include Ratable
 
   belongs_to :author, class_name: 'User', index: true
