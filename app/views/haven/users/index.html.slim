@@ -34,6 +34,7 @@ table.table.table-striped
       th 小皮鞭
       th 关注/被关注
       th 注册时间
+      th 认证身份
       th 爱
   tbody
     - @users.each do |u|
@@ -53,6 +54,7 @@ table.table.table-striped
           | /
           = link_to u.followers_count, followers_user_path(u), target: '_blank'
         td = u.created_at.strftime '%Y-%m-%d %H:%M:%S' if u.created_at
+        td = u.identities
         td
           = user_links(u)
 = paginate @users

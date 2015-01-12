@@ -17,7 +17,8 @@ ul.nav.nav-pills
      'followers' => '被关注',
      'created_at' => '注册时间',
      'role' => '有权限',
-     'adoption' => '申请领养过'}.each do |k, v|
+     'adoption' => '申请领养过',
+     'authorized' => '认证身份'}.each do |k, v|
     - conds = queries.deep_dup
     - if conds[:filter].include?(k)
       li.active

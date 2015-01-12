@@ -132,6 +132,7 @@ class User
   index 'auths.uid' => 1
 
   scope :confirmed, -> { gt confirmed_at: 0 }
+  scope :authorized, -> { where(:identities.with_size => 1) }
 
   def has_fulfilled_email?
     self.unconfirmed_email.present? || self.email.present?
