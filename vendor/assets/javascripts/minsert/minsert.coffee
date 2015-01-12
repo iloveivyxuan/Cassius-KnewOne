@@ -320,7 +320,7 @@ do ($ = jQuery) ->
             anchorNode = selection.anchorNode
             if anchorNode.nodeType is 3
               parentNode = anchorNode.parentNode
-              if parentNode.getAttribute('data-medium-element') isnt 'false'
+              if parentNode.getAttribute('data-medium-element') is 'true'
                 paragraphNode = document.createElement('p')
                 parentNode.insertBefore(paragraphNode, anchorNode)
                 paragraphNode.appendChild(anchorNode)
