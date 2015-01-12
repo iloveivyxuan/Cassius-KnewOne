@@ -1,6 +1,7 @@
 = simple_nested_form_for [:haven, @weekly], html: {multipart: true} do |f|
   = f.input :thing_list_id
   = f.input :since_date, as: :date
+  = f.input :title
 
   .weekly_entries
     = f.simple_fields_for :weekly_entries
