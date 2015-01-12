@@ -18,18 +18,18 @@ header.page-header
     | 领养管理
     small 当前条件 #{ @adoptions.size }
 
-table.table.table-striped
+table.table.table-striped.table--fixed
   thead
     tr
-      th 用户
+      th width="60" 用户
       th 产品
-      th 拥有/喜欢/短评/评测
-      th 战斗力
+      th width="150" 拥有/喜欢/短评/评测
+      th width="60" 战斗力
       th 地址
-      th 记录
+      th width="55" 记录
       th 备注
-      th 状态
-      th 操作
+      th width="65" 状态
+      th width="55" 操作
   tbody
     - @adoptions.each do |a|
       - u = a.user
