@@ -14,7 +14,7 @@ class Impression
   field :description, type: String, default: ''
   field :state, type: Symbol, default: :none
 
-  validates :state, inclusion: {in: %i(none needed owned)}
+  validates :state, inclusion: {in: %i(none desired owned)}
 
   before_save do
     self.score = 0 if self.state != :owned
