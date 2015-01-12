@@ -3,8 +3,8 @@ class Impression
   include Mongoid::Timestamps
   include Ratable
 
-  belongs_to :author, class_name: 'User', index: true
-  belongs_to :thing, index: true
+  belongs_to :author, class_name: 'User', index: true, counter_cache: :fancies_count
+  belongs_to :thing, index: true, counter_cache: :fanciers_count
   has_and_belongs_to_many :tags, inverse_of: nil,
                           before_add: :before_add_tag,
                           before_remove: :before_remove_tag
@@ -19,6 +19,40 @@ class Impression
 
   before_save do
     self.score = 0 if self.state != :owned
+
+    if state_changed?
+      if state == :desired
+        author.inc(desires_count: 1)
+        thing.inc(desirers_count: 1)
+      end
+
+      if state_was == :desired
+        author.inc(desires_count: -1)
+        thing.inc(desirers_count: -1)
+      end
+
+      if state == :owned
+        author.inc(owns_count: 1)
+        thing.inc(owners_count: 1)
+      end
+
+      if state_was == :owned
+        author.inc(owns_count: -1)
+        thing.inc(owners_count: -1)
+      end
+    end
+  end
+
+  before_destroy do
+    if state_was == :desired
+      author.inc(desires_count: -1)
+      thing.inc(desirers_count: -1)
+    end
+
+    if state_was == :owned
+      author.inc(owns_count: -1)
+      thing.inc(owners_count: -1)
+    end
   end
 
   scope :desired, -> { where(state: :desired) }

@@ -77,6 +77,10 @@ class Thing < Post
   end
 
   has_many :impressions
+  field :fanciers_count, type: Integer, default: 0
+  field :desirers_count, type: Integer, default: 0
+  field :owners_count, type: Integer, default: 0
+  index fanciers_count: -1
 
   def fanciers
     User.in(id: impressions.pluck(:author_id))

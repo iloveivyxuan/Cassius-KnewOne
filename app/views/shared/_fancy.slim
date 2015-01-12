@@ -4,8 +4,10 @@
     = p.fanciers_count
     small 喜欢
 - else
-  - path = user_signed_in? ? p.fancy_path : "#"
-  - data = user_signed_in? ? { url: path } : { toggle: "modal", target: "#login-modal", link: thing_url(p.thing), "signin-legend" => "登录后，收集喜欢的产品" }
+  - if user_signed_in?
+    - data = {'fancy-thing' => {id: p.id, type: 'fancy'}}
+  - else
+    - data = {toggle: "modal", target: "#login-modal", link: thing_url(p.thing), "signin-legend" => "登录后，收集喜欢的产品"}
   - data.merge!({ category: "thing", action: "fancy", label: p.thing.title })
 
   - if user_signed_in?

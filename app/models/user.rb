@@ -52,6 +52,7 @@ class User
   # Stats
   field :things_count, type: Integer, default: 0
   field :fancies_count, type: Integer, default: 0
+  field :desires_count, type: Integer, default: 0
   field :owns_count, type: Integer, default: 0
   field :reviews_count, type: Integer, default: 0
   field :feelings_count, type: Integer, default: 0
