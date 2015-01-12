@@ -10,6 +10,7 @@ set :unicorn_config_path, File.join(current_path, "config", "unicorn", "#{fetch(
 
 namespace :deploy do
   task :restart do
-    invoke 'unicorn:restart'
+    invoke 'unicorn:reload'
+    invoke 'sidekiq:restart'
   end
 end
