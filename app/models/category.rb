@@ -32,7 +32,7 @@ class Category
 
   # top_level? second_level? third_level?
   [%w(top 0), %w(second 1), %w(third 2)].each do |level|
-    define_method("#{level.first}_level?".to_sym) { depth == level.last }
+    define_method("#{level.first}_level?".to_sym) { depth == level.last.to_i }
   end
 
   def ancestors
