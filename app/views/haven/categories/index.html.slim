@@ -12,7 +12,7 @@ table.table.table-striped
   tbody
     - @categories.each do |c|
       tr
-        th= link_to c.name, things_path(category: c)
+        th= link_to c.name, categories_things_path(c)
         th= c.depth + 1
         th= c.children.size
         th= c.things_count
