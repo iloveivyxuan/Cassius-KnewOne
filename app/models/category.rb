@@ -62,7 +62,8 @@ class Category
   end
 
   def parents_text
-    self.parents.map(&:name).join(', ')
+    return "" if self.parents.blank?
+    self.parents.map(&:name).join(',')
   end
 
   def parents_text=(text)
@@ -70,7 +71,8 @@ class Category
   end
 
   def children_text
-    self.children.map(&:name).join(', ')
+    return "" if self.children.blank?
+    self.children.map(&:name).join(',')
   end
 
   def children_text=(text)
