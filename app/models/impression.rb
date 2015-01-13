@@ -56,17 +56,19 @@ class Impression
   end
 
   before_destroy do
-    if fancied_was
+    reload
+
+    if fancied
       author.inc(fancies_count: -1)
       thing.inc(fanciers_count: -1)
     end
 
-    if state_was == :desired
+    if state == :desired
       author.inc(desires_count: -1)
       thing.inc(desirers_count: -1)
     end
 
-    if state_was == :owned
+    if state == :owned
       author.inc(owns_count: -1)
       thing.inc(owners_count: -1)
     end
