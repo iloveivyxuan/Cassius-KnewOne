@@ -19,8 +19,6 @@ class Impression
   validates :state, inclusion: {in: %i(none desired owned)}
 
   before_save do
-    self.score = 0 if self.state != :owned
-
     if state_changed?
       if state == :desired
         self.fancied = true
