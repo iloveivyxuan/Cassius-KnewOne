@@ -54,7 +54,7 @@ class Category
 
   def parents_text
     return "" if self.parents.blank?
-    self.parents.map(&:name).join(',')
+    self.parents.map(&:name).join(', ')
   end
 
   def parents_text=(text)
@@ -63,11 +63,11 @@ class Category
 
   def children_text
     return "" if self.children.blank?
-    self.children.map(&:name).join(',')
+    self.children.map(&:name).join(', ')
   end
 
   def children_text=(text)
-    text.split(/[，,]/).each do |name|
+    text.split(/[，,]/).map(&:strip).each do |name|
       child = Category.find_or_create_by(name: name.strip)
       child.parents << self
       child.set(depth: self.depth + 1)
