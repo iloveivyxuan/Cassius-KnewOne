@@ -5,7 +5,6 @@ class Category
   field :name, type: String
   slug :name, history: true
   field :things_count, type: Integer, default: 0
-  field :users_count, type: Integer, default: 0
   field :priority, type: Integer, default: 0
   mount_uploader :cover, CoverUploader
   field :icon, type: String, default: "fa-tags" # font awesome
