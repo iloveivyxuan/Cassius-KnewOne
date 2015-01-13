@@ -66,7 +66,7 @@ class Category
   end
 
   def parents_text=(text)
-    self.parents = Category.where(name: text.split(/[，,]/).map(&:strip))
+    self.parents = Category.in(name: text.split(/[，,]/).map(&:strip))
   end
 
   def children_text
