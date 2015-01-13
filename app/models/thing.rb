@@ -462,10 +462,10 @@ class Thing < Post
   end
 
   def update_approved_time
-    self.priority = -1 unless self.priority.is_a?(Integer)
-    if self.approved_at.nil? && self.priority >= 0
+    self.priority ||= -1
+    if ((priority_was.nil? || priority_was < 0) && priority >= 0) || (priority_was == 0 && priority > 0)
       self.approved_at = Time.now
-      self.author.inc karma: Settings.karma.publish.thing
+      self.author.inc karma: Settings.karma.publish.thing if approved_at_was.nil?
     end
   end
 
