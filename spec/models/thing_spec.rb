@@ -58,7 +58,7 @@ describe Thing, type: :model do
       thing.reload
       user.reload
 
-      expect(thing.fancied?(user)).to be true
+      expect(thing.fancied?(user)).to be false
       expect(thing.owned?(user)).to be true
       expect(thing.owners_count).to eq 1
       expect(user.owns_count).to eq 1
@@ -67,7 +67,7 @@ describe Thing, type: :model do
       thing.reload
       user.reload
 
-      expect(thing.fancied?(user)).to be true
+      expect(thing.fancied?(user)).to be false
       expect(thing.owned?(user)).to be false
       expect(thing.owners_count).to eq 0
       expect(user.owns_count).to eq 0

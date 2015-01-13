@@ -83,7 +83,7 @@ class Thing < Post
   index fanciers_count: -1
 
   def fanciers
-    User.in(id: impressions.pluck(:author_id))
+    User.in(id: impressions.fancied.pluck(:author_id))
   end
 
   def desirers
@@ -95,7 +95,8 @@ class Thing < Post
   end
 
   def fancy(user)
-    impressions.create(author: user) unless fancied?(user)
+    impression = impressions.find_or_create_by(author: user)
+    impression.update(fancied: true)
   end
 
   def desire(user)
@@ -109,7 +110,8 @@ class Thing < Post
   end
 
   def unfancy(user)
-    impressions.where(author: user).destroy
+    impression = impressions.fancied.where(author: user).first
+    impression.update(fancied: false) if impression
   end
 
   def undesire(user)
@@ -123,7 +125,7 @@ class Thing < Post
   end
 
   def fancied?(user)
-    impressions.where(author: user).exists?
+    impressions.fancied.where(author: user).exists?
   end
 
   def desired?(user)

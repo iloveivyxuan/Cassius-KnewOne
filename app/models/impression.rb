@@ -3,8 +3,8 @@ class Impression
   include Mongoid::Timestamps
   include Ratable
 
-  belongs_to :author, class_name: 'User', index: true, counter_cache: :fancies_count
-  belongs_to :thing, index: true, counter_cache: :fanciers_count
+  belongs_to :author, class_name: 'User', index: true
+  belongs_to :thing, index: true
   has_and_belongs_to_many :tags, inverse_of: nil,
                           before_add: :before_add_tag,
                           before_remove: :before_remove_tag
@@ -13,6 +13,7 @@ class Impression
   validates :thing, presence: true, uniqueness: {scope: :author}
 
   field :description, type: String, default: ''
+  field :fancied, type: Boolean, default: false
   field :state, type: Symbol, default: :none
 
   validates :state, inclusion: {in: %i(none desired owned)}
@@ -22,6 +23,7 @@ class Impression
 
     if state_changed?
       if state == :desired
+        self.fancied = true
         author.inc(desires_count: 1)
         thing.inc(desirers_count: 1)
       end
@@ -41,9 +43,26 @@ class Impression
         thing.inc(owners_count: -1)
       end
     end
+
+    if fancied_changed?
+      if fancied
+        author.inc(fancies_count: 1)
+        thing.inc(fanciers_count: 1)
+      end
+
+      if fancied_was
+        author.inc(fancies_count: -1)
+        thing.inc(fanciers_count: -1)
+      end
+    end
   end
 
   before_destroy do
+    if fancied_was
+      author.inc(fancies_count: -1)
+      thing.inc(fanciers_count: -1)
+    end
+
     if state_was == :desired
       author.inc(desires_count: -1)
       thing.inc(desirers_count: -1)
@@ -55,6 +74,7 @@ class Impression
     end
   end
 
+  scope :fancied, -> { where(fancied: true) }
   scope :desired, -> { where(state: :desired) }
   scope :owned, -> { where(state: :owned) }
 
