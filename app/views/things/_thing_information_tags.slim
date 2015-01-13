@@ -1,4 +1,4 @@
-- @children.each do |child|
+- children.each do |child|
   - klass = (child == @category) ? "tag-button btn btn-default active" : "tag-button btn btn-default"
   - if @brand
     = link_to child.name, brands_categories_things_path(@brand, child), class: klass, role: "button"

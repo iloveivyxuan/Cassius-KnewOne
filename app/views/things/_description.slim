@@ -2,10 +2,10 @@
   p#description= description
 
 - if klass.is_a? Brand
-  - @children = klass.categories
+  - children = klass.categories
 - elsif klass.third_level?
-  - @children = (@second_c || klass.parent).children
+  - children = (@second_c || klass.parent).children
 - else
-  - @children = klass.children
+  - children = klass.children
 #tags
-  = render 'thing_information_tags'
+  = render 'thing_information_tags', children: children
