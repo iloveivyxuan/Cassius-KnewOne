@@ -95,17 +95,17 @@ class Thing < Post
   end
 
   def fancy(user)
-    impression = impressions.find_or_create_by(author: user)
+    impression = impressions.find_or_initialize_by(author: user)
     impression.update(fancied: true)
   end
 
   def desire(user)
-    impression = impressions.find_or_create_by(author: user)
+    impression = impressions.find_or_initialize_by(author: user)
     impression.update(state: :desired) if impression.state != :owned
   end
 
   def own(user)
-    impression = impressions.find_or_create_by(author: user)
+    impression = impressions.find_or_initialize_by(author: user)
     impression.update(state: :owned)
   end
 
