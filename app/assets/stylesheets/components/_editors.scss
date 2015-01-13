@@ -283,6 +283,33 @@
   }
 }
 
+.editor-ctxmenu {
+  position: absolute;
+
+  button {
+    background-color: #333;
+    border: none;
+    color: #fff;
+    height: 36px;
+    margin-left: 5px;
+    padding: 0;
+    text-align: center;
+    width: 36px;
+
+    &:hover {
+      background-color: #666;
+    }
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    .fa {
+      margin: 0;
+    }
+  }
+}
+
 .medium-editor-placeholder:after {
   color: $text-muted;
   font-style: normal;
