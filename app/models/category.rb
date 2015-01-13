@@ -52,15 +52,6 @@ class Category
     Thing.where(category_ids: self.id)
   end
 
-  def parent_text
-    self.parent.name
-  end
-
-  def parent_text=(text)
-    c = Category.where(name: text.strip).first
-    self.parent = c if c
-  end
-
   def parents_text
     return "" if self.parents.blank?
     self.parents.map(&:name).join(',')
