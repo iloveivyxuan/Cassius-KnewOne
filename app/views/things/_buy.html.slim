@@ -1,10 +1,10 @@
-.adoption
-  = tp.adoption
 - if tp.buy
   .shop
-    - if tp.price.present?
-      #price.price
-        = tp.price
+    header.shop-header
+      = tp.adoption
+      - if tp.price.present?
+        #price.price
+          = tp.price
     - if user_signed_in?
       = tp.render_shopping_desc
     .buy.clearfix
