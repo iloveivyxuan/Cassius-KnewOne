@@ -44,7 +44,7 @@ class Kind
   }
 
   def has_stock?
-    stock > 0
+    self.stock > 0 && self.stage != :hidden
   end
 
   def safe_destroy?
