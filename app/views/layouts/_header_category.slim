@@ -3,7 +3,7 @@
     = link_to categories_path do
       | 分类
       i.fa.fa-caret-down
-    - unless Rails.env.production?
+    - if Rails.env.production?
       ul.dropdown-menu
         - Category.top_level.gt(things_count: 0).desc(:things_count).limit(14).each do |top_c|
           li

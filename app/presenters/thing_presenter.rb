@@ -239,7 +239,7 @@ class ThingPresenter < PostPresenter
   end
 
   def categories(depth=1)
-    thing.categories.gte(depth: 1)
+    thing.categories.gte(depth: depth)
   end
 
   def related_things(size = 10)
