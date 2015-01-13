@@ -9,24 +9,22 @@
     h1
       - if @brand
         = render 'brand_breadcrumb'
-      - elsif @tag && @category
+      - elsif @third_c
         ol.breadcrumb
-          - if @category.parent
-            li= link_to @category.parent.name, category_things_path(@category.parent)
-          li= link_to @category.name, category_things_path(@category)
-          li.active= @tag.name
-      - elsif @tag
+          li= link_to @top_c.name, categories_things_path(@top_c)
+          li= link_to @second_c.name, categories_things_path(@second_c)
+          li.active= @third_c.name
+      - elsif @second_c
         ol.breadcrumb
-          li.active= @tag.name
-      - elsif @category
+          li= link_to @top_c.name, categories_things_path(@top_c)
+          li.active= @second_c.name
+      - elsif @top_c
         ol.breadcrumb
-          - if (primary ||= @category.parent)
-            li= link_to primary.name, category_things_path(primary)
-          li.active= @category.name
-      - unless @category || @tag || @brand
+          li.active= @top_c.name
+      - else
         = link_to '产品', things_path, class: 'breadcrumb'
     nav.sort_breadcrumb
-      - if browser.desktop? && (@category || @tag || @brand)
+      - if browser.desktop? && (@category || @brand)
         = render 'sort_breadcrumb'
 
   - if (klass = @brand || @category)
@@ -45,7 +43,7 @@
   - if @tag
     = render 'tag_description'
 
-  - if !browser.desktop? && (@category || @brand || @tag)
+  - if !browser.desktop? && (@brand || @category)
     nav.sort_breadcrumb
       = render 'sort_breadcrumb'
 

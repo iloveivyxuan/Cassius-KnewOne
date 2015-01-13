@@ -1,9 +1,8 @@
-- tags.each do |tag|
-  - klass = (tag == @tag) ? "tag-button btn btn-default active" : "tag-button btn btn-default"
-  - if tag.is_a? Tag
-    - if @brand
-      = link_to tag.name, "/things/brand/#{@brand.id}/tag/#{tag.slug}", class: klass, role: "button"
-    - else
-      = link_to tag.name, "/things/category/#{@category.slug}/tag/#{tag.slug}", class: klass, role: "button"
-  - else
-    = link_to tag.name, category_things_path(tag), class: klass, role: "button"
+- @children.each do |child|
+  - klass = (child == @category) ? "tag-button btn btn-default active" : "tag-button btn btn-default"
+  - if @brand
+    = link_to child.name, brands_categories_things_path(@brand, child), class: klass, role: "button"
+  - elsif @second_c || @third_c
+    = link_to child.name, categories_things_path(@top_c, @second_c, child), class: klass, role: "button"
+  - elsif @top_c
+    = link_to child.name, categories_things_path(@top_c, child), class: klass, role: "button"

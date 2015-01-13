@@ -1,11 +1,11 @@
 .category_block
   .col-md-5
-    = link_to category_things_path(category: category), class: "cover" do
+    = link_to categories_things_path(category), class: "cover" do
       = image_tag category.cover.url(:square)
   .col-md-7
     .info
-      h5= link_to category.name, category_things_path(category: category)
+      h5= link_to category.name, categories_things_path(category)
     .tags_container
       .tags
-        - category.inner_categories.each do |inner_c|
-          = link_to inner_c.name, category_things_path(inner_c), class: "tag-button btn btn-default", role: "button"
+        - category.children.each do |second_c|
+          = link_to second_c.name, categories_things_path(category, second_c), class: "tag-button btn btn-default", role: "button"

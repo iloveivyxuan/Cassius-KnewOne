@@ -8,14 +8,12 @@ class ThingsController < ApplicationController
   after_action :store_location, only: [:comments, :show]
 
   def index
-    if params[:category].present? and params[:category] != 'all'
-      @category = Category.find(params[:category])
+    if params[:categories].present?
+      @top_c, @second_c, @third_c = params[:categories].split("/").map { |slug| Category.find(slug) }
+      @category = @third_c || @second_c || @top_c
       @things = @category.things
     end
-    if params[:tag].present?
-      @tag = Tag.where(slugs: params[:tag].to_s).first
-      @things = @things.by_tag(@tag) if @tag
-    end
+
     if params[:brand].present?
       @brand = Brand.where(id: params[:brand].to_s).first
       @things = @things.by_brand(@brand) if @brand
