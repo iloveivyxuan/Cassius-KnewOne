@@ -1,0 +1,17 @@
+- if @category.cover
+  = image_tag @category.cover.url(:normal)
+= f.file_field :cover
+= f.hidden_field :cover_cache
+label 名称
+= f.text_field :name, class: "form-control"
+label 优先级
+= f.text_field :priority, class: "form-control"
+label icon
+= f.text_field :icon, class: "form-control"
+label 子分类
+= f.text_field :children_text, class: "form-control"
+label 父分类
+= f.text_field :parents_text, class: "form-control"
+div
+  label 描述
+  = f.text_area :description, cols: 80, rows: 20, class: "form-control"
