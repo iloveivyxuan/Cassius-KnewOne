@@ -176,4 +176,12 @@ module ThingsHelper
       nil
     end
   end
+
+  def categories_things_path(*c)
+    "/things/categories/#{c.map(&:slug).join('/')}"
+  end
+
+  def brands_categories_things_path(brand, category)
+    "/things/brand/#{brand.id}/categories/#{category.slug}"
+  end
 end

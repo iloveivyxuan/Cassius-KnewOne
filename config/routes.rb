@@ -177,6 +177,7 @@ Making::Application.routes.draw do
       get 'extract_url'
       get 'categories/*categories', to: 'things#index'
       get 'brand/:brand', action: :index, as: :brand
+      get 'brand/:brand/categories/:categories', action: :index
       post 'modify_brand'
     end
 
