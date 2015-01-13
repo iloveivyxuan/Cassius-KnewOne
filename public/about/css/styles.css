@@ -7096,11 +7096,11 @@ ul.socialShare {
       float: left;
       width: 40%;
       margin-left: 10%;
-      margin-top: 230px;
+      margin-top: 0;
       text-align: left; } }
-  @media only screen and (min-width: 992px) {
+  @media only screen and (min-width: 992px) and (min-height: 800px) {
     #section5 figure figcaption {
-      margin-top: 170px; } }
+        margin-top: 100px; } }
 
 @media only screen and (min-width: 992px) {
   #section6 {
