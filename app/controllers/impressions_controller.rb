@@ -15,11 +15,6 @@ class ImpressionsController < ApplicationController
     head :no_content
   end
 
-  def destroy
-    @thing.impressions.where(author: current_user).destroy
-    head :no_content
-  end
-
   private
 
   def impression_params

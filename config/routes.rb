@@ -207,7 +207,7 @@ Making::Application.routes.draw do
       end
     end
 
-    resource :impression, only: [:show, :update, :destroy]
+    resource :impression, only: [:show, :update]
 
     resources :stories
   end
