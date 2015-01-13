@@ -243,7 +243,7 @@ class ThingPresenter < PostPresenter
   end
 
   def tags
-    Tag.any_in name: thing.tags.map(&:name)
+    Category.any_in(name: thing.categories).gte(depth: 1)
   end
 
   def related_things(size = 10)
