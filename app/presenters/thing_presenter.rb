@@ -238,12 +238,8 @@ class ThingPresenter < PostPresenter
     kinds.map { |kind| kind.option_for_select(with_price: true) }.join
   end
 
-  def categories
-    Category.any_in(name: thing.categories)
-  end
-
-  def tags
-    Category.any_in(name: thing.categories.pluck(:name)).gte(depth: 1)
+  def categories(depth=1)
+    thing.categories.gte(depth: 1)
   end
 
   def related_things(size = 10)
