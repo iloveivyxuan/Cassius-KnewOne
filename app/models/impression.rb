@@ -55,6 +55,10 @@ class Impression
     end
   end
 
+  after_save do
+    destroy unless fancied || state == :owned
+  end
+
   before_destroy do
     reload
 

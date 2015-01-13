@@ -69,4 +69,11 @@ describe Impression, type: :model do
       expect(author.owns_count).to eq 0
     end
   end
+
+  describe 'updates counts automatically' do
+    specify do
+      impression.update(fancied: false, state: :none)
+      expect(impression.persisted?).to be false
+    end
+  end
 end

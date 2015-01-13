@@ -187,6 +187,7 @@ FactoryGirl.define do
   factory :impression do
     author
     thing
+    fancied true
     tags { create_list(:tag, 1) }
   end
 end
