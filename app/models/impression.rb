@@ -16,12 +16,19 @@ class Impression
   field :fancied, type: Boolean, default: false
   field :state, type: Symbol, default: :none
 
+  field :fancied_at, type: Time
+  field :desired_at, type: Time
+  field :owned_at, type: Time
+
   validates :state, inclusion: {in: %i(none desired owned)}
 
   before_save do
+    now = Time.now.utc if state_changed? || fancied_changed?
+
     if state_changed?
       if state == :desired
         self.fancied = true
+        self.desired_at = now
         author.inc(desires_count: 1)
         thing.inc(desirers_count: 1)
       end
@@ -32,6 +39,7 @@ class Impression
       end
 
       if state == :owned
+        self.owned_at = now
         author.inc(owns_count: 1)
         thing.inc(owners_count: 1)
       end
@@ -44,6 +52,7 @@ class Impression
 
     if fancied_changed?
       if fancied
+        self.fancied_at = now
         author.inc(fancies_count: 1)
         thing.inc(fanciers_count: 1)
       end
