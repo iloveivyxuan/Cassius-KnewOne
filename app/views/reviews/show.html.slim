@@ -32,6 +32,9 @@
 
       = render 'shared/comments', post: rp.review, id: "comments", auth: true
 
+- if browser.wechat?
+  = render 'shared/share_wechat_tip'
+
 - content_for :script do
   javascript:
     Making.InitReview();

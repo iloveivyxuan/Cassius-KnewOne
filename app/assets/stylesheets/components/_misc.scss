@@ -276,19 +276,24 @@ a.btn_block {
 }
 
 #share--wechat-tip {
-  background-color: rgba(0, 0, 0, .8);
-  bottom: 0;
+  background-color: #79acd9;
+  color: #fff;
   display: none;
   left: 0;
+  margin: 0;
+  padding: 15px;
   position: fixed;
   right: 0;
+  text-align: center;
   top: 0;
   z-index: $zindex-navbar + 1;
 
-  img {
-    position: absolute;
-    right: 25px;
-    top: 15px;
+  .fa {
+    margin-right: 0;
+  }
+
+  .fa-level-up {
+    margin-left: 5px;
   }
 }
 

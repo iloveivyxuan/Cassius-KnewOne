@@ -107,8 +107,8 @@ do (root = @, exports = Making) ->
           .done (data, status, jqXHR) ->
             $(container).empty().append(data)
 
-  exports.shareOnWechat = ->
-    $button = $('.js-share')
+  exports.shareOnWechat = (button = '.js-share') ->
+    $button = $(button)
 
     if exports.browser is 'wechat' and $button.length
         $tip = $('#share--wechat-tip')
@@ -118,10 +118,27 @@ do (root = @, exports = Making) ->
           .attr('href', '#')
           .on 'click', (event) ->
             event.preventDefault()
-            $tip.fadeIn('fast')
+            $tip.slideDown('fast')
         $tip
           .on 'click', (event) ->
-            $(this).fadeOut('fast')
+            $(this).slideUp('fast')
+
+  exports.bindWechatShareTip = ->
+    $tip        = $('#share--wechat-tip')
+    offsetStart = 0
+    offsetEnd   = 0
+
+    $document
+      .on 'scroll', (event) ->
+        if $document.scrollTop() + $window.height() == $document.height()
+          $tip.slideDown('fast')
+      .on 'touchstart touchmove', (event) ->
+        touch = event.originalEvent.changedTouches[0]
+        if event.type is 'touchstart'
+          offsetStart = touch.clientY
+        else
+          offsetEnd = touch.clientY
+          $tip.slideUp('fast') if offsetEnd - offsetStart > 0
 
   exports.loadEmbed = ->
     $embed     = $(".knewone-embed:empty")
