@@ -82,9 +82,9 @@ class Impression
   scope :desired, -> { where(state: :desired) }
   scope :owned, -> { where(state: :owned) }
 
-  def tags=(tags)
-    self.tag_ids = tags.map do |tag|
-      tag.is_a?(Tag) ? tag.id : Tag.find_or_create_by(name: tag.to_s).id
+  def tag_names=(names)
+    self.tags = names.map do |name|
+      Tag.find_or_create_by(name: name.to_s)
     end
   end
 
