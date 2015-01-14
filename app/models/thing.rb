@@ -6,9 +6,8 @@ class Thing < Post
   slug :title, history: true
   before_save :delete_illegal_chars
 
-  index priority: 1
-
   field :approved_at, type: DateTime, default: nil
+  index approved_at: -1
   before_save :update_approved_time
 
   field :subtitle, type: String, default: ""
@@ -43,6 +42,7 @@ class Thing < Post
   CURRENCY_LIST = %w{¥ $ € £ JPY¥ ₩ NT$ C$ HK$}
 
   field :priority, type: Integer, default: -1
+  index({priority: -1, created_at: -1})
 
   before_create :update_priority
 
