@@ -30,34 +30,22 @@ module ThingsHelper
         data: data_with_login_tracker("pre_order", thing.title, !browser.wechat?)
       end
     when :kick
-      if user_signed_in? && thing.shop.present?
+      if thing.shop.present?
         link_to_with_icon "众筹", "fa fa-fire fa-lg", buy_thing_path(thing),
         title: thing.title, class: "btn btn--kick btn-buy-mobile buy_button", target: "_blank", rel: 'nofollow',
         data: data_with_buy_tracker("kick", thing.title)
-      else
-        link_to_with_icon (browser.wechat? ? "请登录后购买" : "请登录后众筹"), "fa fa-sign-in", login_path,
-        class: "btn btn--login btn-buy-mobile",
-        data: data_with_login_tracker("kick", thing.title, !browser.wechat?)
       end
     when :domestic
-      if user_signed_in? && thing.shop.present?
+      if thing.shop.present?
         link_to_with_icon "网购", "fa fa-location-arrow fa-lg", buy_thing_path(thing),
         title: thing.title, class: "btn btn--online_shopping btn-buy-mobile buy_button", target: "_blank", rel: 'nofollow',
         data: data_with_buy_tracker("domestic", thing.title)
-      else
-        link_to_with_icon (browser.wechat? ? "请登录后购买" : "请登录后网购"), "fa fa-sign-in", login_path,
-        class: "btn btn--login btn-buy-mobile",
-        data: data_with_login_tracker("domestic", thing.title, !browser.wechat?)
       end
     when :abroad
-      if user_signed_in? && thing.shop.present?
+      if thing.shop.present?
         link_to_with_icon "海淘", "fa fa-plane fa-lg", buy_thing_path(thing),
         title: thing.title, class: "btn btn--online_shopping btn-buy-mobile buy_button", target: "_blank", rel: 'nofollow',
         data: data_with_buy_tracker("abroad", thing.title)
-      else
-        link_to_with_icon (browser.wechat? ? "请登录后购买" : "请登录后海淘"), "fa fa-sign-in", login_path,
-        class: "btn btn--login btn-buy-mobile",
-        data: data_with_login_tracker("abroad", thing.title, !browser.wechat?)
       end
     else
       nil
