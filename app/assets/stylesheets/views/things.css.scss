@@ -831,7 +831,7 @@ html.feelings_show {
 
   .mobile_others {
     @include MQ(MD) { padding: .8em 1em }
-    background: $ghost-white;
+    background: #ebeced;
     .mobile_related {
       display: inline-block;
       width: 40%;
@@ -872,35 +872,37 @@ html.feelings_show {
     }
 
     .mobile_tags {
-      display: none;
-      float: right;
-      padding: .8em 1em;
-      width: 60%;
+      @include clearfix;
+      padding: 15px;
+      text-align: center;
+
       li {
-        float: right;
-        width: auto;
-        @include MQ(Splus) { margin-left: 1em }
-        padding: 0;
-        @include MQ(Mneg) {
-          &:nth-child(n+3) {
-            display: none;
-          }
-        }
+        float: left;
+        width: 50%;
+
         a {
-          display: block;
+          border: none;
+          display: inline-block;
           height: 30px;
           padding: 0 10px;
           font-size: 12px;
           color: $gray;
           line-height: 30px;
           text-align: center;
-          @include border-radius(4px);
+          border-radius: 4px;
+
           &:hover {
             color: #fff;
             background-color: $gray;
-            border: none;
           }
         }
+      }
+    }
+
+    .panel {
+      margin: {
+        bottom: 0;
+        top: 2em;
       }
     }
   }
