@@ -30,11 +30,9 @@ ul.nav.nav-pills
 - haven_queries.each do |query, tag_text|
   = form_tag batch_edit_haven_things_path, method: :get, class: "form-inline" do
     - haven_filters.each do |k, _|
-      - if queries["filter"].include?(k)
-        = hidden_field_tag "filter[]", k
+      = hidden_field_tag("filter[]", k) if queries["filter"].include?(k)
     - haven_queries.each do |k, v|
-      - if queries.include?(k)
-        = hidden_field_tag k, queries[k]
+      = hidden_field_tag(k, queries[k]) if queries.include?(k)
     = text_field_tag query, params[query], class: "form-control"
     = submit_tag "查询#{tag_text}", class: "btn btn-default"
 
