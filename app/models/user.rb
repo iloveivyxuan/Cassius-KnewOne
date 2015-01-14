@@ -51,9 +51,6 @@ class User
 
   # Stats
   field :things_count, type: Integer, default: 0
-  field :fancies_count, type: Integer, default: 0
-  field :desires_count, type: Integer, default: 0
-  field :owns_count, type: Integer, default: 0
   field :reviews_count, type: Integer, default: 0
   field :feelings_count, type: Integer, default: 0
   field :followers_count, type: Integer, default: 0
@@ -382,6 +379,43 @@ HERE
     (thing_lists + fancied_thing_lists).uniq
   end
 
+  # Impressions
+  has_many :impressions, inverse_of: :author
+
+  field :fancies_count, type: Integer, default: 0
+  field :desires_count, type: Integer, default: 0
+  field :owns_count, type: Integer, default: 0
+
+  def fancy_ids
+    impressions.fancied.pluck(:thing_id)
+  end
+
+  def desire_ids
+    impressions.desired.pluck(:thing_id)
+  end
+
+  def own_ids
+    impressions.owned.pluck(:thing_id)
+  end
+
+  def fancies
+    Thing.in(id: fancy_ids)
+  end
+
+  def desires
+    Thing.in(id: desire_ids)
+  end
+
+  def owns
+    Thing.in(id: own_ids)
+  end
+
+  include IdsSortable
+
+  sort_by_ids :owns, Thing
+  sort_by_ids :desires, Thing
+  sort_by_ids :fancies, Thing
+
   def balance
     BigDecimal.new(self.balance_cents) / 100
   end
@@ -519,11 +553,6 @@ HERE
   def wechat_auth
     @_wechat_auth ||= self.auths.where(provider: 'wechat').first
   end
-
-  include IdsSortable
-
-  sort_by_ids :owns, Thing
-  sort_by_ids :fancies, Thing
 
   need_aftermath :follow, :unfollow
 
