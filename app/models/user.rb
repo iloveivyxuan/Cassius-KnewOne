@@ -581,7 +581,7 @@ HERE
 
   def __elasticsearch__.__find_in_batches(options={}, &block)
     batch_size = options[:batch_size] || 1000
-    User.only(:id, :name, :avatar, :karma).each_slice(batch_size, &block)
+    User.no_timeout.only(:id, :name, :avatar, :karma).each_slice(batch_size, &block)
   end
 
   protected
