@@ -28,15 +28,15 @@ ul.nav.nav-pills
          = link_to v, batch_edit_haven_things_path(conds)
 
 - haven_queries.each do |query, tag_text|
-  = form_tag batch_edit_haven_things_path, method: :get do
+  = form_tag batch_edit_haven_things_path, method: :get, class: "form-inline" do
     - haven_filters.each do |k, _|
       - if queries["filter"].include?(k)
         = hidden_field_tag "filter[]", k
     - haven_queries.each do |k, v|
       - if queries.include?(k)
         = hidden_field_tag k, queries[k]
-    = text_field_tag(query, params[query])
-    = submit_tag "查询#{tag_text}"
+    = text_field_tag query, params[query], class: "form-control"
+    = submit_tag "查询#{tag_text}", class: "btn btn-default"
 
 - @things.each do |t|
   = form_tag batch_update_haven_things_path(redirect_from: request.fullpath), method: :patch, remote: true, class: "batch_edit" do
