@@ -21,10 +21,6 @@ class NotificationSettingsController < ApplicationController
   private
 
   def notification_setting_params
-    params.require(:notification_setting).
-      permit(:stock, :new_review, :new_feeling, :new_topic,
-             :comment, :topic, :review, :feeling, :list_item,
-             :following, :weibo_friend_joined,
-             :love_feeling, :love_review, :love_topic, :fancy_thing, :fancy_list)
+    params.require(:notification_setting).permit(NotificationSetting::TYPES.keys)
   end
 end

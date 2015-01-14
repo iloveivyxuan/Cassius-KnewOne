@@ -13,37 +13,31 @@ class NotificationSetting
       :all => '允许'
   }
 
-  # thing
-  field :stock, type: Symbol, default: :all
-  field :new_review, type: Symbol, default: :all
-  field :new_feeling, type: Symbol, default: :all
-  field :new_topic, type: Symbol, default: :all
+  TYPES = {
+    :new_review => :scope,
+    :new_feeling => :scope,
+    :new_topic => :scope,
+    :comment => :scope,
+    :topic => :scope,
+    :review => :scope,
+    :feeling => :scope,
+    :list_item => :scope,
 
-  # reply
-  field :comment, type: Symbol, default: :all
-  field :topic, type: Symbol, default: :all
-  field :review, type: Symbol, default: :all
-  field :feeling, type: Symbol, default: :all
-  field :list_item, type: Symbol, default: :all
+    :stock => :bool,
+    :following => :bool,
+    :weibo_friend_joined => :bool,
+    :love_feeling => :bool,
+    :love_review => :bool,
+    :love_topic => :bool,
+    :fancy_thing => :bool,
+    :fancy_list => :bool
+  }
 
-  # friend
-  field :following, type: Symbol, default: :all
-  field :weibo_friend_joined, type: Symbol, default: :all
+  TYPES.each do |key, type|
+    field key, type: Symbol, default: :all
+    options = (type == :scope) ? SCOPE_OPTIONS : BOOL_OPTIONS
 
-  # fancy
-  field :love_feeling, type: Symbol, default: :all
-  field :love_review, type: Symbol, default: :all
-  field :love_topic, type: Symbol, default: :all
-  field :fancy_thing, type: Symbol, default: :all
-  field :fancy_list, type: Symbol, default: :all
-
-  validates :stock, :new_review, :new_feeling, :new_topic,
-  :comment, :topic, :review, :feeling, :list_item,
-  :following, :weibo_friend_joined,
-  :love_feeling, :love_review, :love_topic, :fancy_thing, :fancy_list, presence: true
-
-  validates :new_review, :new_feeling, :new_topic, :comment, :topic, :review, :feeling, :list_item,
-            inclusion: {in: SCOPE_OPTIONS.keys}
-  validates :stock, :following, :weibo_friend_joined, :love_feeling, :love_review, :love_topic, :fancy_thing, :fancy_list,
-            inclusion: {in: BOOL_OPTIONS.keys}
+    validates key, presence: true
+    validates key, inclusion: { in: options.keys }
+  end
 end
