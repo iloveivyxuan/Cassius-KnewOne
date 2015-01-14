@@ -1,0 +1,10 @@
+ul.dropdown-menu.dropdown_share-menu
+  li= link_to_with_icon "微博", "fa fa-weibo", "#", class: "weibo", title: "分享到新浪微博"
+  li= link_to_with_icon "Twitter", "fa fa-twitter", "#", class: "twitter", title: "分享到 Twitter"
+  li= link_to_with_icon "人人", "fa fa-renren", "http://widget.renren.com/dialog/share?link=#{request.url}", class: "renren", target: "_blank", title: "分享到人人网"
+
+- content_for :script do
+  javascript:
+    new Making.Views.Share({
+      el: '.dropdown_share-menu'
+    });

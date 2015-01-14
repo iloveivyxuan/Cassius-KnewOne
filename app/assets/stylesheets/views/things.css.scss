@@ -1590,7 +1590,7 @@ html.feelings_show {
         text-align: center;
         @include transition(all 0.2s ease-out);
         &:hover { background: $ghost-white }
-        a {
+        > a {
           display: block;
           width: 100%;
           color: $blue-dark;
@@ -1603,14 +1603,14 @@ html.feelings_show {
           }
           small { margin-left: .5em }
         }
-        &.fanciers { a { color: $red } }
-        &.owners { a { color: $blue-light } }
-        &.add_to_list { a { color: $orange } }
+        &.fanciers { > a { color: $red } }
+        &.owners { > a { color: $blue-light } }
+        &.add_to_list { > a { color: $orange } }
       }
       @include MQ(Lneg) {
         > li {
           width: 25%;
-          a { padding: 2em 0 }
+          > a { padding: 2em 0 }
         }
       }
       @include MQ(Lplus) {
@@ -1628,7 +1628,7 @@ html.feelings_show {
             border-color: transparent;
             @include box-shadow(inset 0 0 5px rgba(0,0,0,.1));
           }
-          a {
+          > a {
             padding: 2.5em 0;
             @include MQ(XLplus) { padding: 2.5em 0 }
           }
