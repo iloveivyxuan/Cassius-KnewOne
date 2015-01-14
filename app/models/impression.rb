@@ -3,8 +3,10 @@ class Impression
   include Mongoid::Timestamps
   include Ratable
 
-  belongs_to :author, class_name: 'User', index: true
+  belongs_to :author, class_name: 'User'
   belongs_to :thing, index: true
+  index author_id: 1, thing_id: 1
+
   has_and_belongs_to_many :tags, inverse_of: nil,
                           before_add: :before_add_tag,
                           before_remove: :before_remove_tag
