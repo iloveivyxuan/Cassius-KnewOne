@@ -89,9 +89,9 @@ class Impression
     end
   end
 
-  scope :fancied, -> { where(fancied: true) }
-  scope :desired, -> { where(state: :desired) }
-  scope :owned, -> { where(state: :owned) }
+  scope :fancied, -> { where(fancied: true).desc(:fancied_at) }
+  scope :desired, -> { where(state: :desired).desc(:desired_at) }
+  scope :owned, -> { where(state: :owned).desc(:owned_at) }
 
   def tag_names=(names)
     self.tags = names.map do |name|
