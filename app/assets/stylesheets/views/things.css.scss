@@ -1116,17 +1116,16 @@ html.feelings_show {
     }
   }
 
-  #tab--mobile-reviews {
-    > a.btn-write-review {
-      width: 90%;
-      margin: 0 auto;
-      margin-top: 2em;
-      margin-left: 5%;
-      margin-right: 5%;
+  #tab--mobile-reviews > a.btn-write-review,
+  #tab--mobile-feelings > a.btn-write-feeling {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 2em;
+    margin-left: 5%;
+    margin-right: 5%;
 
-      span:before {
-        content: '我要';
-      }
+    span:before {
+      content: '我要';
     }
   }
 
