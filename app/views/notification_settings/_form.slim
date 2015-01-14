@@ -1,5 +1,24 @@
 = simple_form_for(current_user.notification_setting, url: notification_settings_path, wrapper: :horizontal, html: { method: :patch, class: 'form-horizontal' }) do |f|
-  = f.input :stock, as: :radio_buttons, collection: NotificationSetting::BOOL_OPTIONS.to_a.map(&:reverse)
-  = f.input :new_review, as: :radio_buttons, collection: NotificationSetting::SCOPE_OPTIONS.to_a.map(&:reverse)
-  = f.input :comment, as: :radio_buttons, collection: NotificationSetting::SCOPE_OPTIONS.to_a.map(&:reverse)
+  - bool_options = NotificationSetting::BOOL_OPTIONS.to_a.map(&:reverse)
+  - scope_options = NotificationSetting::SCOPE_OPTIONS.to_a.map(&:reverse)
+
+  = f.input :stock, as: :radio_buttons, collection: bool_options, item_wrapper_class: 'radio-inline'
+  = f.input :following, as: :radio_buttons, collection: bool_options, item_wrapper_class: 'radio-inline'
+  = f.input :weibo_friend_joined, as: :radio_buttons, collection: bool_options, item_wrapper_class: 'radio-inline'
+  br
+  = f.input :love_feeling, as: :radio_buttons, collection: bool_options, item_wrapper_class: 'radio-inline'
+  = f.input :love_review, as: :radio_buttons, collection: bool_options, item_wrapper_class: 'radio-inline'
+  = f.input :love_topic, as: :radio_buttons, collection: bool_options, item_wrapper_class: 'radio-inline'
+  = f.input :fancy_thing, as: :radio_buttons, collection: bool_options, item_wrapper_class: 'radio-inline'
+  = f.input :fancy_list, as: :radio_buttons, collection: bool_options, item_wrapper_class: 'radio-inline'
+  br
+  = f.input :new_review, as: :radio_buttons, collection: scope_options, item_wrapper_class: 'radio-inline'
+  = f.input :new_feeling, as: :radio_buttons, collection: scope_options, item_wrapper_class: 'radio-inline'
+  = f.input :new_topic, as: :radio_buttons, collection: scope_options, item_wrapper_class: 'radio-inline'
+  br
+  = f.input :comment, as: :radio_buttons, collection: scope_options, item_wrapper_class: 'radio-inline'
+  = f.input :topic, as: :radio_buttons, collection: scope_options, item_wrapper_class: 'radio-inline'
+  = f.input :review, as: :radio_buttons, collection: scope_options, item_wrapper_class: 'radio-inline'
+  = f.input :feeling, as: :radio_buttons, collection: scope_options, item_wrapper_class: 'radio-inline'
+  = f.input :list_item, as: :radio_buttons, collection: scope_options, item_wrapper_class: 'radio-inline'
   = f.button :submit, '保存', class: 'btn btn-primary'
