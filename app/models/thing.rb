@@ -135,6 +135,14 @@ class Thing < Post
     self.resource.try(:name)
   end
 
+  def categories_text
+    categories.third_level.map(&:name).join(', ')
+  end
+
+  def categories_text=(text)
+    self.categories = text.split(/[，,]/).map(&:strip).map { |name| Category.where(name: name).first }.compact
+  end
+
   def brand_text=(text)
     text.strip!
     self.brand = if text.blank?
