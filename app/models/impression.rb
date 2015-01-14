@@ -18,6 +18,8 @@ class Impression
   field :fancied, type: Boolean, default: false
   field :state, type: Symbol, default: :none
 
+  validates :description, length: {maximum: 140}
+
   field :fancied_at, type: Time
   field :desired_at, type: Time
   field :owned_at, type: Time
