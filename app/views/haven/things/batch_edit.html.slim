@@ -87,7 +87,7 @@ ul.nav.nav-pills
             | 审核时间
             = text_field_tag 'things[][approved_at]', t.approved_at.to_s, placeholder: "比如 2014-12-01 16:15:00", style: 'width: 100%'
           td
-            | 标签
+            | 分类
             = text_field_tag 'things[][categories_text]', t.categories_text, hint: "用,分隔", style: 'width: 100%'
             | 品牌
             = text_field_tag 'things[][brand_text]', (t.brand && (t.brand.en_name || t.brand.zh_name)), style: 'width: 100%'

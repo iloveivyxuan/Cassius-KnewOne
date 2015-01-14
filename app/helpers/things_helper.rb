@@ -96,11 +96,10 @@ module ThingsHelper
 
   def haven_queries
     {
-      "categories" => "分类",
+      "category" => "分类",
       "shop" => "链接",
       "title" => "标题 & 副标题",
       "brand" => "品牌",
-      "tag" => "标签",
       "official" => "来源网站",
       "price_unit" => '价格单位'
     }
