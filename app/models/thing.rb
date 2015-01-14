@@ -82,16 +82,28 @@ class Thing < Post
   field :owners_count, type: Integer, default: 0
   index fanciers_count: -1
 
+  def fancier_ids
+    impressions.fancied.pluck(:author_id)
+  end
+
+  def desirer_ids
+    impressions.desired.pluck(:author_id)
+  end
+
+  def owner_ids
+    impressions.owned.pluck(:author_id)
+  end
+
   def fanciers
-    User.in(id: impressions.fancied.pluck(:author_id))
+    User.in(id: fancier_ids)
   end
 
   def desirers
-    User.in(id: impressions.desired.pluck(:author_id))
+    User.in(id: desirer_ids)
   end
 
   def owners
-    User.in(id: impressions.owned.pluck(:author_id))
+    User.in(id: owner_ids)
   end
 
   def fancy(user)
