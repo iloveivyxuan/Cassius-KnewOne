@@ -87,7 +87,7 @@ module Haven
       when 'xiaoqiu'
         @things = @things.in('author_id' => part_time_list('xiaoqiu'))
       when 'no_team'
-        @things = @things.ne(:author_id.in => part_time_list('no_team'))
+        @things = @things.nin(author_id: part_time_list('no_team'))
       end
       if params[:filter]
         @things = @things.where(shop: "") if params[:filter].include? "no_link"
