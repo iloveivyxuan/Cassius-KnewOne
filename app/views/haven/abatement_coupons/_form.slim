@@ -2,5 +2,17 @@
   = f.input :name
   = f.input :note
   = f.input :threshold_price, as: :decimal
+  .form-group.select
+    label.control-label 参与活动的厂商ID
+    br
+    select.form-control name='abatement_coupon[merchant_ids][]' multiple="true" data-role="tagsinput"
+      - @coupon.merchant_ids.each do |i|
+        option value="#{i}" = i
+  .form-group.select
+    label.control-label 不参与活动的产品ID
+    br
+    select.form-control name='abatement_coupon[merchant_ids][]' multiple="true" data-role="tagsinput"
+      - @coupon.exclude_thing_ids.each do |i|
+        option value="#{i}" = i
   = f.input :price, as: :decimal
   = f.button :submit

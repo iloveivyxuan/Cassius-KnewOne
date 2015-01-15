@@ -11,6 +11,8 @@ class OrderItem
   field :kind_id, type: String
   validates :kind_id, :presence => true
 
+  field :merchant_id, type: String
+
   scope :by_id, ->(id) { where 'thing_id' => id }
   scope :virtual, -> { where virtual: true }
 

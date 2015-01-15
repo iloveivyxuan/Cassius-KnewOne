@@ -637,6 +637,7 @@ class Order
                                quantity: cart_item.quantity,
                                thing: cart_item.thing.id,
                                kind_id: cart_item.kind.id,
+                               merchant_id: cart_item.thing.merchant_id.to_s,
                                single_price: cart_item.kind.price
                            })
 
