@@ -345,27 +345,19 @@ do (exports = Making) ->
             $count.text(parseInt($count.text(), 10) + increment)
 
         if $trigger.hasClass('fancied')
-          unfancy = ->
-            $trigger
-              .removeClass('fancied')
-              .addClass('unfancied')
-              .attr('title', '取消喜欢')
-              .children('.fa')
-              .removeClass('fa-heart')
-              .addClass('fa-heart-o heartbeat')
-              # TODO change transitionEnd event to animationend event
-              .one $.support.transition.end, ->
-                $(@).removeClass('heartbeat')
-              .emulateTransitionEnd(750)
+          $trigger
+          .removeClass('fancied')
+          .addClass('unfancied')
+          .attr('title', '取消喜欢')
+          .children('.fa')
+          .removeClass('fa-heart')
+          .addClass('fa-heart-o heartbeat')
+          # TODO change transitionEnd event to animationend event
+          .one $.support.transition.end, ->
+            $(@).removeClass('heartbeat')
+          .emulateTransitionEnd(750)
 
-            updateFanciersCount(-1)
-
-          key = "#{Making.user}+unfancy-confirmed"
-          if !$trigger.data('has-lists') || localStorage.getItem(key)
-            unfancy()
-          else
-            localStorage.setItem(key, true)
-            unfancy() if confirm('如果施了“取消喜欢”的神奇魔法，该产品将从列表中消失')
+          updateFanciersCount(-1)
         else
           $trigger
           .removeClass('unfancied')

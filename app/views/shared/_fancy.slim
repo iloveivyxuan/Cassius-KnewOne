@@ -5,14 +5,10 @@
     small 喜欢
 - else
   - if user_signed_in?
-    - data = {'fancy-thing' => {id: p.id, type: 'fancy'}}
+    - data = {}
   - else
     - data = {toggle: "modal", target: "#login-modal", link: thing_url(p.thing), "signin-legend" => "登录后，收集喜欢的产品"}
   - data.merge!({ category: "thing", action: "fancy", label: p.thing.title })
-
-  - if user_signed_in?
-    - data.merge!({ 'add-to-list' => true, 'thing-id' => p.id.to_s }) if can?(:create, ThingList)
-    - data.merge!({ 'has-lists' => true }) if p.thing.lists.where(author: current_user).present?
 
   - title = p.fancied? ? "取消喜欢" : "喜欢"
   - fancy_class = p.fancied? ? "fancied" : "unfancied"
