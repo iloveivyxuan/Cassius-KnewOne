@@ -3,9 +3,9 @@
 - provide :sharing_content, @entry.sharing_content
 - page_title entry_title(@entry)
 - active_nav_tab(@entry)
-- provide :wechat_cover_url, @entry.wechat_cover.url
+- provide :wechat_cover_url, @entry.wechat_cover.url || @entry.canopy.url(:small)
 
-img.hidden.sharing_cover src=@entry.cover.url(:normal)
+img.hidden.sharing_cover src=@entry.canopy.url(:small)
 - if post.is_a?(Special)
   = render 'entries/special', entry: @entry, post: post, author: author
 - elsif ['专访', '评测', '列表'].include? @entry.category
