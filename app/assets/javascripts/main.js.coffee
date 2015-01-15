@@ -348,7 +348,7 @@ do (exports = Making) ->
           $trigger
           .removeClass('fancied')
           .addClass('unfancied')
-          .attr('title', '取消喜欢')
+          .attr('title', '喜欢')
           .children('.fa')
           .removeClass('fa-heart')
           .addClass('fa-heart-o heartbeat')
@@ -362,7 +362,7 @@ do (exports = Making) ->
           $trigger
           .removeClass('unfancied')
           .addClass('fancied')
-          .attr('title', '喜欢')
+          .attr('title', '取消喜欢')
           .children('.fa')
           .removeClass('fa-heart-o')
           .addClass('fa-heart heartbeat')
