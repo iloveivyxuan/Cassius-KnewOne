@@ -45,6 +45,7 @@ class NotificationSetting
 
   # duplicated field
   field :mention, type: Symbol, default: :all
+  validates :mention, presence: true
 
   before_save :set_mention
 
