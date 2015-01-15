@@ -35,6 +35,8 @@ class Impression
         self.desired_at = now
         author.inc(desires_count: 1)
         thing.inc(desirers_count: 1)
+
+        author.log_activity(:desire_thing, thing, check_recent: true)
       end
 
       if state_was == :desired
