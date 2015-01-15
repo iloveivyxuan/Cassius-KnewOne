@@ -23,9 +23,9 @@ table.table.table-striped
         td= link_to m.name, merchant_path(m)
         td= truncate(m.description, length: 25)
         td= m.group.name if m.group
-        td= m.things.size
+        td= m.things_count
         td= !m.customer_service.blank?
-        td= m.owners.size
+        td= m.owners_count
         td
           = link_to "[编辑]", edit_haven_merchant_path(m)
           span.separator |
