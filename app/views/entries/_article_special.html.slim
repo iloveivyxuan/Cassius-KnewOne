@@ -7,7 +7,7 @@ article.article data-article-id=post.id
       nav.header-top
         = link_to_with_icon "精选首页", "fa fa-caret-left", explore_path, class: "nav_explore visible-xs-block"
         = link_to_with_icon "KnewOne #{entry.category_translation}", "fa fa-caret-left hidden-xs", explore_path, class: "nav_explore_category"
-        = image_tag entry.avatar.url(:small), class: 'img-circle entry-avatar hidden-xs'
+        = image_tag entry.avatar.url(:small), class: 'img-circle entry-avatar hidden-xs' if entry.avatar.present?
 
       .header-main
         h1.title= entry_title entry
@@ -30,7 +30,7 @@ article.article data-article-id=post.id
       - version = browser.mobile? ? :wechat : :background
       = image_tag (entry.canopy.url(version) || "http://image.knewone.com/review_photos/65cd5f541dee082691f8481e96d132cc.jpg!#{version}")
 
-  = image_tag entry.avatar.url(:small), class: 'img-circle entry-avatar visible-xs-block'
+  = image_tag(entry.avatar.url(:small), class: 'img-circle entry-avatar visible-xs-block') if entry.avatar.present?
   - if entry.try(:summary).present?
     p.summary= entry.summary
 
