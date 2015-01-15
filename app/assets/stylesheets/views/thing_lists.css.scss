@@ -656,4 +656,43 @@ html.thing_lists_show {
       }
     }
   }
+
+  &.mobile {
+    #wrapper {
+      > header {
+        > nav {
+          display: none;
+        }
+
+        .user_avatar {
+          top: 30px;
+        }
+      }
+
+      .thing_list_nav {
+        @include clearfix;
+        background-color: #fff;
+        margin: 2em 0;
+        padding: 10px 15px;
+
+        .user_avatar {
+          img {
+            height: 40px;
+            width: 40px;
+          }
+        }
+
+        .thing_list_nav_list {
+          color: $text-color;
+          float: right;
+          line-height: 68px;
+          margin-right: 10px;
+
+          .fa {
+            margin: 0 0 0 1em;
+          }
+        }
+      }
+    }
+  }
 }

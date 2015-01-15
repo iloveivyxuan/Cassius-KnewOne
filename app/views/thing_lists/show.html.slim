@@ -14,6 +14,13 @@
 - else
     = render 'shared/nothing'
 
+- if browser.mobile?
+  nav.thing_list_nav
+    = render 'shared/user_avatar', user_id: list.author_id, options: {class: 'user_avatar user_avatar--vertical'}
+    = link_to lists_user_path(list.author_id), class: "thing_list_nav_list" do
+      | 查看该用户的所有列表
+      i.fa.fa-angle-right
+
 footer = render 'shared/comments', post: list, id: 'comments', auth: true
 
 #thing_list_background
