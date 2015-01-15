@@ -101,6 +101,11 @@ class Impression
   scope :desired, -> { where(state: :desired).desc(:desired_at) }
   scope :owned, -> { where(state: :owned).desc(:owned_at) }
 
+  def tag_names
+    return [] if tag_ids.blank?
+    tags.pluck(:name)
+  end
+
   def tag_names=(names)
     self.tags = names.map do |name|
       Tag.find_or_create_by(name: name.to_s)
