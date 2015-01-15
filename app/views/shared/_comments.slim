@@ -19,22 +19,25 @@
       span = title
 
     .comments-form_wrapper
-      - if !compact && user_signed_in?
-        = render 'shared/user_avatar', user: current_user, options: {class: 'user_avatar user_avatar--vertical'}
+      - if user_signed_in?
+        - if !compact
+          = render 'shared/user_avatar', user: current_user, options: {class: 'user_avatar user_avatar--vertical'}
 
-      form.comment_form.js-require_login
-        .controls
-          textarea.form-control[name="comment_content" rows="3" maxlength="300"
-            placeholder=placeholder required=true disabled=disabled]
+        form.comment_form
+          .controls
+            textarea.form-control[name="comment_content" rows="3" maxlength="300"
+              placeholder=placeholder required=true disabled=disabled]
 
-        button.btn.btn--blue.pull-right[type="submit" disabled=disabled
-          data-toggle="tooltip" data-placement="bottom"
-          data-category=post.class.to_s.downcase
-          data-action="comment"
-          data-label=tracker_title(post)
-          title="按 Command + Enter 或 Control + Enter 键发布回复"]
-          i.fa.fa-comments-o
-          = title
+          button.btn.btn--blue.pull-right[type="submit" disabled=disabled
+            data-toggle="tooltip" data-placement="bottom"
+            data-category=post.class.to_s.downcase
+            data-action="comment"
+            data-label=tracker_title(post)
+            title="按 Command + Enter 或 Control + Enter 键发布回复"]
+            i.fa.fa-comments-o
+            = title
+      - else
+        = link_to "发表评论", "#login-modal", class: "btn btn--blue_light btn-block", data: { toggle: "modal" }
 
     ul
       - unless compact
