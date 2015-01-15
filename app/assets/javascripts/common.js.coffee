@@ -118,10 +118,10 @@ do (root = @, exports = Making) ->
           .attr('href', '#')
           .on 'click', (event) ->
             event.preventDefault()
-            $tip.slideDown('fast')
+            $tip.fadeIn('fast')
         $tip
           .on 'click', (event) ->
-            $(this).slideUp('fast')
+            $(this).fadeOut('fast')
 
   exports.bindWechatShareTip = ->
     $tip        = $('#share--wechat-tip')
@@ -131,14 +131,14 @@ do (root = @, exports = Making) ->
     $document
       .on 'scroll', (event) ->
         if $document.scrollTop() + $window.height() == $document.height()
-          $tip.slideDown('fast')
+          $tip.fadeIn('fast')
       .on 'touchstart touchmove', (event) ->
         touch = event.originalEvent.changedTouches[0]
         if event.type is 'touchstart'
           offsetStart = touch.clientY
         else
           offsetEnd = touch.clientY
-          $tip.slideUp('fast') if offsetEnd - offsetStart > 0
+          $tip.fadeOut('fast') if offsetEnd - offsetStart > 0
 
   exports.loadEmbed = ->
     $embed     = $(".knewone-embed:empty")
