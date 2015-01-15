@@ -8,11 +8,13 @@ class Entry
   mount_uploader :cover, ImageUploader
   mount_uploader :canopy, ImageUploader
   mount_uploader :wechat_cover, ImageUploader
+  mount_uploader :avatar, ImageUploader
 
   belongs_to :post
 
   field :external_link, type: String
   field :title, type: String
+  field :wechat_title, type: String
   field :sharing_content, type: String
   field :thing_ids, type: Array, default: []
   field :category, type: String

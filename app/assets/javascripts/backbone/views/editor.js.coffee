@@ -19,6 +19,7 @@ do (exports = Making) ->
 
     defaults:
       buttons: ['anchor', 'bold', 'italic', 'strikethrough', 'quote']
+      blocks: ['figure', 'iframe', 'embed', 'object', 'video', '.knewone-embed']
       imageSize: 'review'
 
     initialize: (options) ->
@@ -33,6 +34,7 @@ do (exports = Making) ->
       @$fields     = @$content.find('[name]').filter(":not(#{@options.excludeField})")
       @$bodyField  = if @options.bodyField? then $(@options.bodyField) else
                       @$('[name$="[content]"]')
+      @$ctxmenu    = @$content.find('.editor-ctxmenu')
       @$help       = $('.editor-help')
       @$helpToggle = @$('.editor-help-toggle')
       @$imageField = $('#file')
@@ -230,6 +232,39 @@ do (exports = Making) ->
               id = data.jqXHR.requestid
               that.$body.trigger('loaded.minsert', id)
 
+        @$body.on 'mouseenter mouseleave', @options.blocks.join(','), (event) ->
+          switch event.type
+            when 'mouseenter'
+              $target  = $(event.currentTarget)
+              position = $target.position()
+              top      = position.top + 'px'
+              left     = position.left + 'px'
+
+              that.$ctxmenu
+                .css
+                  top: top
+                  left: left
+                .data('target', $target)
+                .removeClass('is-hidden')
+            when 'mouseleave'
+              if $(event.relatedTarget).closest('.editor-ctxmenu').length is 0
+                that.$ctxmenu.addClass('is-hidden')
+
+        @$ctxmenu.on 'click', 'button', (event) ->
+          event.preventDefault()
+
+          switch $(event.target).data('action')
+            when 'enter'
+              paragraph = document.createElement('p')
+              range = document.createRange()
+              selection = window.getSelection()
+              paragraph.innerHTML = '<br>'
+              that.$ctxmenu.data('target').after(paragraph)
+              range.selectNodeContents(paragraph)
+              range.collapse(true)
+              selection.removeAllRanges()
+              selection.addRange(range)
+              that.$body.trigger('click')
       else
         @editor.activate()
         @observer.observe() if typeof MutationObserver is 'function'

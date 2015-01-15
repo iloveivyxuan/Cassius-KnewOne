@@ -223,5 +223,6 @@ production:
 # here.  By default, the staging environment has the agent turned on.
 staging:
   <<: *default_settings
-  monitor_mode: false
   app_name: KnewOne (Staging)
+  developer_mode: true
+  monitor_mode: true

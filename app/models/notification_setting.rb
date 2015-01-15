@@ -13,13 +13,46 @@ class NotificationSetting
       :all => '允许'
   }
 
-  field :stock, type: Symbol, default: :all
-  field :new_review, type: Symbol, default: :all
-  field :comment, type: Symbol, default: :all
+  TYPES = {
+    :new_review => :scope,
+    :new_feeling => :scope,
+    :new_topic => :scope,
+    :comment => :scope,
+    :topic => :scope,
+    :review => :scope,
+    :feeling => :scope,
+    :list_item => :scope,
 
-  validates :stock, :new_review, :comment, presence: true
-  validates :new_review, :comment,
-            inclusion: {in: SCOPE_OPTIONS.keys}
-  validates :stock,
-            inclusion: {in: BOOL_OPTIONS.keys}
+    :stock => :bool,
+    :following => :bool,
+    :weibo_friend_joined => :bool,
+    :love_feeling => :bool,
+    :love_review => :bool,
+    :love_topic => :bool,
+    :fancy_thing => :bool,
+    :fancy_list => :bool
+  }
+
+  MENTION = [:comment, :topic, :review, :feeling, :list_item]
+
+  TYPES.each do |key, type|
+    field key, type: Symbol, default: :all
+    options = (type == :scope) ? SCOPE_OPTIONS : BOOL_OPTIONS
+
+    validates key, presence: true
+    validates key, inclusion: { in: options.keys }
+  end
+
+  # duplicated field
+  field :mention, type: Symbol, default: :all
+  validates :mention, presence: true
+
+  before_save :set_mention
+
+  private
+
+  def set_mention
+    return unless mention_changed?
+    MENTION.each { |key| set(key => mention) }
+  end
 end

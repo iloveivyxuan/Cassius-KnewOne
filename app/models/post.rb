@@ -17,6 +17,9 @@ class Post
   end
 
   field :content, type: String, default: ""
+
+  validate :no_similarity, on: :create
+
   field :commented_at, type: DateTime
 
   belongs_to :author, class_name: "User", inverse_of: :posts, index: true
@@ -27,7 +30,6 @@ class Post
   has_one :entry
 
   index created_at: -1
-
 
   before_save :format_title
   before_save :remove_ending_blanks
@@ -167,5 +169,11 @@ class Post
   def remove_ending_blanks
     self.content.gsub!(/(<p><br><\/p>)+\z/, "")
     self.content += "<p><br></p>" if [Review, Article, Topic].include?(self.class)
+  end
+
+  def no_similarity
+    last_post = Post.only(:content).where(author_id: author_id).desc(:created_at).first
+    return unless last_post
+    errors.add(:content, '内容重复了喔') if content.similar(last_post.content) > 80
   end
 end

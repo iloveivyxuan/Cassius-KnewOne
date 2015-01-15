@@ -9,9 +9,13 @@
       - @entry.thing_ids.each do |i|
         option value="#{i}" = i
   = f.input :title
+  = f.input :wechat_title
   - title = (@entry && @entry.title?) ? @entry.title : @entry.post.try(:title)
   = f.input :sharing_content, input_html: {value: "推荐 @KnewOne #{@entry.category}：《#{title}》"}
   = f.input :summary, as: :text , input_html: {rows: 4}
+  = f.input :avatar
+  = f.input :avatar_cache, as: :hidden
+  = image_tag @entry.avatar.url(:small) if @entry.avatar.url
   = f.input :cover
   = f.input :cover_cache, as: :hidden
   = image_tag @entry.cover.url(:normal), style: 'height:160px' if @entry.cover.url

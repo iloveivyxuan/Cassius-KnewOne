@@ -133,7 +133,7 @@ class Ability
       topic.author == user || topic.group.has_admin?(user)
     end
     can :destroy, Topic do |topic|
-      topic.group.has_admin? user
+      topic.author == user || topic.group.has_admin?(user)
     end
     can :vote, Topic do |topic|
       !topic.voted?(user)

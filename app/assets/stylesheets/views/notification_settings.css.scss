@@ -1,0 +1,11 @@
+@import '../base';
+
+html.notification_settings_edit {
+  #wrapper {
+    div.required {
+      abbr[title="required"] {
+        display: none;
+      }
+    }
+  }
+}

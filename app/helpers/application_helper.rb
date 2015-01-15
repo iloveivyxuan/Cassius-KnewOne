@@ -244,8 +244,8 @@ module ApplicationHelper
                         "登录"
                       end
       {
-        action: "user",
-        category: "login",
+        category: "user",
+        action: "login",
         label: "email",
 
         toggle: "modal",
@@ -254,8 +254,8 @@ module ApplicationHelper
       }
     else
       {
-        action: "user",
-        category: "register",
+        category: "user",
+        action: "register",
         label: "wechat",
       }
     end
@@ -292,7 +292,9 @@ module ApplicationHelper
     when Topic
       "#{object.group.name} - #{object.title}"
     when Post
-      "#{object.title}"
+      object.title
+    when ThingList
+      object.name
     else
       "unknown object #{object.id.to_s}"
     end

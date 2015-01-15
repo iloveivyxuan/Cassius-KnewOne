@@ -31,7 +31,7 @@ listen "/tmp/unicorn.sock", backlog: 64
 listen 8080, tcp_nopush: true
 
 # nuke workers after 30 seconds instead of 60 seconds (the default)
-timeout 30
+timeout 60
 
 # feel free to point this anywhere accessible on the filesystem
 pid "#{app_root}/tmp/pids/unicorn.pid"
@@ -44,13 +44,13 @@ stdout_path "#{app_root}/log/unicorn.log"
 
 # Load app into the master before forking workers for super-fast
 # worker spawn times
-preload_app true
+# preload_app true
 
 # combine Ruby 2.0.0dev or REE with "preload_app true" for memory savings
 # http://rubyenterpriseedition.com/faq.html#adapt_apps_for_cow
-if GC.respond_to?(:copy_on_write_friendly=)
-  GC.copy_on_write_friendly = true
-end
+# if GC.respond_to?(:copy_on_write_friendly=)
+#   GC.copy_on_write_friendly = true
+# end
 
 # Enable this flag to have unicorn test client connections by writing the
 # beginning of the HTTP headers before calling the application.  This
@@ -109,3 +109,8 @@ check_client_connection false
 #  child_pid = server.config[:pid].sub('.pid', "_worker_#{worker.nr}.pid")
 #  system("echo #{Process.pid} > #{child_pid}")
 #end
+
+# 修正无缝重启unicorn后更新的Gem未生效的问题，原因是config/boot.rb会优先从ENV中获取BUNDLE_GEMFILE，而无缝重启时ENV['BUNDLE_GEMFILE']的值并未被清除，仍指向旧目录的Gemfile
+before_exec do |server|
+  ENV["BUNDLE_GEMFILE"] = "#{current_path}/Gemfile"
+end

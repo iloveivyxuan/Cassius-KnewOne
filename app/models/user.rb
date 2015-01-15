@@ -132,6 +132,7 @@ class User
   index 'auths.uid' => 1
 
   scope :confirmed, -> { gt confirmed_at: 0 }
+  scope :authorized, -> { where(:identities.with_size => 1) }
 
   def has_fulfilled_email?
     self.unconfirmed_email.present? || self.email.present?
@@ -377,7 +378,7 @@ HERE
   # ThingList
   has_many :thing_lists, inverse_of: :author
 
-  belongs_to :merchant
+  belongs_to :merchant, counter_cache: :owners_count
 
   def related_thing_lists
     (thing_lists + fancied_thing_lists).uniq
@@ -580,7 +581,7 @@ HERE
 
   def __elasticsearch__.__find_in_batches(options={}, &block)
     batch_size = options[:batch_size] || 1000
-    User.only(:id, :name, :avatar, :karma).each_slice(batch_size, &block)
+    User.no_timeout.only(:id, :name, :avatar, :karma).each_slice(batch_size, &block)
   end
 
   protected

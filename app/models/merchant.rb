@@ -15,7 +15,11 @@ class Merchant
   before_save :meiqia_script
 
   has_many :owners, class_name: "User"
+  field :owners_count, type: Integer, default: 0
+
   has_many :things
+  field :things_count, type: Integer, default: 0
+
   has_one :group
 
   def group_id

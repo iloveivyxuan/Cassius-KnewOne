@@ -24,9 +24,9 @@ label 管理者
   javascript:
     $(function(){
       var $customerServiceCode = $('#customer_service_code'),
-          $customerServiceInput = $customerServiceCode.children('.form-control');
+          $customerServiceInput = $customerServiceCode.children('.form-control'),
+          $firstButton = $customerServiceCode.find('.input-group-btn').find(".btn:first-child");
       $customerServiceCode.on('click', '.dropdown-menu a', function(){
-        var $firstButton = $(".btn:first-child");
         $firstButton.text($(this).text());
         $firstButton.val($(this).text());
         if ($(this).text() == '脚本') {

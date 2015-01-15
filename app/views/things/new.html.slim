@@ -58,6 +58,7 @@
     .body#form-thing-body title="请为产品填写信息" data-placement="top"
       p
         br
+    = render 'shared/editor_ctxmenu'
     = attachment_tag target: "#pictureBtn", edit: "insertImage"
 
 = render "shared/editor_help"

@@ -6,9 +6,8 @@ class Thing < Post
   slug :title, history: true
   before_save :delete_illegal_chars
 
-  index priority: 1
-
   field :approved_at, type: DateTime, default: nil
+  index approved_at: -1
   before_save :update_approved_time
 
   field :subtitle, type: String, default: ""
@@ -46,6 +45,7 @@ class Thing < Post
   CURRENCY_LIST = %w{¥ $ € £ JPY¥ ₩ NT$ C$ HK$}
 
   field :priority, type: Integer, default: -1
+  index({priority: -1, created_at: -1})
 
   before_create :update_priority
 
@@ -88,7 +88,6 @@ class Thing < Post
   scope :prior, -> { gt(priority: 0).desc(:priority, :created_at) }
   scope :self_run, -> { send :in, stage: [:dsell, :pre_order] }
   scope :price_between, ->(from, to) { where :price.gt => from, :price.lt => to }
-  scope :created_between, ->(from, to) { where :created_at.gt => from, :created_at.lt => to }
   scope :approved, -> { gte(priority: 0) }
   scope :recommended, -> { gt(priority: 0) }
   scope :by_brand, -> (brand) { where('brand_id' => brand.id) }
@@ -102,7 +101,7 @@ class Thing < Post
   accepts_nested_attributes_for :kinds, allow_destroy: true
   belongs_to :brand
 
-  belongs_to :merchant
+  belongs_to :merchant, counter_cache: true
 
   def photos
     Photo.find_with_order photo_ids
@@ -171,9 +170,7 @@ class Thing < Post
   end
 
   def merchant_name=(name)
-    unless name.blank?
-      self.merchant = Merchant.find_by(name: name)
-    end
+    self.merchant = (name.blank?) ? nil : Merchant.find_by(name: name)
   end
 
   def update_price
@@ -442,10 +439,10 @@ class Thing < Post
   end
 
   def update_approved_time
-    self.priority = -1 unless self.priority.is_a?(Integer)
-    if self.approved_at.nil? && self.priority >= 0
+    self.priority ||= -1
+    if ((priority_was.nil? || priority_was < 0) && priority >= 0) || (priority_was == 0 && priority > 0)
       self.approved_at = Time.now
-      self.author.inc karma: Settings.karma.publish.thing
+      self.author.inc karma: Settings.karma.publish.thing if approved_at_was.nil?
     end
   end
 

@@ -19,4 +19,9 @@
 - content_for :script do
   javascript:
     if ("#{flash[:provider_sync]}" == "true")
-      $(function(){$('#thing_share').modal('show')})
+      $(function(){$('#thing_share').modal('show')});
+
+- if Rails.env.production?
+  - content_for :script do
+    javascript:
+      ga('send', 'event', 'thing', 'show', $('span.author_name a').text());

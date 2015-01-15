@@ -23,7 +23,7 @@ class CartItem
   end
 
   def has_enough_stock?
-    kind.stock >= quantity
+    kind.stock >= quantity && kind.stage != :hidden
   end
 
   def buyable?

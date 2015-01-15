@@ -18,6 +18,9 @@ footer = render 'shared/comments', post: list, id: 'comments', auth: true
 
 #thing_list_background
 
+- if browser.wechat?
+  = render 'shared/share_wechat_tip'
+
 - content_for :script
   javascript:
     Making.Comments('#comments')

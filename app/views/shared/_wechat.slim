@@ -1,6 +1,5 @@
 - if browser.wechat?
-  #share--wechat-tip
-    = image_tag "share-wechat.png", width: 250
+  = render 'shared/share_wechat_tip'
 - else
   #share_wechat.modal.fade
     .modal-dialog

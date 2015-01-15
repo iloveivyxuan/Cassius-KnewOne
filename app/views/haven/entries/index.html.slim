@@ -9,6 +9,7 @@ table.table.table-striped
     tr
       th 封面
       th 标题
+      th 微信标题
       th 分类
       th 创建时间
       th 公开
@@ -19,8 +20,10 @@ table.table.table-striped
         td width="15%"
           - if e.cover.present?
             = image_tag(e.cover.url(:small), height: 90, width: 90)
-        td width="25%"
+        td width="15%"
           = entry_title e
+        td width="10%"
+          = e.wechat_title
         td width="7%"
           = e.category
         td width="20%"

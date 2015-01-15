@@ -24,6 +24,7 @@
     .body#form-article-body
       p
         br
+    = render 'shared/editor_ctxmenu'
     = f.hidden_field :content
 = attachment_tag target: "#pictureBtn", edit: "insertImage"
 = render 'shared/editor_help'

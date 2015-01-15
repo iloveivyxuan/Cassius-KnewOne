@@ -95,9 +95,15 @@ class UserMailer < BaseMailer
     @items[:hot_things] ||= @weekly.hot_things(6)
     @items[:hot_things_count] ||= @items[:hot_things].size
 
+    title = if @weekly.title.present?
+              @weekly.title
+            else
+              "KnewOne 用户周报（#{@weekly.since_date.strftime('%Y.%m.%d')} ~ #{@weekly.until_date.strftime('%Y.%m.%d')}）"
+            end
+
     mail(to: @user.email,
          reply_to: 'advice@knewone.com',
-         subject: "KnewOne 用户周报（#{@weekly.since_date.strftime('%Y.%m.%d')} ~ #{@weekly.until_date.strftime('%Y.%m.%d')}）",
+         subject: title,
          edm: true) do |format|
       format.html { render layout: 'newspaper' }
     end

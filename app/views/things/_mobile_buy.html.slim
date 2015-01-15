@@ -20,6 +20,14 @@
           | 发货并提供
           = customer_service tp.thing.merchant, "btn btn-sm btn--blue"
 
+      - if tp.tags.present?
+        section.panel.panel--flat
+          header.panel-header.text-center
+            h5.panel-title= tp.thing.brand_name
+          .panel-body
+            ul.mobile_tags
+              = render partial: 'things/tag', collection: tp.tags.limit(2)
+
   = tp.render_shopping_desc_modal
   = render 'things/mobile_buy_modals', tp: tp
 

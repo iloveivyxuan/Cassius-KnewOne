@@ -317,7 +317,17 @@ do ($ = jQuery) ->
         if event.which is 8
           selection  = window.getSelection()
           if selection.anchorOffset is 0
-            prevNode  = selection.anchorNode.previousSibling
+            anchorNode = selection.anchorNode
+            if anchorNode.nodeType is 3
+              parentNode = anchorNode.parentNode
+              if parentNode.getAttribute('data-medium-element') is 'true'
+                paragraphNode = document.createElement('p')
+                parentNode.insertBefore(paragraphNode, anchorNode)
+                paragraphNode.appendChild(anchorNode)
+                anchorNode = paragraphNode
+              else
+                anchorNode = parentNode
+            prevNode  = anchorNode.previousSibling
             $prevNode = $(prevNode)
             if $prevNode.css('display') is 'block' and
               prevNode.nodeName in ['IMG', 'FIGURE', 'IFRAME', 'EMBED', 'VIDEO', 'AUDIO']
@@ -365,7 +375,7 @@ do ($ = jQuery) ->
             range.setEndBefore(node)
           range.insertNode(@clipboard.cloneNode(true))
           selection.collapseToEnd()
-        @$element.trigger('input')
+        @$element.trigger('input') if @$element
 
     MInsert.DEFAULTS =
       actions:

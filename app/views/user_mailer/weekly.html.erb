@@ -7,6 +7,10 @@
   在过去的一周里（<%= @weekly.since_date.strftime('%Y.%m.%d') %> ~ <%= @weekly.until_date.strftime('%Y.%m.%d') %>）
 <% end %>
 
+<%= image_tag "http://www.google-analytics.com/collect?v=1&tid=UA-52310665-1&cid=222&t=event&ec=email&ea=open&el=#{@user.name}&cs=weekly&cm=email&cn=metric1&cm1=1", alt: "" %>
+
+<%= render @weekly.weekly_entries %>
+
 <%- if (hot_things = @items[:hot_things]) && @items[:hot_things_count] > 0 %>
   <div class="block">
     <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="fulltext">
@@ -264,5 +268,3 @@
     </table>
   </div>
 <% end %>
-
-<%= render @weekly.weekly_entries %>

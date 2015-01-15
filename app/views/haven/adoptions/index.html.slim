@@ -1,35 +1,40 @@
 - page_title '领养管理'
 
-= form_for :adoption, url: one_click_deny_haven_adoption_path(1), method: :post do |f|
-  = select_tag "adoption", options_from_collection_for_select(Adoption.all_things, "id", "title")
-  = f.submit "一键拒绝"
-
-= form_for :user, url: haven_adoptions_path, method: :get do |f|
-  = f.text_field :name
-  = f.submit "查找用户名"
-
-= form_tag '/haven/adoptions', method: :get do
-  = select_tag :thing, options_from_collection_for_select(Adoption.all_things, "title", "title")
-  = submit_tag "查找产品"
-
 header.page-header
   h2
     i.fa.fa-users
     | 领养管理
-    small 当前条件 #{ @adoptions.size }
+    small &nbsp;当前条件 #{ @adoptions.size }
 
-table.table.table-striped
+.panel.panel-compact
+  .panel-body.row
+    = form_for :user, url: haven_adoptions_path, method: :get, html: { class: "form-inline col-sm-6" } do |f|
+      .form-group
+        = f.text_field :name, class: "form-control"
+      = f.submit "查找用户名", class: "btn btn-default"
+
+    = form_for :adoption, url: one_click_deny_haven_adoption_path(1), method: :post, html: { class: "form-inline col-sm-6" } do |f|
+      .form-group
+        = select_tag "adoption", options_from_collection_for_select(Adoption.all_things, "id", "title"), class: "form-control"
+      = f.submit "一键拒绝", class: "btn btn-danger"
+
+    = form_tag '/haven/adoptions', method: :get, class: "form-inline col-sm-6" do
+      .form-group
+        = select_tag :thing, options_from_collection_for_select(Adoption.all_things, "title", "title"), class: "form-control"
+      = submit_tag "查找产品", class: "btn btn-default"
+
+table.table.table-striped.table--fixed
   thead
     tr
-      th 用户
+      th width="60" 用户
       th 产品
-      th 拥有/喜欢/短评/评测
-      th 战斗力
+      th width="150" 拥有/喜欢/短评/评测
+      th width="60" 战斗力
       th 地址
-      th 记录
+      th width="55" 记录
       th 备注
-      th 状态
-      th 操作
+      th width="65" 状态
+      th width="55" 操作
   tbody
     - @adoptions.each do |a|
       - u = a.user

@@ -3,14 +3,15 @@
 - provide :sharing_content, @entry.sharing_content
 - page_title entry_title(@entry)
 - active_nav_tab(@entry)
-- provide :wechat_cover_url, @entry.wechat_cover.url
+- provide :wechat_cover_url, @entry.wechat_cover.url || @entry.canopy.url(:small)
 
-img.hidden.sharing_cover src=@entry.cover.url(:normal)
-- case post.class
-- when Special
+- unless browser.desktop?
+  .sharing_cover
+    img src=(@entry.wechat_cover.url(:square) || @entry.canopy.url(:square))
+
+- if post.is_a?(Special)
   = render 'entries/special', entry: @entry, post: post, author: author
+- elsif ['专访', '评测', '列表'].include? @entry.category
+  = render 'entries/article_special', entry: @entry, post: post, author: author
 - else
-  - if ['专访', '评测', '列表'].include? @entry.category
-    = render 'entries/article_special', entry: @entry, post: post, author: author
-  - else
-    = render 'entries/article', entry: @entry, post: post, author: author
+  = render 'entries/article', entry: @entry, post: post, author: author

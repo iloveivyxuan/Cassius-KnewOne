@@ -2,7 +2,7 @@
   - if !current_user.bong_bind?
     .alert.alert-danger
       | 购物车中包含bong用户特供商品，
-      | 你需要先#{link_to '绑定bong账号', user_omniauth_authorize_path(:bong, state: request.path)}
+      | 你需要先#{link_to '绑定bong账号', user_omniauth_authorize_path(:bong, state: request.fullpath)}
       | 并拥有#{@order.minimal_consumable_bong_point}个活跃点才可顺利下单。
     small
       | 没有bong？#{link_to '点我购买！', thing_path('bong-ii')}
@@ -32,7 +32,7 @@
   #bong_access_token_error_alert.alert.alert-danger.hidden
     | bong服务暂不可用，
     /= link_to '点此刷新', bong_available_point_url, remote: true
-    = link_to '重新授权', user_omniauth_authorize_path(:bong, state: request.path)
+    = link_to '重新授权', user_omniauth_authorize_path(:bong, state: request.fullpath)
     | 。
 
   #bong_point_tip

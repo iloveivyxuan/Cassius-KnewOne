@@ -12,4 +12,6 @@
 
 - content_for :script do
   javascript:
-    new Making.Views.Share();
+    new Making.Views.Share({
+      el: '.tiny_share'
+    });

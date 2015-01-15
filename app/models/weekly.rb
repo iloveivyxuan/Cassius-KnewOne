@@ -6,6 +6,8 @@ class Weekly
   embeds_many :weekly_entries, cascade_callbacks: true
   accepts_nested_attributes_for :weekly_entries, allow_destroy: true
 
+  field :title, type: String
+
   field :thing_list_id, type: String
   field :since_date, type: Date
 

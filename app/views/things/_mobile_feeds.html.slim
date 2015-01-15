@@ -16,7 +16,11 @@
       #tab--mobile-reviews.tab-pane.active
         = render 'reviews', thing: thing
     #tab--mobile-feelings.tab-pane class=('active' unless thing.has_reviews?)
-      = render 'feelings/form', thing: thing, id: 'thing--mobile-feeling_form'
+      - if user_signed_in?
+        = render 'feelings/form', thing: thing, id: 'thing--mobile-feeling_form'
+      - else
+        = link_to "#login-modal", class: "btn btn--blue btn-block btn-write-feeling", data: { toggle: "modal", "signin-legend" => "登录后，发表短评" } do
+          span 写短评
       - if thing.has_feelings?
         = render 'feelings', thing: thing
       - else

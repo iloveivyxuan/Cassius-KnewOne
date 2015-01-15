@@ -43,6 +43,7 @@
                   li = link_to_with_icon "账户设置", "fa fa-cog fa-fw", setting_root_path
                   li = link_to_with_icon '我的订单', 'fa fa-truck fa-fw', orders_path
                   li = link_to_with_icon '我的草稿', 'fa fa-pencil-square-o fa-fw', setting_drafts_path
+                  li = link_to_with_icon '寻求帮助', 'fa fa-bell fa-fw', "#", data: { 'private-message' => true, 'user-id' => '53bb8b8831302d77db060000', 'user-name' => 'KnewOne销售', 'content' => "" }
                   li = link_to_with_icon "安全退出", "fa fa-sign-out fa-fw", destroy_user_session_path, method: :delete
 
             = link_to cart_items_path, class: "user_link cart", title: "购物车" do

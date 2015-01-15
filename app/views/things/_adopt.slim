@@ -1,13 +1,11 @@
 - if user_signed_in?
   - if tp.thing.adopted_by? current_user
-    = button_tag "已领养", type: "button", class: "btn btn--blue_light btn--adoption buy_button",
-    disabled: true
+    = button_tag "已领养", type: "button", class: "btn btn--adoption buy_button", disabled: true
   - else
-    = button_tag "领养", type: "button", class: "btn btn--blue_light btn--adoption buy_button",
-    data: data_with_buy_tracker("adoption", tp.thing.title, {toggle: "modal", target: "#adoption-modal"})
+    = button_tag "免费领养", type: "button", class: "btn btn--adoption buy_button", data: data_with_buy_tracker("adoption", tp.thing.title, {toggle: "modal", target: "#adoption-modal"})
     - content_for :end do
       = render 'shared/adoption_modal', tp: tp
 - else
-  = link_to_with_icon "请登录后领养", "fa fa-sign-in", "#",
-  class: "btn btn-info buy_button cart_login",
+  = link_to "免费领养", "#",
+  class: "btn btn--adoption buy_button cart_login",
   data: data_with_login_tracker("adoption", tp.thing.title)

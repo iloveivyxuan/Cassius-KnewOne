@@ -7,17 +7,15 @@ header.page-header
 table.table.table-striped
   thead
     tr
-      th 起始时间
-      th 周
-      th 关联列表
+      th 起始时间（周）
+      th 标题
       th 操作
       th
   tbody
     - @weeklies.each do |w|
       tr
-        td= w.since_date.strftime('%Y.%m.%d')
-        td= "#{w.since_date.year} 年第 #{w.week} 周"
-        td= link_to w.thing_list.name, w.thing_list if w.thing_list
+        td= "#{w.since_date.strftime('%Y.%m.%d')}（#{w.since_date.year} 年第 #{w.week} 周）"
+        td= w.title
         td
           = link_to '编辑', edit_haven_weekly_path(w)
           span.separator |

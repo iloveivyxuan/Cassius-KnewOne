@@ -221,6 +221,7 @@ module OrdersHelper
   end
 
   def bong_available_point_url
-    "http://bong.#{Settings.host}/available_point.js?uid=#{current_user.bong_auth.uid}&access_token=#{current_user.bong_auth.access_token}".html_safe
+    bong_available_point_path
+    # "http://bong.#{Settings.host}/available_point.js?uid=#{current_user.bong_auth.uid}&access_token=#{current_user.bong_auth.access_token}".html_safe
   end
 end
