@@ -737,7 +737,7 @@ class Order
 
     def cleanup_expired_orders
       pending.each do |o|
-        if o.created_at + o.valid_period_days.days < Date.today
+        if o.created_at + o.valid_period_days.days < Time.now
           begin
             o.close!
           rescue
