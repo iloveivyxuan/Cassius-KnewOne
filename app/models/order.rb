@@ -37,6 +37,7 @@ class Order
   scope :by_thing_kind, ->(kind) { where 'order_items.thing_id' => kind.thing.id, 'order_items.kind_id' => kind.id.to_s }
   scope :by_thing, ->(thing) { where 'order_items.thing_id' => thing.id }
   scope :without_thing, ->(thing) { ne 'order_items.thing_id' => thing.id }
+  scope :include_virtual, -> { where(state: :pending).elem_match(order_items: { virtual: true }) }
 
   scope :since_date, ->(date) { where :created_at.gte => date.to_time.to_i }
   scope :until_date, ->(date) { where :created_at.lt => date.next_day.to_time.to_i }
@@ -53,6 +54,10 @@ class Order
 
   attr_accessor :use_sf
   attr_accessor :bong_delivery
+
+  def include_virtual?
+    order_items.map(&:virtual).include?(true)
+  end
 
   def use_sf?
     !['0', false, 'false', nil].include?(self.use_sf) || self.deliver_by == :sf
@@ -741,5 +746,18 @@ class Order
         end
       end
     end
+
+    def cleanup_virtual_orders
+      Order.include_virtual.each do |o|
+        if o.created_at + 1.hour < Time.now
+          begin
+            o.close!
+          rescue
+            next
+          end
+        end
+      end
+    end
+
   end
 end

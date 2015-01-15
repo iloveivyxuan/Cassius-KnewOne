@@ -202,4 +202,37 @@ describe Order, type: :model do
       end
     end
   end
+
+  describe "cleanup expired normal orders" do
+    let(:user) { create(:user, :with_cart_items, :with_addresses) }
+    let(:order) { create(:order, user: user) }
+
+    specify do
+      order.set(created_at: 15.minutes.ago)
+      Order.cleanup_expired_orders
+      expect(order.reload.state).to eq :pending
+      order.set(created_at: 30.hours.ago)
+      Order.cleanup_expired_orders
+      expect(order.reload.state).to eq :closed
+    end
+  end
+
+  describe "cleanup expired virtual orders" do
+    let(:user) { create(:user, :with_cart_items, :with_addresses) }
+    let(:order) { create(:order, user: user) }
+
+    before do
+      order.order_items.first.set(virtual: true)
+    end
+
+    specify do
+      order.set(created_at: 15.minutes.ago)
+      Order.cleanup_virtual_orders
+      expect(order.reload.state).to eq :pending
+      order.set(created_at: 2.hours.ago)
+      Order.cleanup_virtual_orders
+      expect(order.reload.state).to eq :closed
+    end
+  end
+
 end

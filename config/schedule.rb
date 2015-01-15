@@ -70,6 +70,10 @@ every 15.minutes do
   runner 'Brand.update_things_brand_name'
 end
 
+every 15.minutes do
+  runner 'Order.cleanup_virtual_orders'
+end
+
 every 1.day, :at => '1:30 am' do
   runner 'Stat.generate_day_stats'
 end
