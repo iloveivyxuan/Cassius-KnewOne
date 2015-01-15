@@ -2,6 +2,7 @@ class NotificationSettingsController < ApplicationController
   prepend_before_action :require_signed_in
   layout 'settings'
   skip_before_action :require_not_blocked
+  before_action :types_without_mention
 
   def update
     respond_to do |format|
@@ -20,7 +21,11 @@ class NotificationSettingsController < ApplicationController
 
   private
 
+  def types_without_mention
+    @types_without_mention = NotificationSetting::TYPES.select { |k, _| !NotificationSetting::MENTION.include?(k) }
+  end
+
   def notification_setting_params
-    params.require(:notification_setting).permit(NotificationSetting::TYPES.keys)
+    params.require(:notification_setting).permit(@types_without_mention.keys + [:mention])
   end
 end

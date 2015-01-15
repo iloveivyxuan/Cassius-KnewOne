@@ -33,11 +33,25 @@ class NotificationSetting
     :fancy_list => :bool
   }
 
+  MENTION = [:comment, :topic, :review, :feeling, :list_item]
+
   TYPES.each do |key, type|
     field key, type: Symbol, default: :all
     options = (type == :scope) ? SCOPE_OPTIONS : BOOL_OPTIONS
 
     validates key, presence: true
     validates key, inclusion: { in: options.keys }
+  end
+
+  # duplicated field
+  field :mention, type: Symbol, default: :all
+
+  before_save :set_mention
+
+  private
+
+  def set_mention
+    return unless mention_changed?
+    MENTION.each { |key| set(key => mention) }
   end
 end
