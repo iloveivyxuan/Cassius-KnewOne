@@ -46,6 +46,8 @@ class Impression
         self.owned_at = now
         author.inc(owns_count: 1)
         thing.inc(owners_count: 1)
+
+        author.log_activity(:own_thing, thing, check_recent: true)
       end
 
       if state_was == :owned
@@ -59,6 +61,8 @@ class Impression
         self.fancied_at = now
         author.inc(fancies_count: 1)
         thing.inc(fanciers_count: 1)
+
+        author.log_activity(:fancy_thing, thing, check_recent: true)
       end
 
       if fancied_was

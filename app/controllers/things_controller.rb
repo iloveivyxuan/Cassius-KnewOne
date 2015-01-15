@@ -161,7 +161,6 @@ class ThingsController < ApplicationController
       @thing.unfancy current_user
     else
       @thing.fancy current_user
-      current_user.log_activity :fancy_thing, @thing, check_recent: true
     end
 
     respond_to do |format|
@@ -175,7 +174,6 @@ class ThingsController < ApplicationController
       @thing.unown current_user
     else
       @thing.own current_user
-      current_user.log_activity :own_thing, @thing, check_recent: true
     end
 
     respond_to do |format|
