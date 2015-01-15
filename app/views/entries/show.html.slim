@@ -7,7 +7,8 @@
 
 - unless browser.desktop?
   .sharing_cover
-    img src=@entry.canopy.url(:square)
+    img src=(@entry.wechat_cover.url(:square) || @entry.canopy.url(:square))
+
 - if post.is_a?(Special)
   = render 'entries/special', entry: @entry, post: post, author: author
 - elsif ['专访', '评测', '列表'].include? @entry.category
