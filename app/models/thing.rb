@@ -183,9 +183,7 @@ class Thing < Post
   end
 
   def merchant_name=(name)
-    unless name.blank?
-      self.merchant = Merchant.find_by(name: name)
-    end
+    self.merchant = (name.blank?) ? nil : Merchant.find_by(name: name)
   end
 
   def category_records
