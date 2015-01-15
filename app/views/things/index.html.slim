@@ -9,25 +9,22 @@
     h1
       - if @brand
         = render 'brand_breadcrumb'
-      - elsif @tag && @category
+      - elsif @third_c
         ol.breadcrumb
-          - if @category.category
-            li= link_to @category.category.name, category_things_path(@category.category)
-          li= link_to @category.name, category_things_path(@category)
-          li.active= @tag.name
-      - elsif @tag
+          li= link_to @top_c.name, categories_things_path(@top_c)
+          li= link_to @second_c.name, categories_things_path(@second_c)
+          li.active= @third_c.name
+      - elsif @second_c
         ol.breadcrumb
-          li.active= @tag.name
-      - elsif @category
+          li= link_to @top_c.name, categories_things_path(@top_c)
+          li.active= @second_c.name
+      - elsif @top_c
         ol.breadcrumb
-          - if (primary ||= @category.category)
-            li= link_to primary.name, category_things_path(primary)
-          li.active= @category.name
-      - unless @category || @tag || @brand
+          li.active= @top_c.name
+      - else
         = link_to '产品', things_path, class: 'breadcrumb'
-    nav.sort_breadcrumb
-      - if browser.desktop? && (@category || @tag || @brand)
-        = render 'sort_breadcrumb'
+    nav.sort_breadcrumb.hidden-xs
+      = render 'sort_breadcrumb' if @category || @brand
 
   - if (klass = @brand || @category)
     section#things_information
@@ -40,14 +37,10 @@
           = button_tag "编辑品牌信息", type: "button", class: "btn btn-default", data: { toggle: 'modal', target: '#brand-modify-modal' }
       - if !browser.desktop? && @tags && @tags.size > 1
         .more
-          = link_to_with_icon "查看所有 #{@tags.size} 个标签", "fa fa-angle-double-down", "javascript:;"
+          = link_to_with_icon "查看所有 #{klass.children.size} 个标签", "fa fa-angle-double-down", "javascript:;"
 
-  - if @tag
-    = render 'tag_description'
-
-  - if !browser.desktop? && (@category || @brand || @tag)
-    nav.sort_breadcrumb
-      = render 'sort_breadcrumb'
+  nav.sort_breadcrumb.visible-xs-block
+    = render 'sort_breadcrumb' if @brand || @category
 
   section#things_list.infinite
     = render partial: 'home/hot_thing', collection: @things, as: :hot_thing

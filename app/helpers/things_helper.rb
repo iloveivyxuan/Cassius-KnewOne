@@ -84,11 +84,10 @@ module ThingsHelper
 
   def haven_queries
     {
-      "categories" => "分类",
+      "category" => "分类",
       "shop" => "链接",
       "title" => "标题 & 副标题",
       "brand" => "品牌",
-      "tag" => "标签",
       "official" => "来源网站",
       "price_unit" => '价格单位'
     }
@@ -163,5 +162,13 @@ module ThingsHelper
     else
       nil
     end
+  end
+
+  def categories_things_path(*c)
+    "/things/categories/#{c.map(&:slug).join('/')}"
+  end
+
+  def brands_categories_things_path(brand, category)
+    "/things/brand/#{brand.id}/categories/#{category.slug}"
   end
 end

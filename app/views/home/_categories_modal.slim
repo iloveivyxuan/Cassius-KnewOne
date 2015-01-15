@@ -10,7 +10,7 @@
         .panel-body
           p 选择你感兴趣的分类：
           .tags
-            - categories = Category.primary.gt(things_count: 0).desc(:things_count)
+            - categories = Category.top_level.gt(things_count: 0).desc(:things_count)
             = render partial: 'shared/category', locals: { categories: categories }
       .modal-footer
         button.btn.btn-primary type="button" data-dismiss="modal"

@@ -14,10 +14,13 @@ class Thing < Post
   field :nickname, type: String
   field :official_site, type: String, default: ""
   field :photo_ids, type: Array, default: []
-  field :categories, type: Array, default: []
+
+  has_and_belongs_to_many :categories, inverse_of: nil,
+                          after_add: :after_add_category,
+                          after_remove: :after_remove_category
+
   before_save :update_price
   before_save :update_amazon_link
-  before_save :update_thing_categories
 
   has_many :feelings, dependent: :destroy
   field :feelings_count, type: Integer, default: 0
@@ -78,8 +81,6 @@ class Thing < Post
 
   has_many :adoptions, dependent: :destroy
 
-  has_and_belongs_to_many :tags, counter_cache: true
-
   belongs_to :resource
 
   scope :published, -> { lt(created_at: Time.now) }
@@ -89,7 +90,6 @@ class Thing < Post
   scope :price_between, ->(from, to) { where :price.gt => from, :price.lt => to }
   scope :approved, -> { gte(priority: 0) }
   scope :recommended, -> { gt(priority: 0) }
-  scope :by_tag, -> (tag) { any_in('tag_ids' => tag.id) }
   scope :by_brand, -> (brand) { where('brand_id' => brand.id) }
   scope :no_brand, -> { where('brand_id' => nil) }
 
@@ -135,24 +135,11 @@ class Thing < Post
   end
 
   def categories_text
-    (categories || []).join ','
+    categories.third_level.map(&:name).join(', ')
   end
 
   def categories_text=(text)
-    self.categories = text.split(',').map(&:strip).reject(&:blank?).uniq
-  end
-
-  def tags_text
-    (tags.map(&:name) || []).join ','
-  end
-
-  def tags_text=(text)
-    self.tags = text.split(/[，,]/).map do |tag_name|
-      Tag.find_by(name: tag_name.strip)
-    end
-    categories = self.tags.map(&:categories).flatten
-    categories += categories.map(&:category)
-    self.categories = categories.compact.uniq.map(&:name)
+    self.categories = text.split(/[，,]/).map(&:strip).map { |name| Category.where(name: name).first }.compact
   end
 
   def brand_text=(text)
@@ -184,14 +171,6 @@ class Thing < Post
 
   def merchant_name=(name)
     self.merchant = (name.blank?) ? nil : Merchant.find_by(name: name)
-  end
-
-  def category_records
-    Category.any_in(name: self.categories)
-  end
-
-  def primary_categories
-    category_records.primary.pluck(:name)
   end
 
   def update_price
@@ -484,10 +463,21 @@ class Thing < Post
     end
   end
 
-  def update_thing_categories
-    c = self.tags.map(&:categories).flatten
-    c += c.map(&:category)
-    self.categories = c.compact.uniq.map(&:name)
+  def after_add_category(category)
+    category.ancestors.each do |c|
+      self.add_to_set(category_ids: c.id)
+    end
   end
 
+  def after_remove_category(category)
+    fix_categories
+  end
+
+  def fix_categories
+    third_level_categories = self.categories.third_level
+    second_level_categories = third_level_categories.map(&:parent).uniq
+    top_level_categories = second_level_categories.map(&:parent).uniq
+
+    self.set(categories: top_level_categories + second_level_categories + third_level_categories)
+  end
 end

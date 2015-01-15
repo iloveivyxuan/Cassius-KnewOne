@@ -109,12 +109,11 @@ module Haven
         @things = @things.order_by([:created_at, :desc]) if params[:filter].include? "created_at_desc"
         @things = @things.order_by([:created_at, :asc]) if params[:filter].include? "created_at_asc"
       end
-      @things = @things.in(categories: params[:categories]) if params[:categories]
-      @things = @things.where(shop: Regexp.new(params[:shop])) if params[:shop]
-      if params[:tag]
-        tag = Tag.where(name: params[:tag]).first
-        @things = @things.any_in(:tag_ids => tag) if tag
+      if params[:category]
+        category = Category.where(name: params[:category]).first
+        @things = @things.in(category_ids: category.id) if category
       end
+      @things = @things.where(shop: Regexp.new(params[:shop])) if params[:shop]
       if params[:title]
         q = (params[:title] || '')
         q.gsub!(/[^\u4e00-\u9fa5a-zA-Z0-9[:blank:].-_]+/, '')
@@ -135,7 +134,7 @@ module Haven
       unless params[:filter] || params[:categories]
         @things = @things.desc(:created_at)
       end
-      @things = @things.includes(:brand, :tags, :author).page params[:page]
+      @things = @things.includes(:brand, :author).page params[:page]
     end
 
     def batch_update

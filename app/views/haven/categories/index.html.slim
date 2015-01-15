@@ -1,25 +1,26 @@
-table.table
+- page_title "分类管理"
+
+table.table.table-striped
   thead
     tr
-      th 分类
-      th 主分类
+      th width="20%" 名称
+      th 级别
       th 子分类数量
       th 产品数量
       th 优先级
-      th 标签数量
-      th
+      th width="15%"
   tbody
     - @categories.each do |c|
       tr
-        th= link_to c.name, things_path(category: c)
-        th= c.primary_category?
-        th= c.primary_category? ? c.inner_categories.size : -1
+        th= link_to c.name, categories_things_path(c)
+        th= c.depth + 1
+        th= c.children.size
         th= c.things_count
         th= c.priority
-        th= c.tags.size
         th
-          = link_to '[编辑]', edit_haven_category_path(c)
-          - if (c.primary_category? && c.inner_categories.empty?) || (!c.primary_category? && c.tags.empty?)
-            = link_to '[删除]', haven_category_path(c), method: :delete, data: { confirm: '确定要删除吗？' }
+          = link_to '编辑', edit_haven_category_path(c)
+          - if c.children.blank?
+            span.separator |
+            = link_to '删除', haven_category_path(c), method: :delete, data: { confirm: '确定要删除吗？' }
 
 = link_to "添加分类", new_haven_category_path

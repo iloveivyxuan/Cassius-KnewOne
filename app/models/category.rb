@@ -9,47 +9,68 @@ class Category
   mount_uploader :cover, CoverUploader
   field :icon, type: String, default: "fa-tags" # font awesome
 
-  field :thing_ids, type: Array, default: []
-
-  has_many :inner_categories, class_name: "Category", inverse_of: :category
-  belongs_to :category, class_name: "Category", inverse_of: :inner_categories
-
-  has_and_belongs_to_many :users
+  has_and_belongs_to_many :parents, class_name: 'Category', index: true, inverse_of: nil
 
   field :description, type: String, default: ""
 
+  index name: 1
   validates :name, presence: true, uniqueness: true
 
-  scope :prior, -> { desc(:priority, :things_count) }
-  scope :primary, -> { where(category: nil) }
-  scope :inner, -> { ne(category: nil) }
+  field :depth, type: Integer, default: 0
+  before_save { self.depth = self.parent.present? ? self.parent.depth + 1 : 0 }
 
-  has_and_belongs_to_many :tags
+  scope :top_level, -> { where(depth: 0) }
+  scope :second_level, -> { where(depth: 1) }
+  scope :third_level, -> { where(depth: 2) }
+
+  scope :prior, -> { desc(:priority, :things_count) }
+
+  def children
+    Category.where(parent_ids: self.id)
+  end
+
+  # top_level? second_level? third_level?
+  [%w(top 0), %w(second 1), %w(third 2)].each do |level|
+    define_method("#{level.first}_level?".to_sym) { depth == level.last.to_i }
+  end
+
+  def ancestors
+    return [] if parent_ids.blank?
+    parents | parents.flat_map(&:ancestors)
+  end
+
+  def parent
+    parents.first
+  end
+
+  def parent=(category)
+    self.parents = [category]
+  end
 
   def things
-    Thing.any_in(id: thing_ids)
+    Thing.where(category_ids: self.id)
   end
 
-  def primary_category?
-    self.category.nil?
+  def parents_text
+    return "" if self.parents.blank?
+    self.parents.map(&:name).join(', ')
   end
 
-  def primary_category
-    self.category.name
+  def parents_text=(text)
+    self.parents = Category.in(name: text.split(/[，,]/).map(&:strip))
   end
 
-  def primary_category=(text)
-    pc = Category.where(name: text.strip).first
-    self.category = pc if pc
+  def children_text
+    return "" if self.children.blank?
+    self.children.map(&:name).join(', ')
   end
 
-  def inner_categories_text
-    self.inner_categories.map(&:name).join(",")
-  end
-
-  def inner_categories_text=(text)
-    inners = text.split(/[，,]/).map { |c| Category.find_or_create_by(name: c.strip) }
-    self.inner_categories = inners
+  def children_text=(text)
+    text.split(/[，,]/).map(&:strip).each do |name|
+      child = Category.find_or_create_by(name: name.strip)
+      child.parents << self
+      child.set(depth: self.depth + 1)
+    end
   end
 
   include Searchable
@@ -60,26 +81,4 @@ class Category
       c.set(things_count: c.things.size)
     end
   end
-
-  def self.update_thing_ids
-    # inner categories
-    Category.ne(category: nil).each do |c|
-      c.thing_ids = c.tags.map(&:thing_ids).flatten.uniq unless c.tags.empty?
-      c.save
-    end
-    # primary categories
-    Category.where(category: nil).each do |c|
-      c.thing_ids = c.inner_categories.map(&:thing_ids).flatten.uniq unless c.inner_categories.empty?
-      c.save
-    end
-  end
-
-  def self.update_tags
-    Category.where(category: nil).each do |c|
-      c.tags.clear
-      tags = c.inner_categories.map(&:tags).flatten.uniq
-      tags.each { |tag| c.tags << tag }
-    end
-  end
-
 end

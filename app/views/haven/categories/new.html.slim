@@ -6,18 +6,6 @@ header.page-header
     | 添加分类
 
 section
-  = form_for Category.new, url: haven_categories_path(@category), method: :post do |f|
-    = f.file_field :cover
-    = f.hidden_field :cover_cache
-    label 名称
-    = f.text_field :name
-    br
-    label 优先级
-    = f.text_field :priority
-    br
-    label icon
-    = f.text_field :icon
-    div
-      label 描述
-      = f.text_area :description, cols: 80, rows: 20
-    = f.submit
+  = form_for @category, url: haven_categories_path(@category), method: :post do |f|
+    = render 'form', f: f
+    = f.submit class: "btn btn-default"

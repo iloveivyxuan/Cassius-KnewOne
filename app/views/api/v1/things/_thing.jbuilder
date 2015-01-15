@@ -11,7 +11,7 @@ json.stage_text ::Thing::STAGES[thing.stage]
 json.fanciers_count thing.fanciers_count
 json.owners_count thing.owners_count
 json.reviews_count thing.reviews_count
-json.categories thing.category_records do |c|
+json.categories thing.categories do |c|
   json.partial! 'api/v1/categories/category', category: c
 end
 if price = price(thing)

@@ -176,11 +176,9 @@ Making::Application.routes.draw do
       get 'random'
       post 'create_by_extractor'
       get 'extract_url'
-      get 'category/:category', action: :index, as: :category
-      get 'tag/:tag', action: :index, as: :tag
+      get 'categories/*categories', to: 'things#index'
       get 'brand/:brand', action: :index, as: :brand
-      get 'category/:category/tag/:tag', action: :index
-      get 'brand/:brand/tag/:tag', action: :index
+      get 'brand/:brand/categories/:categories', action: :index
       post 'modify_brand'
     end
 

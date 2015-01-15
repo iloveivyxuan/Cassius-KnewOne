@@ -5,7 +5,7 @@ json.title @thing.title
 json.subtitle @thing.subtitle
 json.stage thing_stage
 json.stage_text ::Thing::STAGES[thing_stage]
-json.categories @thing.category_records do |c|
+json.categories @thing.categories do |c|
   json.partial! 'api/v1/categories/category', category: c
 end
 if price = price(@thing)

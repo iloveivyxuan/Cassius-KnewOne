@@ -6,9 +6,9 @@
     li.add_to_list= render 'thing_lists/link_to_add_list', thing_id: tp.thing.id.to_s
 
   .others.clearfix
-    - if tp.tags.present?
+    - if tp.categories.present?
       ul.tags.clearfix
-        = render partial: 'things/tag', collection: tp.tags
+        = render partial: 'things/category', collection: tp.categories
 
     .related.clearfix
       - brand_text = tp.thing.try(:brand).try(:brand_text)

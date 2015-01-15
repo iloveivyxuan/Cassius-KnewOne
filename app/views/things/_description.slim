@@ -1,8 +1,11 @@
 - unless description.blank?
   p#description= description
-- if klass.is_a?(Brand)
-  - @tags = klass.tags
+
+- if klass.is_a? Brand
+  - children = klass.categories
+- elsif klass.third_level?
+  - children = (@second_c || klass.parent).children
 - else
-  - @tags = (klass.primary_category?) ? klass.inner_categories : klass.tags
+  - children = klass.children
 #tags
-  = render 'thing_information_tags', tags: @tags
+  = render 'thing_information_tags', children: children

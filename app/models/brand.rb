@@ -38,8 +38,9 @@ class Brand
     brand_text.nil? ? zh_name : brand_text
   end
 
-  def tags
-    things.map(&:tags).flatten.uniq
+  def categories
+    category_ids = things.map(&:category_ids).flatten.uniq
+    Category.third_level.in(id: category_ids)
   end
 
   def spacing_description

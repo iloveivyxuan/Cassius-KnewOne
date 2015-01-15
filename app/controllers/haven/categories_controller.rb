@@ -8,6 +8,7 @@ module Haven
     end
 
     def new
+      @category = Category.new
     end
 
     def create

@@ -7,26 +7,5 @@ header.page-header
 
 section
   = form_for @category, url: haven_category_path(@category) do |f|
-    - if @category.cover
-      = image_tag @category.cover.url
-    = f.file_field :cover
-    = f.hidden_field :cover_cache
-    label 名称
-    = f.text_field :name
-    br
-    label 优先级
-    = f.text_field :priority
-    br
-    label icon
-    = f.text_field :icon
-    div
-      - if @category.primary_category?
-        label 子分类
-        = f.text_field :inner_categories_text
-      - else
-        label 所属主分类
-        = f.text_field :primary_category
-    div
-      label 描述
-      = f.text_area :description, cols: 80, rows: 20
-    = f.submit
+    = render 'form', f: f
+    = f.submit class: "btn btn-default"
