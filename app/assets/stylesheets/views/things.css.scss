@@ -1387,6 +1387,10 @@ html.feelings_show {
       .shop-header {
         @include clearfix;
         margin-bottom: 15px;
+
+        &:empty {
+          display: none;
+        }
       }
       .btn--adoption {
         background-color: transparent;
