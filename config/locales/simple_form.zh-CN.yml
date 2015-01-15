@@ -91,7 +91,16 @@ zh-CN:
       notification_setting:
         stock: '产品到货'
         new_review: '产品有新评测'
-        comment: '提到我的评论'
+        new_feeling: '产品有新短评'
+        new_topic: '小组有新话题'
+        mention: '提到我的'
+        following: '关注通知'
+        weibo_friend_joined: '微博好友'
+        love_feeling: '短评被喜欢'
+        love_review: '评测被喜欢'
+        love_topic: '话题被喜欢'
+        fancy_thing: '产品被喜欢'
+        fancy_list: '列表被喜欢'
       entry:
         category: '分类'
         post_id: '文章/评测ID'

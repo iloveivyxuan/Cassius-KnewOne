@@ -1,5 +1,7 @@
 = simple_form_for(current_user.notification_setting, url: notification_settings_path, wrapper: :horizontal, html: { method: :patch, class: 'form-horizontal' }) do |f|
-  = f.input :stock, as: :radio_buttons, collection: NotificationSetting::BOOL_OPTIONS.to_a.map(&:reverse)
-  = f.input :new_review, as: :radio_buttons, collection: NotificationSetting::SCOPE_OPTIONS.to_a.map(&:reverse)
-  = f.input :comment, as: :radio_buttons, collection: NotificationSetting::SCOPE_OPTIONS.to_a.map(&:reverse)
+  - NotificationSetting::TYPES.select { |_, v| v == :bool }.keys.each do |key|
+    = f.input key, as: :radio_buttons, collection: NotificationSetting::BOOL_OPTIONS.to_a.map(&:reverse), item_wrapper_class: 'radio-inline'
+  - @types_without_mention.select { |_, v| v == :scope  }.keys.each do |key|
+    = f.input key, as: :radio_buttons, collection: NotificationSetting::SCOPE_OPTIONS.to_a.map(&:reverse), item_wrapper_class: 'radio-inline'
+  = f.input :mention, as: :radio_buttons, collection: NotificationSetting::SCOPE_OPTIONS.to_a.map(&:reverse), item_wrapper_class: 'radio-inline'
   = f.button :submit, '保存', class: 'btn btn-primary'
