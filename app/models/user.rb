@@ -504,10 +504,11 @@ HERE
   end
 
   # tags
-  has_and_belongs_to_many :tags, inverse_of: nil do
-    def recent
-      sort_by { |tag| base.tag_ids.index(tag.id) }
-    end
+  has_and_belongs_to_many :tags, inverse_of: nil
+
+  def recent_tags(limit)
+    tag_ids = self.tag_ids.take(limit)
+    Tag.only(:id, :name).in(id: tag_ids).sort_by { |tag| tag_ids.index(tag.id) }
   end
 
   # recommend users who not followed by self
