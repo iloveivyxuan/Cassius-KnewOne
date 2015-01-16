@@ -4,6 +4,8 @@ class ImpressionsController < ApplicationController
 
   def show
     @impression = @thing.impressions.find_by(author: current_user)
+    @recent_tags = current_user.recent_tags(5)
+    @popular_tags = @thing.popular_tags(5)
 
     respond_to do |format|
       format.json
