@@ -11,6 +11,7 @@ class Stat
     :activities_users => '有交互用户数',
     :ave_follows_count => '用户平均关注数量',
     :ave_followers_count => '用户平均被关注数量',
+    :bong_auth_users_count => '绑定了 bong 的用户总数',
     # 交互数据
     :likes_count => '总 like 数',
     :product_likes_tops => '分产品 like 数前 10',
@@ -306,6 +307,10 @@ class Stat
 
   def bong_point_consumed_count
     all_orders.map(&:bong_point_transactions).flatten.map(&:bong_point).flatten.reduce(&:+)
+  end
+
+  def bong_auth_users_count
+    User.elem_match(auths: { provider: "bong" }).size
   end
 
   private
