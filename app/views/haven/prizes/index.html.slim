@@ -36,6 +36,8 @@ table.table
           span.separator |
           = link_to "删", haven_prize_path(id: p.id), method: :delete
 
+= paginate @prizes
+
 table.table
   thead
     tr

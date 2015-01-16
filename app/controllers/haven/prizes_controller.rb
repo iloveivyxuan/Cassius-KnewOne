@@ -4,7 +4,7 @@ module Haven
     before_action :set_prize, only: [:edit, :update, :destroy]
 
     def index
-      @prizes = Prize.all.desc(:since)
+      @prizes = Prize.all.desc(:since).page(params[:page])
 
       @share_things = Prize.share_things
       @share_reviews = Prize.share_reviews
