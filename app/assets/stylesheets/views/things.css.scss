@@ -2109,6 +2109,7 @@ html.feelings_show {
         @include MQ(Mplus) {
           margin-left: 20%;
           font-size: 20px;
+          padding-right: 2em;
         }
 
         color: $gray;
