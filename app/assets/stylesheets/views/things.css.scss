@@ -2368,7 +2368,6 @@ html.reviews_show {
     }
 
     .article {
-      background-color: #fff;
 
       > header {
         padding: 1em;
@@ -2434,6 +2433,12 @@ html.reviews_show {
         }
       }
 
+      > .body,
+      > .actions,
+      #comments {
+        background-color: #fff;
+      }
+
       > .body {
         > header {
           @include clearfix;
@@ -2443,6 +2448,29 @@ html.reviews_show {
             float: right;
           }
         }
+      }
+
+      > .actions {
+        margin-bottom: 2em;
+      }
+
+      .target-info {
+        display: table;
+        padding: 15px;
+      }
+
+      .target-image {
+        float: left;
+        height: 80px;
+      }
+
+      .target-name {
+        color: $text-color;
+        display: table-cell;
+        font-size: 16px;
+        text-align: center;
+        vertical-align: middle;
+        width: 50%;
       }
     }
   }

@@ -11,7 +11,6 @@
   article.article.single_review id="review_#{@review.id}"
     header
       h3= rp.title
-      p.text-center= link_to rp.review.thing.title, rp.review.thing
       .text-center
         .author= rp.author
         = rp.score
@@ -26,6 +25,14 @@
         = render 'shared/post_actions', post: rp.review,
           edit_post_path: rp.edit_path, post_path: rp.path
       = time_ago_tag @review.created_at
+
+    section.panel.panel--flat
+      header.panel-header
+        h5.panel-title.text-center 评测中的产品
+      .panel-body
+        .target-info
+          = image_tag rp.review.thing.cover.url(:normal), class: "target-image"
+          = link_to rp.review.thing.title, rp.review.thing, class: "target-name"
 
     = render 'shared/comments', post: rp.review, id: "comments", auth: true
 
