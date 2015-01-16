@@ -3,7 +3,7 @@ class ImpressionsController < ApplicationController
   load_resource :thing
 
   def show
-    @impression = @thing.impressions.find_by(author: current_user)
+    @impression = @thing.impressions.find_or_initialize_by(author: current_user)
     @recent_tags = current_user.recent_tags(5)
     @popular_tags = @thing.popular_tags(5)
 
