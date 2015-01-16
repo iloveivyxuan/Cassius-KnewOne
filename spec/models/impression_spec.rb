@@ -13,7 +13,7 @@ describe Impression, type: :model do
       thing.reload
 
       expect(author.tags.recent.first).to eq tag
-      expect(author.tags).to include tag
+      expect(thing.tags).to include tag
 
       impression.tags.delete(tag)
       author.reload
