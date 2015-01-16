@@ -91,7 +91,7 @@ module Haven
       end
       if params[:filter]
         @things = @things.where(shop: "") if params[:filter].include? "no_link"
-        @things = @things.where(categories: []) if params[:filter].include? "no_category"
+        @things = @things.where(category_ids: []) if params[:filter].include? "no_category"
         @things = @things.where(price: nil) if params[:filter].include? "no_price"
         @things = @things.any_in(:tag_ids => [nil, []]) if params[:filter].include? "no_tag"
         @things = @things.where(official_site: "") if params[:filter].include? "no_official"
