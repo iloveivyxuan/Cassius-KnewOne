@@ -100,7 +100,8 @@ section.orders_wrapper
     = link_to '需要帮助?', '#customer_services', title: '需要帮助?', class: 'btn btn-link'
 
   - if @order.pending?
-    p.well.text-info * 请您在24小时之内支付，否则订单将自动取消。
+    - time = (@order.include_virtual?) ? 1 : 24
+    p.well.text-info * 请您在 #{time} 小时之内支付，否则订单将自动取消。
 
 /= render partial: 'pay_modal', locals: {order: @order}
 
