@@ -83,6 +83,7 @@ feature 'Walk around (Smoke test)', slow: true do
      edit_thing_path(thing),
      thing_path(thing),
      random_things_path,
+     "/things/categories/#{category.slug}",
      buy_thing_path(thing),
      related_thing_path(thing),
      activities_thing_path(thing),
