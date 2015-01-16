@@ -14,8 +14,12 @@ class ImpressionsController < ApplicationController
 
   def update
     @impression = @thing.impressions.find_or_create_by(author: current_user)
-    @impression.update(impression_params)
-    head :no_content
+
+    if @impression.update(impression_params)
+      format.json { head :no_content }
+    else
+      format.json { render json: @impression.errors, status: :unprocessable_entity }
+    end
   end
 
   private
