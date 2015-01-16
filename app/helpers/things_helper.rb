@@ -63,7 +63,6 @@ module ThingsHelper
       'no_link' => '无购买链接',
       'no_category' => '无分类',
       'no_price' => '无价格',
-      'no_tag' => '无标签',
       'no_official' => '无来源',
       'no_brand' => '无品牌',
       'concept' => '研发中',
