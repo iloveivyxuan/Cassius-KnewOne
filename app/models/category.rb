@@ -19,6 +19,10 @@ class Category
   field :depth, type: Integer, default: 0
   before_save { self.depth = self.parent.present? ? self.parent.depth + 1 : 0 }
 
+  after_save do
+    things.each(&:fix_categories) if parent_ids_changed?
+  end
+
   scope :top_level, -> { where(depth: 0) }
   scope :second_level, -> { where(depth: 1) }
   scope :third_level, -> { where(depth: 2) }
