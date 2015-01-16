@@ -84,6 +84,25 @@
   }
 }
 
+.comments_more {
+  @extend .btn;
+  @extend .btn-block;
+  border-top: 1px dashed #eee;
+  color: $blue;
+
+  &:hover,
+  &:active {
+    box-shadow: none;
+    color: $blue-dark;
+  }
+
+  > .fa {
+    &::before {
+      content: '\f107';
+    }
+  }
+}
+
 .comments:not(.comments--compact) {
   textarea {
     background-color: #f7f7f7;
@@ -125,11 +144,6 @@ html.mobile {
       section {
         padding-left: 40px;
       }
-    }
-
-    .comments_more {
-      @extend .btn-block;
-      @extend .btn-sm;
     }
   }
 }
