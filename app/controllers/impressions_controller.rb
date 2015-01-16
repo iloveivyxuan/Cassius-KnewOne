@@ -2,11 +2,12 @@ class ImpressionsController < ApplicationController
   prepend_before_action :require_signed_in
   load_resource :thing
 
-  respond_to :json
-
   def show
     @impression = @thing.impressions.find_by(author: current_user)
-    respond_with @impression
+
+    respond_to do |format|
+      format.json
+    end
   end
 
   def update
