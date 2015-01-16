@@ -64,19 +64,6 @@ class Category
     self.parents = Category.in(name: text.split(/[，,]/).map(&:strip))
   end
 
-  def children_text
-    return "" if self.children.blank?
-    self.children.map(&:name).join(', ')
-  end
-
-  def children_text=(text)
-    text.split(/[，,]/).map(&:strip).each do |name|
-      child = Category.find_or_create_by(name: name.strip)
-      child.parents << self
-      child.set(depth: self.depth + 1)
-    end
-  end
-
   include Searchable
   searchable_fields [:name, :_slugs]
 
