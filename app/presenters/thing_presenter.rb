@@ -220,7 +220,7 @@ class ThingPresenter < PostPresenter
     kinds.map { |kind| kind.option_for_select(with_price: true) }.join
   end
 
-  def categories(depth=1)
+  def categories(depth=2)
     thing.categories.gte(depth: depth)
   end
 
