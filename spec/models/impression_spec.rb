@@ -6,21 +6,21 @@ describe Impression, type: :model do
   let(:thing) { impression.thing }
   let(:tag) { create(:tag) }
 
-  describe 'updates User#tags and Thing#tags automatically' do
+  describe 'updates User#tags and Thing#tag_counts automatically' do
     specify do
       impression.tags << tag
       author.reload
       thing.reload
 
-      expect(author.tags.recent.first).to eq tag
-      expect(thing.tags).to include tag
+      expect(author.recent_tags(1).first).to eq tag
+      expect(thing.popular_tags(2)).to include tag
 
       impression.tags.delete(tag)
       author.reload
       thing.reload
 
-      expect(author.tags).to_not include tag
-      expect(thing.tags).to_not include tag
+      expect(author.recent_tags(1)).to_not include tag
+      expect(thing.popular_tags(2)).to_not include tag
     end
   end
 
