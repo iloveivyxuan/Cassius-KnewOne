@@ -116,7 +116,9 @@ class Impression
 
   def before_add_tag(tag)
     author.set(tag_ids: [tag.id] + (author.tag_ids - [tag.id]))
-    thing.add_to_set(tag_ids: tag.id)
+
+    thing.add_tag(tag)
+    thing.fix_tag_counts
   end
 
   def before_remove_tag(tag)
@@ -124,8 +126,7 @@ class Impression
       author.pull(tag_ids: tag.id)
     end
 
-    if Impression.where(thing_id: thing_id, tag_ids: tag.id).count <= 1
-      thing.pull(tag_ids: tag.id)
-    end
+    thing.remove_tag(tag)
+    thing.fix_tag_counts
   end
 end

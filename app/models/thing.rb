@@ -19,8 +19,6 @@ class Thing < Post
                           after_add: :after_add_category,
                           after_remove: :after_remove_category
 
-  has_and_belongs_to_many :tags, inverse_of: nil
-
   before_save :update_price
   before_save :update_amazon_link
 
@@ -146,6 +144,32 @@ class Thing < Post
 
   def owned?(user)
     impressions.owned.where(author: user).exists?
+  end
+
+  field :tag_counts, type: Array, default: []
+
+  def add_tag(tag)
+    found = tag_counts.assoc(tag.id)
+    if found
+      found[1] += 1
+    else
+      tag_counts << [tag.id, 1]
+    end
+  end
+
+  def remove_tag(tag)
+    found = tag_counts.assoc(tag.id)
+    found[1] -= 1 if found
+  end
+
+  def fix_tag_counts
+    tag_counts = self.tag_counts.select { |a| a[1] > 0 }.sort_by(&:last).reverse
+    set(tag_counts: tag_counts)
+  end
+
+  def popular_tags(limit)
+    tag_ids = self.tag_counts.take(limit).map(&:first)
+    Tag.only(:id, :name).in(id: tag_ids).sort_by { |tag| tag_ids.index(tag.id) }
   end
 
   has_many :stories, dependent: :destroy
