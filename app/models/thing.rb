@@ -15,9 +15,7 @@ class Thing < Post
   field :official_site, type: String, default: ""
   field :photo_ids, type: Array, default: []
 
-  has_and_belongs_to_many :categories, inverse_of: nil,
-                          after_add: :after_add_category,
-                          after_remove: :after_remove_category
+  has_and_belongs_to_many :categories, inverse_of: nil
 
   before_save :update_price
   before_save :update_amazon_link
@@ -432,12 +430,15 @@ class Thing < Post
   end
 
   def fix_categories
+    return unless category_ids_changed?
+
     third_level_categories = self.categories.third_level
     second_level_categories = third_level_categories.map(&:parent).uniq
     top_level_categories = second_level_categories.map(&:parent).uniq
 
     self.set(categories: top_level_categories + second_level_categories + third_level_categories)
   end
+  after_save :fix_categories
 
   private
 
@@ -469,15 +470,5 @@ class Thing < Post
         self.stage = :abroad
       end
     end
-  end
-
-  def after_add_category(category)
-    category.ancestors.each do |c|
-      self.add_to_set(category_ids: c.id)
-    end
-  end
-
-  def after_remove_category(category)
-    fix_categories
   end
 end
