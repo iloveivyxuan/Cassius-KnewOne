@@ -431,14 +431,6 @@ class Thing < Post
     response['titles'].first['options'].map { |h| h['text'].strip } rescue []
   end
 
-  def fix_categories
-    third_level_categories = self.categories.third_level
-    second_level_categories = third_level_categories.map(&:parent).uniq
-    top_level_categories = second_level_categories.map(&:parent).uniq
-
-    self.set(categories: top_level_categories + second_level_categories + third_level_categories)
-  end
-
   private
 
   # delete ~, which may cause slug to be 'foo-bar-~', which cannot be found.
@@ -479,5 +471,13 @@ class Thing < Post
 
   def after_remove_category(category)
     fix_categories
+  end
+
+  def fix_categories
+    third_level_categories = self.categories.third_level
+    second_level_categories = third_level_categories.map(&:parent).uniq
+    top_level_categories = second_level_categories.map(&:parent).uniq
+
+    self.set(categories: top_level_categories + second_level_categories + third_level_categories)
   end
 end
