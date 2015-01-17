@@ -7,7 +7,7 @@
   在过去的一周里（<%= @weekly.since_date.strftime('%Y.%m.%d') %> ~ <%= @weekly.until_date.strftime('%Y.%m.%d') %>）
 <% end %>
 
-<%= image_tag "http://www.google-analytics.com/collect?v=1&tid=UA-52310665-1&cid=222&t=event&ec=email&ea=open&el=#{@user.name}&cs=weekly&cm=email&cn=metric1&cm1=1", alt: "" %>
+<%= image_tag "http://www.google-analytics.com/collect?v=1&tid=UA-52310665-1&cid=#{@user.name}&t=event&ec=email&ea=open&el=#{@user.name}&cs=weekly&cm=email&cn=#{@weekly.since_date.to_s}&cm1=1", alt: "" %>
 
 <%= render @weekly.weekly_entries %>
 
