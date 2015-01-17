@@ -23,9 +23,9 @@ module MerchantsHelper
 
   def customer_service(merchant, klass=nil)
     if merchant.try(:customer_service_type) == "link"
-      link_to "客服", merchant.customer_service, class: klass, target: '_blank'
+      link_to "联系客服", merchant.customer_service, class: klass, target: '_blank'
     else
-      link_to "客服", "#customer_services", class: klass
+      link_to "联系客服", "#customer_services", class: klass
     end
   end
 
