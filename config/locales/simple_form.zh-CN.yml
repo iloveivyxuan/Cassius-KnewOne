@@ -57,6 +57,7 @@ zh-CN:
       abatement_coupon:
         threshold_price: '阈值金额'
         price: '降低金额'
+        include_pre_sell_things: '预售产品可用'
       thing_rebate_coupon:
         thing_id: '产品id'
         price: '降低金额'

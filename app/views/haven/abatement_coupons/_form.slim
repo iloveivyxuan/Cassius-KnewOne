@@ -15,4 +15,5 @@
       - @coupon.exclude_thing_ids.each do |i|
         option value="#{i}" = i
   = f.input :price, as: :decimal
+  = f.input :include_pre_sell_things, as: :radio_buttons
   = f.button :submit

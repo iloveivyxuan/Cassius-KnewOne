@@ -3,13 +3,13 @@ class AbatementCoupon < Coupon
   field :price, type: BigDecimal, default: 0
   field :merchant_ids, type: Array, default: []
   field :exclude_thing_ids, type: Array, default: []
+  field :include_pre_sell_things, type: Boolean, default: false
 
   validates :threshold_price, :price, :presence => true
 
   def use_condition(order)
     !order.has_pre_order_items? &&
       effective_order_item_price(order) >= self.threshold_price
-
   end
 
   def take_effect(order, code)
@@ -34,6 +34,10 @@ class AbatementCoupon < Coupon
     if self.exclude_thing_ids && self.exclude_thing_ids.any?
       ids = Thing.or({:id.in => self.exclude_thing_ids}, {:_slugs.in => self.exclude_thing_ids}).map { |t| t.id.to_s }
       items = items.where(:thing_id.nin => ids)
+    end
+
+    unless self.include_pre_sell_things
+      items = items.reject { |item| item.kind.stage == :pre_order }
     end
 
     items.map(&:price).reduce(&:+) || 0
