@@ -1,7 +1,7 @@
 module Haven
   class WeekliesController < Haven::ApplicationController
     layout 'settings'
-    before_action :set_weekly, except: [:index, :create, :new]
+    before_action :set_weekly, except: [:index, :create, :new, :edm]
 
     def index
       @weeklies = Weekly.desc(:created_at).page params[:page]
@@ -39,6 +39,12 @@ module Haven
 
     def deliver
       UserMailer.weekly(@weekly, current_user).deliver
+
+      redirect_to haven_weeklies_url
+    end
+
+    def edm
+      Weekly.delay.send_edm_to_users! params[:id]
 
       redirect_to haven_weeklies_url
     end

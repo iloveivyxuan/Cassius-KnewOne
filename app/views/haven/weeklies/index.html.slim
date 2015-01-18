@@ -19,12 +19,12 @@ table.table.table-striped
         td
           = link_to '编辑', edit_haven_weekly_path(w)
           span.separator |
-          = link_to '测试发送', deliver_haven_weekly_path(w), data: {confirm: 'are you sure?'}
+          = link_to '测试发送', deliver_haven_weekly_path(w), method: :post, data: {confirm: 'are you sure?'}
           span.separator |
           = link_to '删除', haven_weekly_path(w), method: :delete, data: {confirm: 'are you sure?'}
         td
-          = link_to '红色小按钮', '#', class: 'red_button btn btn-danger',
-                    data: {note: "#{w.since_date.year} 年第 #{w.week} 周",
+          = link_to '真·红色按钮', edm_haven_weekly_path(w), class: 'red_button btn btn-danger', method: :post,
+                    data: {confirm: "#{w.since_date.year} 年第 #{w.week} 周：#{w.title}",
                            toggle: 'tooltip', title: '使用：摸我！'}
 
 = paginate @weeklies
@@ -33,14 +33,4 @@ table.table.table-striped
   javascript:
     $(function() {
       $('[data-toggle="tooltip"]').tooltip();
-
-      $('.red_button').on('click', function () {
-        $this = $(this);
-        if (!confirm('真的要摸嘛？')) { alert('讨厌~'); return false; }
-        if (!confirm($this.attr('data-note') + ' 哦~')) { return false; }
-
-        alert('啊♂~~');
-        alert('一库....');
-        alert('（其实这个按钮目前是没有作用的...）');
-      });
     });

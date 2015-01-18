@@ -377,7 +377,8 @@ Making::Application.routes.draw do
 
     resources :weeklies, except: [:show] do
       member do
-        get 'deliver'
+        post 'deliver'
+        post 'edm'
       end
     end
 

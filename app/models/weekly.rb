@@ -82,6 +82,14 @@ class Weekly
     list.save!
   end
 
+  def self.send_edm_to_users!(weekly_id)
+    w = find weekly_id
+
+    User.edm.each do |u|
+      WeeklyWorker.perform_async w.id.to_s, u.id.to_s
+    end
+  end
+
   def self.generate_for_week!(since_date = Date.today.last_week)
     w = create! since_date: since_date
     w.gen_weekly_hot_things_list!
