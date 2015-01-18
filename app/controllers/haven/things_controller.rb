@@ -172,7 +172,7 @@ module Haven
       end
 
       @things = Thing.gte(created_at: from).lte(created_at: to.next_day)
-      tags = @things.map(&:tags).flatten
+      tags = @things.map(&:categories).flatten.select { |c| c.third_level? }
       result = {}
       tags.each { |tag| result[tag.name] = tags.count(tag) }
       @sorted = result.sort_by { |k, v| v }.reverse
