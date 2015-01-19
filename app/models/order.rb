@@ -230,9 +230,7 @@ class Order
   # There is a situation is user closed or canceled order, but still paid at third party
   # IMPORTANT: stock
   def can_confirm_payment?
-    return false unless pending? || canceled? || closed?
-    return false unless order_items.map(&:thing).map(&:stage).uniq == [:dsell]
-    true
+    pending? || canceled? || closed?
   end
 
   def can_pay?
