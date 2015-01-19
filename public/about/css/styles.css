@@ -7096,9 +7096,9 @@ ul.socialShare {
       float: left;
       width: 40%;
       margin-left: 10%;
-      margin-top: 0;
+      margin-top: -60px;
       text-align: left; } }
-  @media only screen and (min-width: 992px) and (min-height: 800px) {
+  @media only screen and (min-width: 992px) and (min-height: 768px) {
     #section5 figure figcaption {
         margin-top: 100px; } }
 
