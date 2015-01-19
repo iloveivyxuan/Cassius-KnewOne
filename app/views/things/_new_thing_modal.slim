@@ -64,6 +64,6 @@
             i.fa.fa-chevron-left
             | 返回
 
-          = button_tag class: 'btn btn-primary', type: :submit do
+          = button_tag class: 'btn btn-primary', type: :submit, data: { category: "thing", action: "create", label: thing_root_domain(thing) } do
             i.fa.fa-plus
             | 创建

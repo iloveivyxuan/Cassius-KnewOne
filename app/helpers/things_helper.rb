@@ -170,4 +170,13 @@ module ThingsHelper
   def brands_categories_things_path(brand, category)
     "/things/brand/#{brand.id}/categories/#{category.slug}"
   end
+
+  def thing_root_domain(thing)
+    return if thing.official_site.blank?
+    begin
+      URI.parse(URI::escape(thing.official_site)).host
+    rescue
+      nil
+    end
+  end
 end
