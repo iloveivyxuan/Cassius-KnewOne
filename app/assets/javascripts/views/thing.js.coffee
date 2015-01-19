@@ -50,6 +50,16 @@ window.Making = do (exports = window.Making || {}) ->
         new exports.View.Stream('#tab--mobile-reviews')
         new exports.View.Stream('#tab--mobile-activities')
 
+
+  exports.InitThingModal = (options) ->
+    $(document).on 'click', '#btn-to-new-local-thing-modal, #btn-to-new-local-thing-modal-title', ->
+      $modal = $('#new-thing-from-local')
+      unless $modal.length
+        view = new exports.Views.NewThingInModal(options)
+        $modal = view.$el
+      $modal.modal('show')
+
+
   exports.InitShop = ->
     exports.infiniteScroll('.js-infinite', window.location.pathname + window.location.search)
     $('#things_nav select').on 'change', (event) ->

@@ -28,7 +28,7 @@
       ul.menu-links--primary
         li= link_to_with_icon "首页", "fa fa-home fa-fw", root_path
         - if user_signed_in?
-          li= link_to_with_icon "分享产品", "fa fa-plus fa-fw", "#", id: "new_thing_trigger", data: { target: "#new-thing-from-url-modal", toggle: "modal" }
+          li= link_to_with_icon "分享产品", "fa fa-plus fa-fw", "#", id: "new_thing_trigger", data: { target: "#new-thing-modal", toggle: "modal" }
           li.dropdown
             = link_to "#", class: "dropdown-toggle", data: { toggle: "dropdown" }
               i.fa.fa-cubes.fa-fw

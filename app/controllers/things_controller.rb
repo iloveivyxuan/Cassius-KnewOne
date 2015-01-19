@@ -91,6 +91,10 @@ class ThingsController < ApplicationController
 
   def new
     @thing = Thing.new
+    if request.xhr?
+      @thing.feelings.build
+      render 'new_thing_in_modal', layout: false
+    end
   end
 
   def create
@@ -102,6 +106,28 @@ class ThingsController < ApplicationController
       redirect_to @thing, flash: {provider_sync: params[:provider_sync]}
     else
       render 'new'
+    end
+  end
+
+  def create_by_user
+    @thing = Thing.new params.require(:thing).permit(:title, :brand_name, photo_ids: [], feelings_attributes: [:content]).merge(author: current_user)
+    @thing.feelings.each do |feeling|
+      @thing.feelings.delete feeling and next if feeling.content.blank?
+      feeling.author = current_user
+      feeling.content.gsub! /\r\n/, "\n"
+    end
+
+    if @thing.save
+      @thing.feelings.each do |feeling|
+        content_users = mentioned_users(feeling.content)
+        content_users.each do |u|
+          u.notify :feeling, context: feeling, sender: current_user, opened: false
+        end
+
+        feeling.thing.author.notify :new_feeling, context: feeling, sender: current_user, opened: false
+
+        current_user.log_activity :new_feeling, feeling, source: feeling.thing
+      end
     end
   end
 

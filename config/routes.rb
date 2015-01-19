@@ -180,6 +180,7 @@ Making::Application.routes.draw do
       get 'brand/:brand', action: :index, as: :brand
       get 'brand/:brand/categories/:categories', action: :index
       post 'modify_brand'
+      post 'create_by_user'
     end
 
     member do

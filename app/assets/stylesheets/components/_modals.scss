@@ -83,31 +83,6 @@
   }
 }
 
-#new-thing-modal {
-  .modal-body {
-    padding: 40px 80px;
-  }
-
-  .btn {
-    width:  160px;
-    height: 160px;
-    padding: 30px;
-
-    text-align: center;
-
-    i {
-      display: block;
-      margin: auto;
-      padding: { top: 5px; bottom: 15px; }
-      font-size: 60px;
-    }
-
-    &:last-child {
-      float: right;
-    }
-  }
-}
-
 #new-thing-similar-modal {
   .modal-body {
     figure {
@@ -134,10 +109,6 @@
   textarea {
     width: 100%;
     padding: 10px;
-    border-top: 1px dashed #ccc;
-    border-bottom: none;
-    border-left: none;
-    border-right: 0;
     resize: none;
     outline: none;
   }

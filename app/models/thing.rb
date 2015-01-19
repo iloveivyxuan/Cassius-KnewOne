@@ -24,6 +24,8 @@ class Thing < Post
 
   has_many :feelings, dependent: :destroy
   field :feelings_count, type: Integer, default: 0
+  accepts_nested_attributes_for :feelings, auto_save: true
+  
   has_many :reviews, dependent: :destroy
   field :reviews_count, type: Integer, default: 0
 
@@ -52,7 +54,7 @@ class Thing < Post
   field :sharing_text, type: String
 
   validates :title, presence: true
-  validates :content, presence: true
+  validates :photo_ids, presence: true
 
   field :stage, type: Symbol, default: :concept
   STAGES = {
