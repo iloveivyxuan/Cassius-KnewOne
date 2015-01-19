@@ -23,7 +23,7 @@ class Making.Views.PhotoPreview extends Backbone.View
 
   validate: =>
     types = /(\.|\/)(gif|jpe?g|png)$/i
-    size = 5000000
+    size = 4194304 # 4M
     unless types.test(@model.type) || types.test(@model.name)
       return @fail "需要图片格式文件"
     if _.isNumber(@model.size) and @model.size > size
@@ -47,6 +47,6 @@ class Making.Views.PhotoPreview extends Backbone.View
   _formatSize: (bytes) ->
     return '' unless _.isNumber(bytes)
     if bytes >= 1000000
-      (bytes / 1000000).toFixed(2) + ' MB'
+      (bytes / 1048576).toFixed(2) + ' MB'
     else
-      (bytes / 1000).toFixed(2) + ' KB';
+      (bytes / 1024).toFixed(2) + ' KB'
