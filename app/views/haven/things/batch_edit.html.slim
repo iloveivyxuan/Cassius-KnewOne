@@ -69,8 +69,12 @@ ul.nav.nav-pills
             | 价格
             = text_field_tag 'things[][price]', t.price, style: 'width: 100%'
             br
-            | 优先级
-            = text_field_tag 'things[][priority]', t.priority, style: 'width: 100%'
+            .btn-group
+              - [%w(-2 -2), %w(-1 -1), %w(0 0), %w(1 1)].each do |k, v|
+                - v = v.to_i
+                label class=(t.priority == v ? "btn btn-default active" : "btn btn-default")
+                  input checked=(t.priority == v) name='things[][priority]' type="radio" value=v
+                    | #{k}
           td
             | 阶段
             .btn-group
