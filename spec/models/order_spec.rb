@@ -235,4 +235,20 @@ describe Order, type: :model do
     end
   end
 
+  describe 'could not order after sold out' do
+    let(:price) { order.should_pay_price }
+    let(:raw) { {trade_no: trade_no} }
+
+    before do
+      order.add_items_from_cart(user.cart_items)
+    end
+
+    specify do
+      expect(order.state).to eq :pending
+      order.order_items.first.thing.set(stage: :concept)
+      order.confirm_payment!(trade_no, price, payment_method, raw)
+      expect(order.state).to eq :pending
+    end
+  end
+
 end
