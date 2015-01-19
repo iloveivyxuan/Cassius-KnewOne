@@ -117,9 +117,11 @@ ul.nav.nav-pills
   javascript:
     $(document).ready(function() {
       $(".batch_edit")
-        .on("ajax:error", function(e, data, status, xhr) {
+        .on("ajax:success", function(e, data, status, xhr) {
+          var result = ""
           var output = this.getElementsByTagName("output")[0];
-          output.innerText = data.responseText;
+          for (attr in data) { result = result + attr + " 由 [" + data[attr][0] + "] 变为 [" + data[attr][1] + "]\n" }
+          output.innerText = result;
           output.classList.add("text-danger");
         })
       });

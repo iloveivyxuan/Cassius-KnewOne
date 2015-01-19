@@ -141,11 +141,13 @@ module Haven
       if thing_params = params[:things].first
         @thing = Thing.find(thing_params.delete :id)
         @thing.assign_attributes thing_params.permit!
-        @changes = @thing.changes
-        if @thing.save
-          render js: { status: true, changes: @changes }.to_json
-        else
-          render js: @thing.errors.full_messages
+        @changes = parsed_result(@thing.changes)
+        respond_to do |format|
+          if @thing.save
+            format.json { render json: @changes, status: :created }
+          else
+            format.json { render json: @thing.errors.messages, status: :error }
+          end
         end
       end
     end
@@ -215,5 +217,17 @@ module Haven
     def thing_params
       params.require(:thing).permit!
     end
+
+    def parsed_result(hash)
+      if changes = hash['brand_id']
+        hash["品牌"] = changes.map { |id| Brand.where(id: id).first ? Brand.find(id).brand_text : "无" }
+        hash.delete "brand_id"
+      elsif changes = hash['categories_text']
+        hash["分类"] = changes.map { |name| Category.where(name: name).first ? Brand.find_by(name: name).name : "无" }
+        hash.delete "categories_text"
+      end
+      hash
+    end
+
   end
 end
