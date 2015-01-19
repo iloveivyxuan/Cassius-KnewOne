@@ -8,7 +8,6 @@ class AbatementCoupon < Coupon
   validates :threshold_price, :price, :presence => true
 
   def use_condition(order)
-    !order.has_pre_order_items? &&
       effective_order_item_price(order) >= self.threshold_price
   end
 
@@ -36,7 +35,7 @@ class AbatementCoupon < Coupon
       items = items.where(:thing_id.nin => ids)
     end
 
-    unless self.include_pre_sell_things
+    unless !!self.include_pre_sell_things
       items = items.reject { |item| item.kind.stage == :pre_order }
     end
 
