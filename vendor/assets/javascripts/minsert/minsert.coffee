@@ -315,7 +315,7 @@ do ($ = jQuery) ->
 
       handleDeleteBlock: (event) ->
         if event.which is 8
-          selection  = window.getSelection()
+          selection = window.getSelection()
           if selection.anchorOffset is 0
             anchorNode = selection.anchorNode
             if anchorNode.nodeType is 3
@@ -325,7 +325,7 @@ do ($ = jQuery) ->
                 parentNode.insertBefore(paragraphNode, anchorNode)
                 paragraphNode.appendChild(anchorNode)
                 anchorNode = paragraphNode
-              else
+              else if anchorNode.previousSibling is null
                 anchorNode = parentNode
             prevNode  = anchorNode.previousSibling
             $prevNode = $(prevNode)
