@@ -10,9 +10,6 @@
         = render_mobile_buy_button(tp.thing)
         = render_mobile_adoption_button(tp.thing)
     .mobile_others.clearfix
-      - if tp.categories.present?
-        ul.mobile_tags
-          = render partial: 'things/category', collection: tp.categories
       - if tp.thing.merchant.present?
         .merchant
           | 由
