@@ -170,6 +170,12 @@ class Order
   end
 
   validate do
+    if !order_items.blank? && order_items.map(&:thing).map(&:stage).uniq != [:dsell]
+      errors.add :stage, "产品已下架"
+    end
+  end
+
+  validate do
     errors.add :price, "总价必须大于等于0元" if total_price < 0
   end
 

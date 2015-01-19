@@ -235,4 +235,15 @@ describe Order, type: :model do
     end
   end
 
+  describe 'could not make order after sold out' do
+    let(:order) { Order.build_order(user, address_id: address.id, use_balance: true) }
+
+    specify do
+      expect(order.persisted?).to eq false
+      order.order_items.first.thing.set(stage: :concept)
+      expect(order.save).to eq false
+      expect(order.state).to eq :pending
+    end
+  end
+
 end

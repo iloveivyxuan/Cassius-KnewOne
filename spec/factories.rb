@@ -31,6 +31,7 @@ FactoryGirl.define do
 
   factory :thing do
     author
+    stage :dsell
     title    { Faker::Lorem.word }
     subtitle { Faker::Lorem.sentence }
     sequence(:content)  { |i| "#{i} - #{Faker::Lorem.paragraph}" }
