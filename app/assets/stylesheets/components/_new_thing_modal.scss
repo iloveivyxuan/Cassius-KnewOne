@@ -65,6 +65,7 @@
         color: $brand-primary;
         content: '*';
         top: 1em;
+        left: 0;
         position: absolute;
       }
       &.is-invalid {
@@ -80,14 +81,18 @@
     .form-control {
       border: none;
       box-shadow: none;
+      text-align: left !important;
       &.dark {
         background-color: #F7F7F7;
         border-radius: 20px;
         padding: 10px * 2;
         font-size: 10px;
+        resize: none;
       }
       &.simple {
-
+        border-radius: 0 !important;
+        background-color: transparent !important;
+        padding: 6px 12px !important;
       }
       &:focus {
         outline: none;
@@ -150,11 +155,11 @@
         }
       }
       .new-thing-title {
-        button, h4 {
+        .btn, h4 {
           font-size: 14px;
           padding: 20px 0;
         }
-        button {
+        .btn {
           color: $text-muted;
           background-color: #F7F7F7;
           width: 160px;
@@ -215,11 +220,113 @@
         top: 50%;
       }
     }
-    textarea {
-      resize: none;
+  }
+
+
+  /** 远程产品抓取 modal */
+  &.remote.edit {
+    .modal-body {
+      padding: {
+        left: 0 !important;
+        right: 0 !important;
+      }
+    }
+    .carousel {
+
+    }
+    .carousel-control {
+      background-color: #333333;
+      border-radius: 0;
+      display: block;
+      height: 40px;
+      width: 40px;
+      &.right {
+        right: 0;
+      }
+      &.left {
+        left: 0;
+      }
+    }
+    .slideshow_body {
+      margin: 20px 0;
+
+      .slideshow_inner {
+        text-align: left;
+      }
+      li {
+        display:inline-block;
+        margin: 0 !important;
+        opacity: 1 !important;
+        position: relative;
+        text-align: center;
+        width: 20% !important;
+        &:hover {
+          &:after {
+            content: "\f05d";
+            visibility: visible;
+          }
+        }
+        &:after {
+          -moz-osx-font-smoothing: grayscale;
+          -webkit-font-smoothing: antialiased;
+          background-color: rgba(151, 197, 221, .75);
+          border-radius: 30px;
+          color: #FFFFFF;
+          display: inline-block;
+          font-family: FontAwesome;
+          font-size: 28px;
+          height: 32px;
+          left: 50%;
+          line-height: 33px;
+          margin-left: -14px;
+          margin-top: -14px;
+          position: absolute;
+          text-rendering: auto;
+          top: 50%;
+          visibility: hidden;
+          width: 32px;
+          z-index: 99;            
+        }
+        &:before {
+          bottom: 0;
+          content: ' ';
+          left: 0;
+          opacity: .75;
+          position: absolute;
+          right: 0;
+          top: 0;
+          transition: background-color .25s ease-in-out;
+          z-index: 97;
+        }
+
+        &.selected {
+          &:before {              
+            background-color: rgb(151, 197, 221);
+          }
+          &:after {
+            background-color: transparent;
+            content: "\f05d";
+            opacity: .75;
+            visibility: visible;
+          }
+        }
+
+        &.selected:hover {
+          &:before {
+            background-color: #333333;
+          }
+          &:after {
+            content: "\f10c";
+            visibility: visible;
+            opacity: .75;
+          }          
+        }
+      }
     }
   }
 }
+
+
 
 @media (max-width: $screen-md-min) {
   .modal.new-thing {
@@ -271,6 +378,14 @@
             width: 50%;
             border-radius: 0 !important;
           }
+        }
+      }
+    }
+
+    &.remote.edit {
+      .slideshow_body {
+        li {
+          width: 33.33333% !important;
         }
       }
     }

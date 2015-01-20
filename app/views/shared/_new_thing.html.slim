@@ -18,6 +18,7 @@
 
         button#btn-to-new-local-thing-modal.btn [
           data-dismiss="modal"
+          data-target="#new-thing-from-local"
         ]
           i.fa.fa-cloud-upload.fa-fw
           | 本地上传
@@ -31,8 +32,10 @@
         .modal-header
           button.close.hidden-md type="button" data-dismiss="modal" aria-hidden="true" &times;
           div.new-thing-title
-            button#btn-to-new-local-thing-modal-title.btn [
+            a.btn [
+              href = "#"
               data-dismiss="modal"
+              data-target="#new-thing-from-local"
             ]
               | 本地上传
             h4
@@ -42,13 +45,13 @@
                 | 通过网页分享新产品
 
         .modal-body
-          input#new-thing-url.form-control.dark required="required" type="url" placeholder="http://" name="url"
+          input#new-thing-url.form-control.dark required="required" type="url" placeholder="http://" name="url" autofocus="autofocus"
 
           .progress.progress-striped.active style="display: none"
             .progress-bar
 
           .alert.hidden
-            | 很抱歉，这个地址我们不支持，您可以通过 #{link_to '本地上传', new_thing_path} 来分享此产品。
+            | 很抱歉，这个地址我们不支持，您可以通过 #{link_to '本地上传', '#', data: {dismiss: 'modal', target: '#new-thing-from-local'}} 来分享此产品。
 
         .modal-footer
           button.btn.btn-default [
@@ -66,7 +69,7 @@
 
 
 // 产品远程链接编辑 modal
-#new-thing-edit-modal.modal.fade data-keyboard="false"
+#new-thing-edit-modal.modal.fade.new-thing.remote.edit data-keyboard="false"
 
 
 - content_for :script do

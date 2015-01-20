@@ -1,28 +1,28 @@
-= form_for(thing, url: create_by_extractor_things_path,
-                  remote: true, html: {class: 'form-horizontal', id: 'create_thing_modal_form'}) do |f|
+= form_for(thing, url: create_by_extractor_things_path, remote: true, html: {id: 'create_thing_modal_form'}) do |f|
   = f.hidden_field :official_site
   .modal-dialog
     .modal-content
       .modal-header
-        button.close type="button" data-dismiss="modal" aria-hidden="true" &times;
-        h4.modal-title
-          i.fa.fa-globe
-          | 通过网页分享新产品
+        button.close.hidden-md type="button" data-dismiss="modal" aria-hidden="true" &times;
+        div.new-thing-title
+          button#btn-to-new-local-thing-modal-title.btn [
+            data-dismiss="modal"
+          ]
+            | 本地上传
+          h4
+            - if browser.mobile?
+              | 从网页收集
+            - else
+              | 通过网页分享新产品
+
       .modal-body
         #new-thing-edit-modal-images-container
           - images.each_with_index do |photo, index|
             .image
               .item
-                .image_select
-                  .select_backdrop
-                  .select_btn_container
-                    a.unselect href="#" data-selector-id="image_#{index}_selector"
-                      i.fa.fa-circle-o
                 = image_tag photo, data: {'selector-id' => "image_#{index}_selector"}
               ul
                 = content_tag :li, data: {target: "#new-thing-edit-modal-images .carousel"}, id: "image_#{index}_selector" do
-                  .selected_icon.hidden
-                    i.fa.fa-check
                   = image_tag photo, class: "img-rounded"
                   = hidden_field_tag 'images[]', photo, id: "image_#{index}_field", disabled: true
 
@@ -36,17 +36,6 @@
           .slideshow_body
             ol.slideshow_inner#new-thing-edit-modal-sortable
 
-        .form-group
-          label.col-sm-3.control-label for="thing_title" 产品名称
-          .col-sm-9
-            = f.text_field :title, class: 'form-control', required: true
-        .form-group
-          label.col-sm-3.control-label for="thing_subtitle" 一句话描述
-          .col-sm-9
-            = f.text_field :subtitle, class: 'form-control'
-
-        = f.text_area :content, rows: 3, placeholder: '在这里写产品的简要描述信息', required: true, title: '请填写产品描述', data: {toggle: "tooltip", placement: "bottom"}
-
         .progress.progress-striped.active style="display: none"
           .progress-bar
 
@@ -56,14 +45,23 @@
         #other_error.alert.alert-danger.hidden
           | 提交失败，重试若失败请联系客服
 
-        .modal-footer
-          button.btn.btn-default.prev [
-            type="button"
-            data-dismiss="modal"
-          ]
-            i.fa.fa-chevron-left
-            | 返回
+      .modal-footer
+        .form-group.required
+          = f.text_field :title, class: 'form-control simple', required: true, placeholder: '产品名称'
 
-          = button_tag class: 'btn btn-primary', type: :submit, data: { category: "thing", action: "create", label: thing_root_domain(thing) } do
-            i.fa.fa-plus
-            | 创建
+        .form-group
+          = f.text_field :brand_name, class: 'form-control simple', placeholder: '所属品牌'
+
+        .form-group
+          = f.text_area :content, rows: 3, placeholder: '说点什么吧 (140字以内哦)', required: true, class: 'form-control dark',
+          title: '编写产品短评', data: {toggle: "tooltip", placement: "bottom"}
+
+
+        button.btn.btn-default.prev [
+          type="button"
+          data-dismiss="modal"
+        ]
+          | 取消
+
+        = button_tag class: 'btn btn-primary', type: :submit, data: { category: "thing", action: "create", label: thing_root_domain(thing) }  do
+          | 创建

@@ -307,7 +307,7 @@ class ThingsController < ApplicationController
   private
 
   def thing_params
-    permit_params = [:title, :subtitle, :official_site, :tags_text, :content, :description, photo_ids: []]
+    permit_params = [:title, :brand_name, :subtitle, :official_site, :tags_text, :content, :description, photo_ids: []]
     @thing ||= Thing.new
     if (@thing.author == current_user || !@thing.persisted?) && current_user.role?(:volunteer)
       permit_params += [:shop, :price_unit, :price]

@@ -52,12 +52,14 @@ window.Making = do (exports = window.Making || {}) ->
 
 
   exports.InitThingModal = (options) ->
-    $(document).on 'click', '#btn-to-new-local-thing-modal, #btn-to-new-local-thing-modal-title', ->
-      $modal = $('#new-thing-from-local')
-      unless $modal.length
-        view = new exports.Views.NewThingInModal(options)
-        $modal = view.$el
-      $modal.modal('show')
+    $(document).on 'click', '[data-target]', (e) ->
+      $this = $(this)
+      if $this.data('target') is '#new-thing-from-local'
+        $modal = $('#new-thing-from-local')
+        unless $modal.length
+          view = new exports.Views.NewThingInModal(options)
+          $modal = view.$el
+        $modal.modal('show')
 
 
   exports.InitShop = ->
