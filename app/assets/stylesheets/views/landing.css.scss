@@ -268,7 +268,8 @@ html.landing {
       display: none;
       @include MQ(Lplus) {
         display: block;
-        position: absolute;
+        height: 300px;
+        position: relative;
         img {
           position: absolute;
           top: 0;
