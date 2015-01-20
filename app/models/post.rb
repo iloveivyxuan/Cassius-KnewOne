@@ -18,6 +18,8 @@ class Post
 
   field :content, type: String, default: ""
 
+  validate :no_similarity, on: :create
+
   field :commented_at, type: DateTime
 
   belongs_to :author, class_name: "User", inverse_of: :posts, index: true
