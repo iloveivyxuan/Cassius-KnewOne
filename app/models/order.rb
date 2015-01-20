@@ -169,7 +169,7 @@ class Order
     sync_price
   end
 
-  validate do
+  validate on: :create do
     if !order_items.blank? && order_items.map(&:thing).map(&:stage).uniq != [:dsell]
       errors.add :stage, "产品已下架"
     end
