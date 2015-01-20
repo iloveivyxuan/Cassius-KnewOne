@@ -8,7 +8,7 @@ class AbatementCoupon < Coupon
   validates :threshold_price, :price, :presence => true
 
   def use_condition(order)
-      effective_order_item_price(order) >= self.threshold_price
+    effective_order_item_price(order) >= self.threshold_price
   end
 
   def take_effect(order, code)

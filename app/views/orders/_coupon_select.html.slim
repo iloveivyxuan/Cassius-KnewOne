@@ -8,11 +8,7 @@
                            :'data-href' => new_order_path_with_params(@order, coupon_code_id: nil), \
                            :class => 'order_coupon_radio'
           | 不使用
-        - if @order.bong_inside?
-          - coupon = current_user.coupon_codes.select { |code| code.coupon.is_a?(ThingRebateCoupon) }
-        - else
-          - coupon = current_user.coupon_codes
-        - coupon.select {|c| c.test?(@order)}.each do |c|
+        - current_user.coupon_codes.select {|c| c.test?(@order)}.each do |c|
           li.radio
             label.coupon_radio
               = f.radio_button :coupon_code_id, c.id.to_s, \
