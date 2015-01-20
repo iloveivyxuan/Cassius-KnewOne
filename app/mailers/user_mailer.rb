@@ -39,11 +39,11 @@ class UserMailer < BaseMailer
   end
 
   def chosen(email, name)
-    attachments.inline['chosen_qr.jpg'] = File.read(Rails.root.join('app/assets/images/mails/chosen_qr.jpg'))
+    attachments.inline['chosen_qr.png'] = File.read(Rails.root.join('app/assets/images/mails/chosen_qr.png'))
     @name = name
 
     mail(to: email,
-         subject: '恭喜你在「KnewOne」免费领养「Cuptime」成功！')
+         subject: '恭喜你在「KnewOne」免费领养「秘密盒子 虹膜加密神器」成功！')
   end
 
   def exchange(email, name)
