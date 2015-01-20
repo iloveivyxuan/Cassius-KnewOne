@@ -11,6 +11,19 @@ class TopicsController < ApplicationController
   end
 
   def new
+    respond_to do |format|
+      format.html.mobile do
+        render 'new.html+mobile'
+      end
+
+      format.html.tablet do
+        render 'new.html+mobile'
+      end
+
+      format.html.desktop do
+        render 'new'
+      end
+    end
   end
 
   def create
@@ -36,7 +49,19 @@ class TopicsController < ApplicationController
   end
 
   def edit
-    render 'new'
+    respond_to do |format|
+      format.html.mobile do
+        render 'new.html+mobile'
+      end
+
+      format.html.tablet do
+        render 'new.html+mobile'
+      end
+
+      format.html.desktop do
+        render 'new'
+      end
+    end
   end
 
   def update

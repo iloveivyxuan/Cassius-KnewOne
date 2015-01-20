@@ -1,15 +1,43 @@
-- provide :nav, "group_show"
+- page_title "发表话题"
 
-= simple_form_for [@group, @topic], html: {class: "edit_post"} do |f|
-  = f.input :title, label: false, placeholder: "标题"
-  = f.input :content, as: :hidden
-  = render 'shared/editor'
-  - if current_user.can_set_topic_top?(@group)
-    = f.input :is_top, as: :boolean, label: false, inline_label: "置顶"
-  = button_tag "提交帖子", class: "btn btn-primary pull-right"
+.spinner-fullscreen
+  em 正在加载
+
+= form_for [@group, @topic], html: { class: "editor", id: "form-topic" } do |f|
+  .editor-menu
+    p.editor-target
+      | 发表话题 - &nbsp;
+      = link_to @group.name, @group, target: "_blank"
+    output
+    .pull-right
+      button.editor-help-toggle type="button" data-toggle="modal" data-target="#editor-help"
+        i.fa.fa-question
+        | 帮助
+      button.editor-close type="button" 退出
+      button.editor-drop type="button" 舍弃
+      button.editor-save type="button" 保存
+      button.editor-submit type="submit" data-category="topic" data-action="submit_topic" data-label="#{@group.name}" 发布
+  article.editor-content.article
+    header
+      = f.text_field :title, class: "title", required: true, autocomplete: "off", autofocus: true, placeholder: "标题"
+      - if current_user.can_set_topic_top?(@group)
+        .editor-metas
+          label for="topic_is_top" 置顶：
+          = f.check_box :is_top
+    .body#form-topic-body
+      p
+        br
+    = render 'shared/editor_ctxmenu'
+    = f.hidden_field :content
+= attachment_tag target: "#pictureBtn", edit: "insertImage"
+= render "shared/editor_help"
 
 - content_for :script do
   javascript:
-    Making.Editor('#topic_content');
-    Making.AtUser('#editor');
-    Making.AtUser('#topic_title');
+    new Making.Views.Editor({
+      el: '#form-topic',
+      model: new Making.Models.Editor(),
+      mode: 'standalone',
+      type: 'topic',
+      placeholder: '正文'
+    });
