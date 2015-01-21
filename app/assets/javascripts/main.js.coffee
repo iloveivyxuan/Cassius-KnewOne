@@ -47,22 +47,21 @@ do (exports = Making) ->
   exports.init_new_thing_modal = (
     ->
       $new_thing_edit_modal = $('#new-thing-edit-modal')
-
-      $new_thing_edit_modal.on 'loaded.carousel', ->
-        $carousel = $('#new-thing-edit-modal-images .carousel')
-        if $carousel.find('.item').find('img').length > 1
+      $carousel = $('#new-thing-edit-modal-images .carousel')
+      $new_thing_edit_modal
+        .on 'init.carousel', ->
           exports.carousel
             element: '#new-thing-edit-modal .carousel'
             isResetItemWidth: true
+          $carousel.css
+            maxHeight: 'none'
+            visibility: 'visible'
           carousel = $carousel.data('carousel')
           $('[data-target="#new-thing-edit-modal-images .carousel"]').on 'click', (event) ->
             event.preventDefault()
             carousel.activate $(@).attr('data-slide-to')
-        else
-          $('#new-thing-edit-modal-sortable').show()
-        $carousel.css
-          maxHeight: 'none'
-          visibility: 'visible'
+        .on 'shown.bs.modal', ->
+          $new_thing_edit_modal.trigger 'init.carousel'
 
       $('#create_thing_modal_form').on('ajax:beforeSend',
       (event, xhr, settings)->
@@ -170,7 +169,10 @@ do (exports = Making) ->
               .find('.progress').hide().end()
               .find('.progress-bar').css({width: 0})
             i += 1
-          $new_thing_edit_modal.trigger 'loaded.carousel' if loaded is $images.length
+            carousel = $carousel.data('carousel')
+            if carousel isnt undefined
+              carousel.destroy().init() if i is 2
+              carousel.reload()
         ).each(
           ->
             if @.complete then $(@).load()
