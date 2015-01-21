@@ -30,10 +30,10 @@
             | 请至少选择一张图片
 
         = f.fields_for :feelings do |f_feeling|
-          .form-group
+          .form-group.clearfix
             = f_feeling.text_area :content, placeholder: '说点什么吧 (140字以内哦)',
-              class: 'form-control dark', rows: 4, maxlength: 200, data: {maxlength: 140}
-            ul.help-block
+              class: 'form-control dark', rows: 4, maxlength: 200, data: {maxlength: 140}            
+            .word-counter
 
 
       .modal-footer

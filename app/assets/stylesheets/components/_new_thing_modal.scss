@@ -57,9 +57,14 @@
 
     .form-group {
       position: relative;
-      ul.help-block {
+      .help-block {
         margin-left: 1em;
         color: red;
+      }
+      .word-counter {
+        margin: 8px 0;
+        float: right;
+        color: #999;
       }
       &.required:not(.no-splat):before {
         color: $brand-primary;
@@ -69,13 +74,13 @@
         position: absolute;
       }
       &.is-invalid {
-        ul.help-block {
+        .word-counter, .help-block {
           color: red;
         }
         &.required:before {
           color: red;
         }
-      }
+      }      
     }
 
     .form-control {
@@ -260,6 +265,11 @@
         position: relative;
         text-align: center;
         width: 20% !important;
+        max-height: 120px;
+        overflow: hidden;
+        img {
+          border-radius: 0 !important; 
+        }
         &:hover {
           &:after {
             content: "\f05d";
@@ -328,7 +338,7 @@
 
 
 
-@media (max-width: $screen-md-min) {
+@media (max-width: $screen-sm-min) {
   .modal.new-thing {
     .modal-content {
       border-radius: 0 !important;
@@ -373,7 +383,7 @@
       .modal-header {
         padding: 0;
         .new-thing-title {
-          button {
+          .btn {
             float: right;
             width: 50%;
             border-radius: 0 !important;

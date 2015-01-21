@@ -3,6 +3,8 @@ class Making.Views.NewThingInModal extends Backbone.View
   events:
     'submit form': 'validate'
     'after:render': 'afterRender'
+    'input textarea': 'validContentInput'
+    'propertychange textarea': 'validContentInput'
 
   attributes: ->
     id: 'new-thing-from-local'
@@ -17,14 +19,13 @@ class Making.Views.NewThingInModal extends Backbone.View
 
   validate: (e) ->
     e.preventDefault()
-    photoIds = @validatePhotos()
-    if photoIds.length
-      @renderPhotos(photoIds)
+    flag = @validatePhotos()
+    if flag
       $.post @$form.attr('action'), @$form.serializeArray()
       @$form.find('button[type="submit"]').button('loading')
 
 
-  renderPhotos: (ids) ->
+  addPhotoInput: (ids) ->
     $group = $('#photo_hidden_group').empty()
     $.each ids, (index, id) =>
       $('<input>').attr
@@ -38,12 +39,26 @@ class Making.Views.NewThingInModal extends Backbone.View
     $container = $('#photos-for-new-thing')
     photoIds = $('#photos-for-new-thing .uploaded').map (index, elem) ->
       $(elem).data('photo-id')
+    flag = !!photoIds.length
+    $container.removeClass('is-invalid') 
 
-    $container.removeClass('is-invalid')
-    $container.addClass('is-invalid') unless photoIds.length
+    if flag
+      @addPhotoInput(photoIds)
+    else
+      $container.addClass('is-invalid')
+
     $('[required]').trigger('after:validate')
 
-    photoIds
+    flag
+
+
+  validContentInput: (e) ->    
+    length = @$content.val().length
+    if length > @contentLength
+      @$content.closest('.form-group').addClass('is-invalid')
+    else
+      @$content.closest('.form-group').removeClass('is-invalid')
+    @$contentCounter.html("#{length} / #{@contentLength}")
 
 
   renderProgress: ->
@@ -65,6 +80,12 @@ class Making.Views.NewThingInModal extends Backbone.View
 
   afterRender: ->
     @$form = @$el.find('form')
+
+    @$content = @$form.find('textarea')
+    @$contentCounter = @$content.next()
+    @contentLength = +@$content.data('maxlength')
+    @$contentCounter.html("0 / #{@contentLength}")
+
     Making.validator('#new_thing')
     Making.AtUser('#new-thing-from-local textarea')
 

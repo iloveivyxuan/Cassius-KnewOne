@@ -118,16 +118,8 @@ class ThingsController < ApplicationController
     end
 
     if @thing.save
-      @thing.feelings.each do |feeling|
-        content_users = mentioned_users(feeling.content)
-        content_users.each do |u|
-          u.notify :feeling, context: feeling, sender: current_user, opened: false
-        end
-
-        feeling.thing.author.notify :new_feeling, context: feeling, sender: current_user, opened: false
-
-        current_user.log_activity :new_feeling, feeling, source: feeling.thing
-      end
+      @thing.fancy current_user
+      @thing.feelings.each { |feeling| feeling.notify_by current_user, mentioned_users(feeling.content) }
     end
   end
 
