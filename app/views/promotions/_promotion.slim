@@ -1,2 +1,4 @@
-= link_to promotion.link, class: 'promotion', target: '_blank' do
+- action, label = promotion_type(promotion)
+- data = { category: "ad", action: action, label: label } if action
+= link_to promotion.link, class: 'promotion', target: '_blank', data: data do
   = image_tag promotion.cover.url(:middle), alt: promotion.note

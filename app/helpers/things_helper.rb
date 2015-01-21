@@ -179,4 +179,21 @@ module ThingsHelper
       nil
     end
   end
+
+  def promotion_type(promotion)
+    link = promotion.link
+    action = if link.include? "entries"
+               "article"
+             elsif link.include? "reviews"
+               "review"
+             elsif link.include? "lists"
+               "list"
+             elsif link.include? "topics"
+               "topic"
+             elsif link.include? "things"
+               "thing"
+             end
+    label = promotion.link
+    return action, label
+  end
 end
