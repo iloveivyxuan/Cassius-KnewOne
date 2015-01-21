@@ -170,7 +170,7 @@ class Order
   end
 
   validate on: :create do
-    if !order_items.blank? && order_items.map(&:thing).map(&:stage).uniq != [:dsell]
+    if !order_items.blank? && !self.can_be_sold?
       errors.add :stage, "产品已下架"
     end
   end
@@ -695,6 +695,13 @@ class Order
       coupon = self.coupon_code.coupon
       "#{coupon.price} -> #{coupon.name} #{coupon.note}"
     end
+  end
+
+  def can_be_sold?
+    order_items.map(&:thing).map(&:stage).uniq.each do |stage|
+      return false unless [:dsell, :pre_order].include?(stage)
+    end
+    return true
   end
 
   need_aftermath :confirm_payment!, :refund_to_balance!, :refund!, :confirm_free!
