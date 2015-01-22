@@ -1,0 +1,44 @@
+.modal-dialog
+  = simple_form_for @thing, url: create_by_user_things_path, html: { class: 'uploader' } do |f|
+    .modal-content
+      .modal-header
+        button.close.hidden-md type="button" data-dismiss="modal" aria-hidden="true" &times;
+        div.new-thing-title
+          a.btn [
+            href="#"
+            data-dismiss="modal"
+            data-toggle="modal" data-target="#new-thing-from-url-modal"
+          ]
+            | 从网站收集
+          h4
+            | 本地上传
+
+      .modal-body
+        .form-group.required
+          = f.text_field :title, placeholder: "产品名称", class: 'form-control', required: true,
+            id: nil, maxlength: 41, autocomplete: "off", title: "请填写产品名称"
+          ul.help-block
+
+        label.uploader_label for="new-thing--file-field" title="请为产品上传图片" data-placement="right" 产品图片
+        = content_tag :div, class: "uploader_queue", id: "photos-for-new-thing" do
+          = file_field_tag :image, multiple: true, required: true, id: "new-thing--file-field", name: "photo[image]", accept: "image/*", style: "display: none;"
+          #photo_hidden_group
+          .help-block
+            | 请至少选择一张图片
+
+        = f.fields_for :feelings do |f_feeling|
+          .form-group.clearfix
+            = f_feeling.text_area :content, placeholder: '说点什么吧 (发布后会成为短评，字数要限制在140字以内哦)',
+              class: 'form-control dark', rows: 4, maxlength: 200, data: {maxlength: 140}            
+            .word-counter
+
+
+      .modal-footer
+        button.btn.btn-default [
+          type="button"
+          data-dismiss="modal"
+        ]
+          | 取消
+
+        button.btn.btn-primary type="submit" data-loading-text="提交中..."
+          | 创建

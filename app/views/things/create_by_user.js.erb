@@ -1,0 +1,18 @@
+(function($, exports, undefined) {
+
+  <% if @thing.errors.any? %>
+    exports.ShowMessageOnTop("<%= @thing.errors.full_messages.join(', ') %> :(", 'danger');
+    $('#new-thing-from-local button[type="submit"]').button('reset');
+  <% else %>
+    exports.ShowMessageOnTop("感谢您的分享，网页将在两秒后跳转到产品页面 :)");
+
+    var $modal = $('#new-thing-from-local');    
+    $modal.on('hidden.bs.modal', function() {
+      setTimeout(function() {
+        location.href = "<%= thing_url(@thing) %>";
+      }, 1500)
+    });
+    $modal.modal('hide');    
+  <% end %>
+
+}(jQuery, Making));

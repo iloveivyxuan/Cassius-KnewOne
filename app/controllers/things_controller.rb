@@ -91,6 +91,10 @@ class ThingsController < ApplicationController
 
   def new
     @thing = Thing.new
+    if request.xhr?
+      @thing.feelings.build
+      render 'new_thing_in_modal', layout: false
+    end
   end
 
   def create
@@ -102,6 +106,21 @@ class ThingsController < ApplicationController
       redirect_to @thing, flash: {provider_sync: params[:provider_sync]}
     else
       render 'new'
+    end
+  end
+
+  def create_by_user
+    @thing = Thing.new params.require(:thing).permit(:title, photo_ids: [], feelings_attributes: [:content]).merge(author: current_user)
+    @thing.feelings.each do |feeling|
+      @thing.feelings.delete feeling and next if feeling.content.blank?
+      feeling.author = current_user
+      feeling.content.gsub! /\r\n/, "\n"
+    end
+
+    if @thing.save
+      @thing.fancy current_user
+      current_user.log_activity :new_thing, @thing
+      @thing.feelings.each { |feeling| feeling.notify_by current_user, mentioned_users(feeling.content) }
     end
   end
 
@@ -218,6 +237,7 @@ class ThingsController < ApplicationController
       @thing = Thing.new official_site: @result[:url],
       title: @result[:title],
       content: @result[:content]
+      @thing.feelings.build
       title_regexp = /#{Regexp.escape(@result[:title])}/i
       @similar = Thing.published.or({slug: title_regexp},
                                     {title: title_regexp},
@@ -240,13 +260,20 @@ class ThingsController < ApplicationController
       Photo.create! remote_image_url: i, user: current_user
     end
 
-    @thing = Thing.new thing_params.merge(author: current_user)
+    @thing = Thing.new params.require(:thing).permit(:title, :official_site, feelings_attributes: [:content]).merge(author: current_user)
     @thing.content = @thing.content.gsub("\r", '').split("\n").compact.map { |l| "<p>#{l}</p>" }.join
     @thing.photo_ids.concat photos.map(&:id)
+
+    @thing.feelings.each do |feeling|
+      @thing.feelings.delete feeling and next if feeling.content.blank?
+      feeling.author = current_user
+      feeling.content.gsub! /\r\n/, "\n"
+    end
 
     if @flag = @thing.save
       @thing.fancy current_user
       current_user.log_activity :new_thing, @thing
+      @thing.feelings.each { |feeling| feeling.notify_by current_user, mentioned_users(feeling.content) }
     end
 
     respond_to do |format|

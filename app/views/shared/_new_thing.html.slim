@@ -1,4 +1,5 @@
-#new-thing-modal.modal.fade
+// 产品入口选择 modal
+#new-thing-modal.modal.fade.new-thing.entry
   .modal-dialog
     .modal-content
       .modal-header
@@ -7,52 +8,70 @@
           i.fa.fa-plus
           | 分享新产品
 
-      .modal-body
-        button.btn.btn-default [
+      .modal-body.clearfix
+        button.btn [
           data-dismiss="modal"
           data-toggle="modal" data-target="#new-thing-from-url-modal"
         ]
           i.fa.fa-globe.fa-fw
           | 从网站收集
 
-        = link_to_with_icon '本地上传',
-          'fa fa-cloud-upload fa-fw', new_thing_path,
-          class: 'btn btn-default', target: '_blank'
+        button#btn-to-new-local-thing-modal.btn [
+          data-dismiss="modal"
+          data-target="#new-thing-from-local"
+        ]
+          i.fa.fa-cloud-upload.fa-fw
+          | 本地上传
 
-#new-thing-from-url-modal.modal.fade data-keyboard="false"
+
+// 产品远程链接 modal
+#new-thing-from-url-modal.modal.fade.new-thing.remote data-keyboard="false"
   = form_tag extract_url_things_path, method: :get, id: 'extract_url_form', remote: true do
     .modal-dialog
       .modal-content
         .modal-header
-          button.close type="button" data-dismiss="modal" aria-hidden="true" &times;
-          h4.modal-title
-            i.fa.fa-globe
-            | 通过网页分享新产品
+          button.close.hidden-md type="button" data-dismiss="modal" aria-hidden="true" &times;
+          div.new-thing-title
+            a.btn [
+              href = "#"
+              data-dismiss="modal"
+              data-target="#new-thing-from-local"
+            ]
+              | 本地上传
+            h4
+              - if browser.mobile?
+                | 从网页收集
+              - else
+                | 通过网页分享新产品
 
         .modal-body
-          .form-group
-            label for="new-thing-url" 产品地址
-            input#new-thing-url.form-control required="required" type="url" placeholder="http://" name="url"
+          input#new-thing-url.form-control.dark required="required" type="url" placeholder="http://" name="url" autofocus="autofocus"
 
           .progress.progress-striped.active style="display: none"
             .progress-bar
 
           .alert.hidden
-            | 很抱歉，这个地址我们不支持，您可以通过 #{link_to '本地上传', new_thing_path} 来分享此产品。
+            | 很抱歉，这个地址我们不支持，您可以通过 #{link_to '本地上传', '#', data: {dismiss: 'modal', target: '#new-thing-from-local'}} 来分享此产品。
 
         .modal-footer
-          button.btn.btn-default.hidden-xs.hidden-sm [
+          button.btn.btn-default [
             type="button"
             data-dismiss="modal"
-            data-toggle="modal" data-target="#new-thing-modal"
           ]
-            i.fa.fa-chevron-left
-            | 返回
+            | 取消
 
           button.btn.btn-primary type="submit"
-            i.fa.fa-crop
             | 抓取
 
+
+// 雷同产品提示 modal
 #new-thing-similar-modal.modal.fade
 
-#new-thing-edit-modal.modal.fade data-keyboard="false"
+
+// 产品远程链接编辑 modal
+#new-thing-edit-modal.modal.fade.new-thing.remote.edit data-keyboard="false"
+
+
+- content_for :script do
+  javascript:
+    window.Making.InitThingModal({photo: {fileupload: {url: "#{photos_path}"}}});

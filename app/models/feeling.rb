@@ -22,5 +22,15 @@ class Feeling < Post
     end
   end
 
+  def notify_by(user, content_users)
+    content_users.each do |u|
+      u.notify :feeling, context: self, sender: user, opened: false
+    end
+
+    thing.author.notify :new_feeling, context: self, sender: user, opened: false
+
+    user.log_activity :new_feeling, self, source: thing
+  end
+
   need_aftermath :vote
 end

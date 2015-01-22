@@ -84,6 +84,7 @@ class Ability
     end
 
     can :create, Thing
+    can :create_by_user, Thing
     can :update, Thing do |thing|
       thing.author == user or thing.maker == user
     end

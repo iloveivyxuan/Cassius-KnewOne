@@ -1,0 +1,403 @@
+@import "../base";
+
+.modal.new-thing {
+
+  /** 分享产品 modal 公共逻辑 */
+  & {
+    font-size: 10px;
+
+    input, button, a {
+      &:focus, &:active {
+        outline: none;
+      }
+    }
+
+    .modal-content {
+      background-color: #FFFFFF !important;
+      border-radius: 15px !important;
+    }
+
+    .modal-content, .modal-header, .modal-body, .modal-footer {
+      border: none !important;
+    }
+
+    .modal-header {
+      border-radius: 15px 15px 0 0 !important;
+      background-color: #FFFFFF !important;
+      .modal-title {
+        font: {
+          size: 15px;
+          weight: 100;
+        }
+      }
+    }
+
+    .modal-body, .modal-footer {
+      border-radius: 0 0 15px 15px !important;
+    }
+
+    .modal-footer {
+      .btn {
+        font: {
+          size: 10px;
+          weight: 100;
+        }
+        border-radius: 12px;
+        border: none;
+        color: #FFFFFF;
+        padding: 7px 30px;
+        &.btn-default {
+          background-color: #CCCCCC;
+        }
+        &.btn-primary {
+          background-color: $blue-dark;
+        }
+      }
+    }
+
+    .form-group {
+      position: relative;
+      .help-block {
+        margin-left: 1em;
+        color: red;
+      }
+      .word-counter {
+        margin: 8px 0;
+        float: right;
+        color: #999;
+      }
+      &.required:not(.no-splat):before {
+        color: $brand-primary;
+        content: '*';
+        top: 1em;
+        left: 0;
+        position: absolute;
+      }
+      &.is-invalid {
+        .word-counter, .help-block {
+          color: red;
+        }
+        &.required:before {
+          color: red;
+        }
+      }      
+    }
+
+    .form-control {
+      border: none;
+      box-shadow: none;
+      text-align: left !important;
+      &.dark {
+        background-color: #F7F7F7;
+        border-radius: 20px;
+        padding: 10px * 2;
+        font-size: 10px;
+        resize: none;
+      }
+      &.simple {
+        border-radius: 0 !important;
+        background-color: transparent !important;
+        padding: 6px 12px !important;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+
+
+  /** 分享产品入口 modal */
+  &.entry {
+    .modal-content, .modal-header {
+      background-color: #F7F7F7 !important;
+    }
+    .modal-header {
+      padding: 20px 15px 0 15px;
+      & > .modal-title {
+        font-size: 10px;
+        color: #999999;
+      }
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    .btn {
+      background-color: #F7F7F7;
+      border-radius: 10px;
+      border: none;
+      color: #9A9A9A;
+      float: left;
+      height: 280px;
+      padding: 0;
+      width: 280px;
+      i {
+        display: block;
+        font-size: 78px;
+        margin: auto;
+        padding: { top: 5px; bottom: 35px; }
+      }
+
+      &:hover {
+        background-color: #FFFFFF;
+        color: #787878;
+      }
+    }
+  }
+
+
+
+  /** 创建产品公共逻辑 */
+  &.local, &.remote {
+    .modal-header {
+      padding: 0 28px 0 0;
+      .close {
+        margin: {
+          top: 20px;
+          right: -13px;
+        }
+      }
+      .new-thing-title {
+        .btn, h4 {
+          font-size: 14px;
+          padding: 20px 0;
+        }
+        .btn {
+          color: $text-muted;
+          background-color: #F7F7F7;
+          width: 160px;
+          border: none;
+          outline: none;
+          border-radius: 15px 0 0 0 !important;
+          float: left;
+        }
+        h4 {
+          text-align: center;
+        }
+      }
+    }
+    .modal-body {
+      padding: 20px;
+    }
+    .modal-footer {
+      padding: 0 20px 20px;
+    }
+  }
+
+
+
+  /** 本地产品 modal */
+  &.local {
+    .form-group > .control-label {
+      display: none;
+      visibility: hidden;
+    }
+    .uploader_queue {
+      border: none;
+
+      .help-block {
+        display: none;
+        color: red;
+      }
+      &.is-invalid {
+        .help-block {
+          display: block;
+        }
+      }
+    }
+    .uploader_label {
+      color: $text-muted;
+      font-size: 14px;
+      margin-bottom: $padding-large-vertical;
+      position: relative;
+      padding: 6px 12px;
+      &.is-valid {
+        color: $text-color;
+      }
+      &:before {
+        color: $brand-primary;
+        content: '*';
+        left: 0;
+        margin-top: -.5em;
+        position: absolute;
+        top: 50%;
+      }
+    }
+  }
+
+
+  /** 远程产品抓取 modal */
+  &.remote.edit {
+    .modal-body {
+      padding: {
+        left: 0 !important;
+        right: 0 !important;
+      }
+    }
+    .carousel {
+
+    }
+    .carousel-control {
+      background-color: #333333;
+      border-radius: 0;
+      display: block;
+      height: 40px;
+      width: 40px;
+      &.right {
+        right: 0;
+      }
+      &.left {
+        left: 0;
+      }
+    }
+    .slideshow_body {
+      margin: 20px 0;
+
+      .slideshow_inner {
+        text-align: left;
+      }
+      li {
+        display:inline-block;
+        margin: 0 !important;
+        opacity: 1 !important;
+        position: relative;
+        text-align: center;
+        width: 20% !important;
+        max-height: 120px;
+        overflow: hidden;
+        img {
+          border-radius: 0 !important; 
+        }
+        &:hover {
+          &:after {
+            content: "\f05d";
+            visibility: visible;
+          }
+        }
+        &:after {
+          -moz-osx-font-smoothing: grayscale;
+          -webkit-font-smoothing: antialiased;
+          background-color: rgba(151, 197, 221, .75);
+          border-radius: 30px;
+          color: #FFFFFF;
+          display: inline-block;
+          font-family: FontAwesome;
+          font-size: 28px;
+          height: 32px;
+          left: 50%;
+          line-height: 33px;
+          margin-left: -14px;
+          margin-top: -14px;
+          position: absolute;
+          text-rendering: auto;
+          top: 50%;
+          visibility: hidden;
+          width: 32px;
+          z-index: 99;            
+        }
+        &:before {
+          bottom: 0;
+          content: ' ';
+          left: 0;
+          opacity: .75;
+          position: absolute;
+          right: 0;
+          top: 0;
+          transition: background-color .25s ease-in-out;
+          z-index: 97;
+        }
+
+        &.selected {
+          &:before {              
+            background-color: rgb(151, 197, 221);
+          }
+          &:after {
+            background-color: transparent;
+            content: "\f05d";
+            opacity: .75;
+            visibility: visible;
+          }
+        }
+
+        &.selected:hover {
+          &:before {
+            background-color: #333333;
+          }
+          &:after {
+            content: "\f10c";
+            visibility: visible;
+            opacity: .75;
+          }          
+        }
+      }
+    }
+  }
+}
+
+
+
+@media (max-width: $screen-sm-min) {
+  .modal.new-thing {
+    .modal-content {
+      border-radius: 0 !important;
+    }
+    .modal-header {
+      border-radius: 0 !important;
+      .modal-title {
+        font: {
+          size: 15px;
+          weight: 100;
+        }
+        text-align: center;        
+      }
+    }
+    .modal-body, .modal-footer {
+      border-radius: 0 !important;
+    }
+
+    &.entry {
+      .modal-header {
+        padding: 15px 10px 0 10px;
+      }
+
+      .btn {
+        height: 110px;
+        width: 100%;
+        line-height: 110px;
+        i {
+          display: inline-block;
+          font-size: 56px;
+          padding: 0;
+          margin-right: 40px;
+          vertical-align: -14px;
+        }
+        &:first-child {
+          margin-bottom: 20px;
+        }
+      }
+    }
+
+    &.local, &.remote {
+      .modal-header {
+        padding: 0;
+        .new-thing-title {
+          .btn {
+            float: right;
+            width: 50%;
+            border-radius: 0 !important;
+          }
+        }
+      }
+    }
+
+    &.remote.edit {
+      .slideshow_body {
+        li {
+          width: 33.33333% !important;
+        }
+      }
+    }
+  }
+}

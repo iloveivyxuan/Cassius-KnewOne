@@ -24,7 +24,7 @@
             = link_to "小组", groups_path
           li#nav_publish
             - if user_signed_in?
-              - data = {toggle: "modal", target: "#new-thing-from-url-modal"}
+              - data = {toggle: "modal", target: "#new-thing-modal"}
               - data.merge!({category: "thing", action: "create", label: "upload"})
               = link_to_with_icon "分享产品", "fa fa-plus", "#", id: "new_thing_trigger", data: data
             - else

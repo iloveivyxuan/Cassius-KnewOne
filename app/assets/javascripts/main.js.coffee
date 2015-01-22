@@ -84,6 +84,21 @@ do (exports = Making) ->
 
       $slideshow_inner.sortable()
 
+
+      $new_thing_edit_modal.on 'click', '#new-thing-edit-modal-sortable li', (e) ->
+        e.preventDefault()
+
+        $this = $(this)
+        $input = $this.find('input')
+
+        if $this.hasClass('selected')
+          $this.removeClass('selected')
+          $input.attr('disabled', 'disabled')
+        else
+          $this.addClass('selected')
+          $input.removeAttr('disabled')
+
+
       i = 0
       loaded = 0
       flag = true
@@ -143,13 +158,8 @@ do (exports = Making) ->
               return
             )
 
-            if i == 0
-              $('#new-thing-edit-modal-images').removeClass('more-than-one')
-              $carousel_inner.append($item.addClass('active'))
-              $item.find('a').click()
-            else
-              $('#new-thing-edit-modal-images').addClass('more-than-one')
-              $carousel_inner.append($item)
+            $('#new-thing-edit-modal-images').addClass('more-than-one')
+            $carousel_inner.append($item)
 
             $selector = $('#' + $this.attr('data-selector-id')).attr('data-slide-to', i).attr('draggable', true)
             $slideshow_inner.append($selector)
@@ -192,50 +202,7 @@ do (exports = Making) ->
       ).each($('#new-thing-edit-modal-sortable').children(), (index, value)->
         $value = $(value)
         $value.attr('data-slide-to', index)
-      )
-
-      $('.select_btn_container > a')
-      .on 'click', (event) ->
-        event.preventDefault()
-
-        $trigger = $(@)
-
-        $selector = $('#' + $trigger.attr('data-selector-id'))
-        $input = $selector.children('input')
-        $flag = $selector.children('.selected_icon')
-
-        if $input.attr('disabled') == 'disabled'
-          $input.removeAttr('disabled')
-          $flag.removeClass('hidden')
-        else
-          $input.attr('disabled', 'disabled')
-          $flag.addClass('hidden')
-
-        if $trigger.data('toggle') is 'modal' then return
-
-        if $trigger.hasClass('selected')
-          $trigger
-          .removeClass('selected')
-          .addClass('unselect')
-          .attr('title', '取消选择')
-          .children('.fa')
-          .removeClass('fa-circle')
-          .addClass('fa-circle-o heartbeat')
-          .one $.support.transition.end, ->
-            $(@).removeClass('heartbeat')
-          .emulateTransitionEnd(750)
-        else
-          $trigger
-          .removeClass('unselect')
-          .addClass('selected')
-          .attr('title', '选择')
-          .children('.fa')
-          .removeClass('fa-circle-o')
-          .addClass('fa-check-circle-o heartbeat')
-          .one $.support.transition.end, ->
-            $(@).removeClass('heartbeat')
-          .emulateTransitionEnd(750)
-        return
+      )      
   )
 
   exports.SetupCustomerServices = (element) ->

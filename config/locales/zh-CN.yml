@@ -48,6 +48,7 @@ zh-CN:
         nickname: '别名'
         merchant_name: '商家名称'
         adoption: '能否领养'
+        feelings: '短评'
       thing_list:
         name: '名称'
         description: '描述'
