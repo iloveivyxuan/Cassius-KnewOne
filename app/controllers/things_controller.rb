@@ -110,7 +110,7 @@ class ThingsController < ApplicationController
   end
 
   def create_by_user
-    @thing = Thing.new params.require(:thing).permit(:title, :brand_name, photo_ids: [], feelings_attributes: [:content]).merge(author: current_user)
+    @thing = Thing.new params.require(:thing).permit(:title, photo_ids: [], feelings_attributes: [:content]).merge(author: current_user)
     @thing.feelings.each do |feeling|
       @thing.feelings.delete feeling and next if feeling.content.blank?
       feeling.author = current_user
