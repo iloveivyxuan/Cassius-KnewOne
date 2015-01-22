@@ -1,2 +1,12 @@
 ul#reviews= render @reviews
+
+table.table.table-striped
+  thead
+    tr
+      th 评测
+  tbody
+    - @reviews.each do |review|
+      tr
+        td= "#{review.title} #{thing_review_url(review.thing, review)}"
+
 = paginate @reviews
