@@ -298,7 +298,7 @@ do (exports = Making) ->
     initWidget: ->
       !@$rating && (@$rating = @$('.range-rating')).length && @$rating.rating()
       exports.AtUser('#form-review-body')
-      $('.knewone-embed:empty').length && exports.loadEmbed()
+      @$('.knewone-embed').attr('contenteditable', false)
 
     getBody: ->
       @$body.html(@$bodyField.val())

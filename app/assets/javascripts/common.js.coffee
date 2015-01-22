@@ -140,34 +140,6 @@ do (root = @, exports = Making) ->
           offsetEnd = touch.clientY
           $tip.fadeOut('fast') if offsetEnd - offsetStart > 0
 
-  exports.loadEmbed = ->
-    $embed     = $(".knewone-embed:empty")
-    requestUrl = "http://#{location.host}/embed"
-    $embed.each (index, element) ->
-      $element = $(element)
-      requestData =
-        type: $element.data('knewoneEmbedType')
-        key: $element.data('knewoneEmbedKey') or $element.data('knewoneEmbedId')
-      if $element.data('knewoneEmbedOptions')
-        requestData['options'] = $element.data('knewoneEmbedOptions')
-      $
-        .ajax
-          url: requestUrl
-          data: requestData
-          dataType: 'html'
-          beforeSend: ->
-            $element.append('<div class="spinner"><i class="fa fa-spinner fa-2x fa-spin"></i></div>')
-        .done (data, status, xhr) ->
-          $element
-            .empty()
-            .append(exports.lazyLoadImages(data))
-            .attr('contenteditable', false)
-        .fail (xhr, status, error) ->
-          $element
-            .empty()
-            .append('<p class="knewone-embed-tip">无效的资源。</p>')
-            .attr('contenteditable', false)
-
   exports.lazyLoadImages = (container = 'body') ->
     $container = $(container)
     $images    = $container.find('img.js-lazy')
