@@ -106,27 +106,4 @@ class HomeController < ApplicationController
     head :no_content
   end
 
-  def embed
-    return head :unprocessable_entity if params[:key].blank?
-
-    case params[:type]
-    when 'thing'
-      slugs = params[:key].split(',')
-      @things = Thing.any_in(slugs: slugs)
-      if params[:options]
-        photos = params[:options][:photos].split(',')
-      else
-        photos = Array.new(@things.size, "")
-      end
-      render partial: 'things/embed_thing', collection: @things.zip(photos), locals: { klass: (slugs.size > 1) ? 'col-sm-6' : 'col-sm-12' }, as: 'embed'
-    when 'list'
-      @list = ThingList.find params[:key]
-      render [@list], locals: { layout: browser.desktop? ? :quintet : :grid }
-    when 'review'
-      @review = Review.find params[:key]
-      render partial: 'hot_review', collection: [@review]
-    else
-      head :unprocessable_entity
-    end
-  end
 end
