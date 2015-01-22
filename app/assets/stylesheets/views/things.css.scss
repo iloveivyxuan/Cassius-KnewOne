@@ -766,6 +766,13 @@ html.feelings_show {
       .btn--adoption {
         @extend .btn--blue_light;
         height: 35px;
+
+        &:active {
+          border-color: $blue;
+          box-shadow: none;
+          color: $blue;
+          outline: none;
+        }
       }
     }
 
@@ -1398,6 +1405,13 @@ html.feelings_show {
         border-radius: 15px;
         color: #8CB3EA;
         float: right;
+
+        &:active {
+          border-color: $blue;
+          box-shadow: none;
+          color: $blue;
+          outline: none;
+        }
 
         & + .price {
           width: calc(100% - 100px);
