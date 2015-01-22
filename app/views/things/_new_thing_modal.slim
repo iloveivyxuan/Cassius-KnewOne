@@ -51,7 +51,7 @@
 
         .form-group
           = f.fields_for :feelings do |f_feeling|
-            = f_feeling.text_area :content, rows: 3, placeholder: '说点什么吧 (140字以内哦)', class: 'form-control dark',
+            = f_feeling.text_area :content, rows: 3, placeholder: '说点什么吧 (发布后会成为短评，字数要限制在140字以内哦)', class: 'form-control dark',
               title: '编写产品短评', data: {toggle: "tooltip", placement: "bottom"}
 
 
