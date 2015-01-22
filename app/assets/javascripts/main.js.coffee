@@ -158,13 +158,8 @@ do (exports = Making) ->
               return
             )
 
-            if i == 0
-              $('#new-thing-edit-modal-images').removeClass('more-than-one')
-              $carousel_inner.append($item.addClass('active'))
-              $item.find('a').click()
-            else
-              $('#new-thing-edit-modal-images').addClass('more-than-one')
-              $carousel_inner.append($item)
+            $('#new-thing-edit-modal-images').addClass('more-than-one')
+            $carousel_inner.append($item)
 
             $selector = $('#' + $this.attr('data-selector-id')).attr('data-slide-to', i).attr('draggable', true)
             $slideshow_inner.append($selector)
