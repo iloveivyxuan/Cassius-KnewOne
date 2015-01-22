@@ -103,6 +103,28 @@ do (exports = Making) ->
       loaded = 0
       flag = true
       $images = $('#new-thing-edit-modal-images-container .image .item').find('img')
+
+      
+      resize = do ->
+        winWidth = $(window).width()
+        size = if winWidth > 768
+          600 / 5
+        else
+          (winWidth - 20) / 3
+
+        ($selector, height, width) ->
+          $img = $selector.find('img')
+
+          [imgW, imgH] = if width > height
+            [size / height * width, size]
+          else if width < height
+            [size, size / width * height]
+          else
+            [size, size]
+
+          $selector.css(height: size)
+          $img.css(height: imgH, width: imgW)
+
       $.each($images, (index, value)->
         $(value).one('load',
         ->
@@ -114,55 +136,14 @@ do (exports = Making) ->
 
           if height >= 300 || width >= 300
             $item = $this.parent()
-            $item.find('a')
-            .on('click', (event)->
-              event.preventDefault()
-
-              $trigger = $(@)
-
-              $selector = $('#' + $trigger.attr('data-selector-id'))
-              $input = $selector.children('input')
-              $flag = $selector.children('.selected_icon')
-
-              if $input.attr('disabled') == 'disabled'
-                $input.removeAttr('disabled')
-                $flag.removeClass('hidden')
-              else
-                $input.attr('disabled', 'disabled')
-                $flag.addClass('hidden')
-
-              if $trigger.data('toggle') is 'modal' then return
-
-              if $trigger.hasClass('selected')
-                $trigger
-                .removeClass('selected')
-                .addClass('unselect')
-                .attr('title', '取消选择')
-                .children('.fa')
-                .removeClass('fa-circle')
-                .addClass('fa-circle-o heartbeat')
-                .one $.support.transition.end, ->
-                  $(@).removeClass('heartbeat')
-                .emulateTransitionEnd(750)
-              else
-                $trigger
-                .removeClass('unselect')
-                .addClass('selected')
-                .attr('title', '选择')
-                .children('.fa')
-                .removeClass('fa-circle-o')
-                .addClass('fa-check-circle-o heartbeat')
-                .one $.support.transition.end, ->
-                  $(@).removeClass('heartbeat')
-                .emulateTransitionEnd(750)
-              return
-            )
-
             $('#new-thing-edit-modal-images').addClass('more-than-one')
             $carousel_inner.append($item)
 
             $selector = $('#' + $this.attr('data-selector-id')).attr('data-slide-to', i).attr('draggable', true)
-            $slideshow_inner.append($selector)
+            $slideshow_inner.append($selector)            
+            setTimeout ->
+              resize($selector, height, width)
+            , 0
 
             $("#new-thing-edit-modal-sortable").sortable("refresh");
 
