@@ -50,11 +50,9 @@
           = f.text_field :title, class: 'form-control simple', required: true, placeholder: '产品名称'
 
         .form-group
-          = f.text_field :brand_name, class: 'form-control simple', placeholder: '所属品牌'
-
-        .form-group
-          = f.text_area :content, rows: 3, placeholder: '说点什么吧 (140字以内哦)', required: true, class: 'form-control dark',
-          title: '编写产品短评', data: {toggle: "tooltip", placement: "bottom"}
+          = f.fields_for :feelings do |f_feeling|
+            = f_feeling.text_area :content, rows: 3, placeholder: '说点什么吧 (140字以内哦)', required: true, class: 'form-control dark',
+              title: '编写产品短评', data: {toggle: "tooltip", placement: "bottom"}
 
 
         button.btn.btn-default.prev [
