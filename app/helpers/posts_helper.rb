@@ -16,7 +16,7 @@ module PostsHelper
         result = render partial: 'things/embed_thing', collection: things.zip(photos), locals: { klass: (slugs.size > 1) ? 'col-sm-6' : 'col-sm-12' }, as: 'embed'
       when 'list'
         list = ThingList.find key
-        result = render [list], layout: browser.desktop? ? :quintet : :grid
+        result = render 'thing_lists/thing_list', thing_list: list, layout: browser.desktop? ? :quintet : :grid
       when 'review'
         review = Review.find key
         result = render partial: 'home/hot_review', collection: [review]
