@@ -29,8 +29,7 @@
         = f.fields_for :feelings do |f_feeling|
           .form-group.clearfix
             = f_feeling.text_area :content, placeholder: '说点什么吧 (发布后会成为短评，字数要限制在140字以内哦)',
-              class: 'form-control dark', rows: 4, maxlength: 200, data: {maxlength: 140}            
-            .word-counter
+              class: 'form-control dark', rows: 4, maxlength: 200, data: {maxlength: 140}
 
 
       .modal-footer

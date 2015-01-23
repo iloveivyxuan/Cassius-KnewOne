@@ -3,8 +3,6 @@ class Making.Views.NewThingInModal extends Backbone.View
   events:
     'submit form': 'validate'
     'after:render': 'afterRender'
-    'input textarea': 'validContentInput'
-    'propertychange textarea': 'validContentInput'
 
   attributes: ->
     id: 'new-thing-from-local'
@@ -54,10 +52,7 @@ class Making.Views.NewThingInModal extends Backbone.View
 
   validContentInput: (e) ->    
     length = @$content.val().length
-    if length > @contentLength
-      @$content.closest('.form-group').addClass('is-invalid')
-    else
-      @$content.closest('.form-group').removeClass('is-invalid')
+    
     @$contentCounter.html("#{length} / #{@contentLength}")
 
 
@@ -80,11 +75,12 @@ class Making.Views.NewThingInModal extends Backbone.View
 
   afterRender: ->
     @$form = @$el.find('form')
-
-    @$content = @$form.find('textarea')
-    @$contentCounter = @$content.next()
-    @contentLength = +@$content.data('maxlength')
-    @$contentCounter.html("0 / #{@contentLength}")
+    $contentFormGroup = @$form.find('textarea').closest('.form-group')
+    @$form.find('textarea').$contentCount().on 'updated:counter', (e, context, len) ->
+      if len > context.maxlength
+        context.counter.css(color: 'red')
+      else
+        context.counter.css(color: '#777777')
 
     Making.validator('#new_thing')
     Making.AtUser('#new-thing-from-local textarea')

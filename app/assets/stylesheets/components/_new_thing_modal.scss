@@ -61,11 +61,6 @@
         margin-left: 1em;
         color: red;
       }
-      .word-counter {
-        margin: 8px 0;
-        float: right;
-        color: #999;
-      }
       &.required:not(.no-splat):before {
         color: $brand-primary;
         content: '*';
@@ -74,7 +69,7 @@
         position: absolute;
       }
       &.is-invalid {
-        .word-counter, .help-block {
+        .help-block {
           color: red;
         }
         &.required:before {
