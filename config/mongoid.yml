@@ -9,7 +9,7 @@ development:
       # Provides the hosts the default session can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
-        - localhost:27017
+        - 127.0.0.1:27017
       # options:
         # Change whether the session persists in safe mode by default.
         # (default: false)
@@ -66,6 +66,12 @@ development:
 
     # Ensure all times are UTC in the app side. (default: false)
     # use_utc: false
+development:
+  sessions:
+    default:
+      database: making_development
+      hosts:
+        - 127.0.0.1:27017
 test:
   sessions:
     default:
