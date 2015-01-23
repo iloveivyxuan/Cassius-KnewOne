@@ -20,6 +20,8 @@ module PostsHelper
       when 'review'
         review = Review.find key
         result = render partial: 'home/hot_review', collection: [review]
+      else
+        result = '<p class="knewone-embed-tip">无效的资源。</p>'
       end
 
       element.add_child(result)
