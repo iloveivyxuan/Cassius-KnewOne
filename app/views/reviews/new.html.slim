@@ -41,7 +41,7 @@
         p
           br
       = render 'shared/editor_ctxmenu'
-      = f.hidden_field :content
+      = f.hidden_field :content, value: load_post_resources(@review)
   = attachment_tag target: "#pictureBtn", edit: "insertImage"
   = render "shared/editor_help"
 
