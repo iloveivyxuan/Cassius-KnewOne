@@ -6,7 +6,8 @@
           - tp.photos.each_with_index do |photo, index|
             li class="item#{' active' if index == 0}"
               - version = browser.mobile? ? 'thing.fixed.small' : :middle
-              = image_tag photo.url(version), alt: photo.name
+              - klass = index == 0 ? 'sharing_cover' : ''
+              = image_tag photo.url(version), alt: photo.name, class: klass
         - if !browser.mobile? and tp.photos.count > 1
           = link_to_with_icon "", "fa fa-angle-left", "#", class: "carousel-control left"
           = link_to_with_icon "", "fa fa-angle-right", "#", class: "carousel-control right"
