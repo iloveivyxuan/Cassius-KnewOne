@@ -84,11 +84,7 @@ do (exports = Making) ->
 
       $slideshow_inner.sortable()
 
-      $new_thing_edit_modal.find('textarea').$contentCount().on 'updated:counter', (e, context, len) ->
-        if len > context.maxlength
-          context.counter.css(color: 'red')
-        else
-          context.counter.css(color: '#777777')
+      $new_thing_edit_modal.find('textarea').$contentCount()
 
       $new_thing_edit_modal.on 'click', '#new-thing-edit-modal-sortable li', (e) ->
         e.preventDefault()

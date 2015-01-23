@@ -13,7 +13,7 @@ class ContentCounter
     @$elem.bind 'input propertychange', @inputEventCallBack
 
     if @options['stopflow']
-      @$elem.on 'overflow:counter', (e, context, length, maxlength) =>
+      @$elem.on 'overflow:counter', (e, length, maxlength) =>
         @$elem.val @$elem.val().substr 0, maxlength
         @updateCounter maxlength
 
@@ -22,29 +22,36 @@ class ContentCounter
     length = @$elem.val().length
 
     if @isOverflow = length > @maxlength
-      @$elem.trigger 'overflow:counter', [this, length, @maxlength]
-      @updateCounter(length) unless @options['stopflow']
+      @$elem.trigger 'overflow:counter', [length, @maxlength, this]
+      unless @options['stopflow']
+        @updateCounter(length)
     else
       @updateCounter(length)
 
 
   updateCounter: (length) ->
-    @counter.html "#{length} / #{@maxlength}"
-    @$elem.trigger 'updated:counter', [this, length]
+    if @options['autoCountDown'] == true
+      @options['countDownFn'].call(this, @$counter, length, @maxlength)
+    @$elem.trigger 'updated:counter', [length, @maxlength, this]
 
 
   renderCountNumber: ->
-    if @options['counter']
-      @counter = @options['counter']
+    if @options['countElem']
+      if @options['countElem'] instanceof jQuery
+        @$counter = @options['countElem']
+        unless @$counter.html().length
+          @$counter.html @options['countRenderFn'].call(this, @maxlength)
+      else
+        throw 'option `countElem` is not a jQuery Object.'      
     else
-      @counter = $('<div />',
-        class: 'words-count'
-        style: 'float: right',
-        html: "0 / #{@maxlength}"
+      @$counter = $('<div />',
+        class: @options['countClass']
+        style: @options['style'],
+        html: @options['countRenderFn'].call(this, @maxlength)
       )
 
       $parent = @$elem.parent()
-      $parent.append(@counter)
+      $parent.append(@$counter)
       $parent.append($('<div />', class: @options['clearClass']))
 
 
@@ -55,7 +62,7 @@ class ContentCounter
 
   destroy: ->
     @$elem.data('ContentCounter', null)
-    @counter.remove() unless @options['counter']
+    @$counter.remove() unless @options['countElem']
     @$elem.unbind @inputEventCallBack
     @$elem.trigger 'destroied:counter', this
 
@@ -80,6 +87,13 @@ Making.ContentCounter = ($element, options) ->
 
 Making.ContentCounter.Default =
   maxlength: 140
-  format: '${+} / $maxlength'
   stopflow: true
   clearClass: 'clearfix'
+  countClass: 'words-count'
+  style: 'float: right;'
+  countElem: false
+  autoCountDown: true
+  countRenderFn: (maxlength) ->
+    "0 / #{maxlength}"
+  countDownFn: ($counter, length, maxlength) ->
+    $counter.html "#{length} / #{maxlength}"

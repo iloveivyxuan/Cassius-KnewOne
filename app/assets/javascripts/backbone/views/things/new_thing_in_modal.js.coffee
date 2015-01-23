@@ -76,11 +76,7 @@ class Making.Views.NewThingInModal extends Backbone.View
   afterRender: ->
     @$form = @$el.find('form')
     $contentFormGroup = @$form.find('textarea').closest('.form-group')
-    @$form.find('textarea').$contentCount().on 'updated:counter', (e, context, len) ->
-      if len > context.maxlength
-        context.counter.css(color: 'red')
-      else
-        context.counter.css(color: '#777777')
+    @$form.find('textarea').$contentCount()
 
     Making.validator('#new_thing')
     Making.AtUser('#new-thing-from-local textarea')
