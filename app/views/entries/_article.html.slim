@@ -1,37 +1,53 @@
-article.article
+- page_css 'entries'
+
+article.article data-article-id=post.id
 
   header
-    h1.title = post.title
+    .header-inner
+      nav.header-top
+        = link_to_with_icon "精选首页", "fa fa-caret-left", explore_path, class: "nav_explore visible-xs-block"
+        = link_to_with_icon "KnewOne #{entry.category_translation}", "fa fa-caret-left hidden-xs", explore_path, class: "nav_explore_category"
+        = image_tag entry.avatar.url(:small), class: 'img-circle entry-avatar hidden-xs' if entry.avatar.present?
 
-    .clearfix
-      ul.metas
-        li
-          label.avatar
-            = image_tag author.avatar.url(:tiny), class: 'img-circle'
-            = link_to author.name, author, data: {"profile-popover" => author.id.to_s}
-        li = time_ago_tag entry.created_at
-      ul.metas
-        li
-          = post.lovers_count
-          | 赞
-        li
-          = post.comments_count
-          | 评论
+      .header-main
+        h1.title= entry_title entry
+        .clearfix
+          ul.metas.pull-left
+            li
+              label.avatar
+                = image_tag author.avatar.url(:tiny), class: 'img-circle'
+                = link_to author.name, author, data: {"profile-popover" => author.id.to_s}
+            li = time_ago_tag entry.created_at
+          ul.metas.pull-right
+            li
+              i.fa.fa-thumbs-o-up
+              = post.lovers_count
+            li
+              i.fa.fa-comment-o
+              = post.comments_count
 
-  - if Entry::CATEGORIES[entry.category] == 'events'
-    = render 'entries/related_things', entry: entry, title: '相关产品'
+    figure
+      - version = browser.mobile? ? :wechat : :background
+      = image_tag (entry.canopy.url(version) || "http://image.knewone.com/review_photos/65cd5f541dee082691f8481e96d132cc.jpg!#{version}")
 
-  section.content = sanitize post.content
+  = image_tag(entry.avatar.url(:small), class: 'img-circle entry-avatar visible-xs-block') if entry.avatar.present?
+  - if entry.try(:summary).present?
+    p.summary= entry.summary
+
+  section.content= sanitize post.content
+
+  - if entry.category == '评测'
+    .knewone-embed.knewone-embed--thing
+      = render 'things/embed_thing', thing: post.thing, photo: nil, embed: nil, klass: 'col-sm-12'
 
   .actions
-    .voting id="article_#{post.id.to_s}"
+    .interactions id="#{post.class.to_s.downcase}_#{post.id.to_s}"
       = render partial: 'shared/voting', locals: {object: post}
     = render "shared/share_external", type: entry.category, title: entry_title(entry), object: entry
 
-  - if Entry::CATEGORIES[entry.category] != 'events'
-    = render 'entries/related_things', entry: entry
-
   = render 'pager', entry: entry
+
+  hr
 
   = render 'shared/comments', post: post, id: "comments", auth: true
 

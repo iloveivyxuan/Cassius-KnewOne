@@ -10,6 +10,6 @@
     img src=(@entry.wechat_cover.url(:square) || @entry.canopy.url(:square))
 
 - if ['专访', '评测', '列表'].include? @entry.category
-  = render 'entries/article_special', entry: @entry, post: post, author: author
-- else
   = render 'entries/article', entry: @entry, post: post, author: author
+- else
+  = render 'entries/article_abandoned', entry: @entry, post: post, author: author
