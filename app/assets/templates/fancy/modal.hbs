@@ -17,7 +17,14 @@
       <img alt="{{thing.title}}" src="{{thing.cover_url}}">
 
       <form class="fancy_modal-tags_form">
-        <input class="form-control" name="tag_names" type="text" placeholder="为产品打标签（用; 隔开）">
+        <div class="input-group">
+          <input class="form-control" name="tag_names" type="text" placeholder="为产品打标签（用; 隔开）">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="submit">
+              <i class="fa fa-plus fa-alone"></i>
+            </button>
+          </span>
+        </div>
 
         <section class="fancy_modal-tags">
           <ul>
