@@ -18,7 +18,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     @initTags()
 
   tryToUpdateTriggerState: (increment) ->
-    {type, $trigger} = @model.get('options')
+    {type, $trigger} = @model.attributes
 
     if type == 'fancy-thing'
       $count = $trigger.find('.fanciers_count')

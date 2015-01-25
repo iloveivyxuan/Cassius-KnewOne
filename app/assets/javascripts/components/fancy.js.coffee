@@ -19,7 +19,7 @@ $(->
       dateType: 'json'
     }).done((impression) ->
       view = new Making.Views.FancyModal({
-        model: new Backbone.Model(_.extend({options}, impression))
+        model: new Backbone.Model(_.extend(options, impression))
       })
       region.show(view)
     )

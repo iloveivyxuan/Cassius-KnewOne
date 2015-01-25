@@ -3,7 +3,7 @@
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal">X</button>
       <h4>
-        {{#ifCond options.type '==' 'fancy-thing'}}
+        {{#ifCond type '==' 'fancy-thing'}}
           <i class="fa fa-heart-o"></i>
         {{else}}
           <i class="fa fa-check-circle-o"></i>
@@ -57,7 +57,7 @@
         <textarea class="form-control" name="description" rows="2" placeholder="说点什么吧（140字以内哦）"></textarea>
 
         <section class="fancy_modal-options">
-          {{#ifCond options.type '==' 'fancy-thing'}}
+          {{#ifCond type '==' 'fancy-thing'}}
             <div class="fancy_modal-state">
               <input type="radio" name="state" value="none" checked>
               <label><input type="radio" name="state" value="desired">想要</label>
@@ -78,7 +78,7 @@
 
     <div class="modal-footer">
       <button class="btn btn-default fancy_modal-cancel_button" type="button">
-        {{#ifCond options.type '==' 'fancy-thing'}}
+        {{#ifCond type '==' 'fancy-thing'}}
           <i class="fa fa-heart-o"></i> 取消喜欢
         {{else}}
           <i class="fa fa-circle-o"></i> 取消拥有
