@@ -144,26 +144,8 @@
     padding-top: 0;
     border: 0;
 
-    button {
+    .btn {
       padding: 7px 30px;
-      border-radius: 10px;
-      color: white;
-    }
-
-    .fancy_modal-cancel_button {
-      background: $gray-light;
-      opacity: .6;
-
-      &:hover {
-        opacity: 1;
-      }
-    }
-
-    .fancy_modal-submit_button {
-      background: $blue-dark;
-      &:hover {
-        background: darken($blue-dark, 10%);
-      }
     }
   }
 
@@ -175,6 +157,28 @@
     &:focus {
       border: none;
       box-shadow: none;
+    }
+  }
+
+  .btn {
+    border: none;
+    border-radius: 10px;
+    color: white;
+  }
+
+  .btn-default {
+    background: $gray-light;
+    opacity: .6;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .btn-primary {
+    background: $blue-dark;
+    &:hover {
+      background: darken($blue-dark, 10%);
     }
   }
 }
