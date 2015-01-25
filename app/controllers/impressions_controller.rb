@@ -19,6 +19,13 @@ class ImpressionsController < ApplicationController
     respond_with @impression
   end
 
+  def destroy
+    @impression = @thing.impressions.find_by(author: current_user)
+    @impression.destroy
+
+    respond_with @impression
+  end
+
   private
 
   def impression_params
