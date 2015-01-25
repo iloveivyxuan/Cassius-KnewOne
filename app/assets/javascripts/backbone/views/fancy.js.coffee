@@ -4,9 +4,12 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
   template: HandlebarsTemplates['fancy/modal']
 
   ui: {
+    tagsForm: '.fancy_modal-tags_form'
+    tagsInput: '[name="tag_names"]'
   }
 
   events: {
+    'submit @ui.tagsForm': 'onTagsFormSubmit'
   }
 
   modelEvents: {
@@ -79,6 +82,33 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     )
 
     @model.set({firstTime, tags, recent_tags, popular_tags})
+
+  toggleTags: (tagNames, selected = 'toggle') ->
+    toggle = (found) ->
+      if found
+        found.selected = if selected == 'toggle' then !found.selected else selected
+
+    {tags, recent_tags, popular_tags} = @model.attributes
+
+    _.uniq(tagNames).forEach((name) ->
+      found = _.findWhere(tags, {name})
+      tags.unshift({name, selected: true}) unless found
+
+      toggle(found)
+      toggle(_.findWhere(recent_tags, {name}))
+      toggle(_.findWhere(popular_tags, {name}))
+    )
+
+    @model.trigger('change')
+
+  addTags: (tagNames) ->
+    @toggleTags(tagNames, true)
+
+  onTagsFormSubmit: (event) ->
+    event.preventDefault()
+
+    tagNames = @ui.tagsInput.val().split(/[;；]/).filter((s) -> s && s.length <= 12)
+    @addTags(tagNames)
 
   onShow: ->
     @$el.modal('show')
