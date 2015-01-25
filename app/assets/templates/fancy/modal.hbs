@@ -77,15 +77,19 @@
     </div>
 
     <div class="modal-footer">
-      <button class="btn btn-default fancy_modal-cancel_button" type="button">
-        {{#ifCond type '==' 'fancy'}}
-          <i class="fa fa-heart-o"></i> 取消喜欢
-        {{else}}
-          <i class="fa fa-circle-o"></i> 取消拥有
-        {{/ifCond}}
-      </button>
+      {{#if firstTime}}
+        <button class="btn btn-primary fancy_modal-submit_button" type="button">完成</button>
+      {{else}}
+        <button class="btn btn-default fancy_modal-cancel_button" type="button">
+          {{#ifCond type '==' 'fancy'}}
+            <i class="fa fa-heart-o"></i> 取消喜欢
+          {{else}}
+            <i class="fa fa-circle-o"></i> 取消拥有
+          {{/ifCond}}
+        </button>
 
-      <button class="btn btn-primary fancy_modal-submit_button" type="button">完成</button>
+        <button class="btn btn-primary fancy_modal-submit_button" type="button">保存</button>
+      {{/if}}
     </div>
   </div>
 </div>

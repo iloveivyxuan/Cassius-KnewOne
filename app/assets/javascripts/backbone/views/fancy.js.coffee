@@ -14,8 +14,8 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
   }
 
   initialize: ->
+    @initModel()
     @tryToUpdateTriggerState(1)
-    @initTags()
 
   tryToUpdateTriggerState: (increment) ->
     {type, $trigger} = @model.attributes
@@ -59,13 +59,16 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
           .one($.support.transition.end, -> $(this).removeClass('heartbeat'))
         updateFanciersCount()
 
-      if type == 'own-thing' && $trigger.hasClass('owned')
+      if type == 'own' && $trigger.hasClass('owned')
         $trigger
           .removeClass('unowned')
           .addClass('owned')
         updateFanciersCount()
 
-  initTags: ->
+  initModel: ->
+    firstTime = (@model.get('type') == 'fancy' && !@model.get('fancied')) ||
+                (@model.get('type') == 'own' && @model.get('state') != 'owned')
+
     tagNames = @model.get('tags')
     tags = tagNames.map((name) -> {name, selected: true})
     recent_tags = @model.get('recent_tags').map((name) ->
@@ -75,7 +78,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       {name, selected: _.indexOf(tagNames, name) != -1}
     )
 
-    @model.set({tags, recent_tags, popular_tags})
+    @model.set({firstTime, tags, recent_tags, popular_tags})
 
   onShow: ->
     @$el.modal('show')
