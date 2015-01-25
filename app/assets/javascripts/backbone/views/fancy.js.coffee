@@ -14,6 +14,9 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
   }
 
   initialize: ->
+    @initTags()
+
+  initTags: ->
     tagNames = @model.get('tags')
     tags = tagNames.map((name) -> {name, selected: true})
     recent_tags = @model.get('recent_tags').map((name) ->
