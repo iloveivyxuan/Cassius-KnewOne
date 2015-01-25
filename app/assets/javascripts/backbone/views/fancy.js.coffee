@@ -107,7 +107,10 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
   onTagsFormSubmit: (event) ->
     event.preventDefault()
 
-    tagNames = @ui.tagsInput.val().split(/[;；]/).filter((s) -> s && s.length <= 12)
+    tagNames = @ui.tagsInput.val()
+      .split(/[;；]/)
+      .map((s) -> s.trim())
+      .filter((s) -> s && s.length <= 12)
     @addTags(tagNames)
 
     @ui.tagsInput.focus()
