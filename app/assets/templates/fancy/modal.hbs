@@ -54,7 +54,7 @@
       </form>
 
       <form class="fancy_modal-main_form">
-        <textarea class="form-control" name="description" rows="2" placeholder="说点什么吧（140字以内哦）"></textarea>
+        <textarea class="form-control" name="description" rows="2" maxlength=140 placeholder="说点什么吧（140字以内哦）"></textarea>
 
         <section class="fancy_modal-options">
           {{#ifCond type '==' 'fancy'}}
