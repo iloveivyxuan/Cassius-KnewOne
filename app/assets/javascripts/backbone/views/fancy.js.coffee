@@ -110,6 +110,8 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     tagNames = @ui.tagsInput.val().split(/[;；]/).filter((s) -> s && s.length <= 12)
     @addTags(tagNames)
 
+    @ui.tagsInput.focus()
+
   onShow: ->
     @$el.modal('show')
 
