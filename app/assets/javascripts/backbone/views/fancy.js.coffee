@@ -75,12 +75,12 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
 
     tagNames = @model.get('tags')
     tags = tagNames.map((name) -> {name, selected: true})
-    recent_tags = @model.get('recent_tags').map((name) ->
-      {name, selected: _.indexOf(tagNames, name) != -1}
-    )
-    popular_tags = @model.get('popular_tags').map((name) ->
-      {name, selected: _.indexOf(tagNames, name) != -1}
-    )
+    recent_tags = @model.get('recent_tags')
+      .filter((name) -> _.indexOf(tagNames, name) == -1)
+      .map((name) -> {name, selected: false})
+    popular_tags = @model.get('popular_tags')
+      .filter((name) -> _.indexOf(tagNames, name) == -1)
+      .map((name) -> {name, selected: false})
 
     @model.set({firstTime, tags, recent_tags, popular_tags})
 
@@ -93,11 +93,15 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
 
     _.uniq(tagNames).forEach((name) ->
       found = _.findWhere(tags, {name})
-      tags.unshift({name, selected: true}) unless found
+      found2 = _.findWhere(recent_tags, {name})
+      found3 = _.findWhere(popular_tags, {name})
 
-      toggle(found)
-      toggle(_.findWhere(recent_tags, {name}))
-      toggle(_.findWhere(popular_tags, {name}))
+      if found || found2 || found3
+        toggle(found)
+        toggle(found2)
+        toggle(found3)
+      else
+        tags.unshift({name, selected: true})
     )
 
     @model.trigger('change')
