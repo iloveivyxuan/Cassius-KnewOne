@@ -49,25 +49,30 @@
         }
       }
 
-      > section {
-        > ul {
-          > li {
-            display: inline-block;
+      .fancy_modal-all_tags {
+        overflow: auto;
+        max-height: 220px;
 
-            margin: 10px 10px 0 0;
-            padding: 7px 12px;
-            border-radius: 5px;
-            background: white;
+        > section {
+          > ul {
+            > li {
+              display: inline-block;
 
-            cursor: pointer;
+              margin: 10px 10px 0 0;
+              padding: 7px 12px;
+              border-radius: 5px;
+              background: white;
 
-            &:hover {
-              color: $blue-bright;
-            }
+              cursor: pointer;
 
-            &.selected {
-              color: white;
-              background: $gray-light;
+              &:hover {
+                color: $blue-bright;
+              }
+
+              &.selected {
+                color: white;
+                background: $gray-light;
+              }
             }
           }
         }

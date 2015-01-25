@@ -26,29 +26,31 @@
           </span>
         </div>
 
-        <section class="fancy_modal-tags">
-          <ul>
-            {{#each tags}}{{> fancy/_tag}}{{/each}}
-          </ul>
-        </section>
-
-        {{#if recent_tags}}
-          <section class="fancy_modal-recent_tags">
-            <h6>最近</h6>
+        <div class="fancy_modal-all_tags">
+          <section class="fancy_modal-tags">
             <ul>
-              {{#each recent_tags}}{{> fancy/_tag}}{{/each}}
+              {{#each tags}}{{> fancy/_tag}}{{/each}}
             </ul>
           </section>
-        {{/if}}
 
-        {{#if popular_tags}}
-          <section class="fancy_modal-popular_tags">
-            <h6>推荐</h6>
-            <ul>
-              {{#each popular_tags}}{{> fancy/_tag}}{{/each}}
-            </ul>
-          </section>
-        {{/if}}
+          {{#if recent_tags}}
+            <section class="fancy_modal-recent_tags">
+              <h6>最近</h6>
+              <ul>
+                {{#each recent_tags}}{{> fancy/_tag}}{{/each}}
+              </ul>
+            </section>
+          {{/if}}
+
+          {{#if popular_tags}}
+            <section class="fancy_modal-popular_tags">
+              <h6>推荐</h6>
+              <ul>
+                {{#each popular_tags}}{{> fancy/_tag}}{{/each}}
+              </ul>
+            </section>
+          {{/if}}
+        </div>
       </form>
 
       <form class="fancy_modal-main_form">
