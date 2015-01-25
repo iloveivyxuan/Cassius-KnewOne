@@ -12,6 +12,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     'hidden.bs.modal': 'destroy'
     'submit @ui.tagsForm': 'onTagsFormSubmit'
     'click .fancy_modal-all_tags li': 'onTagClick'
+    'click .fancy_modal-state input': 'onStateClick'
   }
 
   modelEvents: {
@@ -124,6 +125,16 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
   onTagClick: (event) ->
     name = $(event.currentTarget).text()
     @toggleTags([name])
+
+  onStateClick: (event) ->
+    $radio = $(event.currentTarget)
+
+    if $radio.val() == @_currentState
+      @$('[name="state"][value="none"]').prop('checked', true)
+      @_currentState = 'none'
+    else
+      $radio.prop('checked', true)
+      @_currentState = $radio.val()
 
   onShow: ->
     @$el.modal('show')
