@@ -10,6 +10,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
 
   events: {
     'submit @ui.tagsForm': 'onTagsFormSubmit'
+    'click .fancy_modal-all_tags li': 'onTagClick'
   }
 
   modelEvents: {
@@ -114,6 +115,10 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     @addTags(tagNames)
 
     @ui.tagsInput.focus()
+
+  onTagClick: (event) ->
+    name = $(event.currentTarget).text()
+    @toggleTags([name])
 
   onShow: ->
     @$el.modal('show')
