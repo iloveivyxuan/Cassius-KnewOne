@@ -1,0 +1,82 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">X</button>
+      <h4>
+        {{#ifCond options.type '==' 'fancy-thing'}}
+          <i class="fa fa-heart-o"></i>
+        {{else}}
+          <i class="fa fa-check-circle-o"></i>
+        {{/ifCond}}
+
+        {{thing.title}}
+      </h4>
+    </div>
+
+    <div class="modal-body">
+      <img alt="{{thing.title}}" src="{{thing.cover_url}}">
+
+      <form class="fancy_modal-tags_form">
+        <input class="form-control" name="tag_names" type="text" placeholder="为产品打标签（用; 隔开）">
+
+        <section class="fancy_modal-tags">
+          <ul>
+            {{#each tags}}{{> fancy/_tag}}{{/each}}
+          </ul>
+        </section>
+
+        {{#if recent_tags}}
+          <section class="fancy_modal-recent_tags">
+            <h6>最近</h6>
+            <ul>
+              {{#each recent_tags}}{{> fancy/_tag}}{{/each}}
+            </ul>
+          </section>
+        {{/if}}
+
+        {{#if popular_tags}}
+          <section class="fancy_modal-popular_tags">
+            <h6>推荐</h6>
+            <ul>
+              {{#each popular_tags}}{{> fancy/_tag}}{{/each}}
+            </ul>
+          </section>
+        {{/if}}
+      </form>
+
+      <form class="fancy_modal-main_form">
+        <textarea class="form-control" name="description" rows="2" placeholder="说点什么吧（140字以内哦）"></textarea>
+
+        <section class="fancy_modal-options">
+          {{#ifCond options.type '==' 'fancy-thing'}}
+            <div class="fancy_modal-state">
+              <input type="radio" name="state" value="none" checked>
+              <label><input type="radio" name="state" value="desired">想要</label>
+              <label><input type="radio" name="state" value="owned">拥有</label>
+            </div>
+          {{/ifCond}}
+
+          <div class="fancy_modal-sync_to_feeling">
+            <label><input type="checkbox" name="sync_to_feeling">发布短评</label>
+          </div>
+
+          <div class="fancy_modal-rating">
+            <input class="range_rating" type="range" name="score" max="5" min="0" value="{{score}}">
+          </div>
+        </section>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn fancy_modal-cancel_button" type="button">
+        {{#ifCond options.type '==' 'fancy-thing'}}
+          <i class="fa fa-heart-o"></i> 取消喜欢
+        {{else}}
+          <i class="fa fa-circle-o"></i> 取消拥有
+        {{/ifCond}}
+      </button>
+
+      <button class="btn fancy_modal-submit_button" type="button">完成</button>
+    </div>
+  </div>
+</div>
