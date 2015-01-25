@@ -9,6 +9,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
   }
 
   events: {
+    'hidden.bs.modal': 'destroy'
     'submit @ui.tagsForm': 'onTagsFormSubmit'
     'click .fancy_modal-all_tags li': 'onTagClick'
   }
