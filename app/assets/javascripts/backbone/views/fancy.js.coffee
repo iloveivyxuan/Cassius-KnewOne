@@ -20,7 +20,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
   tryToUpdateTriggerState: (increment) ->
     {type, $trigger} = @model.attributes
 
-    if type == 'fancy-thing'
+    if type == 'fancy'
       $count = $trigger.find('.fanciers_count')
     else
       $count = $trigger.find('.owners_count')
@@ -33,7 +33,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
         $count.text(parseInt($count.text()) + increment)
 
     if increment == 1
-      if type == 'fancy-thing' && $trigger.hasClass('unfancied')
+      if type == 'fancy' && $trigger.hasClass('unfancied')
         $trigger
           .removeClass('unfancied')
           .addClass('fancied')
@@ -43,13 +43,13 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
           .one($.support.transition.end, -> $(this).removeClass('heartbeat'))
         updateFanciersCount()
 
-      if type == 'own-thing' && $trigger.hasClass('unowned')
+      if type == 'own' && $trigger.hasClass('unowned')
         $trigger
           .removeClass('unowned')
           .addClass('owned')
         updateFanciersCount()
     else
-      if type == 'fancy-thing' && $trigger.hasClass('fancied')
+      if type == 'fancy' && $trigger.hasClass('fancied')
         $trigger
           .removeClass('fancied')
           .addClass('unfancied')
