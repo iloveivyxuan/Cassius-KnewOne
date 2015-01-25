@@ -17,3 +17,6 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
 
   onShow: ->
     @$el.modal('show')
+
+  onRender: ->
+    @$el.find('[name="score"]').rating()
