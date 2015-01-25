@@ -344,38 +344,23 @@ do (exports = Making) ->
           else
             $count.text(parseInt($count.text(), 10) + increment)
 
-        if $trigger.hasClass('fancied')
+        if $trigger.hasClass('unfancied')
           $trigger
-          .removeClass('fancied')
-          .addClass('unfancied')
-          .attr('title', '喜欢')
-          .children('.fa')
-          .removeClass('fa-heart')
-          .addClass('fa-heart-o heartbeat')
-          # TODO change transitionEnd event to animationend event
-          .one $.support.transition.end, ->
-            $(@).removeClass('heartbeat')
-          .emulateTransitionEnd(750)
-
-          updateFanciersCount(-1)
-        else
-          $trigger
-          .removeClass('unfancied')
-          .addClass('fancied')
-          .attr('title', '取消喜欢')
-          .children('.fa')
-          .removeClass('fa-heart-o')
-          .addClass('fa-heart heartbeat')
-          # TODO change transitionEnd event to animationend event
-          .one $.support.transition.end, ->
-            $(@).removeClass('heartbeat')
-          .emulateTransitionEnd(750)
+            .removeClass('unfancied')
+            .addClass('fancied')
+            .children('.fa')
+            .removeClass('fa-heart-o')
+            .addClass('fa-heart heartbeat')
+            # TODO change transitionEnd event to animationend event
+            .one $.support.transition.end, ->
+              $(@).removeClass('heartbeat')
+            .emulateTransitionEnd(750)
 
           updateFanciersCount(1)
 
-        $.ajax
-          url: $trigger.data('url')
-          type: 'post'
+          $.ajax
+            url: $trigger.data('url')
+            type: 'post'
 
         return
 

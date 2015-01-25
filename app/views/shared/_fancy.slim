@@ -5,16 +5,15 @@
     small 喜欢
 - else
   - if user_signed_in?
-    - data = {}
+    - data = {'fancy' => {'thing-id' => p.id, type: 'fancy-thing'}}
   - else
     - data = {toggle: "modal", target: "#login-modal", link: thing_url(p.thing), "signin-legend" => "登录后，收集喜欢的产品"}
   - data.merge!({ category: "thing", action: "fancy", label: p.thing.title })
 
-  - title = p.fancied? ? "取消喜欢" : "喜欢"
   - fancy_class = p.fancied? ? "fancied" : "unfancied"
   - icon_class = p.fancied? ? "fa-heart" : "fa-heart-o"
 
-  = link_to "#", class: fancy_class, data: data, title: title do
+  = link_to "#", class: fancy_class, data: data do
     i class="fa #{icon_class}"
     = p.fanciers_count
     small 喜欢
