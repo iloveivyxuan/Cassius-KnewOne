@@ -5,11 +5,17 @@ $(->
   })
 
   $(document).on('click', '[data-fancy]', (event) ->
+    event.preventDefault()
+
     $target = $(this)
-    options = $target.data('fancy')
+    options = {
+      thing_id: $target.data('fancy')
+      type: $target.data('type')
+      $trigger: $target
+    }
 
     $.ajax({
-      url: "/things/#{options['thing-id']}/impression"
+      url: "/things/#{options.thing_id}/impression"
       dateType: 'json'
     }).done((impression) ->
       view = new Making.Views.FancyModal({

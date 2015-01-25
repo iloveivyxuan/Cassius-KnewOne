@@ -14,7 +14,56 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
   }
 
   initialize: ->
+    @tryToUpdateTriggerState(1)
     @initTags()
+
+  tryToUpdateTriggerState: (increment) ->
+    {type, $trigger} = @model.get('options')
+
+    if type == 'fancy-thing'
+      $count = $trigger.find('.fanciers_count')
+    else
+      $count = $trigger.find('.owners_count')
+
+    updateFanciersCount = ->
+      $humanizedNumber = $count.find('.humanized_number')
+      if $humanizedNumber.length
+        $humanizedNumber.attr('title', parseInt($humanizedNumber.attr('title')) + increment)
+      else
+        $count.text(parseInt($count.text()) + increment)
+
+    if increment == 1
+      if type == 'fancy-thing' && $trigger.hasClass('unfancied')
+        $trigger
+          .removeClass('unfancied')
+          .addClass('fancied')
+          .children('.fa')
+          .removeClass('fa-heart-o')
+          .addClass('fa-heart heartbeat')
+          .one($.support.transition.end, -> $(this).removeClass('heartbeat'))
+        updateFanciersCount()
+
+      if type == 'own-thing' && $trigger.hasClass('unowned')
+        $trigger
+          .removeClass('unowned')
+          .addClass('owned')
+        updateFanciersCount()
+    else
+      if type == 'fancy-thing' && $trigger.hasClass('fancied')
+        $trigger
+          .removeClass('fancied')
+          .addClass('unfancied')
+          .children('.fa')
+          .removeClass('fa-heart')
+          .addClass('fa-heart-o heartbeat')
+          .one($.support.transition.end, -> $(this).removeClass('heartbeat'))
+        updateFanciersCount()
+
+      if type == 'own-thing' && $trigger.hasClass('owned')
+        $trigger
+          .removeClass('unowned')
+          .addClass('owned')
+        updateFanciersCount()
 
   initTags: ->
     tagNames = @model.get('tags')

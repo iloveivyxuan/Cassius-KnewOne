@@ -6,13 +6,13 @@
 - else
   - link_path = (user_signed_in? && !tp.owned?) ? own_thing_path(tp.thing) : "#"
   - if user_signed_in?
-    - data = {'fancy' => {'thing-id' => tp.id, type: 'own-thing'}}
+    - data = {fancy: tp.id.to_s, type: 'own-thing'}
   - else
     - data = {toggle: "modal", target: "#login-modal", "signin-legend" => "登录后，标注拥有的产品"}
   - data.merge!({category: "thing", action: "own", label: tp.thing.title})
   - own_class = tp.owned? ? "owned" : "unowned"
 
-  = link_to link_path, remote: true, method: :post, class: own_class, data: data do
+  = link_to link_path, class: own_class, data: data do
     i.fa.fa-check-circle-o
     i.fa.fa-circle-o
     = tp.owners_count

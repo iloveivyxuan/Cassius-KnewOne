@@ -317,53 +317,6 @@ do (exports = Making) ->
           event.preventDefault()
           $tag.toggleClass('is-active')
 
-      .on 'click', '.fanciers > a, .fancy-button > a, .fancy_button > a', (event) ->
-        $trigger = $(@)
-
-        if $trigger.data('toggle') is 'modal' then return
-        if $trigger.data('toggle') is 'wechat_login' then return
-
-        event.preventDefault()
-
-        if $trigger.find('.fanciers_count').is(':visible')
-          $count = $trigger.find('.fanciers_count')
-        else if $trigger.parents('.thing').length > 0
-          $count = $trigger
-            .parents('.thing')
-            .find('.figure_detail')
-            .find('.fanciers_count')
-        else
-          $count = $trigger
-            .parents('.feed-thing')
-            .find('.fanciers-count')
-
-        updateFanciersCount = (increment) ->
-          $humanizedNumber = $count.find('.humanized_number')
-          if $humanizedNumber.length
-            $humanizedNumber.attr('title', parseInt($humanizedNumber.attr('title')) + increment)
-          else
-            $count.text(parseInt($count.text(), 10) + increment)
-
-        if $trigger.hasClass('unfancied')
-          $trigger
-            .removeClass('unfancied')
-            .addClass('fancied')
-            .children('.fa')
-            .removeClass('fa-heart-o')
-            .addClass('fa-heart heartbeat')
-            # TODO change transitionEnd event to animationend event
-            .one $.support.transition.end, ->
-              $(@).removeClass('heartbeat')
-            .emulateTransitionEnd(750)
-
-          updateFanciersCount(1)
-
-          $.ajax
-            url: $trigger.data('url')
-            type: 'post'
-
-        return
-
       .on 'keydown', 'textarea', (event) ->
         if (event.metaKey or event.ctrlKey) and event.keyCode is keycode.ENTER
           $(@).parents('form').find('button[type="submit"]').trigger('click')
