@@ -106,7 +106,7 @@ do (exports = Making) ->
       flag = true
       $images = $('#new-thing-edit-modal-images-container .image .item').find('img')
 
-      
+
       resize = do ->
         winWidth = $(window).width()
         size = if winWidth > 768
@@ -142,7 +142,7 @@ do (exports = Making) ->
             $carousel_inner.append($item)
 
             $selector = $('#' + $this.attr('data-selector-id')).attr('data-slide-to', i).attr('draggable', true)
-            $slideshow_inner.append($selector)            
+            $slideshow_inner.append($selector)
             setTimeout ->
               resize($selector, height, width)
             , 0
@@ -185,7 +185,7 @@ do (exports = Making) ->
       ).each($('#new-thing-edit-modal-sortable').children(), (index, value)->
         $value = $(value)
         $value.attr('data-slide-to', index)
-      )      
+      )
   )
 
   exports.SetupCustomerServices = (element) ->
