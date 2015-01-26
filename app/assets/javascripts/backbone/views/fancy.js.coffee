@@ -85,7 +85,9 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       .filter((name) -> _.indexOf(tagNames, name) == -1)
       .map((name) -> {name, selected: false})
 
-    @model.set({firstTime, tags, recent_tags, popular_tags})
+    sync_to_feeling = !@model.get('description')
+
+    @model.set({firstTime, tags, recent_tags, popular_tags, sync_to_feeling})
 
   toggleTags: (tagNames, selected = 'toggle') ->
     toggle = (found) ->
