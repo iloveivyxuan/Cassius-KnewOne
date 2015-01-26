@@ -38,6 +38,7 @@ class FeelingsController < ApplicationController
       current_user.log_activity :new_feeling, @feeling, source: @feeling.thing
       respond_to do |format|
         format.js
+        format.json { head :created }
       end
     else
       head :request_entity_too_large

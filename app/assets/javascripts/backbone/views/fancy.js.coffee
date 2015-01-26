@@ -190,6 +190,20 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
 
     @tryToUpdateTriggerState(-1)
 
+  tryToSyncToFeeling: ->
+    return unless @model.get('sync_to_feeling')
+
+    feeling = {
+      content: @model.get('description')
+      score: @model.get('score')
+    }
+
+    $.ajax({
+      url: "/things/#{@model.get('thing_id')}/feelings"
+      type: 'POST'
+      data: {feeling}
+    })
+
   onSubmit: ->
     @onTagsFormSubmit()
 
@@ -208,5 +222,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       type: 'PATCH'
       data: {impression: data}
     })
+
+    @tryToSyncToFeeling()
 
     @$el.modal('hide')
