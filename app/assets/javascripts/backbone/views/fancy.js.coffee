@@ -15,6 +15,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     'click .fancy_modal-all_tags li': 'onTagClick'
     'click .fancy_modal-state input': 'onStateClick'
     'click .fancy_modal-cancel_button': 'onCancel'
+    'click .fancy_modal-submit_button': 'onSubmit'
   }
 
   modelEvents: {
@@ -148,7 +149,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     @model.set(change, {silent: true})
 
   onTagsFormSubmit: (event) ->
-    event.preventDefault()
+    event.preventDefault() if event
 
     tagNames = @ui.tagsInput.val()
       .split(/[;；]/)
@@ -188,3 +189,23 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     @$el.modal('hide')
 
     @tryToUpdateTriggerState(-1)
+
+  onSubmit: ->
+    @onTagsFormSubmit()
+
+    data = _.pick(@model.attributes, 'state', 'description', 'score')
+
+    {tags, recent_tags, popular_tags} = @model.attributes
+    data.tag_names = _.chain([tags, recent_tags, popular_tags])
+      .flatten()
+      .filter(({selected}) -> selected)
+      .pluck('name')
+      .value()
+
+    $.ajax({
+      url: @url()
+      type: 'PATCH'
+      data: {impression: data}
+    })
+
+    @$el.modal('hide')
