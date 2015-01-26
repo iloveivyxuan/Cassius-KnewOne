@@ -40,16 +40,15 @@ class ContentCounter
       if @options['countElem'] instanceof jQuery
         @$counter = @options['countElem']
         unless @$counter.html().length
-          @$counter.html @options['countRenderFn'].call(this, @maxlength)
+          @options['countRenderFn'].call(this, @$counter, @maxlength)
       else
         throw 'option `countElem` is not a jQuery Object.'      
     else
       @$counter = $('<div />',
         class: @options['countClass']
-        style: @options['style'],
-        html: @options['countRenderFn'].call(this, @maxlength)
+        style: @options['style']
       )
-
+      @options['countRenderFn'].call(this, @$counter, @maxlength)
       $parent = @$elem.parent()
       $parent.append(@$counter)
       $parent.append($('<div />', class: @options['clearClass']))
@@ -93,7 +92,7 @@ Making.ContentCounter.Default =
   style: 'float: right;'
   countElem: false
   autoCountDown: true
-  countRenderFn: (maxlength) ->
-    "0 / #{maxlength}"
+  countRenderFn: ($counter, maxlength) ->
+    $counter.html "0 / #{maxlength}"
   countDownFn: ($counter, length, maxlength) ->
     $counter.html "#{length} / #{maxlength}"
