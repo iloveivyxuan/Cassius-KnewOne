@@ -80,6 +80,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
         $trigger
           .removeClass('unfancied')
           .addClass('fancied')
+          .attr('title', '修改喜欢状态')
           .children('.fa')
           .removeClass('fa-heart-o')
           .addClass('fa-heart heartbeat')
@@ -90,12 +91,14 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
         $trigger
           .removeClass('unowned')
           .addClass('owned')
+          .attr('title', '修改拥有状态')
         updateFanciersCount()
     else
       if type == 'fancy' && $trigger.hasClass('fancied')
         $trigger
           .removeClass('fancied')
           .addClass('unfancied')
+          .attr('title', '喜欢此产品')
           .children('.fa')
           .removeClass('fa-heart')
           .addClass('fa-heart-o heartbeat')
@@ -106,6 +109,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
         $trigger
           .removeClass('unowned')
           .addClass('owned')
+          .attr('title', '拥有此产品')
         updateFanciersCount()
 
   onShow: ->

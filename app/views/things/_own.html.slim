@@ -10,9 +10,10 @@
   - else
     - data = {toggle: "modal", target: "#login-modal", "signin-legend" => "登录后，标注拥有的产品"}
   - data.merge!({category: "thing", action: "own", label: tp.thing.title})
+  - title = tp.owned? ? "修改拥有状态" : "拥有此产品"
   - own_class = tp.owned? ? "owned" : "unowned"
 
-  = link_to link_path, class: own_class, data: data do
+  = link_to link_path, class: own_class, title: title, data: data do
     i.fa.fa-check-circle-o
     i.fa.fa-circle-o
     = tp.owners_count
