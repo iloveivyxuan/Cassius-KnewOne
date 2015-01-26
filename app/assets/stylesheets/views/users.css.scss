@@ -475,40 +475,6 @@ html[class^="users_"] {
             width: 100%;
           }
 
-          .fancy_thing {
-            @include stretch;
-
-            opacity: 0;
-            transition: opacity .2s;
-
-            &:hover {
-              opacity: 1;
-            }
-
-            .fancy_backdrop {
-              @include stretch;
-              background: rgba(black, 0.5);
-            }
-
-            .fancy_button a {
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-
-              i {
-                margin: 0;
-                font-size: 50px;
-                color: $red;
-              }
-
-              .fanciers_count,
-              small {
-                display: none;
-              }
-            }
-          }
-
           &:before {
             content: '';
 
