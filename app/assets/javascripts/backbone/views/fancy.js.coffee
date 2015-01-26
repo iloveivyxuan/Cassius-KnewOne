@@ -22,7 +22,11 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
 
   initialize: ->
     @initModel()
+    @updateStateOnServer()
     @tryToUpdateTriggerState(1)
+
+  url: ->
+    "/things/#{@model.get('thing_id')}/impression"
 
   initModel: ->
     first_time = (@model.get('type') == 'fancy' && !@model.get('fancied')) ||
@@ -40,6 +44,18 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     sync_to_feeling = !@model.get('description')
 
     @model.set({first_time, tags, recent_tags, popular_tags, sync_to_feeling})
+
+  updateStateOnServer: ->
+    if @model.get('type') == 'fancy'
+      change = {fancied: true}
+    else
+      change = {state: 'owned'}
+
+    $.ajax({
+      url: @url()
+      type: 'PATCH'
+      data: {impression: change}
+    })
 
   tryToUpdateTriggerState: (increment) ->
     {type, $trigger} = @model.attributes
