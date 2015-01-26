@@ -4,7 +4,7 @@ li.thing
       = link_to thing, target: '_blank'
         = present(thing).photo('thing.fixed')
 
-    = link_to thing, target: '_blank', class: 'thing-title'
+    = link_to thing, target: '_blank', class: 'thing-title', title: thing.title
       h4 = thing.title
 
   footer
