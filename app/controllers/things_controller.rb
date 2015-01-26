@@ -178,7 +178,7 @@ class ThingsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to @thing }
-      format.js
+      format.js { head :no_content }
     end
   end
 
