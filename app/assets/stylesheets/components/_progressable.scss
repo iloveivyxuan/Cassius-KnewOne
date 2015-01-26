@@ -1,0 +1,29 @@
+.progressable-wrapper {
+  position: relative;
+}
+
+.progressable-progress-bar {
+  background-color: #8cadca;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  opacity: .5;
+  z-index: 10000;
+}
+
+.progressable-progress-icon {
+  color: #FFFFFF;
+  display: block;
+  position: absolute;
+}
+
+.progressable-text {
+  position: absolute;
+  color: #000;
+  left: 0;
+  margin-left: -1em;
+  color: #8cadca;
+}

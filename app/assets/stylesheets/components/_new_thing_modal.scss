@@ -183,6 +183,11 @@
   }
 
 
+  &.remote {
+    .progressable-progress-bar {
+      border-radius: 20px 0 0 20px;
+    }
+  }
 
   /** 本地产品 modal */
   &.local {

@@ -13,18 +13,19 @@ do (exports = Making) ->
     reset_new_thing_from_url_modal = (->
       $new_thing_from_url_modal
       .find('input').val('').end()
-      .find('input, button').attr('disabled', false).end()
-      .find('.progress').hide().end()
-      .find('.progress-bar').css({width: 0})
+      .find('input, button').attr('disabled', false);
+
+      $('#new-thing-url').$progress('remove');
     )
 
     $('#extract_url_form').on('ajax:beforeSend',
     (event, xhr, settings)->
-      $new_thing_from_url_modal.find('input, button').attr('disabled', true)
-      $new_thing_from_url_modal.find('.progress').show()
+      $new_thing_from_url_modal.find('input, button').attr('disabled', true);
 
-      $progress_bar = $new_thing_from_url_modal.find('.progress-bar')
-      $progress_bar.animate({width: '100%'}, 3000)
+
+      $('#new-thing-url').$progress(doneThenRemove: false).$progress('start').on 'done:progress', (e, context) ->
+        context.$progress.css(borderRadius: '20px');
+
 
       $('#new-thing-edit-modal').html('')
       $('#new-thing-similar-modal').html('')
@@ -157,9 +158,9 @@ do (exports = Making) ->
 
               $('#new-thing-from-url-modal')
               .find('input').val('').end()
-              .find('input, button').attr('disabled', false).end()
-              .find('.progress').hide().end()
-              .find('.progress-bar').css({width: 0})
+              .find('input, button').attr('disabled', false)
+
+              $('#new-thing-url').$progress('remove');
             i += 1
             carousel = $carousel.data('carousel')
             if carousel isnt undefined
@@ -176,9 +177,9 @@ do (exports = Making) ->
               $('#new-thing-from-url-modal').find('.alert').removeClass('hidden');
               $('#new-thing-from-url-modal')
               .find('input').val('').end()
-              .find('input, button').attr('disabled', false).end()
-              .find('.progress').hide().end()
-              .find('.progress-bar').css({width: 0})
+              .find('input, button').attr('disabled', false)
+
+              $('#new-thing-url').$progress('remove');
         , 20000
         )
       ).each($('#new-thing-edit-modal-sortable').children(), (index, value)->

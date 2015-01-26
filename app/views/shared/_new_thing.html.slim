@@ -47,9 +47,6 @@
         .modal-body
           input#new-thing-url.form-control.dark required="required" type="url" placeholder="http://" name="url" autofocus="autofocus"
 
-          .progress.progress-striped.active style="display: none"
-            .progress-bar
-
           .alert.hidden
             | 很抱歉，这个地址我们不支持，您可以通过 #{link_to '本地上传', '#', data: {dismiss: 'modal', target: '#new-thing-from-local'}} 来分享此产品。
 

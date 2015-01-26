@@ -8,7 +8,7 @@ Making.init_new_thing_modal();
 $('#new-thing-from-url-modal')
   .find('.alert').removeClass('hidden').end()
   .find('input').val('').end()
-  .find('input, button').attr('disabled', false).end()
-  .find('.progress').hide().end()
-  .find('.progress-bar').css({width: 0})
+  .find('input, button').attr('disabled', false)
+
+  $('#new-thing-url').$progress('remove');
 <% end %>
