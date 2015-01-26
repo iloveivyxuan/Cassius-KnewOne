@@ -151,6 +151,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       .split(/[;；]/)
       .map((s) -> s.trim())
       .filter((s) -> s && s.length <= 12)
+    @model.set({tag_names: ''}, {silent: true})
     @addTags(tagNames)
 
     @ui.tagsInput.focus()
