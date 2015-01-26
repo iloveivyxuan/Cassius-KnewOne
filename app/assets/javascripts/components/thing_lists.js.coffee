@@ -15,6 +15,8 @@ $(->
     region.show(view)
 
   $(document).on('click', selector, (event) ->
+    event.preventDefault()
+
     $target = $(this)
     return if $target.is('.fancied')
 
