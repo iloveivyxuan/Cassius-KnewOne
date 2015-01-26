@@ -5,7 +5,7 @@
         - version = browser.mobile? ? 'thing.fixed.small' : 'thing.fixed.big'
         = thing_presenter.photo_lazy version
     section.content
-      h4.title= link_to thing_presenter.title, hot_thing, target: "_blank"
+      h4.title= link_to hot_thing.title, hot_thing, target: "_blank", title: hot_thing.title
 
       .add_to_list_button = render "thing_lists/link_to_add_list", thing_id: hot_thing.id.to_s, text: ''
       .fancy_button = render "shared/fancy", p: thing_presenter, from: "hits"
