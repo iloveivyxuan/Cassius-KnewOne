@@ -59,9 +59,9 @@
         <section class="fancy_modal-options">
           {{#ifCond type '==' 'fancy'}}
             <div class="fancy_modal-state">
-              <input type="radio" name="state" value="none" checked>
-              <label><input type="radio" name="state" value="desired">想要</label>
-              <label><input type="radio" name="state" value="owned">拥有</label>
+              <input type="radio" name="state" value="none" {{#ifCond state '==' 'none'}}checked{{/ifCond}}>
+              <label><input type="radio" name="state" value="desired" {{#ifCond state '==' 'desired'}}checked{{/ifCond}}>想要</label>
+              <label><input type="radio" name="state" value="owned" {{#ifCond state '==' 'owned'}}checked{{/ifCond}}>拥有</label>
             </div>
           {{/ifCond}}
 
