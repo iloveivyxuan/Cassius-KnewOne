@@ -29,6 +29,6 @@ class ImpressionsController < ApplicationController
   private
 
   def impression_params
-    params.require(:impression).permit(:description, :state, :score, tag_names: [])
+    params.require(:impression).permit(:fancied, :state, :description, :score, tag_names: [])
   end
 end
