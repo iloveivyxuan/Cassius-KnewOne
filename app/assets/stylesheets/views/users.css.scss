@@ -522,8 +522,8 @@ html[class^="users_"] {
 
           .thing-description {
             position: relative;
-            margin: 0;
-            padding: 10px 40px;
+            margin-bottom: 15px;
+            padding: 15px 40px 0;
             border-top: 1px dashed white;
 
             text-align: center;
@@ -543,6 +543,8 @@ html[class^="users_"] {
           ul.thing-tags {
             @include clearfix;
 
+            margin-top: 5px;
+            margin-bottom: 15px;
             padding: 0 15px;
 
             > li {
@@ -556,7 +558,12 @@ html[class^="users_"] {
           }
 
           .score {
+            margin: 15px 0;
             text-align: center;
+
+            .rate {
+              padding: 0;
+            }
           }
         }
       }
