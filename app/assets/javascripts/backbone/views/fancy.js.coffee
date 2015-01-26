@@ -73,7 +73,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
         updateFanciersCount()
 
   initModel: ->
-    firstTime = (@model.get('type') == 'fancy' && !@model.get('fancied')) ||
+    first_time = (@model.get('type') == 'fancy' && !@model.get('fancied')) ||
                 (@model.get('type') == 'own' && @model.get('state') != 'owned')
 
     tagNames = @model.get('tags')
@@ -87,7 +87,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
 
     sync_to_feeling = !@model.get('description')
 
-    @model.set({firstTime, tags, recent_tags, popular_tags, sync_to_feeling})
+    @model.set({first_time, tags, recent_tags, popular_tags, sync_to_feeling})
 
   toggleTags: (tagNames, selected = 'toggle') ->
     toggle = (found) ->
