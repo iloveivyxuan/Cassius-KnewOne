@@ -32,7 +32,7 @@ class ThingsController < ApplicationController
       format.html do
         if request.xhr?
           if @things.any?
-            render partial: 'home/hot_thing', collection: @things, as: :hot_thing, locals: {img_lazy: false, size: :normal}
+            render partial: 'home/hot_thing', collection: @things, as: :thing, locals: {img_lazy: false, size: :normal}
           else
             head :no_content
           end

@@ -17,7 +17,7 @@ header
       = render @merchant.group
 
 section.things
-  = render partial: 'home/hot_thing', collection: @merchant.things, as: :hot_thing
+  = render partial: 'home/hot_thing', collection: @merchant.things, as: :thing
 
 - if @merchant.role?(current_user)
   - content_for :end do
