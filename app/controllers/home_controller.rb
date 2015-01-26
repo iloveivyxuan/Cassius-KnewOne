@@ -112,7 +112,7 @@ class HomeController < ApplicationController
     case params[:type]
     when 'thing'
       slugs = params[:key].split(',')
-      @things = Thing.any_in(slugs: slugs)
+      @things = Thing.in(slugs: slugs).sort_by { |thing| slugs.index(thing.slug) }
       if params[:options]
         photos = params[:options][:photos].split(',')
       else
