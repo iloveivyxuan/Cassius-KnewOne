@@ -142,7 +142,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     $input = $(event.currentTarget)
     change = {}
     change[$input.attr('name')] = $input.val()
-    @model.set(change)
+    @model.set(change, {silent: true})
 
   onTagsFormSubmit: (event) ->
     event.preventDefault()
