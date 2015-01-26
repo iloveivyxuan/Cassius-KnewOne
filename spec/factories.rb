@@ -35,6 +35,7 @@ FactoryGirl.define do
     title    { Faker::Lorem.word }
     subtitle { Faker::Lorem.sentence }
     sequence(:content)  { |i| "#{i} - #{Faker::Lorem.paragraph}" }
+    photo_ids { 2.times.map { create(:photo).id }}
 
     trait :for_sell do
       after(:create) { |thing| create_list(:kind, 1, thing: thing) }
