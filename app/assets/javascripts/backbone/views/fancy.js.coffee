@@ -81,7 +81,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
           .children('.fa')
           .removeClass('fa-heart-o')
           .addClass('fa-heart heartbeat')
-          .one($.support.transition.end, -> $(this).removeClass('heartbeat'))
+          .one(Making.prefixEvent('AnimationEnd'), -> $(this).removeClass('heartbeat'))
         updateFanciersCount()
 
       if type == 'own' && $trigger.hasClass('unowned')
@@ -97,7 +97,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
           .children('.fa')
           .removeClass('fa-heart')
           .addClass('fa-heart-o heartbeat')
-          .one($.support.transition.end, -> $(this).removeClass('heartbeat'))
+          .one(Making.prefixEvent('AnimationEnd'), -> $(this).removeClass('heartbeat'))
         updateFanciersCount()
 
       if type == 'own' && $trigger.hasClass('owned')
