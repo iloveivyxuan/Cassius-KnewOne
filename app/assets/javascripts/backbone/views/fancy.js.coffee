@@ -14,6 +14,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     'submit @ui.tagsForm': 'onTagsFormSubmit'
     'click .fancy_modal-all_tags li': 'onTagClick'
     'click .fancy_modal-state input': 'onStateClick'
+    'click .fancy_modal-cancel_button': 'onCancel'
   }
 
   modelEvents: {
@@ -166,3 +167,19 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     else
       $radio.prop('checked', true)
       @model.set('state', $radio.val())
+
+  onCancel: ->
+    if @model.get('type') == 'fancy'
+      change = {fancied: false}
+    else
+      change = {state: 'none'}
+
+    $.ajax({
+      url: @url()
+      type: 'PATCH'
+      data: {impression: change}
+    })
+
+    @$el.modal('hide')
+
+    @tryToUpdateTriggerState(-1)
