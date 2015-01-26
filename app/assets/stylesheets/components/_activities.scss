@@ -21,6 +21,7 @@ ul {
     }
 
     .activity-fancied,
+    .activity-desired,
     .activity-owned,
     .activity-voted,
     .activity-list {
@@ -29,6 +30,10 @@ ul {
 
     .activity-fancied {
       color: $red;
+    }
+
+    .activity-desired {
+      color: $orange;
     }
 
     .activity-owned {
