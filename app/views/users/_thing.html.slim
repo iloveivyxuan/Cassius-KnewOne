@@ -23,7 +23,7 @@ li.thing
           = thing.reviews_count
 
     - impression = thing.impressions.where(author: @user).first
-    - if impression.present?
+    - if impression.present? && (impression.description.present? || impression.tags.present? || impression.score > 0)
       section.thing-impression
         - if impression.description.present?
           p.thing-description
