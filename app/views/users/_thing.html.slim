@@ -4,11 +4,7 @@ li.thing
       = link_to thing, target: '_blank'
         = present(thing).photo('thing.fixed')
 
-      .fancy_thing
-        = link_to '', thing, class: 'fancy_backdrop'
-        .fancy_button = render 'shared/fancy', p: present(thing), from: 'users'
-
-    = link_to thing, target: '_blank', class: 'thing-title'
+    = link_to thing, target: '_blank', class: 'thing-title', title: thing.title
       h4 = thing.title
 
   footer
@@ -25,3 +21,20 @@ li.thing
         li = link_to [thing, :reviews], target: '_blank'
           i.fa.fa-pencil
           = thing.reviews_count
+
+    - impression = thing.impressions.where(author: @user).first
+    - if impression.present?
+      section.thing-impression
+        - if impression.description.present?
+          p.thing-description
+            = impression.description
+
+        - if impression.tags.present?
+          ul.thing-tags
+            - impression.tags.each do |tag|
+              li
+                i.fa.fa-tag
+                = tag.name
+
+        - if impression.score > 0
+          .score data-score=impression.score

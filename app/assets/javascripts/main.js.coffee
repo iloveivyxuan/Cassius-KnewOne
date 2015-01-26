@@ -106,7 +106,7 @@ do (exports = Making) ->
       flag = true
       $images = $('#new-thing-edit-modal-images-container .image .item').find('img')
 
-      
+
       resize = do ->
         winWidth = $(window).width()
         size = if winWidth > 768
@@ -142,7 +142,7 @@ do (exports = Making) ->
             $carousel_inner.append($item)
 
             $selector = $('#' + $this.attr('data-selector-id')).attr('data-slide-to', i).attr('draggable', true)
-            $slideshow_inner.append($selector)            
+            $slideshow_inner.append($selector)
             setTimeout ->
               resize($selector, height, width)
             , 0
@@ -185,7 +185,7 @@ do (exports = Making) ->
       ).each($('#new-thing-edit-modal-sortable').children(), (index, value)->
         $value = $(value)
         $value.attr('data-slide-to', index)
-      )      
+      )
   )
 
   exports.SetupCustomerServices = (element) ->
@@ -316,76 +316,6 @@ do (exports = Making) ->
         if $tag.attr('href') is '#'
           event.preventDefault()
           $tag.toggleClass('is-active')
-
-      .on 'click', '.fanciers > a, .fancy-button > a, .fancy_button > a', (event) ->
-        $trigger = $(@)
-
-        if $trigger.data('toggle') is 'modal' then return
-        if $trigger.data('toggle') is 'wechat_login' then return
-
-        event.preventDefault()
-
-        if $trigger.find('.fanciers_count').is(':visible')
-          $count = $trigger.find('.fanciers_count')
-        else if $trigger.parents('.thing').length > 0
-          $count = $trigger
-            .parents('.thing')
-            .find('.figure_detail')
-            .find('.fanciers_count')
-        else
-          $count = $trigger
-            .parents('.feed-thing')
-            .find('.fanciers-count')
-
-        updateFanciersCount = (increment) ->
-          $humanizedNumber = $count.find('.humanized_number')
-          if $humanizedNumber.length
-            $humanizedNumber.attr('title', parseInt($humanizedNumber.attr('title')) + increment)
-          else
-            $count.text(parseInt($count.text(), 10) + increment)
-
-        if $trigger.hasClass('fancied')
-          unfancy = ->
-            $trigger
-              .removeClass('fancied')
-              .addClass('unfancied')
-              .attr('title', '取消喜欢')
-              .children('.fa')
-              .removeClass('fa-heart')
-              .addClass('fa-heart-o heartbeat')
-              # TODO change transitionEnd event to animationend event
-              .one $.support.transition.end, ->
-                $(@).removeClass('heartbeat')
-              .emulateTransitionEnd(750)
-
-            updateFanciersCount(-1)
-
-          key = "#{Making.user}+unfancy-confirmed"
-          if !$trigger.data('has-lists') || localStorage.getItem(key)
-            unfancy()
-          else
-            localStorage.setItem(key, true)
-            unfancy() if confirm('如果施了“取消喜欢”的神奇魔法，该产品将从列表中消失')
-        else
-          $trigger
-          .removeClass('unfancied')
-          .addClass('fancied')
-          .attr('title', '喜欢')
-          .children('.fa')
-          .removeClass('fa-heart-o')
-          .addClass('fa-heart heartbeat')
-          # TODO change transitionEnd event to animationend event
-          .one $.support.transition.end, ->
-            $(@).removeClass('heartbeat')
-          .emulateTransitionEnd(750)
-
-          updateFanciersCount(1)
-
-        $.ajax
-          url: $trigger.data('url')
-          type: 'post'
-
-        return
 
       .on 'keydown', 'textarea', (event) ->
         if (event.metaKey or event.ctrlKey) and event.keyCode is keycode.ENTER

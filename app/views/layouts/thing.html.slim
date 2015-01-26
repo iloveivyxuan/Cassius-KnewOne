@@ -1,5 +1,5 @@
 - provide :keywords, "#{@thing.title}, #{@thing.subtitle}"
-- provide :description, "#{@thing.title},#{@thing.subtitle},关于该产品我们有#{@thing.feelings_count}条短评,#{@thing.reviews_count}篇评测,在KnewOne有#{@thing.owner_ids.size}个用户拥有#{@thing.title},#{@thing.fanciers_count}个用户喜欢#{@thing.title}！"
+- provide :description, "#{@thing.title},#{@thing.subtitle},关于该产品我们有#{@thing.feelings_count}条短评,#{@thing.reviews_count}篇评测,在KnewOne有#{@thing.owners_count}个用户拥有#{@thing.title},#{@thing.fanciers_count}个用户喜欢#{@thing.title}！"
 - provide :feed, thing_url(@thing, format: "atom")
 - provide :wechat_cover_url, @thing.cover.url(:small)
 - provide :load_customer_service, true

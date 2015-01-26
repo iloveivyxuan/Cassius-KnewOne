@@ -4,21 +4,18 @@
       = link_to thing, target: "_blank" do
         - version = browser.mobile? ? 'thing.fixed.small' : 'thing.fixed.big'
         = thing_presenter.photo_lazy version
-      .fancy_thing
-        = link_to "", thing, class: "fancy_backdrop", target: "_blank"
-        .fancy_button= render "shared/fancy", p: thing_presenter, from: "shop"
     section.content
-      h4.title= link_to thing_presenter.title, thing, target: "_blank"
-      p.subtitle= link_to thing_presenter.subtitle, thing, target: "_blank"
+      h4.title= link_to thing.title, thing, target: "_blank", title: thing.title
+
+      .add_to_list_button = render "thing_lists/link_to_add_list", thing_id: thing.id.to_s, text: ''
+      .fancy_button = render "shared/fancy", p: thing_presenter, from: "hits"
     footer.info
       .shopping
         = link_to thing, target: "_blank" do
           = thing_presenter.price
         = link_to thing_presenter.stage_text, thing, target: "_blank"
+
       .interactions
-        = link_to thing, class: "fanciers_count", target: "_blank" do
-          i.fa.fa-heart-o
-          = thing_presenter.fanciers_count
         - if thing_presenter.has_owner?
           = link_to thing, target: "_blank" do
             i.fa.fa-check-circle-o

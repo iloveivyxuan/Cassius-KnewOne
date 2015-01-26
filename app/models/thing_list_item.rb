@@ -18,9 +18,5 @@ class ThingListItem
     self.order = self.list.items.max(:order).to_i + 1
   end
 
-  after_create do
-    self.thing.fancy(list.author)
-  end
-
   alias_method :list, :thing_list
 end

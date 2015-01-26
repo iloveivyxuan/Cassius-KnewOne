@@ -1,0 +1,27 @@
+$(->
+  $('body').append('<div id="fancy-modal-container"></div>')
+  region = new Backbone.Marionette.Region({
+    el: '#fancy-modal-container'
+  })
+
+  $(document).on('click', '[data-fancy]', (event) ->
+    event.preventDefault()
+
+    $target = $(this)
+    options = {
+      thing_id: $target.data('fancy')
+      type: $target.data('type')
+      $trigger: $target
+    }
+
+    $.ajax({
+      url: "/things/#{options.thing_id}/impression"
+      dateType: 'json'
+    }).done((impression) ->
+      view = new Making.Views.FancyModal({
+        model: new Backbone.Model(_.extend(options, impression))
+      })
+      region.show(view)
+    )
+  )
+)

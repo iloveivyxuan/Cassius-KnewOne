@@ -1,0 +1,95 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">X</button>
+      <h4>
+        {{#ifCond type '==' 'fancy'}}
+          <i class="fa fa-heart-o"></i>
+        {{else}}
+          <i class="fa fa-check-circle-o"></i>
+        {{/ifCond}}
+
+        {{thing.title}}
+      </h4>
+    </div>
+
+    <div class="modal-body">
+      <img alt="{{thing.title}}" src="{{thing.cover_url}}">
+
+      <form class="fancy_modal-tags_form">
+        <div class="input-group">
+          <input class="form-control" name="tag_names" type="text" placeholder="标签（用; 隔开，每个标签12个字以内）" value="{{tag_names}}">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="submit">
+              <i class="fa fa-plus fa-alone"></i>
+            </button>
+          </span>
+        </div>
+
+        <div class="fancy_modal-all_tags">
+          <section class="fancy_modal-tags">
+            <ul>
+              {{#each tags}}{{> fancy/_tag}}{{/each}}
+            </ul>
+          </section>
+
+          {{#if recent_tags}}
+            <section class="fancy_modal-recent_tags">
+              <h6>最近</h6>
+              <ul>
+                {{#each recent_tags}}{{> fancy/_tag}}{{/each}}
+              </ul>
+            </section>
+          {{/if}}
+
+          {{#if popular_tags}}
+            <section class="fancy_modal-popular_tags">
+              <h6>推荐</h6>
+              <ul>
+                {{#each popular_tags}}{{> fancy/_tag}}{{/each}}
+              </ul>
+            </section>
+          {{/if}}
+        </div>
+      </form>
+
+      <form class="fancy_modal-main_form">
+        <textarea class="form-control" name="description" rows="2" maxlength=140 placeholder="说点什么吧（140字以内哦）">{{description}}</textarea>
+
+        <section class="fancy_modal-options">
+          {{#ifCond type '==' 'fancy'}}
+            <div class="fancy_modal-state">
+              <input type="radio" name="state" value="none" {{#ifCond state '==' 'none'}}checked{{/ifCond}}>
+              <label><input type="radio" name="state" value="desired" {{#ifCond state '==' 'desired'}}checked{{/ifCond}}>想要</label>
+              <label><input type="radio" name="state" value="owned" {{#ifCond state '==' 'owned'}}checked{{/ifCond}}>拥有</label>
+            </div>
+          {{/ifCond}}
+
+          <div class="fancy_modal-rating">
+            <input class="range_rating" type="range" name="score" max="5" min="0" value="{{score}}">
+          </div>
+
+          <div class="fancy_modal-sync_to_feeling">
+            <label><input type="checkbox" name="sync_to_feeling" {{#if sync_to_feeling}}checked{{/if}}>同步到短评</label>
+          </div>
+        </section>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      {{#if first_time}}
+        <button class="btn btn-primary fancy_modal-submit_button" type="button">完成</button>
+      {{else}}
+        <button class="btn btn-default fancy_modal-cancel_button" type="button">
+          {{#ifCond type '==' 'fancy'}}
+            <i class="fa fa-heart-o"></i> 取消喜欢
+          {{else}}
+            <i class="fa fa-circle-o"></i> 取消拥有
+          {{/ifCond}}
+        </button>
+
+        <button class="btn btn-primary fancy_modal-submit_button" type="button">保存</button>
+      {{/if}}
+    </div>
+  </div>
+</div>

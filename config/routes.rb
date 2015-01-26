@@ -95,6 +95,7 @@ Making::Application.routes.draw do
 
     member do
       get 'fancies'
+      get 'desires'
       get 'owns'
       get 'lists'
       get 'reviews'
@@ -206,6 +207,8 @@ Making::Application.routes.draw do
         post 'unvote'
       end
     end
+
+    resource :impression, only: [:show, :update, :destroy]
 
     resources :stories
   end

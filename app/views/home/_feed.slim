@@ -3,7 +3,7 @@ article.feed
     = present(feed.author).link_to_with_avatar(:small)
 
   - if feed.thing
-    = render 'hot_thing', hot_thing: feed.thing
+    = render 'hot_thing', thing: feed.thing
   - elsif feed.thing_list
     = render feed.thing_list
 

@@ -32,7 +32,7 @@ class ThingsController < ApplicationController
       format.html do
         if request.xhr?
           if @things.any?
-            render partial: 'home/hot_thing', collection: @things, as: :hot_thing, locals: {img_lazy: false, size: :normal}
+            render partial: 'home/hot_thing', collection: @things, as: :thing, locals: {img_lazy: false, size: :normal}
           else
             head :no_content
           end
@@ -161,7 +161,6 @@ class ThingsController < ApplicationController
       @thing.unfancy current_user
     else
       @thing.fancy current_user
-      current_user.log_activity :fancy_thing, @thing, check_recent: true
     end
 
     respond_to do |format|
@@ -175,12 +174,11 @@ class ThingsController < ApplicationController
       @thing.unown current_user
     else
       @thing.own current_user
-      current_user.log_activity :own_thing, @thing, check_recent: true
     end
 
     respond_to do |format|
       format.html { redirect_to @thing }
-      format.js
+      format.js { head :no_content }
     end
   end
 

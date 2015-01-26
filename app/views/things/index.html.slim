@@ -43,7 +43,7 @@
     = render 'sort_breadcrumb' if @brand || @category
 
   section#things_list.infinite
-    = render partial: 'home/hot_thing', collection: @things, as: :hot_thing
+    = render partial: 'home/hot_thing', collection: @things, as: :thing
 
 - content_for :script do
   javascript:

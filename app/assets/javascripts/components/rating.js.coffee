@@ -16,8 +16,16 @@
         .data('score', $range.val())
         .on 'click', '.star', ->
           $star = $(@)
-          $star.addClass('selected').siblings().removeClass('selected')
-          $range.val($star.data('val')).trigger('change')
+
+          if $star.hasClass('selected')
+            $star.removeClass('selected')
+            $range.val(0)
+            console.log($range)
+          else
+            $star.addClass('selected').siblings().removeClass('selected')
+            $range.val($star.data('val'))
+          $range.trigger('change')
+
           $star.parents('.rating').data('score', $range.val())
 
       score = parseInt($range.val())

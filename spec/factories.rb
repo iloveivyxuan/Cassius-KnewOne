@@ -47,7 +47,7 @@ FactoryGirl.define do
   end
 
   factory :tag do
-    sequence(:name) { |i| "#{i} - #{Faker::Lorem.word}" }
+    sequence(:name) { |i| "#{i} - #{Faker::Lorem.word}".truncate(12) }
   end
 
   factory :kind do
@@ -182,5 +182,12 @@ FactoryGirl.define do
     thing
     thing_list
     description { Faker::Lorem.characters(20) }
+  end
+
+  factory :impression do
+    author
+    thing
+    fancied true
+    tags { create_list(:tag, 1) }
   end
 end

@@ -1,28 +1,23 @@
-- fanciable = true if fanciable.nil?
-
-- present hot_thing do |thing_presenter|
+- present thing do |thing_presenter|
   article.thing
     header.cover
-      = link_to hot_thing, class: "cover-inner", target: "_blank" do
+      = link_to thing, class: "cover-inner", target: "_blank" do
         - version = browser.mobile? ? 'thing.fixed.small' : 'thing.fixed.big'
         = thing_presenter.photo_lazy version
-      - if fanciable
-        .fancy_thing
-          = link_to "", hot_thing, class: "fancy_backdrop", target: "_blank"
-          .fancy_button= render "shared/fancy", p: thing_presenter, from: "hits"
     section.content
-      h4.title= link_to thing_presenter.title, hot_thing, target: "_blank"
+      h4.title= link_to thing.title, thing, target: "_blank", title: thing.title
+
+      .add_to_list_button = render "thing_lists/link_to_add_list", thing_id: thing.id.to_s, text: ''
+      .fancy_button = render "shared/fancy", p: thing_presenter, from: "hits"
     footer.info
-      = render 'shared/user_avatar', user_id: hot_thing.author_id
+      = render 'shared/user_avatar', user_id: thing.author_id
+
       .interactions
-        = link_to hot_thing, class: "fanciers_count", target: "_blank" do
-          i.fa.fa-heart-o
-          = thing_presenter.fanciers_count
         - if thing_presenter.has_owner?
-          = link_to hot_thing, target: "_blank" do
+          = link_to thing, target: "_blank" do
             i.fa.fa-check-circle-o
             = thing_presenter.owners_count
         - if thing_presenter.has_review?
-          = link_to thing_reviews_path(hot_thing), class: "reviews_count", target: "_blank" do
+          = link_to thing_reviews_path(thing), class: "reviews_count", target: "_blank" do
             i.fa.fa-pencil
             = thing_presenter.reviews_count

@@ -337,6 +337,10 @@ html[class^="users_"] {
                 @include plain-link($red);
               }
 
+              &.nav-desires a {
+                @include plain-link($orange);
+              }
+
               &.nav-owns a {
                 @include plain-link($blue-light);
               }
@@ -475,40 +479,6 @@ html[class^="users_"] {
             width: 100%;
           }
 
-          .fancy_thing {
-            @include stretch;
-
-            opacity: 0;
-            transition: opacity .2s;
-
-            &:hover {
-              opacity: 1;
-            }
-
-            .fancy_backdrop {
-              @include stretch;
-              background: rgba(black, 0.5);
-            }
-
-            .fancy_button a {
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-
-              i {
-                margin: 0;
-                font-size: 50px;
-                color: $red;
-              }
-
-              .fanciers_count,
-              small {
-                display: none;
-              }
-            }
-          }
-
           &:before {
             content: '';
 
@@ -543,6 +513,56 @@ html[class^="users_"] {
 
             &:last-child {
               margin-right: 0;
+            }
+          }
+        }
+
+        section.thing-impression {
+          border-top: 1px dashed $iron;
+
+          .thing-description {
+            position: relative;
+            margin-bottom: 15px;
+            padding: 15px 40px 0;
+            border-top: 1px dashed white;
+
+            text-align: center;
+
+            &:before {
+              position: absolute;
+              top: 9px;
+              left: 14px;
+
+              content: "\f10d";
+              color: $iron;
+              font-family: FontAwesome;
+              font-size: 14px;
+            }
+          }
+
+          ul.thing-tags {
+            @include clearfix;
+
+            margin-top: 5px;
+            margin-bottom: 15px;
+            padding: 0 15px;
+
+            > li {
+              float: right;
+              margin: 10px 15px 0 0;
+
+              i {
+                color: $iron;
+              }
+            }
+          }
+
+          .score {
+            margin: 15px 0;
+            text-align: center;
+
+            .rate {
+              padding: 0;
             }
           }
         }
@@ -781,6 +801,7 @@ html.users_show {
 }
 
 html.users_fancies,
+html.users_desires,
 html.users_owns,
 html.users_things,
 html.users_lists,
