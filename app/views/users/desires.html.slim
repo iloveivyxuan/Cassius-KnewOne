@@ -1,0 +1,8 @@
+- page_title '想要'
+
+- if @desires.present?
+  ul.contents = render partial: 'thing', collection: @desires
+- else
+  section.contents = render 'shared/nothing'
+
+= paginate @desires

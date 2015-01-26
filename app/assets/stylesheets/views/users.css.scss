@@ -337,6 +337,10 @@ html[class^="users_"] {
                 @include plain-link($red);
               }
 
+              &.nav-desires a {
+                @include plain-link($orange);
+              }
+
               &.nav-owns a {
                 @include plain-link($blue-light);
               }
@@ -790,6 +794,7 @@ html.users_show {
 }
 
 html.users_fancies,
+html.users_desires,
 html.users_owns,
 html.users_things,
 html.users_lists,

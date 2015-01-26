@@ -56,6 +56,11 @@
             i.fa.fa-heart
             | 喜欢
             span = @user.fancies_count
+        = li action_name == 'desires', class: 'nav-desires'
+          = link_to [:desires, @user]
+            i.fa.fa-gift
+            | 想要
+            span = @user.desires_count
         = li action_name == 'owns', class: 'nav-owns'
           = link_to [:owns, @user]
             i.fa.fa-check-circle-o

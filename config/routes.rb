@@ -95,6 +95,7 @@ Making::Application.routes.draw do
 
     member do
       get 'fancies'
+      get 'desires'
       get 'owns'
       get 'lists'
       get 'reviews'
