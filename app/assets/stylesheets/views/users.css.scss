@@ -537,10 +537,12 @@ html[class^="users_"] {
           }
 
           ul.thing-tags {
+            @include clearfix;
+
             padding: 0 15px;
 
             > li {
-              display: inline-block;
+              float: right;
               margin: 10px 15px 0 0;
 
               i {
