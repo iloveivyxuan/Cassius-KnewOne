@@ -201,6 +201,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       .filter(({selected}) -> selected)
       .pluck('name')
       .value()
+      .join(';')
 
     $.ajax({
       url: @url()

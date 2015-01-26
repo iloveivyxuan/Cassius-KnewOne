@@ -29,6 +29,10 @@ class ImpressionsController < ApplicationController
   private
 
   def impression_params
+    if params[:impression].has_key?(:tag_names)
+      params[:impression][:tag_names] = params[:impression][:tag_names].to_s.split(';')
+    end
+
     params.require(:impression).permit(:fancied, :state, :description, :score, tag_names: [])
   end
 end
