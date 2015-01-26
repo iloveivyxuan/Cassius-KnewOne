@@ -47,7 +47,7 @@ FactoryGirl.define do
   end
 
   factory :tag do
-    sequence(:name) { |i| "#{i} - #{Faker::Lorem.word}" }
+    sequence(:name) { |i| "#{i} - #{Faker::Lorem.word}".truncate(12) }
   end
 
   factory :kind do
