@@ -105,6 +105,12 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
           .addClass('owned')
         updateFanciersCount()
 
+  onShow: ->
+    @$el.modal('show')
+
+  onRender: ->
+    @$el.find('[name="score"]').rating()
+
   toggleTags: (tagNames, selected = 'toggle') ->
     toggle = (found) ->
       if found
@@ -160,9 +166,3 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     else
       $radio.prop('checked', true)
       @model.set('state', $radio.val())
-
-  onShow: ->
-    @$el.modal('show')
-
-  onRender: ->
-    @$el.find('[name="score"]').rating()
