@@ -140,6 +140,9 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
 
   onInputChange: (event) ->
     $input = $(event.currentTarget)
+
+    return if $input.attr('name') == 'state'
+
     change = {}
     change[$input.attr('name')] = $input.val()
     @model.set(change, {silent: true})
