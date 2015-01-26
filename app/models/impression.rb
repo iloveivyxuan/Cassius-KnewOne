@@ -74,7 +74,7 @@ class Impression
     end
   end
 
-  after_save do
+  after_update do
     destroy unless fancied || state == :owned
   end
 

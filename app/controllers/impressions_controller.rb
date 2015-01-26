@@ -13,7 +13,7 @@ class ImpressionsController < ApplicationController
   end
 
   def update
-    @impression = @thing.impressions.find_or_create_by(author: current_user)
+    @impression = @thing.impressions.find_or_initialize_by(author: current_user)
     @impression.update(impression_params)
 
     respond_with @impression
