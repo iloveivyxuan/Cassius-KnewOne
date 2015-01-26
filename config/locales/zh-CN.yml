@@ -55,6 +55,7 @@ zh-CN:
       thing_list_background:
         image: '图片'
         order: '位置'
+        hidden: '对外隐藏'
       kind:
         title: '名称'
         price: '价格'

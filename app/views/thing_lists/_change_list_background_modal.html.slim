@@ -5,6 +5,8 @@
         a.close href="#" data-dismiss="modal" ×
       .modal-body
         - ThingListBackground.each do |background|
+          - next if background.hidden && !current_user.role?(:editor)
+
           a.thing_list_background_wrapper [href="#"
             class=('thing_list_background_wrapper--active' if background == thing_list.background)
             data-id=background.id.to_s

@@ -3,6 +3,7 @@ class ThingListBackground
   include Mongoid::Timestamps
 
   field :order, type: Float, default: 0
+  field :hidden, type: Boolean, default: false
 
   mount_uploader :image, ImageUploader
   validates :image, presence: true, file_size: {maximum: 8.megabytes}
