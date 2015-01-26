@@ -24,6 +24,23 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     @initModel()
     @tryToUpdateTriggerState(1)
 
+  initModel: ->
+    first_time = (@model.get('type') == 'fancy' && !@model.get('fancied')) ||
+                (@model.get('type') == 'own' && @model.get('state') != 'owned')
+
+    tagNames = @model.get('tags')
+    tags = tagNames.map((name) -> {name, selected: true})
+    recent_tags = @model.get('recent_tags')
+      .filter((name) -> _.indexOf(tagNames, name) == -1)
+      .map((name) -> {name, selected: false})
+    popular_tags = @model.get('popular_tags')
+      .filter((name) -> _.indexOf(tagNames, name) == -1)
+      .map((name) -> {name, selected: false})
+
+    sync_to_feeling = !@model.get('description')
+
+    @model.set({first_time, tags, recent_tags, popular_tags, sync_to_feeling})
+
   tryToUpdateTriggerState: (increment) ->
     {type, $trigger} = @model.attributes
 
@@ -71,23 +88,6 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
           .removeClass('unowned')
           .addClass('owned')
         updateFanciersCount()
-
-  initModel: ->
-    first_time = (@model.get('type') == 'fancy' && !@model.get('fancied')) ||
-                (@model.get('type') == 'own' && @model.get('state') != 'owned')
-
-    tagNames = @model.get('tags')
-    tags = tagNames.map((name) -> {name, selected: true})
-    recent_tags = @model.get('recent_tags')
-      .filter((name) -> _.indexOf(tagNames, name) == -1)
-      .map((name) -> {name, selected: false})
-    popular_tags = @model.get('popular_tags')
-      .filter((name) -> _.indexOf(tagNames, name) == -1)
-      .map((name) -> {name, selected: false})
-
-    sync_to_feeling = !@model.get('description')
-
-    @model.set({first_time, tags, recent_tags, popular_tags, sync_to_feeling})
 
   toggleTags: (tagNames, selected = 'toggle') ->
     toggle = (found) ->
