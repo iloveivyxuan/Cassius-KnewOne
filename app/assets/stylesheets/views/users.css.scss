@@ -512,6 +512,47 @@ html[class^="users_"] {
             }
           }
         }
+
+        section.thing-impression {
+          border-top: 1px dashed $iron;
+
+          .thing-description {
+            position: relative;
+            margin: 0;
+            padding: 10px 40px;
+            border-top: 1px dashed white;
+
+            text-align: center;
+
+            &:before {
+              position: absolute;
+              top: 9px;
+              left: 14px;
+
+              content: "\f10d";
+              color: $iron;
+              font-family: FontAwesome;
+              font-size: 14px;
+            }
+          }
+
+          ul.thing-tags {
+            padding: 0 15px;
+
+            > li {
+              display: inline-block;
+              margin: 10px 15px 0 0;
+
+              i {
+                color: $iron;
+              }
+            }
+          }
+
+          .score {
+            text-align: center;
+          }
+        }
       }
 
       .thing_list {
