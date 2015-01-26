@@ -95,6 +95,8 @@ class Impression
       author.inc(owns_count: -1)
       thing.inc(owners_count: -1)
     end
+
+    tags.clear
   end
 
   scope :fancied, -> { where(fancied: true).desc(:fancied_at) }

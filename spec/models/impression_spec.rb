@@ -21,6 +21,14 @@ describe Impression, type: :model do
 
       expect(author.recent_tags(1)).to_not include tag
       expect(thing.popular_tags(2)).to_not include tag
+
+      impression.tags << tag
+      impression.destroy
+      author.reload
+      thing.reload
+
+      expect(author.recent_tags(1)).to_not include tag
+      expect(thing.popular_tags(2)).to_not include tag
     end
   end
 
