@@ -18,7 +18,7 @@
 
       <form class="fancy_modal-tags_form">
         <div class="input-group">
-          <input class="form-control" name="tag_names" type="text" placeholder="标签（用; 隔开，每个标签12个字以内）">
+          <input class="form-control" name="tag_names" type="text" placeholder="标签（用; 隔开，每个标签12个字以内）" value="{{tag_names}}">
           <span class="input-group-btn">
             <button class="btn btn-primary" type="submit">
               <i class="fa fa-plus fa-alone"></i>
@@ -70,7 +70,7 @@
           </div>
 
           <div class="fancy_modal-sync_to_feeling">
-            <label><input type="checkbox" name="sync_to_feeling" {{#if firstTime}}checked{{/if}}>同步到短评</label>
+            <label><input type="checkbox" name="sync_to_feeling" {{#if sync_to_feeling}}checked{{/if}}>同步到短评</label>
           </div>
         </section>
       </form>
