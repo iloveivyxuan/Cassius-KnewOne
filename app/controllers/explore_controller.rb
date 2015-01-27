@@ -3,7 +3,9 @@ class ExploreController < ApplicationController
   helper :entries
 
   def index
-    @entries = Entry.published.ne(category: '活动').desc(:created_at).page(params[:page]).per(6)
+    params[:page] ||= 1
+    per = (params[:page] > 1) ? 8 : 7
+    @entries = Entry.published.ne(category: '活动').desc(:created_at).page(params[:page]).per(per)
 
     respond_to do |format|
       format.html
