@@ -428,7 +428,7 @@ html[class^="users_"] {
                 color: $blue-light;
               }
 
-              &.fa-list {
+              &.fa-list-ul {
                 color: $orange;
               }
             }
@@ -571,7 +571,7 @@ html[class^="users_"] {
       .thing_list {
         background: #ececec;
 
-        h4 .fa-list,
+        h4 .fa-list-ul,
         .thing_list-creator {
           display: none;
         }
