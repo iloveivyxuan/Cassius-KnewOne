@@ -3,7 +3,7 @@
 
 = simple_form_for [@group, @topic], html: {class: "edit_post"} do |f|
   = f.input :title, label: false, placeholder: "标题"
-  = f.input :content, as: :hidden
+  = f.input :content, as: :hidden, input_html: { value: load_post_resources(@topic) }
   = render 'shared/editor'
   - if current_user.can_set_topic_top?(@group)
     = f.input :is_top, as: :boolean, label: false, inline_label: "置顶"

@@ -33,7 +33,7 @@
           .slideshow_body
       = f.input :subtitle, placeholder: "一句话介绍", input_html: {maxlength: 40, autocomplete: "off"}
       = f.input :official_site, as: :url, placeholder: "产品官方链接", input_html: {autocomplete: "off"}
-      = f.input :content, as: :hidden
+      = f.input :content, as: :hidden, input_html: { value: load_post_resources(@thing) }
       - if (@thing.author == current_user || !@thing.persisted?) && current_user.role?(:volunteer)
         - style = 'width: 100%; border: none; font-size: 16px; margin: 0 0 2em;'
         = text_field_tag 'thing[shop]', @thing.shop, style: style, placeholder: "购买链接"

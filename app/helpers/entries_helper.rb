@@ -15,4 +15,5 @@ module EntriesHelper
     end
     content_tag(:li, options) {yield}
   end
+
 end
