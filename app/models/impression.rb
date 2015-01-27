@@ -64,7 +64,9 @@ class Impression
         author.inc(fancies_count: 1)
         thing.inc(fanciers_count: 1)
 
-        author.log_activity(:fancy_thing, thing, check_recent: true)
+        if author != thing.author
+          author.log_activity(:fancy_thing, thing, check_recent: true)
+        end
       end
 
       if fancied_was
