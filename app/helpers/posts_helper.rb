@@ -11,7 +11,7 @@ module PostsHelper
       case type
       when 'thing'
         slugs = key.split(',')
-        things = Thing.any_in(slugs: slugs)
+        things = Thing.in(slugs: slugs).sort_by { |thing| slugs.index(thing.slug) }
         photos = options ? photos.split(',') : Array.new(things.size, "")
         result = render partial: 'things/embed_thing', collection: things.zip(photos), locals: { klass: (slugs.size > 1) ? 'col-sm-6' : 'col-sm-12' }, as: 'embed'
       when 'list'
