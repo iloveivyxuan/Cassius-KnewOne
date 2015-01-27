@@ -73,7 +73,7 @@ module Making
     end
 
     config.action_view.sanitized_allowed_tags = ['embed', 'iframe', 'strike', 'u', 'table', 'td', 'tr', 'thead', 'tbody', 'tfoot', 'th', 'article', 'header', 'section', 'footer', 'figure', 'figcaption']
-    config.action_view.sanitized_allowed_attributes = ['src','target', 'data-knewone-embed-type', 'data-knewone-embed-key', 'data-knewone-embed-options', 'data-knewone-embed-id', 'contenteditable', 'data-score', 'data-profile-popover']
+    config.action_view.sanitized_allowed_attributes = ['src','target', 'data-knewone-embed-type', 'data-knewone-embed-key', 'data-knewone-embed-options', 'data-knewone-embed-id', 'contenteditable', 'data-score', 'data-profile-popover', 'data-original']
 
     I18n.enforce_available_locales = false
 
