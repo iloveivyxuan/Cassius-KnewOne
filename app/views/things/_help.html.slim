@@ -4,5 +4,5 @@
     span.caret
 
   ul.dropdown-menu role="menu"
-    = customer_service @thing.merchant
+    li= customer_service @thing.merchant
     li= link_to '销售条款', sale_terms_path, target: "_blank"
