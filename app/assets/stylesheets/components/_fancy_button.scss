@@ -10,3 +10,11 @@
     font-size: 2em;
   }
 }
+
+[data-fancy].desired {
+  i:after {
+    content: "\f004";
+    font-size: 50%;
+    margin-left: -5px;
+  }
+}

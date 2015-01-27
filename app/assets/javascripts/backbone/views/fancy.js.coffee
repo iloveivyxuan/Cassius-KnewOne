@@ -63,7 +63,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     })
 
   tryToUpdateTriggerState: (increment) ->
-    {type, $trigger} = @model.attributes
+    {type, state, $trigger} = @model.attributes
 
     if type == 'fancy'
       $count = $trigger.find('.fanciers_count')
@@ -89,6 +89,20 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
           .one(Making.prefixEvent('AnimationEnd'), -> $(this).removeClass('heartbeat'))
         updateCount()
 
+      if type == 'fancy' && !$trigger.hasClass('desired') && state == 'desired'
+        $trigger
+          .addClass('desired')
+          .children('.fa')
+          .addClass('fa-heart heartbeat')
+          .one(Making.prefixEvent('AnimationEnd'), -> $(this).removeClass('heartbeat'))
+
+      if type == 'fancy' && $trigger.hasClass('desired') && state != 'desired'
+        $trigger
+          .removeClass('desired')
+          .children('.fa')
+          .addClass('fa-heart heartbeat')
+          .one(Making.prefixEvent('AnimationEnd'), -> $(this).removeClass('heartbeat'))
+
       if type == 'own' && $trigger.hasClass('unowned')
         $trigger
           .removeClass('unowned')
@@ -98,7 +112,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     else
       if type == 'fancy' && $trigger.hasClass('fancied')
         $trigger
-          .removeClass('fancied')
+          .removeClass('fancied desired')
           .addClass('unfancied')
           .attr('title', '喜欢此产品')
           .children('.fa')
@@ -230,5 +244,6 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     })
 
     @tryToSyncToFeeling()
+    @tryToUpdateTriggerState(1)
 
     @$el.modal('hide')
