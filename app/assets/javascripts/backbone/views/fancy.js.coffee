@@ -45,7 +45,6 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
 
     sync_to_feeling = !@model.get('description')
 
-    @model.set({state: 'owned'}, {silent: true}) if @model.get('type') == 'own'
     @model.set({first_time, tags, recent_tags, popular_tags, sync_to_feeling})
 
   updateStateOnServer: ->
@@ -53,6 +52,8 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       change = {fancied: true}
     else
       change = {state: 'owned'}
+
+    @model.set(change, {silent: true})
 
     $.ajax({
       url: @url()
@@ -197,6 +198,8 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       change = {fancied: false}
     else
       change = {state: 'none'}
+
+    @model.set(change, {silent: true})
 
     $.ajax({
       url: @url()
