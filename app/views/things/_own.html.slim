@@ -4,7 +4,6 @@
     = tp.owners_count
     small 拥有
 - else
-  - link_path = (user_signed_in? && !tp.owned?) ? own_thing_path(tp.thing) : "#"
   - if user_signed_in?
     - data = {fancy: tp.id.to_s, type: 'own'}
   - else
@@ -13,7 +12,7 @@
   - title = tp.owned? ? "修改拥有状态" : "拥有此产品"
   - own_class = tp.owned? ? "owned" : "unowned"
 
-  = link_to link_path, class: own_class, title: title, data: data do
+  = link_to '#', class: own_class, title: title, data: data do
     i.fa.fa-check-circle-o
     i.fa.fa-circle-o
     = tp.owners_count
