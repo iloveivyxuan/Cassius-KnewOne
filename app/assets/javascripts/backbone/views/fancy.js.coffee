@@ -71,15 +71,14 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       else
         $count.text(parseInt($count.text()) + increment)
 
-    updateTrigger = ($trigger, title, triggerClass, iconClass) ->
+    updateTrigger = ($trigger, title, triggerClass, iconClass, animation = 'heartbeat') ->
       $trigger
         .attr('title', title)
         .attr('class', triggerClass)
         .children('.fa')
         .attr('class', "fa #{iconClass}")
-        .addClass('heartbeat')
-        .one(Making.prefixEvent('AnimationEnd'), -> $(this).removeClass('heartbeat'))
-
+        .addClass(animation)
+        .one(Making.prefixEvent('AnimationEnd'), -> $(this).removeClass(animation))
 
     $("[data-fancy='#{thing_id}']").each(->
       $trigger = $(this)
@@ -104,10 +103,10 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       else
         if $trigger.hasClass('unowned') && state == 'owned'
           updateCount($count, 1)
-          updateTrigger($trigger, '修改拥有状态', 'owned', 'fa-check-circle-o')
+          updateTrigger($trigger, '修改拥有状态', 'owned', 'fa-check-circle-o', 'flip')
         else if $trigger.hasClass('owned') && state != 'owned'
           updateCount($count, -1)
-          updateTrigger($trigger, '拥有此产品', 'unowned', 'fa-circle-o')
+          updateTrigger($trigger, '拥有此产品', 'unowned', 'fa-circle-o', 'flip')
     )
 
   onShow: ->
