@@ -1,5 +1,313 @@
 @import '../base';
 
-html.explore_index {
+html.explore {
+  body {
+    background-color: #000;
+  }
 
+  #header {
+    margin-bottom: 45px;
+  }
+
+  #wrapper {
+    background-image: url(http://image.knewone.com/review_photos/7b08e8da99c2aa284ff3a17591d969a1.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin: 0;
+  }
+
+  .wrapper-inner {
+    margin: 0 auto;
+    max-width: 820px;
+    padding: 0 10px;
+
+    @media (min-width: $screen-md-min) {
+      padding: 0 50px;
+    }
+
+    @media (min-width: $screen-lg-min) {
+      padding: 0;
+    }
+
+    > header {
+      @include clearfix;
+      margin-bottom: 10px;
+
+      @media (min-width: $screen-md-min) {
+        margin-bottom: 30px;
+      }
+
+      h1 {
+        clear: both;
+        font-size: 26px;
+        margin: 0;
+        padding: 60px 10px 50px;
+        text-align: right;
+
+        @media (min-width: $screen-md-min) {
+          font-size: 36px;
+          padding: 50px 0 40px;
+        }
+
+        a {
+          color: #fff;
+          font-family: STHeiti;
+        }
+
+        .logo {
+          margin-right: .25em;
+        }
+      }
+
+      nav {
+        float: right;
+
+        li {
+          display: inline-block;
+          margin-left: 5px;
+
+          &:first-child {
+            margin-left: 0;
+          }
+
+          @media (min-width: $screen-md-min) {
+            margin-left: 0;
+          }
+
+          > a {
+            color: #fff;
+            display: block;
+            font-family: STHeiti;
+            line-height: 1em;
+            padding: 10px;
+
+            @media (min-width: $screen-md-min) {
+              font-size: 16px;
+              padding: 12px 14px;
+            }
+          }
+
+          &.active {
+            > a {
+              border-bottom: 2px solid $blue;
+              color: $blue;
+              padding-bottom: 8px;
+
+              @media (min-width: $screen-md-min) {
+                border-bottom: 3px solid $blue;
+                padding-bottom: 9px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .thumbnail--article {
+    background-color: #fff;
+    margin-bottom: 40px;
+
+    .thumbnail-cover {
+      display: block;
+      height: 0;
+      padding-bottom: percentage(9 / 16);
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .thumbnail-body {
+      background-color: #fff;
+      padding: 20px;
+      position: relative;
+
+      &::before {
+        border-color: transparent transparent #fff transparent;
+        border-style: solid;
+        border-width: 10px;
+        content: '';
+        position: absolute;
+        right: 40px;
+        top: -20px;
+      }
+
+      .metas {
+        color: #dadada;
+
+        .name a {
+          @extend %text-overflow;
+
+          display: inline-block;
+          color: $gray;
+          max-width: 6em;
+        }
+
+        time {
+          color: #dadada;
+        }
+      }
+    }
+
+    .thumbnail-title {
+      @extend %text-overflow;
+
+      font-size: 18px;
+      margin: 0 0 10px 0;
+
+      > a {
+        color: $text-color;
+      }
+    }
+
+    .thumbnail-label {
+      left: 0;
+      position: absolute;
+      top: -44px;
+
+      > label {
+        background-color: #36383a;
+        color: #fff;
+        font-size: 16px;
+        height: 44px;
+        line-height: 44px;
+        margin: 0;
+        padding: 0 1.5em;
+
+        .logo {
+          color: #fff;
+          margin-right: .5em;
+        }
+      }
+
+      > .entry-avatar {
+        background-color: #fff;
+        margin: {
+          left: -8px;
+          top: -8px;
+        }
+        padding: 2px;
+        position: absolute;
+        width: 60px;
+      }
+    }
+  }
+
+  .thumbnail--article--featured {
+    @media (min-width: $screen-md-min) {
+      @include clearfix;
+      position: relative;
+
+      .thumbnail-cover {
+        float: left;
+        padding-bottom: 39.375%; /* 70% * (9 / 16) */
+        width: 70%;
+      }
+
+      .thumbnail-body {
+        bottom: 0;
+        padding: {
+          bottom: 60px;
+          top: 60px;
+        }
+        position: absolute;
+        right: 0;
+        text-align: right;
+        top: 0;
+        width: 30%;
+
+        &::before {
+          border-color: transparent #fff transparent transparent;
+          left: -20px;
+          right: auto;
+          top: calc((100% - 60px - 20px) / 2);
+        }
+
+        .metas {
+          > li {
+            margin-bottom: 5px;
+
+            &:nth-child(odd) {
+              min-width: 40%;
+            }
+
+            &.time {
+              margin-right: 0;
+            }
+          }
+        }
+      }
+
+      .thumbnail-title {
+        overflow: visible;
+        white-space: normal;
+      }
+
+      .thumbnail-label {
+        bottom: 0;
+        top: auto;
+        width: 100%;
+
+        > label {
+          display:block;
+          height: 60px;
+          line-height: 60px;
+          text-align: right;
+        }
+
+        .entry-avatar {
+          left: 20px;
+          margin: auto;
+          top: -30px;
+        }
+      }
+
+      & ~ .thumbnail--article {
+        float: left;
+        width: calc((100% - 40px) / 2);
+
+        &:nth-child(even) {
+          margin-right: 20px;
+        }
+        &:nth-child(odd) {
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+
+  .pagination {
+    li {
+      a {
+        background-color: transparent;
+        color: #fff;
+
+        &:hover {
+          background-color: transparent;
+          color: $blue-dark;
+        }
+      }
+
+      &.active {
+        a {
+          background-color: transparent;
+          color: $blue;
+        }
+      }
+
+      &.disabled:hover {
+        a {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+
+  &.touch {
+    body {
+      padding-top: 45px;
+    }
+  }
 }
