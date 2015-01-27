@@ -15,15 +15,18 @@ module PostsHelper
         photos = options ? photos.split(',') : Array.new(things.size, "")
         result = render partial: 'things/embed_thing', collection: things.zip(photos), locals: { klass: (slugs.size > 1) ? 'col-sm-6' : 'col-sm-12' }, as: 'embed'
       when 'list'
-        list = ThingList.find key
-        result = render 'thing_lists/thing_list', thing_list: list, layout: browser.desktop? ? :quintet : :grid
+        if (list = ThingList.where(id: key).first)
+          result = render 'thing_lists/thing_list', thing_list: list, layout: browser.desktop? ? :quintet : :grid
+        end
       when 'review'
-        review = Review.find key
-        result = render partial: 'home/hot_review', collection: [review]
+        if (review = Review.where(id: key).first)
+          result = render partial: 'home/hot_review', collection: [review]
+        end
       else
         result = '<p class="knewone-embed-tip">无效的资源。</p>'
       end
 
+      result ||= '<p class="knewone-embed-tip">无效的资源。</p>'
       element.add_child(result)
     end
     html_doc.to_html
