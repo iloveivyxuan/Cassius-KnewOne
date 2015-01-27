@@ -1,19 +1,19 @@
 - if browser.wechat? && !user_signed_in?
   = link_to user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base') do
     i.fa.fa-circle-o
-    = tp.owners_count
+    span.owners_count = number_to_human(thing.owners_count)
     small 拥有
 - else
   - if user_signed_in?
-    - data = {fancy: tp.id.to_s, type: 'own'}
+    - data = {fancy: thing.id.to_s, type: 'own'}
   - else
     - data = {toggle: "modal", target: "#login-modal", "signin-legend" => "登录后，标注拥有的产品"}
-  - data.merge!({category: "thing", action: "own", label: tp.thing.title})
-  - title = tp.owned? ? "修改拥有状态" : "拥有此产品"
-  - own_class = tp.owned? ? "owned" : "unowned"
+  - data.merge!({category: "thing", action: "own", label: thing.title})
+  - title = thing.owned?(current_user) ? "修改拥有状态" : "拥有此产品"
+  - own_class = thing.owned?(current_user) ? "owned" : "unowned"
+  - icon_class = thing.owned?(current_user) ? "fa-check-circle-o" : "fa-circle-o"
 
   = link_to '#', class: own_class, title: title, data: data do
-    i.fa.fa-check-circle-o
-    i.fa.fa-circle-o
-    = tp.owners_count
+    i.fa class=icon_class
+    span.owners_count = number_to_human(thing.owners_count)
     small 拥有
