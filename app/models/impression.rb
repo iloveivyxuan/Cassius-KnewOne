@@ -26,6 +26,9 @@ class Impression
 
   validates :state, inclusion: {in: %i(none desired owned)}
 
+  scope :by_user, ->(user) { where(author: user) }
+  scope :of_thing, ->(thing) { where(thing: thing) }
+
   before_save do
     now = Time.now.utc if state_changed? || fancied_changed?
 
