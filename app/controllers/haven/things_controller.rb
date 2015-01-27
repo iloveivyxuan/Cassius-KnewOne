@@ -56,20 +56,20 @@ module Haven
       redirect_to edit_haven_thing_path(@thing)
     end
 
-    def part_time_list name
+    def part_time name
       case name
       when 'linlidan'
-        %w(5457108131302d300a990000 541db6a931302d0ca9690700 533ff45d31302d5426a80300 54295ec831302d6c79440000 5382fc1731302d2932350000 5429765731302d0dbd600000 5365faf331302d4b560a0000 54c0ac7031302d5858cf0200 5321589331302d53af580100)
+        User.find("53343d1d31302d60dd6d0100").part_time_list
       when 'zhongkai'
-        %w(5444cab931302d282c0e0000 544903e131302d77a7180000 546480a331302d4131220000 54201d8131302d31d2df0000 535d1d0a31302d57d3d50500 54bddb2931302d3d1af90200 54c5e1a831302d54123a0100)
+        User.find("53bfbc1f31302d1727040000").part_time_list
       when 'yanjingwei'
-        %w(540448d131302d275b110000 5459ae2b31302d572c240000 5421205a31302d741b360000 513de38f7373c292ed000008 53e4896131302d7ac07f0200 53d1bc2031302d0bb5270100 54b9117631302d42b0af0000 52ed2ba031302d21ba6d0200)
+        User.find("526fd363b10be561d300001d").part_time_list
       when 'xiaoqiu'
-        %w(542903a531302d1e6e000000 54811bc031302d4e6bb80000 5381ffb231302d1a768b0000 5497a52031302d0f421b0000 5321d08631302d2f79520000 54ab7e9931302d7bbd0a0100 54b76f1731302d4671340000 541d515a31302d0c457a0500 54b76b4331302d4668220000)
+        User.find("546426e331302d29c1070000").part_time_list
       else
         whole_list = []
         %w(linlidan zhongkai yanjingwei xiaoqiu).each do |name|
-          whole_list += part_time_list(name)
+          whole_list += part_time(name)
         end
         whole_list
       end
@@ -79,15 +79,15 @@ module Haven
       @things ||= ::Thing
       case params[:team]
       when 'linlidan'
-        @things = @things.in('author_id' => part_time_list('linlidan'))
+        @things = @things.in('author_id' => part_time('linlidan'))
       when 'zhongkai'
-        @things = @things.in('author_id' => part_time_list('zhongkai'))
+        @things = @things.in('author_id' => part_time('zhongkai'))
       when 'yanjingwei'
-        @things = @things.in('author_id' => part_time_list('yanjingwei'))
+        @things = @things.in('author_id' => part_time('yanjingwei'))
       when 'xiaoqiu'
-        @things = @things.in('author_id' => part_time_list('xiaoqiu'))
+        @things = @things.in('author_id' => part_time('xiaoqiu'))
       when 'no_team'
-        @things = @things.nin(author_id: part_time_list('no_team'))
+        @things = @things.nin(author_id: part_time('no_team'))
       end
       if params[:filter]
         @things = @things.where(shop: "") if params[:filter].include? "no_link"
@@ -210,6 +210,13 @@ module Haven
           @brands[b] = @things.map(&:brand).compact.map(&:brand_text).map(&:downcase).count(b)
         end
       end
+    end
+
+    def part_time_list
+      list = params[:list].split
+      user = User.find params[:user]
+      user.set(part_time_list: list)
+      redirect_to :back
     end
 
     private

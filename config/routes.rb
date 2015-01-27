@@ -358,6 +358,7 @@ Making::Application.routes.draw do
         patch 'batch_update'
         post 'send_hits_message'
         get 'approved_status'
+        post 'part_time_list'
       end
     end
 

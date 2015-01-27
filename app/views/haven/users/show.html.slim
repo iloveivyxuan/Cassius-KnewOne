@@ -51,6 +51,13 @@ table.table.table-striped
         td = a.thing.title
         td = a.status
 
+h2 兼职
+
+= form_tag part_time_list_haven_things_path, method: :post do
+  = text_area_tag 'list', @user.part_time_list.join("\n"), rows: 10, cols: 10, class: "form-control"
+  = hidden_field_tag 'user', @user.id.to_s
+  = submit_tag "Submit", class: "btn btn-default"
+
 h2
   | 用户收不到邮件怎么办？
 = button_to "祖传小按钮专治邮件收不到", confirm_email_haven_users_path(id: @user.id),
