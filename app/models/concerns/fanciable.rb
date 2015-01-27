@@ -21,7 +21,7 @@ module Fanciable
         self.push(fancier_ids: user.id)
         user.push("#{inverse_name.to_s.singularize}_ids" => self.id)
 
-        set fanciers_count: fanciers.count
+        set fanciers_count: fancier_ids.size
         author.inc karma: karma_to_bump_from_fancying
 
         reload
@@ -34,14 +34,14 @@ module Fanciable
         fanciers.delete user
         user.send(inverse_name).delete self
 
-        set fanciers_count: fanciers.count
+        set fanciers_count: fancier_ids.size
         author.inc karma: -karma_to_bump_from_fancying
       end
     end
   end
 
   def fancied?(user)
-    user && fanciers.include?(user)
+    user && fancier_ids.include?(user.id)
   end
 
   def karma_to_bump_from_fancying
