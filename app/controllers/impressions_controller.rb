@@ -1,5 +1,6 @@
 class ImpressionsController < ApplicationController
   prepend_before_action :require_signed_in
+  before_action :fix_tag_names
   load_resource :thing
 
   respond_to :json
@@ -29,10 +30,12 @@ class ImpressionsController < ApplicationController
   private
 
   def impression_params
-    if params[:impression].has_key?(:tag_names)
+    params.require(:impression).permit(:fancied, :state, :description, :score, tag_names: [])
+  end
+
+  def fix_tag_names
+    if params[:impression] && params[:impression].has_key?(:tag_names)
       params[:impression][:tag_names] = params[:impression][:tag_names].to_s.split(';')
     end
-
-    params.require(:impression).permit(:fancied, :state, :description, :score, tag_names: [])
   end
 end
