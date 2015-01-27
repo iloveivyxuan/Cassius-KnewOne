@@ -8,7 +8,7 @@
       h4.title= link_to thing.title, thing, target: "_blank", title: thing.title
 
       .add_to_list_button = render "thing_lists/link_to_add_list", thing_id: thing.id.to_s, text: ''
-      .fancy_button = render "shared/fancy", p: thing_presenter, from: "hits"
+      .fancy_button = render "shared/fancy", thing: thing, from: "hits"
     footer.info
       = render 'shared/user_avatar', user_id: thing.author_id
 

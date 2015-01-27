@@ -24,7 +24,7 @@
             = img_lazy ? tp.photo_lazy(size) : tp.photo(size)
             .thing_fancy
               = link_to "", tp.thing, class: "thing_fancy_backdrop", target: "_blank"
-              .fanciers = render "shared/fancy", p: tp, from: "things"
+              .fanciers = render "shared/fancy", thing: thing, from: "things"
           - else
             = link_to tp.thing, target: "_blank"
               = img_lazy ? tp.photo_lazy(size) : tp.photo(size)
