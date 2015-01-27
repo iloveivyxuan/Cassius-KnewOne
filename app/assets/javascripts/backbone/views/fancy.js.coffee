@@ -31,8 +31,6 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     "/things/#{@model.get('thing_id')}/impression"
 
   initModel: ->
-    @model.set({type: 'fancy'}, {silent: true}) unless @model.get('type')
-
     first_time = (@model.get('type') == 'fancy' && !@model.get('fancied')) ||
                 (@model.get('type') == 'own' && @model.get('state') != 'owned')
 

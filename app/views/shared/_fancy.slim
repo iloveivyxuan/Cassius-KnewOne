@@ -5,7 +5,7 @@
     small 喜欢
 - else
   - if user_signed_in?
-    - data = {fancy: thing.id.to_s}
+    - data = {fancy: thing.id.to_s, type: 'fancy'}
   - else
     - data = {toggle: "modal", target: "#login-modal", link: thing_url(thing), "signin-legend" => "登录后，收集喜欢的产品"}
   - data.merge!({ category: "thing", action: "fancy", label: thing.title })
