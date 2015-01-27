@@ -3,15 +3,24 @@ class Progressable
     @$elem = $(elem)
     throw 'Nothing selected' unless @$elem.length
     @render()
-
     @widthInt = 0
-
     @options['initFn']?.call(this)
+
+
+  copyStyleToWrapper: ->
+    needStyles = ['float', 'display']
+    targetStyles = {}
+    $.each needStyles, (i, key) =>
+      value = @$elem.css(key)
+      targetStyles[key] = value
+
+    @$wrapper.css targetStyles
 
 
   renderWrapper: ->
     @$elem.wrap '<div class="progressable-wrapper" />'
     @$wrapper = @$elem.parent()
+    @copyStyleToWrapper()
 
 
   renderProgressBar: ->
@@ -46,7 +55,7 @@ class Progressable
       max = 100 - @widthInt
       max = if max > 40 then (Math.random() * (40 - 20) + 20) else max
       @inc Math.random() * (max - min) + min
-    , 400
+    , @options['progressInterval']
 
 
   inc: (width) ->
@@ -60,7 +69,7 @@ class Progressable
       switch widthInt
         when 0 then @stop()
         when 100 then @done()
-    @updateText(widthInt)
+    @updateText(widthInt) if @options['withText']
 
     @widthInt = widthInt
 
@@ -113,6 +122,7 @@ Default = {
   stopThenRemove: true
   doneThenRemove: true
   withText: true
+  progressInterval: 400
 }
 
 
