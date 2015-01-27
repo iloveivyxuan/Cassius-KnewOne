@@ -335,6 +335,15 @@
       }
     }
   }
+
+  /** 相似产品 modal */
+  &.similiar {
+    .modal-title {
+      h4 {
+        font-size: 14px;
+      }
+    }
+  }
 }
 
 

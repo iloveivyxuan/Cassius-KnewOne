@@ -1,9 +1,9 @@
 .modal-dialog
   .modal-content
     .modal-header
-      .modal-title
+      button.close.hidden-md type="button" data-dismiss="modal" aria-hidden="true" &times;
+      .modal-title        
         h4
-          i.fa.fa-globe
           | 通过网页分享新产品
 
     .modal-body
@@ -17,11 +17,7 @@
       button.btn.btn-default [
         type="button"
         data-dismiss="modal"
-        data-toggle="modal" data-target="#new-thing-from-url-modal"
       ]
-        i.fa.fa-chevron-left
         | 返回
 
-      = link_to_with_icon '查看此产品',
-        'fa fa-chevron-right', thing_path(thing),
-        class: 'btn btn-primary'
+      = link_to '查看此产品', thing_path(thing), class: 'btn btn-primary'
