@@ -68,7 +68,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     else
       $count = $trigger.find('.owners_count')
 
-    updateFanciersCount = ->
+    updateCount = ->
       $humanizedNumber = $count.find('.humanized_number')
       if $humanizedNumber.length
         $humanizedNumber.attr('title', parseInt($humanizedNumber.attr('title')) + increment)
@@ -85,14 +85,14 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
           .removeClass('fa-heart-o')
           .addClass('fa-heart heartbeat')
           .one(Making.prefixEvent('AnimationEnd'), -> $(this).removeClass('heartbeat'))
-        updateFanciersCount()
+        updateCount()
 
       if type == 'own' && $trigger.hasClass('unowned')
         $trigger
           .removeClass('unowned')
           .addClass('owned')
           .attr('title', '修改拥有状态')
-        updateFanciersCount()
+        updateCount()
     else
       if type == 'fancy' && $trigger.hasClass('fancied')
         $trigger
@@ -103,14 +103,14 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
           .removeClass('fa-heart')
           .addClass('fa-heart-o heartbeat')
           .one(Making.prefixEvent('AnimationEnd'), -> $(this).removeClass('heartbeat'))
-        updateFanciersCount()
+        updateCount()
 
       if type == 'own' && $trigger.hasClass('owned')
         $trigger
           .removeClass('unowned')
           .addClass('owned')
           .attr('title', '拥有此产品')
-        updateFanciersCount()
+        updateCount()
 
   onShow: ->
     @$el.modal('show')
