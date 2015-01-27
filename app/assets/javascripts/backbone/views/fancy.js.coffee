@@ -107,8 +107,8 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
 
       if type == 'own' && $trigger.hasClass('owned')
         $trigger
-          .removeClass('unowned')
-          .addClass('owned')
+          .removeClass('owned')
+          .addClass('unowned')
           .attr('title', '拥有此产品')
         updateCount()
 
