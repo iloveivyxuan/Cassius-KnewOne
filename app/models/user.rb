@@ -386,6 +386,18 @@ HERE
   field :desires_count, type: Integer, default: 0
   field :owns_count, type: Integer, default: 0
 
+  def fancies_count
+    fancy_ids.size
+  end
+
+  def desires_count
+    desire_ids.size
+  end
+
+  def owns_count
+    own_ids.size
+  end
+
   def fancy_ids
     impressions.fancied.pluck(:thing_id)
   end

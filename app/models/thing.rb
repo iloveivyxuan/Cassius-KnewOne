@@ -25,7 +25,7 @@ class Thing < Post
   has_many :feelings, dependent: :destroy
   field :feelings_count, type: Integer, default: 0
   accepts_nested_attributes_for :feelings, auto_save: true
-  
+
   has_many :reviews, dependent: :destroy
   field :reviews_count, type: Integer, default: 0
 
@@ -79,6 +79,18 @@ class Thing < Post
   field :desirers_count, type: Integer, default: 0
   field :owners_count, type: Integer, default: 0
   index fanciers_count: -1
+
+  def fanciers_count
+    fancier_ids.size
+  end
+
+  def desirers_count
+    desirer_ids.size
+  end
+
+  def owners_count
+    owner_ids.size
+  end
 
   def fancier_ids
     impressions.fancied.pluck(:author_id)
