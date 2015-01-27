@@ -5,7 +5,7 @@
     | 为我分享的产品
     = thing_title
     | 发表了评测
-  - elsif thing.fanciers.include? current_user
+  - elsif thing.fancied? current_user
     | 为我喜欢的产品
     = thing_title
     | 发表了评测
