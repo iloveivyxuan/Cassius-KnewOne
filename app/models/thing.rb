@@ -25,7 +25,7 @@ class Thing < Post
   has_many :feelings, dependent: :destroy
   field :feelings_count, type: Integer, default: 0
   accepts_nested_attributes_for :feelings, auto_save: true
-  
+
   has_many :reviews, dependent: :destroy
   field :reviews_count, type: Integer, default: 0
 
@@ -80,6 +80,10 @@ class Thing < Post
   field :owners_count, type: Integer, default: 0
   index fanciers_count: -1
 
+  def impression_by(user)
+    impressions.by_user(user).first
+  end
+
   def fancier_ids
     impressions.fancied.pluck(:author_id)
   end
@@ -120,30 +124,30 @@ class Thing < Post
   end
 
   def unfancy(user)
-    impression = impressions.fancied.where(author: user).first
+    impression = impressions.fancied.by_user(user).first
     impression.update(fancied: false) if impression
   end
 
   def undesire(user)
-    impression = impressions.desired.where(author: user).first
+    impression = impressions.desired.by_user(user).first
     impression.update(state: :none) if impression
   end
 
   def unown(user)
-    impression = impressions.owned.where(author: user).first
+    impression = impressions.owned.by_user(user).first
     impression.update(state: :none) if impression
   end
 
   def fancied?(user)
-    impressions.fancied.where(author: user).exists?
+    impressions.fancied.by_user(user).exists?
   end
 
   def desired?(user)
-    impressions.desired.where(author: user).exists?
+    impressions.desired.by_user(user).exists?
   end
 
   def owned?(user)
-    impressions.owned.where(author: user).exists?
+    impressions.owned.by_user(user).exists?
   end
 
   field :tag_counts, type: Array, default: []

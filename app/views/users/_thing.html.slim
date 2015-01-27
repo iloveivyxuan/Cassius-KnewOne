@@ -22,7 +22,7 @@ li.thing
           i.fa.fa-pencil
           = thing.reviews_count
 
-    - impression = thing.impressions.where(author: @user).first
+    - impression = @user.impression_of(thing)
     - if impression.present? && (impression.description.present? || impression.tags.present? || impression.score > 0)
       section.thing-impression
         - if impression.description.present?
