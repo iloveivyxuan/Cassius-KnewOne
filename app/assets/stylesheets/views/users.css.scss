@@ -518,51 +518,38 @@ html[class^="users_"] {
         }
 
         section.thing-impression {
+          padding: 0 15px;
           border-top: 1px dashed $iron;
 
           .thing-description {
-            position: relative;
             margin-bottom: 15px;
-            padding: 15px 40px 0;
+            padding-top: 15px;
             border-top: 1px dashed white;
+            text-align: right;
+          }
 
-            text-align: center;
+          .score {
+            margin: 15px 0;
+            text-align: right;
 
-            &:before {
-              position: absolute;
-              top: 9px;
-              left: 14px;
-
-              content: "\f10d";
-              color: $iron;
-              font-family: FontAwesome;
-              font-size: 14px;
+            .rate {
+              padding: 0;
             }
           }
 
           ul.thing-tags {
             @include clearfix;
 
-            margin-top: 5px;
-            margin-bottom: 15px;
-            padding: 0 15px;
+            margin-top: 15px;
+            margin-bottom: 5px;
 
             > li {
               float: right;
-              margin: 10px 15px 0 0;
+              margin: 0 0 10px 15px;
 
               i {
                 color: $iron;
               }
-            }
-          }
-
-          .score {
-            margin: 15px 0;
-            text-align: center;
-
-            .rate {
-              padding: 0;
             }
           }
         }
