@@ -25,7 +25,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
   initialize: ->
     @initModel()
     @updateStateOnServer()
-    @tryToUpdateTriggerState(1)
+    @updateAllTriggers()
 
   url: ->
     "/things/#{@model.get('thing_id')}/impression"
@@ -61,71 +61,54 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       data: {impression: change}
     })
 
-  tryToUpdateTriggerState: (increment) ->
-    {type, state, $trigger} = @model.attributes
+  updateAllTriggers: ->
+    {thing_id, fancied, state} = @model.attributes
 
-    if type == 'fancy'
-      $count = $trigger.find('.fanciers_count')
-    else
-      $count = $trigger.find('.owners_count')
-
-    updateCount = ->
+    updateCount = ($count, increment) ->
       $humanizedNumber = $count.find('.humanized_number')
       if $humanizedNumber.length
         $humanizedNumber.attr('title', parseInt($humanizedNumber.attr('title')) + increment)
       else
         $count.text(parseInt($count.text()) + increment)
 
-    if increment == 1
-      if type == 'fancy' && $trigger.hasClass('unfancied')
-        $trigger
-          .removeClass('unfancied')
-          .addClass('fancied')
-          .attr('title', '修改喜欢状态')
-          .children('.fa')
-          .removeClass('fa-heart-o')
-          .addClass('fa-heart heartbeat')
-          .one(Making.prefixEvent('AnimationEnd'), -> $(this).removeClass('heartbeat'))
-        updateCount()
+    updateTrigger = ($trigger, title, triggerClass, iconClass) ->
+      $trigger
+        .attr('title', title)
+        .attr('class', triggerClass)
+        .children('.fa')
+        .attr('class', "fa #{iconClass}")
+        .addClass('heartbeat')
+        .one(Making.prefixEvent('AnimationEnd'), -> $(this).removeClass('heartbeat'))
 
-      if type == 'fancy' && !$trigger.hasClass('desired') && state == 'desired'
-        $trigger
-          .addClass('desired')
-          .children('.fa')
-          .addClass('fa-heart heartbeat')
-          .one(Making.prefixEvent('AnimationEnd'), -> $(this).removeClass('heartbeat'))
 
-      if type == 'fancy' && $trigger.hasClass('desired') && state != 'desired'
-        $trigger
-          .removeClass('desired')
-          .children('.fa')
-          .addClass('fa-heart heartbeat')
-          .one(Making.prefixEvent('AnimationEnd'), -> $(this).removeClass('heartbeat'))
+    $("[data-fancy='#{thing_id}']").each(->
+      $trigger = $(this)
+      type = $trigger.data('type')
 
-      if type == 'own' && $trigger.hasClass('unowned')
-        $trigger
-          .removeClass('unowned')
-          .addClass('owned')
-          .attr('title', '修改拥有状态')
-        updateCount()
-    else
-      if type == 'fancy' && $trigger.hasClass('fancied')
-        $trigger
-          .removeClass('fancied desired')
-          .addClass('unfancied')
-          .attr('title', '喜欢此产品')
-          .children('.fa')
-          .removeClass('fa-heart')
-          .addClass('fa-heart-o heartbeat')
-          .one(Making.prefixEvent('AnimationEnd'), -> $(this).removeClass('heartbeat'))
-        updateCount()
+      if type == 'fancy'
+        $count = $trigger.find('.fanciers_count')
+      else
+        $count = $trigger.find('.owners_count')
 
-      if type == 'own' && $trigger.hasClass('owned')
-        $trigger
-          .removeClass('owned')
-          .addClass('unowned')
-          .attr('title', '拥有此产品')
-        updateCount()
+      if type == 'fancy'
+        if $trigger.hasClass('unfancied') && fancied
+          updateCount($count, 1)
+          updateTrigger($trigger, '修改喜欢状态', (if state == 'desired' then state else 'fancied'), 'fa-heart')
+        else if ($trigger.hasClass('fancied') || $trigger.hasClass('desired')) && !fancied
+          updateCount($count, -1)
+          updateTrigger($trigger, '喜欢此产品', "unfancied", 'fa-heart-o')
+        else if $trigger.hasClass('fancied') && state == 'desired'
+          updateTrigger($trigger, '修改喜欢状态', "desired", 'fa-heart')
+        else if $trigger.hasClass('desired') && state != 'desired'
+          updateTrigger($trigger, '修改喜欢状态', "fancied", 'fa-heart')
+      else
+        if $trigger.hasClass('unowned') && state == 'owned'
+          updateCount($count, 1)
+          updateTrigger($trigger, '修改拥有状态', 'owned', 'fa-check-circle-o')
+        else if $trigger.hasClass('owned') && state != 'owned'
+          updateCount($count, -1)
+          updateTrigger($trigger, '拥有此产品', 'unowned', 'fa-circle-o')
+    )
 
   onShow: ->
     @$el.modal('show')
@@ -209,7 +192,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
 
     @$el.modal('hide')
 
-    @tryToUpdateTriggerState(-1)
+    @updateAllTriggers()
 
   tryToSyncToFeeling: ->
     return unless @model.get('sync_to_feeling')
@@ -245,6 +228,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     })
 
     @tryToSyncToFeeling()
-    @tryToUpdateTriggerState(1)
 
     @$el.modal('hide')
+
+    @updateAllTriggers()

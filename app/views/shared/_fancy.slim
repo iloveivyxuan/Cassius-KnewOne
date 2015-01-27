@@ -11,8 +11,7 @@
   - data.merge!({ category: "thing", action: "fancy", label: thing.title })
 
   - title = thing.fancied?(current_user) ? '修改喜欢状态' : '喜欢此产品'
-  - fancy_class = thing.fancied?(current_user) ? "fancied" : "unfancied"
-  - fancy_class += " desired" if thing.desired?(current_user)
+  - fancy_class = thing.fancied?(current_user) ? (thing.desired?(current_user) ? "desired" : "fancied") : "unfancied"
   - icon_class = thing.fancied?(current_user) ? "fa-heart" : "fa-heart-o"
 
   = link_to "#", class: fancy_class, title: title, data: data do
