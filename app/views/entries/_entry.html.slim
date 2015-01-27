@@ -1,4 +1,8 @@
-.thumbnail--article
+- klass = "thumbnail--article"
+- page = params[:page] || 1
+- klass += " foobar" if (page == 1) && (defined? index) && (index == 0)
+
+div class=klass
   - if entry.cover.present?
     = link_to entry, class: "thumbnail-cover" do
       = image_tag entry.cover.url(:middle), alt: entry.title

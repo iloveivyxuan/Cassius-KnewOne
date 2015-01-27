@@ -1,4 +1,3 @@
-- @entries.each do |entry|
+- @entries.each_with_index do |entry, index|
   li
-    = render entry
-
+    = render entry, index: index
