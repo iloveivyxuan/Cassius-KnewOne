@@ -107,7 +107,6 @@ html.explore {
 
   .thumbnail--article {
     background-color: #fff;
-    margin-bottom: 40px;
 
     .thumbnail-cover {
       display: block;
@@ -263,16 +262,44 @@ html.explore {
           top: -30px;
         }
       }
+    }
+  }
 
-      & ~ .thumbnail--article {
+  .block_list {
+    > li {
+      margin-bottom: 40px;
+
+      @media (min-width: $screen-md-min) {
         float: left;
         width: calc((100% - 40px) / 2);
 
-        &:nth-child(even) {
+        &:nth-child(odd) {
           margin-right: 20px;
         }
-        &:nth-child(odd) {
+
+        &:nth-child(even) {
           margin-left: 20px;
+        }
+
+        &.first {
+          margin-right: 0;
+          width: 100%;
+
+          & ~ li {
+            &:nth-child(even) {
+              margin: {
+                left: 0;
+                right: 20px;
+              }
+            }
+
+            &:nth-child(odd) {
+              margin: {
+                left: 20px;
+                right: 0;
+              }
+            }
+          }
         }
       }
     }

@@ -22,8 +22,9 @@
         li class=(action_name == "reviews" ? "active" : "")
           = link_to "评测", explore_reviews_path
 
-  section.clearfix
-    = render 'li', entries: @entries
+  section
+    ul.block_list
+      = render 'block_list_item', entries: @entries
 
   footer
     = paginate @entries, theme: 'explore'

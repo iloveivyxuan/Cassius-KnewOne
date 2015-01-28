@@ -23,6 +23,10 @@ i.fa_alone {
   margin: 0;
 }
 
+.block_list {
+  @extend .clearfix;
+}
+
 .list > * {
   border-top: $border_default;
 
