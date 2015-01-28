@@ -1322,6 +1322,7 @@ html.feelings_show {
               &:hover { color: $brand-primary }
             }
             &.fancied { color: $red }
+            &.desired { color: $red }
             &.owned { color: $blue-light }
           }
         }
@@ -2589,6 +2590,95 @@ html.things_lists {
 
     .pagination {
       margin-top: $gutter-width;
+    }
+  }
+}
+
+html.things_show {
+  .thing_impression {
+    @include clearfix;
+
+    margin-bottom: 2em;
+    padding: 30px;
+    background: white;
+
+    > header {
+      float: left;
+      width: 65%;
+
+      h6,
+      time,
+      .thing_impression-state,
+      .score {
+        display: inline-block;
+        margin: 0 1em 0 0;
+        font-size: 13px;
+      }
+
+      .thing_impression-state {
+        .fa-desire {
+          color: $red;
+        }
+
+        .fa-check-circle-o {
+          color: $blue-light;
+        }
+      }
+
+      .score {
+        margin: 0;
+        padding: 0;
+
+        .rate {
+          padding: 0;
+        }
+      }
+
+      @include to-breakpoint(xs) {
+        width: 160px;
+
+        .thing_impression-state,
+        .score {
+          margin-top: 10px;
+        }
+      }
+    }
+
+    .thing_impression-actions {
+      float: right;
+      width: 35%;
+      text-align: right;
+
+      a {
+        margin-left: 15px;
+
+        &[data-remote] {
+          color: $gray-light;
+        }
+      }
+    }
+
+    .thing_impression-description {
+      float: left;
+      width: 100%;
+      margin: 15px 0 0;
+
+      .fa-quote-left {
+        color: $gray-light;
+      }
+    }
+
+    .thing_impression-tags {
+      float: left;
+      width: 100%;
+
+      > li {
+        display: inline-block;
+        margin: 15px 15px 0 0;
+        padding: 7px 12px;
+        border-radius: 10px;
+        background: $smoke-white;
+      }
     }
   }
 }

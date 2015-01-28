@@ -22,15 +22,14 @@ li.thing
           i.fa.fa-pencil
           = thing.reviews_count
 
-    - impression = thing.impressions.where(author: @user).first
+    - impression = @user.impression_of(thing)
     - if impression.present? && (impression.description.present? || impression.tags.present? || impression.score > 0)
       section.thing-impression
         - if impression.description.present?
           p.thing-description
             = impression.description
 
-        - if impression.score > 0
-          .score data-score=impression.score
+        = render 'shared/score', score: impression.score
 
         - if impression.tags.present?
           ul.thing-tags

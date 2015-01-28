@@ -11,6 +11,7 @@ section.things_subpage
         = select_tag(:type,
                      options_for_select([['显示全部', ''],
                                          ['显示喜欢', 'fancy_thing'],
+                                         ['显示想要', 'desire_thing'],
                                          ['显示拥有', 'own_thing'],
                                          ['显示加入列表', 'add_to_list']],
                      selected: params[:type]),

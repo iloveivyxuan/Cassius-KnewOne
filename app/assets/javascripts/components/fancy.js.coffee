@@ -11,7 +11,6 @@ $(->
     options = {
       thing_id: $target.data('fancy')
       type: $target.data('type')
-      $trigger: $target
     }
 
     $.ajax({

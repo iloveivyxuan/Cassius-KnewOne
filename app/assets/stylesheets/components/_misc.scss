@@ -40,38 +40,6 @@ i.fa_alone {
   }
 }
 
-.fanciers {
-  color: $red;
-  a {color: $red;}
-
-  .fancied .fa-heart-o,
-  .unfancied .fa-heart {
-    display: none !important;
-  }
-
-  .unfancied {
-    &:hover {
-      span:last-child {color: $red;}
-    }
-  }
-}
-
-.owners {
-  color: $green;
-  a {color: $green;}
-
-  .owned {
-    .fa-circle-o {display: none !important;}
-  }
-
-  .unowned {
-    .fa-check-circle-o {display: none !important;}
-    &:hover {
-      span:last-child {color: $green;}
-    }
-  }
-}
-
 .tip-block,
 .nothing {
   font-size: 18px;

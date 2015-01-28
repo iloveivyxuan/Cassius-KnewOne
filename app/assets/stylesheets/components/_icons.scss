@@ -25,3 +25,18 @@
 .fa-alipay--white {
   background-image: asset_url("icons/alipay-white.png");
 }
+
+.fa-desire {
+  @extend .fa-heart;
+
+  &:before {
+    @extend .fa-heart:before;
+  }
+
+  &:after {
+    @extend .fa-heart:before;
+
+    font-size: 50%;
+    margin-left: -5px;
+  }
+}

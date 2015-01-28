@@ -1,0 +1,8 @@
+$impression = $("<%=j render('things/impression', impression: @impression) %>")
+
+$('[data-impression-id="<%= @impression.id %>"]').replaceWith($impression)
+
+$impression
+.hide()
+.fadeIn()
+.find('.score').score()

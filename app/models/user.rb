@@ -388,6 +388,10 @@ HERE
   field :desires_count, type: Integer, default: 0
   field :owns_count, type: Integer, default: 0
 
+  def impression_of(thing)
+    impressions.of_thing(thing).first
+  end
+
   def fancy_ids
     impressions.fancied.pluck(:thing_id)
   end
