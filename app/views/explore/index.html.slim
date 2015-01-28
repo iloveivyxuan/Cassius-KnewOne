@@ -5,26 +5,25 @@
 - page_title '精选'
 - page_css 'explore'
 
-.wrapper-inner
-  header
-    h1
-      = link_to explore_path do
-        em.logo KnewOne
-        | 精选
-    nav
-      ul
-        li class=(action_name == "index" ? "active" : "")
-          = link_to "首页", explore_path
-        li class=(action_name == "talks" ? "active" : "")
-          = link_to "专访", explore_talks_path
-        li class=(action_name == "lists" ? "active" : "")
-          = link_to "列表", explore_lists_path
-        li class=(action_name == "reviews" ? "active" : "")
-          = link_to "评测", explore_reviews_path
+header
+  h1
+    = link_to explore_path do
+      em.logo KnewOne
+      | 精选
+  nav
+    ul
+      li class=(action_name == "index" ? "active" : "")
+        = link_to "首页", explore_path
+      li class=(action_name == "talks" ? "active" : "")
+        = link_to "专访", explore_talks_path
+      li class=(action_name == "lists" ? "active" : "")
+        = link_to "列表", explore_lists_path
+      li class=(action_name == "reviews" ? "active" : "")
+        = link_to "评测", explore_reviews_path
 
-  section
-    ul.block_list
-      = render 'block_list_item', entries: @entries
+section
+  ul.block_list
+    = render 'block_list_item', entries: @entries
 
-  footer
-    = paginate @entries, theme: 'explore'
+footer
+  = paginate @entries, theme: 'explore'
