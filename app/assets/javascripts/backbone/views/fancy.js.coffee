@@ -97,7 +97,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
           updateCount($count, -1)
           updateTrigger($trigger, '喜欢此产品', "unfancied", 'fa-heart-o')
         else if $trigger.hasClass('fancied') && state == 'desired'
-          updateTrigger($trigger, '修改喜欢状态', "desired", 'fa-heart', 'swing')
+          updateTrigger($trigger, '修改喜欢状态', "desired", 'fa-desire', 'swing')
         else if $trigger.hasClass('desired') && state != 'desired'
           updateTrigger($trigger, '修改喜欢状态', "fancied", 'fa-heart')
       else
