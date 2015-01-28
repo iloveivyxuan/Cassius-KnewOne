@@ -47,11 +47,8 @@ class HomeFeed
     @activities = []
   end
 
-  def author
-    return @author if @author
-
-    author_id = @activities.present? ? @activities.first.user_id : @thing.author_id
-    @author ||= User.only_with_avatars.find(author_id)
+  def author_id
+    @activities.present? ? @activities.first.user_id : @thing.author_id
   end
 
   def add_activity(activity)

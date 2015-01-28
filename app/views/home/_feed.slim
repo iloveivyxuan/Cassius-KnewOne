@@ -1,6 +1,6 @@
 article.feed
   .feed-latest-user
-    = present(feed.author).link_to_with_avatar(:small)
+    = render 'shared/user_avatar', user_id: feed.author_id
 
   - if feed.thing
     = render 'hot_thing', thing: feed.thing
