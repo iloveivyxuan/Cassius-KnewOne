@@ -1,6 +1,6 @@
 article.feed
   .feed-latest-user
-    = render 'shared/user_avatar', user_id: feed.author_id
+    = render 'shared/user_avatar', user_id: feed.author_id, options: {class: 'user_avatar user_avatar--without_name'}
 
   - if feed.thing
     = render 'hot_thing', thing: feed.thing
