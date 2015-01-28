@@ -2,7 +2,18 @@
 
 html.explore {
   body {
+    background-attachment: fixed;
     background-color: #000;
+    background-image: url(http://image.knewone.com/photos/bb57246181bc46a67df861ba6100caec.jpg);
+    background-repeat: no-repeat;
+    background-position: center 45px;
+    background-size: 100%;
+
+    @media (min-width: $screen-md-min) {
+      background-image: url(http://image.knewone.com/photos/a9096d008b5e9daec0d24681a7866d7d.jpg);
+      background-position: center top;
+      background-size: auto auto;
+    }
   }
 
   #header {
@@ -10,14 +21,6 @@ html.explore {
   }
 
   #wrapper {
-    background-image: url(http://image.knewone.com/review_photos/7b08e8da99c2aa284ff3a17591d969a1.jpg);
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    margin: 0;
-  }
-
-  .wrapper-inner {
     margin: 0 auto;
     max-width: 820px;
     padding: 0 10px;
