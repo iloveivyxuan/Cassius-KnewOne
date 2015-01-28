@@ -1322,6 +1322,7 @@ html.feelings_show {
               &:hover { color: $brand-primary }
             }
             &.fancied { color: $red }
+            &.desired { color: $red }
             &.owned { color: $blue-light }
           }
         }
