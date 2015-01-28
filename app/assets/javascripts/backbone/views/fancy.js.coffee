@@ -155,7 +155,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     event.preventDefault() if event
 
     tagNames = @ui.tagsInput.val()
-      .split(/[;；]/)
+      .split(/[,，]/)
       .map((s) -> s.trim())
       .filter((s) -> s && s.length <= 12)
     @model.set({tag_names: ''}, {silent: true})
@@ -222,7 +222,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       .filter(({selected}) -> selected)
       .pluck('name')
       .value()
-      .join(';')
+      .join(',')
 
     $.ajax({
       url: "#{@url()}.js"

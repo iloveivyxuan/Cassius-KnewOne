@@ -35,7 +35,7 @@ class ImpressionsController < ApplicationController
 
   def fix_tag_names
     if params[:impression] && params[:impression].has_key?(:tag_names)
-      params[:impression][:tag_names] = params[:impression][:tag_names].to_s.split(';')
+      params[:impression][:tag_names] = params[:impression][:tag_names].to_s.split(',')
     end
   end
 end
