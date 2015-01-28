@@ -4,7 +4,7 @@ class ExploreController < ApplicationController
 
   def index
     params[:page] ||= 1
-    per = (params[:page] > 1) ? 8 : 7
+    per = (params[:page].to_i > 1) ? 8 : 7
     @entries = Entry.published.ne(category: '活动').desc(:created_at).page(params[:page]).per(per)
 
     respond_to do |format|
