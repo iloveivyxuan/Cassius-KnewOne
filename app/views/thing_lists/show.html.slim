@@ -8,7 +8,7 @@
 
 = render 'header', list: list
 
-- cache ['thing_lists', 'show', 'items', list]
+- cache ['thing_lists', 'show', 'items', list, can?(:update, list)]
   - if list.size > 0
     section.thing_list_items class=('thing_list_items--loose' if list.size < 16)
       = render list.items
