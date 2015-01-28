@@ -1,21 +1,17 @@
 <%= paginator.render do -%>
-<footer class="page_footer">
-  <!-- <ul class="pager visible-xs">
-    <li class="previous"><a href="#">上一页</a></li>
-    <li class="next"><a href="#">下一页</a></li>
-  </ul>
-
-  <ul class="pagination hidden-xs"> -->
+<footer class="page-footer">
   <ul class="pagination">
     <%= first_page_tag unless current_page.first? %>
     <%= prev_page_tag unless current_page.first? %>
-    <% each_page do |page| -%>
-      <% if page.left_outer? || page.right_outer? || page.inside_window? -%>
-        <%= page_tag page %>
-      <% elsif !page.was_truncated? -%>
-        <%= gap_tag %>
+    <% unless browser.mobile? %>
+      <% each_page do |page| -%>
+        <% if page.left_outer? || page.right_outer? || page.inside_window? -%>
+          <%= page_tag page %>
+        <% elsif !page.was_truncated? -%>
+          <%= gap_tag %>
+        <% end -%>
       <% end -%>
-    <% end -%>
+    <% end %>
     <%= next_page_tag unless current_page.last? %>
     <%= last_page_tag unless current_page.last? %>
   </ul>

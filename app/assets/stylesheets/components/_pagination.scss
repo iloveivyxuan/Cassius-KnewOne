@@ -1,26 +1,24 @@
-.page_footer {
-  @include clearfix();
+.page-footer {
+  @extend .clearfix;
 
   .pagination {
-    float: right;
-
-    display: block;
-    margin: 0;
     border-radius: 0;
+    display: block;
+    float: right;
+    font-size: 0;
+    margin: 0;
 
     li {
-      display: inline;
+      display: inline-block;
+      font-size: 14px;
+      vertical-align: top;
 
       a {
         display: block;
-        position: relative;
-        float: left;
+        float: none;
         width: 40px;
         padding: 10px 0;
-        line-height: 1.428571429;
         color: $brand-primary;
-        text-decoration: none;
-        background: #fff;
         border: none;
         text-align: center;
 
@@ -52,6 +50,20 @@
         color: #fff;
         background-color: $blue-dark;
         cursor: default;
+      }
+    }
+  }
+}
+
+html {
+  &.mobile {
+    .page-footer {
+      .pagination {
+        li {
+          a {
+            width: 60px;
+          }
+        }
       }
     }
   }

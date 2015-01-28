@@ -25,5 +25,4 @@ section
   ul.block_list
     = render 'block_list_item', entries: @entries
 
-footer
-  = paginate @entries, theme: 'explore'
+= paginate @entries
