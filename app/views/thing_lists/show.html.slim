@@ -8,11 +8,12 @@
 
 = render 'header', list: list
 
-- if list.size > 0
-  section.thing_list_items class=('thing_list_items--loose' if list.size < 16)
-    = render list.items
-- else
-    = render 'shared/nothing'
+- cache ['thing_lists', 'show', 'items', list]
+  - if list.size > 0
+    section.thing_list_items class=('thing_list_items--loose' if list.size < 16)
+      = render list.items
+  - else
+      = render 'shared/nothing'
 
 - if browser.mobile?
   nav.thing_list_nav
