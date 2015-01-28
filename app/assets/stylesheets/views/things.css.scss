@@ -634,7 +634,7 @@ html.feelings_show {
         text-align: center;
         background-color: #fff;
         border-top: 1px dashed $gray-light;
-        @include box-shadow(0 10px 15px rgba(0,0,0,.1));
+        @include box-shadow(0 5px 10px rgba(0,0,0,.1));
         @include transition-property(all);
         @include transition-duration(0.2s);
         @include transition-timing-function(ease);
@@ -666,7 +666,7 @@ html.feelings_show {
           color: $brand-primary;
           background-color: #fff;
           border-color: transparent;
-          @include box-shadow(0 10px 15px rgba(0,0,0,.2));
+          @include box-shadow(0 5px 10px rgba(0,0,0,.2));
           .fa {
             &:before { content: "\f103" }
           }
@@ -2600,7 +2600,8 @@ html.things_show {
 
     margin-bottom: 2em;
     padding: 30px;
-    background: white;
+    background: $smoke-white;
+    box-shadow: 0 5px 2px rgba(0, 0, 0, .1);
 
     > header {
       float: left;
@@ -2651,10 +2652,7 @@ html.things_show {
 
       a {
         margin-left: 15px;
-
-        &[data-remote] {
-          color: $gray-light;
-        }
+        color: $iron;
       }
     }
 
@@ -2664,7 +2662,7 @@ html.things_show {
       margin: 15px 0 0;
 
       .fa-quote-left {
-        color: $gray-light;
+        color: $iron;
       }
     }
 
@@ -2677,7 +2675,7 @@ html.things_show {
         margin: 15px 15px 0 0;
         padding: 7px 12px;
         border-radius: 10px;
-        background: $smoke-white;
+        background: white;
       }
     }
   }
