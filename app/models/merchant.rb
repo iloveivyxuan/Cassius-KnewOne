@@ -22,6 +22,8 @@ class Merchant
 
   has_one :group
 
+  after_save :update_counter_cache
+
   def group_id
     self.group.try(:id)
   end
@@ -43,5 +45,10 @@ class Merchant
     return if customer_service.include?("&btn=hide")
     regex = /https:\/\/s\.meiqia\.com\/js\/mechat\.js\?unitid=([0-9]+)/.match(customer_service)
     self.customer_service = "<script async='true' src='https://s.meiqia.com/js/mechat.js?unitid=#{regex[1]}&btn=hide' charset='UTF-8'></script>"
+  end
+
+  def update_counter_cache
+    set(owners_count: owners.size)
+    set(things_count: things.size)
   end
 end

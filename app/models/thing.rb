@@ -265,7 +265,13 @@ class Thing < Post
   end
 
   def merchant_name=(name)
-    self.merchant = (name.blank?) ? nil : Merchant.find_by(name: name)
+    if name.blank?
+      self.merchant = nil
+    else
+      merchant = Merchant.find_by(name: name)
+      self.merchant = merchant
+      merchant.set(things_count: merchant.things.size)
+    end
   end
 
   def update_price
