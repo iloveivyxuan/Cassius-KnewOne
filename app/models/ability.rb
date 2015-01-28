@@ -189,6 +189,7 @@ class Ability
     can :batch_update, Thing
     can :send_hits_message, Thing
     can :approved_status, Thing
+    can :part_time_list, Thing
     can :batch_edit, Thing
     can :edit, Category
     can :update, Category
