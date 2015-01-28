@@ -340,4 +340,10 @@ html.explore {
       padding-top: 45px;
     }
   }
+
+  &.mobile {
+    body {
+      padding-bottom: 0;
+    }
+  }
 }
