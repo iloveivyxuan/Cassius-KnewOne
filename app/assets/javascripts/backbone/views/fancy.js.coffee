@@ -198,7 +198,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     @updateAllTriggers()
 
   tryToSyncToFeeling: ->
-    return unless @model.get('sync_to_feeling')
+    return unless @model.get('sync_to_feeling') && @model.get('description')
 
     feeling = {
       content: @model.get('description')
