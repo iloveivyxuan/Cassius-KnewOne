@@ -2,13 +2,13 @@
 - page_css 'thing_lists'
 - provide :wechat_title, @thing_list.name
 - provide :wechat_desc, @thing_list.description
-- provide :wechat_cover_url, @thing_list.items.first.thing.cover.url(:small) if @thing_list.items.size > 0
+- provide :wechat_cover_url, @thing_list.items.first.thing.cover.url(:small) if @thing_list.size > 0
 
 - list = @thing_list
 
 = render 'header', list: list
 
-- if list.items.present?
+- if list.size > 0
   section.thing_list_items class=('thing_list_items--loose' if list.size < 16)
     = render list.items
 - else
