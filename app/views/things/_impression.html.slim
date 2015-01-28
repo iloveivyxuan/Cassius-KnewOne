@@ -4,14 +4,16 @@ section.thing_impression data-impression-id=impression.id
 
     = time_ago_tag(impression.updated_at)
 
-    - if impression.state != :none
-      .thing_impression-state
-        - if impression.state == :desired
-          i.fa.fa-desire
-          | 想要
-        - else
-          i.fa.fa-check-circle-o
-          | 拥有
+    .thing_impression-state
+      - if impression.fancied && impression.state == :none
+        i.fa.fa-heart
+        | 喜欢
+      - elsif impression.state == :desired
+        i.fa.fa-desire
+        | 想要
+      - elsif impression.state == :owned
+        i.fa.fa-check-circle-o
+        | 拥有
 
     = render 'shared/score', score: impression.score
 
