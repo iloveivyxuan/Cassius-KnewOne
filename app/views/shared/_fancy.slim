@@ -10,9 +10,10 @@
     - data = {toggle: "modal", target: "#login-modal", link: thing_url(thing), "signin-legend" => "登录后，收集喜欢的产品"}
   - data.merge!({ category: "thing", action: "fancy", label: thing.title })
 
-  - title = thing.fancied?(current_user) ? '修改喜欢状态' : '喜欢此产品'
-  - fancy_class = thing.fancied?(current_user) ? (thing.desired?(current_user) ? "desired" : "fancied") : "unfancied"
-  - icon_class = thing.fancied?(current_user) ? "fa-heart" : "fa-heart-o"
+  - fancied = user_signed_in? && thing.fancied?(current_user)
+  - title = fancied ? '修改喜欢状态' : '喜欢此产品'
+  - fancy_class = fancied ? (thing.desired?(current_user) ? "desired" : "fancied") : "unfancied"
+  - icon_class = fancied ? "fa-heart" : "fa-heart-o"
 
   = link_to "#", class: fancy_class, title: title, data: data do
     i class="fa #{icon_class}"
