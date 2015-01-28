@@ -2,7 +2,7 @@ section.thing_list_item [id="thing_list_item_#{thing_list_item.id}"
   data-url=url_for([thing_list_item.list, thing_list_item])
   data-order=thing_list_item.order]
   header
-    - thing = thing_list_item.thing
+    - thing = Thing.only(:id, :slugs, :title, :photo_ids).find(thing_list_item.thing_id)
 
     .thing_list_item-cover
       = link_to thing, target: '_blank', title: thing.title
