@@ -73,7 +73,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     elsif user_signed_in?
       # must be
       current_user.auths<< Auth.from_omniauth(omniauth)
+      logger.info "user #{current_user.id.to_s} has following auths: #{current_user.auths.map(&:provider)}"
       current_user.update_from_omniauth(omniauth)
+      logger.info "user #{current_user.id.to_s} has following auths: #{current_user.auths.map(&:provider)}"
       redirect_back_or edit_account_path, flash: { oauth: { status: 'success', text: '绑定成功。' } }
     else
       show_welcome_binding_modal = !(params[:state].present? && params[:state].include?('auto_login'))
