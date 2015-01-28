@@ -57,7 +57,7 @@
         <textarea class="form-control" name="description" rows="2" maxlength=140 placeholder="说点什么吧（140字以内哦）">{{description}}</textarea>
 
         <section class="fancy_modal-options">
-          {{#ifCond type '==' 'fancy'}}
+          {{#ifCond type '!=' 'own'}}
             <div class="fancy_modal-state">
               <input type="radio" name="state" value="none" {{#ifCond state '==' 'none'}}checked{{/ifCond}}>
               <label><input type="radio" name="state" value="desired" {{#ifCond state '==' 'desired'}}checked{{/ifCond}}>想要</label>
@@ -80,13 +80,15 @@
       {{#if first_time}}
         <button class="btn btn-primary fancy_modal-submit_button" type="button">完成</button>
       {{else}}
-        <button class="btn btn-default fancy_modal-cancel_button" type="button">
-          {{#ifCond type '==' 'fancy'}}
-            <i class="fa fa-heart-o"></i> 取消喜欢
-          {{else}}
-            <i class="fa fa-circle-o"></i> 取消拥有
-          {{/ifCond}}
-        </button>
+        {{#ifCond type '!=' 'edit'}}
+          <button class="btn btn-default fancy_modal-cancel_button" type="button">
+            {{#ifCond type '==' 'fancy'}}
+              <i class="fa fa-heart-o"></i> 取消喜欢
+            {{else}}
+              <i class="fa fa-circle-o"></i> 取消拥有
+            {{/ifCond}}
+          </button>
+        {{/ifCond}}
 
         <button class="btn btn-primary fancy_modal-submit_button" type="button">保存</button>
       {{/if}}

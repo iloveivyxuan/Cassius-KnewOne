@@ -48,6 +48,8 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     @model.set({first_time, tags, recent_tags, popular_tags, sync_to_feeling})
 
   updateStateOnServer: ->
+    return if @model.get('type') == 'edit'
+
     if @model.get('type') == 'fancy'
       change = {fancied: true}
     else
@@ -100,7 +102,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
           updateTrigger($trigger, '修改喜欢状态', "desired", 'fa-desire', 'swing')
         else if $trigger.hasClass('desired') && state != 'desired'
           updateTrigger($trigger, '修改喜欢状态', "fancied", 'fa-heart')
-      else
+      else if type == 'own'
         if $trigger.hasClass('unowned') && state == 'owned'
           updateCount($count, 1)
           updateTrigger($trigger, '修改拥有状态', 'owned', 'fa-check-circle-o', 'flip')
@@ -176,6 +178,8 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       @model.set('state', $radio.val())
 
   onCancel: ->
+    return if @model.get('type') == 'edit'
+
     if @model.get('type') == 'fancy'
       change = {fancied: false}
     else
