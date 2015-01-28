@@ -520,7 +520,7 @@ HERE
   # recommend users who not followed by self
   def recommend_new_users
     user_ids = following_ids + [self.id]
-    User.nin(id: user_ids).desc(:recommend_priority, :karma)
+    User.only(:id, :name, :avatar, :recommend_note).nin(id: user_ids).desc(:recommend_priority, :karma)
   end
 
   # recommend users from oauth(only support weibo)
