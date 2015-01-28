@@ -3,7 +3,7 @@ class ImpressionsController < ApplicationController
   before_action :fix_tag_names
   load_resource :thing
 
-  respond_to :json
+  respond_to :json, :js
 
   def show
     @impression = @thing.impressions.find_or_initialize_by(author: current_user)

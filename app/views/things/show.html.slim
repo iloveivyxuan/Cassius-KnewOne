@@ -8,6 +8,10 @@
   = render 'actions_compact', tp: tp
   = render "summary", tp: tp
 
+  - if user_signed_in?
+    - impression = @thing.impression_by(current_user)
+    = render 'impression', impression: impression if impression
+
   - if browser.mobile? || browser.tablet?
     = render "mobile_buy", tp: tp
     = render 'mobile_feeds', thing: tp.thing

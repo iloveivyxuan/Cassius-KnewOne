@@ -1,0 +1,32 @@
+section.thing_impression data-impression-id=impression.id
+  header
+    h6 我的产品印象
+
+    = time_ago_tag(impression.updated_at)
+
+    - if impression.state != :none
+      .thing_impression-state
+        - if impression.state == :desired
+          i.fa.fa-desire
+          | 想要
+        - else
+          i.fa.fa-check-circle-o
+          | 拥有
+
+    = render 'shared/score', score: impression.score
+
+  .thing_impression-actions
+    a href="#" data-fancy=impression.thing_id data-type="edit" 修改
+    = link_to '删除', thing_impression_path(impression.thing_id), method: :delete, remote: true, data: {confirm: '您确定要删除吗?'}
+
+  - if impression.description.present?
+    p.thing_impression-description
+      i.fa.fa-quote-left
+      = impression.description
+
+  - if impression.tags.present?
+    ul.thing_impression-tags
+      - impression.tags.each do |tag|
+        li
+          i.fa.fa-tag
+          = tag.name
