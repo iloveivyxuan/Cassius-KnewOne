@@ -55,23 +55,30 @@
 
         > section {
           > ul {
+            margin-top: 5px;
+
             > li {
               display: inline-block;
 
               margin: 10px 10px 0 0;
               padding: 7px 12px;
-              border-radius: 5px;
+              border-radius: 10px;
               background: white;
 
               cursor: pointer;
 
+              color: #999;
+              i { color: #ccc; }
+
               &:hover {
-                color: $blue-bright;
+                color: #777;
+                i { color: #999; }
               }
 
               &.selected {
-                color: white;
                 background: $gray-light;
+                color: white;
+                i { color: white; }
               }
             }
           }
