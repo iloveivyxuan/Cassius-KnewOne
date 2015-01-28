@@ -4,7 +4,7 @@ class HomeFeed
   class << self
     def create_from_activities(activities)
       activities.select(&:reference).uniq do |a|
-        [a.type, a.related_thing, a.related_thing_list, a.user]
+        [a.type, a.related_thing, a.related_thing_list, a.user_id]
       end.reduce({}) do |feeds, a|
         subject = a.related_thing || a.related_thing_list
         if feeds[subject]
@@ -48,11 +48,10 @@ class HomeFeed
   end
 
   def author
-    @author ||= if @activities.present?
-                  @activities.first.user
-                else
-                  @thing.author
-                end
+    return @author if @author
+
+    author_id = @activities.present? ? @activities.first.user_id : @thing.author_id
+    @author ||= User.only_with_avatars.find(author_id)
   end
 
   def add_activity(activity)
