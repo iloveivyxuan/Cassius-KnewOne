@@ -225,10 +225,10 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       .join(';')
 
     $.ajax({
-      url: @url()
+      url: "#{@url()}.js"
       type: 'PATCH'
       data: {impression: data}
-    })
+    }, eval)
 
     @tryToSyncToFeeling()
 
