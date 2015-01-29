@@ -338,7 +338,7 @@ html[class^="users_"] {
               }
 
               &.nav-desires a {
-                @include plain-link($orange);
+                @include plain-link($red);
               }
 
               &.nav-owns a {
