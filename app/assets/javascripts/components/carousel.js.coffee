@@ -23,7 +23,7 @@ do (exports = Making) ->
         cycleBy: 'items'
         pauseOnHover: true
         speed: 300
-        disabledClass: 'is-disabled'
+        disabledClass: if that.options['cyclical'] then '' else 'is-disabled'
       if $controls.length
         $prev = $controls.filter('.left')
         $next = $controls.filter('.right')
@@ -33,6 +33,34 @@ do (exports = Making) ->
 
       frame = new Sly(this, options)
       $carousel.data('carousel', frame)
+
+      if that.options['cyclical']   
+        activeItem = 0
+        $carousel.on 'click', '.carousel-control.left', (e) ->          
+          frame.activate frame.items.length - 1 if activeItem == 0       
+        $carousel.on 'click', '.carousel-control.right', (e) ->
+          frame.activate 0 if activeItem == frame.items.length - 1
+        frame.on 'active', (_type, index) ->
+          setTimeout (-> activeItem = index), 0
+
+
+        offsetStart = 0
+        offsetEnd   = 0      
+        $carousel.on 'touchstart touchmove touchend', (e) ->
+          touch = e.originalEvent.changedTouches[0]
+          if activeItem == 0 || activeItem == frame.items.length - 1
+            if e.type is 'touchstart'
+              offsetStart = touch.clientX
+            else if e.type is 'touchend'
+              setTimeout ->
+                if activeItem == 0 && offsetEnd - offsetStart > 100
+                  frame.activate frame.items.length - 1
+                else if activeItem == frame.items.length - 1 && offsetEnd - offsetStart < -100
+                  frame.activate 0
+              , 0
+            else
+              offsetEnd = touch.clientX
+
 
       resetItemWidth = ->
         width = $carousel.css('width')
