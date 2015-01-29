@@ -1,0 +1,52 @@
+@mixin shame-btn--bordered($min-width: none) {
+  background-color: transparent;
+  border: 1px solid $blue;
+  border-radius: 18px;
+  color: $blue;
+  min-width: $min-width;
+
+  &:hover,
+  &.done {
+    color: #fff;
+  }
+
+  &:focus {
+    color: $blue;
+  }
+
+  &:hover {
+    background-color: $blue-light;
+    border-color: $blue-light;
+  }
+
+  &.done {
+    background-color: $blue-dark;
+    border-color: $blue-dark;
+  }
+}
+
+%shame-actions {
+  padding: 0 30px;
+
+  .interactions {
+    display: block;
+    margin-bottom: 30px;
+    text-align: center;
+
+    .btn--like {
+      @include shame-btn--bordered(130px);
+    }
+  }
+
+  @media (min-width: $screen-sm-min) {
+    @include clearfix;
+    
+    .interactions {
+      float: left;
+    }
+
+    .tiny_share {
+      float: right;
+    }
+  }
+}
