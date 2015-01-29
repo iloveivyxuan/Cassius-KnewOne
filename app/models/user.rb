@@ -393,27 +393,27 @@ HERE
   end
 
   def fancy_ids
-    impressions.fancied.pluck(:thing_id)
+    @_fancy_ids ||= impressions.fancied.pluck(:thing_id)
   end
 
   def desire_ids
-    impressions.desired.pluck(:thing_id)
+    @_desire_ids ||= impressions.desired.pluck(:thing_id)
   end
 
   def own_ids
-    impressions.owned.pluck(:thing_id)
+    @_own_ids ||= impressions.owned.pluck(:thing_id)
   end
 
   def fancies
-    Thing.in(id: fancy_ids)
+    @_fancies ||= Thing.in(id: fancy_ids)
   end
 
   def desires
-    Thing.in(id: desire_ids)
+    @_desires ||= Thing.in(id: desire_ids)
   end
 
   def owns
-    Thing.in(id: own_ids)
+    @_owns ||= Thing.in(id: own_ids)
   end
 
   include IdsSortable

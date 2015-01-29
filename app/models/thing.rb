@@ -85,27 +85,27 @@ class Thing < Post
   end
 
   def fancier_ids
-    impressions.fancied.pluck(:author_id)
+    @_fancier_ids ||= impressions.fancied.pluck(:author_id)
   end
 
   def desirer_ids
-    impressions.desired.pluck(:author_id)
+    @_desirer_ids ||= impressions.desired.pluck(:author_id)
   end
 
   def owner_ids
-    impressions.owned.pluck(:author_id)
+    @_owner_ids ||= impressions.owned.pluck(:author_id)
   end
 
   def fanciers
-    User.in(id: fancier_ids)
+    @_fanciers ||= User.in(id: fancier_ids)
   end
 
   def desirers
-    User.in(id: desirer_ids)
+    @_desirers ||= User.in(id: desirer_ids)
   end
 
   def owners
-    User.in(id: owner_ids)
+    @_owners ||= User.in(id: owner_ids)
   end
 
   def fancy(user)
