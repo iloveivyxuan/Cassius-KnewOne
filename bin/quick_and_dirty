@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+curl -X POST --data-urlencode "payload={\"channel\": \"#dev\", \"username\": \"$(git config --global user.name)\", \"text\": \"QUICK AND DIRTY\", \"icon_emoji\": \":ghost:\"}" https://knewone.slack.com/services/hooks/incoming-webhook?token=JZzDMuRAdFIQQULJUadI4Yke &
+
+rsync -avz --progress -e 'ssh -p22222' --exclude='app/assets/' app config lib deployer@knewone.com:~/apps/making/current &&
+bundle exec cap production unicorn:reload
+
+curl -X POST --data-urlencode "payload={\"channel\": \"#dev\", \"username\": \"$(git config --global user.name)\", \"text\": \"DONE!\", \"icon_emoji\": \":ghost:\"}" https://knewone.slack.com/services/hooks/incoming-webhook?token=JZzDMuRAdFIQQULJUadI4Yke &
