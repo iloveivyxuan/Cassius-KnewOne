@@ -143,11 +143,11 @@ module ThingsHelper
 
   def thing_index_title
     if @category.present?
-      "#{@category.name}|#{@category.name}产品"
+      "#{@category.name} | #{@category.name}产品"
     elsif @brand.present?
-      "#{@brand.brand_text}|#{@brand.brand_text}产品"
+      "#{@brand.brand_text} | #{@brand.brand_text}产品"
     elsif @tag.present?
-      "#{@tag.name}|#{@tag.name}产品"
+      "#{@tag.name} | #{@tag.name}产品"
     else
       "产品"
     end
