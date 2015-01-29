@@ -22,11 +22,11 @@
     footer.actions
       .interactions
         .feed_action = render 'shared/voting', object: rp.review
-        = rp.link_to_share("#{@review.thing.title} - #{@review.title}")
       .advanced
         = render 'shared/post_actions', post: rp.review,
           edit_post_path: rp.edit_path, post_path: rp.path
       = time_ago_tag @review.created_at
+      = render "shared/share_external", object: rp.review
 
     section.panel.panel--flat
       header.panel-header
