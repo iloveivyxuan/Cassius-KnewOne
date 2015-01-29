@@ -27,8 +27,8 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     @updateStateOnServer()
     @updateAllTriggers()
 
-  url: ->
-    "/things/#{@model.get('thing_id')}/impression"
+  url: (suffix = '') ->
+    "/things/#{@model.get('thing_id')}/impression#{suffix}"
 
   initModel: ->
     first_time = (@model.get('type') == 'fancy' && !@model.get('fancied')) ||
@@ -60,7 +60,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     @model.set(change, {silent: true})
 
     $.ajax({
-      url: "#{@url()}.js"
+      url: @url('.js')
       type: 'PATCH'
       data: {impression: change}
     }, eval)
@@ -190,7 +190,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     @model.set(change, {silent: true})
 
     $.ajax({
-      url: "#{@url()}.js"
+      url: @url('.js')
       type: 'PATCH'
       data: {impression: change}
     }, eval)
@@ -227,7 +227,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       .join(',')
 
     $.ajax({
-      url: "#{@url()}.js"
+      url: @url('.js')
       type: 'PATCH'
       data: {impression: data}
     }, eval)
