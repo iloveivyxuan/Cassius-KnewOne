@@ -25,4 +25,4 @@ section
   ul.block_list
     = render 'block_list_item', entries: @entries
 
-= paginate @entries
+= paginate @entries, total_pages: 1 + ((@entries.count - 11) / 12.0).ceil
