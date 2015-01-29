@@ -1,12 +1,16 @@
-$impression = $("<%=j render('things/impression', impression: @impression) %>")
+<% if @impression.persisted? %>
+  $impression = $("<%=j render('things/impression', impression: @impression) %>")
 
-$('[data-impression-id="<%= @impression.id %>"]').replaceWith($impression)
+  $('[data-impression-id="<%= @impression.id %>"]').replaceWith($impression)
 
-$impression
-.hide()
-.fadeIn()
-.find('.score').score()
+  $impression
+  .hide()
+  .fadeIn()
+  .find('.score').score()
 
-<% if @impression.previous_changes.include?("state") %>
-  ga('send', 'event', 'thing', '<%= @impression.state %>', '<%= @thing.title %>')
+  <% if @impression.previous_changes.include?("state") %>
+    ga('send', 'event', 'thing', '<%= @impression.state %>', '<%= @thing.title %>')
+  <% end %>
+<% else %>
+  <%= render template: 'impressions/destroy' %>
 <% end %>
