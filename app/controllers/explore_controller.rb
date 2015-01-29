@@ -1,11 +1,10 @@
 class ExploreController < ApplicationController
   skip_before_action :require_not_blocked
   helper :entries
+  before_action :set_page
 
   def index
-    params[:page] ||= 1
-    per = (params[:page].to_i > 1) ? 12 : 11
-    @entries = Entry.published.ne(category: '活动').desc(:created_at).page(params[:page]).per(per)
+    @entries = Entry.published.ne(category: '活动').desc(:created_at).page(params[:page]).per(@per)
 
     respond_to do |format|
       format.html
@@ -24,9 +23,14 @@ class ExploreController < ApplicationController
   }.each do |k, v|
     class_eval <<-EVAL
         def #{k}
-          @entries = Entry.published.where(category: '#{v}').desc(:created_at).page(params[:page]).per(6)
+          @entries = Entry.published.where(category: '#{v}').desc(:created_at).page(params[:page]).per(@per)
           render 'index'
         end
     EVAL
+  end
+
+  def set_page
+    params[:page] ||= 1
+    @per = (params[:page].to_i > 1) ? 12 : 11
   end
 end
