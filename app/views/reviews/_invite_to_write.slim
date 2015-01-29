@@ -10,7 +10,7 @@
     i.fa class=icon_class
     span = text
 
-- if user_signed_in?
+- if user_signed_in? && @thing.owners_count > 0 && current_user.followings_count > 0
   - content_for :end do
     #invite-review-modal.modal.fade
       .modal-dialog
