@@ -14,7 +14,7 @@
   main role="main"
     section#feeds.infinite
       = render partial: 'feed', collection: @feeds
-      = paginate @pager, total_pages: 50
+      = paginate @pager
 
   aside role="complemental"
     = render 'aside'

@@ -6,6 +6,7 @@ class HomeController < ApplicationController
   def index
     if user_signed_in?
       @source = (params[:source] or session[:source] or "following")
+      @pager = Kaminari.paginate_array([], total_count: 2000).page(params[:page]).per(30)
 
       if @source == "following" and current_user.followings_count > 0
         session[:source] = @source
@@ -15,14 +16,12 @@ class HomeController < ApplicationController
                                                                       :add_to_list, :fancy_list)
         activities = activities.page(params[:page]).per(30)
         @feeds = HomeFeed.create_from_activities activities
-        @pager = activities
       else
         session[:source] = "latest"
         things = Thing.published.recommended.desc(:approved_at)
         things = things.page(params[:page]).per(30)
         reviews = []
         @feeds = HomeFeed.create_from_things_and_reviews(things, reviews)
-        @pager = things
       end
     else
       respond_to do |format|
