@@ -48,7 +48,9 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     @model.set({first_time, tags, recent_tags, popular_tags, sync_to_feeling})
 
   updateStateOnServer: ->
-    return if @model.get('type') == 'edit'
+    {type, fancied, state} = @model.attributes
+
+    return if type == 'edit' || (type == 'fancy' && fancied) || (type == 'own' && state == 'owned')
 
     if @model.get('type') == 'fancy'
       change = {fancied: true}
