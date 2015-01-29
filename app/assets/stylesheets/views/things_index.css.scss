@@ -303,5 +303,11 @@ html.things_brand {
     #things_nav {
       display: none;
     }
+
+    #things_information {
+      img {
+        @include square(146px);
+      }
+    }
   }
 }
