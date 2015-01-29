@@ -564,12 +564,17 @@ HERE
   need_aftermath :follow, :unfollow
 
   def self.related_users_and_owned(thing, user, count, fields = [:id, :name])
-    related_user_ids = (user.following_ids & thing.owner_ids).take(count)
+    related_user_ids = thing.impressions.owned.in(author_id: user.following_ids)
+                       .limit(count)
+                       .pluck(:author_id)
     related_users = User.only(fields).in(id: related_user_ids).desc(:karma)
 
-    return related_users if related_user_ids.size >= count
+    return related_users if related_user_ids.size >= [count, thing.owners_count].min
 
-    other_owner_ids = (thing.owner_ids - related_user_ids).take(count - related_users.size)
+    remaining = count - related_users.size
+    other_owner_ids = thing.impressions.owned.nin(author_id: user.following_ids)
+                      .limit(remaining)
+                      .pluck(:author_id)
     other_owners = User.only(fields).in(id: other_owner_ids).desc(:karma)
 
     related_users + other_owners
