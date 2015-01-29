@@ -28,6 +28,8 @@
                          in: @order.minimal_consumable_bong_point..@order.maximal_consumable_bong_point, step: 1,
                          class: 'numeric integer optional form-control'
     = submit_tag '使用', class: 'btn btn-default', id: 'consume_bong_point_btn', disabled: @order.bong_point_required?
+    .text-danger
+      = flash[:warn]
 
   #bong_access_token_error_alert.alert.alert-danger.hidden
     | bong服务暂不可用，
