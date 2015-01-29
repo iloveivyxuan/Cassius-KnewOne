@@ -17,6 +17,8 @@ $(->
   $(document).on('click', selector, (event) ->
     event.preventDefault()
 
+    return if $('#add-to-list-modal').length
+
     $target = $(this)
     return if $target.is('.fancied')
 

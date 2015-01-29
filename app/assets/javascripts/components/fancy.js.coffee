@@ -7,6 +7,8 @@ $(->
   $(document).on('click', '[data-fancy]', (event) ->
     event.preventDefault()
 
+    return if $('#fancy_modal').length
+
     $target = $(this)
     options = {
       thing_id: $target.data('fancy')
