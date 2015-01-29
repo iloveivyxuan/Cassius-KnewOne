@@ -124,6 +124,7 @@ html.explore {
 
     .thumbnail-body {
       background-color: #fff;
+      height: 102px;
       padding: 20px;
       position: relative;
 
@@ -211,6 +212,7 @@ html.explore {
 
       .thumbnail-body {
         bottom: 0;
+        height: auto;
         padding: {
           bottom: 60px;
           top: 60px;
