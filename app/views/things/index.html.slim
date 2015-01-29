@@ -2,6 +2,8 @@
 - page_css 'things_index'
 - if (keywords = thing_index_keywords)
   - provide :keywords, keywords
+- if @brand
+  - provide :page_class, 'things_brand'
 
 .container-fluid
 

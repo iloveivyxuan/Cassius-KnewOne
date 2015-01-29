@@ -1,6 +1,7 @@
 @import '../base';
 
-html.shop, html.things_index {
+html.shop,
+html.things_index {
   #wrapper {
     margin: 0;
 
@@ -293,6 +294,14 @@ html.things_index {
           }
         }
       }
+    }
+  }
+}
+
+html.things_brand {
+  &.mobile {
+    #things_nav {
+      display: none;
     }
   }
 }
