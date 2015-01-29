@@ -6,3 +6,5 @@ $impression
 .hide()
 .fadeIn()
 .find('.score').score()
+
+ga('send', 'event', 'thing', '<%= params[:impression][:state] %>', '<%= @thing.title %>')
