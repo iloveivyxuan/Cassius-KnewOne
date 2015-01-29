@@ -1,7 +1,12 @@
 <% if @impression.persisted? %>
   $impression = $("<%=j render('things/impression', impression: @impression) %>")
 
-  $('[data-impression-id="<%= @impression.id %>"]').replaceWith($impression)
+  $oldImpression = $('[data-impression-id="<%= @impression.id %>"]')
+  if ($oldImpression.length) {
+    $oldImpression.replaceWith($impression)
+  } else {
+    $impression.insertAfter('#thing_description')
+  }
 
   $impression
   .hide()
