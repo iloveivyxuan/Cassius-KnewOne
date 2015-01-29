@@ -77,6 +77,14 @@
   }
 }
 
+.modal-content {
+  border-radius: 0;
+
+  @include from-breakpoint(md) {
+    border-radius: 15px;
+  }
+}
+
 .modal-footer {
   .btn + .btn {
     margin-left: 1em;

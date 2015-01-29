@@ -210,7 +210,6 @@ html.feelings_show {
 
   .modal-content {
     border: 1px solid rgba(0, 0, 0, 0.1);
-    @include border-radius(0);
     @include box-shadow(0 5px 15px rgba(0,0,0,.2));
   }
   .modal-body {
