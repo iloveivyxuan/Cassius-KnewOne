@@ -1,0 +1,4 @@
+- @entries.each_with_index do |entry, index|
+  - latest = ((params[:page] || 1) == 1 && index == 0)
+  li class=(latest ? 'first' : '')
+    = render entry, klass: latest ? 'thumbnail--article--featured' : ''

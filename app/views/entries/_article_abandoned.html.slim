@@ -1,0 +1,59 @@
+- page_css 'entries'
+- page_title '精选'
+- provide :nav, :explore
+- provide :page_class, 'abandoned'
+
+main
+
+  article.article
+
+    header
+      h1.title = post.title
+
+      .clearfix
+        ul.metas
+          li
+            label.avatar
+              = image_tag author.avatar.url(:tiny), class: 'img-circle'
+              = link_to author.name, author, data: {"profile-popover" => author.id.to_s}
+          li = time_ago_tag entry.created_at
+        ul.metas
+          li
+            = post.lovers_count
+            | 赞
+          li
+            = post.comments_count
+            | 评论
+
+    - if Entry::CATEGORIES[entry.category] == 'events'
+      = render 'entries/related_things', entry: entry, title: '相关产品'
+
+    section.content = sanitize post.content
+
+    .actions
+      .voting id="article_#{post.id.to_s}"
+        = render partial: 'shared/voting', locals: {object: post}
+      = render "shared/share_external", type: entry.category, title: entry_title(entry), object: entry
+
+    - if Entry::CATEGORIES[entry.category] != 'events'
+      = render 'entries/related_things', entry: entry
+
+    = render 'pager', entry: entry
+
+    = render 'shared/comments', post: post, id: "comments", auth: true
+
+- if browser.desktop?
+  nav
+    ul.nav.affix-top data-spy="affix" data-offset-top="100"
+      = sidebar_tab :index do
+        = link_to '首页', explore_path
+      = sidebar_tab :talks do
+        = link_to '专访', explore_talks_path
+      = sidebar_tab :lists do
+        = link_to '列表', explore_lists_path
+      = sidebar_tab :reviews do
+        = link_to '评测', explore_reviews_path
+
+- content_for :script do
+  javascript:
+    Making.Comments("#comments");

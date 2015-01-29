@@ -1,14 +1,28 @@
 - provide :sidebar_nav, action_name
 - provide :feed, explore_url(format: "atom")
 - provide :rss, explore_url(format: "xml")
+- provide :page_class, 'explore'
+- page_title '精选'
+- page_css 'explore'
 
 header
-  = link_to explore_path do
-    em.logo KnewOne
-    | &nbsp;精选
+  h1
+    = link_to explore_path do
+      em.logo KnewOne
+      | 精选
+  nav
+    ul
+      li class=(action_name == "index" ? "active" : "")
+        = link_to "首页", explore_path
+      li class=(action_name == "talks" ? "active" : "")
+        = link_to "专访", explore_talks_path
+      li class=(action_name == "lists" ? "active" : "")
+        = link_to "列表", explore_lists_path
+      li class=(action_name == "reviews" ? "active" : "")
+        = link_to "评测", explore_reviews_path
 
 section
-  = render @entries
+  ul.block_list
+    = render 'block_list_item', entries: @entries
 
-footer
-  = paginate @entries
+= paginate @entries

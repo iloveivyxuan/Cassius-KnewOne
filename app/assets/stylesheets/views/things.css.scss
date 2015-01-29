@@ -6,6 +6,7 @@ html.things_activities,
 html.reviews_index,
 html.reviews_show,
 html.reviews_new,
+html.reviews_edit,
 html.feelings_index,
 html.feelings_show {
   /**********************************************.btn**********************************************/
@@ -2201,6 +2202,22 @@ html.feelings_show {
         margin: 2em 0;
       }
     }
+
+    .actions {
+      padding: {
+        left: 2em;
+        right: 2em;
+      }
+
+      .btn--like,
+      .share_btn {
+        @include shame-btn--bordered;
+      }
+
+      .btn--like {
+        margin-right: 20px;
+      }
+    }
   }
 
   .things_subpage {
@@ -2435,8 +2452,14 @@ html.reviews_show {
           }
         }
 
-        .score {
+        time {
           display: inline-block;
+          line-height: 40px;
+          vertical-align: middle;
+        }
+
+        .score {
+          display: block;
           height: 40px;
           line-height: 40px;
           margin: 0;
@@ -2466,7 +2489,16 @@ html.reviews_show {
       }
 
       > .actions {
-        margin-bottom: 2em;
+        @extend %shame-actions;
+        padding-bottom: 2em;
+
+        .advanced {
+          display: block;
+          height: 40px;
+          line-height: 40px;
+          margin-bottom: 20px;
+          text-align: center;
+        }
       }
 
       .target-info {

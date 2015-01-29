@@ -23,6 +23,10 @@ i.fa_alone {
   margin: 0;
 }
 
+.block_list {
+  @extend .clearfix;
+}
+
 .list > * {
   border-top: $border_default;
 
@@ -195,24 +199,34 @@ label.avatar {
 }
 
 .tiny_share {
+  text-align: center;
 
-  a {
+  > h6 {
+    display: inline-block;
+    font-size: 14px;
+    margin: 0;
+    vertical-align: middle;
+  }
+
+  > a {
     color: $text-muted;
     display: inline-block;
+    vertical-align: middle;
 
     &:hover {
       color: $gray;
     }
 
     &:last-child {
-
-      .fa {
-        margin-right: 0;
-      }
+      margin-right: 0 !important;
     }
 
     &.weixin {
       display: none;
+    }
+
+    .fa {
+      margin: 0;
     }
   }
 }
@@ -283,7 +297,7 @@ a.btn_block {
     bottom: auto;
     .fa {
       width: 100%;
-      margin-top: 1em;
+      margin-top: 10px;
       padding-right: 24px;
       text-align: right;
     }

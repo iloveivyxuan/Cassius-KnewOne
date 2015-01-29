@@ -1,5 +1,4 @@
 class EntriesController < ApplicationController
-  layout :explore_layout
   skip_before_action :require_not_blocked
 
   def show
@@ -17,11 +16,5 @@ class EntriesController < ApplicationController
 
   def photos
     @entry = Entry.find(params[:id])
-  end
-
-  private
-
-  def explore_layout
-    (['专访', '评测', '列表'].include? Entry.find(params[:id]).category) ? nil : 'explore'
   end
 end

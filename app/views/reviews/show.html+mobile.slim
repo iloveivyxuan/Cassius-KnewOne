@@ -3,6 +3,8 @@
 - provide :keywords, "#{@thing.title}, #{@thing.subtitle}"
 - provide :description, "#{@thing.title},#{@thing.subtitle},关于该产品我们有#{@thing.feelings_count}条短评,#{@thing.reviews_count}篇评测,在KnewOne有#{@thing.owners_count}个用户拥有#{@thing.title},#{@thing.fanciers_count}个用户喜欢#{@thing.title}！"
 - provide :feed, thing_url(@thing, format: "atom")
+- provide :sharing_content, present(@review).share_content(false)
+- provide :sharing_cover, present(@review).share_pic(:middle)
 - provide :wechat_cover_url, @thing.cover.url(:small)
 - provide :wechat_title, @review.title
 - provide :wechat_desc, "#{@review.author.name}对#{@thing.title}的评测"
@@ -13,18 +15,18 @@
       h3= rp.title
       .text-center
         .author= rp.author
+        = time_ago_tag @review.created_at
         = rp.score
 
     section.body.post_content= rp.content
 
     footer.actions
-      .interactions
-        .feed_action = render 'shared/voting', object: rp.review
-        = rp.link_to_share("#{@review.thing.title} - #{@review.title}")
       .advanced
         = render 'shared/post_actions', post: rp.review,
           edit_post_path: rp.edit_path, post_path: rp.path
-      = time_ago_tag @review.created_at
+      .interactions
+        .feed_action = render 'shared/voting', object: rp.review
+      = render "shared/share_external", object: rp.review
 
     section.panel.panel--flat
       header.panel-header

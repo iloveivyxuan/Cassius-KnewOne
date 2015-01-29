@@ -1,17 +1,23 @@
-article.article_thumb
+- klass = (defined? klass) ? klass : ''
+.thumbnail--article class=klass
   - if entry.cover.present?
-    figure
-      = link_to entry do
-        = image_tag entry.cover.url(:middle)
-  footer
-    h3.title = link_to entry_title(entry), entry
+    = link_to entry, class: "thumbnail-cover" do
+      = image_tag entry.cover.url(:middle), alt: entry.title
+  .thumbnail-body
+    h3.thumbnail-title= link_to entry_title(entry), entry
     - if entry.post
       ul.metas
-        li.name = link_to entry.post.author.name, entry.post.author
-        li.time = time_ago_tag entry.created_at
+        li.name= link_to entry.post.author.name, entry.post.author
+        li.time= time_ago_tag entry.created_at
         li
+          i.fa.fa-thumbs-o-up
           = entry.post.lovers_count
-          | &nbsp;赞
         li
+          i.fa.fa-comment-o
           = entry.post.comments_count
-          | &nbsp;评论
+
+    .thumbnail-label
+      label
+        span.logo KnewOne
+        | #{entry.category_translation}
+      = image_tag entry.avatar.url(:small), class: 'img-circle entry-avatar', width: 60, height: 60 if entry.avatar.present?

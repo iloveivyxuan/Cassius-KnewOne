@@ -1,4 +1,5 @@
 .tiny_share
+  h6 分享到
   - unless browser.mobile?
     = link_to_with_icon "", "fa fa-weixin", "#", title: "分享到微信", class: "weixin",
     data: {toggle: "popover", trigger: "manual", container: "body", placement: "top",
