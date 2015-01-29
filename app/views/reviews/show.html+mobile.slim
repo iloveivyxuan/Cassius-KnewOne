@@ -15,17 +15,17 @@
       h3= rp.title
       .text-center
         .author= rp.author
+        = time_ago_tag @review.created_at
         = rp.score
 
     section.body.post_content= rp.content
 
     footer.actions
-      .interactions
-        .feed_action = render 'shared/voting', object: rp.review
       .advanced
         = render 'shared/post_actions', post: rp.review,
           edit_post_path: rp.edit_path, post_path: rp.path
-      = time_ago_tag @review.created_at
+      .interactions
+        .feed_action = render 'shared/voting', object: rp.review
       = render "shared/share_external", object: rp.review
 
     section.panel.panel--flat

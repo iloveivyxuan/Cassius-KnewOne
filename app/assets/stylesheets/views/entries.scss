@@ -179,8 +179,8 @@ html.entries_show {
     }
 
     > .actions {
+      @extend %shame-actions;
       margin-bottom: 60px;
-      padding: 0;
     }
 
     > .pager {

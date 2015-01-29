@@ -539,23 +539,18 @@ form.edit_post {
     > time {
       position: absolute;
       right: 2em;
-      margin-top: 9px;
       color: #999999;
     }
 
     .tiny_share {
-      float: right;
       height: 40px;
       line-height: 40px;
-      padding: {
-        left: 1rem;
-        right: 1rem;
-      }
-      @media (min-width: $screen-lg-min) {
-        padding: {
-          left: 0;
-          right: 0;
-        }
+
+      > label,
+      > a {
+        height: 40px;
+        line-height: 40px;
+        margin-right: 30px;
       }
 
       .fa {
