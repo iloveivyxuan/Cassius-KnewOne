@@ -114,7 +114,8 @@ html.explore {
     .thumbnail-cover {
       display: block;
       height: 0;
-      padding-bottom: percentage(9 / 16);
+      overflow: hidden;
+      padding-bottom: percentage(1 / 2.39);
 
       img {
         width: 100%;
@@ -204,7 +205,7 @@ html.explore {
 
       .thumbnail-cover {
         float: left;
-        padding-bottom: 39%; /* ≈ 70% * (9 / 16) */
+        padding-bottom: 29%; /* ≈ 70% * (9 / 16) */
         width: 70%;
       }
 

@@ -2,7 +2,7 @@
 .thumbnail--article class=klass
   - if entry.cover.present?
     = link_to entry, class: "thumbnail-cover" do
-      = image_tag entry.cover.url(:middle), alt: entry.title
+      = image_tag entry.canopy.url(:middle), alt: entry.title
   .thumbnail-body
     h3.thumbnail-title= link_to entry_title(entry), entry
     - if entry.post
