@@ -7,4 +7,6 @@ $impression
 .fadeIn()
 .find('.score').score()
 
-ga('send', 'event', 'thing', '<%= params[:impression][:state] %>', '<%= @thing.title %>')
+<% if @impression.previous_changes.include?("state") %>
+  ga('send', 'event', 'thing', '<%= @impression.state %>', '<%= @thing.title %>')
+<% end %>
