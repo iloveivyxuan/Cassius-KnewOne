@@ -13,6 +13,7 @@ html class="#{page_class} #{browser_class}#{env_class}" lang="zh-CN"
     meta name="wechat:cover_url" content="#{content_for(:wechat_cover_url)}"
     meta name="wechat:title" content="#{content_for(:wechat_title)}"
     meta name="sharing_content" content="#{yield :sharing_content}"
+    meta name="sharing_cover" content="#{yield :sharing_cover}"
     meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"
     meta property="qc:admins" content="151473432577656375"
     = csrf_meta_tags
