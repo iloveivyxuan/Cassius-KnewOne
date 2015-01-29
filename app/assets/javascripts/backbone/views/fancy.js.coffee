@@ -60,10 +60,10 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     @model.set(change, {silent: true})
 
     $.ajax({
-      url: @url()
+      url: "#{@url()}.js"
       type: 'PATCH'
       data: {impression: change}
-    })
+    }, eval)
 
   updateAllTriggers: ->
     {thing_id, fancied, state} = @model.attributes
