@@ -231,24 +231,32 @@ label.avatar {
 }
 
 .tiny_share {
+  text-align: center;
 
-  a {
+  > label {
+    margin-bottom: 0;
+    vertical-align: middle;
+  }
+
+  > a {
     color: $text-muted;
     display: inline-block;
+    vertical-align: middle;
 
     &:hover {
       color: $gray;
     }
 
     &:last-child {
-
-      .fa {
-        margin-right: 0;
-      }
+      margin-right: 0 !important;
     }
 
     &.weixin {
       display: none;
+    }
+
+    .fa {
+      margin: 0;
     }
   }
 }

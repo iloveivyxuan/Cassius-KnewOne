@@ -3,12 +3,16 @@ Making.Views.Share = Backbone.View.extend
   events:
     'mouseenter .weixin': 'weixin'
     'mouseleave .weixin': 'weixin'
-    'click .weixin': 'prevent_default'
+    'click .weixin': 'preventDefault'
     'click .weibo': 'weibo'
     'click .twitter': 'twitter'
 
   initialize: ->
+    @content = $('meta[name="sharing_content"]').attr('content') || document.title
+    @pic     = $('meta[name="sharing_cover"]').attr('content') || ''
+    @url     = Making.url + '?refer=share'
     @$weixin = @$('.weixin')
+
     @$weixin.popover
       html: true
       content: $('<div />').qrcode
@@ -16,7 +20,7 @@ Making.Views.Share = Backbone.View.extend
         ecLevel: 'L'
         text: if document.URL.indexOf('#') > 0 then Making.url else document.URL
 
-  prevent_default: (event) ->
+  preventDefault: (event) ->
     event.preventDefault()
 
   weixin: (event) ->
@@ -24,17 +28,8 @@ Making.Views.Share = Backbone.View.extend
 
   weibo: (event) ->
     event.preventDefault()
-
-    content = $('meta[name="sharing_content"]').attr('content')
-    if content == undefined or content.length == 0 then content = document.title + ' ' + location.href
-
-    pic = $('.sharing_cover').attr('src')
-    if pic == undefined then pic = ''
-
-    window.open 'http://v.t.sina.com.cn/share/share.php?appkey=<%= Settings.weibo.consumer_key %>&title=' + encodeURIComponent(content) + '&url=' + encodeURIComponent(location.href) + '&pic=' + encodeURIComponent(pic) + '&source=bookmark' + '&content=utf-8', '_blank', 'width=500,height=500'
+    window.open 'http://v.t.sina.com.cn/share/share.php?appkey=<%= Settings.weibo.consumer_key %>&title=' + encodeURIComponent(@content) + '&url=' + encodeURIComponent(@url) + '&pic=' + encodeURIComponent(@pic) + '&source=bookmark' + '&content=utf-8', '_blank', 'width=500,height=500'
 
   twitter: (event) ->
     event.preventDefault()
-    content = $('meta[name="sharing_content"]').attr('content')
-    if content == undefined or content.length == 0 then content = document.title
-    window.open 'http://twitter.com/share?text=' + content  + '&url='+ encodeURIComponent(location.href) + '&amp;source=bookmark', '_blank', 'width=500,height=500'
+    window.open 'http://twitter.com/share?text=' + @content  + '&url='+ encodeURIComponent(@url) + '&amp;source=bookmark', '_blank', 'width=500,height=500'
