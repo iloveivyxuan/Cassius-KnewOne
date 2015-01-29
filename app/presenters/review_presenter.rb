@@ -21,12 +21,12 @@ class ReviewPresenter < PostPresenter
     super(size) or present(review.thing).photo(size)
   end
 
-  def share_content
+  def share_content(with_link = true)
     if review.author == current_user
-      "我在 @KnewOne 发布了 #{review.thing.title} 的测评《#{title}》： #{thing_review_url(review.thing, review, refer: :share)}"
+      "我在 @KnewOne 发布了 #{review.thing.title} 的测评《#{title}》"
     else
-      "推荐 #{share_author_name} 在 #{share_topic} 发布的 #{review.thing.title} 评测《#{title}》：#{thing_review_url(review.thing, review, refer: :share)}"
-    end
+      "推荐 #{share_author_name} 在 #{share_topic} 发布的 #{review.thing.title} 评测《#{title}》"
+    end + (with_link ? thing_review_url(review.thing, review, refer: :share) : '')
   end
 
   def share_pic(size)
