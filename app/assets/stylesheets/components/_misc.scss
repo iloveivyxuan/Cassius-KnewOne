@@ -233,8 +233,10 @@ label.avatar {
 .tiny_share {
   text-align: center;
 
-  > label {
-    margin-bottom: 0;
+  > h6 {
+    display: inline-block;
+    font-size: 14px;
+    margin: 0;
     vertical-align: middle;
   }
 
