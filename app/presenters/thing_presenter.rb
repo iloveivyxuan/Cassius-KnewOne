@@ -39,24 +39,19 @@ class ThingPresenter < PostPresenter
 
   def price
     return unless self.buy
-    if thing.price.present?
-      price_format thing.price, thing.price_unit
-    else
-      ""
-    end
+    return "" unless thing.price.present?
+
+    price_format thing.price, thing.price_unit
   end
 
   def mobile_price
     return unless price.present?
     return price_format(thing.price, thing.price_unit) unless thing.stage == :dsell
+    return "" unless thing.price.present?
 
-    if thing.price.present?
-      price = price_format thing.kinds.map(&:price).sort.first, thing.price_unit
-      price.concat(" 起") if thing.kinds.map(&:price).uniq.size > 1
-      price
-    else
-      ""
-    end
+    price = price_format thing.kinds.map(&:price).sort.first, thing.price_unit
+    price.concat(" 起") if thing.kinds.map(&:price).uniq.size > 1
+    price
   end
 
   def shopping_desc(length = 48)
