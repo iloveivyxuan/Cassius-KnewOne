@@ -162,7 +162,10 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
 
   toggleTagsForm: (event) ->
     event.preventDefault()
-    @model.set({tags_expanded: !@model.get('tags_expanded')})
+
+    @ui.tagsForm.slideToggle(300, =>
+      @model.set({tags_expanded: !@model.get('tags_expanded')})
+    )
 
   onTagsFormSubmit: (event) ->
     event.preventDefault() if event
