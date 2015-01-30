@@ -217,7 +217,7 @@ class ThingPresenter < PostPresenter
   end
 
   def options_for_kinds_with_price
-    kinds.map { |kind| kind.option_for_select(with_price: true) }.join
+    kinds.map { |kind| kind.option_for_select(true, true) }.join
   end
 
   def categories(depth=2)

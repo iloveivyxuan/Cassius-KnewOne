@@ -18,26 +18,12 @@ class KindPresenter < ApplicationPresenter
     kind.max_buyable
   end
 
-  def price
+  def price(only_text=false)
     return '价格待定' if kind.stage == :pre_order && kind.price.to_i <= 0
 
     str = price_format(kind.price)
+    str += bong_point_text(str, kind, only_text) if kind.can_consume_bong_point?
 
-    if kind.can_consume_bong_point?
-      min_point = kind.minimal_bong_point
-      max_point = kind.maximal_bong_point
-      point = '<b><a data-target="#bong_point_modal" data-toggle="modal" href="#">活跃点</a></b>'
-      text = if min_point.zero? && max_point > 0
-               "（使用 #{point} 抵扣 0 - #{kind.maximal_bong_point} 元）"
-             elsif !min_point.zero? && (min_point != max_point)
-               "（仅限 #{point} 用户购买，且可使用 #{point} 折扣 #{min_point} - #{max_point} 元）"
-             elsif !min_point.zero? && (min_point == max_point)
-               "（仅限 #{point} 用户购买，需支付 #{point} #{min_point} 个）"
-             end
-      str += <<-HTML
-        <small>#{text}</small>
-      HTML
-    end
     str.html_safe
   end
 
@@ -45,8 +31,8 @@ class KindPresenter < ApplicationPresenter
     "<em>#{kind.stock}</em> 库存".html_safe
   end
 
-  def option_for_select(with_price=false)
-    text = with_price ? title.concat(price) : title
+  def option_for_select(with_price=false, only_text=false)
+    text = with_price ? title.concat(price only_text) : title
     content_tag :option, text, value: id, data: {
       stock: stock,
       max: max,
@@ -55,4 +41,23 @@ class KindPresenter < ApplicationPresenter
       estimated: estimated_at
     }, class: "kind_option", disabled: (stock <= 0)
   end
+
+  def bong_point_text(str, kind, only_text=false)
+    min_point = kind.minimal_bong_point
+    max_point = kind.maximal_bong_point
+    point = only_text ? '活跃点' : '<b><a data-target="#bong_point_modal" data-toggle="modal" href="#">活跃点</a></b>'
+    text = if min_point.zero? && max_point > 0
+             "（使用 #{point} 抵扣 0 - #{kind.maximal_bong_point} 元）"
+           elsif !min_point.zero? && (min_point != max_point)
+             "（仅限 #{point} 用户购买，且可使用 #{point} 折扣 #{min_point} - #{max_point} 元）"
+           elsif !min_point.zero? && (min_point == max_point)
+             "（仅限 #{point} 用户购买，需支付 #{point} #{min_point} 个）"
+           end
+    str = <<-HTML
+            <small>#{text}</small>
+          HTML
+
+    only_text ? text : str
+  end
+
 end
