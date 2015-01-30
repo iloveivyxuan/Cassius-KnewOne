@@ -1,54 +1,63 @@
 module ThingsHelper
+
   def render_mobile_buy_button(thing)
-    case thing.stage
-    when :dsell
-      if user_signed_in?
-        link_to_with_icon "现在购买", "fa fa-shopping-cart", "#",
-        class: "btn btn-buy-mobile--shorten",
-        data: data_with_buy_tracker("dsell", thing.title, {toggle: "modal", target: "#mobile_buy_modal"})
-      elsif browser.wechat?
-        link_to_with_icon "现在购买", "fa fa-sign-in", login_path,
-        class: "btn btn--orange--true btn--login btn-buy-mobile",
-        data: data_with_login_tracker("dsell", thing.title, !browser.wechat?)
-      else
-        link_to_with_icon "请登录后购买", "fa fa-sign-in", login_path,
-        class: "btn btn--login btn-buy-mobile",
-        data: data_with_login_tracker("dsell", thing.title, !browser.wechat?)
-      end
-    when :pre_order
-      if user_signed_in?
-        link_to_with_icon "现在购买", "fa fa-shopping-cart", "#",
-        class: "btn btn-buy-mobile--shorten",
-        data: data_with_buy_tracker("pre_order", thing.title, {toggle: "modal", target: "#mobile_buy_modal"})
-      elsif browser.wechat?
-        link_to_with_icon "现在购买", "fa fa-sign-in", login_path,
-        class: "btn btn--orange--true btn--login btn-buy-mobile",
-        data: data_with_login_tracker("pre_order", thing.title, !browser.wechat?)
-      else
-        link_to_with_icon "请登录后购买", "fa fa-sign-in", login_path,
-        class: "btn btn--login btn-buy-mobile",
-        data: data_with_login_tracker("pre_order", thing.title, !browser.wechat?)
-      end
-    when :kick
-      if thing.shop.present?
-        link_to_with_icon "众筹", "fa fa-fire fa-lg", buy_thing_path(thing),
-        title: thing.title, class: "btn btn--kick btn-buy-mobile buy_button", target: "_blank", rel: 'nofollow',
-        data: data_with_buy_tracker("kick", thing.title)
-      end
-    when :domestic
-      if thing.shop.present?
-        link_to_with_icon "网购", "fa fa-location-arrow fa-lg", buy_thing_path(thing),
-        title: thing.title, class: "btn btn--online_shopping btn-buy-mobile buy_button", target: "_blank", rel: 'nofollow',
-        data: data_with_buy_tracker("domestic", thing.title)
-      end
-    when :abroad
-      if thing.shop.present?
-        link_to_with_icon "海淘", "fa fa-plane fa-lg", buy_thing_path(thing),
-        title: thing.title, class: "btn btn--online_shopping btn-buy-mobile buy_button", target: "_blank", rel: 'nofollow',
-        data: data_with_buy_tracker("abroad", thing.title)
-      end
+    self.thing = thing
+    respond_to?(thing.stage) ? send(thing.stage) : concept
+  end
+
+  def dsell
+    if user_signed_in?
+      link_to_with_icon "现在购买", "fa fa-shopping-cart", "#",
+      class: "btn btn-buy-mobile--shorten",
+      data: data_with_buy_tracker("dsell", thing.title, {toggle: "modal", target: "#mobile_buy_modal"})
+    elsif browser.wechat?
+      link_to_with_icon "现在购买", "fa fa-sign-in", login_path,
+      class: "btn btn--orange--true btn--login btn-buy-mobile",
+      data: data_with_login_tracker("dsell", thing.title, !browser.wechat?)
     else
-      nil
+      link_to_with_icon "请登录后购买", "fa fa-sign-in", login_path,
+      class: "btn btn--login btn-buy-mobile",
+      data: data_with_login_tracker("dsell", thing.title, !browser.wechat?)
+    end
+  end
+
+  def pre_order
+    if user_signed_in?
+      link_to_with_icon "现在购买", "fa fa-shopping-cart", "#",
+      class: "btn btn-buy-mobile--shorten",
+      data: data_with_buy_tracker("pre_order", thing.title, {toggle: "modal", target: "#mobile_buy_modal"})
+    elsif browser.wechat?
+      link_to_with_icon "现在购买", "fa fa-sign-in", login_path,
+      class: "btn btn--orange--true btn--login btn-buy-mobile",
+      data: data_with_login_tracker("pre_order", thing.title, !browser.wechat?)
+    else
+      link_to_with_icon "请登录后购买", "fa fa-sign-in", login_path,
+      class: "btn btn--login btn-buy-mobile",
+      data: data_with_login_tracker("pre_order", thing.title, !browser.wechat?)
+    end
+  end
+
+  def kick
+    if thing.shop.present?
+      link_to_with_icon "众筹", "fa fa-fire fa-lg", buy_thing_path(thing),
+      title: thing.title, class: "btn btn--kick btn-buy-mobile buy_button", target: "_blank", rel: 'nofollow',
+      data: data_with_buy_tracker("kick", thing.title)
+    end
+  end
+
+  def domestic
+    if thing.shop.present?
+      link_to_with_icon "网购", "fa fa-location-arrow fa-lg", buy_thing_path(thing),
+      title: thing.title, class: "btn btn--online_shopping btn-buy-mobile buy_button", target: "_blank", rel: 'nofollow',
+      data: data_with_buy_tracker("domestic", thing.title)
+    end
+  end
+
+  def abroad
+    if thing.shop.present?
+      link_to_with_icon "海淘", "fa fa-plane fa-lg", buy_thing_path(thing),
+      title: thing.title, class: "btn btn--online_shopping btn-buy-mobile buy_button", target: "_blank", rel: 'nofollow',
+      data: data_with_buy_tracker("abroad", thing.title)
     end
   end
 
@@ -195,5 +204,15 @@ module ThingsHelper
              end
     label = promotion.link
     return action, label
+  end
+
+  private
+
+  def thing=(thing)
+    @_thing ||= thing
+  end
+
+  def thing
+    @_thing
   end
 end
