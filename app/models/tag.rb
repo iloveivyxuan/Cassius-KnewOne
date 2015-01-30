@@ -7,5 +7,5 @@ class Tag
 
   index name: 1
 
-  validates :name, presence: true, uniqueness: true, length: {maximum: 12}
+  validates :name, presence: true, uniqueness: true, length: {maximum: 20}
 end
