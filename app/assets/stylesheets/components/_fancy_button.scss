@@ -17,7 +17,7 @@
   &:hover {
     i {
       &:before {
-        @extend .fa-edit;
+        @extend .fa-pencil;
         animation: swing .5s;
       }
     }
