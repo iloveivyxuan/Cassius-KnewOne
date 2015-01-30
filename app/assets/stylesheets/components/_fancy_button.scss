@@ -11,14 +11,16 @@
   }
 }
 
-[data-fancy].fancied,
-[data-fancy].desired,
-[data-fancy].owned {
-  &:hover {
-    i {
-      &:before {
-        @extend .fa-quote-left;
-        animation: swing .5s;
+html.desktop {
+  [data-fancy].fancied,
+  [data-fancy].desired,
+  [data-fancy].owned {
+    &:hover {
+      i {
+        &:before {
+          @extend .fa-quote-left;
+          animation: swing .5s;
+        }
       }
     }
   }
