@@ -180,7 +180,7 @@ html.entries_show {
 
     > .actions {
       @extend %shame-actions;
-      margin-bottom: 60px;
+      margin-bottom: 30px;
     }
 
     > .pager {
@@ -237,6 +237,7 @@ html.entries_show {
       > .content,
       > .actions,
       > .pager,
+      #follow_on_wechat,
       > .knewone-embed,
       .comments {
         margin: {
@@ -252,6 +253,7 @@ html.entries_show {
       > .summary,
       > .content,
       > .actions,
+      #follow_on_wechat,
       > .pager,
       > .knewone-embed,
       .comments {
@@ -259,6 +261,46 @@ html.entries_show {
           left: auto;
           right: auto;
         }
+      }
+    }
+  }
+
+  #follow_on_wechat {
+    margin-bottom: 30px;
+    padding: 0 30px;
+    text-align: center;
+
+    img {
+      @include square(180px);
+      margin-bottom: 10px;
+      vertical-align: middle;
+
+      @media (min-width: $screen-sm-min) {
+        @include square(100px);
+        margin: {
+          bottom: 0;
+          right: 15px;
+        }
+      }
+    }
+
+    p {
+      display: inline-block;
+      line-height: 30px;
+      margin: 0;
+      overflow: hidden;
+      text-align: center;
+      vertical-align: middle;
+
+      @media (min-width: $screen-sm-min) {
+        font-size: 16px;
+        height: 100px;
+        line-height: 50px;
+        text-align: left;
+      }
+
+      .logo {
+        margin: 0 5px;
       }
     }
   }

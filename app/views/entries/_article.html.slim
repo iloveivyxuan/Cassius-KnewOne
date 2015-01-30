@@ -45,6 +45,24 @@ article.article data-article-id=post.id
       = render partial: 'shared/voting', locals: {object: post}
     = render "shared/share_external", type: entry.category, title: entry_title(entry), object: entry
 
+  #follow_on_wechat
+    = image_tag "http://image.knewone.com/photos/341e1e3960f815d1b0eb96f345c0e9c1.jpg", alt: "KnewOne 订阅号二维码"
+    - if browser.mobile?
+      p
+        | 保存图片扫描二维码
+        br
+        | 每天获得
+        em.logo KnewOne
+        | 优惠折扣
+    - else
+      p
+        | 扫描二维码
+        br
+        | 每天获得
+        em.logo KnewOne
+        | 优惠折扣
+
+
   = render 'pager', entry: entry
 
   hr
