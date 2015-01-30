@@ -6,6 +6,7 @@ module ThingsHelper
   end
 
   def dsell
+    return if thing.valid_kinds.blank?
     if user_signed_in?
       link_to_with_icon "现在购买", "fa fa-shopping-cart", "#",
       class: "btn btn-buy-mobile--shorten",
