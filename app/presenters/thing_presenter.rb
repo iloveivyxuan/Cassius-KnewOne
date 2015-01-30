@@ -38,6 +38,7 @@ class ThingPresenter < PostPresenter
   end
 
   def price
+    return unless self.buy
     if thing.price.present?
       price_format thing.price, thing.price_unit
     else
@@ -62,6 +63,7 @@ class ThingPresenter < PostPresenter
   end
 
   def render_shopping_desc
+    return unless [:dsell, :adoption].include? thing.stage
     su = shopping_desc
     return unless su
 
@@ -124,6 +126,14 @@ class ThingPresenter < PostPresenter
 
   def buy
     @buy ||= respond_to?(thing.stage) ? send(thing.stage) : concept
+  end
+
+  def help
+    if thing.stage == :dsell
+      render 'things/help'
+    else
+      customer_service thing.merchant, "btn btn-service-terms btn--blue"
+    end
   end
 
   def official_site

@@ -1,23 +1,17 @@
-- if tp.buy
-  .shop
-    header.shop-header
-      = tp.adoption
-      - if tp.price.present?
-        #price.price
-          = tp.price
-    - if user_signed_in?
-      = tp.render_shopping_desc
-    .buy.clearfix
-      = tp.buy
-      - if tp.thing.stage == :dsell
-        = render 'things/help'
-      - else
-        = customer_service tp.thing.merchant, "btn btn-service-terms btn--blue"
-    - if tp.thing.merchant.present?
-      .merchant
-        | 由
-        = link_to tp.thing.merchant.name, merchant_path(tp.thing.merchant), class: "merchant-name"
-        | 发货并提供售后服务
+.shop
+  header.shop-header
+    = tp.adoption
+    #price.price
+      = tp.price
+  = tp.render_shopping_desc if user_signed_in?
+  .buy.clearfix
+    = tp.buy
+    = tp.help
+  - if tp.thing.merchant.present?
+    .merchant
+      | 由
+      = link_to tp.thing.merchant.name, merchant_path(tp.thing.merchant), class: "merchant-name"
+      | 发货并提供售后服务
 
 - content_for :script
   javascript:
