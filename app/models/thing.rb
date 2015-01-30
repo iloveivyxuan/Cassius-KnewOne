@@ -124,7 +124,7 @@ class Thing < Post
 
   def own(user)
     impression = impressions.find_or_initialize_by(author: user)
-    impression.update(state: :owned)
+    impression.update(state: :owned) if impression.state != :owned
   end
 
   def unfancy(user)
