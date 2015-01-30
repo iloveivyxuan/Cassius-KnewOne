@@ -11,7 +11,7 @@
   - data.merge!({category: "thing", action: "own", label: thing.title})
 
   - owned = user_signed_in? && thing.owned?(current_user)
-  - title = owned ? "修改拥有状态" : "拥有此产品"
+  - title = owned ? "修改产品印象" : "拥有此产品"
   - own_class = owned ? "owned" : "unowned"
   - icon_class = owned ? "fa-check-circle-o" : "fa-circle-o"
 
