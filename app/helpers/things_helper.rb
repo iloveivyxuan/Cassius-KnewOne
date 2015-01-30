@@ -39,27 +39,27 @@ module ThingsHelper
   end
 
   def kick
-    if thing.shop.present?
-      link_to_with_icon "众筹", "fa fa-fire fa-lg", buy_thing_path(thing),
-      title: thing.title, class: "btn btn--kick btn-buy-mobile buy_button", target: "_blank", rel: 'nofollow',
-      data: data_with_buy_tracker("kick", thing.title)
-    end
+    return unless thing.shop.present?
+
+    link_to_with_icon "众筹", "fa fa-fire fa-lg", buy_thing_path(thing),
+    title: thing.title, class: "btn btn--kick btn-buy-mobile buy_button", target: "_blank", rel: 'nofollow',
+    data: data_with_buy_tracker("kick", thing.title)
   end
 
   def domestic
-    if thing.shop.present?
-      link_to_with_icon "网购", "fa fa-location-arrow fa-lg", buy_thing_path(thing),
-      title: thing.title, class: "btn btn--online_shopping btn-buy-mobile buy_button", target: "_blank", rel: 'nofollow',
-      data: data_with_buy_tracker("domestic", thing.title)
-    end
+    return unless thing.shop.present?
+
+    link_to_with_icon "网购", "fa fa-location-arrow fa-lg", buy_thing_path(thing),
+    title: thing.title, class: "btn btn--online_shopping btn-buy-mobile buy_button", target: "_blank", rel: 'nofollow',
+    data: data_with_buy_tracker("domestic", thing.title)
   end
 
   def abroad
-    if thing.shop.present?
-      link_to_with_icon "海淘", "fa fa-plane fa-lg", buy_thing_path(thing),
-      title: thing.title, class: "btn btn--online_shopping btn-buy-mobile buy_button", target: "_blank", rel: 'nofollow',
-      data: data_with_buy_tracker("abroad", thing.title)
-    end
+    return unless thing.shop.present?
+
+    link_to_with_icon "海淘", "fa fa-plane fa-lg", buy_thing_path(thing),
+    title: thing.title, class: "btn btn--online_shopping btn-buy-mobile buy_button", target: "_blank", rel: 'nofollow',
+    data: data_with_buy_tracker("abroad", thing.title)
   end
 
   def render_mobile_adoption_button(thing)
