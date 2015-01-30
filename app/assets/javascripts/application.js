@@ -9,7 +9,7 @@
 //= require jquery_extend
 //= require handlebars.runtime
 //= require jquery_nested_form
-//= require sly
+//= require slick
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/load-image
 //= require matchmedia

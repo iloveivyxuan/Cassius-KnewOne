@@ -23,7 +23,6 @@ window.Making = do (exports = window.Making || {}) ->
   exports.InitThing = ->
     exports.carousel
       isResetItemWidth: true
-      cyclical: true
     exports.extendCarousel() unless $html.hasClass('mobile')
     exports.ReadMore('.post_content')
     exports.InitAdoption()

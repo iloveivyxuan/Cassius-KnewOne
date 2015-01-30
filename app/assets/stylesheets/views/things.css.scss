@@ -428,6 +428,13 @@ html.feelings_show {
           max-width: 100%;
         }
       }
+      &.reset-size {
+        .item {
+          img {
+            display: inline-block;
+          }
+        }
+      }
       .carousel-control {
         display: none;
         @include MQ(Lplus) {
@@ -485,7 +492,7 @@ html.feelings_show {
           min-width: 100%;
           height: 60px;
           text-align: center;
-          > li {
+          li {
             display: inline-block;
             width: 60px;
             height: 60px;

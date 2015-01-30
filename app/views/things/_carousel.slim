@@ -9,8 +9,8 @@
               - klass = index == 0 ? 'sharing_cover' : ''
               = image_tag photo.url(version), alt: photo.name, class: klass
         - if !browser.mobile? and tp.photos.count > 1
-          = link_to_with_icon "", "fa fa-angle-left", "#", class: "carousel-control left"
-          = link_to_with_icon "", "fa fa-angle-right", "#", class: "carousel-control right"
+          = link_to_with_icon "", "fa fa-angle-left", "javascript:void(0);", class: "carousel-control left"
+          = link_to_with_icon "", "fa fa-angle-right", "javascript:void(0);", class: "carousel-control right"
       - if !browser.mobile? and tp.photos.count > 1
         .carousel_overview.slideshow
           button.slideshow_control.left

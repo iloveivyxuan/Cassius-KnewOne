@@ -7,78 +7,42 @@ do (exports = Making) ->
     @options = _.extend {}, @defaults, options
 
     $(@options.element).each ->
-      $carousel = $(@)
+      $carousel = $(this)
       $controls = $carousel.find('.carousel-control')
+      $carouselBody = $carousel.find('.carousel-inner')
 
-      return true if $carousel.data('carousel')
+      return if $carouselBody.data('carousel')
 
-      options =
-        horizontal: true
-        itemNav: 'forceCentered'
-        smart: true
-        activateMiddle: true
-        mouseDragging: true
-        touchDragging: true
-        releaseSwing: true
-        cycleBy: 'items'
-        pauseOnHover: true
-        speed: 300
-        disabledClass: if that.options['cyclical'] then '' else 'is-disabled'
-      if $controls.length
-        $prev = $controls.filter('.left')
-        $next = $controls.filter('.right')
-        _.extend options,
-          prev: $prev
-          next: $next
+      $carouselBody.slick
+        autoplay: true,
+        autoplaySpeed: 2000
+        prevArrow: $controls.filter('.left')[0]
+        nextArrow: $controls.filter('.right')[0]
 
-      frame = new Sly(this, options)
-      $carousel.data('carousel', frame)
+      $carousel.data('carousel', $carouselBody.slick('getSlick'))
 
-      if that.options['cyclical']   
-        activeItem = 0
-        $carousel.on 'click', '.carousel-control.left', (e) ->          
-          frame.activate frame.items.length - 1 if activeItem == 0       
-        $carousel.on 'click', '.carousel-control.right', (e) ->
-          frame.activate 0 if activeItem == frame.items.length - 1
-        frame.on 'active', (_type, index) ->
-          setTimeout (-> activeItem = index), 0
+      if that.options.isResetItemWidth
+        $carousel.addClass('reset-size')
 
+        resetItemWidth = do ->
+          width = $carousel.css('width')
+          height = $carousel.css('height')
+          $carouselBody.find('.item') .css(width: width, height: height, lineHeight: height)
+          arguments.callee
 
-        offsetStart = 0
-        offsetEnd   = 0      
-        $carousel.on 'touchstart touchmove touchend', (e) ->
-          touch = e.originalEvent.changedTouches[0]
-          if activeItem == 0 || activeItem == frame.items.length - 1
-            if e.type is 'touchstart'
-              offsetStart = touch.clientX
-            else if e.type is 'touchend'
-              setTimeout ->
-                if activeItem == 0 && offsetEnd - offsetStart > 100
-                  frame.activate frame.items.length - 1
-                else if activeItem == frame.items.length - 1 && offsetEnd - offsetStart < -100
-                  frame.activate 0
-              , 0
-            else
-              offsetEnd = touch.clientX
-
-
-      resetItemWidth = ->
-        width = $carousel.css('width')
-        $carousel.find('.item').css('width', width)
-
-      $window.on 'resize', ->
-        resetItemWidth() if that.options.isResetItemWidth
-        frame.reload()
-
-      resetItemWidth() if that.options.isResetItemWidth
-      frame.init()
+        $window.on 'resize', ->
+          resetItemWidth() if that.options.isResetItemWidth
 
   exports.extendCarousel = ->
     $('.carousel--extend').each ->
-      $carousel = $(@)
-      $inner    = $carousel.find('.carousel-inner')
-      $item     = $inner.children('.item')
+      $carousel = $(this)
+      $carouselBody = $carousel.find('.carousel-inner')
+      $item     = $carouselBody.children('.item')
       $overview = $carousel.next('.carousel_overview')
+      $overviewBody = $overview.children('.slideshow_body')
+      $carouselNav = $overview.find('.slideshow_inner')
+      $slideshowControl = $overview.find('.slideshow_control')
+
       height    = _.min([parseInt($item.css('max-height')), $carousel.width() * 0.75]) + 'px'
 
       if !$html.hasClass('mobile')
@@ -88,33 +52,23 @@ do (exports = Making) ->
           lineHeight: height
 
       if $overview.length and Modernizr.mq('(min-width: ' + Making.Breakpoints.screenSMMin + ')')
-        $overviewBody = $overview.children('.slideshow_body')
-
         if $overviewBody.is(':visible')
-          carousel       = $carousel.data('carousel')
           $overviewItems = $overviewBody.find('[data-slide-to]')
+          $overviewItems.eq(0).addClass('active')
 
-          $overviewBody.sly
-            horizontal: 1
-            itemNav: 'centered'
-            smart: 1
-            activateOn: 'click'
-            mouseDragging: 1
-            touchDragging: 1
-            releaseSwing: 1
-            speed: 300
-            elasticBounds: 1
-            dragHandle: 1
-            dynamicHandle: 1
-            clickBar: 1
-            prevPage: $overview.find('.slideshow_control.left')
-            nextPage: $overview.find('.slideshow_control.right')
+          $carouselNav.slick
+            prevArrow: $slideshowControl.filter('.left')[0]
+            nextArrow: $slideshowControl.filter('.right')[0]
+            slidesToShow: 12
+            infinite: false
+            variableWidth: true
 
           $overviewItems.on 'click', ->
-            carousel.activate(@getAttribute('data-slide-to'))
+            $carouselBody.slick('slickGoTo', @getAttribute('data-slide-to'))
+            
 
-          carousel.on 'active', ->
-            index = $carousel.find('.carousel-inner').children('.item').filter('.active').index()
-            $overview.find('.slideshow_inner').children('li').eq(index).addClass('active').siblings().removeClass('active')
+          $carouselBody.on 'afterChange', (e, slick, index) ->
+            $overviewItems.eq(index).addClass('active').siblings().removeClass('active')
+            
 
   return exports

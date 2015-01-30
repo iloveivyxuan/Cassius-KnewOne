@@ -31,7 +31,7 @@ Making.CartItemNew = ->
       $quantity.prop('max', max)
 
     set_photo = (photo) ->
-      ($carousel= $("#thing_photos .carousel")).length && $carousel.data('carousel').activate photo
+      ($carousel= $("#thing_photos .carousel")).length && $carousel.data('carousel').slickGoTo photo
       return
 
     $kind.change ->
