@@ -4,6 +4,16 @@ module EntriesHelper
     entry.title.present? ? entry.title : entry.post.title
   end
 
+  def entry_cover(entry)
+    if entry.category == '专题' && entry.cover.present?
+      entry.cover.url(:middle)
+    elsif entry.canopy.present?
+      entry.canopy.url(:middle)
+    else
+      "http://image.knewone.com/photos/881180dea7302c0a0fd05717e5397eba.jpg!middle"
+    end
+  end
+
   def active_nav_tab(entry)
     provide :sidebar_nav, Entry::CATEGORIES[entry.category]
   end

@@ -3,7 +3,7 @@
 - page_title entry_title(@entry)
 - active_nav_tab(@entry)
 - provide :sharing_content, @entry.sharing_content
-- provide :sharing_cover, @entry.canopy.url || "http://image.knewone.com/photos/881180dea7302c0a0fd05717e5397eba.jpg"
+- provide :sharing_cover, entry_cover(@entry)
 - provide :wechat_cover_url, @entry.wechat_cover.url || @entry.canopy.url(:small)
 
 - unless browser.desktop?
