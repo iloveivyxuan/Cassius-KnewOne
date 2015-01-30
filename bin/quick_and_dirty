@@ -3,10 +3,10 @@
 curl -X POST --data-urlencode "payload={\"channel\": \"#dev\", \"username\": \"$(git config --global user.name)\", \"text\": \"QUICK AND DIRTY\", \"icon_emoji\": \":ghost:\"}" https://knewone.slack.com/services/hooks/incoming-webhook?token=JZzDMuRAdFIQQULJUadI4Yke &
 
 if [[ -z $1 ]]; then
-  rsync -avz --progress -e 'ssh -p22222' --exclude='app/assets/' app config lib deployer@knewone.com:~/apps/making/current &&
+  rsync -avz -e 'ssh -p22222' --exclude='app/assets/' app config lib deployer@knewone.com:~/apps/making/current &&
   bundle exec cap production unicorn:reload
 else
-  rsync -avz --progress -e 'ssh -p22222' app config lib deployer@knewone.com:~/apps/making/current &&
+  rsync -avz -e 'ssh -p22222' app config lib deployer@knewone.com:~/apps/making/current &&
   ssh -p 22222 deployer@knewone.com 'cd apps/making/current && RAILS_ENV=production /usr/local/rvm/bin/rvm default do bundle exec rake assets:precompile' &&
   bundle exec cap production unicorn:reload
 fi
