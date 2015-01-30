@@ -3,15 +3,11 @@
     = tp.adoption
     #price.price
       = tp.price
-  = tp.render_shopping_desc if user_signed_in?
+  = tp.render_shopping_desc
   .buy.clearfix
     = tp.buy
     = tp.help
-  - if tp.thing.merchant.present?
-    .merchant
-      | 由
-      = link_to tp.thing.merchant.name, merchant_path(tp.thing.merchant), class: "merchant-name"
-      | 发货并提供售后服务
+  .merchant= tp.merchant
 
 - content_for :script
   javascript:

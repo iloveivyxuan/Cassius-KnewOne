@@ -60,7 +60,9 @@ class ThingPresenter < PostPresenter
   end
 
   def render_shopping_desc
+    return unless user_signed_in?
     return unless [:dsell, :adoption].include? thing.stage
+
     su = shopping_desc
     return unless su
 
@@ -133,11 +135,20 @@ class ThingPresenter < PostPresenter
   end
 
   def help
+    return unless [:pre_order, :dsell, :adoption].include? thing.stage
+
     if thing.stage == :dsell
       render 'things/help'
     else
       customer_service thing.merchant, "btn btn-service-terms btn--blue"
     end
+  end
+
+  def merchant
+    return unless thing.merchant.present?
+    return unless [:pre_order, :dsell, :adoption].include? thing.stage
+
+    "由 #{link_to(thing.merchant.name, merchant_path(thing.merchant), class: 'merchant-name')} 发货并提供售后服务".html_safe
   end
 
   def official_site
