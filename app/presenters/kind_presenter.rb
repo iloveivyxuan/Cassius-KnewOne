@@ -28,14 +28,14 @@ class KindPresenter < ApplicationPresenter
       max_point = kind.maximal_bong_point
       point = '<b><a data-target="#bong_point_modal" data-toggle="modal" href="#">活跃点</a></b>'
       text = if min_point.zero? && max_point > 0
-               "（使用#{point}抵扣 0 - #{kind.maximal_bong_point} 元）"
+               "（使用 #{point} 抵扣 0 - #{kind.maximal_bong_point} 元）"
              elsif !min_point.zero? && (min_point != max_point)
-               "（仅限#{point}用户购买，且可使用#{point}折扣 #{min_point} - #{max_point} 元）"
+               "（仅限 #{point} 用户购买，且可使用 #{point} 折扣 #{min_point} - #{max_point} 元）"
              elsif !min_point.zero? && (min_point == max_point)
-               "（仅限#{point}用户购买，需支付#{point} #{min_point} 个）"
+               "（仅限 #{point} 用户购买，需支付 #{point} #{min_point} 个）"
              end
       str += <<-HTML
-        <h6>#{text}</h6>
+        <small>#{text}</small>
       HTML
     end
     str.html_safe
