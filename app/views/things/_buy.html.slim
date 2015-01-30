@@ -1,13 +1,14 @@
-.shop
-  header.shop-header
-    = tp.adoption
-    #price.price
-      = tp.price
-  = tp.render_shopping_desc
-  .buy.clearfix
-    = tp.buy
-    = tp.help
-  .merchant= tp.merchant
+- if tp.has_shop_section?
+  .shop
+    header.shop-header
+      = tp.adoption
+      #price.price
+        = tp.price
+    = tp.render_shopping_desc
+    .buy.clearfix
+      = tp.buy
+      = tp.help
+    .merchant= tp.merchant
 
 - content_for :script
   javascript:

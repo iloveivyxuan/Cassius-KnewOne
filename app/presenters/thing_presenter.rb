@@ -70,6 +70,13 @@ class ThingPresenter < PostPresenter
     locals: {summary: su, tp: self}
   end
 
+  def has_shop_section?
+    return true if thing.shopping_desc.present?
+    return true if thing.shop.present?
+    return true if thing.merchant.present?
+    false
+  end
+
   def render_shopping_desc_modal
     render partial: 'things/shopping_desc_modal',
            locals: {title: title, details: thing.shopping_desc.html_safe, tp: self}
@@ -135,7 +142,7 @@ class ThingPresenter < PostPresenter
   end
 
   def help
-    return unless [:pre_order, :dsell, :adoption].include? thing.stage
+    return unless [:pre_order, :dsell, :adoption].include?(thing.stage) || thing.shop.present?
 
     if thing.stage == :dsell
       render 'things/help'
