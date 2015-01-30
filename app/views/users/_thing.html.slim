@@ -34,6 +34,6 @@ li.thing
         - if impression.tags.present?
           ul.thing-tags
             - impression.tags.each do |tag|
-              li
+              li title=tag.name
                 i.fa.fa-tag
                 = tag.name

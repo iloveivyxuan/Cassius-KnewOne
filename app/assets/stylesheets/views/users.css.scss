@@ -544,7 +544,10 @@ html[class^="users_"] {
             margin-bottom: 5px;
 
             > li {
+              @include text-overflow;
+
               float: right;
+              max-width: 100%;
               margin: 0 0 10px 15px;
 
               i {
