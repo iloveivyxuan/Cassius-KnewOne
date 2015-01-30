@@ -1,7 +1,9 @@
 - dark = false if dark.nil?
+- data = {toggle: "modal", target: "#new-thing-modal"}
+- data.merge!({category: "thing", action: "create", label: "upload"})
 = image_tag image_path("not_found#{'_dark' if dark}.png"), alt: '啥都找不到 0_0'
 p
   | 没有找到相关的产品 0_0
-  = link_to new_thing_path
+  = link_to "#", data: data
     i.fa.fa-plus-square
     | 来分享吧~
