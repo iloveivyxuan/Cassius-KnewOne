@@ -119,6 +119,13 @@ class ThingPresenter < PostPresenter
     end
   end
 
+  def description
+    return unless user_signed_in?
+    return unless [:dsell, :pre_order].include?(tp.thing.stage)
+
+    link_to "详情", "#", data: {toggle: "modal", target: "#shopping_modal"}
+  end
+
   def adoption
     return nil unless thing.adoption
     render 'things/adopt', tp: self
