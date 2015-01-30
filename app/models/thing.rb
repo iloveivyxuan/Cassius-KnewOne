@@ -119,7 +119,7 @@ class Thing < Post
 
   def desire(user)
     impression = impressions.find_or_initialize_by(author: user)
-    impression.update(state: :desired) if impression.state != :owned
+    impression.update(state: :desired) if impression.state != :desired
   end
 
   def own(user)
