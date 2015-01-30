@@ -36,7 +36,17 @@
         </section>
       </form>
 
-      <form class="fancy_modal-tags_form">
+      <div class="fancy_modal-tags_form_toggle">
+        {{#if tags_expanded}}
+          <i class="fa fa-chevron-up"></i>
+        {{else}}
+          <i class="fa fa-chevron-down"></i>
+        {{/if}}
+
+        为产品打标签
+      </div>
+
+      <form class="fancy_modal-tags_form" {{#unless tags_expanded}}style="display: none"{{/unless}}>
         <div class="input-group">
           <input class="form-control" name="tag_names" type="text" placeholder="标签（用 “,” 隔开，每个标签12个字以内）" value="{{tag_names}}">
           <span class="input-group-btn">
