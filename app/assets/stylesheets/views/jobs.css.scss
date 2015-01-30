@@ -162,4 +162,10 @@ html.home_jobs {
       }
     }
   }
+
+  .carousel-inner {
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 46%;
+  }
 }
