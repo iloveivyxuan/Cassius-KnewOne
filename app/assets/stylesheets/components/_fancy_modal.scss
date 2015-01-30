@@ -28,6 +28,47 @@
   }
 
   .modal-body {
+    .fancy_modal-main_form {
+      textarea {
+        resize: none;
+      }
+    }
+
+    .fancy_modal-options {
+      @include clearfix;
+
+      margin-top: 15px;
+
+      label {
+        margin-bottom: 0;
+      }
+
+      .fancy_modal-state,
+      .fancy_modal-rating {
+        float: left;
+      }
+
+      .fancy_modal-sync_to_feeling {
+        float: right;
+      }
+
+      .fancy_modal-state {
+        [value="none"] {
+          display: none;
+        }
+
+        label {
+          margin-right: 1em;
+        }
+      }
+
+      .fancy_modal-rating {
+        .rating {
+          padding: 1px 0 0;
+        }
+      }
+    }
+
     .fancy_modal-tags_form {
       .input-group {
         .form-control {
@@ -88,49 +129,6 @@
           top: 19px;
           left: 0;
           margin: 0;
-        }
-      }
-    }
-
-    .fancy_modal-main_form {
-      margin-top: 15px;
-
-      textarea {
-        resize: none;
-      }
-    }
-
-    .fancy_modal-options {
-      @include clearfix;
-
-      margin-top: 15px;
-
-      label {
-        margin-bottom: 0;
-      }
-
-      .fancy_modal-state,
-      .fancy_modal-rating {
-        float: left;
-      }
-
-      .fancy_modal-sync_to_feeling {
-        float: right;
-      }
-
-      .fancy_modal-state {
-        [value="none"] {
-          display: none;
-        }
-
-        label {
-          margin-right: 1em;
-        }
-      }
-
-      .fancy_modal-rating {
-        .rating {
-          padding: 1px 0 0;
         }
       }
     }

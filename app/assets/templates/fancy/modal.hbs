@@ -14,45 +14,8 @@
     </div>
 
     <div class="modal-body">
-      <form class="fancy_modal-tags_form">
-        <div class="input-group">
-          <input class="form-control" name="tag_names" type="text" placeholder="标签（用 “,” 隔开，每个标签12个字以内）" value="{{tag_names}}">
-          <span class="input-group-btn">
-            <button class="btn btn-primary" type="submit">
-              <i class="fa fa-plus fa-alone"></i>
-            </button>
-          </span>
-        </div>
-
-        <div class="fancy_modal-all_tags">
-          <section class="fancy_modal-tags">
-            <ul>
-              {{#each tags}}{{> fancy/_tag}}{{/each}}
-            </ul>
-          </section>
-
-          {{#if recent_tags}}
-            <section class="fancy_modal-recent_tags">
-              <h6>最近</h6>
-              <ul>
-                {{#each recent_tags}}{{> fancy/_tag}}{{/each}}
-              </ul>
-            </section>
-          {{/if}}
-
-          {{#if popular_tags}}
-            <section class="fancy_modal-popular_tags">
-              <h6>推荐</h6>
-              <ul>
-                {{#each popular_tags}}{{> fancy/_tag}}{{/each}}
-              </ul>
-            </section>
-          {{/if}}
-        </div>
-      </form>
-
       <form class="fancy_modal-main_form">
-        <textarea class="form-control" name="description" rows="2" maxlength=140 placeholder="说点什么吧（140字以内哦）">{{description}}</textarea>
+        <textarea class="form-control" name="description" rows="4" maxlength=140 placeholder="说点什么吧（140字以内哦）">{{description}}</textarea>
 
         <section class="fancy_modal-options">
           {{#ifCond type '!=' 'own'}}
@@ -71,6 +34,43 @@
             <label><input type="checkbox" name="sync_to_feeling" {{#if sync_to_feeling}}checked{{/if}}>同步到短评</label>
           </div>
         </section>
+      </form>
+
+      <form class="fancy_modal-tags_form">
+        <div class="input-group">
+          <input class="form-control" name="tag_names" type="text" placeholder="标签（用 “,” 隔开，每个标签12个字以内）" value="{{tag_names}}">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="submit">
+              <i class="fa fa-plus fa-alone"></i>
+            </button>
+          </span>
+        </div>
+
+        <div class="fancy_modal-all_tags">
+          <section class="fancy_modal-tags">
+            <ul>
+              {{#each tags}}{{> fancy/_tag}}{{/each}}
+            </ul>
+          </section>
+
+          {{#if recent_tags}}
+          <section class="fancy_modal-recent_tags">
+            <h6>最近</h6>
+            <ul>
+              {{#each recent_tags}}{{> fancy/_tag}}{{/each}}
+            </ul>
+          </section>
+          {{/if}}
+
+          {{#if popular_tags}}
+          <section class="fancy_modal-popular_tags">
+            <h6>推荐</h6>
+            <ul>
+              {{#each popular_tags}}{{> fancy/_tag}}{{/each}}
+            </ul>
+          </section>
+          {{/if}}
+        </div>
       </form>
     </div>
 
