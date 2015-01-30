@@ -28,13 +28,55 @@
   }
 
   .modal-body {
-    @include clearfix;
+    .fancy_modal-main_form {
+      textarea {
+        resize: none;
+      }
+    }
 
-    > img {
-      display: none;
+    .fancy_modal-options {
+      @include clearfix;
+
+      margin-top: 15px;
+
+      label {
+        margin-bottom: 0;
+      }
+
+      .fancy_modal-state,
+      .fancy_modal-rating {
+        float: left;
+      }
+
+      .fancy_modal-sync_to_feeling {
+        float: right;
+      }
+
+      .fancy_modal-state {
+        [value="none"] {
+          display: none;
+        }
+
+        label {
+          margin-right: 1em;
+        }
+      }
+
+      .fancy_modal-rating {
+        .rating {
+          padding: 1px 0 0;
+        }
+      }
+    }
+
+    .fancy_modal-tags_form_toggle {
+      margin-top: 15px;
+      cursor: pointer;
     }
 
     .fancy_modal-tags_form {
+      margin-top: 15px;
+
       .input-group {
         .form-control {
           border-top-right-radius: 0;
@@ -95,68 +137,6 @@
           left: 0;
           margin: 0;
         }
-      }
-    }
-
-    .fancy_modal-main_form {
-      margin-top: 15px;
-
-      textarea {
-        resize: none;
-      }
-    }
-
-    .fancy_modal-options {
-      @include clearfix;
-
-      margin-top: 15px;
-
-      label {
-        margin-bottom: 0;
-      }
-
-      .fancy_modal-state,
-      .fancy_modal-rating {
-        float: left;
-      }
-
-      .fancy_modal-sync_to_feeling {
-        float: right;
-      }
-
-      .fancy_modal-state {
-        [value="none"] {
-          display: none;
-        }
-
-        label {
-          margin-right: 1em;
-        }
-      }
-
-      .fancy_modal-rating {
-        .rating {
-          padding: 1px 0 0;
-        }
-      }
-    }
-
-    @include from-breakpoint(sm) {
-      > img {
-        display: block;
-        float: left;
-        width: 30%;
-      }
-
-      .fancy_modal-tags_form {
-        float: left;
-        width: 70%;
-        padding-left: 15px;
-      }
-
-      .fancy_modal-main_form {
-        float: left;
-        width: 100%;
       }
     }
   }

@@ -11,6 +11,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
   events: {
     'hidden.bs.modal': 'destroy'
     'change input, textarea': 'onInputChange'
+    'click .fancy_modal-tags_form_toggle': 'toggleTagsForm'
     'submit @ui.tagsForm': 'onTagsFormSubmit'
     'click .fancy_modal-all_tags li': 'onTagClick'
     'click .fancy_modal-state input': 'onStateClick'
@@ -158,6 +159,13 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     change = {}
     change[$input.attr('name')] = $input.val()
     @model.set(change, {silent: true})
+
+  toggleTagsForm: (event) ->
+    event.preventDefault()
+
+    @ui.tagsForm.slideToggle(300, =>
+      @model.set({tags_expanded: !@model.get('tags_expanded')}, {silent: true})
+    )
 
   onTagsFormSubmit: (event) ->
     event.preventDefault() if event
