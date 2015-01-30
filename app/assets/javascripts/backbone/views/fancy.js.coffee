@@ -35,12 +35,12 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     first_time = (@model.get('type') == 'fancy' && !@model.get('fancied')) ||
                 (@model.get('type') == 'own' && @model.get('state') != 'owned')
 
-    tagNames = @model.get('tags')
+    tagNames = @model.get('tags') || []
     tags = tagNames.map((name) -> {name, selected: true})
-    recent_tags = @model.get('recent_tags')
+    recent_tags = (@model.get('recent_tags') || [])
       .filter((name) -> _.indexOf(tagNames, name) == -1)
       .map((name) -> {name, selected: false})
-    popular_tags = @model.get('popular_tags')
+    popular_tags = (@model.get('popular_tags') || [])
       .filter((name) -> _.indexOf(tagNames, name) == -1)
       .map((name) -> {name, selected: false})
 
