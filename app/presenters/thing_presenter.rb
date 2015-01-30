@@ -119,7 +119,7 @@ class ThingPresenter < PostPresenter
     end
   end
 
-  def description
+  def shop_details
     return unless user_signed_in?
     return unless [:dsell, :pre_order].include?(tp.thing.stage)
 

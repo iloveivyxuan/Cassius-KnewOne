@@ -3,7 +3,7 @@
     .mobile_shop_details
       - if tp.price.present?
         = tp.mobile_price
-      = tp.description
+      = tp.shop_details
 
     .mobile_shop_buttons
       = render_mobile_buy_button(tp.thing)
