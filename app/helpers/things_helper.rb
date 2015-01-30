@@ -2,7 +2,7 @@ module ThingsHelper
 
   def render_mobile_buy_button(thing)
     self.thing = thing
-    respond_to?(thing.stage) ? send(thing.stage) : concept
+    respond_to?(thing.stage) ? send(thing.stage) : nil
   end
 
   def dsell

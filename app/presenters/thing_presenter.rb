@@ -121,7 +121,7 @@ class ThingPresenter < PostPresenter
 
   def shop_details
     return unless user_signed_in?
-    return unless [:dsell, :pre_order].include?(tp.thing.stage)
+    return unless [:dsell, :pre_order].include?(thing.stage)
 
     link_to "详情", "#", data: {toggle: "modal", target: "#shopping_modal"}
   end
