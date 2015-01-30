@@ -43,12 +43,12 @@ class BongClient
     if r['code'] == ResponseCode::SUCCESS
       r['value']['point']
     else
-      Rails.logger.info "bong client not success in current_bong_point: uid #{@uid} access_token #{@access_token}"
+      Rails.logger.info "#{Time.now.to_s} bong client not success in current_bong_point: uid #{@uid} access_token #{@access_token}"
       Rails.logger.info r.to_s
       nil
     end
   rescue => e
-    Rails.logger.info "bong client error in current_bong_point: uid #{@uid} access_token #{@access_token}"
+    Rails.logger.info "#{Time.now.to_s} bong client error in current_bong_point: uid #{@uid} access_token #{@access_token}"
     Rails.logger.info e.message
     nil
   end
@@ -82,7 +82,7 @@ class BongClient
       }
     end
   rescue => e
-    Rails.logger.info "bong client error in refund_bong_point_by_order: uid #{@uid} access_token #{@access_token}"
+    Rails.logger.info "#{Time.now.to_s} bong client error in refund_bong_point_by_order: uid #{@uid} access_token #{@access_token}"
     Rails.logger.info e.message
     nil
   end
@@ -116,7 +116,7 @@ class BongClient
       }
     end
   rescue => e
-    Rails.logger.info "bong client error in consume_bong_point_by_order: uid #{@uid} access_token #{@access_token}"
+    Rails.logger.info "#{Time.now.to_s} bong client error in consume_bong_point_by_order: uid #{@uid} access_token #{@access_token}"
     Rails.logger.info e.message
     nil
   end
@@ -155,7 +155,7 @@ class BongClient
       }
     end
   rescue => e
-    Rails.logger.info "bong client error in consume_bong_point: uid #{@uid} access_token #{@access_token}"
+    Rails.logger.info "#{Time.now.to_s} bong client error in consume_bong_point: uid #{@uid} access_token #{@access_token}"
     Rails.logger.info e.message
     raise e
     nil
