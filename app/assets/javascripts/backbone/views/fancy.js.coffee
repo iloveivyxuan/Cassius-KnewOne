@@ -99,18 +99,18 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       if type == 'fancy'
         if $trigger.hasClass('unfancied') && fancied
           updateCount($count, 1)
-          updateTrigger($trigger, '修改喜欢状态', (if state == 'desired' then state else 'fancied'), 'fa-heart')
+          updateTrigger($trigger, '修改产品印象', (if state == 'desired' then state else 'fancied'), 'fa-heart')
         else if ($trigger.hasClass('fancied') || $trigger.hasClass('desired')) && !fancied
           updateCount($count, -1)
           updateTrigger($trigger, '喜欢此产品', "unfancied", 'fa-heart-o')
         else if $trigger.hasClass('fancied') && state == 'desired'
-          updateTrigger($trigger, '修改喜欢状态', "desired", 'fa-desire', 'swing')
+          updateTrigger($trigger, '修改产品印象', "desired", 'fa-desire', 'swing')
         else if $trigger.hasClass('desired') && state != 'desired'
-          updateTrigger($trigger, '修改喜欢状态', "fancied", 'fa-heart')
+          updateTrigger($trigger, '修改产品印象', "fancied", 'fa-heart')
       else if type == 'own'
         if $trigger.hasClass('unowned') && state == 'owned'
           updateCount($count, 1)
-          updateTrigger($trigger, '修改拥有状态', 'owned', 'fa-check-circle-o', 'flip')
+          updateTrigger($trigger, '修改产品印象', 'owned', 'fa-check-circle-o', 'flip')
         else if $trigger.hasClass('owned') && state != 'owned'
           updateCount($count, -1)
           updateTrigger($trigger, '拥有此产品', 'unowned', 'fa-circle-o', 'flip')

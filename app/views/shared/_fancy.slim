@@ -12,7 +12,7 @@
 
   - fancied = user_signed_in? && thing.fancied?(current_user)
   - desired = fancied && thing.desired?(current_user)
-  - title = fancied ? '修改喜欢状态' : '喜欢此产品'
+  - title = fancied ? '修改产品印象' : '喜欢此产品'
   - fancy_class = fancied ? (desired ? "desired" : "fancied") : "unfancied"
   - icon_class = fancied ? (desired ? "fa-desire" : "fa-heart") : "fa-heart-o"
 
