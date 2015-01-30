@@ -22,6 +22,10 @@ html.desktop {
           animation: swing .5s;
         }
       }
+
+      .fa-desire:after {
+        display: none;
+      }
     }
   }
 }
