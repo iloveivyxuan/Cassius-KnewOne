@@ -80,6 +80,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       $trigger
         .attr('title', title)
         .removeClass('unfancied fancied desired unowned owned')
+        .data({fancied, state})
         .children('.fa')
         .attr('class', "fa #{iconClass}")
         .addClass(animation)
@@ -90,29 +91,29 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
 
     $("[data-fancy='#{thing_id}']").each(->
       $trigger = $(this)
-      type = $trigger.data('type')
+      data = $trigger.data()
 
-      if type == 'fancy'
+      if data.type == 'fancy'
         $count = $trigger.find('.fanciers_count')
       else
         $count = $trigger.find('.owners_count')
 
-      if type == 'fancy'
-        if $trigger.hasClass('unfancied') && fancied
+      if data.type == 'fancy'
+        if !data.fancied && fancied
           updateCount($count, 1)
           updateTrigger($trigger, '修改产品印象', (if state == 'desired' then state else 'fancied'), 'fa-heart')
-        else if ($trigger.hasClass('fancied') || $trigger.hasClass('desired')) && !fancied
+        else if data.fancied && !fancied
           updateCount($count, -1)
-          updateTrigger($trigger, '喜欢此产品', "unfancied", 'fa-heart-o')
-        else if $trigger.hasClass('fancied') && state == 'desired'
-          updateTrigger($trigger, '修改产品印象', "desired", 'fa-desire', 'swing')
-        else if $trigger.hasClass('desired') && state != 'desired'
-          updateTrigger($trigger, '修改产品印象', "fancied", 'fa-heart')
-      else if type == 'own'
-        if $trigger.hasClass('unowned') && state == 'owned'
+          updateTrigger($trigger, '喜欢此产品', 'unfancied', 'fa-heart-o')
+        else if data.state != 'desired' && state == 'desired'
+          updateTrigger($trigger, '修改产品印象', 'desired', 'fa-desire', 'swing')
+        else if data.state == 'desired' && state != 'desired'
+          updateTrigger($trigger, '修改产品印象', 'fancied', 'fa-heart')
+      else if data.type == 'own'
+        if data.state != 'owned' && state == 'owned'
           updateCount($count, 1)
           updateTrigger($trigger, '修改产品印象', 'owned', 'fa-check-circle-o', 'flip')
-        else if $trigger.hasClass('owned') && state != 'owned'
+        else if data.state == 'owned' && state != 'owned'
           updateCount($count, -1)
           updateTrigger($trigger, '拥有此产品', 'unowned', 'fa-circle-o', 'flip')
     )
