@@ -28,12 +28,6 @@
   }
 
   .modal-body {
-    @include clearfix;
-
-    > img {
-      display: none;
-    }
-
     .fancy_modal-tags_form {
       .input-group {
         .form-control {
@@ -138,25 +132,6 @@
         .rating {
           padding: 1px 0 0;
         }
-      }
-    }
-
-    @include from-breakpoint(sm) {
-      > img {
-        display: block;
-        float: left;
-        width: 30%;
-      }
-
-      .fancy_modal-tags_form {
-        float: left;
-        width: 70%;
-        padding-left: 15px;
-      }
-
-      .fancy_modal-main_form {
-        float: left;
-        width: 100%;
       }
     }
   }
