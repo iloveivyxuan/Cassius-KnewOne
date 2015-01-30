@@ -50,7 +50,7 @@ do (exports = Making) ->
       $new_thing_edit_modal = $('#new-thing-edit-modal')
       $carousel = $('#new-thing-edit-modal-images .carousel')
       $new_thing_edit_modal
-        .on 'init.carousel', ->
+        .on 'shown.bs.modal', ->
           exports.carousel
             element: '#new-thing-edit-modal .carousel'
             isResetItemWidth: true
@@ -60,18 +60,19 @@ do (exports = Making) ->
           carousel = $carousel.data('carousel')
           $('[data-target="#new-thing-edit-modal-images .carousel"]').on 'click', (event) ->
             event.preventDefault()
-            carousel.activate $(@).attr('data-slide-to')
-        .on 'shown.bs.modal', ->
-          $new_thing_edit_modal.trigger 'init.carousel'
+            carousel.slickGoTo $(this).attr('data-slide-to')
+            
 
       $('#create_thing_modal_form').on('ajax:beforeSend',
-      (event, xhr, settings)->
-        $new_thing_edit_modal
-        .find('button').attr('disabled', true).end()
-        .find('.progress').show()
+      (event, xhr, settings)->        
+        $new_thing_edit_modal.find('.btn-primary').$progress
+          withText: false
+          doneThenRemove: false
+          initFn: ->
+            @$progress.css(borderRadius: '12px')
+            @$wrapper.css(marginLeft: '1em')
+        .$progress('start')
 
-        $progress_bar = $new_thing_edit_modal.find('.progress-bar')
-        $progress_bar.animate({width: '100%'}, 3000)
       ).on 'submit', (event) ->
         $form = $(@)
         $requiredFields = $form.find('[required]')
@@ -80,32 +81,24 @@ do (exports = Making) ->
           if $field.val().trim() is ''
             $field.tooltip('show')
 
-      $carousel_inner = $('#new-thing-edit-modal-images .carousel-inner')
-      $slideshow_inner = $('#new-thing-edit-modal-sortable')
-
-      $slideshow_inner.sortable()
-
-      $new_thing_edit_modal.find('textarea').$contentCount()
 
       $new_thing_edit_modal.on 'click', '#new-thing-edit-modal-sortable li', (e) ->
         e.preventDefault()
-
         $this = $(this)
         $input = $this.find('input')
-
         if $this.hasClass('selected')
           $this.removeClass('selected')
           $input.attr('disabled', 'disabled')
         else
           $this.addClass('selected')
           $input.removeAttr('disabled')
+      $new_thing_edit_modal.find('textarea').$contentCount()
 
 
-      i = 0
-      loaded = 0
-      flag = true
-      $images = $('#new-thing-edit-modal-images-container .image .item').find('img')
+      $carousel_inner = $('#new-thing-edit-modal-images .carousel-inner')
+      $slideshow_inner = $('#new-thing-edit-modal-sortable')
 
+      $slideshow_inner.sortable()
 
       resize = do ->
         winWidth = $(window).width()
@@ -127,6 +120,13 @@ do (exports = Making) ->
           $selector.css(height: size)
           $img.css(height: imgH, width: imgW)
 
+
+      i = 0
+      loaded = 0
+      flag = true
+      $images = $('#new-thing-edit-modal-images-container .image .item').find('img')
+      carousel = undefined
+
       $.each($images, (index, value)->
         $(value).one('load',
         ->
@@ -139,7 +139,11 @@ do (exports = Making) ->
           if height >= 300 || width >= 300
             $item = $this.parent()
             $('#new-thing-edit-modal-images').addClass('more-than-one')
-            $carousel_inner.append($item)
+            
+            if carousel ||= $carousel.data('carousel')
+              carousel.slickAdd($item[0])
+            else
+              $carousel_inner.append($item)
 
             $selector = $('#' + $this.attr('data-selector-id')).attr('data-slide-to', i).attr('draggable', true)
             $slideshow_inner.append($selector)
@@ -160,12 +164,8 @@ do (exports = Making) ->
               .find('input').val('').end()
               .find('input, button').attr('disabled', false)
 
-              $('#new-thing-url').$progress('remove');
+              $('#new-thing-url').$progress('remove')
             i += 1
-            carousel = $carousel.data('carousel')
-            if carousel isnt undefined
-              carousel.destroy().init() if i is 2
-              carousel.reload()
         ).each(
           ->
             if @.complete then $(@).load()
