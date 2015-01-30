@@ -4,7 +4,7 @@ class ExploreController < ApplicationController
   before_action :set_page
 
   def index
-    @entries = Entry.published.ne(category: '活动').desc(:created_at).page(params[:page]).per(@per)
+    @entries = Entry.published.not.in(category: %w(活动 特写)).desc(:created_at).page(params[:page]).per(@per)
 
     respond_to do |format|
       format.html
