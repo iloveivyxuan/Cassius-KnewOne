@@ -7,6 +7,7 @@ module ThingsHelper
 
   def dsell
     return if thing.valid_kinds.blank?
+
     if user_signed_in?
       link_to_with_icon "现在购买", "fa fa-shopping-cart", "#",
       class: "btn btn-buy-mobile--shorten",
@@ -23,6 +24,8 @@ module ThingsHelper
   end
 
   def pre_order
+    return if thing.valid_kinds.blank?
+
     if user_signed_in?
       link_to_with_icon "现在购买", "fa fa-shopping-cart", "#",
       class: "btn btn-buy-mobile--shorten",
