@@ -10,3 +10,16 @@
     font-size: 2em;
   }
 }
+
+[data-fancy].fancied,
+[data-fancy].desired,
+[data-fancy].owned {
+  &:hover {
+    i {
+      &:before {
+        @extend .fa-edit;
+        animation: swing .5s;
+      }
+    }
+  }
+}

@@ -78,11 +78,14 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     updateTrigger = ($trigger, title, triggerClass, iconClass, animation = 'heartbeat') ->
       $trigger
         .attr('title', title)
-        .attr('class', triggerClass)
+        .removeClass('unfancied fancied desired unowned owned')
         .children('.fa')
         .attr('class', "fa #{iconClass}")
         .addClass(animation)
-        .one(Making.prefixEvent('AnimationEnd'), -> $(this).removeClass(animation))
+        .one(Making.prefixEvent('AnimationEnd'), ->
+          $(this).removeClass(animation)
+          $trigger.addClass(triggerClass)
+        )
 
     $("[data-fancy='#{thing_id}']").each(->
       $trigger = $(this)
