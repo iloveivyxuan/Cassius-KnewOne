@@ -1,5 +1,7 @@
 module Haven
   class AdoptionsController < Haven::ApplicationController
+    include AddressesHelper
+
     layout 'settings'
 
     def index
@@ -17,7 +19,40 @@ module Haven
         @adoptions = @adoptions.where(:user_id => user.id) if user
       end
       @adoptions = @adoptions.order_by [:created_at, :desc]
-      @adoptions = @adoptions.page(params[:page]).per(params[:per] || 50)
+
+      respond_to do |format|
+        format.html do
+          @adoptions = @adoptions.page(params[:page]).per(params[:per] || 50)
+        end
+
+        format.csv do
+          lines = [%w(用户名 地址 邮箱 申请理由)]
+
+          @adoptions.includes(:user).each do |adoption|
+            cols = [
+                    adoption.user.name,
+                    content_for_address(adoption.address),
+                    adoption.user.email,
+                    adoption.note
+                   ]
+
+            lines<< cols
+          end
+
+          col_sep = (params[:platform] == 'numbers') ? ',' : ';'
+
+          csv = CSV.generate :col_sep => col_sep do |csv|
+            lines.each { |l| csv<< l }
+          end
+
+          if params[:platform] != 'numbers'
+            send_data csv.encode 'gb2312', :replace => ''
+          else
+            send_data csv, :replace => ''
+          end
+        end
+      end
+
     end
 
     def approve
