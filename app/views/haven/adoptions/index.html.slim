@@ -6,9 +6,7 @@ header.page-header
     | 领养管理
     small &nbsp;当前条件 #{ @adoptions.size }
 
-- queries = params.except(*request.path_parameters.keys)
-= link_to '导出CSV(Numbers)', "#{haven_adoptions_path(queries.merge(format: :csv, platform: 'numbers'))}", class: 'btn btn-success'
-= link_to '导出CSV(Excel)', "#{haven_adoptions_path(queries.merge(format: :csv))}", class: 'btn btn-success'
+
 
 .panel.panel-compact
   .panel-body.row
@@ -26,6 +24,12 @@ header.page-header
       .form-group
         = select_tag :thing, options_from_collection_for_select(Adoption.all_things, "title", "title"), class: "form-control"
       = submit_tag "查找产品", class: "btn btn-default"
+
+    .form-inline.col-sm-12
+      .form-group
+        - queries = params.except(*request.path_parameters.keys)
+        = link_to '导出CSV(Numbers)', "#{haven_adoptions_path(queries.merge(format: :csv, platform: 'numbers'))}", class: 'btn btn-success'
+        = link_to '导出CSV(Excel)', "#{haven_adoptions_path(queries.merge(format: :csv))}", class: 'btn btn-success'
 
 table.table.table-striped.table--fixed
   thead
