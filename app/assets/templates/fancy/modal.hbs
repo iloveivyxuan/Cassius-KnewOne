@@ -6,7 +6,11 @@
         {{#ifCond type '==' 'fancy'}}
           <i class="fa fa-heart-o"></i>
         {{else}}
-          <i class="fa fa-check-circle-o"></i>
+          {{#ifCond type '==' 'own'}}
+            <i class="fa fa-check-circle-o"></i>
+          {{else}}
+            <i class="fa fa-quote-left"></i>
+          {{/ifCond}}
         {{/ifCond}}
 
         {{thing.title}}
