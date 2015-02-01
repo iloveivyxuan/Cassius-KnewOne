@@ -1437,13 +1437,15 @@ html.feelings_show {
         }
       }
       .merchant {
-        background-color: #f7f7f7;
-        border-top: 1px solid #eee;
-        color: #b7b7b7;
-        font-size: 14px;
-        margin: 30px -21px -28px;
-        text-align: center;
-        padding: 18px 21px;
+        &:not(:empty) {
+          background-color: #f7f7f7;
+          border-top: 1px solid #eee;
+          color: #b7b7b7;
+          font-size: 14px;
+          margin: 30px -21px -28px;
+          text-align: center;
+          padding: 18px 21px;
+        }
       }
       .merchant-name {
         color: #777;
