@@ -38,22 +38,20 @@ class ThingPresenter < PostPresenter
   end
 
   def price
-    if thing.price.present?
-      price_format thing.price, thing.price_unit
-    else
-      ""
-    end
+    return unless self.buy
+    return "" unless thing.price.present?
+
+    price_format thing.price, thing.price_unit
   end
 
   def mobile_price
+    return unless price.present?
     return price_format(thing.price, thing.price_unit) unless thing.stage == :dsell
-    if thing.price.present?
-      price = price_format thing.kinds.map(&:price).sort.first, thing.price_unit
-      price.concat(" 起") if thing.kinds.map(&:price).uniq.size > 1
-      price
-    else
-      ""
-    end
+    return "" unless thing.price.present?
+
+    price = price_format thing.kinds.map(&:price).sort.first, thing.price_unit
+    price.concat(" 起") if thing.kinds.map(&:price).uniq.size > 1
+    price
   end
 
   def shopping_desc(length = 48)
@@ -62,11 +60,21 @@ class ThingPresenter < PostPresenter
   end
 
   def render_shopping_desc
+    return unless user_signed_in?
+    return unless [:dsell, :adoption].include? thing.stage
+
     su = shopping_desc
     return unless su
 
     render partial: 'things/shopping_desc',
     locals: {summary: su, tp: self}
+  end
+
+  def has_shop_section?
+    return true if thing.shopping_desc.present?
+    return true if thing.shop.present?
+    return true if thing.merchant.present?
+    false
   end
 
   def render_shopping_desc_modal
@@ -117,6 +125,13 @@ class ThingPresenter < PostPresenter
     end
   end
 
+  def shop_details
+    return unless user_signed_in?
+    return unless [:dsell, :adoption].include?(thing.stage)
+
+    link_to "详情", "#", data: {toggle: "modal", target: "#shopping_modal"}
+  end
+
   def adoption
     return nil unless thing.adoption
     render 'things/adopt', tp: self
@@ -124,6 +139,23 @@ class ThingPresenter < PostPresenter
 
   def buy
     @buy ||= respond_to?(thing.stage) ? send(thing.stage) : concept
+  end
+
+  def help
+    return unless [:pre_order, :dsell, :adoption].include?(thing.stage) || thing.shop.present?
+
+    if thing.stage == :dsell
+      render 'things/help'
+    else
+      customer_service thing.merchant, "btn btn-service-terms btn--blue"
+    end
+  end
+
+  def merchant
+    return unless thing.merchant.present?
+    return unless [:pre_order, :dsell, :adoption].include? thing.stage
+
+    "由 #{link_to(thing.merchant.name, merchant_path(thing.merchant), class: 'merchant-name')} 发货并提供售后服务".html_safe
   end
 
   def official_site
