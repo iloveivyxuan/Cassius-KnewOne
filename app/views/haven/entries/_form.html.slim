@@ -22,6 +22,7 @@
   = f.input :canopy
   = f.input :canopy_cache, as: :hidden
   = image_tag @entry.canopy.url(:normal), style: 'height:160px' if @entry.canopy.url
+  = f.input :cover_img, collection: [:cover, :canopy]
   = f.input :wechat_cover
   = f.input :wechat_cover_cache, as: :hidden
   = image_tag @entry.wechat_cover.url if @entry.wechat_cover.url

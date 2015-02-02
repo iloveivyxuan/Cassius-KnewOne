@@ -110,6 +110,7 @@ zh-CN:
         title: '标题'
         cover: '封面'
         wechat_cover: '微信分享图(80x80)'
+        cover_img: '精选首页图片选择'
         canopy: '文章顶部图片'
         avatar: "作者头像"
         summary: '摘要'

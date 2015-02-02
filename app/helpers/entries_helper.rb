@@ -6,7 +6,11 @@ module EntriesHelper
 
   def entry_cover(entry)
     if entry.category == '专题' && entry.cover.present?
-      entry.cover.url(:middle)
+      if entry.cover_img == :cover
+        entry.cover.url(:middle)
+      else
+        entry.canopy.url(:middle)
+      end
     elsif entry.canopy.present?
       entry.canopy.url(:middle)
     else
