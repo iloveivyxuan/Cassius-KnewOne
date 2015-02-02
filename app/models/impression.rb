@@ -116,8 +116,13 @@ class Impression
   end
 
   def tag_names=(names)
-    self.tags = names.map do |name|
-      Tag.find_or_create_by(name: name.to_s)
+    names.each do |name|
+      tag = Tag.find_or_create_by(name: name.to_s)
+      self.tags << tag unless self.tags.include?(tag)
+    end
+
+    self.tags.nin(name: names).each do |tag|
+      self.tags.delete(tag)
     end
   end
 
