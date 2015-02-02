@@ -1,7 +1,7 @@
 - if @things.present?
   - if @tags.present?
     nav
-      ul.user_tags
+      ul.user_tags.collapsed
         li class=('active' if params[:tag].blank?)
           = link_to '全部', tag: ''
         - @tags.each do |tag|
@@ -10,8 +10,30 @@
               i.fa.fa-tag
               = tag.name
 
+      .user_tags-toggle 展开所有标签
+
   ul.contents = render partial: 'thing', collection: @things
 - else
   section.contents = render 'shared/nothing'
 
 = paginate @impressions
+
+- content_for :script do
+  javascript:
+    $tags = $('.user_tags')
+    $toggle = $('.user_tags-toggle')
+
+    if ($tags[0].scrollHeight > $tags[0].offsetHeight) {
+      $toggle.show()
+
+      $toggle.on('click', function (event) {
+        event.preventDefault()
+        if ($tags.hasClass('collapsed')) {
+          $tags.removeClass('collapsed')
+          $toggle.text('收起标签')
+        } else {
+          $tags.addClass('collapsed')
+          $toggle.text('展开所有标签')
+        }
+      })
+    }

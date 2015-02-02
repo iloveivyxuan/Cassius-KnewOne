@@ -925,46 +925,64 @@ html.users_fancies,
 html.users_desires,
 html.users_owns {
   #wrapper {
-    ul.user_tags {
-      @include clearfix;
-
-      margin: 10px 0;
-      padding-bottom: 10px;
-
+    > nav {
       @include to-breakpoint(sm) {
         padding-right: 20px;
       }
 
-      > li {
-        float: right;
-        margin: 10px 0 0 10px;
+      ul.user_tags {
+        @include clearfix;
 
-        overflow: hidden;
-        max-width: 100%;
+        margin: 10px 0;
+        padding-bottom: 10px;
 
-        background: white;
-        border-radius: 10px;
-
-        a {
-          display: inline-block;
-          padding: 7px 12px;
-          color: $text-color;
+        &.collapsed {
+          overflow: hidden;
+          max-height: 98px;
         }
 
-        &.active {
-          background: $gray-light;
-          a { color: white; }
+        > li {
+          float: right;
+          margin: 10px 0 0 10px;
+
+          overflow: hidden;
+          max-width: 100%;
+
+          background: white;
+          border-radius: 10px;
+
+          a {
+            display: inline-block;
+            padding: 7px 12px;
+            color: $text-color;
+          }
+
+          &.active {
+            background: $gray-light;
+            a { color: white; }
+          }
         }
       }
-    }
 
-    @at-root html.flexbox ul.user_tags {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+      @at-root html.flexbox ul.user_tags {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
 
-      > li {
-        float: none !important;
+        > li {
+          float: none !important;
+        }
+      }
+
+      .user_tags-toggle {
+        display: none;
+
+        margin-top: -10px;
+        margin-bottom: 15px;
+        text-align: right;
+
+        cursor: pointer;
+        color: $link-color;
       }
     }
   }
