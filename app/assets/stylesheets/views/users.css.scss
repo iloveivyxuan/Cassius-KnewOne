@@ -622,23 +622,32 @@ html[class^="users_"] {
           position: relative;
 
           .thing_list-destroy {
-            position: absolute;
-            right: 0;
-            bottom: 38px;
+            display: none;
 
-            display: block;
-            width: 40px;
-            line-height: 42px;
-            font-size: 40px;
+            @include to-breakpoint(sm) {
+              display: block;
+            }
+
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            width: 30px;
+            line-height: 30px;
+            font-size: 24px;
             font-family: 'Lato Thin';
             text-align: center;
 
             background: $vulcan;
-            color: white;
+            a { color: white; }
 
             &:hover {
               background: $red;
             }
+          }
+
+          &:hover .thing_list-destroy {
+            display: block;
           }
         }
 
