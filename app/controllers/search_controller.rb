@@ -1,6 +1,5 @@
 class SearchController < ApplicationController
   before_action :fix_query
-  before_action :fix_page
   before_action :redirect_empty_query
 
   def index
@@ -70,10 +69,6 @@ class SearchController < ApplicationController
 
   def fix_query
     params[:q] = params[:q].to_s
-  end
-
-  def fix_page
-    params[:page] = params[:page].first if params[:page].is_a?(Array)
   end
 
   def redirect_empty_query
