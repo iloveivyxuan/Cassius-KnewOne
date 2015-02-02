@@ -69,6 +69,7 @@ class Impression
 
         if author != thing.author
           author.log_activity(:fancy_thing, thing, check_recent: true)
+          thing.author.notify(:fancy_thing, context: thing, sender: author, opened: false)
         end
       end
 

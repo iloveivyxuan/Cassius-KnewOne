@@ -110,11 +110,7 @@ class Thing < Post
 
   def fancy(user)
     impression = impressions.find_or_initialize_by(author: user)
-
-    return if impression.fancied
-
-    impression.update(fancied: true)
-    author.notify(:fancy_thing, context: self, sender: user, opened: false)
+    impression.update(fancied: true) unless impression.fancied
   end
 
   def desire(user)
