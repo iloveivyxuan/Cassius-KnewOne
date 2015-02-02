@@ -4,7 +4,9 @@ class ExploreController < ApplicationController
   before_action :set_params
 
   def index
-    @entries = Entry.published.not.in(category: %w(活动 特写)).desc(:created_at).page(@page).per(@per).offset(@offset)
+    entries = Entry.published.not.in(category: %w(活动 特写))
+    @entries = entries.desc(:created_at).page(@page).per(@per).offset(@offset)
+    @pager = Kaminari.paginate_array([], total_count: entries.size).page(params[:page]).per(12)
 
     respond_to do |format|
       format.html
