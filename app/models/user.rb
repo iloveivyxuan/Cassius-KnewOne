@@ -512,8 +512,9 @@ HERE
   # tags
   has_and_belongs_to_many :tags, inverse_of: nil
 
-  def recent_tags(limit)
-    tag_ids = self.tag_ids.take(limit)
+  def recent_tags(limit = nil)
+    tag_ids = self.tag_ids
+    tag_ids = tag_ids.take(limit) if limit
     Tag.only(:id, :name).in(id: tag_ids).sort_by { |tag| tag_ids.index(tag.id) }
   end
 
