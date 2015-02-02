@@ -1,3 +1,5 @@
+- read_more_tip = ['评测', '列表'].include?(@entry.category) ? '了解产品详情' : (@entry.category == '专访' ? '查看TA的装备' : '查看详情')
+
 doctype html
 html
   head
@@ -28,4 +30,4 @@ html
                 span style="color: rgb(255, 255, 255);"  发现更多 关注微博 @KnewOne
               p style="clear: both; padding: 5px; font-family: inherit; font-size: 14px; line-height: 1.5;"
                 strong
-                  span style="color: rgb(255, 255, 255);"  戳[阅读原文]blablabla
+                  span style="color: rgb(255, 255, 255);" 戳[阅读原文]#{read_more_tip}
