@@ -13,7 +13,7 @@ module Haven
     end
 
     def edit
-      @stat = Stat.find(date_from: params[:query], status: params[:status])
+      @stat = Stat.find_by(date_from: params[:query], status: params[:status])
     end
 
     private
