@@ -35,5 +35,6 @@ li.thing
           ul.thing-tags
             - impression.tags.each do |tag|
               li title=tag.name
-                i.fa.fa-tag
-                = tag.name
+                = link_to tag: tag.slug
+                  i.fa.fa-tag
+                  = tag.name
