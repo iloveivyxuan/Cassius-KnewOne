@@ -150,6 +150,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     @model.trigger('change')
 
   addTags: (tagNames) ->
+    tagNames.reverse()
     @toggleTags(tagNames, true)
 
   onInputChange: (event) ->
