@@ -25,7 +25,9 @@ class ExploreController < ApplicationController
   }.each do |k, v|
     class_eval <<-EVAL
         def #{k}
-          @entries = Entry.published.where(category: '#{v}').desc(:created_at).page(@page).per(@per).offset(@offset)
+          entries = Entry.published.where(category: '#{v}')
+          @entries = entries.desc(:created_at).page(@page).per(@per).offset(@offset)
+          @pager = Kaminari.paginate_array([], total_count: entries.size).page(params[:page]).per(12)
           render 'index'
         end
     EVAL

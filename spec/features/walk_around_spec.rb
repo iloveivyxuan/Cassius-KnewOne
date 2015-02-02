@@ -48,10 +48,9 @@ feature 'Walk around (Smoke test)', slow: true do
      edit_notification_settings_path,
      # explore
      explore_path,
-     explore_features_path,
+     explore_talks_path,
      explore_reviews_path,
-     explore_specials_path,
-     explore_events_path,
+     explore_lists_path,
      # users
      fancies_user_path(user),
      owns_user_path(user),
