@@ -142,6 +142,7 @@ class ThingPresenter < PostPresenter
   end
 
   def help
+    return if [:domestic, :abroad].include?(thing.stage)
     return unless [:pre_order, :dsell, :adoption].include?(thing.stage) || thing.shop.present?
 
     if thing.stage == :dsell
