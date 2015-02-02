@@ -90,6 +90,13 @@
         }
       }
 
+      .help-block {
+        margin-bottom: 0;
+        padding-left: 12px;
+        color: $brand-danger;
+        font-size: 90%;
+      }
+
       .fancy_modal-all_tags {
         overflow: auto;
         max-height: 220px;
