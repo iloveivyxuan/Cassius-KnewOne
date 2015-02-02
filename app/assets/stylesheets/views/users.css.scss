@@ -469,6 +469,35 @@ html[class^="users_"] {
           @include plain-link($gray-light);
         }
 
+        header {
+          position: relative;
+
+          [data-fancy] {
+            display: none;
+
+            @include to-breakpoint(sm) {
+              display: block;
+            }
+
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            height: 30px;
+            width: 30px;
+            font-size: 20px;
+            line-height: 30px;
+            text-align: center;
+
+            background: $vulcan;
+            color: white;
+          }
+
+          &:hover [data-fancy] {
+            display: block;
+          }
+        }
+
         .thing-cover {
           position: relative;
           height: 0;

@@ -250,7 +250,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     $.ajax({
       url: @url('.js')
       type: 'PATCH'
-      data: {impression}
+      data: {impression, from: @model.get('from')}
     }, eval)
 
     @tryToSyncToFeeling()
