@@ -1,8 +1,8 @@
 - page_title '拥有'
 
-- if @owns.present?
-  ul.contents = render partial: 'thing', collection: @owns
+- if @things.present?
+  ul.contents = render partial: 'thing', collection: @things
 - else
   section.contents = render 'shared/nothing'
 
-= paginate @owns
+= paginate @things

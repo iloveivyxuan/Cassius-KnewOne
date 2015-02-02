@@ -11,15 +11,15 @@ class UsersController < ApplicationController
   end
 
   def fancies
-    @fancies = @user.fancies_sorted_by_ids(params[:page], 24)
+    @things = @user.fancies_sorted_by_ids(params[:page], 24)
   end
 
   def desires
-    @desires = @user.desires_sorted_by_ids(params[:page], 24)
+    @things = @user.desires_sorted_by_ids(params[:page], 24)
   end
 
   def owns
-    @owns = @user.owns_sorted_by_ids(params[:page], 24)
+    @things = @user.owns_sorted_by_ids(params[:page], 24)
   end
 
   def lists
