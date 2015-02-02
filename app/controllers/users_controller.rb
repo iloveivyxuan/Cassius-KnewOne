@@ -11,45 +11,18 @@ class UsersController < ApplicationController
   end
 
   def fancies
-    @tag = Tag.find(params[:tag]) if params[:tag].present?
-
     @impressions = @user.impressions.fancied
-    tag_ids = @user.tag_ids & @impressions.distinct(:tag_ids)
-    @tags = Tag.in(id: tag_ids).sort_by { |t| tag_ids.index(t.id) }
-
-    @impressions = @impressions.by_tag(@tag) if @tag
-    @impressions = @impressions.page(params[:page]).per(24)
-
-    thing_ids = @impressions.pluck(:thing_id)
-    @things = Thing.in(id: thing_ids).sort_by { |t| thing_ids.index(t.id) }
+    setup_tags_and_things_about_impressions
   end
 
   def desires
-    @tag = Tag.find(params[:tag]) if params[:tag].present?
-
     @impressions = @user.impressions.desired
-    tag_ids = @user.tag_ids & @impressions.distinct(:tag_ids)
-    @tags = Tag.in(id: tag_ids).sort_by { |t| tag_ids.index(t.id) }
-
-    @impressions = @impressions.by_tag(@tag) if @tag
-    @impressions = @impressions.page(params[:page]).per(24)
-
-    thing_ids = @impressions.pluck(:thing_id)
-    @things = Thing.in(id: thing_ids).sort_by { |t| thing_ids.index(t.id) }
+    setup_tags_and_things_about_impressions
   end
 
   def owns
-    @tag = Tag.find(params[:tag]) if params[:tag].present?
-
     @impressions = @user.impressions.owned
-    tag_ids = @user.tag_ids & @impressions.distinct(:tag_ids)
-    @tags = Tag.in(id: tag_ids).sort_by { |t| tag_ids.index(t.id) }
-
-    @impressions = @impressions.by_tag(@tag) if @tag
-    @impressions = @impressions.page(params[:page]).per(24)
-
-    thing_ids = @impressions.pluck(:thing_id)
-    @things = Thing.in(id: thing_ids).sort_by { |t| thing_ids.index(t.id) }
+    setup_tags_and_things_about_impressions
   end
 
   def lists
@@ -147,5 +120,20 @@ class UsersController < ApplicationController
 
   def profile
     render layout: false
+  end
+
+  private
+
+  def setup_tags_and_things_about_impressions
+    @tag = Tag.find(params[:tag]) if params[:tag].present?
+
+    tag_ids = @user.tag_ids & @impressions.distinct(:tag_ids)
+    @tags = Tag.in(id: tag_ids).sort_by { |t| tag_ids.index(t.id) }
+
+    @impressions = @impressions.by_tag(@tag) if @tag
+    @impressions = @impressions.page(params[:page]).per(24)
+
+    thing_ids = @impressions.pluck(:thing_id)
+    @things = Thing.in(id: thing_ids).sort_by { |t| thing_ids.index(t.id) }
   end
 end
