@@ -2,10 +2,10 @@
   - if @tags.present?
     nav
       ul.user_tags.collapsed
-        li class=('active' if params[:tag].blank?)
+        li class=('active' unless @tag)
           = link_to '全部', tag: ''
         - @tags.each do |tag|
-          li class=('active' if params[:tag] == tag.slug)
+          li class=('active' if tag == @tag)
             = link_to tag: tag.slug, title: tag.name
               i.fa.fa-tag
               = tag.name
