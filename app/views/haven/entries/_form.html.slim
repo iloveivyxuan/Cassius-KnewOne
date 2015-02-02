@@ -13,16 +13,16 @@
   = f.input :cover_img, collection: [["封面", :cover], ["文章顶部图片", :canopy]], selected: :canopy
   = f.input :cover
   = f.input :cover_cache, as: :hidden
-  = image_tag @entry.cover.url(:normal), style: 'height:160px' if @entry.cover.url
+  = image_tag @entry.cover.url(:normal), style: 'height:160px;margin-bottom: 15px;' if @entry.cover.url
   = f.input :canopy
   = f.input :canopy_cache, as: :hidden
-  = image_tag @entry.canopy.url(:normal), style: 'height:160px' if @entry.canopy.url
+  = image_tag @entry.canopy.url(:normal), style: 'height:160px;margin-bottom: 15px;' if @entry.canopy.url
   = f.input :wechat_cover
   = f.input :wechat_cover_cache, as: :hidden
   = image_tag @entry.wechat_cover.url if @entry.wechat_cover.url
   = f.input :published, as: :radio_buttons
   = f.input :created_at, as: :datetime
-  = f.button :submit
+  = f.button :submit, class: "btn btn-primary"
 
 - content_for :script do
   javascript:

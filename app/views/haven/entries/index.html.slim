@@ -7,35 +7,36 @@ header.page-header
 table.table.table-striped
   thead
     tr
-      th 封面
-      th 标题
-      th 微信标题
-      th 分类
-      th 创建时间
-      th 公开
-      th 操作
+      th width="15%" 封面
+      th width="20%" 标题
+      th width="12%" 微信标题
+      th width="7%" 分类
+      th width="20%" 创建时间
+      th width="6%" 公开
+      th width="20%" 操作
   tbody
     - @entries.each do |e|
       tr
-        td width="15%"
-        td width="15%"
+        td
           = image_tag(entry_cover(e, :small), height: 90, width: 90)
+        td
           = entry_title e
-        td width="10%"
+        td
           = e.wechat_title
-        td width="7%"
+        td
           = e.category
-        td width="20%"
+        td
           = date_time_text(e.created_at)
-        td width="5%"
+        td
           = e.published?
-        td width="28%"
+        td
           = link_to '查看', e, target: '_blank'
           span.separator |
           = link_to '微信', wechat_entry_path(id: e.id), target: '_blank'
           span.separator |
           = link_to '原图', photos_entry_path(id: e.id), target: '_blank'
-          span.separator |
+          br
+          br
           = link_to '编辑', edit_haven_entry_path(e)
           span.separator |
           = link_to '删除', haven_entry_path(e), method: :delete, data: {confirm: 'are you sure?'}
