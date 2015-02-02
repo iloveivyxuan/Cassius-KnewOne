@@ -515,7 +515,7 @@ HERE
   def recent_tags(limit = nil)
     tag_ids = self.tag_ids
     tag_ids = tag_ids.take(limit) if limit
-    Tag.only(:id, :name).in(id: tag_ids).sort_by { |tag| tag_ids.index(tag.id) }
+    Tag.in(id: tag_ids).sort_by { |tag| tag_ids.index(tag.id) }
   end
 
   # recommend users who not followed by self
