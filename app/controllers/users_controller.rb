@@ -128,7 +128,7 @@ class UsersController < ApplicationController
     @tag = Tag.find(params[:tag]) if params[:tag].present?
 
     tag_ids = @user.tag_ids & @impressions.distinct(:tag_ids)
-    @tags = Tag.in(id: tag_ids).sort_by { |t| tag_ids.index(t.id) }
+    @tags = Tag.in(id: tag_ids).sort_by { |t| t == @tag ? -1 : tag_ids.index(t.id) }
 
     @impressions = @impressions.by_tag(@tag) if @tag
     @impressions = @impressions.page(params[:page]).per(24)
