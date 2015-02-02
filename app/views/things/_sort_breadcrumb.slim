@@ -4,9 +4,9 @@ ol.breadcrumb
     li.active
       | 最新
     li
-      = link_to "热门", params.merge(sort_by: 'fanciers_count')
+      = link_to "热门", sort_by: 'fanciers_count'
   - else
     li
-      = link_to "最新", params.merge(sort_by: 'created_at')
+      = link_to "最新", sort_by: 'created_at'
     li.active
       | 热门
