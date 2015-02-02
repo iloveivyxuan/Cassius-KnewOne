@@ -127,6 +127,7 @@ group :development do
   gem 'spring-commands-rspec'
   gem 'meta_request'
   gem 'pry-rails'
+  gem 'pry-remote'
   gem 'pry-doc'
 
   # deploy

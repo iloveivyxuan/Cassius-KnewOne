@@ -1,8 +1,3 @@
 - page_title '喜欢'
 
-- if @fancies.present?
-  ul.contents = render partial: 'thing', collection: @fancies
-- else
-  section.contents = render 'shared/nothing'
-
-= paginate @fancies
+= render 'things'

@@ -28,6 +28,7 @@ class Impression
 
   scope :by_user, ->(user) { where(author: user) }
   scope :of_thing, ->(thing) { where(thing: thing) }
+  scope :by_tag, ->(tag) { where(tag_ids: tag.id) }
 
   before_save do
     now = Time.now.utc if state_changed? || fancied_changed?
@@ -115,8 +116,13 @@ class Impression
   end
 
   def tag_names=(names)
-    self.tags = names.map do |name|
-      Tag.find_or_create_by(name: name.to_s)
+    names.each do |name|
+      tag = Tag.find_or_create_by(name: name.to_s)
+      self.tags << tag unless self.tags.include?(tag)
+    end
+
+    self.tags.nin(name: names).each do |tag|
+      self.tags.delete(tag)
     end
   end
 

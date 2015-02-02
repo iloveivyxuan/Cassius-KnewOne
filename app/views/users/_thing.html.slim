@@ -7,6 +7,10 @@ li.thing
     = link_to thing, target: '_blank', class: 'thing-title', title: thing.title
       h4 = thing.title
 
+    - if current_user == @user
+      a href="#" data-fancy=thing.id data-type="edit" data-from="user"
+        i.fa.fa-edit.fa-alone
+
   footer
     ul.thing-counts
       - if thing.fanciers_count > 0
@@ -35,5 +39,6 @@ li.thing
           ul.thing-tags
             - impression.tags.each do |tag|
               li title=tag.name
-                i.fa.fa-tag
-                = tag.name
+                = link_to tag: tag.slug
+                  i.fa.fa-tag
+                  = tag.name

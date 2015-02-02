@@ -16,7 +16,7 @@ $(->
     return if $('#fancy_modal').length
 
     $target = $(this)
-    options = _.pick($target.data(), 'type', 'fancied', 'state')
+    options = _.pick($target.data(), 'type', 'fancied', 'state', 'from')
     options.thing_id = $target.data('fancy')
 
     if $target.hasClass('unfancied') || $target.hasClass('unowned')

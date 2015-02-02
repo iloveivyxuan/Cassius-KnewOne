@@ -1,21 +1,25 @@
-<% if @impression.persisted? %>
-  $impression = $("<%=j render('things/impression', impression: @impression) %>")
-
-  $oldImpression = $('[data-impression-id="<%= @impression.id %>"]')
-  if ($oldImpression.length) {
-    $oldImpression.replaceWith($impression)
-  } else {
-    $impression.insertAfter('#thing_description')
-  }
-
-  $impression
-  .hide()
-  .fadeIn()
-  .find('.score').score()
-
-  <% if @impression.previous_changes.include?("state") %>
-    ga('send', 'event', 'thing', '<%= @impression.state %>', '<%= @thing.title %>')
-  <% end %>
+<% if params[:from] == 'user' %>
+  location.reload()
 <% else %>
-  <%= render template: 'impressions/destroy' %>
+  <% if @impression.persisted? %>
+    $impression = $("<%=j render('things/impression', impression: @impression) %>")
+
+    $oldImpression = $('[data-impression-id="<%= @impression.id %>"]')
+    if ($oldImpression.length) {
+      $oldImpression.replaceWith($impression)
+    } else {
+      $impression.insertAfter('#thing_description')
+    }
+
+    $impression
+    .hide()
+    .fadeIn()
+    .find('.score').score()
+  <% else %>
+    <%= render template: 'impressions/destroy' %>
+  <% end %>
+<% end %>
+
+<% if @impression.previous_changes.include?("state") %>
+  ga('send', 'event', 'thing', '<%= @impression.state %>', '<%= @thing.title %>')
 <% end %>

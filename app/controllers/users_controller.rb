@@ -11,15 +11,18 @@ class UsersController < ApplicationController
   end
 
   def fancies
-    @fancies = @user.fancies_sorted_by_ids(params[:page], 24)
+    @impressions = @user.impressions.fancied
+    setup_tags_and_things_about_impressions
   end
 
   def desires
-    @desires = @user.desires_sorted_by_ids(params[:page], 24)
+    @impressions = @user.impressions.desired
+    setup_tags_and_things_about_impressions
   end
 
   def owns
-    @owns = @user.owns_sorted_by_ids(params[:page], 24)
+    @impressions = @user.impressions.owned
+    setup_tags_and_things_about_impressions
   end
 
   def lists
@@ -117,5 +120,20 @@ class UsersController < ApplicationController
 
   def profile
     render layout: false
+  end
+
+  private
+
+  def setup_tags_and_things_about_impressions
+    @tag = Tag.find(params[:tag]) if params[:tag].present?
+
+    tag_ids = @user.tag_ids & @impressions.distinct(:tag_ids)
+    @tags = Tag.in(id: tag_ids).sort_by { |t| t == @tag ? -1 : tag_ids.index(t.id) }
+
+    @impressions = @impressions.by_tag(@tag) if @tag
+    @impressions = @impressions.page(params[:page]).per(24)
+
+    thing_ids = @impressions.pluck(:thing_id)
+    @things = Thing.in(id: thing_ids).sort_by { |t| thing_ids.index(t.id) }
   end
 end
