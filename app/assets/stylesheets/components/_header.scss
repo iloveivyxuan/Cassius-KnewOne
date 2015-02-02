@@ -5,8 +5,7 @@ html.touch {
   #header {
     $header_inner_height: 44px;
 
-    background-color: $navbar-inverse-bg;
-    border-bottom: 1px solid $navbar-inverse-border;
+    background-color: rgba($navbar-inverse-bg,.98);
     height: $header_inner_height + 1;
     left: 0;
     position: fixed;
@@ -26,7 +25,6 @@ html.touch {
       display: block;
       font-size: $font-size-large;
       line-height: $header_inner_height;
-      text-shadow: 0 1px 1px #111;
     }
 
     .btn {
