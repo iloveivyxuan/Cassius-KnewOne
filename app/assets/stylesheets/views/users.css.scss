@@ -490,7 +490,7 @@ html[class^="users_"] {
             text-align: center;
 
             background: $vulcan;
-            color: white;
+            color: rgba(white, .5);
           }
 
           &:hover [data-fancy] {
