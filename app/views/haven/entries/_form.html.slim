@@ -2,12 +2,6 @@
   = f.input :category, collection: Entry::CATEGORIES.keys
   = f.input :post_id
   = f.input :external_link
-  .form-group.select
-    label.control-label 推荐商品
-    br
-    select.form-control name='entry[thing_ids][]' multiple="true" data-role="tagsinput"
-      - @entry.thing_ids.each do |i|
-        option value="#{i}" = i
   = f.input :title
   = f.input :wechat_title
   - title = (@entry && @entry.title?) ? @entry.title : @entry.post.try(:title)
