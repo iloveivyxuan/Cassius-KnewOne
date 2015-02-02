@@ -18,9 +18,8 @@ table.table.table-striped
     - @entries.each do |e|
       tr
         td width="15%"
-          - if e.cover.present?
-            = image_tag(e.cover.url(:small), height: 90, width: 90)
         td width="15%"
+          = image_tag(entry_cover(e, :small), height: 90, width: 90)
           = entry_title e
         td width="10%"
           = e.wechat_title

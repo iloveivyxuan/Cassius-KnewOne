@@ -4,11 +4,11 @@
 - active_nav_tab(@entry)
 - provide :sharing_content, @entry.sharing_content
 - provide :sharing_cover, entry_cover(@entry)
-- provide :wechat_cover_url, @entry.wechat_cover.url || @entry.canopy.url(:small)
+- provide :wechat_cover_url, (@entry.wechat_cover.url || entry_cover(@entry, :small))
 
 - unless browser.desktop?
   .sharing_cover.hide
-    img src=(@entry.wechat_cover.url(:square) || @entry.canopy.url(:square))
+    img src=(@entry.wechat_cover.url(:square) || entry_cover(@entry, :square))
 
 - if ['专访', '评测', '列表'].include? @entry.category
   = render 'entries/article', entry: @entry, post: post, author: author

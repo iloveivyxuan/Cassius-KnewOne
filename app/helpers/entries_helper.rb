@@ -4,17 +4,22 @@ module EntriesHelper
     entry.title.present? ? entry.title : entry.post.title
   end
 
-  def entry_cover(entry)
+  def entry_cover(entry, size=:middle)
     if entry.category == '专题' && entry.cover.present?
-      if entry.cover_img == :cover
-        entry.cover.url(:middle)
-      else
-        entry.canopy.url(:middle)
-      end
-    elsif entry.canopy.present?
-      entry.canopy.url(:middle)
+      entry.cover.url(size)
     else
-      "http://image.knewone.com/photos/881180dea7302c0a0fd05717e5397eba.jpg!middle"
+      case entry.cover_img
+      when :cover
+        entry.cover.url(size)
+      when :canopy
+        if entry.canopy.present?
+          entry.canopy.url(size)
+        else
+          "http://image.knewone.com/photos/881180dea7302c0a0fd05717e5397eba.jpg!#{size}"
+        end
+      else
+        "http://image.knewone.com/photos/881180dea7302c0a0fd05717e5397eba.jpg!#{size}"
+      end
     end
   end
 
