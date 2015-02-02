@@ -6,7 +6,7 @@
           = link_to '全部', tag: ''
         - @tags.each do |tag|
           li class=('active' if tag == @tag)
-            = link_to tag: tag.slug, title: tag.name
+            = link_to({tag: tag.slug}, title: tag.name)
               i.fa.fa-tag
               = tag.name
 
