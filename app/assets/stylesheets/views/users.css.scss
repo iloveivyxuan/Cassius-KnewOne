@@ -883,6 +883,52 @@ html.users_topics {
   }
 }
 
+html.users_fancies,
+html.users_desires,
+html.users_owns {
+  #wrapper {
+    ul.user_tags {
+      @include clearfix;
+
+      margin: 10px 0;
+      padding-bottom: 10px;
+
+      @include to-breakpoint(sm) {
+        padding-right: 20px;
+      }
+
+      > li {
+        float: right;
+        margin: 10px 0 0 10px;
+
+        background: white;
+        border-radius: 10px;
+
+        a {
+          display: inline-block;
+          padding: 7px 12px;
+          color: $text-color;
+        }
+
+        &.active {
+          background: $gray-light;
+          a { color: white; }
+        }
+      }
+    }
+
+    @at-root html.flexbox ul.user_tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+
+      > li {
+        float: none !important;
+      }
+    }
+  }
+}
+
 html.users_lists,
 html.users_groups,
 html.users_topics,

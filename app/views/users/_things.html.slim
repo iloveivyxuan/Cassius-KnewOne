@@ -1,4 +1,15 @@
 - if @things.present?
+  - if @user.tags.present?
+    nav
+      ul.user_tags
+        li class=('active' if params[:tag].blank?)
+          = link_to '全部', tag: ''
+        - @user.recent_tags.each do |tag|
+          li class=('active' if params[:tag] == tag.slug)
+            = link_to tag: tag.slug, title: tag.name
+              i.fa.fa-tag
+              = tag.name
+
   ul.contents = render partial: 'thing', collection: @things
 - else
   section.contents = render 'shared/nothing'
