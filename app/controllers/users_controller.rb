@@ -14,6 +14,9 @@ class UsersController < ApplicationController
     @tag = Tag.find(params[:tag]) if params[:tag].present?
 
     @impressions = @user.impressions.fancied
+    tag_ids = @user.tag_ids & @impressions.distinct(:tag_ids)
+    @tags = Tag.in(id: tag_ids).sort_by { |t| tag_ids.index(t.id) }
+
     @impressions = @impressions.by_tag(@tag) if @tag
     @impressions = @impressions.page(params[:page]).per(24)
 
@@ -25,6 +28,9 @@ class UsersController < ApplicationController
     @tag = Tag.find(params[:tag]) if params[:tag].present?
 
     @impressions = @user.impressions.desired
+    tag_ids = @user.tag_ids & @impressions.distinct(:tag_ids)
+    @tags = Tag.in(id: tag_ids).sort_by { |t| tag_ids.index(t.id) }
+
     @impressions = @impressions.by_tag(@tag) if @tag
     @impressions = @impressions.page(params[:page]).per(24)
 
@@ -36,6 +42,9 @@ class UsersController < ApplicationController
     @tag = Tag.find(params[:tag]) if params[:tag].present?
 
     @impressions = @user.impressions.owned
+    tag_ids = @user.tag_ids & @impressions.distinct(:tag_ids)
+    @tags = Tag.in(id: tag_ids).sort_by { |t| tag_ids.index(t.id) }
+
     @impressions = @impressions.by_tag(@tag) if @tag
     @impressions = @impressions.page(params[:page]).per(24)
 

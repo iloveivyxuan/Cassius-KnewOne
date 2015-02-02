@@ -1,10 +1,10 @@
 - if @things.present?
-  - if @user.tags.present?
+  - if @tags.present?
     nav
       ul.user_tags
         li class=('active' if params[:tag].blank?)
           = link_to '全部', tag: ''
-        - @user.recent_tags.each do |tag|
+        - @tags.each do |tag|
           li class=('active' if params[:tag] == tag.slug)
             = link_to tag: tag.slug, title: tag.name
               i.fa.fa-tag
