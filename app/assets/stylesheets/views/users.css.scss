@@ -554,6 +554,16 @@ html[class^="users_"] {
                 color: $iron;
               }
             }
+
+            @at-root html.flexbox ul.thing-tags {
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: flex-end;
+
+              > li {
+                float: none !important;
+              }
+            }
           }
         }
       }
