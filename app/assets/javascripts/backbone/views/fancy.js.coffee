@@ -237,10 +237,10 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
   onSubmit: ->
     @onTagsFormSubmit()
 
-    data = _.pick(@model.attributes, 'state', 'description', 'score')
+    impression = _.pick(@model.attributes, 'state', 'description', 'score')
 
     {tags, recent_tags, popular_tags} = @model.attributes
-    data.tag_names = _.chain([tags, recent_tags, popular_tags])
+    impression.tag_names = _.chain([tags, recent_tags, popular_tags])
       .flatten()
       .filter(({selected}) -> selected)
       .pluck('name')
@@ -250,7 +250,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     $.ajax({
       url: @url('.js')
       type: 'PATCH'
-      data: {impression: data}
+      data: {impression}
     }, eval)
 
     @tryToSyncToFeeling()
