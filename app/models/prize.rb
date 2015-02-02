@@ -66,7 +66,7 @@ class Prize
 
   def self.share_things(day=Date.yesterday)
     share_things = {}
-    Thing.between(approved_at: day..day.next_day).group_by(&:author).each do |action|
+    Thing.approved.between(approved_at: day..day.next_day).group_by(&:author).each do |action|
       share_things[action.first] = action.last.size
     end
     share_things.sort_by { |k, v| v }.reverse.select { |user, size| user.role.blank? }
