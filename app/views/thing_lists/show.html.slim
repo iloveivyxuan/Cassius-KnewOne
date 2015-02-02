@@ -1,6 +1,9 @@
 - page_title @thing_list.name
+- title = (@thing_list.description =~ /#KnewOne情人节/i) ? "#{@thing_list.name} - KnewOne情人节" : @thing_list.name
+- provide :special_title, title
+
 - page_css 'thing_lists'
-- provide :wechat_title, @thing_list.name
+- provide :wechat_title, title
 - provide :wechat_desc, @thing_list.description
 - provide :wechat_cover_url, @thing_list.items.first.thing.cover.url(:small) if @thing_list.size > 0
 

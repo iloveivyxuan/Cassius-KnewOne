@@ -4,8 +4,11 @@ html class="#{page_class} #{browser_class}#{env_class}" lang="zh-CN"
     meta charset="utf-8"
     meta http-equiv="X-UA-Compatible" content="IE=edge"
     title
-      = yield :title
-      = brand
+      - if content_for? :special_title
+        = yield :special_title
+      - else
+        = yield :title
+        = brand
     meta name="author" content="lilu.life@gmail.com"
     meta name="description" content="#{page_description}"
     meta name="keywords" content="#{page_keywords}"
