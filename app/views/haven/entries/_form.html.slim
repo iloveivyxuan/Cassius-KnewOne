@@ -10,13 +10,13 @@
   = f.input :avatar
   = f.input :avatar_cache, as: :hidden
   = image_tag @entry.avatar.url(:small) if @entry.avatar.url
+  = f.input :cover_img, collection: [["封面", :cover], ["文章顶部图片", :canopy]], selected: :canopy
   = f.input :cover
   = f.input :cover_cache, as: :hidden
   = image_tag @entry.cover.url(:normal), style: 'height:160px' if @entry.cover.url
   = f.input :canopy
   = f.input :canopy_cache, as: :hidden
   = image_tag @entry.canopy.url(:normal), style: 'height:160px' if @entry.canopy.url
-  = f.input :cover_img, collection: [["封面", :cover], ["文章顶部图片", :canopy]]
   = f.input :wechat_cover
   = f.input :wechat_cover_cache, as: :hidden
   = image_tag @entry.wechat_cover.url if @entry.wechat_cover.url

@@ -20,7 +20,7 @@ class Entry
   field :category, type: String
   field :published, type: Boolean, default: false
   field :summary, type: String
-  field :cover_img, type: Symbol, default: :cover
+  field :cover_img, type: Symbol, default: :canopy
 
   scope :published, -> {where published: true}
 
