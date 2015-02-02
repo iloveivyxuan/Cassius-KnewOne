@@ -901,6 +901,9 @@ html.users_owns {
         float: right;
         margin: 10px 0 0 10px;
 
+        overflow: hidden;
+        max-width: 100%;
+
         background: white;
         border-radius: 10px;
 
