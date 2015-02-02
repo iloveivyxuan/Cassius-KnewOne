@@ -28,6 +28,7 @@ class Impression
 
   scope :by_user, ->(user) { where(author: user) }
   scope :of_thing, ->(thing) { where(thing: thing) }
+  scope :by_tag, ->(tag) { where(tag_ids: tag.id) }
 
   before_save do
     now = Time.now.utc if state_changed? || fancied_changed?

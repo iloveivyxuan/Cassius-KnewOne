@@ -11,15 +11,36 @@ class UsersController < ApplicationController
   end
 
   def fancies
-    @things = @user.fancies_sorted_by_ids(params[:page], 24)
+    @tag = Tag.find(params[:tag]) if params[:tag].present?
+
+    @impressions = @user.impressions.fancied
+    @impressions = @impressions.by_tag(@tag) if @tag
+    @impressions = @impressions.page(params[:page]).per(24)
+
+    thing_ids = @impressions.pluck(:thing_id)
+    @things = Thing.in(id: thing_ids).sort_by { |t| thing_ids.index(t.id) }
   end
 
   def desires
-    @things = @user.desires_sorted_by_ids(params[:page], 24)
+    @tag = Tag.find(params[:tag]) if params[:tag].present?
+
+    @impressions = @user.impressions.desired
+    @impressions = @impressions.by_tag(@tag) if @tag
+    @impressions = @impressions.page(params[:page]).per(24)
+
+    thing_ids = @impressions.pluck(:thing_id)
+    @things = Thing.in(id: thing_ids).sort_by { |t| thing_ids.index(t.id) }
   end
 
   def owns
-    @things = @user.owns_sorted_by_ids(params[:page], 24)
+    @tag = Tag.find(params[:tag]) if params[:tag].present?
+
+    @impressions = @user.impressions.owned
+    @impressions = @impressions.by_tag(@tag) if @tag
+    @impressions = @impressions.page(params[:page]).per(24)
+
+    thing_ids = @impressions.pluck(:thing_id)
+    @things = Thing.in(id: thing_ids).sort_by { |t| thing_ids.index(t.id) }
   end
 
   def lists
