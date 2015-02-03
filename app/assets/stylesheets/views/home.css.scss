@@ -82,10 +82,41 @@ html.home {
         }
       }
 
+      .panel {
+        border: none;
+        border-radius: 0;
+        padding: 0;
+
+        > header {
+          background-color: $smoke-white;
+          padding: 20px 30px;
+          position: relative;
+
+          &::after {
+            border-color: $smoke-white transparent transparent transparent;
+            border-style: solid;
+            border-width: 10px;
+            bottom: -20px;
+            content: '';
+            left: 40px;
+            position: absolute;
+          }
+
+          h2 {
+            color: $text-color;
+            font-weight: normal;
+            margin-bottom: 0;
+          }
+        }
+      }
+
       .drafts {
-        background: white;
-        margin-bottom: 0;
-        padding-bottom: 1rem;
+
+        .panel-heading {
+          &::after {
+            display: none;
+          }
+        }
 
         .drafts-count {
           margin-left: 0.5rem;

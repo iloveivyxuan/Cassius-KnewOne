@@ -1,6 +1,6 @@
 - if current_user.drafts.present?
-  section.drafts
-    header
+  section.drafts.panel
+    header.panel-heading
       = link_to setting_drafts_path
         h2
           | 我的草稿

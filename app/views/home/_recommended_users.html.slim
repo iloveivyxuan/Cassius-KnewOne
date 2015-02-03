@@ -1,7 +1,6 @@
-section.recommended-users
-  header
-    h2 推荐用户
-  section
+section.recommended-users.panel
+  header.panel-heading
+  section.panel-body
     ul
       - recommend_users = current_user.recommend_new_users.limit(10).shuffle.take(3)
       = render partial: "recommend_user", collection: recommend_users, as: :user
