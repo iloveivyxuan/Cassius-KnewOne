@@ -7,5 +7,5 @@
       li= link_to_with_icon '微信', 'fa fa-fw fa-weixin', wxpay_orders_path(id: order.id.to_s), remote: true
     - else
       li= link_to_with_icon '微信', 'fa fa-fw fa-weixin', tenpay_wechat_order_path(order)
-    li= link_to_with_icon '支付宝', 'fa fa-fw fa-alipay', (browser.mobile? ? alipay_wap_order_path(order) : alipay_order_path(order))
+      li= link_to_with_icon '支付宝', 'fa fa-fw fa-alipay', (browser.mobile? ? alipay_wap_order_path(order) : alipay_order_path(order))
     li= link_to_with_icon 'BTC', 'fa fa-fw fa-btc', '#btc_pay', data: {toggle: 'modal'}

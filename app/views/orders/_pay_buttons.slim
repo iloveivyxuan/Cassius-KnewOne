@@ -8,5 +8,5 @@
     i.fa.fa-fw.fa-weixin
     | 微信支付
     sup 推荐
-= link_to_with_icon '支付宝支付', 'fa fa-fw fa-alipay fa-alipay--white', (browser.mobile? ? alipay_wap_order_path(order) : alipay_order_path(order)), class: 'btn btn-success js-redirect_prompt'
+  = link_to_with_icon '支付宝支付', 'fa fa-fw fa-alipay fa-alipay--white', (browser.mobile? ? alipay_wap_order_path(order) : alipay_order_path(order)), class: 'btn btn-success js-redirect_prompt'
 = link_to_with_icon 'BTC 支付', 'fa fa-fw fa-btc', '#btc_pay', class: 'btn btn-success', data: {toggle: 'modal'}
