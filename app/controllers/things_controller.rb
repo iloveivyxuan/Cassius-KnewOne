@@ -50,8 +50,8 @@ class ThingsController < ApplicationController
 
     @things ||= ::Thing
     if params[:categories] && params[:categories] != "all"
-      category = Category.where(slug: params[:category]).first
-      @things = category.things
+      category = Category.any_in(slugs: params[:categories]).first
+      @things = category ? Thing.where(category_ids: category.id.to_s) : Thing.where(category_ids: "")
     end
 
     if (params[:price_l] || params[:price_h]) && params[:price_l] != "all"
