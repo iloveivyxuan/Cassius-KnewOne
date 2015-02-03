@@ -1547,6 +1547,12 @@ html.feelings_show {
           }
         }
 
+        > .buy_button {
+          &:only-child {
+            width: 100%;
+          }
+        }
+
         .btn--buy {
           @extend %new_button_base;
           background-color: $orange;
