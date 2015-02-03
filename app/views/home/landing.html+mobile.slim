@@ -2,9 +2,12 @@
 - page_css 'landing'
 - page_css 'hits'
 
-header
-  h2.slogan= slogan
-
+header.jumptron
+  - if (j = Jumptron.where(default: true).sample)
+    a href=j.href target="_blank"
+      img src=j.image.url alt=j.alt
+  - else
+    h2.slogan = slogan
 section.hits
   = render 'hits_groups'
 
