@@ -39,11 +39,9 @@ class ThingPresenter < PostPresenter
 
   def price
     return unless self.buy
-    return unless thing.price.present?
+    return "" unless thing.price.present?
 
-    content_tag :div, class: "price", id: "price" do
-      price_format thing.price, thing.price_unit
-    end
+    price_format thing.price, thing.price_unit
   end
 
   def mobile_price
