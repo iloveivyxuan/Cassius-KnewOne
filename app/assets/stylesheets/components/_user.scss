@@ -19,7 +19,7 @@
 
   .author_name {
     @include text-overflow;
-    color: $gray;
+    color: $text-color;
     display: inline-block;
     vertical-align: middle;
     margin-left: 1em;
@@ -31,19 +31,29 @@
   }
 
   .follow_btn {
+    background-color: transparent;
+    border: 1px solid $text-color;
+    border-radius: 15px;
+    color: $text-color;
     float: right;
-    padding-top: 3px;
-    padding-bottom: 3px;
+    padding: 5px 20px;
     margin-top: 6px;
-    color: #666;
-    background: $gray-lighter;
-    &.active { background: darken($gray-lighter, 10%); }
-    border: none;
+
+    &:hover,
+    &.active {
+      background-color: $blue-dark;
+      border-color: $blue-dark;
+      color: #fff;
+    }
+
+    .fa-plus {
+      display: none;
+    }
   }
 
   .recommend_note {
     @include text-overflow;
-    color: $text-muted;
+    color: $iron;
     padding-left: 54px;
     max-width: 90%;
 
