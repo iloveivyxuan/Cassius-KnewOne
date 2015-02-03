@@ -245,51 +245,12 @@ article.thing {
     h4 {
       @include text-overflow;
 
-      float: left;
-      width: 70%;
-      width: calc(100% - 7em);
-
       margin: 0;
       font-size: $font-size-base;
       min-height: $font-size-base * $line-height-base;
 
       a {
         color: $black;
-      }
-    }
-
-    .fancy_button {
-      float: right;
-      margin-right: 1em;
-
-      a {
-        color: $red;
-      }
-
-      i {
-        font-size: 24px;
-        margin-right: 3px;
-      }
-
-      .fanciers_count {
-        font-size: 12px;
-      }
-
-      small {
-        display: none;
-      }
-    }
-
-    .add_to_list_button {
-      float: right;
-
-      a {
-        color: $orange;
-      }
-
-      i {
-        font-size: 24px;
-        margin-right: 0;
       }
     }
   }
@@ -299,7 +260,6 @@ article.thing {
     padding: 0 1em 1em;
     width: 100%;
 
-    .user_avatar,
     .shopping {
       float: left;
       max-width: 43%;
@@ -327,20 +287,54 @@ article.thing {
       }
     }
 
-    .interactions {
-      float: right;
+    .stats {
+      float: left;
       max-width: 57%;
       @include text-overflow;
-      margin-top: 3px;
+      margin-top: 6px;
 
       > * {
-        margin-left: .5em;
+        margin-right: .5em;
         color: $gray-light;
       }
 
       .fanciers_count {display: none;}
       @media (min-width: $screen-md-min) {
         .fanciers_count {display: inline;}
+      }
+    }
+
+    .interactions {
+      float: right;
+
+      .fancy_button {
+        margin-right: 1em;
+
+        a {
+          color: $red;
+        }
+
+        i {
+          font-size: 24px;
+          margin-right: 3px;
+        }
+
+        .fanciers_count {
+          font-size: 12px;
+        }
+
+        small {
+          display: none;
+        }
+      }
+
+      .add_to_list {
+        color: $orange;
+
+        i {
+          font-size: 24px;
+          margin-right: 0;
+        }
       }
     }
   }

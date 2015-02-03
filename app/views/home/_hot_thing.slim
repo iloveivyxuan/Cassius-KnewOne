@@ -6,13 +6,8 @@
         = thing_presenter.photo_lazy version
     section.content
       h4.title= link_to thing.title, thing, target: "_blank", title: thing.title
-
-      .add_to_list_button = render "thing_lists/link_to_add_list", thing_id: thing.id.to_s, text: ''
-      .fancy_button = render "shared/fancy", thing: thing, from: "hits"
     footer.info
-      = render 'shared/user_avatar', user_id: thing.author_id
-
-      .interactions
+      .stats
         - if thing_presenter.has_owner?
           = link_to thing, target: "_blank" do
             i.fa.fa-check-circle-o
@@ -21,3 +16,7 @@
           = link_to thing_reviews_path(thing), class: "reviews_count", target: "_blank" do
             i.fa.fa-pencil
             = thing_presenter.reviews_count
+
+      .interactions
+        span.fancy_button = render "shared/fancy", thing: thing, from: "hits"
+        = render "thing_lists/link_to_add_list", thing_id: thing.id.to_s, text: ''
