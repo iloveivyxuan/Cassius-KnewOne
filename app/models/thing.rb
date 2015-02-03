@@ -423,7 +423,7 @@ class Thing < Post
 
   include Searchable
 
-  searchable_fields [:title, :_slugs, :subtitle, :nickname, :brand_name, :priority]
+  searchable_fields [:title, :_slugs, :subtitle, :nickname, :priority]
 
   mappings do
     indexes :title, copy_to: :ngram
@@ -442,6 +442,7 @@ class Thing < Post
 
     _as_indexed_json(options).merge(
       cover_id: photo_ids.first.to_s,
+      brand_name: brand.try(:full_name),
       fanciers_count: fanciers_count,
       owners_count: owners_count,
       reviews_count: reviews_count,
