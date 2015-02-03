@@ -926,9 +926,8 @@ html.users_desires,
 html.users_owns {
   #wrapper {
     > nav {
-      @include to-breakpoint(sm) {
-        padding-right: 20px;
-      }
+      padding: 10px 20px;
+      background: $smoke-white;
 
       ul.user_tags {
         @include clearfix;
