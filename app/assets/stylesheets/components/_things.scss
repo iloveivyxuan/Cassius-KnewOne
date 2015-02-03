@@ -238,8 +238,6 @@ article.thing {
   }
 
   section.content {
-    @include clearfix;
-
     padding: 1em;
 
     h4 {
@@ -259,33 +257,6 @@ article.thing {
     @include clearfix;
     padding: 0 1em 1em;
     width: 100%;
-
-    .shopping {
-      float: left;
-      max-width: 43%;
-      @include text-overflow;
-      > a {color: $gray;}
-    }
-
-    .shopping {
-      margin-top: 5px;
-      > a {
-        margin-right: .6em;
-        &:last-child {
-          margin-right: 0;
-        }
-
-        .fa {
-          height: 1em;
-          margin: {
-            left: 5px;
-            right: 0;
-          }
-          vertical-align: -2px;
-          width: 1em;
-        }
-      }
-    }
 
     .stats {
       float: left;
@@ -309,23 +280,6 @@ article.thing {
 
       .fancy_button {
         margin-right: 1em;
-
-        a {
-          color: $red;
-        }
-
-        i {
-          font-size: 24px;
-          margin-right: 3px;
-        }
-
-        .fanciers_count {
-          font-size: 12px;
-        }
-
-        small {
-          display: none;
-        }
       }
 
       .add_to_list {
@@ -334,6 +288,80 @@ article.thing {
         i {
           font-size: 24px;
           margin-right: 0;
+        }
+      }
+    }
+  }
+
+  .fancy_button {
+    a {
+      color: $red;
+    }
+
+    i {
+      font-size: 24px;
+      margin-right: 3px;
+    }
+
+    .fanciers_count {
+      font-size: 12px;
+    }
+
+    small {
+      display: none;
+    }
+  }
+
+  &.shop_thing {
+    section.content {
+      @include clearfix;
+
+      h4 {
+        float: left;
+        max-width: 80%;
+        max-width: calc(100% - 4em);
+      }
+
+      .fancy_button {
+        float: right;
+        margin-top: -3px;
+      }
+    }
+
+    footer.info {
+      .stats {
+        float: right;
+        margin-top: 0;
+
+        > * {
+          margin-left: .5em;
+          margin-right: 0;
+        }
+      }
+
+      .shopping {
+        @include text-overflow;
+
+        float: left;
+        max-width: 43%;
+
+        > a {
+          margin-right: .6em;
+          &:last-child {
+            margin-right: 0;
+          }
+
+          color: $gray;
+
+          .fa {
+            height: 1em;
+            margin: {
+              left: 5px;
+              right: 0;
+            }
+            vertical-align: -2px;
+            width: 1em;
+          }
         }
       }
     }
