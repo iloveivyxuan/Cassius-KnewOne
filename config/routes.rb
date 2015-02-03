@@ -394,6 +394,7 @@ Making::Application.routes.draw do
         post 'fuck_you'
         get 'recharge'
         post 'recharge'
+        post 'change_balance'
       end
     end
 

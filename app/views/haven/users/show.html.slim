@@ -36,6 +36,12 @@ table.table.table-striped
         td = b.note
         td = b.amount / 100.0
 
+h2 调整余额
+= form_tag change_balance_haven_users_path, method: :post do
+  = text_field_tag "amount", @user.balance, class: "form-control"
+  = hidden_field_tag "id", @user.id.to_s
+  = submit_tag "修改", class: "btn btn-default", data: { confirm: '确定咯？' }
+
 h2
   | 领养记录
 table.table.table-striped

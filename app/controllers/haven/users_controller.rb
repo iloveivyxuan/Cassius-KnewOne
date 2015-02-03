@@ -208,6 +208,12 @@ module Haven
       end
     end
 
+    def change_balance
+      user = User.where(id: params[:id]).first
+      user.set(balance_cents: BigDecimal.new(params[:amount]) * 100) if user
+      redirect_to :back
+    end
+
     private
 
     def user_params
