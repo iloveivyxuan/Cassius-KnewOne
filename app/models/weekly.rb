@@ -73,8 +73,8 @@ class Weekly
                                   description: "#{self.since_date.strftime('%Y.%m.%d')} ~ #{self.until_date.strftime('%Y.%m.%d')}"
 
 
-    ids = fetch_hot_thing_ids_by_activities(Activity, limit)
-    things = Thing.where(:id.in => ids).sort_by { |thing| ids.index(thing.id.to_s) }
+    ids = fetch_hot_thing_ids_by_activities(Activity, limit * 3)
+    things = Thing.where(:id.in => ids, :priority.gt => 0).sort_by { |thing| ids.index(thing.id.to_s) }.first(limit)
     things.each_with_index do |t, i|
       list.thing_list_items.build thing: t, order: things.size - i
     end
