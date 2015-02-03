@@ -288,4 +288,8 @@ class ThingPresenter < PostPresenter
   def can_consume_bong_point?
     thing.kinds.map(&:can_consume_bong_point?).reduce &:|
   end
+
+  def max_bong_point
+    thing.kinds.map(&:maximal_bong_point).max
+  end
 end

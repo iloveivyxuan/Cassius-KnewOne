@@ -194,36 +194,6 @@ article.thing {
   background: white;
   position: relative;
 
-  > em {
-    @include user-select(none);
-    background-color: $blue;
-    box-shadow: 0 0 10px 2px rgba(0, 0, 0, .2);
-    color: #fff;
-    cursor: default;
-    font-size: 12px;
-    font-style: normal;
-    height: 26px;
-    left: -5px;
-    letter-spacing: 1px;
-    line-height: 26px;
-    margin: 0;
-    padding: 0 10px;
-    position: absolute;
-    top: 15px;
-
-    &::before {
-      border-bottom: 0 solid transparent;
-      border-top: 5px solid transparent;
-      border-right: 5px solid #0373a1;
-      content: '';
-      height: 0;
-      left: 0;
-      position: absolute;
-      top: -5px;
-      width: 0;
-    }
-  }
-
   header.cover {
     position: relative;
 
@@ -331,6 +301,7 @@ article.thing {
     footer.info {
       .stats {
         float: right;
+        max-width: 40%;
         margin-top: 0;
 
         > * {
@@ -343,7 +314,7 @@ article.thing {
         @include text-overflow;
 
         float: left;
-        max-width: 43%;
+        max-width: 60%;
 
         > a {
           margin-right: .6em;
@@ -362,6 +333,10 @@ article.thing {
             vertical-align: -2px;
             width: 1em;
           }
+        }
+
+        .bong-point {
+          color: $gray-light;
         }
       }
     }

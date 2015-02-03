@@ -13,6 +13,10 @@
           = thing_presenter.price
         = link_to thing_presenter.stage_text, thing, target: "_blank"
 
+        - if thing_presenter.can_consume_bong_point?
+          span.bong-point title="可最多抵扣 #{thing_presenter.max_bong_point} 个 bong 活跃点"
+            = "活跃点 #{thing_presenter.max_bong_point}"
+
       .stats
         - if thing_presenter.has_owner?
           = link_to thing, target: "_blank" do
@@ -22,6 +26,3 @@
           = link_to thing_reviews_path(thing), class: "reviews_count", target: "_blank" do
             i.fa.fa-pencil
             = thing_presenter.reviews_count
-
-    - if thing_presenter.can_consume_bong_point?
-      em title="本商品支持使用 bong 活跃点抵扣" 活跃点
