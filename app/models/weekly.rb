@@ -78,6 +78,7 @@ class Weekly
     things.each_with_index do |t, i|
       list.thing_list_items.build thing: t, order: things.size - i
     end
+    list.size = things.size
 
     list.save!
   end
