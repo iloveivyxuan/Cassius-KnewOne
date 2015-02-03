@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
   def index
     mark_read @post || @thing_list
 
-    comment = @comments.where(id: params[:from_id]).first
+    comment = @comments.where(id: params[:from_id].to_s).first
     if comment
       offset = @comments.gte(created_at: comment.created_at).size
       limit = (offset.to_f / Settings.comments.per_page).ceil * Settings.comments.per_page
