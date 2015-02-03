@@ -488,6 +488,14 @@ class Thing < Post
     self.search(suggest(query).first)
   end
 
+  def __elasticsearch__.__find_in_batches(options={}, &block)
+    batch_size = options[:batch_size] || 1000
+    Thing.no_timeout.only(:id, :slugs, :brand_id, :photo_ids, :updated_at,
+                          :title, :subtitle, :nickname, :priority,
+                          :fanciers_count, :owners_count, :reviews_count,
+                         ).each_slice(batch_size, &block)
+  end
+
   def self.suggest(prefix, limit = 10)
     body = {
       titles: {
