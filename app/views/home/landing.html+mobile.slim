@@ -2,14 +2,15 @@
 - page_css 'landing'
 - page_css 'hits'
 
-header.jumptron
-  - if (j = Jumptron.where(default: true).sample)
-    a href=j.href target="_blank"
-      img src=j.image.url alt=j.alt
-  - else
-    h2.slogan = slogan
-section.hits
-  = render 'hits_groups'
+- cache ['landing_mobile', params[:page] || 1], expires_in: 1.minute
+  header.jumptron
+    - if (j = Jumptron.where(default: true).sample)
+      a href=j.href target="_blank"
+        img src=j.image.url alt=j.alt
+    - else
+      h2.slogan = slogan
+  section.hits
+    = render 'hits_groups'
 
 - content_for :script do
   javascript:
