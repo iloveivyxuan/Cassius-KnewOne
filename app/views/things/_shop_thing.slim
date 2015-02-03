@@ -1,7 +1,7 @@
 - present thing do |thing_presenter|
   article.thing.shop_thing
     header.cover
-      = link_to thing, target: "_blank" do
+      = link_to thing, class: "cover-inner", target: "_blank" do
         - version = browser.mobile? ? 'thing.fixed.small' : 'thing.fixed.big'
         = thing_presenter.photo_lazy version
     section.content
