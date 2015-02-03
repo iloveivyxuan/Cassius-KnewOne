@@ -283,38 +283,9 @@ article.thing {
   }
 
   &.shop_thing {
-    section.content {
-      @include clearfix;
-
-      h4 {
-        float: left;
-        max-width: 80%;
-        max-width: calc(100% - 4em);
-      }
-
-      .fancy_button {
-        float: right;
-        margin-top: -3px;
-      }
-    }
-
     footer.info {
-      .stats {
-        float: right;
-        max-width: 40%;
-        margin-top: 0;
-
-        > * {
-          margin-left: .5em;
-          margin-right: 0;
-        }
-      }
-
       .shopping {
         @include text-overflow;
-
-        float: left;
-        max-width: 60%;
 
         > a {
           margin-right: .6em;

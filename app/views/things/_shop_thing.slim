@@ -6,7 +6,6 @@
         = thing_presenter.photo_lazy version
     section.content
       h4.title= link_to thing.title, thing, target: "_blank", title: thing.title
-      .fancy_button = render "shared/fancy", thing: thing, from: "hits"
     footer.info
       .shopping
         = link_to thing, target: "_blank" do
@@ -16,13 +15,3 @@
         - if thing_presenter.can_consume_bong_point?
           span.bong-point title="可最多抵扣 #{thing_presenter.max_bong_point} 个 bong 活跃点"
             = "活跃点 #{thing_presenter.max_bong_point}"
-
-      .stats
-        - if thing_presenter.has_owner?
-          = link_to thing, target: "_blank" do
-            i.fa.fa-check-circle-o
-            = thing_presenter.owners_count
-        - if thing_presenter.has_review?
-          = link_to thing_reviews_path(thing), class: "reviews_count", target: "_blank" do
-            i.fa.fa-pencil
-            = thing_presenter.reviews_count
