@@ -64,8 +64,6 @@ class HomeController < ApplicationController
 
   def forbidden
     if user_signed_in?
-      return redirect_to(session[:previous_url]) if session[:previous_url].present?
-      
       render 'home/forbidden_signed_in', status: :forbidden
     else
       render 'home/forbidden', status: :forbidden
