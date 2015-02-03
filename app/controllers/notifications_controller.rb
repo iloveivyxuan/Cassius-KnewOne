@@ -1,5 +1,5 @@
 class NotificationsController < ApplicationController
-  prepend_before_action :authenticate_user!
+  prepend_before_action :require_signed_in
   skip_before_action :require_not_blocked
 
   def index

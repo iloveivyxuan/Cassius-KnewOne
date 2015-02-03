@@ -22,9 +22,14 @@ class SessionsController < Devise::SessionsController
         sign_in(resource_name, resource)
         yield resource if block_given?
 
-        format.html { redirect_back_or after_sign_in_path_for(resource) }
         format.js do
-          @location = params[:redirect_from] || after_sign_in_path_for(resource)
+          @location = if params[:redirect_from].present? && !params[:redirect_from].start_with?('/403')
+                        params[:redirect_from]
+                      elsif session[:previous_url].present?
+                        session[:previous_url]
+                      else
+                        after_sign_in_path_for(resource)
+                      end
         end
       end
     end

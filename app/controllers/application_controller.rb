@@ -70,7 +70,13 @@ class ApplicationController < ActionController::Base
     flash.each_pair do |k, v|
       flash[k] = v
     end
-    url = params[:redirect_from].present? ? params[:redirect_from] : path # Avoiding querystring like redirect_from=&
+    url = if params[:redirect_from].present? && !params[:redirect_from].start_with?('/403')
+            params[:redirect_from]
+          elsif session[:previous_url].present?
+            session[:previous_url]
+          else
+            path
+          end
     redirect_to(url, flash)
   end
 
