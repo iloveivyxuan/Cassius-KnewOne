@@ -25,7 +25,7 @@ class SearchController < ApplicationController
   end
 
   def things
-    @things = Thing.search(params[:q]).page(params[:page]).per(24)
+    @things = Thing.search(params[:q]).page(params[:page]).per(12)
 
     return if params[:page].to_i > 1
 
