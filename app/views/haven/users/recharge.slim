@@ -1,0 +1,29 @@
+- page_title '批量充值'
+
+header.page-header
+  h2
+    i.fa.fa-usd
+    = link_to "批量充值", recharge_haven_users_path
+
+- if @fails && @success
+  table.table.table-striped
+    thead
+      tr
+        th style="" id
+        th style="" 用户名
+        th style="" 状态
+    tbody
+      - @fails.each do |user_id|
+        tr
+          th= user_id
+          th= ""
+          th= "失败"
+      - @success.each do |user|
+        tr
+          th= user.id.to_s
+          th= link_to user.name, user_path(user)
+          th= "成功"
+- else
+  = form_tag url: recharge_haven_users_path, method: :post do |f|
+    = text_area_tag :ids, '', cols: 20, rows: 20, class: 'form-control', placeholder: "一行一个"
+    = submit_tag "发福利", class: "btn btn-default", data: { confirm: '确定咯？' }

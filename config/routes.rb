@@ -392,6 +392,8 @@ Making::Application.routes.draw do
         post 'confirm_email'
         post 'reset_password'
         post 'fuck_you'
+        get 'recharge'
+        post 'recharge'
       end
     end
 

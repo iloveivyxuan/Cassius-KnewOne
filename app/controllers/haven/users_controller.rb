@@ -191,6 +191,23 @@ module Haven
       redirect_to :back
     end
 
+    def recharge
+      return unless params[:ids]
+
+      user_ids = params[:ids].split.uniq
+      @fails = []
+      @success = []
+      user_ids.each do |user_id|
+        user = User.where(id: user_id).first
+        if user
+          user.recharge_balance!(10, '#KnewOne 情人节# 活动奖励')
+          @success << user
+        else
+          @fails << user_id
+        end
+      end
+    end
+
     private
 
     def user_params
