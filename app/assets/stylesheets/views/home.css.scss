@@ -173,10 +173,36 @@ html.home {
         }
       }
 
-      .content,
-      .info {
-        padding-left: 16px;
-        padding-right: 16px;
+      article.thing {
+        .content,
+        .info {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+
+        .content {
+          h4 {
+            max-width: 70%;
+            max-width: calc(100% - 7em);
+          }
+        }
+
+        .info {
+          position: relative;
+          padding-top: 0;
+          padding-bottom: 0;
+
+          .stats {
+            margin-top: 0;
+            padding-bottom: 16px;
+          }
+
+          .interactions {
+            position: absolute;
+            top: -38px;
+            right: 16px;
+          }
+        }
       }
 
       @include from-breakpoint(md) {
