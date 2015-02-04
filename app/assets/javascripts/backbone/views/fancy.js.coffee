@@ -244,4 +244,6 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
 
     @$el.modal('hide')
 
+    Making.ShowMessageOnTop('操作成功，感谢您的分享')
+
     @updateAllTriggers()
