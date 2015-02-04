@@ -39,7 +39,7 @@ class ThingPresenter < PostPresenter
 
   def price
     return unless self.buy
-    return "" unless thing.price.present?
+    return unless thing.price.present?
 
     price_format thing.price, thing.price_unit
   end
