@@ -47,6 +47,7 @@ class SearchController < ApplicationController
     if count && count > things.size * 0.5
       @category = Category.only(:name, :icon, :slugs).where(id: category_id).first
     end
+    @category ||= Category.search(params[:q]).limit(1).records.first
   end
 
   def lists
