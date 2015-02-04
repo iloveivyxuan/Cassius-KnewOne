@@ -460,7 +460,8 @@ class Thing < Post
           multi_match: {
             query: query,
             fields: ['title^10', 'subtitle^5', 'nickname^5', 'brand_name^7', 'ngram^5'],
-            tie_breaker: 0.1
+            tie_breaker: 0.1,
+            minimum_should_match: '2'
           }
         },
         field_value_factor: {
