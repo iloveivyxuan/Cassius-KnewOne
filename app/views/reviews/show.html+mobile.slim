@@ -1,7 +1,7 @@
 - page_title "#{@review.title} - #{@thing.title}"
 - page_css 'things'
 - provide :keywords, "#{@thing.title}, #{@thing.subtitle}"
-- provide :description, "#{@thing.title},#{@thing.subtitle},关于该产品我们有#{@thing.feelings_count}条短评,#{@thing.reviews_count}篇评测,在KnewOne有#{@thing.owners_count}个用户拥有#{@thing.title},#{@thing.fanciers_count}个用户喜欢#{@thing.title}！"
+- provide :description, "#{@thing.title},#{@thing.subtitle},来 KnewOne，分享科技设计产品，发现更好的生活"
 - provide :feed, thing_url(@thing, format: "atom")
 - provide :sharing_content, present(@review).share_content(false)
 - provide :sharing_cover, present(@review).share_pic(:middle)
