@@ -1,69 +1,66 @@
 @import '../base';
 
-html.categories_index,
-html.categories_all {
+html.categories_index {
 
   #wrapper {
-    @include wrapper(simple, $max-width: $screen-lg-min);
-  }
-
-  .feature {
-    margin-bottom: 30px;
-
-    @media (min-width: $screen-sm-min) {
-      position: relative;
-    }
-  }
-
-  .feature_image {
-    display: block;
-    height: 0;
-    margin-bottom: 1em;
-    padding-bottom: 40%;
-
-    @media (min-width: $screen-sm-min) {
-      margin-bottom: 0;
+    background-color: #ebeced;
+    padding: {
+      left: 0;
+      right: 0;
+      top: 20px;
     }
 
-    img {
-      max-width: 100%;
+    @media (min-width: $screen-sm-min) {
+      padding-top: 0;
+    }
+
+    @media (min-width: $screen-lg-min) {
+      @include wrapper(simple, $max-width: $screen-lg-min);
     }
   }
 
-  .feature_comment {
-    @include clearfix;
-
-    @media (min-width: $screen-sm-min) {
-      bottom: 1em;
-      left: 1em;
-      position: absolute;
-    }
-
-    img {
-      float: left;
-      height: 40px;
-      margin-right: .5em;
-      width: 40px;
+  @media (max-width: $screen-md-max) {
+    .page-header {
+      background-color: #393b3d;
+      color: #5fc2e5;
+      padding: 0 20px;
 
       @media (min-width: $screen-sm-min) {
-        float: none;
-        vertical-align: text-bottom;
+        width: percentage(5 / 12);
+      }
+
+      h1 {
+        font-size: 16px;
+        line-height: 46px;
       }
     }
 
-    p {
-      color: $text-color;
-      margin-bottom: 0;
-      overflow: hidden;
-
-      @media (min-width: $screen-sm-min) {
-        color: #fff;
-        display: inline-block;
+    .categories {
+      margin: {
+        left: 0;
+        right: 0;
       }
+    }
 
-      .fa-heart {
-        color: $red;
+    .thumbnail--category {
+
+      .info {
+
+        > h5 {
+
+          a {
+            font-size: 16px;
+            margin-right: 0;
+            text-align: center;
+          }
+        }
       }
+    }
+  }
+
+  @media (max-width: $screen-xs-max) {
+    .page-header {
+      margin: 0 20px;
     }
   }
 }

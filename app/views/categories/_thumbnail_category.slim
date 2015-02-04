@@ -1,0 +1,11 @@
+.thumbnail--category
+  = link_to categories_things_path(category), class: "thumbnail-cover" do
+    = image_tag category.cover.url(:square)
+    h5= category.name
+
+  .thumbnail-body
+    .info
+      h5= link_to category.name, categories_things_path(category)
+    .tags
+      - category.children.each do |second_c|
+        = link_to second_c.name, categories_things_path(category, second_c), class: "tag-button btn btn-default", role: "button"

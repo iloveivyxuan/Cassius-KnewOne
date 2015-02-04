@@ -7,38 +7,78 @@
   }
 }
 
-.category_block {
+.thumbnail--category {
+  background-color: #fafafa;
   margin-bottom: 30px;
 
-  .cover {
-    border-bottom: 1px solid #e6e6e6;
-    border-left: 1px solid #f8f8f8;
-    border-radius: 5px;
-    border-right: 1px solid #f8f8f8;
-    box-shadow: 0 1px 0 #f8f8f8;
-    display: inline-block;
-    margin-bottom: 10px;
-    padding: 10px;
+  @media (min-width: $screen-sm-min) {
+    @include clearfix;
+  }
+
+  @media (min-width: $screen-lg-min) {
+    background-color: #fff;
+  }
+
+  .thumbnail-cover {
+    background-color: #fff;
+    display: block;
+
+    @media (min-width: $screen-sm-min) {
+      @include make-sm-column(5);
+      padding: 0;
+    }
+
+    @media (min-width: $screen-lg-min) {
+      border-bottom: 1px solid #e6e6e6;
+      border-left: 1px solid #f8f8f8;
+      border-radius: 5px;
+      border-right: 1px solid #f8f8f8;
+      box-shadow: 0 1px 0 #f8f8f8;
+      padding: 10px;
+    }
 
     img {
-      border-radius: 5px;
+      width: 100%;
+    }
+
+    h5 {
+      display: none;
+
+      @media (min-width: $screen-sm-min) and (max-width: $screen-md-max) {
+        color: $text-color;
+        display: block;
+        font-size: 16px;
+        margin: 0;
+        padding: 15px 0;
+        text-align: center;
+      }
+    }
+  }
+
+  .thumbnail-body {
+    @media (min-width: $screen-sm-min) {
+      @include make-sm-column(7);
     }
   }
 
   .info {
-    @include clearfix;
+    background-color: #fff;
     display: block;
     font-style: normal;
-    margin-bottom: 10px;
+    padding: 20px 0;
+
+    @media (min-width: $screen-sm-min) and (max-width: $screen-md-max) {
+      display: none;
+    }
 
     > h5 {
-      float: left;
       font-size: 20px;
       font-weight: bold;
       margin: 0;
 
       a {
         color: $text-color;
+        display: block;
         font-size: 24px;
         font-weight: normal;
         margin-right: 20px;
@@ -56,22 +96,13 @@
     }
   }
 
-  .tags_container {
-    height: 168px;
+  .tags {
+    padding: 20px;
 
-    & + footer {
-      height: 20px;
-
-      a {
-        color: $gray;
-        display: none;
-      }
-    }
     .tag-button {
       background-color: white;
       border: none;
       border-radius: 0;
-      box-shadow: 1px 1px 1px #d5d5d5;
       margin: 5px 5px;
       padding: 6px 10px;
 
@@ -79,19 +110,28 @@
         background-color: #049cdb;
         color: white;
       }
+
+      @media (min-width: $screen-lg-min) {
+        box-shadow: 1px 1px 1px #d5d5d5;
+      }
+    }
+
+    @media (min-width: $screen-lg-min) {
+      padding: 0;
     }
   }
 }
 
 .categories {
-  @include make-row;
   margin-top: 20px;
 
-  .category_block {
+  @media (min-width: $screen-lg-min) {
+    @include make-row;
+  }
 
-    @media (min-width: $screen-sm-min) {
-      @include make-sm-column(12);
-      @include make-md-column(8);
+  .thumbnail--category {
+
+    @media (min-width: $screen-lg-min) {
       @include make-lg-column(6);
     }
   }
