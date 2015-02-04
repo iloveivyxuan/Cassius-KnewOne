@@ -9,7 +9,3 @@ header.page-header
 section
   .categories
     = render partial: 'categories/category_block', collection: @categories, as: :category
-
-- content_for :script do
-  javascript:
-    Making.InitCategories();
