@@ -141,12 +141,21 @@ html.explore {
       .metas {
         color: #dadada;
 
-        .name a {
-          @extend %text-overflow;
+        .name {
+          height: 20px;
+          vertical-align: -6px;
 
-          display: inline-block;
-          color: $gray;
-          max-width: 6em;
+          a {
+            @extend %text-overflow;
+
+            display: block;
+            color: $gray;
+            max-width: 6em;
+
+            &:hover {
+              text-decoration: none;
+            }
+          }
         }
 
         time {
@@ -236,6 +245,11 @@ html.explore {
 
             &:nth-child(odd) {
               min-width: 40%;
+            }
+
+
+            &.name {
+              vertical-align: middle;
             }
 
             &.time {
