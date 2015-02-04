@@ -4,6 +4,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
   template: HandlebarsTemplates['fancy/modal']
 
   ui: {
+    textarea: 'textarea'
     tagsForm: '.fancy_modal-tags_form'
     tagsInput: '[name="tag_names"]'
   }
@@ -11,6 +12,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
   events: {
     'hidden.bs.modal': 'destroy'
     'change input, textarea': 'onInputChange'
+    'keyup textarea': 'onTextAreaKeyUp'
     'click .fancy_modal-tags_form_toggle': 'toggleTagsForm'
     'submit @ui.tagsForm': 'onTagsFormSubmit'
     'click .fancy_modal-all_tags li': 'onTagClick'
@@ -159,6 +161,9 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     change = {}
     change[$input.attr('name')] = $input.val()
     @model.set(change, {silent: true})
+
+  onTextAreaKeyUp: ->
+    @$('.word_counter b').text(@ui.textarea.val().length)
 
   toggleTagsForm: (event) ->
     event.preventDefault()

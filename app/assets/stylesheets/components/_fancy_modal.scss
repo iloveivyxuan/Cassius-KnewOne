@@ -32,6 +32,14 @@
       textarea {
         resize: none;
       }
+
+      .word_counter {
+        margin-top: 5px;
+        text-align: right;
+
+        color: $gray-light;
+        b { color: $gray; }
+      }
     }
 
     .fancy_modal-options {
