@@ -54,6 +54,10 @@ class ThingsController < ApplicationController
       @things = category ? Thing.where(category_ids: category.id.to_s) : Thing.where(category_ids: "")
     end
 
+    if params[:bong_point]
+      @things = @things.or({ :'kinds.minimal_bong_point'.gt => 0 }, { :'kinds.maximal_bong_point'.gt => 0 })
+    end
+
     if (params[:price_l] || params[:price_h]) && params[:price_l] != "all"
       params[:price_h] = Float::INFINITY if params[:price_h] == "Infinity"
       @things = @things.price_between(params[:price_l], params[:price_h])

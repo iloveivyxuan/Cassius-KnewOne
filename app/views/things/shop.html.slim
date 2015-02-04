@@ -9,6 +9,9 @@
       i.fa.fa-cubes
       | 商店
     nav
+      .checkbox-inline
+        = text_field_tag "bong_point", "true", class: "bong_point", type: "checkbox", checked: params['bong_point']
+        label 可使用活跃点
       select.selectpicker
         - options = categories_options
         = options_for_select options.last, (params[:categories] || options.first.first)
@@ -28,3 +31,15 @@
 - content_for :script do
   javascript:
     Making.InitShop();
+    $(document).ready(function(){
+      $('.bong_point').on('click', function(){
+        if (window.location.href.indexOf("bong_point") === -1) {
+          var seperator = (window.location.href.indexOf("?")===-1) ? "?" : "&";
+          var href = window.location.href + seperator + "bong_point=true"
+        } else {
+          if (window.location.href.indexOf("?bong_point") !== -1) { var href = window.location.href.split("?bong_point")[0] }
+          if (window.location.href.indexOf("&bong_point") !== -1) { var href = window.location.href.split("&bong_point")[0] }
+        }
+        window.location.href = href;
+      })
+    })
