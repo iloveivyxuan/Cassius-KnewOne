@@ -23,6 +23,11 @@ header.page-header
           th= user.id.to_s
           th= link_to user.name, user_path(user)
           th= "成功"
+      - @dups.each do |user|
+        tr
+          th= user.id.to_s
+          th= link_to user.name, user_path(user)
+          th= "重复"
 - else
   = form_tag url: recharge_haven_users_path, method: :post do |f|
     = text_area_tag :ids, '', cols: 20, rows: 20, class: 'form-control', placeholder: "一行一个"

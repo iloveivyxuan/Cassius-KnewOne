@@ -194,15 +194,21 @@ module Haven
     def recharge
       return unless params[:ids]
 
+      note = "#KnewOne 情人节# 活动奖励"
       user_ids = params[:ids].split.uniq
       @fails = []
       @success = []
+      @dups = []
       user_ids.each do |user_id|
         user = User.where(id: user_id).first
         user ||= User.where(name: user_id).first
         if user
-          user.recharge_balance!(10, '#KnewOne 情人节# 活动奖励')
-          @success << user
+          if user.balance_logs.where(note: note).exists?
+            @dups << user
+          else
+            user.recharge_balance!(10, note)
+            @success << user
+          end
         else
           @fails << user_id
         end
