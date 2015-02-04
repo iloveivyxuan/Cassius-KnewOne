@@ -11,7 +11,8 @@
 
   - if browser.desktop?
     span.landing_image_wrap
-      img src=image_path("landing_#{Random.rand(4)}.jpg")
+      /* img src=image_path("landing_#{Random.rand(4)}.jpg") */
+      = image_tag "http://image.knewone.com/photos/bd8eb7f21cb5c99903e592dae5538284.jpg", alt: "情人节"
 
 .explore
   .explore_header
