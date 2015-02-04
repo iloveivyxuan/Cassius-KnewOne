@@ -29,7 +29,7 @@ class SearchController < ApplicationController
 
     return if params[:page].to_i > 1
 
-    things = @things.records.only(:brand_id, :categories)
+    things = @things.records.only(:brand_id, :category_ids)
 
     brand_id, count = things.reduce(Hash.new(0)) do |counts, t|
       counts[t.brand_id] += 1 if t.brand_id
@@ -39,13 +39,13 @@ class SearchController < ApplicationController
     @brand = Brand.where(id: brand_id).first if count && count > things.size * 0.3
     @brand ||= Brand.search(params[:q]).limit(1).records.first
 
-    category_name, count = things.reduce(Hash.new(0)) do |counts, t|
-      t.categories.each { |c| counts[c] += 1 }
+    category_id, count = things.reduce(Hash.new(0)) do |counts, t|
+      t.category_ids.each { |id| counts[id] += 1 }
       counts
     end.sort_by(&:last).last
 
     if count && count > things.size * 0.5
-      @category = Category.only(:name, :icon, :slugs).where(name: category_name).first
+      @category = Category.only(:name, :icon, :slugs).where(id: category_id).first
     end
   end
 
