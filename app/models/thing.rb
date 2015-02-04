@@ -459,16 +459,18 @@ class Thing < Post
         query: {
           multi_match: {
             query: query,
-            fields: ['title^10', 'subtitle^5', 'nickname^5', 'brand_name^7', 'ngram^5'],
+            fields: ['title^10', 'subtitle^3', 'nickname^5', 'brand_name^7', 'ngram^5'],
             tie_breaker: 0.1,
-            minimum_should_match: '2'
+            minimum_should_match: '2<75%'
           }
         },
         field_value_factor: {
           field: 'fanciers_count',
-          modifier: 'log2p'
+          factor: 0.1,
+          modifier: 'log1p'
         },
-        max_boost: 1.2
+        max_boost: 1.4,
+        boost_mode: 'sum'
       }
     }
 
