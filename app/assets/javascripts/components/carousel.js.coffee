@@ -56,14 +56,16 @@ do (exports = Making) ->
           $overviewItems = $overviewBody.find('[data-slide-to]')
           $overviewItems.eq(0).addClass('active')
 
+          slideNum = parseInt($carouselNav.width() / 70)
+
           $carouselNav.slick
             prevArrow: $slideshowControl.filter('.left')[0]
             nextArrow: $slideshowControl.filter('.right')[0]
-            slidesToShow: 12
+            slidesToShow: slideNum
+            slidesToScroll: slideNum
             infinite: false
-            variableWidth: true
 
-          $overviewItems.on 'click', ->
+          $carouselNav.on 'click', '[data-slide-to]', ->
             $carouselBody.slick('slickGoTo', @getAttribute('data-slide-to'))
             
 

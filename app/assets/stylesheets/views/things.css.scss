@@ -494,8 +494,8 @@ html.feelings_show {
           text-align: center;
           li {
             display: inline-block;
-            width: 60px;
-            height: 60px;
+            width: 60px !important;
+            height: 60px !important;
             margin-right: 10px;
             &:last-child { margin-right: 0 }
             padding: 0;
@@ -509,6 +509,10 @@ html.feelings_show {
             img { width: 100% }
           }
         }
+      }
+
+      .slick-track {
+        margin: 0 auto;
       }
     }
   }
