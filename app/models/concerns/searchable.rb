@@ -9,9 +9,9 @@ module Searchable
     end
 
     after_save do
-      if searchable_fields_changed?
-        Indexer.perform_async(:index, self.class.to_s, self.id.to_s)
-      end
+      # if searchable_fields_changed?
+      #   Indexer.perform_async(:index, self.class.to_s, self.id.to_s)
+      # end
     end
 
     after_destroy { Indexer.perform_async(:delete, self.class.to_s, self.id.to_s) }
