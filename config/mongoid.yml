@@ -90,8 +90,8 @@ production:
         # - 10.10.36.72
       options:
         read: secondary_preferred
-         write:
-           w: majority
+        # write:
+        #   w: 1
         # pool_size: 32
 
 staging:
