@@ -38,6 +38,7 @@
 //= require editable/rails
 //= require jquery.china_city
 //= require rails-timeago
+//= require selectize
 //= require_tree ../templates
 //= require base
 //= require todo
