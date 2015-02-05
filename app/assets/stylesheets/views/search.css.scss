@@ -15,14 +15,13 @@ html[class^="search_"] {
       h1 {
         margin: 0;
         padding: 15px;
-
         text-align: center;
         font-size: 18px;
         line-height: 1;
         color: $gray-light;
 
         em {
-          color: $blue-dark;
+          color: $text-color;
           font-style: normal;
         }
       }
