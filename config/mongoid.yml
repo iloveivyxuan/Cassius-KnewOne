@@ -91,7 +91,7 @@ production:
       options:
         read: :secondary
         write:
-         w: :majority
+          w: :majority
 staging:
   sessions:
     default:
