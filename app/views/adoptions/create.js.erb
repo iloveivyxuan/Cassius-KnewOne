@@ -1,5 +1,5 @@
 <% if @adoption.persisted? %>
   $('#adoption-modal').modal('hide');
   $('#adoption-success').modal('show');
-  $('[data-target="#adoption-modal"]').disable().html('<i class="fa fa-shopping-cart fa-lg"></i>已领养');
+  $('[data-target="#adoption-modal"]').disable().html('<i class="fa fa-shopping-cart fa-lg"></i><%= @adoption.thing.adopted %>');
 <% end %>
