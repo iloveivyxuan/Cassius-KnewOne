@@ -91,7 +91,7 @@ production:
       options:
         read: secondary_preferred
         write:
-          w: majority
+          w: 3
         # pool_size: 32
 
 staging:
