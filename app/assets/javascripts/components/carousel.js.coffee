@@ -64,7 +64,7 @@ do (exports = Making) ->
             nextArrow: $slideshowControl.filter('.right')[0]
             slidesToShow: slideNum
             slidesToScroll: slideNum
-            fixedWidth: 70
+            fixedWidth: 70 - 10/slideNum
             infinite: false
 
           $carouselNav.on 'click', '[data-slide-to]', ->
