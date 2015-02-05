@@ -1,5 +1,5 @@
 class UserMailer < BaseMailer
-  skip_before_action :set_logo, only: :weekly
+  skip_before_action :set_logo, only: [:weekly, :vday]
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -106,6 +106,19 @@ class UserMailer < BaseMailer
          subject: title,
          edm: true) do |format|
       format.html { render layout: 'newspaper' }
+    end
+  end
+
+  def vday(email, name)
+    attachments.inline['vday_header.jpg'] = File.read(Rails.root.join('app/assets/images/mails/vday_header.jpg'))
+    attachments.inline['footer.png'] = File.read(Rails.root.join('app/assets/images/mails/footer.png'))
+    @name = name
+
+    mail(to: email,
+         reply_to: 'advice@knewone.com',
+         subject: '创建情人节列表，得优惠券，赢 KnewOne Box！',
+         edm: true) do |format|
+      format.html { render layout: false }
     end
   end
 end
