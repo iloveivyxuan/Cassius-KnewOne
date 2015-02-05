@@ -312,7 +312,7 @@ class Thing < Post
   end
 
   def valid_kinds
-    kinds.ne(stage: :hidden).sort_by { |k| k.photo_number }
+    kinds.ne(stage: :hidden).sort_by { |k| k.photo_number || 0 }
   end
 
   def self_run?
