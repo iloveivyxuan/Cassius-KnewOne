@@ -86,8 +86,8 @@ production:
       password: a83Be7b7
       hosts:
         - 10.10.14.157
-        - 10.10.14.186
-        - 10.10.38.237
+        # - 10.10.14.186
+        # - 10.10.38.237
         # - 10.10.36.72 # arbiter
       options:
         read: secondary_preferred
