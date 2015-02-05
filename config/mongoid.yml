@@ -87,7 +87,7 @@ production:
       hosts:
         - 10.10.14.157
         - 10.10.14.186
-        - 10.10.36.72
+        # - 10.10.36.72
       options:
         read: secondary_preferred
         # write:
