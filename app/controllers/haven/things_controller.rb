@@ -226,6 +226,7 @@ module Haven
     end
 
     def parsed_result(hash)
+      hash = hash.select { |k, v| !%w(adopt adopted apply_to_adopt adopt_reason confirm_adopt share_text).include? k }
       if changes = hash['brand_id']
         hash["品牌"] = changes.map { |id| Brand.where(id: id).first ? Brand.find(id).brand_text : "无" }
         hash.delete "brand_id"
