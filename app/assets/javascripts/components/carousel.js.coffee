@@ -14,7 +14,7 @@ do (exports = Making) ->
       return if $carouselBody.data('carousel')
 
       $carouselBody.slick
-        autoplay: true,
+        autoplay: true
         autoplaySpeed: 2000
         prevArrow: $controls.filter('.left')[0]
         nextArrow: $controls.filter('.right')[0]
@@ -57,12 +57,14 @@ do (exports = Making) ->
           $overviewItems.eq(0).addClass('active')
 
           slideNum = parseInt($carouselNav.width() / 70)
+          slideNum = if $overviewItems.length < slideNum then $overviewItems.length else slideNum
 
           $carouselNav.slick
             prevArrow: $slideshowControl.filter('.left')[0]
             nextArrow: $slideshowControl.filter('.right')[0]
             slidesToShow: slideNum
             slidesToScroll: slideNum
+            fixedWidth: 70
             infinite: false
 
           $carouselNav.on 'click', '[data-slide-to]', ->

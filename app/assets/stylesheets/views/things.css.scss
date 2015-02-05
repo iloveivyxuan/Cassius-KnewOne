@@ -418,6 +418,8 @@ html.feelings_show {
 
       .item {
         text-align: center;
+        font-size: 0;
+        line-height: 0;
         @media (max-width: $screen-sm-max) {
           height: 0;
           overflow: hidden;
@@ -425,6 +427,7 @@ html.feelings_show {
         }
 
         img {
+          margin: 0;
           max-width: 100%;
         }
       }
