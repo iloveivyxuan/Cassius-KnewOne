@@ -2,10 +2,17 @@
   <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal">X</button>
+
       <h4>
         <i class="fa fa-quote-left"></i>
         {{thing.title}}
       </h4>
+
+      {{#ifCond type '!=' 'edit'}}
+        <a href="#" class="fancy_modal-cancel_button">
+          {{#ifCond type '==' 'fancy'}}取消喜欢{{else}}取消拥有{{/ifCond}}
+        </a>
+      {{/ifCond}}
     </div>
 
     <div class="modal-body">
@@ -78,21 +85,7 @@
     </div>
 
     <div class="modal-footer">
-      {{#if first_time}}
-        <button class="btn btn-primary fancy_modal-submit_button" type="button">完成</button>
-      {{else}}
-        {{#ifCond type '!=' 'edit'}}
-          <button class="btn btn-default fancy_modal-cancel_button" type="button">
-            {{#ifCond type '==' 'fancy'}}
-              <i class="fa fa-heart-o"></i> 取消喜欢
-            {{else}}
-              <i class="fa fa-circle-o"></i> 取消拥有
-            {{/ifCond}}
-          </button>
-        {{/ifCond}}
-
-        <button class="btn btn-primary fancy_modal-submit_button" type="button">保存</button>
-      {{/if}}
+      <button class="btn btn-primary fancy_modal-submit_button" type="button">保存</button>
     </div>
   </div>
 </div>

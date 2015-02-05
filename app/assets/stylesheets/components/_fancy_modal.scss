@@ -16,8 +16,20 @@
     h4 {
       @include text-overflow;
 
+      display: inline-block;
+      vertical-align: middle;
+
+      max-width: 80%;
       margin: 0;
       font-size: 14px;
+    }
+
+    .fancy_modal-cancel_button {
+      vertical-align: middle;
+
+      margin-left: 1em;
+      color: #ccc;
+      font-size: 80%;
     }
 
     .close {
