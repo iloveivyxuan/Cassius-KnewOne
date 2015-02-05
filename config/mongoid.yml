@@ -89,9 +89,11 @@ production:
         - 10.10.14.186
         - 10.10.36.72
       options:
-        read: :secondary
-        write:
-          w: :majority
+        read: secondary_preferred
+        # write:
+        #   w: 1
+        # pool_size: 32
+
 staging:
   sessions:
     default:
