@@ -44,6 +44,12 @@ zh-CN:
         stage: '阶段'
         stage_end_at: '阶段结束时间'
         sharing_text: '分享文案'
+        adopt: "领养按钮"
+        adopted: "已领养"
+        apply_to_adopt: "申请领养"
+        adopt_reason: "申请理由"
+        confirm_adopt: "确认领养"
+        adopt_share_text: "领养分享文案"
       thing_list_background:
         order: '位置（值越大越靠前）'
       rebate:

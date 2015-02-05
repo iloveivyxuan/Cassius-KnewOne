@@ -28,6 +28,12 @@ header.page-header
   = f.input :priority, as: :integer
   = f.input :merchant_name
   = f.input :adoption, collection: [true, false]
+  = f.input :adopt
+  = f.input :adopted
+  = f.input :apply_to_adopt
+  = f.input :adopt_reason
+  = f.input :confirm_adopt
+  = f.input :adopt_share_text
   | 可用标记:
   | &nbsp;购买的商品&nbsp;
   span = "{{item}}"

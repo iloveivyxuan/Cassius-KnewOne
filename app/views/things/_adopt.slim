@@ -1,15 +1,15 @@
 - if user_signed_in?
   - if tp.thing.adopted_by? current_user
-    = button_tag "已领养", type: "button", class: "btn btn--adoption buy_button", disabled: true
+    = button_tag tp.thing.adopted, type: "button", class: "btn btn--adoption buy_button", disabled: true
   - else
-    = button_tag "免费领养", type: "button", class: "btn btn--adoption buy_button", data: data_with_buy_tracker("adoption", tp.thing.title, {toggle: "modal", target: "#adoption-modal"})
+    = button_tag tp.thing.adopt, type: "button", class: "btn btn--adoption buy_button", data: data_with_buy_tracker("adoption", tp.thing.title, {toggle: "modal", target: "#adoption-modal"})
     - content_for :end do
       = render 'shared/adoption_modal', tp: tp
 - elsif browser.wechat?
-  = link_to "免费领养", login_path,
+  = link_to tp.thing.adopt, login_path,
   class: "btn btn--adoption buy_button cart_login",
   data: data_with_login_tracker("adoption", tp.thing.title, false)
 - else
-  = link_to "免费领养", "#",
+  = link_to tp.thing.adopt, "#",
   class: "btn btn--adoption buy_button cart_login",
   data: data_with_login_tracker("adoption", tp.thing.title)

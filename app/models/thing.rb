@@ -3,6 +3,8 @@ class Thing < Post
   include Mongoid::MultiParameterAttributes
   include Aftermath
 
+  include Adoptable
+
   slug :title, history: true
   before_save :delete_illegal_chars
 

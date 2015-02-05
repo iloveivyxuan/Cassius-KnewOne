@@ -8,17 +8,18 @@
         button.close type="button" data-dismiss="modal"
           span aria-hidden="true" &times;
           span.sr-only Close
-        h4.modal-title 申请领养
+        h4.modal-title
+          = thing.apply_to_adopt
       .modal-body
         .address
           = render partial: 'orders/address_select', locals: {f: f}
         .form-group
-          = f.input :note, as: :text, label: "申请理由", input_html: {rows: 3, class: 'form-control'}
+          = f.input :note, as: :text, label: thing.adopt_reason, input_html: {rows: 3, class: 'form-control'}
         = f.input :thing, as: :hidden, input_html: {value: thing.id}
       .modal-footer
         button.btn.btn-primary type="submit"
           i.fa.fa-check
-          | 确认领养
+          = thing.confirm_adopt
 
 .modal.fade#adoption-success tabIndex="-1" role="dialog" aria-hidden="true"
   .modal-dialog
@@ -27,13 +28,14 @@
         button.close type="button" data-dismiss="modal"
           span aria-hidden="true" &times;
           span.sr-only Close
-        h4.modal-title 申请领养成功
+        h4.modal-title
+          = "#{thing.apply_to_adopt}成功"
       .modal-body
         .adoption-result
           p.help-block
             | 目前已有&nbsp;
             strong #{thing.adoptions.size}
-            | &nbsp;人领养
+            | &nbsp;人申请
           ul
             - thing_adopted_users.each do |user|
               li
@@ -45,6 +47,6 @@
           | 申请成功，请耐心等待结果...
       .modal-footer
         button.btn.btn-default type="button" data-dismiss="modal" 关闭
-        - str = "我在 @KnewOne 免费领养了 #{thing.title}：http://knewone.com#{url_for(thing)}"
+        - str = thing.adopt_share_text
         = link_to '分享', '#share_modal', id: 'share_order_btn', class: "share_btn btn btn-default", data: { toggle: 'modal', content: str, pic: thing.cover.url(:review) }
         = link_to "查看详情", adoptions_path, class: "btn btn-success"
