@@ -204,7 +204,13 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       @model.set('state', $radio.val())
 
   onCancel: ->
-    return if @model.get('type') == 'edit'
+    switch @model.get('type')
+      when 'fancy'
+        return unless confirm('您确定要取消喜欢吗？')
+      when 'own'
+        return unless confirm('您确定要取消拥有吗？')
+      else
+        return
 
     if @model.get('type') == 'fancy'
       change = {fancied: false}
