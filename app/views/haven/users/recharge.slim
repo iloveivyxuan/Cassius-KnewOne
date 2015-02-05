@@ -32,3 +32,6 @@ header.page-header
   = form_tag url: recharge_haven_users_path, method: :post do |f|
     = text_area_tag :ids, '', cols: 20, rows: 20, class: 'form-control', placeholder: "一行一个"
     = submit_tag "发福利", class: "btn btn-default", data: { confirm: '确定咯？' }
+
+h4 中奖名单
+= User.where('balance_logs.note' => /#KnewOne 情人节# 活动奖励/).pluck(:name).join(", ")
