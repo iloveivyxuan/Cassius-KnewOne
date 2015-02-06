@@ -13,8 +13,8 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     'hidden.bs.modal': 'destroy'
     'change input, textarea': 'onInputChange'
     'keyup textarea': 'onTextAreaKeyUp'
+    'keyup .selectize-input input[type="text"]': 'fixFullWidthComma'
     'click .fancy_modal-tags_form_toggle': 'toggleTagsForm'
-    'submit @ui.tagsForm': 'onTagsFormSubmit'
     'click .fancy_modal-all_tags li': 'onTagClick'
     'click .fancy_modal-state input': 'onStateClick'
     'click .fancy_modal-cancel_button': 'onCancel'
@@ -37,16 +37,16 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     first_time = (@model.get('type') == 'fancy' && !@model.get('fancied')) ||
                 (@model.get('type') == 'own' && @model.get('state') != 'owned')
 
-    tagNames = @model.get('tags') || []
-    tags = tagNames.map((name) -> {name, selected: true})
+    tags = @model.get('tags') || []
+    tag_names = tags.join(',')
     recent_tags = (@model.get('recent_tags') || [])
-      .filter((name) -> _.indexOf(tagNames, name) == -1)
+      .filter((name) -> _.indexOf(tags, name) == -1)
       .map((name) -> {name, selected: false})
     popular_tags = (@model.get('popular_tags') || [])
-      .filter((name) -> _.indexOf(tagNames, name) == -1)
+      .filter((name) -> _.indexOf(tags, name) == -1)
       .map((name) -> {name, selected: false})
 
-    @model.set({first_time, tags, recent_tags, popular_tags})
+    @model.set({first_time, tags, tag_names, recent_tags, popular_tags})
 
   updateStateOnServer: ->
     {type, fancied, state} = @model.attributes
@@ -127,6 +127,27 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
   onRender: ->
     @$el.find('[name="score"]').rating()
 
+    @ui.tagsInput.selectize({
+      delimiter: ','
+      splitOn: /\s*[,，]\s*/
+      createOnBlur: true
+      persist: false
+      create: (input, done) =>
+        input = input.trim()
+
+        if input.length >= 20
+          @model.set({tags_too_long: true})
+          done()
+        else
+          @model.set({tags_too_long: false}, {silent: true})
+          done({value: input, text: input})
+
+      onItemAdd: (value) => @toggleTags([value], true)
+      onItemRemove: (value) => @toggleTags([value], false)
+    })
+
+    @_selectize = @ui.tagsInput[0].selectize
+
   toggleTags: (tagNames, selected = 'toggle') ->
     toggle = (found) ->
       if found
@@ -134,24 +155,23 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
 
     {tags, recent_tags, popular_tags} = @model.attributes
 
-    _.uniq(tagNames).forEach((name) ->
-      found = _.findWhere(tags, {name})
-      found2 = _.findWhere(recent_tags, {name})
-      found3 = _.findWhere(popular_tags, {name})
-
-      if found || found2 || found3
-        toggle(found)
-        toggle(found2)
-        toggle(found3)
+    _.uniq(tagNames).forEach((name) =>
+      if _.indexOf(tags, name) == -1
+        tags.push(name)
       else
-        tags.unshift({name, selected: true})
+        tags = _.without(tags, name)
+        @model.set({tags}, {silent: true})
+
+      toggle(_.findWhere(recent_tags, {name}))
+      toggle(_.findWhere(popular_tags, {name}))
     )
 
+    @model.set({tag_names: tags.join(',')}, {silent: true})
     @model.trigger('change')
 
-  addTags: (tagNames) ->
-    tagNames.reverse()
-    @toggleTags(tagNames, true)
+    setTimeout(=>
+      @$('.selectize-input input').focus()
+    , 0)
 
   onInputChange: (event) ->
     $input = $(event.currentTarget)
@@ -165,29 +185,19 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
   onTextAreaKeyUp: ->
     @$('.word_counter b').text(@ui.textarea.val().length)
 
+  fixFullWidthComma: (event) ->
+    $input = $(event.currentTarget)
+
+    if /，/.test($input.val())
+      $input.val($input.val().replace(/，/g, ','))
+      $input.trigger('paste')
+
   toggleTagsForm: (event) ->
     event.preventDefault()
 
     @ui.tagsForm.slideToggle(300, =>
       @model.set({tags_expanded: !@model.get('tags_expanded')})
     )
-
-  onTagsFormSubmit: (event) ->
-    event.preventDefault() if event
-
-    tagNames = @ui.tagsInput.val()
-      .split(/[,，]/)
-      .map((s) -> s.trim())
-
-    longTagNames = tagNames.filter((s) -> s && s.length > 20)
-    shortTagNames = tagNames.filter((s) -> s && s.length <= 20)
-
-    @model.set({tag_names: longTagNames.join(', ')}, {silent: true})
-    @model.set({tags_too_long: longTagNames.length > 0})
-
-    @addTags(shortTagNames)
-
-    @ui.tagsInput.focus()
 
   onTagClick: (event) ->
     name = $(event.currentTarget).text()
@@ -234,17 +244,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
   onSubmit: (event) ->
     event.preventDefault()
 
-    @onTagsFormSubmit()
-
-    impression = _.pick(@model.attributes, 'state', 'description', 'score')
-
-    {tags, recent_tags, popular_tags} = @model.attributes
-    impression.tag_names = _.chain([tags, recent_tags, popular_tags])
-      .flatten()
-      .filter(({selected}) -> selected)
-      .pluck('name')
-      .value()
-      .join(',')
+    impression = _.pick(@model.attributes, 'state', 'description', 'score', 'tag_names')
 
     $.ajax({
       url: @url('.js')
