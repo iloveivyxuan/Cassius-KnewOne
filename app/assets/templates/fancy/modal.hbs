@@ -46,39 +46,26 @@
       </div>
 
       <form class="fancy_modal-tags_form" {{#unless tags_expanded}}style="display: none"{{/unless}}>
-        <div class="input-group">
-          <input class="form-control" name="tag_names" type="text" placeholder="用 “,” 隔开" value="{{tag_names}}">
-          <span class="input-group-btn">
-            <button class="btn btn-primary" type="submit">
-              <i class="fa fa-plus fa-alone"></i>
-            </button>
-          </span>
-        </div>
+        <input class="form-control" name="tag_names" type="text" placeholder="用 “,” 隔开" value="{{tag_names}}">
         {{#if tags_too_long}}<span class="help-block">每个标签 20 个字以内</span>{{/if}}
 
         <div class="fancy_modal-all_tags">
-          <section class="fancy_modal-tags">
-            <ul>
-              {{#each tags}}{{> fancy/_tag}}{{/each}}
-            </ul>
-          </section>
-
           {{#if recent_tags}}
-          <section class="fancy_modal-recent_tags">
-            <h6>最近</h6>
-            <ul>
-              {{#each recent_tags}}{{> fancy/_tag}}{{/each}}
-            </ul>
-          </section>
+            <section class="fancy_modal-recent_tags">
+              <h6>最近</h6>
+              <ul>
+                {{#each recent_tags}}{{> fancy/_tag}}{{/each}}
+              </ul>
+            </section>
           {{/if}}
 
           {{#if popular_tags}}
-          <section class="fancy_modal-popular_tags">
-            <h6>推荐</h6>
-            <ul>
-              {{#each popular_tags}}{{> fancy/_tag}}{{/each}}
-            </ul>
-          </section>
+            <section class="fancy_modal-popular_tags">
+              <h6>推荐</h6>
+              <ul>
+                {{#each popular_tags}}{{> fancy/_tag}}{{/each}}
+              </ul>
+            </section>
           {{/if}}
         </div>
       </form>
