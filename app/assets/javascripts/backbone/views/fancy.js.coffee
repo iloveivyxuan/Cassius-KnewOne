@@ -129,7 +129,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
 
     @ui.tagsInput.selectize({
       delimiter: ','
-      splitOn: /[,，]/
+      splitOn: /\s*[,，]\s*/
       createOnBlur: true
       persist: false
       create: (input, done) =>
