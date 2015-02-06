@@ -13,6 +13,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     'hidden.bs.modal': 'destroy'
     'change input, textarea': 'onInputChange'
     'keyup textarea': 'onTextAreaKeyUp'
+    'keyup .selectize-input input[type="text"]': 'fixFullWidthComma'
     'click .fancy_modal-tags_form_toggle': 'toggleTagsForm'
     'click .fancy_modal-all_tags li': 'onTagClick'
     'click .fancy_modal-state input': 'onStateClick'
@@ -179,6 +180,13 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
 
   onTextAreaKeyUp: ->
     @$('.word_counter b').text(@ui.textarea.val().length)
+
+  fixFullWidthComma: (event) ->
+    $input = $(event.currentTarget)
+
+    if /，/.test($input.val())
+      $input.val($input.val().replace(/，/g, ','))
+      $input.trigger('paste')
 
   toggleTagsForm: (event) ->
     event.preventDefault()
