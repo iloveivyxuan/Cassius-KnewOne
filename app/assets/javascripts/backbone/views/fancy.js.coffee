@@ -203,7 +203,9 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       $radio.prop('checked', true)
       @model.set('state', $radio.val())
 
-  onCancel: ->
+  onCancel: (event) ->
+    event.preventDefault()
+
     switch @model.get('type')
       when 'fancy'
         return unless confirm('您确定要取消喜欢吗？')
@@ -229,7 +231,9 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
 
     @updateAllTriggers()
 
-  onSubmit: ->
+  onSubmit: (event) ->
+    event.preventDefault()
+
     @onTagsFormSubmit()
 
     impression = _.pick(@model.attributes, 'state', 'description', 'score')
