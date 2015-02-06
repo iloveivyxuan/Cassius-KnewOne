@@ -7,13 +7,6 @@ GIT
       mongoid (>= 3.0, < 5.0)
 
 GIT
-  remote: git://github.com/bokmann/font-awesome-rails.git
-  revision: a67a67e45d26ccd646153378944a3596decd4982
-  specs:
-    font-awesome-rails (4.3.0.0)
-      railties (>= 3.2, < 5.0)
-
-GIT
   remote: git://github.com/doorkeeper-gem/doorkeeper.git
   revision: ad5b17e4d21b6bc1f596d20f47cbbf2b3f257aa6
   specs:
@@ -660,7 +653,6 @@ DEPENDENCIES
   elasticsearch-rails
   factory_girl_rails
   faker
-  font-awesome-rails!
   growl
   guard-livereload!
   guard-rspec

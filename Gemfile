@@ -67,7 +67,6 @@ gem 'rails-timeago'
 gem 'sass-rails'
 gem 'compass-rails'
 gem 'bootstrap-sass'
-gem 'font-awesome-rails', github: 'bokmann/font-awesome-rails'
 gem "autoprefixer-rails"
 
 # services
