@@ -127,7 +127,11 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
   onRender: ->
     @$el.find('[name="score"]').rating()
 
+    plugins = {}
+    plugins.remove_button = {title: '删除标签'} if Modernizr.touch
+
     @ui.tagsInput.selectize({
+      plugins
       delimiter: ','
       splitOn: /\s*[,，]\s*/
       createOnBlur: true
