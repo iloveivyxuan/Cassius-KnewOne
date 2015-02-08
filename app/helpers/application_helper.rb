@@ -315,8 +315,4 @@ module ApplicationHelper
       request.path
     end
   end
-
-  def is_review?
-    (controller_name == 'reviews') && (action_name == 'show')
-  end
 end
