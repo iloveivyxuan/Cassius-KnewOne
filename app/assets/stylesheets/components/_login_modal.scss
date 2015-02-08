@@ -287,11 +287,7 @@
 }
 
 // CSS3 3D Transforms is partial supported in some browser, e.g: UC Browser, IE (lte 11).
-html.chrome,
-html.safari,
-html.firefox,
-html.opera,
-html.android:not(.ucbrowser) {
+html.csstransforms3d:not(.ie):not(.ucbrowser) {
   #login-modal {
     perspective: 800px;
 
