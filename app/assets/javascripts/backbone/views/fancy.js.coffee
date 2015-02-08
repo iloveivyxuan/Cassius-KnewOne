@@ -164,7 +164,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       toggle(_.findWhere(popular_tags, {name}))
     )
 
-    @model.set({tag_names: tags.join(',')}, {silent: true})
+    @model.set({tags, tag_names: tags.join(',')}, {silent: true})
     @model.trigger('change')
 
     setTimeout(=>
