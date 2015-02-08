@@ -41,7 +41,8 @@ class ThingPresenter < PostPresenter
     return unless self.buy
     return unless thing.price.present?
 
-    price_format thing.price, thing.price_unit
+    price = thing.displayed_price ? thing.displayed_price : thing.price
+    price_format price, thing.price_unit
   end
 
   def mobile_price

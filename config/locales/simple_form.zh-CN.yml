@@ -42,6 +42,7 @@ zh-CN:
         priority: '优先级'
         created_at: '创建时间'
         stage: '阶段'
+        displayed_price: '默认显示价格'
         stage_end_at: '阶段结束时间'
         sharing_text: '分享文案'
         adopt: "领养按钮"

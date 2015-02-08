@@ -42,6 +42,7 @@ class Thing < Post
 
   field :shop, type: String, default: ""
   field :price, type: Float
+  field :displayed_price, type: Float, default: nil
   PRICE_LIST = [1, 100, 200, 500, 1000, Float::INFINITY]
   field :price_unit, type: String, default: "¥"
   field :shopping_desc, type: String, default: ""
