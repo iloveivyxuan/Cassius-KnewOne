@@ -47,7 +47,9 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       .filter((name) -> _.indexOf(tags, name) == -1)
       .map((name) -> {name, selected: false})
 
-    @model.set({first_time, tags, tag_names, recent_tags, popular_tags})
+    sync_to_feeling = !@model.get('description')
+
+    @model.set({first_time, tags, tag_names, recent_tags, popular_tags, sync_to_feeling})
 
   updateStateOnServer: ->
     {type, fancied, state} = @model.attributes
@@ -247,6 +249,20 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
 
     @updateAllTriggers()
 
+  tryToSyncToFeeling: ->
+    return unless @model.get('sync_to_feeling') && @model.get('description')
+
+    feeling = {
+      content: @model.get('description')
+      score: @model.get('score')
+    }
+
+    $.ajax({
+      url: "/things/#{@model.get('thing_id')}/feelings"
+      type: 'POST'
+      data: {feeling}
+    })
+
   onSubmit: (event) ->
     event.preventDefault()
 
@@ -257,6 +273,8 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       type: 'PATCH'
       data: {impression, from: @model.get('from')}
     }, eval)
+
+    @tryToSyncToFeeling()
 
     @$el.modal('hide')
 
