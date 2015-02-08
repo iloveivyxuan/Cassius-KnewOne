@@ -146,8 +146,6 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       onItemRemove: (value) => @toggleTags([value], false)
     })
 
-    @_selectize = @ui.tagsInput[0].selectize
-
   toggleTags: (tagNames, selected = 'toggle') ->
     toggle = (found) ->
       if found
