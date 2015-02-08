@@ -125,7 +125,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       @$el.modal('show')
 
   onRender: ->
-    @$el.find('[name="score"]').rating()
+    @$('[name="score"]').rating()
 
     plugins = {}
     plugins.remove_button = {title: '删除标签'} if Modernizr.touch
