@@ -58,7 +58,7 @@
             = link_to_with_icon '', 'fa fa-twitter', user_omniauth_authorize_path(:twitter, state: request.fullpath), class: 'authorization', title: '用 Twitter 登录'
             = link_to_with_icon '', 'fa fa-qq', user_omniauth_authorize_path(:qq_connect, state: request.fullpath), class: 'authorization', title: '用 QQ 登录'
             = link_to_with_icon '', 'fa fa-douban', user_omniauth_authorize_path(:douban, state: request.fullpath), class: 'authorization', title: '用豆瓣登录'
-            = link_to_with_icon '', 'fa fa-bong', user_omniauth_authorize_path(:bong, state: request.fullpath), class: 'authorization', title: '用 bong 登录'
+            = link_to_with_icon '', 'fa fa-bong-ko', user_omniauth_authorize_path(:bong, state: request.fullpath), class: 'authorization', title: '用 bong 登录'
 
 - content_for :script do
   javascript:
