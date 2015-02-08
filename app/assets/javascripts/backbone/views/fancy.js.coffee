@@ -7,13 +7,14 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     textarea: 'textarea'
     tagsForm: '.fancy_modal-tags_form'
     tagsInput: '[name="tag_names"]'
+    selectizeInput: '.selectize-input input[type="text"]'
   }
 
   events: {
     'hidden.bs.modal': 'destroy'
     'change input, textarea': 'onInputChange'
     'keyup textarea': 'onTextAreaKeyUp'
-    'keyup .selectize-input input[type="text"]': 'fixFullWidthComma'
+    'keyup @ui.selectizeInput': 'fixFullWidthComma'
     'click .fancy_modal-tags_form_toggle': 'toggleTagsForm'
     'click .fancy_modal-all_tags li': 'onTagClick'
     'click .fancy_modal-state input': 'onStateClick'
@@ -150,6 +151,8 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       onItemRemove: (value) => @toggleTags([value], false)
     })
 
+    @bindUIElements()
+
   toggleTags: (tagNames, selected = 'toggle') ->
     toggle = (found) ->
       if found
@@ -171,9 +174,9 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     @model.set({tags, tag_names: tags.join(',')}, {silent: true})
     @model.trigger('change')
 
-    @$('.selectize-input input').focus()
+    @ui.selectizeInput.focus()
     setTimeout(=>
-      @$('.selectize-input input').focus()
+      @ui.selectizeInput.focus()
     , 0)
 
   onInputChange: (event) ->
