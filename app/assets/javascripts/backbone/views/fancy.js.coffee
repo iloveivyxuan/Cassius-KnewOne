@@ -171,6 +171,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
     @model.set({tags, tag_names: tags.join(',')}, {silent: true})
     @model.trigger('change')
 
+    @$('.selectize-input input').focus()
     setTimeout(=>
       @$('.selectize-input input').focus()
     , 0)
