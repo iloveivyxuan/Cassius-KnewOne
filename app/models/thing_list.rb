@@ -94,4 +94,9 @@ class ThingList
     return self.description.gsub(/#knewone情人节#/i, "<a class='special' href='http://knewone.com/things/chuang-jian-qing-ren-jie-li-wu-lie-biao-de-you-hui-quan-ying-knewone-box'>#KnewOne情人节#</a>").html_safe if self.description =~ /#knewone情人节#/i
     self.description.gsub(/#knewone情人节/i, "<a class='special' href='http://knewone.com/things/chuang-jian-qing-ren-jie-li-wu-lie-biao-de-you-hui-quan-ying-knewone-box'>#KnewOne情人节</a>").html_safe
   end
+
+  before_save do
+    self.description.gsub!("<a class='special' href='http://knewone.com/things/chuang-jian-qing-ren-jie-li-wu-lie-biao-de-you-hui-quan-ying-knewone-box'>#KnewOne情人节#</a>", "#KnewOne情人节#")
+    self.description.gsub!("<a class='special' href='http://knewone.com/things/chuang-jian-qing-ren-jie-li-wu-lie-biao-de-you-hui-quan-ying-knewone-box'>#KnewOne情人节</a>", "#KnewOne情人节")
+  end
 end
