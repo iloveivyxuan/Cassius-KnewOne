@@ -112,7 +112,10 @@ class Impression
 
   def tag_names
     return [] if tag_ids.blank?
-    tags.pluck(:name)
+
+    Tag.only(:id, :name).in(id: tag_ids).sort_by do |t|
+      tag_ids.index(t.id)
+    end.map(&:name)
   end
 
   def tag_names=(names)
@@ -123,6 +126,10 @@ class Impression
 
     self.tags.nin(name: names).each do |tag|
       self.tags.delete(tag)
+    end
+
+    self.tag_ids = names.map do |name|
+      Tag.find_by(name: name.to_s).id
     end
   end
 
