@@ -195,10 +195,7 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
 
   fixFullWidthComma: (event) ->
     $input = $(event.currentTarget)
-
-    if /，/.test($input.val())
-      $input.val($input.val().replace(/，/g, ','))
-      $input.trigger('paste')
+    $input.trigger('paste') if /，/.test($input.val())
 
   toggleTagsForm: (event) ->
     event.preventDefault()
