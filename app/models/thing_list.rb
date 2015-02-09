@@ -96,6 +96,7 @@ class ThingList
   end
 
   before_save do
+    return if self.description.blank?
     self.description.gsub!("<a class='special' href='http://knewone.com/things/chuang-jian-qing-ren-jie-li-wu-lie-biao-de-you-hui-quan-ying-knewone-box'>#KnewOne情人节#</a>", "#KnewOne情人节#")
     self.description.gsub!("<a class='special' href='http://knewone.com/things/chuang-jian-qing-ren-jie-li-wu-lie-biao-de-you-hui-quan-ying-knewone-box'>#KnewOne情人节</a>", "#KnewOne情人节")
   end
