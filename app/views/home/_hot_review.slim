@@ -24,15 +24,15 @@
       .summary
         = review_presenter.score
         p= review_presenter.summary(120)
-    footer.info
-      - unless prize
-        = render 'shared/user_avatar', user_id: hot_review.author_id
-      .interactions
-        - if review_presenter.has_lover?
-          = link_to review_presenter.path, target: "_blank" do
-            i.fa.fa-thumbs-o-up
-            span= hot_review.lovers_count
-        - if review_presenter.has_comment?
-          = link_to review_presenter.path, target: "_blank" do
-            i.fa.fa-comment-o
-            span= hot_review.comments_count
+      .info
+        - unless prize
+          = render 'shared/user_avatar', user_id: hot_review.author_id
+        .interactions
+          - if review_presenter.has_lover?
+            = link_to review_presenter.path, target: "_blank" do
+              i.fa.fa-thumbs-o-up
+              span= hot_review.lovers_count
+          - if review_presenter.has_comment?
+            = link_to review_presenter.path, target: "_blank" do
+              i.fa.fa-comment-o
+              span= hot_review.comments_count

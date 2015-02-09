@@ -169,6 +169,9 @@ html.home_hits section.hits, html.landing_mobile section.hits {
             font-size: 14px;
           }
         }
+        .info {
+          margin-top: 20px;
+        }
       }
 
       @media (min-width: $screen-sm-min) {
