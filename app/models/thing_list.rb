@@ -87,4 +87,10 @@ class ThingList
   before_save do
     self.background ||= ThingListBackground.first
   end
+
+  # for v day
+  def special_link
+    return self.description unless self.description =~ /#knewone情人节/i
+    self.description.gsub(/#knewone情人节/i, "<span class='special'><a href='http://knewone.com/things/chuang-jian-qing-ren-jie-li-wu-lie-biao-de-you-hui-quan-ying-knewone-box'>#KnewOne情人节</a></span>").html_safe
+  end
 end

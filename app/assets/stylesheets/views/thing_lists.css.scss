@@ -203,6 +203,10 @@ html.thing_lists_show {
           @include from-breakpoint(md) {
             margin: 0 0 30px;
           }
+
+          .special a {
+            color: #fd5a46;
+          }
         }
       }
 
