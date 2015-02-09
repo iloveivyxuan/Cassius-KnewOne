@@ -4,7 +4,7 @@
 
 - cache ['landing_mobile', params[:page] || 1], expires_in: 1.minute
   - if (j = Jumptron.where(default: true).sample)
-    header.jumptron  
+    header.jumptron.mobile
       a href=j.href target="_blank"
         img src=j.image.url alt=j.alt
 

@@ -18,7 +18,7 @@ html.home_hits .container-fluid {
 }
 
 html.landing_mobile, html.home_hits {
-  header.jumptron {
+  header.jumptron.mobile {
     background: asset_url("landing-mobile-header_image_bg.jpg") repeat;
     height: 0;
     overflow: hidden;
@@ -44,71 +44,31 @@ html.home_hits section.hits, html.landing_mobile section.hits {
     margin-bottom: $gutter;
   }
 
-  article.thing {
-    @media (min-width: $screen-sm-min) {
-      float: left;
-    }
-    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-      &:nth-of-type(odd) {margin-right: $gutter;}
-      width: 350px;
-      width: calc((100% - #{$gutter})/2);
-    }
-
-    @media (min-width: $screen-md-min) {
-      &:nth-of-type(3n+1), &:nth-of-type(3n+2) {margin-right: $gutter;}
-      width: 306px;
-      width: calc((100% - (#{$gutter} + 1px) * 2) / 3);
-    }
-  }
-
-  article.review {
-    width: 100%;
-
-    @media (min-width: $screen-sm-min) {
-      float: left;
-
-      section.content {
-        .summary {
-          min-height: 90px;
-        }
-      }
-    }
-
-    @media (min-width: $screen-md-min) {
-      /* So thing:review is golden porpotion */
-      padding: 35px;
-      header.cover {
-        padding-right: 45px;
-      }
-    }
+  section.thing_list, article.thing, article.review {
+    background-color: #F7F7F7;
+    padding: 20px !important;
   }
 
   .thing_list {
     width: 100%;
     margin-bottom: $gutter;
     padding: 1em;
-
     background: $ghost-white;
 
-    @media (min-width: $screen-sm-min) {
-      float: left;
-    }
-  }
-
-  section.thing_list, article.thing, article.review {
-    background-color: #F7F7F7;
-    padding: 20px !important;
-  }
-
-  section.thing_list {
-    h4 {
-      margin: 0;
-    }
     .thing_list-cover {
       margin: 20px 0;
     }
-    .thing_list-description {
-      border: none;
+
+    @media (max-width: $screen-sm-min) {
+      .thing_list-description {
+        border: none;
+      }
+      h4 {
+        margin: 0;
+      }
+    }
+    @media (min-width: $screen-sm-min) {
+      float: left;
     }
   }
 
@@ -127,10 +87,32 @@ html.home_hits section.hits, html.landing_mobile section.hits {
       .info {
         padding: 0;
       }
+
+      @media (min-width: $screen-sm-min) {
+        float: left;       
+        .content h4 {
+          font-size: 14px;
+          a {
+            color: $black;
+          }
+        }        
+      }
+      @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+        &:nth-of-type(odd) {margin-right: $gutter;}
+        width: 350px;
+        width: calc((100% - #{$gutter})/2);
+      }
+
+      @media (min-width: $screen-md-min) {
+        &:nth-of-type(3n+1), &:nth-of-type(3n+2) {margin-right: $gutter;}
+        width: 306px;
+        width: calc((100% - (#{$gutter} + 1px) * 2) / 3);
+      }
     }
 
     &.review {
-      .thing-card {
+      width: 100%;
+      .cover {
         background-color: #FFFFFF;
         height: 100px;
         a {
@@ -148,18 +130,17 @@ html.home_hits section.hits, html.landing_mobile section.hits {
           overflow: hidden;
           padding: 20px 10px 20px 0;
           height: 100%;
-          position: relative;
         }
         .title {
           text-align: center;
           font-size: 16px;
           color: $gray;
+          height: 100%;
+          margin-bottom: -18px;
         }
 
         .product_detail {
           text-align: center;
-          position: absolute;
-          bottom: 10px;
           width: 100%;
           span {
             margin-right: 1em;
@@ -174,6 +155,7 @@ html.home_hits section.hits, html.landing_mobile section.hits {
         }
       }
       .content {
+        overflow: hidden;
         .title {
           font-size: 18px;
           a {
@@ -187,6 +169,49 @@ html.home_hits section.hits, html.landing_mobile section.hits {
             font-size: 14px;
           }
         }
+      }
+
+      @media (min-width: $screen-sm-min) {
+        float: left;
+        .cover {
+          width: 160px;
+          height: auto;
+          text-align: center;
+          margin-right: 45px;
+          padding: 0;
+          background-color: $gray-lighter;
+          img {
+            float: none;
+            height: 160px;
+            width: 160px;
+            margin: 0;
+          }        
+          .info {
+            padding: 0 10px;
+            text-align: center;
+            margin: 10px;
+          }
+          .title {
+            margin-bottom: 0;
+            font-size: 10px;
+          }
+          .product_detail {
+            margin-top: 10px;
+          }
+        }
+        .content {
+          .title a {
+            color: $gray;
+          }
+          .summary {
+            min-height: 90px;
+          }
+        }
+      }
+
+      @media (min-width: $screen-md-min) {
+        /* So thing:review is golden porpotion */
+        padding: 35px;
       }
     }
   }
