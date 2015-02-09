@@ -33,7 +33,7 @@ html.feelings_show {
 
       i {
         color: $red;
-        &:before {  content:"\f004" }
+        &:before {  content:"\e6f6" }
       }
     }
 
@@ -42,7 +42,7 @@ html.feelings_show {
 
       i {
         color: $red;
-        &:before {  content:"\f004" }
+        &:before {  content:"\e6f6" }
       }
 
       &:hover {
@@ -50,7 +50,7 @@ html.feelings_show {
 
         i {
           color: $red;
-          &:before {  content:"\f08a" }
+          &:before {  content:"\e6f5" }
         }
       }
     }
@@ -393,7 +393,7 @@ html.feelings_show {
             }
             i {
               display: inline;
-              &:before { content:"\f0d7" }
+              &:before { content:"\e652" }
             }
             span {
               color: $text-color;
@@ -667,7 +667,7 @@ html.feelings_show {
           margin-right: 0;
           vertical-align: -1px;
           &:before {
-            content:"\f107";
+            content:"\e612";
             -webkit-font-smoothing: auto;
           }
           &:after {
@@ -682,7 +682,7 @@ html.feelings_show {
           border-color: transparent;
           @include box-shadow(0 5px 10px rgba(0,0,0,.2));
           .fa {
-            &:before { content: "\f103" }
+            &:before { content: "\e60e" }
           }
         }
       }
@@ -692,12 +692,12 @@ html.feelings_show {
         a {
           border-top-color: $gray-lighter;
           .fa {
-            &:before { content:"\f106" }
+            &:before { content:"\e615" }
             &:after { content: "收起" }
           }
           &:hover {
             .fa {
-              &:before { content: "\f102" }
+              &:before { content: "\e611" }
             }
           }
         }
@@ -2300,14 +2300,14 @@ html.feelings_show {
             line-height: 40px;
             vertical-align: -1px;
             &:before {
-              content:"\f107";
+              content:"\e612";
               -webkit-font-smoothing: auto;
             }
           }
           &:hover {
             color: $brand-primary;
             @include box-shadow(0 10px 15px rgba(0,0,0,.1));
-            .fa:before { content: "\f103" }
+            .fa:before { content: "\e60e" }
           }
         }
 
