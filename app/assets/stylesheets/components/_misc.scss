@@ -202,10 +202,15 @@ label.avatar {
   text-align: center;
 
   > h6 {
-    display: inline-block;
+    display: block;
     font-size: 14px;
     margin: 0;
-    vertical-align: middle;
+    text-align: center;
+
+    @media (min-width: $screen-sm-min) {
+      display: inline-block;
+      vertical-align: middle;
+    }
   }
 
   > a {
