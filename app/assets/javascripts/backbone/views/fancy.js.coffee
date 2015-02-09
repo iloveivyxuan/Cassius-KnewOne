@@ -167,7 +167,6 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
         tags.push(name)
       else
         tags = _.without(tags, name)
-        @model.set({tags}, {silent: true})
 
       toggle(_.findWhere(recent_tags, {name}))
       toggle(_.findWhere(popular_tags, {name}))
