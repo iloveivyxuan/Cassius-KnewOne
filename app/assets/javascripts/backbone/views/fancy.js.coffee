@@ -149,9 +149,15 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
           @model.set({tags_too_long: false}, {silent: true})
           done({value: input, text: input})
 
-      onItemAdd: (value) => @toggleTags([value], true)
+      onItemAdd: (value) =>
+        tag_names = @_selectize.getValue()
+        @model.set({tag_names, tags: tag_names.split(',')}, {silent: true})
+        @toggleTags([value], true)
+
       onItemRemove: (value) => @toggleTags([value], false)
     })
+
+    @_selectize = @ui.tagsInput[0].selectize
 
     @bindUIElements()
 
