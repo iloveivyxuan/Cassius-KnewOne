@@ -91,6 +91,7 @@ class ThingList
   # for v day
   def special_link
     return self.description unless self.description =~ /#knewone情人节/i
-    self.description.gsub(/#knewone情人节/i, "<span class='special'><a href='http://knewone.com/things/chuang-jian-qing-ren-jie-li-wu-lie-biao-de-you-hui-quan-ying-knewone-box'>#KnewOne情人节</a></span>").html_safe
+    return self.description.gsub(/#knewone情人节#/i, "<a class='special' href='http://knewone.com/things/chuang-jian-qing-ren-jie-li-wu-lie-biao-de-you-hui-quan-ying-knewone-box'>#KnewOne情人节#</a>").html_safe if self.description =~ /#knewone情人节#/i
+    self.description.gsub(/#knewone情人节/i, "<a class='special' href='http://knewone.com/things/chuang-jian-qing-ren-jie-li-wu-lie-biao-de-you-hui-quan-ying-knewone-box'>#KnewOne情人节</a>").html_safe
   end
 end
