@@ -119,8 +119,10 @@ class Impression
   end
 
   def tag_names=(names)
+    names = names.map(&:to_s)
+
     names.each do |name|
-      tag = Tag.find_or_create_by(name: name.to_s)
+      tag = Tag.find_or_create_by(name: name)
       self.tags << tag unless self.tags.include?(tag)
     end
 
@@ -129,7 +131,7 @@ class Impression
     end
 
     self.tag_ids = names.map do |name|
-      Tag.find_by(name: name.to_s).id
+      Tag.find_by(name: name).id
     end
   end
 
