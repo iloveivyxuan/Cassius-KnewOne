@@ -26,14 +26,15 @@ module Haven
         end
 
         format.csv do
-          lines = [%w(用户名 地址 邮箱 申请理由)]
+          lines = [%w(用户名 地址 邮箱 申请理由 申请时间)]
 
           @adoptions.includes(:user).each do |adoption|
             cols = [
                     adoption.user.name,
                     content_for_address(adoption.address),
                     adoption.user.email,
-                    adoption.note
+                    adoption.note,
+                    adoption.created_at.to_s
                    ]
 
             lines<< cols
