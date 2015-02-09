@@ -1,26 +1,27 @@
 @font-face {
-	font-family: 'KnewOne-Icon';
-	font-style: normal;
-	font-weight: normal;
-	src: asset_url('KnewOne-Icon/KnewOne-Icon.eot?qv21kc');
-	src: asset_url('KnewOne-Icon/KnewOne-Icon.eot?#iefixqv21kc') format('embedded-opentype'),
-		   asset_url('KnewOne-Icon/KnewOne-Icon.woff?qv21kc') format('woff'),
-		   asset_url('KnewOne-Icon/KnewOne-Icon.ttf?qv21kc') format('truetype'),
-		   asset_url('KnewOne-Icon/KnewOne-Icon.svg?qv21kc#KnewOne-Icon') format('svg');
+  font-family: 'KnewOne-Icon';
+  font-style: normal;
+  font-weight: normal;
+  src: asset_url('KnewOne-Icon/KnewOne-Icon.eot?qv21kc');
+  src: asset_url('KnewOne-Icon/KnewOne-Icon.eot?#iefixqv21kc') format('embedded-opentype'),
+       asset_url('KnewOne-Icon/KnewOne-Icon.woff?qv21kc') format('woff'),
+       asset_url('KnewOne-Icon/KnewOne-Icon.ttf?qv21kc') format('truetype'),
+       asset_url('KnewOne-Icon/KnewOne-Icon.svg?qv21kc#KnewOne-Icon') format('svg');
 }
 
 .fa {
-	font-family: 'KnewOne-Icon';
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
+  display: inline-block;
+  font-family: 'KnewOne-Icon';
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  speak: none;
+  text-transform: none;
 
-	/* Better Font Rendering =========== */
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .fa-add-to-list-ko:before {
