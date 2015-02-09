@@ -42,6 +42,7 @@ table.table.table-striped.table--fixed
       th width="55" 记录
       th 备注
       th width="65" 状态
+      th 申请时间
       th width="55" 操作
   tbody
     - @adoptions.each do |a|
@@ -55,6 +56,7 @@ table.table.table-striped.table--fixed
         td = link_to '[内幕]', haven_user_path(u)
         td = a.note
         td = link_to a.status, haven_adoptions_path(status: a.status)
+        td= a.created_at.to_s
         td
           - if a.status == :waiting
             = link_to "[通过]", approve_haven_adoption_path(a), method: :post
