@@ -164,9 +164,9 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
 
     _.uniq(tagNames).forEach((name) =>
       if _.indexOf(tags, name) == -1
-        tags.push(name)
+        tags.push(name) if selected == 'toggle' || selected
       else
-        tags = _.without(tags, name)
+        tags = _.without(tags, name) if selected == 'toggle' || !selected
 
       toggle(_.findWhere(recent_tags, {name}))
       toggle(_.findWhere(popular_tags, {name}))
