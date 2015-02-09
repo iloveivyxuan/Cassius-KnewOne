@@ -1,11 +1,21 @@
 @import '../base';
 
 html.landing_mobile {
+  $font-color: #777777;
   body {
     @media (min-width: $screen-sm-min) {
       padding-top: 45px;
       #wrapper {margin: 0}
     }
+  }
+
+  .jumptron {
+    background: asset_url("landing-mobile-header_image_bg.jpg") repeat;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 71.00737100737101%;
+    padding-top: 10px;
+    width: 100%;
   }
 
   h2.slogan {
@@ -16,6 +26,98 @@ html.landing_mobile {
 
     font-size: 16px;
     text-align: center;
+  }
+
+  section.thing_list, article.thing, article.review {
+    background-color: #F7F7F7;
+    padding: 20px !important;
+  }
+
+  section.thing_list {
+    h4 {
+      margin: 0;
+    }
+    .thing_list-cover {
+      margin: 20px 0;
+    }
+  }
+
+  article {
+    &.thing {
+      .content {
+        padding: 20px 0;
+        h4 {        
+          font-size: 18px;
+        }
+        a {
+          color: $font-color;
+        }
+      }
+
+      .info {
+        padding: 0;
+      }
+    }
+
+    &.review {
+      .cover {
+        background-color: #FFFFFF;
+        height: 100px;
+        a {
+          display: block;
+          height: 100%;
+          overflow: hidden;
+        }
+        img {
+          float: left;
+          height: 100px;
+          width: 100px;
+          margin-right: 10px;
+        }
+        .info {
+          overflow: hidden;
+          padding: 20px 10px 20px 0;
+          height: 100%;
+          position: relative;
+        }
+        .title {
+          text-align: center;
+          font-size: 16px;
+          color: $gray;
+        }
+
+        .product_detail {
+          text-align: center;
+          position: absolute;
+          bottom: 10px;
+          width: 100%;
+          span {
+            margin-right: 10px;
+            color: $gray-light;
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+          i {
+            margin-right: .2em;
+          }
+        }
+      }
+      .content {
+        .title {
+          font-size: 18px;
+          a {
+            color: $brand-primary;
+          }
+        }
+        .summary {
+          p {
+            margin-top: 20px;
+            line-height: 26px;
+          }
+        }
+      }
+    }
   }
 }
 

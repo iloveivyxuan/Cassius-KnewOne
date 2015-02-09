@@ -3,11 +3,21 @@
 - present hot_review do |review_presenter|
   article.review
     header.cover
-      = link_to review_presenter.path, target: "_blank" do
-        - if browser.mobile?
-          = present(hot_review.thing).photo('post.fixed')
-        - else
-          = present(hot_review.thing).photo(:square)
+      - present(hot_review.thing).tap do |thing_presenter|
+        = link_to thing_presenter.path, target: "_blank" do
+          = thing_presenter.photo(:square)
+          .info
+            .title= truncate(thing_presenter.title, length: 32)
+            .product_detail
+              span
+                i.fa.fa-heart-o
+                = thing_presenter.fanciers_count
+              span
+                i.fa.fa-check-circle-o
+                = thing_presenter.owners_count
+              span
+                i.fa.fa-pencil
+                = thing_presenter.reviews_count
     section.content
       h4.title
         = link_to review_presenter.title, review_presenter.path, target: "_blank"

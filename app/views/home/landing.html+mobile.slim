@@ -3,12 +3,11 @@
 - page_css 'hits'
 
 - cache ['landing_mobile', params[:page] || 1], expires_in: 1.minute
-  header.jumptron
-    - if (j = Jumptron.where(default: true).sample)
+  - if (j = Jumptron.where(default: true).sample)
+    header.jumptron  
       a href=j.href target="_blank"
         img src=j.image.url alt=j.alt
-    - else
-      h2.slogan = slogan
+
   section.hits
     = render 'hits_groups'
 
