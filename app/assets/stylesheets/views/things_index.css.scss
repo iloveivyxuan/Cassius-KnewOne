@@ -219,7 +219,7 @@ html.things_index {
         & + li {
           &::before {
             content: "\f105";
-            font-family: FontAwesome;
+            font-family: 'KnewOne-Icon';
           }
         }
         &.active {
