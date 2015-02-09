@@ -2,7 +2,7 @@
 
 - present hot_review do |review_presenter|
   article.review
-    header.cover
+    header.thing-card
       - present(hot_review.thing).tap do |thing_presenter|
         = link_to thing_presenter.path, target: "_blank" do
           = thing_presenter.photo(:square)
