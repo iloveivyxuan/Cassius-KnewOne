@@ -9,7 +9,10 @@
     | 链接：
     = f.text_field :href
   p
+    | 类型：
+    = f.select :jumptron_type, Jumptron::TYPE.to_a
+  p
     | 默认：
     = f.check_box 'default'
-
+    
   = f.submit

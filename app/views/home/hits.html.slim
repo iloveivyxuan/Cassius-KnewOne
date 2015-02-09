@@ -5,7 +5,7 @@
 - cache_unless user_signed_in?, ['hits', params[:page] || 1], expires_in: 1.minute
   .container-fluid
     header.jumptron
-      - if (j = Jumptron.where(default: true).sample)
+      - if (j = Jumptron.with_type(:normal).where(default: true).sample)
         a href=j.href target="_blank"
           img src=j.image.url alt=j.alt
     section.hits

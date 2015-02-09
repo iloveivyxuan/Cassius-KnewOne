@@ -18,18 +18,20 @@ html.home_hits .container-fluid {
 }
 
 html.landing_mobile, html.home_hits {
-  header.jumptron.mobile {
-    background: asset_url("landing-mobile-header_image_bg.jpg") repeat;
-    height: 0;
-    overflow: hidden;
-    padding-bottom: 71.00737100737101%;
-    padding-top: 10px;
-    width: 100%;
-
+  header.jumptron {
+    &.landing {
+      background: asset_url("landing-mobile-header_image_bg.jpg") repeat;
+      height: 0;
+      overflow: hidden;
+      padding-bottom: 71.00737100737101%;
+      padding-top: 10px;
+      width: 100%;
+      margin: 0;
+    }
     @include clearfix;
 
     @media (min-width: $screen-sm-min) {
-      margin: 40px 0 30px;
+      margin: 40px 0 30px;      
     }
   }
 }
