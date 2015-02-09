@@ -24,7 +24,7 @@
       .summary
         = review_presenter.score
         p= review_presenter.summary(120)
-      .info
+      footer.info
         - unless prize
           = render 'shared/user_avatar', user_id: hot_review.author_id
         .interactions

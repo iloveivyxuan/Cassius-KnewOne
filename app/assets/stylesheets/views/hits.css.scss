@@ -48,7 +48,7 @@ html.home_hits section.hits, html.landing_mobile section.hits {
 
   section.thing_list, article.thing, article.review {
     background-color: #F7F7F7;
-    padding: 20px !important;
+    padding: 20px;
   }
 
   .thing_list {
@@ -57,11 +57,11 @@ html.home_hits section.hits, html.landing_mobile section.hits {
     padding: 1em;
     background: $ghost-white;
 
-    .thing_list-cover {
-      margin: 20px 0;
-    }
 
     @media (max-width: $screen-sm-min) {
+      .thing_list-cover {
+        margin: 20px 0;
+      }
       .thing_list-description {
         border: none;
       }
@@ -166,7 +166,6 @@ html.home_hits section.hits, html.landing_mobile section.hits {
         }
         .summary {
           p {
-            margin-top: 20px;
             line-height: 26px;
             font-size: 14px;
           }
