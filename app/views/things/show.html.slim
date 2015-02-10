@@ -3,7 +3,7 @@
 - provide :wechat_desc, @thing.subtitle
 
 - present @thing do |tp|
-  - page_title "【#{tp.full_title}】 评测,价格,使用,购买"
+  - page_title "#{tp.full_title} 来 KnewOne ，分享科技设计产品，发现更好的生活"
   = render "carousel", tp: tp
   = render 'actions_compact', tp: tp
   = render "summary", tp: tp
