@@ -1,7 +1,7 @@
 window.Making = do (exports = window.Making || {}) ->
 
   exports.InitHome = ->
-    Making.InfiniteScroll("#wrapper")
+    exports.infiniteScroll('#feeds')
 
     Making.Feeling("#feeds")
 

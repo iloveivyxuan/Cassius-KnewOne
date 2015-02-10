@@ -7,7 +7,6 @@ class HomeController < ApplicationController
     return redirect_to landing_url unless user_signed_in?
 
     @source = (params[:source] or session[:source] or "following")
-    @pager = Kaminari.paginate_array([], total_count: 2000).page(params[:page]).per(30)
 
     if @source == "following" and current_user.followings_count > 0
       session[:source] = @source
@@ -23,6 +22,10 @@ class HomeController < ApplicationController
       things = things.page(params[:page]).per(30)
       reviews = []
       @feeds = HomeFeed.create_from_things_and_reviews(things, reviews)
+    end
+
+    if request.xhr?
+      render 'index_xhr', layout: false
     end
   end
 

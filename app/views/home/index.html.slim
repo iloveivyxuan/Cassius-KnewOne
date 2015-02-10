@@ -12,9 +12,8 @@
           = link_to "我的关注", following_path
 
   main role="main"
-    section#feeds.infinite
+    section#feeds
       = render partial: 'feed', collection: @feeds
-      = paginate @pager
 
   aside role="complemental"
     = render 'aside'
