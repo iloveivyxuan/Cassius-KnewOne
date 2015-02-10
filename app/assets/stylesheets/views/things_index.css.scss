@@ -218,8 +218,8 @@ html.things_index {
         padding: 0 2px;
         & + li {
           &::before {
-            content: "\f105";
-            font-family: FontAwesome;
+            @include fa-angle-right;
+            font-family: 'KnewOne-Icon';
           }
         }
         &.active {

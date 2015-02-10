@@ -4,5 +4,5 @@ section.auth
     = link_to_with_icon '', 'fa fa-weibo', user_omniauth_authorize_path(:weibo, state: request.path), class: "btn--icon", title: '用微博登录', data: { category: "user", action: "login", label: "weibo" }
     = link_to_with_icon '', 'fa fa-twitter', user_omniauth_authorize_path(:twitter, state: request.path), class: "btn--icon", title: '用 Twitter 登录', data: { category: "user", action: "login", label: "twitter" }
     = link_to_with_icon '', 'fa fa-qq', user_omniauth_authorize_path(:qq_connect, state: request.path), class: "btn--icon", title: '用 QQ 登录', data: { category: "user", action: "login", label: "qq" }
-    = link_to_with_icon '', 'fa fa-douban', user_omniauth_authorize_path(:douban, state: request.path), class: "btn--icon", title: '用豆瓣登录', data: { category: "user", action: "login", label: "douban" }
-    = link_to_with_icon '', 'fa fa-bong', user_omniauth_authorize_path(:bong, state: request.path), class: "btn--icon", title: '用 bong 登录', data: { category: "user", action: "login", label: "bong" }
+    = link_to_with_icon '', 'fa fa-douban-ko', user_omniauth_authorize_path(:douban, state: request.path), class: "btn--icon", title: '用豆瓣登录', data: { category: "user", action: "login", label: "douban" }
+    = link_to_with_icon '', 'fa fa-bong-ko', user_omniauth_authorize_path(:bong, state: request.path), class: "btn--icon", title: '用 bong 登录', data: { category: "user", action: "login", label: "bong" }

@@ -105,8 +105,8 @@
   @include border-radius(4px);
   i {
     margin: 0;
-    &:before {
-      content:"\f087";
+    &::before {
+      @include fa-thumbs-o-up;
       -webkit-font-smoothing: auto;
     }
   }
@@ -126,15 +126,15 @@
   &:hover {
     color: $blue-bright;
     background: none;
-    i { &:before {  content:"\f164" } }
+    i { &::before { @include fa-thumbs-up; } }
   }
   &.done {
     color: $brand-primary;
     background: none;
-    i { &:before {  content:"\f164" } }
+    i { &::before { @include fa-thumbs-up; } }
     &:hover {
       color: $blue-light;
-      i { &:before {  content:"\f087" } }
+      i { &::before { @include fa-thumbs-o-up; } }
     }
   }
 }

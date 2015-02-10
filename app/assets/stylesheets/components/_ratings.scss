@@ -14,11 +14,15 @@
   unicode-bidi: bidi-override;
 
   .star {
-    @include fontawesome("\f006");
     cursor: pointer;
+    display: inline-block;
+    font-family: 'KnewOne-Icon';
+    font-weight: normal;
     font-size: 1em;
+    font-style: normal;
 
     &:before {
+      @include fa-star-o;
       color: #999;
       padding-right: 5px;
     }
@@ -27,7 +31,7 @@
     &:hover ~ .star:before,
     &.selected:before,
     &.selected ~ .star:before {
-      content: "\f005";
+      @include fa-star;
     }
 
     &.selected:before,
@@ -50,17 +54,21 @@
   unicode-bidi: bidi-override;
 
   .star {
-    @include fontawesome("\f006");
+    display: inline-block;
+    font-family: 'KnewOne-Icon';
+    font-weight: normal;
     font-size: 1em;
+    font-style: normal;
 
     &:before {
+      @include fa-star-o;
       color: #999;
       padding-right: 5px;
     }
 
     &.active:before {
+      @include fa-star;
       color: $red;
-      content: "\f005";
     }
   }
 }

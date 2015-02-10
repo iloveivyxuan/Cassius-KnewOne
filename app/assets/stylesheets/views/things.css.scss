@@ -33,7 +33,7 @@ html.feelings_show {
 
       i {
         color: $red;
-        &:before {  content:"\f004" }
+        &:before { @include fa-heart; }
       }
     }
 
@@ -42,7 +42,7 @@ html.feelings_show {
 
       i {
         color: $red;
-        &:before {  content:"\f004" }
+        &:before { @include fa-heart; }
       }
 
       &:hover {
@@ -50,7 +50,7 @@ html.feelings_show {
 
         i {
           color: $red;
-          &:before {  content:"\f08a" }
+          &:before { @include fa-heart-o; }
         }
       }
     }
@@ -393,7 +393,7 @@ html.feelings_show {
             }
             i {
               display: inline;
-              &:before { content:"\f0d7" }
+              &:before { @include fa-caret-down; }
             }
             span {
               color: $text-color;
@@ -458,7 +458,7 @@ html.feelings_show {
         &.left {
           left: 0;
           right: auto;
-          padding-left: 18px;
+          padding-left: 8px;
           text-align: left;
           &:hover {
             background: rgb(0,0,0);
@@ -468,7 +468,7 @@ html.feelings_show {
         &.right {
           left: auto;
           right: 0;
-          padding-right: 18px;
+          padding-right: 8px;
           text-align: right;
           &:hover {
             background: rgb(0,0,0);
@@ -667,7 +667,7 @@ html.feelings_show {
           margin-right: 0;
           vertical-align: -1px;
           &:before {
-            content:"\f107";
+            @include fa-angle-down;
             -webkit-font-smoothing: auto;
           }
           &:after {
@@ -682,7 +682,7 @@ html.feelings_show {
           border-color: transparent;
           @include box-shadow(0 5px 10px rgba(0,0,0,.2));
           .fa {
-            &:before { content: "\f103" }
+            &:before { @include fa-angle-double-down; }
           }
         }
       }
@@ -692,12 +692,12 @@ html.feelings_show {
         a {
           border-top-color: $gray-lighter;
           .fa {
-            &:before { content:"\f106" }
+            &:before { @include fa-angle-up; }
             &:after { content: "收起" }
           }
           &:hover {
             .fa {
-              &:before { content: "\f102" }
+              &:before { @include fa-angle-double-up; }
             }
           }
         }
@@ -2300,14 +2300,14 @@ html.feelings_show {
             line-height: 40px;
             vertical-align: -1px;
             &:before {
-              content:"\f107";
+              @include fa-angle-down;
               -webkit-font-smoothing: auto;
             }
           }
           &:hover {
             color: $brand-primary;
             @include box-shadow(0 10px 15px rgba(0,0,0,.1));
-            .fa:before { content: "\f103" }
+            .fa:before { @include fa-angle-double-down; }
           }
         }
 

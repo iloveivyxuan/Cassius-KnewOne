@@ -214,13 +214,13 @@ html.entries_show {
         line-height: 40px;
         vertical-align: -1px;
         &:before {
-          content:"\f107";
+          @include fa-angle-down;
           -webkit-font-smoothing: auto;
         }
       }
       &:hover {
         color: $brand-primary;
-        .fa:before { content: "\f103" }
+        .fa:before { @include fa-angle-double-down; }
       }
     }
 
@@ -244,7 +244,7 @@ html.entries_show {
           left: 12%;
           right: 12%;
         }
-        max-width: 900px; 
+        max-width: 900px;
       }
     }
 

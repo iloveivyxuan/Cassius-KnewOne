@@ -1005,13 +1005,12 @@ html.landing {
           overflow: hidden;
 
           &:before {
+            @include fa-quote-left;
             position: absolute;
             top: -5px;
             left: -40px;
-
-            content: "\f10d";
             color: $body-bg;
-            font-family: FontAwesome;
+            font-family: 'KnewOne-Icon';
             font-size: 2em;
           }
         }
