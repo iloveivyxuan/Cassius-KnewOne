@@ -81,7 +81,7 @@ html.home_hits section.hits, html.landing_mobile section.hits {
   article {
     &.thing {
       .content {
-        padding: 20px 0;
+        padding: 16px 0;
         h4 {
           font-size: 16px;
         }
@@ -113,6 +113,14 @@ html.home_hits section.hits, html.landing_mobile section.hits {
         &:nth-of-type(3n+1), &:nth-of-type(3n+2) {margin-right: $gutter;}
         width: 306px;
         width: calc((100% - (#{$gutter} + 1px) * 2) / 3);
+        padding: 0;
+        .content, .info {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+        .info {
+          padding-bottom: 16px;
+        }
       }
     }
 
@@ -206,11 +214,16 @@ html.home_hits section.hits, html.landing_mobile section.hits {
             margin: 10px;
           }
           .title {
+            white-space: nowrap;
             margin-bottom: 0;
-            font-size: 10px;
+            font-size: 14px;
+            overflow: hidden;
+            width: 100%;
+            text-overflow: ellipsis;
           }
           .product_detail {
             margin-top: 10px;
+            font-size: 10px;
           }
         }
         .content {
