@@ -166,25 +166,6 @@
   color: #ffffff;
 }
 
-.fa-douban:before {
-  content: '豆';
-  -webkit-font-smoothing: auto;
-}
-
-.fa-alipay {
-  background-image: asset_url("icons/alipay-black.png");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  display: inline-block;
-  height: 1em;
-  vertical-align: middle;
-  width: 1em;
-}
-
-.fa-alipay--white {
-  background-image: asset_url("icons/alipay-white.png");
-}
-
 .fa-desire {
   @extend .fa-heart;
 
