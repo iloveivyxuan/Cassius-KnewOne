@@ -101,7 +101,8 @@ module ThingsHelper
       "title" => "标题 & 副标题",
       "brand" => "品牌",
       "official" => "来源网站",
-      "price_unit" => '价格单位'
+      "price_unit" => '价格单位',
+      "priority" => '优先度'
     }
   end
 

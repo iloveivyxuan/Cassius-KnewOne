@@ -109,6 +109,9 @@ module Haven
         @things = @things.order_by([:created_at, :desc]) if params[:filter].include? "created_at_desc"
         @things = @things.order_by([:created_at, :asc]) if params[:filter].include? "created_at_asc"
       end
+      if params[:priority]
+        @things = @things.where(priority: params[:priority])
+      end
       if params[:category]
         category = Category.where(name: params[:category]).first
         @things = @things.in(category_ids: category.id) if category
