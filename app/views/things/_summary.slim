@@ -8,9 +8,9 @@
           = link_to @thing.author.name, @thing.author, data: {"profile-popover" => @thing.author.id.to_s}
 
         = tp.link_to_share(@thing.title, 'btn btn--square btn--share btn--orange hidden-xs hidden-sm', '分享')
-        = link_to_with_icon '举报', "fa fa-flag", "#",
+        = link_to_with_icon '纠错', "fa fa-bug", "#",
         class: 'btn btn--square btn--share btn--blue_light hidden-xs hidden-sm',
-        data: { 'private-message' => true, 'user-id' => '543c956231302d1015600100', 'user-name' => 'KnewOne小信鸽', 'content' => "我想举报此产品：#{request.original_url}\n\n举报理由：", category: "thing", action: "report", label: @thing.title }
+        data: { 'private-message' => true, 'user-id' => '543c956231302d1015600100', 'user-name' => 'KnewOne小信鸽', 'content' => "我想纠错的产品：#{request.original_url}\n\n错误描述：", category: "thing", action: "report", label: @thing.title }
         - if can?(:edit, @thing)
           = link_to('编辑', [:edit, @thing], class: 'btn btn--square btn--blue')
         - if can?(:pro_edit, @thing)
