@@ -57,14 +57,26 @@ do (exports = Making) ->
           $carousel.css
             maxHeight: 'none'
             visibility: 'visible'
-          carousel = $carousel.data('carousel')
-          $('[data-target="#new-thing-edit-modal-images .carousel"]').on 'click', (event) ->
-            event.preventDefault()
-            carousel.slickGoTo $(this).attr('data-slide-to')
-            
+
+      $new_thing_edit_modal.off('click', '[data-target="#new-thing-edit-modal-images .carousel"]')
+      $new_thing_edit_modal.on 'click', '[data-target="#new-thing-edit-modal-images .carousel"]', (e) ->
+
+        e.preventDefault()
+        $this = $(this)
+        $input = $this.find('input')
+        if $this.hasClass('selected')
+          $this.removeClass('selected')
+          $input.attr('disabled', 'disabled')
+        else
+          $this.addClass('selected')
+          $input.removeAttr('disabled')
+
+        carousel = $('#new-thing-edit-modal-images .carousel').data('carousel')
+        carousel.slickGoTo $(this).attr('data-slide-to')
+
 
       $('#create_thing_modal_form').on('ajax:beforeSend',
-      (event, xhr, settings)->        
+      (event, xhr, settings)->
         $new_thing_edit_modal.find('.btn-primary').$progress
           withText: false
           doneThenRemove: false
@@ -82,16 +94,6 @@ do (exports = Making) ->
             $field.tooltip('show')
 
 
-      $new_thing_edit_modal.on 'click', '#new-thing-edit-modal-sortable li', (e) ->
-        e.preventDefault()
-        $this = $(this)
-        $input = $this.find('input')
-        if $this.hasClass('selected')
-          $this.removeClass('selected')
-          $input.attr('disabled', 'disabled')
-        else
-          $this.addClass('selected')
-          $input.removeAttr('disabled')
       $new_thing_edit_modal.find('textarea').$contentCount()
 
 
@@ -139,7 +141,7 @@ do (exports = Making) ->
           if height >= 300 || width >= 300
             $item = $this.parent()
             $('#new-thing-edit-modal-images').addClass('more-than-one')
-            
+
             if carousel ||= $carousel.data('carousel')
               carousel.slickAdd($item[0])
             else
