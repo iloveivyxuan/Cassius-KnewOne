@@ -6,7 +6,7 @@ Making.InitThingList = ->
   $description = $('.thing_list_description .editable')
   text = $description.text()
   text = text.replace(/#KnewOne情人节#/i, "<a class='tag--link' href='http://knewone.com/things/chuang-jian-qing-ren-jie-li-wu-lie-biao-de-you-hui-quan-ying-knewone-box'>#KnewOne情人节#</a>")
-  text = text.replace(/#KnewOne情人节/i, "<a class='tag--link' href='http://knewone.com/things/chuang-jian-qing-ren-jie-li-wu-lie-biao-de-you-hui-quan-ying-knewone-box'>#KnewOne情人节</a>")
+  text = text.replace(/#KnewOne情人节/i, "<a class='tag--link' href='http://knewone.com/things/chuang-jian-qing-ren-jie-li-wu-lie-biao-de-you-hui-quan-ying-knewone-box'>#KnewOne情人节</a>") if text.toLowerCase().indexOf("#knewone情人节#") == -1
   $description.html(text)
 
   $('.thing_list_description .editable').editable({
@@ -60,7 +60,7 @@ Making.InitThingList = ->
   $('.thing_list_description .editable').on('hidden', (e, reason) ->
     text = $(this).text()
     text = text.replace(/#KnewOne情人节#/i, "<a class='tag--link' href='http://knewone.com/things/chuang-jian-qing-ren-jie-li-wu-lie-biao-de-you-hui-quan-ying-knewone-box'>#KnewOne情人节#</a>")
-    text = text.replace(/#KnewOne情人节/i, "<a class='tag--link' href='http://knewone.com/things/chuang-jian-qing-ren-jie-li-wu-lie-biao-de-you-hui-quan-ying-knewone-box'>#KnewOne情人节</a>")
+    text = text.replace(/#KnewOne情人节/i, "<a class='tag--link' href='http://knewone.com/things/chuang-jian-qing-ren-jie-li-wu-lie-biao-de-you-hui-quan-ying-knewone-box'>#KnewOne情人节</a>") if text.toLowerCase().indexOf("#knewone情人节#") == -1
     $(this).html(text)
   )
 
