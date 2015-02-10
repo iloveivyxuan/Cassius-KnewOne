@@ -31,7 +31,7 @@ html.landing_mobile, html.home_hits {
     @include clearfix;
 
     @media (min-width: $screen-sm-min) {
-      margin: 40px 0 30px;      
+      margin: 40px 0 30px;
     }
   }
 }
@@ -79,7 +79,7 @@ html.home_hits section.hits, html.landing_mobile section.hits {
     &.thing {
       .content {
         padding: 20px 0;
-        h4 {        
+        h4 {
           font-size: 16px;
         }
         a {
@@ -92,13 +92,13 @@ html.home_hits section.hits, html.landing_mobile section.hits {
       }
 
       @media (min-width: $screen-sm-min) {
-        float: left;       
+        float: left;
         .content h4 {
           font-size: 14px;
           a {
             color: $black;
           }
-        }        
+        }
       }
       @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
         &:nth-of-type(odd) {margin-right: $gutter;}
@@ -191,7 +191,7 @@ html.home_hits section.hits, html.landing_mobile section.hits {
             height: 180px;
             width: 180px;
             margin: 0;
-          }        
+          }
           .info {
             padding: 0 10px;
             text-align: center;
