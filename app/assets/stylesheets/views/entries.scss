@@ -53,7 +53,7 @@ html.entries_show {
     }
 
     .entry-avatar {
-      border: 2px solid white;
+      box-shadow: 0 0 0 2px #fff;
       position: absolute;
 
       @media (max-width: $screen-xs-max) {
