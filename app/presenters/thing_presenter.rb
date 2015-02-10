@@ -72,7 +72,9 @@ class ThingPresenter < PostPresenter
   end
 
   def has_shop_section?
-    return true if self.adoption && self.price && self.render_shopping_desc && self.buy && self.help && self.merchant
+    return true if thing.shopping_desc.present?
+    return true if thing.shop.present?
+    return true if thing.merchant.present?
     false
   end
 
