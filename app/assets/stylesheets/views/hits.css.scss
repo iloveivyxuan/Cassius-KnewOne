@@ -40,7 +40,6 @@ html.home_hits section.hits, html.landing_mobile section.hits {
   @include clearfix;
   $gutter: 20px;
   $font-color: #777777;
-  margin-top: $gutter;
 
   article {
     margin-bottom: $gutter;
@@ -149,6 +148,9 @@ html.home_hits section.hits, html.landing_mobile section.hits {
           padding: 20px 10px 20px 0;
           height: 100%;
         }
+        .interactions {
+          margin-top: 0;
+        }
         .title {
           text-align: center;
           font-size: 14px;
@@ -161,8 +163,8 @@ html.home_hits section.hits, html.landing_mobile section.hits {
           text-align: center;
           width: 100%;
           span {
-            margin-right: 1em;
-            color: $gray-light;
+            margin-right: .5em;
+            color: #bbbbbb;
             &:last-child {
               margin-right: 0;
             }
@@ -171,6 +173,7 @@ html.home_hits section.hits, html.landing_mobile section.hits {
       }
       .content {
         overflow: hidden;
+        padding-bottom: 0;
         .title {
           font-size: 18px;
           a {
