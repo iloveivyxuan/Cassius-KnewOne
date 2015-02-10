@@ -17,59 +17,40 @@ html.home_hits .container-fluid {
   }
 }
 
-html.home_hits header.jumptron {
-  @include clearfix;
+html.landing_mobile, html.home_hits {
+  header.jumptron {
+    &.landing {
+      background: asset_url("landing-mobile-header_image_bg.jpg") repeat;
+      height: 0;
+      overflow: hidden;
+      padding-bottom: 71.00737100737101%;
+      padding-top: 10px;
+      width: 100%;
+      margin: 0;
+    }
+    @include clearfix;
 
-  @media (min-width: $screen-sm-min) {
-    margin: 40px 0 30px;
+    @media (min-width: $screen-sm-min) {
+      margin: 40px 0 30px;
+    }
   }
 }
 
 html.home_hits section.hits, html.landing_mobile section.hits {
   @include clearfix;
   $gutter: 20px;
+  $font-color: #777777;
   margin-top: $gutter;
 
   article {
     margin-bottom: $gutter;
   }
 
-  article.thing {
-    @media (min-width: $screen-sm-min) {
-      float: left;
-    }
-    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-      &:nth-of-type(odd) {margin-right: $gutter;}
-      width: 350px;
-      width: calc((100% - #{$gutter})/2);
-    }
-
+  section.thing_list, article.thing, article.review {
+    padding: 20px;
+    background-color: #F7F7F7;
     @media (min-width: $screen-md-min) {
-      &:nth-of-type(3n+1), &:nth-of-type(3n+2) {margin-right: $gutter;}
-      width: 306px;
-      width: calc((100% - (#{$gutter} + 1px) * 2) / 3);
-    }
-  }
-
-  article.review {
-    width: 100%;
-
-    @media (min-width: $screen-sm-min) {
-      float: left;
-
-      section.content {
-        .summary {
-          min-height: 90px;
-        }
-      }
-    }
-
-    @media (min-width: $screen-md-min) {
-      /* So thing:review is golden porpotion */
-      padding: 35px;
-      header.cover {
-        padding-right: 45px;
-      }
+      background-color: #FFFFFF;
     }
   }
 
@@ -77,11 +58,181 @@ html.home_hits section.hits, html.landing_mobile section.hits {
     width: 100%;
     margin-bottom: $gutter;
     padding: 1em;
-
     background: $ghost-white;
 
+
+    @media (max-width: $screen-sm-min) {
+      .thing_list-cover {
+        margin-bottom: 20px;
+      }
+      .thing_list-description {
+        padding-top: 0;
+        border: none;
+      }
+      h4 {
+        font-size: 16px;
+      }
+    }
     @media (min-width: $screen-sm-min) {
       float: left;
+    }
+  }
+
+  article {
+    &.thing {
+      .content {
+        padding: 20px 0;
+        h4 {
+          font-size: 16px;
+        }
+        a {
+          color: $font-color;
+        }
+      }
+
+      .info {
+        padding: 0;
+      }
+
+      @media (min-width: $screen-sm-min) {
+        float: left;
+        .content h4 {
+          font-size: 14px;
+          a {
+            color: $black;
+          }
+        }
+      }
+      @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+        &:nth-of-type(odd) {margin-right: $gutter;}
+        width: 350px;
+        width: calc((100% - #{$gutter})/2);
+      }
+
+      @media (min-width: $screen-md-min) {
+        &:nth-of-type(3n+1), &:nth-of-type(3n+2) {margin-right: $gutter;}
+        width: 306px;
+        width: calc((100% - (#{$gutter} + 1px) * 2) / 3);
+      }
+    }
+
+    &.review {
+      width: 100%;
+      i {
+        margin-right: .2em;
+      }
+      .cover {
+        background-color: #FFFFFF;
+        height: 100px;
+        a {
+          display: block;
+          height: 100%;
+          overflow: hidden;
+        }
+        img {
+          float: left;
+          height: auto;
+          width: auto;
+          max-height: 100%;
+          margin-right: 10px;
+        }
+        .info {
+          overflow: hidden;
+          padding: 20px 10px 20px 0;
+          height: 100%;
+        }
+        .title {
+          text-align: center;
+          font-size: 14px;
+          color: $gray;
+          height: 100%;
+          margin-bottom: -18px;
+        }
+
+        .product_detail {
+          text-align: center;
+          width: 100%;
+          span {
+            margin-right: 1em;
+            color: $gray-light;
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+        }
+      }
+      .content {
+        overflow: hidden;
+        .title {
+          font-size: 18px;
+          a {
+            color: $brand-primary;
+          }
+        }
+        .summary {
+          p {
+            line-height: 26px;
+            font-size: 14px;
+          }
+        }
+        .info {
+          margin-top: 20px;
+          padding: 0;
+        }
+        .interactions {
+          a {
+            margin-right: .5em;
+          }
+        }
+      }
+
+      @media (min-width: $screen-sm-min) {
+        float: left;
+        .cover {
+          width: 220px;
+          height: auto;
+          text-align: center;
+          margin-right: 20px;
+          padding: 0;
+          background-color: #F7F7F7;
+          img {
+            max-width: 100%;
+            float: none;
+            margin: 0;
+          }
+          .info {
+            padding: 0 10px;
+            text-align: center;
+            margin: 10px;
+          }
+          .title {
+            margin-bottom: 0;
+            font-size: 10px;
+          }
+          .product_detail {
+            margin-top: 10px;
+          }
+        }
+        .content {
+          .title {
+            a {
+              color: $brand-primary;
+            }
+            i {
+              margin-right: .8em;
+              color: #AAAAAA;
+            }
+          }
+          .summary {
+            min-height: 90px;
+          }
+        }
+      }
+
+      @media (min-width: $screen-md-min) {
+        /* So thing:review is golden porpotion */
+        padding: 35px;
+      }
     }
   }
 }
