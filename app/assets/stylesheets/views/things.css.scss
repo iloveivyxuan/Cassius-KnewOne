@@ -615,6 +615,11 @@ html.feelings_show {
         color: $blue-dark;
         &:hover { color: $blue-bright }
       }
+
+      .thing--embed figcaption h5 a {
+        color: $text-color;
+      }
+
       footer {
         margin-top: 1em;
         padding-bottom: 1em;
