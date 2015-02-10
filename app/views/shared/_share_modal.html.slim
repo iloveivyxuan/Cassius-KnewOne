@@ -34,7 +34,7 @@
                   = hidden_field_tag 'providers[]', auth.provider, data: {'skip-deserialize' => true}
               div
                 - unless browser.mobile?
-                  = link_to_with_icon "分享到微信", "fa fa-wechat", "#share_wechat",
+                  = link_to_with_icon "分享到微信", "fa fa-weixin", "#share_wechat",
                   title: "微信朋友圈分享", class: "share-button",
                   data: {toggle: 'modal', category: "share", action: "wechat", label: share_btn_label }
                   span.separator |
