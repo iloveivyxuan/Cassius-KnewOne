@@ -3,6 +3,12 @@ Making.InitThingList = ->
 
   $('.thing_list_name .editable').editable()
 
+  $description = $('.thing_list_description .editable')
+  text = $description.text()
+  text = text.replace(/#KnewOne情人节#/i, "<a class='special' href='http://knewone.com/things/chuang-jian-qing-ren-jie-li-wu-lie-biao-de-you-hui-quan-ying-knewone-box'>#KnewOne情人节#</a>")
+  text = text.replace(/#KnewOne情人节/i, "<a class='special' href='http://knewone.com/things/chuang-jian-qing-ren-jie-li-wu-lie-biao-de-you-hui-quan-ying-knewone-box'>#KnewOne情人节</a>")
+  $description.html(text)
+
   $('.thing_list_description .editable').editable({
     emptytext: '描述一下吧'
   })
@@ -49,6 +55,21 @@ Making.InitThingList = ->
         data: {thing_list_item: {order: newOrder}}
       })
     }
+  )
+
+  $('.thing_list_description .editable').on('hidden', (e, reason) ->
+    text = $(this).text()
+    text = text.replace(/#KnewOne情人节#/i, "<a class='special' href='http://knewone.com/things/chuang-jian-qing-ren-jie-li-wu-lie-biao-de-you-hui-quan-ying-knewone-box'>#KnewOne情人节#</a>")
+    text = text.replace(/#KnewOne情人节/i, "<a class='special' href='http://knewone.com/things/chuang-jian-qing-ren-jie-li-wu-lie-biao-de-you-hui-quan-ying-knewone-box'>#KnewOne情人节</a>")
+    $(this).html(text)
+  )
+
+  $('.thing_list_description .editable').on('shown', (e, editable) ->
+    console.log "123"
+  )
+
+  $('.thing_list_description .editable').on('init', (e, editable) ->
+    console.log "456"
   )
 
   $('.thing_list_edit_button').on('click', (event) ->

@@ -13,7 +13,7 @@ header
 
     - if list.description.present? || can?(:update, list)
       p.thing_list_description class=('hide' if list.description.blank?)
-        = editable list, :description, title: '列表描述', value: list.special_link
+        = editable list, :description, title: '列表描述'
 
   .thing_list_actions
     ul
