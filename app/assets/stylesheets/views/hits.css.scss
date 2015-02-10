@@ -47,8 +47,11 @@ html.home_hits section.hits, html.landing_mobile section.hits {
   }
 
   section.thing_list, article.thing, article.review {
-    background-color: #F7F7F7;
     padding: 20px;
+    background-color: #F7F7F7;
+    @media (min-width: $screen-md-min) {
+      background-color: #FFFFFF;
+    }
   }
 
   .thing_list {
@@ -115,6 +118,9 @@ html.home_hits section.hits, html.landing_mobile section.hits {
 
     &.review {
       width: 100%;
+      i {
+        margin-right: .2em;
+      }
       .cover {
         background-color: #FFFFFF;
         height: 100px;
@@ -153,9 +159,6 @@ html.home_hits section.hits, html.landing_mobile section.hits {
               margin-right: 0;
             }
           }
-          i {
-            margin-right: .2em;
-          }
         }
       }
       .content {
@@ -176,6 +179,11 @@ html.home_hits section.hits, html.landing_mobile section.hits {
           margin-top: 20px;
           padding: 0;
         }
+        .interactions {
+          a {
+            margin-right: .5em;
+          }
+        }
       }
 
       @media (min-width: $screen-sm-min) {
@@ -186,7 +194,7 @@ html.home_hits section.hits, html.landing_mobile section.hits {
           text-align: center;
           margin-right: 20px;
           padding: 0;
-          background-color: $gray-lighter;
+          background-color: #F7F7F7;
           img {
             max-width: 100%;
             float: none;
@@ -206,8 +214,14 @@ html.home_hits section.hits, html.landing_mobile section.hits {
           }
         }
         .content {
-          .title a {
-            color: $gray;
+          .title {
+            a {
+              color: $brand-primary;
+            }
+            i {
+              margin-right: .8em;
+              color: #AAAAAA;
+            }
           }
           .summary {
             min-height: 90px;

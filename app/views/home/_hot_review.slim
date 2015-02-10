@@ -20,6 +20,8 @@
                 = thing_presenter.reviews_count
     section.content
       h4.title
+        - if browser.desktop?
+          i.fa.fa-pencil
         = link_to review_presenter.title, review_presenter.path, target: "_blank"
       .summary
         = review_presenter.score
