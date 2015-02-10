@@ -5,7 +5,7 @@
     header.cover
       - present(hot_review.thing).tap do |thing_presenter|
         = link_to thing_presenter.path, target: "_blank" do
-          = thing_presenter.photo(:square)
+          = thing_presenter.photo('thing.fixed')
           .info
             .title= truncate(thing_presenter.title, length: 32)
             .product_detail

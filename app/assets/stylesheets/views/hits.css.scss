@@ -125,8 +125,9 @@ html.home_hits section.hits, html.landing_mobile section.hits {
         }
         img {
           float: left;
-          height: 100px;
-          width: 100px;
+          height: auto;
+          width: auto;
+          max-height: 100%;
           margin-right: 10px;
         }
         .info {
@@ -136,7 +137,7 @@ html.home_hits section.hits, html.landing_mobile section.hits {
         }
         .title {
           text-align: center;
-          font-size: 16px;
+          font-size: 14px;
           color: $gray;
           height: 100%;
           margin-bottom: -18px;
@@ -180,16 +181,15 @@ html.home_hits section.hits, html.landing_mobile section.hits {
       @media (min-width: $screen-sm-min) {
         float: left;
         .cover {
-          width: 180px;
+          width: 220px;
           height: auto;
           text-align: center;
-          margin-right: 45px;
+          margin-right: 20px;
           padding: 0;
           background-color: $gray-lighter;
           img {
+            max-width: 100%;
             float: none;
-            height: 180px;
-            width: 180px;
             margin: 0;
           }
           .info {
