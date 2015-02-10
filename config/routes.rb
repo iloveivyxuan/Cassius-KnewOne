@@ -7,12 +7,7 @@ Making::Application.routes.draw do
 
   use_doorkeeper
 
-  authenticated :user do
-    root to: 'home#index'
-  end
-
-  root to: 'home#landing', as: :landing
-
+  root to: 'home#index'
   get 'page/:page', to: "home#index"
   get 'following', to: "home#index", defaults: {source: "following"}
   get 'latest', to: "home#index", defaults: {source: "latest"}
