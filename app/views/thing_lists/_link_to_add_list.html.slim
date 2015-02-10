@@ -2,9 +2,9 @@
 
 - if user_signed_in?
   = link_to '#', class: 'add_to_list', data: {'add-to-list' => true, 'thing-id' => thing_id}, title: '加入列表'
-    i.fa.fa-list-ul
+    i.fa.fa-list-ko
     = text
 - else
   = link_to "#login-modal", title: "加入列表", class: "add_to_list", data: { toggle: 'modal', "signin-legend" => "登录后，把产品加入列表" }
-    i.fa.fa-list-ul
+    i.fa.fa-list-ko
     = text

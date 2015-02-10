@@ -68,7 +68,7 @@
             span = @user.owns_count
         = li action_name == 'lists', class: 'nav-lists'
           = link_to [:lists, @user]
-            i.fa.fa-list-ul
+            i.fa.fa-list-ko
             | 列表
             span = @user.thing_lists.size
         = li action_name == 'things', class: 'nav-things'
@@ -118,11 +118,11 @@
             - when 'lists'
               = li @filter == 'owned'
                 = link_to filter: 'owned'
-                  i.fa.fa-list-ul
+                  i.fa.fa-list-ko
                   | TA创建的
               = li @filter == 'fancied'
                 = link_to filter: 'fancied'
-                  i.fa.fa-list-ul
+                  i.fa.fa-list-ko
                   | TA喜欢的
             - when 'things'
               li.active
