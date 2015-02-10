@@ -41,6 +41,7 @@ do (root = @, exports = Making) ->
     exports.browser = 'wechat'
 
   exports.infiniteScroll = (container, url, callback) ->
+    url ?= window.location.href
     $container = $(container)
     _page = 1
     _lock = false
