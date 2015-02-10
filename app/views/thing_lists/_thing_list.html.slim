@@ -3,20 +3,14 @@
 
 section.thing_list id="thing_list_#{thing_list.id}"
   header
-    - if browser.mobile?
+    = link_to thing_list, target: "_blank", title: thing_list.name
+      = render 'thing_lists/cover', thing_list: thing_list, layout: layout
+    
       h4
         i.fa.fa-list-ul
         span.thing_list-name = thing_list.name
         span.thing_list-size = "(#{thing_list.size})"
 
-    = link_to thing_list, target: "_blank", title: thing_list.name
-      = render 'thing_lists/cover', thing_list: thing_list, layout: layout
-
-    - if browser.desktop?
-      h4
-        i.fa.fa-list-ko
-        span.thing_list-name = thing_list.name
-        span.thing_list-size = "(#{thing_list.size})"
 
     - if can? :destroy, thing_list
       .thing_list-destroy
