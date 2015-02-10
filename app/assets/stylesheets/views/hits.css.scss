@@ -180,7 +180,7 @@ html.home_hits section.hits, html.landing_mobile section.hits {
       @media (min-width: $screen-sm-min) {
         float: left;
         .cover {
-          width: 160px;
+          width: 180px;
           height: auto;
           text-align: center;
           margin-right: 45px;
@@ -188,8 +188,8 @@ html.home_hits section.hits, html.landing_mobile section.hits {
           background-color: $gray-lighter;
           img {
             float: none;
-            height: 160px;
-            width: 160px;
+            height: 180px;
+            width: 180px;
             margin: 0;
           }        
           .info {
