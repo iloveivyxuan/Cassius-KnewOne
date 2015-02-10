@@ -9,11 +9,10 @@ Making::Application.routes.draw do
 
   authenticated :user do
     root to: 'home#index'
+    get 'page/:page', to: "home#index"
   end
 
   root to: 'home#landing', as: :landing
-
-  get 'page/:page', to: "home#index"
 
   get 'hits/(page/:page)', to: 'home#hits', as: :hits
   get 'embed', to: 'home#embed', as: :embed
