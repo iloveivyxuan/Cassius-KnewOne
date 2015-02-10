@@ -10,10 +10,18 @@ class HomeController < ApplicationController
 
     if @source == "following" and current_user.followings_count > 0
       session[:source] = @source
+
       activities = current_user.related_activities.visible.by_types(:new_thing, :own_thing, :fancy_thing,
                                                                     :new_review, :love_review,
                                                                     :new_feeling,
                                                                     :add_to_list, :fancy_list)
+      @from_id = params[:from_id].to_s
+      if @from_id.present?
+        activities = activities.lte(id: params[:from_id])
+      else
+        @from_id = activities.first.id.to_s
+      end
+
       activities = activities.page(params[:page]).per(30)
       @feeds = HomeFeed.create_from_activities activities
     else
