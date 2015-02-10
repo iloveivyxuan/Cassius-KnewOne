@@ -659,11 +659,10 @@ html[class^="users_"] {
           text-align: center;
 
           &:before {
+            @include fa-quote-left;
             position: absolute;
             top: 9px;
             left: 14px;
-
-            content: "\e768";
             color: white;
             font-family: 'KnewOne-Icon';
             font-size: 14px;

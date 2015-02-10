@@ -33,7 +33,7 @@ html.feelings_show {
 
       i {
         color: $red;
-        &:before {  content:"\e6f6" }
+        &:before { @include fa-heart; }
       }
     }
 
@@ -42,7 +42,7 @@ html.feelings_show {
 
       i {
         color: $red;
-        &:before {  content:"\e6f6" }
+        &:before { @include fa-heart; }
       }
 
       &:hover {
@@ -50,7 +50,7 @@ html.feelings_show {
 
         i {
           color: $red;
-          &:before {  content:"\e6f5" }
+          &:before { @include fa-heart-o; }
         }
       }
     }
@@ -393,7 +393,7 @@ html.feelings_show {
             }
             i {
               display: inline;
-              &:before { content:"\e652" }
+              &:before { @include fa-caret-down; }
             }
             span {
               color: $text-color;
@@ -667,7 +667,7 @@ html.feelings_show {
           margin-right: 0;
           vertical-align: -1px;
           &:before {
-            content:"\e612";
+            @include fa-angle-down;
             -webkit-font-smoothing: auto;
           }
           &:after {
@@ -682,7 +682,7 @@ html.feelings_show {
           border-color: transparent;
           @include box-shadow(0 5px 10px rgba(0,0,0,.2));
           .fa {
-            &:before { content: "\e60e" }
+            &:before { @include fa-angle-double-down; }
           }
         }
       }
@@ -692,12 +692,12 @@ html.feelings_show {
         a {
           border-top-color: $gray-lighter;
           .fa {
-            &:before { content:"\e615" }
+            &:before { @include fa-angle-up; }
             &:after { content: "收起" }
           }
           &:hover {
             .fa {
-              &:before { content: "\e611" }
+              &:before { @include fa-angle-double-up; }
             }
           }
         }
@@ -2300,14 +2300,14 @@ html.feelings_show {
             line-height: 40px;
             vertical-align: -1px;
             &:before {
-              content:"\e612";
+              @include fa-angle-down;
               -webkit-font-smoothing: auto;
             }
           }
           &:hover {
             color: $brand-primary;
             @include box-shadow(0 10px 15px rgba(0,0,0,.1));
-            .fa:before { content: "\e60e" }
+            .fa:before { @include fa-angle-double-down; }
           }
         }
 

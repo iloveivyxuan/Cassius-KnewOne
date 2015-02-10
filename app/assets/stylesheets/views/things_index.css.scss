@@ -218,7 +218,7 @@ html.things_index {
         padding: 0 2px;
         & + li {
           &::before {
-            content: "\e614";
+            @include fa-angle-right;
             font-family: 'KnewOne-Icon';
           }
         }

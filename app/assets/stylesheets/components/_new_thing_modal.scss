@@ -273,7 +273,7 @@
         }
         &:hover {
           &:after {
-            content: "\e665";
+            @include fa-check-circle-o;
             visibility: visible;
           }
         }
@@ -315,8 +315,8 @@
             background-color: rgb(151, 197, 221);
           }
           &:after {
+            @include fa-check-circle-o;
             background-color: transparent;
-            content: "\e665";
             opacity: .75;
             visibility: visible;
           }
@@ -327,7 +327,7 @@
             background-color: #333333;
           }
           &:after {
-            content: "\e674";
+            @include fa-circle-o;
             visibility: visible;
             opacity: .75;
           }          

@@ -214,13 +214,13 @@ html.entries_show {
         line-height: 40px;
         vertical-align: -1px;
         &:before {
-          content:"\e612";
+          @include fa-angle-down;
           -webkit-font-smoothing: auto;
         }
       }
       &:hover {
         color: $brand-primary;
-        .fa:before { content: "\e60e" }
+        .fa:before { @include fa-angle-double-down; }
       }
     }
 

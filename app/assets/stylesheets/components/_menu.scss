@@ -156,10 +156,10 @@ $menu-profile-width: 225px;
       &.open {
         .dropdown-indicator {
           &::before {
-            content: '\e671';
+            @include fa-chevron-up;
 
             @media (min-width: $screen-sm-min) {
-              content: '\e66f';
+              @include fa-chevron-left;
             }
           }
         }
@@ -178,7 +178,7 @@ $menu-profile-width: 225px;
       top: 23px;
 
       &::before {
-        content: '\e66e';
+        @include fa-chevron-down;
       }
     }
 
@@ -237,7 +237,7 @@ $menu-profile-width: 225px;
 
       .dropdown-indicator {
         &::before {
-          content: '\e670';
+          @include fa-chevron-right;
         }
       }
 

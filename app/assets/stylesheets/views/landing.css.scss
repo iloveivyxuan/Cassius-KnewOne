@@ -1005,11 +1005,10 @@ html.landing {
           overflow: hidden;
 
           &:before {
+            @include fa-quote-left;
             position: absolute;
             top: -5px;
             left: -40px;
-
-            content: "\e768";
             color: $body-bg;
             font-family: 'KnewOne-Icon';
             font-size: 2em;
