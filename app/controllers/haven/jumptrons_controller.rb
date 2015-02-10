@@ -39,7 +39,7 @@ module Haven
     private
 
     def jumptron_params
-      params.require(:jumptron).permit(:image, :alt, :href, :default, :jumptron_type)
+      params.require(:jumptron).permit(:image, :alt, :href, :default, :type)
     end
   end
 end
