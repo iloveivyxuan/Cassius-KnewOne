@@ -64,14 +64,6 @@ Making.InitThingList = ->
     $(this).html(text)
   )
 
-  $('.thing_list_description .editable').on('shown', (e, editable) ->
-    console.log "123"
-  )
-
-  $('.thing_list_description .editable').on('init', (e, editable) ->
-    console.log "456"
-  )
-
   $('.thing_list_edit_button').on('click', (event) ->
     event.preventDefault()
 
