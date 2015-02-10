@@ -4,41 +4,45 @@ class HomeController < ApplicationController
   before_action :require_signed_in, only: [:welcome]
 
   def index
-    if user_signed_in?
-      @source = (params[:source] or session[:source] or "following")
-      @pager = Kaminari.paginate_array([], total_count: 2000).page(params[:page]).per(30)
+    return redirect_to landing_url unless user_signed_in?
 
-      if @source == "following" and current_user.followings_count > 0
-        session[:source] = @source
-        activities = current_user.related_activities.visible.by_types(:new_thing, :own_thing, :fancy_thing,
-                                                                      :new_review, :love_review,
-                                                                      :new_feeling,
-                                                                      :add_to_list, :fancy_list)
-        activities = activities.page(params[:page]).per(30)
-        @feeds = HomeFeed.create_from_activities activities
-      else
-        session[:source] = "latest"
-        things = Thing.published.recommended.desc(:approved_at)
-        things = things.page(params[:page]).per(30)
-        reviews = []
-        @feeds = HomeFeed.create_from_things_and_reviews(things, reviews)
-      end
+    @source = (params[:source] or session[:source] or "following")
+    @pager = Kaminari.paginate_array([], total_count: 2000).page(params[:page]).per(30)
+
+    if @source == "following" and current_user.followings_count > 0
+      session[:source] = @source
+      activities = current_user.related_activities.visible.by_types(:new_thing, :own_thing, :fancy_thing,
+                                                                    :new_review, :love_review,
+                                                                    :new_feeling,
+                                                                    :add_to_list, :fancy_list)
+      activities = activities.page(params[:page]).per(30)
+      @feeds = HomeFeed.create_from_activities activities
     else
-      respond_to do |format|
-        format.html.mobile do
-          hits
-          render 'home/landing.html+mobile' unless request.xhr?
-        end
+      session[:source] = "latest"
+      things = Thing.published.recommended.desc(:approved_at)
+      things = things.page(params[:page]).per(30)
+      reviews = []
+      @feeds = HomeFeed.create_from_things_and_reviews(things, reviews)
+    end
+  end
 
-        format.html.tablet do
-          hits
-          render 'home/landing.html+mobile' unless request.xhr?
-        end
+  def landing
+    return redirect_to root_url if user_signed_in?
 
-        format.html.desktop do
-          @categories = Category.top_level.gt(things_count: 10).desc(:things_count)
-          render 'home/landing'
-        end
+    respond_to do |format|
+      format.html.mobile do
+        hits
+        render 'home/landing.html+mobile' unless request.xhr?
+      end
+
+      format.html.tablet do
+        hits
+        render 'home/landing.html+mobile' unless request.xhr?
+      end
+
+      format.html.desktop do
+        @categories = Category.top_level.gt(things_count: 10).desc(:things_count)
+        render 'home/landing'
       end
     end
   end
