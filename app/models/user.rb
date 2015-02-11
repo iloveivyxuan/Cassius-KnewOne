@@ -1,7 +1,6 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Aftermath
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, :trackable, :confirmable
 
@@ -292,12 +291,19 @@ class User
   ## Followings
 
   def followed?(user)
-    self.followings.include? user
+    user && self.following_ids.include?(user.id)
   end
 
   def follow(user)
-    return if user == self
-    self.followings<< user unless followed? user
+    return if !user || user == self || followed?(user)
+
+    self.relationship.add_to_set(following_ids: user.id)
+    user.relationship.add_to_set(follower_ids: self.id)
+
+    self.set(followings_count: self.relationship.following_ids.size)
+    user.set(followers_count: user.relationship.follower_ids.size)
+
+    user.notify :following, sender: self
   end
 
   def batch_follow(users)
@@ -305,7 +311,13 @@ class User
   end
 
   def unfollow(user)
-    self.followings.delete user
+    return unless followed?(user)
+
+    self.relationship.pull(following_ids: user.id)
+    user.relationship.pull(follower_ids: self.id)
+
+    self.set(followings_count: self.relationship.following_ids.size)
+    user.set(followers_count: user.relationship.follower_ids.size)
   end
 
   ##Dialogs
@@ -561,8 +573,6 @@ HERE
   def wechat_auth
     @_wechat_auth ||= self.auths.where(provider: 'wechat').first
   end
-
-  need_aftermath :follow, :unfollow
 
   def self.related_users_and_owned(thing, user, count, fields = [:id, :name])
     related_user_ids = (user.following_ids & thing.owner_ids).take(count)
