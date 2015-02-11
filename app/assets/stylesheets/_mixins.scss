@@ -141,17 +141,6 @@
   }
 }
 
-@mixin knewone-icon($content) {
-  display: inline-block;
-  font-family: 'KnewOne-Icon';
-  font-weight: normal;
-  font-style: normal;
-
-  &:before {
-    content: $content;
-  }
-}
-
 @mixin stretch_img() {
   position: relative;
   width: 100%;
