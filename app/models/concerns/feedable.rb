@@ -2,10 +2,12 @@ module Feedable
   extend ActiveSupport::Concern
 
   included do
-    has_and_belongs_to_many :followings, class_name: 'User', inverse_of: :followers
-    has_and_belongs_to_many :followers, class_name: 'User', inverse_of: :followings
-
+    has_one :relationship, dependent: :destroy
     has_many :activities
+
+    delegate :following_ids, :followings, :follower_ids, :followers, to: :relationship
+
+    after_create :create_relationship
   end
 
   def followings_activities
