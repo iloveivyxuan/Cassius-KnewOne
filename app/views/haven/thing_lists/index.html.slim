@@ -1,10 +1,14 @@
 h2 产品列表
 
 p.btn-group
-  = link_to '按喜欢数排序', {sort_by: 'fanciers_count'}, class: "btn btn-default #{'active' if @sort_by == 'fanciers_count'}"
-  = link_to '按创建时间排序', {sort_by: 'created_at'}, class: "btn btn-default #{'active' if @sort_by == 'created_at'}"
-  = link_to '按更新时间排序', {sort_by: 'updated_at'}, class: "btn btn-default #{'active' if @sort_by == 'updated_at'}"
-  = link_to '按热度排序', {sort_by: 'heat'}, class: "btn btn-default #{'active' if @sort_by == 'heat'}"
+  = link_to '按喜欢数排序', params.merge({sort_by: 'fanciers_count'}), class: "btn btn-default #params.merge({'active' if @sort_by == 'fanciers_count'})"
+  = link_to '按创建时间排序', params.merge({sort_by: 'created_at'}), class: "btn btn-default #params.merge({'active' if @sort_by == 'created_at'})"
+  = link_to '按更新时间排序', params.merge({sort_by: 'updated_at'}), class: "btn btn-default #params.merge({'active' if @sort_by == 'updated_at'})"
+  = link_to '按热度排序', params.merge({sort_by: 'heat'}), class: "btn btn-default #params.merge({'active' if @sort_by == 'heat'})"
+
+= form_tag haven_thing_lists_path, method: :get, class: "form-inline" do
+  = text_field_tag "description", params[:description], class: "form-control"
+  = submit_tag "查询描述", class: "btn btn-default"
 
 table.table.table-striped.table-hover
   tr
