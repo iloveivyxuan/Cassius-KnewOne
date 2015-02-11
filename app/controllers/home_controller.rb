@@ -14,7 +14,7 @@ class HomeController < ApplicationController
     if @from_id.present?
       activities = activities.lte(id: params[:from_id])
     else
-      @from_id = activities.first.id.to_s
+      @from_id = activities.first.try(:id).to_s || ''
     end
 
     activities = activities.page(params[:page]).per(30)
