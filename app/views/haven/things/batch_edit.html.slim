@@ -75,6 +75,8 @@ ul.nav.nav-pills
                 label class=(t.priority == v ? "btn btn-default active" : "btn btn-default")
                   input checked=(t.priority == v) name='things[][priority]' type="radio" value=v
                     | #{k}
+            br
+            | 优先度 #{t.priority}
           td
             | 阶段
             .btn-group

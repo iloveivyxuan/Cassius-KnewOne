@@ -89,26 +89,7 @@ module Haven
       when 'no_team'
         @things = @things.nin(author_id: part_time('no_team'))
       end
-      if params[:filter]
-        @things = @things.where(shop: "") if params[:filter].include? "no_link"
-        @things = @things.where(category_ids: []) if params[:filter].include? "no_category"
-        @things = @things.where(price: nil) if params[:filter].include? "no_price"
-        @things = @things.any_in(:tag_ids => [nil, []]) if params[:filter].include? "no_tag"
-        @things = @things.where(official_site: "") if params[:filter].include? "no_official"
-        @things = @things.no_brand if params[:filter].include? "no_brand"
 
-        Thing::STAGES.keys.each do |stage|
-          @things = @things.where(stage: stage) if params[:filter].include? stage.to_s
-        end
-
-        %w(feelings_count reviews_count heat priority).each do |sort_key|
-          @things = @things.order_by([sort_key.to_sym, :desc]) if params[:filter].include? sort_key
-        end
-
-        @things = @things.order_by([:priority, :asc]) if params[:filter].include? "priority_asc"
-        @things = @things.order_by([:created_at, :desc]) if params[:filter].include? "created_at_desc"
-        @things = @things.order_by([:created_at, :asc]) if params[:filter].include? "created_at_asc"
-      end
       if params[:priority]
         @things = @things.where(priority: params[:priority])
       end
@@ -137,6 +118,28 @@ module Haven
       unless params[:filter] || params[:categories]
         @things = @things.desc(:created_at)
       end
+      if params[:filter]
+        @things = @things.where(shop: "") if params[:filter].include? "no_link"
+        @things = @things.where(category_ids: []) if params[:filter].include? "no_category"
+        @things = @things.where(price: nil) if params[:filter].include? "no_price"
+        @things = @things.any_in(:tag_ids => [nil, []]) if params[:filter].include? "no_tag"
+        @things = @things.where(official_site: "") if params[:filter].include? "no_official"
+        @things = @things.no_brand if params[:filter].include? "no_brand"
+
+        Thing::STAGES.keys.each do |stage|
+          @things = @things.where(stage: stage) if params[:filter].include? stage.to_s
+        end
+
+        %w(feelings_count reviews_count heat).each do |sort_key|
+          @things = @things.order_by([sort_key.to_sym, :desc]) if params[:filter].include? sort_key
+        end
+
+        @things = @things.order_by([:priority, :asc]) if params[:filter].include? "priority_asc"
+        @things = @things.order_by([:priority, :desc]) if params[:filter].include? "priority_desc"
+        @things = @things.order_by([:created_at, :desc]) if params[:filter].include? "created_at_desc"
+        @things = @things.order_by([:created_at, :asc]) if params[:filter].include? "created_at_asc"
+      end
+
       @things = @things.includes(:brand, :author).page params[:page]
     end
 
