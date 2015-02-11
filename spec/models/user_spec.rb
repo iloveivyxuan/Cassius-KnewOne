@@ -3,6 +3,37 @@ require 'spec_helper'
 describe User, type: :model do
   let(:user) { create(:user) }
 
+  describe 'Relationship' do
+    let(:user2) { create(:user) }
+
+    specify do
+      expect(user.followed?(user2)).to be false
+      expect(user2.followed?(user)).to be false
+      expect(user.followings_count).to eq 0
+      expect(user.followers_count).to eq 0
+      expect(user2.followings_count).to eq 0
+      expect(user2.followers_count).to eq 0
+
+      user.follow(user2)
+
+      expect(user.followed?(user2)).to be true
+      expect(user2.followed?(user)).to be false
+      expect(user.followings_count).to eq 1
+      expect(user.followers_count).to eq 0
+      expect(user2.followings_count).to eq 0
+      expect(user2.followers_count).to eq 1
+
+      user.unfollow(user2)
+
+      expect(user.followed?(user2)).to be false
+      expect(user2.followed?(user)).to be false
+      expect(user.followings_count).to eq 0
+      expect(user.followers_count).to eq 0
+      expect(user2.followings_count).to eq 0
+      expect(user2.followers_count).to eq 0
+    end
+  end
+
   describe 'Cart' do
     let(:cart_item) { build(:cart_item) }
 
