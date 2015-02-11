@@ -3,7 +3,12 @@ class Tag
   include Mongoid::Slug
 
   field :name, type: String
-  slug :name, history: true
+
+  slug do |tag|
+    slug = tag.name.to_url
+    slug = 'blank' if slug.blank?
+    slug
+  end
 
   index name: 1
 
