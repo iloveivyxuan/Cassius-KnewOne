@@ -1,7 +1,7 @@
 - cache ['header_categories', content_for(:nav)], expires_in: 10.minutes
   = nav_tab :categories, class: 'nav_flyout dropdown' do
     = link_to categories_path do
-      | 分类
+      | 产品
       i.fa.fa-caret-down
     - if Rails.env.production?
       ul.dropdown-menu
