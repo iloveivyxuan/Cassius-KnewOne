@@ -4,7 +4,7 @@ li.feed-activity
       = render 'shared/user_avatar', user_id: activity.user_id
     li.feed-action
       = time_ago_tag(activity.created_at)
-      = present(activity, FeedPresenter).action
+      = action_of_activity(activity)
       - if activity.type == :new_feeling
         - feeling = activity.reference
         span.feed-operations
