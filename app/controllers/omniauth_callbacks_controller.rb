@@ -14,6 +14,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def callback
     omniauth = request.env['omniauth.auth']
+    logger.info omniauth
 
     if user = User.find_by_omniauth(omniauth)
       # Auth already bound
@@ -53,6 +54,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def callback_with_bind_flow
     omniauth = request.env['omniauth.auth']
+    logger.info omniauth
 
     if user = User.find_by_omniauth(omniauth)
       # Auth already bound
