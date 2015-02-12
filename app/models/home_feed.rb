@@ -57,6 +57,9 @@ class HomeFeed
       @reviews << review unless @reviews.include?(review)
     end
 
+    return if activity.type == :fancy_thing && @activities.any? { |a| a.type == :desire_thing }
+    return if activity.type == :desire_thing && @activities.any? { |a| a.type == :own_thing }
+
     @activities << activity
     unless updated_at and activity.created_at < updated_at
       self.updated_at = activity.created_at
