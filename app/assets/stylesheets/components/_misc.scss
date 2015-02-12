@@ -319,23 +319,25 @@ a.btn_block {
   }
 }
 
-#share--wechat-tip {
+.wechat-tip {
   background-color: #79acd9;
   color: #fff;
-  display: none;
   left: 0;
   margin: 0;
   padding: 15px;
   position: fixed;
   right: 0;
   text-align: center;
-  top: 0;
   z-index: $zindex-navbar + 1;
+}
 
+#share--wechat-tip {
+  @extend .wechat-tip;
+  display: none;
+  top: 0;
   .fa {
     margin-right: 0;
   }
-
   .fa-level-up {
     float: right;
     margin-right: 10px;
@@ -343,17 +345,9 @@ a.btn_block {
 }
 
 #subscribe-wechat-tip {
-  background-color: #79acd9;
+  @extend .wechat-tip;
   bottom: 0;
-  color: #fff;
   display: block;
-  left: 0;
-  margin: 0;
-  padding: 15px;
-  position: fixed;
-  right: 0;
-  text-align: center;
-  z-index: $zindex-navbar + 1;
   > a {
     color: white;
     font-size: 16px;
