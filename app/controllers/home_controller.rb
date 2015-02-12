@@ -10,6 +10,9 @@ class HomeController < ApplicationController
                                                                   :new_review, :love_review,
                                                                   :new_feeling,
                                                                   :add_to_list, :fancy_list)
+
+    return redirect_to welcome_url if activities.blank?
+
     @from_id = params[:from_id].to_s
     if @from_id.present?
       activities = activities.lte(id: params[:from_id])
