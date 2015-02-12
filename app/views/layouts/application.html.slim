@@ -75,6 +75,8 @@ html class="#{page_class} #{browser_class}#{env_class}" lang="zh-CN"
     = javascript_include_tag "application"
     - if Rails.env.production? && content_for(:load_customer_service)
       = render 'shared/customer_service'
+    - if browser.wechat?
+      = render 'shared/subscribe_wechat_tip'
     = yield :script
     - if user_signed_in? and Rails.env.production?
       javascript:
