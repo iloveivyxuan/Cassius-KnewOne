@@ -6,7 +6,7 @@ class HomeController < ApplicationController
   def index
     return redirect_to landing_url unless user_signed_in?
 
-    activities = current_user.related_activities.visible.by_types(:new_thing, :own_thing, :fancy_thing,
+    activities = current_user.related_activities.visible.by_types(:new_thing, :own_thing, :fancy_thing, :desire_thing,
                                                                   :new_review, :love_review,
                                                                   :new_feeling,
                                                                   :add_to_list, :fancy_list)

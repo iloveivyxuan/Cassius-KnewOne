@@ -16,6 +16,7 @@ module ActivitiesHelper
         when :new_thing   then '发布'
         when :own_thing   then '拥有'
         when :fancy_thing then '喜欢'
+        when :desire_thing then '想要'
         when :new_review  then '发表'
         when :love_review then '赞'
         when :new_feeling then '发表了' + link_to('短评', [activity.reference.thing, activity.reference])
