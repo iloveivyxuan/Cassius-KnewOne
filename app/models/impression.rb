@@ -1,6 +1,7 @@
 class Impression
   include Mongoid::Document
   include Mongoid::Timestamps
+  include AutoCleanup
   include Ratable
 
   belongs_to :author, class_name: 'User'
