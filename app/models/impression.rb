@@ -40,7 +40,7 @@ class Impression
         author.inc(desires_count: 1)
         thing.inc(desirers_count: 1)
 
-        author.log_activity(:desire_thing, thing, check_recent: true)
+        author.log_activity(:desire_thing, thing, source: self, check_recent: true)
       end
 
       if state_was == :desired
@@ -53,7 +53,7 @@ class Impression
         author.inc(owns_count: 1)
         thing.inc(owners_count: 1)
 
-        author.log_activity(:own_thing, thing, check_recent: true)
+        author.log_activity(:own_thing, thing, source: self, check_recent: true)
       end
 
       if state_was == :owned
@@ -69,7 +69,7 @@ class Impression
         thing.inc(fanciers_count: 1)
 
         if author != thing.author
-          author.log_activity(:fancy_thing, thing, check_recent: true)
+          author.log_activity(:fancy_thing, thing, source: self, check_recent: true)
           thing.author.notify(:fancy_thing, context: thing, sender: author, opened: false)
         end
       end
