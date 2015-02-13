@@ -24,6 +24,14 @@ li.feed-activity
               - if feeling.has_lovers?
                 = feeling.lovers_count
 
+  - if [:fancy_thing, :desire_thing, :own_thing].include?(activity.type)
+    - if impression.is_a?(Impression) && impression.description.present?
+      .feed-impression
+        p
+          i.fa.fa-quote-left
+          = impression.description
+          i.fa.fa-quote-right
+
   - if activity.type == :new_feeling
     .feed-feeling
       p
