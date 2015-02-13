@@ -1,0 +1,12 @@
+- if @tags.present?
+  .thing_tags
+    .tags.is-collapsed
+      - active_all = 'active' unless @tag
+      = link_to('全部', {tag: ''}, {class: active_all, title: '全部'})
+      - @tags.each do |tag|
+        - active = (tag == @tag ? 'active' : '')
+        = link_to({tag: tag.slug}, class: active, title: tag.name)
+          i.fa.fa-tag
+          = tag.name
+
+    .thing_tags-toggle 展开所有标签

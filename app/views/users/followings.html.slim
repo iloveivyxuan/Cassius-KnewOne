@@ -1,8 +1,9 @@
 - page_title '关注'
 
-- if @followings.present?
-  ul.contents = render @followings
-- else
-  section.contents = render 'shared/nothing'
+.page-content
+  - if @followings.present?
+    ul.block_list = render @followings
+  - else
+    = render 'shared/nothing'
 
 = paginate @followings

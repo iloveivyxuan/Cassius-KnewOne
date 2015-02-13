@@ -38,129 +38,59 @@
             = @user.location
         .vcard-social= social_links
 
-    nav
-      ul
-        = li action_name == 'show', class: 'nav-home'
-          = link_to @user
-            i.fa.fa-home
-            | 主页
-        = li action_name == 'fancies', class: 'nav-fancies'
-          = link_to [:fancies, @user]
-            i.fa.fa-heart
-            | 喜欢
-            span = @user.fancies_count
-        = li action_name == 'desires', class: 'nav-desires'
-          = link_to [:desires, @user]
-            i.fa.fa-desire
-            | 想要
-            span = @user.desires_count
-        = li action_name == 'owns', class: 'nav-owns'
-          = link_to [:owns, @user]
-            i.fa.fa-check-circle-o
-            | 拥有
-            span = @user.owns_count
-        = li action_name == 'lists', class: 'nav-lists'
-          = link_to [:lists, @user]
-            i.fa.fa-list-ko
-            | 列表
-            span = @user.thing_lists.size
-        = li action_name == 'things', class: 'nav-things'
-          = link_to [:things, @user]
-            i.fa.fa-magic
-            | 分享
-            span = @user.things_count
-        = li action_name == 'reviews', class: 'nav-reviews'
-          = link_to [:reviews, @user]
-            i.fa.fa-pencil
-            | 评测
-            span = @user.reviews_count
-        = li action_name == 'feelings', class: 'nav-feelings'
-          = link_to [:feelings, @user]
-            i.fa.fa-comments
-            | 短评
-            span = @user.feelings_count
-        = li ['groups', 'topics'].include?(action_name), class: 'nav-groups'
-          = link_to [:groups, @user]
-            i.fa.fa-tint
-            | 小组
-            span = @user.groups_count
-        = li false, class: 'nav-topics'
-          = link_to [:topics, @user]
-            i.fa.fa-leaf
-            | 话题
-            span = @user.topics_count
-        = li action_name == 'activities', class: 'nav-activities'
-          = link_to [:activities, @user]
-            i.fa.fa-bars
-            | 动态
+  nav.page-nav--tiny.visible-xs-block
+    ul
+      = li action_name == 'activities'
+        = link_to [:activities, @user]
+          i.fa.fa-home
+      = li ['fancies', 'desires', 'owns', 'things'].include?(action_name)
+        = link_to [:fancies, @user]
+          i.fa.fa-cube
+      = li action_name == 'lists'
+        = link_to [:lists, @user]
+          i.fa.fa-list-ko
+      = li ['reviews', 'feelings'].include?(action_name)
+        = link_to [:reviews, @user]
+          i.fa.fa-pencil
 
-      - if action_name != 'show'
-        ol
-          li = link_to @user
-            i.fa.fa-chevron-left
-            | 个人主页
-          - case action_name
-            - when 'fancies'
-              li.active
-                i.fa.fa-heart
-                | 喜欢
-            - when 'owns'
-              li.active
-                i.fa.fa-check-circle-o
-                | 拥有
-            - when 'lists'
-              = li @filter == 'owned'
-                = link_to filter: 'owned'
-                  i.fa.fa-list-ko
-                  | TA创建的
-              = li @filter == 'fancied'
-                = link_to filter: 'fancied'
-                  i.fa.fa-list-ko
-                  | TA喜欢的
-            - when 'things'
-              li.active
-                i.fa.fa-magic
-                | 分享
-            - when 'reviews'
-              li.active
-                i.fa.fa-pencil
-                | 评测
-            - when 'feelings'
-              li.active
-                i.fa.fa-comments
-                | 短评
-            - when 'groups'
-              li.active
-                i.fa.fa-tint
-                | 小组
-              li = link_to [:topics, @user]
-                i.fa.fa-leaf
-                | 话题
-            - when 'topics'
-              li = link_to [:groups, @user]
-                i.fa.fa-tint
-                | 小组
-              li.active
-                i.fa.fa-leaf
-                | 话题
-            - when 'activities'
-              li.active
-                i.fa.fa-bars
-                | 动态
-            - when 'followers'
-              li.active
-                i.fa.fa-tint
-                | 关注
-              li = link_to [:followings, @user]
-                i.fa.fa-leaf
-                | 关注者
-            - when 'followings'
-              li = link_to [:followers, @user]
-                i.fa.fa-tint
-                | 关注
-              li.active
-                i.fa.fa-leaf
-                | 关注者
+  nav.page-nav.hidden-xs
+    ul
+      = li action_name == 'activities', class: 'nav-activities'
+        = link_to [:activities, @user]
+          i.fa.fa-bars
+          | 动态
+      = li action_name == 'fancies', class: 'nav-fancies'
+        = link_to [:fancies, @user]
+          i.fa.fa-heart
+          | 喜欢
+      = li action_name == 'desires', class: 'nav-desires'
+        = link_to [:desires, @user]
+          i.fa.fa-desire
+          | 想要
+      = li action_name == 'owns', class: 'nav-owns'
+        = link_to [:owns, @user]
+          i.fa.fa-check-circle-o
+          | 拥有
+      = li action_name == 'things', class: 'nav-things'
+        = link_to [:things, @user]
+          i.fa.fa-magic
+          | 分享
+      = li action_name == 'lists', class: 'nav-lists'
+        = link_to [:lists, @user]
+          i.fa.fa-list-ko
+          | 列表
+      = li action_name == 'reviews', class: 'nav-reviews'
+        = link_to [:reviews, @user]
+          i.fa.fa-pencil
+          | 评测
+      = li action_name == 'feelings', class: 'nav-feelings'
+        = link_to [:feelings, @user]
+          i.fa.fa-comments
+          | 短评
+      = li action_name == 'topics', class: 'nav-topics'
+        = link_to [:topics, @user]
+          i.fa.fa-leaf
+          | 话题
 
   = yield
 

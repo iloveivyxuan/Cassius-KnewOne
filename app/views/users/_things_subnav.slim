@@ -1,0 +1,14 @@
+nav.page-subnav.visible-xs-block
+  ul
+    = li action_name == 'fancies'
+      = link_to [:fancies, @user]
+        | 喜欢
+    = li action_name == 'desires'
+      = link_to [:desires, @user] 
+        | 想要
+    = li action_name == 'owns'
+      = link_to [:owns, @user]
+        | 拥有
+    = li action_name == 'things'
+      = link_to [:things, @user]
+        | 分享

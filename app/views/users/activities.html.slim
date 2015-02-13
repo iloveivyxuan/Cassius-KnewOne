@@ -1,8 +1,13 @@
 - page_title '动态'
 
-- if @activities.present?
-  ul.contents = render @activities
-- else
-  section.contents = render 'shared/nothing'
+.page-content
+  - if @activities.present?
+    - if @filter == 'text'
+      = link_to_with_icon "转换为图文动态", "fa fa-exchange", activities_user_path, class: "page-content-switch"
+    - else
+      = link_to_with_icon "转换为纯文字动态", "fa fa-exchange", { filter: "text" }, class: "page-content-switch"
+    ul.block_list = render @activities
+  - else
+    = render 'shared/nothing'
 
 = paginate @activities

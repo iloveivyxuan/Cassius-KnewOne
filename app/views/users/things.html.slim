@@ -1,8 +1,11 @@
 - page_title '分享'
 
-- if @things.present?
-  ul.contents = render partial: 'thing', collection: @things
-- else
-  section.contents = render 'shared/nothing'
+= render 'things_subnav'
+.page-content
+  - if @things.present?
+    = render 'things_tags'
+    ul.block_list= render partial: 'thing', collection: @things
+  - else
+     = render 'shared/nothing'
 
 = paginate @things

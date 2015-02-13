@@ -1,6 +1,8 @@
 @import '../base';
 
 html[class^="users_"] {
+  $content-width-sm: 720px;
+  $content-width-md: 810px;
 
   body {
     padding-top: 45px;
@@ -284,373 +286,190 @@ html[class^="users_"] {
     }
   }
 
-    ul.contents {
-      @include to-breakpoint(xs) {
-        display: none;
-      }
-
-      @include from-breakpoint(md) {
-        padding-top: 0;
-        padding-bottom: 0;
-      }
+  .page-nav--tiny {
+    > ul {
+      @include clearfix;
 
       > li {
-        $gutter-width: 20px;
+        float: left;
+        width: 25%;
 
-        position: relative;
-        display: block;
-        padding: 30px (90px - $gutter-width) 30px 90px;
-        border-top: 1px dashed $iron;
+        > a {
+          background-color: #fff;
+          color: #aaa;
+          display: block;
+          height: 50px;
+          line-height: 50px;
+          text-align: center;
 
-        @include from-breakpoint(md) {
-          padding-top: 40px;
-          padding-bottom: 40px;
-        }
-
-        &:first-child {
-          border-top: none;
-        }
-
-        h3 {
-          position: absolute;
-          top: 40px;
-          left: 0;
-
-          width: 90px;
-          margin: 0;
-          padding: 0;
-
-          i {
-            margin-right: 5px;
+          .fa {
+            font-size: 20px;
+            margin: 0;
             vertical-align: middle;
-            font-size: 25px;
+          }
+        }
+
+        &.active {
+          > a {
+            background-color: $smoke-white;
             color: $blue-dark;
           }
+        }
+      }
+    }
+  }
 
-          span {
-            vertical-align: middle;
-            font-size: 14px;
-          }
+  .page-nav {
+    margin: 0 auto;
+    width: $content-width-sm;
+
+    @media (min-width: $screen-md-min) {
+      width: $content-width-md;
+    }
+
+    > ul {
+      @include clearfix;
+
+      > li {
+        float: left;
+        width: 80px;
+
+        @media (min-width: $screen-md-min) {
+          width: 90px;
         }
 
-        .contents-more {
-          position: absolute;
-          z-index: 1;
-          top: 30px;
-          right: 0;
-
-          width: 90px;
-          line-height: 40px;
+        > a {
+          background-color: #fff;
+          color: $gray;
+          display: block;
+          height: 50px;
+          line-height: 50px;
           text-align: center;
 
-          color: $gray-lighter;
-          background: $vulcan;
+          .fa {
+            display: none;
 
-          i {
-            margin: 0 0 0 10px;
-          }
-
-          @include from-breakpoint(md) {
-            top: 40px;
+            @media (min-width: $screen-md-min) {
+              display: inline-block;
+            }
           }
         }
 
-        .thing,
-        .thing_list {
-          display: inline-block;
-          vertical-align: top;
-          width: percentage(1 / 3);
-          border-right: $gutter-width solid $smoke-white;
-        }
-
-        .review,
-        .feeling,
-        .activity {
-          margin-right: $gutter-width;
-        }
-
-        &.contents-fancies {
-          h3 i {
-            color: $red;
-          }
-        }
-
-        &.contents-owns {
-          h3 i {
-            color: $blue-light;
-          }
-        }
-
-        &.contents-lists {
-          h3 i {
-            color: $orange;
-          }
-        }
-      }
-    }
-  }
-}
-
-html.users_fancies,
-html.users_desires,
-html.users_owns,
-html.users_things,
-html.users_lists,
-html.users_groups,
-html.users_followers,
-html.users_followings {
-  .contents {
-    > li,
-    > article,
-    > section {
-      display: inline-block;
-      vertical-align: top;
-
-      @include to-breakpoint(xs) {
-        width: 100%;
-        margin-top: 20px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
-
-        &:first-child {
-          margin-top: 0;
-        }
-      }
-
-      @include from-breakpoint(sm) {
-        width: percentage(1 / 3);
-        border: 10px solid $smoke-white;
-      }
-    }
-
-    @include from-breakpoint(sm) {
-      padding: 10px;
-      background: $smoke-white;
-    }
-
-    @include from-breakpoint(md) {
-      padding: 20px;
-    }
-  }
-}
-
-html.users_lists,
-html.users_groups,
-html.users_topics {
-  @include from-breakpoint(sm) {
-    .contents {
-      .topic:first-child {
-        margin-top: 0;
-      }
-    }
-  }
-}
-
-html.users_show,
-html.users_reviews,
-html.users_feelings,
-html.users_topics {
-  .contents {
-    .review,
-    .feeling,
-    .topic {
-      margin-top: 20px;
-
-      @include from-breakpoint(md) {
-        margin-top: 30px;
-
-        &:first-child {
-          margin-top: 0;
-        }
-      }
-    }
-
-    @include from-breakpoint(sm) {
-      padding: 20px;
-    }
-
-    @include from-breakpoint(md) {
-      padding: 30px;
-    }
-  }
-}
-
-html.users_fancies,
-html.users_desires,
-html.users_owns {
-  #wrapper {
-    > nav {
-      padding: 10px 20px;
-      background: $smoke-white;
-
-      ul.user_tags {
-        @include clearfix;
-
-        margin: 10px 0;
-        padding-bottom: 10px;
-
-        &.collapsed {
-          overflow: hidden;
-          max-height: 98px;
-        }
-
-        > li {
-          float: right;
-          margin: 10px 0 0 10px;
-
-          overflow: hidden;
-          max-width: 100%;
-
-          background: white;
-          border-radius: 10px;
-
-          a {
-            display: inline-block;
-            padding: 7px 12px;
+        &.active {
+          > a {
+            background-color: $smoke-white;
             color: $text-color;
           }
-
-          &.active {
-            background: $gray-light;
-            a { color: white; }
-          }
         }
-      }
-
-      @at-root html.flexbox ul.user_tags {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-
-        > li {
-          float: none !important;
-        }
-      }
-
-      .user_tags-toggle {
-        display: none;
-
-        margin-top: -10px;
-        margin-bottom: 15px;
-        text-align: right;
-
-        cursor: pointer;
-        color: $link-color;
       }
     }
   }
-}
 
-html.users_lists,
-html.users_groups,
-html.users_topics,
-html.users_followers,
-html.users_followings {
-  #wrapper {
-    @include from-breakpoint(md) {
-      position: relative;
-    }
+  .page-subnav {
+    background-color: $smoke-white;
+    padding: 10px 0;
 
-    nav.subpage_tabs {
-      @include to-breakpoint(xs) {
-        display: none;
-      }
+    > ul {
+      display: table;
+      width: 100%;
 
-      > ul {
-        > li {
+      > li {
+        display: table-cell;
+        text-align: center;
+
+        > a {
+          color: #aaa;
           display: inline-block;
-          text-align: center;
-          background: white;
+          height: 30px;
+          line-height: 28px;
+          min-width: 40px;
+          padding-bottom: 2px;
+        }
 
-          a {
-            @include plain-link($text-color);
-
-            display: inline-block;
-            width: 100%;
-            padding: 10px 20px;
-            line-height: 1;
-          }
-
-          &.active {
-            a {
-              cursor: default;
-            }
+        &.active {
+          > a {
+            border-bottom: 2px solid $blue;
+            padding-bottom: 0;
           }
         }
       }
+    }
+  }
 
-      @include from-breakpoint(sm) {
-        padding: 15px 20px 0;
-        background: $smoke-white;
+  .page-content {
+    background-color: $smoke-white;
+
+    > .block_list {
+      @media (min-width: $screen-sm-min) {
+        margin: {
+          left: auto;
+          right: auto;
+        }
+        width: $content-width-sm;
+      }
+
+      @media (min-width: $screen-md-min) {
+        width: $content-width-md;
+      }
+    }
+  }
+
+  .page-content-switch {
+    background-color: $smoke-white;
+    border-bottom: 1px solid $gray-white;
+    color: $gray;
+    display: block;
+    text-align: center;
+    height: 51px;
+    line-height: 50px;
+  }
+
+  .thing_tags {
+    padding: 20px 20px 10px 20px;
+
+    @media (min-width: $screen-sm-min) {
+      margin: {
+        left: auto;
+        right: auto;
+      }
+      padding: {
+        left: 0;
+        right: 0;
+      }
+      width: $content-width-sm;
+    }
+
+    @media (min-width: $screen-md-min) {
+      width: $content-width-md;
+    }
+
+    .tags {
+      @media (min-width: $screen-sm-min) {
+        overflow: hidden;
         text-align: right;
-
-        > ul {
-          display: inline-block;
-
-          > li.active {
-            background: $vulcan;
-
-            a {
-              @include plain-link($gray-lighter);
-            }
-          }
-        }
       }
 
-      @include from-breakpoint(md) {
-        padding: 30px 30px 0;
+      &.is-collapsed {
+        max-height: 84px;
+      }
 
-        & + .contents {
-          margin-top: 0;
+      > a {
+        background-color: #fff;
+        color: $gray;
+
+        &:hover {
+          background-color: $gray;
+          border-color: $gray;
+          color: #fff;
         }
       }
     }
-
-    > header > nav > ol > li {
-      width: percentage(1 / 3);
-    }
   }
-}
 
-html.users_groups {
-  .card_compact {
-    margin-bottom: 0;
-    background: white;
-  }
-}
-
-html.users_activities {
-  ul.contents {
-    @include from-breakpoint(sm) {
-      padding: 30px;
-    }
-  }
-}
-
-html.users_followers .info-followers,
-html.users_followings .info-followings {
-  color: $gray-lighter !important;
-  background: $vulcan;
-}
-
-html.users_followers,
-html.users_followings {
-  ul.contents {
-    > li.author {
-      @extend %new_user;
-
-      margin: 0;
-
-      @include to-breakpoint(xs) {
-        margin-top: 20px;
-      }
-
-      @include from-breakpoint(sm) {
-        width: 50%;
-      }
-
-      @include from-breakpoint(lg) {
-        width: percentage(1 / 3);
-      }
-    }
+  .thing_tags-toggle {
+    cursor: pointer;
+    display: none;
+    font-size: 12px;
+    text-align: right;
   }
 }

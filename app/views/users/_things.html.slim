@@ -1,38 +1,29 @@
-- if @things.present?
-  - if @tags.present?
-    nav
-      ul.user_tags.collapsed
-        li class=('active' unless @tag)
-          = link_to '全部', tag: ''
-        - @tags.each do |tag|
-          li class=('active' if tag == @tag)
-            = link_to({tag: tag.slug}, title: tag.name)
-              i.fa.fa-tag
-              = tag.name
-
-      .user_tags-toggle 展开所有标签
-
-  ul.contents = render partial: 'thing', collection: @things
-- else
-  section.contents = render 'shared/nothing'
+= render 'things_subnav'
+.page-content
+  - if @things.present?
+    = render 'things_tags'
+    ul.block_list= render partial: 'thing', collection: @things
+  - else
+    = render 'shared/nothing'
 
 = paginate @impressions
 
 - content_for :script do
   javascript:
-    $tags = $('.user_tags')
-    $toggle = $('.user_tags-toggle')
+    $thingTags = $('.thing_tags')
+    $tags      = $thingTags.find('.tags')
+    $toggle    = $thingTags.find('.thing_tags-toggle')
 
     if ($tags[0].scrollHeight > $tags[0].offsetHeight) {
       $toggle.show()
 
       $toggle.on('click', function (event) {
         event.preventDefault()
-        if ($tags.hasClass('collapsed')) {
-          $tags.removeClass('collapsed')
+        if ($tags.hasClass('is-collapsed')) {
+          $tags.removeClass('is-collapsed')
           $toggle.text('收起标签')
         } else {
-          $tags.addClass('collapsed')
+          $tags.addClass('is-collapsed')
           $toggle.text('展开所有标签')
         }
       })
