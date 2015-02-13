@@ -2,48 +2,41 @@
 - page_css 'users'
 
 - content_for :content do
-  header
-    ul.info
-      li.info-avatar = user_avatar(@user, :small)
-
-      li.info-name-and-level
-        - if current_user.try(:role?, :editor)
-          = link_to @user.name, [:haven, @user], title: "#{@user.name}的内幕", class: 'info-name'
-        - else
-          span.info-name title=@user.name = @user.name
-
-        - if @user.gender.present?
-          span.info-gender = symbolize_gender(@user.gender)
-
-        .info-level = render 'shared/level', user: @user
-
+  header.vcard itemscope="itemscope" itemtype="http://schema.org/Person"
+    figure.vcard-canopy
+      - version = browser.mobile? ? :wechat : :background
+      = image_tag "http://image.knewone.com/photos/1e71a169e358d2c0b66d0e5f596bc069.jpeg!#{version}", alt: "canopy"
+      .vcard-canopy-mask
+    .vcard-main
+      = user_avatar(@user, :small, class: "vcard-avatar", size: "60", itemprop: "image")
+      - if current_user.try(:role?, :editor)
+        = link_to @user.name, [:haven, @user], title: "#{@user.name}的内幕", class: "vcard-name", itemprop: "name"
+      - else
+        .vcard-name title="@user.name" itemprop="name" = @user.name
+      .vcard-level= render 'shared/level', user: @user
+      .vcard-gender itemprop="gender" = symbolize_gender(@user.gender)
       - if @user.description.present?
-        li.info-description
-          i.fa.fa-quote-left
-          p = @user.description
-
-      - links_html = user_links(@user)
-      - if @user.location? || links_html.present?
-        li.info-links
-          = links_html
-
-          - if @user.location.present?
-            span.info-location
-              i.fa.fa-map-marker
-              = @user.location
-
-      li.info-friendship class=('info-friendship--self' if @user == current_user)
-        = link_to followers_user_path(@user), class: 'info-followers'
-          | 关注者
-          span = @user.followers_count
-        = link_to followings_user_path(@user), class: 'info-followings'
+        p.vcard-description itemprop="description" = @user.description
+    .vcard-friendship
+      .vcard-follows itemprop="follows"
+        = link_to followings_user_path(@user), class: 'vcard-followings'
           | 关注
-          span = @user.followings_count
-
+          em= @user.followings_count
+        = link_to followers_user_path(@user), class: 'vcard-followers'
+          | 关注者
+          em= @user.followers_count
       - if @user != current_user
-        li.info-actions
+        .vcard-actions
           = render 'follow_btn', user: @user
           = render 'private_message_btn', user: @user, text: '私信'
+    - social_links = user_links(@user)
+    - if @user.location? || social_links.present?
+      .vcard-misc
+        - if @user.location?
+          .vcard-location itemprop="address"
+            i.fa.fa-map-marker
+            = @user.location
+        .vcard-social= social_links
 
     nav
       ul

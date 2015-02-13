@@ -1,6 +1,7 @@
 @import '../base';
 
 html[class^="users_"] {
+
   body {
     padding-top: 45px;
   }
@@ -11,724 +12,277 @@ html[class^="users_"] {
 
   #wrapper {
     @include wrapper(empty);
+    background-color: #e3e4e6;
+  }
 
-    $wrapper-max-width: 1200px;
-    $info-width: 280px;
-    $nav-height: 60px;
+  .vcard {
+    background-color: #fff;
+    color: #aaa;
+    margin-bottom: 20px;
+    padding-bottom: 30px;
+    position: relative;
 
-    max-width: $wrapper-max-width;
-
-    @include from-breakpoint(md) {
-      position: relative;
-      margin: 30px auto 0;
-      padding-top: $nav-height;
-      padding-right: $info-width + 30px;
+    @media (min-width: $screen-sm-min) {
+      height: 450px;
+      margin-bottom: 60px;
+      padding-bottom: 0;
     }
-
-    > header {
-      background: white;
-
-      .info {
-        position: relative;
-
-        @include from-breakpoint(md) {
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: $info-width;
-
-          background: white;
-        }
-
-        .info-avatar {
-          padding: 20px;
-
-          img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-          }
-
-          @include from-breakpoint(sm) {
-            img {
-              width: 90px;
-              height: 90px;
-            }
-
-            @include to-breakpoint(sm) {
-              padding-left: 70px;
-            }
-          }
-
-          @include from-breakpoint(md) {
-            border-bottom: 1px dashed $gray-lighter;
-          }
-        }
-
-        .info-name-and-level {
-          position: absolute;
-          top: 27px;
-          left: 90px;
-          width: 240px;
-
-          @include from-breakpoint(sm) {
-            top: 40px;
-            left: 230px;
-            width: 360px;
-          }
-
-          @include from-breakpoint(md) {
-            left: 120px;
-            width: 140px;
-          }
-
-          font-size: 14px;
-
-          .info-name {
-            @include text-overflow;
-
-            display: inline-block;
-            vertical-align: middle;
-
-            max-width: 116px;
-            max-width: calc(100% - 22px);
-          }
-
-          .info-gender {
-            vertical-align: middle;
-            margin-left: 10px;
-          }
-
-          .info-level {
-            margin-top: 10px;
-            width: 140px;
-          }
-        }
-
-        .info-description {
-          position: relative;
-          margin-top: 20px;
-          padding: 0 20px;
-
-          i {
-            display: none;
-          }
-
-          p {
-            margin: 0;
-          }
-
-          @include to-breakpoint(xs) {
-            display: none;
-          }
-
-          @include from-breakpoint(sm) {
-            @include to-breakpoint(sm) {
-              padding-left: 70px;
-
-              i {
-                display: block;
-                position: absolute;
-                top: -3px;
-                left: 30px;
-
-                color: $gray-lighter;
-                font-size: 16px;
-              }
-            }
-          }
-        }
-
-        .info-links {
-          margin-top: 20px;
-          padding-right: 20px;
-          text-align: right;
-
-          @include to-breakpoint(xs) {
-            display: none;
-          }
-
-          @include from-breakpoint(sm) {
-            @include to-breakpoint(sm) {
-              position: absolute;
-              top: 40px;
-              right: 30px;
-              width: 25%;
-              margin: 0;
-              padding: 0;
-            }
-          }
-
-          .info-location {
-            display: block;
-            margin: 20px 0 0;
-          }
-
-          a {
-            display: inline-block;
-
-            line-height: 32px;
-            width: 32px;
-            margin-left: 20px;
-            text-align: center;
-
-            border-radius: 50%;
-            color: $text-color;
-            background: $gray-lighter;
-
-            i {
-              margin: 0;
-            }
-
-            &:last-child {
-              margin-right: 0;
-            }
-
-            &:hover {
-              color: $gray-lighter;
-              background: $text-color;
-            }
-          }
-        }
-
-        .info-links + .info-friendship {
-          margin-top: 20px;
-        }
-
-        .info-friendship {
-          line-height: 1;
-          background: $smoke-white;
-
-          @include to-breakpoint(xs) {
-            display: none;
-          }
-
-          @include from-breakpoint(sm) {
-            @include to-breakpoint(sm) {
-              &:not(.info-friendship--self) {
-                display: inline-block;
-                vertical-align: middle;
-                width: 50%;
-              }
-            }
-          }
-
-          @include from-breakpoint(md) {
-            background: white;
-            border-top: 1px dashed $gray-lighter;
-          }
-
-          > a {
-            display: inline-block;
-            width: 50%;
-            padding: 15px 0;
-
-            text-align: center;
-            font-size: 10px;
-            color: $blue-dark;
-
-            span {
-              display: block;
-              margin-top: 8px;
-              font-size: 18px;
-            }
-
-            @include from-breakpoint(sm) {
-              @include to-breakpoint(sm) {
-                padding: 7px 0;
-              }
-            }
-          }
-        }
-
-        .info-actions {
-          @include from-breakpoint(sm) {
-            @include to-breakpoint(sm) {
-              display: inline-block;
-              vertical-align: middle;
-              margin-top: 20px;
-              width: 50%;
-            }
-          }
-
-          > a {
-            @include plain-link($gray-lighter);
-
-            display: inline-block;
-            width: 50%;
-            line-height: 50px;
-            vertical-align: middle;
-            text-align: center;
-          }
-
-          .follow_btn {
-            padding: 0;
-            border: none;
-            border-radius: 0;
-
-            background: $blue-dark;
-            transition: background-color .1s;
-
-            &.follow_btn--followed:hover {
-              background-color: $gray;
-            }
-          }
-
-          .private_message_btn {
-            background: $blue-light;
-          }
-        }
-      }
-
-      > nav {
-        @include from-breakpoint(md) {
-          position: absolute;
-          top: 0;
-          left: 0;
-
-          width: calc(100% - #{$info-width + 30px});
-          max-width: $wrapper-max-width - $info-width - 30px;
-          height: $nav-height;
-
-          background: $smoke-white;
-        }
-
-        li.active {
-          a {
-            cursor: default;
-          }
-        }
-
-        > ul {
-          @include to-breakpoint(xs) {
-            display: none;
-
-            > li {
-              display: inline-block;
-              width: percentage(1 / 3);
-              text-align: center;
-
-              border-top: 1px solid $gray-lighter;
-              &:nth-child(-n + 4) { border: none; }
-
-              a {
-                @include plain-link($blue-dark);
-
-                display: inline-block;
-                width: 100%;
-                padding: 30px 0;
-
-                i {
-                  display: block;
-                  margin: 0 0 10px;
-                  font-size: 25px;
-                }
-
-                span {
-                  margin-left: 5px;
-                }
-              }
-
-              &.nav-home {
-                display: none;
-              }
-
-              &.nav-fancies a {
-                @include plain-link($red);
-              }
-
-              &.nav-desires a {
-                @include plain-link($red);
-              }
-
-              &.nav-owns a {
-                @include plain-link($blue-light);
-              }
-
-              &.nav-lists a {
-                @include plain-link($orange);
-              }
-            }
-          }
-
-          @include from-breakpoint(sm) {
-            display: table;
-            table-layout: fixed;
-            width: 100%;
-
-            > li {
-              display: table-cell;
-              width: auto;
-              vertical-align: middle;
-              text-align: center;
-
-              background: white;
-
-              a {
-                @include plain-link($text-color);
-
-                display: inline-block;
-                width: 100%;
-                padding: 10px 0;
-
-                span {
-                  display: block;
-                  margin-top: 2px;
-                  font-size: 11px;
-                  color: $iron;
-                }
-              }
-
-              &.active {
-                background: $smoke-white;
-                border-top: 3px solid $blue;
-              }
-
-              &.nav-topics {
-                display: none;
-              }
-            }
-          }
-        }
-
-        > ol {
-          border-top: 20px solid $body-bg;
-
-          @include from-breakpoint(sm) {
-            display: none;
-          }
-
-          > li {
-            display: inline-block;
-            text-align: center;
-
-            width: percentage(2 / 3);
-            line-height: 40px;
-
-            a {
-              @include plain-link($text-color);
-
-              display: inline-block;
-              width: 100%;
-              line-height: 40px;
-            }
-
-            i {
-              color: $blue-dark;
-
-              &.fa-chevron-left {
-                color: $gray-lighter;
-              }
-
-              &.fa-heart {
-                color: $red;
-              }
-
-              &.fa-check-circle-o {
-                color: $blue-light;
-              }
-
-              &.fa-list-ko {
-                color: $orange;
-              }
-            }
-
-            &:first-child {
-              width: percentage(1 / 3);
-              background: $vulcan;
-
-              a {
-                color: $gray-lighter;
-              }
-            }
-
-            border-top: 3px solid transparent;
-            background: white;
-
-            &.active {
-              border-top-color: $blue;
-              background: $smoke-white;
-            }
-
-            @include to-breakpoint(xs) {
-              background: $smoke-white;
-              &.active { background: white; }
-            }
-          }
-        }
+  }
+
+  .vcard-canopy {
+    height: 0;
+    overflow: hidden;
+    padding-bottom: percentage(9 / 16);
+    position: relative;
+
+    img {
+      bottom: -1000%;
+      left: -1000%;
+      margin: auto;
+      max-width: 150%;
+      position: absolute;
+      right: -1000%;
+      top: -1000%;
+
+      @media (min-width: $screen-lg-min) {
+        width: 100%;
       }
     }
 
-    > .contents {
-      background: $smoke-white;
+    @media (min-width: $screen-sm-min) {
+      height: 450px;
+      padding-bottom: 0;
+      position: absolute;
+      width: 100%;
+    }
+  }
 
-      .thing {
-        background: white;
+  .vcard-canopy-mask {
+    display: none;
 
-        a {
-          @include plain-link($gray-light);
-        }
+    @media (min-width: $screen-sm-min) {
+      background-color: rgba(0, 0, 0, .6);
+      bottom: 0;
+      display: block;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
 
-        header {
-          position: relative;
+  .vcard-main,
+  .vcard-friendship,
+  .vcard-misc {
+    padding: 0 30px;
 
-          [data-fancy] {
-            display: none;
+    @media (min-width: $screen-sm-min) {
+      margin: {
+        left: auto;
+        right: auto;
+      }
+      padding: 0;
+      width: 670px;
+    }
+  }
 
-            @include to-breakpoint(sm) {
-              display: block;
-            }
+  .vcard-main {
+    margin: {
+      bottom: 30px;
+      top: -30px;
+    }
+    position: relative;
+    text-align: center;
 
-            position: absolute;
-            top: 0;
-            right: 0;
+    @media (min-width: $screen-sm-min) {
+      margin-top: 0;
+      padding-top: 80px;
+    }
+  }
 
-            height: 30px;
-            width: 30px;
-            font-size: 20px;
-            line-height: 30px;
-            text-align: center;
+  .vcard-friendship {
+    margin-bottom: 30px;
+    text-align: center;
 
-            background: $vulcan;
-            color: rgba(white, .5);
-          }
+    @media (min-width: $screen-sm-min) {
+      @include clearfix;
+      background-color: #e3e4e6;
+      bottom: 0;
+      border-radius: 15px;
+      left: calc(50% - 335px);
+      margin-bottom: -47px;
+      padding: 20px;
+      position: absolute;
+    }
+  }
 
-          &:hover [data-fancy] {
-            display: block;
-          }
-        }
+  .vcard-misc {
+    @include clearfix;
+    @media (min-width: $screen-sm-min) {
+      left: calc(50% - 335px);
+      position: absolute;
+      top: 20px;
+    }
+  }
 
-        .thing-cover {
-          position: relative;
-          height: 0;
-          overflow: hidden;
-          padding-bottom: percentage(8 / 11);
+  .vcard-avatar {
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #fff;
+    margin-bottom: 15px;
+  }
 
-          img {
-            width: 100%;
-          }
+  .vcard-name {
+    color: $text-color;
+    display: block;
+    margin-bottom: 15px;
+  }
 
-          &:before {
-            content: '';
+  .vcard-level,
+  .vcard-gender {
+    display: inline-block;
+  }
 
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
+  .vcard-level {
+    margin-right: 1em;
+    width: 150px;
 
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 0 8px 11px 8px;
-            border-color: transparent;
-          }
-        }
+    .level-progress {
+      border-radius: 5px;
+      height: 8px;
+      overflow: hidden;
+    }
+  }
 
-        h4 {
-          @include text-overflow;
+  .vcard-description {
+    margin: {
+      bottom: 0;
+      top: 15px;
+    }
+  }
 
-          font-size: 14px;
-          margin: 15px 20px;
-          text-align: center;
-        }
+  .vcard-follows {
+    @media (min-width: $screen-sm-min) {
+      float: left;
+      width: 40%;
+    }
+  }
 
-        ul.thing-counts {
-          text-align: center;
+  .vcard-followings,
+  .vcard-followers {
+    color: #aaa;
+    display: inline-block;
+    max-width: 150px;
+    text-align: center;
+    width: 40%;
 
-          li {
-            display: inline-block;
-            margin-right: 10px;
-            padding: 0 0 15px 0;
+    @media (min-width: $screen-sm-min) {
+      float: left;
+      width: 50%;
+    }
 
-            &:last-child {
-              margin-right: 0;
-            }
-          }
-        }
+    > em {
+      color: $blue-dark;
+      display: block;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: normal;
+    }
+  }
 
-        section.thing-impression {
-          padding: 0 15px;
-          border-top: 1px dashed $iron;
+  .vcard-actions {
+    margin-top: 15px;
 
-          .thing-description {
-            margin-bottom: 15px;
-            padding-top: 15px;
-            border-top: 1px dashed white;
-            text-align: right;
-          }
+    @media (min-width: $screen-sm-min) {
+      float: right;
+      line-height: 54px;
+      margin-top: 0;
+    }
 
-          .score {
-            margin: 15px 0;
-            text-align: right;
+    .follow_btn,
+    .private_message_btn {
+      border: 1px solid $blue-dark;
+      border-radius: 15px;
+      display: inline-block;
+      height: 34px;
+      line-height: 32px;
+      padding: 0;
+      text-align: center;
+      vertical-align: middle;
+      width: 120px;
+    }
 
-            .rate {
-              padding: 0;
-            }
-          }
+    .follow_btn {
+      background-color: transparent;
+      color: $blue-dark;
+      margin-right: 1em;
 
-          ul.thing-tags {
-            @include clearfix;
+      &:hover,
+      &:focus,
+      &:active {
+       background-color: $blue-dark;
+       color: #fff;
+      }
+    }
 
-            margin-top: 15px;
-            margin-bottom: 5px;
+    .private_message_btn {
+      background-color: $blue-dark;
+      color: #fff;
+    }
+  }
 
-            > li {
-              @include text-overflow;
+  .vcard-location {
+    float: left;
+    height: 30px;
+    line-height: 30px;
+  }
 
-              float: right;
-              max-width: 100%;
-              margin: 0 0 10px 15px;
+  .vcard-social {
+    float: right;
 
-              i {
-                color: $iron;
-              }
-            }
+    > a {
+      background-color: $smoke-white;
+      border-radius: 50%;
+      color: #aaa;
+      display: inline-block;
+      height: 30px;
+      line-height: 30px;
+      margin-right: 1em;
+      text-align: center;
+      width: 30px;
 
-            @at-root html.flexbox ul.thing-tags {
-              display: flex;
-              flex-wrap: wrap;
-              justify-content: flex-end;
-
-              > li {
-                float: none !important;
-              }
-            }
-          }
-        }
+      &:last-child {
+        margin-right: 0;
       }
 
-      .thing_list {
-        background: #ececec;
-
-        h4 .fa-list-ko,
-        .thing_list-creator {
-          display: none;
-        }
-
-        h4 {
-          margin: 20px;
-          text-align: center;
-          font-size: 16px;
-          color: $gray;
-
-          .thing_list-size {
-            vertical-align: bottom;
-            font-size: 80%;
-            color: $gray-light;
-          }
-        }
-
-        > header {
-          position: relative;
-
-          .thing_list-destroy {
-            display: none;
-
-            @include to-breakpoint(sm) {
-              display: block;
-            }
-
-            position: absolute;
-            top: 0;
-            right: 0;
-
-            width: 30px;
-            line-height: 30px;
-            font-size: 24px;
-            font-family: 'Lato Thin';
-            text-align: center;
-
-            background: $vulcan;
-            a { color: white; }
-
-            &:hover {
-              background: $red;
-            }
-          }
-
-          &:hover .thing_list-destroy {
-            display: block;
-          }
-        }
-
-        .thing_list-description {
-          position: relative;
-          padding: 10px 40px;
-          border-top: 1px dashed white;
-
-          text-align: center;
-
-          &:before {
-            @include fa-quote-left;
-            position: absolute;
-            top: 9px;
-            left: 14px;
-            color: white;
-            font-family: 'KnewOne-Icon';
-            font-size: 14px;
-          }
-
-          p {
-            @include multi-line-text-overflow(3, 1.4);
-          }
-        }
-
-        .thing_list-info {
-          padding: 5px 10px;
-          background: #dddddd;
-
-          .thing_list-counts {
-            a {
-              color: white;
-            }
-          }
-        }
+      &:hover {
+        background-color: #aaa;
+        color: $smoke-white;
       }
 
-      .review,
-      .feeling {
-        .video {
-          display: none;
-        }
+      .fa {
+        margin: 0;
       }
 
-      .activity {
-        padding: 15px;
-        border-bottom-color: $iron;
+      @media (min-width: $screen-sm-min) {
+        background-color: #aaa;
+        color: #4b4748;
 
-        @include to-breakpoint(xs) {
-          padding-top: 20px;
-          padding-bottom: 20px;
+        &:hover {
+          background-color: #4b4748;
+          color: #aaa;
         }
-      }
-
-      .review,
-      .feeling,
-      .activity,
-      .topic {
-        background: white;
       }
     }
   }
-}
 
-html.users_show {
-  #wrapper {
-    @include to-breakpoint(xs) {
-      > header {
-        .info {
-          .info-description,
-          .info-links,
-          .info-friendship {
-            display: block;
-          }
-        }
-
-        > nav > ul {
-          display: block;
-        }
-      }
+  .vcard-name,
+  .vcard-gender,
+  .vcard-description {
+    @media (min-width: $screen-sm-min) {
+      color: $ghost-white;
     }
+  }
 
     ul.contents {
       @include to-breakpoint(xs) {
