@@ -9,6 +9,31 @@ module Haven
       @share_things = Prize.share_things
       @share_reviews = Prize.share_reviews
       @share_lists = Prize.share_lists
+
+      if params[:find_by]
+        since = Date.parse params[:start_date]
+        due = Date.parse(params[:end_date]).next_day
+
+        klass = case params[:find_by]
+                when "most_things", "most_fancied_things"
+                  params[:find_by].split("_").last.capitalize.singularize.constantize.between(approved_at: since..due)
+                when "most_reviews", "most_fancied_reviews"
+                  params[:find_by].split("_").last.capitalize.singularize.constantize.between(created_at: since..due)
+                when "most_thing_lists", "most_fancied_thing_lists"
+                  ThingList.between(created_at: since..due)
+                end
+
+        @result = if ["most_things", "most_reviews", "most_thing_lists"].include? params[:find_by]
+                    User.in(id: klass.distinct(:author_id))
+                      .map { |user| [user, klass.where(author_id: user.id).count] }
+                      .sort_by { |k, v| v }.reverse
+                  else
+                    User.in(id: klass.distinct(:author_id))
+                      .map { |user| [user, klass.where(author_id: user.id).map { |k| k.try(:fanciers_count) || k.try(:lovers_count) }.reduce(&:+)] }
+                      .sort_by { |k, v| v }.reverse
+                  end
+      end
+
     end
 
     def new

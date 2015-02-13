@@ -39,4 +39,15 @@ module PrizesHelper
     link_to "KnewOne 商店产品", "lists/549d33a331302d7afb030000", target: '_blank'
   end
 
+  def select_params
+    [
+     %w(分享产品最多 most_things),
+     %w(产品赞数最多 most_fancied_things),
+     %w(撰写评测最多 most_reviews),
+     %w(评测赞数最多 most_fancied_reviews),
+     %w(创建列表最多 most_thing_lists),
+     %w(列表赞数最多 most_fancied_thing_lists)
+    ]
+  end
+
 end

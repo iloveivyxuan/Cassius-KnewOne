@@ -38,6 +38,8 @@ table.table
 
 = paginate @prizes
 
+h1 昨天数据
+
 table.table
   thead
     tr
@@ -60,3 +62,27 @@ table.table
         td 列表
         td= render 'user', user: user
         td= user.last
+
+h1 自定义数据
+
+= form_tag params, method: :get, class: 'form-inline' do
+  .form-group
+    = select_tag :find_by, options_for_select(select_params, params[:find_by]), include_blank: false, class: 'form-control'
+  .form-group
+    = date_field_tag :start_date, params[:start_date] || Date.yesterday, class: 'form-control', placeholder: '起始日期', size: '15'
+  .form-group
+    = date_field_tag :end_date, params[:end_date] || Date.yesterday, class: 'form-control', placeholder: '截止日期', size: '15'
+  = link_to '清空条件', haven_prizes_path, class: 'btn btn-default'
+  = submit_tag '搜索', class: 'btn btn-primary'
+
+- if @result
+  table.table
+    thead
+      tr
+        th 用户
+        th 数值
+    tbody
+      - @result.each do |arr|
+        tr
+          td= arr.first.name
+          td= arr.last
