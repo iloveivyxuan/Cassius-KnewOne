@@ -299,6 +299,11 @@ html.home {
             color: $gray-light;
           }
 
+          .comments_toggle {
+            .fa { margin-right: 0; }
+            .comments_count { margin-left: .5em; }
+          }
+
           .btn--like {
             padding: 0;
 
