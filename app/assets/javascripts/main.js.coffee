@@ -286,7 +286,6 @@ do (exports = Making) ->
     exports.PrivateMessage()
     exports.AtUser('textarea')
     exports.shareOnWechat()
-    exports.analytics() if $('html').hasClass("production")
 
     # TODO
     ($popovertoggle = $(".popover-toggle")).length && $popovertoggle.popover()
