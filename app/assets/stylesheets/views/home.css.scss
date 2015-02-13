@@ -248,12 +248,6 @@ html.home {
       }
 
       .feed-activity {
-        > ul {
-          li {
-            display: inline-block;
-          }
-        }
-
         margin: 0 16px;
         padding-bottom: 10px;
 
@@ -262,15 +256,12 @@ html.home {
           border-top: 1px solid $gray-lighter;
         }
 
-        .feed-user, .feed-action {
+        .feed-brief > * {
+          display: inline-block;
           vertical-align: middle;
-
-          > * {
-            color: $gray;
-          }
         }
 
-        .feed-user {
+        .user_avatar {
           margin-right: .5em;
           img {
             @extend %img-circle;
@@ -279,28 +270,23 @@ html.home {
           }
         }
 
-        .feed-action {
-          color: $gray;
+        time {
+          margin-right: .5em;
+          color: #999;
+        }
 
-          time {
-            margin-right: .5em;
-            color: #999;
-          }
+        .feed-action a {
+          margin: 0 .2em;
+          color: $link-color;
+        }
 
-          a {
-            margin: 0 .2em;
-            color: $link-color;
-          }
-
-          .score {
-            display: inline;
-            margin-left: .5em;
-          }
+        .score {
+          display: inline;
+          margin-left: .5em;
+          .rate { padding: 0; }
         }
 
         .feed-operations {
-          display: inline-block;
-
           .comments_toggle,
           .feed-voting {
             display: inline-block;
@@ -314,6 +300,10 @@ html.home {
 
           .btn--like {
             padding: 0;
+
+            span {
+              font-size: 14px;
+            }
           }
         }
 

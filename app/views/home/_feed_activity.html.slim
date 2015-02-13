@@ -1,25 +1,23 @@
 li.feed-activity
-  ul
-    li.feed-user
-      = render 'shared/user_avatar', user_id: activity.user_id
-    li.feed-action
-      = time_ago_tag(activity.created_at)
-      = action_of_activity(activity)
+  .feed-brief
+    = render 'shared/user_avatar', user_id: activity.user_id
+    = time_ago_tag(activity.created_at)
+    .feed-action = action_of_activity(activity)
 
-      - if [:fancy_thing, :desire_thing, :own_thing].include?(activity.type)
-        - impression = activity.source
-        - if impression && impression.is_a?(Impression)
-          = render 'shared/score', score: impression.score
+    - if [:fancy_thing, :desire_thing, :own_thing].include?(activity.type)
+      - impression = activity.source
+      - if impression && impression.is_a?(Impression)
+        = render 'shared/score', score: impression.score
 
-      - if activity.type == :new_feeling
-        - feeling = activity.reference
-        .feed-operations
-          a.comments_toggle href="#" data-id="feeling_#{feeling.id}_comments"
-            i.fa.fa-reply
-            - if feeling.has_comments?
-              span.comments_count= feeling.comments_count
-          .feed-voting id="feeling_#{feeling.id}"
-            = render 'shared/voting', object: feeling
+    - if activity.type == :new_feeling
+      - feeling = activity.reference
+      .feed-operations
+        a.comments_toggle href="#" data-id="feeling_#{feeling.id}_comments"
+          i.fa.fa-reply
+          - if feeling.has_comments?
+            span.comments_count= feeling.comments_count
+        .feed-voting id="feeling_#{feeling.id}"
+          = render 'shared/voting', object: feeling
 
   - if [:fancy_thing, :desire_thing, :own_thing].include?(activity.type)
     - if impression.is_a?(Impression) && impression.description.present?
