@@ -72,6 +72,9 @@ h1 自定义数据
     = date_field_tag :start_date, params[:start_date] || Date.yesterday, class: 'form-control', placeholder: '起始日期', size: '15'
   .form-group
     = date_field_tag :end_date, params[:end_date] || Date.yesterday, class: 'form-control', placeholder: '截止日期', size: '15'
+  .form-group
+    = check_box_tag :volunteer, params[:volunteer], params[:volunteer]
+    label 包括兼职及员工
   = link_to '清空条件', haven_prizes_path, class: 'btn btn-default'
   = submit_tag '搜索', class: 'btn btn-primary'
 
@@ -83,6 +86,7 @@ h1 自定义数据
         th 数值
     tbody
       - @result.each do |arr|
+        - next if !params[:volunteer] && !arr.first.role.blank?
         tr
           td= render 'user', user: arr
           td= arr.last
