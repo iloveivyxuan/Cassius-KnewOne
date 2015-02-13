@@ -13,16 +13,13 @@ li.feed-activity
 
       - if activity.type == :new_feeling
         - feeling = activity.reference
-        span.feed-operations
-          button.btn.btn-xs.feed-comments.comments_toggle data-id="feeling_#{feeling.id}_comments"
-            | 回复
+        .feed-operations
+          a.comments_toggle href="#" data-id="feeling_#{feeling.id}_comments"
+            i.fa.fa-reply
             - if feeling.has_comments?
               span.comments_count= feeling.comments_count
-          button.btn.btn-xs.feed-lovers class=(feeling.voted?(current_user) ? 'active' : '') data-url=thing_feeling_path(feeling.thing, feeling)
-            | 赞
-            span.lovers-count
-              - if feeling.has_lovers?
-                = feeling.lovers_count
+          .feed-voting id="feeling_#{feeling.id}"
+            = render 'shared/voting', object: feeling
 
   - if [:fancy_thing, :desire_thing, :own_thing].include?(activity.type)
     - if impression.is_a?(Impression) && impression.description.present?
