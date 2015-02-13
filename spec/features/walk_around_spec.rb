@@ -16,8 +16,6 @@ feature 'Walk around (Smoke test)', slow: true do
   given!(:paths) do
     [
      root_path,
-     latest_path,
-     following_path,
      welcome_path,
      # maps
      maps_things_path,
