@@ -12,16 +12,16 @@
     - if user_signed_in?
       - action = object.voted?(current_user) ? :unvote : :vote
       - url = polymorphic_path([action, object.try(:thing) || object.try(:group), object])
-      = form_tag url, remote: true, class: 'voting' do
+      span.voting
         - if object.voted?(current_user)
-          = button_tag title: "取消赞", class: "btn btn--like done" do
+          = link_to url, remote: true, method: :post, title: "取消赞", class: "btn btn--like done" do
             i class=icon_class
             - if object.lovers_count > 0
               span = object.lovers_count
         - else
           - klass = object.class.to_s.downcase
           - data = fancy_tracker(klass, object)
-          = button_tag title: "赞", class: "btn btn--like", data: data do
+          = link_to url, remote: true, method: :post, title: "赞", class: "btn btn--like", data: data do
             i class=icon_class
             - if object.lovers_count > 0
               span = object.lovers_count
