@@ -291,6 +291,11 @@ html.home {
             margin: 0 .2em;
             color: $link-color;
           }
+
+          .score {
+            display: inline;
+            margin-left: .5em;
+          }
         }
 
         .feed-operations {
