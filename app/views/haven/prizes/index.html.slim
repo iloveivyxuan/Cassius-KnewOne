@@ -84,5 +84,5 @@ h1 自定义数据
     tbody
       - @result.each do |arr|
         tr
-          td= arr.first.name
+          td= render 'user', user: arr
           td= arr.last
