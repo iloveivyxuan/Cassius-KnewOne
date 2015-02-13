@@ -16,7 +16,7 @@ module Haven
 
         klass = case params[:find_by]
                 when "most_things", "most_fancied_things"
-                  Thing.between(approved_at: since..due)
+                  Thing.approved.between(approved_at: since..due)
                 when "most_reviews", "most_fancied_reviews"
                   Review.between(created_at: since..due)
                 when "most_thing_lists", "most_fancied_thing_lists"
