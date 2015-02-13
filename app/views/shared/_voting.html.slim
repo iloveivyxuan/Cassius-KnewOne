@@ -5,7 +5,8 @@
 - if browser.wechat? && !user_signed_in?
   = link_to user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base'), class: 'btn btn--like' do
     i class=icon_class
-    span = object.lovers_count
+    - if object.lovers_count > 0
+      span = object.lovers_count
 - else
   - cache ['voting', user_signed_in? ? [heartbeat, object, object.voted?(current_user)] : object.lovers_count]
     - if user_signed_in?
@@ -15,13 +16,15 @@
         - if object.voted?(current_user)
           = button_tag title: "取消赞", class: "btn btn--like done" do
             i class=icon_class
-            span = object.lovers_count
+            - if object.lovers_count > 0
+              span = object.lovers_count
         - else
           - klass = object.class.to_s.downcase
           - data = fancy_tracker(klass, object)
           = button_tag title: "赞", class: "btn btn--like", data: data do
             i class=icon_class
-            span = object.lovers_count
+            - if object.lovers_count > 0
+              span = object.lovers_count
     - else
       = link_to '#', data: {target: '#login-modal', toggle: 'modal', 'signin-legend' => '登录后点赞'}, class: 'btn btn--like' do
         i class=icon_class
