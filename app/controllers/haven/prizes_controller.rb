@@ -16,9 +16,9 @@ module Haven
 
         klass = case params[:find_by]
                 when "most_things", "most_fancied_things"
-                  params[:find_by].split("_").last.capitalize.singularize.constantize.between(approved_at: since..due)
+                  Thing.between(approved_at: since..due)
                 when "most_reviews", "most_fancied_reviews"
-                  params[:find_by].split("_").last.capitalize.singularize.constantize.between(created_at: since..due)
+                  Review.between(created_at: since..due)
                 when "most_thing_lists", "most_fancied_thing_lists"
                   ThingList.between(created_at: since..due)
                 end
