@@ -61,4 +61,125 @@ article.review {
       }
     }
   }
+
+  // FIXME!!!
+
+  i {
+    margin-right: .2em;
+  }
+  .cover {
+    background-color: #FFFFFF;
+    height: 100px;
+    a {
+      display: block;
+      height: 100%;
+      overflow: hidden;
+    }
+    img {
+      float: left;
+      height: auto;
+      width: auto;
+      max-height: 100%;
+      margin-right: 10px;
+    }
+    .info {
+      overflow: hidden;
+      padding: 20px 10px 20px 0;
+      height: 100%;
+    }
+    .interactions {
+      margin-top: 0;
+    }
+    .title {
+      text-align: center;
+      font-size: 14px;
+      color: $gray;
+      height: 100%;
+      margin-bottom: -18px;
+    }
+
+    .product_detail {
+      text-align: center;
+      width: 100%;
+      span {
+        margin-right: .5em;
+        color: #bbbbbb;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  .content {
+    overflow: hidden;
+    padding-bottom: 0;
+    .title {
+      font-size: 18px;
+      a {
+        color: $brand-primary;
+      }
+    }
+    .summary {
+      p {
+        line-height: 26px;
+        font-size: 14px;
+      }
+    }
+    .info {
+      margin-top: 20px;
+      padding: 0;
+    }
+    .interactions {
+      a {
+        margin-right: .5em;
+      }
+    }
+  }
+
+  @media (min-width: $screen-sm-min) {
+    .cover {
+      width: 220px;
+      height: auto;
+      text-align: center;
+      margin-right: 20px;
+      padding: 0;
+      background-color: #F7F7F7;
+      img {
+        max-width: 100%;
+        float: none;
+        margin: 0;
+      }
+      .info {
+        padding: 0 10px;
+        text-align: center;
+        margin: 10px;
+      }
+      .title {
+        white-space: nowrap;
+        margin-bottom: 0;
+        font-size: 14px;
+        overflow: hidden;
+        width: 100%;
+        text-overflow: ellipsis;
+      }
+      .product_detail {
+        margin-top: 10px;
+        font-size: 10px;
+      }
+    }
+    .content {
+      .title {
+        a {
+          color: $brand-primary;
+        }
+        i {
+          margin-right: .8em;
+          color: #AAAAAA;
+        }
+      }
+      .summary {
+        min-height: 90px;
+      }
+    }
+  }
 }
