@@ -8,12 +8,16 @@
       ul.metas
         li.name= link_to entry.post.author.name, entry.post.author
         li.time= time_ago_tag entry.created_at
-        li
-          i.fa.fa-thumbs-o-up
-          = entry.post.lovers_count
-        li
-          i.fa.fa-comment-o
-          = entry.post.comments_count
+
+        - if entry.post.lovers_count > 0
+          li
+            i.fa.fa-thumbs-o-up
+            = entry.post.lovers_count
+
+        - if entry.post.comments_count > 0
+          li
+            i.fa.fa-comment-o
+            = entry.post.comments_count
 
     .thumbnail-label
       label
