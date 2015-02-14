@@ -5,5 +5,5 @@ section.recommended-users
       | 推荐用户
   section
     ul
-      - recommended_users = current_user.recommend_new_users.limit(10).shuffle.take(3)
+      - recommended_users = current_user.recommend_new_users.limit(10).shuffle.take(4)
       = render partial: "recommended_user", collection: recommended_users, as: :user
