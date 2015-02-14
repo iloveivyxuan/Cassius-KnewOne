@@ -386,6 +386,32 @@ html.home {
           box-shadow: none;
         }
       }
+
+      margin-top: 50px;
+      position: relative;
+
+      &:before,
+      &:after {
+        content: '';
+
+        position: absolute;
+        display: block;
+        height: 5px;
+
+        background: $ghost-white;
+      }
+
+      &:before {
+        top: -10px;
+        left: 2.5%;
+        width: 95%;
+      }
+
+      &:after {
+        top: -20px;
+        left: 5%;
+        width: 90%;
+      }
     }
 
     .recommended-users {
