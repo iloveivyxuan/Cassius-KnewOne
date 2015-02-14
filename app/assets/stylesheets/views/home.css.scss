@@ -159,7 +159,12 @@ html.home {
     @include clearfix;
 
     > .feed {
+      margin-top: 30px;
       margin-bottom: 30px;
+
+      &:first-child {
+        margin-top: 0;
+      }
 
       article.thing {
         .content,
