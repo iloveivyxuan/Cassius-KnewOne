@@ -374,6 +374,31 @@ html.home {
       display: none;
       h4 { display: none; }
     }
+
+    .recommended-users {
+      > header {
+        background: $smoke-white;
+
+        h5 {
+          margin: 0;
+          padding: 0 1em;
+          line-height: 50px;
+        }
+      }
+
+      > section {
+        overflow: hidden;
+      }
+
+      .recommended-user {
+        @include from-breakpoint(md) {
+          display: inline-block;
+          width: 50%;
+          margin: 0;
+          padding: 1em 1em 0;
+        }
+      }
+    }
   }
 
   .loading-things {
