@@ -38,7 +38,6 @@ class ThingList
 
   def calculate_heat
     return -1 if size < 6
-    return 10000 if self.id.to_s == '54d0494a31302d2f550b0000'
     (fanciers_count + comments_count) * freezing_coefficient
   end
 
