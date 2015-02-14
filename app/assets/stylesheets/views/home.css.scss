@@ -198,16 +198,6 @@ html.home {
         }
       }
 
-      > .thing_list {
-        padding: $padding-base-vertical;
-        background: $ghost-white;
-
-        h4,
-        > footer {
-          padding: 0 (16px - 2px);
-        }
-      }
-
       .feed-review {
         margin-top: 20px;
         padding: 16px;
@@ -378,6 +368,24 @@ html.home {
     .comments_wrap {
       display: none;
       h4 { display: none; }
+    }
+
+    .thing_list {
+      padding: $padding-base-vertical;
+      background: $ghost-white;
+
+      h4,
+      > footer {
+        padding: 0 (16px - 2px);
+      }
+
+      .thing_list-cover {
+        background: transparent;
+
+        img {
+          box-shadow: none;
+        }
+      }
     }
 
     .recommended-users {
