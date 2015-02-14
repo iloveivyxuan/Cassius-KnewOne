@@ -414,6 +414,12 @@ html.home {
       }
     }
 
+    .thumbnail--article {
+      .thumbnail-body:before {
+        content: none;
+      }
+    }
+
     .recommended-users {
       > header {
         background: $smoke-white;
