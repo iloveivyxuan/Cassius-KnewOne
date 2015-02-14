@@ -129,7 +129,7 @@ class HomeController < ApplicationController
       render [@list], locals: { layout: browser.desktop? ? :quintet : :grid }
     when 'review'
       @review = Review.find params[:key]
-      render partial: 'hot_review', collection: [@review]
+      render 'hot_review', review: @review
     else
       head :unprocessable_entity
     end

@@ -20,7 +20,7 @@ module PostsHelper
         end
       when 'review'
         if (review = Review.where(id: key).first)
-          result = render partial: 'home/hot_review', collection: [review]
+          result = render 'home/hot_review', review: review
         end
       else
         result = '<p class="knewone-embed-tip">无效的资源。</p>'
