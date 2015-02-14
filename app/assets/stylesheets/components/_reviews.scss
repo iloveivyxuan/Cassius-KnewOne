@@ -9,7 +9,11 @@ article.review {
     @media (min-width: $screen-sm-min) {
       float: left;
       padding: 10px;
-      img {width: 160px;height: 160px;}
+
+      img {
+        width: 160px;
+        height: 160px / 550 * 400;
+      }
     }
   }
 
@@ -68,11 +72,14 @@ article.review {
     margin-right: .2em;
   }
   .cover {
+    overflow: hidden;
+    height: 0;
+    padding-bottom: percentage(400 / 550);
+
     background-color: #FFFFFF;
-    height: 100px;
+
     a {
       display: block;
-      height: 100%;
       overflow: hidden;
     }
     img {
