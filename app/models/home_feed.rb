@@ -66,11 +66,11 @@ class HomeFeed
     end
   end
 
-  def activities_not_from_reviews
-    @activities.reject { |a| a.reference.is_a? Review }
+  def activities_not_from_reviews(type = nil)
+    @activities.reject { |a| (!type || a.type == type) && a.reference.is_a?(Review) }
   end
 
-  def activities_from(reference)
-    @activities.select { |a| a.reference == reference }
+  def activities_from(reference, type = nil)
+    @activities.select { |a| (!type || a.type == type) && a.reference == reference }
   end
 end

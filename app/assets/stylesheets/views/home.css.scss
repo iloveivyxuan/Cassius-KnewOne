@@ -380,6 +380,27 @@ html.home {
           }
         }
       }
+
+      .feed-activities--one_line {
+        position: relative;
+
+        padding: 10px 14px 0 50px;
+        background: white;
+
+        i {
+          position: absolute;
+          top: 10px;;
+          left: 20px;
+
+          font-size: 20px;
+          line-height: 26px;
+        }
+
+        li {
+          display: inline-block;
+          margin: 0 10px 10px 0;
+        }
+      }
     }
 
     .comments_wrap {
