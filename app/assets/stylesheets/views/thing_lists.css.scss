@@ -220,7 +220,7 @@ html.thing_lists_show {
           line-height: 1.25;
 
           @include from-breakpoint(md) {
-            padding: 20px 0;
+            padding: 20px 0 0;
             font-size: 20px;
           }
         }
@@ -230,7 +230,7 @@ html.thing_lists_show {
           color: $gray-light;
 
           @include from-breakpoint(md) {
-            margin: 0;
+            margin-top: 20px;
           }
 
           a.tag--link {
