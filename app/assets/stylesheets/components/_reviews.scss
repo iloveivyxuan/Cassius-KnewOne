@@ -1,19 +1,49 @@
 article.review {
-  @include clearfix;
-
   background: white;
 
   header.cover {
-    img {width: 100%;}
+    @include clearfix;
 
-    @media (min-width: $screen-sm-min) {
+    position: relative;
+    background: $smoke-white;
+
+    img {
       float: left;
-      padding: 10px;
+      width: 40%;
+    }
 
-      img {
-        width: 160px;
-        height: 160px / 550 * 400;
+    .info {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 60%;
+      transform: translateY(-50%);
+      text-align: center;
+
+      .title {
+        @include multi-line-text-overflow(2, 16px);
+        color: $gray-dark;
       }
+
+      .counts {
+        margin-top: 10px;
+        font-size: 80%;
+        color: $gray-light;
+
+        span {
+          margin-right: 5px;
+        }
+      }
+    }
+
+    @include from-breakpoint(sm) {
+      img { width: 30%; }
+      .info { width: 70%; }
+    }
+
+    @include from-breakpoint(md) {
+      img { width: 20%; }
+      .info { width: 80%; }
     }
   }
 
@@ -62,130 +92,6 @@ article.review {
       > * {
         margin-left: .5em;
         color: $gray-light;
-      }
-    }
-  }
-
-  // FIXME!!!
-
-  i {
-    margin-right: .2em;
-  }
-  .cover {
-    overflow: hidden;
-    height: 0;
-    padding-bottom: percentage(400 / 550);
-
-    background-color: #FFFFFF;
-
-    a {
-      display: block;
-      overflow: hidden;
-    }
-    img {
-      float: left;
-      height: auto;
-      width: auto;
-      max-height: 100%;
-      margin-right: 10px;
-    }
-    .info {
-      overflow: hidden;
-      padding: 20px 10px 20px 0;
-      height: 100%;
-    }
-    .interactions {
-      margin-top: 0;
-    }
-    .title {
-      text-align: center;
-      font-size: 14px;
-      color: $gray;
-      height: 100%;
-      margin-bottom: -18px;
-    }
-
-    .product_detail {
-      text-align: center;
-      width: 100%;
-      span {
-        margin-right: .5em;
-        color: #bbbbbb;
-        &:last-child {
-          margin-right: 0;
-        }
-      }
-    }
-  }
-  .content {
-    overflow: hidden;
-    padding-bottom: 0;
-    .title {
-      font-size: 18px;
-      a {
-        color: $brand-primary;
-      }
-    }
-    .summary {
-      p {
-        line-height: 26px;
-        font-size: 14px;
-      }
-    }
-    .info {
-      margin-top: 20px;
-      padding: 0;
-    }
-    .interactions {
-      a {
-        margin-right: .5em;
-      }
-    }
-  }
-
-  @media (min-width: $screen-sm-min) {
-    .cover {
-      width: 220px;
-      height: auto;
-      text-align: center;
-      margin-right: 20px;
-      padding: 0;
-      background-color: #F7F7F7;
-      img {
-        max-width: 100%;
-        float: none;
-        margin: 0;
-      }
-      .info {
-        padding: 0 10px;
-        text-align: center;
-        margin: 10px;
-      }
-      .title {
-        white-space: nowrap;
-        margin-bottom: 0;
-        font-size: 14px;
-        overflow: hidden;
-        width: 100%;
-        text-overflow: ellipsis;
-      }
-      .product_detail {
-        margin-top: 10px;
-        font-size: 10px;
-      }
-    }
-    .content {
-      .title {
-        a {
-          color: $brand-primary;
-        }
-        i {
-          margin-right: .8em;
-          color: #AAAAAA;
-        }
-      }
-      .summary {
-        min-height: 90px;
       }
     }
   }

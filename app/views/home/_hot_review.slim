@@ -3,38 +3,45 @@
 - present review do |review_presenter|
   article.review
     header.cover
-      - present(review.thing) do |thing_presenter|
+      - thing = review.thing
+      - present(thing) do |thing_presenter|
         = link_to thing_presenter.path, target: "_blank" do
           = thing_presenter.photo('thing.fixed')
           .info
-            .title= truncate(thing_presenter.title, length: 32)
-            .product_detail
-              span
-                i.fa.fa-heart-o
-                = thing_presenter.fanciers_count
-              span
-                i.fa.fa-check-circle-o
-                = thing_presenter.owners_count
-              span
-                i.fa.fa-pencil
-                = thing_presenter.reviews_count
+            .title = thing.title
+            .counts
+              - if thing.fanciers_count > 0
+                span
+                  i.fa.fa-heart-o
+                  = thing_presenter.fanciers_count
+
+              - if thing.owners_count > 0
+                span
+                  i.fa.fa-check-circle-o
+                  = thing_presenter.owners_count
+
+              - if thing.reviews_count > 0
+                span
+                  i.fa.fa-pencil
+                  = thing_presenter.reviews_count
+
     section.content
       h4.title
-        - if browser.desktop?
-          i.fa.fa-pencil
+        i.fa.fa-pencil
         = link_to review_presenter.title, review_presenter.path, target: "_blank"
       .summary
         = review_presenter.score
         p= review_presenter.summary(120)
-      footer.info
-        - unless prize
-          = render 'shared/user_avatar', user_id: review.author_id
-        .interactions
-          - if review_presenter.has_lover?
-            = link_to review_presenter.path, target: "_blank" do
-              i.fa.fa-thumbs-o-up
-              span= review.lovers_count
-          - if review_presenter.has_comment?
-            = link_to review_presenter.path, target: "_blank" do
-              i.fa.fa-comment-o
-              span= review.comments_count
+
+    footer.info
+      - unless prize
+        = render 'shared/user_avatar', user_id: review.author_id
+      .interactions
+        - if review_presenter.has_lover?
+          = link_to review_presenter.path, target: "_blank" do
+            i.fa.fa-thumbs-o-up
+            span= review.lovers_count
+        - if review_presenter.has_comment?
+          = link_to review_presenter.path, target: "_blank" do
+            i.fa.fa-comment-o
+            span= review.comments_count
