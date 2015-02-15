@@ -2,11 +2,11 @@
 
 .page-content
   - if @activities.present?
-    - if @filter == 'text'
-      = link_to_with_icon "转换为图文动态", "fa fa-exchange", activities_user_path, class: "page-content-switch"
-    - else
-      = link_to_with_icon "转换为纯文字动态", "fa fa-exchange", { filter: "text" }, class: "page-content-switch"
-    ul.block_list = render @activities
+    - unless browser.desktop?
+      - if @filter == 'text'
+        = link_to_with_icon "转换为图文动态", "fa fa-exchange", activities_user_path, class: "page-content-switch"
+      - else
+        = link_to_with_icon "转换为纯文字动态", "fa fa-exchange", { filter: "text" }, class: "page-content-switch"
   - else
     = render 'shared/nothing'
 
