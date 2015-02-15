@@ -1,0 +1,18 @@
+- case rand(12)
+  - when 0..5
+    - exclusions = @feeds.map { |f| f.thing.try(:id) }.compact
+    - thing = Thing.hot.recommended.nin(id: exclusions).skip(rand(60)).first
+    = render 'hot_thing', thing: thing
+  - when 6..7
+    - exclusions = @feeds.flat_map { |f| f.reviews.map(&:id) }
+    - review = Review.hot.nin(id: exclusions).skip(rand(20)).first
+    = render 'hot_review', review: review
+  - when 8..9
+    - exclusions = @feeds.map { |f| f.thing_list.try(:id) }.compact
+    - thing_list = ThingList.hot.nin(id: exclusions).skip(rand(20)).first
+    = render thing_list, layout: :quintet
+  - when 10
+    - entry = Entry.published.desc(:created_at).nin(category: %w(活动 特写)).skip(rand(10)).first
+    = render entry
+  - else
+    = render 'recommended_users'

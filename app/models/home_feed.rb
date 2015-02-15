@@ -57,7 +57,8 @@ class HomeFeed
       @reviews << review unless @reviews.include?(review)
     end
 
-    return if activity.type == :fancy_thing && @activities.any? { |a| a.type == :add_to_list }
+    return if activity.type == :fancy_thing && @activities.any? { |a| a.type == :desire_thing }
+    return if activity.type == :desire_thing && @activities.any? { |a| a.type == :own_thing }
 
     @activities << activity
     unless updated_at and activity.created_at < updated_at
@@ -65,11 +66,11 @@ class HomeFeed
     end
   end
 
-  def activities_not_from_reviews
-    @activities.reject { |a| a.reference.is_a? Review }
+  def activities_not_from_reviews(type = nil)
+    @activities.reject { |a| (!type || a.type == type) && a.reference.is_a?(Review) }
   end
 
-  def activities_from(reference)
-    @activities.select { |a| a.reference == reference }
+  def activities_from(reference, type = nil)
+    @activities.select { |a| (!type || a.type == type) && a.reference == reference }
   end
 end

@@ -25,8 +25,8 @@ section.step#step1
           | 换一组
       .panel-body
         ul.recommended-users.js-friendship-users
-          - recommend_users = current_user.recommend_new_users.limit(60)
-          = render partial: "recommend_user", collection: recommend_users, as: :user
+          - recommended_users = current_user.recommend_new_users.limit(60)
+          = render partial: "recommended_user", collection: recommended_users, as: :user
       footer.panel-footer.visible-xs-block
         button.btn-inverse-blue.js-friendship-refresh type="button"
           i.fa.fa-refresh

@@ -1,26 +1,25 @@
 article.feed
-  .feed-latest-user
-    = render 'shared/user_avatar', user_id: feed.author_id, options: {class: 'user_avatar user_avatar--without_name'}
-
   - if feed.thing
     = render 'hot_thing', thing: feed.thing
+
+    - if feed.activities_not_from_reviews.present?
+      ul.feed-activities
+        - activities = feed.activities_not_from_reviews
+        - descriptions = activities.map do |activity|
+          - next unless activity.type == :add_to_list
+          - list = activity.source
+          - item = list.items.where(thing: activity.related_thing).first
+          - item.try(:description)
+        = render partial: 'feed_activity', collection: activities, as: :activity, locals: {descriptions: descriptions}
+
+    - if feed.reviews.present?
+      .feed-reviews
+        - feed.reviews.each do |review|
+          = render 'feed_review', review: review
+          - activities = feed.activities_from(review, :love_review)
+          = render 'feed_activities_in_one_line', activities: activities, icon_class: 'fa-thumbs-o-up'
+
   - elsif feed.thing_list
     = render feed.thing_list
-
-  - if feed.activities_not_from_reviews.present?
-    ul.feed-activities
-      - activities = feed.activities_not_from_reviews
-      - descriptions = activities.map do |activity|
-        - next unless activity.type == :add_to_list
-        - list = activity.source
-        - item = list.items.where(thing: activity.related_thing).first
-        - item.try(:description)
-      = render partial: 'feed_activity', collection: activities, as: :activity, locals: {descriptions: descriptions}
-
-  - if feed.reviews.present?
-    .feed-reviews
-      - feed.reviews.each do |review|
-        = render 'feed_review', review: review
-        - if feed.activities_from(review).present?
-          ul.feed-activities
-            = render partial: 'feed_activity', collection: feed.activities_from(review), as: :activity
+    - activities = feed.activities_not_from_reviews(:fancy_list)
+    = render 'feed_activities_in_one_line', activities: activities, icon_class: 'fa-heart'

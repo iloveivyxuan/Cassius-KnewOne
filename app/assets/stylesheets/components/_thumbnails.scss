@@ -1,0 +1,98 @@
+.thumbnail--article {
+  background-color: #fff;
+
+  .thumbnail-cover {
+    display: block;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: percentage(1 / 2.39);
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .thumbnail-body {
+    background-color: #fff;
+    height: 102px;
+    padding: 20px;
+    position: relative;
+
+    &::before {
+      border-color: transparent transparent #fff transparent;
+      border-style: solid;
+      border-width: 10px;
+      content: '';
+      position: absolute;
+      right: 40px;
+      top: -20px;
+    }
+
+    .metas {
+      color: $gray-light;
+
+      .name {
+        height: 20px;
+        vertical-align: -6px;
+
+        a {
+          @extend %text-overflow;
+
+          display: block;
+          color: $gray;
+          max-width: 6em;
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+
+      time {
+        color: $gray-light;
+      }
+    }
+  }
+
+  .thumbnail-title {
+    @extend %text-overflow;
+
+    font-size: 18px;
+    margin: 0 0 10px 0;
+
+    > a {
+      color: $text-color;
+    }
+  }
+
+  .thumbnail-label {
+    left: 0;
+    position: absolute;
+    top: -44px;
+
+    > label {
+      background-color: #36383a;
+      color: #fff;
+      font-size: 16px;
+      height: 44px;
+      line-height: 44px;
+      margin: 0;
+      padding: 0 1.5em;
+
+      .logo {
+        color: #fff;
+        margin-right: .5em;
+      }
+    }
+
+    > .entry-avatar {
+      box-shadow: 0 0 0 2px #fff;
+      margin: {
+        left: -8px;
+        top: -8px;
+      }
+      position: absolute;
+      width: 60px;
+    }
+  }
+}

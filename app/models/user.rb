@@ -1,7 +1,6 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Aftermath
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, :trackable, :confirmable
 
@@ -55,8 +54,6 @@ class User
   field :things_count, type: Integer, default: 0
   field :reviews_count, type: Integer, default: 0
   field :feelings_count, type: Integer, default: 0
-  field :followers_count, type: Integer, default: 0
-  field :followings_count, type: Integer, default: 0
   field :groups_count, type: Integer, default: 0
   field :topics_count, type: Integer, default: 0
   field :orders_count, type: Integer, default: 0
@@ -289,25 +286,6 @@ class User
     Thing.where(maker: self).desc(:created_at)
   end
 
-  ## Followings
-
-  def followed?(user)
-    self.followings.include? user
-  end
-
-  def follow(user)
-    return if user == self
-    self.followings<< user unless followed? user
-  end
-
-  def batch_follow(users)
-    users.each { |u| follow u }
-  end
-
-  def unfollow(user)
-    self.followings.delete user
-  end
-
   ##Dialogs
   include UserDialogs
 
@@ -494,13 +472,8 @@ HERE
   field :apple_device_token, type: String
   index apple_device_token: 1
 
-  # activity
+  # activity & relationship
   include Feedable
-
-  def related_activities
-    user_ids = following_ids + [self.id]
-    Activity.where(:user_id.in => user_ids)
-  end
 
   # category
   has_and_belongs_to_many :categories, inverse_of: nil do
@@ -561,8 +534,6 @@ HERE
   def wechat_auth
     @_wechat_auth ||= self.auths.where(provider: 'wechat').first
   end
-
-  need_aftermath :follow, :unfollow
 
   def self.related_users_and_owned(thing, user, count, fields = [:id, :name])
     related_user_ids = (user.following_ids & thing.owner_ids).take(count)

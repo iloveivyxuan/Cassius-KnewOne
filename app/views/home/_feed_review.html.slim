@@ -1,18 +1,27 @@
 - review_presenter = present review
 
 article.feed-review
-  header.feed-review-title
-    = link_to review_presenter.path, target: "_blank" do
-      h4= review_presenter.title
-      = review_presenter.score
+  header
+    p
+      = render 'shared/user_avatar', user_id: review.author_id
+      = time_ago_tag(review.created_at)
+      | 发表了评测：
+
+    .feed-review-title
+      = link_to review_presenter.path, target: "_blank" do
+        h4= review_presenter.title
+        = review_presenter.score
 
   section.feed-review-summary
-    - if review.cover
-      = image_tag review.cover(:small)
     p = review_presenter.summary(120)
 
+    - photos = review.content_photos
+    - if photos.present?
+      ul
+        - photos.take(4).each do |photo|
+          li = image_tag photo
+
   footer.feed-review-info
-    = render 'shared/user_avatar', user_id: review.author_id
     .interactions
       - if review_presenter.has_lover?
         = link_to review_presenter.path, target: "_blank"

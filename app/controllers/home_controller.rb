@@ -6,23 +6,25 @@ class HomeController < ApplicationController
   def index
     return redirect_to landing_url unless user_signed_in?
 
-    @source = (params[:source] or session[:source] or "following")
-    @pager = Kaminari.paginate_array([], total_count: 2000).page(params[:page]).per(30)
+    activities = current_user.related_activities.visible.by_types(:new_thing, :fancy_thing, :desire_thing, :own_thing,
+                                                                  :new_review, :love_review,
+                                                                  :new_feeling,
+                                                                  :add_to_list, :fancy_list)
 
-    if @source == "following" and current_user.followings_count > 0
-      session[:source] = @source
-      activities = current_user.related_activities.visible.by_types(:new_thing, :own_thing, :fancy_thing,
-                                                                    :new_review, :love_review,
-                                                                    :new_feeling,
-                                                                    :add_to_list, :fancy_list)
-      activities = activities.page(params[:page]).per(30)
-      @feeds = HomeFeed.create_from_activities activities
+    return redirect_to welcome_url if activities.blank?
+
+    @from_id = params[:from_id].to_s
+    if @from_id.present?
+      activities = activities.lte(id: params[:from_id])
     else
-      session[:source] = "latest"
-      things = Thing.published.recommended.desc(:approved_at)
-      things = things.page(params[:page]).per(30)
-      reviews = []
-      @feeds = HomeFeed.create_from_things_and_reviews(things, reviews)
+      @from_id = activities.first.try(:id).to_s || ''
+    end
+
+    activities = activities.page(params[:page]).per(30)
+    @feeds = HomeFeed.create_from_activities activities
+
+    if request.xhr?
+      render 'index_xhr', layout: false
     end
   end
 
@@ -127,7 +129,7 @@ class HomeController < ApplicationController
       render [@list], locals: { layout: browser.desktop? ? :quintet : :grid }
     when 'review'
       @review = Review.find params[:key]
-      render partial: 'hot_review', collection: [@review]
+      render 'hot_review', review: @review
     else
       head :unprocessable_entity
     end

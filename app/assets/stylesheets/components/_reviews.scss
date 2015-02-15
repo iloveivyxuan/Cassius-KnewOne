@@ -1,15 +1,49 @@
 article.review {
-  @include clearfix;
-
   background: white;
 
   header.cover {
-    img {width: 100%;}
+    @include clearfix;
 
-    @media (min-width: $screen-sm-min) {
+    position: relative;
+    background: $smoke-white;
+
+    img {
       float: left;
-      padding: 10px;
-      img {width: 160px;height: 160px;}
+      width: 40%;
+    }
+
+    .info {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 60%;
+      transform: translateY(-50%);
+      text-align: center;
+
+      .title {
+        @include multi-line-text-overflow(2, 16px);
+        color: $gray-dark;
+      }
+
+      .counts {
+        margin-top: 10px;
+        font-size: 80%;
+        color: $gray-light;
+
+        span {
+          margin-right: 5px;
+        }
+      }
+    }
+
+    @include from-breakpoint(sm) {
+      img { width: 30%; }
+      .info { width: 70%; }
+    }
+
+    @include from-breakpoint(md) {
+      img { width: 20%; }
+      .info { width: 80%; }
     }
   }
 
@@ -56,7 +90,7 @@ article.review {
       margin-top: 12px;
 
       > * {
-        margin-left: .5em;
+        margin-left: 1em;
         color: $gray-light;
       }
     }

@@ -6,48 +6,13 @@ html.home {
   .container {
     padding: 0;
 
-    > nav {
-      @include clearfix;
-      margin: 15px 0;
-
-      .nav {
-        text-align: center;
-      }
-
-      > a {
-        float: right;
-        padding: 0 10px;
-        text-decoration: none;
-        margin-top: -34px;
-        color: #999999;
-        line-height: 34px;
-        font-size: 14px;
-        float: right;
-      }
-
-      @include from-breakpoint(md) {
-        margin-top: 0;
-        margin-left: 10em;
-        width: calc(66.6666666667% - 10em - 30px);
-        .nav {
-          float: left;
-          text-align: left;
-        }
-
-        > a {
-          padding: 5px 10px;
-          float: right;
-          margin-top: -5px;
-        }
-      }
-    }
-
     > main {
       width: 100%;
 
       @include from-breakpoint(md) {
         float: left;
         width: percentage(2 / 3);
+        padding-left: 10em;
         padding-right: 30px;
       }
     }
@@ -159,21 +124,20 @@ html.home {
     @include clearfix;
 
     > .feed {
+      margin-top: 30px;
       margin-bottom: 30px;
 
-      .feed-latest-user {
-        display: none;
+      &:first-child {
+        margin-top: 0;
 
-        width: 11em;
-        text-align: center;
-
-        img {
-          @extend %img-circle;
-          width: 60px;
+        .thing_list {
+          margin-top: 20px;
         }
       }
 
       article.thing {
+        background: $smoke-white;
+
         .content,
         .info {
           padding-left: 16px;
@@ -205,32 +169,26 @@ html.home {
         }
       }
 
-      @include from-breakpoint(md) {
-        position: relative;
-        margin-left: 10em;
-
-        .feed-latest-user {
-          display: block;
-          position: absolute;
-          top: 0;
-          right: 100%;
-        }
-      }
-
-      > .thing_list {
-        padding: $padding-base-vertical;
-        background: $ghost-white;
-
-        h4,
-        > footer {
-          padding: 0 (16px - 2px);
-        }
-      }
-
       .feed-review {
         margin-top: 20px;
         padding: 16px;
-        background: white;
+        background: $smoke-white;
+
+        > header {
+          p {
+            time {
+              margin: 0 .5em;
+            }
+          }
+
+          .score {
+            margin: 0;
+
+            .rate {
+              padding: 0;
+            }
+          }
+        }
 
         .feed-review-summary {
           @include clearfix;
@@ -239,8 +197,9 @@ html.home {
           color: $gray-light;
 
           img {
-            float: right;
-            margin: 0 0 1em 1em;
+            float: left;
+            padding: 0 1em 1em 0;
+            max-width: 25%;
           }
         }
 
@@ -272,12 +231,6 @@ html.home {
       }
 
       .feed-activity {
-        > ul {
-          li {
-            display: inline-block;
-          }
-        }
-
         margin: 0 16px;
         padding-bottom: 10px;
 
@@ -286,15 +239,12 @@ html.home {
           border-top: 1px solid $gray-lighter;
         }
 
-        .feed-user, .feed-action {
+        .feed-brief > * {
+          display: inline-block;
           vertical-align: middle;
-
-          > * {
-            color: $gray;
-          }
         }
 
-        .feed-user {
+        .user_avatar {
           margin-right: .5em;
           img {
             @extend %img-circle;
@@ -303,32 +253,50 @@ html.home {
           }
         }
 
-        .feed-action {
-          color: $gray;
+        time {
+          margin-right: .5em;
+          color: #999;
+        }
 
-          time {
-            margin-right: .5em;
-            color: #999;
-          }
+        .feed-action a {
+          margin: 0 .2em;
+          color: $link-color;
+        }
 
-          a {
-            margin: 0 .2em;
-            color: $link-color;
-          }
+        .score {
+          display: inline;
+          margin-left: .5em;
+          .rate { padding: 0; }
         }
 
         .feed-operations {
-          margin-left: 1em;
+          .comments_toggle,
+          .feed-voting {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: .5em;
+          }
 
-          > button {
-            margin-right: 1em;
-            background: $gray-lighter;
-            &.active { background: darken($gray-lighter, 10%); }
-            i {margin: 0;}
-            span {margin-left: .5em;}
+          .comments_toggle,
+          .btn--like {
+            color: $gray-light;
+          }
+
+          .comments_toggle {
+            .fa { margin-right: 0; }
+            .comments_count { margin-left: .5em; }
+          }
+
+          .btn--like {
+            padding: 0;
+
+            span {
+              font-size: 14px;
+            }
           }
         }
 
+        .feed-impression,
         .feed-feeling,
         .feed-thing-list {
           p {
@@ -383,11 +351,136 @@ html.home {
           }
         }
       }
+
+      .feed-activities--one_line {
+        position: relative;
+
+        padding: 10px 14px 0 50px;
+        background: white;
+
+        i {
+          position: absolute;
+          top: 10px;;
+          left: 20px;
+
+          font-size: 20px;
+          line-height: 26px;
+        }
+
+        li {
+          display: inline-block;
+          margin: 0 10px 10px 0;
+        }
+      }
     }
 
     .comments_wrap {
       display: none;
       h4 { display: none; }
+    }
+
+    > article.thing {
+      background: $smoke-white;
+
+      .title:before {
+        font-family: 'KnewOne-Icon';
+        @include fa-fire;
+
+        margin-right: .5em;
+        color: $red;
+      }
+    }
+
+    > article.review {
+      background: $smoke-white;
+      > header { background: white; }
+
+      @include from-breakpoint(md) {
+        padding: 35px;
+
+        section.content,
+        footer.info {
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+    }
+
+    .thing_list {
+      padding: 12px 6px;
+      background: $smoke-white;
+
+      h4,
+      > footer {
+        padding: 0 (16px - 2px);
+      }
+
+      .thing_list-cover {
+        background: transparent;
+
+        img {
+          box-shadow: none;
+        }
+      }
+
+      margin-top: 50px;
+      position: relative;
+
+      &:before,
+      &:after {
+        content: '';
+
+        position: absolute;
+        display: block;
+        height: 5px;
+
+        background: $smoke-white;
+      }
+
+      &:before {
+        top: -10px;
+        left: 2.5%;
+        width: 95%;
+      }
+
+      &:after {
+        top: -20px;
+        left: 5%;
+        width: 90%;
+      }
+    }
+
+    .thumbnail--article {
+      background: $smoke-white;
+
+      .thumbnail-body:before {
+        content: none;
+      }
+    }
+
+    .recommended-users {
+      > header {
+        background: $smoke-white;
+
+        h5 {
+          margin: 0;
+          padding: 0 1em;
+          line-height: 50px;
+        }
+      }
+
+      > section {
+        overflow: hidden;
+      }
+
+      .recommended-user {
+        @include from-breakpoint(md) {
+          display: inline-block;
+          width: 50%;
+          margin: 0;
+          padding: 1em 1em 0;
+        }
+      }
     }
   }
 

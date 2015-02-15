@@ -1,0 +1,5 @@
+section.feed-activities--one_line
+  i.fa.fa-alone class=icon_class
+  ul
+    - activities.each do |a|
+      li = render 'shared/user_avatar', user_id: a.user_id

@@ -86,7 +86,7 @@ class PostPresenter < ApplicationPresenter
 
   def score
     if post.try(:score).present? and post.score > 0
-      content_tag :div, "", data: {score: post.score}, class: "score"
+      render 'shared/score', score: post.score
     end
   end
 

@@ -1,2 +1,5 @@
 - if score > 0
-  .score data-score=score
+  .score
+    .rate
+      - 5.downto(1).each do |i|
+        span.star class=('active' if i <= score)
