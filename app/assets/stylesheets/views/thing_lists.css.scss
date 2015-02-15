@@ -276,7 +276,7 @@ html.thing_lists_show {
 
         background: $ghost-white;
 
-        transition: box-shadow .2s;
+        transition: box-shadow .1s linear;
         box-shadow: 0 2px 5px rgba(black, .1);
 
         &:hover {
