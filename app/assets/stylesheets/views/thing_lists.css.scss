@@ -197,16 +197,25 @@ html.thing_lists_show {
         }
 
         .thing_list_description {
-          margin: $padding-large-vertical 0 20px;
+          margin: $padding-large-vertical 0 0;
           color: $gray-light;
 
           @include from-breakpoint(md) {
-            margin: 0 0 30px;
+            margin: 0;
           }
 
           a.tag--link {
             color: #fd5a46;
           }
+        }
+      }
+
+      .thing_list_price_toggle {
+        margin: 15px 0;
+        margin-left: 80px;
+
+        @include from-breakpoint(md) {
+          margin-left: 0;
         }
       }
 
