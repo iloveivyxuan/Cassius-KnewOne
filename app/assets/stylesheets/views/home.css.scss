@@ -12,6 +12,7 @@ html.home {
       @include from-breakpoint(md) {
         float: left;
         width: percentage(2 / 3);
+        padding-left: 10em;
         padding-right: 30px;
       }
     }
