@@ -1226,6 +1226,24 @@ html.users_activities {
   }
 }
 
+html.users_feelings {
+  @media (min-width: $screen-sm-min) {
+    .feeling-thing {
+      height: 60px;
+
+      > img {
+        @include square(60px);
+      }
+
+      .metas {
+        > li {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+
 html.users_followers,
 html.users_followings {
   .page-nav--tiny {
