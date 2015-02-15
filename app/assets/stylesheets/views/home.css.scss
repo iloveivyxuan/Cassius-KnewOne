@@ -128,6 +128,10 @@ html.home {
 
       &:first-child {
         margin-top: 0;
+
+        .thing_list {
+          margin-top: 20px;
+        }
       }
 
       article.thing {
