@@ -428,6 +428,12 @@ html.home {
 
       @include from-breakpoint(md) {
         padding: 35px;
+
+        section.content,
+        footer.info {
+          padding-left: 0;
+          padding-right: 0;
+        }
       }
     }
 
