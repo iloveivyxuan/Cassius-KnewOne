@@ -197,16 +197,25 @@ html.thing_lists_show {
         }
 
         .thing_list_description {
-          margin: $padding-large-vertical 0 20px;
+          margin: $padding-large-vertical 0 0;
           color: $gray-light;
 
           @include from-breakpoint(md) {
-            margin: 0 0 30px;
+            margin: 0;
           }
 
           a.tag--link {
             color: #fd5a46;
           }
+        }
+      }
+
+      .thing_list_price_toggle {
+        margin: 15px 0;
+        margin-left: 80px;
+
+        @include from-breakpoint(md) {
+          margin-left: 0;
         }
       }
 
@@ -276,7 +285,7 @@ html.thing_lists_show {
 
         background: $ghost-white;
 
-        transition: box-shadow .2s;
+        transition: box-shadow .1s linear;
         box-shadow: 0 2px 5px rgba(black, .1);
 
         &:hover {
@@ -331,6 +340,10 @@ html.thing_lists_show {
           .thing_list_item-destroy {
             display: none;
           }
+
+          .thing_list_item-price {
+            display: none;
+          }
         }
 
         > footer {
@@ -378,8 +391,8 @@ html.thing_lists_show {
 
           .thing_list_item-destroy {
             position: absolute;
+            top: 0;
             right: 0;
-            bottom: 0;
 
             display: block;
             width: 40px;
@@ -402,6 +415,25 @@ html.thing_lists_show {
             .thing_list_item-destroy {
               display: none;
             }
+          }
+        }
+      }
+
+      &.thing_list_items--with_price {
+        > .thing_list_item {
+          .thing_list_item-price {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+
+            display: block;
+            padding: 5px 14px;
+
+            font-family: 'Lato Thin';
+            text-align: center;
+
+            background: $vulcan;
+            color: white;
           }
         }
       }

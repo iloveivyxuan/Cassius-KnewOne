@@ -1,4 +1,13 @@
-Making.InitThingList = ->
+Making.InitThingList = (editable) ->
+  $('input[name="show_price"]').on('change', (event) ->
+    if $(this).is(':checked')
+      $('.thing_list_items').addClass('thing_list_items--with_price')
+    else
+      $('.thing_list_items').removeClass('thing_list_items--with_price')
+  )
+
+  return unless editable
+
   originalClass = $('.thing_list_items').attr('class')
 
   $('.thing_list_name .editable').editable()

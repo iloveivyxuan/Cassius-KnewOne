@@ -15,6 +15,10 @@ header
       p.thing_list_description class=('hide' if list.description.blank?)
         = editable list, :description, title: '列表描述'
 
+  label.thing_list_price_toggle
+    input type="checkbox" name="show_price"
+    | 显示产品价格
+
   .thing_list_actions
     ul
       li = render 'fancy_button', thing_list: list
