@@ -48,7 +48,6 @@ footer = render 'shared/comments', post: list, id: 'comments', auth: true
         background-image: url('list-background-white-#{browser.mobile? ? 1024 : 1680}.jpg');
       }
 
-- if can?(:update, list)
-  - content_for :script
-    javascript:
-      Making.InitThingList()
+- content_for :script
+  javascript:
+    Making.InitThingList(#{can?(:update, list)})
