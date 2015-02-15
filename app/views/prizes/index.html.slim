@@ -51,7 +51,7 @@
     - if @prize_review
       section.reviews
         - review = Review.find @prize_review.reference_id
-        = render partial: 'home/hot_review', prize: true, review: review
+        = render 'home/hot_review', prize: true, review: review
         footer
           = render 'shared/user_avatar', user_id: review.author_id
           | #{ @prize_review.reason }，获得
