@@ -203,6 +203,22 @@ html.home {
         padding: 16px;
         background: white;
 
+        > header {
+          p {
+            time {
+              margin: 0 .5em;
+            }
+          }
+
+          .score {
+            margin: 0;
+
+            .rate {
+              padding: 0;
+            }
+          }
+        }
+
         .feed-review-summary {
           @include clearfix;
 
