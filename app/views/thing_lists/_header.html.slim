@@ -27,6 +27,14 @@ header
       li = render 'share_link', thing_list: list
 
   - if can?(:update, list)
+    .thing_list_sorting_buttons
+      = link_to sort_thing_list_path(list, desc: false), method: :post, remote: true, title: '按加入时间正序排列'
+        | 按时间正序
+        i.fa.fa-caret-up
+      = link_to sort_thing_list_path(list, desc: true), method: :post, remote: true, title: '按加入时间倒序排列'
+        | 按时间倒序
+        i.fa.fa-caret-down
+
     a.thing_list_edit_button.btn.btn--blue href="#" 管理
     a.thing_list_change_background_button.btn.btn--blue [href="#"
       data-toggle="modal" data-target="#change_list_background_modal"]

@@ -124,6 +124,35 @@ html.thing_lists_show {
         }
       }
 
+      .thing_list_sorting_buttons {
+        display: none;
+
+        position: absolute;
+        z-index: 1;
+        top: 100%;
+        left: 0;
+        right: 0;
+
+        background: white;
+        font-size: 16px;
+
+        > a {
+          display: inline-block;
+          width: 50%;
+          padding: 0;
+          line-height: 60px;
+          text-align: center;
+
+          color: $gray-light;
+          background: $smoke-white;
+
+          i {
+            margin-left: .7em;
+            margin-right: 0;
+          }
+        }
+      }
+
       .thing_list_change_background_button {
         display: none;
 
