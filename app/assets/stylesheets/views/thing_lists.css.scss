@@ -340,6 +340,10 @@ html.thing_lists_show {
           .thing_list_item-destroy {
             display: none;
           }
+
+          .thing_list_item-price {
+            display: none;
+          }
         }
 
         > footer {
@@ -411,6 +415,25 @@ html.thing_lists_show {
             .thing_list_item-destroy {
               display: none;
             }
+          }
+        }
+      }
+
+      &.thing_list_items--with_price {
+        > .thing_list_item {
+          .thing_list_item-price {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+
+            display: block;
+            padding: 5px 14px;
+
+            font-family: 'Lato Thin';
+            text-align: center;
+
+            background: $vulcan;
+            color: white;
           }
         }
       }
