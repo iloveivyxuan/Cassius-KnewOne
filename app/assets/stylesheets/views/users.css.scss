@@ -78,12 +78,12 @@ html[class^="users_"] {
       bottom: -1000%;
       left: -1000%;
       margin: auto;
-      max-width: 150%;
+      max-width: 200%;
       position: absolute;
       right: -1000%;
       top: -1000%;
 
-      @media (min-width: $screen-lg-min) {
+      @media (min-width: 1440px) {
         width: 100%;
       }
     }
