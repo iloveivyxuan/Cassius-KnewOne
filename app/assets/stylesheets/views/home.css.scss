@@ -167,6 +167,8 @@ html.home {
       }
 
       article.thing {
+        background: $smoke-white;
+
         .content,
         .info {
           padding-left: 16px;
@@ -201,7 +203,7 @@ html.home {
       .feed-review {
         margin-top: 20px;
         padding: 16px;
-        background: white;
+        background: $smoke-white;
 
         > header {
           p {
@@ -409,6 +411,8 @@ html.home {
     }
 
     > article.thing {
+      background: $smoke-white;
+
       .title:before {
         font-family: 'KnewOne-Icon';
         @include fa-fire;
@@ -419,6 +423,9 @@ html.home {
     }
 
     > article.review {
+      background: $smoke-white;
+      > header { background: white; }
+
       @include from-breakpoint(md) {
         padding: 35px;
       }
@@ -426,7 +433,7 @@ html.home {
 
     .thing_list {
       padding: 12px 6px;
-      background: $ghost-white;
+      background: $smoke-white;
 
       h4,
       > footer {
@@ -452,7 +459,7 @@ html.home {
         display: block;
         height: 5px;
 
-        background: $ghost-white;
+        background: $smoke-white;
       }
 
       &:before {
@@ -469,6 +476,8 @@ html.home {
     }
 
     .thumbnail--article {
+      background: $smoke-white;
+
       .thumbnail-body:before {
         content: none;
       }
