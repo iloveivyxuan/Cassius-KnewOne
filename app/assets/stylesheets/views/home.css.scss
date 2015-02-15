@@ -408,6 +408,16 @@ html.home {
       h4 { display: none; }
     }
 
+    > article.thing {
+      .title:before {
+        font-family: 'KnewOne-Icon';
+        @include fa-fire;
+
+        margin-right: .5em;
+        color: $red;
+      }
+    }
+
     > article.review {
       @include from-breakpoint(md) {
         padding: 35px;
