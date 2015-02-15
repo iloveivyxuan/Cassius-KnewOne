@@ -128,10 +128,13 @@ html[class^="users_"] {
   }
 
   .vcard-avatar {
-    background-color: #fff;
-    border-radius: 50%;
-    box-shadow: 0 0 0 2px #fff;
+    display: block;
     margin-bottom: 15px;
+
+    > img {
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px #fff;
+    }
   }
 
   .vcard-name {

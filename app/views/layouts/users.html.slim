@@ -8,7 +8,8 @@
       = image_tag "http://image.knewone.com/photos/1e71a169e358d2c0b66d0e5f596bc069.jpeg!#{version}", alt: "canopy"
       .vcard-canopy-mask
     .vcard-main
-      = user_avatar(@user, :small, class: "vcard-avatar", size: "60", itemprop: "image")
+      = link_to @user, class: "vcard-avatar" do
+        = user_avatar(@user, :small, size: "60", itemprop: "image")
       - if current_user.try(:role?, :editor)
         = link_to @user.name, [:haven, @user], title: "#{@user.name}的内幕", class: "vcard-name", itemprop: "name"
       - else
