@@ -6,42 +6,6 @@ html.home {
   .container {
     padding: 0;
 
-    > nav {
-      @include clearfix;
-      margin: 15px 0;
-
-      .nav {
-        text-align: center;
-      }
-
-      > a {
-        float: right;
-        padding: 0 10px;
-        text-decoration: none;
-        margin-top: -34px;
-        color: #999999;
-        line-height: 34px;
-        font-size: 14px;
-        float: right;
-      }
-
-      @include from-breakpoint(md) {
-        margin-top: 0;
-        margin-left: 10em;
-        width: calc(66.6666666667% - 10em - 30px);
-        .nav {
-          float: left;
-          text-align: left;
-        }
-
-        > a {
-          padding: 5px 10px;
-          float: right;
-          margin-top: -5px;
-        }
-      }
-    }
-
     > main {
       width: 100%;
 
