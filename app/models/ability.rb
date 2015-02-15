@@ -146,7 +146,7 @@ class Ability
     can :subscribe_toggle, Category
 
     can :create, ThingList
-    can [:update, :destroy], ThingList do |thing_list|
+    can [:update, :destroy, :sort], ThingList do |thing_list|
       thing_list.author == user
     end
     can :fancy, ThingList do |thing_list|

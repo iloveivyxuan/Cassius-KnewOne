@@ -133,6 +133,7 @@ Making::Application.routes.draw do
     member do
       post 'fancy'
       post 'unfancy'
+      post 'sort'
     end
   end
 

@@ -24,6 +24,12 @@ class ThingList
   scope :qualified, -> { gte(fanciers_count: 1, size: 4) }
   scope :created_between, ->(from, to) { where :created_at.gt => from, :created_at.lt => to }
 
+  def sort_items(sort_options = {created_at: :desc})
+    items.unscoped.order_by(sort_options).each_with_index do |item, i|
+      item.order = self.size - i
+    end
+  end
+
   include Fanciable
   fancied_as :fancied_thing_lists
 

@@ -80,12 +80,14 @@ Making.InitThingList = (editable) ->
 
     if $target.text() == '管理'
       $target.text('完成')
+      $('.thing_list_sorting_buttons').show()
       $('.thing_list_description, .thing_list_item-description').show()
       $('.thing_list_items')
         .attr('class', 'thing_list_items thing_list_items--editing')
         .sortable('enable')
     else
       $target.text('管理')
+      $('.thing_list_sorting_buttons').hide()
       $('.editableform').submit()
       $('.thing_list_description, .thing_list_item-description').each(->
         $(this).hide() if $(this).find('.editable-empty').length

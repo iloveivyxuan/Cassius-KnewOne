@@ -43,6 +43,14 @@ class ThingListsController < ApplicationController
     end
   end
 
+  def sort
+    order = params[:desc].to_s == 'true' ? :desc : :asc
+    @thing_list.sort_items(created_at: order)
+    @thing_list.save
+
+    respond_with @thing_list
+  end
+
   private
 
   def thing_list_params
