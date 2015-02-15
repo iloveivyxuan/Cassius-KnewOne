@@ -15,6 +15,6 @@
       em.activity-voted
         i.fa.fa-thumbs-o-up
         span 赞了短评
-      = link_to feeling, class: "activity-timestamp", target: "_blank" do
+      = link_to thing_feeling_path(thing, feeling), class: "activity-timestamp", target: "_blank" do
         = time_ago_tag activity.created_at
     .activity-body= render 'users/feeling', feeling: feeling
