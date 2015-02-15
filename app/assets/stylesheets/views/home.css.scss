@@ -226,8 +226,9 @@ html.home {
           color: $gray-light;
 
           img {
-            float: right;
-            margin: 0 0 1em 1em;
+            float: left;
+            padding: 0 1em 1em 0;
+            max-width: 25%;
           }
         }
 

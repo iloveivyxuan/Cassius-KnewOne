@@ -13,9 +13,13 @@ article.feed-review
         = review_presenter.score
 
   section.feed-review-summary
-    - if review.cover
-      = image_tag review.cover(:small)
     p = review_presenter.summary(120)
+
+    - photos = review.content_photos
+    - if photos.present?
+      ul
+        - photos.take(4).each do |photo|
+          li = image_tag photo
 
   footer.feed-review-info
     .interactions
