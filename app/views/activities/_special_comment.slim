@@ -1,5 +1,19 @@
 - special = activity.reference
 - if entry = special.entry
-  | 对专题
-  = link_to entry_title(entry), entry
-  | 发表了留言
+  - if @filter == 'text'
+    | 对专题
+    = link_to entry_title(entry), entry
+    | 发表了留言
+    = time_ago_tag activity.created_at
+  - else
+    header.activity-header
+      em
+        i.fa.fa-comment
+        span 留言
+      = link_to entry, class: "activity-timestamp", target: "_blank" do
+        = time_ago_tag activity.created_at
+    .activity-body
+      p.text
+        | 对专题
+        = link_to entry_title(entry), entry
+        | 发表了留言

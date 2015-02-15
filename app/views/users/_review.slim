@@ -1,0 +1,29 @@
+- cache_unless user_signed_in?, review
+  - is_my_review = review.author == @user
+  - if review.thing
+    - present review do |review_presenter|
+      article.review
+        header.review-header
+          h5.review-title= link_to review_presenter.title, review_presenter.path
+          = review_presenter.score
+          - unless is_my_review
+            .review-author
+              = review_presenter.author_avatar(:small, class: "img-circle")
+              = review_presenter.author_name
+        .review-body
+          p= review_presenter.summary(120)
+          - if !browser.mobile? && review_presenter.content_photos
+            ul.review-photos
+              - review_presenter.content_photos(:small).take(5).each do |photo|
+                li= image_tag photo, alt: photo
+        footer.review-footer
+          ul.metas
+            li.review-time= time_ago_tag review.created_at
+            - if review.comments_count > 0
+              li 
+                i.fa.fa-comments-o
+                = review.comments_count
+            - if review.lovers.count > 0
+              li
+                i.fa.fa-thumbs-o-up
+                = review.lovers.count

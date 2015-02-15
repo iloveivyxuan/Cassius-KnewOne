@@ -1,29 +1,13 @@
 - if topic and topic.group
-  article.feed_article.topic id="topic_#{topic.id}"
-    - present topic do |tp|
-      header
-        h5 = link_to tp.title, tp.path
-      figure
-        - present topic.group do |gp|
-          = link_to gp.group do
-            = gp.avatar
-          figcaption title=gp.name
-            = gp.name
-      section
-        p = tp.summary(120)
-        .cover_normal = tp.cover(:normal)
-        ul
-          - tp.content_photos(:small).take(8).each do |photo|
-            li= image_tag photo, alt: photo
-
-      footer
-        .wrap
+  - present topic do |topic_presenter|
+    article.topic
+      header.topic-header
+        h5.topic-title= link_to topic_presenter.title, topic_presenter.path 
+      .topic-body
+        p= topic_presenter.summary(120)
+      footer.topic-footer
+        - if topic.comments_count > 0
           ul.metas
             li
-              = link_to tp.path do
-                = time_ago_tag(topic.created_at, 'meta')
-            li
-              = link_to tp.path do
-                i.fa.fa-comments-o
-                span.comments_count = topic.comments_count
-          .feed_action = render partial: 'shared/voting', locals: {object: topic}
+              i.fa.fa-comment-o
+              = topic.comments_count

@@ -3,7 +3,7 @@
 = render 'writings_subnav'
 .page-content
   - if @feelings.present?
-    section.block_list = render @feelings
+    ul.block_list= render 'block_list_feelings', feelings: @feelings
   - else
     = render 'shared/nothing'
 

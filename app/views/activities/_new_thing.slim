@@ -1,2 +1,16 @@
-| 分享了产品
-= link_to activity.reference.title, thing_path(activity.reference)
+- thing = activity.reference
+- if @filter == 'text'
+  | 分享了产品
+  = link_to activity.reference.title, thing_path(activity.reference)
+  = time_ago_tag activity.created_at
+- else
+  - impression = @user.impression_of(thing)
+  header.activity-header
+    em
+      i.fa.fa-plus
+      span 分享
+    = link_to thing, class: "activity-timestamp", target: "_blank" do
+      = time_ago_tag activity.created_at
+    - if impression.present? && impression.description.present?
+      p= impression.description
+  .activity-body= render 'home/hot_thing', thing: thing

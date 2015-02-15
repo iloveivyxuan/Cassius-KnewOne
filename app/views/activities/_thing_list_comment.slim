@@ -1,4 +1,17 @@
 - list = activity.reference
 - if list
-  | 评论了列表
-  = link_to list.name, list
+  - if @filter == 'text'
+    | 评论了列表
+    = link_to list.name, list
+    = time_ago_tag activity.created_at
+  - else
+    header.activity-header
+      em
+        i.fa.fa-comment
+        span 评论
+      = link_to list, class: "activity-timestamp", target: "_blank" do
+        = time_ago_tag activity.created_at
+    .activity-body
+      p.text
+        | 评论了列表
+        = link_to list.name, list

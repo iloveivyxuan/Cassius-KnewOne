@@ -9,7 +9,7 @@ nav.page-subnav
 
 .page-content
   - if @topics.present?
-    section.block_list = render partial: 'users/topic', collection: @topics
+    ul.block_list= render 'block_list_topics', topics: @topics
   - else
     = render 'shared/nothing'
 

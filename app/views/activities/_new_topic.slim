@@ -1,7 +1,17 @@
 - topic = activity.reference
 - group = topic.group
 - if group
-  | 在小组
-  = link_to group.name, group
-  | 发布了话题:
-  = link_to topic.title, group_topic_path(group, topic)
+  - if @filter == 'text'
+    | 在小组
+    = link_to group.name, group
+    | 发布了话题:
+    = link_to topic.title, group_topic_path(group, topic)
+    = time_ago_tag activity.created_at
+  - else
+    header.activity-header
+      em
+        i.fa.fa-pencil
+        span 发布话题
+      = link_to topic, class: "activity-timestamp", target: "_blank" do
+        = time_ago_tag activity.created_at
+    .activity-body= render 'users/topic', topic: topic

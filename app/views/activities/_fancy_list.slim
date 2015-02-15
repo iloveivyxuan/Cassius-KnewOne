@@ -1,10 +1,20 @@
 - list = activity.reference
-span.activity-fancied
-  i.fa.fa-heart
-  | 喜欢
-| 了
-= link_to list
-  span.activity-list
-    i.fa.fa-list-ko
-    | 列表
-  = list.name
+- if @filter == 'text'
+  span.activity-fancied
+    i.fa.fa-heart
+    | 喜欢
+  | 了
+  = link_to list
+    span.activity-list
+      i.fa.fa-list-ko
+      | 列表
+    = list.name
+  = time_ago_tag activity.created_at
+- else
+  header.activity-header
+    em.activity-fancied
+      i.fa.fa-heart
+      span 喜欢了列表
+    = link_to list, class: "activity-timestamp", target: "_blank" do
+      = time_ago_tag activity.created_at
+  .activity-body= render 'thing_lists/thing_list', thing_list: list

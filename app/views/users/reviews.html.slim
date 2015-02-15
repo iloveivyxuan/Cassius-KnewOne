@@ -3,7 +3,7 @@
 = render 'writings_subnav'
 .page-content
   - if @reviews.present?
-    section.block_list = render @reviews
+    ul.block_list= render 'block_list_reviews', reviews: @reviews
   - else
     = render 'shared/nothing'
 

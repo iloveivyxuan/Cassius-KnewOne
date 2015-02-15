@@ -1,0 +1,7 @@
+nav.follows.visible-xs-block
+  = link_to followings_user_path(@user), class: "#{'active' if action_name == 'followings'}"
+    | 关注
+    em= @user.followings_count
+  = link_to followers_user_path(@user), class: "#{'active' if action_name == 'followers'}"
+    | 关注者
+    em= @user.followers_count

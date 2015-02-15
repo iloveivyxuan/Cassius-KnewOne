@@ -1,6 +1,7 @@
 - page_title '关注'
 
 .page-content
+  = render 'follows'
   - if @followings.present?
     ul.block_list = render @followings
   - else

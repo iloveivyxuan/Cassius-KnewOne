@@ -1,10 +1,20 @@
 - review = activity.reference
 - thing = review.thing
 - if thing
-  span.activity-voted
-    i.fa.fa-thumbs-o-up
-    | 赞
-  | 了关于产品
-  = link_to thing.title, thing
-  | 评测
-  = link_to review.title, thing_review_path(thing, review)
+  - if @filter == 'text'
+    span.activity-voted
+      i.fa.fa-thumbs-o-up
+      | 赞
+    | 了关于产品
+    = link_to thing.title, thing
+    | 评测
+    = link_to review.title, thing_review_path(thing, review)
+    = time_ago_tag activity.created_at
+  - else
+    header.activity-header
+      em.activity-voted
+        i.fa.fa-thumbs-o-up
+        span 赞了评测
+      = link_to thing_review_path(thing, review), class: "activity-timestamp", target: "_blank" do
+        = time_ago_tag activity.created_at
+    .activity-body= render 'users/review', review: review

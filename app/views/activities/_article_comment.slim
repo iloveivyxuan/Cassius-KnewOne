@@ -1,5 +1,19 @@
 - article = activity.reference
 - if entry = article.entry
-  | 对文章
-  = link_to entry_title(entry), entry
-  | 发表了留言
+  - if @filter == 'text'
+    | 对文章
+    = link_to entry_title(entry), entry
+    | 发表了留言
+    = time_ago_tag activity.created_at
+  - else
+    header.activity-header
+      em
+        i.fa.fa-comment
+        span 留言
+      = link_to entry, class: "activity-timestamp", target: "_blank" do
+        = time_ago_tag activity.created_at
+    .activity-body
+      p.text
+        | 对文章
+        = link_to entry_title(entry), entry
+        | 发表了留言

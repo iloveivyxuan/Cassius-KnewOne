@@ -1,0 +1,41 @@
+- cache_unless user_signed_in?, feeling
+  - is_my_feeling = feeling.author == @user
+  - present feeling do |feeling_presenter|
+    article.feeling
+      - unless is_my_feeling
+        .feeling-author
+          = feeling_presenter.author_avatar(:small, class: "img-circle")
+          = feeling_presenter.author_name
+      = link_to feeling_presenter.path, class: "feeling-content" do
+        = feeling_presenter.content
+      = feeling_presenter.score
+      - if feeling.photos.present?
+        ul.feeling-photos
+          - feeling.photos.take(5).each do |photo|
+            li
+              = link_to photo.url, data: { lightbox: "feeling_#{feeling.id}" } do
+                = image_tag photo.url(:small), alt: photo.name
+      ul.feeling-metas.metas
+        - if feeling.lovers_count > 0
+          li
+            i.fa.fa-thumbs-o-up
+            = feeling.lovers_count
+        - if feeling.comments_count > 0
+          li
+            i.fa.fa-comment-o
+            = feeling.comments_count
+      - thing = feeling.thing
+      = link_to thing, class: "feeling-thing", target: "_blank" do
+        = image_tag thing.cover.url(:small)
+        .feeling-thing-info
+          h6= thing.title
+          ul.metas
+            li
+              i.fa.fa-heart
+              = thing.fanciers_count
+            li
+              i.fa.fa-check-circle-o
+              = thing.owners_count
+            li
+              i.fa.fa-pencil
+              = thing.reviews_count

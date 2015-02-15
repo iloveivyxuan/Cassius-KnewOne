@@ -1,6 +1,19 @@
 - thing = activity.reference
-span.activity-desired
-  i.fa.fa-desire
-  | 想要
-| 产品
-= link_to thing.title, thing
+- if @filter == 'text'
+  span.activity-desired
+    i.fa.fa-desire
+    | 想要
+  | 了产品
+  = link_to thing.title, thing
+  = time_ago_tag activity.created_at
+- else
+  - impression = @user.impression_of(thing)
+  header.activity-header
+    em.activity-desired
+      i.fa.fa-desire
+      span 想要
+    = link_to thing, class: "activity-timestamp", target: "_blank" do
+      = time_ago_tag activity.created_at
+    - if impression.present? && impression.description.present?
+      p= impression.description
+  .activity-body= render 'home/hot_thing', thing: thing
