@@ -1092,6 +1092,139 @@ html[class^="users_"] {
   }
 }
 
+html.users_activities {
+  .page-content {
+    @media (min-width: $screen-sm-min) {
+      background-color: #e3e4e6;
+      padding: 30px 0;
+    }
+  }
+
+  .page-footer {
+    background-color: transparent;
+  }
+
+  .thing {
+    section.content {
+      padding-bottom: 0;
+
+      h4 {
+        max-width: 60%;
+        padding: 0;
+        text-align: left;
+
+        > a {
+          color: $text-color;
+        }
+      }
+    }
+
+    > footer {
+      background-color: $smoke-white;
+
+      .stats {
+        a {
+          color: $iron;
+        }
+      }
+
+      .interactions {
+        margin-top: -22px;
+      }
+    }
+
+    .fancy_button i {
+      color: $red;
+      vertical-align: middle;
+    }
+
+    .fanciers_count {
+      color: $iron;
+    }
+  }
+
+  .thing_list {
+    background-color: $smoke-white;
+
+    &::before,
+    &::after {
+      display: none;
+    }
+
+    > header {
+      background-color: transparent;
+
+      h4 {
+        padding: {
+          bottom: 0;
+          left: 20px;
+          right: 20px;
+        }
+        text-align: left;
+
+        .fa {
+          display: none;
+        }
+      }
+    }
+    
+    > footer  {
+      background-color: transparent;
+      padding: 10px 20px 20px;
+      position: relative;
+    }
+
+    .thing_list-cover {
+      background-color: $smoke-white;
+      .thing_list-image_wrapper {
+        > img {
+          box-shadow: none;
+        }
+      }
+    }
+
+    .thing_list-name {
+      max-width: 60% !important;
+    }
+
+    .thing_list-description {
+      border-top: 0;
+      padding: 0;
+      text-align: left;
+
+      &::before {
+        display: none;
+      }
+    }
+
+    .thing_list-info {
+      border: 0;
+      padding: 0;
+
+      .thing_list-creator {
+        display: none;
+      }
+
+      .thing_list-counts {
+        position: absolute;
+        right: 20px;
+        top: -20px;
+      }
+    }
+  }
+
+  .feeling-time {
+    display: none;
+  }
+
+  .review-time {
+    display: none;
+  }
+
+  .activity--text {
+    background-color: $smoke-white;
+  }
+}
 
 html.users_followers,
 html.users_followings {
