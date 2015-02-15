@@ -1,4 +1,4 @@
-- %w(个优质产品 第二 第三 第四).each do |text|
+- %w(第一 个优质产品 第二 第三 第四).each do |text|
   - prize = @things.where(reason: /#{text}/).first
   - if prize
     p
