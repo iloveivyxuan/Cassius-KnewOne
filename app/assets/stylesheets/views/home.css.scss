@@ -370,6 +370,12 @@ html.home {
       h4 { display: none; }
     }
 
+    > article.review {
+      @include from-breakpoint(md) {
+        padding: 35px;
+      }
+    }
+
     .thing_list {
       padding: $padding-base-vertical;
       background: $ghost-white;
