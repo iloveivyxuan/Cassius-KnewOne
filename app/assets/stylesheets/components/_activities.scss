@@ -23,7 +23,8 @@
 .activity--text {
   @include clearfix;
   border-bottom: $border-dashed;
-  padding: 10px;
+  margin-bottom: 0;
+  padding: 10px 15px;
 
   &:last-child {
     border-bottom: none;

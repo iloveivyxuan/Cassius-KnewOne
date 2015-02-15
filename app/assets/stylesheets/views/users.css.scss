@@ -616,6 +616,10 @@ html[class^="users_"] {
   // Components
   // -----------------------------------------------------------------------------
 
+  .score {
+    height: 33px;
+  }
+
   .thing {
     a {
       @include plain-link($gray-light);
@@ -1220,9 +1224,32 @@ html.users_activities {
   .review-time {
     display: none;
   }
+}
+
+html.users_activities_text {
+  .page-content {
+    @media (min-width: $screen-sm-min) {
+      padding: {
+        bottom: 0;
+        top: 0;
+      }
+    }
+  }
 
   .activity--text {
     background-color: $smoke-white;
+
+    @media (min-width: $screen-sm-min) {
+      font-size: 14px;
+      margin: {
+        left: 15px;
+        right: 15px;
+      }
+      padding: {
+        left: 20px;
+        right: 20px;
+      }
+    }
   }
 }
 
