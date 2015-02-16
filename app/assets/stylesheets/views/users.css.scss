@@ -207,6 +207,15 @@ html[class^="users_"] {
     @media (min-width: $screen-sm-min) {
       float: left;
       width: 40%;
+
+      &:only-child {
+        width: 100%;
+
+        .vcard-followings,
+        .vcard-followers {
+          max-width: none;
+        }
+      }
     }
   }
 
