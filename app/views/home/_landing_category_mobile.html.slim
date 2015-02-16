@@ -6,6 +6,6 @@
       - if thing.present?
         = render partial: 'hot_thing', locals: { thing: thing }
         - thing.reviews.desc(:is_top, :lovers_count).first.tap do |review|
-          = render partial: 'hot_review', locals: { hot_review: review }
+          = render partial: 'hot_review', locals: { review: review }
   .category_footer
     = link_to '发现更多内容', categories_things_path(category)
