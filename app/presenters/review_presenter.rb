@@ -2,7 +2,7 @@ class ReviewPresenter < PostPresenter
   presents :review
 
   def content
-    c = load_post_resources(review.content).gsub /"(http:\/\/#{Settings.image_host}\/.+?)(!.+?)?"/, '"\1!review"'
+    c = load_post_resources(review.content.gsub(/"(http:\/\/#{Settings.image_host}\/.+?)(!.+?)?"/, '"\1!review"'))
     review.content_users.each do |u|
       c.gsub! "@#{u.name}", link_to("@#{u.name}", u, data: {'profile-popover' => u.id.to_s})
     end
