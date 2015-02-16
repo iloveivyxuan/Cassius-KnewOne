@@ -5,7 +5,7 @@
 = simple_form_for [@thing, @review], html: {class: "edit_post"} do |f|
   .help-block 欢迎您在这里写下对于产品本身的使用体验，给其他对产品感兴趣的朋友们提供客观可信的参考，谢谢：）
   = f.input :title, label: false, placeholder: "标题"
-  = f.input :content, as: :hidden, input_html: { value: load_post_resources(@review) }
+  = f.input :content, as: :hidden, input_html: { value: load_post_resources(@review.content) }
   = f.input :score, as: :range, label: false, input_html: {class:'range_rating', max: 5, min: 0}
   - if current_user.role? :editor
     = f.input :is_top, as: :boolean

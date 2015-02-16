@@ -1,7 +1,7 @@
 module PostsHelper
 
-  def load_post_resources(post)
-    html_doc = Nokogiri::HTML.fragment(post.content)
+  def load_post_resources(content)
+    html_doc = Nokogiri::HTML.fragment(content)
     html_doc.css('.knewone-embed:empty').each do |element|
       type = element["data-knewone-embed-type"]
       key = element["data-knewone-embed-key"]

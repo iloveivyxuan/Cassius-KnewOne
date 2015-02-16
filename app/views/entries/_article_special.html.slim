@@ -34,7 +34,7 @@ article.article data-article-id=post.id
   - if entry.try(:summary).present?
     p.summary= entry.summary
 
-  section.content= sanitize load_post_resources(post)
+  section.content= sanitize load_post_resources(post.content)
 
   - if entry.category == '评测'
     .knewone-embed.knewone-embed--thing

@@ -30,7 +30,7 @@ class PostPresenter < ApplicationPresenter
   end
 
   def content
-    sanitize load_post_resources(@object).gsub(/"(http:\/\/#{Settings.image_host}\/.+?)(!.+?)?"/, '"\1!review"')
+    sanitize load_post_resources(@object.content).gsub(/"(http:\/\/#{Settings.image_host}\/.+?)(!.+?)?"/, '"\1!review"')
   end
 
   def content_with_original_photos

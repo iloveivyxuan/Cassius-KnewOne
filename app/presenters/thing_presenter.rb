@@ -33,7 +33,7 @@ class ThingPresenter < PostPresenter
     end
 
     content_tag :div, class: "body post_content #{is_fold ? 'is_folded' : ''}" do
-      sanitize(load_post_resources(thing)).concat(footer)
+      sanitize(load_post_resources(thing.content)).concat(footer)
     end
   end
 
