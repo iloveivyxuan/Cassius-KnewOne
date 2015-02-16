@@ -458,10 +458,9 @@ html.thing_lists_show {
             display: block;
             padding: 5px 14px;
 
-            font-family: 'Lato Thin';
             text-align: center;
 
-            background: $vulcan;
+            background: rgba($vulcan, .9);
             color: white;
           }
         }
