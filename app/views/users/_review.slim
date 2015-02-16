@@ -12,7 +12,7 @@
               = review_presenter.author_name
         .review-body
           p= review_presenter.summary(120)
-          - if !browser.mobile? && review_presenter.content_photos
+          - if !browser.mobile? && review_presenter.content_photos.length > 0
             ul.review-photos
               - review_presenter.content_photos(:small).take(5).each do |photo|
                 li= image_tag photo, alt: photo
