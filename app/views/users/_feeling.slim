@@ -30,12 +30,17 @@
         .feeling-thing-info
           h6= thing.title
           ul.metas
-            li
-              i.fa.fa-heart
-              = thing.fanciers_count
-            li
-              i.fa.fa-check-circle-o
-              = thing.owners_count
-            li
-              i.fa.fa-pencil
-              = thing.reviews_count
+            - if thing.fanciers_count > 0
+              li
+                i.fa.fa-heart
+                = thing.fanciers_count
+
+            - if thing.owners_count > 0
+              li
+                i.fa.fa-check-circle-o
+                = thing.owners_count
+
+            - if thing.reviews_count > 0
+              li
+                i.fa.fa-pencil
+                = thing.reviews_count
