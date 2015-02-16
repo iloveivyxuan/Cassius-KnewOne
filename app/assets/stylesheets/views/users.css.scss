@@ -636,6 +636,20 @@ html[class^="users_"] {
       @media (min-width: $screen-md-min) {
         width: $content-width-md;
       }
+
+      > li {
+        > a {
+          background-color: transparent;
+          color: $gray;
+        }
+
+        &.active {
+          > a {
+            background-color: transparent;
+            color: $blue;
+          }
+        }
+      }
     }
   }
 
