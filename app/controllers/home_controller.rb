@@ -5,23 +5,21 @@ class HomeController < ApplicationController
 
   def index
     return redirect_to landing_url unless user_signed_in?
+    return redirect_to welcome_url unless current_user.followings_count > 0
 
     activities = current_user.related_activities.visible.by_types(:new_thing, :fancy_thing, :desire_thing, :own_thing,
                                                                   :new_review, :love_review,
                                                                   :new_feeling,
                                                                   :add_to_list, :fancy_list)
 
+    @from_id = params[:from_id].to_s
+    activities = activities.lte(id: @from_id) if @from_id.present?
+    activities = activities.page(params[:page]).per(30).to_a
+
     return redirect_to welcome_url if activities.blank?
 
-    @from_id = params[:from_id].to_s
-    if @from_id.present?
-      activities = activities.lte(id: params[:from_id])
-    else
-      @from_id = activities.first.try(:id).to_s || ''
-    end
-
-    activities = activities.page(params[:page]).per(30)
     @feeds = HomeFeed.create_from_activities activities
+    @from_id ||= Activity.only(:id).first.id
 
     if request.xhr?
       render 'index_xhr', layout: false
