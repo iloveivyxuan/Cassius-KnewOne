@@ -488,10 +488,6 @@ html.home {
     float: none;
     width: auto;
     margin-top: 1em;
-
-    @include from-breakpoint(sm) {
-      margin-left: 10em;
-    }
   }
 
   .pagination {
