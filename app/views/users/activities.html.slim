@@ -8,7 +8,7 @@
         = link_to_with_icon "转换为图文动态", "fa fa-exchange", activities_user_path, class: "page-content-switch"
       - else
         = link_to_with_icon "转换为纯文字动态", "fa fa-exchange", { rich: "false" }, class: "page-content-switch"
-    section.block_list.js-waterfall= render @activities
+    section.block_list.js-waterfall= render @activities, rich: @rich
   - else
     = render 'shared/nothing'
 

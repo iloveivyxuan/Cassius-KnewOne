@@ -1,5 +1,5 @@
 module ActivitiesHelper
-  def render_activity(activity)
+  def render_activity(activity, rich = false)
     return unless activity.reference
 
     tmpl = if activity.type == :comment
@@ -8,7 +8,7 @@ module ActivitiesHelper
              activity.type
            end
 
-    render "activities/#{tmpl}", activity: activity
+    render "activities/#{tmpl}", activity: activity, rich: rich
   end
 
   def action_of_activity(activity)

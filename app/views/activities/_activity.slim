@@ -1,3 +1,4 @@
-- if (content = render_activity(activity))
-  .activity class="#{'activity--text' unless @rich}"
+- rich ||= false
+- if (content = render_activity(activity, rich))
+  .activity class="#{'activity--text' unless rich}"
     = content

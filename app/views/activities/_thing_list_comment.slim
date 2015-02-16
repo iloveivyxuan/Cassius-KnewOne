@@ -1,6 +1,6 @@
 - list = activity.reference
 - if list
-  - unless @rich
+  - unless rich
     | 评论了列表
     = link_to list.name, list
     = time_ago_tag activity.created_at
