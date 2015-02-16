@@ -1,4 +1,7 @@
 - layout ||= :grid
+- layout = :grid if layout != :grid && thing_list.size < 4
+- layout = :grid if [:quintet, :sextet].include?(layout) && thing_list.size < 5
+- layout = :quintet if layout == :sextet && thing_list.size < 6
 
 - cache ['thing_lists', 'cover', thing_list, layout, browser.mobile?], expires_in: 10.minutes
   .thing_list-cover class="thing_list-cover--#{layout}"
