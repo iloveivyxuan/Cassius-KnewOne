@@ -1,15 +1,16 @@
 - page_title '小组'
 
-nav.subpage_tabs
+nav.page-subnav
   ul
     li.active = link_to [:groups, @user]
       | TA参与的小组
     li = link_to [:topics, @user]
       | TA参与的话题
 
-- if @groups.present?
-  ul.contents = render partial: 'groups/group', collection: @groups
-- else
-  section.contents = render 'shared/nothing'
+.page-content
+  - if @groups.present?
+    ul.block_list = render partial: 'groups/group', collection: @groups
+  - else
+    = render 'shared/nothing'
 
 = paginate @groups

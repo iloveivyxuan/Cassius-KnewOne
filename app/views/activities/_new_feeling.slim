@@ -1,7 +1,17 @@
 - feeling = activity.reference
 - thing = feeling.thing
 - if thing
-  | 为产品
-  = link_to thing.title, thing
-  | 编写了短评:
-  = link_to feeling.content.truncate(16), thing_feeling_path(thing, feeling)
+  - unless @rich
+    | 为产品
+    = link_to thing.title, thing
+    | 编写了短评:
+    = link_to feeling.content.truncate(16), thing_feeling_path(thing, feeling)
+    = time_ago_tag activity.created_at
+  - else
+    header.activity-header
+      em
+        i.fa.fa-comment
+        span 写了短评
+      = link_to thing_feeling_path(thing, feeling), class: "activity-timestamp", target: "_blank" do
+        = time_ago_tag activity.created_at
+    .activity-body= render 'users/feeling', feeling: feeling

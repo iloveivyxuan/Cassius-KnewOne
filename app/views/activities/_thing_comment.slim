@@ -1,4 +1,18 @@
 - thing = activity.reference
-| 对产品
-= link_to thing.title, thing
-| 发表了留言
+- unless @rich
+  | 对产品
+  = link_to thing.title, thing
+  | 发表了留言
+  = time_ago_tag activity.created_at
+- else
+  header.activity-header
+    em
+      i.fa.fa-comment
+      span 留言
+    = link_to thing, class: "activity-timestamp", target: "_blank" do
+      = time_ago_tag activity.created_at
+  .activity-body
+    p.text
+      | 对产品
+      = link_to thing.title, thing
+      | 发表了留言

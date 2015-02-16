@@ -1,7 +1,22 @@
 - topic = activity.reference
 - group = topic.group
 - if group
-  | 回复了小组
-  = link_to group.name, group
-  | 中的话题
-  = link_to topic.title, group_topic_path(topic.group, topic)
+  - unless @rich
+    | 回复了小组
+    = link_to group.name, group
+    | 中的话题
+    = link_to topic.title, group_topic_path(topic.group, topic)
+    = time_ago_tag activity.created_at
+  - else
+    header.activity-header
+      em
+        i.fa.fa-comment
+        span 回复
+      = link_to group_topic_path(topic.group, topic), class: "activity-timestamp", target: "_blank" do
+        = time_ago_tag activity.created_at
+    .activity-body
+      p.text
+        | 回复了小组
+        = link_to group.name, group
+        | 中的话题
+        = link_to topic.title, group_topic_path(topic.group, topic)

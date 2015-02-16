@@ -1,0 +1,8 @@
+nav.page-subnav.visible-xs-block
+  ul
+    = li action_name == 'reviews'
+      = link_to [:reviews, @user]
+        | 评测
+    = li action_name == 'feelings'
+      = link_to [:feelings, @user]
+        | 短评

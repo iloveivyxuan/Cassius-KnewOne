@@ -1,4 +1,3 @@
 - if (content = render_activity(activity))
-  li.activity
+  .activity class="#{'activity--text' unless @rich}"
     = content
-    = time_ago_tag activity.created_at

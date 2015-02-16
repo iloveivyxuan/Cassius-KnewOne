@@ -1,8 +1,10 @@
 - page_title '评测'
 
-- if @reviews.present?
-  section.contents = render @reviews
-- else
-  section.contents = render 'shared/nothing'
+= render 'writings_subnav'
+.page-content
+  - if @reviews.present?
+    ul.block_list= render 'block_list_reviews', reviews: @reviews
+  - else
+    = render 'shared/nothing'
 
 = paginate @reviews

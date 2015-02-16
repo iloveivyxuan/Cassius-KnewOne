@@ -1,8 +1,45 @@
 @import '../base';
 
 html[class^="users_"] {
+  $content-width-sm: 720px;
+  $content-width-md: 810px;
+
+  %author {
+    height: 36px;
+    line-height: 36px;
+    margin-bottom: 15px;
+
+    img {
+      @include square(36px);
+      margin-right: 10px;
+    }
+
+    a {
+      color: $text-color;
+    }
+  }
+
+  %photos {
+    @include clearfix;
+    height: 50px;
+    overflow: hidden;
+
+    > li {
+      @include square(50px);
+      float: left;
+      margin-right: 10px;
+    }
+  }
+
+  // Layout
+  // -----------------------------------------------------------------------------
+
   body {
-    padding-top: 45px;
+    background-color: #e3e4e6;
+    padding: {
+      bottom: 0;
+      top: 45px;
+    }
   }
 
   #header {
@@ -11,1092 +48,1373 @@ html[class^="users_"] {
 
   #wrapper {
     @include wrapper(empty);
+  }
 
-    $wrapper-max-width: 1200px;
-    $info-width: 280px;
-    $nav-height: 60px;
+  //
+  // Vcard
+  //
 
-    max-width: $wrapper-max-width;
+  .vcard {
+    background-color: #fff;
+    color: #aaa;
+    margin-bottom: 20px;
+    padding-bottom: 30px;
+    position: relative;
 
-    @include from-breakpoint(md) {
-      position: relative;
-      margin: 30px auto 0;
-      padding-top: $nav-height;
-      padding-right: $info-width + 30px;
+    @media (min-width: $screen-sm-min) {
+      height: 450px;
+      margin-bottom: 60px;
+      padding-bottom: 0;
     }
-
-    > header {
-      background: white;
-
-      .info {
-        position: relative;
-
-        @include from-breakpoint(md) {
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: $info-width;
-
-          background: white;
-        }
-
-        .info-avatar {
-          padding: 20px;
-
-          img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-          }
-
-          @include from-breakpoint(sm) {
-            img {
-              width: 90px;
-              height: 90px;
-            }
-
-            @include to-breakpoint(sm) {
-              padding-left: 70px;
-            }
-          }
-
-          @include from-breakpoint(md) {
-            border-bottom: 1px dashed $gray-lighter;
-          }
-        }
-
-        .info-name-and-level {
-          position: absolute;
-          top: 27px;
-          left: 90px;
-          width: 240px;
-
-          @include from-breakpoint(sm) {
-            top: 40px;
-            left: 230px;
-            width: 360px;
-          }
-
-          @include from-breakpoint(md) {
-            left: 120px;
-            width: 140px;
-          }
-
-          font-size: 14px;
-
-          .info-name {
-            @include text-overflow;
-
-            display: inline-block;
-            vertical-align: middle;
-
-            max-width: 116px;
-            max-width: calc(100% - 22px);
-          }
-
-          .info-gender {
-            vertical-align: middle;
-            margin-left: 10px;
-          }
-
-          .info-level {
-            margin-top: 10px;
-            width: 140px;
-          }
-        }
-
-        .info-description {
-          position: relative;
-          margin-top: 20px;
-          padding: 0 20px;
-
-          i {
-            display: none;
-          }
-
-          p {
-            margin: 0;
-          }
-
-          @include to-breakpoint(xs) {
-            display: none;
-          }
-
-          @include from-breakpoint(sm) {
-            @include to-breakpoint(sm) {
-              padding-left: 70px;
-
-              i {
-                display: block;
-                position: absolute;
-                top: -3px;
-                left: 30px;
-
-                color: $gray-lighter;
-                font-size: 16px;
-              }
-            }
-          }
-        }
-
-        .info-links {
-          margin-top: 20px;
-          padding-right: 20px;
-          text-align: right;
-
-          @include to-breakpoint(xs) {
-            display: none;
-          }
-
-          @include from-breakpoint(sm) {
-            @include to-breakpoint(sm) {
-              position: absolute;
-              top: 40px;
-              right: 30px;
-              width: 25%;
-              margin: 0;
-              padding: 0;
-            }
-          }
-
-          .info-location {
-            display: block;
-            margin: 20px 0 0;
-          }
-
-          a {
-            display: inline-block;
-
-            line-height: 32px;
-            width: 32px;
-            margin-left: 20px;
-            text-align: center;
-
-            border-radius: 50%;
-            color: $text-color;
-            background: $gray-lighter;
-
-            i {
-              margin: 0;
-            }
-
-            &:last-child {
-              margin-right: 0;
-            }
-
-            &:hover {
-              color: $gray-lighter;
-              background: $text-color;
-            }
-          }
-        }
-
-        .info-links + .info-friendship {
-          margin-top: 20px;
-        }
-
-        .info-friendship {
-          line-height: 1;
-          background: $smoke-white;
-
-          @include to-breakpoint(xs) {
-            display: none;
-          }
-
-          @include from-breakpoint(sm) {
-            @include to-breakpoint(sm) {
-              &:not(.info-friendship--self) {
-                display: inline-block;
-                vertical-align: middle;
-                width: 50%;
-              }
-            }
-          }
-
-          @include from-breakpoint(md) {
-            background: white;
-            border-top: 1px dashed $gray-lighter;
-          }
-
-          > a {
-            display: inline-block;
-            width: 50%;
-            padding: 15px 0;
-
-            text-align: center;
-            font-size: 10px;
-            color: $blue-dark;
-
-            span {
-              display: block;
-              margin-top: 8px;
-              font-size: 18px;
-            }
-
-            @include from-breakpoint(sm) {
-              @include to-breakpoint(sm) {
-                padding: 7px 0;
-              }
-            }
-          }
-        }
-
-        .info-actions {
-          @include from-breakpoint(sm) {
-            @include to-breakpoint(sm) {
-              display: inline-block;
-              vertical-align: middle;
-              margin-top: 20px;
-              width: 50%;
-            }
-          }
-
-          > a {
-            @include plain-link($gray-lighter);
-
-            display: inline-block;
-            width: 50%;
-            line-height: 50px;
-            vertical-align: middle;
-            text-align: center;
-          }
-
-          .follow_btn {
-            padding: 0;
-            border: none;
-            border-radius: 0;
-
-            background: $blue-dark;
-            transition: background-color .1s;
-
-            &.follow_btn--followed:hover {
-              background-color: $gray;
-            }
-          }
-
-          .private_message_btn {
-            background: $blue-light;
-          }
-        }
-      }
-
-      > nav {
-        @include from-breakpoint(md) {
-          position: absolute;
-          top: 0;
-          left: 0;
-
-          width: calc(100% - #{$info-width + 30px});
-          max-width: $wrapper-max-width - $info-width - 30px;
-          height: $nav-height;
-
-          background: $smoke-white;
-        }
-
-        li.active {
-          a {
-            cursor: default;
-          }
-        }
-
-        > ul {
-          @include to-breakpoint(xs) {
-            display: none;
-
-            > li {
-              display: inline-block;
-              width: percentage(1 / 3);
-              text-align: center;
-
-              border-top: 1px solid $gray-lighter;
-              &:nth-child(-n + 4) { border: none; }
-
-              a {
-                @include plain-link($blue-dark);
-
-                display: inline-block;
-                width: 100%;
-                padding: 30px 0;
-
-                i {
-                  display: block;
-                  margin: 0 0 10px;
-                  font-size: 25px;
-                }
-
-                span {
-                  margin-left: 5px;
-                }
-              }
-
-              &.nav-home {
-                display: none;
-              }
-
-              &.nav-fancies a {
-                @include plain-link($red);
-              }
-
-              &.nav-desires a {
-                @include plain-link($red);
-              }
-
-              &.nav-owns a {
-                @include plain-link($blue-light);
-              }
-
-              &.nav-lists a {
-                @include plain-link($orange);
-              }
-            }
-          }
-
-          @include from-breakpoint(sm) {
-            display: table;
-            table-layout: fixed;
-            width: 100%;
-
-            > li {
-              display: table-cell;
-              width: auto;
-              vertical-align: middle;
-              text-align: center;
-
-              background: white;
-
-              a {
-                @include plain-link($text-color);
-
-                display: inline-block;
-                width: 100%;
-                padding: 10px 0;
-
-                span {
-                  display: block;
-                  margin-top: 2px;
-                  font-size: 11px;
-                  color: $iron;
-                }
-              }
-
-              &.active {
-                background: $smoke-white;
-                border-top: 3px solid $blue;
-              }
-
-              &.nav-topics {
-                display: none;
-              }
-            }
-          }
-        }
-
-        > ol {
-          border-top: 20px solid $body-bg;
-
-          @include from-breakpoint(sm) {
-            display: none;
-          }
-
-          > li {
-            display: inline-block;
-            text-align: center;
-
-            width: percentage(2 / 3);
-            line-height: 40px;
-
-            a {
-              @include plain-link($text-color);
-
-              display: inline-block;
-              width: 100%;
-              line-height: 40px;
-            }
-
-            i {
-              color: $blue-dark;
-
-              &.fa-chevron-left {
-                color: $gray-lighter;
-              }
-
-              &.fa-heart {
-                color: $red;
-              }
-
-              &.fa-check-circle-o {
-                color: $blue-light;
-              }
-
-              &.fa-list-ko {
-                color: $orange;
-              }
-            }
-
-            &:first-child {
-              width: percentage(1 / 3);
-              background: $vulcan;
-
-              a {
-                color: $gray-lighter;
-              }
-            }
-
-            border-top: 3px solid transparent;
-            background: white;
-
-            &.active {
-              border-top-color: $blue;
-              background: $smoke-white;
-            }
-
-            @include to-breakpoint(xs) {
-              background: $smoke-white;
-              &.active { background: white; }
-            }
-          }
-        }
+  }
+
+  .vcard-canopy {
+    height: 0;
+    overflow: hidden;
+    padding-bottom: percentage(9 / 16);
+    position: relative;
+
+    img {
+      bottom: -1000%;
+      left: -1000%;
+      margin: auto;
+      max-width: 200%;
+      position: absolute;
+      right: -1000%;
+      top: -1000%;
+
+      @media (min-width: 1440px) {
+        width: 100%;
       }
     }
 
-    > .contents {
-      background: $smoke-white;
+    @media (min-width: $screen-sm-min) {
+      height: 450px;
+      padding-bottom: 0;
+      position: absolute;
+      width: 100%;
+    }
+  }
 
-      .thing {
-        background: white;
+  .vcard-canopy-mask {
+    display: none;
 
-        a {
-          @include plain-link($gray-light);
-        }
+    @media (min-width: $screen-sm-min) {
+      background-color: rgba(0, 0, 0, .6);
+      bottom: 0;
+      display: block;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
 
-        header {
-          position: relative;
+  .vcard-main,
+  .vcard-friendship,
+  .vcard-misc {
+    padding: 0 30px;
 
-          [data-fancy] {
-            display: none;
+    @media (min-width: $screen-sm-min) {
+      margin: {
+        left: auto;
+        right: auto;
+      }
+      padding: 0;
+      width: 670px;
+    }
+  }
 
-            @include to-breakpoint(sm) {
-              display: block;
-            }
+  .vcard-main {
+    margin: {
+      bottom: 30px;
+      top: -30px;
+    }
+    position: relative;
+    text-align: center;
 
-            position: absolute;
-            top: 0;
-            right: 0;
+    @media (min-width: $screen-sm-min) {
+      margin-top: 0;
+      padding-top: 80px;
+    }
+  }
 
-            height: 30px;
-            width: 30px;
-            font-size: 20px;
-            line-height: 30px;
-            text-align: center;
+  .vcard-friendship {
+    margin-bottom: 30px;
+    text-align: center;
 
-            background: $vulcan;
-            color: rgba(white, .5);
-          }
+    @media (min-width: $screen-sm-min) {
+      @include clearfix;
+      background-color: #e3e4e6;
+      bottom: 0;
+      border-radius: 15px;
+      left: calc(50% - 335px);
+      margin-bottom: -47px;
+      padding: 20px;
+      position: absolute;
+    }
+  }
 
-          &:hover [data-fancy] {
-            display: block;
-          }
-        }
+  .vcard-misc {
+    @include clearfix;
+    @media (min-width: $screen-sm-min) {
+      left: calc(50% - 335px);
+      position: absolute;
+      top: 20px;
+    }
+  }
 
-        .thing-cover {
-          position: relative;
-          height: 0;
-          overflow: hidden;
-          padding-bottom: percentage(8 / 11);
+  .vcard-avatar {
+    display: block;
+    margin-bottom: 15px;
 
-          img {
-            width: 100%;
-          }
+    > img {
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px #fff;
+    }
+  }
 
-          &:before {
-            content: '';
+  .vcard-name {
+    color: $text-color;
+    display: block;
+    margin-bottom: 15px;
+  }
 
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
+  .vcard-level,
+  .vcard-gender {
+    display: inline-block;
+  }
 
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 0 8px 11px 8px;
-            border-color: transparent;
-          }
-        }
+  .vcard-level {
+    margin-right: 1em;
+    width: 150px;
 
-        h4 {
-          @include text-overflow;
+    .level-progress {
+      border-radius: 5px;
+      height: 8px;
+      overflow: hidden;
+    }
+  }
 
-          font-size: 14px;
-          margin: 15px 20px;
-          text-align: center;
-        }
+  .vcard-description {
+    margin: {
+      bottom: 0;
+      top: 15px;
+    }
+  }
 
-        ul.thing-counts {
-          text-align: center;
+  .vcard-follows {
+    @media (min-width: $screen-sm-min) {
+      float: left;
+      width: 40%;
+    }
+  }
 
-          li {
-            display: inline-block;
-            margin-right: 10px;
-            padding: 0 0 15px 0;
+  .vcard-followings,
+  .vcard-followers {
+    color: #aaa;
+    display: inline-block;
+    max-width: 150px;
+    text-align: center;
+    width: 40%;
 
-            &:last-child {
-              margin-right: 0;
-            }
-          }
-        }
+    @media (min-width: $screen-sm-min) {
+      float: left;
+      width: 50%;
+    }
 
-        section.thing-impression {
-          padding: 0 15px;
-          border-top: 1px dashed $iron;
+    > em {
+      color: $blue-dark;
+      display: block;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: normal;
+    }
+  }
 
-          .thing-description {
-            margin-bottom: 15px;
-            padding-top: 15px;
-            border-top: 1px dashed white;
-            text-align: right;
-          }
+  .vcard-actions {
+    margin-top: 15px;
 
-          .score {
-            margin: 15px 0;
-            text-align: right;
+    @media (min-width: $screen-sm-min) {
+      float: right;
+      line-height: 54px;
+      margin-top: 0;
+    }
 
-            .rate {
-              padding: 0;
-            }
-          }
+    .follow_btn,
+    .private_message_btn {
+      border: 1px solid $blue-dark;
+      border-radius: 15px;
+      display: inline-block;
+      height: 34px;
+      line-height: 32px;
+      padding: 0;
+      text-align: center;
+      vertical-align: middle;
+      width: 120px;
+    }
 
-          ul.thing-tags {
-            @include clearfix;
+    .follow_btn {
+      background-color: transparent;
+      color: $blue-dark;
+      margin-right: 1em;
 
-            margin-top: 15px;
-            margin-bottom: 5px;
+      &:hover,
+      &:focus,
+      &:active {
+       background-color: $blue-dark;
+       color: #fff;
+      }
+    }
 
-            > li {
-              @include text-overflow;
+    .private_message_btn {
+      background-color: $blue-dark;
+      color: #fff;
+    }
+  }
 
-              float: right;
-              max-width: 100%;
-              margin: 0 0 10px 15px;
+  .vcard-location {
+    float: left;
+    height: 30px;
+    line-height: 30px;
+  }
 
-              i {
-                color: $iron;
-              }
-            }
+  .vcard-social {
+    float: right;
 
-            @at-root html.flexbox ul.thing-tags {
-              display: flex;
-              flex-wrap: wrap;
-              justify-content: flex-end;
+    > a {
+      background-color: $smoke-white;
+      border-radius: 50%;
+      color: #aaa;
+      display: inline-block;
+      height: 30px;
+      line-height: 30px;
+      margin-right: 1em;
+      text-align: center;
+      width: 30px;
 
-              > li {
-                float: none !important;
-              }
-            }
-          }
-        }
+      &:last-child {
+        margin-right: 0;
       }
 
-      .thing_list {
-        background: #ececec;
-
-        h4 .fa-list-ko,
-        .thing_list-creator {
-          display: none;
-        }
-
-        h4 {
-          margin: 20px;
-          text-align: center;
-          font-size: 16px;
-          color: $gray;
-
-          .thing_list-size {
-            vertical-align: bottom;
-            font-size: 80%;
-            color: $gray-light;
-          }
-        }
-
-        > header {
-          position: relative;
-
-          .thing_list-destroy {
-            display: none;
-
-            @include to-breakpoint(sm) {
-              display: block;
-            }
-
-            position: absolute;
-            top: 0;
-            right: 0;
-
-            width: 30px;
-            line-height: 30px;
-            font-size: 24px;
-            font-family: 'Lato Thin';
-            text-align: center;
-
-            background: $vulcan;
-            a { color: white; }
-
-            &:hover {
-              background: $red;
-            }
-          }
-
-          &:hover .thing_list-destroy {
-            display: block;
-          }
-        }
-
-        .thing_list-description {
-          position: relative;
-          padding: 10px 40px;
-          border-top: 1px dashed white;
-
-          text-align: center;
-
-          &:before {
-            @include fa-quote-left;
-            position: absolute;
-            top: 9px;
-            left: 14px;
-            color: white;
-            font-family: 'KnewOne-Icon';
-            font-size: 14px;
-          }
-
-          p {
-            @include multi-line-text-overflow(3, 1.4);
-          }
-        }
-
-        .thing_list-info {
-          padding: 5px 10px;
-          background: #dddddd;
-
-          .thing_list-counts {
-            a {
-              color: white;
-            }
-          }
-        }
+      &:hover {
+        background-color: #aaa;
+        color: $smoke-white;
       }
 
-      .review,
-      .feeling {
-        .video {
-          display: none;
-        }
+      .fa {
+        margin: 0;
       }
 
-      .activity {
-        padding: 15px;
-        border-bottom-color: $iron;
+      @media (min-width: $screen-sm-min) {
+        background-color: #aaa;
+        color: #4b4748;
 
-        @include to-breakpoint(xs) {
-          padding-top: 20px;
-          padding-bottom: 20px;
+        &:hover {
+          background-color: #4b4748;
+          color: #aaa;
         }
-      }
-
-      .review,
-      .feeling,
-      .activity,
-      .topic {
-        background: white;
       }
     }
   }
-}
 
-html.users_show {
-  #wrapper {
-    @include to-breakpoint(xs) {
-      > header {
-        .info {
-          .info-description,
-          .info-links,
-          .info-friendship {
-            display: block;
+  .vcard-name,
+  .vcard-gender,
+  .vcard-description {
+    @media (min-width: $screen-sm-min) {
+      color: $ghost-white;
+    }
+  }
+
+  .vcard--tiny {
+    @include clearfix;
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+    
+    .vcard-avatar {
+      float: left;
+      margin-right: 20px;
+    }
+
+    .vcard-content {
+      overflow: hidden;
+    }
+  }
+
+  //
+  // Navs
+  //
+
+  .page-nav--tiny {
+    > ul {
+      @include clearfix;
+
+      > li {
+        float: left;
+        width: 25%;
+
+        > a {
+          background-color: #fff;
+          color: #aaa;
+          display: block;
+          height: 50px;
+          line-height: 50px;
+          text-align: center;
+
+          .fa {
+            font-size: 20px;
+            margin: 0;
           }
         }
 
-        > nav > ul {
-          display: block;
+        &.active {
+          > a {
+            background-color: $smoke-white;
+            color: $blue-dark;
+          }
         }
       }
     }
+  }
 
-    ul.contents {
-      @include to-breakpoint(xs) {
-        display: none;
+  .page-nav {
+    margin: 0 auto;
+    width: $content-width-sm;
+
+    @media (min-width: $screen-md-min) {
+      width: $content-width-md;
+    }
+
+    > ul {
+      @include clearfix;
+
+      > li {
+        float: left;
+        width: 80px;
+
+        @media (min-width: $screen-md-min) {
+          width: 90px;
+        }
+
+        > a {
+          background-color: #fff;
+          color: $gray;
+          display: block;
+          height: 50px;
+          line-height: 50px;
+          text-align: center;
+
+          .fa {
+            display: none;
+
+            @media (min-width: $screen-md-min) {
+              display: inline-block;
+            }
+          }
+        }
+
+        &.active {
+          > a {
+            background-color: $smoke-white;
+            color: $text-color;
+          }
+        }
+      }
+    }
+  }
+
+  .page-subnav {
+    background-color: $smoke-white;
+    padding: 10px 0;
+
+    > ul {
+      display: table;
+      width: 100%;
+
+      @media (min-width: $screen-sm-min) {
+        margin: {
+          left: auto;
+          right: auto;
+        }
+        width: $content-width-sm;
       }
 
-      @include from-breakpoint(md) {
-        padding-top: 0;
-        padding-bottom: 0;
+      @media (min-width: $screen-md-min) {
+        width: $content-width-md;
       }
 
       > li {
-        $gutter-width: 20px;
+        display: table-cell;
+        text-align: center;
 
-        position: relative;
-        display: block;
-        padding: 30px (90px - $gutter-width) 30px 90px;
-        border-top: 1px dashed $iron;
-
-        @include from-breakpoint(md) {
-          padding-top: 40px;
-          padding-bottom: 40px;
-        }
-
-        &:first-child {
-          border-top: none;
-        }
-
-        h3 {
-          position: absolute;
-          top: 40px;
-          left: 0;
-
-          width: 90px;
-          margin: 0;
-          padding: 0;
-
-          i {
-            margin-right: 5px;
-            vertical-align: middle;
-            font-size: 25px;
-            color: $blue-dark;
-          }
-
-          span {
-            vertical-align: middle;
-            font-size: 14px;
-          }
-        }
-
-        .contents-more {
-          position: absolute;
-          z-index: 1;
-          top: 30px;
-          right: 0;
-
-          width: 90px;
-          line-height: 40px;
-          text-align: center;
-
-          color: $gray-lighter;
-          background: $vulcan;
-
-          i {
-            margin: 0 0 0 10px;
-          }
-
-          @include from-breakpoint(md) {
-            top: 40px;
-          }
-        }
-
-        .thing,
-        .thing_list {
+        > a {
+          color: #aaa;
           display: inline-block;
-          vertical-align: top;
-          width: percentage(1 / 3);
-          border-right: $gutter-width solid $smoke-white;
+          height: 30px;
+          line-height: 28px;
+          min-width: 40px;
+          padding-bottom: 2px;
         }
 
-        .review,
-        .feeling,
-        .activity {
-          margin-right: $gutter-width;
-        }
-
-        &.contents-fancies {
-          h3 i {
-            color: $red;
-          }
-        }
-
-        &.contents-owns {
-          h3 i {
-            color: $blue-light;
-          }
-        }
-
-        &.contents-lists {
-          h3 i {
-            color: $orange;
+        &.active {
+          > a {
+            border-bottom: 2px solid $blue;
+            padding-bottom: 0;
           }
         }
       }
     }
-  }
-}
 
-html.users_fancies,
-html.users_desires,
-html.users_owns,
-html.users_things,
-html.users_lists,
-html.users_groups,
-html.users_followers,
-html.users_followings {
-  .contents {
+    & + .page-content {
+      @media (max-width: $screen-xs-max) {
+        padding-top: 0;
+      }
+    }
+  }
+
+  //
+  // Content
+  //
+
+  .page-content {
+    background-color: $smoke-white;
+    padding-top: 20px;
+  }
+
+  .page-content-switch {
+    background-color: $smoke-white;
+    border-bottom: 1px solid $gray-white;
+    color: $gray;
+    display: block;
+    margin-top: -20px;
+    text-align: center;
+    height: 51px;
+    line-height: 50px;
+  }
+
+  //
+  // Block List
+  //
+
+  .block_list {
+    background-color: #e3e4e6;
+
+    @media (min-width: $screen-sm-min) {
+      background-color: transparent;
+      font-size: 0;
+      margin: {
+        left: auto;
+        right: auto;
+      }
+      width: $content-width-sm + 30px;
+    }
+
+    @media (min-width: $screen-md-min) {
+      width: $content-width-md + 30px;
+    }
+
     > li,
-    > article,
-    > section {
-      display: inline-block;
-      vertical-align: top;
+    > .activity:not(.activity--text),
+    > .thing,
+    > .thing_list,
+    > .feeling {
+      margin-bottom: 20px;
 
-      @include to-breakpoint(xs) {
-        width: 100%;
-        margin-top: 20px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
-
-        &:first-child {
-          margin-top: 0;
+      @media (min-width: $screen-sm-min) {
+        display: inline-block;
+        font-size: 14px;
+        padding: {
+          left: 15px;
+          right: 15px;
         }
+        vertical-align: top;
       }
+    }
 
-      @include from-breakpoint(sm) {
+    > .activity:not(.activity--text) {
+      @media (min-width: $screen-sm-min) {
+        width: 50%;
+      }
+    }
+
+    > li,
+    > .thing,
+    > .thing_list,
+    > .feeling {
+      @media (min-width: $screen-sm-min) {
         width: percentage(1 / 3);
-        border: 10px solid $smoke-white;
-      }
-    }
-
-    @include from-breakpoint(sm) {
-      padding: 10px;
-      background: $smoke-white;
-    }
-
-    @include from-breakpoint(md) {
-      padding: 20px;
-    }
-  }
-}
-
-html.users_lists,
-html.users_groups,
-html.users_topics {
-  @include from-breakpoint(sm) {
-    .contents {
-      .topic:first-child {
-        margin-top: 0;
       }
     }
   }
-}
 
-html.users_show,
-html.users_reviews,
-html.users_feelings,
-html.users_topics {
-  .contents {
-    .review,
-    .feeling,
-    .topic {
-      margin-top: 20px;
+  //
+  // Others
+  //
 
-      @include from-breakpoint(md) {
-        margin-top: 30px;
+  .thing_tags {
+    padding: 0 20px 10px 20px;
 
-        &:first-child {
-          margin-top: 0;
+    @media (min-width: $screen-sm-min) {
+      margin: {
+        left: auto;
+        right: auto;
+      }
+      padding: {
+        left: 0;
+        right: 0;
+      }
+      width: $content-width-sm;
+    }
+
+    @media (min-width: $screen-md-min) {
+      width: $content-width-md;
+    }
+
+    .tags {
+      @media (min-width: $screen-sm-min) {
+        overflow: hidden;
+        text-align: right;
+      }
+
+      &.is-collapsed {
+        max-height: 84px;
+      }
+
+      > a {
+        background-color: #fff;
+        color: $gray;
+
+        &:hover {
+          background-color: $gray;
+          border-color: $gray;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .thing_tags-toggle {
+    cursor: pointer;
+    display: none;
+    font-size: 12px;
+    text-align: right;
+  }
+
+  //
+  // Footer
+  //
+
+  .page-footer {
+    padding-bottom: 42px;
+
+    @media (min-width: $screen-sm-min) {
+      background-color: $smoke-white;
+    }
+
+    .pagination {
+      @media (min-width: $screen-sm-min) {
+        float: none;
+        margin: {
+          left: auto;
+          right: auto;
+        }
+        text-align: right;
+        width: $content-width-sm;
+      }
+
+      @media (min-width: $screen-md-min) {
+        width: $content-width-md;
+      }
+    }
+  }
+
+  // Components
+  // -----------------------------------------------------------------------------
+
+  .score {
+    height: 33px;
+  }
+
+  .thing {
+    a {
+      @include plain-link($gray-light);
+    }
+
+    > header {
+      background-color: #fff;
+      position: relative;
+
+      [data-fancy] {
+        display: none;
+
+        @include to-breakpoint(sm) {
+          display: block;
+        }
+
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        height: 30px;
+        width: 30px;
+        font-size: 20px;
+        line-height: 30px;
+        text-align: center;
+
+        background: $vulcan;
+        color: rgba(white, .5);
+
+        .fa {
+          vertical-align: -2px;
+        }
+      }
+
+      &:hover [data-fancy] {
+        display: block;
+      }
+    }
+
+    .thing-cover {
+      position: relative;
+      height: 0;
+      overflow: hidden;
+      padding-bottom: percentage(8 / 11);
+
+      img {
+        width: 100%;
+      }
+
+      &:before {
+        content: '';
+
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 8px 11px 8px;
+        border-color: transparent;
+      }
+    }
+
+    h4 {
+      @include text-overflow;
+
+      font-size: 14px;
+      margin: 0;
+      padding: 15px 20px;
+      text-align: center;
+    }
+
+    > footer {
+      background-color: #fff;
+    }
+
+    ul.thing-counts {
+      text-align: center;
+
+      li {
+        display: inline-block;
+        margin-right: 10px;
+        padding: 0 0 15px 0;
+
+        &:last-child {
+          margin-right: 0;
         }
       }
     }
 
-    @include from-breakpoint(sm) {
-      padding: 20px;
-    }
+    section.thing-impression {
+      padding: 0 15px;
+      border-top: 1px dashed $gray-white;
 
-    @include from-breakpoint(md) {
-      padding: 30px;
-    }
-  }
-}
+      .thing-description {
+        margin-bottom: 0;
+        padding: {
+          bottom: 15px;
+          top: 15px;
+        }
+        border-top: 1px dashed white;
+        text-align: right;
 
-html.users_fancies,
-html.users_desires,
-html.users_owns {
-  #wrapper {
-    > nav {
-      padding: 10px 20px;
-      background: $smoke-white;
+        &:before {
+          @include fa-quote-left;
+          color: $gray-white;
+          font-family: 'KnewOne-Icon';
+          font-size: 14px;
+          margin-right: 10px;
+        }
+      }
 
-      ul.user_tags {
+      .score {
+        margin: 15px 0;
+        text-align: right;
+
+        .rate {
+          padding: 0;
+        }
+      }
+
+      ul.thing-tags {
         @include clearfix;
 
-        margin: 10px 0;
-        padding-bottom: 10px;
-
-        &.collapsed {
-          overflow: hidden;
-          max-height: 98px;
-        }
+        margin-top: 15px;
+        margin-bottom: 5px;
 
         > li {
+          @include text-overflow;
+
           float: right;
-          margin: 10px 0 0 10px;
-
-          overflow: hidden;
           max-width: 100%;
+          margin: 0 0 10px 15px;
 
-          background: white;
-          border-radius: 10px;
-
-          a {
-            display: inline-block;
-            padding: 7px 12px;
-            color: $text-color;
-          }
-
-          &.active {
-            background: $gray-light;
-            a { color: white; }
+          i {
+            color: $iron;
           }
         }
-      }
 
-      @at-root html.flexbox ul.user_tags {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-end;
+        @at-root html.flexbox ul.thing-tags {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-end;
 
-        > li {
-          float: none !important;
+          > li {
+            float: none !important;
+          }
         }
-      }
-
-      .user_tags-toggle {
-        display: none;
-
-        margin-top: -10px;
-        margin-bottom: 15px;
-        text-align: right;
-
-        cursor: pointer;
-        color: $link-color;
       }
     }
   }
-}
 
-html.users_lists,
-html.users_groups,
-html.users_topics,
-html.users_followers,
-html.users_followings {
-  #wrapper {
-    @include from-breakpoint(md) {
+  .thing_list {
+    position: relative;
+
+    &::before,
+    &::after {
+      border-top: 2px solid #fff;
+      content: '';
+      display: block;
+      height: 0;
+      position: absolute;
+    }
+
+
+    &::before {
+      left: 20px;
+      top: -4px;
+      width: calc(100% - 40px);
+    }
+
+    &::after {
+      left: 25px;
+      top: -8px;
+      width: calc(100% - 50px);
+    }
+
+    h4 .fa-list-ko,
+    .thing_list-creator {
+      display: none;
+    }
+
+    h4 {
+      text-align: center;
+      font-size: 16px;
+      color: $gray;
+      padding: 20px;
+      margin: 0;
+      padding: {
+        bottom: 1em;
+        top: 1em;
+      }
+
+      > .fa {
+        display: none;
+      }
+
+      .thing_list-size {
+        vertical-align: bottom;
+        font-size: 80%;
+        color: $gray-light;
+      }
+    }
+
+    > header {
+      background-color: #fff;
       position: relative;
-    }
 
-    nav.subpage_tabs {
-      @include to-breakpoint(xs) {
+      .thing_list-destroy {
         display: none;
-      }
 
-      > ul {
-        > li {
-          display: inline-block;
-          text-align: center;
-          background: white;
+        @include to-breakpoint(sm) {
+          display: block;
+        }
 
-          a {
-            @include plain-link($text-color);
+        position: absolute;
+        top: 0;
+        right: 0;
 
-            display: inline-block;
-            width: 100%;
-            padding: 10px 20px;
-            line-height: 1;
-          }
+        width: 30px;
+        line-height: 30px;
+        font-size: 24px;
+        font-family: 'Lato Thin';
+        text-align: center;
 
-          &.active {
-            a {
-              cursor: default;
-            }
-          }
+        background: $vulcan;
+        a { color: white; }
+
+        &:hover {
+          background: $red;
         }
       }
 
-      @include from-breakpoint(sm) {
-        padding: 15px 20px 0;
-        background: $smoke-white;
-        text-align: right;
-
-        > ul {
-          display: inline-block;
-
-          > li.active {
-            background: $vulcan;
-
-            a {
-              @include plain-link($gray-lighter);
-            }
-          }
-        }
-      }
-
-      @include from-breakpoint(md) {
-        padding: 30px 30px 0;
-
-        & + .contents {
-          margin-top: 0;
-        }
+      &:hover .thing_list-destroy {
+        display: block;
       }
     }
 
-    > header > nav > ol > li {
-      width: percentage(1 / 3);
+    > footer {
+      background-color: #fff;
+    }
+
+    .thing_list-description {
+      border-top: 0;
+      position: relative;
+      padding: 10px 20px;
+      text-align: center;
+
+      &:before {
+        @include fa-quote-left;
+        position: absolute;
+        top: -8px;
+        left: 10px;
+        color: $gray-white;
+        font-family: 'KnewOne-Icon';
+        font-size: 14px;
+      }
+
+      p {
+        @include multi-line-text-overflow(3, 1.4);
+        text-align: left;
+      }
+    }
+
+    .thing_list-info {
+      border-top: 1px dashed $gray-white;
+      padding: 5px 10px;
+    }
+
+    .thing_list-counts {
+      margin-top: 0;
     }
   }
-}
 
-html.users_groups {
-  .card_compact {
-    margin-bottom: 0;
-    background: white;
+  .feeling {
+    background-color: #fff;
+    padding: 20px;
+
+    .score {
+      margin: 0;
+    }
+  }
+
+  .feeling-content {
+    color: $text-color;
+    display: block;
+    margin-bottom: 15px;
+
+    > p {
+      margin-bottom: 0;
+
+      &::before,
+      &::after {
+        color: $iron;
+        font-family: 'Knewone-Icon';
+        font-size: 14px;
+      }
+
+      &::before {
+        @include fa-quote-left;
+        margin-right: .5em;
+      }
+
+      &::after {
+        @include fa-quote-right;
+        margin-left: .5em;
+      }
+    }
+
+    & + .feeling-thing,
+    & + .feeling-photos {
+      margin-top: 15px;
+    }
+  }
+
+  .feeling-author {
+    @extend %author;
+  }
+
+  .feeling-photos {
+    @extend %photos;
+    margin: {
+      bottom: 15px;
+      top: 15px;
+    }
+  }
+
+  .feeling-metas {
+    @include clearfix;
+    margin-bottom: 15px;
+
+    > li {
+      float: right;
+
+      &:last-child {
+        margin-right: 1em;
+      }
+
+      &:first-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .feeling-thing {
+    background-color: $smoke-white;
+    border-radius: 4px;
+    display: block;
+    height: 70px;
+    overflow: hidden;
+
+    > img {
+      @include square(70px);
+      float: left;
+    }
+  }
+
+  .feeling-thing-info {
+    overflow: hidden;
+    padding: 0 5px;
+    text-align: center;
+
+    h6 {
+      @include text-overflow;
+      color: $text-color;
+      font-size: 10px;
+    }
+
+    .metas {
+      color: $iron;
+      font-size: 12px;
+    }
+  }
+
+  .review {
+    background-color: #fff;
+    padding: 20px 20px 15px;
+  }
+
+  .review-header {
+    margin-bottom: 15px;
+
+    .score {
+      margin: 0;
+    }
+  }
+
+  .review-title {
+    margin: 0;
+
+    > a {
+      font-size: 18px;
+    }
+  }
+
+  .review-author {
+    @extend %author;
+  }
+
+  .review-body {
+    margin-bottom: 15px;
+
+    > p {
+      margin-bottom: 15px;
+    }
+  }
+
+  .review-photos {
+    @extend %photos;
+  }
+
+  .review-footer {
+    @include clearfix;
+
+    > .metas {
+      float: right;
+
+      > li {
+        color: $iron;
+        height: 32px;
+        line-height: 32px;
+
+        .fa {
+          margin-right: .5em;
+        }
+
+        time {
+          color: $iron;
+        }
+      }
+    }
+  }
+
+  .review-time {
+    @media (min-width: $screen-sm-min) {
+      display: none;
+    }
+  }
+
+  .topic {
+    background-color: #fff;
+    padding: 20px;
+  }
+
+  .topic-header {
+    margin-bottom: 15px;
+  }
+
+  .topic-title {
+    margin: 0;
+
+    > a {
+      font-size: 18px;
+    }
+  }
+
+  .topic-body {
+    margin-bottom: 15px;
+
+    > p {
+      margin: 0;
+    }
+  }
+
+  .topic-footer {
+    @include clearfix;
+
+    .metas {
+      color: $iron;
+      float: right;
+    }
   }
 }
 
 html.users_activities {
-  ul.contents {
-    @include from-breakpoint(sm) {
-      padding: 30px;
+  .page-content {
+    @media (min-width: $screen-sm-min) {
+      background-color: #e3e4e6;
+      padding: 30px 0;
+    }
+  }
+
+  .page-footer {
+    background-color: transparent;
+  }
+
+  .thing {
+    section.content {
+      padding-bottom: 0;
+
+      h4 {
+        max-width: 60%;
+        padding: 0;
+        text-align: left;
+
+        > a {
+          color: $text-color;
+        }
+      }
+    }
+
+    > footer {
+      background-color: $smoke-white;
+
+      .stats {
+        a {
+          color: $iron;
+        }
+      }
+
+      .interactions {
+        margin-top: -22px;
+      }
+    }
+
+    .fancy_button i {
+      color: $red;
+      vertical-align: middle;
+    }
+
+    .fanciers_count {
+      color: $iron;
+    }
+  }
+
+  .thing_list {
+    background-color: $smoke-white;
+
+    &::before,
+    &::after {
+      display: none;
+    }
+
+    > header {
+      background-color: transparent;
+
+      h4 {
+        padding: {
+          bottom: 0;
+          left: 20px;
+          right: 20px;
+        }
+        text-align: left;
+
+        .fa {
+          display: none;
+        }
+      }
+    }
+    
+    > footer  {
+      background-color: transparent;
+      padding: 10px 20px 20px;
+      position: relative;
+    }
+
+    .thing_list-cover {
+      background-color: $smoke-white;
+      .thing_list-image_wrapper {
+        > img {
+          box-shadow: none;
+        }
+      }
+    }
+
+    .thing_list-name {
+      max-width: 60% !important;
+    }
+
+    .thing_list-description {
+      border-top: 0;
+      padding: 0;
+      text-align: left;
+
+      &::before {
+        display: none;
+      }
+    }
+
+    .thing_list-info {
+      border: 0;
+      padding: 0;
+
+      .thing_list-creator {
+        display: none;
+      }
+
+      .thing_list-counts {
+        position: absolute;
+        right: 20px;
+        top: -20px;
+      }
+    }
+  }
+
+  .feeling-time {
+    display: none;
+  }
+
+  .review-time {
+    display: none;
+  }
+}
+
+html.users_activities_text {
+  .page-content {
+    @media (min-width: $screen-sm-min) {
+      padding: {
+        bottom: 0;
+        top: 0;
+      }
+    }
+  }
+
+  .activity--text {
+    background-color: $smoke-white;
+
+    @media (min-width: $screen-sm-min) {
+      font-size: 14px;
+      margin: {
+        left: 15px;
+        right: 15px;
+      }
+      padding: {
+        left: 20px;
+        right: 20px;
+      }
     }
   }
 }
 
-html.users_followers .info-followers,
-html.users_followings .info-followings {
-  color: $gray-lighter !important;
-  background: $vulcan;
+html.users_feelings {
+  @media (min-width: $screen-sm-min) {
+    .feeling-thing {
+      height: 60px;
+
+      > img {
+        @include square(60px);
+      }
+
+      .metas {
+        > li {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
 }
 
 html.users_followers,
 html.users_followings {
-  ul.contents {
-    > li.author {
-      @extend %new_user;
+  .page-nav--tiny {
+    display: none !important;
+  }
 
-      margin: 0;
+  .page-content {
+    padding-top: 0;
+  }
 
-      @include to-breakpoint(xs) {
-        margin-top: 20px;
+  .follows {
+    @include clearfix;
+    background-color: #fff;
+    
+    > a {
+      border-bottom: 2px solid transparent;
+      color: $text-color;
+      height: 80px;
+      float: left;
+      font-size: 12px;
+      padding-top: 20px;
+      text-align: center;
+      width: 50%;
+
+      em {
+        color: $blue-dark;
+        display: block;
+        font-size: 20px;
+        font-style: normal;
       }
 
-      @include from-breakpoint(sm) {
-        width: 50%;
-      }
+      &.active {
+        border-color: $blue-dark;
 
-      @include from-breakpoint(lg) {
-        width: percentage(1 / 3);
+        em {
+          color: $text-color;
+        }
       }
     }
+  }
+
+  .block_list {
+    padding: 20px;
+
+    @media (min-width: $screen-sm-min) {
+      > li {
+        width: calc(50% - 15px);
+
+        &:nth-child(odd) {
+          margin-right: 15px;
+        }
+
+        &:nth-child(even) {
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+
+  .author {
+    @include clearfix;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-top: 0;
+    overflow: hidden;
+    padding: 20px;
+    padding-right: 100px !important;
+    position: relative;
+
+    @media (min-width: $screen-sm-min) {
+      height: 90px;
+    }
+
+    .follow_btn {
+      background-color: transparent;
+      border-color: $blue;
+      border-radius: 15px;
+      color: $blue;
+      margin-right: 0;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+
+      .fa {
+        display: none;
+      }
+    }
+
+    .follow_btn--followed {
+      background-color: $blue-light;
+      border-color: $blue-light;
+      color: #fff;
+
+      &:hover {
+        background-color: $gray;
+        border-color: $gray;
+      }
+    }
+
+    .follow_btn--mutual_followed {
+      background-color: $blue-dark;
+      border-color: $blue-dark;
+    }
+  }
+
+  .author-avatar {
+    float: left;
+    margin-right: 8px;
+
+    img {
+      @include square(48px);
+    }
+  }
+
+  .author-name {
+    display: block;
+    margin: {
+      bottom: 4px;
+      right: 0;
+    }
+    overflow: hidden;
+  }
+
+  .author-description {
+    color: #aaa;
+    display: block;
+    font-size: 12px;
+    margin-right: 0;
+    overflow: hidden;
   }
 }

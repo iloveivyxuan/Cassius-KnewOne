@@ -1,8 +1,10 @@
 - page_title '关注者'
 
-- if @followers.present?
-  ul.contents = render @followers
-- else
-  section.contents = render 'shared/nothing'
+.page-content
+  = render 'follows'
+  - if @followers.present?
+    ul.block_list = render @followers
+  - else
+    = render 'shared/nothing'
 
 = paginate @followers

@@ -1,15 +1,16 @@
 - page_title '列表'
 
-nav.subpage_tabs
+nav.page-subnav
   ul
     = li @filter == 'owned'
       = link_to 'TA创建的列表', {filter: 'owned'}
     = li @filter == 'fancied'
       = link_to 'TA喜欢的列表', {filter: 'fancied'}
 
-- if @lists.present?
-  section.contents = render @lists
-- else
-  section.contents = render 'shared/nothing'
+.page-content
+  - if @lists.present?
+    section.block_list= render @lists
+  - else
+    = render 'shared/nothing'
 
 = paginate @lists

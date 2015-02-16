@@ -1,3 +1,16 @@
 - user = activity.reference
-| 关注了
-= link_to user.name, user
+- unless @rich
+  | 关注了
+  = link_to user.name, user
+  = time_ago_tag activity.created_at
+- else
+  header.activity-header
+    em
+      i.fa.fa-plus
+      span 关注
+    = link_to user, class: "activity-timestamp", target: "_blank" do
+      = time_ago_tag activity.created_at
+  .activity-body
+    p.text
+      | 关注了
+      = link_to user.name, user

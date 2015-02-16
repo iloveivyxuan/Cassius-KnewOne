@@ -39,6 +39,7 @@
 //= require jquery.china_city
 //= require rails-timeago
 //= require selectize
+//= require masonry.pkgd
 //= require_tree ../templates
 //= require base
 //= require todo

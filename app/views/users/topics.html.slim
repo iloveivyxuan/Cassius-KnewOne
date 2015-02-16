@@ -1,15 +1,16 @@
 - page_title '话题'
 
-nav.subpage_tabs
+nav.page-subnav
   ul
     li = link_to [:groups, @user]
       | TA参与的小组
     li.active = link_to [:topics, @user]
       | TA参与的话题
 
-- if @topics.present?
-  section.contents = render partial: 'users/topic', collection: @topics
-- else
-  section.contents = render 'shared/nothing'
+.page-content
+  - if @topics.present?
+    ul.block_list= render 'block_list_topics', topics: @topics
+  - else
+    = render 'shared/nothing'
 
 = paginate @topics

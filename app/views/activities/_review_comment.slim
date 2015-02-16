@@ -1,7 +1,23 @@
 - review = activity.reference
 - thing = review.thing
 - if review.thing
-  | 回复了对产品
-  = link_to thing.title, thing
-  | 的评测
-  = link_to review.title, thing_review_path(review.thing, review)
+  - unless @rich
+    | 回复了对产品
+    = link_to thing.title, thing
+    | 的评测
+    = link_to review.title, thing_review_path(review.thing, review)
+    = time_ago_tag activity.created_at
+  - else
+    header.activity-header
+      em
+        i.fa.fa-comment
+        span 回复
+      = link_to thing_review_path(review.thing, review), class: "activity-timestamp", target: "_blank" do
+        = time_ago_tag activity.created_at
+    .activity-body
+      p.text
+        | 回复了对产品
+        = link_to thing.title, thing
+        | 的评测
+        = link_to review.title, thing_review_path(review.thing, review)
+

@@ -1,51 +1,136 @@
-ul {
-  > li.activity {
-    @include clearfix;
+.activity {
+  .activity-fancied {
+    color: $red;
+  }
 
-    border-bottom: $border-dashed;
-    padding: 10px;
+  .activity-desired {
+    color: $red;
+  }
 
-    &:last-child {
-      border-bottom: none;
+  .activity-owned {
+    color: $blue-light;
+  }
+
+  .activity-voted {
+    color: $blue-light;
+  }
+
+  .activity-list {
+    color: $orange;
+  }
+} 
+
+.activity--text {
+  @include clearfix;
+  border-bottom: $border-dashed;
+  margin-bottom: 0;
+  padding: 10px 15px;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  > a {
+    margin-left: .5em;
+    margin-right: .5em;
+  }
+
+  > time {
+    line-height: 20px;
+    float: right;
+    padding-left: 2em;
+  }
+
+  .activity-fancied,
+  .activity-desired,
+  .activity-owned,
+  .activity-shared,
+  .activity-voted,
+  .activity-list {
+    margin-right: .5em;
+  }
+}
+
+.activity-header {
+  background-color: $smoke-white;
+  overflow: hidden;
+  padding: 20px;
+
+  > em {
+    color: $blue-light;
+    float: left;
+    font-style: normal;
+    height: 22px;
+    line-height: 22px;
+
+    > .fa {
+      font-size: 22px;
+      vertical-align: -4px;
     }
 
-    a {
-      margin-left: .5em;
-      margin-right: .5em;
+    > span {
+      color: $iron;
+    }
+  }
+
+  > p {
+    clear: both;
+    color: $text-color;
+    margin-bottom: 0;
+    padding-top: 10px;
+
+    &::before,
+    &::after {
+      color: $iron;
+      font-family: 'KnewOne-Icon';
+      font-size: 12px;
+      vertical-align: text-top;
     }
 
-    time {
-      line-height: 20px;
-      float: right;
-      padding-left: 2em;
+    &::before {
+      @include fa-quote-left;
+      margin-right: 1em;
     }
 
-    .activity-fancied,
-    .activity-desired,
-    .activity-owned,
-    .activity-voted,
-    .activity-list {
-      margin-right: .5em;
+    &::after {
+      @include fa-quote-right;
+      margin-left: 1em;
     }
+  }
+}
 
-    .activity-fancied {
-      color: $red;
-    }
+.activity-timestamp {
+  float: right;
 
-    .activity-desired {
-      color: $red;
-    }
+  > time {
+    color: $iron;
+    height: 22px;
+    line-height: 22px;
+  }
+}
 
-    .activity-owned {
-      color: $blue-light;
-    }
+.activity-body {
+  position: relative;
 
-    .activity-voted {
-      color: $blue-light;
-    }
+  &::before {
+    border-color: $smoke-white transparent transparent transparent;
+    border-style: solid;
+    border-width: 10px;
+    top: 0;
+    content: '';
+    position: absolute;
+    right: 40px;
+    z-index: 1;
+  }
 
-    .activity-list {
-      color: $orange;
-    }
+  > .thing {
+    background-color: $smoke-white;
+  }
+
+  > .text {
+    background-color: $smoke-white;
+    padding: 0 20px 20px;
+    position: relative;
+    z-index: 2;
   }
 }

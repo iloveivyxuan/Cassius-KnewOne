@@ -1,7 +1,22 @@
 - story = activity.reference
 - thing = story.thing
 - if story.thing
-  | 发表了关于产品
-  = link_to thing.title, thing
-  | 的动态
-  = link_to story.title, thing_story_path(story.thing, story)
+  - unless @rich
+    | 发表了关于产品
+    = link_to thing.title, thing
+    | 的动态
+    = link_to story.title, thing_story_path(story.thing, story)
+    = time_ago_tag activity.created_at
+  - else
+    header.activity-header
+      em
+        i.fa.fa-comment
+        span 动态
+      = link_to thing_story_path(story.thing, story), class: "activity-timestamp", target: "_blank" do
+        = time_ago_tag activity.created_at
+    .activity-body
+      p.text
+        | 发表了关于产品
+        = link_to thing.title, thing
+        | 的动态
+        = link_to story.title, thing_story_path(story.thing, story)

@@ -1,10 +1,20 @@
 - topic = activity.reference
 - group = topic.group
 - if group
-  span.activity-voted
-    i.fa.fa-thumbs-o-up
-    | 赞
-  | 了小组
-  = link_to group.name, group
-  | 中的话题
-  = link_to topic.title, group_topic_path(group, topic)
+  - unless @rich
+    span.activity-voted
+      i.fa.fa-thumbs-o-up
+      | 赞
+    | 了小组
+    = link_to group.name, group
+    | 中的话题
+    = link_to topic.title, group_topic_path(group, topic)
+    = time_ago_tag activity.created_at
+  - else
+    header.activity-header
+      em.activity-voted
+        i.fa.fa-thumbs-o-up
+        span 赞了话题
+      = link_to group_topic_path(group, topic), class: "activity-timestamp", target: "_blank" do
+        = time_ago_tag activity.created_at
+    .activity-body= render 'users/topic', topic: topic

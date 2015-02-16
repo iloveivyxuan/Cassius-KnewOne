@@ -1,6 +1,6 @@
 module UsersHelper
-  def user_avatar(user, size=:small)
-    image_tag user.avatar.url(size), alt: user.name
+  def user_avatar(user, size=:small, options={})
+    image_tag user.avatar.url(size), options.merge(alt: user.name)
   end
 
   def provider_sync(checked = true)
