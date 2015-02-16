@@ -1,7 +1,7 @@
 - topic = activity.reference
 - group = topic.group
 - if group
-  - if @filter == 'text'
+  - unless @rich
     | 回复了小组
     = link_to group.name, group
     | 中的话题

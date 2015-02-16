@@ -1,7 +1,7 @@
 - feeling = activity.reference
 - thing = feeling.thing
 - if thing
-  - if @filter == 'text'
+  - unless @rich
     | 为产品
     = link_to thing.title, thing
     | 编写了短评:

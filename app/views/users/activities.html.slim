@@ -1,13 +1,13 @@
 - page_title '动态'
-- provide(:page_class, 'users_activities_text') if (@filter == 'text')
+- provide(:page_class, 'users_activities_text') unless @rich
 
 .page-content
   - if @activities.present?
     - unless browser.desktop?
-      - if @filter == 'text'
+      - unless @rich
         = link_to_with_icon "转换为图文动态", "fa fa-exchange", activities_user_path, class: "page-content-switch"
       - else
-        = link_to_with_icon "转换为纯文字动态", "fa fa-exchange", { filter: "text" }, class: "page-content-switch"
+        = link_to_with_icon "转换为纯文字动态", "fa fa-exchange", { rich: "false" }, class: "page-content-switch"
     section.block_list.js-waterfall= render @activities
   - else
     = render 'shared/nothing'

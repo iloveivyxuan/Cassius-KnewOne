@@ -1,7 +1,7 @@
 - review = activity.reference
 - thing = review.thing
 - if thing
-  - if @filter == 'text'
+  - unless @rich
     | 为产品
     = link_to thing.title, thing
     | 编写了评测:

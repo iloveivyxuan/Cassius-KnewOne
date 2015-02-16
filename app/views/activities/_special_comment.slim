@@ -1,6 +1,6 @@
 - special = activity.reference
 - if entry = special.entry
-  - if @filter == 'text'
+  - unless @rich
     | 对专题
     = link_to entry_title(entry), entry
     | 发表了留言

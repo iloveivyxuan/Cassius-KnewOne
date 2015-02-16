@@ -1,7 +1,7 @@
 - topic = activity.reference
 - group = topic.group
 - if group
-  - if @filter == 'text'
+  - unless @rich
     span.activity-voted
       i.fa.fa-thumbs-o-up
       | 赞

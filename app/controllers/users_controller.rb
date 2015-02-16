@@ -54,7 +54,7 @@ class UsersController < ApplicationController
   end
 
   def activities
-    @filter = params[:filter]
+    @rich = params[:rich].to_s != 'false'
     @activities = @user.activities.visible.page(params[:page]).per(24)
   end
 

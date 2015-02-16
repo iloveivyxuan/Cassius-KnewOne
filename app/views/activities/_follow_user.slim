@@ -1,5 +1,5 @@
 - user = activity.reference
-- if @filter == 'text'
+- unless @rich
   | 关注了
   = link_to user.name, user
   = time_ago_tag activity.created_at

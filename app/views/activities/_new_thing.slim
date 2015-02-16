@@ -1,5 +1,5 @@
 - thing = activity.reference
-- if @filter == 'text'
+- unless @rich
   | 分享了产品
   = link_to activity.reference.title, thing_path(activity.reference)
   = time_ago_tag activity.created_at

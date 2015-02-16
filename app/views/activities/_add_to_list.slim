@@ -1,7 +1,7 @@
 - thing = activity.related_thing
 - list = activity.source
 - if thing
-  - if @filter == 'text'
+  - unless @rich
     | 将产品
     = link_to thing.title, thing
     | 加入了
