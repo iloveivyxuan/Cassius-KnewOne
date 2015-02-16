@@ -13,12 +13,12 @@ section.thing_list_item [id="thing_list_item_#{thing_list_item.id}"
           method: :delete, remote: true, data: {confirm: '您确定要删除吗?'}
           | ×
 
+      - price = present(thing).price
+      - if price.present?
+        .thing_list_item-price = price
+
     = link_to thing, target: '_blank', class: 'thing_list_item-thing_title', title: thing.title
       h4 = thing.title
-
-    - price = present(thing).price
-    - if price.present?
-      .thing_list_item-price = price
   footer
     - if thing_list_item.description.present? || can?(:update, thing_list_item)
       .thing_list_item-description class=('hide' if thing_list_item.description.blank?)
