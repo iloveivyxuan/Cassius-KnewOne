@@ -131,7 +131,7 @@ html.home {
         margin-top: 0;
 
         .thing_list {
-          margin-top: 20px;
+          margin-top: 16px;
         }
       }
 
@@ -406,7 +406,7 @@ html.home {
     }
 
     .thing_list {
-      padding: 12px 6px;
+      padding: 6px 6px 12px;
       background: $smoke-white;
 
       h4,
@@ -422,7 +422,7 @@ html.home {
         }
       }
 
-      margin-top: 50px;
+      margin-top: 30px + 16px;
       position: relative;
 
       &:before,
@@ -431,19 +431,19 @@ html.home {
 
         position: absolute;
         display: block;
-        height: 5px;
+        height: 4px;
 
         background: $smoke-white;
       }
 
       &:before {
-        top: -10px;
+        top: -8px;
         left: 2.5%;
         width: 95%;
       }
 
       &:after {
-        top: -20px;
+        top: -16px;
         left: 5%;
         width: 90%;
       }
