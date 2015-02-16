@@ -326,6 +326,22 @@ html[class^="users_"] {
     }
   }
 
+  .vcard--tiny {
+    @include clearfix;
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+    
+    .vcard-avatar {
+      float: left;
+      margin-right: 20px;
+    }
+
+    .vcard-content {
+      overflow: hidden;
+    }
+  }
+
   //
   // Navs
   //
