@@ -365,11 +365,11 @@ GEM
       mongoid (>= 3.0.1)
       rake
       rspec (>= 2.14)
-    mongoid_paranoia (0.1.2)
-      mongoid (> 3)
-    mongoid_slug (4.0.0)
+    mongoid-slug (4.0.0)
       mongoid (>= 3.0)
       stringex (~> 2.0)
+    mongoid_paranoia (0.1.2)
+      mongoid (> 3)
     moped (2.0.3)
       bson (~> 2.2)
       connection_pool (~> 2.0)
@@ -671,8 +671,8 @@ DEPENDENCIES
   mongoid (>= 4.0.0.alpha1)
   mongoid-grid_fs!
   mongoid-rspec
+  mongoid-slug
   mongoid_paranoia
-  mongoid_slug
   nested_form
   newrelic_moped
   newrelic_rpm
