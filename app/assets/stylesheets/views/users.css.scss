@@ -582,8 +582,9 @@ html[class^="users_"] {
     }
 
     .tags {
+      overflow: hidden;
+
       @media (min-width: $screen-sm-min) {
-        overflow: hidden;
         text-align: right;
       }
 
