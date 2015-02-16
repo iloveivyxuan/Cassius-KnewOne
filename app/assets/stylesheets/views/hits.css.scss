@@ -117,6 +117,10 @@ html.home_hits section.hits, html.landing_mobile section.hits {
     &.review {
       width: 100%;
 
+      @media (min-width: $screen-sm-min) {
+        float: left;
+      }
+
       @media (min-width: $screen-md-min) {
         /* So thing:review is golden porpotion */
         padding: 35px;
