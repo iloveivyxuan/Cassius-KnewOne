@@ -3,20 +3,93 @@
 html.landing_mobile {
 
   body {
+    padding: 0;
     @media (min-width: $screen-sm-min) {
       padding-top: 45px;
       #wrapper {margin: 0}
     }
   }
 
-  h2.slogan {
-    margin: 0;
-    padding: 1em 0;
-    background: $blue;
-    color: white;
+  #header {
+    position: absolute !important;
+    background-color: transparent;
+    h1, > a {
+      display: none;
+    }
+    .btn {
+      margin-top: 0;
+    }
+    .menu-toggle {
+      display: block;
+    }
+  }
 
-    font-size: 16px;
-    text-align: center;
+  .headline {
+    background-color: #FBFBFB;
+    .sign_group {
+      text-align: center;
+      .btn {
+        padding: .8em 3em;
+        margin: 20px 0;
+        border-radius: 15px;
+        border: solid 2px $brand-primary;
+        outline: none;
+      }
+      .btn--signin {
+        color: $brand-primary;
+        margin-right: 10px;
+      }
+      .btn--signup {
+        color: #fff;
+        background-color: $brand-primary;
+        margin-left: 10px;
+      }
+    }
+    .form-group.search input {
+      &:active, &:focus {
+        color: #fff;
+        background-color: #5e6775;
+      }
+    }
+  }
+
+  .category_group {
+    margin-bottom: 20px;
+    background-color: #fff;
+    .category_title {
+      background-color: #fff;
+      color: #474A4F;
+      font-size: 18px;
+      padding: 1em;
+      position: relative;
+      &:before {
+        content: " ";
+        position: absolute;
+        border-top: solid 16px transparent;
+        border-right: solid 16px transparent;
+        border-left: solid 16px transparent;
+        border-bottom: solid 10px #F7F7F7;
+        height: 0;
+        width: 0;
+        bottom: 0;
+      }
+    }
+    .category_footer {
+      text-align: center;
+      border-top: dashed 1px $brand-primary;
+      background-color: #F7F7F7;
+      a {
+        padding: 1em 0;
+        display: block;
+        color: $brand-primary;
+        &:active, &:focus {
+          background-color: darken(#F7F7F7, 5%);
+        }
+      }
+    }
+    .review {
+      margin-bottom: 0;
+    }
   }
 }
 

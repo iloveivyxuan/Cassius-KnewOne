@@ -1,0 +1,26 @@
+- provide :page_class, "landing_mobile"
+- page_css 'landing'
+- page_css 'hits'
+
+- cache ['landing_mobile', params[:page] || 1], expires_in: 1.minute
+  - if (j = Jumptron.by_type(:landing).where(default: true).sample)
+    header.jumptron.landing
+      a href=j.href target="_blank"
+        img src=j.image.url alt=j.alt
+
+  .headline
+    .sign_group
+      = link_to "登录", "#login-modal", class: "btn btn--signin", data: { toggle: "modal" }
+      = link_to "注册", "#login-modal", class: "btn btn--signup", data: { toggle: "modal" }
+    = form_tag search_root_path, class: 'menu-search', role: 'form', method: 'get'
+      .form-group.search
+        label.sr-only 搜索 KnewOne
+        input.form-control name='q' type='search' autocomplete="off" placeholder="搜索 KnewOne"
+        i.fa.fa-search
+
+  section.hits
+    = render 'landing_groups'
+
+- content_for :script do
+  javascript:
+    Making.InitHomeGuest({url: '/'});

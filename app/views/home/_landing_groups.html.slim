@@ -1,0 +1,10 @@
+.category_group
+  .category_title
+    | 精选
+  .category_content
+    = render partial: 'hot_thing', locals: { thing: @hot_thing }
+    = render partial: 'hot_review', locals: { hot_review: @hot_review }
+  .category_footer
+    = link_to '发现更多内容', hits_path
+
+= render partial: 'landing_category_mobile', collection: @categories, as: :category

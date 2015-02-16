@@ -35,11 +35,11 @@ class HomeController < ApplicationController
 
     respond_to do |format|
       format.html.mobile do
-        redirect_to hits_url
+        for_landing_mobile
       end
 
       format.html.tablet do
-        redirect_to hits_url
+        for_landing_mobile
       end
 
       format.html.desktop do
@@ -131,6 +131,25 @@ class HomeController < ApplicationController
       render partial: 'hot_review', locals: { review: @review }
     else
       head :unprocessable_entity
+    end
+  end
+
+
+  private
+  def for_landing_mobile
+    @categories = Category.top_level.gt(things_count: 10).desc(:things_count).page(params[:page]).per(2)
+
+    if request.xhr?
+      if @categories.empty?
+        head :no_content
+      else
+        render partial: 'landing_category_mobile', collection: @categories, as: :category, layout: false
+      end
+    else
+      @hot_thing  = Thing.hot.recommended.first
+      @hot_review = Review.hot.first
+
+      render 'home/landing.html+mobile'
     end
   end
 end
