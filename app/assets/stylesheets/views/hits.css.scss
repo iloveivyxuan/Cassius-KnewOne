@@ -44,6 +44,14 @@ html.home_hits section.hits, html.landing_mobile section.hits {
     }
   }
 
+  article.review {
+    @include to-breakpoint(sm) {
+      header.cover {
+        background: white;
+      }
+    }
+  }
+
   .thing_list {
     width: 100%;
     margin-bottom: $gutter;
