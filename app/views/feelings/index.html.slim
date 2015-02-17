@@ -8,5 +8,5 @@ section.things_subpage
 
   - cache_unless user_signed_in?, ['feelings', 'index', @thing, @feelings.first, request.query_string]
     header.feelings_page_header.clearfix= render 'feelings/sort', {thing: @thing}
-    .feelings.list = render @feelings
+    .feelings.list = render partial: 'feelings/feeling', collection: @feelings
 = paginate @feelings

@@ -43,7 +43,7 @@
       - unless compact
         - comments = post.comments.limit(Settings.comments.per_page)
         - cache_unless user_signed_in?, ['comments', comments.first]
-          = render comments
+          = render partial: 'comments/comment', collection: comments
 
     - if post.comments_count > Settings.comments.per_page
       a.comments_more

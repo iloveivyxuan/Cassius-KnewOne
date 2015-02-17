@@ -12,7 +12,7 @@
         h4 用户评测
 
     .reviews.list.stream_content data-url=thing_reviews_path(tp.thing)
-      = render reviews
+      = render partial: 'reviews/review', collection: reviews
 
     - if tp.thing.reviews_count > 3
       - if browser.mobile? || browser.tablet?
