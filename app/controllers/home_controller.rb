@@ -19,7 +19,7 @@ class HomeController < ApplicationController
     return redirect_to welcome_url if activities.blank?
 
     @feeds = HomeFeed.create_from_activities activities
-    @from_id ||= Activity.only(:id).first.id
+    @from_id = Activity.only(:id).first.id.to_s if @from_id.blank?
 
     if request.xhr?
       render 'index_xhr', layout: false
