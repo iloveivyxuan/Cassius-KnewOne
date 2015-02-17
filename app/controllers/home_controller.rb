@@ -13,13 +13,17 @@ class HomeController < ApplicationController
                                                                   :add_to_list, :fancy_list)
 
     @from_id = params[:from_id].to_s
+    @from_id = Activity.only(:id).first.id.to_s if @from_id.blank?
     activities = activities.lte(id: @from_id) if @from_id.present?
+
+    from_time = BSON::ObjectId.from_string(@from_id).generation_time
+    activities = activities.gt(created_at: from_time.ago(2.weeks))
+
     activities = activities.page(params[:page]).per(30).to_a
 
     return redirect_to welcome_url if activities.blank?
 
     @feeds = HomeFeed.create_from_activities activities
-    @from_id = Activity.only(:id).first.id.to_s if @from_id.blank?
 
     if request.xhr?
       render 'index_xhr', layout: false
