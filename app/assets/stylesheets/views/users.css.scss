@@ -4,6 +4,10 @@ html[class^="users_"] {
   $content-width-sm: 720px;
   $content-width-md: 810px;
 
+  .fa {
+    vertical-align: middle;
+  }
+
   %author {
     height: 36px;
     line-height: 36px;
