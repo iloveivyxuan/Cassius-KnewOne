@@ -21,7 +21,7 @@
   position: absolute;
   right: 0;
   top: 0;
-  
+
   .fa {
     margin-right: 0;
   }
@@ -71,20 +71,18 @@
 
 .knewone-embed--review {
   .review {
-    @media (min-width: $screen-sm-min) {
-      section.content {
-        .summary {
-          min-height: 90px;
-        }
-      }
+    img {
+      margin-bottom: 0;
     }
 
-    @media (min-width: $screen-md-min) {
-      /* So thing:review is golden porpotion */
-      padding: 10px;
-      header.cover {
-        padding-right: 20px;
-      }
+    section.content,
+    footer.info {
+      padding-left: $padding-base-horizontal;
+      padding-right: $padding-base-horizontal;
+    }
+
+    footer.info {
+      padding-bottom: $padding-base-vertical;
     }
   }
 }
