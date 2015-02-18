@@ -59,11 +59,11 @@ class UsersController < ApplicationController
   end
 
   def followings
-    @followings = @user.followings.page(params[:page]).per(24)
+    @followings = @user.followings_sorted_by_ids(params[:page], 24)
   end
 
   def followers
-    @followers = @user.followers.page(params[:page]).per(24)
+    @followers = @user.followers_sorted_by_ids(params[:page], 24)
   end
 
   def share

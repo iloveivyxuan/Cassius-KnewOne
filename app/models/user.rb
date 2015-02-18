@@ -399,6 +399,8 @@ HERE
   sort_by_ids :owns, Thing
   sort_by_ids :desires, Thing
   sort_by_ids :fancies, Thing
+  sort_by_ids :followings, User
+  sort_by_ids :followers, User
 
   def balance
     BigDecimal.new(self.balance_cents) / 100
