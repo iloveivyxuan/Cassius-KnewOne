@@ -5,7 +5,7 @@ article.feed-review
     p
       = render 'shared/user_avatar', user_id: review.author_id
       = time_ago_tag(review.created_at)
-      | 发表了评测：
+      span 发表了评测：
 
     .feed-review-title
       = link_to review_presenter.path, target: "_blank" do

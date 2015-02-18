@@ -176,8 +176,14 @@ html.home {
 
         > header {
           p {
-            time {
+            > time {
               margin: 0 .5em;
+            }
+
+            > a,
+            > time,
+            > span {
+              vertical-align: middle;
             }
           }
 
