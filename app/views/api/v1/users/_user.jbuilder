@@ -3,13 +3,13 @@ json.url url_wrapper(user)
 json.html_url user_url(user)
 json.avatar_url user.avatar.url
 json.name user.name
-json.fancies_count user.fancies.count
+json.fancies_count user.fancies_count
 json.fancies_url url_wrapper(user, action: :fancies)
-json.things_count user.things.count
+json.things_count user.things_count
 json.things_url url_wrapper(user, action: :things)
-json.owns_count user.owns.count
+json.owns_count user.owns_count
 json.owns_url url_wrapper(user, action: :owns)
-json.reviews_count user.reviews.count
+json.reviews_count user.reviews_count
 json.reviews_url url_wrapper(user, action: :reviews)
 json.groups_count user.groups_count
 json.groups_url url_wrapper(user, action: :groups)
