@@ -14,7 +14,13 @@ module Feedable
   end
 
   def followed?(user)
-    user && self.following_ids.include?(user.id)
+    return false unless user
+
+    if user.instance_variable_defined?('@_relationship')
+      user.follower_ids.include?(self.id)
+    else
+      self.following_ids.include?(user.id)
+    end
   end
 
   def follow(user)
