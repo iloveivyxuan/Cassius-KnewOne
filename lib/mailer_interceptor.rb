@@ -1,6 +1,10 @@
 require 'mail/dkim_field'
 class MailerInterceptor
   def self.delivering_email(message)
+    # 这里会出现邮箱为`123@qq. com`或者`123@qq.com\n`的情况，理论上devise对邮箱的约束应该避免这些情况，怀疑是sidekiq序列化的问题
+    message['to'].gsub!(' ', '')
+    message['to'].gsub!("\n", '')
+    
     method = EXCEPTIONAL[(/.*@(.+)/.match(message['to'].to_s)[1])] || :sendcloud
 
     smtp_config = if message['edm']
