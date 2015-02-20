@@ -2,9 +2,9 @@ article.feed
   - if feed.thing
     = render 'hot_thing', thing: feed.thing
 
-    - if feed.activities_not_from_reviews.present?
+    - activities = feed.activities_not_from_reviews
+    - if activities.present?
       ul.feed-activities
-        - activities = feed.activities_not_from_reviews
         - descriptions = activities.map do |activity|
           - next unless activity.type == :add_to_list
           - list = activity.source
