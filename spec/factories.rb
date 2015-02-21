@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :user, aliases: [:author, :sender, :receiver] do
     sequence(:name) { |i| "#{i}-#{Faker::Name.first_name}-#{Faker::Name.last_name}" }
-    email { "#{name}@example.com" }
+    sequence(:email) { |i| "#{i}@example.com" }
     password 'password'
 
     before(:create) { |user| user.skip_confirmation! }
