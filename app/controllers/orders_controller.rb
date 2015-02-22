@@ -114,19 +114,19 @@ class OrdersController < ApplicationController
   end
 
   def alipay
-    @url = generate_alipay_url(@order)
+    redirect_to generate_alipay_url(@order)
+  end
+
+  def alipay_wap
+    touch_alipay_security_risk_detect(@order, terminal_type: 'WAP')
+
+    @url = generate_alipay_wap_url(@order)
 
     if broswer.wechat?
       return redirect_to @url
     else
       render layout: false
     end
-  end
-
-  def alipay_wap
-    touch_alipay_security_risk_detect(@order, terminal_type: 'WAP')
-
-    redirect_to generate_alipay_wap_url(@order)
   end
 
   def wxpay
