@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'Sign in' do
+feature 'Sign in', slow: true do
   given(:user) { create(:user) }
 
   scenario 'with helper' do
