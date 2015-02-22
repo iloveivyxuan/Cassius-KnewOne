@@ -1,9 +1,11 @@
 class MailerImageUploader < CarrierWave::Uploader::Base
   storage :file
 
-  # def store_dir
-  #   '/tmp/mailer_images'
-  # end
+  unless Rails.env.development?
+    def store_dir
+      'public/system'
+    end
+  end
 
   # Add a white list of extensions which are allowed to be uploaded.
   def extension_white_list
