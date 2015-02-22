@@ -1,11 +1,6 @@
 require 'mail/dkim_field'
 class MailerInterceptor
   def self.delivering_email(message)
-    # 这里会出现邮箱为`123@qq. com`或者`123@qq.com\n`的情况
-    message['to'].gsub!(' ', '')
-    message['to'].gsub!("\n", '')
-    message['to'].gsub!('..', '')
-
     method = EXCEPTIONAL[(/.*@(.+)/.match(message['to'].to_s)[1])] || :sendcloud
 
     smtp_config = if message['edm']
