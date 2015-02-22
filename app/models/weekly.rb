@@ -11,6 +11,8 @@ class Weekly
   field :thing_list_id, type: String
   field :since_date, type: Date
 
+  mount_uploader :header_image, MailerImageUploader
+
   after_initialize do
     if self.new_record?
       self.since_date ||= Date.today.last_week

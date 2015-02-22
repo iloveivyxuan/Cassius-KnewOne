@@ -81,11 +81,11 @@ class UserMailer < BaseMailer
   end
 
   def weekly(weekly, user)
-    attachments.inline['bigimage.jpg'] = File.read(Rails.root.join('app/assets/images/mails/bigimage.jpg'))
-    attachments.inline['footer.png'] = File.read(Rails.root.join('app/assets/images/mails/footer.png'))
-
     @weekly = weekly
     @user = user
+
+    attachments.inline['bigimage.jpg'] = weekly.header_image.read || File.read(Rails.root.join('app/assets/images/mails/bigimage.jpg'))
+    attachments.inline['footer.png'] = File.read(Rails.root.join('app/assets/images/mails/footer.png'))
 
     @items = {}
 

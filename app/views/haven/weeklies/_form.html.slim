@@ -2,6 +2,9 @@
   = f.input :thing_list_id
   = f.input :since_date, as: :date
   = f.input :title
+  = image_tag @weekly.header_image.url if @weekly.persisted?
+  = f.input :header_image
+  = f.input :header_image_cache, as: :hidden
 
   .weekly_entries
     = f.simple_fields_for :weekly_entries
