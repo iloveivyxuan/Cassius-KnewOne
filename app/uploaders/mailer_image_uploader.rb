@@ -3,7 +3,7 @@ class MailerImageUploader < CarrierWave::Uploader::Base
 
   unless Rails.env.development?
     def store_dir
-      'public/system'
+      'system'
     end
   end
 
