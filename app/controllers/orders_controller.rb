@@ -122,7 +122,7 @@ class OrdersController < ApplicationController
 
     @url = generate_alipay_wap_url(@order)
 
-    if broswer.wechat?
+    if browser.wechat?
       return redirect_to @url
     else
       render layout: false
