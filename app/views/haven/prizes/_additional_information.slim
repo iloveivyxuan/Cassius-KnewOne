@@ -1,0 +1,18 @@
+- since = Date.parse params[:start_date]
+- due = Date.parse(params[:end_date]).next_day
+
+- if %w(most_reviews most_fancied_reviews).include? params[:find_by]
+  - Review.between(created_at: since..due).where(author_id: arr.first.id.to_s).desc(:lovers_count).each do |r|
+    tr
+      td
+        | &nbsp;&nbsp;&nbsp;&nbsp;
+        = link_to r.title, thing_review_path(r.thing, r), target: "_blank"
+      td= r.lovers_count
+
+- if %w(most_thing_lists most_fancied_thing_lists).include? params[:find_by]
+  - ThingList.between(created_at: since..due).where(author_id: arr.first.id.to_s).desc(:fanciers_count).each do |l|
+    tr
+      td
+        | &nbsp;&nbsp;&nbsp;&nbsp;
+        = link_to l.name, thing_list_path(l), target: "_blank"
+      td= l.fanciers_count
