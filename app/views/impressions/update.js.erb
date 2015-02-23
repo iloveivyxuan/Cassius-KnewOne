@@ -3,17 +3,16 @@
 <% else %>
   <% if @impression.persisted? %>
     $impression = $("<%=j render('things/impression', impression: @impression) %>")
-
     $oldImpression = $('[data-impression-id="<%= @impression.id %>"]')
+
     if ($oldImpression.length) {
-      $oldImpression.replaceWith($impression)
+      $impression
+      .replaceAll($oldImpression)
+      .hide()
+      .fadeIn()
     } else {
       $impression.insertAfter('#thing_description')
     }
-
-    $impression
-    .hide()
-    .fadeIn()
   <% else %>
     <%= render template: 'impressions/destroy' %>
   <% end %>
