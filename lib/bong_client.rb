@@ -60,7 +60,7 @@ class BongClient
       'orderSN' => options[:order_sn] || order.id.to_s,
       'partner' => @app_id,
       'partnerOrderSN' => order.order_no,
-      'subject' => 'KnewOne',
+      'subject' => order.content,
       'userId' => @uid
     }
     uri = "#{@refund_bong_point_api_uri}&sign=#{sign(params)}"
