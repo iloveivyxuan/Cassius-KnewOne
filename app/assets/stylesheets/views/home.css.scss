@@ -483,6 +483,7 @@ html.home {
       .recommended-user {
         @include from-breakpoint(md) {
           display: inline-block;
+          vertical-align: top;
           width: 50%;
           margin: 0;
           padding: 1em 1em 0;
