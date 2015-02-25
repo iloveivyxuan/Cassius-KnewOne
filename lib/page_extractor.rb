@@ -13,15 +13,16 @@ module PageExtractor
                images:
                proc do |_, html|
                  images = {}
-                 html.scan(%r{http://ec.\.images-amazon\.com/images/I/.*?\.jpg}).each do |url|
+                 html.scan(%r{(http://ec.\.images-amazon\.com/images/I/.*?\.jpg)(?:.*?:\[(\d+),(\d+)\])?}).each do |url, w, h|
                    id =   url[%r{(?<=/I/)[^.]+}]
                    size = url[%r{(?<=\._[A-Z]{2})\d+}].to_i
-                   if !images.has_key?(id) || images[id][:size] < size
-                     images[id] = {url: url, size: size}
-                   end
+                   size = [w.to_i, h.to_i].max if w || h
+                  if !images.has_key?(id) || images[id][:size] < size
+                   images[id] = {url: url, size: size}
                  end
-                 images.map { |_, h| h[:url] }
                end
+               images.map { |_, h| h[:url] }
+             end
              }
            }, {
              name: 'Expansys',
@@ -122,9 +123,7 @@ module PageExtractor
 
         return info
       rescue => e
-        # raise
-        # p e
-        next
+        raise e
       end
     end
 
