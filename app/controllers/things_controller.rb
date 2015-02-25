@@ -26,7 +26,7 @@ class ThingsController < ApplicationController
     end
 
     @things ||= Thing.all
-    @things = @things.published.approved.page(params[:page]).per((params[:per] || 24).to_i)
+    @things = @things.published.recommended.page(params[:page]).per((params[:per] || 24).to_i)
 
     respond_to do |format|
       format.html do
