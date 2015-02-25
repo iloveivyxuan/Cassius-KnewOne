@@ -5,6 +5,9 @@
 - if @brand
   - provide :page_class, 'things_brand'
 
+- unless @category || @brand
+  - provide :nav, :things
+
 .container-fluid
 
   header#things_nav

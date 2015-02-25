@@ -14,6 +14,8 @@
           = nav_tab :home do
             = link_to "首页", "/"
           = render 'layouts/header_category'
+          = nav_tab :things do
+            = link_to "最新", things_path
           = nav_tab :hits do
             = link_to "热门", hits_path
           = nav_tab :shop do
