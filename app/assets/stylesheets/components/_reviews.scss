@@ -2,9 +2,12 @@ article.review {
   background: white;
 
   header.cover {
-    @include clearfix;
-
     position: relative;
+
+    overflow: hidden;
+    height: 0;
+    padding-bottom: 40% / 550 * 400;
+
     background: $smoke-white;
 
     img {
@@ -38,11 +41,13 @@ article.review {
     }
 
     @include from-breakpoint(sm) {
+      padding-bottom: 30% / 550 * 400;
       img { width: 30%; }
       .info { width: 70%; }
     }
 
     @include from-breakpoint(md) {
+      padding-bottom: 20% / 550 * 400;
       img { width: 20%; }
       .info { width: 80%; }
     }
