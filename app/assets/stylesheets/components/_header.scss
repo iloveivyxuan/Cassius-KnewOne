@@ -535,7 +535,7 @@ html.no-touch {
       display: block;
       margin: 0 auto;
       padding: 3px 10px 0;
-      @include MQ(XLplus) {
+      @include from-breakpoint(lg) {
         padding: {
           left: 20px;
           right: 20px;
@@ -545,7 +545,7 @@ html.no-touch {
       line-height: 39px;
       color: $gray-lighter;
       text-align: center;
-      @include transition-property(all);
+      @include transition-property(background-color color);
       @include transition-duration(0.2s);
       @include transition-timing-function(ease);
       &:hover {
@@ -790,7 +790,7 @@ html.no-touch {
 
 #navbar_search {
   float: left;
-  width: 180px;
+  width: 140px;
   margin: 0;
   padding: 0;
 
@@ -799,7 +799,7 @@ html.no-touch {
   }
 
   @include from-breakpoint(lg) {
-    width: 240px;
+    width: 190px;
   }
 
   .form-control {
