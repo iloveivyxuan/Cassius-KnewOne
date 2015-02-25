@@ -6,8 +6,7 @@ li.feed-activity
 
     - if [:fancy_thing, :desire_thing, :own_thing].include?(activity.type)
       - impression = activity.source
-      - if impression && impression.is_a?(Impression)
-        = render 'shared/score', score: impression.score
+      = render 'shared/score', score: impression.score
 
     - if activity.type == :new_feeling
       - feeling = activity.reference
@@ -20,7 +19,7 @@ li.feed-activity
           = render 'shared/voting', object: feeling
 
   - if [:fancy_thing, :desire_thing, :own_thing].include?(activity.type)
-    - if impression.is_a?(Impression) && impression.description.present?
+    - if impression.description.present?
       .feed-impression
         p
           i.fa.fa-quote-left
