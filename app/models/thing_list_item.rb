@@ -14,6 +14,12 @@ class ThingListItem
   validates :thing_id, presence: true, uniqueness: { scope: :thing_list }
   validates :description, length: {maximum: 140}
 
+  validate on: :create do
+    if thing_list.size >= 200
+      errors.add :thing_list, '列表已满'
+    end
+  end
+
   before_create do
     self.order = self.list.items.max(:order).to_i + 1
   end
