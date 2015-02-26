@@ -20,6 +20,7 @@ Making.InitThingList = (editable) ->
 
   $('.thing_list_description .editable').editable({
     emptytext: '描述一下吧'
+    tpl: '<textarea maxlength="100"></textarea>'
   })
 
   $('.thing_list_item-description .editable').editable({
@@ -31,7 +32,7 @@ Making.InitThingList = (editable) ->
     , 0)
   )
 
-  $('.thing_list_item-description').on('keydown', (event) ->
+  $('.thing_list_description, .thing_list_item-description').on('keydown', (event) ->
     if event.which == 13 # ENTER
       event.preventDefault()
       $(this).find('.editableform').submit()
