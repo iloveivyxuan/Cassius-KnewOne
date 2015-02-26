@@ -55,6 +55,10 @@ class ThingList
     Thing.in(id: ids).sort_by { |thing| ids.index(thing.id) }
   end
 
+  def full?
+    size >= 200
+  end
+
   include Searchable
 
   searchable_fields [:name, :size, :fanciers_count, :updated_at]

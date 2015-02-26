@@ -15,7 +15,7 @@ class ThingListItem
   validates :description, length: {maximum: 140}
 
   validate on: :create do
-    if thing_list.size >= 200
+    if thing_list.full?
       errors.add :thing_list, '列表已满'
     end
   end
