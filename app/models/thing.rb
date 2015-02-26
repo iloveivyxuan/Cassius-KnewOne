@@ -241,7 +241,7 @@ class Thing < Post
   end
 
   def categories_text=(text)
-    self.categories = text.split(/[，,]/).map(&:strip).map { |name| Category.where(name: name).first }.compact
+    self.categories = text.split(/[，,]/).map(&:strip).map { |name| Category.where(name: name).first }.compact.select { |c| c.third_level? }
   end
 
   def brand_text=(text)
