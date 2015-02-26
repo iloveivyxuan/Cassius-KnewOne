@@ -1,6 +1,7 @@
 @import '../base';
 
-html.touch {
+html.mobile,
+html.tablet {
 
   #header {
     $header_inner_height: 44px;
