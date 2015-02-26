@@ -17,12 +17,12 @@ module PageExtractor
                    id =   url[%r{(?<=/I/)[^.]+}]
                    size = url[%r{(?<=\._[A-Z]{2})\d+}].to_i
                    size = [w.to_i, h.to_i].max if w || h
-                  if !images.has_key?(id) || images[id][:size] < size
-                   images[id] = {url: url, size: size}
+                   if !images.has_key?(id) || images[id][:size] < size
+                     images[id] = {url: url, size: size}
+                   end
                  end
+                 images.map { |_, h| h[:url] }
                end
-               images.map { |_, h| h[:url] }
-             end
              }
            }, {
              name: 'Expansys',
