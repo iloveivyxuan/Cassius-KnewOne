@@ -589,15 +589,11 @@ html.no-touch {
     margin: 0;
     padding: 0;
     color: $gray-lighter;
-    &:hover { color: #fff }
     text-align: center;
     background-color: transparent;
     text-decoration: none;
-    #notification_trigger {
-      color: $gray-lighter;
-      display: block;
-      &:hover { color: #fff }
-    }
+    &:hover { color: #fff }
+
     .fa {
       padding: 0;
       line-height: 45px;
@@ -621,13 +617,16 @@ html.no-touch {
     }
   }
 
-  .user_link.notification {
-    > a {
-      padding: 0;
-      line-height: 45px;
-      color: $gray-lighter;
-    }
+  #notification_trigger {
+    color: $gray-lighter;
+    display: block;
+    height: 45px;
+    line-height: 45px;
+    padding: 0;
+
+    &:hover { color: #fff; }
   }
+
   #notification_box  {
     span.unread {
       display: inline-block;
