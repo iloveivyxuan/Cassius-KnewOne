@@ -17,7 +17,8 @@ class ThingList
   field :description, type: String
   field :size, type: Integer, default: 0
 
-  validates :name, presence: true, uniqueness: { scope: :author }
+  validates :name, presence: true, uniqueness: {scope: :author}, length: {maximum: 30}
+  validates :description, length: {maximum: 100}
 
   alias_method :items, :thing_list_items
 
