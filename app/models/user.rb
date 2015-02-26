@@ -122,6 +122,7 @@ class User
   index unconfirmed_email: 1
 
   mount_uploader :avatar, AvatarUploader
+  skip_callback :save, :after, :remove_previously_stored_avatar
   scope :only_with_avatars, -> { only(:id, :name, :avatar) }
 
   ## Omniauthable
