@@ -18,6 +18,6 @@
 - unless (controller_name == 'reviews' && action_name == 'show') && browser.mobile?
   = render 'things/other_lists', thing: tp.thing,
     limit: browser.mobile? ? 1 : 2,
-    min_size: browser.mobile? ? 3 : 4
+    min_size: 4
 
   = render 'things/related_things', tp: tp
