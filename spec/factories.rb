@@ -173,7 +173,7 @@ FactoryGirl.define do
   factory :thing_list do
     author
     name { Faker::Lorem.word }
-    description { Faker::Lorem.paragraph }
+    description { Faker::Lorem.paragraph.truncate(50) }
 
     after(:create) { |l| create_list(:thing_list_item, 1, thing_list: l) }
   end
