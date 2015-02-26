@@ -123,7 +123,8 @@ module PageExtractor
 
         return info
       rescue => e
-        raise e
+        # raise e
+        next
       end
     end
 
