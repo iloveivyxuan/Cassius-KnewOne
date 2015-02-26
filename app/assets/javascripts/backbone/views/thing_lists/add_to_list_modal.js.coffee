@@ -12,6 +12,7 @@ class ThingListView extends Backbone.Marionette.ItemView
   }
 
   toggle: (event) ->
+    return if @model.get('full')
     @model.set('selected', event.currentTarget.checked)
 
 class Making.Views.AddToListModal extends Backbone.Marionette.CompositeView

@@ -1,4 +1,4 @@
-<label {{#if selected}}class="selected"{{/if}}>
+<label {{#if selected}}class="selected"{{/if}} {{#if full}}class="full" title="列表已满"{{/if}}>
   <span class="thing-list-name">{{name}} {{#if size}}({{size}}){{/if}}</span>
   <input type="checkbox" {{#if selected}}checked{{/if}}>
   {{#if selected}}<i class="fa fa-fw fa-check"></i>{{/if}}

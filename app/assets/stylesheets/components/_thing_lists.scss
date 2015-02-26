@@ -361,7 +361,7 @@
 
             cursor: pointer;
 
-            &:hover {
+            &:hover:not(.full) {
               color: white;
               background: #ababab;
               border-radius: 3px;
@@ -381,6 +381,11 @@
                 @extend .fa-times:before;
                 color: white;
               }
+            }
+
+            &.full {
+              cursor: not-allowed;
+              color: $iron;
             }
           }
 
