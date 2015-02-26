@@ -87,7 +87,7 @@ class Post
       html_doc.css('.knewone-embed, iframe, embed, object, video, audio').remove
       html_doc.css('h1', 'h2', 'h3', 'h4', 'h5', 'h6').each do |header|
         header.name = 'strong'
-        header['style'] = 'display: block; font-size: 20px; font-weight: bold; margin: 0 0 1em 0;'
+        header['style'] = 'display: block; font-size: 24px; font-weight: bold; margin: 0 0 1em 0;'
       end
       html_doc.css('img').wrap('<figure style="margin: 0 0 1em 0; text-align: center;"></figure>').each do |image|
         src = image['src']
@@ -102,7 +102,7 @@ class Post
       end
       html_doc.css('p').each do |p|
         p.remove if p.content.blank?
-        p['style'] = 'margin: 0 0 1em 0;'
+        p['style'] = 'font-size: 14px;margin: 0 0 1em 0;'
       end
     end
     html_doc.to_html.html_safe
