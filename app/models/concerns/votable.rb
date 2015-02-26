@@ -8,14 +8,14 @@ module Votable
   end
 
   def voted?(user)
-    lovers.include?(user)
+    user && lover_ids.include?(user.id)
   end
 
   def vote(user)
-    return if voted?(user)
-    lovers << user
+    return if voted?(user) || !user
 
-    self.set(lovers_count: lovers.count)
+    self.add_to_set(lover_ids: user.id)
+    self.set(lovers_count: lover_ids.count)
     self.touch
 
     author.inc karma: karma_to_bump_from_loving
@@ -23,9 +23,9 @@ module Votable
 
   def unvote(user)
     return unless voted?(user)
-    lovers.delete(user)
 
-    self.set(lovers_count: lovers.count)
+    self.pull(lover_ids: user.id)
+    self.set(lovers_count: lover_ids.count)
     self.touch
 
     author.inc karma: -karma_to_bump_from_loving
