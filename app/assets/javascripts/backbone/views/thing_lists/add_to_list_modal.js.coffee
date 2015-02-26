@@ -12,7 +12,10 @@ class ThingListView extends Backbone.Marionette.ItemView
   }
 
   toggle: (event) ->
-    @model.set('selected', event.currentTarget.checked)
+    if @model.get('full')
+      Making.ShowMessageOnTop('一个列表最多只能装 300 个产品哦', 'warning')
+    else
+      @model.set('selected', event.currentTarget.checked)
 
 class Making.Views.AddToListModal extends Backbone.Marionette.CompositeView
   id: 'add-to-list-modal'
