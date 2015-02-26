@@ -594,6 +594,7 @@ html.no-touch {
     text-decoration: none;
     #notification_trigger {
       color: $gray-lighter;
+      display: block;
       &:hover { color: #fff }
     }
     .fa {
