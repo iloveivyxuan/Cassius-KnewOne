@@ -232,10 +232,6 @@ html.thing_lists_show {
           @include from-breakpoint(md) {
             margin-top: 20px;
           }
-
-          a.tag--link {
-            color: #fd5a46;
-          }
         }
       }
 
