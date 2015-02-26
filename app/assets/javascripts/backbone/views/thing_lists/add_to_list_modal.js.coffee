@@ -13,7 +13,7 @@ class ThingListView extends Backbone.Marionette.ItemView
 
   toggle: (event) ->
     if @model.get('full')
-      Making.ShowMessageOnTop('一个列表最多只能装 200 个产品哦', 'warning')
+      Making.ShowMessageOnTop('一个列表最多只能装 300 个产品哦', 'warning')
     else
       @model.set('selected', event.currentTarget.checked)
 

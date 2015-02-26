@@ -56,7 +56,7 @@ class ThingList
   end
 
   def full?
-    size >= 200
+    size >= 300
   end
 
   include Searchable
