@@ -81,7 +81,7 @@ class Activity
 
   def related_thing
     case self.type
-    when :new_thing, :fancy_thing, :desire_thing, :own_thing then self.reference
+    when :new_thing, :fancy_thing, :desire_thing, :own_thing, :add_to_list then self.reference
     when :new_review, :love_review, :new_feeling then self.source
     else nil
     end
