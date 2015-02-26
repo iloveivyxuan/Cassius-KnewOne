@@ -512,6 +512,10 @@ form.edit_post {
         @extend .btn--square;
         @extend .btn--tall;
 
+        .fa {
+          vertical-align: middle;
+        }
+
         &.done {
           background-color: $navbar-search-bg;
           &:hover {
