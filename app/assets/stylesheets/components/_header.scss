@@ -644,7 +644,7 @@ html.no-touch {
     .dropdown_box {
       position: absolute;
       top: calc(100% + 10px);
-      z-index: 1000;
+      z-index: $zindex-navbar-fixed + 1;
       width: 300px;
       background-color: $navbar-bg;
       background-color: rgba($navbar-bg,.95);
