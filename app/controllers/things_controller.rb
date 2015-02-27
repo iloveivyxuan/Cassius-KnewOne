@@ -191,7 +191,7 @@ class ThingsController < ApplicationController
 
   ACTIVITY_TYPES = ['fancy_thing', 'desire_thing', 'own_thing', 'add_to_list']
   def activities
-    @activities = Activity.visible.by_reference(@thing)
+    @activities = Activity.visible.by_reference(@thing).since_date(3.months.ago)
 
     if ACTIVITY_TYPES.include?(params[:type])
       @activities = @activities.by_types(params[:type])
