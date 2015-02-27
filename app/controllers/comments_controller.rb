@@ -27,11 +27,10 @@ class CommentsController < ApplicationController
     @comment.author = current_user
 
     if @comment.save
-      respond_with @comment, location: comment_url
       @comment.author.log_activity :comment, (@post || @thing_list), check_recent: true
-    else
-      head :unprocessable_entity
     end
+
+    respond_with @comment, location: comment_url
   end
 
   def destroy
