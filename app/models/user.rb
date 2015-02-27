@@ -125,6 +125,8 @@ class User
   skip_callback :save, :after, :remove_previously_stored_avatar
   scope :only_with_avatars, -> { only(:id, :name, :avatar) }
 
+  field :canopy, type: String
+
   ## Omniauthable
   embeds_many :auths
   index 'auths.uid' => 1

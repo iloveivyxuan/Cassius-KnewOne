@@ -118,6 +118,19 @@ class UsersController < ApplicationController
     render layout: false
   end
 
+  def set_profile
+    user = User.find params[:id]
+
+    respond_to do |format|
+      if user != current_user
+        format.json { render json: { status: "error" } }
+      elsif params[:canopy].present?
+        status = user.update(canopy: params[:canopy]) ? "ok" : "error"
+        format.json { render json: { status: status } }
+      end
+    end
+  end
+
   private
 
   def setup_tags_and_things_about_impressions
@@ -133,3 +146,4 @@ class UsersController < ApplicationController
     @things = Thing.in(id: thing_ids).sort_by { |t| thing_ids.index(t.id) }
   end
 end
+
