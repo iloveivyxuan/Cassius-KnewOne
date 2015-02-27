@@ -15,6 +15,12 @@
       .vcard-gender itemprop="gender" = symbolize_gender(@user.gender)
       - if @user.description.present?
         p.vcard-description itemprop="description" = @user.description
+    - if @user == current_user
+      .vcard-action
+        button.btn#select_canopy_btn type="button" 选择背景
+        button.btn#upload_canopy_btn type="button"
+          | 上传自定义背景
+          input type="file"
     .vcard-friendship
       .vcard-follows itemprop="follows"
         = link_to followings_user_path(@user), class: 'vcard-followings'
