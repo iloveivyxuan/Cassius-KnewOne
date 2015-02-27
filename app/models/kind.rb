@@ -4,7 +4,7 @@ class Kind
 
   include BongPointConsumable
 
-  embedded_in :thing
+  embedded_in :thing, touch: true
 
   field :stock, type: Integer, default: 0
   field :sold, type: Integer, default: 0
