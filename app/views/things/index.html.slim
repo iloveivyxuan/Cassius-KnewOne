@@ -5,8 +5,7 @@
 - if @brand
   - provide :page_class, 'things_brand'
 
-- unless @category || @brand
-  - provide :nav, :things
+- provide :nav, :things
 
 .container-fluid
 
@@ -48,7 +47,7 @@
     = render 'sort_breadcrumb' if @brand || @category
 
   section#things_list.infinite
-    = render partial: 'home/hot_thing', collection: @things, as: :thing
+    = render partial: 'things/thing', collection: @things
 
 - content_for :script do
   javascript:

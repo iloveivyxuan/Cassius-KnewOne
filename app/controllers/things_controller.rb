@@ -38,7 +38,7 @@ class ThingsController < ApplicationController
       format.html do
         if request.xhr?
           if @things.any?
-            render partial: 'home/hot_thing', collection: @things, as: :thing, locals: {img_lazy: false, size: :normal}
+            render @things
           else
             head :no_content
           end
@@ -86,16 +86,6 @@ class ThingsController < ApplicationController
       else
         head :no_content
       end
-    end
-  end
-
-  def random
-    @things = Thing.rand_records (params[:per] || 24).to_i
-
-    respond_to do |format|
-      format.html {}
-      format.js
-      format.json { render 'things/index' }
     end
   end
 
@@ -197,10 +187,6 @@ class ThingsController < ApplicationController
       format.html { redirect_to @thing.shop }
       format.json { render json: {type: 'taobao', id: '25312892353'} } #fake
     end
-  end
-
-  def related
-    @things = @thing.related_things
   end
 
   ACTIVITY_TYPES = ['fancy_thing', 'desire_thing', 'own_thing', 'add_to_list']

@@ -50,7 +50,7 @@ section.step#step2
           |  正在流行的新奇酷
       .panel-body
         .things
-          = render partial: 'home/hot_thing', collection: Thing.hot.limit(12), as: :thing
+          = render partial: 'things/thing', collection: Thing.hot.limit(12)
 
 /-- END #step2 --/
 
