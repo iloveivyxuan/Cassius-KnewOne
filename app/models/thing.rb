@@ -69,6 +69,7 @@ class Thing < Post
     dsell: "自销"
   }
   validates :stage, inclusion: {in: STAGES.keys}
+  index stage: 1
   before_save :update_stage
 
   field :adoption, type: Boolean, default: false
