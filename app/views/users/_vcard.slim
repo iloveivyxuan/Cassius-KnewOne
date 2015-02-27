@@ -19,8 +19,8 @@
       .vcard-action
         button.btn#select_canopy_btn type="button" 选择背景
         button.btn#upload_canopy_btn type="button"
-          | 上传自定义背景
-          input type="file"
+          span 上传自定义背景
+          = file_field_tag "file", accept: "image/*", data: upyun_data(:default)
     .vcard-friendship
       .vcard-follows itemprop="follows"
         = link_to followings_user_path(@user), class: 'vcard-followings'
