@@ -177,7 +177,6 @@ Making::Application.routes.draw do
 
   resources :things do
     collection do
-      get 'random'
       post 'create_by_extractor'
       get 'extract_url'
       get 'categories/*categories', to: 'things#index'
