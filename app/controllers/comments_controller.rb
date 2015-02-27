@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
     @comment.author = current_user
 
     if @comment.save
-      respond_with @comment
+      respond_with @comment, location: comment_url
       @comment.author.log_activity :comment, (@post || @thing_list), check_recent: true
     else
       head :unprocessable_entity
@@ -43,5 +43,13 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:content)
+  end
+
+  def comment_url
+    if @post
+      post_comment_url(@post, @comment)
+    else
+      thing_list_comment_url(@thing_list, @comment)
+    end
   end
 end
