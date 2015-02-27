@@ -192,7 +192,6 @@ Making::Application.routes.draw do
       post 'fancy'
       post 'own'
       get 'buy'
-      get 'related'
       get 'coupon'
     end
 

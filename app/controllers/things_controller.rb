@@ -189,10 +189,6 @@ class ThingsController < ApplicationController
     end
   end
 
-  def related
-    @things = @thing.related_things
-  end
-
   ACTIVITY_TYPES = ['fancy_thing', 'desire_thing', 'own_thing', 'add_to_list']
   def activities
     @activities = Activity.visible.by_reference(@thing)
