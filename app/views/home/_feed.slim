@@ -1,6 +1,6 @@
 article.feed
   - if feed.thing
-    = render 'hot_thing', thing: feed.thing
+    = render feed.thing
 
     - activities = feed.activities_not_from_reviews
     - if activities.present?

@@ -1,44 +1,24 @@
-- fanciable = true if fanciable.nil?
--
-- cache_unless user_signed_in?, [thing, fanciable]
-  - present thing do |tp|
-    li
-      figure class="thing"
-        - if request.path == '/search.js'
-          - if thing.brand
-            = link_to brand_things_path(thing.brand.id.to_s) do
-              .brand
-                | 品牌
-              .brand-text
-                = thing.brand_name
-          - else
-            .brand
-            .brand-text
+- cache_unless user_signed_in?, [thing, browser.mobile?]
+  - present thing do |thing_presenter|
+    article.thing
+      header.cover
+        = link_to thing, class: "cover-inner", target: "_blank" do
+          - version = browser.mobile? ? 'thing.fixed.small' : 'thing.fixed.big'
+          = thing_presenter.photo_lazy version
+      section.content
+        h4.title= link_to thing.title, thing, target: "_blank", title: thing.title
+      footer.info
+        - if thing_presenter.has_owner? || thing_presenter.has_review?
+          .stats
+            - if thing_presenter.has_owner?
+              = link_to thing, target: "_blank" do
+                i.fa.fa-check-circle-o
+                = thing_presenter.owners_count
+            - if thing_presenter.has_review?
+              = link_to thing_reviews_path(thing), class: "reviews_count", target: "_blank" do
+                i.fa.fa-pencil
+                = thing_presenter.reviews_count
 
-          hr
-        - if tp.self_run?
-          = link_to tp.thing, class: "pre_ribbon #{tp.stage}" do
-            span= tp.stage_text
-        .thing_thumb
-          - if fanciable
-            = img_lazy ? tp.photo_lazy(size) : tp.photo(size)
-            .thing_fancy
-              = link_to "", tp.thing, class: "thing_fancy_backdrop", target: "_blank"
-              .fanciers = render "shared/fancy", thing: thing, from: "things"
-          - else
-            = link_to tp.thing, target: "_blank"
-              = img_lazy ? tp.photo_lazy(size) : tp.photo(size)
-        figcaption
-          h5 data-toggle="tooltip" data-placement="top" title=tp.title
-            = link_to tp.title, tp.thing, target: '_blank'
-          em.figure_detail
-            span.fanciers
-              i.fa.fa-heart
-              = tp.fanciers_count
-            - if tp.thing.owners_count > 0
-              span.owners
-                i.fa.fa-check
-                = tp.owners_count
-            - if tp.thing.reviews_count > 0
-              = link_to_with_icon tp.reviews_count, "fa fa-pencil", thing_reviews_path(tp.thing),
-              target: "_blank", class: "reviews_count"
+        .interactions
+          span.fancy_button = render "shared/fancy", thing: thing, from: "hits"
+          = render "thing_lists/link_to_add_list", thing_id: thing.id.to_s, text: ''

@@ -1,6 +1,6 @@
 - @batch.times do |i|
   .hits_group
-    = render partial: 'hot_thing', collection: @things[6*i...6*(i+1)], as: :thing
+    = render partial: 'things/thing', collection: @things[6*i...6*(i+1)]
 
     - if i.even?
       = render @thing_lists[i / 2], layout: browser.mobile? ? :grid : :quintet
