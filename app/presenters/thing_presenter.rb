@@ -208,13 +208,9 @@ class ThingPresenter < PostPresenter
   end
 
   def stage
-    if thing.stage == :dsell
-      if thing.valid_kinds.size == 0
-        :concept
-      else
-        Kind::STAGES.keys.each do |s|
-          return s if thing.valid_kinds.map(&:stage).include?(s)
-        end
+    if thing.stage == :dsell && thing.valid_kinds.size > 0
+      Kind::STAGES.keys.each do |s|
+        return s if thing.valid_kinds.map(&:stage).include?(s)
       end
     else
       thing.stage
