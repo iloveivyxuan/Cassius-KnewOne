@@ -17,7 +17,7 @@ class Thing < Post
   field :official_site, type: String, default: ""
   field :photo_ids, type: Array, default: []
 
-  has_and_belongs_to_many :categories, inverse_of: nil,
+  has_and_belongs_to_many :categories, inverse_of: nil, index: true,
                           after_add: :after_add_category,
                           after_remove: :after_remove_category
 
