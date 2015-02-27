@@ -188,7 +188,7 @@ class Thing < Post
   scope :published, -> { lt(created_at: Time.now) }
   scope :reviewed, -> { gt(reviews_count: 0).desc(:priority, :created_at) }
   scope :prior, -> { gt(priority: 0).desc(:priority, :created_at) }
-  scope :self_run, -> { send :in, stage: [:dsell, :pre_order] }
+  scope :self_run, -> { self.in(stage: [:dsell, :pre_order]) }
   scope :price_between, ->(from, to) { where :price.gt => from, :price.lt => to }
   scope :approved, -> { gte(priority: 0) }
   scope :recommended, -> { gt(priority: 0) }
