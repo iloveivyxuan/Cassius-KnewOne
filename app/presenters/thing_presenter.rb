@@ -38,8 +38,7 @@ class ThingPresenter < PostPresenter
   end
 
   def price
-    return unless self.buy
-    return unless thing.price.present?
+    return unless thing.price.to_i > 0
 
     price = thing.displayed_price ? thing.displayed_price : thing.price
     price_format price, thing.price_unit
