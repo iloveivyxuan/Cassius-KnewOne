@@ -1,7 +1,7 @@
 - case rand(12)
   - when 0..5
     - exclusions = @feeds.map { |f| f.thing.try(:id) }.compact
-    - thing = Thing.hot.recommended.nin(id: exclusions).skip(rand(60)).first
+    - thing = Thing.hot.approved.nin(id: exclusions).skip(rand(60)).first
     = render 'hot_thing', thing: thing
   - when 6..7
     - exclusions = @feeds.flat_map { |f| f.reviews.map(&:id) }

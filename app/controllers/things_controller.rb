@@ -25,8 +25,14 @@ class ThingsController < ApplicationController
       @things = @things.desc(:created_at)
     end
 
+    if params[:categories].present? || params[:brand].present?
+      @things = @things.approved
+    else
+      @things = @things.recommended
+    end
+
     @things ||= Thing.all
-    @things = @things.published.recommended.page(params[:page]).per((params[:per] || 24).to_i)
+    @things = @things.published.page(params[:page]).per((params[:per] || 24).to_i)
 
     respond_to do |format|
       format.html do
