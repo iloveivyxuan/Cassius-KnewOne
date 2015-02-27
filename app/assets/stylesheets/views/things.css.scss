@@ -1879,37 +1879,35 @@ html.feelings_show {
         }
 
         figure.thing {
-          overflow: hidden;
-          position: relative;
+          padding: 1em;
           background: #fff;
-          @include border-radius(0);
+
           .thing_thumb {
-            position:relative;
-            width: 100%;
+            position: relative;
             height: 0;
             padding-bottom: 70%;
-            text-align:center;
-            display:block;
+
             img {
-              position:absolute;
-              top:0;
-              bottom:0;
-              left:0;
-              right:0;
-              margin:auto;
-              max-height:100%;
-              max-width:100%;
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              margin: auto;
+              max-height: 100%;
+              max-width: 100%;
             }
           }
+
           figcaption {
             h5 {
               a {
+                @include text-overflow;
+
                 display: block;
-                overflow: hidden;
+                text-align: center;
                 font-size: 14px;
                 color: $text-color;
-                text-overflow: ellipsis;
-                white-space: nowrap;
               }
             }
           }
