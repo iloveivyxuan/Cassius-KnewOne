@@ -8,8 +8,9 @@
       h4.title= link_to thing.title, thing, target: "_blank", title: thing.title
     footer.info
       .shopping
-        = link_to thing, target: "_blank" do
-          = thing_presenter.price
+        - price = thing_presenter.price
+        - if price.present?
+          = link_to price, thing, target: "_blank"
         = link_to thing_presenter.stage_text, thing, target: "_blank"
 
         - if thing_presenter.can_consume_bong_point?
