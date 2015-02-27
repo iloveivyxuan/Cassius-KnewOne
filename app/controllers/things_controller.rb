@@ -32,7 +32,7 @@ class ThingsController < ApplicationController
     end
 
     @things ||= Thing.all
-    @things = @things.published.page(params[:page]).per((params[:per] || 24).to_i)
+    @things = @things.published.page(params[:page]).per(24)
 
     respond_to do |format|
       format.html do
@@ -199,7 +199,7 @@ class ThingsController < ApplicationController
       @activities = @activities.by_types(*ACTIVITY_TYPES)
     end
 
-    @activities = @activities.page(params[:page]).per(params[:per] || 24)
+    @activities = @activities.page(params[:page]).per(24)
 
     respond_to do |format|
       format.html do
