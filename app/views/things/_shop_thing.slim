@@ -1,18 +1,19 @@
-- present thing do |thing_presenter|
-  article.thing.shop_thing
-    header.cover
-      = link_to thing, class: "cover-inner", target: "_blank" do
-        - version = browser.mobile? ? 'thing.fixed.small' : 'thing.fixed.big'
-        = thing_presenter.photo_lazy version
-    section.content
-      h4.title= link_to thing.title, thing, target: "_blank", title: thing.title
-    footer.info
-      .shopping
-        - price = thing_presenter.price
-        - if price.present?
-          = link_to price, thing, target: "_blank"
-        = link_to thing_presenter.stage_text, thing, target: "_blank"
+- cache ['shop_thing', thing, browser.mobile?]
+  - present thing do |thing_presenter|
+    article.thing.shop_thing
+      header.cover
+        = link_to thing, class: "cover-inner", target: "_blank" do
+          - version = browser.mobile? ? 'thing.fixed.small' : 'thing.fixed.big'
+          = thing_presenter.photo_lazy version
+      section.content
+        h4.title= link_to thing.title, thing, target: "_blank", title: thing.title
+      footer.info
+        .shopping
+          - price = thing_presenter.price
+          - if price.present?
+            = link_to price, thing, target: "_blank"
+          = link_to thing_presenter.stage_text, thing, target: "_blank"
 
-        - if thing_presenter.can_consume_bong_point?
-          span.bong-point title="可最多抵扣 #{thing_presenter.max_bong_point} 个 bong 活跃点"
-            = "活跃点 #{thing_presenter.max_bong_point}"
+          - if thing_presenter.can_consume_bong_point?
+            span.bong-point title="可最多抵扣 #{thing_presenter.max_bong_point} 个 bong 活跃点"
+              = "活跃点 #{thing_presenter.max_bong_point}"
