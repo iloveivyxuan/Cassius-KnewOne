@@ -117,6 +117,12 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def invite
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def thing_layout
