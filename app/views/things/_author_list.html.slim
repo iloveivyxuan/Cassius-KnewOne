@@ -1,3 +1,4 @@
-- list = thing.lists.where(author: thing.author, :size.gte => 4).first
-- if list
-  .author_list= render partial: 'things/thing_list', locals: {thing_list: list, thing: thing, layout: :bottom_stack}
+- cache ['things', 'author_list', thing], expires_in: 1.hour
+  - list = thing.lists.where(author: thing.author, :size.gte => 4).first
+  - if list
+    .author_list= render partial: 'things/thing_list', locals: {thing_list: list, thing: thing, layout: :bottom_stack}

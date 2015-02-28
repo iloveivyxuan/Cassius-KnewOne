@@ -1,11 +1,12 @@
-- if thing.lists.present?
-  .other_lists
-    - lists = thing.lists.where(:author.ne => thing.author, :name.nin => thing.categories.pluck(:name), :size.gte => min_size)
-    - lists = lists.desc(:fanciers_count).limit(limit)
-    = render partial: 'things/thing_list', collection: lists, locals: {thing: thing, layout: :grid}
+- cache ['things', 'other_lists', thing, limit], expires_in: 1.hour
+  - if thing.lists.present?
+    .other_lists
+      - lists = thing.lists.where(:author.ne => thing.author, :name.nin => thing.categories.pluck(:name), :size.gte => min_size)
+      - lists = lists.desc(:fanciers_count).limit(limit)
+      = render partial: 'things/thing_list', collection: lists, locals: {thing: thing, layout: :grid}
 
-    - if thing.lists.qualified.size > 2
-      .show_all_lists
-        = link_to [:lists, thing]
-          | 收藏此产品的全部列表
-          i.fa.fa-chevron-right
+      - if thing.lists.qualified.size > 2
+        .show_all_lists
+          = link_to [:lists, thing]
+            | 收藏此产品的全部列表
+            i.fa.fa-chevron-right
