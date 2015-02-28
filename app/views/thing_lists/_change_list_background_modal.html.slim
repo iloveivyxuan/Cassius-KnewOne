@@ -1,4 +1,4 @@
-#change_list_background_modal.modal.fade
+#change_list_background_modal.modal.image_picker.fade
   .modal-dialog
     .modal-content
       .modal-header
@@ -7,9 +7,9 @@
         - ThingListBackground.each do |background|
           - next if background.hidden && !current_user.role?(:editor)
 
-          a.thing_list_background_wrapper [href="#"
-            class=('thing_list_background_wrapper--active' if background == thing_list.background)
+          a.image_picker-item [href="#"
+            class=('is-actived' if background == thing_list.background)
             data-id=background.id.to_s
             data-url=background.image.url(browser.mobile? ? 'background.mobile' : :background)]
-            i.fa.fa-check
+            i.image_picker-checkbox.fa.fa-check
             = image_tag background.image.url('thing.fixed.small')
