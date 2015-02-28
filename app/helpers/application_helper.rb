@@ -261,14 +261,6 @@ module ApplicationHelper
     end
   end
 
-  def login_path(path = '')
-    if browser.wechat?
-      user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base')
-    else
-      path.present? ? path : '#'
-    end
-  end
-
   def lazy_image_tag(source, options = {})
     if browser.mobile?
       options['data'] ||= {}

@@ -9,6 +9,6 @@ header#header
       i.fa.fa-bell-o.fa_alone
       span.badge.badge_primary= unread_notifications_count
   - else
-    = link_to_with_icon "登录", "fa fa-sign-in", login_path,
+    = link_to_with_icon "登录", "fa fa-sign-in", "#",
       class: "btn btn-link pull-right",
       data: data_with_login_tracker("nav_mobile", request.path, !browser.wechat?)
