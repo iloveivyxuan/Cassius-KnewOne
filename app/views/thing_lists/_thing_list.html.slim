@@ -1,7 +1,7 @@
 - layout ||= :grid
 - prize ||= false
 
-section.thing_list id="thing_list_#{thing_list.id}"
+article.thing_list id="thing_list_#{thing_list.id}"
   header
     = link_to thing_list, target: "_blank", title: thing_list.name
       = render 'thing_lists/cover', thing_list: thing_list, layout: layout
