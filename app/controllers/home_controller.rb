@@ -44,7 +44,6 @@ class HomeController < ApplicationController
 
       format.html.desktop do
         @categories = Category.top_level.gt(things_count: 10).desc(:things_count)
-        render 'home/landing'
       end
     end
   end
