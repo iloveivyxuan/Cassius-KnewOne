@@ -11,6 +11,10 @@ do (exports = Making) ->
       $dialogWrapper.toggleClass('is-flipped')
 
     $modal.on 'show.bs.modal', (event) ->
+      if exports.browser == 'wechat'
+        event.preventDefault()
+        return Making.logIntoWechat()
+
       $button       = $(event.relatedTarget)
       actionType    = $button.data('action-type')
       legendSignin  = $button.data('signin-legend') || '登录'
