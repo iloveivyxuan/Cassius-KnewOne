@@ -12,14 +12,10 @@ module ThingsHelper
       link_to_with_icon "现在购买", "fa fa-shopping-cart", "#",
       class: "btn btn-buy-mobile--shorten",
       data: data_with_buy_tracker("dsell", thing.title, {toggle: "modal", target: "#mobile_buy_modal"})
-    elsif browser.wechat?
-      link_to_with_icon "现在购买", "fa fa-sign-in", "#",
-      class: "btn btn--orange--true btn--login btn-buy-mobile",
-      data: data_with_login_tracker("dsell", thing.title, !browser.wechat?)
     else
       link_to_with_icon "请登录后购买", "fa fa-sign-in", "#",
       class: "btn btn--login btn-buy-mobile",
-      data: data_with_login_tracker("dsell", thing.title, !browser.wechat?)
+      data: data_with_login_tracker("dsell", thing.title)
     end
   end
 
@@ -30,14 +26,10 @@ module ThingsHelper
       link_to_with_icon "现在购买", "fa fa-shopping-cart", "#",
       class: "btn btn-buy-mobile--shorten",
       data: data_with_buy_tracker("pre_order", thing.title, {toggle: "modal", target: "#mobile_buy_modal"})
-    elsif browser.wechat?
-      link_to_with_icon "现在购买", "fa fa-sign-in", "#",
-      class: "btn btn--orange--true btn--login btn-buy-mobile",
-      data: data_with_login_tracker("pre_order", thing.title, !browser.wechat?)
     else
       link_to_with_icon "请登录后购买", "fa fa-sign-in", "#",
       class: "btn btn--login btn-buy-mobile",
-      data: data_with_login_tracker("pre_order", thing.title, !browser.wechat?)
+      data: data_with_login_tracker("pre_order", thing.title)
     end
   end
 

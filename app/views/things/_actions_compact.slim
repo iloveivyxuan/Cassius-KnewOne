@@ -6,14 +6,9 @@
     - if user_signed_in?
       li.share= tp.link_to_share tp.thing.title
     - else
-      - if browser.wechat?
-        li.share= link_to_with_icon "分享", "fa fa-share-alt", "#", class: "share_btn js-share"
-        - content_for :end do
-          = render 'shared/share_wechat_tip'
-      - else
-        li.share.dropdown
-          = link_to_with_icon "分享", "fa fa-share-alt", "#", class: "share_btn", data: { toggle: "dropdown" }
-          = render 'shared/dropdown_share'
+      li.share.dropdown
+        = link_to_with_icon "分享", "fa fa-share-alt", "#", class: "share_btn", data: { toggle: "dropdown" }
+        = render 'shared/dropdown_share'
 
 - content_for :script do
   javascript:

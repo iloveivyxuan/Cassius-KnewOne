@@ -1,23 +1,17 @@
-- if browser.wechat? && !user_signed_in?
-  = link_to user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base'), data: {toggle: 'wechat_login'} do
-    i.fa.fa-heart-o
-    span.fanciers_count = number_to_human(thing.fanciers_count)
-    small 喜欢
+- if user_signed_in?
+  - impression = thing.impression_by(current_user) || Impression.new
+  - data = {fancy: thing.id.to_s, type: 'fancy', fancied: impression.fancied, state: impression.state}
 - else
-  - if user_signed_in?
-    - impression = thing.impression_by(current_user) || Impression.new
-    - data = {fancy: thing.id.to_s, type: 'fancy', fancied: impression.fancied, state: impression.state}
-  - else
-    - data = {toggle: "modal", target: "#login-modal", link: thing_url(thing), "signin-legend" => "登录后，收集喜欢的产品"}
-  - data.merge!({ category: "thing", action: "fancy", label: thing.title })
+  - data = {toggle: "modal", target: "#login-modal", link: thing_url(thing), "signin-legend" => "登录后，收集喜欢的产品"}
+- data.merge!({ category: "thing", action: "fancy", label: thing.title })
 
-  - fancied = data[:fancied]
-  - desired = fancied && thing.desired?(current_user)
-  - title = fancied ? '修改产品印象' : '喜欢此产品'
-  - fancy_class = fancied ? (desired ? "desired" : "fancied") : "unfancied"
-  - icon_class = fancied ? (desired ? "fa-desire" : "fa-heart") : "fa-heart-o"
+- fancied = data[:fancied]
+- desired = fancied && thing.desired?(current_user)
+- title = fancied ? '修改产品印象' : '喜欢此产品'
+- fancy_class = fancied ? (desired ? "desired" : "fancied") : "unfancied"
+- icon_class = fancied ? (desired ? "fa-desire" : "fa-heart") : "fa-heart-o"
 
-  = link_to "#", class: fancy_class, title: title, data: data do
-    i.fa class=icon_class
-    span.fanciers_count = number_to_human(thing.fanciers_count)
-    small 喜欢
+= link_to "#", class: fancy_class, title: title, data: data do
+  i.fa class=icon_class
+  span.fanciers_count = number_to_human(thing.fanciers_count)
+  small 喜欢

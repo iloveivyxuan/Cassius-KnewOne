@@ -1,23 +1,17 @@
-- if browser.wechat? && !user_signed_in?
-  = link_to user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base') do
-    i.fa.fa-circle-o
-    span.owners_count = number_to_human(thing.owners_count)
-    small 拥有
+- if user_signed_in?
+  - impression = thing.impression_by(current_user) || Impression.new
+  - data = {fancy: thing.id.to_s, type: 'own', fancied: impression.fancied, state: impression.state}
 - else
-  - if user_signed_in?
-    - impression = thing.impression_by(current_user) || Impression.new
-    - data = {fancy: thing.id.to_s, type: 'own', fancied: impression.fancied, state: impression.state}
-  - else
-    - data = {toggle: "modal", target: "#login-modal", "signin-legend" => "登录后，标注拥有的产品"}
-  - data.merge!({category: "thing", action: "own", label: thing.title})
+  - data = {toggle: "modal", target: "#login-modal", "signin-legend" => "登录后，标注拥有的产品"}
+- data.merge!({category: "thing", action: "own", label: thing.title})
 
-  - owned = data[:state] == :owned
+- owned = data[:state] == :owned
 
-  - title = owned ? "修改产品印象" : "拥有此产品"
-  - own_class = owned ? "owned" : "unowned"
-  - icon_class = owned ? "fa-check-circle-o" : "fa-circle-o"
+- title = owned ? "修改产品印象" : "拥有此产品"
+- own_class = owned ? "owned" : "unowned"
+- icon_class = owned ? "fa-check-circle-o" : "fa-circle-o"
 
-  = link_to '#', class: own_class, title: title, data: data do
-    i.fa class=icon_class
-    span.owners_count = number_to_human(thing.owners_count)
-    small 拥有
+= link_to '#', class: own_class, title: title, data: data do
+  i.fa class=icon_class
+  span.owners_count = number_to_human(thing.owners_count)
+  small 拥有
