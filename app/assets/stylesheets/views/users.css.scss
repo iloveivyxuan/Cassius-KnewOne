@@ -94,7 +94,7 @@ html[class^="users_"] {
       right: -1000%;
       top: -1000%;
 
-      @media (min-width: 1440px) {
+      @media (min-width: $screen-lg-min) {
         width: 100%;
       }
     }
