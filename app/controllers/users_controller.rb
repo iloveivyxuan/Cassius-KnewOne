@@ -120,15 +120,12 @@ class UsersController < ApplicationController
 
   def set_profile
     user = User.find params[:id]
-
-    respond_to do |format|
-      if user != current_user
-        format.json { render json: { status: "error" } }
-      elsif params[:canopy].present?
-        status = user.update(canopy: params[:canopy]) ? "ok" : "error"
-        format.json { render json: { status: status } }
-      end
+    if user != current_user
+      success = false
+    elsif params[:canopy].present?
+      success = user.update(canopy: params[:canopy]) ? true : false
     end
+    head success ? :ok : :not_acceptable
   end
 
   private
