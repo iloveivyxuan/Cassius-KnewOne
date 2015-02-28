@@ -1,15 +1,16 @@
-- klass ||= ''
+- if @thing.owners_count > 0
+  - klass ||= ''
+  - data = { category: "thing", action: "review_ask", label: @thing.title }
+  - if user_signed_in?
+    - if current_user.followings_count > 0
+      = link_to [:invite, @thing, :reviews], class: klass, method: :post, remote: true
+        i.fa class=icon_class
+        span = text
+  - else
+    = link_to '#', class: klass, data: data.merge({ toggle: "modal", target: "#login-modal" })
+      i.fa class=icon_class
+      span = text
 
-- data = { category: "thing", action: "review_ask", label: @thing.title }
-- if user_signed_in?
-  = link_to [:invite, @thing, :reviews], class: klass, method: :post, remote: true
-    i.fa class=icon_class
-    span = text
-- else
-  = link_to '#', class: klass, data: data.merge({ toggle: "modal", target: "#login-modal" })
-    i.fa class=icon_class
-    span = text
-
-- if user_signed_in?
-  - content_for :end do
-    #invite-review-modal.modal.fade
+  - if user_signed_in?
+    - content_for :end do
+      #invite-review-modal.modal.fade
