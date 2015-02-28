@@ -20,5 +20,5 @@
                 = thing_presenter.reviews_count
 
         .interactions
-          span.fancy_button = render "shared/fancy", thing: thing, from: "hits"
+          span.fancy_button = render "shared/fancy", thing: thing
           = render "thing_lists/link_to_add_list", thing_id: thing.id.to_s, text: ''
