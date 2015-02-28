@@ -2,6 +2,7 @@
 - provide :description, "#{@thing.title},#{@thing.subtitle},来 KnewOne，分享科技设计产品，发现更好的生活"
 - provide :feed, thing_url(@thing, format: "atom")
 - provide :wechat_cover_url, @thing.cover.url(:small)
+- provide :sharing_cover, @thing.cover.url
 - provide :load_customer_service, true
 - page_css 'things'
 
