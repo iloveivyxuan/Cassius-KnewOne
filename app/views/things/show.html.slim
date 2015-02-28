@@ -4,6 +4,8 @@
 
 - present @thing do |tp|
   - page_title "#{tp.full_title} 来 KnewOne ，分享科技设计产品，发现更好的生活"
+  .sharing_cover.hide
+    img src=@thing.cover.url(:wechat)
   = render "carousel", tp: tp
   = render 'actions_compact', tp: tp
   = render "summary", tp: tp
