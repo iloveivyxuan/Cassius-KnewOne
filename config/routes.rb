@@ -196,6 +196,10 @@ Making::Application.routes.draw do
     end
 
     resources :reviews do
+      collection do
+        post 'invite'
+      end
+
       member do
         post 'vote'
         post 'unvote'

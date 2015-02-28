@@ -49,7 +49,7 @@ class Ability
     end
 
     can :create, ReviewPhoto
-    can :create, Review
+    can [:create, :invite], Review
     can [:update, :destroy], Review do |review|
       review.author == user
     end

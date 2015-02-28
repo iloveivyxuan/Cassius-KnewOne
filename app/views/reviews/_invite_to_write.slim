@@ -2,7 +2,7 @@
 
 - data = { category: "thing", action: "review_ask", label: @thing.title }
 - if user_signed_in?
-  = link_to "#", class: klass, data: data.merge({ toggle: "modal", target: "#invite-review-modal" })
+  = link_to [:invite, @thing, :reviews], class: klass, method: :post, remote: true
     i.fa class=icon_class
     span = text
 - else
@@ -10,25 +10,6 @@
     i.fa class=icon_class
     span = text
 
-- if user_signed_in? && @thing.owners_count > 0 && current_user.followings_count > 0
+- if user_signed_in?
   - content_for :end do
     #invite-review-modal.modal.fade
-      .modal-dialog
-        .modal-content
-          .modal-header
-            button.close type="button" data-dismiss="modal"
-              span aria-hidden="true" &times;
-              span.sr-only Close
-            h4.modal-title 拥有该产品的用户
-          .modal-body
-            table class="table table-hover"
-              tbody
-                - User.related_users_and_owned(@thing, current_user, 30).each do |owner|
-                  - unless owner.has_been_invited_by?(current_user, @thing)
-                    - message_content = "#{request.original_url}\n\n我看到你点拥有了，求评测！"
-                    - data = { 'private-message' => true, 'user-id' => owner.id.to_s, 'user-name' => owner.name, 'content' => message_content }
-                    tr
-                      td
-                        = owner.name
-                        .pull-right
-                          = button_tag "邀请 TA 写评测", class: "btn btn-invite-review btn-primary hidden-xs", data: data
