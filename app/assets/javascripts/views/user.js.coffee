@@ -26,6 +26,7 @@ do (exports = window.Making || {}) ->
             $uploadCanopyBtn.disable()
           done: (event, data) ->
             url = $uploadCanopyField.data('domain') + data.jqXHR.responseJSON.url
+            version = $canopy.attr('src').split('!')[1]
 
             $
               .ajax
@@ -34,7 +35,7 @@ do (exports = window.Making || {}) ->
                 data:
                   canopy: url
               .done (data, status, jqXHR) ->
-                $canopy.attr('src', url)
+                $canopy.attr('src', url + '!' + version)
                 $uploadCanopyBtn.enable()
                 $uploadCanopyTip.text($uploadCanopyTip.data('tip'))
               .fail (jqXHR, status, error) ->
