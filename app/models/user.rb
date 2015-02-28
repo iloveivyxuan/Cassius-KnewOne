@@ -125,6 +125,10 @@ class User
   skip_callback :save, :after, :remove_previously_stored_avatar
   scope :only_with_avatars, -> { only(:id, :name, :avatar) }
 
+  CANOPYS = [
+    'http://image.knewone.com/photos/0e8d53847adc2b1e78740c55e553eefa.jpg',
+    'http://image.knewone.com/photos/2205578c874e7c5c7d13223e215cc794.jpg'
+  ]
   field :canopy, type: String, :default => "http://image.knewone.com/photos/cebdb91be4a5334148ecb29c2bf18f83.jpg"
 
   ## Omniauthable

@@ -7,6 +7,14 @@ do (exports = window.Making || {}) ->
       $selectCanopyBtn   = $('#select_canopy_btn')
       $uploadCanopyField = $('#file')
       $uploadCanopyTip   = $uploadCanopyBtn.find('span')
+      canopySize         = $canopy.attr('src').split('!')[1]
+
+      updateCanopyRequest = (url) ->
+        return $.ajax
+            url: "#{window.location.origin}/users/#{exports.user}/set_profile"
+            type: 'POST'
+            data:
+              canopy: url
 
       $uploadCanopyField
         .fileupload
@@ -28,16 +36,10 @@ do (exports = window.Making || {}) ->
             $selectCanopyBtn.disable()
           done: (event, data) ->
             url = $uploadCanopyField.data('domain') + data.jqXHR.responseJSON.url
-            version = $canopy.attr('src').split('!')[1]
-
-            $
-              .ajax
-                url: "#{window.location.origin}/users/#{exports.user}/set_profile"
-                type: 'POST'
-                data:
-                  canopy: url
+            request = updateCanopyRequest(url)
+            request
               .done (data, status, jqXHR) ->
-                $canopy.attr('src', url + '!' + version)
+                $canopy.attr('src', url + '!' + canopySize)
                 $uploadCanopyBtn.enable()
                 $selectCanopyBtn.enable()
                 $uploadCanopyTip.text($uploadCanopyTip.data('tip'))
@@ -49,6 +51,14 @@ do (exports = window.Making || {}) ->
             $uploadCanopyBtn.enable()
             $selectCanopyBtn.enable()
             $uploadCanopyTip.text('上传失败，请重试')
+
+      exports.imagePicker
+        el: '#user_canopy_picker_modal'
+        after: (url) ->
+          request = updateCanopyRequest(url)
+          request
+            .done (data, status, jqXHR) ->
+              $canopy.attr('src', url)
 
       if $html.is('.users_activities:not(.users_activities_text)')
         $waterfall = $('.js-waterfall')
