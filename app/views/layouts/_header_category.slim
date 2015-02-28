@@ -1,5 +1,5 @@
-- cache ['header_categories', content_for(:nav)], expires_in: 1.hour
-  = nav_tab :categories, class: 'nav_flyout dropdown' do
+= nav_tab :categories, class: 'nav_flyout dropdown'
+  - cache 'header_categories', expires_in: 1.hour
     = link_to categories_path do
       | 产品
       i.fa.fa-caret-down
