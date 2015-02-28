@@ -1,3 +1,7 @@
+- @things = @things.to_a
+- @thing_lists = @thing_lists.to_a
+- @reviews = @reviews.to_a
+
 - @batch.times do |i|
   .hits_group
     = render partial: 'things/thing', collection: @things[6*i...6*(i+1)]
