@@ -4,16 +4,16 @@ do (exports = Making) ->
     $imagePicker = $(options.el)
 
     $imagePicker.on 'click', '.image_picker-item', (event) ->
-      $item = $(this)
-      url   = $item.data('url')
+      $activeItem = $(this)
+      url         = $activeItem.data('url')
 
       event.preventDefault()
 
-      $item
+      $activeItem
         .addClass('is-actived')
       .siblings()
         .removeClass('is-actived')
 
-      options.after.call($imagePicker, url) if options.after
+      options.after.call($imagePicker, $activeItem, url) if options.after
 
   return exports

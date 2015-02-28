@@ -54,7 +54,7 @@ do (exports = window.Making || {}) ->
 
       exports.imagePicker
         el: '#user_canopy_picker_modal'
-        after: (url) ->
+        after: ($activeItem, url) ->
           request = updateCanopyRequest(url)
           request
             .done (data, status, jqXHR) ->
