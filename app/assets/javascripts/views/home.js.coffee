@@ -6,11 +6,4 @@ window.Making = do (exports = window.Making || {}) ->
 
     Making.Feeling("#feeds")
 
-  exports.InitHomeGuest = ->
-    switch exports.device
-      when 'mobile', 'tablet'
-        exports.infiniteScroll('#wrapper > .hits', '/hits')
-      else
-        exports.initSearchForm('#search_form')
-
   exports

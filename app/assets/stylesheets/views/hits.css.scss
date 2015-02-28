@@ -17,7 +17,7 @@ html.home_hits .container-fluid {
   }
 }
 
-html.landing_mobile, html.home_hits {
+html.home_hits {
   header.jumptron {
     @include clearfix;
 
@@ -27,7 +27,7 @@ html.landing_mobile, html.home_hits {
   }
 }
 
-html.home_hits section.hits, html.landing_mobile section.hits {
+html.home_hits section.hits {
   @include clearfix;
   $gutter: 20px;
   $font-color: #777777;

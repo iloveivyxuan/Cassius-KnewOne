@@ -35,13 +35,11 @@ class HomeController < ApplicationController
 
     respond_to do |format|
       format.html.mobile do
-        hits
-        render 'home/landing.html+mobile' unless request.xhr?
+        redirect_to hits_url
       end
 
       format.html.tablet do
-        hits
-        render 'home/landing.html+mobile' unless request.xhr?
+        redirect_to hits_url
       end
 
       format.html.desktop do
