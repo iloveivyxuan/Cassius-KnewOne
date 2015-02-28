@@ -5,10 +5,6 @@
     = button_tag tp.thing.adopt, type: "button", class: "btn btn--adoption buy_button", data: data_with_buy_tracker("adoption", tp.thing.title, {toggle: "modal", target: "#adoption-modal"})
     - content_for :end do
       = render 'shared/adoption_modal', tp: tp
-- elsif browser.wechat?
-  = link_to tp.thing.adopt, login_path,
-  class: "btn btn--adoption buy_button cart_login",
-  data: data_with_login_tracker("adoption", tp.thing.title, false)
 - else
   = link_to tp.thing.adopt, "#",
   class: "btn btn--adoption buy_button cart_login",

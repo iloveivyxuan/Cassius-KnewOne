@@ -19,12 +19,4 @@ class ApplicationPresenter
   def price_format(price, unit='￥')
     number_to_currency(price, precision: 0, unit: unit, format: '%u%n')
   end
-
-  def login_path(path = '')
-    if browser.wechat?
-      user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base')
-    else
-      path.present? ? path : '#'
-    end
-  end
 end

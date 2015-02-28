@@ -2,30 +2,24 @@
 - icon_class = 'fa fa-thumbs-up fa-fw'
 - icon_class += ' heartbeat' if heartbeat
 
-- if browser.wechat? && !user_signed_in?
-  = link_to user_omniauth_authorize_path(:wechat, state: request.fullpath, scope: 'snsapi_base'), class: 'btn btn--like' do
-    i class=icon_class
-    - if object.lovers_count > 0
+- cache ['voting', user_signed_in? ? [heartbeat, object, object.voted?(current_user)] : object.lovers_count]
+  - if user_signed_in?
+    - action = object.voted?(current_user) ? :unvote : :vote
+    - url = polymorphic_path([action, object.try(:thing) || object.try(:group), object])
+    span.voting
+      - if object.voted?(current_user)
+        = link_to url, remote: true, method: :post, title: "取消赞", class: "btn btn--like done" do
+          i class=icon_class
+          - if object.lovers_count > 0
+            span = object.lovers_count
+      - else
+        - klass = object.class.to_s.downcase
+        - data = fancy_tracker(klass, object)
+        = link_to url, remote: true, method: :post, title: "赞", class: "btn btn--like", data: data do
+          i class=icon_class
+          - if object.lovers_count > 0
+            span = object.lovers_count
+  - else
+    = link_to '#', data: {target: '#login-modal', toggle: 'modal', 'signin-legend' => '登录后点赞'}, class: 'btn btn--like' do
+      i class=icon_class
       span = object.lovers_count
-- else
-  - cache ['voting', user_signed_in? ? [heartbeat, object, object.voted?(current_user)] : object.lovers_count]
-    - if user_signed_in?
-      - action = object.voted?(current_user) ? :unvote : :vote
-      - url = polymorphic_path([action, object.try(:thing) || object.try(:group), object])
-      span.voting
-        - if object.voted?(current_user)
-          = link_to url, remote: true, method: :post, title: "取消赞", class: "btn btn--like done" do
-            i class=icon_class
-            - if object.lovers_count > 0
-              span = object.lovers_count
-        - else
-          - klass = object.class.to_s.downcase
-          - data = fancy_tracker(klass, object)
-          = link_to url, remote: true, method: :post, title: "赞", class: "btn btn--like", data: data do
-            i class=icon_class
-            - if object.lovers_count > 0
-              span = object.lovers_count
-    - else
-      = link_to '#', data: {target: '#login-modal', toggle: 'modal', 'signin-legend' => '登录后点赞'}, class: 'btn btn--like' do
-        i class=icon_class
-        span = object.lovers_count
