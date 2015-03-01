@@ -25,7 +25,12 @@ class Impression
   field :desired_at, type: Time
   field :owned_at, type: Time
 
-  validates :state, inclusion: {in: %i(none desired owned)}
+  STATES = {
+    none: '',
+    desired: '想要',
+    owned: '拥有'
+  }
+  validates :state, inclusion: {in: STATES.keys}
 
   scope :by_user, ->(user) { where(author: user) }
   scope :of_thing, ->(thing) { where(thing: thing) }
