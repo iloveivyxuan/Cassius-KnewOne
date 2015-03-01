@@ -1,0 +1,12 @@
+#user_canopy_picker_modal.modal.image_picker.fade aira-hidden="true"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        a.close href="#" data-dismiss="modal" ×
+      .modal-body
+        - User::CANOPYS.each do |canopy|
+          a.image_picker-item [href="#"
+            class=('is-active' if canopy == user.canopy)
+            data-url=canopy]
+            i.image_picker-checkbox.fa.fa-check
+            = image_tag "#{canopy}!thing.fixed.small"

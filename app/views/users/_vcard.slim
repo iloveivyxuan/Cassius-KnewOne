@@ -2,7 +2,7 @@
   header.vcard itemscope="itemscope" itemtype="http://schema.org/Person"
     figure.vcard-canopy
       - version = browser.mobile? ? :wechat : :background
-      = image_tag "http://image.knewone.com/photos/cebdb91be4a5334148ecb29c2bf18f83.jpg!#{version}", alt: "canopy"
+      = image_tag "#{@user.canopy}!#{version}", alt: "canopy"
       .vcard-canopy-mask
     .vcard-main
       = link_to @user, class: "vcard-avatar" do
@@ -15,6 +15,14 @@
       .vcard-gender itemprop="gender" = symbolize_gender(@user.gender)
       - if @user.description.present?
         p.vcard-description itemprop="description" = @user.description
+    - if @user == current_user
+      .vcard-action
+        button.btn#select_canopy_btn data-toggle="modal" data-target="#user_canopy_picker_modal" type="button" 选择背景
+        - content_for :end do
+          = render 'canopy_picker_modal', user: @user
+        button.btn#upload_canopy_btn type="button"
+          span 上传自定义背景
+          = file_field_tag "file", accept: "image/*", data: upyun_data(:default)
     .vcard-friendship
       .vcard-follows itemprop="follows"
         = link_to followings_user_path(@user), class: 'vcard-followings'

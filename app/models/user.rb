@@ -125,6 +125,18 @@ class User
   skip_callback :save, :after, :remove_previously_stored_avatar
   scope :only_with_avatars, -> { only(:id, :name, :avatar) }
 
+  CANOPYS = [
+    'http://image.knewone.com/photos/0e8d53847adc2b1e78740c55e553eefa.jpg',
+    'http://image.knewone.com/photos/71a9c6b6b64def98c19f0c19f399cfba.jpg', 
+    'http://image.knewone.com/photos/dd2699adc803ccf0420f442b29674d79.jpg', 
+    'http://image.knewone.com/photos/2baffd379fed9420af647ceefabf1256.jpg', 
+    'http://image.knewone.com/photos/a3feeac5922c1ca976e32463360ccc6b.jpg', 
+    'http://image.knewone.com/photos/ea4d728679d3d14db4ae2c988e5c307a.jpg', 
+    'http://image.knewone.com/photos/1c5228b8da2d5b38ea355a6a7bb58dc0.jpg', 
+    'http://image.knewone.com/photos/417630b019e3c3a180b510d1c7ad5bb4.jpg'
+  ]
+  field :canopy, type: String, :default => "http://image.knewone.com/photos/cebdb91be4a5334148ecb29c2bf18f83.jpg"
+
   ## Omniauthable
   embeds_many :auths
   index 'auths.uid' => 1
