@@ -129,6 +129,7 @@ group :development do
   gem 'pry-remote'
   gem 'pry-doc'
   gem 'web-console', '~> 2.0'
+  gem 'rack-mini-profiler'
 
   # deploy
   gem 'capistrano', '~> 3.1', require: false
