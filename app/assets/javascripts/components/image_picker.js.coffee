@@ -10,9 +10,9 @@ do (exports = Making) ->
       event.preventDefault()
 
       $activeItem
-        .addClass('is-actived')
+        .addClass('is-active')
       .siblings()
-        .removeClass('is-actived')
+        .removeClass('is-active')
 
       options.after.call($imagePicker, $activeItem, url) if options.after
 

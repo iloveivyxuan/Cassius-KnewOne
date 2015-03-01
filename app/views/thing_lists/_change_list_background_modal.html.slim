@@ -8,7 +8,7 @@
           - next if background.hidden && !current_user.role?(:editor)
 
           a.image_picker-item [href="#"
-            class=('is-actived' if background == thing_list.background)
+            class=('is-active' if background == thing_list.background)
             data-id=background.id.to_s
             data-url=background.image.url(browser.mobile? ? 'background.mobile' : :background)]
             i.image_picker-checkbox.fa.fa-check
