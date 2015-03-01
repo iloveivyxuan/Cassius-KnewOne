@@ -66,6 +66,10 @@
 
   .thing--embed {
     position: relative;
+
+    & ~ .thing--embed {
+      margin-top: 1.5em;
+    }
   }
 }
 
