@@ -399,7 +399,7 @@ form.edit_post {
       padding: 0 4px;
     }
 
-    i {
+    i:not(.fa) {
       margin: 0;
       padding: 0 4px;
     }

@@ -1,5 +1,6 @@
 article.review {
   background: white;
+  font-size: 14px;
 
   header.cover {
     position: relative;
@@ -62,6 +63,8 @@ article.review {
     }
 
     h4 {
+      font-weight: normal;
+
       a {color: $black;}
       i {color: $gray-light;}
     }

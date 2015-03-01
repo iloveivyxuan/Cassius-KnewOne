@@ -1,4 +1,6 @@
 .thing_list {
+  font-size: 14px;
+
   a {
     @include plain-link($gray-light);
   }
@@ -8,7 +10,6 @@
       margin: 1em 0;
 
       color: $gray-light;
-      font-size: 14px;
       line-height: 1.25;
 
       i {
