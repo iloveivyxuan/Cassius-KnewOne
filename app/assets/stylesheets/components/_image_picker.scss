@@ -64,18 +64,17 @@
 
     .image_picker-checkbox {
       display: block;
-      background: rgba($blue-light, .7);
+      background-color: rgba($blue-light, .7);
       border-radius: 50%;
     }
   }
 
   &.is-actived {
-    position: relative;
     opacity: 1;
 
     .image_picker-checkbox {
       display: block;
-      background: transparent;
+      background-color: transparent;
     }
 
     &::before {
@@ -87,7 +86,7 @@
       bottom: 0;
       left: 0;
 
-      background: rgba($blue-light, .6);
+      background-color: rgba($blue-light, .6);
     }
   }
 }
