@@ -11,10 +11,12 @@ do (exports = window.Making || {}) ->
 
       updateCanopyRequest = (url) ->
         return $.ajax
-            url: "#{window.location.origin}/users/#{exports.user}/set_profile"
-            type: 'POST'
+            url: '/settings/profile'
+            type: 'PATCH'
+            dataType: 'json'
             data:
-              canopy: url
+              user:
+                canopy: url
 
       $uploadCanopyField
         .fileupload

@@ -118,16 +118,6 @@ class UsersController < ApplicationController
     render layout: false
   end
 
-  def set_profile
-    user = User.find params[:id]
-    if user != current_user
-      success = false
-    elsif params[:canopy].present?
-      success = user.update(canopy: params[:canopy]) ? true : false
-    end
-    head success ? :ok : :not_acceptable
-  end
-
   private
 
   def setup_tags_and_things_about_impressions
@@ -143,4 +133,3 @@ class UsersController < ApplicationController
     @things = Thing.in(id: thing_ids).sort_by { |t| thing_ids.index(t.id) }
   end
 end
-

@@ -112,7 +112,6 @@ Making::Application.routes.draw do
       post 'followers', to: :follow
       delete 'followers', to: :unfollow
       get 'profile'
-      post 'set_profile'
     end
   end
 

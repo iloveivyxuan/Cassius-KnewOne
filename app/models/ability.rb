@@ -33,7 +33,7 @@ class Ability
 
   def signed(user)
     can [:follow, :unfollow], User
-    can [:batch_follow, :set_profile], User do |u|
+    can :batch_follow, User do |u|
       u == user
     end
 
