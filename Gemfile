@@ -129,7 +129,6 @@ group :development do
   gem 'pry-remote'
   gem 'pry-doc'
   gem 'web-console', '~> 2.0'
-  gem 'rack-mini-profiler'
 
   # deploy
   gem 'capistrano', '~> 3.1', require: false
@@ -163,3 +162,5 @@ group :development, :test do
   # fake email sending
   gem 'letter_opener', github: 'ryanb/letter_opener', branch: 'master'
 end
+
+gem 'rack-mini-profiler', group: [:development, :profile]
