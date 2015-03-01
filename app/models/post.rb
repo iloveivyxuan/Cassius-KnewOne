@@ -175,6 +175,9 @@ class Post
     return unless self.author.role.empty?
     last_post = Post.only(:content).where(author_id: author_id).desc(:created_at).first
     return unless last_post
-    errors.add(:content, '内容重复了喔') if content.similar(last_post.content) > 80
+    if content.similar(last_post.content) > 80
+      errors.add(:content, '内容重复了喔')
+      logger.info "User #{author_id} has #{content.similar(last_post.content)} similarity"
+    end
   end
 end
