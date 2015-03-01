@@ -35,11 +35,22 @@ class HomeController < ApplicationController
 
     respond_to do |format|
       format.html.mobile do
-        for_landing_mobile
+        @categories = Category.top_level.gt(things_count: 10).desc(:things_count).page(params[:page]).per(2)
+
+        if request.xhr?
+          if @categories.empty?
+            head :no_content
+          else
+            render partial: 'landing_category_mobile', collection: @categories, as: :category, layout: false
+          end
+        else
+          render 'home/landing.html+mobile'
+        end
       end
 
       format.html.tablet do
-        for_landing_mobile
+        @categories = Category.top_level.gt(things_count: 10).desc(:things_count)
+        render 'home/landing.html+tablet'
       end
 
       format.html.desktop do
@@ -134,22 +145,4 @@ class HomeController < ApplicationController
     end
   end
 
-
-  private
-  def for_landing_mobile
-    @categories = Category.top_level.gt(things_count: 10).desc(:things_count).page(params[:page]).per(2)
-
-    if request.xhr?
-      if @categories.empty?
-        head :no_content
-      else
-        render partial: 'landing_category_mobile', collection: @categories, as: :category, layout: false
-      end
-    else
-      @hot_thing  = Thing.hot.recommended.first
-      @hot_review = Review.hot.first
-
-      render 'home/landing.html+mobile'
-    end
-  end
 end
