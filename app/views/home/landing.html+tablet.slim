@@ -49,14 +49,14 @@
         .explore_content
           .explore_content_item.fade.active.in#category_all
             .thing-wrapper
-              = render partial: 'hot_thing', collection: Thing.hot.recommended.limit(2), as: :thing
+              = render partial: 'things/thing', collection: Thing.hot.recommended.limit(2), as: :thing
             = render partial: 'hot_review', collection: Review.hot.limit(1), as: :review
             = link_to "发现更多精选内容", hits_path, class: 'read_more_category'
 
           - @categories.each do |category|
             .explore_content_item.fade id="category_#{category.slug}"
               .thing-wrapper
-                = render partial: 'hot_thing', collection: category.things.hot.recommended.limit(2), as: :thing
+                = render partial: 'things/thing', collection: category.things.hot.recommended.limit(2), as: :thing
               - category.things.reviewed.first.tap do |thing|
                 = render partial: 'hot_review', collection: thing.reviews.desc(:is_top, :lovers_count).limit(1), as: :review
                 = link_to "发现更多#{category.name}内容", categories_things_path(category), class: 'read_more_category'
