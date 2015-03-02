@@ -84,8 +84,11 @@ class Notification
   end
 
   def self.mark_as_read_by_context(receiver, context)
-    notifications = receiver.notifications.by_context(context)
-    receiver.inc unread_notifications_count: -notifications.unread.count
+    notifications = receiver.notifications.unread.by_context(context)
+
+    return unless notifications.exists?
+
+    receiver.inc unread_notifications_count: -notifications.count
     notifications.set read: true, opened: true
   end
 
