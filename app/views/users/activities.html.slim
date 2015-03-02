@@ -3,7 +3,7 @@
 
 .page-content
   - if @activities.present?
-    - unless browser.desktop?
+    - if browser.mobile?
       - unless @rich
         = link_to_with_icon "转换为图文动态", "fa fa-exchange", activities_user_path, class: "page-content-switch"
       - else
