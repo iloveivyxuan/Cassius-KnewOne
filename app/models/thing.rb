@@ -1,7 +1,6 @@
 class Thing < Post
   include Mongoid::Slug
   include Mongoid::MultiParameterAttributes
-  include Aftermath
 
   include Adoptable
 
