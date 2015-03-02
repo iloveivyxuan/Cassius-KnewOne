@@ -4,5 +4,5 @@
 
   ul.list-inline
     li = render 'reviews/link_to_new', klass: 'btn btn--transition btn-new-review btn--blue'
-    - if @thing.owners.present?
+    - if @thing.owners_count > 0
       li = render 'reviews/invite_to_write', klass: 'btn btn--blue_light btn--transition', icon_class: 'fa-paper-plane', text: '求评测'
