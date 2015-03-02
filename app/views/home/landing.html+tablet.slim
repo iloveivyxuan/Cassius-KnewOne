@@ -33,6 +33,8 @@
     .explore_body
       - cache 'landing_categories', expires_in: 2.minutes
         nav.explore_nav
+          a.nav_toggle-btn href="javascript:void(0);"
+            i.fa.fa-angle-double-down
           ul
             li.active
               a href="#category_all" data-toggle="tab"
@@ -58,6 +60,11 @@
               - category.things.reviewed.first.tap do |thing|
                 = render partial: 'hot_review', collection: thing.reviews.desc(:is_top, :lovers_count).limit(1), as: :review
                 = link_to "发现更多#{category.name}内容", categories_things_path(category), class: 'read_more_category'
+        
+          a.switch_explore_content.left href="javascript:void(0);"
+            .fa.fa-chevron-left
+          a.switch_explore_content.right href="javascript:void(0);"
+            .fa.fa-chevron-right
 
 - content_for :script do
   javascript:
