@@ -204,7 +204,12 @@ class Thing < Post
   belongs_to :merchant, counter_cache: true
 
   field :photo_ids, type: Array, default: []
+  field :cover_url, type: String
   validates :photo_ids, presence: true
+
+  before_save if: :photo_ids_changed? do
+    self.cover_url = Photo.find(photo_ids.first).url rescue nil
+  end
 
   def photos
     Photo.find_with_order photo_ids
