@@ -158,6 +158,10 @@ html[class^="users_"] {
       position: relative;
       text-align: center;
 
+      &.is-working {
+        display: block;
+      }
+
       .btn {
         background-color: transparent;
         border: 1px solid $blue;
@@ -407,15 +411,24 @@ html[class^="users_"] {
       width: 100%;
     }
 
+    &.is-standby,
+    &.disabled {
+      input {
+        display: none;
+      }
+    }
+
     &.disabled {
       box-shadow: none;
       cursor: not-allowed;
       opacity: .65;
       pointer-events: none;
+    }
 
-      input {
-        display: none;
-      }
+    &.is-standby {
+      background-color: $blue;
+      border-color: $blue;
+      color: #fff;
     }
   }
 

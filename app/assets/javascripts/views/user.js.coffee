@@ -2,6 +2,7 @@ do (exports = window.Making || {}) ->
 
   exports.InitUser = ->
     if Modernizr.mq('(min-width: ' + exports.Breakpoints.screenSMMin + ')')
+      $action            = $('.vcard-action')
       $canopy            = $('.vcard-canopy img')
       $uploadCanopyBtn   = $('#upload_canopy_btn')
       $selectCanopyBtn   = $('#select_canopy_btn')
@@ -31,6 +32,7 @@ do (exports = window.Making || {}) ->
               value: $uploadCanopyField.attr('data-signature')
             }]
           beforeSend: (jqXHR, settings) ->
+            $action.addClass('is-working')
             $uploadCanopyTip
               .data('tip', $uploadCanopyTip.text())
               .text('正在上传...')
@@ -38,21 +40,38 @@ do (exports = window.Making || {}) ->
             $selectCanopyBtn.disable()
           done: (event, data) ->
             url = $uploadCanopyField.data('domain') + data.jqXHR.responseJSON.url
-            request = updateCanopyRequest(url)
-            request
-              .done (data, status, jqXHR) ->
-                $canopy.attr('src', url + '!' + canopySize)
-                $uploadCanopyBtn.enable()
-                $selectCanopyBtn.enable()
-                $uploadCanopyTip.text($uploadCanopyTip.data('tip'))
-              .fail (jqXHR, status, error) ->
-                $uploadCanopyBtn.enable()
-                $selectCanopyBtn.enable()
-                $uploadCanopyTip.text('更新失败，请重试')
+
+            $canopy
+              .attr('src', url + '!' + canopySize)
+              .data('url', url)
+            $uploadCanopyBtn
+              .enable()
+              .addClass('is-standby')
+            $uploadCanopyTip.text('保存背景')
           fail: (event, data) ->
             $uploadCanopyBtn.enable()
-            $selectCanopyBtn.enable()
             $uploadCanopyTip.text('上传失败，请重试')
+            $selectCanopyBtn.enable()
+
+      $uploadCanopyBtn.on 'click', (event) ->
+        url = $canopy.data('url')
+
+        if $uploadCanopyBtn.hasClass('is-standby') and url isnt undefined and url.indexOf($uploadCanopyField.attr('data-domain')) is 0
+          request = updateCanopyRequest(url)
+
+          $uploadCanopyBtn.disable()
+          request
+            .done (data, status, jqXHR) ->
+              $uploadCanopyTip.text($uploadCanopyTip.data('tip'))
+              $action.removeClass('is-working')
+            .fail (jqXHR, status, error) ->
+              $uploadCanopyTip.text('更新失败，请重试')
+            .always ->
+              $canopy.data('url', undefined)
+              $uploadCanopyBtn
+                .enable()
+                .removeClass('is-standby')
+              $selectCanopyBtn.enable()
 
       exports.imagePicker
         el: '#user_canopy_picker_modal'
