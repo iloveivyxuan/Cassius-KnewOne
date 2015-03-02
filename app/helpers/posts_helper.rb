@@ -1,6 +1,6 @@
 module PostsHelper
 
-  def load_post_resources(content)
+  def load_post_resources(content, version = :web)
     html_doc = Nokogiri::HTML.fragment(content)
     html_doc.css('.knewone-embed:empty').each do |element|
       type = element["data-knewone-embed-type"]
@@ -29,6 +29,15 @@ module PostsHelper
       result ||= '<p class="knewone-embed-tip">无效的资源。</p>'
       element.add_child(result)
     end
+
+    case version
+    when :app
+      html_doc.css('img.js-lazy').remove_class('js-lazy').each do |img|
+        img['src'] = img['data-original']
+        img.remove_attribute('data-original')
+      end
+    end
+
     html_doc.to_html
   end
 
