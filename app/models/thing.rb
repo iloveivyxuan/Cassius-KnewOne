@@ -434,7 +434,7 @@ class Thing < Post
 
   include Searchable
 
-  searchable_fields [:title, :_slugs, :subtitle, :nickname, :priority]
+  searchable_fields [:title, :_slugs, :subtitle, :nickname, :priority, :cover_url]
 
   mappings do
     indexes :title, copy_to: :ngram
@@ -452,7 +452,6 @@ class Thing < Post
     }
 
     _as_indexed_json(options).merge(
-      cover_id: photo_ids.first.to_s,
       brand_name: brand.try(:full_name),
       fanciers_count: fanciers_count,
       owners_count: owners_count,
@@ -506,7 +505,7 @@ class Thing < Post
   def __elasticsearch__.__find_in_batches(options={}, &block)
     batch_size = options[:batch_size] || 1000
     Thing.includes(:brand).desc(:id).no_timeout
-      .only(:id, :slugs, :brand_id, :photo_ids, :updated_at,
+      .only(:id, :slugs, :brand_id, :cover_url, :updated_at,
             :title, :subtitle, :nickname, :priority,
             :fanciers_count, :owners_count, :reviews_count,
            ).each_slice(batch_size, &block)
