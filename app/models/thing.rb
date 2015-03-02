@@ -14,7 +14,6 @@ class Thing < Post
   field :subtitle, type: String, default: ""
   field :nickname, type: String
   field :official_site, type: String, default: ""
-  field :photo_ids, type: Array, default: []
 
   has_and_belongs_to_many :categories, inverse_of: nil, index: true,
                           after_add: :after_add_category,
@@ -56,7 +55,6 @@ class Thing < Post
   field :sharing_text, type: String
 
   validates :title, presence: true
-  validates :photo_ids, presence: true
 
   field :stage, type: Symbol, default: :concept
   STAGES = {
@@ -204,6 +202,9 @@ class Thing < Post
   belongs_to :brand
 
   belongs_to :merchant, counter_cache: true
+
+  field :photo_ids, type: Array, default: []
+  validates :photo_ids, presence: true
 
   def photos
     Photo.find_with_order photo_ids
