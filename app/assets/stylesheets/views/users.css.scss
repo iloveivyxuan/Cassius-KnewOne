@@ -71,7 +71,7 @@ html[class^="users_"] {
       padding-bottom: 0;
 
       &:hover {
-        .vcard-action {
+        .vcard-setting {
           display: block;
         }
       }
@@ -122,7 +122,7 @@ html[class^="users_"] {
   }
 
   .vcard-main,
-  .vcard-action,
+  .vcard-setting,
   .vcard-friendship,
   .vcard-misc {
     padding: 0 30px;
@@ -151,7 +151,7 @@ html[class^="users_"] {
     }
   }
 
-  .vcard-action {
+  .vcard-setting {
     display: none;
 
     @media (min-width: $screen-sm-min) {
@@ -411,25 +411,22 @@ html[class^="users_"] {
       width: 100%;
     }
 
-    &.is-standby,
-    &.disabled {
-      input {
-        display: none;
-      }
-    }
-
     &.disabled {
       box-shadow: none;
       cursor: not-allowed;
       opacity: .65;
       pointer-events: none;
-    }
 
-    &.is-standby {
-      background-color: $blue;
-      border-color: $blue;
-      color: #fff;
+      input {
+        display: none;
+      }
     }
+  }
+
+  #save_upload_canopy_btn {
+    background-color: $blue;
+    border-color: $blue;
+    color: #fff;
   }
 
   //

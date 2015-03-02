@@ -16,13 +16,15 @@
       - if @user.description.present?
         p.vcard-description itemprop="description" = @user.description
     - if @user == current_user
-      .vcard-action
+      .vcard-setting
         button.btn#select_canopy_btn data-toggle="modal" data-target="#user_canopy_picker_modal" type="button" 选择背景
         - content_for :end do
           = render 'canopy_picker_modal', user: @user
         .btn#upload_canopy_btn
           span 上传自定义背景
           = file_field_tag "file", accept: "image/*", data: upyun_data(:default)
+        button.btn.is-hidden#cancel_upload_canopy_btn type="button" 取消
+        button.btn.is-hidden#save_upload_canopy_btn type="button" 保存背景
     .vcard-friendship
       .vcard-follows itemprop="follows"
         = link_to followings_user_path(@user), class: 'vcard-followings'
