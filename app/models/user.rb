@@ -135,7 +135,7 @@ class User
     'http://image.knewone.com/photos/1c5228b8da2d5b38ea355a6a7bb58dc0.jpg',
     'http://image.knewone.com/photos/417630b019e3c3a180b510d1c7ad5bb4.jpg'
   ]
-  field :canopy, type: String, :default => "http://image.knewone.com/photos/cebdb91be4a5334148ecb29c2bf18f83.jpg"
+  field :canopy, type: String, default: CANOPYS.first
 
   ## Omniauthable
   embeds_many :auths
