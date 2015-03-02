@@ -136,6 +136,7 @@ class User
     'http://image.knewone.com/photos/417630b019e3c3a180b510d1c7ad5bb4.jpg'
   ]
   field :canopy, type: String, default: CANOPYS.first
+  validates :canopy, format: {with: %r{\Ahttps?://#{Regexp.escape(Settings.image_host)}/}}
 
   ## Omniauthable
   embeds_many :auths
