@@ -85,6 +85,10 @@ html.prizes_index section {
     background-color: #fafafa;
     margin-top: 40px;
     padding: 10px 10px;
+
+    .thing_list-info {
+      display: none;
+    }
   }
   .reviews {
     background-color: white;

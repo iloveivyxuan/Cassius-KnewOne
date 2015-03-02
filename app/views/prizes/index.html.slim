@@ -42,7 +42,7 @@
       section.thing_lists
         - list = ThingList.find @list.reference_id
         - coupon = @list.coupon
-        = render list, layout: browser.desktop? ? :quintet : :grid, prize: true
+        = render list, layout: browser.desktop? ? :quintet : :grid
         footer
           = render 'shared/user_avatar', user_id: list.author_id
           | #{ @list.reason }，获得
