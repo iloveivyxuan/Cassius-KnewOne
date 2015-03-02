@@ -391,6 +391,7 @@ html[class^="users_"] {
   }
 
   #upload_canopy_btn {
+    cursor: pointer;
     overflow: hidden;
     position: relative;
 
@@ -404,6 +405,17 @@ html[class^="users_"] {
       right: 0;
       top: 0;
       width: 100%;
+    }
+
+    &.disabled {
+      box-shadow: none;
+      cursor: not-allowed;
+      opacity: .65;
+      pointer-events: none;
+
+      input {
+        display: none;
+      }
     }
   }
 

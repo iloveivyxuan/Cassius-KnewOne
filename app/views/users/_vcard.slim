@@ -20,7 +20,7 @@
         button.btn#select_canopy_btn data-toggle="modal" data-target="#user_canopy_picker_modal" type="button" 选择背景
         - content_for :end do
           = render 'canopy_picker_modal', user: @user
-        button.btn#upload_canopy_btn type="button"
+        .btn#upload_canopy_btn
           span 上传自定义背景
           = file_field_tag "file", accept: "image/*", data: upyun_data(:default)
     .vcard-friendship
