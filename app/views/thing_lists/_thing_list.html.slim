@@ -30,7 +30,7 @@ article.thing_list id="thing_list_#{thing_list.id}"
             i.fa.fa-heart-o
             = thing_list.fanciers_count
 
-          - if thing_list.comments.present?
+          - if thing_list.comments_count > 0
             = link_to thing_list, class: 'thing_list-comments'
               i.fa.fa-comment-o
               = thing_list.comments_count
