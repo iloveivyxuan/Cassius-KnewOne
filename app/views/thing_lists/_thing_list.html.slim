@@ -1,34 +1,35 @@
 - layout ||= :grid
 
-article.thing_list id="thing_list_#{thing_list.id}"
-  header
-    = link_to thing_list, target: "_blank", title: thing_list.name
-      = render 'thing_lists/cover', thing_list: thing_list, layout: layout
+- cache [thing_list, layout, can?(:destroy, thing_list), browser.mobile?]
+  article.thing_list id="thing_list_#{thing_list.id}"
+    header
+      = link_to thing_list, target: "_blank", title: thing_list.name
+        = render 'thing_lists/cover', thing_list: thing_list, layout: layout
 
-      h4
-        i.fa.fa-list-ul
-        span.thing_list-name = thing_list.name
-        span.thing_list-size = "(#{thing_list.size})"
+        h4
+          i.fa.fa-list-ul
+          span.thing_list-name = thing_list.name
+          span.thing_list-size = "(#{thing_list.size})"
 
-    - if can? :destroy, thing_list
-      .thing_list-destroy
-        = link_to '×', thing_list, method: :delete, remote: true, data: {confirm: '您确定要删除吗?'}
+      - if can? :destroy, thing_list
+        .thing_list-destroy
+          = link_to '×', thing_list, method: :delete, remote: true, data: {confirm: '您确定要删除吗?'}
 
-  footer
-    - if thing_list.description.present?
-      .thing_list-description
-        p = thing_list.description
+    footer
+      - if thing_list.description.present?
+        .thing_list-description
+          p = thing_list.description
 
-    ul.thing_list-info
-      li.thing_list-creator
-        = render 'shared/user_avatar', user_id: thing_list.author_id
+      ul.thing_list-info
+        li.thing_list-creator
+          = render 'shared/user_avatar', user_id: thing_list.author_id
 
-      li.thing_list-counts
-        = link_to thing_list, class: 'thing_list-fancy'
-          i.fa.fa-heart-o
-          = thing_list.fanciers_count
+        li.thing_list-counts
+          = link_to thing_list, class: 'thing_list-fancy'
+            i.fa.fa-heart-o
+            = thing_list.fanciers_count
 
-        - if thing_list.comments_count > 0
-          = link_to thing_list, class: 'thing_list-comments'
-            i.fa.fa-comment-o
-            = thing_list.comments_count
+          - if thing_list.comments_count > 0
+            = link_to thing_list, class: 'thing_list-comments'
+              i.fa.fa-comment-o
+              = thing_list.comments_count
