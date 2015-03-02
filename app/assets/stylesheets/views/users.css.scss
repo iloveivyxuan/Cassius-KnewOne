@@ -423,10 +423,26 @@ html[class^="users_"] {
     }
   }
 
+  #cancel_upload_canopy_btn {
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #fff;
+
+    &:hover {
+      background-color: #999;
+      border-color: #999;
+    }
+  }
+
   #save_upload_canopy_btn {
     background-color: $blue;
     border-color: $blue;
     color: #fff;
+
+    &:hover {
+      background-color: $blue-dark;
+      border-color: $blue-dark;
+    }
   }
 
   //
