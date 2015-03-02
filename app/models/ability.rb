@@ -38,20 +38,20 @@ class Ability
     end
 
     can [:create, :update, :destroy], Story do |story|
-      [story.thing.author, story.thing.maker, story.author].include? user
+      [story.thing.author_id, story.thing.maker_id, story.author_id].include? user.id
     end
 
     can :create, Supplier
 
     can :create, Photo
     can :destroy, Photo do |photo|
-      photo.user == user
+      photo.user_id == user.id
     end
 
     can :create, ReviewPhoto
     can [:create, :invite], Review
     can [:update, :destroy], Review do |review|
-      review.author == user
+      review.author_id == user.id
     end
     can :vote, Review do |review|
       !review.voted?(user)
@@ -62,7 +62,7 @@ class Ability
 
     can :create, Feeling
     can [:update, :destroy], Feeling do |feeling|
-      feeling.author == user
+      feeling.author_id == user.id
     end
     can :vote, Feeling do |feeling|
       !feeling.voted?(user)
@@ -80,13 +80,13 @@ class Ability
       end
     end
     can :destroy, Comment do |comment|
-      comment.author == user
+      comment.author_id == user.id
     end
 
     can :create, Thing
     can :create_by_user, Thing
     can :update, Thing do |thing|
-      thing.author == user or thing.maker == user
+      thing.author_id == user.id or thing.maker_id == user.id
     end
     can :destroy, Thing do |thing|
       thing.author == user && thing.feelings_count == 0 && thing.reviews_count == 0
@@ -110,7 +110,7 @@ class Ability
     can [:read, :deliver_bill, :request_refund, :cancel_request_refund,
          :tenpay, :alipay, :alipay_wap, :tenpay_wechat, :wxpay_callback, :cancel,
          :alipay_callback, :tenpay_callback, :alipay_wap_callback], Order do |order|
-      order.user == user
+      order.user_id == user.id
     end
 
     can :create, Group
@@ -131,10 +131,10 @@ class Ability
       topic.group.has_member? user
     end
     can :update, Topic do |topic|
-      topic.author == user || topic.group.has_admin?(user)
+      topic.author_id == user.id || topic.group.has_admin?(user)
     end
     can :destroy, Topic do |topic|
-      topic.author == user || topic.group.has_admin?(user)
+      topic.author_id == user.id || topic.group.has_admin?(user)
     end
     can :vote, Topic do |topic|
       !topic.voted?(user)
@@ -147,7 +147,7 @@ class Ability
 
     can :create, ThingList
     can [:update, :destroy, :sort], ThingList do |thing_list|
-      thing_list.author == user
+      thing_list.author_id == user.id
     end
     can :fancy, ThingList do |thing_list|
       !thing_list.fancied?(user)
@@ -158,7 +158,7 @@ class Ability
 
     can :create, ThingListItem
     can [:update, :destroy], ThingListItem do |thing_list_item|
-      thing_list_item.list.author == user
+      thing_list_item.list.author_id == user.id
     end
   end
 
