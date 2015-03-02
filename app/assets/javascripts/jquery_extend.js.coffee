@@ -12,9 +12,11 @@
       switch node_name
         when 'input', 'button'
           $element
-            .addClass(klass)
             .attr('disabled', true)
-            .data('disabled-class', klass)
+
+      $element
+        .addClass(klass)
+        .data('disabled-class', klass)
 
   $.fn.disable.noConflict = ->
     $.fn.disable = old
@@ -36,8 +38,10 @@
       switch node_name
         when 'input', 'button'
           $element
-            .removeClass(klass)
             .removeAttr('disabled')
+
+      $element
+        .removeClass(klass)
 
   $.fn.enable.noConflict = ->
     $.fn.enable = old
