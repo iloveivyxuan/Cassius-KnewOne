@@ -3,6 +3,6 @@ class VdayWorker
   sidekiq_options :queue => :edm, :backtrace => true, :retry => false
 
   def perform(email, name)
-    UserMailer.vday(email, name).deliver
+    UserMailer.vday(email, name).deliver_now
   end
 end

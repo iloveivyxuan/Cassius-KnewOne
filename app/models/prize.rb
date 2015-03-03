@@ -45,7 +45,7 @@ class Prize
     save
 
     # mailer
-    UserMailer.prize(self.id.to_s).deliver
+    UserMailer.prize(self.id.to_s).deliver_now
     # direct message
     knewone = User.find "511114fa7373c2e3180000b4"
     user = self.user

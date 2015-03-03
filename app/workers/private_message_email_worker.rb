@@ -5,7 +5,7 @@ class PrivateMessageEmailWorker
   def perform(dialog_id)
     dialog = Dialog.find(dialog_id)
     if dialog.unread_count > 0 && dialog.user.email.present?
-      UserMailer.private_message(dialog).deliver
+      UserMailer.private_message(dialog).deliver_now
     end
   end
 end

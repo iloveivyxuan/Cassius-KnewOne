@@ -3,6 +3,6 @@ class AnnouncementWorker
   sidekiq_options :queue => :edm, :backtrace => true, :retry => false
 
   def perform(email, name)
-    UserMailer.announcement(email, name).deliver
+    UserMailer.announcement(email, name).deliver_now
   end
 end

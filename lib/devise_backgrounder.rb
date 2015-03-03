@@ -18,7 +18,7 @@ class DeviseBackgrounder
 
   if Rails.env.development?
     def deliver
-      DeviseMailer.send(@method, @record_id, @token, @opts).deliver
+      DeviseMailer.send(@method, @record_id, @token, @opts).deliver_now
     end
   else
     def deliver

@@ -6,6 +6,6 @@ class WeeklyWorker
     user = User.find user_id
     weekly = Weekly.find weekly_id
 
-    UserMailer.weekly(weekly, user).deliver
+    UserMailer.weekly(weekly, user).deliver_now
   end
 end

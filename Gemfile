@@ -2,7 +2,7 @@ source 'https://ruby.taobao.org'
 ruby '2.1.2'
 
 # rails and friends
-gem 'rails', '~> 4.1.0'
+gem 'rails', '~> 4.2.0'
 gem 'rails-i18n'
 
 # database
@@ -94,6 +94,7 @@ gem 'airbrake'
 gem 'sitemap_generator'
 
 # misc
+gem 'responders', '~> 2.0'
 gem 'nokogiri'
 gem 'browser'
 gem 'dkim'
@@ -129,6 +130,7 @@ group :development do
   gem 'pry-rails'
   gem 'pry-remote'
   gem 'pry-doc'
+  gem 'web-console', '~> 2.0'
 
   # deploy
   gem 'capistrano', '~> 3.1', require: false

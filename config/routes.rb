@@ -81,7 +81,7 @@ Making::Application.routes.draw do
   end
 
   scope :search, controller: :search, as: :search do
-    root to: :index
+    root action: :index
     get 'suggestions'
     get 'things'
     get 'lists'
@@ -107,10 +107,10 @@ Making::Application.routes.draw do
       get 'topics'
       get 'activities'
       get 'followings'
-      post 'followings', to: :batch_follow
+      post 'followings', action: :batch_follow
       get 'followers'
-      post 'followers', to: :follow
-      delete 'followers', to: :unfollow
+      post 'followers', action: :follow
+      delete 'followers', action: :unfollow
       get 'profile'
     end
   end
@@ -238,7 +238,7 @@ Making::Application.routes.draw do
 
   resources :categories, only: [:index] do
     member do
-      post 'subscribe_toggle', to: :subscribe_toggle
+      post 'subscribe_toggle', action: :subscribe_toggle
     end
   end
 
