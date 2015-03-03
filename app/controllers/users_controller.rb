@@ -102,6 +102,10 @@ class UsersController < ApplicationController
     @users = User.in(id: user_ids)
     current_user.batch_follow(@users)
 
+    @users.each do |user|
+      current_user.log_activity :follow_user, user, check_recent: true
+    end
+
     respond_to do |format|
       format.js
     end
