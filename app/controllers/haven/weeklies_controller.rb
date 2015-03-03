@@ -38,7 +38,7 @@ module Haven
     end
 
     def deliver
-      UserMailer.weekly(@weekly, current_user).deliver
+      UserMailer.weekly(@weekly, current_user).deliver_now
 
       redirect_to haven_weeklies_url
     end
