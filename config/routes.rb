@@ -403,7 +403,11 @@ Making::Application.routes.draw do
       end
     end
 
-    resources :thing_lists, only: [:index]
+    resources :thing_lists, only: [:index] do
+      member do
+        get 'export'
+      end
+    end
     resources :thing_list_backgrounds, only: [:index, :edit, :create, :update, :destroy]
 
     resources :reviews, only: [:index]

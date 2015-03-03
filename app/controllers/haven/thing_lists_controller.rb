@@ -23,5 +23,10 @@ module Haven
 
       @thing_lists = @thing_lists.page(params[:page])
     end
+
+    def export
+      @list = ThingList.find params[:id]
+    end
+
   end
 end

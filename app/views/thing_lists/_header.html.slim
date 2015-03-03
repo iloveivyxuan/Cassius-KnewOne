@@ -19,6 +19,10 @@ header
     input type="checkbox" name="show_price"
     | 显示产品价格
 
+  br
+  - if current_user.role == :editor
+    = link_to "导出微信", export_haven_thing_list_path(list)
+
   .thing_list_actions
     ul
       li = render 'fancy_button', thing_list: list
