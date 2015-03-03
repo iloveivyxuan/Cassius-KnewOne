@@ -13,7 +13,7 @@ li.feed-activity
       .feed-operations
         a.comments_toggle href="#" data-id="feeling_#{feeling.id}_comments"
           i.fa.fa-reply
-          - if feeling.has_comments?
+          - if feeling.comments_count > 0
             span.comments_count= feeling.comments_count
         .feed-voting id="feeling_#{feeling.id}"
           = render 'shared/voting', object: feeling
@@ -32,11 +32,12 @@ li.feed-activity
         i.fa.fa-quote-left
         = feeling.content
         i.fa.fa-quote-right
-      ul.feed-feeling-photos
-        - feeling.photos.take(4).each do |photo|
-          li
-            = link_to photo.url, data: {lightbox: "feeling_#{feeling.id}"} do
-              = image_tag photo.url(:small), alt: photo.name
+      - if feeling.photo_ids.size > 0
+        ul.feed-feeling-photos
+          - feeling.photos.take(4).each do |photo|
+            li
+              = link_to photo.url, data: {lightbox: "feeling_#{feeling.id}"} do
+                = image_tag photo.url(:small), alt: photo.name
       section.comments_wrap
         = render 'shared/comments', post: feeling, id: "feeling_#{feeling.id}_comments", auth: true, compact: true
 
