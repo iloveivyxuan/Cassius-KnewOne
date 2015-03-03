@@ -4,6 +4,7 @@ ruby '2.1.2'
 # rails and friends
 gem 'rails', '~> 4.2.0'
 gem 'rails-i18n'
+gem 'rails-deprecated_sanitizer'
 
 # database
 gem 'mongoid', '>= 4.0.0.alpha1'
