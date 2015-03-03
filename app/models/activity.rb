@@ -96,4 +96,30 @@ class Activity
     else nil
     end
   end
+
+  def self.eager_load!(activities, models = [Thing, ThingList, Review, Feeling, Impression])
+    activities = activities.to_a
+
+    unions = activities.map(&:reference_union) | activities.map(&:source_union)
+    records = {}
+
+    models.each do |model|
+      ids = unions.reduce([]) do |ids, s|
+        model_name, id = s.split('_')
+        ids << id if model_name == model.name
+        ids
+      end
+
+      model.in(id: ids).each do |record|
+        records["#{model.name}_#{record.id}"] = record
+      end
+    end
+
+    activities.each do |a|
+      a.reference = records[a.reference_union] if records.has_key?(a.reference_union)
+      a.source = records[a.source_union] if records.has_key?(a.source_union)
+    end
+
+    activities
+  end
 end
