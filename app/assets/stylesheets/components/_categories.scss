@@ -117,6 +117,8 @@
     }
 
     @media (min-width: $screen-lg-min) {
+      max-height: 126px;
+      overflow: hidden;
       padding: 0;
     }
   }
