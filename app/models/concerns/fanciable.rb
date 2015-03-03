@@ -22,6 +22,7 @@ module Fanciable
         user.push("#{inverse_name.to_s.singularize}_ids" => self.id)
 
         set fanciers_count: fancier_ids.size
+        touch
         author.inc karma: karma_to_bump_from_fancying
 
         reload
