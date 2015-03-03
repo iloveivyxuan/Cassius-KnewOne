@@ -3,6 +3,8 @@ class HomeFeed
 
   class << self
     def create_from_activities(activities)
+      Activity.eager_load!(activities)
+
       activities.uniq do |a|
         [a.type, a.related_thing, a.related_thing_list, a.user_id]
       end.reduce({}) do |feeds, a|
