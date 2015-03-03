@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 
   def index
     return redirect_to landing_url unless user_signed_in?
-    return redirect_to welcome_url unless current_user.followings_count > 0
+    return redirect_to hits_url unless current_user.followings_count > 0
 
     activities = current_user.related_activities.visible.by_types(:new_thing, :fancy_thing, :desire_thing, :own_thing,
                                                                   :new_review, :love_review,
@@ -21,7 +21,7 @@ class HomeController < ApplicationController
 
     activities = activities.page(params[:page]).per(30).to_a
 
-    return redirect_to welcome_url if activities.blank?
+    return redirect_to hits_url if activities.blank?
 
     @feeds = HomeFeed.create_from_activities activities
 
