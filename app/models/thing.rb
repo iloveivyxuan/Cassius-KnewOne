@@ -216,13 +216,7 @@ class Thing < Post
   end
 
   def cover
-    return FakePhoto.new(cover_url) if cover_url.present?
-
-    begin
-      Photo.find photo_ids.first
-    rescue Mongoid::Errors::DocumentNotFound, Mongoid::Errors::InvalidFind
-      Photo.new
-    end
+    FakePhoto.new(cover_url)
   end
 
   def lists

@@ -1,6 +1,5 @@
 - cache ['search_thing', thing.id, thing.updated_at]
-  - cover_url = "#{thing.cover_url}!thing.fixed.small" rescue nil
-  - cover_url ||= Photo.only(:image).find(thing.cover_id).url('thing.fixed.small') rescue ''
+  - cover_url = "#{thing.cover_url}!thing.fixed.small"
 
   li
     .search_thing
