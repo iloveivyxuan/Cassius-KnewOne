@@ -20,7 +20,7 @@ header
     | 显示产品价格
 
   br
-  - if current_user.role == :editor
+  - if current_user && current_user.role == :editor
     = link_to "导出微信", export_haven_thing_list_path(list)
 
   .thing_list_actions
