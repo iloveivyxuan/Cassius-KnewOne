@@ -1,6 +1,3 @@
 $('#upload_image_error').removeClass('hidden');
 
-$('#new-thing-edit-modal')
-        .find('button').attr('disabled', false).end()
-        .find('.progress').hide().end()
-        .find('.progress-bar').css({width: 0});
+$('#new-thing-edit-modal .btn-primary').$progress('remove');
