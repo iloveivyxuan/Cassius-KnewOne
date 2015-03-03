@@ -66,6 +66,7 @@ class Activity
 
   def reference=(record)
     self.reference_union = "#{record.class.to_s}_#{record.id.to_s}"
+    @_reference = record
   end
 
   def source(with_deleted = false)
@@ -77,6 +78,7 @@ class Activity
 
   def source=(record)
     self.source_union = "#{record.class.to_s}_#{record.id.to_s}"
+    @_source = record
   end
 
   def related_thing
