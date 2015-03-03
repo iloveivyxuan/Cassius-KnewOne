@@ -96,7 +96,7 @@ class Prize
     things.take(4).each_with_index do |action, index|
       user = action.first
       reason = if index.zero?
-                 "分享了 #{action.last} 个优质产品"
+                 (action.last > 10) ? "分享了 #{action.last} 个优质产品" : "分享的优质产品排名第一"
                else
                  Prize.reason_collection[index]
                end
