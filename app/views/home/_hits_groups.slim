@@ -6,7 +6,7 @@
   .hits_group
     = render partial: 'things/thing', collection: @things[6*i...6*(i+1)]
 
-    - if i.even?
+    - if i.even? && @thing_lists[i / 2]
       = render @thing_lists[i / 2], layout: browser.mobile? ? :grid : :quintet
-    - else
+    - elsif @reviews[i / 2]
       = render 'hot_review', review: @reviews[i / 2]
