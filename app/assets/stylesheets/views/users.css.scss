@@ -208,7 +208,8 @@ html[class^="users_"] {
 
   .vcard-avatar {
     display: block;
-    margin-bottom: 15px;
+    margin: 0 auto 15px;
+    width: 60px;
 
     > img {
       background-color: #fff;
