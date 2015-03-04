@@ -220,7 +220,7 @@ html.home_landing {
           display: block;
           font-size: 1em;
           line-height: 50px;
-          color: #FFFFFF;
+          color: #fff;
           background: $blue;
           text-align: center;
           @include border-radius(2px);
@@ -297,7 +297,7 @@ html.home_landing {
       box-shadow: 0 0 8px rgba(0, 0, 0, .1);
       display: block;
       width: 100%;
-      background-color: #FFFFFF;
+      background-color: #fff;
     }
     @include MQ(Lplus) {
       border-bottom: 1px solid rgba(0,0,0,0.1);
@@ -353,7 +353,7 @@ html.home_landing {
       line-height: 60px;
       color: #949494;
       outline: none;
-      background: #FFFFFF;
+      background: #fff;
       @include transition-property(all);
       @include transition-duration(0.3s);
       @include transition-timing-function(ease);
@@ -377,7 +377,7 @@ html.home_landing {
       padding: 0;
       font-size: 1.2em;
       line-height: 60px;
-      color: #FFFFFF;
+      color: #fff;
       background-color: #727272;
       border: 0;
       @include transition-property(all);
@@ -440,7 +440,7 @@ html.home_landing {
           line-height: 4;
           color: #949494;
           white-space: normal;
-          border-bottom: 1px solid #FFFFFF;
+          border-bottom: 1px solid #fff;
           i {
             display: none;
           }
@@ -502,7 +502,7 @@ html.home_landing {
         float: left;
         width: 40%;
         margin-right: 2%;
-        background: #FFFFFF;
+        background: #fff;
         height: 580px;
         overflow: hidden;
         @include box-shadow(rgba(0,0,0,.1) 0 0 5px);
@@ -591,7 +591,7 @@ html.home_landing {
         margin-bottom: 20px;
         &:last-child { margin-bottom: 0 }
         padding: 0;
-        background: #FFFFFF;
+        background: #fff;
         @include box-shadow(rgba(0,0,0,.1) 0 0 10px);
         &:last-child { margin-bottom: 0 }
       }
@@ -734,7 +734,7 @@ html.home_landing {
       width: 100%;
       margin: 0 auto 30px;
       height: 250px;
-      background: #FFFFFF;
+      background: #fff;
       overflow: hidden;
       @include box-shadow(rgba(0,0,0,.1) 0 0 5px);
       .product_thumb {
@@ -1064,14 +1064,14 @@ html.landing_mobile {
         margin-right: 10px;
       }
       .btn--signup {
-        color: #FFFFFF;
+        color: #fff;
         background-color: $brand-primary;
         margin-left: 10px;
       }
     }
     .form-group.search input {
       &:active, &:focus {
-        color: #FFFFFF;
+        color: #fff;
         background-color: #5e6775;
       }
     }
@@ -1104,7 +1104,7 @@ html.landing_mobile {
 
   article.review {
     .cover {
-      background-color: #FFFFFF;
+      background-color: #fff;
     }
   }
 
@@ -1140,9 +1140,9 @@ html.landing_mobile.mobile {
 
   .category_group {
     margin-bottom: 20px;
-    background-color: #FFFFFF;
+    background-color: #fff;
     .category_title {
-      background-color: #FFFFFF;
+      background-color: #fff;
       color: #474A4F;
       font-size: 18px;
       padding: 1em;
@@ -1193,7 +1193,7 @@ html.landing_mobile.tablet {
         font-size: 16px;
       }
       .btn--signin {
-        color: #FFFFFF;
+        color: #fff;
         background-color: #77ABDE;
         border-color: #77ABDE;
       }
@@ -1239,7 +1239,7 @@ html.landing_mobile.tablet {
     &.open {
       overflow: visible;
       height: auto;
-      background-color: #FFFFFF;
+      background-color: #fff;
       padding-right: 45px;
       @include clearfix;
       ul {
