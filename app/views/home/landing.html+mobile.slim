@@ -13,7 +13,7 @@
   .headline
     .sign_group
       = link_to "登录", "#login-modal", class: "btn btn--signin", data: { toggle: "modal" }
-      = link_to "注册", "#login-modal", class: "btn btn--signup", data: { toggle: "modal" }
+      = link_to "注册", "#login-modal", class: "btn btn--signup", data: { toggle: "modal", "action-type" => "signup" }
     = form_tag search_root_path, class: 'menu-search', role: 'form', method: 'get'
       .form-group.search
         label.sr-only 搜索 KnewOne

@@ -16,18 +16,6 @@ window.Making = do (exports = window.Making || {}) ->
         else
           exports.initSearchForm('#search_form')
 
-
-    $(document).on 'click', '.sign_group .btn', (e) ->
-      $this = $(this)
-      $modal = $('#login-modal')
-      $wrapper = $modal.find('.modal-dialog_wrapper')
-
-      if $this.hasClass('btn--signin')
-        $wrapper.removeClass('is-flipped')
-      else
-        $wrapper.addClass('is-flipped')
-
-
     if $('html').hasClass('tablet')
       $items = $('.explore_content_item')
       $navs  = $('.explore_nav li')

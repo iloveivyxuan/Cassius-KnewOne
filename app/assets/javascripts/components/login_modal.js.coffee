@@ -4,6 +4,7 @@ do (exports = Making) ->
     $dialogWrapper = $modal.find('.modal-dialog_wrapper')
     $dialogSignin  = $dialogWrapper.find('.modal-dialog--signin')
     $dialogSignup  = $dialogWrapper.find('.modal-dialog--signup')
+    $legendSignin  = $dialogSignin.find('legend')
     $flipper       = $modal.find('.modal-flipper')
 
     $flipper.on 'click', (event) ->
@@ -15,20 +16,16 @@ do (exports = Making) ->
         event.preventDefault()
         return Making.logIntoWechat()
 
-      $button       = $(event.relatedTarget)
-      actionType    = $button.data('action-type')
-      legendSignin  = $button.data('signin-legend') || '登录'
+      $button    = $(event.relatedTarget)
+      actionType = $button.data('action-type') || 'signin'
 
-      $dialogSignin.find('legend').text(legendSignin)
-
-      if actionType is 'signup'
-        $dialogWrapper.removeClass('is-flipped') if $dialogWrapper.hasClass('is-flipped')
-        $dialogSignin
-          .removeClass('modal-dialog--front')
-          .addClass('modal-dialog--back')
-        $dialogSignup
-          .removeClass('modal-dialog--back')
-          .addClass('modal-dialog--front')
+      switch actionType
+        when 'signup'
+          $legendSignin.text('登录')
+          $dialogWrapper.addClass('is-flipped')
+        when 'signin'
+          $legendSignin.text($button.data('signin-legend') || '登录')
+          $dialogWrapper.removeClass('is-flipped')
 
     $modal.find('.button--clear').on 'click', (event)->
       event.preventDefault()
