@@ -63,7 +63,7 @@ window.Making = do (exports = window.Making || {}) ->
         $activeNav  = $navs.eq(activeIndex).addClass('active')
         setTimeout ->
           $activeItem.addClass('in')
-        , 0.2
+        , 0
 
       $(document).on 'click', '.nav_toggle-btn', ->
         $('.explore_nav').toggleClass('open')
