@@ -3,10 +3,12 @@
 - page_css 'hits'
 
 - cache ['landing_mobile', params[:page] || 1], expires_in: 1.minute
-  - if (j = Jumptron.by_type(:landing).where(default: true).sample)
-    header.jumptron.mobile_landing
+  header.jumptron.mobile_landing
+    - if (j = Jumptron.by_type(:landing).where(default: true).sample)
       a href=j.href target="_blank"
         img src=j.image.url alt=j.alt
+    - else
+      img src=image_path('landing_mobile_default.png')
 
   .headline
     .sign_group

@@ -1130,12 +1130,20 @@ html.landing_mobile.mobile {
   #header {
     position: absolute !important;
     background-color: transparent;
+    pointer-events: none;
     h1 {
       display: none;
     }
     .btn {
       margin-top: 0;
     }
+    .menu-toggle {
+      pointer-events: auto;
+    }
+  }
+
+  .headline {
+    padding-top: 10px;
   }
 
   .category_group {
@@ -1177,6 +1185,7 @@ html.landing_mobile.tablet {
     background: asset_url('landing-mobile-header_image_bg.jpg') !important;
     display: table;
     padding: 20px 45px 0 45px;
+    width: 100%;
     .jumptron.mobile_landing {
       background-image: none;
       display: table-cell;

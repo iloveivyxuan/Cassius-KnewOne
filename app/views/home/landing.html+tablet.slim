@@ -4,10 +4,12 @@
 
 - cache 'landing_tablet', expires_in: 1.minute
   .headline
-    - if (j = Jumptron.by_type(:landing).where(default: true).sample)
-      header.jumptron.mobile_landing
+    header.jumptron.mobile_landing
+      - if (j = Jumptron.by_type(:landing).where(default: true).sample)
         a href=j.href target="_blank"
           img src=j.image.url alt=j.alt
+      - else
+        img src=image_path('landing_mobile_default.png')
 
     .sign_group
       = link_to "登录", "#login-modal", class: "btn btn--signin", data: { toggle: "modal" }
