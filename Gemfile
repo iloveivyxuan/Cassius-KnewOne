@@ -1,5 +1,5 @@
 source 'https://ruby.taobao.org'
-ruby '2.1.2'
+ruby '2.2.1'
 
 # rails and friends
 gem 'rails', '~> 4.2.0'
