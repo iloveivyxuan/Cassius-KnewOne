@@ -1,11 +1,11 @@
 .category_group
-  .category_title
+  .category_group-title
     = category.name
-  .category_content
+  .category_group-content
     - category.things.reviewed.first.tap do |thing|
       - if thing.present?
         = render partial: 'things/thing', locals: { thing: thing }
         - thing.reviews.desc(:is_top, :lovers_count).first.tap do |review|
           = render partial: 'hot_review', locals: { review: review }
-  .category_footer
+  .category_group-footer
     = link_to '发现更多内容', categories_things_path(category), class: 'read_more_category'
