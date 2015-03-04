@@ -115,9 +115,7 @@ gem 'country_select'
 gem 'similar_text'
 
 # servers
-group :production do
-  gem 'unicorn'
-end
+gem 'puma'
 
 group :development do
   gem 'better_errors'
@@ -137,8 +135,8 @@ group :development do
   gem 'capistrano-rails', '~> 1.1', require: false
   gem 'capistrano-bundler', '~> 1.1', require: false
   gem 'capistrano-rvm', require: false
-  gem 'capistrano3-unicorn', require: false
   gem 'capistrano-sidekiq', require: false
+  gem 'capistrano3-puma', require: false
 end
 
 group :test do
