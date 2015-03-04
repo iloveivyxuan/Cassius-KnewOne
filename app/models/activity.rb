@@ -110,6 +110,8 @@ class Activity
         ids
       end
 
+      next if ids.empty?
+
       model.in(id: ids).each do |record|
         records["#{model.name}_#{record.id}"] = record
       end
