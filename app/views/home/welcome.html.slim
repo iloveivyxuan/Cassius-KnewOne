@@ -59,7 +59,7 @@ section.step#step3
     h1.pull-left
       | 欢迎来到&nbsp;
       strong.logo KnewOne
-    - flag = session[:previous_url] != root_path
+    - flag = session[:previous_url].present? && session[:previous_url] != root_path
     a.btn-inverse-white.pull-right href="#{flag ? session[:previous_url] : hits_path}"
       i.fa.fa-arrow-right
       | 完成
