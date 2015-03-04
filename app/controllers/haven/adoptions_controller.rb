@@ -46,10 +46,12 @@ module Haven
             lines.each { |l| csv<< l }
           end
 
+          filename = "领养导出 - #{Time.now}.csv"
+
           if params[:platform] != 'numbers'
-            send_data csv.encode 'gb2312', :replace => ''
+            send_data csv.encode('gb2312', :replace => ''), :filename => filename
           else
-            send_data csv, :replace => ''
+            send_data csv, :replace => '', :filename => filename
           end
         end
       end
