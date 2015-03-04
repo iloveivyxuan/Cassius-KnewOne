@@ -30,8 +30,10 @@ set :puma_worker_timeout, nil
 set :puma_init_active_record, false
 set :puma_preload_app, false
 set :puma_prune_bundler, true
+set :puma_default_hooks, false
 
 namespace :deploy do
+  after :check, 'puma:check'
   after :updated, 'newrelic:notice_deployment'
   after :publishing, :restart
   after :finishing, :cleanup

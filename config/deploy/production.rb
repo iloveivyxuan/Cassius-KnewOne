@@ -12,6 +12,7 @@ namespace :deploy do
   after :finished, 'airbrake:deploy'
   after :finished, :after_finish_deploy
   task :restart do
+    invoke 'puma:smart_restart'
     invoke 'sidekiq:restart'
   end
 end
