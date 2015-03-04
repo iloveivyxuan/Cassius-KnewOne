@@ -2,7 +2,19 @@ class UsersController < ApplicationController
   load_and_authorize_resource except: [:fuzzy]
 
   def show
-    redirect_to activities_user_url
+    @rich = params[:rich].to_s != 'false'
+
+    @activities = @user.activities.visible.page(params[:page]).per(24)
+    total_count = @activities.count
+
+    @activities = @activities.to_a
+    @activities.select { |a| a.type == :desire_thing }.each do |a|
+      @activities.reject! do |a2|
+        a2.type == :fancy_thing && a2.reference_union == a.reference_union
+      end
+    end
+
+    @activities = Kaminari.paginate_array(@activities, total_count: total_count).page(params[:page]).per(24)
   end
 
   def fancies
@@ -54,19 +66,7 @@ class UsersController < ApplicationController
   end
 
   def activities
-    @rich = params[:rich].to_s != 'false'
-
-    @activities = @user.activities.visible.page(params[:page]).per(24)
-    total_count = @activities.count
-
-    @activities = @activities.to_a
-    @activities.select { |a| a.type == :desire_thing }.each do |a|
-      @activities.reject! do |a2|
-        a2.type == :fancy_thing && a2.reference_union == a.reference_union
-      end
-    end
-
-    @activities = Kaminari.paginate_array(@activities, total_count: total_count).page(params[:page]).per(24)
+    redirect_to action: :show
   end
 
   def followings
