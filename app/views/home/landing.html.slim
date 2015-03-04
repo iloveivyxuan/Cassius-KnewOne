@@ -11,7 +11,10 @@
 
   - if browser.desktop?
     span.landing_image_wrap
-      img src=image_path("landing_#{Random.rand(4)}.jpg")
+      img src=["http://image.knewone.com/photos/6423758ada37bf234e365b3aaea80e2a.jpg",
+               "http://image.knewone.com/photos/6e8d03eaedb8db4ce541f9c021dc7469.jpg",
+               "http://image.knewone.com/photos/cbc25560f34f48e5d94e8df381c04cc5.jpg",
+               "http://image.knewone.com/photos/9a920fdac28a0c3a7701675a61e4532e.jpg"].sample
 
 .explore
   .explore_header
