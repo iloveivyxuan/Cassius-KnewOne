@@ -29,7 +29,7 @@
       }
 
       > .description {
-        $actions-width: 150px;
+        $actions-width: 160px;
 
         @include clearfix;
         background-color: #fafafa;
@@ -49,6 +49,7 @@
 
           @media (min-width: $screen-md-min) {
             float: right;
+            text-align: right;
             width: $actions-width;
           }
         }
