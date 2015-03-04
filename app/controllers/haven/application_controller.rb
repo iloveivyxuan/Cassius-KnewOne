@@ -4,6 +4,20 @@ module Haven
     before_action :logging
     before_action :set_notification
 
+    def send_csv_file(lines, filename, platform)
+      col_sep = (platform == 'numbers') ? ',' : ';'
+
+      csv = CSV.generate :col_sep => col_sep do |csv|
+        lines.each { |l| csv<< l }
+      end
+
+      if platform != 'numbers'
+        send_data csv.encode('gb2312', :replace => ''), :filename => filename
+      else
+        send_data csv, :replace => '', :filename => filename
+      end
+    end
+
     protected
 
     def require_admin_signed_in

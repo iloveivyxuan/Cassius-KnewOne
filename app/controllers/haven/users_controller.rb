@@ -124,19 +124,7 @@ module Haven
             lines<< cols
           end
 
-          col_sep = (params[:platform] == 'numbers') ? ',' : ';'
-
-          csv = CSV.generate :col_sep => col_sep do |csv|
-            lines.each { |l| csv<< l }
-          end
-
-          filename = "用户导出 - #{Time.now}.csv"
-
-          if params[:platform] != 'numbers'
-            send_data csv.encode('gb2312', :replace => ''), :filename => filename
-          else
-            send_data csv, :replace => '', :filename => filename
-          end
+          send_csv_file lines, "用户导出 - #{Time.now}.csv", params[:platform]
         end
       end
     end
