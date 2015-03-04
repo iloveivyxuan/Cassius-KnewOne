@@ -13,15 +13,6 @@ module ApplicationHelper
     (size > num) ? (size - num) : 0
   end
 
-  def sanitize(html, options = {})
-    html = ActionController::Base.helpers.sanitize(html, options)
-
-    fragment = Nokogiri::HTML::DocumentFragment.parse(html)
-    fragment.css('iframe:not([src])').remove
-
-    fragment.to_html.html_safe
-  end
-
   def number_to_human(number)
     return number if number < 1000
 
