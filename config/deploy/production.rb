@@ -11,10 +11,6 @@ namespace :deploy do
   before :updating, :test
   after :finished, 'airbrake:deploy'
   after :finished, :after_finish_deploy
-  task :restart do
-    invoke 'puma:smart_restart'
-    invoke 'sidekiq:restart'
-  end
 end
 
 namespace :sitemap do

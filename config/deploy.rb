@@ -37,4 +37,9 @@ namespace :deploy do
   after :updated, 'newrelic:notice_deployment'
   after :publishing, :restart
   after :finishing, :cleanup
+
+  task :restart do
+    invoke 'puma:smart_restart'
+    invoke 'sidekiq:restart'
+  end
 end
