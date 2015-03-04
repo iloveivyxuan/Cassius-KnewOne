@@ -115,6 +115,7 @@ gem 'country_select'
 gem 'similar_text'
 
 # servers
+gem 'puma'
 
 group :development do
   gem 'better_errors'
