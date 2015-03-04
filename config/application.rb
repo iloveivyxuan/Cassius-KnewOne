@@ -95,5 +95,8 @@ module Making
     end
 
     APN.password = 'Knewone123'
+
+    # ref: https://github.com/rack/rack/commit/b0b5fb9467e6ed777d3eaf35afc81d758e308aab
+    Rack::Utils.multipart_part_limit = 0
   end
 end
