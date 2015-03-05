@@ -119,6 +119,7 @@ class ReviewsController < ApplicationController
 
   def invite
     respond_to do |format|
+      format.html { redirect_to thing_url(@thing) }
       format.js
     end
   end
