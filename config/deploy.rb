@@ -26,7 +26,7 @@ set :puma_role, :app
 set :puma_env, fetch(:rack_env, fetch(:rails_env, 'production'))
 set :puma_threads, [1, 1]
 set :puma_workers, 16
-set :puma_worker_timeout, nil
+set :puma_worker_timeout, 60
 set :puma_init_active_record, false
 set :puma_preload_app, false
 set :puma_prune_bundler, true
