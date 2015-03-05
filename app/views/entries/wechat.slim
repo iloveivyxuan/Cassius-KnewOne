@@ -3,10 +3,10 @@
 doctype html
 html
   head
-    title 导出微信格式 - #{entry_title @entry} - KnewOne
+    title 导出微信格式－《#{entry_title @entry }》－KnewOne
 
   body
-    h1 导出微信格式 - #{entry_title @entry}
+    h1 导出微信格式－《#{entry_title @entry }》by #{@entry.post.author.name}
 
     h2 摘要
     p= @entry.summary
