@@ -1,12 +1,13 @@
+- is_mobile ||= browser.mobile?
 - if embed
   - thing = embed.first
   - photo = embed.last
 figure class="thing--embed #{klass}" data-thing-id=thing.id
   = link_to thing, target: "_blank" do
     - if !photo.blank?
-      = image_tag (browser.mobile? ? "#{photo}!square" : photo)
+      = image_tag (is_mobile ? "#{photo}!square" : photo)
     - else
-      - version = browser.mobile? ? :square : (klass == 'col-sm-12' ? :middle : :square)
+      - version = is_mobile ? :square : (klass == 'col-sm-12' ? :middle : :square)
       = image_tag thing.photos.first.url(version)
   figcaption
     h5= link_to thing.title, thing, target: "_blank"

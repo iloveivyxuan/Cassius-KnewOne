@@ -1,6 +1,8 @@
 module PostsHelper
 
   def load_post_resources(content, version = :web)
+    is_mobile = version == :app ? true : browser.mobile?
+
     html_doc = Nokogiri::HTML.fragment(content)
     html_doc.css('.knewone-embed:empty').each do |element|
       type = element["data-knewone-embed-type"]
@@ -13,10 +15,10 @@ module PostsHelper
         slugs = key.split(',')
         things = Thing.in(slugs: slugs).sort_by { |thing| slugs.index(thing.slug) || slugs.size }
         photos = options ? photos.split(',') : Array.new(things.size, "")
-        result = render partial: 'things/embed_thing', collection: things.zip(photos), locals: { klass: (slugs.size > 1) ? 'col-sm-6' : 'col-sm-12' }, as: 'embed'
+        result = render partial: 'things/embed_thing', collection: things.zip(photos), locals: { klass: (slugs.size > 1 ? 'col-sm-6' : 'col-sm-12'), is_mobile: is_mobile}, as: 'embed'
       when 'list'
         if (list = ThingList.where(id: key).first)
-          result = render 'thing_lists/thing_list', thing_list: list, layout: browser.desktop? ? :quintet : :grid
+          result = render 'thing_lists/thing_list', thing_list: list, layout: !is_mobile ? :quintet : :grid
         end
       when 'review'
         if (review = Review.where(id: key).first)
