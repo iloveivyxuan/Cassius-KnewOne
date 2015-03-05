@@ -81,7 +81,6 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
       $trigger
         .attr('title', title)
         .removeClass('unfancied fancied desired unowned owned')
-        .data({fancied, state})
         .children('.fa')
         .attr('class', "fa #{iconClass}")
         .addClass(animation)
@@ -117,6 +116,8 @@ class Making.Views.FancyModal extends Backbone.Marionette.ItemView
         else if data.state == 'owned' && state != 'owned'
           updateCount($count, -1)
           updateTrigger($trigger, '拥有此产品', 'unowned', 'fa-circle-o', 'flip')
+
+      $trigger.data({fancied, state})
     )
 
   onShow: ->
