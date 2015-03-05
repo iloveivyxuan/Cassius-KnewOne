@@ -1,26 +1,6 @@
 @import '../base';
 
-html.landing_mobile {
-
-  body {
-    @media (min-width: $screen-sm-min) {
-      padding-top: 45px;
-      #wrapper {margin: 0}
-    }
-  }
-
-  h2.slogan {
-    margin: 0;
-    padding: 1em 0;
-    background: $blue;
-    color: white;
-
-    font-size: 16px;
-    text-align: center;
-  }
-}
-
-html.landing {
+html.home_landing {
   #wrapper { margin: 0 }
 
   #header {
@@ -1046,6 +1026,311 @@ html.landing {
           }
         }
       }
+    }
+  }
+}
+
+
+
+
+html.landing_mobile {
+  body {
+    padding: 0;
+  }
+
+  #header {
+    display: block;
+    .btn {
+      display: none;
+    }
+    .menu-toggle {
+      display: block;
+    }
+  }
+
+  .headline {
+    background-color: #fbfbfb;
+    .sign_group {
+      text-align: center;
+      .btn {
+        padding: .5em 3em;
+        margin: 20px 0;
+        border-radius: 15px;
+        border: solid 2px $brand-primary;
+        outline: none;
+      }
+      .btn--signin {
+        color: $brand-primary;
+        margin-right: 10px;
+      }
+      .btn--signup {
+        color: #fff;
+        background-color: $brand-primary;
+        margin-left: 10px;
+      }
+    }
+    .form-group.search input {
+      &:active, &:focus {
+        color: #fff;
+        background-color: #5e6775;
+      }
+    }
+  }
+
+  .jumptron.mobile_landing {
+    margin: 0;
+    background: asset_url('landing-mobile-header_image_bg.jpg');
+  }
+
+  #wrapper {
+    .menu-search {
+      margin-left: 0;
+    }
+  }
+
+  .explore_body {
+    padding: 0 45px;
+  }
+
+  .explore_content {
+    padding: 0 20px;
+  }
+
+  article.thing, article.review {
+    background-color: $smoke-white;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  article.review {
+    .cover {
+      background-color: #fff;
+    }
+  }
+
+  .read_more_category {
+    background-color: $smoke-white;
+    border-top: dashed 1px $brand-primary;
+    display: block;
+    padding: 1em 0;
+    text-align: center;
+    color: $brand-primary;
+    &:active, &:focus {
+      background-color: darken($smoke-white, 5%);
+    }
+  }
+}
+
+
+html.landing_mobile.mobile {
+  #header {
+    position: absolute !important;
+    background-color: transparent;
+    pointer-events: none;
+    h1 {
+      display: none;
+    }
+    .btn {
+      margin-top: 0;
+    }
+    .menu-toggle {
+      pointer-events: auto;
+    }
+  }
+
+  .headline {
+    padding-top: 10px;
+  }
+
+  .category_group {
+    margin-bottom: 20px;
+    background-color: #fff;
+    .category_group-title {
+      background-color: #fff;
+      color: #474a4f;
+      font-size: 18px;
+      padding: 1em;
+      position: relative;
+      &:before {
+        content: " ";
+        position: absolute;
+        border-top: solid 16px transparent;
+        border-right: solid 16px transparent;
+        border-left: solid 16px transparent;
+        border-bottom: solid 10px $smoke-white;
+        height: 0;
+        width: 0;
+        bottom: 0;
+      }
+    }
+    .review {
+      margin-bottom: 0;
+    }
+  }
+}
+
+
+html.landing_mobile.tablet {
+  body {
+    padding-top: 45px;
+    #wrapper {
+      margin: 0;
+    }
+  }
+  .headline {
+    background: asset_url('landing-mobile-header_image_bg.jpg') !important;
+    display: table;
+    padding: 20px 45px 0 45px;
+    width: 100%;
+    .jumptron.mobile_landing {
+      background-image: none;
+      display: table-cell;
+      width: 50%;
+    }
+    .sign_group {
+      display: table-cell;
+      width: 50%;
+      padding: 0 45px;
+      .btn {
+        display: block;
+        margin-left: 0;
+        margin-right: 0;
+        font-size: 16px;
+      }
+      .btn--signin {
+        color: #fff;
+        background-color: #77abde;
+        border-color: #77abde;
+      }
+    }
+  }
+  .explore_nav {
+    margin: 20px 0;
+    position: relative;
+    ul {
+      height: 58px;
+      position: relative;
+      li {
+        vertical-align: bottom;
+        a {
+          span {
+            display: none;
+          }
+        }
+        &.active {
+          span {
+            display: block;
+            position: absolute;
+            left: 50%;
+            top: 0;
+          }
+        }
+      }
+    }
+    .nav_toggle-btn {
+      font-size: 22px;
+      height: 57px;
+      line-height: 57px;
+      position: absolute;
+      right: 0;
+      text-align: center;
+      transition: transform .25s ease-in-out;
+      width: 45px;
+      z-index: 9999;
+      i {
+        margin-right: 0;
+      }
+    }
+    &.open {
+      overflow: visible;
+      height: auto;
+      background-color: #fff;
+      padding-right: 45px;
+      @include clearfix;
+      ul {
+        display: block;
+        table-layout: auto;
+        li {
+          display: block;
+          float: left;
+          height: 72px;
+          width: 16.6666666666%;
+          a {
+            line-height: 72px;
+            border: none;
+            color: #a2a2a2;
+            span {
+              position: static;
+              display: block;
+            }
+          }
+          &.active {
+            a {
+              color: #343434;
+            }
+          }
+        }
+      }
+      .nav_toggle-btn {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  .explore_body {
+    display: block !important;
+    position: relative;
+  }
+
+  .thing-wrapper {
+    @include clearfix;
+  }
+
+  article.thing {
+    float: left;
+    width: 49%;
+    margin-bottom: 10px;
+    &:last-child {
+      float: right;
+    }
+  }
+
+  .switch_explore_content {
+    background-color: $smoke-white;
+    padding: 16px 16px;
+    position: absolute;
+    top: 240px;
+    &.left {
+      left: -50px;
+    }
+    &.right {
+      right: -50px;
+    }
+    &.hide {
+      display: none;
+    }
+    &:active {
+      background-color: #f1f1f1;
+    }
+
+    @media (max-width: $screen-sm-max) {
+      &.left {
+        left: 0;
+      }
+      &.right {
+        right: 0;
+      }
+    }
+  }
+
+  .read_more_category {
+    border: none;
+    background-color: transparent;
+    text-align: right;
+    &:after {
+      margin-left: .5em;
+      content: "\e60e";
+      display: inline-block;
+      font-family: 'KnewOne-Icon';
     }
   }
 }

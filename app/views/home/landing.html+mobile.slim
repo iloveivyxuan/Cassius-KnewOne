@@ -1,0 +1,37 @@
+- provide :page_class, "landing_mobile"
+- page_css 'landing'
+- page_css 'hits'
+
+- cache ['landing_mobile', params[:page] || 1], expires_in: 1.minute
+  header.jumptron.mobile_landing
+    - if (j = Jumptron.by_type(:landing).where(default: true).sample)
+      a href=j.href target="_blank"
+        img src=j.image.url alt=j.alt
+    - else
+      img src=image_path('landing_mobile_default.png')
+
+  .headline
+    .sign_group
+      = link_to "登录", "#login-modal", class: "btn btn--signin", data: { toggle: "modal" }
+      = link_to "注册", "#login-modal", class: "btn btn--signup", data: { toggle: "modal", "action-type" => "signup" }
+    = form_tag search_root_path, class: 'menu-search', role: 'form', method: 'get'
+      .form-group.search
+        label.sr-only 搜索 KnewOne
+        input.form-control name='q' type='search' autocomplete="off" placeholder="搜索 KnewOne"
+        i.fa.fa-search
+
+  section.hits
+    .category_group
+      .category_group-title
+        | 精选
+      .category_group-content
+        = render partial: 'things/thing', collection: Thing.hot.recommended.limit(1), as: :thing
+        = render partial: 'hot_review', collection: Review.hot.limit(1), as: :review
+      .category_group-footer
+        = link_to '发现更多内容', hits_path, class: 'read_more_category'
+
+    = render partial: 'landing_category_mobile', collection: @categories, as: :category
+
+- content_for :script do
+  javascript:
+    Making.InitHomeGuest({url: '/'});
