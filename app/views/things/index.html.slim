@@ -26,7 +26,9 @@
         ol.breadcrumb
           li.active= @top_c.name
       - else
-        = link_to '最新', things_path, class: 'breadcrumb'
+        = link_to things_path, class: 'breadcrumb'
+          i.fa.fa-space-shuttle
+          | 最新
     nav.sort_breadcrumb.hidden-xs
       = render 'sort_breadcrumb' if @category || @brand
 
