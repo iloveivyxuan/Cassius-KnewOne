@@ -33,7 +33,7 @@ set :puma_prune_bundler, true
 set :puma_default_hooks, false
 
 namespace :deploy do
-  after :check, 'puma:check'
+  after :check, 'puma:config'
   after :updated, 'newrelic:notice_deployment'
   after :publishing, :restart
   after :finishing, :cleanup
