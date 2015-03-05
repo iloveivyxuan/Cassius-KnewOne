@@ -1,7 +1,9 @@
 - @list.thing_list_items.desc(:order).each do |item|
   h4
     b= item.thing.title
-  h4= item.thing.subtitle
-  p= image_tag item.thing.photos.first.url
+    = item.thing.price_unit
+    = item.thing.price
+  p= item.thing.subtitle
   p= item.description
+  p= image_tag item.thing.photos.first.url
   p= item.thing.content.html_safe
