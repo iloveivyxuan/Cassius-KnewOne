@@ -4,10 +4,11 @@ curl -X POST --data-urlencode "payload={\"channel\": \"#dev\", \"username\": \"$
 
 if [[ -z $1 ]]; then
   rsync -avz -e 'ssh -p22222' --exclude='app/assets/' app config lib deployer@knewone.com:~/apps/making/current &&
+  ssh -p 22222 deployer@knewone.com 'cd apps/making/current && /usr/local/rvm/bin/rvm default do bundle' &&
   bundle exec cap production puma:smart_restart
 else
   rsync -avz -e 'ssh -p22222' app config lib deployer@knewone.com:~/apps/making/current &&
-  ssh -p 22222 deployer@knewone.com 'cd apps/making/current && RAILS_ENV=production /usr/local/rvm/bin/rvm default do bundle exec rake assets:precompile' &&
+  ssh -p 22222 deployer@knewone.com 'cd apps/making/current && /usr/local/rvm/bin/rvm default do bundle && RAILS_ENV=production /usr/local/rvm/bin/rvm default do bundle exec rake assets:precompile' &&
   bundle exec cap production puma:smart_restart
 fi
 
