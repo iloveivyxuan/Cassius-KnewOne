@@ -1049,7 +1049,7 @@ html.landing_mobile {
   }
 
   .headline {
-    background-color: #FBFBFB;
+    background-color: #fbfbfb;
     .sign_group {
       text-align: center;
       .btn {
@@ -1097,7 +1097,7 @@ html.landing_mobile {
   }
 
   article.thing, article.review {
-    background-color: #F7F7F7;
+    background-color: $smoke-white;
     padding: 20px;
     margin-bottom: 20px;
   }
@@ -1109,14 +1109,14 @@ html.landing_mobile {
   }
 
   .read_more_category {
-    background-color: #F7F7F7;
+    background-color: $smoke-white;
     border-top: dashed 1px $brand-primary;
     display: block;
     padding: 1em 0;
     text-align: center;
     color: $brand-primary;
     &:active, &:focus {
-      background-color: darken(#F7F7F7, 5%);
+      background-color: darken($smoke-white, 5%);
     }
   }
 }
@@ -1147,7 +1147,7 @@ html.landing_mobile.mobile {
     background-color: #fff;
     .category_group-title {
       background-color: #fff;
-      color: #474A4F;
+      color: #474a4f;
       font-size: 18px;
       padding: 1em;
       position: relative;
@@ -1157,7 +1157,7 @@ html.landing_mobile.mobile {
         border-top: solid 16px transparent;
         border-right: solid 16px transparent;
         border-left: solid 16px transparent;
-        border-bottom: solid 10px #F7F7F7;
+        border-bottom: solid 10px $smoke-white;
         height: 0;
         width: 0;
         bottom: 0;
@@ -1199,8 +1199,8 @@ html.landing_mobile.tablet {
       }
       .btn--signin {
         color: #fff;
-        background-color: #77ABDE;
-        border-color: #77ABDE;
+        background-color: #77abde;
+        border-color: #77abde;
       }
     }
   }
@@ -1295,7 +1295,7 @@ html.landing_mobile.tablet {
   }
 
   .switch_explore_content {
-    background-color: #F7F7F7;
+    background-color: $smoke-white;
     padding: 16px 16px;
     position: absolute;
     top: 240px;
@@ -1309,7 +1309,7 @@ html.landing_mobile.tablet {
       display: none;
     }
     &:active {
-      background-color: #F1F1F1;
+      background-color: #f1f1f1;
     }
 
     @media (max-width: $screen-sm-max) {
