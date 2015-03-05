@@ -1,4 +1,4 @@
-- @list.thing_list_items.each do |item|
+- @list.thing_list_items.desc(:order).each do |item|
   h4
     b= item.thing.title
   h4= item.thing.subtitle
