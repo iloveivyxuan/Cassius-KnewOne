@@ -2,19 +2,20 @@
 - page_css 'merchants'
 - provide :load_customer_service, true
 
-header
-  h1
-    = @merchant.name
-  .description
-    p= @merchant.description
-    .actions
-      = customer_service @merchant, "btn btn-default"
-      - if @merchant.role?(current_user)
-        span.separator |
-        = button_tag "编辑", type: "button", class: "btn btn-default", data: { toggle: 'modal', target: '#set-description-modal' }
-  ul.group
-    - if @merchant.group
-      = render @merchant.group
+header.page-header
+  h1 = @merchant.name
+  .actions
+    - if @merchant.role?(current_user)
+      = button_tag "编辑", type: "button", class: "btn btn-default", data: { toggle: 'modal', target: '#set-description-modal' }
+      span.separator |
+    = customer_service @merchant, "btn btn--orange"
+
+.merchant_description
+  p= @merchant.description
+
+ul.group
+  - if @merchant.group
+    = render @merchant.group
 
 section.things
   = render partial: 'things/thing', collection: @merchant.things
