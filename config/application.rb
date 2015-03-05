@@ -73,9 +73,9 @@ module Making
     end
 
     config.action_view.sanitized_allowed_tags = Set.new(%w(strong em b i p code pre tt samp kbd var sub sup dfn cite big small address hr br div span h1 h2 h3 h4 h5 h6 ul ol li dl dt dd abbr acronym a img blockquote del ins))
-    config.action_view.sanitized_allowed_tags << %w(embed iframe strike u table td tr thead tbody tfoot th article header section footer figure figcaption)
+    config.action_view.sanitized_allowed_tags += %w(embed iframe strike u table td tr thead tbody tfoot th article header section footer figure figcaption)
     config.action_view.sanitized_allowed_attributes = Set.new(%w(href src width height alt cite datetime title class name xml:lang abbr))
-    config.action_view.sanitized_allowed_attributes << %w(target data-knewone-embed-type data-knewone-embed-key data-knewone-embed-options data-knewone-embed-id contenteditable data-score data-profile-popover data-original)
+    config.action_view.sanitized_allowed_attributes += %w(target data-knewone-embed-type data-knewone-embed-key data-knewone-embed-options data-knewone-embed-id contenteditable data-score data-profile-popover data-original)
 
     I18n.enforce_available_locales = false
 
