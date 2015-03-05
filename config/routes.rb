@@ -197,7 +197,7 @@ Making::Application.routes.draw do
 
     resources :reviews do
       collection do
-        post 'invite'
+        match 'invite', via: [:get, :post]
       end
 
       member do
