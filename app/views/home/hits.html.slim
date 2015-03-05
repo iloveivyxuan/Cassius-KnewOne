@@ -4,8 +4,12 @@
 
 - cache_unless user_signed_in?, ['hits', params[:page] || 1, browser.mobile?], expires_in: 1.minute
   .container-fluid
-    header.jumptron
-      - if (j = Jumptron.by_type(:normal).where(default: true).sample)
+    header.page-header
+      h1
+        i.fa.fa-compass
+        | 热门
+    - if (j = Jumptron.by_type(:normal).where(default: true).sample)
+      .jumptron
         a href=j.href target="_blank"
           img src=j.image.url alt=j.alt
     section.hits

@@ -1,8 +1,6 @@
 @import '../base';
 
 html.home_hits body {
-  padding-top: 45px;
-  #header {margin: 0;}
   #wrapper {margin: 0;}
 }
 
@@ -18,11 +16,27 @@ html.home_hits .container-fluid {
 }
 
 html.home_hits {
-  header.jumptron {
+  .page-header {
+    border-bottom: none;
+    height: 46px;
+    line-height: 46px;
+    margin-bottom: 20px;
+    padding: {
+      bottom: 0;
+      left: 15px;
+      right: 15px;
+    }
+
+    h1 {
+      line-height: 46px;
+    }
+  }
+
+  .jumptron {
     @include clearfix;
 
     @media (min-width: $screen-sm-min) {
-      margin: 40px 0 30px;
+      margin-bottom: 20px;
     }
   }
 }
