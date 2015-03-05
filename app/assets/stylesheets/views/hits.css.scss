@@ -18,8 +18,6 @@ html.home_hits .container-fluid {
 html.home_hits {
   .page-header {
     border-bottom: none;
-    height: 46px;
-    line-height: 46px;
     margin-bottom: 20px;
     padding: {
       bottom: 0;
@@ -27,8 +25,19 @@ html.home_hits {
       right: 15px;
     }
 
-    h1 {
+    @media (min-width: $screen-sm-min) {
+      height: 46px;
       line-height: 46px;
+    }
+
+    h1 {
+      line-height: 60px;
+      font-size: 20px;
+
+      @media (min-width: $screen-sm-min) {
+        font-size: 24px;
+        line-height: 46px;
+      }
     }
   }
 
