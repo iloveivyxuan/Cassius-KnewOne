@@ -52,11 +52,11 @@
   }
 
   .recommend_note {
-    @include text-overflow;
     color: $iron;
-    padding-left: 54px;
+    height: 40px;
     max-width: 90%;
-    min-height: 20px;
+    overflow: hidden;
+    padding-left: 54px;
 
     @media (min-width: $screen-md-min) {
       max-width: 16em;

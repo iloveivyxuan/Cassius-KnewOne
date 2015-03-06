@@ -6,7 +6,7 @@ do (exports = window.Making || {}) ->
       step  = location.hash
       $tags = $('#step2').find('.tags')
       $things = $('#step2 .things')
-      visibleCount = if $html.hasClass('mobile') then 6 else 12
+      visibleCount = if $html.hasClass('mobile') then 5 else 10
 
       if step is '' then step = '#step1'
       $(step).addClass('is-active')

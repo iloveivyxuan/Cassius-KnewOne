@@ -238,7 +238,7 @@ html.home_welcome {
   }
 
   .recommended-users {
-    height: 420px;
+    height: 440px;
     overflow: hidden;
     padding: 0 1em;
 
@@ -307,7 +307,6 @@ html.home_welcome {
   &.desktop {
 
     .recommended-user {
-      min-height: 70px;
       padding: 0 50px;
 
       &:nth-child(odd) {
