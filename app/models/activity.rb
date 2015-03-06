@@ -47,6 +47,10 @@ class Activity
     self.type.to_s.split("_").last
   end
 
+  def reference_id
+    reference_union.split('_').last
+  end
+
   def reference(with_deleted = false)
     return if self.reference_union.blank?
 
@@ -69,6 +73,10 @@ class Activity
     @_reference = record
   end
 
+  def source_id
+    source_union.split('_').last
+  end
+
   def source(with_deleted = false)
     return if self.source_union.blank?
 
@@ -81,10 +89,26 @@ class Activity
     @_source = record
   end
 
+  def related_thing_id
+    case self.type
+    when :new_thing, :fancy_thing, :desire_thing, :own_thing, :add_to_list then self.reference_id
+    when :new_review, :love_review, :new_feeling then self.source_id
+    else nil
+    end
+  end
+
   def related_thing
     case self.type
     when :new_thing, :fancy_thing, :desire_thing, :own_thing, :add_to_list then self.reference
     when :new_review, :love_review, :new_feeling then self.source
+    else nil
+    end
+  end
+
+  def related_thing_list_id
+    case self.type
+    when :fancy_list then self.reference_id
+    when :add_to_list then self.source_id
     else nil
     end
   end
