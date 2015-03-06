@@ -32,9 +32,9 @@ window.Making = do (exports = window.Making || {}) ->
           offsetStart = touch.clientX
         else
           offsetEnd = touch.clientX
-          if offsetEnd - offsetStart < -100 && activeIndex < itemsLength - 1
+          if offsetEnd - offsetStart < -200 && activeIndex < itemsLength - 1
             activeIndex += 1
-          else if offsetEnd - offsetStart > 100 && activeIndex > 0
+          else if offsetEnd - offsetStart > 200 && activeIndex > 0
             activeIndex -= 1
           else
             return
