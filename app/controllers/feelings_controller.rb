@@ -41,7 +41,7 @@ class FeelingsController < ApplicationController
         format.json { head :created }
       end
     else
-      head :request_entity_too_large
+      head :unprocessable_entity
     end
   end
 
