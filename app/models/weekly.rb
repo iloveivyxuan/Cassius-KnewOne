@@ -56,6 +56,8 @@ class Weekly
   end
 
   def friends_hot_things_without_global_of(user, limit = 6)
+    return [] if user.followings_count == 0
+
     global_ids = hot_things(limit).map {|t| t.id.to_s }
     related_activities = user.related_activities.visible
     ids = (fetch_hot_thing_ids_by_activities(related_activities, limit*2) - global_ids).take(limit)
