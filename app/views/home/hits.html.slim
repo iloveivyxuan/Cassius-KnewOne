@@ -12,6 +12,8 @@
       .jumptron
         a href=j.href target="_blank"
           img src=j.image.url alt=j.alt
+    - unless browser.desktop?
+      = render 'shared/discover_page_nav_mobile'
     section.hits
       = render 'hits_groups'
 

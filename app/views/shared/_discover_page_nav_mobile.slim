@@ -1,0 +1,6 @@
+nav.page-nav
+  ul
+    = li controller_name == 'home' && action_name == 'hits'
+      = link_to '热门', hits_path
+    = li controller_name == 'things' && action_name == 'index'
+      = link_to '最新', things_path

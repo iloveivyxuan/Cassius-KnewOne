@@ -1,0 +1,58 @@
+html.home_hits,
+html.things_latest {
+  .page-nav {
+    padding: 20px;
+
+    > ul {
+      @include clearfix;
+      width: 100%;
+
+      @media (min-width: $screen-sm-min) {
+        margin: {
+          left: auto;
+          right: auto;
+        }
+      }
+
+      > li {
+        float: left;
+        height: 30px;
+        line-height: 28px;
+        padding-bottom: 2px;
+        text-align: center;
+        width: 50%;
+
+        > a {
+          color: #aaa;
+        }
+
+        &.active {
+          border-bottom: 2px solid $blue;
+          padding-bottom: 0;
+
+          > a {
+            color: $text-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+html.home_hits {
+  &.mobile,
+  &.tablet {
+    .page-header {
+      display: none;
+    }
+  }
+}
+
+html.things_latest {
+  &.mobile,
+  &.tablet {
+    #things_nav {
+      display: none;
+    }
+  }
+}

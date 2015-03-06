@@ -4,6 +4,10 @@
   - provide :keywords, keywords
 - if @brand
   - provide :page_class, 'things_brand'
+- elsif @category
+  - provide :page_class, 'things_categories'
+- else
+  - provide :page_class, 'things_latest'
 
 - provide :nav, :things
 
@@ -29,8 +33,13 @@
         = link_to things_path, class: 'breadcrumb'
           i.fa.fa-space-shuttle
           | 最新
-    nav.sort_breadcrumb.hidden-xs
-      = render 'sort_breadcrumb' if @category || @brand
+
+    - if @category || @brand
+      nav.sort_breadcrumb.hidden-xs
+        = render 'sort_breadcrumb'
+
+  - unless browser.desktop? || @category || @brand
+    = render 'shared/discover_page_nav_mobile'
 
   - if (klass = @brand || @category)
     section#things_information
@@ -45,8 +54,9 @@
         .more
           = link_to_with_icon "查看所有 #{klass.children.size} 个标签", "fa fa-angle-double-down", "javascript:;"
 
-  nav.sort_breadcrumb.visible-xs-block
-    = render 'sort_breadcrumb' if @brand || @category
+  - if @brand || @category
+    nav.sort_breadcrumb.visible-xs-block
+      = render 'sort_breadcrumb'
 
   section#things_list.infinite
     = render partial: 'things/thing', collection: @things
