@@ -102,17 +102,12 @@ class Weekly
 
   def fetch_hot_thing_ids_by_activities(activities, limit = 14)
     activities
+      .only(:type, :source_union, :reference_union)
       .by_types(*WEIGHT.keys)
       .since_date(self.since_date)
       .until_date(self.until_date)
-      .pluck(:type, :source_union, :reference_union)
-      .reduce(Hash.new(0)) do |weights, attributes|
-      type, source_union, reference_union = *attributes
-
-      union = (type == :fancy_thing || type == :add_to_list) ? reference_union : source_union
-      id = union.split('_').last
-
-      weights[id] += WEIGHT[type]
+      .reduce(Hash.new(0)) do |weights, activity|
+      weights[activity.related_thing_id] += WEIGHT[activity.type]
       weights
     end
       .sort_by(&:last)
