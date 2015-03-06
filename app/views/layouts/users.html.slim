@@ -6,8 +6,8 @@
 
   nav.page-nav--tiny.visible-xs-block
     ul
-      = li action_name == 'activities'
-        = link_to [:activities, @user]
+      = li action_name == 'show'
+        = link_to @user
           i.fa.fa-home
       = li ['fancies', 'desires', 'owns', 'things'].include?(action_name)
         = link_to [:fancies, @user]
@@ -21,8 +21,8 @@
 
   nav.page-nav.hidden-xs
     ul
-      = li action_name == 'activities', class: 'nav-activities'
-        = link_to [:activities, @user]
+      = li action_name == 'show', class: 'nav-activities'
+        = link_to @user
           i.fa.fa-bars
           | 动态
       = li action_name == 'fancies', class: 'nav-fancies'

@@ -1,4 +1,4 @@
-- if action_name == 'activities' || !browser.mobile?
+- if action_name == 'show' || !browser.mobile?
   header.vcard itemscope="itemscope" itemtype="http://schema.org/Person"
     figure.vcard-canopy
       - version = browser.mobile? ? :wechat : :background
