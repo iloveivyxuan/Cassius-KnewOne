@@ -77,6 +77,8 @@ module Making
     config.action_view.sanitized_allowed_attributes = Set.new(%w(href src width height alt cite datetime title class name xml:lang abbr))
     config.action_view.sanitized_allowed_attributes += %w(target data-knewone-embed-type data-knewone-embed-key data-knewone-embed-options data-knewone-embed-id contenteditable data-score data-profile-popover data-original)
 
+    config.active_job.queue_adapter = :sidekiq
+
     I18n.enforce_available_locales = false
 
     config.middleware.insert 0, Rack::UTF8Sanitizer
