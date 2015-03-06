@@ -706,6 +706,12 @@ html[class^="users_"] {
           border-color: $gray;
           color: #fff;
         }
+
+        &.active {
+          background-color: $iron;
+          border-color: $iron;
+          color: #fff;
+        }
       }
     }
   }
