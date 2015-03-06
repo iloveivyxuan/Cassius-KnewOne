@@ -10,8 +10,9 @@ header.page-header
       span.separator |
     = customer_service @merchant, "btn btn--orange"
 
-.merchant_description
-  p= @merchant.description
+- unless @merchant.description.blank?
+  .merchant_description
+    p= @merchant.description
 
 ul.group
   - if @merchant.group
