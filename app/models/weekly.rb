@@ -57,7 +57,8 @@ class Weekly
 
   def friends_hot_things_without_global_of(user, limit = 6)
     global_ids = hot_things(limit).map {|t| t.id.to_s }
-    ids = (fetch_hot_thing_ids_by_activities(user.related_activities.visible, limit*2) - global_ids).take(limit)
+    related_activities = user.related_activities.visible
+    ids = (fetch_hot_thing_ids_by_activities(related_activities, limit*2) - global_ids).take(limit)
 
     Thing.where(:id.in => ids).sort_by { |thing| ids.index(thing.id.to_s) }
   end
