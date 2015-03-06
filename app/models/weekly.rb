@@ -107,6 +107,7 @@ class Weekly
     return [] if activities.empty?
 
     activities
+      .only(:type, :source_union, :reference_union)
       .by_types(*WEIGHT.keys)
       .since_date(self.since_date)
       .until_date(self.until_date)
