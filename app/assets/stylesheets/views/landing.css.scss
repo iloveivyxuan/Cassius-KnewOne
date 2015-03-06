@@ -1092,9 +1092,6 @@ html.landing_mobile {
     padding: 0 45px;
   }
 
-  .explore_content {
-    padding: 0 20px;
-  }
 
   article.thing, article.review {
     background-color: $smoke-white;
@@ -1281,6 +1278,15 @@ html.landing_mobile.tablet {
     position: relative;
   }
 
+  .explore_content_item {
+    display: none;
+    opacity: 1;
+    margin: 0 20px;
+    &:first-child {
+      display: block;
+    }
+  }
+
   .thing-wrapper {
     @include clearfix;
   }
@@ -1291,34 +1297,6 @@ html.landing_mobile.tablet {
     margin-bottom: 10px;
     &:last-child {
       float: right;
-    }
-  }
-
-  .switch_explore_content {
-    background-color: $smoke-white;
-    padding: 16px 16px;
-    position: absolute;
-    top: 240px;
-    &.left {
-      left: -50px;
-    }
-    &.right {
-      right: -50px;
-    }
-    &.hide {
-      display: none;
-    }
-    &:active {
-      background-color: #f1f1f1;
-    }
-
-    @media (max-width: $screen-sm-max) {
-      &.left {
-        left: 0;
-      }
-      &.right {
-        right: 0;
-      }
     }
   }
 

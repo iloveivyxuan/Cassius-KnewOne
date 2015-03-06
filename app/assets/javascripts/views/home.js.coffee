@@ -17,56 +17,26 @@ window.Making = do (exports = window.Making || {}) ->
           exports.initSearchForm('#search_form')
 
     if $('html').hasClass('tablet')
-      $items = $('.explore_content_item')
-      $navs  = $('.explore_nav li')
-      $activeItem = $items.filter('.active')
-      $activeNav  = $navs.filter('.active')
-      itemsLength = $items.length
-      activeIndex = $items.index($activeItem)
-      offsetStart = 0
-      offsetEnd = 0
-
-      $('.explore_body').on 'touchstart touchend', (event) ->
-        touch = event.originalEvent.changedTouches[0]
-        if event.type is 'touchstart'
-          offsetStart = touch.clientX
-        else
-          offsetEnd = touch.clientX
-          if offsetEnd - offsetStart < -200 && activeIndex < itemsLength - 1
-            activeIndex += 1
-          else if offsetEnd - offsetStart > 200 && activeIndex > 0
-            activeIndex -= 1
-          else
-            return
-          updateExplore()
-
-      $navs.on 'click', ->
-        $activeNav = $(this)
-        activeIndex = $navs.index($activeNav)
-        $activeItem = $items.eq(activeIndex)
-
-      $(document).on 'click', '.switch_explore_content' , (e) ->
-        $this = $(this)
-        if $this.hasClass('left')
-          return unless activeIndex > 0
-          activeIndex -= 1
-        else if activeIndex < itemsLength - 1
-          activeIndex += 1
-        else
-          return
-        updateExplore()
-
-      updateExplore = ->
-        $activeItem.removeClass('active in')
-        $activeNav.removeClass('active')
-        $activeItem = $items.eq(activeIndex).addClass('active')
-        $activeNav  = $navs.eq(activeIndex).addClass('active')
-        setTimeout ->
-          $activeItem.addClass('in')
-        , 0
-
       $(document).on 'click', '.nav_toggle-btn', ->
         $('.explore_nav').toggleClass('open')
+
+      $slick = $('.explore_content').slick
+        arrows: false
+      $('.explore_content_item').css('display', 'block')
+
+      $navs = $('.explore_nav li')
+      activeSlide = 0
+
+      $slick.on 'afterChange', (e, slick, currentSlide) ->
+        $navs.eq(activeSlide).removeClass('active')
+        $navs.eq(currentSlide).addClass('active')
+        activeSlide = currentSlide
+
+      $navs.on 'click', ->
+        clickedSlide = $navs.index(this)
+        return if clickedSlide == activeSlide
+        $slick.slick('slickGoTo', clickedSlide)
+        activeSlide = clickedSlide
 
   exports.InitHomeGuest.OPTIONS = {
     url: '/hits'
