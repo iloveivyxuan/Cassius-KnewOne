@@ -40,8 +40,7 @@ class Weekly
     fancy_thing:   1,
     new_feeling:   3,
     new_review:    3,
-    add_to_list:   3,
-    thing_comment: 3
+    add_to_list:   3
   }
 
   THING_RELATED_UNION_PREFIX = 'Thing_'.freeze
