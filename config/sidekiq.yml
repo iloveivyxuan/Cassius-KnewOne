@@ -16,5 +16,5 @@ production:
   - weekly
 :limits:
   waybill: 1
-  weekly: 4
+  weekly: 1
   edm: 10
