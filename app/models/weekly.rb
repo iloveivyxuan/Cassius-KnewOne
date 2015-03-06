@@ -43,9 +43,6 @@ class Weekly
     add_to_list:   3
   }
 
-  THING_RELATED_UNION_PREFIX = 'Thing_'.freeze
-  EMPTY_STRING               = ''.freeze
-
   def friends_hot_things_of(user, limit = 6)
     return [] if user.followings.empty?
 
@@ -104,32 +101,18 @@ class Weekly
   private
 
   def fetch_hot_thing_ids_by_activities(activities, limit = 14)
-    return [] if activities.empty?
-
     activities
       .only(:type, :source_union, :reference_union)
       .by_types(*WEIGHT.keys)
       .since_date(self.since_date)
       .until_date(self.until_date)
-      .group_by(&:type)
-      .values
-      .map! do |grouped|
-        grouped.inject({}) do |weight_list, activity|
-          key = [activity.source_union, activity.reference_union]
-                  .select { |v| v.start_with? THING_RELATED_UNION_PREFIX }
-                  .first
-          if key
-            weight_list[key] ||= 0
-            weight_list[key] += WEIGHT[activity.type]
-          end
-
-          weight_list
-        end
-      end
-      .reduce({}) { |result, hash| hash.merge(result) { |key, old_value, new_value| old_value + new_value } }
-      .sort_by { |k, v| v }
+      .reduce(Hash.new(0)) do |weights, activity|
+      weights[activity.related_thing_id] += WEIGHT[activity.type]
+      weights
+    end
+      .sort_by(&:last)
+      .map!(&:first)
       .reverse!
       .take(limit)
-      .map! { |e| e[0].gsub THING_RELATED_UNION_PREFIX, EMPTY_STRING }
   end
 end
