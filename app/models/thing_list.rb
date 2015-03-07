@@ -27,7 +27,7 @@ class ThingList
 
   def sort_items(sort_options = {created_at: :desc})
     items.unscoped.order_by(sort_options).each_with_index do |item, i|
-      item.order = self.size - i
+      item.order = size - i
     end
   end
 
@@ -38,7 +38,7 @@ class ThingList
   def fancy(fancier)
     return if fancied?(fancier)
     _fancy(fancier)
-    self.author.notify(:fancy_list, context: self, sender: fancier, opened: true)
+    author.notify(:fancy_list, context: self, sender: fancier, opened: true)
   end
 
   include Rankable
