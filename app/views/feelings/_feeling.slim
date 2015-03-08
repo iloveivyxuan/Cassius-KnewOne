@@ -9,10 +9,10 @@
             = feeling_presenter.author_name
 
         figure.feeling_thing
-          = link_to feeling.thing do
+          = link_to feeling.thing, target: '_blank' do
             = image_tag feeling.thing.cover.url(:small)
           figcaption
-            = link_to feeling.thing do
+            = link_to feeling.thing, target: '_blank' do
               = feeling.thing.title
 
         section
@@ -29,7 +29,7 @@
         .wrap
           ul.metas
             li
-              = link_to feeling_presenter.path do
+              = link_to feeling_presenter.path, target: '_blank' do
                 = feeling_presenter.created_at
 
             - cache [feeling, 'metas', can?(:destroy, feeling)]
