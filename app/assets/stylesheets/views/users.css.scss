@@ -1273,18 +1273,17 @@ html[class^="users_"] {
 
 html.users_activities {
   .page-content {
+    padding-bottom: 0;
+
     @media (min-width: $screen-sm-min) {
       background-color: #e3e4e6;
       padding: {
+        bottom: 50px;
         left: 0;
         right: 0;
         top: 30px;
       }
     }
-  }
-
-  .page-footer {
-    background-color: transparent;
   }
 
   .thing {
