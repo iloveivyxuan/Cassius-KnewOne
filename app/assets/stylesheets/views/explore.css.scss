@@ -24,6 +24,7 @@ html.explore {
     margin: 0 auto;
     max-width: $screen-md-min;
     padding: 0 10px;
+    position: relative;
 
     @media (min-width: $screen-md-min) {
       padding: 0 50px;
@@ -222,6 +223,19 @@ html.explore {
           }
         }
       }
+    }
+  }
+
+  .contribute_button {
+    color: #fff;
+    height: 40px;
+    line-height: 40px;
+    padding: 0;
+    position: absolute;
+    text-align: left;
+
+    &:hover {
+      color: $blue;
     }
   }
 

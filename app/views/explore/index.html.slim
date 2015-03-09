@@ -26,4 +26,8 @@ section
   ul.block_list
     = render 'block_list_item', entries: @entries
 
+- unless browser.mobile?
+  - body = current_user.present? ? "#{current_user.name}：#{user_url(current_user)}" : ''
+  = link_to "我要投稿", "mailto:linzhian@knewone.com?subject=KnewOne 投稿&body=#{body}", class: "btn contribute_button", target: "_blank"
+
 = paginate @pager
