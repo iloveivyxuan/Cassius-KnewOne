@@ -14,7 +14,7 @@ window.Making = do (exports = window.Making || {}) ->
       placeholder: '产品详细信息'
 
   exports.InitThings = ->
-    exports.infiniteScroll '.infinite', window.location.href, (data, xhr) ->
+    exports.infiniteScroll '.infinite', window.location.href, undefined, (data, xhr) ->
       $(data).find(".lazy").css("visibility", "visible").lazyload
         threshold: 400
       return

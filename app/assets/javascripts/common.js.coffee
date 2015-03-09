@@ -40,8 +40,7 @@ do (root = @, exports = Making) ->
   if window.navigator.userAgent.toLowerCase().indexOf('micromessenger') >= 0
     exports.browser = 'wechat'
 
-  exports.infiniteScroll = (container, url, callback) ->
-    url ?= window.location.href
+  exports.infiniteScroll = (container, url = window.location.href, data, callback) ->
     $container = $(container)
     _page = 1
     _lock = false
@@ -50,11 +49,12 @@ do (root = @, exports = Making) ->
       if _lock or
         $document.height() - $window.scrollTop() - $window.height() > 200 then return
 
+      data = $.extend {}, data, { page: ++_page }
+
       $
         .ajax
           url: url
-          data:
-            page: ++_page
+          data: data
           dataType: 'html'
           beforeSend: (xhr, settings) ->
             _lock = true
