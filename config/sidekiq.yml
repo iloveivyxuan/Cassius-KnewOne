@@ -9,6 +9,7 @@ production:
   - notifications
   - devise
   - mails
+  - mailers
   - default
   - elasticsearch
   - edm
