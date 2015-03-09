@@ -90,6 +90,14 @@ every :monday, :at => '1:00 am' do
   runner "Weekly.generate_for_week!"
 end
 
+every 1.day, at: '1:00 am' do
+  runner "Sidekiq::Queue['weekly'].unpause"
+end
+
+every 1.day, at: '9:00 am' do
+  runner "Sidekiq::Queue['weekly'].pause"
+end
+
 every '0 3 1 * *' do
   runner "Stat.generate_month_stats"
 end
