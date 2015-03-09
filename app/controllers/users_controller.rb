@@ -15,6 +15,14 @@ class UsersController < ApplicationController
     end
 
     @activities = Kaminari.paginate_array(@activities, total_count: total_count).page(params[:page]).per(24)
+
+    if request.xhr?
+      if @activities.any?
+        render collection: @activities, partial: 'activities/activity', locals: { rich: @rich }
+      else
+        head :no_content
+      end
+    end
   end
 
   def fancies

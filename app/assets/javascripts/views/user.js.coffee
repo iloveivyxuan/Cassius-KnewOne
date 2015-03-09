@@ -1,6 +1,15 @@
 do (exports = window.Making || {}) ->
 
   exports.InitUser = ->
+    $activities = $('.page-content > .block_list')
+    exports.infiniteScroll '.page-content > .block_list', window.location.pathname, (data, xhr) ->
+      if $html.is(':not(.users_activities_text') and
+        Modernizr.mq('(min-width: ' + exports.Breakpoints.screenSMMin + ')')
+          waterfall = $waterfall.data('waterfall')
+          $items    = $waterfall.children('.activity:not([style])')
+          waterfall.appended($items)
+          waterfall.layout()
+
     if Modernizr.mq('(min-width: ' + exports.Breakpoints.screenSMMin + ')')
       $setting               = $('.vcard-setting')
       $canopy                = $('.vcard-canopy img')
@@ -112,5 +121,6 @@ do (exports = window.Making || {}) ->
         $waterfall = $('.js-waterfall')
         waterfall  = new Masonry $waterfall[0],
           itemSelector: '.activity'
+        $waterfall.data('waterfall', waterfall)
 
   return exports
