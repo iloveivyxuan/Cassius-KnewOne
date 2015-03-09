@@ -6,6 +6,8 @@ header.page-header
 
 = simple_nested_form_for @thing, url: haven_thing_path(@thing), html: {multipart: true, class: "pro_edit_thing_form"} do |f|
   .form-group
+    label.control-label 产品 id：#{@thing.id}
+  .form-group
     label.control-label 分享者
     = hidden_field_tag 'thing[author]', @thing.author.id.to_s, id: 'author_id'
     input#author_autocomplete.form-control placeholder="用户昵称" value="#{@thing.author.name}"
