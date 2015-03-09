@@ -80,16 +80,16 @@ class UserMailer < BaseMailer
          subject: '你在「KnewOne」上收到了一封私信')
   end
 
-  def weekly(weekly, user)
-    @weekly = weekly
-    @user = user
+  def weekly(weekly_id, user_id, thing_ids)
+    @weekly = Weekly.find(weekly_id)
+    @user = User.find(user_id)
 
-    attachments.inline['bigimage.jpg'] = weekly.header_image.read || File.read(Rails.root.join('app/assets/images/mails/bigimage.jpg'))
+    attachments.inline['bigimage.jpg'] = @weekly.header_image.read || File.read(Rails.root.join('app/assets/images/mails/bigimage.jpg'))
     attachments.inline['footer.png'] = File.read(Rails.root.join('app/assets/images/mails/footer.png'))
 
     @items = {}
 
-    @items[:friends_things] = @weekly.friends_hot_things_without_global_of(@user)
+    @items[:friends_things] = Thing.in(id: thing_ids).sort_by { |t| thing_ids.index(t.id) }
     @items[:friends_things_count] = @items[:friends_things].size
 
     @items[:hot_things] = @weekly.hot_things(6)
