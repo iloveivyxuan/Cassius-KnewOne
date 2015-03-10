@@ -3,6 +3,8 @@ class HomeController < ApplicationController
   skip_after_action :store_location, except: [:index]
   before_action :require_signed_in, only: [:welcome]
 
+  NUMBER_OF_SUBPAGES_IN_HOME_FEED = 3
+
   def index
     return redirect_to landing_url unless user_signed_in?
     return redirect_to hits_url unless current_user.followings_count > 0
@@ -19,11 +21,20 @@ class HomeController < ApplicationController
     from_time = BSON::ObjectId.from_string(@from_id).generation_time
     activities = activities.gt(created_at: from_time.ago(2.weeks))
 
-    activities = activities.page(params[:page]).per(30).to_a
+    page = params[:page].to_i
+    page = 1 if page <= 0
+    n = NUMBER_OF_SUBPAGES_IN_HOME_FEED
+
+    activities = activities.page(page / n + 1).per(30 * n).to_a
 
     return redirect_to hits_url if activities.blank?
 
-    @feeds = HomeFeed.create_from_activities activities
+    feeds = HomeFeed.create_from_activities(activities)
+    feeds_count = feeds.size
+    subpage = (page - 1) % n
+    offset = feeds_count * subpage / n
+    @feeds = feeds.drop(offset)
+    @feeds = feeds.take(feeds_count / n) if subpage == n - 1
 
     if request.xhr?
       render 'index_xhr', layout: false
