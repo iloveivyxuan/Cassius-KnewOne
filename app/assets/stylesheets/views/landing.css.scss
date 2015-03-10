@@ -1079,7 +1079,7 @@ html.landing_mobile {
 
   .jumptron.mobile_landing {
     margin: 0;
-    background: asset_url('landing-mobile-header_image_bg.jpg');
+    background: asset_url('landing-mobile-header_image_bg.jpg') repeat;
   }
 
   #wrapper {
@@ -1175,7 +1175,7 @@ html.landing_mobile.tablet {
     }
   }
   .headline {
-    background: asset_url('landing-mobile-header_image_bg.jpg') !important;
+    background: asset_url('landing-mobile-header_image_bg.jpg') repeat !important;
     display: table;
     padding: 20px 45px 0 45px;
     width: 100%;
