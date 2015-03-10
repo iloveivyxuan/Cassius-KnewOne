@@ -35,6 +35,8 @@ window.Making = do (exports = window.Making || {}) ->
       $navs.on 'click', ->
         clickedSlide = $navs.index(this)
         return if clickedSlide == activeSlide
+        $navs.eq(activeSlide).removeClass('active')
+        $navs.eq(clickedSlide).addClass('active')
         $slick.slick('slickGoTo', clickedSlide)
         activeSlide = clickedSlide
 
