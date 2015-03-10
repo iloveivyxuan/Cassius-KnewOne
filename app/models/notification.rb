@@ -44,6 +44,7 @@ class Notification
   # avoiding naming conflict
   scope :marked_as_read, -> { where read: true }
   scope :unread, -> { where read: false }
+  scope :unread_or_unopened, -> { self.or({read: false}, {opened: false}) }
   default_scope -> { order_by [:created_at, :desc] }
 
   def read!
@@ -84,7 +85,7 @@ class Notification
   end
 
   def self.mark_as_read_by_context(receiver, context)
-    notifications = receiver.notifications.unread.by_context(context)
+    notifications = receiver.notifications.unread_or_unopened.by_context(context)
 
     return unless notifications.exists?
 
