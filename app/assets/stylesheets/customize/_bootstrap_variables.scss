@@ -180,7 +180,9 @@ $headings-line-height:    1.5;
 //* `<input>` background color
 // $input-bg:                       #fff
 //* `<input disabled>` background color
-// $input-bg-disabled:              $gray-lighter
+//
+
+$input-bg-disabled:              $gray-lightest;
 
 //* Text color for `<input>`s
 // $input-color:                    $gray
@@ -205,7 +207,7 @@ $headings-line-height:    1.5;
 // $legend-border-color:            #e5e5e5
 
 //* Background color for textual input addons
-// $input-group-addon-bg:           $gray-lighter
+$input-group-addon-bg:           $gray-lightest;
 //* Border color for textual input addons
 // $input-group-addon-border-color: $input-border
 
@@ -395,7 +397,7 @@ $navbar-inverse-link-active-bg:             #333;
 
 //=== Shared nav styles
 // $nav-link-padding:                          10px 15px
-// $nav-link-hover-bg:                         $gray-lighter
+$nav-link-hover-bg:                         $gray-lightest;
 
 // $nav-disabled-link-color:                   $gray-light
 // $nav-disabled-link-hover-color:             $gray-light
@@ -405,7 +407,7 @@ $navbar-inverse-link-active-bg:             #333;
 //== Tabs
 // $nav-tabs-border-color:                     #ddd
 
-// $nav-tabs-link-hover-border-color:          $gray-lighter
+$nav-tabs-link-hover-border-color:          $gray-lightest;
 
 // $nav-tabs-active-link-hover-bg:             $body-bg
 // $nav-tabs-active-link-hover-color:          $gray
@@ -428,7 +430,7 @@ $navbar-inverse-link-active-bg:             #333;
 // $pagination-border:                    #ddd
 
 // $pagination-hover-color:               $link-hover-color
-// $pagination-hover-bg:                  $gray-lighter
+$pagination-hover-bg:                  $gray-lightest;
 // $pagination-hover-border:              #ddd
 
 // $pagination-active-color:              #fff
@@ -460,7 +462,7 @@ $navbar-inverse-link-active-bg:             #333;
 
 // $jumbotron-padding:              30px
 // $jumbotron-color:                inherit
-// $jumbotron-bg:                   $gray-lighter
+$jumbotron-bg:                   $gray-lightest;
 // $jumbotron-heading-color:        inherit
 // $jumbotron-font-size:            ceil(($font-size-base * 1.5))
 
@@ -652,7 +654,7 @@ $popover-max-width:                      none;
 //* Text color of disabled list items
 // $list-group-disabled-color:      $gray-light
 //* Background color of disabled list items
-// $list-group-disabled-bg:         $gray-lighter
+$list-group-disabled-bg:         $gray-lightest;
 //* Text color for content within disabled list items
 // $list-group-disabled-text-color: $list-group-disabled-color
 
@@ -705,7 +707,7 @@ $popover-max-width:                      none;
 //* Padding around the thumbnail image
 // $thumbnail-padding:           4px
 //* Thumbnail background color
-$thumbnail-bg:                #fff
+$thumbnail-bg:                #fff;
 //* Thumbnail border color
 // $thumbnail-border:            #ddd
 //* Thumbnail border radius
@@ -812,10 +814,10 @@ $thumbnail-bg:                #fff
 //* Blockquote font size
 // $blockquote-font-size:        ($font-size-base * 1.25)
 //* Blockquote border color
-// $blockquote-border-color:     $gray-lighter
+$blockquote-border-color:     $gray-lightest;
 //* Page header border color
-// $page-header-border-color:    $gray-lighter
+$page-header-border-color:    $gray-lightest;
 //* Width of horizontal description list titles
 // $dl-horizontal-offset:        $component-offset-horizontal
 //* Horizontal line color.
-// $hr-border:                   $gray-lighter
+$hr-border:                   $gray-lightest;
