@@ -18,7 +18,7 @@ class User
   index name: 1
 
   field :accept_edm, type: Boolean, default: true
-  scope :edm, -> { where :accept_edm => true, :email.exists => true }
+  scope :edm, -> { where(accept_edm: true, email: email_regexp) }
 
   field :part_time_list, type: Array, default: []
 
