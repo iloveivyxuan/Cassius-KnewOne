@@ -34,7 +34,7 @@ class HomeController < ApplicationController
     subpage = (page - 1) % n
     offset = feeds_count * subpage / n
     @feeds = feeds.drop(offset)
-    @feeds = feeds.take(feeds_count / n) if subpage == n - 1
+    @feeds = @feeds.take(feeds_count / n) if subpage != n - 1
 
     if request.xhr?
       render 'index_xhr', layout: false
