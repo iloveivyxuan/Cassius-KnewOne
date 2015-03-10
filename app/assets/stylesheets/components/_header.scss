@@ -544,7 +544,7 @@ html.no-touch {
       }
       font-size: 14px;
       line-height: 39px;
-      color: $gray-lighter;
+      color: $gray-lightest;
       text-align: center;
       @include transition-property(background-color color);
       @include transition-duration(0.2s);
@@ -564,7 +564,7 @@ html.no-touch {
         &.active:active {
           background-color: transparent;
           border-bottom-color: $brand-primary;
-          color: $gray-lighter;
+          color: $gray-lightest;
         }
       }
     }
@@ -588,7 +588,7 @@ html.no-touch {
     height: 45px;
     margin: 0;
     padding: 0;
-    color: $gray-lighter;
+    color: $gray-lightest;
     text-align: center;
     background-color: transparent;
     text-decoration: none;
@@ -618,7 +618,7 @@ html.no-touch {
   }
 
   #notification_trigger {
-    color: $gray-lighter;
+    color: $gray-lightest;
     display: block;
     height: 45px;
     line-height: 45px;
@@ -666,7 +666,7 @@ html.no-touch {
           li {
             line-height: 20px;
             a {
-              color: $gray-lighter;
+              color: $gray-lightest;
               background: $navbar-bg;
               border-bottom: 2px solid $navbar-dropdown-bg;
               &:hover {
@@ -699,7 +699,7 @@ html.no-touch {
         .notifications li {
           padding: 1em 1.5em;
           line-height: 1.4;
-          color: $gray-lighter;
+          color: $gray-lightest;
           text-align: left;
           border-bottom: 1px dashed $text-color;
           &:last-child {
@@ -724,7 +724,7 @@ html.no-touch {
         background-color: $navbar-bg;
         border-radius: 0 0 4px 4px;
         a {
-          color: $gray-lighter;
+          color: $gray-lightest;
           &:hover {
             color: #fff;
           }
@@ -768,7 +768,7 @@ html.no-touch {
             display: block;
             padding: 0;
             line-height: 1.25;
-            color: $gray-lighter;
+            color: $gray-lightest;
             text-align: center;
             font-weight: normal;
             letter-spacing: 3px;

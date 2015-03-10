@@ -82,7 +82,7 @@
       margin-top: 20px;
 
       > a {
-        @include plain-link($gray-lighter);
+        @include plain-link($gray-lightest);
         line-height: 40px;
       }
 
@@ -104,7 +104,7 @@
 
         span {
           margin-left: 1em;
-          color: $gray-lighter;
+          color: $gray-lightest;
         }
       }
 

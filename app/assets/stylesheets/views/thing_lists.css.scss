@@ -97,7 +97,7 @@ html.thing_lists_show {
           width: auto;
           height: 60px;
 
-          border: 1px solid $iron;
+          border: 1px solid $gray-lighter;
           box-shadow: 0 0 5px rgba(black, .2);
         }
 
@@ -375,7 +375,7 @@ html.thing_lists_show {
           .thing_list_item-description {
             position: relative;
             padding: 20px 16px;
-            border-top: 1px dashed $gray-lighter;
+            border-top: 1px dashed $gray-lightest;
             background: #f7f7f7;
 
             i {
@@ -574,7 +574,7 @@ html.thing_lists_show {
           background: white;
 
           border: none;
-          border-top: 1px dashed $gray-lighter;
+          border-top: 1px dashed $gray-lightest;
           box-shadow: 0 5px 5px rgba(0, 0, 0, .1);
 
           transition: all 0.2s ease;

@@ -137,7 +137,7 @@ html.feelings_show {
   .form_wrapper {
     position: relative;
     padding-bottom: 2em;
-    border-bottom: 1px dashed $gray-lighter;
+    border-bottom: 1px dashed $gray-lightest;
     background: #fff;
     &.comment_form_wrapper {
       padding: 2em 0;
@@ -201,7 +201,7 @@ html.feelings_show {
         padding-left: 2em;
 
         textarea {
-          background-color: $gray-lighter;
+          background-color: $gray-lightest;
         }
       }
     }
@@ -279,7 +279,7 @@ html.feelings_show {
   }
   .modal-footer {
     margin: 0;
-    border-top: 1px dashed $gray-lighter;
+    border-top: 1px dashed $gray-lightest;
     .counter {
       margin-right: 20px;
     }
@@ -697,7 +697,7 @@ html.feelings_show {
         height: 50px;
         margin-top: 60px;
         a {
-          border-top-color: $gray-lighter;
+          border-top-color: $gray-lightest;
           .fa {
             &:before { @include fa-angle-up; }
             &:after { content: "收起" }
@@ -976,7 +976,7 @@ html.feelings_show {
   .reviews.list {
     > * {
       border: none;
-      border-bottom: 1px dashed $gray-lighter;
+      border-bottom: 1px dashed $gray-lightest;
       &:last-child { border-bottom: none }
     }
     .feed_article.review {
@@ -1186,7 +1186,7 @@ html.feelings_show {
 
     > * {
       border: none;
-      border-bottom: 1px dashed $gray-lighter;
+      border-bottom: 1px dashed $gray-lightest;
       &:last-child { border-bottom: none }
     }
     .feed_article--feeling {
@@ -1257,7 +1257,7 @@ html.feelings_show {
             font-size: 14px;
             color: $text-color;
             background: #fff;
-            border: 1px solid $gray-lighter;
+            border: 1px solid $gray-lightest;
             @include border-radius(0);
             @include box-shadow(none);
             &:focus {
@@ -1282,7 +1282,7 @@ html.feelings_show {
     background: #fff;
     > * {
       border: none;
-      border-bottom: 1px dashed $gray-lighter;
+      border-bottom: 1px dashed $gray-lightest;
       &:last-child { border-bottom: none }
     }
     .activity_feed {
@@ -1664,11 +1664,11 @@ html.feelings_show {
       @include MQ(Lplus) {
         > li {
           width: 50%;
-          border-right: 1px dashed $gray-lighter;
+          border-right: 1px dashed $gray-lightest;
 
           &:nth-child(1),
           &:nth-child(2) {
-            border-bottom: 1px dashed $gray-lighter;
+            border-bottom: 1px dashed $gray-lightest;
           }
 
           &:nth-child(even) { border-right: none }
@@ -1771,7 +1771,7 @@ html.feelings_show {
         position: relative;
         width: 100%;
         background: $ghost-white;
-        border-bottom: 1px solid $gray-lighter;
+        border-bottom: 1px solid $gray-lightest;
         > .user_avatar {
           position: absolute;
           z-index: 1;
@@ -1942,7 +1942,7 @@ html.feelings_show {
         position: relative;
         width: 100%;
         background: $ghost-white;
-        border-bottom: 1px solid $gray-lighter;
+        border-bottom: 1px solid $gray-lightest;
         > a {
           float: left;
           width: 40px;
@@ -2086,7 +2086,7 @@ html.feelings_show {
           line-height: 35px;
           color: $text-color;
           border: none;
-          border: 1px solid $gray-lighter;
+          border: 1px solid $gray-lightest;
           @include box-shadow(none);
         }
         .dropdown-menu {
@@ -2208,7 +2208,7 @@ html.feelings_show {
           line-height: 35px;
           color: $text-color;
           border: none;
-          border: 1px solid $gray-lighter;
+          border: 1px solid $gray-lightest;
           @include box-shadow(none);
         }
 
@@ -2294,7 +2294,7 @@ html.feelings_show {
           color: $blue-dark;
           background: #fff;
           border: none;
-          border-top: 1px dashed $gray-lighter;
+          border-top: 1px dashed $gray-lightest;
           @include border-radius(0);
           @include box-shadow(0 5px 5px rgba(0,0,0,.1));
           @include transition-property(all);
@@ -2711,7 +2711,7 @@ html.things_show {
 
       a {
         margin-left: 15px;
-        color: $iron;
+        color: $gray-lighter;
       }
     }
 
@@ -2721,7 +2721,7 @@ html.things_show {
       margin: 15px 0 0;
 
       .fa-quote-left {
-        color: $iron;
+        color: $gray-lighter;
       }
     }
 

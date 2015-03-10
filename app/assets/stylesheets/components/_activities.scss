@@ -18,7 +18,7 @@
   .activity-list {
     color: $orange;
   }
-} 
+}
 
 .activity--text {
   @include clearfix;
@@ -69,7 +69,7 @@
     }
 
     > span {
-      color: $iron;
+      color: $gray-lighter;
     }
   }
 
@@ -81,7 +81,7 @@
 
     &::before,
     &::after {
-      color: $iron;
+      color: $gray-lighter;
       font-family: 'KnewOne-Icon';
       font-size: 12px;
       vertical-align: text-top;
@@ -103,7 +103,7 @@
   float: right;
 
   > time {
-    color: $iron;
+    color: $gray-lighter;
     height: 22px;
     line-height: 22px;
   }

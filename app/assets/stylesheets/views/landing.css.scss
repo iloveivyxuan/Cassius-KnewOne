@@ -533,7 +533,7 @@ html.home_landing {
           height: 180px;
           margin: 0 auto;
           @include MQ(XLplus) { height: 150px }
-          border-top: 1px dashed $gray-lighter;
+          border-top: 1px dashed $gray-lightest;
           > div {
             display: table-cell;
             vertical-align: middle;
@@ -755,8 +755,8 @@ html.home_landing {
         width: 25%;
         height: 250px;
         padding: 0 40px;
-        border-left: 1px dashed $gray-lighter;
-        border-right: 1px dashed $gray-lighter;
+        border-left: 1px dashed $gray-lightest;
+        border-right: 1px dashed $gray-lightest;
         overflow: hidden;
         > div {
           display: table-cell;

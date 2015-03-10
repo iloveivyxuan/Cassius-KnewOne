@@ -384,7 +384,7 @@ html[class^="users_"] {
     background-color: #fff;
     margin-bottom: 20px;
     padding: 20px;
-    
+
     .vcard-avatar {
       float: left;
       margin-right: 20px;
@@ -731,8 +731,8 @@ html[class^="users_"] {
         }
 
         &.active {
-          background-color: $iron;
-          border-color: $iron;
+          background-color: $gray-lighter;
+          border-color: $gray-lighter;
           color: #fff;
         }
       }
@@ -930,7 +930,7 @@ html[class^="users_"] {
           margin: 0 0 10px 15px;
 
           i {
-            color: $iron;
+            color: $gray-lighter;
           }
         }
 
@@ -1090,7 +1090,7 @@ html[class^="users_"] {
 
       &::before,
       &::after {
-        color: $iron;
+        color: $gray-lighter;
         font-family: 'Knewone-Icon';
         font-size: 14px;
       }
@@ -1166,7 +1166,7 @@ html[class^="users_"] {
     }
 
     .metas {
-      color: $iron;
+      color: $gray-lighter;
       font-size: 12px;
     }
   }
@@ -1215,7 +1215,7 @@ html[class^="users_"] {
       float: right;
 
       > li {
-        color: $iron;
+        color: $gray-lighter;
         height: 32px;
         line-height: 32px;
 
@@ -1224,7 +1224,7 @@ html[class^="users_"] {
         }
 
         time {
-          color: $iron;
+          color: $gray-lighter;
         }
       }
     }
@@ -1265,7 +1265,7 @@ html[class^="users_"] {
     @include clearfix;
 
     .metas {
-      color: $iron;
+      color: $gray-lighter;
       float: right;
     }
   }
@@ -1306,7 +1306,7 @@ html.users_activities {
 
       .stats {
         a {
-          color: $iron;
+          color: $gray-lighter;
         }
       }
 
@@ -1321,7 +1321,7 @@ html.users_activities {
     }
 
     .fanciers_count {
-      color: $iron;
+      color: $gray-lighter;
     }
   }
 
@@ -1349,7 +1349,7 @@ html.users_activities {
         }
       }
     }
-    
+
     > footer  {
       background-color: transparent;
       padding: 10px 20px 20px;
@@ -1462,7 +1462,7 @@ html.users_followings {
   .follows {
     @include clearfix;
     background-color: #fff;
-    
+
     > a {
       border-bottom: 2px solid transparent;
       color: $text-color;
