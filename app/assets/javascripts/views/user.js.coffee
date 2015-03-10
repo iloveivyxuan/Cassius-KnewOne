@@ -3,7 +3,7 @@ do (exports = window.Making || {}) ->
   exports.InitUser = ->
     $waterfall = $('.page-content > .block_list')
     exports.infiniteScroll '.page-content > .block_list', window.location.pathname, { rich: exports.GetParameterByKey('rich') }, (data, xhr) ->
-      if $html.is(':not(.users_activities_text') and
+      if $html.is(':not(.users_activities_text)') and
         Modernizr.mq('(min-width: ' + exports.Breakpoints.screenSMMin + ')')
           waterfall = $waterfall.data('waterfall')
           $items    = $waterfall.children('.activity:not([style])')
