@@ -66,18 +66,23 @@ development:
 
     # Ensure all times are UTC in the app side. (default: false)
     # use_utc: false
-development:
+development: &development
   sessions:
     default:
       database: making_development
       hosts:
         - 127.0.0.1:27017
+
+profile:
+  <<: *development
+
 test:
   sessions:
     default:
       database: making_test
       hosts:
         - localhost:27017
+
 production:
   sessions:
     default:

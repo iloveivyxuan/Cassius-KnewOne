@@ -162,3 +162,9 @@ group :development, :test do
   # fake email sending
   gem 'letter_opener', github: 'ryanb/letter_opener', branch: 'master'
 end
+
+group :development, :profile do
+  gem 'rack-mini-profiler'
+  gem 'flamegraph'
+  gem 'stackprof'
+end
