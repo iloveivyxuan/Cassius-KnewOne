@@ -18,6 +18,12 @@ html
     h2 正文
     section
       = @entry.post.clean_content(:wechat)
+
+      p style="font-size: 12px; text-align: center;"
+        | 本文于 KnewOne 首发
+      p style="font-size: 12px; text-align: center;"
+        | 如需转载请联系微信后台 | 侵权必究
+
       table
         tbody
           tr.firstRow align="center" valign="middle"
@@ -30,4 +36,4 @@ html
                 span style="color: rgb(255, 255, 255);"  发现更多 关注微博 @KnewOne
               p style="clear: both; padding: 5px; font-family: inherit; font-size: 14px; line-height: 1.5;"
                 strong
-                  span style="color: rgb(255, 255, 255);" 戳[阅读原文]#{read_more_tip}
+                  span style="color: rgb(255, 255, 255); font-size: 16px;" 戳[阅读原文]#{read_more_tip}
