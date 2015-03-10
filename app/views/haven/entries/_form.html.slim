@@ -5,7 +5,7 @@
   = f.input :title
   = f.input :wechat_title
   - title = (@entry && @entry.title?) ? @entry.title : @entry.post.try(:title)
-  = f.input :sharing_content, input_html: {value: "推荐 @KnewOne #{@entry.category}：《#{title}》"}
+  = f.input :sharing_content, input_html: {value: (f.object.sharing_content.blank? ? (f.object.new_record? ? "" : "推荐 @KnewOne #{@entry.category_translation}：《#{title}》") : f.object.sharing_content), placeholder: "默认值：“推荐 @KnewOne xxx：《xxx》”"}
   = f.input :summary, as: :text , input_html: {rows: 4}
   = f.input :avatar
   = f.input :avatar_cache, as: :hidden
