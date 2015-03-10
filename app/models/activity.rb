@@ -128,10 +128,9 @@ class Activity
     records = {}
 
     models.each do |model|
-      ids = unions.reduce([]) do |ids, s|
+      ids = unions.each_with_object([]) do |s, ids|
         model_name, id = s.split('_')
         ids << id if model_name == model.name
-        ids
       end
 
       next if ids.empty?

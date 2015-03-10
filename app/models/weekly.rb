@@ -106,10 +106,7 @@ class Weekly
       .by_types(*WEIGHT.keys)
       .since_date(self.since_date)
       .until_date(self.until_date)
-      .reduce(Hash.new(0)) do |weights, activity|
-      weights[activity.related_thing_id] += WEIGHT[activity.type]
-      weights
-    end
+      .each_with_object(Hash.new(0)) { |a, h| h[a.related_thing_id] += WEIGHT[a.type] }
       .sort_by(&:last)
       .map!(&:first)
       .reverse!
