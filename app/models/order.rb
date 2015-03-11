@@ -5,7 +5,7 @@ class Order
   include BongPointAttachable
   include Aftermath
 
-  belongs_to :user
+  belongs_to :user, index: true
 
   index created_at: 1
 
